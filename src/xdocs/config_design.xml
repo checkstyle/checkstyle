@@ -14,17 +14,19 @@
       <subsection name="Description">
         <p>
           Checks visibility of class members. Only static final members
-          may be public; other class members must be private unless
+          may be public; other class members must be private unless the
           property <code>protectedAllowed</code> or <code>packageAllowed</code> is set.
         </p>
 
         <p>
           Public members are not flagged if the name matches the public
-          member regular expression (contains <code>"^serialVersionUID$"</code> by default).  Note:
+          member regular expression (contains <code>"^serialVersionUID$"</code> by default).
+        </p>
+        <p>Note that
           Checkstyle 2 used to include <code>"^f[A-Z][a-zA-Z0-9]*$"</code> in the default
-          pattern to allow CMP for EJB 1.1 with the default settings.
-          With EJB 2.0 it is not longer necessary to have public access
-          for persistent fields, hence the default has been changed.
+          pattern to allow names used in container-managed persistence for Enterprise JavaBeans (EJB) 1.1 with the default settings.
+          With EJB 2.0 it is no longer necessary to have public access
+          for persistent fields, so the default has been changed.
         </p>
 
         <p>
@@ -134,7 +136,7 @@
     <section name="InterfaceIsType">
       <subsection name="Description">
         <p>
-          Implements Bloch, Effective Java, Item 17 - Use Interfaces only to
+          Implements Joshua Bloch, Effective Java, Item 17 - Use Interfaces only to
           define types.
         </p>
 
@@ -198,7 +200,7 @@
     <section name="HideUtilityClassConstructor">
       <subsection name="Description">
         <p>
-          Make sure that utility classes (classes that contain only static
+          Makes sure that utility classes (classes that contain only static
           methods or fields in their API) do not have a public constructor.
         </p>
 
@@ -262,13 +264,13 @@ public class StringUtils // not final to allow subclassing
 
         <p>
           The exact rule is that nonprivate, nonstatic methods of classes that
-          can be subclassed must either be
+          can be subclassed must
         </p>
 
         <ul>
-          <li>abstract or</li>
-          <li>final or</li>
-          <li>have an empty implementation</li>
+          <li>be abstract or</li>
+          <li>be final or</li>
+          <li>have an empty implementation.</li>
         </ul>
 
         <p>
@@ -277,7 +279,7 @@ public class StringUtils // not final to allow subclassing
           limited in their flexibility, in particular they cannot prevent
           execution of code in the superclass, but that also means that
           subclasses cannot corrupt the state of the superclass by forgetting
-          to call the super method.
+          to call the superclass's method.
         </p>
       </subsection>
 
@@ -311,16 +313,16 @@ public class StringUtils // not final to allow subclassing
     <section name="MutableException">
       <subsection name="Description">
         <p>
-          Ensures that exceptions (defined as any class name conforming to
-          some regular expression) are immutable. That is, have only final
+          Ensures that exception classes (classes with names conforming to
+          some regular expression) are immutable, that is, that they have only final
           fields.
         </p>
 
         <p>
-          The current algorithm is very simple it checks that all members of
-          exception are final.  User can still mutates an exception's instance
-          (e.g. Throwable has setStackTrace(StackTraceElement[] stackTrace)
-          method which changes stack trace).  But, at least, all information
+          The current algorithm is very simple: it checks that all members of
+          exception are final.  The user can still mutate an exception's instance
+          (e.g. Throwable has a method called <code>setStackTrace</code>
+          which changes the exception's stack trace).  But, at least, all information
           provided by this exception type is unchangable.
         </p>
 
@@ -328,8 +330,8 @@ public class StringUtils // not final to allow subclassing
           Rationale: Exception instances should represent an error
           condition. Having non final fields not only allows the state to be
           modified by accident and therefore mask the original condition but
-          also allows developers to accidentally forget to initialise state
-          thereby leading to code catching the exception to draw incorrect
+          also allows developers to accidentally forget to set the initial state.
+          In both cases, code catching the exception could draw incorrect
           conclusions based on the state.
         </p>
       </subsection>
@@ -344,7 +346,7 @@ public class StringUtils // not final to allow subclassing
           </tr>
           <tr>
             <td>format</td>
-            <td>pattern for name of exception class.</td>
+            <td>pattern for exception class names</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^.*Exception$|^.*Error$</code></td>
           </tr>
@@ -376,17 +378,17 @@ public class StringUtils // not final to allow subclassing
     <section name="ThrowsCount">
       <subsection name="Description">
         <p>
-          Restricts throws statements to a specified count (default = 1).
+          Restricts throws statements to a specified count (1 by default).
         </p>
 
         <p>
-          Rationale: Exceptions form part of a methods interface. Declaring a
+          Rationale: Exceptions form part of a method's interface. Declaring a
           method to throw too many differently rooted exceptions makes
           exception handling onerous and leads to poor programming practices
-          such as catch (Exception). This check forces developers to put
+          such as writing code like <code>catch(Exception ex)</code>. This check forces developers to put
           exceptions into a hierarchy such that in the simplest case, only one
-          type of exception need be checked for by a caller but allows any
-          sub-classes to be caught specifically if necessary.
+          type of exception need be checked for by a caller but any
+          subclasses can be caught specifically if necessary.
         </p>
       </subsection>
 
@@ -435,7 +437,7 @@ public class StringUtils // not final to allow subclassing
     <section name="InnerTypeLast">
       <subsection name="Description">
         <p>
-          Check nested (internal) classes/interfaces are declared at the
+          Check nested (inner) classes/interfaces are declared at the
           bottom of the class after all method and field declarations.
         </p>
       </subsection>
