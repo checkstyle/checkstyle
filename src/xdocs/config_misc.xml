@@ -13,14 +13,14 @@
     <section name="NewlineAtEndOfFile">
       <subsection name="Description">
         <p>
-          Checks whether files end with a new line.
+          Checks whether files end with a line separator.
         </p>
 
         <p>
           Rationale: Any source files and text files in general should
-          end with a newline character, especially when using SCM
+          end with a line separator, especially when using source control management
           systems such as CVS. CVS will even print a warning when it
-          encounters a file that doesn't end with a newline.
+          encounters a file that doesn't end with a line separator.
         </p>
       </subsection>
 
@@ -40,7 +40,7 @@
               &quot;crlf&quot; (Windows-style), &quot;cr&quot;
               (Mac-style) and &quot;lf&quot; (Unix-style)
             </td>
-            <td>system default</td>
+            <td>&quot;system&quot;</td>
           </tr>
           <tr>
             <td>fileExtensions</td>
@@ -70,7 +70,7 @@
         </source>
 
           <p>
-            To configure the check to work only on java, xml and python files:
+            To configure the check to work only on Java, XML and Python files:
           </p>
           <source>
 &lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
@@ -99,7 +99,7 @@
           it is a generic <a
           href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html">regular
           expression</a> matcher on Java comments. To check for other
-          patterns in Java comments, set property format.
+          patterns in Java comments, set the <code>format</code> property.
         </p>
       </subsection>
 
@@ -113,7 +113,7 @@
           </tr>
           <tr>
             <td>format</td>
-            <td>pattern to check</td>
+            <td>Pattern to match comments against</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>TODO:</code></td>
           </tr>
@@ -184,9 +184,9 @@ ok=OK
         </source>
 
         <p>
-          The Translation check will find the typo in the german hello
-          key, the missing ok key in the default resource file and the
-          missing cancel key in the german resource file:
+          The Translation check will find the typo in the German <code>hello</code>
+          key, the missing <code>ok</code> key in the default resource file and the
+          missing <code>cancel</code> key in the German resource file:
         </p>
         <source>
 messages_de.properties: Key 'hello' missing.
@@ -243,16 +243,16 @@ messages.properties: Key 'ok' missing.
     <section name="UncommentedMain">
       <subsection name="Description">
         <p>
-          Checks for uncommented main() methods (debugging leftovers).
+          Checks for uncommented main() methods.
         </p>
 
         <p>
-          Rationale: A main() method is often used for debug
+          Rationale: A main() method is often used for debugging
           purposes. When debugging is finished, developers often forget
           to remove the method, which changes the API and increases the
-          size of the resulting class/jar file. With the exception of
+          size of the resulting class or JAR file. With the exception of
           the real program entry points, all main() methods should be
-          removed/commented out of the sources.
+          removed or commented out of the sources.
         </p>
       </subsection>
 
@@ -266,7 +266,7 @@ messages.properties: Key 'ok' missing.
           </tr>
           <tr>
             <td>excludedClasses</td>
-            <td>pattern for qualified names of classes which are allowed
+            <td>Pattern for qualified names of classes which are allowed
             to have a main method.</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^$</code></td>
@@ -283,7 +283,7 @@ messages.properties: Key 'ok' missing.
         </source>
 
         <p>
-          To configure the check to allow main method for all classes
+          To configure the check to allow the <code>main</code> method for all classes
           with &quot;Main&quot; name:
         </p>
         <source>
@@ -310,14 +310,14 @@ messages.properties: Key 'ok' missing.
       <subsection name="Description">
         <p>
           Checks that long constants are defined with an upper ell. That
-          is <code>' L'</code> and not <code>'l'</code>. This is in accordance to the Java
+          is <code>' L'</code> and not <code>'l'</code>. This is in accordance with the Java
           Language Specification, <a
           href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282">
           Section 3.10.1</a>.
         </p>
 
         <p>
-          looks a lot like <code>1</code>.
+          The capital L looks a lot like <code>1</code>.
         </p>
       </subsection>
 
@@ -346,9 +346,9 @@ messages.properties: Key 'ok' missing.
     <section name="ArrayTypeStyle">
       <subsection name="Description">
         <p>
-          Checks the style of array type definitions.  Some like Java-style:
+          Checks the style of array type definitions.  Some like Java style:
           <code>public static void main(String[] args)</code> and some like
-          C-style: public static void main(String args[])
+          C style: public static void main(String args[])
         </p>
       </subsection>
 
@@ -405,8 +405,8 @@ messages.properties: Key 'ok' missing.
     <section name="FinalParameters">
       <subsection name="Description">
         <p>
-          Check that method/constructor/catch block parameters are
-          final. Interface and abstract methods are not checked - the final
+          Check that parameters for methods, constructors, and catch blocks are
+          final. Interface and abstract methods are not checked: the final
           keyword does not make sense for interface and abstract method
           parameters as there is no code that could modify the parameter.
         </p>
@@ -488,11 +488,11 @@ messages.properties: Key 'ok' missing.
 
         <p>
           WARNING: This is a very powerful and flexible check, but, at the
-          same time, it is low level and very implementation dependent because
+          same time, it is low-level and very implementation-dependent because
           its results depend on the grammar we use to build abstract syntax
-          trees. Thus we recomend using other checks when they provide the
-          desired functionality. All in all, this check just works on the level
-          of an abstract tree and knows nothing about language structures.
+          trees. Thus we recommend using other checks when they provide the
+          desired functionality. Essentially, this check just works on the level
+          of an abstract syntax tree and knows nothing about language structures.
         </p>
       </subsection>
 
@@ -553,13 +553,13 @@ messages.properties: Key 'ok' missing.
           </tr>
           <tr>
             <td>minimumMessage</td>
-            <td>error message when minimum count not reached</td>
+            <td>error message when the minimum count is not reached</td>
             <td><a href="property_types.html#string">String</a></td>
             <td>&quot;descendant.token.min&quot;</td>
           </tr>
           <tr>
             <td>maximumMessage</td>
-            <td>error message when maximum count exceeded</td>
+            <td>error message when the maximum count is exceeded</td>
             <td><a href="property_types.html#string">String</a></td>
             <td>&quot;descendant.token.max&quot;</td>
           </tr>
@@ -617,7 +617,7 @@ messages.properties: Key 'ok' missing.
         </source>
 
         <p>
-          Initialiser in for performs no setup (use while instead?):
+          The initialiser in <code>for</code> performs no setup (where a <code>while</code> statement could be used instead):
         </p>
         <source>
 &lt;module name="DescendantToken"&gt;
@@ -628,7 +628,7 @@ messages.properties: Key 'ok' missing.
         </source>
 
         <p>
-          Condition in for performs no check:
+          The condition in <code>for</code> performs no check:
         </p>
         <source>
 &lt;module name="DescendantToken"&gt;
@@ -639,7 +639,7 @@ messages.properties: Key 'ok' missing.
         </source>
 
         <p>
-          Switch within switch:
+          A switch within a switch:
         </p>
         <source>
 &lt;module name="DescendantToken"&gt;
@@ -650,7 +650,7 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
 
-        <p>Return from within a catch or finally block:</p>
+        <p>A return statement from within a catch or finally block:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
     &lt;property name="tokens" value="LITERAL_FINALLY,LITERAL_CATCH"/&gt;
@@ -659,7 +659,7 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
 
-        <p>Try within catch or finally block:</p>
+        <p>A try statement within a catch or finally block:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
     &lt;property name="tokens" value="LITERAL_CATCH,LITERAL_FINALLY"/&gt;
@@ -707,7 +707,7 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
 
-        <p>Limit the number of exceptions a method can throw:</p>
+        <p>Limits the number of exceptions a method can throw:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
     &lt;property name="tokens" value="LITERAL_THROWS"/&gt;
@@ -716,7 +716,7 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
 
-        <p>Limit the number of expressions in a method:</p>
+        <p>Limits the number of expressions in a method:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
     &lt;property name="tokens" value="METHOD_DEF"/&gt;
@@ -725,7 +725,7 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
 
-        <p>Disallow empty statements:</p>
+        <p>Disallows empty statements:</p>
         <source>
 &lt;module name="DescendantToken"&gt;
     &lt;property name="tokens" value="EMPTY_STAT"/&gt;
@@ -764,16 +764,16 @@ messages.properties: Key 'ok' missing.
     <section name="Indentation">
       <subsection name="Description">
         <p>
-          Checks correct indentation of Java Code.
+          Checks correct indentation of Java code.
         </p>
 
         <p>
-          The basic idea behind this is that while pretty printers are
+          The idea behind this is that while pretty printers are
           sometimes convenient for bulk reformats of legacy code, they often
           either aren't configurable enough or just can't anticipate how
           format should be done.  Sometimes this is personal preference, other
           times it is practical experience.  In any case, this check should
-          just ensure that a minimal set of indentation rules are followed.
+          just ensure that a minimal set of indentation rules is followed.
         </p>
       </subsection>
 
@@ -793,7 +793,7 @@ messages.properties: Key 'ok' missing.
           </tr>
           <tr>
             <td>braceAdjustment</td>
-            <td>how far brace should be indented when on next line</td>
+            <td>how far braces should be indented when on the next line</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>0</td>
           </tr>
@@ -805,7 +805,7 @@ messages.properties: Key 'ok' missing.
           </tr>
           <tr>
             <td>throwsIndent</td>
-            <td>how far throws should be indented when on next line</td>
+            <td>how far a throws clause should be indented when on next line</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>4</td>
           </tr>
@@ -821,8 +821,8 @@ messages.properties: Key 'ok' missing.
         </source>
 
         <p>
-          To configure the check to enforce indentation style recommended by
-          Sun:
+          To configure the check to enforce the indentation style recommended by
+          Oracle:
         </p>
 
         <source>
@@ -849,15 +849,15 @@ messages.properties: Key 'ok' missing.
       <subsection name="Description">
         <p>
           The check to ensure that requires that comments be the only thing on
-          a line.  For the case of // comments that means that the only thing
+          a line.  For the case of <code>//</code> comments that means that the only thing
           that should precede it is whitespace.  It doesn't check comments if
-          they do not end line, i.e. it accept the following:
+          they do not end a line; for example, it accepts the following:
           <code>Thread.sleep( 10 &lt;some comment here&gt; );</code> Format
           property is intended to deal with the "} // while" example.
         </p>
 
         <p>
-          Rationale: Steve McConnel in &quot;Code Complete&quot; suggests that
+          Rationale: Steve McConnel in <cite>Code Complete</cite> suggests that
           endline comments are a bad practice. An end line comment would be
           one that is on the same line as actual code. For example:
         </p>
@@ -868,7 +868,7 @@ d = e / f;        // Another comment for this line
         </source>
 
         <p>
-          Quoting &quot;Code Complete&quot; for the justification:
+          Quoting <cite>Code Complete</cite> for the justification:
         </p>
 
         <ul>
@@ -903,7 +903,7 @@ d = e / f;        // Another comment for this line
         </ul>
 
         <p>
-          His comments on being hard to maintain when the size of the line
+          McConnel's comments on being hard to maintain when the size of the line
           changes are even more important in the age of automated
           refactorings.
         </p>
@@ -919,15 +919,15 @@ d = e / f;        // Another comment for this line
           </tr>
           <tr>
             <td>format</td>
-            <td>pattern for string allowed before comment.</td>
+            <td>pattern for strings allowed before the comment</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^[\\s\\}\\);]*$</code></td>
           </tr>
           <tr>
             <td>legalComment</td>
-            <td>pattern for text of trailing comment which is allowed. (this
-                patter will not be applied to multiline comments and text of
-                comment will be trimmed before matching)</td>
+            <td>pattern for text allowed in trailing comments. (This
+                pattern will not be applied to multiline comments and the text of the
+                comment will be trimmed before matching.)</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
             <td>(not set)</td>
           </tr>
@@ -980,7 +980,7 @@ d = e / f;        // Another comment for this line
         </p>
         <p>
           It differs from them in that it works in multiline mode.
-          It's regular expression can span multiple lines and it checks this
+          Its regular expression can span multiple lines and it checks this
           against the whole file at once.
           The others work in singleline mode.
           Their single or multiple regular expressions can only span one line.
@@ -992,24 +992,24 @@ d = e / f;        // Another comment for this line
         </p>
         <p>In multiline mode...</p>
         <ul>
-          <li> ^ means beginning of a line, as opposed to beginning of input.</li>
-          <li> For beginning of input use \A.</li>
-          <li> $ means end of a line, as opposed to end of input.</li>
-          <li> For end of input use \Z.</li>
-          <li> Each line in the file is terminated with a newline character.</li>
+          <li> <code>^</code> means the beginning of a line, as opposed to beginning of the input.</li>
+          <li> For beginning of the input use <code>\A</code>.</li>
+          <li> <code>$</code> means the end of a line, as opposed to the end of the input.</li>
+          <li> For end of input use <code>\Z</code>.</li>
+          <li> Each line in the file is terminated with a line feed character.</li>
         </ul>
         <p>
-          <b>Note:</b> Not all regexp engines are created equal. Some provide extra
+          <b>Note:</b> Not all regular expression engines are created equal. Some provide extra
           functions that others do not and some elements of the syntax may vary.
           This check makes use of the <a
           href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/package-summary.html">
-          java.util.regex package</a>, please check its documentation for
+          java.util.regex package</a>; please check its documentation for
           details of how to construct a regular expression to achieve a particular
           goal.
         </p>
         <p>
           <b>Note:</b> When entering a regular expression as a parameter in the
-          xml config file you must also take into account the xml rules. e.g. if
+          xml config file you must also take into account the XML rules. e.g. if
           you want to match a &lt; symbol you need to enter &amp;lt;. The regular
           expression should be entered on one line.
         </p>
@@ -1032,7 +1032,7 @@ d = e / f;        // Another comment for this line
           <tr>
             <td>message</td>
             <td>message which is used to notify about violations,
-            if empty then default(hard-coded) message is used.</td>
+            if empty then the default (hard-coded) message is used.</td>
             <td><a href="property_types.html#string">String</a></td>
             <td><code>&quot;&quot;</code>(empty)</td>
           </tr>
