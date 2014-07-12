@@ -1,5 +1,4 @@
 package com.puppycrawl.tools.checkstyle.coding;
-
 /** Input file */
 public class InputIllegalThrowsCheck {
 
