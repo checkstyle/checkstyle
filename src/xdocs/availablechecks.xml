@@ -42,6 +42,10 @@
         <td>Checks the style of array type definitions.</td>
       </tr>
       <tr>
+        <td><a href="config_misc.html#AvoidEscapedUnicodeCharacters">AvoidEscapedUnicodeCharacters</a></td>
+        <td>Restrict using Unicode escapes.</td>
+      </tr>
+      <tr>
         <td><a href="config_coding.html#AvoidInlineConditionals">AvoidInlineConditionals</a></td>
         <td>Detects inline conditionals.</td>
       </tr>

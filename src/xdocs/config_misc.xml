@@ -1494,5 +1494,176 @@ public class PID extends StateMachine implements WebObject.Constants {
         </p>
       </subsection>
     </section>
+
+    <section name="AvoidEscapedUnicodeCharacters">
+      <subsection name="Description">
+        <p>
+          Restrict using <a href = "http://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.3">
+          Unicode escapes</a> (e.g. \u221e).
+          It is possible to allow using escapes for
+          <a href="http://en.wiktionary.org/wiki/Appendix:Control_characters"> non-printable(control) characters</a>.
+          Also, this check can be configured to allow using escapes
+          if trail comment is present. By the option it is possible to
+          allow using escapes if literal contains only them.
+        </p>
+      </subsection>
+
+       <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>allowEscapesForControlCharacters</td>
+            <td>Allow use escapes for non-printable(control) characters.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>false</td>
+          </tr>
+          <tr>
+            <td>allowByTailComment</td>
+            <td>Allow use escapes if trail comment is present.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>false</td>
+          </tr>
+          <tr>
+            <td>allowIfAllCharactersEscaped</td>
+            <td>Allow if all characters in literal are excaped.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>false</td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+       <p>
+          Examples of using Unicode:
+        </p>
+        <source>
+String unitAbbrev = "μs"; //Best: perfectly clear even without a comment.
+String unitAbbrev = "\u03bcs"; //Poor: the reader has no idea what this is.
+        </source>
+        <p>
+          An example of how to configure the check is:
+        </p>
+        <source>
+&lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;/&gt;
+        </source>
+        <p>
+          An example of non-printable(control) characters.
+        </p>
+        <source>
+return '\ufeff' + content; // byte order mark
+        </source>
+        <p>
+          An example of how to configure the check to allow using escapes
+          for non-printable(control) characters:
+        </p>
+        <source>
+&lt;module name="AvoidEscapedUnicodeCharacters"&gt;
+    &lt;property name="allowEscapesForControlCharacters" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example of using escapes with trail comment:
+        </p>
+        <source>
+String unitAbbrev = "\u03bcs"; // Greek letter mu, "s"
+        </source>
+        <p>
+          An example of how to configure the check to allow using escapes
+          if trail comment is present:
+        </p>
+        <source>
+&lt;module name="AvoidEscapedUnicodeCharacters"&gt;
+    &lt;property name="allowByTailComment" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example of using escapes if literal contains only them:
+        </p>
+        <source>
+String unitAbbrev = "\u03bc\u03bc\u03bc";
+        </source>
+        <p>
+          An example of how to configure the check to allow escapes
+          if literal contains only them:
+        </p>
+        <source>
+&lt;module name="AvoidEscapedUnicodeCharacters"&gt;
+    &lt;property name="allowIfAllCharactersEscaped" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="UniqueProperties">
+      <subsection name="Description">
+        <p>
+          Checks properties file for a duplicated properties.
+        </p>
+        <p>
+          Rationale: Multiple property keys usualy appears after merge
+          or rebase of several branches. While there is no errors in
+          runtime, there can be a confusion on having different values
+          for the duplicated properties.
+        </p>
+
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>file type extension of the files to check.</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td>properties</td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;UniqueProperties&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;properties&quot; /&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
   </body>
 </document>
