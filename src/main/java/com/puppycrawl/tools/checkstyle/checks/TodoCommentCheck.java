@@ -18,22 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.regex.Pattern;
+
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
-import java.util.List;
-import java.util.Map;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * A check for TODO comments.
- * Actually it is a generic {@link java.util.regex.Pattern regular expression}
- * matcher on Java comments.
- * To check for other patterns in Java comments, set property format.
+ * A check for TODO comments. To check for other patterns in Java comments, set
+ * property format.
  * </p>
  * <p>
  * An example of how to configure the check is:
  * </p>
+ *
  * <pre>
  * &lt;module name="TodoComment"/&gt;
  * </pre>
@@ -41,72 +40,59 @@ import java.util.Map;
  * An example of how to configure the check for comments that contain
  * <code>WARNING</code> is:
  * </p>
+ *
  * <pre>
  * &lt;module name="TodoComment"&gt;
  *    &lt;property name="format" value="WARNING"/&gt;
  * &lt;/module&gt;
  * </pre>
  * @author Oliver Burn
+ * @author Baratali Izmailov
  * @version 1.0
  */
 public class TodoCommentCheck
-    extends AbstractFormatCheck
+        extends Check
 {
     /**
-     * Creates a new <code>TodoCommentCheck</code> instance.
+     * Format of todo comment.
      */
-    public TodoCommentCheck()
+    private String mFormat = "TODO:";
+
+    /**
+     * Regular expression pattern compiled from mFormat.
+     */
+    private Pattern mRegexp = Pattern.compile(mFormat);
+
+    @Override
+    public boolean isCommentNodesRequired()
     {
-        super("TODO:"); // the empty language
+        return true;
+    }
+
+    /**
+     * Setter for todo comment format.
+     * @param aFormat format of todo comment.
+     */
+    public void setFormat(String aFormat)
+    {
+        mFormat = aFormat;
+        mRegexp = Pattern.compile(aFormat);
     }
 
     @Override
     public int[] getDefaultTokens()
     {
-        return new int[0];
+        return new int[] {TokenTypes.COMMENT_CONTENT };
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void visitToken(DetailAST aAST)
     {
-        final FileContents contents = getFileContents();
-        checkCppComments(contents);
-        checkBadComments(contents);
-    }
+        final String[] lines = aAST.getText().split("\n");
 
-    /**
-     * Checks the C++ comments for todo expressions.
-     * @param aContents the <code>FileContents</code>
-     */
-    private void checkCppComments(FileContents aContents)
-    {
-        final Map<Integer, TextBlock> comments = aContents.getCppComments();
-        for (Map.Entry<Integer, TextBlock> entry : comments.entrySet()) {
-            final String cmt = entry.getValue().getText()[0];
-            if (getRegexp().matcher(cmt).find()) {
-                log(entry.getKey().intValue(), "todo.match", getFormat());
-            }
-        }
-    }
-
-    /**
-     * Checks the C-style comments for todo expressions.
-     * @param aContents the <code>FileContents</code>
-     */
-    private void checkBadComments(FileContents aContents)
-    {
-        final Map<Integer, List<TextBlock>> allComments = aContents
-                .getCComments();
-        for (Map.Entry<Integer, List<TextBlock>> entry : allComments.entrySet())
-        {
-            for (TextBlock line : entry.getValue()) {
-                final String[] cmt = line.getText();
-                for (int i = 0; i < cmt.length; i++) {
-                    if (getRegexp().matcher(cmt[i]).find()) {
-                        log(entry.getKey().intValue() + i, "todo.match",
-                                getFormat());
-                    }
-                }
+        for (int i = 0; i < lines.length; i++) {
+            if (mRegexp.matcher(lines[i]).find()) {
+                log(aAST.getLineNo() + i, "todo.match", mFormat);
             }
         }
     }
