@@ -23,6 +23,8 @@ import java.io.File;
 
 import javax.swing.JFrame;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+
 /**
  * Entry point for starting the checkstyle GUI.
  */
@@ -40,6 +42,17 @@ public class Main
             panel.openFile(f, frame);
         }
         frame.pack();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
+    public static void displayAst(DetailAST ast)
+    {
+        JFrame frame = new JFrame("CheckStyle");
+        final ParseTreeInfoPanel panel = new ParseTreeInfoPanel();
+        frame.getContentPane().add(panel);
+        panel.openAst(ast, frame);
+        frame.setSize(1500, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }

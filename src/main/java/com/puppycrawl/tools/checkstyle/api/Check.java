@@ -18,8 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import com.google.common.collect.Sets;
 import java.util.Set;
+
+import com.google.common.collect.Sets;
 
 /**
  * The base class for checks.
@@ -51,6 +52,11 @@ public abstract class Check extends AbstractViolationReporter
      * be set by my creator.
      */
     private ClassLoader mLoader;
+
+    public boolean isCommentNodesRequired()
+    {
+        return false;
+    }
 
     /**
      * Returns the default token a check is interested in. Only used if the

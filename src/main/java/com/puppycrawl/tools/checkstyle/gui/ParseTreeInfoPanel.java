@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TooManyListenersException;
+
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JButton;
@@ -39,7 +40,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
+
 import antlr.ANTLRException;
+
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -80,6 +83,26 @@ public class ParseTreeInfoPanel extends JPanel
         {
             return "Java Source Code";
         }
+    }
+
+    public void openAst(DetailAST parseTree, final Component aParent)
+    {
+        mParseTreeModel.setParseTree(parseTree);
+        reloadAction.setEnabled(true);
+
+        // clear for each new file
+        getLines2position().clear();
+        // starts line counting at 1
+        getLines2position().add(0);
+        // insert the contents of the file to the text area
+
+        // clean the text area before inserting the lines of the new file
+        if (mJTextArea.getText().length() != 0) {
+            mJTextArea.replaceRange("", 0, mJTextArea.getText().length());
+        }
+
+        // move back to the top of the file
+        mJTextArea.moveCaretPosition(0);
     }
 
     private class FileSelectionAction extends AbstractAction
