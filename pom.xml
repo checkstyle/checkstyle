@@ -499,6 +499,14 @@
 	              </goals>
 	            </execution>
 	          </executions>
+	          <configuration>
+	            <configLocation>checkstyle_checks.xml</configLocation>
+	            <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+	            <suppressionsLocation>suppressions.xml</suppressionsLocation>
+	            <headerLocation>java.header</headerLocation>
+	            <propertyExpansion>checkstyle.importcontrol.file=import-control.xml</propertyExpansion>
+	            <enableFilesSummary>false</enableFilesSummary>
+	          </configuration>
 	        </plugin>
 
 	        <plugin>

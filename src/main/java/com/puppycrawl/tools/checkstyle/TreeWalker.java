@@ -21,15 +21,19 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.File;
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import antlr.CommonHiddenStreamToken;
 import antlr.RecognitionException;
+import antlr.Token;
 import antlr.TokenStreamException;
 import antlr.TokenStreamHiddenTokenFilter;
 import antlr.TokenStreamRecognitionException;
@@ -61,16 +65,42 @@ import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
 public final class TreeWalker
     extends AbstractFileSetCheck
 {
+    /**
+     * State of AST.
+     * Indicates whether tree contains certain nodes.
+     */
+    private static enum AstState {
+        /**
+         * Ordinary tree.
+         */
+        ORDINARY,
+
+        /**
+         * AST contains comment nodes.
+         */
+        WITH_COMMENTS
+    }
+
     /** default distance between tab stops */
     private static final int DEFAULT_TAB_WIDTH = 8;
 
-    /** maps from token name to checks */
-    private final Multimap<String, Check> mTokenToChecks =
+    /** maps from token name to ordinary checks */
+    private final Multimap<String, Check> mTokenToOrdinaryChecks =
         HashMultimap.create();
-    /** all the registered checks */
-    private final Set<Check> mAllChecks = Sets.newHashSet();
+
+    /** maps from token name to comment checks */
+    private final Multimap<String, Check> mTokenToCommentChecks =
+            HashMultimap.create();
+
+    /** registered ordinary checks, that don't use comment nodes */
+    private final Set<Check> mOrdinaryChecks = Sets.newHashSet();
+
+    /** registered comment checks */
+    private final Set<Check> mCommentChecks = Sets.newHashSet();
+
     /** the distance between tab stops */
     private int mTabWidth = DEFAULT_TAB_WIDTH;
+
     /** cache file **/
     private PropertyCacheFile mCache = new PropertyCacheFile(null, null);
 
@@ -83,11 +113,6 @@ public final class TreeWalker
     /** a factory for creating submodules (i.e. the Checks) */
     private ModuleFactory mModuleFactory;
 
-    /** controls whether we should use recursive or iterative
-     * algorithm for tree processing.
-     */
-    private final boolean mRecursive;
-
     /** logger for debug purpose */
     private static final Log LOG =
         LogFactory.getLog("com.puppycrawl.tools.checkstyle.TreeWalker");
@@ -98,18 +123,6 @@ public final class TreeWalker
     public TreeWalker()
     {
         setFileExtensions(new String[]{"java"});
-        // Tree walker can use two possible algorithms for
-        // tree processing (iterative and recursive.
-        // Recursive is default for now.
-        final String recursive =
-            System.getProperty("checkstyle.use.recursive.algorithm", "false");
-        mRecursive = "true".equals(recursive);
-        if (mRecursive) {
-            LOG.debug("TreeWalker uses recursive algorithm");
-        }
-        else {
-            LOG.debug("TreeWalker uses iterative algorithm");
-        }
     }
 
     /** @param aTabWidth the distance between tab stops */
@@ -188,7 +201,14 @@ public final class TreeWalker
             final FileText text = FileText.fromLines(aFile, aLines);
             final FileContents contents = new FileContents(text);
             final DetailAST rootAST = TreeWalker.parse(contents);
-            walk(rootAST, contents);
+
+            getMessageCollector().reset();
+
+            walk(rootAST, contents, AstState.ORDINARY);
+
+            final DetailAST astWithComments = appendHiddenCommentNodes(rootAST);
+
+            walk(astWithComments, contents, AstState.WITH_COMMENTS);
         }
         catch (final RecognitionException re) {
             Utils.getExceptionLogger()
@@ -243,6 +263,7 @@ public final class TreeWalker
                     this.getClass(), null));
         }
         catch (final Throwable err) {
+            err.printStackTrace();
             Utils.getExceptionLogger().debug("Throwable occured.", err);
             getMessageCollector().add(
                 new LocalizedMessage(
@@ -295,7 +316,12 @@ public final class TreeWalker
         for (int element : tokens) {
             registerCheck(element, aCheck);
         }
-        mAllChecks.add(aCheck);
+        if (aCheck.isCommentNodesRequired()) {
+            mCommentChecks.add(aCheck);
+        }
+        else {
+            mOrdinaryChecks.add(aCheck);
+        }
     }
 
     /**
@@ -315,106 +341,126 @@ public final class TreeWalker
      */
     private void registerCheck(String aToken, Check aCheck)
     {
-        mTokenToChecks.put(aToken, aCheck);
+        if (aCheck.isCommentNodesRequired()) {
+            mTokenToCommentChecks.put(aToken, aCheck);
+        }
+        else if (TokenTypes.isCommentType(aToken)) {
+            LOG.warn("Check '"
+                    + aCheck.getClass().getName()
+                    + "' waits for comment type token ('"
+                    + aToken
+                    + "') and should override 'isCommentNodesRequred()'"
+                    + " method to return 'true'");
+        }
+        else {
+            mTokenToOrdinaryChecks.put(aToken, aCheck);
+        }
     }
 
     /**
      * Initiates the walk of an AST.
      * @param aAST the root AST
-     * @param aContents the contents of the file the AST was generated from
+     * @param aContents the contents of the file the AST was generated from.
+     * @param aAstState state of AST.
      */
-    private void walk(DetailAST aAST, FileContents aContents)
+    private void walk(DetailAST aAST, FileContents aContents
+            , AstState aAstState)
     {
-        getMessageCollector().reset();
-        notifyBegin(aAST, aContents);
+        notifyBegin(aAST, aContents, aAstState);
 
         // empty files are not flagged by javac, will yield aAST == null
         if (aAST != null) {
-            if (useRecursiveAlgorithm()) {
-                processRec(aAST);
-            }
-            else {
-                processIter(aAST);
-            }
+            processIter(aAST, aAstState);
         }
 
-        notifyEnd(aAST);
+        notifyEnd(aAST, aAstState);
     }
 
-
     /**
-     * Notify interested checks that about to begin walking a tree.
-     * @param aRootAST the root of the tree
-     * @param aContents the contents of the file the AST was generated from
+     * Notify checks that we are about to begin walking a tree.
+     * @param aRootAST the root of the tree.
+     * @param aContents the contents of the file the AST was generated from.
+     * @param aAstState state of AST.
      */
-    private void notifyBegin(DetailAST aRootAST, FileContents aContents)
+    private void notifyBegin(DetailAST aRootAST, FileContents aContents
+            , AstState aAstState)
     {
-        for (Check ch : mAllChecks) {
+        Set<Check> checks;
+
+        if (aAstState == AstState.WITH_COMMENTS) {
+            checks = mCommentChecks;
+        }
+        else {
+            checks = mOrdinaryChecks;
+        }
+
+        for (Check ch : checks) {
             ch.setFileContents(aContents);
             ch.beginTree(aRootAST);
         }
     }
 
     /**
-     * Notify checks that finished walking a tree.
-     * @param aRootAST the root of the tree
+     * Notify checks that we have finished walking a tree.
+     * @param aRootAST the root of the tree.
+     * @param aAstState state of AST.
      */
-    private void notifyEnd(DetailAST aRootAST)
+    private void notifyEnd(DetailAST aRootAST, AstState aAstState)
     {
-        for (Check ch : mAllChecks) {
+        Set<Check> checks;
+
+        if (aAstState == AstState.WITH_COMMENTS) {
+            checks = mCommentChecks;
+        }
+        else {
+            checks = mOrdinaryChecks;
+        }
+
+        for (Check ch : checks) {
             ch.finishTree(aRootAST);
         }
     }
 
     /**
-     * Recursively processes a node calling interested checks at each node.
-     * Uses recursive algorithm.
-     * @param aAST the node to start from
+     * Notify checks that visiting a node.
+     * @param aAST the node to notify for.
+     * @param aAstState state of AST.
      */
-    private void processRec(DetailAST aAST)
+    private void notifyVisit(DetailAST aAST, AstState aAstState)
     {
-        if (aAST == null) {
-            return;
+        Collection<Check> visitors;
+        final String tokenType = TokenTypes.getTokenName(aAST.getType());
+
+        if (aAstState == AstState.WITH_COMMENTS) {
+            visitors = mTokenToCommentChecks.get(tokenType);
+        }
+        else {
+            visitors = mTokenToOrdinaryChecks.get(tokenType);
         }
 
-        notifyVisit(aAST);
-
-        final DetailAST child = aAST.getFirstChild();
-        if (child != null) {
-            processRec(child);
-        }
-
-        notifyLeave(aAST);
-
-        final DetailAST sibling = aAST.getNextSibling();
-        if (sibling != null) {
-            processRec(sibling);
-        }
-    }
-
-    /**
-     * Notify interested checks that visiting a node.
-     * @param aAST the node to notify for
-     */
-    private void notifyVisit(DetailAST aAST)
-    {
-        final Collection<Check> visitors =
-            mTokenToChecks.get(TokenTypes.getTokenName(aAST.getType()));
         for (Check c : visitors) {
             c.visitToken(aAST);
         }
     }
 
     /**
-     * Notify interested checks that leaving a node.
-     *
+     * Notify checks that leaving a node.
      * @param aAST
-     *                the node to notify for
+     *        the node to notify for
+     * @param aAstState state of AST.
      */
-    private void notifyLeave(DetailAST aAST)
+    private void notifyLeave(DetailAST aAST, AstState aAstState)
     {
-        final Collection<Check> visitors =
-            mTokenToChecks.get(TokenTypes.getTokenName(aAST.getType()));
+        Collection<Check> visitors;
+        final String tokenType = TokenTypes.getTokenName(aAST.getType());
+
+        if (aAstState == AstState.WITH_COMMENTS) {
+            visitors = mTokenToCommentChecks.get(tokenType);
+        }
+        else {
+            visitors = mTokenToOrdinaryChecks.get(tokenType);
+        }
+
         for (Check ch : visitors) {
             ch.leaveToken(aAST);
         }
@@ -432,7 +478,7 @@ public final class TreeWalker
      * @return the root of the AST
      */
     public static DetailAST parse(FileContents aContents)
-            throws RecognitionException, TokenStreamException
+        throws RecognitionException, TokenStreamException
     {
         final String fullText = aContents.getText().getFullText().toString();
         final Reader sr = new StringReader(fullText);
@@ -443,13 +489,13 @@ public final class TreeWalker
         lexer.setTreatEnumAsKeyword(true);
         lexer.setTokenObjectClass("antlr.CommonHiddenStreamToken");
 
-        TokenStreamHiddenTokenFilter filter = new TokenStreamHiddenTokenFilter(
-                lexer);
+        final TokenStreamHiddenTokenFilter filter =
+                new TokenStreamHiddenTokenFilter(lexer);
         filter.hide(TokenTypes.SINGLE_LINE_COMMENT);
         filter.hide(TokenTypes.BLOCK_COMMENT_BEGIN);
 
         final GeneratedJavaRecognizer parser =
-                new GeneratedJavaRecognizer(filter);
+            new GeneratedJavaRecognizer(filter);
         parser.setFilename(aContents.getFilename());
         parser.setASTNodeClass(DetailAST.class.getName());
         parser.compilationUnit();
@@ -460,7 +506,10 @@ public final class TreeWalker
     @Override
     public void destroy()
     {
-        for (Check c : mAllChecks) {
+        for (Check c : mOrdinaryChecks) {
+            c.destroy();
+        }
+        for (Check c : mCommentChecks) {
             c.destroy();
         }
         mCache.destroy();
@@ -468,27 +517,19 @@ public final class TreeWalker
     }
 
     /**
-     * @return true if we should use recursive algorithm
-     *         for tree processing, false for iterative one.
-     */
-    private boolean useRecursiveAlgorithm()
-    {
-        return mRecursive;
-    }
-
-    /**
      * Processes a node calling interested checks at each node.
      * Uses iterative algorithm.
      * @param aRoot the root of tree for process
+     * @param aAstState state of AST.
      */
-    private void processIter(DetailAST aRoot)
+    private void processIter(DetailAST aRoot, AstState aAstState)
     {
         DetailAST curNode = aRoot;
         while (curNode != null) {
-            notifyVisit(curNode);
+            notifyVisit(curNode, aAstState);
             DetailAST toVisit = curNode.getFirstChild();
             while ((curNode != null) && (toVisit == null)) {
-                notifyLeave(curNode);
+                notifyLeave(curNode, aAstState);
                 toVisit = curNode.getNextSibling();
                 if (toVisit == null) {
                     curNode = curNode.getParent();
@@ -496,5 +537,207 @@ public final class TreeWalker
             }
             curNode = toVisit;
         }
+    }
+
+    /**
+     * Appends comment nodes to existing AST.
+     * It traverses each node in AST, looks for hidden comment tokens
+     * and appends found comment tokens as nodes in AST.
+     * @param aRoot
+     *        root of AST.
+     * @return root of AST with comment nodes.
+     */
+    private static DetailAST appendHiddenCommentNodes(DetailAST aRoot)
+    {
+        DetailAST result = aRoot;
+        DetailAST curNode = aRoot;
+        DetailAST lastNode = aRoot;
+
+        while (curNode != null) {
+            if (isPositionGreater(curNode, lastNode)) {
+                lastNode = curNode;
+            }
+
+            CommonHiddenStreamToken tokenBefore = curNode.getHiddenBefore();
+            DetailAST currentSibling = curNode;
+            while (tokenBefore != null) { // threat multiple comments
+                final DetailAST newCommentNode =
+                         createCommentAstFromToken(tokenBefore);
+
+                currentSibling.addPreviousSibling(newCommentNode);
+
+                if (currentSibling == result) {
+                    result = newCommentNode;
+                }
+
+                currentSibling = newCommentNode;
+                tokenBefore = tokenBefore.getHiddenBefore();
+            }
+
+            DetailAST toVisit = curNode.getFirstChild();
+            while ((curNode != null) && (toVisit == null)) {
+                toVisit = curNode.getNextSibling();
+                if (toVisit == null) {
+                    curNode = curNode.getParent();
+                }
+            }
+            curNode = toVisit;
+        }
+        if (lastNode != null) {
+            CommonHiddenStreamToken tokenAfter = lastNode.getHiddenAfter();
+            DetailAST currentSibling = lastNode;
+            while (tokenAfter != null) {
+                final DetailAST newCommentNode =
+                        createCommentAstFromToken(tokenAfter);
+
+                currentSibling.addNextSibling(newCommentNode);
+
+                currentSibling = newCommentNode;
+                tokenAfter = tokenAfter.getHiddenAfter();
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks if position of first DetailAST is greater than position of
+     * second DetailAST. Position is line number and column number in source
+     * file.
+     * @param aAST1
+     *        first DetailAST node.
+     * @param aAst2
+     *        second DetailAST node.
+     * @return true if position of aAst1 is greater than position of aAst2.
+     */
+    private static boolean isPositionGreater(DetailAST aAST1, DetailAST aAst2)
+    {
+        if (aAST1.getLineNo() > aAst2.getLineNo()) {
+            return true;
+        }
+        else if (aAST1.getLineNo() < aAst2.getLineNo()) {
+            return false;
+        }
+        else {
+            if (aAST1.getColumnNo() > aAst2.getColumnNo()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Create comment AST from token. Depending on token type
+     * SINGLE_LINE_COMMENT or BLOCK_COMMENT_BEGIN is created.
+     * @param aToken
+     *        Token object.
+     * @return DetailAST of comment node.
+     */
+    private static DetailAST createCommentAstFromToken(Token aToken)
+    {
+        switch (aToken.getType()) {
+        case TokenTypes.SINGLE_LINE_COMMENT:
+            return createSlCommentNode(aToken);
+        case TokenTypes.BLOCK_COMMENT_BEGIN:
+            return createBlockCommentNode(aToken);
+        default:
+            throw new IllegalArgumentException("Unknown comment type");
+        }
+    }
+
+    /**
+     * Create single-line comment from token.
+     * @param aToken
+     *        Token object.
+     * @return DetailAST with SINGLE_LINE_COMMENT type.
+     */
+    private static DetailAST createSlCommentNode(Token aToken)
+    {
+        final DetailAST slComment = new DetailAST();
+        slComment.setType(TokenTypes.SINGLE_LINE_COMMENT);
+        slComment.setText("//");
+
+        // column counting begins from 0
+        slComment.setColumnNo(aToken.getColumn() - 1);
+        slComment.setLineNo(aToken.getLine());
+
+        final DetailAST slCommentContent = new DetailAST();
+        slCommentContent.initialize(aToken);
+        slCommentContent.setType(TokenTypes.COMMENT_CONTENT);
+
+        // column counting begins from 0
+        // plus length of '//'
+        slCommentContent.setColumnNo(aToken.getColumn() - 1 + 2);
+        slCommentContent.setLineNo(aToken.getLine());
+        slCommentContent.setText(aToken.getText());
+
+        slComment.addChild(slCommentContent);
+        return slComment;
+    }
+
+    /**
+     * Create block comment from token.
+     * @param aToken
+     *        Token object.
+     * @return DetailAST with BLOCK_COMMENT type.
+     */
+    private static DetailAST createBlockCommentNode(Token aToken)
+    {
+        final DetailAST blockComment = new DetailAST();
+        blockComment.initialize(TokenTypes.BLOCK_COMMENT_BEGIN, "/*");
+
+        // column counting begins from 0
+        blockComment.setColumnNo(aToken.getColumn() - 1);
+        blockComment.setLineNo(aToken.getLine());
+
+        final DetailAST blockCommentContent = new DetailAST();
+        blockCommentContent.initialize(aToken);
+        blockCommentContent.setType(TokenTypes.COMMENT_CONTENT);
+
+        // column counting begins from 0
+        // plus length of '/*'
+        blockCommentContent.setColumnNo(aToken.getColumn() - 1 + 2);
+        blockCommentContent.setLineNo(aToken.getLine());
+        blockCommentContent.setText(aToken.getText());
+
+        final DetailAST blockCommentClose = new DetailAST();
+        blockCommentClose.initialize(TokenTypes.BLOCK_COMMENT_END, "*/");
+
+        final Entry<Integer, Integer> linesColumns = countLinesColumns(
+                aToken.getText(), aToken.getLine(), aToken.getColumn());
+        blockCommentClose.setLineNo(linesColumns.getKey());
+        blockCommentClose.setColumnNo(linesColumns.getValue());
+
+        blockComment.addChild(blockCommentContent);
+        blockComment.addChild(blockCommentClose);
+        return blockComment;
+    }
+
+    /**
+     * Count lines and columns (in last line) in text.
+     * @param aText
+     *        String.
+     * @param aInitialLinesCnt
+     *        initial value of lines counter.
+     * @param aInitialColumnsCnt
+     *        initial value of columns counter.
+     * @return entry(pair), first element is lines counter, second - columns
+     *         counter.
+     */
+    private static Entry<Integer, Integer> countLinesColumns(
+            String aText, int aInitialLinesCnt, int aInitialColumnsCnt)
+    {
+        int lines = aInitialLinesCnt;
+        int columns = aInitialColumnsCnt;
+        for (char c : aText.toCharArray()) {
+            switch (c) {
+            case '\n':
+                lines++;
+                columns = 0;
+                break;
+            default:
+                columns++;
+            }
+        }
+        return new SimpleEntry<Integer, Integer>(lines, columns);
     }
 }

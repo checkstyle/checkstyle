@@ -3437,24 +3437,61 @@ public final class TokenTypes
     public static final int LAMBDA = GeneratedJavaTokenTypes.LAMBDA;
 
     /**
-     * Begining of single line comment: '//'
+     * Begining of single line comment: '//'.
+     *
+     * <pre>
+     * +--SINLE_LINE_COMMENT
+     *         |
+     *         +--COMMENT_CONTENT
+     * </pre>
      */
-    public static final int SINGLE_LINE_COMMENT = GeneratedJavaTokenTypes.SINGLE_LINE_COMMENT;
+    public static final int SINGLE_LINE_COMMENT =
+            GeneratedJavaTokenTypes.SINGLE_LINE_COMMENT;
 
     /**
-     * Begining of block comment: '/*'
+     * Begining of block comment: '/*'.
+     *
+     * <pre>
+     * +--BLOCK_COMMENT_BEGIN
+     *         |
+     *         +--COMMENT_CONTENT
+     *         +--BLOCK_COMMENT_END
+     * </pre>
      */
-    public static final int BLOCK_COMMENT_BEGIN = GeneratedJavaTokenTypes.BLOCK_COMMENT_BEGIN;
+    public static final int BLOCK_COMMENT_BEGIN =
+            GeneratedJavaTokenTypes.BLOCK_COMMENT_BEGIN;
 
     /**
-     * End of block comment: '* /'
+     * End of block comment: '* /'.
+     *
+     * <pre>
+     * +--BLOCK_COMMENT_BEGIN
+     *         |
+     *         +--COMMENT_CONTENT
+     *         +--BLOCK_COMMENT_END
+     * </pre>
      */
-    public static final int BLOCK_COMMENT_END = GeneratedJavaTokenTypes.BLOCK_COMMENT_END;
+    public static final int BLOCK_COMMENT_END =
+            GeneratedJavaTokenTypes.BLOCK_COMMENT_END;
 
     /**
      * Text of single-line or block comment.
+     *
+     *<pre>
+     * +--SINLE_LINE_COMMENT
+     *         |
+     *         +--COMMENT_CONTENT
+     * </pre>
+     *
+     * <pre>
+     * +--BLOCK_COMMENT_BEGIN
+     *         |
+     *         +--COMMENT_CONTENT
+     *         +--BLOCK_COMMENT_END
+     * </pre>
      */
-    public static final int COMMENT_CONTENT = GeneratedJavaTokenTypes.COMMENT_CONTENT;
+    public static final int COMMENT_CONTENT =
+            GeneratedJavaTokenTypes.COMMENT_CONTENT;
 
     ////////////////////////////////////////////////////////////////////////
     // The interesting code goes here
@@ -3552,15 +3589,29 @@ public final class TokenTypes
     }
 
     /**
-     * Check that argument is SINGLE_LINE_COMMENT or BLOCK_COMMENT_BEGIN
-     * or BLOCK_COMMENT_END or COMMENT_CONTENT.
-     * @param aType token type
-     * @return true if aType is comment token type
+     * Is argument comment-related type (SINGLE_LINE_COMMENT,
+     * BLOCK_COMMENT_BEGIN, BLOCK_COMMENT_END, COMMENT_CONTENT).
+     * @param aType
+     *        token type.
+     * @return true if aType is comment-related type.
      */
-    public static boolean isCommentType(int aType) {
+    public static boolean isCommentType(int aType)
+    {
         return aType == TokenTypes.SINGLE_LINE_COMMENT
                 || aType == TokenTypes.BLOCK_COMMENT_BEGIN
                 || aType == TokenTypes.BLOCK_COMMENT_END
                 || aType == TokenTypes.COMMENT_CONTENT;
+    }
+
+    /**
+     * Is argument comment-related type name (SINGLE_LINE_COMMENT,
+     * BLOCK_COMMENT_BEGIN, BLOCK_COMMENT_END, COMMENT_CONTENT).
+     * @param aType
+     *        token type name.
+     * @return true if aType is comment-related type name.
+     */
+    public static boolean isCommentType(String aType)
+    {
+        return isCommentType(getTokenId(aType));
     }
 }
