@@ -17,7 +17,7 @@
         of files that pass Checkstyle. This can <i>significantly</i>
         increase the speed of checkstyle on successive runs. The
         property type is <a href="property_types.html#string">string</a>
-        and defaults to an empty string (which means do not cache).
+        and defaults to an empty string (which means no caching is done).
       </p>
     </section>
 
