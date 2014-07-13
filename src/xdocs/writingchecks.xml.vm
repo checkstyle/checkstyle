@@ -108,8 +108,7 @@
 
       <p>
         Still with us? Great, you have mastered the basic theory so here
-        is your reward - a GUI that displays the structure of a Java
-        source file. To run it type
+        is your reward - a GUI that displays the structure of a Java source file. To run it type
       </p>
       <source>
 java -classpath checkstyle-${projectVersion}-all.jar \
@@ -141,8 +140,7 @@ java -classpath checkstyle-${projectVersion}-all.jar \
         We&#39;ll get back to the details in the other columns later, they
         are important for implementing Checks but not for understanding
         the basic concepts. For now it is sufficient to know that the
-        gui is a tool that lets you look at the structure of a Java
-        file, i.e. you can see the Java grammar &#39;in action&#39;.
+        gui is a tool that lets you look at the structure of a Java file, i.e. you can see the Java grammar &#39;in action&#39;.
       </p>
 
     </section>
@@ -267,7 +265,7 @@ public class MethodLimitCheck extends Check
         In the example above you already saw that the DetailsAST class
         provides utility methods to extract information from the tree,
         like <code>getChildCount()</code>. By now you have
-        probably consulted the api documentation and found that
+        probably consulted the API documentation and found that
         DetailsAST additionally provides methods for navigating around
         in the syntax tree, like finding the next sibling of a node, the
         children of a node, the parent of a node, etc.
@@ -289,7 +287,7 @@ public class MethodLimitCheck extends Check
 
       <p>
 
-        Ok Mr. Checkstyle, that&#39;s all very nice but in my company we
+        OK Mr. Checkstyle, that&#39;s all very nice but in my company we
         have several projects, and each has another number of allowed
         methods. I need to control my Check through properties, so where
         is the API to do that?
@@ -366,7 +364,7 @@ public class MethodLimitCheck extends Check
       <p>
         Supporting a new language is very easy now, simply create a new
         messages file for the language, e.g. messages_fr.properties to
-        provide french error messages. The correct file will be chosen
+        provide French error messages. The correct file will be chosen
         automatically, based on the language settings of the user&#39;s
         operating system.
       </p>

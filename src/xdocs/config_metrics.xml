@@ -279,7 +279,7 @@
           constructor, method, static initializer, or instance
           initializer.  It is a measure of the minimum number of
           possible paths through the source and therefore the number of
-          required tests. Generally 1-4 is considered good, 5-7 ok, 8-10
+          required tests. Generally 1-4 is considered good, 5-7 OK, 8-10
           consider re-factoring, and 11+ re-factor now!
         </p>
       </subsection>

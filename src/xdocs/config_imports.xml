@@ -314,7 +314,7 @@
         <source>
 import java.awt.Component;
 class FooBar {
-    private Object Component; // IMHO bad practise
+    private Object Component; // a bad practice in my opinion
     ...
 }
         </source>
@@ -504,7 +504,7 @@ class FooBar {
           <tr>
             <td>url</td>
             <td>
-              url of the file containing the import control configuration.
+              URL of the file containing the import control configuration.
             </td>
             <td><a href="property_types.html#string">string</a></td>
             <td><code>null</code></td>
