@@ -25,7 +25,7 @@ int[] a = new int[]
         </source>
 
         <p>
-          The check doesn't check for a trailing comma if both the left and right curly brackets
+          The check allows leaving out the comma at the end if both the left and right curly brackets
           are on the same line.
         </p>
         <source>
@@ -136,7 +136,7 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
     <section name="EmptyStatement">
       <subsection name="Description">
         <p>
-          Detects empty statements (standalone semicolon).
+          Detects empty statements (standalone ";" semicolon).
         </p>
       </subsection>
 
@@ -205,9 +205,9 @@ String nullString = null;
 
         <p>
           Java's autoboxing feature affects how this check is
-          implemented. Before Java 5, concatenations of two objects by name would not cause a NullPointerException 
+          implemented. Before Java 5, concatenations of two objects by name would not cause a NullPointerException
           even if either object is null.  Those situations could have been included in this
-          check.  They would simply act as if they were surrounded by <code>String.valueOf()</code> 
+          check.  They would simply act as if they were surrounded by <code>String.valueOf()</code>
           which would concatenate
           the String null.
         </p>
@@ -1379,7 +1379,7 @@ if (&quot;something&quot;.equals(x))
        are difficult to get right and do not work in all situations.
        In some cases, either a copy constructor
        or a static factory method can be used instead of the clone method
-       to return copies of an object. 
+       to return copies of an object.
        For more information on rules for the clone method and its issues, see Effective Java:
        Programming Language Guide First Edition by Joshua Bloch
        pages 45-52.
@@ -1519,7 +1519,7 @@ if (&quot;something&quot;.equals(x))
         </p>
 
         <p>
-          Rationale: 
+          Rationale:
           Catching java.lang.Exception, java.lang.Error or
           java.lang.RuntimeException is almost never acceptable.
           Novice developers often simply catch Exception in an
@@ -2108,7 +2108,7 @@ public void foo(int i, String s) {}
     <section name="MissingCtor">
       <subsection name="Description">
         <p>
-          Checks that classes (except abstract classes) define a constructor and don't
+          Checks that classes (except abstract ones) define a constructor and don't
           rely on the default one.
         </p>
       </subsection>
