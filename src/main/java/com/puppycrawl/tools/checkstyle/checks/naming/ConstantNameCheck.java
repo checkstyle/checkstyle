@@ -57,10 +57,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class ConstantNameCheck
     extends AbstractAccessControlNameCheck
 {
+    /** The default format. */
+    public static final String DEFAULT_FORMAT =
+        "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
     /** Creates a new <code>ConstantNameCheck</code> instance. */
     public ConstantNameCheck()
     {
-        super("^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$");
+        super(DEFAULT_FORMAT);
     }
 
     @Override
