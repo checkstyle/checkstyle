@@ -57,6 +57,7 @@
     <module name="ConstantName"/>
     <module name="EmptyBlock"/>
     <module name="EmptyForIteratorPad"/>
+    <module name="EnumConstantName"/>
     <module name="EqualsHashCode"/>
     <module name="OneStatementPerLine"/>
 

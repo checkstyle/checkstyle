@@ -62,6 +62,13 @@
           <td><code>^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</code></td>
         </tr>
         <tr>
+          <td><code>EnumConstantName</code></td>
+          <td>
+            <code>enum</code> constants
+          </td>
+          <td><code>^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</code></td>
+        </tr>
+        <tr>
           <td><code>LocalFinalVariableName</code></td>
           <td>local, <code>final</code> variables, including
               <code>catch</code> parameters</td>
