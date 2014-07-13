@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,9 +29,10 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -44,7 +46,8 @@ import org.apache.commons.logging.LogFactory;
 public final class Utils
 {
     /** Map of all created regular expressions **/
-    private static final Map<String, Pattern> CREATED_RES = Maps.newHashMap();
+    private static final ConcurrentMap<String, Pattern> CREATED_RES =
+        Maps.newConcurrentMap();
     /** Shared instance of logger for exception logging. */
     private static final Log EXCEPTION_LOG =
         LogFactory.getLog("com.puppycrawl.tools.checkstyle.ExceptionLog");
@@ -147,8 +150,6 @@ public final class Utils
     /**
      * This is a factory method to return an Pattern object for the specified
      * regular expression and compile flags.
-     * <p>
-     * This method is not MT safe, but neither are the returned Pattern objects.
      * @return an Pattern object for the supplied pattern
      * @param aPattern the regular expression pattern
      * @param aCompileFlags the compilation flags
@@ -161,7 +162,7 @@ public final class Utils
         Pattern retVal = CREATED_RES.get(key);
         if (retVal == null) {
             retVal = Pattern.compile(aPattern, aCompileFlags);
-            CREATED_RES.put(key, retVal);
+            CREATED_RES.putIfAbsent(key, retVal);
         }
         return retVal;
     }
