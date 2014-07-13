@@ -108,7 +108,7 @@
         </p>
 
         <p>
-          Final classes by definition can not be extended so the <code>final</code>
+          Final classes by definition cannot be extended so the <code>final</code>
           modifier on the method of a final class is redundant.
         </p>
       </subsection>

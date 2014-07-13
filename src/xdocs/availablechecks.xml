@@ -289,7 +289,7 @@
       <tr>
         <td><a href="config_metrics.html#JavaNCSS">JavaNCSS</a></td>
         <td>This check calculates the Non Commenting Source Statements (NCSS) metric for
-        java source files and methods.</td>
+        Java source files and methods.</td>
       </tr>
       <tr>
         <td><a href="config_javadoc.html#JavadocMethod">JavadocMethod</a></td>

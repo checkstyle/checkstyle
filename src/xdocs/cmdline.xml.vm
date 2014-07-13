@@ -112,7 +112,7 @@ java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
       <p>
         <b>
           Run checkstyle with configuration file
-          <code>docs/sun_checks.xml</code> on all java files in a directory
+          <code>docs/sun_checks.xml</code> on all Java files in a directory
         </b>
       </p>
       <source>

@@ -350,7 +350,7 @@
         </tr>
         <tr>
           <td>cacheFile</td>
-          <td>caches information about files that have checked ok; used
+          <td>caches information about files that have checked OK; used
           to avoid repeated checks of the same files</td>
           <td><a href="property_types.html#string">string</a></td>
           <td><code>null</code> (no cache file)</td>
@@ -365,8 +365,8 @@
         </tr>
         <tr>
           <td>fileExtensions</td>
-          <td>file type extension to identify java files. Setting this
-          property is typically only required if your java source code
+          <td>file type extension to identify Java files. Setting this
+          property is typically only required if your Java source code
           is preprocessed before compilation and the original files do
           not have the extension <code>.java</code></td>
           <td><a href="property_types.html#stringSet">String Set</a></td>
@@ -696,7 +696,7 @@
           <li>
             <code>id</code> -
             a <a href="property_types.html#string">string</a>
-            matched against the id of the check associated with an audit
+            matched against the ID of the check associated with an audit
             event. Optional if <code>checks</code> is specified.
           </li>
           <li>
@@ -806,8 +806,7 @@
 
       <p>
         Usage: This filter only works in conjunction with a <code>FileContentsHolder</code>, since that check makes
-        the suppression comments in the .java files available <i>sub
-        rosa</i>. A configuration that includes this filter must
+        the suppression comments in the Java files available. A configuration that includes this filter must
         configure <code>FileContentsHolder</code> as a
         child module of <code>TreeWalker</code>.
       </p>
@@ -866,7 +865,7 @@
 
       <h5>Examples</h5>
       <p>
-        Make sure that comments available to the filter by enabling FileContentsHolder:
+        Make sure that comments are available to the filter by enabling FileContentsHolder:
       </p>
 
       <source>
@@ -981,8 +980,7 @@
 
       <p>
         Usage: This filter only works in conjunction with a <code>FileContentsHolder</code>, since that check makes
-        the suppression comments in the .java files available <i>sub
-        rosa</i>. A configuration that includes this filter must
+        the suppression comments in the Java files available. A configuration that includes this filter must
         configure <code>FileContentsHolder</code> as a
         child module of <code>TreeWalker</code>.
       </p>
@@ -1071,14 +1069,14 @@
 
       <p>
         To configure a filter so that
-        <code>// Ok to catch (Throwable|Exception|RuntimeException) here</code>
+        <code>// OK to catch (Throwable|Exception|RuntimeException) here</code>
         permits the current and previous line to avoid generating an IllegalCatch
         audit event:
       </p>
 
       <source>
 &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
-    &lt;property name=&quot;commentFormat&quot; value=&quot;Ok to catch (\w+) here&quot;/&gt;
+    &lt;property name=&quot;commentFormat&quot; value=&quot;OK to catch (\w+) here&quot;/&gt;
     &lt;property name=&quot;checkFormat&quot; value=&quot;IllegalCatchCheck&quot;/&gt;
     &lt;property name=&quot;messageFormat&quot; value=&quot;$1&quot;/&gt;
     &lt;property name=&quot;influenceFormat&quot; value=&quot;-1&quot;/&gt;

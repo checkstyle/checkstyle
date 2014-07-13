@@ -1009,7 +1009,7 @@ d = e / f;        // Another comment for this line
         </p>
         <p>
           <b>Note:</b> When entering a regular expression as a parameter in the
-          xml config file you must also take into account the XML rules. e.g. if
+          XML config file you must also take into account the XML rules. e.g. if
           you want to match a &lt; symbol you need to enter &amp;lt;. The regular
           expression should be entered on one line.
         </p>
@@ -1258,7 +1258,7 @@ import java.util.thing3;
           <b>More examples:</b>
         </p>
         <p>
-          The next 2 examples deal with the following example java source file:
+          The next 2 examples deal with the following example Java source file:
         </p>
         <source>
 /*
@@ -1385,9 +1385,9 @@ public class PID extends StateMachine implements WebObject.Constants {
 &lt;/module&gt;
         </source>
         <p>
-          <b>Note:</b> To search for things that mean something in xml, like
+          <b>Note:</b> To search for things that mean something in XML, like
           &lt; you need to escape them like &amp;lt;. This is required so the
-          xml parser does not act on them, but instead passes the correct
+          XML parser does not act on them, but instead passes the correct
           character to the regexp engine.
         </p>
       </subsection>

@@ -138,7 +138,7 @@
       <ul>
         <li>
           Fix parsing error <code>unexpected char: 0xFFFF</code> which was
-          triggered when a comment line is on a line with out newline character.
+          triggered when a comment line is on a line without newline character.
           Thanks to Evgeny Mandrikov for patch #3367782.
         </li>
         <li>
@@ -454,7 +454,7 @@
       <p>Notes:</p>
       <ul>
         <li>
-          <i>Updated dependencies</i>: Updated google collections to version
+          <i>Updated dependencies</i>: Updated Google collections to version
           1.0.
         </li>
         <li>
@@ -822,7 +822,7 @@
           check.
         </li>
         <li>
-          <i>Updated dependencies</i>: Removed commons-collections; added google collections
+          <i>Updated dependencies</i>: Removed commons-collections; added Google collections
           (google-collect-snapshot-20080321.jar); upgraded commons-cli to version 1.1.
         </li>
         <li>
@@ -884,7 +884,7 @@
           (feature request 1725475).
         </li>
         <li>
-          Add a url option for ImportControl check. Thanks to Benjamin
+          Add a URL option for ImportControl check. Thanks to Benjamin
           Lerman for the patch 1724683.
         </li>
         <li>
@@ -916,7 +916,7 @@
           to Chris Povirk (cpovirk) for submitting the patch.
         </li>
         <li>
-          Fixed incorrect french translation (bug 1611403). Thanks to
+          Fixed incorrect French translation (bug 1611403). Thanks to
           Fabien Bergeret for providing the correct value.
         </li>
       </ul>
@@ -1222,7 +1222,7 @@
         </li>
 
         <li>
-          Added patch (id 1193251) to suppress processing of checks with
+          Added patch (ID 1193251) to suppress processing of checks with
           'ignore' severity. From Lars Koedderitzsch.
         </li>
 
@@ -1418,13 +1418,13 @@
 
         <li>Fix bug with suppression filtering. (bug 1080343).</li>
 
-        <li>Improved french message translations
+        <li>Improved French message translations
         (patch 1097980 by Olivier Parent).</li>
 
         <li>Fixed typo in SuppressionCommentFilter which caused bug 1084654</li>
 
         <li>Fixed 1048226 (Runtime problems of Checks are logged to checkstyle
-        audit), now checkstyle will fail if it can not load class for exception
+        audit), now checkstyle will fail if it cannot load class for exception
         from throws clause of javadoc (modules RedundantThrows and
         JavadocMethod)</li>
 
@@ -1600,10 +1600,10 @@
         <li>FinalParameter can be applied to catch blocks (request
         848820).</li>
 
-        <li>Improved german translation, contributed by Oliver Fischer (patch
+        <li>Improved German translation, contributed by Oliver Fischer (patch
         862911).</li>
 
-        <li>Added stylesheet to translate xml output into comma separated
+        <li>Added stylesheet to translate XML output into comma separated
         values format (contrib/checkstyle-csv.xsl, request 764153).</li>
 
         <li>Added BooleanExpressionComplexity check from Simon Harris (request
@@ -2302,9 +2302,9 @@
         <li>Detect whitespace before ';' (request 521323).</li>
         <li>Added DTD for XML output (request 622157).</li>
         <li>Added an XSL stylesheet to convert XML output to plain text, contributed by Jon Scott Stevens.</li>
-        <li>Added portuguese localization, contributed by Pedro Morais.</li>
-        <li>Added finnish localization, contributed by Ville Skyttä.</li>
-        <li>Added french localization, contributed by Pierre Dittgen.</li>
+        <li>Added a Portuguese localization, contributed by Pedro Morais.</li>
+        <li>Added a Finnish localization, contributed by Ville Skyttä.</li>
+        <li>Added a French localization, contributed by Pierre Dittgen.</li>
       </ul>
 
       <p>
@@ -2316,7 +2316,7 @@
         <li>Package name reported incorrectly (bug 622290).</li>
         <li>Empty header filename silently ignored (bug 629139).</li>
         <li>Array instantiation incorrectly flagged (bug 626875).</li>
-        <li>Tests fail with non-english locale (bug 594469).</li>
+        <li>Tests fail with non-English locale (bug 594469).</li>
         <li>Cachefile streams were not closed (bug 665016).</li>
         <li>Ant Task: NullPointerException when type was not specified in formatter (bug 670321).</li>
       </ul>
@@ -2325,7 +2325,7 @@
         Removed features:
       </p>
       <ul>
-        <li>Removed support for japanese localization until we find a new maintainer.</li>
+        <li>Removed support for Japanese localization until we find a new maintainer.</li>
       </ul>
 
       <p>
