@@ -104,6 +104,7 @@
 
     <module name="OuterTypeNumber"/>
     <module name="LineLength">
+      <property name="max" value="120"/>
       <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
     </module>
     <module name="MethodCount">
