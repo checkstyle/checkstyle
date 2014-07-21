@@ -207,4 +207,14 @@ public class WhitespaceAroundTest
                getPath("whitespace/InputDoWhileWhitespaceAround.java"),
                expected);
     }
+
+    @Test
+    public void allowEmptyMethods() throws Exception
+    {
+        checkConfig.addAttribute("allowEmptyMethods", "true");
+        final String[] expected = {};
+        verify(checkConfig,
+               getPath("whitespace/InputWhitespaceAround.java"),
+               expected);
+    }
 }

@@ -21,3 +21,11 @@ public class InputWhitespaceAround
         }
     }
 }
+
+@interface CronExpression {
+	Class<?>[] groups() default {}; 
+}
+
+@interface CronExpression {
+	Class<?>[] groups() default { }; // extra space
+}
