@@ -110,7 +110,7 @@ public class DeclarationOrderCheck extends Check
         final int parentType = aAST.getParent().getType();
         ScopeState state;
 
-        switch(aAST.getType()) {
+        switch (aAST.getType()) {
         case TokenTypes.OBJBLOCK:
             mScopeStates.push(new ScopeState());
             break;
@@ -196,7 +196,7 @@ public class DeclarationOrderCheck extends Check
     @Override
     public void leaveToken(DetailAST aAST)
     {
-        switch(aAST.getType()) {
+        switch (aAST.getType()) {
         case TokenTypes.OBJBLOCK:
             mScopeStates.pop();
             break;

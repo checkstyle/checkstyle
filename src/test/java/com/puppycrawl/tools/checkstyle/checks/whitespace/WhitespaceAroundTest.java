@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -186,5 +187,25 @@ public class WhitespaceAroundTest
         };
         verify(checkConfig, getPath("whitespace/InputEmptyTypesAndCycles.java"),
                expected);
+    }
+
+    @Test
+    public void testLiteralSwitch() throws Exception
+    {
+        String[] expected = {
+            "5:19: 'switch' is not followed by whitespace.",
+            "65:22: 'while' is not followed by whitespace.",
+            "198:20: 'while' is not followed by whitespace.",
+            "275:21: '{' is not preceded with whitespace.",
+            "300:21: '{' is not preceded with whitespace.",
+            "321:21: '{' is not preceded with whitespace.",
+            "342:21: '{' is not preceded with whitespace.",
+            "363:21: '{' is not preceded with whitespace.",
+            "383:22: '{' is not preceded with whitespace.",
+            "387:22: '{' is not preceded with whitespace.",
+            "392:22: '{' is not preceded with whitespace.",
+            "400:15: 'switch' is not followed by whitespace.",
+        };
+        verify(checkConfig, getPath("coding/InputFallThrough.java"), expected);
     }
 }

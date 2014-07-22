@@ -2,7 +2,7 @@ public class InputFallThrough
 {
     void method(int i, int j, boolean cond) {
         while (true) {
-            switch (i) {
+            switch(i) {
             case 0: // no problem
             case 1:
                 i++;
