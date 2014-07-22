@@ -33,6 +33,8 @@ import java.util.EventObject;
  * in an interface or a servlet (yep, that's cool to run a check via
  * a web interface in a source repository ;-)
  * </i>
+ * </p>
+ *
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  * @see AuditListener
  */

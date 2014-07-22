@@ -40,7 +40,8 @@ public class MultipleStringLiteralsCheck extends Check
 {
     /**
      * The found strings and their positions.
-     * <String, ArrayList>, with the ArrayList containing StringInfo objects.
+     * {@code <String, ArrayList>}, with the ArrayList containing StringInfo
+     * objects.
      */
     private final Map<String, List<StringInfo>> mStringMap = Maps.newHashMap();
 

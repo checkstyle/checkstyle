@@ -19,6 +19,8 @@
 
 /**
  * Contains the grammar used by the Checkstyle framework.
- * <p>You should <strong>not be</strong> referring to this package.
+ * <p>
+ * You should <strong>not be</strong> referring to this package.
+ * </p>
  */
 package com.puppycrawl.tools.checkstyle.grammars;

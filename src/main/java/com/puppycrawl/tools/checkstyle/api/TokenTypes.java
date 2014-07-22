@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
  * Syntax Tree.
  *
  * <p>Implementation detail: This class has been introduced to break
- * the circular dependency between packages.<p>
+ * the circular dependency between packages.</p>
  *
  * @author Oliver Burn
  * @author <a href="mailto:dobratzp@ele.uri.edu">Peter Dobratz</a>
@@ -723,6 +723,7 @@ public final class TokenTypes
      *     +--ELIST
      *     +--RPAREN ())
      * </pre>
+     * </p>
      *
      * @see #IDENT
      * @see #TYPE_ARGUMENTS
@@ -3397,19 +3398,20 @@ public final class TokenTypes
 
     /**
      * '&' symbol when used in a generic upper or lower bounds constrain
-     * e.g. Comparable<? extends Serializable, CharSequence>.
+     * e.g. {@code Comparable<? extends Serializable, CharSequence>}.
      */
     public static final int TYPE_EXTENSION_AND =
         GeneratedJavaTokenTypes.TYPE_EXTENSION_AND;
 
     /**
-     * '<' symbol signifying the start of type arguments or type parameters.
+     * '&lt;' symbol signifying the start of type arguments or type
+     * parameters.
      */
     public static final int GENERIC_START =
         GeneratedJavaTokenTypes.GENERIC_START;
 
     /**
-     * '>' symbol signifying the end of type arguments or type parameters.
+     * '&gt;' symbol signifying the end of type arguments or type parameters.
      */
     public static final int GENERIC_END = GeneratedJavaTokenTypes.GENERIC_END;
 

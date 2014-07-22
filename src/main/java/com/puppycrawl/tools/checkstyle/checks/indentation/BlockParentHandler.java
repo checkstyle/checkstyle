@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <P>
  * The "block" handler classes use a common superclass BlockParentHandler,
  * employing the Template Method pattern.
+ * </P>
  * <P>
  * <UL>
  *   <LI>template method to get the lcurly</LI>
@@ -35,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   <LI>now all the repetitous code which checks for BOL, if curlys are on
  *       same line, etc. can be collapsed into  the superclass</LI>
  * </UL>
+ * </P>
  *
  * @author jrichard
  */

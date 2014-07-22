@@ -29,10 +29,10 @@ import java.util.regex.PatternSyntaxException;
  * objects based on the criteria of file, check, module id, line, and
  * column. It rejects an AuditEvent if the following match:
  * <ul>
- *   <li>the event's file name; and
- *   <li>the check name or the module identifier; and
- *   <li>(optionally) the event's line is in the filter's line CSV; and
- *   <li>(optionally) the check's columns is in the filter's column CSV.
+ *   <li>the event's file name; and</li>
+ *   <li>the check name or the module identifier; and</li>
+ *   <li>(optionally) the event's line is in the filter's line CSV; and</li>
+ *   <li>(optionally) the check's columns is in the filter's column CSV.</li>
  * </ul>
  *
  * @author Rick Giles

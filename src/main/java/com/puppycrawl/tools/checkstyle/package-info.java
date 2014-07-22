@@ -24,5 +24,6 @@
  * <p>
  * You should <strong>not be</strong> referring to this package if you are
  * implementing your own check.
+ * </p>
  */
 package com.puppycrawl.tools.checkstyle;

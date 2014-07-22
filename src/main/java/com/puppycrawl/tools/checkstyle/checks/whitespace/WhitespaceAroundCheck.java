@@ -403,7 +403,8 @@ public class WhitespaceAroundCheck extends Check
      * An example empty block might look like the following
      * <p>
      * <pre>   class Foo {}</pre>
-     * <p>
+     * </p>
+     *
      * @param aAST aAST the <code>DetailAST</code> to test.
      * @param aParentType the token type of <code>aAST</code>'s parent.
      * @return <code>true</code> if <code>aAST</code> makes up part of an

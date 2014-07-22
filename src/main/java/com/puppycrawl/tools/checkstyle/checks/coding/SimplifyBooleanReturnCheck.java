@@ -82,17 +82,17 @@ public class SimplifyBooleanReturnCheck
      * or a compound statement that contains only such a return statement.
      *
      * Returns <code>true</code> iff aAST represents
-     * <br>
+     * <br/>
      * <pre>
      * return true/false;
-     * <pre>
+     * </pre>
      * or
-     * <br>
+     * <br/>
      * <pre>
      * {
      *   return true/false;
      * }
-     * <pre>
+     * </pre>
      *
      * @param aAST the sytax tree to check
      * @return if aAST is a return statment with a boolean literal.
@@ -111,10 +111,10 @@ public class SimplifyBooleanReturnCheck
      * Returns if an AST is a return statment with a boolean literal.
      *
      * Returns <code>true</code> iff aAST represents
-     * <br>
+     * <br/>
      * <pre>
      * return true/false;
-     * <pre>
+     * </pre>
      *
      * @param aAST the sytax tree to check
      * @return if aAST is a return statment with a boolean literal.

@@ -25,17 +25,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Abstract class for checking a class member (field/method)'s name conforms to
  * a format specified by the format property.
  *
- * <p>This class extends {@link AbstractNameCheck} with support for access level
+ * <p>
+ * This class extends {@link AbstractNameCheck} with support for access level
  * restrictions. This allows the check to be configured to be applied to one of
  * the four Java access levels: {@code public}, {@code protected},
  * {@code "package"}, and {@code private}.
+ * </p>
  *
- * <p>Level is configured using the following properties:
+ * <p>
+ * Level is configured using the following properties:
  * <ol>
- * <li>applyToPublic, default true;
- * <li>applyToProtected, default true;
- * <li>applyToPackage, default true;
- * <li>applyToPrivate, default true;
+ * <li>applyToPublic, default true;</li>
+ * <li>applyToProtected, default true;</li>
+ * <li>applyToPackage, default true;</li>
+ * <li>applyToPrivate, default true;</li>
  * </ol>
  * </p>
  *

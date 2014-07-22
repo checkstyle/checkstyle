@@ -53,7 +53,7 @@ import java.util.Map;
  * <p>
  * Also, the {@link #isValidOn(DetailAST) isValidOn} method does not consider
  * classes defined in a local code block (method, init block, etc.).
- * </>
+ * </p>
  *
  * @author Travis Schneeberger
  */

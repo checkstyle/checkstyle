@@ -47,6 +47,7 @@ import java.util.regex.Pattern;
  * compatibility, but can be extended in the future to allow more
  * flexible, more powerful or more efficient handling of certain
  * situations.
+ * </p>
  *
  * @author Martin von Gagern
  */

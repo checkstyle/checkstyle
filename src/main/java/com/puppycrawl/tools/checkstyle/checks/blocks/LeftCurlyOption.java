@@ -57,6 +57,7 @@ public enum LeftCurlyOption
      * {
      *     ...
      * </pre>
+     * </p>
      **/
     NLOW,
 

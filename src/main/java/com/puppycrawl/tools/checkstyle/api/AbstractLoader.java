@@ -41,6 +41,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * persnickety, picky, prudish, punctilious, puritanical, rigid, rigorous,
  * scrupulous, set, severe, square, stern, stickler, straight, strait-laced,
  * stringent, stuffy, stuffy, tough, unpermissive, unsparing and uptight.
+ * </p>
  *
  * @author Oliver Burn
  */

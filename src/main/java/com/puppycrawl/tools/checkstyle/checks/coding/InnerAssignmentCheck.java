@@ -142,8 +142,10 @@ public class InnerAssignmentCheck
      * if (y < 0)
      *     x = y;
      * </pre>
+     * </p>
      * <p>
      * This leads to the following AST structure:
+     * </p>
      * <p>
      * <pre>
      * LITERAL_IF
@@ -153,8 +155,10 @@ public class InnerAssignmentCheck
      *     EXPR // body
      *     SEMI
      * </pre>
+     * </p>
      * <p>
      * We need to ensure that aAST is in the body and not in the test.
+     * </p>
      *
      * @param aAST an assignment operator AST
      * @return whether aAST is in the body of a flow control statement
@@ -177,7 +181,9 @@ public class InnerAssignmentCheck
      * while ((b = is.read()) != -1) {
      *   // work with b
      * }
-     * <pre>
+     * </pre>
+     * </p>
+     *
      * @param aAST assignment AST
      * @return whether the context of the assignemt AST indicates the idiom
      */

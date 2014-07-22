@@ -37,9 +37,10 @@ import java.util.List;
  * tag that this class looks specifically for is the HTML comment tag.
  * This class helps figure out if a tag exists and if it is well-formed.
  * It does not know whether it is valid HTML.  This class is also used for
- * generics types which looks like opening HTML tags ex: <T>, <E>, <V>,
- * <MY_FOO_TYPE>, etc. According to this class they are valid tags.
+ * generics types which looks like opening HTML tags ex: {@code <T>, <E>, <V>,
+ * <MY_FOO_TYPE>}, etc. According to this class they are valid tags.
  * </p>
+ *
  * @author Chris Stillwell
  */
 class TagParser

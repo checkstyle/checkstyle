@@ -33,10 +33,12 @@ import org.apache.commons.beanutils.ConversionException;
  * for ensuring that application layering is not violated. Ideas on how the
  * check can be improved include support for:
  * <ul>
- * <li>Change the default policy that if a package being checked does not
- *     match any guards, then it is allowed. Currently defaults to disallowed.
- *
+ * <li>
+ * Change the default policy that if a package being checked does not
+ * match any guards, then it is allowed. Currently defaults to disallowed.
+ * </li>
  * </ul>
+ *
  * @author Oliver Burn
  */
 public class ImportControlCheck extends Check

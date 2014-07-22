@@ -62,8 +62,10 @@ public interface FileSetCheck
      * interesting to the FileSetCheck. Such files should be ignored,
      * no error message should be fired for them. For example a FileSetCheck
      * that checks java files should ignore HTML or properties files.
+     * </p>
      * <p>
      * The method should return the set of messages to be logged.
+     * </p>
      *
      * @param aFile the file to be processed
      * @param aLines an immutable list of the contents of the file.

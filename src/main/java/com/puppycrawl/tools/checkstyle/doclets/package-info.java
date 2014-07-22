@@ -21,5 +21,6 @@
  * Contains the doclets used during the build of Checktyle. REally
  * <p>
  * You should <strong>not be</strong> referring to this package.
+ * </p>
  */
 package com.puppycrawl.tools.checkstyle.doclets;
