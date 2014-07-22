@@ -22,3 +22,11 @@ interface SupplierFunction<T> extends Function<Supplier<T>, T> {}
 class EmptyFoo {}
 
 enum EmptyFooEnum {}
+
+class WithEmptyAnonymous
+{
+	private void foo()
+	{
+		MyClass c = new MyClass() {};
+	}
+}
