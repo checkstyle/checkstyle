@@ -91,6 +91,11 @@
           <td><code>^[A-Z]$</code></td>
         </tr>
         <tr>
+          <td><code>InterfaceTypeParameterName</code></td>
+          <td>interface type parameters</td>
+          <td><code>^[A-Z]$</code></td>
+        </tr>
+        <tr>
           <td><code>PackageName</code></td>
           <td>packages</td>
           <td>

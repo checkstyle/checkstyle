@@ -44,3 +44,19 @@ class MoreOther <T extends Cloneable> {
 //        };
     }
 }
+
+interface Boo<Input> {
+    Input boo();
+}
+
+interface FooInterface<T> {
+    T foo();
+}
+
+interface FooInterface2 {
+    Input foo();
+}
+
+class Input {
+
+}

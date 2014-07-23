@@ -59,6 +59,18 @@ public class TypeParameterNameTest
     }
 
     @Test
+    public void testInterfaceDefault()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(InterfaceTypeParameterNameCheck.class);
+        final String[] expected = {
+            "48:15: Name 'Input' must match pattern '^[A-Z]$'.",
+        };
+        verify(checkConfig, getPath("naming" + File.separator + "InputTypeParameterName.java"), expected);
+    }
+
+    @Test
     public void testClassFooName()
         throws Exception
     {
@@ -89,6 +101,21 @@ public class TypeParameterNameTest
             "35:6: Name 'E' must match pattern '^foo$'.",
             "37:14: Name 'T' must match pattern '^foo$'.",
             //"40:14: Name 'EE' must match pattern '^foo$'.",
+        };
+        verify(checkConfig, getPath("naming" + File.separator + "InputTypeParameterName.java"), expected);
+    }
+
+    @Test
+    public void testInterfaceFooName()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(InterfaceTypeParameterNameCheck.class);
+        checkConfig.addAttribute("format", "^foo$");
+
+        final String[] expected = {
+            "48:15: Name 'Input' must match pattern '^foo$'.",
+            "52:24: Name 'T' must match pattern '^foo$'.",
         };
         verify(checkConfig, getPath("naming" + File.separator + "InputTypeParameterName.java"), expected);
     }
