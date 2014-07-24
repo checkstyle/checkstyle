@@ -106,6 +106,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * public interface Foo {} // empty interface
  * public class Foo {} // empty class
  * public enum Foo {} // empty enum
+ * MyClass c = new MyClass() {}; // empty anonymous class
  * while (i = 1) {} // empty while loop
  * for (int i = 1; i > 1; i++) {} // empty for loop
  * do {} while (i = 1); // empty do-while loop
@@ -421,7 +422,8 @@ public class WhitespaceAroundCheck extends Check
             final int matchType = typeNode.getType();
             if (matchType == TokenTypes.CLASS_DEF
                     || matchType == TokenTypes.INTERFACE_DEF
-                    || matchType == TokenTypes.ENUM_DEF)
+                    || matchType == TokenTypes.ENUM_DEF
+                    || matchType == TokenTypes.LITERAL_NEW)
             {
                 return true;
             }

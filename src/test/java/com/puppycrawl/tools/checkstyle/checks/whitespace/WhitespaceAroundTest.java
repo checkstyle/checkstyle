@@ -181,6 +181,8 @@ public class WhitespaceAroundTest
             "22:17: '}' is not preceded with whitespace.",
             "24:20: '{' is not followed by whitespace.",
             "24:20: '}' is not preceded with whitespace.",
+            "30:44: '{' is not followed by whitespace.",
+            "30:44: '}' is not preceded with whitespace.",
         };
         verify(checkConfig, getPath("whitespace/InputEmptyTypesAndCycles.java"),
                expected);

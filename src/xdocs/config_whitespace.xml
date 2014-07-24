@@ -1002,6 +1002,7 @@ public void func() {}    // empty method
 public interface Foo {} // empty interface
 public class Foo {} // empty class
 public enum Foo {} // empty enum
+MyClass c = new MyClass() {}; // empty anonymous class
 while (i = 1) {} // empty while loop
 for (int i = 1; i > 1; i++) {} // empty for loop
 do {} while (i = 1); // empty do-while loop </source>
