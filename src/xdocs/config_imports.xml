@@ -557,5 +557,160 @@ class FooBar {
         </p>
       </subsection>
     </section>
+
+    <section name="CustomImportOrder">
+      <subsection name="Description">
+        <p>
+          Checks that the groups of import declarations appear in the order specified
+          by the user. If there is an import but its group is not specified in the
+          configuration such an import should be placed at the end of the import list.
+        </p>
+      </subsection>
+
+      <subsection name="RuleDescription">
+        <p>
+          The rule consists of:
+        </p>
+        <p>
+         1) STATIC group. This group sets the ordering of static imports.
+        </p>
+        <p>
+          2) SAME_PACKAGE(n) group. This group sets the ordering of the same package imports.
+          n' - a number of the first package domains. For example:
+        </p>
+        <source>
+ package java.util.concurrent;
+
+ import java.util.regex.Pattern;
+ import java.util.List;
+ import java.util.StringTokenizer;
+ import java.util.regex.Pattern;
+ import java.util.*;
+ import java.util.concurrent.AbstractExecutorService;
+ import java.util.concurrent.*;
+        </source>
+        <p>
+          And we have such configuration: SAME_PACKAGE (3).
+          Same package imports are java.util.*, java.util.concurrent.*,
+          java.util.concurrent.AbstractExecutorService,
+          java.util.List and java.util.StringTokenizer
+        </p>
+        <p>
+          3) THIRD_PARTY_PACKAGE group. This group sets ordering of third party imports.
+          Third party imports are all imports except STATIC,
+          SAME_PACKAGE(n) and STANDARD_JAVA_PACKAGE.
+        </p>
+        <p>
+          4) STANDARD_JAVA_PACKAGE group. This group sets ordering of standard java (java|javax) imports.
+        </p>
+        <p>
+          5) SPECIAL_IMPORTS group. This group may contains some imports
+          that have particular meaning for the user.
+        </p>
+      </subsection>
+
+      <subsection name="Note">
+        <p>
+          Use the separator '###' between rules.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>customImportOrderRules</td>
+            <td>List of order declaration customizing by user.</td>
+            <td><a href="property_types.html#string">string</a></td>
+            <td><code>null</code></td>
+          </tr>
+          <tr>
+            <td>standardPackageRegExp</td>
+            <td>RegExp for STANDARD_JAVA_PACKAGE group imports.</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><code>java|javax</code></td>
+          </tr>
+          <tr>
+            <td>thirdPartyPackageRegExp</td>
+            <td>RegExp for THIRDPARTY_PACKAGE group imports.</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><code>^$</code></td>
+          </tr>
+          <tr>
+            <td>specialImportsRegExp</td>
+            <td>RegExp for SPECIAL_IMPORTS group imports.</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><code>^$</code></td>
+          </tr>
+          <tr>
+            <td>samePackageMatchingDepth</td>
+            <td>Number of first domains for SAME_PACKAGE group.</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td><code>2</code></td>
+          </tr>
+          <tr>
+            <td>separateLineBetweenGroup</td>
+            <td>Force empty line separator between import groups.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>sortImportsInGroupAlphabetically</td>
+            <td>Force grouping alphabetically.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
+          thirdPartyPackageRegExp and standardPackageRegExp options.
+        </p>
+        <source>
+&lt;module name=&quot;CustomImportOrder&quot;&gt;
+    &lt;property name=&quot;customImportOrderRules&quot;
+    value=&quot;STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE&quot;/&gt;
+    &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;com|org&quot;/&gt;
+    &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;java|javax&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Also, this check can be configured to force empty line separator between
+          import groups. For example.
+        </p>
+        <source>
+&lt;module name=&quot;CustomImportOrder&quot;&gt;
+    &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          By the option it is possible to force alphabetically sorting.
+        </p>
+       <source>
+&lt;module name=&quot;CustomImportOrder&quot;&gt;
+    &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+       </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
   </body>
 </document>
