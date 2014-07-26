@@ -370,7 +370,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.9</version>
         <configuration>
-          <argLine>${argLine} -Duser.language=en -Duser.country=US</argLine>
+          <argLine> -Duser.language=en -Duser.country=US</argLine>
         </configuration>
       </plugin>
 
@@ -776,15 +776,19 @@
     <profile>
     <!-- that profile is used only for coveralls.io banner that show coverage at ReadMe.md  -->
       <id>travis</id>
-      <activation>
-        <property>
-          <name>env.TRAVIS</name>
-          <value>true</value>
-        </property>
-      </activation>
       <build>
-        <plugins>
+      <plugins>
         
+      <!-- Used to set custom properties by means of ${argLine}, that is required for jacoco -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.9</version>
+        <configuration>
+          <argLine>${argLine} -Duser.language=en -Duser.country=US</argLine>
+        </configuration>
+      </plugin>
+
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
