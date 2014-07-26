@@ -1336,7 +1336,8 @@ unaryExpressionNotPlusMinus
 			}
 		:	// If typecast is built in type, must be numeric operand
 			// Also, no reason to backtrack if type keyword like int, float...
-			lpb:LPAREN^ {#lpb.setType(TYPECAST);} builtInTypeSpec[true] RPAREN
+			(LPAREN builtInTypeSpec[true] RPAREN unaryExpression) => 
+            lpb:LPAREN^ {#lpb.setType(TYPECAST);} builtInTypeSpec[true] RPAREN
 			unaryExpression
 
 			// Have to backtrack to see if operator follows.  If no operator
