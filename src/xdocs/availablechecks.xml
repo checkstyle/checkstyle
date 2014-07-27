@@ -19,6 +19,10 @@
     </p>
     <table>
       <tr>
+        <td><a href="config_misc.html#AbbreviationAsWordInName">AbbreviationAsWordInName</a></td>
+        <td>Check name of the targeted item to validate abbreviations(capital letters) length in it.</td>
+      </tr>
+      <tr>
         <td><a href="config_naming.html#AbstractClassName">AbstractClassName</a></td>
         <td>
           Ensures that the names of abstract classes conforming to some
