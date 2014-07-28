@@ -26,6 +26,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class TypeNameCheckTest
     extends BaseCheckTestSupport
@@ -69,6 +70,8 @@ public class TypeNameCheckTest
                         TypeNameCheck.DEFAULT_PATTERN),
                 buildMesssage(7, 17, "inputHeaderEnum",
                         TypeNameCheck.DEFAULT_PATTERN),
+                buildMesssage(9, 23, "inputHeaderAnnotation",
+                    TypeNameCheck.DEFAULT_PATTERN),
         };
         verify(checkConfig, inputFilename, expected);
     }
@@ -79,7 +82,7 @@ public class TypeNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", "CLASS_DEF");
+        checkConfig.addAttribute("tokens", TokenTypes.getTokenName(TokenTypes.CLASS_DEF));
         final String[] expected = {
                 buildMesssage(3, 7, "inputHeaderClass",
                         TypeNameCheck.DEFAULT_PATTERN),
@@ -93,7 +96,7 @@ public class TypeNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", "INTERFACE_DEF");
+        checkConfig.addAttribute("tokens", TokenTypes.getTokenName(TokenTypes.INTERFACE_DEF));
         final String[] expected = {
                 buildMesssage(5, 22, "inputHeaderInterface",
                         TypeNameCheck.DEFAULT_PATTERN),
@@ -107,9 +110,23 @@ public class TypeNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", "ENUM_DEF");
+        checkConfig.addAttribute("tokens", TokenTypes.getTokenName(TokenTypes.ENUM_DEF));
         final String[] expected = {
                 buildMesssage(7, 17, "inputHeaderEnum",
+                        TypeNameCheck.DEFAULT_PATTERN),
+        };
+        verify(checkConfig, inputFilename, expected);
+    }
+
+    @Test
+    public void testAnnotationSpecific()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(TypeNameCheck.class);
+        checkConfig.addAttribute("tokens", TokenTypes.getTokenName(TokenTypes.ANNOTATION_DEF));
+        final String[] expected = {
+            buildMesssage(9, 23, "inputHeaderAnnotation",
                         TypeNameCheck.DEFAULT_PATTERN),
         };
         verify(checkConfig, inputFilename, expected);

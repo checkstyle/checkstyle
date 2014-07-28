@@ -6,4 +6,6 @@ class inputHeaderClass {
 
     public enum inputHeaderEnum { one, two };
 
+    public @interface inputHeaderAnnotation {};
+
 }
