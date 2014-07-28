@@ -116,7 +116,7 @@
         </tr>
         <tr>
           <td><code>TypeName</code></td>
-          <td>classes, interfaces and enums</td>
+          <td>classes, interfaces , enums, annotations</td>
           <td><code>^[A-Z][a-zA-Z0-9]*$</code></td>
         </tr>
       </table>
