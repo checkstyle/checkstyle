@@ -184,7 +184,7 @@ for (int i = 1; i &lt; 10; i++) {}
           tokens: <code>CLASS_DEF</code>, <code>INTERFACE_DEF</code>,
           <code>ENUM_DEF</code>, <code>ANNOTATION_DEF</code>.<br/>
           For example, the following configuration element ensures that
-          interface names begin with<code>"I_"</code>, followed by
+          interface names begin with <code>"I_"</code>, followed by
           letters and digits:
         </p>
 
