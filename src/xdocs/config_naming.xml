@@ -116,7 +116,7 @@
         </tr>
         <tr>
           <td><code>TypeName</code></td>
-          <td>classes, interfaces , enums, annotations</td>
+          <td>classes, interfaces, enums, and annotations</td>
           <td><code>^[A-Z][a-zA-Z0-9]*$</code></td>
         </tr>
       </table>
@@ -178,11 +178,12 @@ for (int i = 1; i &lt; 10; i++) {}
       <subsection name="TypeName">
         <p>
           Module <code>TypeName</code> also has property
-          <code>tokens</code> which can be used to control whether the
-          check applies to classes, interfaces and enums through tokens
-          <code>CLASS_DEF</code>, <code>INTERFACE_DEF</code> and
-          <code>ENUM_DEF</code>.  For
-          example, the following configuration element ensures that
+          <code>tokens</code>, which can be used to control the kind of type
+          that the check applies to. The value of the <code>tokens</code>
+          property is a comma-separated list of one or more of the following
+          tokens: <code>CLASS_DEF</code>, <code>INTERFACE_DEF</code>,
+          <code>ENUM_DEF</code>, <code>ANNOTATION_DEF</code>.<br/>
+          For example, the following configuration element ensures that
           interface names begin with <code>"I_"</code>, followed by
           letters and digits:
         </p>
