@@ -506,9 +506,7 @@
 
         <!-- Ensure a class has a package declaration. !-->
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
-        <module name="PackageDeclaration">
-            <property name="ignoreDirectoryName" value="false"/>
-        </module>
+        <module name="PackageDeclaration"/>
 
         <!-- Disallow assignment of parameters. !-->
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
