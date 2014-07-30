@@ -141,6 +141,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "129:1: '{' should be on the previous line.",
             "131:9: '{' should be on the previous line.",
             "133:17: '{' should be on the previous line.",
+            "148:1: '{' should be on the previous line.",
         };
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
@@ -153,6 +154,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "26:33: '{' should be on a new line.",
             "91:19: '{' should be on a new line.",
             "97:19: '{' should be on a new line.",
+            "142:36: '{' should be on a new line.",
         };
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }

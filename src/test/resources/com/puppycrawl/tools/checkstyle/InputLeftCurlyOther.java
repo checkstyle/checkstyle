@@ -134,3 +134,21 @@ class FooInner
 			
 		}
 	}}
+
+/**
+ * False positive 
+ *
+ */
+class Absent_CustomFieldSerializer {
+
+    public static void serialize() {} //false positive. Expected nothing but was "'}' should be alone on a line." 
+}
+
+class Absent_CustomFieldSerializer
+{
+    public Absent_CustomFieldSerializer() {}
+}
+
+class EmptyClass {}
+
+interface EmptyInterface {}

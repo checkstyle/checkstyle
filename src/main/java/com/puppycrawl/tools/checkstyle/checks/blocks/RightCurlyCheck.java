@@ -199,7 +199,8 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
             log(rcurly, "line.same", "}");
         }
         else if ((getAbstractOption() == RightCurlyOption.ALONE)
-                && (rcurly.getLineNo() == nextToken.getLineNo()))
+                && (rcurly.getLineNo() == nextToken.getLineNo())
+                && !isEmptyBody(lcurly))
         {
             log(rcurly, "line.alone", "}");
         }
@@ -214,6 +215,25 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
         if (!startsLine && (lcurly.getLineNo() != rcurly.getLineNo())) {
             log(rcurly, "line.new", "}");
         }
+    }
+
+    /**
+     * Checks if definition body is empty.
+     * @param aLcurly left curly.
+     * @return true if definition body is empty.
+     */
+    private boolean isEmptyBody(DetailAST aLcurly)
+    {
+        boolean result = false;
+        if (aLcurly.getParent().getType() == TokenTypes.OBJBLOCK) {
+            if (aLcurly.getNextSibling().getType() == TokenTypes.RCURLY) {
+                result = true;
+            }
+        }
+        else if (aLcurly.getFirstChild().getType() == TokenTypes.RCURLY) {
+            result = true;
+        }
+        return result;
     }
 
     /**
