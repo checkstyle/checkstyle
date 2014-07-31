@@ -36,17 +36,30 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
         final String[] expected = {
             "5: " + MSG,
             "7: " + MSG,
-            "10: " + MSG,
-            "15: " + MSG,
-            "16: " + MSG,
-            "19: " + MSG,
-            "24: " + MSG,
-            "25: " + MSG,
-            "26: " + MSG,
-            "31: " + MSG,
-            "32: " + MSG,
-            "33: " + MSG,
-            "34: " + MSG,
+            "9: " + MSG,
+            "13: " + MSG,
+            "14: " + MSG,
+            "17: " + MSG,
+            "21: " + MSG,
+            "22: " + MSG,
+            "23: " + MSG,
+            "27: " + MSG,
+            "28: " + MSG,
+            "29: " + MSG,
+            "30: " + MSG,
+            "38: " + MSG,
+            "54: " + MSG,
+            "55: " + MSG,
+            "56: " + MSG,
+            "57: " + MSG,
+            "68: " + MSG,
+            "69: " + MSG,
+            "70: " + MSG,
+            "71: " + MSG,
+            "72: " + MSG,
+            "73: " + MSG,
+            "75: " + MSG,
+            "78: " + MSG,
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharactersCheck.java"), expected);
     }
@@ -60,15 +73,27 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
         final String[] expected = {
             "5: " + MSG,
             "7: " + MSG,
-            "10: " + MSG,
-            "15: " + MSG,
-            "16: " + MSG,
-            "24: " + MSG,
-            "25: " + MSG,
-            "31: " + MSG,
-            "32: " + MSG,
-            "33: " + MSG,
-            "34: " + MSG,
+            "9: " + MSG,
+            "13: " + MSG,
+            "14: " + MSG,
+            "21: " + MSG,
+            "22: " + MSG,
+            "27: " + MSG,
+            "28: " + MSG,
+            "29: " + MSG,
+            "30: " + MSG,
+            "38: " + MSG,
+            "54: " + MSG,
+            "55: " + MSG,
+            "56: " + MSG,
+            "57: " + MSG,
+            "69: " + MSG,
+            "70: " + MSG,
+            "71: " + MSG,
+            "72: " + MSG,
+            "73: " + MSG,
+            "75: " + MSG,
+            "78: " + MSG,
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharactersCheck.java"), expected);
     }
@@ -81,13 +106,23 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("allowByTailComment", "true");
         final String[] expected = {
             "5: " + MSG,
-            "15: " + MSG,
-            "19: " + MSG,
-            "24: " + MSG,
-            "26: " + MSG,
-            "31: " + MSG,
-            "33: " + MSG,
-            "34: " + MSG,
+            "13: " + MSG,
+            "21: " + MSG,
+            "27: " + MSG,
+            "29: " + MSG,
+            "30: " + MSG,
+            "54: " + MSG,
+            "55: " + MSG,
+            "56: " + MSG,
+            "57: " + MSG,
+            "68: " + MSG,
+            "69: " + MSG,
+            "70: " + MSG,
+            "71: " + MSG,
+            "72: " + MSG,
+            "73: " + MSG,
+            "75: " + MSG,
+            "78: " + MSG,
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharactersCheck.java"), expected);
     }
@@ -101,12 +136,36 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
         final String[] expected = {
             "5: " + MSG,
             "7: " + MSG,
-            "10: " + MSG,
-            "15: " + MSG,
-            "16: " + MSG,
-            "31: " + MSG,
-            "32: " + MSG,
-            "33: " + MSG,
+            "9: " + MSG,
+            "13: " + MSG,
+            "14: " + MSG,
+            "27: " + MSG,
+            "28: " + MSG,
+            "29: " + MSG,
+            "38: " + MSG,
+        };
+        verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharactersCheck.java"), expected);
+    }
+
+    @Test
+    public void allowNonPrintableEscapes() throws Exception
+    {
+        DefaultConfiguration checkConfig =
+                createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
+        checkConfig.addAttribute("allowNonPrintableEscapes", "true");
+        final String[] expected = {
+            "5: " + MSG,
+            "7: " + MSG,
+            "9: " + MSG,
+            "13: " + MSG,
+            "14: " + MSG,
+            "21: " + MSG,
+            "22: " + MSG,
+            "27: " + MSG,
+            "28: " + MSG,
+            "29: " + MSG,
+            "30: " + MSG,
+            "38: " + MSG,
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharactersCheck.java"), expected);
     }
