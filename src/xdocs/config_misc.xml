@@ -1540,6 +1540,12 @@ public class PID extends StateMachine implements WebObject.Constants {
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
           </tr>
+          <tr>
+            <td>allowNonPrintableEscapes</td>
+            <td>Allow non-printable escapes.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>false</td>
+          </tr>
         </table>
       </subsection>
 
@@ -1600,6 +1606,14 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         <source>
 &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
     &lt;property name="allowIfAllCharactersEscaped" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          An example of how to configure the check to allow non-printable escapes:
+        </p>
+        <source>
+&lt;module name="AvoidEscapedUnicodeCharacters"&gt;
+    &lt;property name="allowNonPrintableEscapes" value="true"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
