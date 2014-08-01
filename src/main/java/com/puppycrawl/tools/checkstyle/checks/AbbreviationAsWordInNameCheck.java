@@ -30,42 +30,48 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Check name of the targeted item to validate
- * abbreviations(capital letters) length in it.
+ * The Check validate abbreviations(consecutive capital letters) length in
+ * identifier name. Please read more at 
+ * <a href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s5.3-camel-case">
+ * Google Style Guide</a> how to avoid long abbreviations in names 
  * </p>
  * <p>
- * Option targets- it's array of type forbidden annotation's target.
- * </p>
- * <p>
- * Option allowedAbbreviations - list of abbreviations that
- * must be skipped for checking.
- * </p>
- * <p>
- * Option ignoreFinal allow to skip variables with final declarations.
- * </p>
- * <p>
- * Option ignoreStatic allow to skip variables with static declarations.
- * </p>
- * <p>
- * Option ignoreOverriddenMethod - Allows to
- * ignore methods tagged with '@Override' annotation
- * (that usually mean inherited name).
- * </p>
- * <p>
- * Option allowedAbbreviationLength indicates on the allowed amount of capital
+ * Option <code>allowedAbbreviationLength</code> indicates on the allowed amount of capital
  * letters in abbreviations in the classes, interfaces,
  * variables and methods names. Default value is '3'.
  * </p>
  * <p>
- * To configure to check variables definitions forbid skipping
- * variables with static declarations
- * and allow 'NUMBER' abbreviation.
+ * Option <code>allowedAbbreviations</code> - list of abbreviations that
+ * must be skipped for checking. Abbreviations should be separated by comma,
+ * no spaces are allowed.
+ * </p>
+ * <p>
+ * Option <code>ignoreFinal</code> allow to skip variables with <code>final<code> modifier.
+ * Default value is <code>true</code>. 
+ * </p>
+ * <p>
+ * Option <code>ignoreStatic</code> allow to skip variables with <code>static<code> modifier.
+ * Default value is <code>true</code>.
+ * </p>
+ * <p>
+ * Option <code>ignoreOverriddenMethod</code> - Allows to
+ * ignore methods tagged with <code>@Override</code> annotation
+ * (that usually mean inherited name). Default value is <code>true</code>.
+ * </p>
+ * Default configuration 
+ * <pre>
+ * &lt;module name="AbbreviationAsWordInName"&gt;
+ * &lt;/module&gt;
+ * </pre> * <p>
+ * To configure to check variables and classes identifiers, do not ignore
+ * variables with static modifier
+ * and allow no abbreviations to use (camel case phrase).
  * </p>
  * <pre>
  * &lt;module name="AbbreviationAsWordInName"&gt;
  *     &lt;property name="targets" value="VARIABLE_DEF"/&gt;
  *     &lt;property name="ignoreStatic" value="false"/&gt;
- *     &lt;property name="allowedAbbreviations" value="NUMBER"/&gt;
+ *     &lt;property name="allowedAbbreviations" value="1"/&gt;
  * &lt;/module&gt;
  * </pre>
  *
@@ -83,11 +89,6 @@ public class AbbreviationAsWordInNameCheck extends Check
      * The default value of "allowedAbbreviationLength" option.
      */
     private static final int DEFAULT_ALLOWED_ABBREVIATIONS_LENGTH = 3;
-
-    /**
-     * mAnnotationTargets is array of type forbidden annotation's target.
-     */
-    private int[] mTargets = new int[0];
 
     /**
      * Variable indicates on the allowed amount of capital letters in
@@ -141,20 +142,6 @@ public class AbbreviationAsWordInNameCheck extends Check
     }
 
     /**
-     * Targets for a Check.
-     * @param aTargets - array of type's names
-     */
-    public void setTargets(String[] aTargets)
-    {
-        if (aTargets != null) {
-            mTargets = new int[aTargets.length];
-            for (int i = 0; i < aTargets.length; i++) {
-                mTargets[i] = TokenTypes.getTokenId(aTargets[i]);
-            }
-        }
-    }
-
-    /**
      * Allowed abbreviation length in names.
      * @param aAllowedAbbreviationLength
      *            amount of allowed capital letters in abbreviation.
@@ -182,7 +169,16 @@ public class AbbreviationAsWordInNameCheck extends Check
     @Override
     public int[] getDefaultTokens()
     {
-        return mTargets;
+        return new int[] {
+                TokenTypes.CLASS_DEF,
+                TokenTypes.INTERFACE_DEF,
+                TokenTypes.ENUM_DEF,
+                TokenTypes.ANNOTATION_DEF,
+                TokenTypes.ANNOTATION_FIELD_DEF,
+                TokenTypes.PARAMETER_DEF,
+                TokenTypes.VARIABLE_DEF,
+                TokenTypes.METHOD_DEF
+               };
     }
 
     @Override
