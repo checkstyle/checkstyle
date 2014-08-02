@@ -19,8 +19,9 @@
     </p>
     <table>
       <tr>
-        <td><a href="config_misc.html#AbbreviationAsWordInName">AbbreviationAsWordInName</a></td>
-        <td>Check name of the targeted item to validate abbreviations(capital letters) length in it.</td>
+        <td><a href="config_naming.html#AbbreviationAsWordInName">AbbreviationAsWordInName</a></td>
+        <td>The Check validate abbreviations(consecutive capital letters)
+         length in identifier name, it also allow in enforce camel case naming.</td>
       </tr>
       <tr>
         <td><a href="config_naming.html#AbstractClassName">AbstractClassName</a></td>

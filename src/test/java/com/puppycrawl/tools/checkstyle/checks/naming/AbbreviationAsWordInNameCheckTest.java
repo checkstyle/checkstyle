@@ -16,9 +16,9 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import static com.puppycrawl.tools.checkstyle.checks.AbbreviationAsWordInNameCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck.MSG_KEY;
 import static java.text.MessageFormat.format;
 
 import org.junit.Test;
@@ -41,7 +41,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("allowedAbbreviations", "III");
-        checkConfig.addAttribute("targets", "CLASS_DEF");
+        checkConfig.addAttribute("tokens", "CLASS_DEF");
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
 
         final String[] expected = {
@@ -51,7 +51,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
             "37: " + warningMessage,
         };
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordInTypeNameCheck.java"), expected);
+        verify(checkConfig, getPath("naming/InputAbbreviationAsWordInTypeNameCheck.java"), expected);
     }
 
     @Test
@@ -63,14 +63,14 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("allowedAbbreviations", "CLASS,FACTORY");
-        checkConfig.addAttribute("targets", "CLASS_DEF");
+        checkConfig.addAttribute("tokens", "CLASS_DEF");
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
 
         final String[] expected = {
             "32: " + warningMessage,
         };
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordInTypeNameCheck.java"), expected);
+        verify(checkConfig, getPath("naming/InputAbbreviationAsWordInTypeNameCheck.java"), expected);
     }
 
     @Test
@@ -82,14 +82,14 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("allowedAbbreviations", "CLASS");
-        checkConfig.addAttribute("targets", "CLASS_DEF");
+        checkConfig.addAttribute("tokens", "CLASS_DEF");
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
         final String[] expected = {
             "32: " + warningMessage,
             "37: " + warningMessage,
         };
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordInTypeNameCheck.java"), expected);
+        verify(checkConfig, getPath("naming/InputAbbreviationAsWordInTypeNameCheck.java"), expected);
     }
 
     @Test
@@ -101,7 +101,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("allowedAbbreviations", "CLASS");
-        checkConfig.addAttribute("targets", "CLASS_DEF"
+        checkConfig.addAttribute("tokens", "CLASS_DEF"
             + ",VARIABLE_DEF"
             + ",METHOD_DEF,ENUM_DEF,ENUM_CONSTANT_DEF"
             + ",PARAMETER_DEF,INTERFACE_DEF,ANNOTATION_DEF");
@@ -116,7 +116,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
             "58: " + warningMessage,
         };
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordInTypeNameCheck.java"), expected);
+        verify(checkConfig, getPath("naming/InputAbbreviationAsWordInTypeNameCheck.java"), expected);
     }
 
     @Test
@@ -130,7 +130,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("allowedAbbreviations", "NUMBER,MARAZMATIC,VARIABLE");
         checkConfig.addAttribute("ignoreStatic", "false");
         checkConfig.addAttribute("ignoreFinal", "false");
-        checkConfig.addAttribute("targets", "CLASS_DEF"
+        checkConfig.addAttribute("tokens", "CLASS_DEF"
             + ",VARIABLE_DEF"
             + ",METHOD_DEF,ENUM_DEF,ENUM_CONSTANT_DEF"
             + ",PARAMETER_DEF,INTERFACE_DEF,ANNOTATION_DEF");
@@ -146,7 +146,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
             "84: " + warningMessage,
         };
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordInTypeNameCheck.java"), expected);
+        verify(checkConfig, getPath("naming/InputAbbreviationAsWordInTypeNameCheck.java"), expected);
     }
 
     @Test
@@ -160,7 +160,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("allowedAbbreviations", "NUMBER,MARAZMATIC,VARIABLE");
         checkConfig.addAttribute("ignoreStatic", "true");
         checkConfig.addAttribute("ignoreFinal", "true");
-        checkConfig.addAttribute("targets", "CLASS_DEF"
+        checkConfig.addAttribute("tokens", "CLASS_DEF"
             + ",VARIABLE_DEF"
             + ",METHOD_DEF,ENUM_DEF,ENUM_CONSTANT_DEF"
             + ",PARAMETER_DEF,INTERFACE_DEF,ANNOTATION_DEF");
@@ -172,7 +172,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
             "38: " + warningMessage,
         };
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordInTypeNameCheck.java"), expected);
+        verify(checkConfig, getPath("naming/InputAbbreviationAsWordInTypeNameCheck.java"), expected);
     }
 
     @Test
@@ -186,7 +186,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("allowedAbbreviations", "MARAZMATIC,VARIABLE");
         checkConfig.addAttribute("ignoreStatic", "false");
         checkConfig.addAttribute("ignoreFinal", "true");
-        checkConfig.addAttribute("targets", "CLASS_DEF"
+        checkConfig.addAttribute("tokens", "CLASS_DEF"
             + ",VARIABLE_DEF"
             + ",METHOD_DEF,ENUM_DEF,ENUM_CONSTANT_DEF"
             + ",PARAMETER_DEF,INTERFACE_DEF,ANNOTATION_DEF");
@@ -201,7 +201,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
             "60: " + warningMessage, // no ignore for static
         };
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordInTypeNameCheck.java"), expected);
+        verify(checkConfig, getPath("naming/InputAbbreviationAsWordInTypeNameCheck.java"), expected);
     }
 
     @Test
@@ -215,7 +215,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("allowedAbbreviations", "MARAZMATIC,VARIABLE");
         checkConfig.addAttribute("ignoreStatic", "true");
         checkConfig.addAttribute("ignoreFinal", "false");
-        checkConfig.addAttribute("targets", "CLASS_DEF"
+        checkConfig.addAttribute("tokens", "CLASS_DEF"
             + ",VARIABLE_DEF"
             + ",METHOD_DEF,ENUM_DEF,ENUM_CONSTANT_DEF"
             + ",PARAMETER_DEF,INTERFACE_DEF,ANNOTATION_DEF");
@@ -229,7 +229,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
             "59: " + warningMessage, // no ignore for final
         };
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordInTypeNameCheck.java"), expected);
+        verify(checkConfig, getPath("naming/InputAbbreviationAsWordInTypeNameCheck.java"), expected);
     }
 
     @Test
@@ -241,7 +241,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("allowedAbbreviations", "");
-        checkConfig.addAttribute("targets", "CLASS_DEF, METHOD_DEF");
+        checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF");
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
 
         final String[] expected = {
@@ -249,7 +249,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
         };
 
         verify(checkConfig,
-                getPath("InputAbbreviationAsWordInTypeNameCheckOverridableMethod.java"), expected);
+                getPath("naming/InputAbbreviationAsWordInTypeNameCheckOverridableMethod.java"), expected);
     }
 
     @Test
@@ -265,7 +265,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("ignoreStatic", "false");
         checkConfig.addAttribute("ignoreFinal", "false");
         checkConfig.addAttribute("ignoreOverriddenMethods", "false");
-        checkConfig.addAttribute("targets", "CLASS_DEF,INTERFACE_DEF,ENUM_DEF,"
+        checkConfig.addAttribute("tokens", "CLASS_DEF,INTERFACE_DEF,ENUM_DEF,"
             + "ANNOTATION_DEF,ANNOTATION_FIELD_DEF,ENUM_CONSTANT_DEF,"
             + "PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF");
         final String[] expected = {
@@ -296,7 +296,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
             "98: " + warningMessage,
         };
         verify(checkConfig,
-                getPath("InputAbbreviationAsWordInTypeNameCheck.java"), expected);
+                getPath("naming/InputAbbreviationAsWordInTypeNameCheck.java"), expected);
     }
 
     /**

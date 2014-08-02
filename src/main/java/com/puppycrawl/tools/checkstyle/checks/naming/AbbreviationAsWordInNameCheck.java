@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -31,9 +31,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * The Check validate abbreviations(consecutive capital letters) length in
- * identifier name. Please read more at 
+ * identifier name, it also allows to enforce camel case naming. Please read more at
  * <a href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s5.3-camel-case">
- * Google Style Guide</a> how to avoid long abbreviations in names 
+ * Google Style Guide</a> to get to know how to avoid long abbreviations in names.
  * </p>
  * <p>
  * Option <code>allowedAbbreviationLength</code> indicates on the allowed amount of capital
@@ -46,11 +46,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * no spaces are allowed.
  * </p>
  * <p>
- * Option <code>ignoreFinal</code> allow to skip variables with <code>final<code> modifier.
- * Default value is <code>true</code>. 
+ * Option <code>ignoreFinal</code> allow to skip variables with <code>final</code> modifier.
+ * Default value is <code>true</code>.
  * </p>
  * <p>
- * Option <code>ignoreStatic</code> allow to skip variables with <code>static<code> modifier.
+ * Option <code>ignoreStatic</code> allow to skip variables with <code>static</code> modifier.
  * Default value is <code>true</code>.
  * </p>
  * <p>
@@ -58,20 +58,21 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * ignore methods tagged with <code>@Override</code> annotation
  * (that usually mean inherited name). Default value is <code>true</code>.
  * </p>
- * Default configuration 
+ * Default configuration
  * <pre>
- * &lt;module name="AbbreviationAsWordInName"&gt;
- * &lt;/module&gt;
- * </pre> * <p>
+ * &lt;module name="AbbreviationAsWordInName" /&gt;
+ * </pre>
+ * <p>
  * To configure to check variables and classes identifiers, do not ignore
  * variables with static modifier
- * and allow no abbreviations to use (camel case phrase).
+ * and allow no abbreviations (enforce camel case phrase) but allow XML and URL abbreviations.
  * </p>
  * <pre>
  * &lt;module name="AbbreviationAsWordInName"&gt;
- *     &lt;property name="targets" value="VARIABLE_DEF"/&gt;
+ *     &lt;property name="tokens" value="VARIABLE_DEF,CLASS_DEF"/&gt;
  *     &lt;property name="ignoreStatic" value="false"/&gt;
- *     &lt;property name="allowedAbbreviations" value="1"/&gt;
+ *     &lt;property name="allowedAbbreviationLength" value="1"/&gt;
+ *     &lt;property name="allowedAbbreviations" value="XML,URL"/&gt;
  * &lt;/module&gt;
  * </pre>
  *
@@ -170,15 +171,15 @@ public class AbbreviationAsWordInNameCheck extends Check
     public int[] getDefaultTokens()
     {
         return new int[] {
-                TokenTypes.CLASS_DEF,
-                TokenTypes.INTERFACE_DEF,
-                TokenTypes.ENUM_DEF,
-                TokenTypes.ANNOTATION_DEF,
-                TokenTypes.ANNOTATION_FIELD_DEF,
-                TokenTypes.PARAMETER_DEF,
-                TokenTypes.VARIABLE_DEF,
-                TokenTypes.METHOD_DEF
-               };
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.PARAMETER_DEF,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.METHOD_DEF,
+        };
     }
 
     @Override
