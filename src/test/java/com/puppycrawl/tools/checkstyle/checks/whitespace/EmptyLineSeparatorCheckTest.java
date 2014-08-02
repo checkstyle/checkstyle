@@ -38,11 +38,20 @@ public class EmptyLineSeparatorCheckTest
     public void testDefault() throws Exception
     {
         final String[] expected = {
-            "2: 'import' should be separated from previous statement.",
-            "16: 'CLASS_DEF' should be separated from previous statement.",
-            "19: 'VARIABLE_DEF' should be separated from previous statement.",
-            "58: 'INTERFACE_DEF' should be separated from previous statement.",
+            "20: 'import' should be separated from previous statement.",
+            "33: 'CLASS_DEF' should be separated from previous statement.",
+            "36: 'VARIABLE_DEF' should be separated from previous statement.",
+            "75: 'INTERFACE_DEF' should be separated from previous statement.",
         };
         verify(mCheckConfig, getPath("whitespace/InputEmptyLineSeparatorCheck.java"), expected);
+    }
+
+    @Test
+    public void testHeader() throws Exception
+    {
+        final String[] expected = {
+            "19: 'package' should be separated from previous statement.",
+        };
+        verify(mCheckConfig, getPath("whitespace/InputEmptyLineSeparatorCheckHeader.java"), expected);
     }
 }
