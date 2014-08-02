@@ -1288,7 +1288,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
     <section name="EmptyLineSeparator">
       <subsection name="Description">
         <p>
-          Checks for blank line separators after package, all import declarations,
+          Checks for empty line separators after header, package, all import declarations,
           fields, constructors, methods, nested classes,
           static initializers and instance initializers.
         </p>
@@ -1333,9 +1333,12 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 
       <subsection name="Examples">
       <p>
-        Example of declarations without blank line separator:
+        Example of declarations without empty line separator:
       </p>
       <source>
+///////////////////////////////////////////////////
+//HEADER
+///////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.whitespace;
 import java.io.Serializable;
 class Foo
@@ -1351,9 +1354,13 @@ class Foo
 &lt;module name="EmptyLineSeparator"/&gt;
       </source>
       <p>
-        Example of declarations with blank line separator that is expected by the Check by default:
+        Example of declarations with empty line separator that is expected by the Check by default:
       </p>
       <source>
+///////////////////////////////////////////////////
+//HEADER
+///////////////////////////////////////////////////
+
 package com.puppycrawl.tools.checkstyle.whitespace;
 
 import java.io.Serializable;
@@ -1366,7 +1373,7 @@ class Foo
 }
       </source>
       <p>
-        An example how to check blank line after  <a
+        An example how to check empty line after  <a
                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a> and <a
                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>:
       </p>
