@@ -2509,5 +2509,196 @@ case 3:
       </subsection>
     </section>
 
+    <section name="VariableDeclarationUsageDistance">
+      <subsection name="Description">
+        <p>
+          Checks the distance between declaration of variable and its first usage.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+
+          <tr>
+            <td>allowedDistance</td>
+            <td>A distance between declaration of variable and its first usage</td>
+            <td><a href="property_types.html#integer">integer</a></td>
+            <td>3</td>
+          </tr>
+
+          <tr>
+            <td>ignoreVariablePattern</td>
+            <td>pattern for ignoring the distance calculation</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td>(not applied)</td>
+          </tr>
+
+          <tr>
+            <td>validateBetweenScopes</td>
+            <td>Allows to calculate the distance between declaration of variable and its first usage in the different scopes.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+
+          <tr>
+            <td>ignoreFinal</td>
+            <td>Allows to ignore variables with a 'final' modifier.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          Example #1:
+        </p>
+        <source>
+int count;
+a = a + b;
+b = a + a;
+count = b; // DECLARATION OF VARIABLE 'count'
+           // SHOULD BE HERE (distance = 3)
+        </source>
+        <p>
+          Example #2:
+        </p>
+        <source>
+int count;
+{
+     a = a + b;
+     count = b; // DECLARATION OF VARIABLE 'count'
+                // SHOULD BE HERE (distance = 2)
+}
+        </source>
+        <p>
+          Check can detect a block of initialization methods. If a variable is used in
+          such a block and there is no other statements after this variable then distance=1.
+        </p>
+        <p>
+          Case #1:
+        </p>
+        <source>
+int minutes = 5;
+Calendar cal = Calendar.getInstance();
+cal.setTimeInMillis(timeNow);
+cal.set(Calendar.SECOND, 0);
+cal.set(Calendar.MILLISECOND, 0);
+cal.set(Calendar.HOUR_OF_DAY, hh);
+cal.set(Calendar.MINUTE, minutes);
+        </source>
+        <p>
+          The distance for the variable minutes is 1 even
+          though this variable is used in the fifth method's call.
+        </p>
+        <p>
+          Case #2:
+        </p>
+        <source>
+int minutes = 5;
+Calendar cal = Calendar.getInstance();
+cal.setTimeInMillis(timeNow);
+cal.set(Calendar.SECOND, 0);
+cal.set(Calendar.MILLISECOND, 0);
+System.out.println(cal);
+cal.set(Calendar.HOUR_OF_DAY, hh);
+cal.set(Calendar.MINUTE, minutes);
+         </source>
+         <p>
+           The distance for the variable minutes is 6 because there is one more expression
+           (except the initialization block) between the declaration of this variable and its usage.
+         </p>
+         <p>
+           An example how to configure this Check:
+         </p>
+         <source>
+&lt;module name="VariableDeclarationUsageDistance"/&gt;
+         </source>
+         <p>
+           An example of how to configure this Check:
+            - to set the allowed distance to 4;
+            - to ignore variables with prefix '^temp';
+            - to force the validation between scopes;
+            - to check the final variables;
+         </p>
+         <source>
+&lt;module name="VariableDeclarationUsageDistance"&gt;
+    &lt;property name="allowedDistance" value="4"&gt;
+    &lt;property name="ignoreVariablePattern" value="^temp.*"&gt;
+    &lt;property name="validateBetweenScopes" value="true"&gt;
+    &lt;property name="mIgnoreFinal" value="false"&gt;
+&lt;/module&gt;
+         </source>
+      </subsection>
+      <subsection name="Note">
+        <p>
+          ATTENTION!! (Not supported cases)
+        </p>
+        <source>
+ Case #1:
+ {
+ int c;
+ int a = 3;
+ int b = 2;
+     {
+     a = a + b;
+     c = b;
+     }
+ }
+        </source>
+        <p>
+          Distance for variable 'a' = 1;
+          Distance for variable 'b' = 1;
+          Distance for variable 'c' = 2.
+         </p>
+         <p>
+           As distance by default is 1 the Check doesn't raise warning for
+           variables 'a' and 'b' to move them into the block.
+         </p>
+         <p>
+           Case #2:
+         </p>
+         <source>
+ int sum = 0;
+ for (int i = 0; i < 20; i++) {
+     a++;
+     b--;
+     sum++;
+     if (sum > 10) {
+         res = true;
+     }
+ }
+         </source>
+         <p>
+           Distance for variable 'sum' = 3.
+         </p>
+         <p>
+           As the distance is more then the default one, the Check
+           raises warning for variable 'sum' to move it into the 'for(...)' block.
+           But there is situation when variable 'sum' hasn't to be 0 within each iteration.
+           So, to avoid such warnings you can use Suppression Filter, provided by
+           Checkstyle, for the whole class.
+         </p>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
   </body>
 </document>
