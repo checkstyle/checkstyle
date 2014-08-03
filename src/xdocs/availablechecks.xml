@@ -714,6 +714,10 @@
         <td>Checks that long constants are defined with an upper ell.</td>
       </tr>
       <tr>
+        <td><a href="config_coding.html#VariableDeclarationUsageDistance">VariableDeclarationUsageDistance</a></td>
+        <td>Checks the distance between declaration of variable and its first usage.</td>
+      </tr>
+      <tr>
         <td><a href="config_design.html#VisibilityModifier">VisibilityModifier</a></td>
         <td>Checks visibility of class members.</td>
       </tr>
