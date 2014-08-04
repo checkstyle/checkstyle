@@ -950,7 +950,7 @@ parameterDeclaration!
 		{#parameterDeclaration = #(#[PARAMETER_DEF,"PARAMETER_DEF"],
 									pm, #([TYPE,"TYPE"],pd), id);}
 	;
-//Added for support Java7's "multi-catch", several types seperated by '|'
+//Added for support Java7's "multi-catch", several types separated by '|'
 catchParameterDeclaration!
     :   pm:parameterModifier mct:multiCatchTypes id:IDENT
             {#catchParameterDeclaration = #(#[PARAMETER_DEF,"PARAMETER_DEF"], pm, #([TYPE,"TYPE"],mct), id);}
@@ -1357,12 +1357,16 @@ unaryExpressionNotPlusMinus
 			// Have to backtrack to see if operator follows.  If no operator
 			// follows, it's a typecast.  No semantic checking needed to parse.
 			// if it _looks_ like a cast, it _is_ a cast; else it's a "(expr)"
-		|	(LPAREN classTypeSpec[true] RPAREN unaryExpressionNotPlusMinus)=>
-			lp:LPAREN^ {#lp.setType(TYPECAST);} classTypeSpec[true] RPAREN
+		|	(LPAREN typeCastParameters RPAREN unaryExpressionNotPlusMinus)=>
+			lp:LPAREN^ {#lp.setType(TYPECAST);} typeCastParameters RPAREN
 			unaryExpressionNotPlusMinus
 
 		|	postfixExpression
 		)
+	;
+
+typeCastParameters
+	: classTypeSpec[true] (BAND^ classTypeSpec[true])*
 	;
 
 // TODO: handle type parameters more effectively - I think this production needs
