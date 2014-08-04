@@ -189,5 +189,13 @@ public class InputValidMethodIndent extends java.awt.event.MouseAdapter implemen
     private void indexTest() {
         getArray()[0] = 2;
     }
+
+    private int[] getArray() {
+        return new int[] {1};
+    }
+
+    private void indexTest() {
+        getArray()[0] = 2;
+    }
         
 }
