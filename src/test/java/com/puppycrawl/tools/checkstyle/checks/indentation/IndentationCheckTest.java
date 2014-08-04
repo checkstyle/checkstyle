@@ -134,6 +134,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
             "164: method def child at indentation level 4 not at correct indentation, 8",
             "169: method def child at indentation level 4 not at correct indentation, 8",
             "173: method def return type at indentation level 0 not at correct indentation, 4",
+            "184: method def child at indentation level 12 not at correct indentation, 8",
         };
         verify(c, fname, expected);
     }
