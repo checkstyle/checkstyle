@@ -22,13 +22,26 @@
       </p>
 
       <p>
-        This document assumes you are working with the SVN version of
+        This document assumes you are working with the GIT version of
         checkstyle and that you are familiar with some standard
         development tools (
 
-        <a href="http://subversion.tigris.org/">SVN</a>,
+        <a href="http://git-scm.com/">GIT</a>,
         <a href="http://maven.apache.org">Maven</a>,
         <a href="http://www.junit.org">JUnit</a>).
+      </p>
+      <p>
+        <b>ATTENTION:</b> if you have idea how to improve Checkstyle please create issue on
+        on our <a href="https://github.com/checkstyle/checkstyle/issues">tracking system</a>.
+        As soon as one of admins of our project approved your idea you are good to start 
+        implementation and you will be welcome with final code contribution.
+        Please do not expect that we will accept any code that you send to us.
+      </p>
+      <p>
+        <b>ATTENTION:</b> any new Check that you are going to introduce you need to contribute to our 
+        sanbox project <a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle">sevntu.checkstyle</a>.
+        We are receiving only bug fixes for now to our main project, here is a
+        <a href="https://groups.google.com/forum/#!topic/checkstyle-devel/JbhfiiSqKsQ">reason</a>.
       </p>
     </section>
 
@@ -54,6 +67,8 @@
         Cobertura report, run the Maven command
 
         <code>mvn cobertura:cobertura</code>.
+        
+        Check results on report target/site/cobertura/index.html in project home folder.
       </p>
 
       <p>
@@ -67,7 +82,14 @@
       </p>
 
       <p>
-        If you add new end user features, remember to document them.
+        If you add new end user features (Check, Filter, ....), remember to document 
+        them in JavaDoc of java classes and xdoc files that used to generate that site.
+      </p>
+
+      <p>
+        The last step of verification that all works fine please do testing of your
+        functionality on any open-source project (Spring, Hibernate, ....).
+        Here is how to do it from <a href="http://checkstyle.sourceforge.net/cmdline.html">command line</a>
       </p>
     </section>
 
@@ -81,24 +103,17 @@
       </p>
 
       <p>
-        If you have created new files, put them in a tgz file (or zip if
-        you are on Windows). If you have changed existing files, create
-        a unified diff using SVN. To do that, open a command line, cd to
-        the home directory of checkstyle (where build.xml is located)
-        and execute <code>svn diff &gt; mychanges.patch</code>.
+        Please use <a href="http://help.github.com/articles/using-pull-requests">Pull Request</a>
+        feature of <a href="http://github.com/">Github</a>.<br/>
+        Please provide wide description of update with detailed explanation of problem 
+        and how you propose to resolve it.
       </p>
 
       <p>
-        Create a new item in our
-
-        <a href="http://sourceforge.net/tracker/?group_id=29721&amp;atid=397080">patch tracker</a>
-
-        and add the tgz/zip/patch files you created. Make sure the text
-        in the tracker explains the purpose of your contribution.  When
-        you create a tracker entry, a notification email about your
-        contribution will automatically be sent to the developer mailing
-        list.  Be prepared to answer questions and do some polishing
-        work.
+        After you do Pull Request please recheck that our where is no problem from our build system:
+        <a href="https://travis-ci.org/checkstyle/checkstyle">Travis</a> and 
+        <a href="https://coveralls.io/r/checkstyle/checkstyle">Coveralls</a>. 
+        You will see that your Pull Request on Github is marked by that jobs automatically in few minutes.
       </p>
 
       <p>
