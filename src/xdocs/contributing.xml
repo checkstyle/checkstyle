@@ -33,12 +33,12 @@
       <p>
         <b>ATTENTION:</b> if you have idea how to improve Checkstyle please create issue on
         on our <a href="https://github.com/checkstyle/checkstyle/issues">tracking system</a>.
-        As soon as one of admins of our project approved your idea you are good to start 
+        As soon as one of admins of our project approved your idea you are good to start
         implementation and you will be welcome with final code contribution.
         Please do not expect that we will accept any code that you send to us.
       </p>
       <p>
-        <b>ATTENTION:</b> any new Check that you are going to introduce you need to contribute to our 
+        <b>ATTENTION:</b> any new Check that you are going to introduce you need to contribute to our
         sanbox project <a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle">sevntu.checkstyle</a>.
         We are receiving only bug fixes for now to our main project, here is a
         <a href="https://groups.google.com/forum/#!topic/checkstyle-devel/JbhfiiSqKsQ">reason</a>.
@@ -67,7 +67,7 @@
         Cobertura report, run the Maven command
 
         <code>mvn cobertura:cobertura</code>.
-        
+
         Check results on report target/site/cobertura/index.html in project home folder.
       </p>
 
@@ -77,13 +77,14 @@
       </p>
 
       <p>
-        The Maven command <code>mvn clean package</code> must pass
+        The Maven command <code>mvn clean verify</code> must pass
         without any errors.
       </p>
 
       <p>
-        If you add new end user features (Check, Filter, ....), remember to document 
+        If you add new end user features (Check, Filter, ....), remember to document
         them in JavaDoc of java classes and xdoc files that used to generate that site.
+        Please recheck site and all bundles generation by <code>mvn -Pdistro package</code>
       </p>
 
       <p>
@@ -97,7 +98,7 @@
 
       <p>
         Once you have made sure that your changes pass the Maven command
-        <code>mvn clean package</code>, the code coverage is of high
+        <code>mvn clean verify</code>, the code coverage is of high
         standard and everything is documented, then you are ready to
         submit your work.
       </p>
@@ -105,14 +106,14 @@
       <p>
         Please use <a href="http://help.github.com/articles/using-pull-requests">Pull Request</a>
         feature of <a href="http://github.com/">Github</a>.<br/>
-        Please provide wide description of update with detailed explanation of problem 
+        Please provide wide description of update with detailed explanation of problem
         and how you propose to resolve it.
       </p>
 
       <p>
         After you do Pull Request please recheck that our where is no problem from our build system:
-        <a href="https://travis-ci.org/checkstyle/checkstyle">Travis</a> and 
-        <a href="https://coveralls.io/r/checkstyle/checkstyle">Coveralls</a>. 
+        <a href="https://travis-ci.org/checkstyle/checkstyle">Travis</a> and
+        <a href="https://coveralls.io/r/checkstyle/checkstyle">Coveralls</a>.
         You will see that your Pull Request on Github is marked by that jobs automatically in few minutes.
       </p>
 
