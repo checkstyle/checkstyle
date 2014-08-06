@@ -60,7 +60,6 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport
             createCheckConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "83: Top-level class InputDeclarationOrderEnum has to reside in its own source file.",
-            "210: Top-level class Fooable has to reside in its own source file.",
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputDeclarationOrder.java"), expected);
     }
