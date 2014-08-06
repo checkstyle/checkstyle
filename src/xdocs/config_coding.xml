@@ -1917,15 +1917,6 @@ if (&quot;something&quot;.equals(x))
           <li> Constructors </li>
           <li> Methods </li>
         </ol>
-        <p>
-          It can check that overload methods are grouped together. Example:
-        </p>
-        <source>
-public void foo(int i) {}
-public void foo(String s) {}
-public void notFoo() {} // Must be after <code>foo(int i, String s)</code>
-public void foo(int i, String s) {}
-        </source>
       </subsection>
 
       <subsection name="Properties">
@@ -1954,12 +1945,6 @@ public void foo(int i, String s) {}
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
-          <tr>
-            <td>groupOverloadMethods</td>
-            <td>whether to avoid splitting overload methods</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
         </table>
       </subsection>
 
@@ -1969,14 +1954,6 @@ public void foo(int i, String s) {}
         </p>
         <source>
 &lt;module name=&quot;DeclarationOrder&quot;/&gt;
-        </source>
-        <p>
-          An example of a check's configuration for grouping overload methods
-        </p>
-        <source>
-&lt;module name="DeclarationOrder"&gt;
-    &lt;property name="groupOverloadMethods" value="true"&gt;
-&lt;/module&gt;
         </source>
       </subsection>
 
@@ -2493,6 +2470,44 @@ case 3:
         </p>
         <source>
 &lt;module name=&quot;OneStatementPerLine&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="OverloadMethodsDeclarationOrder">
+      <subsection name="Description">
+        <p>
+          Checks that overload methods are grouped together.
+        </p>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          Example of incorrect grouping overload methods:
+        </p>
+        <source>
+public void foo(int i) {}
+public void foo(String s) {}
+public void notFoo() {} // Have to be after foo(int i, String s)
+public void foo(int i, String s) {}
+        </source>
+        <p>
+          An example of how to configure the check is:
+        </p>
+        <source>
+&lt;module name="OverloadMethodsDeclarationOrder"/&gt;
         </source>
       </subsection>
 
