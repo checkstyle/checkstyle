@@ -736,11 +736,11 @@ public final class TokenTypes
      **/
     public static final int METHOD_CALL = GeneratedJavaTokenTypes.METHOD_CALL;
 
-	/**
-	 * Part of Java 8 syntax. Method or constructor call without arguments.
-	 * @see #DOUBLE_COLON
-	 */
-	public static final int METHOD_REF = GeneratedJavaTokenTypes.METHOD_REF;
+    /**
+     * Part of Java 8 syntax. Method or constructor call without arguments.
+     * @see #DOUBLE_COLON
+     */
+    public static final int METHOD_REF = GeneratedJavaTokenTypes.METHOD_REF;
     /**
      * An expression.  Operators with lower precedence appear at a
      * higher level in the tree than operators with higher precedence.
@@ -1495,11 +1495,12 @@ public final class TokenTypes
      **/
     public static final int COLON = GeneratedJavaTokenTypes.COLON;
 
-	/**
-	 * The <code>::</code> (double colon) operator. It is part of Java 8 syntax that is used for method reference.
-	 * @see #METHOD_REF
-	 */
-	public static final int DOUBLE_COLON = GeneratedJavaTokenTypes.DOUBLE_COLON;
+    /**
+     * The <code>::</code> (double colon) operator.
+     * It is part of Java 8 syntax that is used for method reference.
+     * @see #METHOD_REF
+     */
+    public static final int DOUBLE_COLON = GeneratedJavaTokenTypes.DOUBLE_COLON;
     /**
      * The <code>if</code> keyword.
      *

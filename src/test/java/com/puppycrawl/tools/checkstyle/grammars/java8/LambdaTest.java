@@ -218,7 +218,7 @@ public class LambdaTest extends BaseCheckTestSupport
                 expected);
 
     }
-    
+
     @Test
     public void testInAssignment()
         throws Exception
@@ -230,7 +230,7 @@ public class LambdaTest extends BaseCheckTestSupport
                 expected);
 
     }
-    
+
     @Test
     public void testInParentheses()
         throws Exception
@@ -242,7 +242,7 @@ public class LambdaTest extends BaseCheckTestSupport
                 expected);
 
     }
-    
+
     @Test
     public void testInTernary()
         throws Exception
