@@ -34,7 +34,6 @@ class InputEmptyLineSeparatorCheck
 {
 	public static final double FOO_PI = 3.1415;
 	private boolean flag = true; 
-	//separator blank line
 	static {
         //empty static initializer
 	}
@@ -44,6 +43,7 @@ class InputEmptyLineSeparatorCheck
 	}
 	//separator blank line
 	/**
+	 * 
 	 * 
 	 * 
 	 */
@@ -80,10 +80,6 @@ class InputEmptyLineSeparatorCheck
     	public static final double FOO_PI_INNER = 3.1415;
     	//separator blank line
     	private boolean flagInner = true; 
-    	//separator blank line
-    	static {
-            //empty static initializer
-    	}
     	//separator blank line
     	{
     		//empty instance initializer

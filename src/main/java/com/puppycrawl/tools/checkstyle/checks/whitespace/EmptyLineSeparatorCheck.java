@@ -97,11 +97,32 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  *
+ * <p>
+ * An example how to allow no empty line between fields:
+ * </p>
+ * <pre>
+ * &lt;module name="EmptyLineSeparator"&gt;
+ *    &lt;property name="allowNoEmptyLineBetweenFields" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
  * @author maxvetrenko
  *
  */
 public class EmptyLineSeparatorCheck extends Check
 {
+    /** */
+    private boolean mAllowNoEmptyLineBetweenFields;
+
+    /**
+     * Allow no empty line between fields.
+     * @param aAllow
+     *        User's value.
+     */
+    public final void setAllowNoEmptyLineBetweenFields(boolean aAllow)
+    {
+        mAllowNoEmptyLineBetweenFields = aAllow;
+    }
 
     @Override
     public int[] getDefaultTokens()
@@ -130,7 +151,14 @@ public class EmptyLineSeparatorCheck extends Check
             switch (astType) {
             case TokenTypes.VARIABLE_DEF:
                 if (isTypeField(aAST) && !hasEmptyLineAfter(aAST)) {
-                    log(nextToken.getLineNo(), "empty.line.separator", nextToken.getText());
+                    if (mAllowNoEmptyLineBetweenFields
+                            && nextToken.getType() != TokenTypes.VARIABLE_DEF)
+                    {
+                        log(nextToken.getLineNo(), "empty.line.separator", nextToken.getText());
+                    }
+                    else if (!mAllowNoEmptyLineBetweenFields) {
+                        log(nextToken.getLineNo(), "empty.line.separator", nextToken.getText());
+                    }
                 }
                 break;
             case TokenTypes.IMPORT:
@@ -177,7 +205,7 @@ public class EmptyLineSeparatorCheck extends Check
         final int lineNo = aToken.getLineNo();
         //  [lineNo - 2] is the number of the previous line because the numbering starts from zero.
         final String lineBefore = getLines()[lineNo - 2];
-        return lineBefore.isEmpty();
+        return lineBefore.trim().isEmpty();
     }
 
     /**

@@ -20,38 +20,50 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import org.junit.Before;
 import org.junit.Test;
 
 public class EmptyLineSeparatorCheckTest
     extends BaseCheckTestSupport
 {
-    private DefaultConfiguration mCheckConfig;
-
-    @Before
-    public void setUp()
-    {
-        mCheckConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
-    }
 
     @Test
     public void testDefault() throws Exception
     {
+        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+
         final String[] expected = {
             "20: 'import' should be separated from previous statement.",
             "33: 'CLASS_DEF' should be separated from previous statement.",
             "36: 'VARIABLE_DEF' should be separated from previous statement.",
+            "37: 'STATIC_INIT' should be separated from previous statement.",
             "75: 'INTERFACE_DEF' should be separated from previous statement.",
         };
-        verify(mCheckConfig, getPath("whitespace/InputEmptyLineSeparatorCheck.java"), expected);
+        verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorCheck.java"), expected);
+    }
+
+    @Test
+    public void testAllowNoEmptyLineBetweenFields() throws Exception
+    {
+
+        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "true");
+
+        final String[] expected = {
+            "20: 'import' should be separated from previous statement.",
+            "33: 'CLASS_DEF' should be separated from previous statement.",
+            "37: 'STATIC_INIT' should be separated from previous statement.",
+            "75: 'INTERFACE_DEF' should be separated from previous statement.",
+        };
+        verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorCheck.java"), expected);
     }
 
     @Test
     public void testHeader() throws Exception
     {
+        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         final String[] expected = {
             "19: 'package' should be separated from previous statement.",
         };
-        verify(mCheckConfig, getPath("whitespace/InputEmptyLineSeparatorCheckHeader.java"), expected);
+        verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorCheckHeader.java"), expected);
     }
 }

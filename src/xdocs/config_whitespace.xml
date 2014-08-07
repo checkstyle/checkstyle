@@ -1328,6 +1328,12 @@ import com.puppycrawl.tools.checkstyle.api.Check;
                </td>
             <td>All subset of tokens</td>
           </tr>
+          <tr>
+            <th>allowNoEmptyLineBetweenFields</th>
+            <th>Allow no empty line between fields</th>
+            <th><a href="property_types.html#boolean">boolean</a></th>
+            <th>false</th>
+          </tr>
         </table>
       </subsection>
 
@@ -1380,6 +1386,14 @@ class Foo
       <source>
 &lt;module name="EmptyLineSeparator"&gt;
     &lt;property name="tokens" value="VARIABLE_DEF, METHOD_DEF"/&gt;
+&lt;/module&gt;
+      </source>
+      <p>
+        An example how to allow no empty line between fields:
+      </p>
+      <source>
+&lt;module name="EmptyLineSeparator"&gt;
+    &lt;property name="allowNoEmptyLineBetweenFields" value="true"/&gt;
 &lt;/module&gt;
       </source>
       </subsection>
