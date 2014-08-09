@@ -2486,7 +2486,6 @@ case 3:
       </subsection>
     </section>
 
-<<<<<<< HEAD
     <section name="VariableDeclarationUsageDistance">
       <subsection name="Description">
         <p>
@@ -2644,7 +2643,7 @@ cal.set(Calendar.MINUTE, minutes);
          </p>
          <source>
  int sum = 0;
- for (int i = 0; i < 20; i++) {
+ for (int i = 0; i &lt; 20; i++) {
      a++;
      b--;
      sum++;
