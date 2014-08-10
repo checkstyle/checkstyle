@@ -35,7 +35,8 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
  *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
  *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR},
- *  {@link TokenTypes#STATIC_INIT STATIC_INIT}.
+ *  {@link TokenTypes#STATIC_INIT STATIC_INIT},
+ *  {@link TokenTypes#LITERAL_SWITCH LITERAL_SWITCH}.
  * </p>
  *
  * <p> An example of how to configure the check is:
@@ -82,8 +83,7 @@ public class EmptyBlockCheck
             TokenTypes.LITERAL_FOR,
             TokenTypes.INSTANCE_INIT,
             TokenTypes.STATIC_INIT,
-            // TODO: need to handle....
-            //TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_SWITCH,
             //TODO: does this handle TokenTypes.LITERAL_SYNCHRONIZED?
         };
     }
@@ -91,21 +91,30 @@ public class EmptyBlockCheck
     @Override
     public void visitToken(DetailAST aAST)
     {
-        final DetailAST slistAST = aAST.findFirstToken(TokenTypes.SLIST);
-        if (slistAST != null) {
+        final DetailAST slistToken = aAST.findFirstToken(TokenTypes.SLIST);
+        final DetailAST leftCurly = slistToken != null
+                ? slistToken : aAST.findFirstToken(TokenTypes.LCURLY);
+        if (leftCurly != null) {
             if (getAbstractOption() == BlockOption.STMT) {
-                if (slistAST.getChildCount() <= 1) {
-                    log(slistAST.getLineNo(),
-                        slistAST.getColumnNo(),
+                boolean emptyBlock;
+                if (leftCurly.getType() == TokenTypes.LCURLY) {
+                    emptyBlock = leftCurly.getNextSibling().getType() != TokenTypes.CASE_GROUP;
+                }
+                else {
+                    emptyBlock = leftCurly.getChildCount() <= 1;
+                }
+                if (emptyBlock) {
+                    log(leftCurly.getLineNo(),
+                        leftCurly.getColumnNo(),
                         "block.noStmt",
                         aAST.getText());
                 }
             }
             else if (getAbstractOption() == BlockOption.TEXT
-                    && !hasText(slistAST))
+                    && !hasText(leftCurly))
             {
-                log(slistAST.getLineNo(),
-                    slistAST.getColumnNo(),
+                log(leftCurly.getLineNo(),
+                    leftCurly.getColumnNo(),
                     "block.empty",
                     aAST.getText());
             }
@@ -120,7 +129,9 @@ public class EmptyBlockCheck
     {
         boolean retVal = false;
 
-        final DetailAST rcurlyAST = aSlistAST.findFirstToken(TokenTypes.RCURLY);
+        final DetailAST rightCurly = aSlistAST.findFirstToken(TokenTypes.RCURLY);
+        final DetailAST rcurlyAST = rightCurly != null
+                ? rightCurly : aSlistAST.getParent().findFirstToken(TokenTypes.RCURLY);
         if (rcurlyAST != null) {
             final int slistLineNo = aSlistAST.getLineNo();
             final int slistColNo = aSlistAST.getColumnNo();

@@ -20,6 +20,15 @@ class UpdateClass
 		while ((r = in.read()) != 0) {} // is OK 
 		for (; index < s.length && s[index] != 'x'; index++) {} // is OK
 		if (a == 1) {} else {System.out.println("a");} // is not OK
+		switch (a) {} //warn
+		switch (a) { //ok
+        case 1:
+            a = 2;
+        case 2:
+            a = 3;
+        default:
+            a = 0;
+        }
 	}
 	
 	public int doSideEffect()

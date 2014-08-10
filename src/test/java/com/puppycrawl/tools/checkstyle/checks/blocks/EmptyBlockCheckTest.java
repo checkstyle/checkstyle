@@ -95,11 +95,30 @@ public class EmptyBlockCheckTest
         checkConfig.addAttribute("option", BlockOption.STMT.toString());
         checkConfig.addAttribute("tokens", "LITERAL_TRY, LITERAL_CATCH,"
                 + "LITERAL_FINALLY, LITERAL_DO, LITERAL_IF,"
-                + "LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT");
+                + "LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH");
         final String[] expected = {
             "16:29: Must have at least one statement.",
             "19:42: Must have at least one statement.",
             "22:29: Must have at least one statement.",
+            "23:28: Must have at least one statement.",
+        };
+        verify(checkConfig, getPath("InputSemantic2.java"), expected);
+    }
+
+    @Test
+    public void allowEmptyLoopsText() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(EmptyBlockCheck.class);
+        checkConfig.addAttribute("option", BlockOption.TEXT.toString());
+        checkConfig.addAttribute("tokens", "LITERAL_TRY, LITERAL_CATCH,"
+                + "LITERAL_FINALLY, LITERAL_DO, LITERAL_IF,"
+                + "LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH");
+        final String[] expected = {
+            "16:29: Empty if block.",
+            "19:42: Empty if block.",
+            "22:29: Empty if block.",
+            "23:28: Empty switch block.",
         };
         verify(checkConfig, getPath("InputSemantic2.java"), expected);
     }
