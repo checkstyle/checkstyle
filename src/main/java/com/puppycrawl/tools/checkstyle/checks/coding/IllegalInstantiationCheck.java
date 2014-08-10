@@ -190,6 +190,9 @@ public class IllegalInstantiationCheck
      */
     private void processLiteralNew(DetailAST aAST)
     {
+        if (aAST.getParent().getType() == TokenTypes.METHOD_REF) {
+            return;
+        }
         mInstantiations.add(aAST);
     }
 

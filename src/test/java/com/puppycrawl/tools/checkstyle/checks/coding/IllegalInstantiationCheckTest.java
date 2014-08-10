@@ -48,4 +48,15 @@ public class IllegalInstantiationCheckTest
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
+
+    @Test
+    public void testJava8() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(IllegalInstantiationCheck.class);
+        final String[] expected = {};
+        verify(checkConfig,
+                getPath("grammars/java8/InputMethodReferencesTest2.java"),
+                expected);
+    }
 }
