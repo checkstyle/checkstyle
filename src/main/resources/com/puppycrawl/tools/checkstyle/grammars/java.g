@@ -215,6 +215,7 @@ packageDefinition
 importDefinition
 	options {defaultErrorHandler = true;}
 	:	i:"import"^ {#i.setType(IMPORT);} ( "static" {#i.setType(STATIC_IMPORT);} )? identifierStar SEMI
+	|	SEMI
 	;
 
 // A type definition in a file is either a class, interface, enum of annotation definition
