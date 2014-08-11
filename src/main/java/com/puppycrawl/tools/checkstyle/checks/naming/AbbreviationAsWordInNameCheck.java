@@ -263,9 +263,8 @@ public class AbbreviationAsWordInNameCheck extends Check
         boolean result = false;
         for (DetailAST child : getChildren(aMethodModifiersAST)) {
             if (child.getType() == TokenTypes.ANNOTATION) {
-                final String annotationText =
-                        child.findFirstToken(TokenTypes.IDENT).getText();
-                if ("Override".equals(annotationText)) {
+                final DetailAST annotationIdent = child.findFirstToken(TokenTypes.IDENT);
+                if (annotationIdent != null && "Override".equals(annotationIdent.getText())) {
                     result = true;
                     break;
                 }

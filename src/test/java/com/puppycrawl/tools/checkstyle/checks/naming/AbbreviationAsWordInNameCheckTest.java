@@ -299,6 +299,22 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
                 getPath("naming/InputAbbreviationAsWordInTypeNameCheck.java"), expected);
     }
 
+    @Test
+    public void testNPE() throws Exception
+    {
+
+        final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
+        final int expectedCapitalCount = 1;
+        warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
+        checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
+        checkConfig.addAttribute("ignoreFinal", "false");
+
+        final String[] expected = {
+        };
+
+        verify(checkConfig, getPath("naming/AbstractMultisetSetCountTester.java"), expected);
+    }
+
     /**
      * Gets the check message 'as is' from appropriate 'messages.properties' file.
      * @param messageKey the key of message in 'messages.properties' file.
