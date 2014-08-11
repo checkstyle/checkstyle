@@ -173,6 +173,11 @@ public class VariableDeclarationUsageDistanceCheck extends Check
     public static final String MSG_KEY = "variable.declaration.usage.distance";
 
     /**
+     * Warning message key.
+     */
+    public static final String MSG_KEY_EXT = "variable.declaration.usage.distance.extend";
+
+    /**
      * Default value of distance between declaration of variable and its first
      * usage.
      */
@@ -275,8 +280,14 @@ public class VariableDeclarationUsageDistanceCheck extends Check
                 if (dist > mAllowedDistance
                         && !isInitializationSequence(variableUsageAst, variable.getText()))
                 {
-                    log(variable.getLineNo(),
-                            MSG_KEY, variable.getText(), dist, mAllowedDistance);
+                    if (mIgnoreFinal) {
+                        log(variable.getLineNo(),
+                                MSG_KEY_EXT, variable.getText(), dist, mAllowedDistance);
+                    }
+                    else {
+                        log(variable.getLineNo(),
+                                MSG_KEY, variable.getText(), dist, mAllowedDistance);
+                    }
                 }
             }
         }
