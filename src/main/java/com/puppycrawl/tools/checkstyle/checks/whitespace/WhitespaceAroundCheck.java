@@ -110,6 +110,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * while (i = 1) {} // empty while loop
  * for (int i = 1; i > 1; i++) {} // empty for loop
  * do {} while (i = 1); // empty do-while loop
+ * public @interface Beta {} // empty annotation type
  * </code></pre>
  * </p>
  * <p>
@@ -423,7 +424,8 @@ public class WhitespaceAroundCheck extends Check
             if (matchType == TokenTypes.CLASS_DEF
                     || matchType == TokenTypes.INTERFACE_DEF
                     || matchType == TokenTypes.ENUM_DEF
-                    || matchType == TokenTypes.LITERAL_NEW)
+                    || matchType == TokenTypes.LITERAL_NEW
+                    || matchType == TokenTypes.ANNOTATION_DEF)
             {
                 return true;
             }
