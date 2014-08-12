@@ -2220,7 +2220,7 @@ public final class TokenTypes
      * (quantity == 1) ? "": "s"
      * </pre>
      * <p>
-     * <p>parses as:</p>
+     * parses as:
      * </p>
      * <pre>
      * +--QUESTION (?)

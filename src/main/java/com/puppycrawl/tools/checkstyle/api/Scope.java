@@ -28,7 +28,7 @@ public enum Scope
 {
     /** nothing scope. */
     NOTHING,
-    /** protected scope. */
+    /** public scope. */
     PUBLIC,
     /** protected scope. */
     PROTECTED,

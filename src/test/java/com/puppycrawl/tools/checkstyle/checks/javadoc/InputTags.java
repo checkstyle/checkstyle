@@ -27,7 +27,7 @@ class InputTags1
     }
 
     /**
-     * missing return
+     * <p>missing return
      * @param aOne ignored
      **/
     int method4(int aOne)

@@ -25,8 +25,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>Checks the padding of parentheses for typecasts. That is whether a space
  * is required after a left parenthesis and before a right parenthesis, or such
  * spaces are forbidden.
- * <p>
  * </p>
+ * <p>
  * The policy to verify is specified using the {@link PadOption} class and
  * defaults to {@link PadOption#NOSPACE}.
  * </p>

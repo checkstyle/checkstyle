@@ -438,7 +438,7 @@ public class WhitespaceAroundCheck extends Check
      * An example empty block might look like the following
      * <p>
      * <pre>   public void myMethod(int val) {}</pre>
-     * <p>
+     * </p>
      * In the above, the method body is an empty block ("{}").
      *
      * @param aAST the <code>DetailAST</code> to test.
