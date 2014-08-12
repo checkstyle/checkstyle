@@ -44,6 +44,8 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
             "44:13: '}' should be on the same line.",
             "93:27: '}' should be alone on a line.",
             "93:27: '}' should be on a new line.",
+            "93:27: '}' should have line break before.",
+            "97:54: '}' should have line break before.",
         };
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
@@ -58,6 +60,8 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
             "44:13: '}' should be on the same line.",
             "93:27: '}' should be alone on a line.",
             "93:27: '}' should be on a new line.",
+            "93:27: '}' should have line break before.",
+            "97:54: '}' should have line break before.",
         };
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
@@ -106,5 +110,41 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
             "93:27: '}' should be alone on a line.",
         };
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
+    }
+
+    @Test
+    public void testForceLineBreakBefore() throws Exception
+    {
+        mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        mCheckConfig.addAttribute("tokens", "LITERAL_FOR,"
+                + "LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT");
+        final String[] expected = {
+            "35:43: '}' should be alone on a line.",
+            "41:71: '}' should be alone on a line.",
+            "46:25: '}' should be alone on a line.",
+        };
+        verify(mCheckConfig, getPath("InputRightCurlyLineBreakBefore.java"), expected);
+    }
+
+    @Test
+    public void testForceLineBreakBefore2() throws Exception
+    {
+        final String[] expected = {
+            "24:33: '}' should have line break before.",
+            "32:44: '}' should have line break before.",
+            "32:63: '}' should have line break before.",
+            "50:48: '}' should have line break before.",
+        };
+        verify(mCheckConfig, getPath("InputRightCurlyLineBreakBefore.java"), expected);
+    }
+
+    @Test
+    public void testNPE() throws Exception
+    {
+        mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        mCheckConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT");
+        final String[] expected = {
+        };
+        verify(mCheckConfig, getPath("InputRightCurlyEmptyAbstractMethod.java"), expected);
     }
 }

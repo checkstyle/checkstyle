@@ -40,6 +40,11 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  *  {@link TokenTypes#CLASS_DEF CLASS_DEF},
  *  {@link TokenTypes#METHOD_DEF METHOD_DEF},
  *  {@link TokenTypes#CTOR_DEF CTOR_DEF}.
+ *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR}.
+ *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE}.
+ *  {@link TokenTypes#LITERAL_DO LITERAL_DO}.
+ *  {@link TokenTypes#STATIC_INIT STATIC_INIT}.
+ *  {@link TokenTypes#INSTANCE_INIT INSTANCE_INIT}.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -111,6 +116,11 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
             TokenTypes.CLASS_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.LITERAL_DO,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.INSTANCE_INIT,
         };
     }
 
@@ -164,17 +174,27 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
             rcurly = lcurly.getLastChild();
             break;
         case TokenTypes.CLASS_DEF:
-            lcurly = aAST.getLastChild().getFirstChild();
-            rcurly = aAST.getLastChild().getLastChild();
+            final DetailAST child = aAST.getLastChild();
+            lcurly = child.getFirstChild();
+            rcurly = child.getLastChild();
             nextToken = aAST;
             break;
         case TokenTypes.CTOR_DEF:
-            lcurly = aAST.getLastChild();
+        case TokenTypes.STATIC_INIT:
+        case TokenTypes.INSTANCE_INIT:
+            lcurly = aAST.findFirstToken(TokenTypes.SLIST);
             rcurly = lcurly.getLastChild();
             nextToken = aAST;
             break;
         case TokenTypes.METHOD_DEF:
-            lcurly = aAST.getLastChild();
+        case TokenTypes.LITERAL_FOR:
+        case TokenTypes.LITERAL_WHILE:
+        case TokenTypes.LITERAL_DO:
+            lcurly = aAST.findFirstToken(TokenTypes.SLIST);
+            //SLIST could be absent if method is abstract, and code like "while(true);"
+            if (lcurly == null) {
+                return;
+            }
             rcurly = lcurly.getLastChild();
             nextToken = aAST;
             break;
@@ -186,6 +206,10 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
         if ((rcurly == null) || (rcurly.getType() != TokenTypes.RCURLY)) {
             // we need to have both tokens to perform the check
             return;
+        }
+
+        if (getAbstractOption() == RightCurlyOption.SAME && !hasLineBreakBefore(rcurly)) {
+            log(rcurly, "line.break.before");
         }
 
         if (shouldCheckLastRcurly) {
@@ -250,5 +274,23 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
             parent = parent.getParent();
         }
         return CheckUtils.getFirstNode(next);
+    }
+
+    /**
+     * Checks if right curly has line break before.
+     * @param aRightCurly
+     *        Right curly token.
+     * @return
+     *        True, if right curly has line break before.
+     */
+    private boolean hasLineBreakBefore(DetailAST aRightCurly)
+    {
+        if (aRightCurly != null) {
+            final DetailAST previousToken = aRightCurly.getPreviousSibling();
+            if (previousToken != null && aRightCurly.getLineNo() == previousToken.getLineNo()) {
+                return false;
+            }
+        }
+        return true;
     }
 }
