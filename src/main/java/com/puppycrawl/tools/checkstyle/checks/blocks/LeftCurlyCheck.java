@@ -59,9 +59,18 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * value="nlow"/&gt;     &lt;property name="maxLineLength" value="120"/&gt; &lt;
  * /module&gt;
  * </pre>
+ * <p>
+ * An example of how to configure the check to validate enum definitions:
+ * </p>
+ * <pre>
+ * &lt;module name="LeftCurly"&gt;
+ *      &lt;property name="ignoreEnums" value="false"/&gt;
+ * &lt;/module&gt;
+ * </pre>
  *
  * @author Oliver Burn
  * @author lkuehne
+ * @author maxvetrenko
  * @version 1.0
  */
 public class LeftCurlyCheck
@@ -72,6 +81,9 @@ public class LeftCurlyCheck
 
     /** TODO: replace this ugly hack **/
     private int mMaxLineLength = DEFAULT_MAX_LINE_LENGTH;
+
+    /** If true, Check will ignore enums*/
+    private boolean mIgnoreEnums = true;
 
     /**
      * Creates a default instance and sets the policy to EOL.
@@ -270,6 +282,9 @@ public class LeftCurlyCheck
                 log(aBrace.getLineNo(), aBrace.getColumnNo(),
                     "line.previous", "{");
             }
+            if (!hasLineBreakAfter(aBrace)) {
+                log(aBrace.getLineNo(), aBrace.getColumnNo(), "line.break.after");
+            }
         }
         else if (getAbstractOption() == LeftCurlyOption.NLOW) {
             if (aStartToken.getLineNo() == aBrace.getLineNo()) {
@@ -290,5 +305,34 @@ public class LeftCurlyCheck
                     "line.new", "{");
             }
         }
+    }
+
+    /**
+     * Checks if left curly has line break after.
+     * @param aLeftCurly
+     *        Left curly token.
+     * @return
+     *        True, left curly has line break after.
+     */
+    private boolean hasLineBreakAfter(DetailAST aLeftCurly)
+    {
+        DetailAST nextToken = null;
+        if (aLeftCurly.getType() == TokenTypes.SLIST) {
+            nextToken = aLeftCurly.getFirstChild();
+        }
+        else {
+            if (aLeftCurly.getParent().getParent().getType() == TokenTypes.ENUM_DEF)
+            {
+                if (!mIgnoreEnums) {
+                    nextToken = aLeftCurly.getNextSibling();
+                }
+            }
+        }
+        if (nextToken != null && nextToken.getType() != TokenTypes.RCURLY) {
+            if (aLeftCurly.getLineNo() == nextToken.getLineNo()) {
+                return false;
+            }
+        }
+        return true;
     }
 }
