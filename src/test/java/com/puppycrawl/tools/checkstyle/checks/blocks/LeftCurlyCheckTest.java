@@ -134,6 +134,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "63:9: '{' should be on the previous line.",
             "83:5: '{' should be on the previous line.",
             "89:5: '{' should be on the previous line.",
+            "97:19: '{' should have line break after.",
             "106:1: '{' should be on the previous line.",
             "109:9: '{' should be on the previous line.",
             "118:1: '{' should be on the previous line.",
@@ -196,5 +197,30 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "58:32: '{' should be on a new line.",
         };
         verify(mCheckConfig, getPath("InputLeftCurlyAnnotations.java"), expected);
+    }
+
+    @Test
+    public void testLineBreakAfter() throws Exception
+    {
+        mCheckConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
+        mCheckConfig.addAttribute("maxLineLength", "100");
+        final String[] expected = {
+            "9:1: '{' should be on the previous line.",
+            "12:5: '{' should be on the previous line.",
+            "16:9: '{' should be on the previous line.",
+            "18:13: '{' should be on the previous line.",
+            "20:17: '{' should be on the previous line.",
+            "26:22: '{' should have line break after.",
+            "28:17: '{' should be on the previous line.",
+            "35:33: '{' should have line break after.",
+            "36:21: '{' should have line break after.",
+            "39:29: '{' should have line break after.",
+            "39:34: '{' should have line break after.",
+            "45:37: '{' should have line break after.",
+            "53:5: '{' should be on the previous line.",
+            "54:19: '{' should have line break after.",
+            "64:1: '{' should be on the previous line.",
+        };
+        verify(mCheckConfig, getPath("InputLeftCurlyLineBreakAfter.java"), expected);
     }
 }

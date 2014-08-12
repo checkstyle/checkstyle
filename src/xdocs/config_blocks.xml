@@ -117,6 +117,12 @@
             <td><code>eol</code></td>
           </tr>
           <tr>
+            <td>ignoreEnums</td>
+            <td>If true, Check will ignore enums</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td>true</td>
+          </tr>
+          <tr>
             <td>maxLineLength</td>
             <td>maximum number of characters in a line</td>
             <td><a href="property_types.html#integer">integer</a></td>
@@ -174,6 +180,14 @@
 &lt;module name=&quot;LeftCurly&quot;&gt;
     &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
     &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          An example of how to configure the check to validate enum definitions:
+        </p>
+        <source>
+&lt;module name="LeftCurly"&gt;
+    &lt;property name="ignoreEnums" value="false"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
