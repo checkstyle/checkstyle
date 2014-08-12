@@ -169,5 +169,57 @@ public class MemberNameCheckTest
                expected);
     }
 
+    @Test
+    public void memberNameExtended() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(MemberNameCheck.class);
+        checkConfig.addAttribute("format", "^[a-z][a-z0-9][a-zA-Z0-9]*$");
+        final String[] expected = {
+            "8:16: Name 'mPublic' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "9:19: Name 'mProtected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "10:9: Name 'mPackage' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "11:17: Name 'mPrivate' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "13:16: Name '_public' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "14:19: Name '_protected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "15:9: Name '_package' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "16:17: Name '_private' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "19:20: Name 'mPublic' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "20:23: Name 'mProtected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "21:13: Name 'mPackage' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "22:21: Name 'mPrivate' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "24:20: Name '_public' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "25:23: Name '_protected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "26:13: Name '_package' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "27:21: Name '_private' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "31:20: Name 'mPublic' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "32:23: Name 'mProtected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "33:13: Name 'mPackage' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "34:21: Name 'mPrivate' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "36:20: Name '_public' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "37:23: Name '_protected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "38:13: Name '_package' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "39:21: Name '_private' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "45:16: Name 'mPublic' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "46:9: Name 'mProtected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "47:9: Name 'mPackage' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "48:9: Name 'mPrivate' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "50:16: Name '_public' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "51:9: Name '_protected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "52:9: Name '_package' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "53:9: Name '_private' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "63:16: Name 'mPublic' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "64:9: Name 'mProtected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "65:9: Name 'mPackage' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "66:9: Name 'mPrivate' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "68:16: Name '_public' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "69:9: Name '_protected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "70:9: Name '_package' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "71:9: Name '_private' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+        };
+        verify(checkConfig,
+              getPath("naming" + File.separator + "InputMemberNameExtended.java"),
+              expected);
+    }
 }
 
