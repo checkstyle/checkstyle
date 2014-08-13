@@ -24,8 +24,32 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
- * Checks that the whitespace around the Generic tokens &lt; and &gt; are
+ * Checks that the whitespace around the Generic tokens (angle brackets) "&lt;" and "&gt;" are
  * correct to the <i>typical</i> convention. The convention is not configurable.
+ *
+ * Left angle bracket shouldn't be followed with whitespace.
+ *
+ * Left angle bracket should be preceded with whitespace in next cases:
+ * public void <K, V> boolean foo() {} // Generic methods definitions
+ * public <U extends Number> void inspect(U u) {} // Generic methods definitions 
+ *
+ * Left angle bracket shouldn't be preceded with whitespace
+ * when it is in type parameters of the method:
+ * boolean same = Util.<Integer, String>compare(p1, p2); // preceded method name
+ *
+ * Right angle bracket shouldn't be preceded with whitespace.
+ *
+ * Right angle bracket should be followed with whitespace in almost all cases:
+ * class name<T1, T2, ..., Tn> {} // Generic classes.
+ * Box<Integer> integerBox; // Generic type.
+ * OrderedPair<String, Box<Integer>> p = new OrderedPair<>()); // Parameterized Types
+ * public void <K, V> boolean foo() {} // Generic methods definitions
+ * public <U extends Number> void inspect(U u) {} // Generic methods definitions
+ *
+ * Right angle bracket shouldn't be followed with whitespace in cases:
+ * boolean same = Util.<Integer, String>compare(p1, p2); // preceded method name
+ * Pair<Integer, String> p1 = new Pair<>(1, "apple"); // diamond operator
+ * 
  * @author Oliver Burn
  */
 public class GenericWhitespaceCheck extends Check
