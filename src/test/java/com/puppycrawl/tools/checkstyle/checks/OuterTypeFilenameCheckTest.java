@@ -26,7 +26,7 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport
 {
 
     @Test
-    public void testGood() throws Exception
+    public void testGood1() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeFilenameCheck.class);
@@ -34,13 +34,11 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
     @Test
-    public void testBad() throws Exception
+    public void testGood2() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeFilenameCheck.class);
-        final String[] expected = {
-            "4: The name of the outer type and the file do not match.",
-        };
+        final String[] expected = {};
         verify(checkConfig, getPath("Input15Extensions.java"), expected);
     }
 }

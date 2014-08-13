@@ -26,11 +26,24 @@ import java.io.File;
 /**
  * Checks that the outer type name and the file name match.
  * @author Oliver Burn
+ * @author maxvetrenko
  */
 public class OuterTypeFilenameCheck extends Check
 {
     /** indicates whether the first token has been seen in the file. */
     private boolean mSeenFirstToken;
+
+    /** Current file name*/
+    private String mFileName;
+
+    /** If file has public type*/
+    private boolean mHasPublic;
+
+    /** If first type has has same name as file*/
+    private boolean mValidFirst;
+
+    /** Outer type with mismatched file name*/
+    private DetailAST mWrongType;
 
     @Override
     public int[] getDefaultTokens()
@@ -44,30 +57,54 @@ public class OuterTypeFilenameCheck extends Check
     @Override
     public void beginTree(DetailAST aAST)
     {
+        mFileName = getFileName();
         mSeenFirstToken = false;
+        mValidFirst = false;
+        mHasPublic = false;
+        mWrongType = null;
     }
 
     @Override
     public void visitToken(DetailAST aAST)
     {
-        // Only check first declaration
-        if (mSeenFirstToken) {
-            return;
+        final String outerTypeName = aAST.findFirstToken(TokenTypes.IDENT).getText();
+        if (!mSeenFirstToken) {
+
+            if (mFileName.equals(outerTypeName)) {
+                mValidFirst = true;
+            }
+            else {
+                mWrongType = aAST;
+            }
+        }
+        else {
+            final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
+            if (modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
+                    && aAST.getParent() == null)
+            {
+                mHasPublic = true;
+            }
         }
         mSeenFirstToken = true;
+    }
 
-        final String outerTypeName =
-            aAST.findFirstToken(TokenTypes.IDENT).getText();
+    @Override
+    public void finishTree(DetailAST aRootAST)
+    {
+        if (!(mValidFirst || mHasPublic) && mWrongType != null) {
+            log(mWrongType.getLineNo(), "type.file.mismatch");
+        }
+    }
 
-        // Calculate the file name without the leading path or
-        // the trailing .java suffix. Will be lax and just remove whatever
-        // is after the '.' character.
+    /**
+     * Get source file name.
+     * @return source file name.
+     */
+    private String getFileName()
+    {
         String fname = getFileContents().getFilename();
         fname = fname.substring(fname.lastIndexOf(File.separatorChar) + 1);
         fname = fname.replaceAll("\\.[^\\.]*$", "");
-
-        if (!(fname.equals(outerTypeName))) {
-            log(aAST.getLineNo(), "type.file.mismatch");
-        }
+        return fname;
     }
 }
