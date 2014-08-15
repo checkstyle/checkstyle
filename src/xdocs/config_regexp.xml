@@ -77,44 +77,38 @@
           To configure the check to find trailing whitespace at the end
           of a line:
         </p>
-        <source>
-&lt;module name=&quot;RegexpSingleline&quot;&gt;
-  &lt;!-- \s matches whitespace character, $ matches end of line. --&gt;
-  &lt;property name=&quot;format&quot; value=&quot;\s+$&quot;/&gt;
-&lt;/module&gt;
-        </source>
+        <source>&lt;module name=&quot;RegexpSingleline&quot;&gt;
+    &lt;!-- \s matches whitespace character, $ matches end of line. --&gt;
+    &lt;property name=&quot;format&quot; value=&quot;\s+$&quot;/&gt;
+&lt;/module&gt;</source>
 
         <p>
           To configure the check to find trailing whitespace at the end
           of a line, with some <i>slack</i> of allowing two occurrences
           per file:
         </p>
-        <source>
-&lt;module name=&quot;RegexpSingleline&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;\s+$&quot;/&gt;
-  &lt;!-- next line not required as 0 is the default --&gt;
-  &lt;property name=&quot;minimum&quot; value=&quot;0&quot;/&gt;
-  &lt;property name=&quot;maximum&quot; value=&quot;2&quot;/&gt;
-&lt;/module&gt;
-        </source>
+        <source>&lt;module name=&quot;RegexpSingleline&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;\s+$&quot;/&gt;
+    &lt;!-- next line not required as 0 is the default --&gt;
+    &lt;property name=&quot;minimum&quot; value=&quot;0&quot;/&gt;
+    &lt;property name=&quot;maximum&quot; value=&quot;2&quot;/&gt;
+&lt;/module&gt;</source>
 
         <p>
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
         </p>
-        <source>
-&lt;module name=&quot;RegexpSingleline&quot;&gt;
-  &lt;property name="format" value="This file is copyrighted"/&gt;
-  &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
-  &lt;!--  Need to specify a maximum, so 10 times is more than enough. --&gt;
-  &lt;property name=&quot;maximum&quot; value=&quot;10&quot;/&gt;
-&lt;/module&gt;
-        </source>
+        <source>&lt;module name=&quot;RegexpSingleline&quot;&gt;
+    &lt;property name="format" value="This file is copyrighted"/&gt;
+    &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
+    &lt;!--  Need to specify a maximum, so 10 times is more than enough. --&gt;
+    &lt;property name=&quot;maximum&quot; value=&quot;10&quot;/&gt;
+&lt;/module&gt;</source>
       </subsection>
 
       <subsection name="Package">
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+          com.puppycrawl.tools.checkstyle.checks.regexp
         </p>
       </subsection>
 
@@ -191,17 +185,14 @@
         <p>
           To configure the check to find calls to print to the console:
         </p>
-        <source>
-&lt;module name=&quot;RegexpMultiline&quot;&gt;
-  &lt;property name=&quot;format&quot;
-   value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
-&lt;/module&gt;
-        </source>
+        <source>&lt;module name=&quot;RegexpMultiline&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
+&lt;/module&gt;</source>
       </subsection>
 
       <subsection name="Package">
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+          com.puppycrawl.tools.checkstyle.checks.regexp
         </p>
       </subsection>
 
@@ -274,30 +265,26 @@
         <p>
           To configure the check for calls to <code>System.out.println</code>, except in comments:
         </p>
-        <source>
-&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+        <source>&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
     &lt;!-- . matches any character, so we need to
          escape it and use \. to match dots. --&gt;
   &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
   &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
-        </source>
+&lt;/module&gt;</source>
 
         <p>
           To configure the check to find case-insensitive occurrences of
           &quot;debug&quot;:
         </p>
-        <source>
-&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+        <source>&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
     &lt;property name=&quot;format&quot; value=&quot;debug&quot;/&gt;
     &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
-        </source>
+&lt;/module&gt;</source>
       </subsection>
 
       <subsection name="Package">
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+          com.puppycrawl.tools.checkstyle.checks.regexp
         </p>
       </subsection>
 
@@ -307,5 +294,81 @@
         </p>
       </subsection>
     </section>
+
+
+      <section name="RegexpOnFilename">
+          <subsection name="Description">
+              <p>This check simply applies the given regular expression to the absolute name of a file. If a match
+                  is found, a warning is logged.</p>
+              <p>This is useful for situations such as:</p>
+              <ul><li>Checking that resources in certain directories follow a naming convention</li>
+              <li>Resource file names contain only legal characters</li>
+              <li>Files of certain types are created in the right places, e.g. Java files under src/*/java</li>
+              <li>Prevent certain files or types of files altogether, by "banning" their names</li>
+              <li>...</li></ul>
+              <p>For each file, the canonical path name is determined. This includes the absolute path and the file
+              name itself. Any backreferences are resolved. If the file has one of the configured extensions, the
+              regular expression is matched against the full canonical path. Make sure that your regex starts matching
+              from the first character of the path (examples below).</p>
+          </subsection>
+
+          <subsection name="Properties">
+              <table>
+                  <tr>
+                      <th>name</th>
+                      <th>description</th>
+                      <th>type</th>
+                      <th>default value</th>
+                  </tr>
+                  <tr>
+                      <td>regexp</td>
+                      <td>illegal pattern</td>
+                      <td><a href="property_types.html#regexp">regular expression</a></td>
+                      <td>no default, property is mandatory</td>
+                  </tr>
+                  <tr>
+                      <td>fileExtensions</td>
+                      <td>comma-separated list of file extensions. Leading dots are optional. Spaces after the
+                          comma are allowed.<br/> Only files with one of these extensions are checked against the
+                          regular expression.</td>
+                      <td><a href="property_types.html#stringSet">StringSet</a></td>
+                      <td>unrestricted</td>
+                  </tr>
+              </table>
+          </subsection>
+
+          <subsection name="Examples">
+              <p>To configure the check to ensure that Java files reside in java folders, not resource folders:</p>
+
+              <source>&lt;module name=&quot;RegexpOnFilename&quot;&gt;
+    &lt;property name=&quot;regexp&quot; value=&quot;.*?[\\/]src[\\/](?:test|main)[\\/]resources[\\/].*?\.java$&quot;/&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+    &lt;message key=&quot;regexp.filepath&quot; value=&quot;The Java file ''{0}'' must reside in a java folder.&quot;/&gt;
+&lt;/module&gt;</source>
+
+              <p>To configure the check to enforce an HTML file naming convention on files in a certain folder:</p>
+
+              <source>&lt;module name=&quot;RegexpOnFilename&quot;&gt;
+    &lt;property name=&quot;regexp&quot; value=&quot;^.*?[\\/]src[\\/]main[\\/]resources[\\/]html[\\/]views[\\/](?!view_).*?\.html$&quot;/&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;html&quot;/&gt;
+    &lt;message key=&quot;regexp.filepath&quot; value=&quot;HTML view ''{0}'' filename must start with ''view_''.&quot;/&gt;
+&lt;/module&gt;</source>
+
+              <p>Note that the regular expression must <i>match</i> the <i>illegal</i> file paths. This may make some
+              regular expressions more complicated, but it offers great flexibility for choosing the criteria.</p>
+          </subsection>
+
+          <subsection name="Package">
+              <p>
+                  com.puppycrawl.tools.checkstyle.checks.regexp
+              </p>
+          </subsection>
+
+          <subsection name="Parent Module">
+              <p>
+                  <a href="config.html#Checker">Checker</a>
+              </p>
+          </subsection>
+      </section>
   </body>
 </document>

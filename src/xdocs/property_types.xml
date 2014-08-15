@@ -91,7 +91,7 @@
       <p>
         This property represents a regular expression. The string
         representation is parsed using <a
-        href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/package-summary.html">java.util.regex
+        href="http://docs.oracle.com/javase/7/docs/api/index.html?java/util/regex/package-summary.html">java.util.regex
         package</a>.
       </p>
     </subsection>
