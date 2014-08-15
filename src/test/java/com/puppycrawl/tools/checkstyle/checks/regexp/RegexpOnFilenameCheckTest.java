@@ -54,7 +54,7 @@ public class RegexpOnFilenameCheckTest
         final String illegal = ".*?[\\\\/]InputRegexpOnFilename\\.txt$";
         mCheckConfig.addAttribute("regexp", illegal);
         mCheckConfig.addAttribute("fileExtensions", "java, txt");
-        final String[] expected = {"0: File path '" + filepath + "' matches illegal pattern '" + illegal + "'.",};
+        final String[] expected = {"0: File path '" + filepath + "' matches illegal pattern '" + illegal + "'.", };
         verify(mCheckConfig, filepath, expected);
     }
 
@@ -64,9 +64,9 @@ public class RegexpOnFilenameCheckTest
         throws Exception
     {
         final String filepath = getPath("regexp/InputRegexpOnFilename.txt");
-        final String illegal = ".*?[\\\\/]src[\\\\/]main[\\\\/]resources[\\\\/]com[\\\\/]puppycrawl[\\\\/].*?\\.txt$";
+        final String illegal = ".*?[\\\\/]src[\\\\/]test[\\\\/]resources[\\\\/]com[\\\\/]puppycrawl[\\\\/].*?\\.txt$";
         mCheckConfig.addAttribute("regexp", illegal);
-        final String[] expected = {"0: File path '" + filepath + "' matches illegal pattern '" + illegal + "'.",};
+        final String[] expected = {"0: File path '" + filepath + "' matches illegal pattern '" + illegal + "'.", };
         verify(mCheckConfig, filepath, expected);
     }
 
