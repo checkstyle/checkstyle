@@ -22,7 +22,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 
@@ -36,19 +35,20 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 public class RegexpOnFilenameCheck
     extends AbstractFileSetCheck
 {
-    private Pattern regexp = null;
+    /** the regexp to apply to the file name as set by the property */
+    private Pattern mRegexp;
 
 
 
     /**
      * Set the regular expression to be applied to the file names.
      *
-     * @param pRegexp the regexp to match
-     * @throws PatternSyntaxException an invalid pattern was supplied
+     * @param aRegexp the regexp to match
+     * @throws java.util.regex.PatternSyntaxException an invalid pattern was supplied
      */
-    public void setRegexp(final String pRegexp)
+    public void setRegexp(final String aRegexp)
     {
-        regexp = Pattern.compile(pRegexp);
+        mRegexp = Pattern.compile(aRegexp);
     }
 
 
@@ -56,7 +56,7 @@ public class RegexpOnFilenameCheck
     @Override
     protected void processFiltered(final File aFile, final List<String> aLines)
     {
-        if (regexp == null) {
+        if (mRegexp == null) {
             // no regexp given
             return;
         }
@@ -69,8 +69,8 @@ public class RegexpOnFilenameCheck
             filePath = aFile.getAbsolutePath();
         }
 
-        if (filePath != null && regexp.matcher(filePath).matches()) {
-            log(0, "regexp.filepath", filePath, regexp.pattern());
+        if (mRegexp.matcher(filePath).matches()) {
+            log(0, "regexp.filepath", filePath, mRegexp.pattern());
         }
     }
 }
