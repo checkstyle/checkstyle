@@ -21,31 +21,80 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 
 
 /**
- * Checks the canonical file name against a
- * {@link java.util.regex.Pattern regular expression}. A violation is reported if a match is found.
+ * Checks a file name against a {@link java.util.regex.Pattern regular expression}. Several
+ * flags can be set to control what part of the filename the check is applied to, how the
+ * expression is supposed to be applied, and how to interpret the match. See documentation
+ * for further information.
  *
  * @author Thomas Jensen
  */
 public class RegexpOnFilenameCheck
     extends AbstractFileSetCheck
 {
-    /** the regexp to apply to the file name as set by the property */
+    /**
+     * regexp applied to the canonical file name in order to determine if the file is applicable for
+     * the check
+     */
+    private Pattern mSelection;
+
+    /**
+     * if <code>true</code>, a violation is logged if the regexp does <i>not</i> match;<br/> if
+     * <code>false</code>, a violation is logged if the regexp matched ("illegal")
+     */
+    private boolean mRequired;
+
+    /**
+     * if <code>true</code>, only the simple name of the file will be checked against the
+     * regexp;<br/> if <code>false</code>, the entire canonical path will be checked
+     */
+    private boolean mSimple;
+
+    /**
+     * if <code>true</code>, the regexp is used for a substring search;<br/> if <code>false</code>,
+     * the regexp is applied to the entire canonical path
+     */
+    private boolean mSubstring;
+
+    /** the given regexp */
     private Pattern mRegexp;
 
 
 
-    /**
-     * Set the regular expression to be applied to the file names.
-     *
-     * @param aRegexp the regexp to match
-     * @throws java.util.regex.PatternSyntaxException an invalid pattern was supplied
-     */
+    public void setSelection(final String aRegexp)
+    {
+        mSelection = Pattern.compile(aRegexp);
+    }
+
+
+
+    public void setRequired(final boolean aRequired)
+    {
+        mRequired = aRequired;
+    }
+
+
+
+    public void setSimple(final boolean aSimple)
+    {
+        mSimple = aSimple;
+    }
+
+
+
+    public void setSubstring(final boolean aSubstring)
+    {
+        mSubstring = aSubstring;
+    }
+
+
+
     public void setRegexp(final String aRegexp)
     {
         mRegexp = Pattern.compile(aRegexp);
@@ -56,11 +105,6 @@ public class RegexpOnFilenameCheck
     @Override
     protected void processFiltered(final File aFile, final List<String> aLines)
     {
-        if (mRegexp == null) {
-            // no regexp given
-            return;
-        }
-
         String filePath = null;
         try {
             filePath = aFile.getCanonicalPath();
@@ -69,8 +113,33 @@ public class RegexpOnFilenameCheck
             filePath = aFile.getAbsolutePath();
         }
 
-        if (mRegexp.matcher(filePath).matches()) {
-            log(0, "regexp.filepath", filePath, mRegexp.pattern());
+        boolean ok = true;
+        if (mRegexp != null && (mSelection == null || mSelection.matcher(filePath).matches())) {
+
+            if (mSimple) {
+                filePath = aFile.getName();
+            }
+
+            final Matcher m = mRegexp.matcher(filePath);
+            if (mSubstring) {
+                ok = m.find();
+            }
+            else {
+                ok = m.matches();
+            }
+
+            if (!mRequired) {
+                ok = !ok;
+            }
+        }
+
+        if (!ok) {
+            String msgKey = "regexp.filepath.";
+            msgKey += mRequired ? "required" : "illegal";
+            if (mSubstring) {
+                msgKey += ".sub";
+            }
+            log(0, msgKey, filePath, mRegexp.pattern());
         }
     }
 }

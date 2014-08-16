@@ -34,6 +34,10 @@ import org.junit.Test;
 public class RegexpOnFilenameCheckTest
     extends BaseFileSetCheckTestSupport
 {
+    private static final String REAL_EXT = "txt";
+
+    private static final String SIMPLE_FILENAME = "InputRegexpOnFilename." + REAL_EXT;
+
     private DefaultConfiguration mCheckConfig;
 
 
@@ -47,37 +51,51 @@ public class RegexpOnFilenameCheckTest
 
 
     @Test
-    public void testIt()
+    public void testSelectByExtension_Include1()
         throws Exception
     {
-        final String filepath = getPath("regexp/InputRegexpOnFilename.txt");
-        final String illegal = ".*?[\\\\/]InputRegexpOnFilename\\.txt$";
-        mCheckConfig.addAttribute("regexp", illegal);
-        mCheckConfig.addAttribute("fileExtensions", "java, txt");
-        final String[] expected = {"0: File path '" + filepath + "' matches illegal pattern '" + illegal + "'.", };
-        verify(mCheckConfig, filepath, expected);
-    }
-
-
-    @Test
-    public void testIt2()
-        throws Exception
-    {
-        final String filepath = getPath("regexp/InputRegexpOnFilename.txt");
-        final String illegal = ".*?[\\\\/]src[\\\\/]test[\\\\/]resources[\\\\/]com[\\\\/]puppycrawl[\\\\/].*?\\.txt$";
-        mCheckConfig.addAttribute("regexp", illegal);
-        final String[] expected = {"0: File path '" + filepath + "' matches illegal pattern '" + illegal + "'.", };
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = "no_match";
+        mCheckConfig.addAttribute("fileExtensions", "java, " + REAL_EXT);
+        mCheckConfig.addAttribute("regexp", regexp);
+        mCheckConfig.addAttribute("simple", "true");
+        mCheckConfig.addAttribute("substring", "true");
+        mCheckConfig.addAttribute("required", "true");
+        final String[] expected =
+            {"0: File '" + SIMPLE_FILENAME + "' does not contain required pattern '" + regexp
+                + "'.", };
         verify(mCheckConfig, filepath, expected);
     }
 
 
 
     @Test
-    public void testNoRegexp()
+    public void testSelectByExtension_Include2()
         throws Exception
     {
-        final String filepath = getPath("regexp/InputRegexpOnFilename.txt");
-        mCheckConfig.addAttribute("fileExtensions", "txt");
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = "no_match";
+        mCheckConfig.addAttribute("fileExtensions", REAL_EXT);
+        mCheckConfig.addAttribute("regexp", regexp);
+        mCheckConfig.addAttribute("simple", "true");
+        mCheckConfig.addAttribute("substring", "true");
+        mCheckConfig.addAttribute("required", "true");
+        final String[] expected =
+            {"0: File '" + SIMPLE_FILENAME + "' does not contain required pattern '" + regexp
+                + "'.", };
+        verify(mCheckConfig, filepath, expected);
+    }
+
+
+
+    @Test
+    public void testSelectByExtension_Exclude()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = "no_match";
+        mCheckConfig.addAttribute("fileExtensions", "noMatch");
+        mCheckConfig.addAttribute("regexp", regexp);
         final String[] expected = {};
         verify(mCheckConfig, filepath, expected);
     }
@@ -85,13 +103,240 @@ public class RegexpOnFilenameCheckTest
 
 
     @Test
+    public void testSelectByRegexp_Include1()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = "no_match";
+        mCheckConfig.addAttribute("fileExtensions", REAL_EXT);
+        mCheckConfig.addAttribute("selection", ".*?" + SIMPLE_FILENAME + "$");
+        mCheckConfig.addAttribute("regexp", regexp);
+        mCheckConfig.addAttribute("simple", "true");
+        mCheckConfig.addAttribute("substring", "true");
+        mCheckConfig.addAttribute("required", "true");
+        final String[] expected =
+            {"0: File '" + SIMPLE_FILENAME + "' does not contain required pattern '" + regexp
+                + "'.", };
+        verify(mCheckConfig, filepath, expected);
+    }
+
+
+
+    @Test
+    public void testSelectByRegexp_Include2()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = "no_match";
+        mCheckConfig.addAttribute("regexp", regexp);
+        mCheckConfig.addAttribute("selection", ".*?" + SIMPLE_FILENAME + "$");
+        mCheckConfig.addAttribute("simple", "true");
+        mCheckConfig.addAttribute("substring", "true");
+        mCheckConfig.addAttribute("required", "true");
+        final String[] expected =
+            {"0: File '" + SIMPLE_FILENAME + "' does not contain required pattern '" + regexp
+                + "'.", };
+        verify(mCheckConfig, filepath, expected);
+    }
+
+
+
+    @Test
+    public void testSelectByRegexp_Exclude()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = "no_match";
+        mCheckConfig.addAttribute("regexp", regexp);
+        mCheckConfig.addAttribute("selection", "^no_match");
+        mCheckConfig.addAttribute("simple", "true");
+        mCheckConfig.addAttribute("substring", "true");
+        mCheckConfig.addAttribute("required", "true");
+        final String[] expected = {};
+        verify(mCheckConfig, filepath, expected);
+    }
+
+
+
+    @Test
+    public void testNoRegexpsGiven_Ok()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String[] expected = {};
+        verify(mCheckConfig, filepath, expected);
+    }
+
+
+
+    @Test
+    public void testIllegal()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = ".*?[\\\\/]src[\\\\/]test[\\\\/]resources[\\\\/].*";
+        mCheckConfig.addAttribute("regexp", regexp);
+        final String[] expected = {"0: File '" + filepath + "' matches illegal pattern '"
+            + regexp + "'.", };
+        verify(mCheckConfig, filepath, expected);
+    }
+
+    @Test
+    public void testRequired()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = ".*?[\\\\/]src[\\\\/]test[\\\\/]resources[\\\\/].*";
+        mCheckConfig.addAttribute("regexp", regexp);
+        mCheckConfig.addAttribute("required", "true");
+        final String[] expected = {};
+        verify(mCheckConfig, filepath, expected);
+    }
+
+
+    @Test
+    public void testIllegal_Not()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = "no_match";
+        mCheckConfig.addAttribute("regexp", regexp);
+        final String[] expected = {};
+        verify(mCheckConfig, filepath, expected);
+    }
+
+    @Test
+    public void testRequired_Not()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = "no_match";
+        mCheckConfig.addAttribute("regexp", regexp);
+        mCheckConfig.addAttribute("required", "true");
+        final String[] expected = {"0: File '" + filepath + "' does not match required pattern '"
+            + regexp + "'.", };
+        verify(mCheckConfig, filepath, expected);
+    }
+
+
+    @Test
+    public void testIllegalSubstring()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = "[\\\\/]src[\\\\/]test[\\\\/]resources[\\\\/]";
+        mCheckConfig.addAttribute("regexp", regexp);
+        mCheckConfig.addAttribute("substring", "true");
+        final String[] expected = {"0: File '" + filepath + "' contains illegal pattern '"
+            + regexp + "'.", };
+        verify(mCheckConfig, filepath, expected);
+    }
+
+    @Test
+    public void testRequiredSubstring()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = "[\\\\/]src[\\\\/]test[\\\\/]resources[\\\\/]";
+        mCheckConfig.addAttribute("regexp", regexp);
+        mCheckConfig.addAttribute("required", "true");
+        mCheckConfig.addAttribute("substring", "true");
+        final String[] expected = {};
+        verify(mCheckConfig, filepath, expected);
+    }
+
+
+    @Test
+    public void testIllegalSubstring_Not()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = "no_match";
+        mCheckConfig.addAttribute("regexp", regexp);
+        mCheckConfig.addAttribute("substring", "true");
+        final String[] expected = {};
+        verify(mCheckConfig, filepath, expected);
+    }
+
+    @Test
+    public void testRequiredSubstring_Not()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = "no_match";
+        mCheckConfig.addAttribute("regexp", regexp);
+        mCheckConfig.addAttribute("required", "true");
+        mCheckConfig.addAttribute("substring", "true");
+        final String[] expected = {"0: File '" + filepath + "' does not contain required pattern '"
+            + regexp + "'.", };
+        verify(mCheckConfig, filepath, expected);
+    }
+
+
+
+    @Test
+    public void testIllegalSimple()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = "^" + SIMPLE_FILENAME + "$";
+        mCheckConfig.addAttribute("regexp", regexp);
+        mCheckConfig.addAttribute("simple", "true");
+        final String[] expected = {"0: File '" + SIMPLE_FILENAME + "' matches illegal pattern '"
+            + regexp + "'.", };
+        verify(mCheckConfig, filepath, expected);
+    }
+
+    @Test
+    public void testRequiredSimple()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = "^" + SIMPLE_FILENAME + "$";
+        mCheckConfig.addAttribute("regexp", regexp);
+        mCheckConfig.addAttribute("required", "true");
+        mCheckConfig.addAttribute("simple", "true");
+        final String[] expected = {};
+        verify(mCheckConfig, filepath, expected);
+    }
+
+
+    @Test
+    public void testIllegalSimpleSubstring()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = SIMPLE_FILENAME.substring(2, SIMPLE_FILENAME.length() - 5);
+        mCheckConfig.addAttribute("regexp", regexp);
+        mCheckConfig.addAttribute("simple", "true");
+        mCheckConfig.addAttribute("substring", "true");
+        final String[] expected = {"0: File '" + SIMPLE_FILENAME + "' contains illegal pattern '"
+            + regexp + "'.", };
+        verify(mCheckConfig, filepath, expected);
+    }
+
+    @Test
+    public void testRequiredSimpleSubstring()
+        throws Exception
+    {
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
+        final String regexp = SIMPLE_FILENAME.substring(2, SIMPLE_FILENAME.length() - 5);
+        mCheckConfig.addAttribute("regexp", regexp);
+        mCheckConfig.addAttribute("required", "true");
+        mCheckConfig.addAttribute("simple", "true");
+        mCheckConfig.addAttribute("substring", "true");
+        final String[] expected = {};
+        verify(mCheckConfig, filepath, expected);
+    }
+
+
+    @Test
     public void testBrokenRegexp()
         throws Exception
     {
-        final String filepath = getPath("regexp/InputRegexpOnFilename.txt");
+        final String filepath = getPath("regexp/" + SIMPLE_FILENAME);
         final String illegal = "*$"; // incorrect syntax
         mCheckConfig.addAttribute("regexp", illegal);
-        mCheckConfig.addAttribute("fileExtensions", "txt");
         try {
             final String[] expected = {};
             verify(mCheckConfig, filepath, expected);
