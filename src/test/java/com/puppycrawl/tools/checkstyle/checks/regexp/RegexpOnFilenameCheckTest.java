@@ -62,8 +62,7 @@ public class RegexpOnFilenameCheckTest
         mCheckConfig.addAttribute("substring", "true");
         mCheckConfig.addAttribute("required", "true");
         final String[] expected =
-            {"0: File '" + SIMPLE_FILENAME + "' does not contain required pattern '" + regexp
-                + "'.", };
+        {"0: File '" + SIMPLE_FILENAME + "' does not contain required pattern '" + regexp + "'.", };
         verify(mCheckConfig, filepath, expected);
     }
 
@@ -81,8 +80,7 @@ public class RegexpOnFilenameCheckTest
         mCheckConfig.addAttribute("substring", "true");
         mCheckConfig.addAttribute("required", "true");
         final String[] expected =
-            {"0: File '" + SIMPLE_FILENAME + "' does not contain required pattern '" + regexp
-                + "'.", };
+        {"0: File '" + SIMPLE_FILENAME + "' does not contain required pattern '" + regexp + "'.", };
         verify(mCheckConfig, filepath, expected);
     }
 
@@ -115,8 +113,7 @@ public class RegexpOnFilenameCheckTest
         mCheckConfig.addAttribute("substring", "true");
         mCheckConfig.addAttribute("required", "true");
         final String[] expected =
-            {"0: File '" + SIMPLE_FILENAME + "' does not contain required pattern '" + regexp
-                + "'.", };
+        {"0: File '" + SIMPLE_FILENAME + "' does not contain required pattern '" + regexp + "'.", };
         verify(mCheckConfig, filepath, expected);
     }
 
@@ -134,8 +131,7 @@ public class RegexpOnFilenameCheckTest
         mCheckConfig.addAttribute("substring", "true");
         mCheckConfig.addAttribute("required", "true");
         final String[] expected =
-            {"0: File '" + SIMPLE_FILENAME + "' does not contain required pattern '" + regexp
-                + "'.", };
+        {"0: File '" + SIMPLE_FILENAME + "' does not contain required pattern '" + regexp + "'.", };
         verify(mCheckConfig, filepath, expected);
     }
 
@@ -177,7 +173,7 @@ public class RegexpOnFilenameCheckTest
         final String regexp = ".*?[\\\\/]src[\\\\/]test[\\\\/]resources[\\\\/].*";
         mCheckConfig.addAttribute("regexp", regexp);
         final String[] expected = {"0: File '" + filepath + "' matches illegal pattern '"
-            + regexp + "'.", };
+                + regexp + "'.", };
         verify(mCheckConfig, filepath, expected);
     }
 
@@ -214,7 +210,7 @@ public class RegexpOnFilenameCheckTest
         mCheckConfig.addAttribute("regexp", regexp);
         mCheckConfig.addAttribute("required", "true");
         final String[] expected = {"0: File '" + filepath + "' does not match required pattern '"
-            + regexp + "'.", };
+                + regexp + "'.", };
         verify(mCheckConfig, filepath, expected);
     }
 
@@ -228,7 +224,7 @@ public class RegexpOnFilenameCheckTest
         mCheckConfig.addAttribute("regexp", regexp);
         mCheckConfig.addAttribute("substring", "true");
         final String[] expected = {"0: File '" + filepath + "' contains illegal pattern '"
-            + regexp + "'.", };
+                + regexp + "'.", };
         verify(mCheckConfig, filepath, expected);
     }
 
@@ -268,7 +264,7 @@ public class RegexpOnFilenameCheckTest
         mCheckConfig.addAttribute("required", "true");
         mCheckConfig.addAttribute("substring", "true");
         final String[] expected = {"0: File '" + filepath + "' does not contain required pattern '"
-            + regexp + "'.", };
+                + regexp + "'.", };
         verify(mCheckConfig, filepath, expected);
     }
 
@@ -283,7 +279,7 @@ public class RegexpOnFilenameCheckTest
         mCheckConfig.addAttribute("regexp", regexp);
         mCheckConfig.addAttribute("simple", "true");
         final String[] expected = {"0: File '" + SIMPLE_FILENAME + "' matches illegal pattern '"
-            + regexp + "'.", };
+                + regexp + "'.", };
         verify(mCheckConfig, filepath, expected);
     }
 
@@ -311,7 +307,7 @@ public class RegexpOnFilenameCheckTest
         mCheckConfig.addAttribute("simple", "true");
         mCheckConfig.addAttribute("substring", "true");
         final String[] expected = {"0: File '" + SIMPLE_FILENAME + "' contains illegal pattern '"
-            + regexp + "'.", };
+                + regexp + "'.", };
         verify(mCheckConfig, filepath, expected);
     }
 
