@@ -298,18 +298,34 @@
 
       <section name="RegexpOnFilename">
           <subsection name="Description">
-              <p>This check simply applies the given regular expression to the absolute name of a file. If a match
-                  is found, a warning is logged.</p>
+              <p>This check simply applies a given regular expression to the names of files.
+              Depending on the configuration, a warning is logged if a required match is not
+              found or an illegal match is found.</p>
               <p>This is useful for situations such as:</p>
-              <ul><li>Checking that resources in certain directories follow a naming convention</li>
+              <ul>
+              <li>Checking that resources in certain directories follow a naming convention</li>
               <li>Resource file names contain only legal characters</li>
-              <li>Files of certain types are created in the right places, e.g. Java files under src/*/java</li>
+              <li>Files of certain types are created in the right places, e.g. Java files under
+                  src/*/java</li>
               <li>Prevent certain files or types of files altogether, by "banning" their names</li>
-              <li>...</li></ul>
-              <p>For each file, the canonical path name is determined. This includes the absolute path and the file
-              name itself. Any backreferences are resolved. If the file has one of the configured extensions, the
-              regular expression is matched against the full canonical path. Make sure that your regex starts matching
-              from the first character of the path (examples below).</p>
+              </ul>
+
+              <p>The check works like this:</p>
+              <ol>
+              <li>If file extensions are configured, it is checked if the file extension applies.
+                  As with all FileSetChecks, this check only ever does anything if the file
+                  extension matches. Leave out the property to match all file extensions.</li>
+              <li>If configured, the regular expression given in the <tt>selection</tt> property is
+                  applied to the entire canonical file name. Only files that match this expression
+                  are checked. Leave out the property to match all files.<br/>
+                  Note that the regular expression must match the entire file name, including the
+                  full path. Just matching a substring is not enough. You can still get substring
+                  matches by specifying a regular expression like this:
+                  <code>.*?substring.*</code></li>
+              <li>The given <tt>regexp</tt> is matched against the file name. What part of the file
+                  name it is applied to, how this is performed, and how the result is
+                  interpreted is governed by a number of optional flags.</li>
+              </ol>
           </subsection>
 
           <subsection name="Properties">
@@ -321,41 +337,115 @@
                       <th>default value</th>
                   </tr>
                   <tr>
+                      <td>fileExtensions</td>
+                      <td>Comma-separated list of file extensions. Leading dots are optional.
+                          Spaces after the comma are allowed. Only files with one of these
+                          extensions are checked against the regular expression.</td>
+                      <td><a href="property_types.html#stringSet">StringSet</a></td>
+                      <td>unrestricted</td>
+                  </tr>
+                  <tr>
+                      <td>selection</td>
+                      <td>Limits the check to files whose canonical path name completely matches
+                          the given regular expression. The canonical path is the simplest possible
+                          absolute path, including the file name (no '<tt>..</tt>' elements
+                          etc.).</td>
+                      <td><a href="property_types.html#regexp">regular expression</a></td>
+                      <td>unrestricted</td>
+                  </tr>
+                  <tr>
                       <td>regexp</td>
-                      <td>illegal pattern</td>
+                      <td>The regular expression applied to the file name.</td>
                       <td><a href="property_types.html#regexp">regular expression</a></td>
                       <td>no default, property is mandatory</td>
                   </tr>
                   <tr>
-                      <td>fileExtensions</td>
-                      <td>comma-separated list of file extensions. Leading dots are optional. Spaces after the
-                          comma are allowed.<br/> Only files with one of these extensions are checked against the
-                          regular expression.</td>
-                      <td><a href="property_types.html#stringSet">StringSet</a></td>
-                      <td>unrestricted</td>
+                      <td>required</td>
+                      <td>If <code>true</code>, a violation is logged if the pattern specified by
+                          <tt>regexp</tt> does <i>not</i> match;<br/> if <code>false</code>, a
+                          violation is logged if the <tt>regexp</tt> matched ("illegal")</td>
+                      <td><a href="property_types.html#boolean">Boolean</a></td>
+                      <td><code>false</code></td>
+                  </tr>
+                  <tr>
+                      <td>simple</td>
+                      <td>If <code>true</code>, only the simple name of the file will be checked
+                          against the pattern specified by <tt>regexp</tt>;
+                          if <code>false</code>, the entire canonical path will be checked.<br/>
+                          Note that this option applies only to the pattern specified by
+                          <tt>regexp</tt>; the <tt>selection</tt> property is always treated as
+                          if <tt>simple=false</tt>.</td>
+                      <td><a href="property_types.html#boolean">Boolean</a></td>
+                      <td><code>false</code></td>
+                  </tr>
+                  <tr>
+                      <td>substring</td>
+                      <td>If <code>true</code>, the pattern specified by <tt>regexp</tt> is used
+                          for a substring search;<br/> if <code>false</code>, the <tt>regexp</tt>
+                          is applied to the entire canonical path</td>
+                      <td><a href="property_types.html#boolean">Boolean</a></td>
+                      <td><code>false</code></td>
+                  </tr>
+              </table>
+
+              <p>In addition to the properties, optionally adding a <code>message</code> element
+                 may benefit this check to make the warning easier to understand. The message key
+                 depends on the values of the <tt>required</tt> and <tt>substring</tt> flags as
+                 shown in the following table. The message text can make use of placeholders
+                 <tt>{0}</tt> (the file name) and <tt>{1}</tt> (the regexp).</p>
+
+              <table>
+                  <tr>
+                      <th><tt>required</tt></th>
+                      <th><tt>substring</tt></th>
+                      <th>message key</th>
+                  </tr>
+                  <tr>
+                      <td><code>true</code></td>
+                      <td><code>false</code></td>
+                      <td><tt>regexp.filepath.required</tt></td>
+                  </tr>
+                  <tr>
+                      <td><code>true</code></td>
+                      <td><code>true</code></td>
+                      <td><tt>regexp.filepath.required.sub</tt></td>
+                  </tr>
+                  <tr>
+                      <td><code>false</code></td>
+                      <td><code>false</code></td>
+                      <td><tt>regexp.filepath.illegal</tt></td>
+                  </tr>
+                  <tr>
+                      <td><code>false</code></td>
+                      <td><code>true</code></td>
+                      <td><tt>regexp.filepath.illegal.sub</tt></td>
                   </tr>
               </table>
           </subsection>
 
           <subsection name="Examples">
-              <p>To configure the check to ensure that Java files reside in java folders, not resource folders:</p>
+              <p>To configure the check to ensure that Java files reside in java folders, not
+                 resource folders:</p>
 
               <source>&lt;module name=&quot;RegexpOnFilename&quot;&gt;
-    &lt;property name=&quot;regexp&quot; value=&quot;.*?[\\/]src[\\/](?:test|main)[\\/]resources[\\/].*?\.java$&quot;/&gt;
     &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
-    &lt;message key=&quot;regexp.filepath&quot; value=&quot;The Java file ''{0}'' must reside in a java folder.&quot;/&gt;
+    &lt;property name=&quot;regexp&quot; value=&quot;[\\/]src[\\/](?:test|main)[\\/]java[\\/]&quot;/&gt;
+    &lt;property name=&quot;required&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;substring&quot; value=&quot;true&quot;/&gt;
+    &lt;message key=&quot;regexp.filepath.required.sub&quot; value=&quot;The Java file ''{0}'' must reside in a Java source folder.&quot;/&gt;
 &lt;/module&gt;</source>
 
-              <p>To configure the check to enforce an HTML file naming convention on files in a certain folder:</p>
+              <p>To configure the check to enforce an HTML file naming convention on files in a
+                 certain folder:</p>
 
               <source>&lt;module name=&quot;RegexpOnFilename&quot;&gt;
-    &lt;property name=&quot;regexp&quot; value=&quot;^.*?[\\/]src[\\/]main[\\/]resources[\\/]html[\\/]views[\\/](?!view_).*?\.html$&quot;/&gt;
     &lt;property name=&quot;fileExtensions&quot; value=&quot;html&quot;/&gt;
-    &lt;message key=&quot;regexp.filepath&quot; value=&quot;HTML view ''{0}'' filename must start with ''view_''.&quot;/&gt;
+    &lt;property name=&quot;selection&quot; value=&quot;^.*?[\\/]src[\\/]main[\\/]resources[\\/]html[\\/]views[\\/].*$&quot;/&gt;
+    &lt;property name=&quot;regexp&quot; value=&quot;^view_.*&quot;/&gt;
+    &lt;property name=&quot;required&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;simple&quot; value=&quot;true&quot;/&gt;
+    &lt;message key=&quot;regexp.filepath.required&quot; value=&quot;HTML view ''{0}'' filename must start with ''view_''.&quot;/&gt;
 &lt;/module&gt;</source>
-
-              <p>Note that the regular expression must <i>match</i> the <i>illegal</i> file paths. This may make some
-              regular expressions more complicated, but it offers great flexibility for choosing the criteria.</p>
           </subsection>
 
           <subsection name="Package">
