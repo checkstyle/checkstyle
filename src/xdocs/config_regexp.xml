@@ -444,7 +444,7 @@
     &lt;property name=&quot;regexp&quot; value=&quot;^view_.*&quot;/&gt;
     &lt;property name=&quot;required&quot; value=&quot;true&quot;/&gt;
     &lt;property name=&quot;simple&quot; value=&quot;true&quot;/&gt;
-    &lt;message key=&quot;regexp.filepath.required&quot; value=&quot;HTML view ''{0}'' filename must start with ''view_''.&quot;/&gt;
+    &lt;message key=&quot;regexp.filepath.required&quot; value=&quot;Name of ''{0}'' must start with ''view_''.&quot;/&gt;
 &lt;/module&gt;</source>
           </subsection>
 
