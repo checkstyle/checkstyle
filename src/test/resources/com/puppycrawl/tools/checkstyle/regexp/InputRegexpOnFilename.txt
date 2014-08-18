@@ -1,0 +1,1 @@
+The test uses the file name and path, but not the file contents.
