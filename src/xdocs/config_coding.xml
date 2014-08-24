@@ -440,6 +440,19 @@ number.equals(i + j);
           </tr>
 
           <tr>
+            <td>ignoreBuilderSetter</td>
+            <td>
+              Controls whether to ignore the parameter of a property setter
+              method for types which names end with "Builder", where the
+              property setter method for field &quot;xyz&quot; returns the
+              defining type, has name &quot;setXyz&quot; or &quot;withXyz&quot;
+              and accepts one parameter named &quot;xyz&quot;.
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+
+          <tr>
             <td>ignoreAbstractMethods</td>
             <td>Controls whether to ignore parameters of abstract methods.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
@@ -493,6 +506,16 @@ number.equals(i + j);
         <source>
 &lt;module name=&quot;HiddenField&quot;&gt;
     &lt;property name=&quot;ignoreSetter&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check so that it ignores the parameter of builder
+          setter methods:
+        </p>
+        <source>
+&lt;module name=&quot;HiddenField&quot;&gt;
+    &lt;property name=&quot;ignoreBuilderSetter&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
