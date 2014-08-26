@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.checks.DeclarationCollector;
  *   &lt;property name=&quot;checkMethods&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * </p>
+ *
  * <p>Limitations: I'm not currently doing anything about static variables
  * or catch-blocks.  Static methods invoked on a class name seem to be OK;
  * both the class name and the method name have a DOT parent.

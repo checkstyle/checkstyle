@@ -27,7 +27,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * By default this Check restricts wrapping import and package statements,
  * but it's possible to check any statement.
  * </p>
- * <h4>Examples</h4>
+ * 
+ * Examples
  * <p class="body">
  *
  * Examples of line-wrapped statements (bad case):

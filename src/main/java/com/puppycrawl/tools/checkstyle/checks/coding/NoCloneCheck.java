@@ -67,7 +67,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  * provide a correct clone implementation.
  * </li>
  * </ul>
- * </p>
+ *
  *
  * <p>
  * Two alternatives to the clone method, in some cases, is a copy constructor
@@ -76,7 +76,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  * force the calling client to handle a CloneNotSupportedException.  They also
  * are typed therefore no casting is necessary. Finally, they are more
  * flexible since they can take interface types rather than concrete classes.
- * </p>
+ *
  *
  * <p>
  * Sometimes a copy constructor or static factory is not an acceptable
@@ -108,7 +108,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  *
  * Just keep in mind if this type of polymorphic cloning is required
  * then a properly implemented clone method may be the best choice.
- * </p>
+ *
  *
  * <p>
  * Much of this information was taken from Effective Java:
@@ -118,7 +118,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  *
  * <p>
  * This check is almost exactly the same as the {@link NoFinalizerCheck}
- * </p>
+ *
  *
  * @author Travis Schneeberger
  * @version 1.0

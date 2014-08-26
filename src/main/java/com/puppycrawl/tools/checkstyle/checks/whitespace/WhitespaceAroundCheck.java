@@ -98,7 +98,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * In addition, this check can be configured to allow empty methods, types,
  * for, while, do-while loops and constructor bodies.
  * For example:
- * </p>
+ *
  * <p>
  * <pre><code>
  * public MyClass() {}      // empty constructor
@@ -108,46 +108,46 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * public enum Foo {} // empty enum
  * MyClass c = new MyClass() {}; // empty anonymous class
  * while (i = 1) {} // empty while loop
- * for (int i = 1; i > 1; i++) {} // empty for loop
+ * for (int i = 1; i &gt; 1; i++) {} // empty for loop
  * do {} while (i = 1); // empty do-while loop
  * public @interface Beta {} // empty annotation type
  * </code></pre>
- * </p>
+ *
  * <p>
  * To configure the check to allow empty method blocks use
- * </p>
+ *
  * <p>
  * <pre>   &lt;property name="allowEmptyMethods" value="true" /&gt;</pre>
- * </p>
+ *
  * <p>
  * To configure the check to allow empty constructor blocks use
- * </p>
+ *
  * <p>
  * <pre>   &lt;property name="allowEmptyConstructors" value="true" /&gt;</pre>
- * </p>
+ *
  * <p>
  * To configure the check to allow empty type blocks use
- * </p>
+ *
  * <p>
  * <pre>   &lt;property name="allowEmptyTypes" value="true" /&gt;</pre>
- * </p>
+ *
  * <p>
  * To configure the check to allow empty loop blocks use
- * </p>
+ *
  * <p>
  * <pre>   &lt;property name="allowEmptyLoops" value="true" /&gt;</pre>
- * </p>
+ *
  *
  * <p>
  * Also, this check can be configured to ignore the colon in an enhanced for
  * loop. The colon in an enhanced for loop is ignored by default
- * </p>
+ *
  * <p>
  * To configure the check to ignore the colon
- * </p>
+ *
  * <p>
  * <pre>   &lt;property name="ignoreEnhancedForColon" value="true" /&gt;</pre>
- * </p>
+ *
  *
  * @author Oliver Burn
  * @author maxvetrenko

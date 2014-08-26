@@ -37,18 +37,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * To not enforce an element style
  * a {@link ElementStyle#IGNORE IGNORE} type is provided.  The desired style
  * can be set through the <code>elementStyle</code> property.
- * </p>
+ *
  *
  * <p>
  * Using the EXPANDED style is more verbose. The expanded version
  * is sometimes referred to as "named parameters" in other languages.
- * </p>
+ *
  *
  * <p>
  * Using the COMPACT style is less verbose. This style can only
  * be used when there is an element called 'value' which is  either
  * the sole element or all other elements have default valuess.
- * </p>
+ *
  *
  * <p>
  * Using the COMPACT_NO_ARRAY style is less verbose. It is similar
@@ -57,7 +57,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * array initializer. This style can only be used when there is an
  * element called 'value' which is either the sole element or all other
  * elements have default values.
- * </p>
+ *
  *
  * <p>
  * The ending parenthesis are optional when using annotations with no elements.
@@ -66,7 +66,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * use the {@link ClosingParens#NEVER NEVER} type. To not enforce a
  * closing parenthesis preference a {@link ClosingParens#IGNORE IGNORE} type is
  * provided. Set this through the <code>closingParens</code> property.
- * </p>
+ *
  *
  * <p>
  * Annotations also allow you to specify arrays of elements in a standard
@@ -76,16 +76,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * {@link TrailingArrayComma#NEVER NEVER} type. To not enforce a trailing
  * array comma preference a {@link TrailingArrayComma#IGNORE IGNORE} type
  * is provided.  Set this through the <code>trailingArrayComma</code> property.
- * </p>
+ *
  *
  * <p>
  * By default the ElementStyle is set to EXPANDED, the TrailingArrayComma
  * is set to NEVER, and the ClosingParans is set to ALWAYS.
- * </p>
+ *
  *
  * <p>
  * According to the JLS, it is legal to include a trailing comma
- * in arrays used in annotations but Sun's Java 5 & 6 compilers will not
+ * in arrays used in annotations but Sun's Java 5 &amp; 6 compilers will not
  * compile with this syntax. This may in be a bug in Sun's compilers
  * since eclipse 3.4's built-in compiler does allow this syntax as
  * defined in the JLS. Note: this was tested with compilers included with
@@ -95,13 +95,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * See <a
  * href="http://java.sun.com/docs/books/jls/third_edition/html/j3TOC.html">
  * Java Language specification, sections 9.7</a>.
- * </p>
+ *
  *
  * <p>
  * An example shown below is set to enforce an EXPANDED style, with a
  * trailing array comma set to NEVER and always including the closing
  * parenthesis.
- * </p>
+ *
  *
  * <pre>
  * &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
@@ -439,7 +439,7 @@ public final class AnnotationUseStyleCheck extends Check
          * compact example
          *
          * <pre>@SuppressWarnings({"unchecked","unused",})</pre>
-         * <br/>or<br/>
+         * <br>or<br>
          * <pre>@SuppressWarnings("unchecked")</pre>.
          */
         COMPACT,

@@ -86,7 +86,7 @@ import org.apache.commons.beanutils.ConversionException;
  * His comments on being hard to maintain when the size of
  * the line changes are even more important in the age of
  * automated refactorings.
- * </p>
+ *
  * <p>
  * To configure the check so it enforces only comment on a line:
  * <pre>
@@ -94,7 +94,7 @@ import org.apache.commons.beanutils.ConversionException;
  *    &lt;property name=&quot;format&quot; value=&quot;^\\s*$&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * </p>
+ *
  * @author o_sukhodolsky
  */
 public class TrailingCommentCheck extends AbstractFormatCheck

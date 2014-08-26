@@ -72,7 +72,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * The distance for the variable <b>minutes</b> is 1 even
  * though this variable is used in the fifth method's call.
  * </pre>
- * </p>
+ *
  * <p>
  * <b>Case #2:</b>
  * <pre>
@@ -88,7 +88,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * The distance for the variable <b>minutes</b> is 6 because there is one more expression
  * (except the initialization block) between the declaration of this variable and its usage.
  * </pre>
- * </p>
+ *
  *
  * There are several additional options to configure the check:
  * <pre>
@@ -122,11 +122,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * Case #2:
  * <code>int sum = 0;
- * for (int i = 0; i < 20; i++) {
+ * for (int i = 0; i &lt; 20; i++) {
  *     a++;
  *     b--;
  *     sum++;
- *     if (sum > 10) {
+ *     if (sum &gt; 10) {
  *         res = true;
  *     }
  * }</code>

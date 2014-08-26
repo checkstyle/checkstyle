@@ -323,7 +323,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      *   <li>DOS style paths that start with a drive letter will have
      *     \ as the separator.</li>
      * </ul>
-     * </p>
+     * <p>
      *
      * @param aPath a path for &quot;normalizing&quot;
      * @return &quot;normalized&quot; file name

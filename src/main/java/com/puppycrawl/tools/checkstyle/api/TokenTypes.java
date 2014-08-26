@@ -501,8 +501,8 @@ public final class TokenTypes
      * is an optional identifier.
      *
      * <p>For example:</p>
-     * <pre>
-     * </pre>
+     *
+     *
      * <p>parses as:</p>
      * <pre>
      * +--EXTENDS_CLAUSE
@@ -723,7 +723,7 @@ public final class TokenTypes
      *     +--ELIST
      *     +--RPAREN ())
      * </pre>
-     * </p>
+     *
      *
      * @see #IDENT
      * @see #TYPE_ARGUMENTS
@@ -1692,7 +1692,7 @@ public final class TokenTypes
      * {
      *   x = rand.nextInt(10);
      * }
-     * while(x < 5);
+     * while(x &lt; 5);
      * </pre>
      * <p>parses as:</p>
      * <pre>
@@ -1722,7 +1722,7 @@ public final class TokenTypes
      *     +--LPAREN (()
      *     +--EXPR
      *         |
-     *         +--LT (<)
+     *         +--LT (&lt;)
      *             |
      *             +--IDENT (x)
      *             +--NUM_INT (5)
@@ -2253,7 +2253,7 @@ public final class TokenTypes
      **/
     public static final int LOR = GeneratedJavaTokenTypes.LOR;
     /**
-     * The <code>&&</code> (conditional AND) operator.
+     * The <code>&amp;&amp;</code> (conditional AND) operator.
      *
      * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5247">Java
@@ -2280,7 +2280,7 @@ public final class TokenTypes
      **/
     public static final int BXOR = GeneratedJavaTokenTypes.BXOR;
     /**
-     * The <code>&</code> (bitwise AND) operator.
+     * The <code>&amp;</code> (bitwise AND) operator.
      *
      * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5233">Java
@@ -3207,7 +3207,7 @@ public final class TokenTypes
      *     +--IDENT (Blah)
      *     +--TYPE_PARAMETERS
      *         |
-     *         +--GENERIC_START (<)
+     *         +--GENERIC_START (&lt;)
      *         +--TYPE_PARAMETER
      *             |
      *             +--IDENT (A)
@@ -3215,7 +3215,7 @@ public final class TokenTypes
      *         +--TYPE_PARAMETER
      *             |
      *             +--IDENT (B)
-     *         +--GENERIC_END (>)
+     *         +--GENERIC_END (&gt;)
      *     +--OBJBLOCK
      *         |
      *         +--LCURLY ({)
@@ -3274,7 +3274,7 @@ public final class TokenTypes
      * <p>For example:</p>
      *
      * <pre>
-     *     public Collection<?> a;
+     *     public Collection&lt;?&gt; a;
      * </pre>
      *
      * <p>parses as:</p>
@@ -3291,11 +3291,11 @@ public final class TokenTypes
      *             |
      *             +--TYPE_ARGUMENTS
      *                 |
-     *                 +--GENERIC_START (<)
+     *                 +--GENERIC_START (&lt;)
      *                 +--TYPE_ARGUMENT
      *                     |
      *                     +--WILDCARD_TYPE (?)
-     *                 +--GENERIC_END (>)
+     *                 +--GENERIC_END (&gt;)
      *     +--IDENT (a)
      *     +--SEMI (;)
      * </pre>
@@ -3397,8 +3397,8 @@ public final class TokenTypes
     public static final int ELLIPSIS = GeneratedJavaTokenTypes.ELLIPSIS;
 
     /**
-     * '&' symbol when used in a generic upper or lower bounds constrain
-     * e.g. {@code Comparable<? extends Serializable, CharSequence>}.
+     * '&amp;' symbol when used in a generic upper or lower bounds constrain
+     * e.g. {@code Comparable&lt;<? extends Serializable, CharSequence>}.
      */
     public static final int TYPE_EXTENSION_AND =
         GeneratedJavaTokenTypes.TYPE_EXTENSION_AND;

@@ -158,7 +158,7 @@ public class XMLLogger
     }
 
     /**
-     * Escape &lt;, &gt; &amp; &apos; and &quot; as their entities.
+     * Escape &lt;, &gt; &amp; &#39; and &quot; as their entities.
      * @param aValue the value to escape.
      * @return the escaped value if necessary.
      */

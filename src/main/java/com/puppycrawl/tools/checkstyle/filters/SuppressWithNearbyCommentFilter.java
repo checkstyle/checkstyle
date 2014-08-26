@@ -65,10 +65,10 @@ import org.apache.commons.beanutils.ConversionException;
  *     ...
  *   }
  * </pre>
- * </p>
+ *
  * <p>
  * See {@link SuppressionCommentFilter} for usage notes.
- * </p>
+ *
  *
  * @author Mick Killianey
  */

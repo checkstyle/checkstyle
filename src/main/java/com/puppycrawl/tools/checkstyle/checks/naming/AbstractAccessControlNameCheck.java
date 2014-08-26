@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>applyToPackage, default true;</li>
  * <li>applyToPrivate, default true;</li>
  * </ol>
- * </p>
+ *
  *
  * @author Rick Giles
  * @version 1.0

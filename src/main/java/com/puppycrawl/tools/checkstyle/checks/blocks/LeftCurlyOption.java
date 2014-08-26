@@ -52,12 +52,12 @@ public enum LeftCurlyOption
      * But for a statement spanning multiple lines, Checkstyle will enforce:
      *
      * <pre>
-     * if (condition1 && condition2 &&
-     *     condition3 && condition4)
+     * if (condition1 &amp;&amp; condition2 &amp;&amp;
+     *     condition3 &amp;&amp; condition4)
      * {
      *     ...
      * </pre>
-     * </p>
+     *
      **/
     NLOW,
 

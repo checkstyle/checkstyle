@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>final or</li>
  * <li>have an empty implementation</li>
  * </ul>
- * </p>
+ *
  *
  * <p>
  * This protects superclasses against being broken by

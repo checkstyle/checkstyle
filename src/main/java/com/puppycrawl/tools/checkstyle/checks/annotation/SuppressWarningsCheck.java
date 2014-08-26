@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  *
  * <p>
  * Limitations:  This check does not consider conditionals
- * inside the SuppressWarnings annotation. <br/>
+ * inside the SuppressWarnings annotation. <br>
  * For example:
  * {@code @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")}
  * According to the above example, the "unused" warning is being suppressed

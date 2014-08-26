@@ -88,7 +88,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  and immediate children.
  * </p>
  * <pre>
- *   - handler class -to-> ID mapping kept in Map
+ *   - handler class -to-&gt; ID mapping kept in Map
  *   - parent passed in during construction
  *   - suggest child indent level
  *   - allows for some tokens to be on same line (ie inner classes OBJBLOCK)

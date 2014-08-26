@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &quot;My_Sweet_String&quot;.equals(nullString);
  *  </code>
  * </pre>
- * </p>
+ *
  *
  * <p>
  * Limitations: If the equals method is overridden or
@@ -61,7 +61,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * as t.equals(s)) then rearranging the called on object and
  * parameter may have unexpected results
  *
- * <br/>
+ * <br>
  *
  * Java's Autoboxing feature has an affect
  * on how this check is implemented. Pre Java 5 all IDENT + IDENT
@@ -69,7 +69,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * if null.  Those situations could have been included in this check.
  * They would simply act as if they surrounded by String.valueOf()
  * which would concatenate the String null.
- * </p>
+ *
  * <p>
  * The following example will cause a
  * NullPointerException as a result of what autoboxing does.
@@ -78,7 +78,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * String number = "5"
  * number.equals(i + j);
  * </pre>
- * </p>
+ *
  *
  * Since, it is difficult to determine what kind of Object is being
  * concatenated all ident concatenation is considered unsafe.

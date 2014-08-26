@@ -26,7 +26,7 @@ import java.util.Set;
  *
  * @author Oliver Burn
  * @version 1.0
- * @see <a href="./{@docRoot}/../writingchecks.html" target="_top">Writing
+ * @see <a href="{@docRoot}/../writingchecks.html" target="_top">Writing
  * your own checks</a>
  */
 public abstract class Check extends AbstractViolationReporter
