@@ -24,8 +24,44 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
- * Checks that the whitespace around the Generic tokens &lt; and &gt; are
- * correct to the <i>typical</i> convention. The convention is not configurable.
+ * <p>
+ * Checks that the whitespace around the Generic tokens (angle brackets)
+ * "&lt;" and "&gt;" are correct to the <i>typical</i> convention.
+ * The convention is not configurable.
+ * </p>
+ * <br/>
+ * <p>
+ * Left angle bracket ("&lt;"):
+ * </p>
+ * <br/>
+ * <ul>
+ * <li> should be preceded with whitespace only
+ *   in generic methods definitions.</li>
+ * <li> should not be preceded with whitespace
+ *   when it is precede method name or following type name.</li>
+ * <li> should not be followed with whitespace in all cases.</li>
+ * </ul>
+ * <br/>
+ * <p>
+ * Right angle bracket ("&gt;"):
+ * </p>
+ * <br/>
+ * <ul>
+ * <li> should not be preceded with whitespace in all cases.</li>
+ * <li> should be followed with whitespace in almost all cases,
+ *   except diamond operators and when preceding method name.</li></ul>
+ * <br/>
+ * <p>
+ * Examples with correct spacing:
+ * </p>
+ * <br/>
+ * <pre>
+ * public void &lt;K, V extends Number&gt; boolean foo(K, V) {} // Generic methods definitions
+ * class name&lt;T1, T2, ..., Tn&gt; {}                         // Generic type definition
+ * OrderedPair&lt;String, Box&lt;Integer&gt;&gt; p;                   // Generic type reference
+ * boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);  // Generic preceded method name
+ * Pair&lt;Integer, String> p1 = new Pair&lt;&gt;(1, "apple");     // Diamond operator
+ * </pre>
  * @author Oliver Burn
  */
 public class GenericWhitespaceCheck extends Check
