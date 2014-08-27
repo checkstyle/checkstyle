@@ -24,32 +24,44 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
- * Checks that the whitespace around the Generic tokens (angle brackets) "&lt;" and "&gt;" are
- * correct to the <i>typical</i> convention. The convention is not configurable.
- *
- * Left angle bracket shouldn't be followed with whitespace.
- *
- * Left angle bracket should be preceded with whitespace in next cases:
- * public void <K, V> boolean foo() {} // Generic methods definitions
- * public <U extends Number> void inspect(U u) {} // Generic methods definitions 
- *
- * Left angle bracket shouldn't be preceded with whitespace
- * when it is in type parameters of the method:
- * boolean same = Util.<Integer, String>compare(p1, p2); // preceded method name
- *
- * Right angle bracket shouldn't be preceded with whitespace.
- *
- * Right angle bracket should be followed with whitespace in almost all cases:
- * class name<T1, T2, ..., Tn> {} // Generic classes.
- * Box<Integer> integerBox; // Generic type.
- * OrderedPair<String, Box<Integer>> p = new OrderedPair<>()); // Parameterized Types
- * public void <K, V> boolean foo() {} // Generic methods definitions
- * public <U extends Number> void inspect(U u) {} // Generic methods definitions
- *
- * Right angle bracket shouldn't be followed with whitespace in cases:
- * boolean same = Util.<Integer, String>compare(p1, p2); // preceded method name
- * Pair<Integer, String> p1 = new Pair<>(1, "apple"); // diamond operator
- * 
+ * <p>
+ * Checks that the whitespace around the Generic tokens (angle brackets)
+ * "&lt;" and "&gt;" are correct to the <i>typical</i> convention.
+ * The convention is not configurable.
+ * </p>
+ * <br/>
+ * <p>
+ * Left angle bracket ("&lt;"):
+ * </p>
+ * <br/>
+ * <ul>
+ * <li> should be preceded with whitespace only
+ *   in generic methods definitions.</li>
+ * <li> should not be preceded with whitespace
+ *   when it is precede method name or following type name.</li>
+ * <li> should not be followed with whitespace in all cases.</li>
+ * </ul>
+ * <br/>
+ * <p>
+ * Right angle bracket ("&gt;"):
+ * </p>
+ * <br/>
+ * <ul>
+ * <li> should not be preceded with whitespace in all cases.</li>
+ * <li> should be followed with whitespace in almost all cases,
+ *   except diamond operators and when preceding method name.</li></ul>
+ * <br/>
+ * <p>
+ * Examples with correct spacing:
+ * </p>
+ * <br/>
+ * <pre>
+ * public void &lt;K, V extends Number&gt; boolean foo(K, V) {} // Generic methods definitions
+ * class name&lt;T1, T2, ..., Tn&gt; {}                         // Generic type definition
+ * OrderedPair&lt;String, Box&lt;Integer&gt;&gt; p;                   // Generic type reference
+ * boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);  // Generic preceded method name
+ * Pair&lt;Integer, String> p1 = new Pair&lt;&gt;(1, "apple");     // Diamond operator
+ * </pre>
  * @author Oliver Burn
  */
 public class GenericWhitespaceCheck extends Check

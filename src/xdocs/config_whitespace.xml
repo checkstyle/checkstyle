@@ -13,26 +13,37 @@
     <section name="GenericWhitespace">
       <subsection name="Description">
         <p>
-          Checks that the whitespace around the Generic tokens &lt; and &gt;
-          is correct to the <i>typical</i> convention. The convention is not
-          configurable.
+          Checks that the whitespace around the Generic tokens (angle brackets)
+          "&lt;" and "&gt;" are correct to the <i>typical</i> convention.
+          The convention is not configurable.
         </p>
-
         <p>
-          For example the following is legal:
+          Left angle bracket ("&lt;"):
         </p>
-
-        <source>
-List&lt;Integer&gt; x = new ArrayList&lt;Integer&gt;();
-List&lt;List&lt;Integer&gt;&gt; y = new ArrayList&lt;List&lt;Integer&gt;&gt;();
-        </source>
-
+        <ul>
+          <li> should be preceded with whitespace only in generic methods definitions.</li>
+          <li> should not be preceded with whitespace when it is precede method name or following type name.</li>
+          <li> should not be followed with whitespace in all cases.</li>
+        </ul>
         <p>
-          But the following example is not:
+          Right angle bracket ("&gt;"):
+        </p>
+        <ul>
+          <li> should not be preceded with whitespace in all cases.</li>
+          <li> should be followed with whitespace in almost all cases, except diamond operators and when preceding method name.</li>
+        </ul>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          Examples with correct spacing:
         </p>
         <source>
-List &lt; Integer &gt; x = new ArrayList &lt; Integer &gt; ();
-List &lt; List &lt; Integer &gt; &gt; y = new ArrayList &lt; List &lt; Integer &gt; &gt; ();
+public void &lt;K, V extends Number&gt; boolean foo(K, V) {} // Generic methods definitions
+class name&lt;T1, T2, ..., Tn&gt; {}                         // Generic type definition
+OrderedPair&lt;String, Box&lt;Integer&gt;&gt; p;                   // Generic type reference
+boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);  // Generic preceded method name
+Pair&lt;Integer, String> p1 = new Pair&lt;&gt;(1, "apple");     // Diamond operator
         </source>
       </subsection>
 
