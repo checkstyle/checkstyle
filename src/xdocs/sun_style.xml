@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+   <properties>
+      <title>Google's Style</title>
+      <author>Checkstyle Development Team</author>
+   </properties>
+
+   <body>
+      <section name="Sun Style Checkstyle Coverage ">
+         <subsection name="Description">
+            <p>
+               Will be provided later
+            </p>
+         </subsection>
+         <subsection name="Coverage table">
+            <table>
+               <thead>
+                  <tr>
+                     <th>Sun Style Rule</th>
+                     <th>Checkstyle Check</th>
+                     <th>Applied to config</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <th>   </th>
+                     <th>   </th>
+                     <th>   </th>
+                  </tr>
+               </tbody>
+            </table>
+         </subsection>
+      </section>
+   </body>
+</document>
