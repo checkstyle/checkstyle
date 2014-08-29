@@ -6,7 +6,7 @@
     <properties>
         <title>Google's Style</title>
         <author>Checkstyle Development Team</author>
-    </properties> 
+    </properties>
 
     <body>
         <section name="Google's Java Style Checkstyle Coverage ">
@@ -525,7 +525,7 @@
                                 We can detect URL with protocol type as http://, https:// etc.
                                 <br />
                                 <a href="https://developers.google.com/eclipse/docs/gwt_jsni">JSNI</a>
-                                could not be detected right now, but might be possible after comments and 
+                                could not be detected right now, but might be possible after comments and
                                 javadoc support appear in Checkstyle
                             </td>
                             <td>
