@@ -12,20 +12,18 @@
         <section name="Google's Java Style Checkstyle Coverage ">
             <subsection name="Useful information">
                 <p>
-                    Last changed in
                     <a
                         href="https://google-styleguide.googlecode.com/svn-history/r130/trunk/javaguide.html">Google Java Style</a>
                     : March 21, 2014
                 </p>
 
                 <p>
-                    The latest
-                    <a href="http://maxvetrenko.github.io/">html report</a>
+                    <a href="http://maxvetrenko.github.io/">Checkstyle's html report for Guava library</a>
                 </p>
                 <p>
-                    Last
                     <a
-                        href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml">Google style checkstyle configuration</a>
+                        href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml">
+                    Checkstyle configuration Google's Java Style</a>
                 </p>
             </subsection>
             <subsection name="Legend">
@@ -438,7 +436,7 @@
                                     alt="" />
                                 <a
                                     href="http://checkstyle.sourceforge.net/config_blocks.html#LeftCurly">LeftCurly</a>
-                                ,
+                                <br/>
                                 <img
                                     src="https://raw.githubusercontent.com/maxvetrenko/Wiki-markers/master/images/ok_green.png"
                                     alt="" />
@@ -526,7 +524,8 @@
                                 We can detect URL with protocol type as http://, https:// etc.
                                 <br />
                                 <a href="https://developers.google.com/eclipse/docs/gwt_jsni">JSNI</a>
-                                Comments and javadoc support appear in Checkstyle
+                                could not be detected right now, but might be possible after comments and 
+                                javadoc support appear in Checkstyle
                             </td>
                             <td>
                                 <a
@@ -583,9 +582,9 @@
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s4.5.2-line-wrapping-indent">4.5.2 Indent continuation lines at least +4 spaces</a>
                             </td>
                             <td>
-                                <img
-                                    src="https://raw.githubusercontent.com/maxvetrenko/Wiki-markers/master/images/right_green.png"
-                                    alt="" />
+                                <!-- <img
+                                    src="https://raw.githubusercontent.com/maxvetrenko/Wiki-markers/master/images/ok_green.png"
+                                    alt="" /> -->
                                 <a href="https://github.com/maxvetrenko/checkstyle/issues/26">Indentation</a>
                             </td>
                             <td>
@@ -1100,6 +1099,8 @@
                                     alt="" />
                                 <a href="http://checkstyle.sourceforge.net/config_naming.html#AbbreviationAsWordInName">AbbreviationAsWordInName</a>
                                 <br />
+                                Non covered: Some words are ambiguously hyphenated in the English language. No way to
+                                distinguish "YouTubeImporter" or "YoutubeImporter".
                             </td>
                             <td>
                                 <a
@@ -1225,9 +1226,9 @@
                             </td>
                             <td>
                                 <a href="https://github.com/maxvetrenko/checkstyle/issues/7">AtClauseOrder</a>
-                                ,
+                                <br/>
                                 <a href="https://github.com/maxvetrenko/checkstyle/issues/8">JavaDocTagCuntionuousIndentation</a>
-                                ,
+                                <br/>
                                 <a href="https://github.com/maxvetrenko/checkstyle/issues/9">NonEmptyAtClauseDescription</a>
                             </td>
                             <td>[]</td>
