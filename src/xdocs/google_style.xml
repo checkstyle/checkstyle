@@ -12,9 +12,10 @@
         <section name="Google's Java Style Checkstyle Coverage ">
             <subsection name="Useful information">
                 <p>
+                    This coverage report was created for
                     <a
                         href="https://google-styleguide.googlecode.com/svn-history/r130/trunk/javaguide.html">Google Java Style</a>
-                    : March 21, 2014
+                    , version of March 21, 2014
                 </p>
 
                 <p>
@@ -23,7 +24,7 @@
                 <p>
                     <a
                         href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml">
-                    Checkstyle configuration Google's Java Style</a>
+                    Checkstyle configuration for 'Google Java Style'</a>
                 </p>
             </subsection>
             <subsection name="Legend">
