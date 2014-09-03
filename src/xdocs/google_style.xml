@@ -120,15 +120,17 @@
                         <tr>
                             <td>
                                 <a
-                                    href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s2.2-file-encoding">
-                                    <em>2.2 File encoding: UTF-8</em>
+                                    <img
+                                    src="https://raw.githubusercontent.com/maxvetrenko/Wiki-markers/master/images/ban_red.png"
+                                    alt="" />
+                                    <a href="https://github.com/checkstyle/checkstyle/issues/265">Explanation</a>
                                 </a>
                             </td>
                             <td>
                                 <br />
                                 <a href="https://github.com/maxvetrenko/checkstyle/issues/5">Utf8EncodingCheck</a>
                             </td>
-                            <td>[]</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>
