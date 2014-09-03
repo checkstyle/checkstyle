@@ -120,15 +120,15 @@
                         <tr>
                             <td>
                                 <a
-                                    <img
-                                    src="https://raw.githubusercontent.com/maxvetrenko/Wiki-markers/master/images/ban_red.png"
-                                    alt="" />
-                                    <a href="https://github.com/checkstyle/checkstyle/issues/265">Explanation</a>
+                                 href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s2.2-file-encoding">
+                                 2.2 File encoding: UTF-8
                                 </a>
                             </td>
                             <td>
-                                <br />
-                                <a href="https://github.com/maxvetrenko/checkstyle/issues/5">Utf8EncodingCheck</a>
+                                <img
+                                src="https://raw.githubusercontent.com/maxvetrenko/Wiki-markers/master/images/ban_red.png"
+                                alt="" />
+                                <a href="https://github.com/checkstyle/checkstyle/issues/265"> explanation</a>
                             </td>
                             <td></td>
                         </tr>
@@ -255,7 +255,7 @@
                             <td>
                                 <a
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s3.3-import-statements">
-                                    <em>3.3 Import statements</em>
+                                    3.3 Import statements
                                 </a>
                             </td>
                             <td>↓</td>
@@ -336,7 +336,7 @@
                             <td>
                                 <a
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s3.4-class-declaration">
-                                    <em>3.4 Class declaration</em>
+                                    3.4 Class declaration
                                 </a>
                             </td>
                             <td>↓</td>
@@ -402,7 +402,7 @@
                             <td>
                                 <a
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s4.1-braces">
-                                    <em>4.1 Braces</em>
+                                    4.1 Braces
                                 </a>
                             </td>
                             <td>↓</td>
@@ -542,7 +542,7 @@
                             <td>
                                 <a
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s4.5-line-wrapping">
-                                    <em>4.5 Line-wrapping</em>
+                                    4.5 Line-wrapping
                                 </a>
                             </td>
                             <td>--</td>
@@ -600,7 +600,7 @@
                             <td>
                                 <a
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s4.6-whitespace">
-                                    <em>4.6 Whitespace</em>
+                                    4.6 Whitespace
                                 </a>
                             </td>
                             <td>↓</td>
@@ -677,7 +677,7 @@
                             <td>
                                 <a
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s4.8-specific-constructs">
-                                    <em>4.8 Specific constructs</em>
+                                    4.8 Specific constructs
                                 </a>
                             </td>
                             <td>↓</td>
@@ -934,7 +934,7 @@
                             <td>
                                 <a
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s5.2-specific-identifier-names">
-                                    <em>5.2 Rules by identifier type</em>
+                                    5.2 Rules by identifier type
                                 </a>
                             </td>
                             <td>↓</td>
@@ -1196,7 +1196,7 @@
                             <td>
                                 <a
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s7.1-javadoc-formatting">
-                                    <em>7.1 Formatting</em>
+                                    7.1 Formatting
                                 </a>
                             </td>
                             <td>↓</td>
@@ -1255,7 +1255,7 @@
                             <td>
                                 <a
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s7.3-javadoc-where-required">
-                                    <em>7.3 Where Javadoc is used</em>
+                                    7.3 Where Javadoc is used
                                 </a>
                             </td>
                             <td>
