@@ -1146,9 +1146,18 @@
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s6.2-caught-exceptions">6.2 Caught exceptions: not ignored</a>
                             </td>
                             <td>
-                                <a href="https://github.com/maxvetrenko/checkstyle/issues/24">NotIgnoredExceptions</a>
+                                <img
+                                    src="https://raw.githubusercontent.com/maxvetrenko/Wiki-markers/master/images/ok_green.png"
+                                    alt="" />
+                                <a href="http://checkstyle.sourceforge.net/config_blocks.html#EmptyBlock">EmptyBlock</a>
+                                with option=text.
                             </td>
-                            <td></td>
+                            <td>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L54">config</a><br/>
+                                <a
+                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks/EmptyBlockTest.java">test</a>
+                            </td>
                         </tr>
                         <tr>
                             <td>
