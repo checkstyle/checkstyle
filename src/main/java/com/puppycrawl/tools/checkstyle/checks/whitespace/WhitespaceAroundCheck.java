@@ -85,7 +85,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="WhitespaceAround"/&gt;
  * </pre>
- * 
+ *
  * <p> An example of how to configure the check for whitespace only around
  * assignment operators is:
  *
@@ -95,7 +95,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *               value="ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,MOD_ASSIGN,SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,BAND_ASSIGN"/&gt;
  * &lt;/module&gt;
  * </pre>
- * 
+ *
  * <p>
  * In addition, this check can be configured to allow empty methods, types,
  * for, while, do-while loops and constructor bodies.
