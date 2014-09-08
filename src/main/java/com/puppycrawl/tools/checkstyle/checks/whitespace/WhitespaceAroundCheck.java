@@ -25,7 +25,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks that a token is surrounded by whitespace.
- * </p>
+ *
  * <p> By default the check will check the following operators:
  *  {@link TokenTypes#LITERAL_ASSERT ASSERT},
  *  {@link TokenTypes#ASSIGN ASSIGN},
@@ -78,22 +78,24 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  {@link TokenTypes#STAR_ASSIGN STAR_ASSIGN},
  *  {@link TokenTypes#LITERAL_ASSERT LITERAL_ASSERT},
  *  {@link TokenTypes#TYPE_EXTENSION_AND TYPE_EXTENSION_AND}.
- * </p>
+ *
  * <p>
  * An example of how to configure the check is:
- * </p>
+ *
  * <pre>
  * &lt;module name="WhitespaceAround"/&gt;
  * </pre>
+ * 
  * <p> An example of how to configure the check for whitespace only around
  * assignment operators is:
- * </p>
+ *
  * <pre>
  * &lt;module name="WhitespaceAround"&gt;
  *     &lt;property name="tokens"
  *               value="ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,MOD_ASSIGN,SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,BAND_ASSIGN"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * 
  * <p>
  * In addition, this check can be configured to allow empty methods, types,
  * for, while, do-while loops and constructor bodies.
