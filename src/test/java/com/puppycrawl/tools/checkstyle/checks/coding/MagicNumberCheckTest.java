@@ -32,8 +32,8 @@ public class MagicNumberCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MagicNumberCheck.class);
         final String[] expected = {
-            "41:26: '3' is a magic number.",
-            "42:32: '1.5' is a magic number.",
+            "41:26: '3_000' is a magic number.",
+            "42:32: '1.5_0' is a magic number.",
             "43:27: '3' is a magic number.",
             "43:31: '4' is a magic number.",
             "45:29: '3' is a magic number.",
@@ -46,7 +46,7 @@ public class MagicNumberCheckTest
             "55:39: '3' is a magic number.",
             "60:25: '010' is a magic number.",
             "61:25: '011' is a magic number.",
-            "63:30: '010L' is a magic number.",
+            "63:30: '0_10L' is a magic number.",
             "64:30: '011l' is a magic number.",
             "68:24: '0x10' is a magic number.",
             "69:24: '0X011' is a magic number.",

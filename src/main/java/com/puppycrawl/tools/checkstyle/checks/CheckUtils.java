@@ -151,7 +151,7 @@ public final class CheckUtils
      */
     public static double parseDouble(String aText, int aType)
     {
-        String txt = aText;
+        String txt = aText.replaceAll("_", "");
         double result = 0;
         switch (aType) {
         case TokenTypes.NUM_FLOAT:
