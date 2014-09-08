@@ -57,7 +57,7 @@ https://github.com/checkstyle/checkstyle/issues
 [trend]:https://bitdeli.com/free
 
 [sonar]:http://nemo.sonarqube.org/dashboard/index/com.puppycrawl.tools:checkstyle
-[sonar img]:http://dev.e-ucm.es/sonar/images/sonarqube-24x100.png?1384935962
+[sonar img]:https://dev.eclipse.org/sonar/images/sonarqube-24x100.png?1387490790
 
 [coverage]:https://coveralls.io/r/checkstyle/checkstyle
 [coverage img]:https://coveralls.io/repos/checkstyle/checkstyle/badge.png
