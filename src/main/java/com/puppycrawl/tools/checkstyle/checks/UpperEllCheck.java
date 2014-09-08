@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Rationale: The letter <span class="code">l</span> looks a lot
  * like the number <span class="code">1</span>.
  * </p>
- * 
+ *
  * Examples
  * <p class="body">
  * To configure the check:
