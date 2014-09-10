@@ -57,8 +57,9 @@ public class RedundantModifierCheck
                 aAST.findFirstToken(TokenTypes.MODIFIERS);
             if (null != modifiers) {
                 for (final int tokenType : new int[] {
-                        TokenTypes.LITERAL_STATIC,
-                        TokenTypes.ABSTRACT}) {
+                    TokenTypes.LITERAL_STATIC,
+                    TokenTypes.ABSTRACT, })
+                {
                     final DetailAST modifier =
                             modifiers.findFirstToken(tokenType);
                     if (null != modifier) {
