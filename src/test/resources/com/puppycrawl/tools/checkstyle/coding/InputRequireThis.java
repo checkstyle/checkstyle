@@ -87,3 +87,8 @@ class Bug1155921 {
         return static_method();
     }
 }
+
+interface Issue155 {
+    String BASE = "A";
+    String EXT = BASE + "B";
+}
