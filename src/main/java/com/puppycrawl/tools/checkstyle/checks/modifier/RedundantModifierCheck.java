@@ -56,11 +56,15 @@ public class RedundantModifierCheck
             final DetailAST modifiers =
                 aAST.findFirstToken(TokenTypes.MODIFIERS);
             if (null != modifiers) {
-                final DetailAST modifier =
-                    modifiers.findFirstToken(TokenTypes.LITERAL_STATIC);
-                if (null != modifier) {
-                    log(modifier.getLineNo(), modifier.getColumnNo(),
-                        "redundantModifier", modifier.getText());
+                for (final int tokenType : new int[] {
+                        TokenTypes.LITERAL_STATIC,
+                        TokenTypes.ABSTRACT}) {
+                    final DetailAST modifier =
+                            modifiers.findFirstToken(tokenType);
+                    if (null != modifier) {
+                        log(modifier.getLineNo(), modifier.getColumnNo(),
+                                "redundantModifier", modifier.getText());
+                    }
                 }
             }
         }
