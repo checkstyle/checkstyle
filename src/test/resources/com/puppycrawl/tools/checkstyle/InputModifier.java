@@ -96,7 +96,7 @@ final class RedundantFinalClass
 }
 
 /** Holder for redundant modifiers of inner implementation */
-interface InnerImplementation
+abstract interface InnerImplementation
 {
     InnerImplementation inner =
         new InnerImplementation()
