@@ -96,6 +96,11 @@
         </p>
 
         <p>
+          Interfaces by definition are abstract so the <code>abstract</code>
+          modifier on the interface is redundant.
+        </p>
+
+        <p>
           Variables in interfaces and annotations are automatically
           public, static and final, so these modifiers are redundant as
           well.
