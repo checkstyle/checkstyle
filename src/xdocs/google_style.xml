@@ -1288,7 +1288,9 @@
                                 <a
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s7.3.2-javadoc-exception-overrides">7.3.2 Exception: overrides</a>
                             </td>
-                            <td>--</td>
+                            <td>
+                                <a href="https://github.com/maxvetrenko/checkstyle/issues/35">JavadocMethodCheck</a> Overrides are checked by presense of "@Override" annotation on method.
+                            </td>
                             <td></td>
                         </tr>
                     </tbody>
