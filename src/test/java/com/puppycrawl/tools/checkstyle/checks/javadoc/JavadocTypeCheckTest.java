@@ -268,6 +268,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
             "75: Missing a Javadoc comment.",
             "87: Missing a Javadoc comment.",
             "99: Missing a Javadoc comment.",
+            "111: Missing a Javadoc comment.",
         };
         verify(checkConfig,
                getPath("javadoc" + File.separator + "InputNoJavadoc.java"),
@@ -304,6 +305,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
             "75: Missing a Javadoc comment.",
             "87: Missing a Javadoc comment.",
             "99: Missing a Javadoc comment.",
+            "111: Missing a Javadoc comment.",
         };
         verify(checkConfig,
                getPath("javadoc" + File.separator + "InputNoJavadoc.java"),
