@@ -241,4 +241,11 @@ class SpecialCasesInForLoop
         int i = (int) ( 2 / 3 );
         return null;
     }
+
+    public myMethod() {
+        new Thread() {
+            public void run() {
+            }
+        }.start();
+    }
 }
