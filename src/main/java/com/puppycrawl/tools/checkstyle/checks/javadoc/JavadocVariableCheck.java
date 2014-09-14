@@ -25,10 +25,8 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import org.apache.commons.beanutils.ConversionException;
 
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 /**
  * Checks that a variable has Javadoc comment.
@@ -45,11 +43,11 @@ public class JavadocVariableCheck
     /** the visibility scope where Javadoc comments shouldn't be checked **/
     private Scope mExcludeScope;
 
-    /** the variables to ignore */
-    private String mIgnoreNames;
+    /** the regular expression to ignore variable name */
+    private String mIgnoreNameRegexp;
 
-    /** the variables to ignore pattern */
-    private Pattern mIgnoreNamesRegexp;
+    /** the pattern to ignore variable name */
+    private Pattern mIgnoreNamePattern;
 
     /**
      * Sets the scope to check.
@@ -73,18 +71,24 @@ public class JavadocVariableCheck
      * Sets the variable names to ignore in the check.
      * @param aRegexp regexp to define variable names to ignore.
      */
-    public void setIgnoreNames(String aRegexp)
+    public void setIgnoreNamePattern(String aRegexp)
     {
-        updateIgnoreNamesRegexp(aRegexp);
+        mIgnoreNameRegexp = aRegexp;
+        if (!(aRegexp == null || aRegexp.length() == 0)) {
+            mIgnoreNamePattern = Pattern.compile(aRegexp);
+        }
+        else {
+            mIgnoreNamePattern = null;
+        }
     }
 
     /**
      * Gets the variable names to ignore in the check.
      * @return true regexp string to define variable names to ignore.
      */
-    public String getIgnoreNames()
+    public String getIgnoreNamePattern()
     {
-        return mIgnoreNames;
+        return mIgnoreNameRegexp;
     }
 
     @Override
@@ -118,8 +122,8 @@ public class JavadocVariableCheck
     private boolean isIgnored(DetailAST aAST)
     {
         final String name = aAST.findFirstToken(TokenTypes.IDENT).getText();
-        return mIgnoreNamesRegexp != null
-                && mIgnoreNamesRegexp.matcher(name).matches();
+        return mIgnoreNamePattern != null
+                && mIgnoreNamePattern.matcher(name).matches();
     }
 
     /**
@@ -151,23 +155,5 @@ public class JavadocVariableCheck
             && ((mExcludeScope == null)
                 || !scope.isIn(mExcludeScope)
                 || !surroundingScope.isIn(mExcludeScope));
-    }
-
-    /**
-     * Updates the regular expression using the supplied format.
-     * Will also update the member variables.
-     * @param aFormat the format of the regular expression.
-     */
-    private void updateIgnoreNamesRegexp(String aFormat)
-    {
-        mIgnoreNames = aFormat;
-        try {
-            if (!(aFormat == null || aFormat.length() == 0)) {
-                mIgnoreNamesRegexp = Pattern.compile(aFormat);
-            }
-        }
-        catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + aFormat, e);
-        }
     }
 }

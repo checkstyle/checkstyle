@@ -217,7 +217,7 @@ public class JavadocVariableCheckTest
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(JavadocVariableCheck.class);
-        checkConfig.addAttribute("ignoreNames", "log|logger");
+        checkConfig.addAttribute("ignoreNamePattern", "log|logger");
         final String[] expected = {
             "5:5: Missing a Javadoc comment.",
             "6:5: Missing a Javadoc comment.",
