@@ -86,7 +86,7 @@ public final class MissingOverrideCheck extends Check
     private static final Pattern MATCH_INHERITDOC =
         Utils.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
 
-    /** @see MissingDeprecatedCheck#setJavaFiveCompatibility(boolean) */
+    /** @see #setJavaFiveCompatibility(boolean) */
     private boolean mJavaFiveCompatibility;
 
     /**

@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  * This Class contains no logic, but serves as test-input for the unit tests for the 
  * <code>OneStatementPerLineCheck</code>-checkstyle enhancement.
  * @author Alexander Jesse
- * @see com.puppycrawl.tools.checkstyle.checks.metrics.ExcessiveTypePerFileCheck
+ * @see com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck
  */
 public class OneStatementPerLineCheckInput {
   /**

@@ -135,7 +135,7 @@ public final class AnnotationUseStyleCheck extends Check
     /** @see #setTrailingArrayComma(String) */
     private TrailingArrayComma mComma = TrailingArrayComma.NEVER;
 
-    /** @see #setClosingParans(String) */
+    /** @see #setClosingParens(String) */
     private ClosingParens mParens = ClosingParens.NEVER;
 
     /**
