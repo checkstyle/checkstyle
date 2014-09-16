@@ -107,4 +107,9 @@ class PackageClass {
         void foo3() {}
         private void foo4() {}
     }
+
+    class IgnoredName {
+        // ignore by name
+        private int logger;
+    }
 }
