@@ -3432,7 +3432,7 @@ public final class TokenTypes
     public static final int GENERIC_END = GeneratedJavaTokenTypes.GENERIC_END;
 
     /**
-     * "->" lambda specifying symbol.
+     * Special lambda symbol '-&gt;'.
      */
     public static final int LAMBDA = GeneratedJavaTokenTypes.LAMBDA;
 
