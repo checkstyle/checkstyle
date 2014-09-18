@@ -493,6 +493,12 @@ public boolean isSomething()
             <td><a href="property_types.html#scope">scope</a></td>
             <td><code>null</code></td>
           </tr>
+          <tr>
+              <td>ignoreNamePattern</td>
+              <td>regexp to define variable names to ignore</td>
+              <td><a href="property_types.html#regexp">regular expression</a></td>
+              <td><code>null</code></td>
+          </tr>
         </table>
       </subsection>
 
@@ -523,6 +529,16 @@ public boolean isSomething()
 &lt;module name="JavadocVariable"&gt;
    &lt;property name="scope" value="private"/&gt;
    &lt;property name="excludeScope" value="protected"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+            To ignore absence of Javadoc comments for variables with names <code>log</code> or <code>logger</code>:
+        </p>
+
+        <source>
+&lt;module name="JavadocVariable"&gt;
+    &lt;property name="ignoreNamePattern" value="log|logger"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
