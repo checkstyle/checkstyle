@@ -242,3 +242,16 @@ public class InputValidIfIndent {
         return true;
     }
 }
+
+class FooFoo {
+    void foo42() {
+        if (test) {
+            System.getProperty("blah");
+        } else if (7 < 8
+            && 8 < 9) {
+            System.getProperty("blah");
+        } else if (8 < 9) {
+            System.getProperty("blah");
+        }
+    }
+}

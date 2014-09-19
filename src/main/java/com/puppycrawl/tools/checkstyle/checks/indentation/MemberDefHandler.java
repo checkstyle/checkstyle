@@ -42,15 +42,47 @@ public class MemberDefHandler extends ExpressionHandler
         super(aIndentCheck, "member def", aAST, aParent);
     }
 
-    /**
-     * Check the indentation of the method name.
-     */
-    private void checkIdent()
+    @Override
+    public void checkIndentation()
     {
-        final DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
-        final int columnNo = expandedTabsColumnNo(ident);
-        if (startsLine(ident) && !getLevel().accept(columnNo)) {
-            logError(ident, "", columnNo);
+        final DetailAST modifiersNode = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
+        if (modifiersNode.getChildCount() != 0) {
+            checkModifiers();
+        }
+        else {
+            checkType();
+        }
+        final LineWrappingHandler lineWrap =
+            new LineWrappingHandler(getIndentCheck(), getMainAst()) {
+                @Override
+                public DetailAST findLastNode(DetailAST aFirstNode)
+                {
+                    DetailAST lastNode = getFirstNode().getLastChild();
+                    if (lastNode.getType() != TokenTypes.SEMI) {
+                        lastNode = getFirstNode().getNextSibling();
+                    }
+                    return lastNode;
+                }
+            };
+        if (lineWrap.getLastNode() != null && !isArrayDeclaration(getMainAst())) {
+            lineWrap.checkIndentation();
+        }
+    }
+
+    @Override
+    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
+    {
+        return getLevel();
+    }
+
+    @Override
+    protected void checkModifiers()
+    {
+        final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
+        if (startsLine(modifier)
+            && !getLevel().accept(expandedTabsColumnNo(modifier)))
+        {
+            logError(modifier, "modifier", expandedTabsColumnNo(modifier));
         }
     }
 
@@ -67,17 +99,14 @@ public class MemberDefHandler extends ExpressionHandler
         }
     }
 
-    @Override
-    public void checkIndentation()
+    /**
+     * Checks if variable_def node is array declaration.
+     * @param aVariableDef current variable_def.
+     * @return true if variable_def node is array declaration.
+     */
+    private boolean isArrayDeclaration(DetailAST aVariableDef)
     {
-        checkModifiers();
-        checkType();
-        checkIdent();
-    }
-
-    @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
-    {
-        return getLevel();
+        return aVariableDef.findFirstToken(TokenTypes.TYPE)
+            .findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null;
     }
 }

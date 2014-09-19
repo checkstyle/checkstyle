@@ -101,5 +101,14 @@ public class IfHandler extends BlockParentHandler
     {
         super.checkIndentation();
         checkCondExpr();
+        final LineWrappingHandler lineWrap =
+            new LineWrappingHandler(getIndentCheck(), getMainAst()) {
+                @Override
+                public DetailAST findLastNode(DetailAST aFirstNode)
+                {
+                    return aFirstNode.findFirstToken(TokenTypes.RPAREN);
+                }
+            };
+        lineWrap.checkIndentation();
     }
 }

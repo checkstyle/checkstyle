@@ -61,6 +61,10 @@ public class NewHandler extends ExpressionHandler
             return;
         }
 
+        if (getMainAst().getType() != TokenTypes.OBJBLOCK) {
+            return;
+        }
+
         // if this method name is on the same line as a containing
         // method, don't indent, this allows expressions like:
         //    method("my str" + method2(

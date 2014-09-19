@@ -43,7 +43,7 @@ public class ClassDefHandler extends BlockParentHandler
         super(aIndentCheck,
               (aAst.getType() == TokenTypes.CLASS_DEF)
               ? "class def" : ((aAst.getType() == TokenTypes.ENUM_DEF)
-                               ? "enum def" : "interface def"),
+                  ? "enum def" : "interface def"),
               aAst, aParent);
     }
 
@@ -77,36 +77,28 @@ public class ClassDefHandler extends BlockParentHandler
     @Override
     public void checkIndentation()
     {
-        // TODO: still need to better deal with the modifiers and "class"
-        checkModifiers();
+        final DetailAST modifiers = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
+        if (modifiers.getChildCount() == 0) {
+            final DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
+            final int lineStart = getLineStart(ident);
+            if (!getLevel().accept(lineStart)) {
+                logError(ident, "ident", lineStart);
+            }
 
-        final LineSet lines = new LineSet();
-
-        // checks that line with class name starts at correct indentation,
-        //  and following lines (in implements and extends clauses) are
-        //  indented at least one level
-        final DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
-        final int lineStart = getLineStart(ident);
-        if (!getLevel().accept(lineStart)) {
-            logError(ident, "ident", lineStart);
+        }
+        else {
+            checkModifiers();
         }
 
-        lines.addLineAndCol(ident.getLineNo(), lineStart);
-
-        final DetailAST impl = getMainAst().findFirstToken(
-            TokenTypes.IMPLEMENTS_CLAUSE);
-        if ((impl != null) && (impl.getFirstChild() != null)) {
-            findSubtreeLines(lines, impl, false);
-        }
-
-        final DetailAST ext =
-            getMainAst().findFirstToken(TokenTypes.EXTENDS_CLAUSE);
-        if ((ext != null) && (ext.getFirstChild() != null)) {
-            findSubtreeLines(lines, ext, false);
-        }
-
-        checkLinesIndent(ident.getLineNo(), lines.lastLine(), getLevel());
-
+        final LineWrappingHandler lineWrap =
+            new LineWrappingHandler(getIndentCheck(), getMainAst()) {
+                @Override
+                public DetailAST findLastNode(DetailAST aFirstNode)
+                {
+                    return aFirstNode.getLastChild();
+                }
+            };
+        lineWrap.checkIndentation();
         super.checkIndentation();
     }
 

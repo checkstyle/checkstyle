@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FastStack;
-import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 // TODO: allow preset indentation styles (IE... GNU style, Sun style, etc...)?
 
@@ -104,6 +102,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author jrichard
  * @author o_sukhodolsky
  * @author Maikel Steneker
+ * @author maxvetrenko
  */
 public class IndentationCheck extends Check
 {
@@ -122,8 +121,11 @@ public class IndentationCheck extends Check
     /** how far throws should be indented when on next line */
     private int mThrowsIndentationAmount = DEFAULT_INDENTATION;
 
-    /** how much to indent an array initialisation when on next line */
+    /** how much to indent an array initialization when on next line */
     private int mArrayInitIndentationAmount = DEFAULT_INDENTATION;
+
+    /** how far continuation line should be indented when line-wrapping is present */
+    private int mLineWrappingIndentation = DEFAULT_INDENTATION;
 
     /** handlers currently in use */
     private final FastStack<ExpressionHandler> mHandlers =
@@ -228,13 +230,34 @@ public class IndentationCheck extends Check
     }
 
     /**
-     * Get the array initialisation indentation level.
+     * Get the line-wrapping indentation level.
      *
-     * @return the array initialisation indentation level
+     * @return the initialisation indentation level
      */
     public int getArrayInitIndent()
     {
         return this.mArrayInitIndentationAmount;
+    }
+
+    /**
+     * Get the array line-wrapping indentation level.
+     *
+     * @return the line-wrapping indentation level
+     */
+    public int getLineWrappingIndentation()
+    {
+        return mLineWrappingIndentation;
+    }
+
+
+    /**
+     * Set the line-wrapping indentation level.
+     *
+     * @param aLineWrappingIndentation the line-wrapping indentation level
+     */
+    public void setLineWrappingIndentation(int aLineWrappingIndentation)
+    {
+        mLineWrappingIndentation = aLineWrappingIndentation;
     }
 
     /**
@@ -278,13 +301,6 @@ public class IndentationCheck extends Check
     @Override
     public void visitToken(DetailAST aAST)
     {
-        if ((aAST.getType() == TokenTypes.VARIABLE_DEF)
-            && ScopeUtils.isLocalVariableDef(aAST))
-        {
-            // we have handler only for members
-            return;
-        }
-
         final ExpressionHandler handler = mHandlerFactory.getHandler(this, aAST,
             mHandlers.peek());
         mHandlers.push(handler);
@@ -299,12 +315,6 @@ public class IndentationCheck extends Check
     @Override
     public void leaveToken(DetailAST aAST)
     {
-        if ((aAST.getType() == TokenTypes.VARIABLE_DEF)
-            && ScopeUtils.isLocalVariableDef(aAST))
-        {
-            // we have handler only for members
-            return;
-        }
         mHandlers.pop();
     }
 

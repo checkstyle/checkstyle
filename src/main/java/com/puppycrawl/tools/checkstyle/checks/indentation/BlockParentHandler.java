@@ -97,7 +97,7 @@ public class BlockParentHandler extends ExpressionHandler
         final DetailAST toplevel = getToplevelAST();
 
         if ((toplevel == null)
-            || getLevel().accept(expandedTabsColumnNo(toplevel)))
+            || getLevel().accept(expandedTabsColumnNo(toplevel)) || hasLabelBefore())
         {
             return;
         }
@@ -105,6 +105,17 @@ public class BlockParentHandler extends ExpressionHandler
             return;
         }
         logError(toplevel, "", expandedTabsColumnNo(toplevel));
+    }
+
+    /**
+     * Check if the top level token has label before.
+     * @return true if the top level token has label before.
+     */
+    protected boolean hasLabelBefore()
+    {
+        final DetailAST parent = getToplevelAST().getParent();
+        return parent != null && parent.getType() == TokenTypes.LABELED_STAT
+            && parent.getLineNo() == getToplevelAST().getLineNo();
     }
 
     /**
@@ -177,7 +188,7 @@ public class BlockParentHandler extends ExpressionHandler
      *
      * @return the curly brace indentation level
      */
-    private IndentLevel curlyLevel()
+    protected IndentLevel curlyLevel()
     {
         return new IndentLevel(getLevel(), getBraceAdjustement());
     }
@@ -230,8 +241,7 @@ public class BlockParentHandler extends ExpressionHandler
      */
     protected DetailAST getNonlistChild()
     {
-        return getMainAst().findFirstToken(
-            TokenTypes.RPAREN).getNextSibling();
+        return getMainAst().findFirstToken(TokenTypes.RPAREN).getNextSibling();
     }
 
     /**
@@ -239,14 +249,12 @@ public class BlockParentHandler extends ExpressionHandler
      */
     private void checkNonlistChild()
     {
-        // TODO: look for SEMI and check for it here?
         final DetailAST nonlist = getNonlistChild();
         if (nonlist == null) {
             return;
         }
 
-        final IndentLevel expected =
-            new IndentLevel(getLevel(), getBasicOffset());
+        final IndentLevel expected = new IndentLevel(getLevel(), getBasicOffset());
         checkExpressionSubtree(nonlist, expected, false, false);
     }
 
@@ -319,12 +327,12 @@ public class BlockParentHandler extends ExpressionHandler
             && !areOnSameLine(getLCurly(), getRCurly()))
         {
             if (startsLine(getLCurly())) {
-                return new IndentLevel(expandedTabsColumnNo(getLCurly())
-                                       + getBasicOffset());
+                return new IndentLevel(expandedTabsColumnNo(getLCurly()) + getBasicOffset());
             }
             else if (startsLine(getRCurly())) {
-                return new IndentLevel(expandedTabsColumnNo(getRCurly())
-                                       + getBasicOffset());
+                final IndentLevel level = new IndentLevel(curlyLevel(), getBasicOffset());
+                level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndent());
+                return level;
             }
         }
         return new IndentLevel(getLevel(), getBasicOffset());
@@ -336,4 +344,13 @@ public class BlockParentHandler extends ExpressionHandler
         return getChildrenExpectedLevel();
     }
 
+    /**
+     * A shortcut for <code>IndentationCheck</code> property.
+     * @return value of lineWrappingIndentation property
+     *         of <code>IndentationCheck</code>
+     */
+    private int getLineWrappingIndent()
+    {
+        return getIndentCheck().getLineWrappingIndentation();
+    }
 }

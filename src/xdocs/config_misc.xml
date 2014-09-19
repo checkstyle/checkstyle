@@ -815,6 +815,12 @@ messages.properties: Key 'ok' missing.
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>4</td>
           </tr>
+          <tr>
+            <td>lineWrappingIndentation</td>
+            <td>how far continuation line should be indented when line-wrapping is present</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td>4</td>
+          </tr>
         </table>
       </subsection>
 

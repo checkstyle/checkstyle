@@ -18,8 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import com.google.common.collect.Sets;
 import java.util.SortedSet;
+
+import com.google.common.base.Joiner;
+import com.google.common.collect.Sets;
 
 /**
  * Encapsulates representation of notion of expected indentation levels.
@@ -44,12 +46,14 @@ public class IndentLevel
     /**
      * Creates new instance for nested structure.
      * @param aBase parent's level
-     * @param aOffset offset from parent's level.
+     * @param aOffsets offsets from parent's level.
      */
-    public IndentLevel(IndentLevel aBase, int aOffset)
+    public IndentLevel(IndentLevel aBase, int... aOffsets)
     {
         for (Integer base : aBase.mLevels) {
-            mLevels.add(base + aOffset);
+            for (int offset : aOffsets) {
+                mLevels.add(base + offset);
+            }
         }
     }
 
@@ -63,9 +67,9 @@ public class IndentLevel
     }
 
     /**
-     * Checks if given indentation is accaptable.
+     * Checks if given indentation is acceptable.
      * @param aIndent indentation to check.
-     * @return true if givent indentation is acceptable,
+     * @return true if given indentation is acceptable,
      *         false otherwise.
      */
     public boolean accept(int aIndent)
@@ -76,7 +80,7 @@ public class IndentLevel
     /**
      * @param aIndent indentation to check.
      * @return true if <code>aIndent</code> less then minimal of
-     *         accaptable indentation levels, false otherwise.
+     *         acceptable indentation levels, false otherwise.
      */
     public boolean gt(int aIndent)
     {
@@ -101,13 +105,27 @@ public class IndentLevel
         mLevels.addAll(aIndent.mLevels);
     }
 
+    /**
+     * Returns first indentation level.
+     * @return indentation level.
+     */
+    public int getFirstIndentLevel()
+    {
+        return mLevels.first();
+    }
+
+    /**
+     * Returns last indentation level.
+     * @return indentation level.
+     */
+    public int getLastIndentLevel()
+    {
+        return mLevels.last();
+    }
+
     @Override
     public String toString()
     {
-        if (mLevels.size() == 1) {
-            return mLevels.first().toString();
-        }
-
-        return mLevels.toString();
+        return Joiner.on(", ").join(mLevels);
     }
 }

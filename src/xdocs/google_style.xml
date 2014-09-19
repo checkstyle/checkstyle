@@ -585,10 +585,10 @@
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s4.5.2-line-wrapping-indent">4.5.2 Indent continuation lines at least +4 spaces</a>
                             </td>
                             <td>
-                                <!-- <img
+                                <img
                                     src="images/ok_green.png"
-                                    alt="" /> -->
-                                <a href="https://github.com/maxvetrenko/checkstyle/issues/26">Indentation</a>
+                                    alt="" />
+                                <a href="config_misc.html#Indentation">Indentation</a>
                             </td>
                             <td>
                                 <a

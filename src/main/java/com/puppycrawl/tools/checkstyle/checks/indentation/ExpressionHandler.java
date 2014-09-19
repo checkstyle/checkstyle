@@ -131,8 +131,12 @@ public abstract class ExpressionHandler
     {
         final String typeStr =
             ("".equals(aSubtypeName) ? "" : (" " + aSubtypeName));
-        mIndentCheck.indentationLog(aAst.getLineNo(), "indentation.error",
-                mTypeName + typeStr, aActualLevel, aExpectedLevel);
+        String messageKey = "indentation.error";
+        if (aExpectedLevel.isMultiLevel()) {
+            messageKey = "indentation.error.multi";
+        }
+        mIndentCheck.indentationLog(aAst.getLineNo(), messageKey,
+            mTypeName + typeStr, aActualLevel, aExpectedLevel);
     }
 
     /**
@@ -146,8 +150,12 @@ public abstract class ExpressionHandler
                                int aActualLevel,
                                IndentLevel aExpectedLevel)
     {
-        mIndentCheck.indentationLog(aLine, "indentation.child.error",
-                mTypeName, aActualLevel, aExpectedLevel);
+        String messageKey = "indentation.child.error";
+        if (aExpectedLevel.isMultiLevel()) {
+            messageKey = "indentation.child.error.multi";
+        }
+        mIndentCheck.indentationLog(aLine, messageKey,
+            mTypeName, aActualLevel, aExpectedLevel);
     }
 
     /**
@@ -213,11 +221,6 @@ public abstract class ExpressionHandler
         final String line = mIndentCheck.getLines()[aAst.getLineNo() - 1];
         return getLineStart(line);
     }
-
-    // TODO: this whole checking of consecuitive/expression line indents is
-    // smelling pretty bad... and is in serious need of pruning.  But, I
-    // want to finish the invalid tests before I start messing around with
-    // it.
 
     /**
      * Check the indentation of consecutive lines for the expression we are
@@ -286,9 +289,6 @@ public abstract class ExpressionHandler
         // nested with the previous expression (which is assumed if it
         // doesn't start the line) then don't indent more, the first
         // indentation is absorbed by the nesting
-
-        // TODO: shouldIncreaseIndent() is a hack, should be removed
-        //       after complete rewriting of checkExpressionSubtree()
 
         IndentLevel theLevel = aIndentLevel;
         if (aFirstLineMatches
@@ -370,10 +370,6 @@ public abstract class ExpressionHandler
         return 0;
     }
 
-    // TODO: allowNesting either shouldn't be allowed with
-    //  firstLineMatches, or I should change the firstLineMatches logic
-    //  so it doesn't match if the first line is nested
-
     /**
      * Check the indent level of the children of the specified parent
      * expression.
@@ -438,9 +434,6 @@ public abstract class ExpressionHandler
      */
     protected final int getFirstLine(int aStartLine, DetailAST aTree)
     {
-        // find line for this node
-        // TODO: getLineNo should probably not return < 0, but it is for
-        // the interface methods... I should ask about this
         int realStart = aStartLine;
         final int currLine = aTree.getLineNo();
         if (currLine < realStart) {
@@ -485,22 +478,11 @@ public abstract class ExpressionHandler
     protected final void findSubtreeLines(LineSet aLines, DetailAST aTree,
         boolean aAllowNesting)
     {
-        // find line for this node
-        // TODO: getLineNo should probably not return < 0, but it is for
-        // the interface methods... I should ask about this
-
         if (getIndentCheck().getHandlerFactory().isHandledType(aTree.getType())
             || (aTree.getLineNo() < 0))
         {
             return;
         }
-
-        // TODO: the problem with this is that not all tree tokens actually
-        // have the right column number -- I should get a list of these
-        // and verify that checking nesting this way won't cause problems
-//          if (aAllowNesting && aTree.getColumnNo() != getLineStart(aTree)) {
-//              return;
-//          }
 
         final int lineNum = aTree.getLineNo();
         final Integer colNum = aLines.getStartColumn(lineNum);
@@ -522,7 +504,7 @@ public abstract class ExpressionHandler
     /**
      * Check the indentation level of modifiers.
      */
-    protected final void checkModifiers()
+    protected void checkModifiers()
     {
         final DetailAST modifiers =
             mMainAst.findFirstToken(TokenTypes.MODIFIERS);
@@ -530,11 +512,6 @@ public abstract class ExpressionHandler
              modifier != null;
              modifier = modifier.getNextSibling())
         {
-            /*
-            if (!areOnSameLine(modifier, prevExpr)) {
-                continue;
-            }
-            */
             if (startsLine(modifier)
                 && !getLevel().accept(expandedTabsColumnNo(modifier)))
             {
