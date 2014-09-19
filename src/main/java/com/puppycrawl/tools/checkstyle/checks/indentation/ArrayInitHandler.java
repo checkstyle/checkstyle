@@ -72,6 +72,14 @@ public class ArrayInitHandler extends BlockParentHandler
     }
 
     @Override
+    protected IndentLevel curlyLevel()
+    {
+        final IndentLevel level = new IndentLevel(getLevel(), getBraceAdjustement());
+        level.addAcceptedIndent(level.getLastIndentLevel() + getLineWrappingIndent());
+        return level;
+    }
+
+    @Override
     protected DetailAST getRCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.RCURLY);
@@ -98,15 +106,9 @@ public class ArrayInitHandler extends BlockParentHandler
     @Override
     protected IndentLevel getChildrenExpectedLevel()
     {
-        // now we accept
-        // new int[] {1,
-        //            2};
-        // and
-        // new int[] {1, 2,
-        //     3};
-
         final IndentLevel expectedIndent =
-            new IndentLevel(getLevel(), getIndentCheck().getArrayInitIndent());
+            new IndentLevel(getLevel(), getIndentCheck().getArrayInitIndent(),
+                    getIndentCheck().getLineWrappingIndentation());
 
         final int firstLine = getFirstLine(Integer.MAX_VALUE, getListChild());
         if (hasCurlys() && (firstLine == getLCurly().getLineNo())) {
@@ -115,6 +117,7 @@ public class ArrayInitHandler extends BlockParentHandler
                 getNextFirstNonblankOnLineAfter(firstLine, lcurlyPos);
             if (firstChildPos >= 0) {
                 expectedIndent.addAcceptedIndent(firstChildPos);
+                expectedIndent.addAcceptedIndent(lcurlyPos + getLineWrappingIndent());
             }
         }
         return expectedIndent;
@@ -140,5 +143,15 @@ public class ArrayInitHandler extends BlockParentHandler
         }
 
         return (columnNo == lineLength) ? -1 : columnNo;
+    }
+
+    /**
+     * A shortcut for <code>IndentationCheck</code> property.
+     * @return value of lineWrappingIndentation property
+     *         of <code>IndentationCheck</code>
+     */
+    private int getLineWrappingIndent()
+    {
+        return getIndentCheck().getLineWrappingIndentation();
     }
 }

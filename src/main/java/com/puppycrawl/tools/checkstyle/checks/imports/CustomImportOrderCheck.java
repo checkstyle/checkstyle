@@ -229,8 +229,7 @@ public class CustomImportOrderCheck extends Check
      * @param aInputCustomImportOrder
      *        user value.
      */
-    public final void
-    setCustomImportOrderRules(final String aInputCustomImportOrder)
+    public final void setCustomImportOrderRules(final String aInputCustomImportOrder)
     {
         mCustomImportOrderRules.clear();
         try {

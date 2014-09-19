@@ -104,18 +104,6 @@ public class HandlerFactory
         register(TokenTypes.LABELED_STAT, LabelHandler.class);
         register(TokenTypes.STATIC_INIT, StaticInitHandler.class);
         register(TokenTypes.INSTANCE_INIT, SlistHandler.class);
-        register(TokenTypes.ASSIGN, AssignHandler.class);
-        register(TokenTypes.PLUS_ASSIGN, AssignHandler.class);
-        register(TokenTypes.MINUS_ASSIGN, AssignHandler.class);
-        register(TokenTypes.STAR_ASSIGN, AssignHandler.class);
-        register(TokenTypes.DIV_ASSIGN, AssignHandler.class);
-        register(TokenTypes.MOD_ASSIGN, AssignHandler.class);
-        register(TokenTypes.SR_ASSIGN, AssignHandler.class);
-        register(TokenTypes.BSR_ASSIGN, AssignHandler.class);
-        register(TokenTypes.SL_ASSIGN, AssignHandler.class);
-        register(TokenTypes.BAND_ASSIGN, AssignHandler.class);
-        register(TokenTypes.BXOR_ASSIGN, AssignHandler.class);
-        register(TokenTypes.BOR_ASSIGN, AssignHandler.class);
         register(TokenTypes.VARIABLE_DEF, MemberDefHandler.class);
         register(TokenTypes.LITERAL_NEW, NewHandler.class);
         register(TokenTypes.INDEX_OP, IndexHandler.class);

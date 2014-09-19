@@ -150,6 +150,12 @@ public class MethodCallHandler extends ExpressionHandler
     @Override
     public void checkIndentation()
     {
+        final DetailAST exprNode = getMainAst().getParent();
+        if (exprNode.getParent().getType() != TokenTypes.LCURLY
+            && exprNode.getParent().getType() != TokenTypes.SLIST)
+        {
+            return;
+        }
         final DetailAST methodName = getMainAst().getFirstChild();
         checkExpressionSubtree(methodName, getLevel(), false, false);
 
@@ -161,22 +167,38 @@ public class MethodCallHandler extends ExpressionHandler
             return;
         }
 
-        // if this method name is on the same line as a containing
-        // method, don't indent, this allows expressions like:
-        //    method("my str" + method2(
-        //        "my str2"));
-        // as well as
-        //    method("my str" +
-        //        method2(
-        //            "my str2"));
-        //
-
         checkExpressionSubtree(
             getMainAst().findFirstToken(TokenTypes.ELIST),
             new IndentLevel(getLevel(), getBasicOffset()),
             false, true);
 
         checkRParen(lparen, rparen);
+        final LineWrappingHandler lineWrap =
+            new LineWrappingHandler(getIndentCheck(), getMainAst()) {
+                @Override
+                public DetailAST findLastNode(DetailAST aFirstNode)
+                {
+                    DetailAST lastNode;
+                    if (getFirstNode().getNextSibling() == null) {
+                        lastNode = getFirstNode().getLastChild();
+                    }
+                    else {
+                        lastNode = getFirstNode().getNextSibling();
+                    }
+                    return lastNode;
+                }
+
+                @Override
+                public int getCurrentIndentation()
+                {
+                    DetailAST curNode = getFirstNode();
+                    while (curNode.getType() != TokenTypes.IDENT) {
+                        curNode = curNode.getFirstChild();
+                    }
+                    return curNode.getColumnNo() + getIndentLevel();
+                }
+            };
+        lineWrap.checkIndentation();
     }
 
     @Override

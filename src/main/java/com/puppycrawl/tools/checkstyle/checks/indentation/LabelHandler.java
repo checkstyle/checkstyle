@@ -52,7 +52,9 @@ public class LabelHandler extends ExpressionHandler
     @Override
     protected IndentLevel getLevelImpl()
     {
-        return new IndentLevel(super.getLevelImpl(), -getBasicOffset());
+        final IndentLevel level = new IndentLevel(super.getLevelImpl(), -getBasicOffset());
+        level.addAcceptedIndent(super.getLevelImpl());
+        return level;
     }
 
     /**

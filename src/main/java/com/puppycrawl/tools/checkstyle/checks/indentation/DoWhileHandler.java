@@ -56,7 +56,6 @@ public class DoWhileHandler extends BlockParentHandler
     public void checkIndentation()
     {
         super.checkIndentation();
-        // TODO: checkWhile();  // while is not in the grammar, why not?
         checkCondExpr();
     }
 }

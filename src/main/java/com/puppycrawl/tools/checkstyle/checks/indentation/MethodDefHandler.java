@@ -51,74 +51,31 @@ public class MethodDefHandler extends BlockParentHandler
         return null;
     }
 
-    /**
-     * Check the indentation of the method name.
-     */
-    private void checkIdent()
+    @Override
+    protected void checkModifiers()
     {
-        final DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
-        final int columnNo = expandedTabsColumnNo(ident);
-        if (startsLine(ident) && !getLevel().accept(columnNo)) {
-            logError(ident, "", columnNo);
-        }
-    }
-
-    /**
-     * Check the indentation of the throws clause.
-     */
-    private void checkThrows()
-    {
-        final DetailAST throwsAst =
-            getMainAst().findFirstToken(TokenTypes.LITERAL_THROWS);
-        if (throwsAst == null) {
-            return;
-        }
-
-        final int columnNo = expandedTabsColumnNo(throwsAst);
-        final IndentLevel expectedColumnNo =
-            new IndentLevel(getLevel(), getIndentCheck().getThrowsIndent());
-
-        if (startsLine(throwsAst)
-            && !expectedColumnNo.accept(columnNo))
+        final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
+        if (startsLine(modifier)
+            && !getLevel().accept(expandedTabsColumnNo(modifier)))
         {
-            logError(throwsAst, "throws", columnNo, expectedColumnNo);
+            logError(modifier, "modifier", expandedTabsColumnNo(modifier));
         }
-    }
-
-    /**
-     * Check the indentation of the method type.
-     */
-    private void checkType()
-    {
-        final DetailAST type = getMainAst().findFirstToken(TokenTypes.TYPE);
-        final DetailAST ident = ExpressionHandler.getFirstToken(type);
-        final int columnNo = expandedTabsColumnNo(ident);
-        if (startsLine(ident) && !getLevel().accept(columnNo)) {
-            logError(ident, "return type", columnNo);
-        }
-    }
-
-    /**
-     * Check the indentation of the method parameters.
-     */
-    private void checkParameters()
-    {
-        final DetailAST params =
-            getMainAst().findFirstToken(TokenTypes.PARAMETERS);
-        checkExpressionSubtree(params, getLevel(), false, false);
     }
 
     @Override
     public void checkIndentation()
     {
         checkModifiers();
-        checkIdent();
-        checkThrows();
-        if (getMainAst().getType() != TokenTypes.CTOR_DEF) {
-            checkType();
-        }
-        checkParameters();
 
+        final LineWrappingHandler lineWrap =
+            new LineWrappingHandler(getIndentCheck(), getMainAst()) {
+                @Override
+                public DetailAST findLastNode(DetailAST aFirstNode)
+                {
+                    return aFirstNode.getLastChild().getPreviousSibling();
+                }
+            };
+        lineWrap.checkIndentation();
         if (getLCurly() == null) {
             // asbtract method def -- no body
             return;

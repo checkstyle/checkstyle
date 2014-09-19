@@ -94,4 +94,37 @@ public class ObjectBlockHandler extends BlockParentHandler
 
         super.checkIndentation();
     }
+
+    @Override
+    protected boolean rcurlyMustStart()
+    {
+        return false;
+    }
+
+    @Override
+    protected void checkRCurly()
+    {
+        final DetailAST lcurly = getLCurly();
+        final DetailAST rcurly = getRCurly();
+        final int rcurlyPos = expandedTabsColumnNo(rcurly);
+        final IndentLevel level = curlyLevel();
+        level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndent());
+
+        if ((rcurly != null) && !level.accept(rcurlyPos)
+            && (rcurlyMustStart() || startsLine(rcurly))
+                && !areOnSameLine(rcurly, lcurly))
+        {
+            logError(rcurly, "rcurly", rcurlyPos, curlyLevel());
+        }
+    }
+
+    /**
+     * A shortcut for <code>IndentationCheck</code> property.
+     * @return value of lineWrappingIndentation property
+     *         of <code>IndentationCheck</code>
+     */
+    private int getLineWrappingIndent()
+    {
+        return getIndentCheck().getLineWrappingIndentation();
+    }
 }
