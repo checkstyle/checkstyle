@@ -259,7 +259,9 @@ classTypeSpec[boolean addImagNode]
 	;
 
 classOrInterfaceType[boolean addImagNode]
-	: IDENT (options{warnWhenFollowAmbig=false;}: typeArguments[addImagNode])?
+	: ({LA(1) == AT}? annotations
+            | )
+    IDENT (options{warnWhenFollowAmbig=false;}: typeArguments[addImagNode])?
         (options{greedy=true; }: // match as many as possible
             DOT^
             IDENT (options{warnWhenFollowAmbig=false;}: typeArguments[addImagNode])?
@@ -268,9 +270,11 @@ classOrInterfaceType[boolean addImagNode]
 
 // A generic type argument is a class type, a possibly bounded wildcard type or a built-in type array
 typeArgument[boolean addImagNode]
-:   (   classTypeSpec[addImagNode]
+:   (   ({LA(1) == AT}? annotations
+         | ) (
+        classTypeSpec[addImagNode]
 	    |   builtInTypeArraySpec[addImagNode]
-	    |   wildcardType[addImagNode]
+	    |   wildcardType[addImagNode])
 	    )
 		{#typeArgument = #(#[TYPE_ARGUMENT,"TYPE_ARGUMENT"], #typeArgument);}
     ;
@@ -912,7 +916,8 @@ ctorHead
 
 // This is a list of exception classes that the method is declared to throw
 throwsClause
-	:	"throws"^ identifier ( COMMA identifier )*
+	:	"throws"^ ({LA(1) == AT}? annotations 
+                    | ) identifier ( COMMA identifier )*
 	;
 
 
@@ -1397,6 +1402,7 @@ postfixExpression
 			  )
 			| "class"
 			| newExpression
+			| annotations
 			)
 
 			//Java 8 method references. For example: List<Integer> numbers = Arrays.asList(1,2,3,4,5,6); numbers.forEach(System.out::println);
