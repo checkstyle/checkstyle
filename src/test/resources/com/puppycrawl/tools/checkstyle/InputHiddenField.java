@@ -82,7 +82,7 @@ class InputHiddenField
         int hidden = 0;//shadows field
     }       
 }
-    
+
 interface NothingHidden
 {
     public static int notHidden = 0;
@@ -235,5 +235,34 @@ class Bug3370946 {
 
     public void setxAxis(int xAxis) {
         this.xAxis = xAxis;
+    }
+}
+
+class WrongBuilderClassName {
+    private String prop;
+
+    public WrongBuilderClassName setProp(String prop) {
+        this.prop = prop;
+        return this;
+    }
+}
+
+class ValidBuilder {
+    private String prop;
+    private String hidden;
+
+    public ValidBuilder setProp(String prop) {
+        this.prop = prop;
+        return this;
+    }
+
+    public ValidBuilder withProp(String prop) {
+        this.prop = prop;
+        return this;
+    }
+
+    public String setHidden(String hidden) {
+        this.hidden = hidden;
+        return hidden;
     }
 }

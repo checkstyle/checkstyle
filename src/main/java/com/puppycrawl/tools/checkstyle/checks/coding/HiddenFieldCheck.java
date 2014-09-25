@@ -59,6 +59,15 @@ import org.apache.commons.beanutils.ConversionException;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * An example of how to configure the check so that it ignores the parameter of
+ * a builder setter method is:
+ * </p>
+ * <pre>
+ * &lt;module name="HiddenField"&gt;
+ *    &lt;property name="ignoreBuilderSetter" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
  * An example of how to configure the check so that it ignores constructor
  * parameters is:
  * </p>
@@ -68,11 +77,14 @@ import org.apache.commons.beanutils.ConversionException;
  * &lt;/module&gt;
  * </pre>
  * @author Rick Giles
- * @version 1.0
+ * @version 1.1
  */
 public class HiddenFieldCheck
     extends Check
 {
+    /** the regexp to identify builder classes */
+    private static final Pattern BUILDER_REGEXP = Pattern.compile(".*Builder");
+
     /** stack of sets of field names,
      * one for each class of a set of nested classes.
      */
@@ -83,6 +95,11 @@ public class HiddenFieldCheck
 
     /** controls whether to check the parameter of a property setter method */
     private boolean mIgnoreSetter;
+
+    /** controls whether to check the parameter of a property setter method
+     * in builders.
+     */
+    private boolean mIgnoreBuilderSetter;
 
     /** controls whether to check the parameter of a constructor */
     private boolean mIgnoreConstructorParameter;
@@ -124,7 +141,7 @@ public class HiddenFieldCheck
     @Override
     public void beginTree(DetailAST aRootAST)
     {
-        mCurrentFrame = new FieldFrame(null, true);
+        mCurrentFrame = new FieldFrame(null, null, true);
     }
 
     @Override
@@ -137,6 +154,7 @@ public class HiddenFieldCheck
             return;
         }
 
+        final DetailAST typeId = aAST.findFirstToken(TokenTypes.IDENT);
         //A more thorough check of enum constant class bodies is
         //possible (checking for hidden fields against the enum
         //class body in addition to enum constant class bodies)
@@ -147,7 +165,8 @@ public class HiddenFieldCheck
                 (typeMods != null)
                         && typeMods.branchContains(TokenTypes.LITERAL_STATIC);
         final FieldFrame frame =
-                new FieldFrame(mCurrentFrame, isStaticInnerType);
+                new FieldFrame(mCurrentFrame, typeId.getText(),
+                        isStaticInnerType);
 
         //add fields to container
         final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
@@ -251,7 +270,7 @@ public class HiddenFieldCheck
     private boolean isIgnoredSetterParam(DetailAST aAST, String aName)
     {
         if (aAST.getType() != TokenTypes.PARAMETER_DEF
-            || !mIgnoreSetter)
+            || !(mIgnoreSetter || mIgnoreBuilderSetter))
         {
             return false;
         }
@@ -265,17 +284,35 @@ public class HiddenFieldCheck
         if (methodAST.getType() != TokenTypes.METHOD_DEF) {
             return false;
         }
-        //void?
+        //void or returns a builder object?
         final DetailAST typeAST = methodAST.findFirstToken(TokenTypes.TYPE);
-        if (!typeAST.branchContains(TokenTypes.LITERAL_VOID)) {
+        if ((mIgnoreSetter && !typeAST.branchContains(TokenTypes.LITERAL_VOID))
+             || (mIgnoreBuilderSetter && !isBuilderSetter(typeAST)))
+        {
             return false;
         }
 
         //property setter name?
         final String methodName =
                 methodAST.findFirstToken(TokenTypes.IDENT).getText();
-        final String expectedName = "set" + capitalize(aName);
-        return methodName.equals(expectedName);
+        final String expectedName =
+                (mIgnoreBuilderSetter ? "(set|with)" : "set")
+                + capitalize(aName);
+        return methodName.matches(expectedName);
+    }
+
+    /**
+     * Checks whether a method is a setter method of a builder class. Checks
+     * that the type name of the current frame ends with 'Builder' and that
+     * the method returns the type of the current frame.
+     * @param aTypeAST the AST of the method return type.
+     * @return true if method is a builder setter method, false otherwise.
+     */
+    private boolean isBuilderSetter(DetailAST aTypeAST)
+    {
+        final DetailAST ident = aTypeAST.findFirstToken(TokenTypes.IDENT);
+        return (ident != null && ident.getText().equals(mCurrentFrame.getId())
+                && BUILDER_REGEXP.matcher(mCurrentFrame.getId()).matches());
     }
 
     /**
@@ -367,6 +404,17 @@ public class HiddenFieldCheck
     }
 
     /**
+     * Set whether to ignore the parameter of a property setter method in
+     * builders.
+     * @param aIgnoreBuilderSetter decide whether to ignore the parameter of
+     * a property setter method in builders.
+     */
+    public void setIgnoreBuilderSetter(boolean aIgnoreBuilderSetter)
+    {
+        mIgnoreBuilderSetter = aIgnoreBuilderSetter;
+    }
+
+    /**
      * Set whether to ignore constructor parameters.
      * @param aIgnoreConstructorParameter decide whether to ignore
      * constructor parameters.
@@ -403,6 +451,9 @@ public class HiddenFieldCheck
      */
     private static class FieldFrame
     {
+        /** the name of this type. Can be <code>null</code>. */
+        private final String mId;
+
         /** is this a static inner type */
         private final boolean mStaticType;
 
@@ -416,13 +467,23 @@ public class HiddenFieldCheck
         private final Set<String> mStaticFields = Sets.newHashSet();
 
         /** Creates new frame.
+         * @param aId the name of this type.
          * @param aStaticType is this a static inner type (class or enum).
          * @param aParent parent frame.
          */
-        public FieldFrame(FieldFrame aParent, boolean aStaticType)
+        public FieldFrame(FieldFrame aParent, String aId, boolean aStaticType)
         {
+            mId = aId;
             mParent = aParent;
             mStaticType = aStaticType;
+        }
+
+        /** Get the id of the type.
+         * @return id of the type or <code>null</code>.
+         */
+        String getId()
+        {
+            return mId;
         }
 
         /** Is this frame for static inner type.
