@@ -232,25 +232,13 @@ public class LambdaTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testInParentheses()
-        throws Exception
-    {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
-        verify(checkConfig, getPath("grammars/java8/InputLambdaTest18.java"),
-                expected);
-
-    }
-
-    @Test
     public void testInTernary()
         throws Exception
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};
-        verify(checkConfig, getPath("grammars/java8/InputLambdaTest19.java"),
+        verify(checkConfig, getPath("grammars/java8/InputLambdaTest18.java"),
                 expected);
 
     }

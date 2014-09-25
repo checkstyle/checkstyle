@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.grammars.java8;
 
-public class InputLabdaTest12 {
+public class InputLambdaTest12 {
 
 	public static void testVoidLambda(TestOfVoidLambdas test) {
 		System.out.println("Method called");

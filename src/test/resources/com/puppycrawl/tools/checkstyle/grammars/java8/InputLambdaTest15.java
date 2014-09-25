@@ -1,42 +1,50 @@
 package com.puppycrawl.tools.checkstyle.grammars.java8;
+import java.util.function.Function;
 
-import java.util.Arrays;
-import java.util.List;
+public class InputLambdaTest15
+{
 
+    public static void main(String[] args) {
+        InputLambdaTest15 ex = new InputLambdaTest15();
+        Function<Double, Double> sin = d -> ex.sin(d);
+        Function<Double, Double> log = d -> ex.log(d);
+        Function<Double, Double> exp = d -> ex.exp(d);
+        InputLambdaTest15 compose = new InputLambdaTest15();
+        System.out.println(compose.calculate(sin.compose(log), 0.8));
+        // prints log:sin:-0.22
+        System.out.println(compose.calculate(sin.andThen(log), 0.8));
+        // prints sin:log:-0.33
+        System.out.println(compose.calculate(sin.compose(log).andThen(exp), 0.8));
+        //log:sin:exp:0.80
+        System.out.println(compose.calculate(sin.compose(log).compose(exp), 0.8));
+        //exp:log:sin:0.71
+        System.out.println(compose.calculate(sin.andThen(log).compose(exp), 0.8));
+        //exp:sin:log:-0.23
+        System.out.println(compose.calculate(sin.andThen(log).andThen(exp), 0.8));
+        //sin:log:exp:0.71
+ 
+    }
 
-public class InputLambdaTest15 {
-	
-	public static void main(String args[]) {
-		() -> {};                // No parameters; result is void
-		() -> 42;                // No parameters, expression body
-		() -> null;              // No parameters, expression body
-		() -> { return 42; }    // No parameters, block body with return
-		() -> { System.gc(); }  // No parameters, void block body
+    public Double calculate(Function<Double, Double> operator, Double d)
+    {
+        return operator.apply(d);
+    }
 
-		() -> {                 // Complex block body with returns
-		  if (true) return 12;
-		  else {
-		    int result = 15;
-		    for (int i = 1; i < 10; i++)
-		    {
-		      result *= i;
-		    }
-		    return result;
-		  };
-		}                          
+    public Double sin(Double d)
+    {
+        System.out.print("sin:");
+        return Math.sin(d);
+    }
 
-		(int x) -> x+1;              // Single declared-type parameter
-		(int x) -> { return x+1; }  // Single declared-type parameter
-		(x) -> x+1;                  // Single inferred-type parameter
-		x -> x+1;                    // Parentheses optional for
-		                            // single inferred-type parameter
+    public Double log(Double d)
+    {
+        System.out.print("log:");
+        return Math.log(d);
+    }
 
-		(String s) -> s.length();      // Single declared-type parameter
-		(Thread t) -> { t.start(); }  // Single declared-type parameter
-		s -> s.length();               // Single inferred-type parameter
-		t -> { t.start(); }           // Single inferred-type parameter
-
-		(int x, int y) -> x+y;  // Multiple declared-type parameters
-		(x, y) -> x+y;          // Multiple inferred-type parameters
-	}
+    public Double exp(Double d)
+    {
+        System.out.print("exp:");
+        return Math.exp(d);
+    }
 }

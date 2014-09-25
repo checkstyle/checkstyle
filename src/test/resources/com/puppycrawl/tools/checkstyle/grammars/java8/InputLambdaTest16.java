@@ -1,7 +1,8 @@
 package com.puppycrawl.tools.checkstyle.grammars.java8;
 
-import java.util.Arrays;
-import java.util.List;
+import java.time.chrono.ChronoLocalDate;
+import java.time.chrono.ChronoLocalDateTime;
+import java.util.Comparator;
 
 
 public class InputLambdaTest16 {
