@@ -151,7 +151,7 @@
     <projectVersion>${project.version}</projectVersion>
     <tools.jar.version>1.5.0</tools.jar.version>
     <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
-    <maven.site.plugin.version>3.3</maven.site.plugin.version>
+    <maven.site.plugin.version>3.4</maven.site.plugin.version>
   </properties>
 
   <dependencies>
@@ -427,6 +427,9 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-linkcheck-plugin</artifactId>
         <version>1.1</version>
+        <configuration>
+          <excludedLinks>**/apidocs/*</excludedLinks>
+        </configuration>
       </plugin>
 
       <plugin>
@@ -446,9 +449,11 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.8</version>
+        <version>2.10</version>
         <configuration>
           <source>1.5</source>
+	  <failOnError>false</failOnError>
+	  <linksource>true</linksource>
         </configuration>
         <reportSets>
           <reportSet>
@@ -468,16 +473,17 @@
           <obfuscatePackageNames>true</obfuscatePackageNames>
         </configuration>
       </plugin>
-        <!--
-        THE FOLLOWING DOES NOT WORK!
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-linkcheck-plugin</artifactId>
+<!--
         <configuration>
-          <excludedLinks><excludedLink>**/apidocs/**</excludedLink></excludedLinks>
+          <excludedLinks>**/apidocs/*</excludedLinks>
         </configuration>
+-->
       </plugin>
-         -->
+
     </plugins>
   </reporting>
 
