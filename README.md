@@ -1,4 +1,3 @@
-[![][trend img]][trend]
 [![][travis img]][travis]
 [![][coverage img]][coverage]
 [![][sonar img]][sonar]
@@ -52,9 +51,6 @@ https://github.com/checkstyle/checkstyle/issues
 
 [travis]:http://travis-ci.org/checkstyle/checkstyle
 [travis img]:https://secure.travis-ci.org/checkstyle/checkstyle.png
-
-[trend img]:https://d2weczhvl823v0.cloudfront.net/romani/checkstyle/trend.png
-[trend]:https://bitdeli.com/free
 
 [sonar]:http://nemo.sonarqube.org/dashboard/index/com.puppycrawl.tools:checkstyle
 [sonar img]:https://dev.eclipse.org/sonar/images/sonarqube-24x100.png?1387490790
