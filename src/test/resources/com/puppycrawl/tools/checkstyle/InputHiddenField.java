@@ -237,3 +237,47 @@ class Bug3370946 {
         this.xAxis = xAxis;
     }
 }
+
+/** tests chain-setter */
+class PropertySetter3
+{
+    private int prop;
+
+    /** 
+     * if setterCanReturnItsClass == false then 
+     *     error - not a void method
+     * 
+     * if setterCanReturnItsClass == true then 
+     *     success as it is then considered to be a setter  
+     */
+    public PropertySetter3 setProp(int prop)
+    {
+        this.prop = prop;
+        return this;
+    }
+}
+
+/** tests setters (both regular and the chain one) on the enum */ 
+enum PropertySetter4 {
+    INSTANCE;
+    
+    private int prop;
+    private int prop2;
+    
+    public void setProp(int prop) {
+        this.prop = prop;
+    }
+
+    /** 
+     * if setterCanReturnItsClass == false then 
+     *     error - not a void method
+     * 
+     * if setterCanReturnItsClass == true then 
+     *     success as it is then considered to be a setter  
+     */
+    public PropertySetter4 setProp2(int prop2)
+    {
+        this.prop2 = prop2;
+        return this;
+    }
+}

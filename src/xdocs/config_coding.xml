@@ -433,7 +433,33 @@ number.equals(i + j);
               Controls whether to ignore the parameter of a property setter
               method, where the property setter method for field
               &quot;xyz&quot; has name &quot;setXyz&quot;, one parameter named
-              &quot;xyz&quot;, and return type <code>void</code>.
+              &quot;xyz&quot; and return type of <code>void</code>
+              ( default behavior) or class in which method is declared (only
+              if property <code>setterCanReturnItsClass</code> is set
+              to <code>true</code>).
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+
+          <tr>
+            <td>setterCanReturnItsClass</td>
+            <td>
+              Used in conjunction with <code>ignoreSetter</code> property it
+              controls rule that recognizes method as a setter. By default
+              setter is a method with signature of type
+              <pre>
+                void setXyz(${someType} xyz)
+              </pre>
+              By setting this property (<code>setterCanReturnItsClass</code>)
+              to <code>true</code> we expand definition of setter to also
+              include returning class in which setter is defined. For example
+              <pre>
+                class Foo {
+                    int prop;
+                    Foo setProp(int prop) { this.prop = prop; }
+                }
+              </pre>
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -493,6 +519,18 @@ number.equals(i + j);
         <source>
 &lt;module name=&quot;HiddenField&quot;&gt;
     &lt;property name=&quot;ignoreSetter&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check so that it ignores the parameter of setter
+          methods recognizing setter as returning either <code>void</code> or
+              a class in which it is declared:
+        </p>
+        <source>
+&lt;module name=&quot;HiddenField&quot;&gt;
+    &lt;property name=&quot;ignoreSetter&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;setterCanReturnItsClass&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
