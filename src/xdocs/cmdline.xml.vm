@@ -157,18 +157,6 @@ java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
      -f xml -o build/checkstyle_errors.xml Check.java
       </source>
 
-      <p>
-        <b>
-          Run checkstyle with configuration file
-          <code>docs/sun_checks.xml</code> on a file and provide a package
-          names file
-        </b>
-      </p>
-      <source>
-java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
-     -n myPackageNames.xml Check.java
-      </source>
-
       <div class="tip">
         <h4 class="tip">Tip</h4>
         <p>
