@@ -198,7 +198,7 @@ compilationUnit
 		)
 
 		// Next we have a series of zero or more import statements
-		( importDefinition )*
+		( options{generateAmbigWarnings=false;}:importDefinition )*
 
 		// Wrapping things up with any number of class or interface
 		//    definitions
@@ -399,7 +399,7 @@ builtInType
 // A (possibly-qualified) java identifier.  We start with the first IDENT
 //   and expand its name by adding dots and following IDENTS
 identifier
-	:	IDENT  ( DOT^ IDENT )*
+	:	IDENT  (options{warnWhenFollowAmbig=false;}: DOT^ IDENT )*
 	;
 
 identifierStar
@@ -448,12 +448,12 @@ modifier
 	;
 
 annotation!
-    :   AT i:identifier ( l:LPAREN ( args:annotationArguments )? r:RPAREN )?
+    :   AT i:identifier (options {generateAmbigWarnings=false;}: l:LPAREN ( args:annotationArguments )? r:RPAREN )?
         {#annotation = #(#[ANNOTATION,"ANNOTATION"], AT, i, l, args, r);}
     ;
 
 annotations
-    :   (annotation)*
+    :   (options{generateAmbigWarnings=false;}:annotation)*
         {#annotations = #(#[ANNOTATIONS,"ANNOTATIONS"], #annotations);}
     ;
 
@@ -947,7 +947,7 @@ variableLengthParameterDeclaration!
 parameterModifier
     //final can appear amongst annotations in any order - greedily consume any preceding
     //annotations to shut nond-eterminism warnings off
-	:	(options{greedy=true;} : annotation)* (f:"final")? (annotation)*
+	:	(options{greedy=true;} : annotation)* (f:"final")? (options {warnWhenFollowAmbig=false;}: annotation)*
 		{#parameterModifier = #(#[MODIFIERS,"MODIFIERS"], #parameterModifier);}
     ;
 
@@ -1315,7 +1315,7 @@ equalityExpression
 // boolean relational expressions (level 5)
 relationalExpression
 	:	shiftExpression ( "instanceof"^ typeSpec[true])?
-		(	(	(	LT^
+		(	(options{warnWhenFollowAmbig=false;} : 	(	LT^
 				|	GT^
 				|	LE^
 				|	GE^
@@ -1335,7 +1335,7 @@ shiftExpression
 
 // binary addition/subtraction (level 3)
 additiveExpression
-	:	multiplicativeExpression ((PLUS^ | MINUS^) multiplicativeExpression)*
+	:	multiplicativeExpression (options{warnWhenFollowAmbig=false;} : (PLUS^ | MINUS^) multiplicativeExpression)*
 	;
 
 
@@ -1393,7 +1393,7 @@ typeCastParameters
 postfixExpression
 	:	primaryExpression // start with a primary
 
-		(	// qualified id (id.id.id.id...) -- build the name
+		(options{warnWhenFollowAmbig=false;} : 	// qualified id (id.id.id.id...) -- build the name
 			DOT^
 			( (typeArguments[false])?
 			  ( IDENT
@@ -1573,8 +1573,8 @@ lambdaParameters
 	;
 
 lambdaBody
-	:	expression 
-	|	statement
+	:	(options{generateAmbigWarnings=false;}: expression 
+	|	statement)
 	;
 inferredParameterList
 	:	IDENT (COMMA IDENT)*
