@@ -95,4 +95,22 @@ public class ConstantNameCheckTest
         };
         verify(checkConfig, getPath("naming" + File.separator + "InputConstantNames.java"), expected);
     }
+
+    @Test
+    public void testIntoInterface() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(ConstantNameCheck.class);
+        final String[] expected = {
+            "45:16: Name 'mPublic' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "46:9: Name 'mProtected' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "47:9: Name 'mPackage' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "48:9: Name 'mPrivate' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "50:16: Name '_public' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "51:9: Name '_protected' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "52:9: Name '_package' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "53:9: Name '_private' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+        };
+        verify(checkConfig, getPath("naming" + File.separator + "InputMemberNameExtended.java"), expected);
+    }
 }
