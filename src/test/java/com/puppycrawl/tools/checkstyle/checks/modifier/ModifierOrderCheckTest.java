@@ -18,9 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import org.junit.Test;
 
 public class ModifierOrderCheckTest
     extends BaseCheckTestSupport
@@ -40,4 +41,16 @@ public class ModifierOrderCheckTest
         };
         verify(checkConfig, getPath("InputModifier.java"), expected);
     }
+
+    @Test
+    public void testDefaultMethods()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(ModifierOrderCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputModifier2.java"), expected);
+    }
+
 }

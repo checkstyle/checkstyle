@@ -72,7 +72,7 @@ public class ModifierOrderCheck
     private static final String[] JLS_ORDER =
     {
         "public", "protected", "private", "abstract", "static", "final",
-        "transient", "volatile", "synchronized", "native", "strictfp",
+        "transient", "volatile", "synchronized", "native", "strictfp", "default",
     };
 
     @Override
