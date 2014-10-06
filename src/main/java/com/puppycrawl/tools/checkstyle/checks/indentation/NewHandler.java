@@ -23,8 +23,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Handler for operator new.
- *
  * @author o_sukhodolsky
+ * @author Ilja Dubinin
  */
 public class NewHandler extends ExpressionHandler
 {
@@ -47,7 +47,9 @@ public class NewHandler extends ExpressionHandler
     public void checkIndentation()
     {
         final DetailAST type = getMainAst().getFirstChild();
-        checkExpressionSubtree(type, getLevel(), false, false);
+        if (type != null) {
+            checkExpressionSubtree(type, getLevel(), false, false);
+        }
 
         final DetailAST lparen = getMainAst().findFirstToken(TokenTypes.LPAREN);
         final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
