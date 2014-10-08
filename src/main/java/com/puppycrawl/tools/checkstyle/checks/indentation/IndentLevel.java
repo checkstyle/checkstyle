@@ -18,8 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import com.google.common.collect.Sets;
-import java.util.SortedSet;
+import java.util.BitSet;
 
 /**
  * Encapsulates representation of notion of expected indentation levels.
@@ -30,7 +29,7 @@ import java.util.SortedSet;
 public class IndentLevel
 {
     /** set of acceptable indentation levels. */
-    private final SortedSet<Integer> mLevels = Sets.newTreeSet();
+    private final BitSet mLevels = new BitSet();
 
     /**
      * Creates new instance with one accaptable indentation level.
@@ -38,7 +37,7 @@ public class IndentLevel
      */
     public IndentLevel(int aIndent)
     {
-        mLevels.add(aIndent);
+        mLevels.set(aIndent);
     }
 
     /**
@@ -48,8 +47,9 @@ public class IndentLevel
      */
     public IndentLevel(IndentLevel aBase, int aOffset)
     {
-        for (Integer base : aBase.mLevels) {
-            mLevels.add(base + aOffset);
+        final BitSet src = aBase.mLevels;
+        for (int i = src.nextSetBit(0); i >= 0; i = src.nextSetBit(i + 1)) {
+            mLevels.set(i + aOffset);
         }
     }
 
@@ -59,7 +59,7 @@ public class IndentLevel
      */
     public final boolean isMultiLevel()
     {
-        return mLevels.size() > 1;
+        return mLevels.cardinality() > 1;
     }
 
     /**
@@ -70,7 +70,7 @@ public class IndentLevel
      */
     public boolean accept(int aIndent)
     {
-        return (mLevels.contains(aIndent));
+        return (mLevels.get(aIndent));
     }
 
     /**
@@ -80,7 +80,7 @@ public class IndentLevel
      */
     public boolean gt(int aIndent)
     {
-        return ((mLevels.first()).intValue() > aIndent);
+        return (mLevels.nextSetBit(0) > aIndent);
     }
 
     /**
@@ -89,7 +89,7 @@ public class IndentLevel
      */
     public void addAcceptedIndent(int aIndent)
     {
-        mLevels.add(aIndent);
+        mLevels.set(aIndent);
     }
 
     /**
@@ -98,16 +98,27 @@ public class IndentLevel
      */
     public void addAcceptedIndent(IndentLevel aIndent)
     {
-        mLevels.addAll(aIndent.mLevels);
+        mLevels.or(aIndent.mLevels);
     }
 
     @Override
     public String toString()
     {
-        if (mLevels.size() == 1) {
-            return mLevels.first().toString();
+        if (mLevels.cardinality() == 1) {
+            return String.valueOf(mLevels.nextSetBit(0));
         }
 
-        return mLevels.toString();
+        final StringBuilder sb = new StringBuilder();
+        sb.append('[');
+        for (int i = mLevels.nextSetBit(0); i >= 0;
+            i = mLevels.nextSetBit(i + 1))
+        {
+            if (sb.length() > 1) {
+                sb.append(", ");
+            }
+            sb.append(i);
+        }
+        sb.append(']');
+        return sb.toString();
     }
 }

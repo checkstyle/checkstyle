@@ -395,8 +395,15 @@ public final class TreeWalker
      */
     private void notifyVisit(DetailAST aAST)
     {
+        final String tokenName =
+            TokenTypes.getTokenName(aAST.getType());
+        if (!mTokenToChecks.containsKey(tokenName)) {
+            // Avoid creation of WrappedColelction in mTokenToChecks.get
+            // and iterator later
+            return;
+        }
         final Collection<Check> visitors =
-            mTokenToChecks.get(TokenTypes.getTokenName(aAST.getType()));
+            mTokenToChecks.get(tokenName);
         for (Check c : visitors) {
             c.visitToken(aAST);
         }
@@ -410,8 +417,15 @@ public final class TreeWalker
      */
     private void notifyLeave(DetailAST aAST)
     {
+        final String tokenName =
+            TokenTypes.getTokenName(aAST.getType());
+        if (!mTokenToChecks.containsKey(tokenName)) {
+            // Avoid creation of WrappedColelction in mTokenToChecks.get
+            // and iterator later
+            return;
+        }
         final Collection<Check> visitors =
-            mTokenToChecks.get(TokenTypes.getTokenName(aAST.getType()));
+            mTokenToChecks.get(tokenName);
         for (Check ch : visitors) {
             ch.leaveToken(aAST);
         }
