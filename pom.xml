@@ -16,7 +16,7 @@
   <parent>
     <artifactId>oss-parent</artifactId>
     <groupId>org.sonatype.oss</groupId>
-    <version>5</version>
+    <version>7</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
