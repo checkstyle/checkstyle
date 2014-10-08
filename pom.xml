@@ -92,35 +92,35 @@
       <id>lkuehne</id>
       <name>Lars Kühne</name>
       <roles>
-        <role>developer</role>
+        <role>former developer</role>
       </roles>
     </developer>
     <developer>
       <id>rickgiles</id>
       <name>Rick Giles</name>
       <roles>
-        <role>developer</role>
+        <role>former developer</role>
       </roles>
     </developer>
     <developer>
       <id>o_sukhodolsky</id>
       <name>Oleg Sukhodolsky</name>
       <roles>
-        <role>developer</role>
+        <role>former developer</role>
       </roles>
     </developer>
     <developer>
       <id>mstudman</id>
       <name>Michael Studman</name>
       <roles>
-        <role>developer</role>
+        <role>former developer</role>
       </roles>
     </developer>
     <developer>
       <id>tschneeberger</id>
       <name>Travis Schneeberger</name>
       <roles>
-        <role>developer</role>
+        <role>former developer</role>
       </roles>
     </developer>
   </developers>
