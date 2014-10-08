@@ -53,9 +53,9 @@
 
   <distributionManagement>
     <site>
-      <id>checkstyle-snapshot-site</id>
+      <id>sourceforge-snapshot-site</id>
       <name>Snapshot Site</name>
-      <url>scp://shell.sourceforge.net/home/groups/c/ch/checkstyle/htdocs/snapshot</url>
+      <url>scp://shell.sourceforge.net/home/project-web/checkstyle/htdocs/snapshot</url>
     </site>
   </distributionManagement>
 
@@ -257,6 +257,13 @@
           <xdocDirectory>${basedir}/src/xdocs</xdocDirectory>
           <validate>true</validate>
         </configuration>
+        <dependencies>
+          <dependency><!-- add support for ssh/scp -->
+            <groupId>org.apache.maven.wagon</groupId>
+            <artifactId>wagon-ssh</artifactId>
+            <version>1.0</version>
+          </dependency>
+        </dependencies>        
       </plugin>
 
       <plugin>
@@ -708,9 +715,9 @@
       <id>release</id>
       <distributionManagement>
         <site>
-          <id>checkstyle-site</id>
+          <id>sourceforge-site</id>
           <name>Default Site</name>
-          <url>scp://shell.sourceforge.net/home/groups/c/ch/checkstyle/htdocs</url>
+          <url>scp://shell.sourceforge.net/home/project-web/checkstyle/htdocs</url>
         </site>
       </distributionManagement>
     </profile>
