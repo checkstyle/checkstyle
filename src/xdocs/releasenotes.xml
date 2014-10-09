@@ -56,7 +56,7 @@
           New: OneTopLevelClass check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/172">#173</a>
         </li>
         <li>
-          New: OverrideMethodsDeclarationOrder check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/pull/32">#32</a>
+          New: OverloadMethodsDeclarationOrder check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/pull/32">#32</a>
         </li>
         <li>
           New option to allow no empty line between fields at EmptyLineSeparatorCheck check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/227">#227</a>

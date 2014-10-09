@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * <pre>
- * &lt;module name="OverrideMethodsDeclaration"/&gt;
+ * &lt;module name="OverloadMethodsDeclarationOrder"/&gt;
  * </pre>
  * @author maxvetrenko
  */
