@@ -18,9 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import org.junit.Test;
 
 public class RedundantModifierTest
     extends BaseCheckTestSupport
@@ -47,5 +48,18 @@ public class RedundantModifierTest
             "121:5: Redundant 'abstract' modifier.",
         };
         verify(checkConfig, getPath("InputModifier.java"), expected);
+    }
+
+    @Test
+    public void testStaticMethodInInterface()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RedundantModifierCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig,
+                getPath("InputStaticModifierInInterface.java"),
+                expected);
     }
 }

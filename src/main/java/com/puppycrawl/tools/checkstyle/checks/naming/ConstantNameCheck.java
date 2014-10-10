@@ -82,7 +82,9 @@ public class ConstantNameCheck
             && modifiersAST.branchContains(TokenTypes.FINAL);
 
         if ((isStatic  && isFinal && shouldCheckInScope(modifiersAST))
-            || ScopeUtils.inInterfaceOrAnnotationBlock(aAST))
+                || ScopeUtils.inAnnotationBlock(aAST)
+                || (ScopeUtils.inInterfaceOrAnnotationBlock(aAST)
+                        && !ScopeUtils.inCodeBlock(aAST)))
         {
             // Handle the serialVersionUID and serialPersistentFields  constants
             // which are used for Serialization. Cannot enforce rules on it. :-)

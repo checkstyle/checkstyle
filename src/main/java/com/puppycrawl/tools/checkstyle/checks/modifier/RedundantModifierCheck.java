@@ -82,8 +82,9 @@ public class RedundantModifierCheck
 
                 final int type = modifier.getType();
                 if ((type == TokenTypes.LITERAL_PUBLIC)
+                    || ((type == TokenTypes.LITERAL_STATIC)
+                            && aAST.getType() != TokenTypes.METHOD_DEF)
                     || (type == TokenTypes.ABSTRACT)
-                    || (type == TokenTypes.LITERAL_STATIC)
                     || (type == TokenTypes.FINAL))
                 {
                     log(modifier.getLineNo(), modifier.getColumnNo(),

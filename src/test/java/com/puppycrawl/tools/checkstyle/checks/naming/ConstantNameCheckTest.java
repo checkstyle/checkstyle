@@ -113,4 +113,17 @@ public class ConstantNameCheckTest
         };
         verify(checkConfig, getPath("naming" + File.separator + "InputMemberNameExtended.java"), expected);
     }
+
+    @Test
+    public void testStaticMethodInInterface()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(ConstantNameCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig,
+                getPath("InputStaticModifierInInterface.java"),
+                expected);
+    }
 }
