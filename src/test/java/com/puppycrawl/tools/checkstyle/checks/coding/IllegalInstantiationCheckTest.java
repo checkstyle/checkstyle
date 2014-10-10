@@ -18,9 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.io.File;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import org.junit.Test;
 
 public class IllegalInstantiationCheckTest
     extends BaseCheckTestSupport
@@ -56,7 +59,8 @@ public class IllegalInstantiationCheckTest
                 createCheckConfig(IllegalInstantiationCheck.class);
         final String[] expected = {};
         verify(checkConfig,
-                getPath("grammars/java8/InputMethodReferencesTest2.java"),
+                getPath("coding" + File.separator
+                        + "InputIllegalInstantiationCheckTest2.java"),
                 expected);
     }
 }
