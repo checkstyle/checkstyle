@@ -364,12 +364,13 @@ public class CustomImportOrderCheck extends Check
     private String getNextImportGroup(int aCurrentGroupNumber)
     {
         int nextGroupNumber = aCurrentGroupNumber;
-        for (; mCustomImportOrderRules.size() > nextGroupNumber; nextGroupNumber++)
-        {
+
+        while (mCustomImportOrderRules.size() > nextGroupNumber + 1) {
             if (hasAnyImportInCurrentGroup(mCustomImportOrderRules.get(nextGroupNumber)))
             {
                 break;
             }
+            nextGroupNumber++;
         }
         return mCustomImportOrderRules.get(nextGroupNumber);
     }
