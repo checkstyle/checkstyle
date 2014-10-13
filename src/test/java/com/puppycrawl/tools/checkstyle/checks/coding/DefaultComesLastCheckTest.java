@@ -18,10 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.io.File;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import java.io.File;
-import org.junit.Test;
 
 public class DefaultComesLastCheckTest extends BaseCheckTestSupport
 {
@@ -36,5 +38,19 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport
         verify(checkConfig,
                getPath("coding" + File.separator + "InputDefaultComesLast.java"),
                expected);
+    }
+
+    @Test
+    public void testDefaultMethodsInJava8()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(DefaultComesLastCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig,
+                getPath("coding" + File.separator
+                        + "InputDefaultComesLast2.java"),
+                expected);
     }
 }

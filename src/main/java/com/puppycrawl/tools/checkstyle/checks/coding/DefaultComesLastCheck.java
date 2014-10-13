@@ -68,7 +68,9 @@ public class DefaultComesLastCheck extends Check
         final DetailAST defaultGroupAST = aAST.getParent();
         //default keywords used in annotations too - not what we're
         //interested in
-        if (defaultGroupAST.getType() != TokenTypes.ANNOTATION_FIELD_DEF) {
+        if (defaultGroupAST.getType() != TokenTypes.ANNOTATION_FIELD_DEF
+                && defaultGroupAST.getType() != TokenTypes.MODIFIERS)
+        {
             final DetailAST switchAST = defaultGroupAST.getParent();
             final DetailAST lastGroupAST =
                 switchAST.getLastChild().getPreviousSibling();
