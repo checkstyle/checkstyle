@@ -213,4 +213,22 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
         verify(checkConfig, getPath("imports" + File.separator
                 + "InputCustomImportOrderNoValid.java"), expected);
     }
+
+    @Test
+    public void testPossibleIndexOutOfBoundsException() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("thirdPartyPackageRegExp", ".*");
+        checkConfig.addAttribute("specialImportsRegExp", "com.google");
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
+        checkConfig.addAttribute("customImportOrderRules",
+                "STATIC###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE");
+        final String[] expected = {
+            "5: Import statement is in the wrong order. Should be in the 'THIRD_PARTY_PACKAGE' group.",
+        };
+
+        verify(checkConfig, getPath("imports" + File.separator
+                + "DOMSource.java"), expected);
+    }
 }
