@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.MessageFilter;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
@@ -253,7 +254,19 @@ public final class TreeWalker
 
         if (getMessageCollector().size() == 0) {
             mCache.checkedOk(fileName, timestamp);
+            return;
         }
+
+        // If no message pass filters, then we can mark the file as OK
+        final MessageFilter messageFilter =
+            getMessageDispatcher().getMessageFilter(fileName);
+        for (LocalizedMessage msg : getMessageCollector().getMessages()) {
+            if (messageFilter.accept(msg)) {
+                return;
+            }
+        }
+        // Non of the filters accept the identified messages, mark file OK
+        mCache.checkedOk(fileName, timestamp);
     }
 
     /**

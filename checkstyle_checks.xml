@@ -51,6 +51,7 @@
   </module>
 
   <module name="TreeWalker">
+    <property name="cacheFile" value="target/checkstyle-cachefile"/>
     <property name="tabWidth" value="4"/>
 
     <module name="AvoidStarImport"/>
