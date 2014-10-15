@@ -848,9 +848,18 @@
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s4.8.5-annotations">4.8.5 Annotations</a>
                             </td>
                             <td>
-                                <a href="https://github.com/maxvetrenko/checkstyle/issues/19">AnnotationIndentation</a>
+                                <img
+                                    src="images/ok_green.png"
+                                    alt="" />
+                                <a href="config_annotation.html#AnnotationLocation">AnnotationLocation</a>
                             </td>
-                            <td></td>
+                            <td>
+                              <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L167">config</a>
+                                <br />
+                                <a
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule485annotations/AnnotationLocationTest.java">test</a>
+                            </td>
                         </tr>
                         <tr>
                             <td>
