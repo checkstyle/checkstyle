@@ -10,6 +10,42 @@
   </properties>
 
   <body>
+    <section name="Release 5.9">
+      <p>New features:</p>
+      <ul>
+        <li>
+          Support of Java8 syntax. Author: Ilja Dubinin. <a href="https://github.com/checkstyle/checkstyle/issues/10">#10</a>
+        </li>
+      </ul>
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Enourmous update on Indentation Check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/294">#294</a>
+        </li>
+        <li>
+          Fixed IllegalInstantiationCheck, so it won't recognize a constructor reference (Java8) as instantiation. Author: Ryszard Wisniewski.
+        </li>
+        <li>
+          Since Java 8 we can have methods body in interfaces. Author: Ilja Dubinin. <a href="https://github.com/checkstyle/checkstyle/issues/282">#282</a>
+        </li>
+        <li>
+          Default modifier has been added to modifier list. Author: Ilja Dubinin. <a href="https://github.com/checkstyle/checkstyle/issues/284">#284</a>
+        </li>
+        <li>
+          Fixed bug in DefaultComesLast check. Now it supports java 8 default methods. Author: Ilja Dubinin. <a href="https://github.com/checkstyle/checkstyle/issues/297">#297</a>
+        </li>
+        <li>
+          Fixed IndexOutOfBoundsException in CustomImportOrderCheck. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/296">#296</a>
+        </li>
+      </ul>
+      <p>Notes:</p>
+      <ul>
+        <li>
+          Correct OverloadMethodsDeclarationOrder name in documentation. Author: Andrew Gaul.
+        </li>
+      </ul>
+    </section>
+
       <section name="Release 5.8">
       <p>New features:</p>
       <ul>
