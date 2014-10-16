@@ -20,22 +20,8 @@
       </p>
     </section>
 
-    <section name="Installation">
+    <section name="The command line usage">
       <p>
-        The easiest way is to include
-        <code>checkstyle-${projectVersion}-all.jar</code> in the
-        classpath. Alternatively, you must include the
-        <code>compile</code> third party dependencies listed in
-
-        <a href="dependencies.html">Project Dependencies</a> in the
-        classpath.
-      </p>
-    </section>
-
-    <section name="Usage">
-      <p>
-        The command line usage is:
-      </p>
 
       <source>
 java -D&lt;property&gt;=&lt;value&gt;  \
@@ -44,6 +30,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
      [-r &lt;dir&gt;] file...
       </source>
+      </p>
 
       <p>
         Checkstyle will process the specified files and by default report
@@ -97,8 +84,46 @@ java -D&lt;property&gt;=&lt;value&gt;  \
       </p>
     </section>
 
-    <section name="Examples">
+    <section name="Download and Run">
       <p>
+          It is possible to run Checkstyle directly from the JAR file using
+          the <code>-jar</code> option. Download latest <a href="http://sourceforge.net/projects/checkstyle/files/checkstyle/${projectVersion}/checkstyle-${projectVersion}-all.jar/download">
+          checkstyle-${projectVersion}-all.jar</a>.
+          An example of run would be:
+        <source>
+java -jar checkstyle-${projectVersion}-all.jar -c docs/sun_checks.xml Check.java
+        </source>
+      </p>
+    </section>
+<!-- Why it does not work ?
+    <section name="Run after compilation">
+      <p>
+        Download and compile:
+        <source>
+git clone https://github.com/checkstyle/checkstyle.git
+cd checkstyle
+mvn clean compile
+        </source>
+
+        Run with arguments:
+        <source>
+mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" Dexec.args="-c sun_checks.xml Check.java"
+        </source>
+      </p>
+    </section>
+-->
+    <section name="Usage by Classpath update">
+      <p>
+        The easiest way is to include
+        <a href="http://sourceforge.net/projects/checkstyle/files/checkstyle/${projectVersion}/checkstyle-${projectVersion}-all.jar/download">checkstyle-${projectVersion}-all.jar</a> in the
+        <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html#sthref10">classpath</a>. Alternatively, you must include the
+        <code>compile</code> third party dependencies listed in
+
+        <a href="dependencies.html">Project Dependencies</a> in the
+        classpath.
+
+        <b>Examples:</b>
+
         <b>
           Run checkstyle with configuration file
           <code>docs/sun_checks.xml</code> on a file
@@ -157,18 +182,6 @@ java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
      -f xml -o build/checkstyle_errors.xml Check.java
       </source>
 
-      <div class="tip">
-        <h4 class="tip">Tip</h4>
-        <p>
-          It is possible to run Checkstyle directly from the JAR file using
-          the <code>-jar</code> option. An example would be:
-        </p>
-
-        <source>
-java -jar checkstyle-${projectVersion}-all.jar \
-     -c docs/sun_checks.xml Check.java
-        </source>
-      </div>
     </section>
   </body>
 </document>
