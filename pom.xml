@@ -381,24 +381,6 @@
         </configuration>
       </plugin>
 
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>1.2</version>
-        <executions>
-          <execution>
-            <id>runner</id>
-            <goals>
-              <goal>java</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <mainClass>com.puppycrawl.tools.checkstyle.gui.Main</mainClass>
-          <classpathScope>runtime</classpathScope>
-        </configuration>
-      </plugin>
-
       <!-- Ensure the manifest has all the gory details -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
