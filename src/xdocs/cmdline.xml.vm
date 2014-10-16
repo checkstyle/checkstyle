@@ -131,8 +131,8 @@ mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" \
         <a href="dependencies.html">Project Dependencies</a> in the
         classpath.
 
-        <b>Examples:</b>
-
+        <br/>
+        <br/>
         <b>
           Run checkstyle with configuration file
           <code>docs/sun_checks.xml</code> on a file
