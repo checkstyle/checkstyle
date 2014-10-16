@@ -43,7 +43,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         <li>
           <code>-c configurationFile</code> - specifies the location of the
           file that defines the configuration modules. The location can either
-          be a filesystem location, or a name passed to the
+          be a filesystem location, or a <a href="http://docs.oracle.com/javase/8/docs/technotes/guides/lang/resources.html#res_names">name</a> passed to the
           ClassLoader.getResource() method.
         </li>
         <li>
