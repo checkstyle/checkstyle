@@ -9,8 +9,6 @@
     <format>zip</format>
   </formats>
 
-  <includeSiteDirectory>true</includeSiteDirectory>
-
   <files>
     <file>
       <source>${project.build.directory}/${project.name}-${project.version}-all.jar</source>
