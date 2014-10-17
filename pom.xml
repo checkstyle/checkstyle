@@ -606,6 +606,7 @@
                 <descriptor>config/assembly-bin.xml</descriptor>
                 <descriptor>config/assembly-src.xml</descriptor>
               </descriptors>
+              <tarLongFileMode>gnu</tarLongFileMode>
             </configuration>
             <executions>
               <execution>
