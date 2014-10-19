@@ -6,9 +6,10 @@
 <import-control pkg="com.puppycrawl.tools.checkstyle">
 
   <allow pkg="antlr"/>
-  <allow pkg="com.google.common.base"/>
-  <allow pkg="com.google.common.collect"/>
+  <allow pkg="org.antlr.v4.runtime"/>
+  <allow pkg="com.google.common"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.api"/>
+  <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
   <allow pkg="java.io"/>
   <allow pkg="java.net"/>
   <allow pkg="java.nio"/>
@@ -25,6 +26,7 @@
   <allow pkg="org.apache.tools.ant" local-only="true"/>
 
   <subpackage name="api">
+    <allow pkg="com.puppycrawl.tools.checkstyle.grammars"/>
     <allow pkg="java.beans"/>
     <allow pkg="java.lang.reflect"/>
     <allow pkg="java.text"/>
@@ -44,6 +46,10 @@
     </subpackage>
     <subpackage name="header">
       <allow class="java.nio.charset.Charset" local-only="true"/>
+    </subpackage>
+    <subpackage name="javadoc">
+      <allow pkg="com.puppycrawl.tools.checkstyle.grammars.javadoc"/>
+      <allow pkg="java.lang.reflect"/>
     </subpackage>
   </subpackage>
 
