@@ -53,4 +53,6 @@
 
     <!-- Methods that build fake AST are very long-->
     <suppress checks="MethodLength" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]comments[\\/]CommentsTest\.java"/>
+
+    <suppress checks="." files=".*JavadocTokenTypes\.java"/>
 </suppressions>
