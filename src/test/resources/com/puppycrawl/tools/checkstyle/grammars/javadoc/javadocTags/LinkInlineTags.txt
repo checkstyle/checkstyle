@@ -1,0 +1,2 @@
+{@link java.lang.Integer#valueOf}
+{@link java.lang.Integer#valueOf valueOf}

@@ -1,0 +1,64 @@
+
+@author John Locke
+@author Man in black, Sub Zero
+@author <a href="mailto:meth@albuquerque.com">Walter White</a>
+@deprecated This method is deprecated
+because we created new one.
+@exception IOException throws exception if connection refused.
+@param arg String argument
+@param <E> it is generic
+@param type I can describe 'type'
+on several lines.
+One more line of description.
+@return something
+@return a value of element
+that is passed as argument.
+@see "A book of that famous man"
+@see <a href="http://google.com">Google</a>
+@see <a href="http://google.com">
+Google</a>
+@see java.lang.Integer#valueOf
+@see java.lang.Integer#Integer
+@see java.lang.Integer#MAX_VALUE
+@see java.lang.Integer#valueOf valueOf method
+@see java.lang.Integer#Integer Integer
+@see java.lang.Integer#MAX_VALUE maxValue
+@see java.lang.Integer#intValue method
+@see java.lang.Integer#intValue() method
+@see java.lang.Void#Void constructor
+@see java.lang.Void#Void() constructor
+@see java.lang.Integer#valueOf(String) method
+@see java.lang.Integer#toString(int,int) method
+@see java.lang.Integer#toString(int, int) method
+@see #field
+@see #method(Type, Type)
+@see #method(Type argname, Type argname)
+@see #constructor(Type, Type)
+@see #constructor(Type argname, Type argname)
+@see Class#field
+@see Class#method(Type, Type, Type)
+@see Class#method(Type argname, Type argname)
+@see Class#constructor(Type, Type)
+@see Class#constructor(Type argname, Type argname)
+@see Class.NestedClass
+@see Class
+@see com.github.checkstyle.Class#field
+@see com.github.checkstyle.Class#method(Type, Type)
+@see com.github.checkstyle.Class#method(Type argname, Type argname)
+@see com.github.checkstyle.Class#constructor(Type, Type)
+@see com.github.checkstyle.Class#constructor(Type argname, Type argname)
+@see com.github.checkstyle.Class.NestedClass
+@see com.github.checkstyle.Class
+@see com.github.checkstyle
+@serial field description
+on few lines
+and even here
+@serial include
+@serial exclude
+@serialField myField myObjectStreamField description of my serial field
+@serialData The data-description documents the types and order of data in the serialized form. Specifically, this data includes the optional data written by the writeObject method and all data (including base classes) written by the Externalizable.writeExternal method.
+@since 1.5
+@since Release 3.4.5
+@throws IOException throws exception if connection refused.
+@version 1.2
+@version Release 1.1.1

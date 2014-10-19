@@ -1,0 +1,7 @@
+@serial field description
+on few lines
+and even here
+@serial include
+@serial exclude
+@serialField myField myObjectStreamField description of my serial field
+@serialData The data-description documents
