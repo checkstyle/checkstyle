@@ -51,6 +51,10 @@
         <td>Checks the style of array type definitions.</td>
       </tr>
       <tr>
+        <td><a href="config_javadoc.html#AtclauseOrder">AtclauseOrder</a></td>
+        <td>Checks the order of at-clauses.</td>
+      </tr>
+      <tr>
         <td><a href="config_misc.html#AvoidEscapedUnicodeCharacters">AvoidEscapedUnicodeCharacters</a></td>
         <td>Restrict using Unicode escapes.</td>
       </tr>
