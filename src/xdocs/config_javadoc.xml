@@ -976,5 +976,83 @@ public boolean isSomething()
       </subsection>
     </section>
 
+    <section name="AtclauseOrder">
+      <subsection name="Description">
+        <p>
+          Checks the order of at-clauses.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>target</td>
+            <td>allows to specify targets to check at-clauses.</td>
+            <td>subset of tokens <a
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+            <a
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+            <a
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+            <a
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+            <a
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+            <a
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a></td>
+           <td><code>All of tokens</code></td>
+          </tr>
+          <tr>
+            <td>tagOrder</td>
+            <td>allows to specify the order by tags.</td>
+            <td><a href="property_types.html#string">String</a></td>
+            <td><code>&#64;author, &#64;version, &#64;param,
+                  &#64;return, &#64;throws, &#64;exception, &#64;see, &#64;since, &#64;serial,
+                  &#64;serialField, &#64;serialData, &#64;deprecated</code></td>
+          </tr>
+          <tr>
+            <td>tagSeverity</td>
+            <td>Severity level when tag is found and printed</td>
+            <td><a href="property_types.html#severity">severity</a></td>
+            <td><code>info</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          Default configuration
+        </p>
+        <source>
+&lt;module name=&quot;AtclauseOrder&quot;&gt;
+    &lt;property name=&quot;tagOrder&quot; value=&quot;&#64;author, &#64;version, &#64;param,
+    &#64;return, &#64;throws, &#64;exception, &#64;see, &#64;since, &#64;serial,
+    &#64;serialField, &#64;serialData, &#64;deprecated&quot;/&gt;
+    &lt;property name=&quot;target&quot; value=&quot;CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
+    METHOD_DEF, CTOR_DEF, VARIABLE_DEF&quot;/&gt;
+&lt;/module>
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
   </body>
 </document>
+
