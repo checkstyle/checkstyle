@@ -330,6 +330,10 @@
         <td>Checks that all packages have a package documentation.</td>
       </tr>
       <tr>
+        <td><a href="config_javadoc.html#JavaDocTagContinuationIndentation">JavaDocTagContinuationIndentation</a></td>
+        <td>Checks the indentation of the continuation lines in at-clauses.</td>
+      </tr>
+      <tr>
         <td><a href="config_javadoc.html#JavadocStyle">JavadocStyle</a></td>
         <td>Custom Checkstyle Check to validate Javadoc.</td>
       </tr>
