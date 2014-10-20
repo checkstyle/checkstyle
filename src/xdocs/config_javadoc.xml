@@ -829,5 +829,43 @@ public boolean isSomething()
         </p>
       </subsection>
     </section>
+
+    <section name="NonEmptyAtclauseDescription">
+      <subsection name="Description">
+        <p>
+          Checks that the at-clause tag is followed by description.
+        </p>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          Default configuration that will check <code>@param</code>, <code>@return</code>,
+          <code>@throws</code>, <code>@deprecated</code>:
+        </p>
+        <source>
+&lt;module name=&quot;NonEmptyAtClauseDescription&quot;/&gt;
+        </source>
+        <p>
+          To check non-empty at-clause description for tags <code>@throws</code>, <code>@deprecated</code>, use following config:
+        </p>
+        <source>
+&lt;module name=&quot;NonEmptyAtClauseDescription&quot;&gt;
+    &lt;property name=&quot;target&quot; value=&quot;JAVADOC_TAG_THROWS_LITERAL, JAVADOC_TAG_DEPRECATED_LITERAL&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
   </body>
 </document>

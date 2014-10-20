@@ -1250,7 +1250,10 @@
                                 <br/>
                                 <a href="https://github.com/maxvetrenko/checkstyle/issues/8">JavaDocTagCuntionuousIndentation</a>
                                 <br/>
-                                <a href="https://github.com/maxvetrenko/checkstyle/issues/9">NonEmptyAtClauseDescription</a>
+                                <img
+                                    src="images/ok_green.png"
+                                    alt="" />
+                                <a href="config_javadoc.html#NonEmptyAtclauseDescription">NonEmptyAtclauseDescription</a>
                             </td>
                             <td>[]</td>
                         </tr>

@@ -492,6 +492,11 @@
         using the name <em>finalize</em>.</td>
       </tr>
       <tr>
+        <td><a href="config_javadoc.html#NonEmptyAtclauseDescription">NonEmptyAtclauseDescription</a></td>
+        <td>
+        Checks that the at-clause tag is followed by description .</td>
+      </tr>
+      <tr>
         <td><a href="config_whitespace.html#NoLineWrap">NoLineWrap</a></td>
         <td>
         Checks that chosen statements are not line-wrapped.</td>
