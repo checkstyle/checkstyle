@@ -1260,12 +1260,10 @@
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s7.2-summary-fragment">7.2 The summary fragment</a>
                             </td>
                             <td>
-                                <a href="https://github.com/maxvetrenko/checkstyle/issues/17">SummaryJavaDocCheck</a>
-                                (check for text before any at-clause).
-                                <br />
-                                additionally we need to have list of forbidden phrases
-                                <br />
-                                in the beginning of summary (regexp).
+                            <img
+                                    src="images/ok_green.png"
+                                    alt="" />
+                                <a href="config_javadoc.html#SummaryJavadoc">SummaryJavadoc</a>
                             </td>
                             <td>[]</td>
                         </tr>
