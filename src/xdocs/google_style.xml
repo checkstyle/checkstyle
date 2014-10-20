@@ -1248,7 +1248,10 @@
                             <td>
                                 <a href="https://github.com/maxvetrenko/checkstyle/issues/7">AtClauseOrder</a>
                                 <br/>
-                                <a href="https://github.com/maxvetrenko/checkstyle/issues/8">JavaDocTagCuntionuousIndentation</a>
+                                <img
+                                    src="images/ok_green.png"
+                                    alt="" />
+                                <a href="config_javadoc.html#JavaDocTagContinuationIndentation">JavaDocTagContinuationIndentation</a>
                                 <br/>
                                 <a href="https://github.com/maxvetrenko/checkstyle/issues/9">NonEmptyAtClauseDescription</a>
                             </td>
