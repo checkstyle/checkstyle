@@ -1236,7 +1236,10 @@
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s7.1.2-javadoc-paragraphs">7.1.2 Paragraphs</a>
                             </td>
                             <td>
-                                <a href="https://github.com/maxvetrenko/checkstyle/issues/3">JavaDocParagraph</a>
+                            <img
+                                    src="images/ok_green.png"
+                                    alt="" />
+                                <a href="config_javadoc.html#JavadocParagraph">JavaDocParagraph</a>
                             </td>
                             <td>[]</td>
                         </tr>
