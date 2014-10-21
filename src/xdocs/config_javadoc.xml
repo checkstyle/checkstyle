@@ -916,7 +916,7 @@ public boolean isSomething()
       </subsection>
     </section>
 
-    <section name="SummaryJavadoc">
+   <section name="SummaryJavadoc">
       <subsection name="Description">
         <p>
           Checks that <a href="http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
@@ -943,11 +943,6 @@ public boolean isSomething()
 
       <subsection name="Examples">
         <p>
-          Default configuration
-        </p>
-        <source>
-&lt;module name=&quot;JavaDocTagContinuationIndentation&quot;&gt;
-    &lt;property name=&quot;tagContinuationIndentation&quot; value=&quot;4&quot;/&gt;
           By default Check validate that first sentence is not empty:
         </p>
         <source>
@@ -1016,12 +1011,6 @@ public boolean isSomething()
                   &#64;return, &#64;throws, &#64;exception, &#64;see, &#64;since, &#64;serial,
                   &#64;serialField, &#64;serialData, &#64;deprecated</code></td>
           </tr>
-          <tr>
-            <td>tagSeverity</td>
-            <td>Severity level when tag is found and printed</td>
-            <td><a href="property_types.html#severity">severity</a></td>
-            <td><code>info</code></td>
-          </tr>
         </table>
       </subsection>
 
@@ -1074,7 +1063,6 @@ public boolean isSomething()
         </p>
         <source>
 &lt;module name=&quot;JavaDocParagraph&quot;/&gt;
-&lt;/module>
         </source>
       </subsection>
 
