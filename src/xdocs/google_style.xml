@@ -1287,8 +1287,11 @@
                                 </a>
                             </td>
                             <td>
+                            <img
+                                    src="images/ok_green.png"
+                                    alt="" />
                                 <a
-                                    href="https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/70">JavadocMethod</a>
+                                    href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
                             </td>
                             <td>[]</td>
                         </tr>
@@ -1298,7 +1301,10 @@
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s7.3.1-javadoc-exception-self-explanatory">7.3.1 Exception: self-explanatory methods</a>
                             </td>
                             <td>
-                                <a href="https://github.com/maxvetrenko/checkstyle/issues/11">JavadocSelfExplanatoryMethod</a>
+                            <img
+                                    src="images/ok_green.png"
+                                    alt="" />
+                                <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
                             </td>
                             <td></td>
                         </tr>
@@ -1308,7 +1314,11 @@
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s7.3.2-javadoc-exception-overrides">7.3.2 Exception: overrides</a>
                             </td>
                             <td>
-                                <a href="https://github.com/maxvetrenko/checkstyle/issues/35">JavadocMethodCheck</a> Overrides are checked by presense of "@Override" annotation on method.
+                                <img
+                                    src="images/ok_green.png"
+                                    alt="" />
+                                <a
+                                    href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
                             </td>
                             <td></td>
                         </tr>

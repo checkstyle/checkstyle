@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import antlr.collections.AST;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -32,6 +33,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -81,17 +85,28 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     /** Maximum children allowed * */
     private static final int BODY_SIZE = 3;
 
+    /** Default value of minimal amount of lines in method to demand documentation presence.*/
+    private static final int DEFAULT_MIN_LINE_COUNT = -1;
+
     /** the visibility scope where Javadoc comments are checked * */
     private Scope mScope = Scope.PRIVATE;
 
     /** the visibility scope where Javadoc comments shouldn't be checked * */
     private Scope mExcludeScope;
 
+    /** Minimal amount of lines in method to demand documentation presence.*/
+    private int mMinLineCount = DEFAULT_MIN_LINE_COUNT;
+
     /**
      * controls whether to allow documented exceptions that are not declared if
      * they are a subclass of java.lang.RuntimeException.
      */
     private boolean mAllowUndeclaredRTE;
+
+    /**
+     * Allows validating throws tags.
+     */
+    private boolean mValidateThrows;
 
     /**
      * controls whether to allow documented exceptions that are subclass of one
@@ -129,6 +144,40 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      * properties (setters and getters).
      */
     private boolean mAllowMissingPropertyJavadoc;
+
+    /** List of annotations that could allow missed documentation. */
+    private List<String> mAllowedAnnotations = Arrays.asList("Override");
+
+    /**
+     * Sets minimal amount of lines in method.
+     * @param aValue user's value.
+     */
+    public void setMinLineCount(int aValue)
+    {
+        mMinLineCount = aValue;
+    }
+
+    /**
+     * Allow validating throws tag.
+     * @param aValue user's value.
+     */
+    public void setValidateThrows(boolean aValue)
+    {
+        mValidateThrows = aValue;
+    }
+
+    /**
+     * Sets list of annotations.
+     * @param aAnnotations user's value.
+     */
+    public void setAllowedAnnotations(String aAnnotations)
+    {
+        final List<String> annotations = new ArrayList<String>();
+        for (String annotation : aAnnotations.split(", ")) {
+            annotations.add(annotation);
+        }
+        mAllowedAnnotations = annotations;
+    }
 
     /**
      * Set the scope.
@@ -248,8 +297,20 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     }
 
     @Override
+    public boolean isCommentNodesRequired()
+    {
+        return true;
+    }
+
+    @Override
     protected final void processAST(DetailAST aAST)
     {
+        if ((aAST.getType() == TokenTypes.METHOD_DEF || aAST.getType() == TokenTypes.CTOR_DEF)
+            && (getMethodsNumberOfLine(aAST) <= mMinLineCount)
+            || hasAllowedAnnotations(aAST))
+        {
+            return;
+        }
         final Scope theScope = calculateScope(aAST);
         if (shouldCheck(aAST, theScope)) {
             final FileContents contents = getFileContents();
@@ -264,6 +325,49 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                 checkComment(aAST, cmt);
             }
         }
+    }
+
+    /**
+     * Some javadoc.
+     * @param aMethodDef Some javadoc.
+     * @return Some javadoc.
+     */
+    private boolean hasAllowedAnnotations(DetailAST aMethodDef)
+    {
+        final DetailAST modifiersNode = aMethodDef.findFirstToken(TokenTypes.MODIFIERS);
+        DetailAST annotationNode = modifiersNode.findFirstToken(TokenTypes.ANNOTATION);
+        while (annotationNode != null && annotationNode.getType() == TokenTypes.ANNOTATION) {
+            DetailAST identNode = annotationNode.findFirstToken(TokenTypes.IDENT);
+            if (identNode == null) {
+                identNode = annotationNode.findFirstToken(TokenTypes.DOT)
+                    .findFirstToken(TokenTypes.IDENT);
+            }
+            if (mAllowedAnnotations.contains(identNode.getText())) {
+                return true;
+            }
+            annotationNode = annotationNode.getNextSibling();
+        }
+        return false;
+    }
+
+    /**
+     * Some javadoc.
+     * @param aMethodDef Some javadoc.
+     * @return Some javadoc.
+     */
+    private int getMethodsNumberOfLine(DetailAST aMethodDef)
+    {
+        int numberOfLines;
+        final DetailAST lcurly = aMethodDef.getLastChild();
+        final DetailAST rcurly = lcurly.getLastChild();
+
+        if (lcurly.getFirstChild() == rcurly) {
+            numberOfLines = 1;
+        }
+        else {
+            numberOfLines = rcurly.getLineNo() - lcurly.getLineNo() - 1;
+        }
+        return numberOfLines;
     }
 
     @Override
@@ -287,7 +391,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      */
     protected boolean isMissingJavadocAllowed(final DetailAST aAST)
     {
-        return mAllowMissingJavadoc || isOverrideMethod(aAST)
+        return mAllowMissingJavadoc
             || (mAllowMissingPropertyJavadoc
                 && (isSetterMethod(aAST) || isGetterMethod(aAST)));
     }
@@ -754,7 +858,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                     reqd = !isUnchecked(documentedCI.getClazz());
                 }
 
-                if (reqd) {
+                if (reqd && mValidateThrows) {
                     log(tag.getLineNo(), tag.getColumnNo(),
                         "javadoc.unusedTag",
                         JavadocTagInfo.THROWS.getText(), tag.getArg1());
@@ -887,38 +991,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         }
 
         return true;
-    }
-
-    /**
-     * Returns is a method has the "@Override" annotation.
-     * @param aAST the AST to check with
-     * @return whether the AST represents a method that has the annotation.
-     */
-    private boolean isOverrideMethod(DetailAST aAST)
-    {
-        // Need it to be a method, cannot have an override on anything else.
-        // Must also have MODIFIERS token to hold the @Override
-        if ((TokenTypes.METHOD_DEF != aAST.getType())
-            || (TokenTypes.MODIFIERS != aAST.getFirstChild().getType()))
-        {
-            return false;
-        }
-
-        // Now loop over all nodes while they are annotations looking for
-        // an "@Override".
-        DetailAST node = aAST.getFirstChild().getFirstChild();
-        while ((null != node) && (TokenTypes.ANNOTATION == node.getType())) {
-            if ((node.getFirstChild().getType() == TokenTypes.AT)
-                && (node.getFirstChild().getNextSibling().getType()
-                    == TokenTypes.IDENT)
-                && ("Override".equals(
-                        node.getFirstChild().getNextSibling().getText())))
-            {
-                return true;
-            }
-            node = node.getNextSibling();
-        }
-        return false;
     }
 
     /** Stores useful information about declared exception. */

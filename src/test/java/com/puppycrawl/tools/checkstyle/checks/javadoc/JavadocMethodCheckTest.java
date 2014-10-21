@@ -33,6 +33,31 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
     public void setUp()
     {
         mCheckConfig = createCheckConfig(JavadocMethodCheck.class);
+        mCheckConfig.addAttribute("validateThrows", "true");
+    }
+
+    @Test
+    public void extendAnnotationTest() throws Exception
+    {
+        DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
+        config.addAttribute("allowedAnnotations", "MyAnnotation, Override");
+        config.addAttribute("minLineCount", "2");
+        final String[] expected = {
+            "54:3: Missing a Javadoc comment.",
+        };
+        verify(config, getPath("javadoc/ExtendAnnotation.java"), expected);
+    }
+
+    @Test
+    public void newTest() throws Exception
+    {
+        DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
+        config.addAttribute("allowedAnnotations", "MyAnnotation, Override");
+        config.addAttribute("minLineCount", "2");
+        final String[] expected = {
+            "57:5: Missing a Javadoc comment.",
+        };
+        verify(config, getPath("javadoc/InputJavadocMethodCheck_SmallMethods.java"), expected);
     }
 
     @Test

@@ -108,7 +108,7 @@
       <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
     </module>
     <module name="MethodCount">
-      <property name="maxTotal" value="30"/>
+      <property name="maxTotal" value="35"/>
     </module>
 
     <module name="LocalFinalVariableName"/>

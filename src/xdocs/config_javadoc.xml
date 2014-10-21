@@ -281,6 +281,24 @@ public int checkReturnTag(final int aTagIndex,
             <th>default value</th>
           </tr>
           <tr>
+            <td>minLineCount</td>
+            <td>Minimal amount of lines in method to demand documentation presence.</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td><code>-1</code></td>
+          </tr>
+          <tr>
+            <td>allowedAnnotations</td>
+            <td>List of annotations that could allow missed documentation.</td>
+            <td><a href="property_types.html#stringSet">list of strings</a></td>
+            <td><code>Override</code></td>
+          </tr>
+          <tr>
+            <td>validateThrows</td>
+            <td>Allows validating throws tags.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
             <td>scope</td>
             <td>visibility scope where Javadoc comments are checked</td>
             <td><a href="property_types.html#scope">scope</a></td>
@@ -328,14 +346,12 @@ public int checkReturnTag(final int aTagIndex,
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><code>false</code></td>
           </tr>
-
           <tr>
             <td>allowMissingJavadoc</td>
             <td>whether to ignore errors when a method javadoc is missed.</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><code>false</code></td>
           </tr>
-
           <tr>
             <td>allowMissingPropertyJavadoc</td>
             <td>
