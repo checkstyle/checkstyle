@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * Default configuration:
  * </p>
  * <pre>
- * &lt;module name=&quot;JavaDocParagraph&quot;/&gt;
+ * &lt;module name=&quot;JavadocParagraph&quot;/&gt;
  * </pre>
  *
  * @author maxvetrenko
