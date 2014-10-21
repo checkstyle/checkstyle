@@ -659,6 +659,11 @@
         <code>==</code> or <code>&#33;=</code>.</td>
       </tr>
       <tr>
+        <td><a href="config_javadoc.html#SummaryJavadoc">SummaryJavadoc</a></td>
+        <td>
+        Checks that Javadoc summary sentence does not contain phrases that are not recommended to use.</td>
+      </tr>
+      <tr>
         <td><a href="config_coding.html#SuperClone">SuperClone</a></td>
         <td>
         Checks that an overriding clone() method invokes super.clone().</td>
