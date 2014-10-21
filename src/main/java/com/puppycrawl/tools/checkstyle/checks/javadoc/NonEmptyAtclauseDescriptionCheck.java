@@ -26,14 +26,14 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * Default configuration that will check <code>@param</code>, <code>@return</code>,
  * <code>@throws</code>, <code>@deprecated</code> to:
  * <pre>
- * &lt;module name=&quot;NonEmptyAtClauseDescription&quot;/&gt;
+ * &lt;module name=&quot;NonEmptyAtclauseDescription&quot;/&gt;
  * </pre>
  * <p>
  * To check non-empty at-clause description for tags <code>@throws</code>,
  * <code>@deprecated</code>, use following configuration:
  * </p>
  * <pre>
- * &lt;module name=&quot;NonEmptyAtClauseDescription&quot;&gt;
+ * &lt;module name=&quot;NonEmptyAtclauseDescription&quot;&gt;
  *     &lt;property name=&quot;target&quot; value=&quot;JAVADOC_TAG_THROWS_LITERAL,
  *     JAVADOC_TAG_DEPRECATED_LITERAL&quot;/&gt;
  * &lt;/module&gt;

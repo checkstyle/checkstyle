@@ -23,14 +23,14 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
-public class JavaDocTagContinuationIndentationCheckTest
+public class JavadocTagContinuationIndentationCheckTest
         extends BaseCheckTestSupport
 {
     @Test
     public void testCheck() throws Exception
     {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(JavaDocTagContinuationIndentationCheck.class);
+                createCheckConfig(JavadocTagContinuationIndentationCheck.class);
         final String[] expected = {
             "47: Line continuation have incorrect indentation level, expected level should be 4.",
             "109: Line continuation have incorrect indentation level, expected level should be 4.",

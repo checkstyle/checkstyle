@@ -843,13 +843,13 @@ public boolean isSomething()
           <code>@throws</code>, <code>@deprecated</code>:
         </p>
         <source>
-&lt;module name=&quot;NonEmptyAtClauseDescription&quot;/&gt;
+&lt;module name=&quot;NonEmptyAtclauseDescription&quot;/&gt;
         </source>
         <p>
           To check non-empty at-clause description for tags <code>@throws</code>, <code>@deprecated</code>, use following config:
         </p>
         <source>
-&lt;module name=&quot;NonEmptyAtClauseDescription&quot;&gt;
+&lt;module name=&quot;NonEmptyAtclauseDescription&quot;&gt;
     &lt;property name=&quot;target&quot; value=&quot;JAVADOC_TAG_THROWS_LITERAL, JAVADOC_TAG_DEPRECATED_LITERAL&quot;/&gt;
 &lt;/module&gt;
         </source>
@@ -868,7 +868,7 @@ public boolean isSomething()
       </subsection>
     </section>
 
-    <section name="JavaDocTagContinuationIndentation">
+    <section name="JavadocTagContinuationIndentation">
       <subsection name="Description">
         <p>
           Checks the indentation of the continuation lines in at-clauses.
@@ -897,7 +897,7 @@ public boolean isSomething()
           Default configuration
         </p>
         <source>
-&lt;module name=&quot;JavaDocTagContinuationIndentation&quot;&gt;
+&lt;module name=&quot;JavadocTagContinuationIndentation&quot;&gt;
     &lt;property name=&quot;tagContinuationIndentation&quot; value=&quot;4&quot;/&gt;
 &lt;/module&gt;
         </source>
@@ -1062,7 +1062,7 @@ public boolean isSomething()
           Default configuration:
         </p>
         <source>
-&lt;module name=&quot;JavaDocParagraph&quot;/&gt;
+&lt;module name=&quot;JavadocParagraph&quot;/&gt;
         </source>
       </subsection>
 

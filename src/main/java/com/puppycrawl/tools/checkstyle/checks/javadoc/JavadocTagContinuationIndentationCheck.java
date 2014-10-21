@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * Default configuration:
  * </p>
  * <pre>
- * &lt;module name=&quot;JavaDocTagContinuationIndentation&quot;&gt;
+ * &lt;module name=&quot;JavadocTagContinuationIndentation&quot;&gt;
  *     &lt;property name=&quot;offset&quot; value=&quot;4&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * @author max
  *
  */
-public class JavaDocTagContinuationIndentationCheck extends AbstractJavadocCheck
+public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
 {
 
     /** Default indentation */
