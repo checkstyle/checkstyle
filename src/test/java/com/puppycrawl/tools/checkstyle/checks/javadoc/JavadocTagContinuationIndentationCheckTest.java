@@ -30,7 +30,7 @@ public class JavadocTagContinuationIndentationCheckTest
     public void testFP() throws Exception
     {
         final DefaultConfiguration checkConfig =
-                createCheckConfig(JavaDocTagContinuationIndentationCheck.class);
+                createCheckConfig(JavadocTagContinuationIndentationCheck.class);
         final String[] expected = {
         };
         verify(checkConfig, getPath("javadoc/GuavaFP.java"), expected);
