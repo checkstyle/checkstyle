@@ -149,9 +149,9 @@
   <properties>
     <project.build.sourceEncoding>iso-8859-1</project.build.sourceEncoding>
     <projectVersion>${project.version}</projectVersion>
-    <tools.jar.version>1.5.0</tools.jar.version>
-    <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
     <maven.site.plugin.version>3.4</maven.site.plugin.version>
+    <tools.jar.version>1.6.0</tools.jar.version>
+    <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
   </properties>
 
   <dependencies>
@@ -249,8 +249,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.3.2</version>
         <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
+          <source>1.6</source>
+          <target>1.6</target>
         </configuration>
       </plugin>
 
@@ -284,15 +284,20 @@
             <configuration>
               <rules>
                 <requireJavaVersion>
-                  <version>1.5</version>
+                  <version>1.6</version>
                 </requireJavaVersion>
+                <!-- we can not use this as it require
+                compilation on 1.6 only, due to dependecy to 'tools'
                 <enforceBytecodeVersion>
-                  <maxJdkVersion>1.5</maxJdkVersion>
+                  <maxJdkVersion>1.6</maxJdkVersion>
                 </enforceBytecodeVersion>
+                -->
               </rules>
             </configuration>
           </execution>
         </executions>
+        <!-- we can not use this as it require
+        compilation on 1.6 only, due to dependecy to 'tool'
         <dependencies>
           <dependency>
             <groupId>org.codehaus.mojo</groupId>
@@ -301,6 +306,7 @@
             <scope>compile</scope>
           </dependency>
         </dependencies>
+        -->
       </plugin>
 
       <!-- Generate the ANTLRv2 grammar -->
@@ -477,7 +483,7 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>2.10.1</version>
         <configuration>
-          <source>1.5</source>
+          <source>1.6</source>
 	  <failOnError>false</failOnError>
 	  <linksource>true</linksource>
         </configuration>
@@ -576,7 +582,7 @@
 	                <goal>pmd</goal>
 	              </goals>
 	              <configuration>
-	                <targetJdk>1.5</targetJdk>
+	                <targetJdk>1.6</targetJdk>
 	                <minimumTokens>20</minimumTokens>
 	              </configuration>
 	            </execution>
@@ -718,7 +724,7 @@
 	          <groupId>org.apache.maven.plugins</groupId>
 	          <artifactId>maven-pmd-plugin</artifactId>
 	          <configuration>
-	            <targetJdk>1.5</targetJdk>
+	            <targetJdk>1.6</targetJdk>
 	            <minimumTokens>20</minimumTokens>
 	          </configuration>
 		      <reportSets>
@@ -779,7 +785,8 @@
       </build>
     </profile>
 
-    <!-- Bring in tools.jar for platforms which provide it -->
+    <!-- Bring in tools.jar for platforms which provide it
+    that is required for javadoc docklets that are in use -->
     <profile>
       <id>tools.jar-sun</id>
       <activation>
