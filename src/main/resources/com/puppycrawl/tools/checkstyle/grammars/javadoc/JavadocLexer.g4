@@ -380,6 +380,7 @@ fragment Z:('z'|'Z');
 //////////////////////////////////////////////////////////////////////////////////////
 mode htmlAttr;
 Leading_asterisk7: LEADING_ASTERISK -> type(LEADING_ASTERISK);
+NewLine8: NEWLINE -> type(NEWLINE);
 
 ATTR_VALUE  : '"' ~[<"]* '"'        {attributeCatched=true;}
             | '\'' ~[<']* '\''      {attributeCatched=true;}
