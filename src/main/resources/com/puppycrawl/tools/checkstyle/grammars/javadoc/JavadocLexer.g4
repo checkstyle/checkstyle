@@ -382,10 +382,10 @@ mode htmlAttr;
 Leading_asterisk7: LEADING_ASTERISK -> type(LEADING_ASTERISK);
 NewLine8: NEWLINE -> type(NEWLINE);
 
-ATTR_VALUE  : '"' ~[<"]* '"'        {attributeCatched=true;}
-            | '\'' ~[<']* '\''      {attributeCatched=true;}
-            | ( '-' | '+' | DIGIT)+ {attributeCatched=true;}
-            | (~[> \t\n/] | SlashInAttr)+            {attributeCatched=true;}
+ATTR_VALUE  : '"' ~[<"]* '"'        {!attributeCatched}? {attributeCatched=true;}
+            | '\'' ~[<']* '\''      {!attributeCatched}? {attributeCatched=true;}
+            | ( '-' | '+' | DIGIT)+ {!attributeCatched}? {attributeCatched=true;}
+            | (~[> \t\n/] | SlashInAttr)+ {!attributeCatched}? {attributeCatched=true;}
             ;
 
 fragment SlashInAttr: '/' {_input.LA(1) != '>'}?;
