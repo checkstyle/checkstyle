@@ -27,6 +27,16 @@ public class JavaDocTagContinuationIndentationCheckTest
         extends BaseCheckTestSupport
 {
     @Test
+    public void testFP() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(JavaDocTagContinuationIndentationCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("javadoc/GuavaFP.java"), expected);
+    }
+
+    @Test
     public void testCheck() throws Exception
     {
         final DefaultConfiguration checkConfig =
