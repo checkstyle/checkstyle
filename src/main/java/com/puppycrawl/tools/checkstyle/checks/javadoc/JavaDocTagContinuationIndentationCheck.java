@@ -69,15 +69,22 @@ public class JavaDocTagContinuationIndentationCheck extends AbstractJavadocCheck
     @Override
     public void visitJavadocToken(DetailNode aAst)
     {
-        final List<DetailNode> textNodes = getAllTextNodes(aAst);
-
-        for (DetailNode textNode : textNodes.subList(1, textNodes.size())) {
-            final DetailNode whitespaceNode = JavadocUtils.getFirstChild(textNode);
-
-            if (whitespaceNode.getType() == JavadocTokenTypes.WS
-                    && whitespaceNode.getText().length() - 1 != mOffset)
+        final List<DetailNode> textNodes = getAllNewlineNodes(aAst);
+        if (isInlineDescription(aAst)) {
+            return;
+        }
+        for (DetailNode newlineNode : textNodes) {
+            final DetailNode textNode = JavadocUtils.getNextSibling(JavadocUtils
+                    .getNextSibling(newlineNode));
+            if (textNode != null && textNode.getType() == JavadocTokenTypes.TEXT
+                    && textNode.getChildren().length > 1)
             {
-                log(textNode.getLineNumber(), "tag.continuation.indent", mOffset);
+                final DetailNode whitespace = JavadocUtils.getFirstChild(textNode);
+                if (whitespace.getType() == JavadocTokenTypes.WS
+                        && whitespace.getText().length() - 1 < mOffset)
+                {
+                    log(textNode.getLineNumber(), "tag.continuation.indent", mOffset);
+                }
             }
         }
     }
@@ -87,16 +94,33 @@ public class JavaDocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @param aDescriptionNode Some javadoc.
      * @return Some javadoc.
      */
-    private List<DetailNode> getAllTextNodes(DetailNode aDescriptionNode)
+    private List<DetailNode> getAllNewlineNodes(DetailNode aDescriptionNode)
     {
         final List<DetailNode> textNodes = new ArrayList<DetailNode>();
         DetailNode node = JavadocUtils.getFirstChild(aDescriptionNode);
         while (JavadocUtils.getNextSibling(node) != null) {
-            if (node.getType() == JavadocTokenTypes.TEXT) {
+            if (node.getType() == JavadocTokenTypes.NEWLINE) {
                 textNodes.add(node);
             }
             node = JavadocUtils.getNextSibling(node);
         }
         return textNodes;
+    }
+
+    /**
+     * Some javadoc.
+     * @param aDescription Some javadoc.
+     * @return Some javadoc.
+     */
+    private boolean isInlineDescription(DetailNode aDescription)
+    {
+        DetailNode inlineTag = aDescription.getParent();
+        while (inlineTag != null) {
+            if (inlineTag.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                return true;
+            }
+            inlineTag = inlineTag.getParent();
+        }
+        return false;
     }
 }

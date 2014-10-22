@@ -44,7 +44,7 @@ class JavaDocTagContinuationIndentation implements Serializable
      * @return Some text.
      * @serialData Some javadoc.
      * @deprecated Some text.
-     *       Some javadoc. // warn
+     *    Some javadoc. // warn
      * @throws Exception Some text.
      */
     String method(String aString) throws Exception
@@ -106,10 +106,10 @@ class JavaDocTagContinuationIndentation implements Serializable
      * Some text.
      * @param aString Some text.
      * @return Some text.
-     *       Some javadoc. // warn
+     *    Some javadoc. // warn
      * @serialData Some javadoc.
      * @param aInt Some text.
-     *       Some javadoc. // warn
+     *    Some javadoc. // warn
      * @throws Exception Some text.
      * @param aBoolean Some text.
      * @deprecated Some text.
@@ -200,10 +200,10 @@ class JavaDocTagContinuationIndentation implements Serializable
          * @param aString Some text.
          * @return Some text.
          * @param aInt Some text.
-         *       Some javadoc. // warn
+         *    Some javadoc. // warn
          * @throws Exception Some text.
          * @param aBoolean Some text.
-         *       Some javadoc. // warn
+         *    Some javadoc. // warn
          * @deprecated Some text.
          */
         String method6(String aString, int aInt, boolean aBoolean) throws Exception
@@ -218,9 +218,9 @@ class JavaDocTagContinuationIndentation implements Serializable
          * Some text.
          * @throws Exception Some text.
          * @param aString Some text.
-         *       Some javadoc. // warn
+         *   Some javadoc. // warn
          * @serialData Some javadoc.
-         *       Some javadoc. // warn
+         *    Some javadoc. // warn
          * @deprecated Some text.
          * @return Some text.
          */
@@ -282,12 +282,12 @@ class JavaDocTagContinuationIndentation implements Serializable
          * Some text.
          *       Some javadoc. // warn
          * @param aString Some text.
-         *       Some javadoc. // warn
+         *    Some javadoc. // warn
          * @return Some text.
          * @param aInt Some text.
-         *       Some javadoc. // warn
+         *    Some javadoc. // warn
          * @throws Exception Some text.
-         *       Some javadoc. // warn
+         *    Some javadoc. // warn
          * @param aBoolean Some text.
          * @deprecated Some text.
          */
@@ -307,7 +307,7 @@ class JavaDocTagContinuationIndentation implements Serializable
  *     Some javadoc.
  *     Some javadoc.
  * @see Some javadoc.
- *       Some javadoc. // warn
+ *    Some javadoc. // warn
  * @author max
  */
 enum Foo {}
@@ -319,7 +319,7 @@ enum Foo {}
  * @since Some javadoc.
  *     Some javadoc.
  * @serialData Some javadoc.
- *       Some javadoc. // warn
+ *   Some javadoc. // warn
  * @author max
  */
 interface FooIn {}
