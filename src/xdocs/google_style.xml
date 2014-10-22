@@ -731,7 +731,7 @@
                                     src="images/ok_green.png"
                                     alt="" />
                                 <a
-                                    href="https://github.com/maxvetrenko/sevntu.checkstyle/blob/master/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/design/VariableDeclarationUsageDistanceCheck.java">VariableDeclarationUsageDistance</a>
+                                    href="config_coding.html#VariableDeclarationUsageDistance">VariableDeclarationUsageDistance</a>
                                 <br />
                             </td>
                             <td>
@@ -876,10 +876,11 @@
                             </td>
                             <td>
                                 <img
-                                    src="images/ban_red.png"
+                                    src=""
                                     alt="" />
+                                todo: <a href="https://github.com/checkstyle/checkstyle/issues/333">CommentIndentation</a>
                             </td>
-                            <td></td>
+                            <td>[]</td>
                         </tr>
                         <tr>
                             <td>
@@ -994,10 +995,11 @@
                             </td>
                             <td>
                                 <img
-                                    src="images/ban_red.png"
+                                    src="images/ok_blue.png"
                                     alt="" />
+                                <a href="config_naming.html">MethodName</a> no ability to distinguish verb at the beggining of name, no way distinguish Test method from others so "_" is allowed in names
                             </td>
-                            <td></td>
+                            <td>[]</td>
                         </tr>
                         <tr>
                             <td>
@@ -1178,7 +1180,7 @@
                                     src="images/ban_red.png"
                                     alt="" />
                             </td>
-                            <td></td>
+                            <td> proper validation require parsing other files, sources are not always awailable</td>
                         </tr>
                         <tr>
                             <td>
@@ -1226,7 +1228,10 @@
                                     href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s7.1.1-javadoc-multi-line">7.1.1 General form</a>
                             </td>
                             <td>
-                                <a href="https://github.com/maxvetrenko/checkstyle/issues/18">SingleLineJavaDoc</a>
+                                <img
+                                    src="images/ok_green.png"
+                                    alt="" />
+                                <a href="https://github.com/checkstyle/checkstyle/issues/332">SingleLineJavaDoc</a>
                             </td>
                             <td>[]</td>
                         </tr>
@@ -1264,7 +1269,7 @@
                                     alt="" />
                                 <a href="config_javadoc.html#NonEmptyAtclauseDescription">NonEmptyAtclauseDescription</a>
                             </td>
-                            <td>[]</td>
+                            <td>[]<br/>[]<br/>[]</td>
                         </tr>
                         <tr>
                             <td>
@@ -1306,7 +1311,7 @@
                                     alt="" />
                                 <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
                             </td>
-                            <td></td>
+                            <td>[]</td>
                         </tr>
                         <tr>
                             <td>
@@ -1315,12 +1320,11 @@
                             </td>
                             <td>
                                 <img
-                                    src="images/ok_green.png"
+                                    src="images/ok_blue.png"
                                     alt="" />
-                                <a
-                                    href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
+                                <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a> Overrides are checked by presense of "@Override" annotation on method.
                             </td>
-                            <td></td>
+                            <td>[]</td>
                         </tr>
                     </tbody>
                 </table>
