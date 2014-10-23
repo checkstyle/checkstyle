@@ -50,6 +50,9 @@
           <a href="https://google-styleguide.googlecode.com/svn-history/r130/trunk/javaguide.html">Google style</a>
           is now covered to maxumum of Checkstyle ability. See detailed report <a href="google_style.html">here</a>. Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
         </li>
+        <li>
+          All binaries are now compiled by Jdk6. Jdk5 is not supported any more.
+        </li>
       </ul>
     </section>
 
