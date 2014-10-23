@@ -177,8 +177,8 @@
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
-      <artifactId>guava-jdk5</artifactId>
-      <version>14.0.1</version>
+      <artifactId>guava</artifactId>
+      <version>18.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.ant</groupId>
