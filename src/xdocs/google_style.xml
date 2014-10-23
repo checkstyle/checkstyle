@@ -878,7 +878,7 @@
                                 <img
                                     src=""
                                     alt="" />
-                                todo: <a href="https://github.com/checkstyle/checkstyle/issues/333">CommentIndentation</a>
+                                future plan: <a href="https://github.com/checkstyle/checkstyle/issues/333">CommentIndentation</a> as after 6.0 release it is become possible.
                             </td>
                             <td>[]</td>
                         </tr>
@@ -997,7 +997,8 @@
                                 <img
                                     src="images/ok_blue.png"
                                     alt="" />
-                                <a href="config_naming.html">MethodName</a> no ability to distinguish verb at the beggining of name, no way distinguish Test method from others so "_" is allowed in names
+                                <a href="config_naming.html">MethodName</a>
+                                <br/> No ability to distinguish verb at the beggining of name, no way distinguish Test method from others so "_" is allowed in names
                             </td>
                             <td>[]</td>
                         </tr>
@@ -1010,11 +1011,7 @@
                                 <img
                                     src="images/ban_red.png"
                                     alt="" />
-                                Every constant is a static final field,
-                                <br />
-                                but not all static final fields are
-                                <br />
-                                constants - impossible to check such rule.
+                                Every constant is a static final field, but not all static final fields are constants - impossible to check such rule.
                             </td>
                             <td></td>
                         </tr>
@@ -1179,8 +1176,9 @@
                                 <img
                                     src="images/ban_red.png"
                                     alt="" />
+                                    Proper validation require parsing other files, sources are not always awailable.
                             </td>
-                            <td> proper validation require parsing other files, sources are not always awailable</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>
@@ -1322,7 +1320,8 @@
                                 <img
                                     src="images/ok_blue.png"
                                     alt="" />
-                                <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a> Overrides are checked by presense of "@Override" annotation on method.
+                                <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
+                                <br/> Overrides are checked by presense of "@Override" annotation on method.
                             </td>
                             <td>[]</td>
                         </tr>
