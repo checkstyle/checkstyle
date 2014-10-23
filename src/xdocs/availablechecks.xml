@@ -642,7 +642,7 @@
       <tr>
         <td><a href="config_javadoc.html#SingleLineJavadoc">SingleLineJavadoc</a></td>
         <td>
-        Checks that a JavaDoc block which can fit on a single line.</td>
+         Checks that a JavaDoc block which can fit on a single line and doesn't contain at-clauses</td>
       </tr>
       <tr>
         <td><a href="config_coding.html#SimplifyBooleanExpression">SimplifyBooleanExpression</a></td>

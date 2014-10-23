@@ -24,7 +24,8 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 
 /**
  * Checks that a JavaDoc block which can fit on a single line and doesn't
- * contain at-clauses may be substituted by a single line.
+ * contain at-clauses. Javadoc comment that contains at leat one at-clause
+ * should be formatted in few lines.
  *
  * Default configuration:
  * <pre>
