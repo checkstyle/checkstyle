@@ -10,6 +10,49 @@
   </properties>
 
   <body>
+
+    <section name="Release 6.0">
+      <p>New features that extend API:</p>
+      <ul>
+        <li>
+          Support of single-line and block comments in parse tree. 
+          ANTLR4 grammar for parsing Javadoc comments. Author: Baratali Izmailov. 
+          <a href="https://github.com/checkstyle/checkstyle/issues/49">#49</a>
+        </li>
+      </ul>
+      <p>New features:</p>
+      <ul>
+        <li>
+          AnnotationLocationCheck. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/302">#302</a>
+        </li>
+        <li>
+          AtclauseOrderCheck. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/306">#306</a>
+        </li>
+        <li>
+          JavaDocParagraph. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/315">#315</a>
+        </li>
+        <li>
+          JavaDocTagСontinuationIndentation. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/308">#308</a>
+        </li>
+        <li>
+          SingleLineJavadocCheck. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/332">#332</a>
+        </li>
+        <li>
+          NonEmptyAtclauseDescriptionCheck. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/309">#309</a>
+        </li>
+        <li>
+          Update for existing JavadocMethodCheck to satisfy Google's style requirements. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/319">#319</a>
+        </li>
+      </ul>
+      <p>Notes:</p>
+      <ul>
+        <li>
+          <a href="https://google-styleguide.googlecode.com/svn-history/r130/trunk/javaguide.html">Google style</a>
+          is now covered to maxumum of Checkstyle ability. See detailed report <a href="google_style.html">here</a>. Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
+        </li>
+      </ul>
+    </section>
+
     <section name="Release 5.9">
       <p>New features:</p>
       <ul>
