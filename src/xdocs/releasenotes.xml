@@ -15,8 +15,8 @@
       <p>New features that extend API:</p>
       <ul>
         <li>
-          Support of single-line and block comments in parse tree. 
-          ANTLR4 grammar for parsing Javadoc comments. Author: Baratali Izmailov. 
+          Support of single-line and block comments in parse tree.
+          ANTLR4 grammar for parsing Javadoc comments. Author: Baratali Izmailov.
           <a href="https://github.com/checkstyle/checkstyle/issues/49">#49</a>
         </li>
       </ul>
@@ -29,10 +29,10 @@
           AtclauseOrderCheck. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/306">#306</a>
         </li>
         <li>
-          JavaDocParagraph. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/315">#315</a>
+          JavadocParagraph. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/315">#315</a>
         </li>
         <li>
-          JavaDocTagСontinuationIndentation. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/308">#308</a>
+          JavadocTagContinuationIndentation. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/308">#308</a>
         </li>
         <li>
           SingleLineJavadocCheck. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/332">#332</a>
