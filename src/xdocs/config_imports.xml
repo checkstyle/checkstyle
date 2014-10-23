@@ -654,7 +654,7 @@ class FooBar {
             <td><code>2</code></td>
           </tr>
           <tr>
-            <td>separateLineBetweenGroup</td>
+            <td>separateLineBetweenGroups</td>
             <td>Force empty line separator between import groups.</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><code>true</code></td>
