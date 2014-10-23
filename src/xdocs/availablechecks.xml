@@ -640,6 +640,11 @@
         Checks line wrapping with separators.</td>
       </tr>
       <tr>
+        <td><a href="config_javadoc.html#SingleLineJavadoc">SingleLineJavadoc</a></td>
+        <td>
+        Checks that a JavaDoc block which can fit on a single line.</td>
+      </tr>
+      <tr>
         <td><a href="config_coding.html#SimplifyBooleanExpression">SimplifyBooleanExpression</a></td>
         <td>
         Checks for overly complicated boolean expressions.</td>

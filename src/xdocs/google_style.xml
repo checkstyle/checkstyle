@@ -1231,7 +1231,7 @@
                                 <img
                                     src="images/ok_green.png"
                                     alt="" />
-                                <a href="https://github.com/checkstyle/checkstyle/issues/332">SingleLineJavaDoc</a>
+                                <a href="config_javadoc.html#SingleLineJavadoc">SingleLineJavadoc</a>
                             </td>
                             <td>[]</td>
                         </tr>
