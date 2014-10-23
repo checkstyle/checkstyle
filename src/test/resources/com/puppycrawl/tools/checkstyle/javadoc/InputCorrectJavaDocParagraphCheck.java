@@ -10,8 +10,8 @@ class InputCorrectJavaDocParagraphCheck {
 
     /**
      * Some Javadoc.
-     *
-     * <p>Some Javadoc.
+     *   
+     * <p>{@code function} will never be invoked with a null value.
      *
      * @since 8.0
      */
@@ -21,6 +21,13 @@ class InputCorrectJavaDocParagraphCheck {
      * Some Javadoc.
      *
      * <p>Some Javadoc.
+     * 
+     * <pre>
+     * class Foo {
+     * 
+     *   void foo() {}
+     * }
+     * </pre>
      *
      * @see <a href="http://code.google.com/webtoolkit/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
      *     Documentation about GWT emulated source</a>
