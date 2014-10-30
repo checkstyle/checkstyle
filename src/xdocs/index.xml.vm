@@ -292,6 +292,12 @@
           <td><a href="http://qalab.sourceforge.net/">QALab Home Page</a></td>
           <td>Supports tracking Checkstyle statistics over time.</td>
         </tr>
+        <tr>
+          <td><a href="http://www.jarchitect.com/">JArchitect</a></td>
+          <td></td>
+          <td><a href="http://www.jarchitect.com/">JArchitect Home Page</a></td>
+          <td>Imports XML result files from CheckStyle.</td>
+        </tr>
       </table>
 
       <p>
