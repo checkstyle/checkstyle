@@ -432,9 +432,15 @@ public final class TreeWalker
         final String tokenType = TokenTypes.getTokenName(aAST.getType());
 
         if (aAstState == AstState.WITH_COMMENTS) {
+            if (!mTokenToCommentChecks.containsKey(tokenType)) {
+                return;
+            }
             visitors = mTokenToCommentChecks.get(tokenType);
         }
         else {
+            if (!mTokenToOrdinaryChecks.containsKey(tokenType)) {
+                return;
+            }
             visitors = mTokenToOrdinaryChecks.get(tokenType);
         }
 
@@ -455,9 +461,15 @@ public final class TreeWalker
         final String tokenType = TokenTypes.getTokenName(aAST.getType());
 
         if (aAstState == AstState.WITH_COMMENTS) {
+            if (!mTokenToCommentChecks.containsKey(tokenType)) {
+                return;
+            }
             visitors = mTokenToCommentChecks.get(tokenType);
         }
         else {
+            if (!mTokenToOrdinaryChecks.containsKey(tokenType)) {
+                return;
+            }
             visitors = mTokenToOrdinaryChecks.get(tokenType);
         }
 
