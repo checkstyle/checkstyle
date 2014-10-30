@@ -280,13 +280,12 @@ public final class FileText extends AbstractList<String>
 
     /**
      * Returns an array of all lines.
-     * {@code text.toLinesArray()} is equivalent to
-     * {@code text.toArray(new String[text.size()])}.
+     * {@code text.toLinesArray()} returns shared array.
      * @return an array of all lines of the text
      */
     public String[] toLinesArray()
     {
-        return mLines.clone();
+        return mLines;
     }
 
     /**
