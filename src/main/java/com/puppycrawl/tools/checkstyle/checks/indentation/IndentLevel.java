@@ -18,10 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import java.util.SortedSet;
-
-import com.google.common.base.Joiner;
-import com.google.common.collect.Sets;
+import java.util.BitSet;
 
 /**
  * Encapsulates representation of notion of expected indentation levels.
@@ -32,7 +29,7 @@ import com.google.common.collect.Sets;
 public class IndentLevel
 {
     /** set of acceptable indentation levels. */
-    private final SortedSet<Integer> mLevels = Sets.newTreeSet();
+    private final BitSet mLevels = new BitSet();
 
     /**
      * Creates new instance with one accaptable indentation level.
@@ -40,7 +37,7 @@ public class IndentLevel
      */
     public IndentLevel(int aIndent)
     {
-        mLevels.add(aIndent);
+        mLevels.set(aIndent);
     }
 
     /**
@@ -50,9 +47,10 @@ public class IndentLevel
      */
     public IndentLevel(IndentLevel aBase, int... aOffsets)
     {
-        for (Integer base : aBase.mLevels) {
+        final BitSet src = aBase.mLevels;
+        for (int i = src.nextSetBit(0); i >= 0; i = src.nextSetBit(i + 1)) {
             for (int offset : aOffsets) {
-                mLevels.add(base + offset);
+                mLevels.set(i + offset);
             }
         }
     }
@@ -63,7 +61,7 @@ public class IndentLevel
      */
     public final boolean isMultiLevel()
     {
-        return mLevels.size() > 1;
+        return mLevels.cardinality() > 1;
     }
 
     /**
@@ -74,7 +72,7 @@ public class IndentLevel
      */
     public boolean accept(int aIndent)
     {
-        return (mLevels.contains(aIndent));
+        return mLevels.get(aIndent);
     }
 
     /**
@@ -84,7 +82,7 @@ public class IndentLevel
      */
     public boolean gt(int aIndent)
     {
-        return ((mLevels.first()).intValue() > aIndent);
+        return mLevels.nextSetBit(0) > aIndent;
     }
 
     /**
@@ -93,7 +91,7 @@ public class IndentLevel
      */
     public void addAcceptedIndent(int aIndent)
     {
-        mLevels.add(aIndent);
+        mLevels.set(aIndent);
     }
 
     /**
@@ -102,7 +100,7 @@ public class IndentLevel
      */
     public void addAcceptedIndent(IndentLevel aIndent)
     {
-        mLevels.addAll(aIndent.mLevels);
+        mLevels.or(aIndent.mLevels);
     }
 
     /**
@@ -111,7 +109,7 @@ public class IndentLevel
      */
     public int getFirstIndentLevel()
     {
-        return mLevels.first();
+        return mLevels.nextSetBit(0);
     }
 
     /**
@@ -120,12 +118,24 @@ public class IndentLevel
      */
     public int getLastIndentLevel()
     {
-        return mLevels.last();
+        return mLevels.length() - 1;
     }
 
     @Override
     public String toString()
     {
-        return Joiner.on(", ").join(mLevels);
+        if (mLevels.cardinality() == 1) {
+            return String.valueOf(mLevels.nextSetBit(0));
+        }
+        final StringBuilder sb = new StringBuilder();
+        for (int i = mLevels.nextSetBit(0); i >= 0;
+            i = mLevels.nextSetBit(i + 1))
+        {
+            if (sb.length() > 0) {
+                sb.append(", ");
+            }
+            sb.append(i);
+        }
+        return sb.toString();
     }
 }
