@@ -188,7 +188,7 @@ public class OperatorWrapCheck
         final String text = aAST.getText();
         final int colNo = aAST.getColumnNo();
         final int lineNo = aAST.getLineNo();
-        final String currentLine = getLines()[lineNo - 1];
+        final String currentLine = getLine(lineNo - 1);
 
         // TODO: Handle comments before and after operator
         // Check if rest of line is whitespace, and not just the operator

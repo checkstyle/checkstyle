@@ -218,7 +218,7 @@ public abstract class ExpressionHandler
      */
     protected final int getLineStart(DetailAST aAst)
     {
-        final String line = mIndentCheck.getLines()[aAst.getLineNo() - 1];
+        final String line = mIndentCheck.getLine(aAst.getLineNo() - 1);
         return getLineStart(line);
     }
 
@@ -277,7 +277,7 @@ public abstract class ExpressionHandler
         final int startCol = aLines.firstLineCol();
 
         final int realStartCol =
-            getLineStart(mIndentCheck.getLines()[startLine - 1]);
+            getLineStart(mIndentCheck.getLine(startLine - 1));
 
         if (realStartCol == startCol) {
             checkSingleLine(startLine, startCol, aIndentLevel,
@@ -318,7 +318,7 @@ public abstract class ExpressionHandler
      */
     private void checkSingleLine(int aLineNum, IndentLevel aIndentLevel)
     {
-        final String line = mIndentCheck.getLines()[aLineNum - 1];
+        final String line = mIndentCheck.getLine(aLineNum - 1);
         final int start = getLineStart(line);
         if (aIndentLevel.gt(start)) {
             logChildError(aLineNum, start, aIndentLevel);
@@ -337,7 +337,7 @@ public abstract class ExpressionHandler
     private void checkSingleLine(int aLineNum, int aColNum,
         IndentLevel aIndentLevel, boolean aMustMatch)
     {
-        final String line = mIndentCheck.getLines()[aLineNum - 1];
+        final String line = mIndentCheck.getLine(aLineNum - 1);
         final int start = getLineStart(line);
         // if must match is set, it is an error if the line start is not
         // at the correct indention level; otherwise, it is an only an
@@ -417,7 +417,7 @@ public abstract class ExpressionHandler
         final int firstLine = getFirstLine(Integer.MAX_VALUE, aTree);
         if (aFirstLineMatches && !aAllowNesting) {
             subtreeLines.addLineAndCol(firstLine,
-                getLineStart(mIndentCheck.getLines()[firstLine - 1]));
+                getLineStart(mIndentCheck.getLine(firstLine - 1)));
         }
         findSubtreeLines(subtreeLines, aTree, aAllowNesting);
 
@@ -462,7 +462,7 @@ public abstract class ExpressionHandler
     protected final int expandedTabsColumnNo(DetailAST aAST)
     {
         final String line =
-            mIndentCheck.getLines()[aAST.getLineNo() - 1];
+            mIndentCheck.getLine(aAST.getLineNo() - 1);
 
         return Utils.lengthExpandedTabs(line, aAST.getColumnNo(),
             mIndentCheck.getIndentationTabWidth());

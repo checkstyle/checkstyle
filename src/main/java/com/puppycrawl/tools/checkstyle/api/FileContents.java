@@ -249,6 +249,16 @@ public final class FileContents implements CommentListener
         return mText.toLinesArray();
     }
 
+    /**
+     * Get the line from text of the file.
+     * @param aIndex index of the line
+     * @return line from text of the file
+     */
+    public String getLine(int aIndex)
+    {
+        return mText.get(aIndex);
+    }
+
     /** @return the name of the file */
     public String getFilename()
     {

@@ -79,7 +79,7 @@ public class WhitespaceAfterCheck
             targetAST = aAST;
             message = new Object[]{aAST.getText()};
         }
-        final String line = getLines()[targetAST.getLineNo() - 1];
+        final String line = getLine(targetAST.getLineNo() - 1);
         final int after =
             targetAST.getColumnNo() + targetAST.getText().length();
 

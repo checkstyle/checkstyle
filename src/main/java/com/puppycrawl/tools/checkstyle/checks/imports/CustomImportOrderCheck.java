@@ -612,7 +612,7 @@ public class CustomImportOrderCheck extends Check
     {
         //  [lineNo - 2] is the number of the previous line
         //  because the numbering starts from zero.
-        final String lineBefore = getLines()[aLineNo - 2];
+        final String lineBefore = getLine(aLineNo - 2);
         return lineBefore.trim().isEmpty();
     }
 
