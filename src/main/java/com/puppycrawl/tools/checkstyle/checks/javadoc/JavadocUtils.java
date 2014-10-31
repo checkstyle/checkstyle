@@ -245,6 +245,18 @@ public final class JavadocUtils
     }
 
     /**
+     * Get content of Javadoc comment.
+     * @param aJavadocCommentBegin
+     *        Javadoc comment AST
+     * @return content of Javadoc comment.
+     */
+    public static String getJavadocCommentContent(DetailAST aJavadocCommentBegin)
+    {
+        final DetailAST commentContent = aJavadocCommentBegin.getFirstChild();
+        return commentContent.getText().substring(1);
+    }
+
+    /**
      * Returns the first child token that has a specified type.
      * @param aNode
      *        Javadoc AST node

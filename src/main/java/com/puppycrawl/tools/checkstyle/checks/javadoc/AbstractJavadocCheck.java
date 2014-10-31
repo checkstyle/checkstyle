@@ -22,6 +22,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BailErrorStrategy;
@@ -42,6 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer;
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
@@ -52,6 +55,12 @@ import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
  */
 public abstract class AbstractJavadocCheck extends Check
 {
+    /**
+     * key is "line:column"
+     * value is DetailNode tree
+     */
+    private static final Map<String, ParseStatus> TREE_CACHE = new HashMap<String, ParseStatus>();
+
     /**
      * Custom error listener.
      */
@@ -139,6 +148,7 @@ public abstract class AbstractJavadocCheck extends Check
     @Override
     public final void finishTree(DetailAST aRootAST)
     {
+        TREE_CACHE.clear();
     }
 
     @Override
@@ -149,38 +159,32 @@ public abstract class AbstractJavadocCheck extends Check
     @Override
     public final void visitToken(DetailAST aBlockCommentAst)
     {
-        mBlockCommentAst = aBlockCommentAst;
+        if (JavadocUtils.isJavadocComment(aBlockCommentAst)) {
+            mBlockCommentAst = aBlockCommentAst;
 
-        final String commentContent = JavadocUtils.getBlockCommentContent(aBlockCommentAst);
+            final String treeCacheKey = aBlockCommentAst.getLineNo() + ":"
+                    + aBlockCommentAst.getColumnNo();
 
-        if (JavadocUtils.isJavadocComment(commentContent)) {
+            ParseStatus ps;
 
-            final String javadocComment = commentContent.substring(1);
-
-            // Log messages should have line number in scope of file,
-            // not in scope of Javadoc comment.
-            // Offset is line number of beginning of Javadoc comment.
-            mErrorListener.setOffset(aBlockCommentAst.getLineNo() - 1);
-
-            try {
-                final ParseTree parseTree = parseJavadoc(javadocComment);
-
-                final DetailNode node = convertParseTree2DetailNode(parseTree);
-
-                processTree(node);
+            if (TREE_CACHE.containsKey(treeCacheKey)) {
+                ps = TREE_CACHE.get(treeCacheKey);
             }
-            catch (IOException e) {
-                // Antlr can not initiate its ANTLRInputStream
-                log(aBlockCommentAst.getLineNo(), "javadoc.parse.error",
-                        e.getMessage());
+            else {
+                ps = parseJavadocAsDetailNode(aBlockCommentAst);
+                TREE_CACHE.put(treeCacheKey, ps);
             }
-            catch (ParseCancellationException e) {
-                // If syntax error occurs then message is printed by error listener
-                // and parser throws this runtime exception to stop parsing.
-                // Just stop processing current Javadoc comment.
-                return;
+
+            if (ps.getParseErrorMessage() == null) {
+                processTree(ps.getTree());
+            }
+            else {
+                final LocalizedMessage parseErrorMessage = ps.getParseErrorMessage();
+                log(parseErrorMessage.getLineNo(), parseErrorMessage.getColumnNo()
+                        , parseErrorMessage.getMessage());
             }
         }
+
     }
 
     protected DetailAST getBlockCommentAst()
@@ -189,12 +193,82 @@ public abstract class AbstractJavadocCheck extends Check
     }
 
     /**
+     * Parses Javadoc comment as DetailNode tree.
+     * @param aJavadocCommentAst
+     *        DetailAST of Javadoc comment
+     * @return DetailNode tree of Javadoc comment
+     */
+    private ParseStatus parseJavadocAsDetailNode(DetailAST aJavadocCommentAst)
+    {
+        final String javadocComment = JavadocUtils.getJavadocCommentContent(aJavadocCommentAst);
+
+        // Log messages should have line number in scope of file,
+        // not in scope of Javadoc comment.
+        // Offset is line number of beginning of Javadoc comment.
+        mErrorListener.setOffset(aJavadocCommentAst.getLineNo() - 1);
+
+        final ParseStatus result = new ParseStatus();
+        ParseTree parseTree = null;
+        LocalizedMessage parseErrorMessage = null;
+
+        try {
+            parseTree = parseJavadocAsParseTree(javadocComment);
+        }
+        catch (IOException e) {
+            // Antlr can not initiate its ANTLRInputStream
+            parseErrorMessage = createLogMessage(aJavadocCommentAst.getLineNo(),
+                    "javadoc.parse.error",
+                    aJavadocCommentAst.getColumnNo(), e.getMessage());
+        }
+        catch (ParseCancellationException e) {
+            // If syntax error occurs then message is printed by error listener
+            // and parser throws this runtime exception to stop parsing.
+            // Just stop processing current Javadoc comment.
+            parseErrorMessage = mErrorListener.getErrorMessage();
+        }
+
+        if (parseErrorMessage == null) {
+            final DetailNode tree = convertParseTree2DetailNode(parseTree);
+            result.setTree(tree);
+        }
+        else {
+            result.setParseErrorMessage(parseErrorMessage);
+        }
+
+        return result;
+    }
+
+    /**
+     * Creates log message.
+     * @param aLine
+     *        line number
+     * @param aKey
+     *        key in messages.properties
+     * @param aArgs
+     *        message arguments
+     * @return log localized message.
+     */
+    private LocalizedMessage createLogMessage(int aLine, String aKey, Object... aArgs)
+    {
+        return new LocalizedMessage(
+                aLine,
+                getMessageBundle(),
+                aKey,
+                aArgs,
+                getSeverityLevel(),
+                getId(),
+                this.getClass(),
+                this.getCustomMessages().get(aKey));
+    }
+
+
+    /**
      * Converts ParseTree (that is generated by ANTLRv4) to DetailNode tree.
      *
      * @param aRootParseTree root node of ParseTree
      * @return root of DetailNode tree
      */
-    public DetailNode convertParseTree2DetailNode(ParseTree aRootParseTree)
+    private DetailNode convertParseTree2DetailNode(ParseTree aRootParseTree)
     {
         final ParseTree currentParseTreeNode = aRootParseTree;
         final JavadocNodeImpl rootJavadocNode = createJavadocNode(currentParseTreeNode, null, -1);
@@ -392,7 +466,7 @@ public abstract class AbstractJavadocCheck extends Check
      * @throws IOException
      *         errors in ANTLRInputStream
      */
-    private ParseTree parseJavadoc(String aBlockComment)
+    private ParseTree parseJavadocAsParseTree(String aBlockComment)
         throws IOException
     {
         final Charset utf8Charset = Charset.forName("UTF-8");
@@ -479,6 +553,16 @@ public abstract class AbstractJavadocCheck extends Check
     class DescriptiveErrorListener extends BaseErrorListener
     {
         /**
+         * Parse error while token recognition.
+         */
+        private static final String JAVADOC_PARSE_TOKEN_ERROR = "javadoc.parse.token.error";
+
+        /**
+         * Parse error while rule recognition.
+         */
+        private static final String JAVADOC_PARSE_RULE_ERROR = "javadoc.parse.rule.error";
+
+        /**
          * Message key of error message. Missed close HTML tag breaks structure
          * of parse tree, so parser stops parsing and generates such error
          * message. This case is special because parser prints error like
@@ -499,6 +583,16 @@ public abstract class AbstractJavadocCheck extends Check
          * Javadoc comment.
          */
         private int mOffset;
+
+        /**
+         * Error message that appeared while parsing.
+         */
+        private LocalizedMessage mErrorMessage;
+
+        public LocalizedMessage getErrorMessage()
+        {
+            return mErrorMessage;
+        }
 
         /**
          * Sets offset. Offset is line number of beginning of the Javadoc
@@ -532,11 +626,15 @@ public abstract class AbstractJavadocCheck extends Check
             final Token token = (Token) aOffendingSymbol;
 
             if (JAVADOC_MISSED_HTML_CLOSE.equals(aMsg)) {
-                log(lineNumber, JAVADOC_MISSED_HTML_CLOSE, token.getText());
+                mErrorMessage = createLogMessage(lineNumber,
+                        JAVADOC_MISSED_HTML_CLOSE, aCharPositionInLine, token.getText());
+
                 throw new ParseCancellationException();
             }
             else if (JAVADOC_WRONG_SINGLETON_TAG.equals(aMsg)) {
-                log(lineNumber, JAVADOC_WRONG_SINGLETON_TAG, token.getText());
+                mErrorMessage = createLogMessage(lineNumber,
+                        JAVADOC_WRONG_SINGLETON_TAG, aCharPositionInLine, token.getText());
+
                 throw new ParseCancellationException();
             }
             else {
@@ -546,13 +644,54 @@ public abstract class AbstractJavadocCheck extends Check
                     final String ruleName = aRecognizer.getRuleNames()[ruleIndex];
                     final String upperCaseRuleName = CaseFormat.UPPER_CAMEL.to(
                             CaseFormat.UPPER_UNDERSCORE, ruleName);
-                    log(lineNumber, "javadoc.parse.rule.error", aMsg, upperCaseRuleName);
+
+                    mErrorMessage = createLogMessage(lineNumber,
+                            JAVADOC_PARSE_RULE_ERROR, aCharPositionInLine, aMsg, upperCaseRuleName);
                 }
                 else {
-                    log(lineNumber, "javadoc.parse.token.error", aMsg);
+                    mErrorMessage = createLogMessage(lineNumber, JAVADOC_PARSE_TOKEN_ERROR,
+                            aCharPositionInLine, aMsg, aCharPositionInLine);
                 }
             }
         }
+    }
+
+    /**
+     * Contains result of parsing javadoc comment: DetailNode tree and parse
+     * error message.
+     */
+    private static class ParseStatus
+    {
+        /**
+         * DetailNode tree (is null if parsing fails)
+         */
+        private DetailNode mTree;
+
+        /**
+         * Parse error message (is null if parsing is successful)
+         */
+        private LocalizedMessage mParseErrorMessage;
+
+        public DetailNode getTree()
+        {
+            return mTree;
+        }
+
+        public void setTree(DetailNode aTree)
+        {
+            this.mTree = aTree;
+        }
+
+        public LocalizedMessage getParseErrorMessage()
+        {
+            return mParseErrorMessage;
+        }
+
+        public void setParseErrorMessage(LocalizedMessage aParseErrorMessage)
+        {
+            this.mParseErrorMessage = aParseErrorMessage;
+        }
+
     }
 
 }
