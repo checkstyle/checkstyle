@@ -102,7 +102,7 @@ public class GenericWhitespaceCheck extends Check
      */
     private void processEnd(DetailAST aAST)
     {
-        final String line = getLines()[aAST.getLineNo() - 1];
+        final String line = getLine(aAST.getLineNo() - 1);
         final int before = aAST.getColumnNo() - 1;
         final int after = aAST.getColumnNo() + 1;
 
@@ -177,7 +177,7 @@ public class GenericWhitespaceCheck extends Check
      */
     private void processStart(DetailAST aAST)
     {
-        final String line = getLines()[aAST.getLineNo() - 1];
+        final String line = getLine(aAST.getLineNo() - 1);
         final int before = aAST.getColumnNo() - 1;
         final int after = aAST.getColumnNo() + 1;
 

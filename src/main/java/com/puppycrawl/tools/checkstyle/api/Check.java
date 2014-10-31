@@ -180,6 +180,16 @@ public abstract class Check extends AbstractViolationReporter
     }
 
     /**
+     * Returns the line associated with the tree.
+     * @param aIndex index of the line
+     * @return the line from the file contents
+     */
+    public final String getLine(int aIndex)
+    {
+        return getFileContents().getLine(aIndex);
+    }
+
+    /**
      * Set the file contents associated with the tree.
      * @param aContents the manager
      */

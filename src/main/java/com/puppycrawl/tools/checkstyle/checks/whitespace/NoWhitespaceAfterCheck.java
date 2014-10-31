@@ -104,7 +104,7 @@ public class NoWhitespaceAfterCheck extends Check
         if (targetAST.getType() == TokenTypes.TYPECAST) {
             targetAST = targetAST.findFirstToken(TokenTypes.RPAREN);
         }
-        final String line = getLines()[aAST.getLineNo() - 1];
+        final String line = getLine(aAST.getLineNo() - 1);
         final int after =
             targetAST.getColumnNo() + targetAST.getText().length();
 

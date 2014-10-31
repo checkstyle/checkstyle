@@ -327,8 +327,7 @@ public class WhitespaceAroundCheck extends Check
             return;
         }
 
-        final String[] lines = getLines();
-        final String line = lines[aAST.getLineNo() - 1];
+        final String line = getLine(aAST.getLineNo() - 1);
         final int before = aAST.getColumnNo() - 1;
         final int after = aAST.getColumnNo() + aAST.getText().length();
 

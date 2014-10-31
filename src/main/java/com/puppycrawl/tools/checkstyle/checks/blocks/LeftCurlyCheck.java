@@ -253,15 +253,14 @@ public class LeftCurlyCheck
     private void verifyBrace(final DetailAST aBrace,
                              final DetailAST aStartToken)
     {
-        final String braceLine = getLines()[aBrace.getLineNo() - 1];
+        final String braceLine = getLine(aBrace.getLineNo() - 1);
 
         // calculate the previous line length without trailing whitespace. Need
         // to handle the case where there is no previous line, cause the line
         // being check is the first line in the file.
         final int prevLineLen = (aBrace.getLineNo() == 1)
             ? mMaxLineLength
-            : Utils.lengthMinusTrailingWhitespace(
-                getLines()[aBrace.getLineNo() - 2]);
+            : Utils.lengthMinusTrailingWhitespace(getLine(aBrace.getLineNo() - 2));
 
         // Check for being told to ignore, or have '{}' which is a special case
         if ((braceLine.length() > (aBrace.getColumnNo() + 1))

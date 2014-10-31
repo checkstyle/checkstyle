@@ -88,8 +88,7 @@ public class NoWhitespaceBeforeCheck
     @Override
     public void visitToken(DetailAST aAST)
     {
-        final String[] lines = getLines();
-        final String line = lines[aAST.getLineNo() - 1];
+        final String line = getLine(aAST.getLineNo() - 1);
         final int before = aAST.getColumnNo() - 1;
 
         if ((before < 0) || Character.isWhitespace(line.charAt(before))) {

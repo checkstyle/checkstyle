@@ -271,7 +271,7 @@ public class AvoidEscapedUnicodeCharactersCheck
 
         if (semi != null) {
             final int lineNo = semi.getLineNo();
-            final String currentLine = getLines()[lineNo - 1];
+            final String currentLine = getLine(lineNo - 1);
 
             if (currentLine != null && sCommentRegexp.matcher(currentLine).find()) {
                 result = true;
