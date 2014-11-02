@@ -298,6 +298,12 @@
           <td><a href="http://www.jarchitect.com/">JArchitect Home Page</a></td>
           <td>Imports XML result files from CheckStyle.</td>
         </tr>
+        <tr>
+          <td><a href="https://wiki.jenkins-ci.org/display/JENKINS/Checkstyle+Plugin">Jenkins Checkstyle plug-in</a></td>
+          <td></td>
+          <td><a href="https://wiki.jenkins-ci.org/display/JENKINS/Checkstyle+Plugin">Jenkins Checkstyle plug-in Home Page</a></td>
+          <td>This plug-in is supported by the Static Analysis Collector plug-in that collects different analysis results and shows the results in aggregated trend graphs.</td>
+        </tr>
       </table>
 
       <p>
