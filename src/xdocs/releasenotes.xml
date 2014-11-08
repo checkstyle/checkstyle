@@ -11,6 +11,31 @@
 
   <body>
 
+
+    <section name="Release 6.0.1">
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Huge performance optimization for JavaDoc parsing. In scope of issue <a href="https://github.com/checkstyle/checkstyle/pull/49">#49</a>. Caching DetailNode trees in AbstractJavadocCheck . Author: Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/pull/355">#355</a>
+        </li>
+        <li>
+          "FileContents.getLines()" performance fix. Author: Vladimir Sitnikov, Ivan Sopov. <a href="https://github.com/checkstyle/checkstyle/pull/351">#351</a>
+        </li>
+        <li>
+          Fix for MultiMap empty collections garbage. Author: Vladimir Sitnikov, Ivan Sopov. <a href="https://github.com/checkstyle/checkstyle/pull/348">#348</a>
+        </li>
+        <li>
+          Preformance fix for RegexpCheck. Author: Vladimir Sitnikov, Ivan Sopov. <a href="https://github.com/checkstyle/checkstyle/pull/348">#348</a>
+        </li>
+        <li>
+          Removing unnecessary char[] copying to reduce GC-pressure. Author: Vladimir Sitnikov, Ivan Sopov. <a href="https://github.com/checkstyle/checkstyle/pull/347">#347</a>
+        </li>
+        <li>
+          Using BitSet for indent levels for performance. Author: Vladimir Sitnikov, Ivan Sopov. <a href="https://github.com/checkstyle/checkstyle/pull/349">#349</a>
+        </li>
+      </ul>
+    </section>
+
     <section name="Release 6.0">
       <p>New features that extend API:</p>
       <ul>
