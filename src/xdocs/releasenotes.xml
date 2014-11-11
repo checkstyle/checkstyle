@@ -12,7 +12,7 @@
   <body>
 
 
-    <section name="Release 6.0.1">
+    <section name="Release 6.1">
       <p>Bug fixes:</p>
       <ul>
         <li>
@@ -32,6 +32,9 @@
         </li>
         <li>
           Using BitSet for indent levels for performance. Author: Vladimir Sitnikov, Ivan Sopov. <a href="https://github.com/checkstyle/checkstyle/pull/349">#349</a>
+        </li>
+        <li>
+          Various documentation/spelling issues with AnnotationLocationCheck. Author: Roman Ivanov. <a href="https://github.com/checkstyle/checkstyle/pull/356">#356</a>
         </li>
       </ul>
     </section>
