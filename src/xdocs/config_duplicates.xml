@@ -36,8 +36,8 @@ languages, it does not support fuzzy matches (that's why it's called Strict).
 <p>
 Note that there are brilliant commercial implementations of duplicate code
 detection tools. One that is particularly noteworthy is
-<a href="http://www.redhillconsulting.com.au/products/simian/">Simian</a>
-from RedHill Consulting, Inc.
+<a href="http://www.harukizaemon.com/simian/">Simian</a>
+from Simon Harris.
 Simian has managed to find a very good balance of the above tradeoffs.
 It is superior to the checks in this package in many respects.
 Simian is reasonably priced (free for noncommercial projects)
