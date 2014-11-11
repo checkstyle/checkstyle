@@ -225,7 +225,7 @@ Audit finished. Total errors: 1
         href="http://ant.apache.org/">ANT</a> listeners. The first
         listener, <code> CommonsLoggingListener</code>,
         hands off events to the <a
-        href="http://commons.apache.org/logging/">Jakarata
+        href="http://commons.apache.org/logging/">Apache
         Commons Logging</a> facade and the second, <code>MailLogger</code>, sends a report of an audit via
         e-mail. The discussion of these examples and how to use them is
         derived from material in <a
@@ -239,13 +239,11 @@ Audit finished. Total errors: 1
 
       <p>
         <a
-        href="http://commons.apache.org/logging/">Jakarata
+        href="http://commons.apache.org/logging/">Apache
         Commons Logging</a> provides a facade for logging tools
         <a
-        href="http://jakarta.apache.org/log4j/docs/index.html">log4j</a>,
-        <a
-        href="http://jakarta.apache.org/avalon/logkit/index.html">Avalon
-        LogKit</a>, J2SE 1.4, and others. Checkstyle listener <code> CommonsLoggingListener</code> responds to an
+        href="http://logging.apache.org/log4j/2.x/index.html">log4j</a>,
+        , J2SE 1.4, and others. Checkstyle listener <code> CommonsLoggingListener</code> responds to an
         AuditEvent by handing it off to the current Commons Logging Log.
       </p>
 
