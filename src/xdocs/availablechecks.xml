@@ -334,7 +334,7 @@
         <td>Checks that all packages have a package documentation.</td>
       </tr>
       <tr>
-        <td><a href="config_javadoc.html#JavaDocTagContinuationIndentation">JavaDocTagContinuationIndentation</a></td>
+        <td><a href="config_javadoc.html#JavadocTagContinuationIndentation">JavadocTagContinuationIndentation</a></td>
         <td>Checks the indentation of the continuation lines in at-clauses.</td>
       </tr>
       <tr>

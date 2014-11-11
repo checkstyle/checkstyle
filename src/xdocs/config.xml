@@ -860,7 +860,7 @@
       <h5>Restrictions</h5>
       <p>
         offCommentFormat and onCommentFormat must have equal <a
-        href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Matcher.html#groupCount()">paren counts</a>.
+        href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Matcher.html#groupCount()">paren counts</a>.
       </p>
 
       <h5>Examples</h5>

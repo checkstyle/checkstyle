@@ -136,7 +136,7 @@ line 5: ////////////////////////////////////////////////////////////////////
         <p>
           Checks the header of a source file against a header that contains a
           <a
-          href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html">regular
+          href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">regular
           expression</a> for each line of the source header.
         </p>
 
