@@ -180,8 +180,7 @@ public abstract class AbstractJavadocCheck extends Check
             }
             else {
                 final LocalizedMessage parseErrorMessage = ps.getParseErrorMessage();
-                log(parseErrorMessage.getLineNo(), parseErrorMessage.getColumnNo()
-                        , parseErrorMessage.getMessage());
+                log(parseErrorMessage.getLineNo(), parseErrorMessage.getMessage());
             }
         }
 

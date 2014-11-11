@@ -227,9 +227,8 @@ public final class JavadocUtils
      */
     public static boolean isJavadocComment(DetailAST aBlockCommentBegin)
     {
-        final char docCommentIdentificator = getBlockCommentContent(
-                aBlockCommentBegin).charAt(0);
-        return docCommentIdentificator == '*';
+        final String commentContent = getBlockCommentContent(aBlockCommentBegin);
+        return isJavadocComment(commentContent);
     }
 
     /**
