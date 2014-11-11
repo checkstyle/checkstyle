@@ -24,7 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Check location of annotation on language elements.
- * By default, Check enforce to locate annotations immetiately after
+ * By default, Check enforce to locate annotations immediately after
  * documentation block and before target element, annotation should be located
  * on separate line from target element.
  *
@@ -43,17 +43,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>mAllowSamelineMultipleAnnotations - to allow annotation to be located on
- * the same line as taret element. Default value is false.
+ * the same line as target element. Default value is false.
  * </li>
  *
  * <li>
- * mAllowSameLineSingleParameterlessAnnotation - to allow single prameterless
- * annotation to be located on the same line as taret element. Default value is false.
+ * mAllowSamelineSingleParameterlessAnnotation - to allow single parameterless
+ * annotation to be located on the same line as target element. Default value is false.
  * </li>
  *
  * <li>
- * mAllowSamelineParametrizedAnnotation - to allow prameterized annotation
- * to be located on the same line as taret element. Default value is false.
+ * mAllowSamelineParametrizedAnnotation - to allow parameterized annotation
+ * to be located on the same line as target element. Default value is false.
  * </li>
  * </ul>
  * <br/>
@@ -68,7 +68,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name=&quot;AnnotationLocation&quot;&gt;
  *    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
- *    &lt;property name=&quot;allowSameLineSingleParameterlessAnnotation&quot;
+ *    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
  *    value=&quot;true&quot;/&gt;
  *    &lt;property name=&quot;allowSamelineParametrizedAnnotation&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
@@ -85,7 +85,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name=&quot;AnnotationLocation&quot;&gt;
  *    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
- *    &lt;property name=&quot;allowSameLineSingleParameterlessAnnotation&quot;
+ *    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
  *    value=&quot;true&quot;/&gt;
  *    &lt;property name=&quot;allowSamelineParametrizedAnnotation&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
@@ -102,7 +102,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name=&quot;AnnotationLocation&quot;&gt;
  *    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
- *    &lt;property name=&quot;allowSameLineSingleParameterlessAnnotation&quot;
+ *    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
  *    value=&quot;true&quot;/&gt;
  *    &lt;property name=&quot;allowSamelineParametrizedAnnotation&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
@@ -115,7 +115,7 @@ public class AnnotationLocationCheck extends Check
     /**
      * Some javadoc.
      */
-    private boolean mAllowSameLineSingleParametterlessAnnotation = true;
+    private boolean mAllowSamelineSingleParameterlessAnnotation = true;
 
     /**
      * Some javadoc.
@@ -131,9 +131,9 @@ public class AnnotationLocationCheck extends Check
      * Some javadoc.
      * @param aAllow Some javadoc.
      */
-    public final void setAllowSameLineSingleParrametterlessAnnotation(boolean aAllow)
+    public final void setAllowSamelineSingleParameterlessAnnotation(boolean aAllow)
     {
-        mAllowSameLineSingleParametterlessAnnotation = aAllow;
+        mAllowSamelineSingleParameterlessAnnotation = aAllow;
     }
 
     /**
@@ -210,7 +210,7 @@ public class AnnotationLocationCheck extends Check
     private boolean isCorrectLocation(DetailAST aAnnotation, boolean aHasParams)
     {
         final boolean allowingCondition = aHasParams ? mAllowSamelineParametrizedAnnotation
-            : mAllowSameLineSingleParametterlessAnnotation;
+            : mAllowSamelineSingleParameterlessAnnotation;
         return allowingCondition && !hasNodeBefore(aAnnotation)
             || !allowingCondition && !hasNodeBeside(aAnnotation)
             || mAllowSamelineMultipleAnnotations;
