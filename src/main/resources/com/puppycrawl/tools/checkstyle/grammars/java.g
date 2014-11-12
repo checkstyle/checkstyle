@@ -343,7 +343,7 @@ typeArgumentBounds[boolean addImagNode]
             classOrInterfaceType[addImagNode]
           | builtInType
         )
-        (options{greedy=true;}: lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)?
+        (options{greedy=true;}: lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
     ;
 
 // A builtin type array specification is a builtin type with brackets afterwards
