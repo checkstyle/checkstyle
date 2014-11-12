@@ -452,7 +452,7 @@ public String getNameIfPresent() { ... }
             <td>allowSamelineSingleParameterlessAnnotation</td>
             <td>To allow single prameterless annotation to be located on the same line as taret element.</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><code>false</code></td>
+            <td><code>true</code></td>
           </tr>
           <tr>
             <td>allowSamelineParametrizedAnnotation</td>

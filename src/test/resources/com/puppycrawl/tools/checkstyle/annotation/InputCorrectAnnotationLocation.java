@@ -1,75 +1,85 @@
-package com.puppycrawl.tools.checkstyle.javadoc;
+package com.puppycrawl.tools.checkstyle.annotation;
 
 import test.MyAnnotation1;
 import test.MyAnnotation2;
 
-@MyAnnotation2 @MyAnnotation1 //warn
+@MyAnnotation2
+@MyAnnotation1
 class InputCorrectAnnotationIndentation
 {
-
-    @MyAnnotation2 @MyAnnotation1
+    
+    @MyAnnotation2
+    @MyAnnotation1
     public int a;
 
-    @MyAnnotation1 public int b;
-
-    @MyAnnotation2
-        @MyAnnotation1 //warn
+    @MyAnnotation1
+    public int b;
+    
+    @MyAnnotation2("foo")
+    @MyAnnotation1
     public int c;
-
+    
     @MyAnnotation1
     public int d;
-
+    
     @MyAnnotation2
-        @MyAnnotation1 //warn
-    public InputCorrectAnnotationIndentation() {}
-
-    @MyAnnotation1("foo") @MyAnnotation2 void foo1() {} //warn
-
     @MyAnnotation1
-       @MyAnnotation2 //warn
+    public InputCorrectAnnotationIndentation()
+    {
+        // TODO Auto-generated constructor stub
+    }
+    @MyAnnotation1
+    @MyAnnotation2
+    void foo1() {}
+    
+    @MyAnnotation1
+    @MyAnnotation2
     void foo2() {}
-
+    
     @MyAnnotation1
-        @MyAnnotation2 //warn
-      @MyAnnotation3 //warn
-          @MyAnnotation4 //warn
+    @MyAnnotation2
+    @MyAnnotation3
+    @MyAnnotation4
     class InnerClass
     {
-        @MyAnnotation2 @MyAnnotation1 //warn
+        @MyAnnotation2
+        @MyAnnotation1
+        public int a;
+
+        @MyAnnotation1
+        public int b;
+        
+        @MyAnnotation2
+        @MyAnnotation1
+        public int c;
+        
+        @MyAnnotation1
+        public int d;
+        
+        @MyAnnotation2
+        public InnerClass()
+        {
+            // TODO Auto-generated constructor stub
+        }
+        @MyAnnotation1
+        @MyAnnotation2 void foo1(int a) {}
+        
+        @MyAnnotation1
+        @MyAnnotation2
+        void foo2() {}
+    }
+
+    @MyAnnotation1
+    @MyAnnotation2
+    InnerClass anon = new InnerClass()
+    {
+        @MyAnnotation2
+        @MyAnnotation1
         public int a;
 
         @MyAnnotation1 public int b;
         
         @MyAnnotation2
-            @MyAnnotation1 //warn
-        public int c;
-        
-        @MyAnnotation1
-        public int d;
-        
-        @MyAnnotation2
-        @MyAnnotation1 public InnerClass()
-        {
-            // TODO Auto-generated constructor stub
-        }
-        @MyAnnotation1
-            @MyAnnotation2 //warn
-        void foo1() {}
-        
-        @MyAnnotation1
-            @MyAnnotation2 //warn
-        void foo2() {}
-    }
-
-    @MyAnnotation1
-       @MyAnnotation2 //warn
-    InnerClass anon = new InnerClass()
-    {
-        @MyAnnotation2 @MyAnnotation1 public int a;
-
-        @MyAnnotation1 public int b;
-        
-        @MyAnnotation2
         @MyAnnotation1
         public int c;
         
@@ -77,18 +87,16 @@ class InputCorrectAnnotationIndentation
         public int d;
         
         @MyAnnotation1
-           @MyAnnotation2 void foo1() {} //warn
+        @MyAnnotation2 void foo1() {}
         
         @MyAnnotation1
-          @MyAnnotation2 //warn
+        @MyAnnotation2
         void foo2() {}
-        
-        @MyAnnotation1 void foo42() {}
     };
     
 }
 
-   @MyAnnotation1 //warn
+@MyAnnotation1
 @MyAnnotation2
 class Foo {}
 
