@@ -48,4 +48,15 @@ public class MethodReferencesTest extends BaseCheckTestSupport
         verify(checkConfig, getPath("grammars/java8/InputMethodReferencesTest2.java"), expected);
 
     }
+
+    @Test
+    public void testGenericInPostfixExpressionBeforeReference()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(MemberNameCheck.class);
+        final String[] expected = {};
+        verify(checkConfig, getPath("grammars/java8/InputMethodReferencesTest3.java"), expected);
+
+    }
 }

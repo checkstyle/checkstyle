@@ -1400,7 +1400,7 @@ postfixExpression
 		(options{warnWhenFollowAmbig=false;} : 	// qualified id (id.id.id.id...) -- build the name
 			DOT^
 			( (typeArguments[false])?
-			  ( IDENT
+			  ( IDENT ((typeArguments[false] DOUBLE_COLON)=>typeArguments[false])? 
 			  | "this"
 			  | "super" // ClassName.super.field
 			  )
