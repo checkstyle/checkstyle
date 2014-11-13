@@ -35,9 +35,9 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * This class maintains a persistent(on file-system) store of the files
- * that have checked ok(no validation events) and their associated 
+ * that have checked ok(no validation events) and their associated
  * timestamp. It is used to optimize Checkstyle between few launches.
- * It is mostly useful for plugin and extensions of Checkstyle.  
+ * It is mostly useful for plugin and extensions of Checkstyle.
  * It uses a property file
  * for storage.  A hashcode of the Configuration is stored in the
  * cache file to ensure the cache is invalidated when the
