@@ -236,6 +236,21 @@
                     <execute />
                   </action>
                 </pluginExecution>
+				<pluginExecution>
+						<pluginExecutionFilter>
+							<groupId>org.antlr</groupId>
+							<artifactId>antlr4-maven-plugin</artifactId>
+							<versionRange>[4.0,)</versionRange>
+							<goals>
+								<goal>antlr4</goal>
+							</goals>
+						</pluginExecutionFilter>
+						<action>
+							<execute>
+								<runOnIncremental>true</runOnIncremental>
+							</execute>
+						</action>
+				</pluginExecution>
               </pluginExecutions>
             </lifecycleMappingMetadata>
           </configuration>
