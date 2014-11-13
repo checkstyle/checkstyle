@@ -1112,7 +1112,7 @@ casesGroup
 			:
 			aCase
 		)+
-		caseSList
+		(caseSList)?
 		{#casesGroup = #([CASE_GROUP, "CASE_GROUP"], #casesGroup);}
 	;
 
@@ -1131,7 +1131,7 @@ caseSList
 			:
 			{LA(1)!=LITERAL_default}?
 				statement
-		)*
+        )+
 		{#caseSList = #(#[SLIST,"SLIST"],#caseSList);}
 	;
 

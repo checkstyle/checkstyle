@@ -133,7 +133,7 @@ public class FallThroughCheck extends Check
 
         final DetailAST slist = aAST.findFirstToken(TokenTypes.SLIST);
 
-        if (!isTerminated(slist, true, true)
+        if (slist != null && !isTerminated(slist, true, true)
             && !hasFallTruComment(aAST, nextGroup))
         {
             if (!isLastGroup) {
