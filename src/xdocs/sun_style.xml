@@ -4,16 +4,28 @@
    xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
    <properties>
-      <title>Sun's Style</title>
+      <title>Sun's Java Style</title>
       <author>Checkstyle Development Team</author>
    </properties>
 
    <body>
-      <section name="Sun Style Checkstyle Coverage ">
+      <section name="Sun's Java Style Checkstyle Coverage">
          <subsection name="Description">
-            <p>
-               Will be provided later
-            </p>
+                <p>
+                    This coverage report will be created for
+                    <a
+                        href="http://www.oracle.com/technetwork/java/codeconvtoc-136057.html">Code Conventions for the Java TM Programming Language</a>
+                    Revised April 20, 1999
+                </p>
+
+                <p>
+                    <a href="reports/javadoc/openjdk8/">Checkstyle's html report for Open JDK library (javadoc validation)</a>
+                </p>
+                <p>
+                    <a
+                        href="https://github.com/checkstyle/checkstyle/blob/master/sun_checks.xml">
+                    incomplete Checkstyle configuration for 'Sun's Java Style'</a>
+                </p>
          </subsection>
          <subsection name="Coverage table">
             <table>
