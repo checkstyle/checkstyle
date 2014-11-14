@@ -19,12 +19,18 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import com.puppycrawl.tools.checkstyle.api.Comment;
-import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
 import java.util.List;
+
 import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.api.Comment;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class JavadocUtilsTest
 {
@@ -125,5 +131,61 @@ public class JavadocUtilsTest
             JavadocUtils.getJavadocTags(comment, JavadocUtils.JavadocTagType.ALL);
         assertEquals(2, allTags.getInvalidTags().size());
         assertEquals(1, allTags.getValidTags().size());
+    }
+
+    @Test
+    public void testEmptyBlockComment()
+    {
+        final String emptyComment = "";
+        assertFalse(JavadocUtils.isJavadocComment(emptyComment));
+    }
+
+    @Test
+    public void testEmptyBlockCommentAst()
+    {
+        DetailAST commentBegin = new DetailAST();
+        commentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
+        commentBegin.setText("/*");
+
+        DetailAST commentContent = new DetailAST();
+        commentContent.setType(TokenTypes.COMMENT_CONTENT);
+        commentContent.setText("");
+
+        DetailAST commentEnd = new DetailAST();
+        commentEnd.setType(TokenTypes.BLOCK_COMMENT_END);
+        commentEnd.setText("*/");
+
+        commentBegin.setFirstChild(commentContent);
+        commentContent.setNextSibling(commentEnd);
+
+        assertFalse(JavadocUtils.isJavadocComment(commentBegin));
+    }
+
+    @Test
+    public void testEmptyJavadocComment()
+    {
+        final String emptyJavadocComment = "*";
+        assertTrue(JavadocUtils.isJavadocComment(emptyJavadocComment));
+    }
+
+    @Test
+    public void testEmptyJavadocCommentAst()
+    {
+        DetailAST commentBegin = new DetailAST();
+        commentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
+        commentBegin.setText("/*");
+
+        DetailAST javadocCommentContent = new DetailAST();
+        javadocCommentContent.setType(TokenTypes.COMMENT_CONTENT);
+        javadocCommentContent.setText("*");
+
+        DetailAST commentEnd = new DetailAST();
+        commentEnd.setType(TokenTypes.BLOCK_COMMENT_END);
+        commentEnd.setText("*/");
+
+        commentBegin.setFirstChild(javadocCommentContent);
+        javadocCommentContent.setNextSibling(commentEnd);
+
+        assertTrue(JavadocUtils.isJavadocComment(commentBegin));
     }
 }
