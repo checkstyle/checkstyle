@@ -36,6 +36,15 @@
         <li>
           Various documentation/spelling issues with AnnotationLocationCheck. Author: Roman Ivanov. <a href="https://github.com/checkstyle/checkstyle/pull/356">#356</a>
         </li>
+        <li>
+          Multidimensional arrays can be parsed now. Author: Ilja Dubinin. <a href="https://github.com/checkstyle/checkstyle/pull/304">#304</a>
+        </li>
+      </ul>
+      <p>Breaking backward compatibility:</p>
+      <ul>
+        <li>
+          AnnotationLocationCheck, package location was chaged, one option was renamed. Author: Roman Ivanov. <a href="https://github.com/checkstyle/checkstyle/pull/356">#356</a>
+        </li>
       </ul>
     </section>
 
