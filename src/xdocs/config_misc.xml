@@ -985,9 +985,7 @@ d = e / f;        // Another comment for this line
         </p>
         <p>
           This check combines all the functionality provided by
-          <a href="config_header.html#RegexpHeader">RegexpHeader</a>,
-          <a href="config_misc.html#GenericIllegalRegexp">GenericIllegalRegexp</a>
-          and <a href="config_misc.html#RequiredRegexp">RequiredRegexp</a>,
+          <a href="config_header.html#RegexpHeader">RegexpHeader</a>
           except supplying the regular expression from a file.
         </p>
         <p>
@@ -1085,9 +1083,7 @@ d = e / f;        // Another comment for this line
           this check in place of them.
         </p>
         <p>
-          <b>To use like <a
-          href="config_misc.html#RequiredRegexp">RequiredRegexp
-          </a>:</b>
+          <b>To use like Required Regexp check:</b>
         </p>
         <p>
           An example of how to configure the check to make sure a copyright
@@ -1137,9 +1133,7 @@ d = e / f;        // Another comment for this line
 &lt;/module&gt;
         </source>
         <p>
-          <b>To use like <a
-          href="config_misc.html#GenericIllegalRegexp">GenericIllegalRegexp
-          </a>:</b>
+          <b>To use like illegal regexp check:</b>
         </p>
         <p>
           An example of how to configure the check to make sure there are no
@@ -1173,11 +1167,6 @@ d = e / f;        // Another comment for this line
     &lt;property name=&quot;message&quot; value=&quot;Trailing whitespace&quot;/&gt;
 &lt;/module&gt;
         </source>
-        <p>
-          <b>Note:</b> The difference between this and the example given for
-          <a href="config_misc.html#genericIllegalRegexp">GenericIllegalRegexp</a>
-          is necessary because \s and $ both match the newline character ("\n").
-        </p>
         <p>
           An example of how to configure the check to find case-insensitive
           occurrences of &quot;debug&quot;:

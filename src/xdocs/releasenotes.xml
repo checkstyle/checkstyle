@@ -917,7 +917,7 @@
         </li>
         <li>
           Add new options to the <a
-          href="config_sizes.html#ImportOrderCheck">ImportOrderCheck</a>
+          href="config_sizes.html#ImportOrder">ImportOrderCheck</a>
           to make it more flexible. Thanks to David Didier for providing
           patch #1854213.
         </li>
@@ -1074,7 +1074,7 @@
           Provide support in the module configuration to allow for custom
           messages that override the default message. This allows for
           messages to be easily overridden.
-          See <a href="config.html#Custom%20messages">Custom Messages</a> for
+          See <a href="config.html#Custom_messages">Custom Messages</a> for
           more information. Thanks to Lars Koedderitzsch for providing patch
           #1917420.
         </li>
@@ -1363,10 +1363,7 @@
           <a href="config_misc.html#Regexp">Regexp</a> check that can
           provide the functionality of the following
           checks: <a
-          href="config_header.html#RegexpHeader">RegexpHeader</a>, <a
-          href="config_misc.html#GenericIllegalRegexp">GenericIllegalRegexp</a>
-          and <a
-          href="config_misc.html#RequiredRegexp">RequiredRegexp</a>.
+          href="config_header.html#RegexpHeader">RegexpHeader</a>
         </li>
         <li>
           Added support for property <i>ignoreStringsRegexp</i> to
@@ -1791,9 +1788,7 @@
 
         <li>Added example of an ant build file and stylesheet for generation
         of an HTML error report with links to source code.
-        (contrib/examples/linkErrors2Source, discussed on <a
-        href="http://sourceforge.net/mailarchive/forum.php?thread_id=4891991&#x26;forum_id=8139">sourceforge.net:
-        checkstyle-user</a>).</li>
+        </li>
 
         <li>Added filter that suppresses audit events according to source file
         comments, contributed by Mike McMahon (module
@@ -2167,8 +2162,7 @@
         external libraries are now distributed in a separate jar
         file. This is similar to the way the <a
         href="http://ant.apache.org">Ant</a> distribution is
-        organized. See the <a href="optional.html">documentation of
-        optional checks</a> for details.</li>
+        organized.
 
         <li>Updated Jakarta Regexp library to version 1.3.</li>
 
