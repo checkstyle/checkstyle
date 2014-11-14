@@ -125,9 +125,20 @@ public class SlistHandler extends BlockParentHandler
     {
         // only need to check this if parent is not
         // an if, else, while, do, ctor, method
-        if (hasBlockParent()) {
+        if (hasBlockParent() || isSameLineCaseGroup()) {
             return;
         }
         super.checkIndentation();
+    }
+
+    /**
+     * Checks if SLIST node is placed at the same line as CASE_GROUP node.
+     * @return true, if SLIST node is places at the same line as CASE_GROUP node.
+     */
+    private boolean isSameLineCaseGroup()
+    {
+        final DetailAST parentNode = getMainAst().getParent();
+        return parentNode.getType() == TokenTypes.CASE_GROUP
+            && getMainAst().getLineNo() == parentNode.getLineNo();
     }
 }
