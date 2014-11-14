@@ -866,4 +866,17 @@ public class IndentationCheckTest extends BaseCheckTestSupport
         verify(checkConfig, getPath("indentation/InputValidTryResourcesIndent.java"),
                expected);
     }
+
+    @Test
+    public void testSwitchCustom() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("throwsIndent", "8");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        final String[] expected = {};
+        verify(checkConfig, getPath("indentation/InputSwitchCustom.java"),
+               expected);
+    }
 }
