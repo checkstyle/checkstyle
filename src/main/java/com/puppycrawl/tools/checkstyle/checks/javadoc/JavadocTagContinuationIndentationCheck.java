@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
 {
 
-    /** Default indentation */
+    /** Default tag continuation indentation */
     private static final int DEFAULT_INDENTATION = 4;
 
     /**
@@ -52,8 +52,8 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     private int mOffset = DEFAULT_INDENTATION;
 
     /**
-     * Some javadoc.
-     * @param aOffset Some javadoc.
+     * Sets custom indentation level.
+     * @param aOffset custom value.
      */
     public void setOffset(int aOffset)
     {
@@ -90,9 +90,9 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     }
 
     /**
-     * Some javadoc.
-     * @param aDescriptionNode Some javadoc.
-     * @return Some javadoc.
+     * Finds and collects all NEWLINE nodes inside DESCRIPTION node.
+     * @param aDescriptionNode DESCRIPTION node.
+     * @return List with NEWLINE nodes.
      */
     private List<DetailNode> getAllNewlineNodes(DetailNode aDescriptionNode)
     {
@@ -108,9 +108,9 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     }
 
     /**
-     * Some javadoc.
-     * @param aDescription Some javadoc.
-     * @return Some javadoc.
+     * Checks, if description node is a description of in-line tag.
+     * @param aDescription DESCRIPTION node.
+     * @return true, if description node is a description of in-line tag.
      */
     private boolean isInlineDescription(DetailNode aDescription)
     {
