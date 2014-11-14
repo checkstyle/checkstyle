@@ -2160,9 +2160,8 @@
         <li>Checks that are designed to be used for a
         special class of applications (like J2EE) or that require
         external libraries are now distributed in a separate jar
-        file. This is similar to the way the <a
-        href="http://ant.apache.org">Ant</a> distribution is
-        organized.
+        file. This is similar to the way the <a href="http://ant.apache.org">Ant</a>
+        distribution is organized.</li>
 
         <li>Updated Jakarta Regexp library to version 1.3.</li>
 
