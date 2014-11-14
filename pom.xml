@@ -208,7 +208,7 @@
           <artifactId>lifecycle-mapping</artifactId>
           <version>1.0.0</version>
           <configuration>
-            <lifecycleMappingMetadata>
+            <lifecycleMappingMetadata>https://github.com/checkstyle/checkstyle/issues
               <pluginExecutions>
                 <pluginExecution>
                   <pluginExecutionFilter>
@@ -250,6 +250,19 @@
 								<runOnIncremental>true</runOnIncremental>
 							</execute>
 						</action>
+				</pluginExecution>
+				<pluginExecution>
+					<pluginExecutionFilter>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-enforcer-plugin</artifactId>
+						<versionRange>[1.2,)</versionRange>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+					</pluginExecutionFilter>
+					<action>
+						<ignore />
+					</action>
 				</pluginExecution>
               </pluginExecutions>
             </lifecycleMappingMetadata>
