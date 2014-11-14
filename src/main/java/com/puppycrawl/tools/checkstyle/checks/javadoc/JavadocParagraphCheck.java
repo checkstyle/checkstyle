@@ -66,8 +66,8 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
     }
 
     /**
-     * Some javadoc.
-     * @param aNewline Some javadoc.
+     * Determines whether or not the next line after empty line has paragraph tag in the beginning.
+     * @param aNewline NEWLINE node.
      */
     private void checkEmptyLine(DetailNode aNewline)
     {
@@ -81,8 +81,8 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
     }
 
     /**
-     * Some javadoc.
-     * @param aTag Some javadoc.
+     * Determines whether or not the line with paragraph tag has previous empty line.
+     * @param aTag html tag.
      */
     private void checkParagraphTag(DetailNode aTag)
     {
@@ -96,9 +96,9 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
     }
 
     /**
-     * Some javadoc.
-     * @param aNode Some javadoc.
-     * @return Some javadoc.
+     * Returns nearest node.
+     * @param aNode DetailNode node.
+     * @return nearest node.
      */
     private DetailNode getNearestNode(DetailNode aNode)
     {
@@ -112,9 +112,9 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
     }
 
     /**
-     * Some javadoc.
-     * @param aNewLine Some javadoc.
-     * @return Some javadoc.
+     * Determines whether or not the line is empty line.
+     * @param aNewLine NEWLINE node.
+     * @return true, if line is empty line.
      */
     private boolean isEmptyLine(DetailNode aNewLine)
     {
@@ -134,9 +134,9 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
     }
 
     /**
-     * Some javadoc.
-     * @param aParagraphTag Some javadoc.
-     * @return Some javadoc.
+     * Determines whether or not the line with paragraph tag is first line in javadoc.
+     * @param aParagraphTag paragraph tag.
+     * @return true, if line with paragraph tag is first line in javadoc.
      */
     private boolean isFirstParagraph(DetailNode aParagraphTag)
     {
@@ -156,9 +156,9 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
     }
 
     /**
-     * Some javadoc.
-     * @param aNode Some javadoc.
-     * @return Some javadoc.
+     * Finds and returns nearest empty line in javadoc.
+     * @param aNode DetailNode node.
+     * @return Some nearest empty line in javadoc.
      */
     private DetailNode getNearestEmptyLine(DetailNode aNode)
     {
@@ -175,9 +175,9 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
     }
 
     /**
-     * Some javadoc.
-     * @param aNewLine Some javadoc.
-     * @return Some javadoc.
+     * Tests if NEWLINE node is a last node in javadoc.
+     * @param aNewLine NEWLINE node.
+     * @return true, if NEWLINE node is a last node in javadoc.
      */
     private boolean isLastEmptyLine(DetailNode aNewLine)
     {
