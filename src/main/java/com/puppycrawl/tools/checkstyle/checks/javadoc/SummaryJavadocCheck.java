@@ -51,13 +51,13 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
 {
 
     /**
-     * Some javadoc.
+     * Regular expression for forbidden summary fragments.
      */
     private Pattern mForbiddenSummaryFragments = Utils.createPattern("^$");
 
     /**
-     * Some javadoc.
-     * @param aPattern Some javadoc.
+     * Sets custom value of regular expression for forbidden summary fragments.
+     * @param aPattern user's value.
      */
     public void setForbiddenSummaryFragments(String aPattern)
     {
@@ -89,9 +89,9 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
     }
 
     /**
-     * Some javadoc.
-     * @param aAst Some javadoc.
-     * @return Some javadoc.
+     * Finds and returns first sentence.
+     * @param aAst Javadoc root node.
+     * @return first sentence.
      */
     private String getFirstSentence(DetailNode aAst)
     {
@@ -111,9 +111,9 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
     }
 
     /**
-     * Some javadoc.
-     * @param aTextNode Some javadoc.
-     * @return Some javadoc.
+     * Finds and returns chars till first dot.
+     * @param aTextNode node with javadoc text.
+     * @return String with chars till first dot.
      */
     private String getCharsTillDot(DetailNode aTextNode)
     {
@@ -130,9 +130,9 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
     }
 
     /**
-     * Some javadoc.
-     * @param aFirstSentence Some javadoc.
-     * @return Some javadoc.
+     * Tests if first sentence contains forbidden summary fragment.
+     * @param aFirstSentence String with first sentence.
+     * @return true, if first sentence contains forbidden summary fragment.
      */
     private boolean containsForbiddenFragment(String aFirstSentence)
     {
