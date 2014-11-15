@@ -486,10 +486,22 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-linkcheck-plugin</artifactId>
-        <version>1.1</version>
+        <version>1.2</version>
         <configuration>
-          <excludedLinks>**/apidocs/*</excludedLinks>
-          <excludedHttpStatusErrors>401</excludedHttpStatusErrors>
+	  <excludedPages>
+	    <excludedPage>dependencies.html</excludedPage>
+	  </excludedPages>
+	  <excludedLinks>
+	    <excludedLink>**apidocs/*</excludedLink>
+	    <excludedLink>reports/google-style/guava</excludedLink>
+	    <excludedLink>reports/javadoc/openjdk8</excludedLink>
+	    <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
+	    <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
+	    <excludedLink>http://search.maven.org/*</excludedLink>
+	  </excludedLinks>
+          <excludedHttpStatusErrors>
+	    <excludedHttpStatusError>401</excludedHttpStatusError>
+	  </excludedHttpStatusErrors>
         </configuration>
       </plugin>
 
@@ -538,12 +550,23 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-linkcheck-plugin</artifactId>
-         <version>1.1</version>
-<!--
+        <version>1.2</version>
         <configuration>
-          <excludedLinks>**/apidocs/*</excludedLinks>
+	  <excludedPages>
+	    <excludedPage>dependencies.html</excludedPage>
+	  </excludedPages>
+	  <excludedLinks>
+	    <excludedLink>**apidocs/*</excludedLink>
+	    <excludedLink>reports/google-style/guava</excludedLink>
+	    <excludedLink>reports/javadoc/openjdk8</excludedLink>
+	    <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
+	    <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
+	    <excludedLink>http://search.maven.org/*</excludedLink>
+	  </excludedLinks>
+          <excludedHttpStatusErrors>
+	    <excludedHttpStatusError>401</excludedHttpStatusError>
+	  </excludedHttpStatusErrors>
         </configuration>
--->
       </plugin>
 
     </plugins>

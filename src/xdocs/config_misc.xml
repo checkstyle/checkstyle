@@ -97,7 +97,7 @@
         <p>
           A check for <code>TODO:</code> comments. Actually
           it is a generic <a
-          href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html">regular
+          href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">regular
           expression</a> matcher on Java comments. To check for other
           patterns in Java comments, set the <code>format</code> property.
         </p>
@@ -1012,7 +1012,7 @@ d = e / f;        // Another comment for this line
           <b>Note:</b> Not all regular expression engines are created equal. Some provide extra
           functions that others do not and some elements of the syntax may vary.
           This check makes use of the <a
-          href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/package-summary.html">
+          href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/package-summary.html">
           java.util.regex package</a>; please check its documentation for
           details of how to construct a regular expression to achieve a particular
           goal.
@@ -1197,7 +1197,7 @@ d = e / f;        // Another comment for this line
         </source>
         <p>
           <b>To use like <a
-          href="config_misc.html#RegexpHeader">RegexpHeader
+          href="config_header.html#RegexpHeader">RegexpHeader
           </a>:</b>
         </p>
         <p>

@@ -44,17 +44,17 @@
           <th>default value of <code>format</code></th>
         </tr>
         <tr>
-          <td><code id="AbstractClassName">AbstractClassName</code></td>
+          <td><code>AbstractClassName</code></td>
           <td><code>abstract</code> classes</td>
           <td><code>^Abstract.*$|^.*Factory$</code></td>
         </tr>
         <tr>
-          <td><code id="ClassTypeParameterName">ClassTypeParameterName</code></td>
+          <td><code>ClassTypeParameterName</code></td>
           <td>class type parameters</td>
           <td><code>^[A-Z]$</code></td>
         </tr>
         <tr>
-          <td><code id="ConstantName">ConstantName</code></td>
+          <td><code>ConstantName</code></td>
           <td>
             constants (<code>static</code>, <code>
             final</code> fields)
@@ -62,13 +62,13 @@
           <td><code>^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</code></td>
         </tr>
         <tr>
-          <td><code id="LocalFinalVariableName">LocalFinalVariableName</code></td>
+          <td><code>LocalFinalVariableName</code></td>
           <td>local, <code>final</code> variables, including
               <code>catch</code> parameters</td>
           <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
         </tr>
         <tr>
-          <td><code id="LocalVariableName">LocalVariableName</code></td>
+          <td><code>LocalVariableName</code></td>
           <td>
             local, non-<code>final</code> variables, including
             <code>catch</code> parameters
@@ -76,46 +76,46 @@
           <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
         </tr>
         <tr>
-          <td><code id="MemberName">MemberName</code></td>
+          <td><code>MemberName</code></td>
           <td>non-<code>static</code> fields</td>
           <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
         </tr>
         <tr>
-          <td><code id="MethodName">MethodName</code></td>
+          <td><code>MethodName</code></td>
           <td>methods</td>
           <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
         </tr>
         <tr>
-          <td><code id="MethodTypeParameterName">MethodTypeParameterName</code></td>
+          <td><code>MethodTypeParameterName</code></td>
           <td>method type parameters</td>
           <td><code>^[A-Z]$</code></td>
         </tr>
         <tr>
-          <td><code id="InterfaceTypeParameterName">InterfaceTypeParameterName</code></td>
+          <td><code>InterfaceTypeParameterName</code></td>
           <td>interface type parameters</td>
           <td><code>^[A-Z]$</code></td>
         </tr>
         <tr>
-          <td><code id="PackageName">PackageName</code></td>
+          <td><code>PackageName</code></td>
           <td>packages</td>
           <td>
             <code>^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$</code>
           </td>
         </tr>
         <tr>
-          <td><code id="ParameterName">ParameterName</code></td>
+          <td><code>ParameterName</code></td>
           <td>parameters</td>
           <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
         </tr>
         <tr>
-          <td><code id="StaticVariableName">StaticVariableName</code></td>
+          <td><code>StaticVariableName</code></td>
           <td>
             <code>static</code>, non-<code>final</code> fields
           </td>
           <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
         </tr>
         <tr>
-          <td><code id="TypeName">TypeName</code></td>
+          <td><code>TypeName</code></td>
           <td>classes, interfaces, enums, and annotations</td>
           <td><code>^[A-Z][a-zA-Z0-9]*$</code></td>
         </tr>
@@ -371,7 +371,7 @@ class MyClass {
             <td>allowedAbbreviations</td>
             <td>list of abbreviations that must be skipped for checking.
             Abbreviations should be separated by comma, no spaces are allowed.</td>
-            <td><a href="property_types.html#StringSet">stringSet</a></td>
+            <td><a href="property_types.html#stringSet">stringSet</a></td>
             <td>null</td>
           </tr>
           <tr>

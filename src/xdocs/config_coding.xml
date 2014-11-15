@@ -102,7 +102,7 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
       <subsection name="Description">
         <p>
           Checks that classes that define a covariant <code>equals()</code> method also override method <code>equals(java.lang.Object)</code>.  Inspired by <a
-          href="http://www.cs.umd.edu/~pugh/java/bugs/docs/findbugsPaper.pdf">findbugs</a>.
+          href="http://www.cs.nyu.edu/~lharris/papers/findbugsPaper.pdf">findbugs</a>.
         </p>
 
         <p>
@@ -1450,7 +1450,7 @@ if (&quot;something&quot;.equals(x))
 
         <p>
           Reference: <a
-          href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Object.html#clone()">Object.clone()</a>.
+          href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#clone%28%29">Object.clone()</a>.
         </p>
       </subsection>
 
@@ -1485,8 +1485,8 @@ if (&quot;something&quot;.equals(x))
 
         <p>
           Reference: <a
-          href="http://java.sun.com/docs/books/tutorial/java/data/garbagecollection.html">Cleaning
-          Up Unused Objects</a>.
+          href="http://www.oracle.com/technetwork/java/javamail/finalization-137655.html">
+          Use Finalization Only When You Must</a>.
         </p>
       </subsection>
 

@@ -48,7 +48,7 @@
               whether to allow starred class imports like
               <code>import java.util.*;</code>.
             </td>
-            <td><a href="property_types.html#Boolean">Boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
@@ -57,7 +57,7 @@
               whether to allow starred static member imports like
               <code>import static org.junit.Assert.*;</code>
             </td>
-            <td><a href="property_types.html#Boolean">Boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
         </table>
