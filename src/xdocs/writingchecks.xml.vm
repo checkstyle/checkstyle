@@ -156,11 +156,12 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
       <p>
         Ready for a bit more theory? The last bit
         that is missing before you can start writing Checks is understanding
-        the Visitor pattern.
+        the <a href="http://en.wikipedia.org/wiki/Visitor_pattern">Visitor pattern</a>.
       </p>
 
       <p>
-        When working with ASTs, a simple approach to define check operations
+        When working with <a href="http://en.wikipedia.org/wiki/Abstract_syntax_tree">
+        Abstract Syntax Tree (AST)</a>, a simple approach to define check operations
         on them would be to add a <code>check()</code> method to the Class that defines
         the AST nodes. For example, our AST type could have a method
         <code>checkNumberOfMethods()</code>. Such an approach would suffer from a few
@@ -182,7 +183,8 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
       href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>visitToken()</code></a>.  </p>
 
       <p> It is important to understand that the individual
-      Checks do no drive the AST traversal. Instead, the TreeWalker initiates
+      Checks do no drive the AST traversal (it possible to traverse itself, but not recommended).
+      Instead, the TreeWalker initiates
       a recursive descend from the root of the AST to the leaf nodes and calls
       the Check methods. The traversal is done using a <a
       href="http://mathworld.wolfram.com/Depth-FirstTraversal.html">depth-first</a>
@@ -200,13 +202,6 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
       the TreeWalker is backtracking from the node. After the root node has
       been left, the TreeWalker will call <a
       href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>finishTree()</code></a>.  </p>
-
-      <p>
-        If you&#39;d like to learn more about the Visitor pattern you should
-        grab a copy of the Gof
-        <a href="http://c2.com/cgi/wiki?DesignPatternsBook">Design
-        Patterns</a> book.
-      </p>
 
     </section>
 
@@ -251,13 +246,15 @@ public class MethodLimitCheck extends Check
     {
         // find the OBJBLOCK node below the CLASS_DEF/INTERFACE_DEF
         DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
+
         // count the number of direct children of the OBJBLOCK
         // that are METHOD_DEFS
         int methodDefs = objBlock.getChildCount(TokenTypes.METHOD_DEF);
+
         // report error if limit is reached
         if (methodDefs > this.max) {
-            log(ast.getLineNo(),
-                "too many methods, only " + this.max + " are allowed");
+            String message = "too many methods, only " + this.max + " are allowed";
+            log(ast.getLineNo(), message);
         }
    }
 }
@@ -272,7 +269,7 @@ public class MethodLimitCheck extends Check
         provides utility methods to extract information from the tree,
         like <code>getChildCount()</code>. By now you have
         probably consulted the API documentation and found that
-        DetailsAST additionally provides methods for navigating around
+        <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/api/DetailAST.java">DetailsAST</a> additionally provides methods for navigating around
         in the syntax tree, like finding the next sibling of a node, the
         children of a node, the parent of a node, etc.
       </p>
@@ -322,8 +319,8 @@ public class MethodLimitCheck extends Check
       <p>
         With this code added, you can set the property <code>max</code> for the MethodLimitCheck module in the
         configuration file. It doesn&#39;t get any simpler than that. The secret is
-        that Checkstyle uses JavaBean introspection to set the JavaBean
-        properties. That works for all primitive types like boolean,
+        that Checkstyle uses <a href="https://docs.oracle.com/javase/tutorial/reflect/member/fieldValues.html">
+        JavaBean reflection to set the JavaBean properties</a>. That works for all primitive types like boolean,
         int, long, etc., plus Strings, plus arrays of these types.
       </p>
 
@@ -351,8 +348,10 @@ public class MethodLimitCheck extends Check
       </p>
 
       <p>
-        To support internationalized error messages, you need to create
-        a messages.properties file alongside your Check class, i.e. the
+        To support internationalized error messages, you need to create or reuse existing
+        a messages.properties file alongside your Check class
+        (<a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/com/puppycrawl/tools/checkstyle/checks/sizes/messages.properties">example</a>)
+        , i.e. the
         Java file and the properties files should be in the same
         directory.  Add a symbolic error code and an English
         representation to the messages.properties. The file should
@@ -384,7 +383,7 @@ public class MethodLimitCheck extends Check
         Check. To integrate your Check, add a new subentry under the
         TreeWalker module of your configuration file. Use the full
         classname of your Check class as the name of the module.
-        Your configuration file should look something like this:
+        Your configuration file <code>config.xml</code> should look something like this:
       </p>
 
       <source>
@@ -414,7 +413,6 @@ public class MethodLimitCheck extends Check
 
       <source>
 java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar \
-     com.puppycrawl.tools.checkstyle.Main \
      -c config.xml -r .
       </source>
 
@@ -444,24 +442,38 @@ java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar \
       </p>
 
       <p>
-        There are basically only two of them:
+        There are basically only few of them:
       </p>
       <ul>
-        <li>You cannot determine the type of an expression.</li>
-        <li>You cannot see the content of other files. (although you can save processed files for use later)</li>
+        <li>To get valid violations, code have to be compilable, in other case you can get not easy to understand parse errors.</li>
+        <li>You cannot determine the type of an expression. Example: "getValue() + getValue2()"</li>
+        <li>You cannot determine the full inheritance hierarchy of type.</li>
+        <li>You cannot see the content of other files. You have content of one file only during all Checks execution. All files are processed one by one.</li>
       </ul>
       <p>
         This means that you cannot implement some of the code inspection
         features that are available in advanced IDEs like <a
-        href="http://www.intellij.com/idea/">IntelliJ IDEA</a>. For
-        example you will not be able to implement a Check that finds
-        redundant type casts or unused public methods.
+        href="http://www.intellij.com/idea/">IntelliJ IDEA</a>,
+        <a href="http://findbugs.sourceforge.net/">Findbug</a>,
+        <a href="http://pmd.sourceforge.net/">PMD</a>,
+        <a href="http://www.sonarqube.org/">Sonarqube</a>. 
       </p>
 
+      <p>
+        For example you will not be able to implement:
+        <br/>
+        - a Check that finds redundant type casts or unused public methods.
+        <br/>
+        - a Check that validate that user custom Exception class inherited from java.lang.Exception class.
+      </p>
 
     </section>
 
     <section name="Writing FileSetChecks">
+      
+      <p>Writing a FileSetCheck usually required when you do not need parse Java file
+      to get inner structure, or you are going to validate non "*.java" files.
+      </p>
 
       <p> Writing a FileSetCheck is pretty straightforward: Just
       inherit from <a
@@ -520,14 +532,8 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
       </p>
       <p>
         There are virtually no limits what you can do in
-        FileSetChecks. The craziest ideas we&#39;ve had so far are:
+        FileSetChecks, but please do not be creazy.
       </p>
-      <ul>
-        <li>to find global code problems like unused public methods.</li>
-        <li>to find duplicate code.</li>
-        <li>to port the TreeWalker solution to check C#
-        instead of Java.</li>
-      </ul>
 
     </section>
 
@@ -535,7 +541,8 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
       <p>
         That&#39;s probably our fault, and it means that we have to provide
         better documentation. Please do not hesitate to ask questions on
-        the user mailing list, this will help us to improve this
+        the user <a href="http://checkstyle.sourceforge.net/mail-lists.html">
+        mailing lists</a>, this will help us to improve this
         document.  Please ask your questions as precisely as possible.
         We will not be able to answer questions like &quot;I want to
         write a Check but I don&#39;t know how, can you help me?&quot;. Tell
