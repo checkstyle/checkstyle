@@ -15,7 +15,9 @@
 
       <p>
         OK, so you have finally decided to write your own Check.  Welcome
-        aboard, this is really a fun thing to do.  There are actually two
+        aboard, this is really a easy thing to do. Very basic Java knowledge is required
+        to write a Check, it is good practice for even for student.
+        There are actually two
         kinds of Checks, so before you can start, you have to find out
         which kind of Check you want to implement.
       </p>
@@ -91,15 +93,14 @@
         for didactic purposes).
       </p>
       <p>
-        Tools exist which read a grammar definition and produce a parser
+        There are tools which read a grammar definition and produce a parser
         for the language that is specified in the grammar. In other
         words, the output of the tool is a program that can transform a
         stream of characters (a Java file) into a tree representation
         that reflects the structure of the file. Checkstyle uses the
         parser generator <a href="http://www.antlr.org">ANTLR</a> but
         that is an implementation detail you do not need to worry about
-        when writing Checks. Several other parser generators exist and
-        they all work well.
+        when writing Checks, as well tested parser will parse Java file for you.
       </p>
 
     </section>
@@ -111,8 +112,7 @@
         is your reward - a GUI that displays the structure of a Java source file. To run it type
       </p>
       <source>
-java -classpath checkstyle-${projectVersion}-all.jar \
-     com.puppycrawl.tools.checkstyle.gui.Main
+java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main
       </source>
 
       <p>
@@ -141,6 +141,12 @@ java -classpath checkstyle-${projectVersion}-all.jar \
         are important for implementing Checks but not for understanding
         the basic concepts. For now it is sufficient to know that the
         gui is a tool that lets you look at the structure of a Java file, i.e. you can see the Java grammar &#39;in action&#39;.
+      </p>
+
+      <p> If you use <a href="https://eclipse.org">Eclipse</a> you can install
+        <a href="https://github.com/sevntu-checkstyle/checkstyle-ast-eclipse-viewer">
+          Checkstyle AST Eclipse Viewer</a>
+        plugin to launch that application from context menu on any file in Eclipse.
       </p>
 
     </section>
