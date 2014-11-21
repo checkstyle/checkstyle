@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -50,12 +51,10 @@ public class InnerTypeLastCheck extends Check
         }
         else {
             DetailAST nextSibling = aAST.getNextSibling();
-            while (null != nextSibling
-                && ((nextSibling.getType() != TokenTypes.CLASS_DEF)
-                    || (nextSibling.getType() != TokenTypes.INTERFACE_DEF)))
-            {
-                if (nextSibling.getType() == TokenTypes.VARIABLE_DEF
-                        || nextSibling.getType() == TokenTypes.METHOD_DEF)
+            while (null != nextSibling) {
+                if (!ScopeUtils.inCodeBlock(aAST)
+                    && (nextSibling.getType() == TokenTypes.VARIABLE_DEF
+                        || nextSibling.getType() == TokenTypes.METHOD_DEF))
                 {
                     log(nextSibling.getLineNo(), nextSibling.getColumnNo(),
                         "arrangement.members.before.inner");
