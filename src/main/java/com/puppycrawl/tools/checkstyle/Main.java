@@ -56,6 +56,7 @@ public final class Main
             "f",
             true,
             "Sets the output format. (plain|xml). Defaults to plain");
+        OPTS.addOption("v", false, "Print product version and exit");
     }
 
     /** Stop instances being created. */
@@ -81,6 +82,12 @@ public final class Main
             usage();
         }
         assert line != null;
+
+        // show version and exit
+        if (line.hasOption("v")) {
+            System.out.println("Checkstyle version: " + Main.class.getPackage().getImplementationVersion());
+            System.exit(0);
+        }
 
         // setup the properties
         final Properties props =
