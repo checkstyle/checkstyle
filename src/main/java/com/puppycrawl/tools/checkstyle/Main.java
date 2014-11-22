@@ -85,7 +85,8 @@ public final class Main
 
         // show version and exit
         if (line.hasOption("v")) {
-            System.out.println("Checkstyle version: " + Main.class.getPackage().getImplementationVersion());
+            System.out.println("Checkstyle version: "
+                    + Main.class.getPackage().getImplementationVersion());
             System.exit(0);
         }
 
