@@ -60,6 +60,12 @@ public abstract class AbstractJavadocCheck extends Check
     private static final String PARSE_ERROR_MESSAGE_KEY = "javadoc.parse.error";
 
     /**
+     * Unrecognized error from antlr parser
+     */
+    private static final String UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY =
+            "javadoc.unrecognized.antlr.error";
+
+    /**
      * key is "line:column"
      * value is DetailNode tree
      */
@@ -251,7 +257,8 @@ public abstract class AbstractJavadocCheck extends Check
             // There are cases when antlr error listener does not handle syntax error
             if (parseErrorMessage == null) {
                 parseErrorMessage = new ParseErrorMessage(aJavadocCommentAst.getLineNo(),
-                        PARSE_ERROR_MESSAGE_KEY, "Unrecognized error: " + e);
+                        UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY,
+                        aJavadocCommentAst.getColumnNo(), e.getMessage());
             }
         }
 
