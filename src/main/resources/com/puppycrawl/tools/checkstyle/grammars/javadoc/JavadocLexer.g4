@@ -94,7 +94,7 @@ CHAR        :   . ;
 //////////////////////////////////////////////////////////////////////////////////////
 mode param;
 Space0: WS -> type(WS);
-PARAMETER_NAME: [a-zA-Z0-9<>_-]+ -> mode(DEFAULT_MODE);
+PARAMETER_NAME: [a-zA-Z0-9<>_$]+ -> mode(DEFAULT_MODE);
 Char1: . 
       {
             skipCurrentTokenConsuming();
@@ -120,10 +120,10 @@ Newline5: NEWLINE
 Leading_asterisk3: LEADING_ASTERISK -> type(LEADING_ASTERISK);
 XmlTagOpen1: '<' -> type(OPEN), pushMode(xmlTagDefinition);
 STRING: '"' .*? '"' {referenceCatched = false;} -> mode(DEFAULT_MODE);
-PACKAGE: [a-z] ([a-z_-] | '.')+ [a-z_-] {referenceCatched = true;};
+PACKAGE: [a-z$] ([a-z_$] | '.')+ [a-z_$] {referenceCatched = true;};
 DOT: '.';
 HASH: '#' {referenceCatched = true;} -> mode(classMemeber);
-CLASS: [A-Z] [a-zA-Z0-9_-]* {referenceCatched = true;};
+CLASS: [A-Z] [a-zA-Z0-9_$]* {referenceCatched = true;};
 End20: JAVADOC_INLINE_TAG_END
       {
             insideJavadocInlineTag--;
@@ -141,10 +141,10 @@ Char2: .
 
 //////////////////////////////////////////////////////////////////////////////////////
 mode classMemeber;
-MEMBER: [a-zA-Z0-9_-]+ {!insideReferenceArguments}?;
+MEMBER: [a-zA-Z0-9_$]+ {!insideReferenceArguments}?;
 LEFT_BRACE: '(' {insideReferenceArguments=true;};
 RIGHT_BRACE: ')' {insideReferenceArguments=false;};
-ARGUMENT: ([a-zA-Z0-9_-] | '.' | '[' | ']')+ {insideReferenceArguments}?;
+ARGUMENT: ([a-zA-Z0-9_$] | '.' | '[' | ']')+ {insideReferenceArguments}?;
 COMMA: ',' {insideReferenceArguments}?;
 Leading_asterisk6: LEADING_ASTERISK
       {
@@ -188,7 +188,7 @@ Char20: .
 //////////////////////////////////////////////////////////////////////////////////////
 mode serialField;
 Space2: WS -> type(WS);
-FIELD_NAME: [a-zA-Z0-9_-]+ -> mode(serialFieldFieldType);
+FIELD_NAME: [a-zA-Z0-9_$]+ -> mode(serialFieldFieldType);
 Char3: . 
       {
             skipCurrentTokenConsuming();
@@ -198,7 +198,7 @@ Char3: .
 //////////////////////////////////////////////////////////////////////////////////////
 mode serialFieldFieldType;
 Space3: WS -> type(WS);
-FIELD_TYPE: [a-zA-Z0-9_-]+ -> mode(DEFAULT_MODE);
+FIELD_TYPE: [a-zA-Z0-9_$]+ -> mode(DEFAULT_MODE);
 Char4: .
       {
             skipCurrentTokenConsuming();
@@ -206,7 +206,7 @@ Char4: .
 //////////////////////////////////////////////////////////////////////////////////////
 mode exception;
 Space4: WS -> type(WS);
-CLASS_NAME: ([a-zA-Z0-9_-] | '.')+ -> mode(DEFAULT_MODE);
+CLASS_NAME: ([a-zA-Z0-9_$] | '.')+ -> mode(DEFAULT_MODE);
 Char5: .
       {
             skipCurrentTokenConsuming();
