@@ -97,6 +97,15 @@ java -jar checkstyle-${projectVersion}-all.jar -c sun_checks.xml MyClass.java
         <a href="https://raw.githubusercontent.com/checkstyle/checkstyle/master/sun_checks.xml">sun_checks.xml</a>
         <a href="https://raw.githubusercontent.com/checkstyle/checkstyle/master/google_checks.xml">google_checks.xml</a>
       </p>
+      <p>
+          To run Checkstyle UI viewer for AST tree directly from the JAR file using
+          the <code>-jar</code> option. Download latest <a href="http://sourceforge.net/projects/checkstyle/files/checkstyle/${projectVersion}/checkstyle-${projectVersion}-all.jar/download">
+          checkstyle-${projectVersion}-all.jar</a>.
+          An example of run would be (path to java file is optional):
+        <source>
+java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main MyClass.java
+        </source>
+      </p>
     </section>
 
     <section name="Run after compilation">
