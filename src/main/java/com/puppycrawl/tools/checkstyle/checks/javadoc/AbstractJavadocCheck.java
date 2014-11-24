@@ -55,6 +55,11 @@ import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
 public abstract class AbstractJavadocCheck extends Check
 {
     /**
+     * Error message key for common javadoc errors.
+     */
+    private static final String PARSE_ERROR_MESSAGE_KEY = "javadoc.parse.error";
+
+    /**
      * key is "line:column"
      * value is DetailNode tree
      */
@@ -115,24 +120,40 @@ public abstract class AbstractJavadocCheck extends Check
     {
     }
 
+    /**
+     * Defined final to not allow JavadocChecks to change default tokens.
+     * @return default tokens
+     */
     @Override
     public final int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
     }
 
+    /**
+     * Defined final to not allow JavadocChecks to change acceptable tokens.
+     * @return acceptable tokens
+     */
     @Override
     public final int[] getAcceptableTokens()
     {
         return super.getAcceptableTokens();
     }
 
+    /**
+     * Defined final to not allow JavadocChecks to change required tokens.
+     * @return required tokens
+     */
     @Override
     public final int[] getRequiredTokens()
     {
         return super.getRequiredTokens();
     }
 
+    /**
+     * Defined final because all JavadocChecks require comment nodes.
+     * @return true
+     */
     @Override
     public final boolean isCommentNodesRequired()
     {
@@ -142,6 +163,7 @@ public abstract class AbstractJavadocCheck extends Check
     @Override
     public final void beginTree(DetailAST aRootAST)
     {
+        TREE_CACHE.clear();
     }
 
     @Override
@@ -217,7 +239,7 @@ public abstract class AbstractJavadocCheck extends Check
         catch (IOException e) {
             // Antlr can not initiate its ANTLRInputStream
             parseErrorMessage = new ParseErrorMessage(aJavadocCommentAst.getLineNo(),
-                    "javadoc.parse.error",
+                    PARSE_ERROR_MESSAGE_KEY,
                     aJavadocCommentAst.getColumnNo(), e.getMessage());
         }
         catch (ParseCancellationException e) {
@@ -225,6 +247,12 @@ public abstract class AbstractJavadocCheck extends Check
             // and parser throws this runtime exception to stop parsing.
             // Just stop processing current Javadoc comment.
             parseErrorMessage = mErrorListener.getErrorMessage();
+
+            // There are cases when antlr error listener does not handle syntax error
+            if (parseErrorMessage == null) {
+                parseErrorMessage = new ParseErrorMessage(aJavadocCommentAst.getLineNo(),
+                        PARSE_ERROR_MESSAGE_KEY, "Unrecognized error: " + e);
+            }
         }
 
         if (parseErrorMessage == null) {
