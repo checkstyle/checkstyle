@@ -2428,4 +2428,45 @@ public class ParseTreeBuilder
         vfDcF.addChild(rrjXS);
         return vfDcF;
     }
+
+    public static ParseTree treeDollarInLink()
+    {
+        JavadocContext yCrNh = new JavadocContext(null, 0);
+        JavadocInlineTagContext yZEPk = new JavadocInlineTagContext(yCrNh, 0);
+        CommonToken QaRFV = new CommonToken(JavadocTokenTypes.JAVADOC_INLINE_TAG_START, "{");
+        yZEPk.addChild(QaRFV);
+        CommonToken LnzvV = new CommonToken(JavadocTokenTypes.LINK_LITERAL, "@link");
+        yZEPk.addChild(LnzvV);
+        CommonToken WcdhT = new CommonToken(JavadocTokenTypes.WS, " ");
+        yZEPk.addChild(WcdhT);
+        ReferenceContext yPHKq = new ReferenceContext(yZEPk, 0);
+        CommonToken tfKuW = new CommonToken(JavadocTokenTypes.CLASS, "My$Class");
+        yPHKq.addChild(tfKuW);
+        CommonToken asCBP = new CommonToken(JavadocTokenTypes.HASH, "#");
+        yPHKq.addChild(asCBP);
+        CommonToken VfpBA = new CommonToken(JavadocTokenTypes.MEMBER, "$$simple_$Method");
+        yPHKq.addChild(VfpBA);
+        ParametersContext zUjHC = new ParametersContext(yPHKq, 0);
+        CommonToken evbHg = new CommonToken(JavadocTokenTypes.LEFT_BRACE, "(");
+        zUjHC.addChild(evbHg);
+        CommonToken mpzxn = new CommonToken(JavadocTokenTypes.ARGUMENT, "_A78");
+        zUjHC.addChild(mpzxn);
+        CommonToken kOOdW = new CommonToken(JavadocTokenTypes.COMMA, ",");
+        zUjHC.addChild(kOOdW);
+        CommonToken LvnuO = new CommonToken(JavadocTokenTypes.WS, " ");
+        zUjHC.addChild(LvnuO);
+        CommonToken IScAu = new CommonToken(JavadocTokenTypes.ARGUMENT, "$8$");
+        zUjHC.addChild(IScAu);
+        CommonToken aULsN = new CommonToken(JavadocTokenTypes.RIGHT_BRACE, ")");
+        zUjHC.addChild(aULsN);
+        yPHKq.addChild(zUjHC);
+        yZEPk.addChild(yPHKq);
+        CommonToken DCMuM = new CommonToken(JavadocTokenTypes.JAVADOC_INLINE_TAG_END, "}");
+        yZEPk.addChild(DCMuM);
+        yCrNh.addChild(yZEPk);
+        CommonToken AcQbE = new CommonToken(JavadocTokenTypes.EOF, "<EOF>");
+        yCrNh.addChild(AcQbE);
+        return yCrNh;
+    }
+
 }
