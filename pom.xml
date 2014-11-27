@@ -22,7 +22,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>6.1.1</version>
+  <version>6.1.2-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>checkstyle</name>
   <url>http://checkstyle.sourceforge.net/</url>
