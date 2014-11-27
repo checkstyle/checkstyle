@@ -12,6 +12,39 @@
   <body>
 
 
+    <section name="Release 6.1.1">
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Generics in postfix expression before method referencec can be parsed now. Author: Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/339">#339</a>
+        </li>
+        <li>
+          ArrayIndexOutOfBoundsException if Indentation and FileContentsFolder are enabled. Author: Ilja Dubinin. <a href="https://github.com/checkstyle/checkstyle/issues/92">#92</a>
+        </li>
+        <li>
+          Create ParseErrorMessage if error message is null during Javadoc parsing. Author:  Baratali Izmailov. <a href="https://github.com/checkstyle/checkstyle/pull/385">#385</a>
+        </li>
+        <li>
+          Added $ to all identifier definitions at javadoc grammar. Author: Baratali Izmailov. <a href="https://github.com/checkstyle/checkstyle/issues/376">#376</a>
+        </li>
+        <li>
+          Fixed NumberFormatException while logging in AbstractJavadocCheck. Author: Baratali Izmailov. <a href="https://github.com/checkstyle/checkstyle/issues/371">#371</a>
+        </li>
+        <li>
+          Indentation check fails for switch statements. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/341">#341</a>
+        </li>
+        <li>
+          -v CLI flag for querying the installed Checkstyle version. Author: ychulovskyy. <a href="https://github.com/checkstyle/checkstyle/issues/9">#9</a>
+        </li>
+      </ul>
+      <p>Notes:</p>
+      <ul>
+        <li>
+          Checkstyle logo was changed. Author: Alexandra Ulanovskaya and Daniil Yaroslavtsev.
+        </li>
+      </ul>
+    </section>
+
     <section name="Release 6.1">
       <p>Bug fixes:</p>
       <ul>
