@@ -25,6 +25,10 @@
           img="images/twitter_button.png"
           href="https://twitter.com/checkstyle_java"
           />
+    <logo name="Stackoverflow"
+          img="images/stackoverflow.jpeg"
+          href="http://stackoverflow.com/questions/tagged/checkstyle"
+          />
   </poweredBy>
   
   <body>
