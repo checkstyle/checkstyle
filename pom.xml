@@ -497,6 +497,7 @@
 	    <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
 	    <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
 	    <excludedLink>http://search.maven.org/*</excludedLink>
+      <excludedLink>hhttp://junit.org</excludedLink>
 	  </excludedLinks>
           <excludedHttpStatusErrors>
 	    <excludedHttpStatusError>401</excludedHttpStatusError>
@@ -560,6 +561,7 @@
 	    <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
 	    <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
 	    <excludedLink>http://search.maven.org/*</excludedLink>
+      <excludedLink>hhttp://junit.org</excludedLink>
 	  </excludedLinks>
           <excludedHttpStatusErrors>
 	    <excludedHttpStatusError>401</excludedHttpStatusError>
