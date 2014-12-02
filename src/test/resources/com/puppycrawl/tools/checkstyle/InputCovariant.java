@@ -109,7 +109,7 @@ class InputGenericCovariant7
         return true;
     }
 
-    public <A> boolean equals(Object aObject)
+    public boolean equals(Object aObject)
     {
         return false;
     }
