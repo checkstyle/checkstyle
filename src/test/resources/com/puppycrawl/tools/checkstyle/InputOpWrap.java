@@ -55,3 +55,7 @@ class badCase<T extends Foo &
 
 class goodCase<T extends Foo & Bar> {
 }
+
+interface Bar {
+	
+}
