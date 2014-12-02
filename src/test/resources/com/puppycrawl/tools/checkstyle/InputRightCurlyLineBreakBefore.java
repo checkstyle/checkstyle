@@ -5,7 +5,7 @@ import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 
-class InputLeftCurlyOther
+class InputRightCurlyLineBreakBefore
 {
     /** @see test method **/
     int foo() throws InterruptedException
@@ -41,13 +41,15 @@ class InputLeftCurlyOther
         for (int k = 0; k < 1; k++) { String innerBlockVariable = ""; }
 
         for (int k = 0; k < 1; k++) {}
+		return a;
     }
 
     static { int x = 1; }
 
     void method2()
     {
-        if (flag) { System.err.println("foo"); }
+        boolean flag = false;
+		if (flag) { System.err.println("foo"); }
     }
 }
 
@@ -56,9 +58,9 @@ class Absent_CustomFieldSerializer {
     public static void serialize() {} 
 }
 
-class Absent_CustomFieldSerializer
+class Absent_CustomFieldSerializer10
 {
-    public Absent_CustomFieldSerializer() {}
+    public Absent_CustomFieldSerializer10() {}
 }
 
 class EmptyClass {}
