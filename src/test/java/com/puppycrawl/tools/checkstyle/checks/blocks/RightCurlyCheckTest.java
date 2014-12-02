@@ -121,7 +121,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
         final String[] expected = {
             "35:43: '}' should be alone on a line.",
             "41:71: '}' should be alone on a line.",
-            "46:25: '}' should be alone on a line.",
+            "47:25: '}' should be alone on a line.",
         };
         verify(mCheckConfig, getPath("InputRightCurlyLineBreakBefore.java"), expected);
     }
@@ -133,7 +133,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
             "24:33: '}' should have line break before.",
             "32:44: '}' should have line break before.",
             "32:63: '}' should have line break before.",
-            "50:48: '}' should have line break before.",
+            "52:56: '}' should have line break before.",
         };
         verify(mCheckConfig, getPath("InputRightCurlyLineBreakBefore.java"), expected);
     }
