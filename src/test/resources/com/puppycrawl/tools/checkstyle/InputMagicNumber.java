@@ -8,12 +8,12 @@ package com.puppycrawl.tools.checkstyle;
 public class InputMagicNumber {
     public void magicMethod() {
         //constants, ignore
-        final int INT_CONST = 101_000;
-        final long LONG_CONST1 = 100_000L;
+        final int INT_CONST = 101000;
+        final long LONG_CONST1 = 100000L;
         final long LONG_CONST2 = 100l;
-        final float FLOAT_CONST1 = 1.500_0F;
+        final float FLOAT_CONST1 = 1.5000F;
         final float FLOAT_CONST2 = 1.5f;
-        final double DOUBLE_CONST1 = 1.500_0D;
+        final double DOUBLE_CONST1 = 1.5000D;
         final double DOUBLE_CONST2 = 1.5d;
         final double DOUBLE_CONST3 = 1.5;
 
@@ -38,8 +38,8 @@ public class InputMagicNumber {
         if (1.0 < 2.0);
 
         //magic numbers
-        int int_magic1 = 3_000;
-        double double_magic1 = 1.5_0;
+        int int_magic1 = 3000;
+        double double_magic1 = 1.50;
         int int_magic2 = (3 + 4);
 
         int_array = new int[3];
@@ -60,7 +60,7 @@ public class InputMagicNumber {
         int octalVar8 = 010;
         int octalVar9 = 011;
 
-        long longOctalVar8 = 0_10L;
+        long longOctalVar8 = 010L;
         long longOctalVar9 = 011l;
 
         //hex
