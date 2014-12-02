@@ -242,7 +242,7 @@ class SpecialCasesInForLoop
         return null;
     }
 
-    public myMethod() {
+    public void myMethod() {
         new Thread() {
             public void run() {
             }
