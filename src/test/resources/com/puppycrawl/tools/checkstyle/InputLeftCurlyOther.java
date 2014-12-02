@@ -105,7 +105,7 @@ class InputLeftCurlyOther
 class FooCtor
 {
 	int i;
-	public Foo()
+	public FooCtor()
 	{
 		i = 1;
 	}}
@@ -139,16 +139,16 @@ class FooInner
  * False positive 
  *
  */
-class Absent_CustomFieldSerializer {
+class Absent_CustomFieldSerializer3 {
 
     public static void serialize() {} //false positive. Expected nothing but was "'}' should be alone on a line." 
 }
 
-class Absent_CustomFieldSerializer
+class Absent_CustomFieldSerializer4
 {
-    public Absent_CustomFieldSerializer() {}
+    public Absent_CustomFieldSerializer4() {}
 }
 
-class EmptyClass {}
+class EmptyClass2 {}
 
-interface EmptyInterface {}
+interface EmptyInterface3 {}
