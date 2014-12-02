@@ -1,109 +1,106 @@
 package com.puppycrawl.tools.checkstyle.annotation;
 
-import test.MyAnnotation1;
-import test.MyAnnotation2;
 
-@MyAnnotation2
-@MyAnnotation1
-class InputCorrectAnnotationIndentation
+
+
+@MyAnnotation6
+@MyAnnotation5
+class InputCorrectAnnotationLocation
 {
     
-    @MyAnnotation2
-    @MyAnnotation1
+    @MyAnnotation6
+    @MyAnnotation5
     public int a;
 
-    @MyAnnotation1
+    @MyAnnotation5
     public int b;
     
-    @MyAnnotation2("foo")
-    @MyAnnotation1
+    @MyAnnotation6
+    @MyAnnotation5
     public int c;
     
-    @MyAnnotation1
+    @MyAnnotation5
     public int d;
     
-    @MyAnnotation2
-    @MyAnnotation1
-    public InputCorrectAnnotationIndentation()
+    @MyAnnotation6
+    @MyAnnotation5
+    public InputCorrectAnnotationLocation()
     {
         // TODO Auto-generated constructor stub
     }
-    @MyAnnotation1
-    @MyAnnotation2
+    @MyAnnotation5
+    @MyAnnotation6
     void foo1() {}
     
-    @MyAnnotation1
-    @MyAnnotation2
+    @MyAnnotation5
+    @MyAnnotation6
     void foo2() {}
     
-    @MyAnnotation1
-    @MyAnnotation2
+    @MyAnnotation5
+    @MyAnnotation6
     @MyAnnotation3
     @MyAnnotation4
     class InnerClass
     {
-        @MyAnnotation2
-        @MyAnnotation1
+        @MyAnnotation6
+        @MyAnnotation5
         public int a;
 
-        @MyAnnotation1
+        @MyAnnotation5
         public int b;
         
-        @MyAnnotation2
-        @MyAnnotation1
+        @MyAnnotation6
+        @MyAnnotation5
         public int c;
         
-        @MyAnnotation1
+        @MyAnnotation5
         public int d;
         
-        @MyAnnotation2
+        @MyAnnotation6
         public InnerClass()
         {
             // TODO Auto-generated constructor stub
         }
-        @MyAnnotation1
-        @MyAnnotation2 void foo1(int a) {}
+        @MyAnnotation5
+        @MyAnnotation6 void foo1(int a) {}
         
-        @MyAnnotation1
-        @MyAnnotation2
+        @MyAnnotation5
+        @MyAnnotation6
         void foo2() {}
     }
 
-    @MyAnnotation1
-    @MyAnnotation2
+    @MyAnnotation5
+    @MyAnnotation6
     InnerClass anon = new InnerClass()
     {
-        @MyAnnotation2
-        @MyAnnotation1
+        @MyAnnotation6
+        @MyAnnotation5
         public int a;
 
-        @MyAnnotation1 public int b;
+        @MyAnnotation5 public int b;
         
-        @MyAnnotation2
-        @MyAnnotation1
+        @MyAnnotation6
+        @MyAnnotation5
         public int c;
         
-        @MyAnnotation1
+        @MyAnnotation5
         public int d;
         
-        @MyAnnotation1
-        @MyAnnotation2 void foo1() {}
+        @MyAnnotation5
+        @MyAnnotation6 void foo1() {}
         
-        @MyAnnotation1
-        @MyAnnotation2
+        @MyAnnotation5
+        @MyAnnotation6
         void foo2() {}
     };
     
 }
 
-@MyAnnotation1
-@MyAnnotation2
-class Foo {}
+@MyAnnotation5
+@MyAnnotation6
+class _Foo {}
 
-@interface MyAnnotation1 {}
+@interface MyAnnotation5 {}
 
-@interface MyAnnotation2 {}
+@interface MyAnnotation6 {}
 
-@interface MyAnnotation3 {}
-
-@interface MyAnnotation4 {}
