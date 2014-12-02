@@ -1,12 +1,14 @@
 package com.puppycrawl.tools.checkstyle;
 
-public class InputForbidEscapedUnicodeCharactersCheck {
+import java.util.concurrent.TimeUnit;
+
+public class InputAvoidEscapedUnicodeCharactersCheck {
 
 	private String unitAbbrev2 = "\u03bcs";
 
 	private String unitAbbrev3 = "\u03bcs"; // Greek letter mu
 
-	private String unitAbbrev3 = "\u03bcs"; // Greek letter mu
+	private String unitAbbrev4 = "\u03bcs"; // Greek letter mu
 
 	public Object fooString() {
 		String unitAbbrev = "Î¼s";
@@ -14,12 +16,14 @@ public class InputForbidEscapedUnicodeCharactersCheck {
 		String unitAbbrev3 = "\u03bcs"; // Greek letter mu, "s"
 		String fakeUnicode = "asd\tsasd";
 		String fakeUnicode2 = "\\u23\\u123i\\u";
+		String content = null;
 		return "\ufeff" + content; // byte order mark
 	}
 
 	public Object fooChar() {
 		char unitAbbrev2 = '\u03bc';
 		char unitAbbrev3 = '\u03bc'; // Greek letter mu, "s"
+		char content = 0;
 		return '\ufeff' + content; // byte order mark
 	}
 
@@ -49,13 +53,13 @@ public class InputForbidEscapedUnicodeCharactersCheck {
 		default:
 			throw new AssertionError();
 		}
-
+	}
+		
 		static final String WHITESPACE_TABLE = ""
 				+ "\u2002\u3000\r\u0085\u200A\u2005\u2000\u3000\\"
 				+ "\u2029\u000B\u3000\u2008\u2003\u205F\u3000\u1680"
 				+ "\u0009\u0020\u2006\u2001\u202F\u00A0\u000C\u2009"
 				+ "\u3000\u2004\u3000\u3000\u2028\n\u2007\u3000";
-	    }
 	
 	      public boolean matches(char c) {
 	        switch (c) {
