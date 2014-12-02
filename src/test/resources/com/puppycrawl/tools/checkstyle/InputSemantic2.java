@@ -17,7 +17,7 @@ class UpdateClass
 		char[] s = {'1', '2'};
 		int index = 2;
 		if (doSideEffect() == 1) {} //is not OK, 
-		while ((r = in.read()) != 0) {} // is OK 
+		while ((a = index - 1) != 0) {} // is OK 
 		for (; index < s.length && s[index] != 'x'; index++) {} // is OK
 		if (a == 1) {} else {System.out.println("a");} // is not OK
 		switch (a) {} //warn
