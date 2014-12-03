@@ -1,19 +1,19 @@
-package com.puppycrawl.tools.checkstyle.design;
-
+package com.puppycrawl.tools.checkstyle.coding;
+import java.util.*;
 public class InputVariableDeclarationUsageDistanceCheck {
 
-	private static final int test1;
+	private static int test1 = 0;
 
 	static {
-		int b;
-		int d;
+		int b = 0;
+		int d = 0;
 		{
 			d = ++b;
 		}
 	}
 
 	static {
-		int c;
+		int c = 0;
 		int a = 3;
 		int b = 2;
 		{
@@ -43,7 +43,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
 	public boolean testMethod() {
 		int temp = 7;
 		new InputVariableDeclarationUsageDistanceCheck(2);
-		InputVariableDeclarationUsageDistanceCheck(temp); // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
+		String.valueOf(temp); // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
 		boolean result = false;
 		String str = "";
 		if (test1 > 1) {
@@ -78,7 +78,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
 	}
 
 	public void testMethod4(int arg) {
-		int d;
+		int d = 0;
 		for (int i = 0; i < 10; i++) {
 			d++;
 			if (i > 5) {
@@ -139,10 +139,10 @@ public class InputVariableDeclarationUsageDistanceCheck {
 	}
 
 	public void testMethod8() {
-		int b;
-		int c;
-		int m;
-		int n;
+		int b = 0;
+		int c = 0;
+		int m = 0;
+		int n = 0;
 		{
 			c++;
 			b++;
@@ -170,7 +170,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
 		boolean result;
 		try {
 			result = true;
-		} catch (IOException e) {
+		} catch (Exception e) {
 			result = false;
 		} finally {
 			result = false;
@@ -184,7 +184,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
 		boolean result;
 		try {
 			b--;
-		} catch (IOException e) {
+		} catch (Exception e) {
 			b++;
 			result = false; // DECLARATION OF VARIABLE 'result' SHOULD BE HERE (distance = 2)
 		} finally {
@@ -232,48 +232,48 @@ public class InputVariableDeclarationUsageDistanceCheck {
 		s.close();
 	}
 
-	public boolean isCheckBoxEnabled(TreePath path) {
-		DataLabelModel model = (DataLabelModel) getModel();
-		if (recursiveState) {
-			for (int index = 0; index < path.getPathCount(); ++index) {
-				int nodeIndex = model.getNodeIndex(path.getPathComponent(index));
-				if (disabled.contains(nodeIndex)) {
+	public boolean isCheckBoxEnabled(int path) {
+		String model = "";
+		if (true) {
+			for (int index = 0; index < path; ++index) {
+				int nodeIndex = model.codePointAt(path);
+				if (model.contains("")) {
 					return false;
 				}
 			}
 		} else {
-			int nodeIndex = model.getNodeIndex(path.getLastPathComponent());
-			if (disabled.contains(nodeIndex)) {
+			int nodeIndex = model.codePointAt(path);
+			if (model.contains("")) {
 				return false;
 			}
 		}
 		return true;
 	}
 
-	public Object readObject(IObjectInputStream in) throws IOException {
-		SimpleDay startDay = new SimpleDay(in.readInt());
-		SimpleDay endDay = new SimpleDay(in.readInt());
-		return new SimplePeriod(startDay, endDay);
+	public Object readObject(String in) throws Exception {
+		String startDay = new String("");
+		String endDay = new String("");
+		return new String(startDay + endDay);
 	}
 
 	public int[] getSelectedIndices() {
-		int[] selected = new int[paths.length];
-		DataLabelModel model = (DataLabelModel) getModel();
+		int[] selected = new int[5];
+		String model = "";
 		int a = 0;
 		a++;
-		for (int index = 0; index < paths.length; ++index) {
-			selected[index] = model.getNodeIndex(paths[index].getLastPathComponent()); // DECLARATION OF VARIABLE 'selected' SHOULD BE HERE (distance = 2)
+		for (int index = 0; index < 5; ++index) {
+			selected[index] = Integer.parseInt(model.valueOf(a)); // DECLARATION OF VARIABLE 'selected' SHOULD BE HERE (distance = 2)
 																						// DECLARATION OF VARIABLE 'model' SHOULD BE HERE (distance = 2)
 		}
 		return selected;
 	}
 
 	public void testMethod15() {
-		String confDebug = subst(element.getAttribute(CONFIG_DEBUG_ATTR));
+		String confDebug = "";
 		if (!confDebug.equals("") && !confDebug.equals("null")) {
-			LogLog.warn("The \"" + CONFIG_DEBUG_ATTR + "\" attribute is deprecated.");
-			LogLog.warn("Use the \"" + INTERNAL_DEBUG_ATTR + "\" attribute instead.");
-			LogLog.setInternalDebugging(OptionConverter.toBoolean(confDebug, true));
+			LogLog.warn("The \"" + "\" attribute is deprecated.");
+			LogLog.warn("Use the \"" + "\" attribute instead.");
+			LogLog.setInternalDebugging(confDebug, true);
 		}
 
 		int i = 0;
@@ -297,7 +297,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
 			b = true;
 		}
 
-		int wh;
+		int wh = 0;
 		b = true;
 		do {
 			k--;
@@ -314,7 +314,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
 	}
 
 	public void testMethod16() {
-		int wh = 1;
+		int wh = 1, i = 4, k = 0;
 		if (i > 0) {
 			k++;
 		} else if (wh > 0) {
@@ -365,7 +365,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
 	public void testFinal() {
 		AuthUpdateTask authUpdateTask = null;
 		final long intervalMs = 30 * 60000L; // 30 min
-
+		Object authCheckUrl = null, authInfo = null;
         authUpdateTask = new AuthUpdateTask(authCheckUrl, authInfo, new IAuthListener() {
             @Override
             public void authTokenChanged(String cookie, String token) {
@@ -406,13 +406,13 @@ public class InputVariableDeclarationUsageDistanceCheck {
 
     public void testIssue32_2()
     {
-        int mm = Integer.parseInt(time.substring(div + 1).trim());
-
+        int mm = Integer.parseInt("2");
+        long timeNow = 0;
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(timeNow);
         cal.set(Calendar.SECOND, 0);
         cal.set(Calendar.MILLISECOND, 0);
-        cal.set(Calendar.HOUR_OF_DAY, hh);
+        cal.set(Calendar.HOUR_OF_DAY, mm);
         cal.set(Calendar.MINUTE, mm); // distance=1
     }
     
@@ -427,11 +427,11 @@ public class InputVariableDeclarationUsageDistanceCheck {
         }
     }
     
-    public void testIssue32_4(boolean flag) {
+    public String testIssue32_4(boolean flag) {
         StringBuilder builder = new StringBuilder();
         builder.append("flag is ");
         builder.append(flag);
-        final String line = ast.getLineNo();
+        final String line = "";
         if(flag) {
             builder.append("line of AST is:");
             builder.append("\n");
@@ -442,18 +442,18 @@ public class InputVariableDeclarationUsageDistanceCheck {
     }
     
     public void testIssue32_5() {
-        Option a;
-        Option b;
-        Option c;
+        Option a = null;
+        Option b = null;
+        Option c = null;
         boolean isCNull = isNull(c); // distance=1
         boolean isBNull = isNull(b); // distance=1
         boolean isANull = isNull(a); // distance=1
     }
-    
+  
     public void testIssue32_6() {
-        Option aOpt;
-        Option bOpt;
-        Option cOpt;
+        Option aOpt = null;
+        Option bOpt = null;
+        Option cOpt = null;
         isNull(cOpt); // distance = 1
         isNull(bOpt); // distance = 2
         isNull(aOpt); // distance = 3
@@ -497,33 +497,33 @@ public class InputVariableDeclarationUsageDistanceCheck {
         myOption.setArgName("q"); // distance=6
     }
     
-    public int testIssue32_11(File toDir)
-            throws IOException, FTPException,
-            ParseException, InterruptedException
+    
+    public int testIssue32_11(String toDir)
+            throws Exception
     {
         int count = 0;
-        FTPFile[] files = client.dirDetails(".");
+        String[] files = {};
 
-        log.info("Data archivation started");
-        archiveOldData(archDir, files);
-        log.info("Data archivation finished");
+        System.out.println("Data archivation started");
+        files.notify();
+        System.out.println("sss");
 
         if (files == null || files.length == 0) {
-            warn("No files on a remote site");
+            System.out.println("No files on a remote site");
         }
         else {
-            log.debug("Files on remote site: " + files.length);
+            System.out.println("Files on remote site: " + files.length);
 
-            for (FTPFile ftpFile : files) {
-                if (!file.exists()) {
-                    getFile(client, ftpFile, file);
-                    file.setLastModified(ftpFile.lastModified().getTime());
+            for (String ftpFile : files) {
+                if (files.length == 0) {
+                    "".concat("");
+                    ftpFile.concat(files[2]);
                     count++;
                 }
             }
         }
 
-        client.quit();
+        System.out.println();
 
         return count;
     }
@@ -531,10 +531,10 @@ public class InputVariableDeclarationUsageDistanceCheck {
     //////////////////////////////////////////////////
     // False positive. Will be fixed in future.
     //////////////////////////////////////////////////
-    private TreeMapNode buildTree(List<Object[]> tree)
-    {
-        state.clear();
-        revState.clear();
+    private TreeMapNode buildTree(Object[][] tree)
+    {   
+        int k = 0;
+        tree.notify();
         TreeMapNode root = null;
         for (Object[] s : tree) {
             Integer id = (Integer) s[0];
@@ -553,15 +553,287 @@ public class InputVariableDeclarationUsageDistanceCheck {
             else {
                 node = new TreeMapNode(label);
             }
-            state.put(id, node);
-            revState.put(node, id);
+            System.out.println(id.toString() + node);
+            System.out.println(node.toString() + id);
             if (parentId == null || parentId == -1) { ///!!!!!!!
                 root = node;
             }
             else {
-                state.get(parentId).add(node);
+                System.out.println(parentId.toString() +node);
             }
         }
         return root;
     }
+    
+    private Session openSession() {
+        return null;
+        
+    }
+    
+    class Session {
+
+        public Transaction beginTransaction() {
+            return null;
+        }
+
+        public void close() {
+        }
+
+        public Serializable save(E d2) {
+            return null;
+        }
+
+        public Serializable save(A a) {
+            return null;
+        }
+        
+    }
+    
+    class Transaction {
+
+        public void commit() {
+            
+        }
+        
+    }
+    
+    class A {
+
+        public void setForward(E d1) {
+            
+        }
+        
+    }
+    
+    class E {
+
+        public void setReverse(C1 c) {
+            
+        }
+
+        public void setReverse(A a) {
+            
+        }
+        
+    }
+    
+    class C1 {
+
+        public void setForward(E d2) {
+            
+        }
+        
+    }
+    
+    class Serializable {
+        
+    }
+    
+    class JMenuItem {
+
+        public JMenuItem(String string) {
+        }
+
+        public void addActionListener(ActionListener actionListener) {
+            
+        }
+
+        public void setMnemonic(char charAt) {
+            
+        }
+        
+    }
+    
+    class LogLevel {
+        
+    }
+    
+    class ActionListener {
+        
+    }
+    
+    class ActionEvent {
+        
+    }
+    
+    private void showLogLevelColorChangeDialog(JMenuItem j, LogLevel l) {   }
+    
+    static class Color {
+
+        public Color(int red, int green, int blue, int alpha) {
+        }
+
+        public double getRed() {
+            return 0;
+        }
+
+        public int getAlpha() {
+            return 0;
+        }
+
+        public double getBlue() {
+            return 0;
+        }
+
+        public double getGreen() {
+            return 0;
+        }
+        
+    }
+    
+    class AuthUpdateTask {
+
+        public AuthUpdateTask(Object authCheckUrl, Object authInfo,
+                IAuthListener iAuthListener) {
+        }
+        
+    }
+    
+    interface IAuthListener {
+
+        void authTokenChanged(String cookie, String token);
+        
+    }
+    
+    void fireAuthTokenChanged(String s, String s1) {}
+    
+    class Timer {
+
+        public Timer(String string, boolean b) {
+        }
+
+        public void schedule(AuthUpdateTask authUpdateTask, long l,
+                long intervalMs) {
+        }
+        
+    }
+    
+    class Option {
+
+        public void setArgName(String string) {
+        }
+        
+    }
+    
+    boolean isNull(Option o) {
+		return false;}
+    
+    class Writer {
+
+        public void write(String l3) {
+            
+        }
+        
+    }
+    
+    class Options {
+
+        public void addBindFile(Object object) {
+            
+        }
+
+		public void
+				addOption(Option srcDdlFile, Option logDdlFile, Option help)
+		{
+			
+		}
+
+		public void something()
+		{
+			
+		}
+        
+    }
+    
+    class TreeMapNode {
+
+        public TreeMapNode(String label, double d, DefaultValue defaultValue) {
+        }
+
+        public TreeMapNode(String label) {
+        }
+        
+    }
+
+    class DefaultValue {
+
+        public DefaultValue(double d) {
+        }
+        
+    }
+    
+    static class LogLog {
+
+		public static void warn(String string)
+		{
+			
+		}
+
+		public static void setInternalDebugging(String confDebug, boolean b)
+		{
+			
+		}
+    	
+    }
+    
+    static class OptionBuilder {
+
+		public static Option create(String string)
+		{
+			return null;
+		}
+    	
+    }
+    
+    class MyObject {
+
+		public void setEnabled(boolean b)
+		{
+			
+		}
+
+		public void setCalendar(Calendar cal)
+		{
+			
+		}
+
+		public void setSize(int i)
+		{
+			
+		}
+
+		public void setUrl(String string)
+		{
+			
+		}
+
+		public void setColor(int i)
+		{
+			
+		}
+    	
+    }
+    
+    static class writer {
+
+		public static void write(String line)
+		{
+			
+		}
+    	
+    }
+    
+    void test(String s, String s1, String s2) {
+    	
+    }
+    
+    static class builder {
+
+		public static void append(String line)
+		{
+			
+		}
+    	
+    }
+    
 }
