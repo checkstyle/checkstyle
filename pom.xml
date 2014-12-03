@@ -514,6 +514,16 @@
           <downloadJavadocs>true</downloadJavadocs>
         </configuration>
       </plugin>
+      <plugin>
+	    <groupId>org.apache.maven.plugins</groupId>
+	    <artifactId>maven-surefire-plugin</artifactId>
+	    <version>2.17</version>
+	    <configuration>
+	      <additionalClasspathElements>
+            <additionalClasspathElement>src/test/resources-noncompilable</additionalClasspathElement>
+	      </additionalClasspathElements>
+	    </configuration>
+      </plugin>
     </plugins>
   </build>
 

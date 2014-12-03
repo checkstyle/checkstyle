@@ -1,5 +1,5 @@
-import java.util.function.Function;
-import java.util.function.Supplier;
+package com.puppycrawl.tools.checkstyle.coding;
+
 
 import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 
