@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.coding;
 
-import test.OverloadInput;
+
 
 class OverloadInput
 {
