@@ -1,5 +1,6 @@
+package com.puppycrawl.tools.checkstyle.comments;
 // my class
-class A
+class InputCommentsTest_2
 {
     /**
      * Lines <b>method</b>.
@@ -8,5 +9,6 @@ class A
      */
     protected String line()
     {
+		return null;
     }
 }
