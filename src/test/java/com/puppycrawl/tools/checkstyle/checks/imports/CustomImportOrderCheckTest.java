@@ -234,4 +234,37 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
         verify(checkConfig, getPath("imports" + File.separator
                 + "DOMSource.java"), expected);
     }
+
+    /**
+     * @throws Exception
+     */
+    @Test
+    public void testDefaultPackage2() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("standardPackageRegExp", "java|javax");
+        checkConfig.addAttribute("thirdPartyPackageRegExp", "com|org");
+        checkConfig.addAttribute("customImportOrderRules",
+            "STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE");
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
+
+        final String[] expected = {
+            "5: Wrong lexicographical order for 'java.awt.Button.ABORT' import.",
+            "8: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "9: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "10: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "11: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "12: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "13: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "14: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "15: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "16: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "17: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "21: Wrong lexicographical order for 'com.google.common.*' import.",
+        };
+
+        verify(checkConfig, getPath("imports" + File.separator
+                + "InputDefaultPackage.java"), expected);
+    }
 }
