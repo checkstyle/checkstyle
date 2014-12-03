@@ -1,3 +1,4 @@
+package com.puppycrawl.tools.checkstyle.coding;
 public class InputUnnecessaryParentheses {
     int f1() {
         int x = 0;
