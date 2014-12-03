@@ -59,8 +59,8 @@ public class IllegalInstantiationCheckTest
                 createCheckConfig(IllegalInstantiationCheck.class);
         final String[] expected = {};
         verify(checkConfig,
-                getPath("coding" + File.separator
-                        + "InputIllegalInstantiationCheckTest2.java"),
+                new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
+                          + "coding/InputIllegalInstantiationCheckTest2.java").getCanonicalPath(),
                 expected);
     }
 }
