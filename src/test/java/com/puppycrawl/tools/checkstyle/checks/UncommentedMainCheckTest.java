@@ -45,7 +45,7 @@ public class UncommentedMainCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(UncommentedMainCheck.class);
-        checkConfig.addAttribute("excludedClasses", "\\.Main$");
+        checkConfig.addAttribute("excludedClasses", "\\.Main.*$");
         final String[] expected = {
             "14: Uncommented main method found.",
             "32: Uncommented main method found.",

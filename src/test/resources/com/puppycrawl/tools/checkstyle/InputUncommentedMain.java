@@ -17,7 +17,7 @@ public class InputUncommentedMain
     }
 }
 
-class Main
+class Main1
 {
     // uncommented main in class Main
     public static void main(String[] args)
