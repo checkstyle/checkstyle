@@ -38,7 +38,7 @@ public class MissingSwitchDefaultCheckTest
     public void testMissingSwitchDefault() throws Exception
     {
         final String[] expected = {
-            "15:9: switch without \"default\" clause.",
+            "17:9: switch without \"default\" clause.",
         };
         verify(
             mCheckConfig,

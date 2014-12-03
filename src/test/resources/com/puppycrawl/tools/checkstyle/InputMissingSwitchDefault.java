@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle;
+
 public class InputMissingSwitchDefault {
     public void foo() {
         int i = 1;
