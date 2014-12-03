@@ -8,9 +8,8 @@ tools//6
 .//7
 checkstyle//8
 .//9
-checks//10
-.//11
-javadoc//12
+comments//10
+//12
 ;//13
 //14
 public//15
