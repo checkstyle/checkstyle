@@ -155,7 +155,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("minimumMessage", "switch without \"default\" clause.");
 
         final String[] expected = {
-            "15:9: switch without \"default\" clause.",
+            "17:9: switch without \"default\" clause.",
         };
 
         verify(checkConfig, getPath("InputMissingSwitchDefault.java"), expected);
