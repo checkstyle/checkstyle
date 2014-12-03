@@ -31,8 +31,8 @@ public class NestedIfDepthCheckTest extends BaseCheckTestSupport
             createCheckConfig(NestedIfDepthCheck.class);
 
         final String[] expected = {
-            "17:17: Nested if-else depth is 2 (max allowed is 1).",
-            "43:17: Nested if-else depth is 2 (max allowed is 1).",
+            "18:17: Nested if-else depth is 2 (max allowed is 1).",
+            "44:17: Nested if-else depth is 2 (max allowed is 1).",
         };
 
         verify(checkConfig, getPath("coding/InputNestedIfDepth.java"), expected);
