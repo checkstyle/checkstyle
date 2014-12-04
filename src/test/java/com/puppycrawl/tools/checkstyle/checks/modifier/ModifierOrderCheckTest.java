@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
+import java.io.File;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -50,7 +52,8 @@ public class ModifierOrderCheckTest
                 createCheckConfig(ModifierOrderCheck.class);
         final String[] expected = {
         };
-        verify(checkConfig, getPath("InputModifier2.java"), expected);
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools"
+                  + "/checkstyle/InputModifier2.java").getCanonicalPath(), expected);
     }
 
 }
