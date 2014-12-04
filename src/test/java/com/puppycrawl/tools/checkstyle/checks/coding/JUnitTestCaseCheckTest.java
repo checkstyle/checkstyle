@@ -31,15 +31,12 @@ public class JUnitTestCaseCheckTest extends BaseCheckTestSupport
         DefaultConfiguration checkConfig = createCheckConfig(JUnitTestCaseCheck.class);
 
         String[] expected = {
-            "14:5: The method 'setUp' must be public or protected.",
-            "15:5: The method 'tearDown' shouldn't be static.",
             "16:5: The method 'suite' must be declared static.",
             "21:5: The method 'SetUp' should be named 'setUp'.",
-            "22:5: The method 'tearDown' must be declared with a void return type.",
             "23:5: The method 'suite' must be declared with a junit.framework.Test return type.",
-            "28:5: The method 'setUp' must be declared with no parameters.",
-            "30:5: The method 'suite' must be declared static.",
-            "31:5: The method 'tearDown' must be declared with no parameters.",
+            "29:5: The method 'setUp' must be declared with no parameters.",
+            "31:5: The method 'suite' must be declared static.",
+            "32:5: The method 'tearDown' must be declared with no parameters.",
         };
 
         verify(checkConfig, getPath("coding" + File.separator + "InputJUnitTest.java"), expected);
