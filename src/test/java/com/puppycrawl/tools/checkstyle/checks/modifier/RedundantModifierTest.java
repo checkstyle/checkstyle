@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
+import java.io.File;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -59,7 +61,8 @@ public class RedundantModifierTest
         final String[] expected = {
         };
         verify(checkConfig,
-                getPath("InputStaticModifierInInterface.java"),
+                new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                        + "checkstyle/InputStaticModifierInInterface.java").getCanonicalPath(),
                 expected);
     }
 }
