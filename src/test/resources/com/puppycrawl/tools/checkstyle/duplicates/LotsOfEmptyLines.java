@@ -1,3 +1,4 @@
+package com.puppycrawl.tools.checkstyle.duplicates;
 // A class that contains lots of empty lines
 // such files frequently occur in the JDK source code, most notably the machine generated nio Buffer variants
 
