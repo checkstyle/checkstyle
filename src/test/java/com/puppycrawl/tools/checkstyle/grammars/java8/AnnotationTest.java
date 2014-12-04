@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.grammars.java8;
 
+import java.io.File;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -47,7 +49,9 @@ public class AnnotationTest extends BaseCheckTestSupport
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};
         verify(checkConfig,
-                getPath("grammars/java8/InputAnnotationsTest2.java"), expected);
+                new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                        + "checkstyle/grammars/java8/"
+                        + "InputAnnotationsTest2.java").getCanonicalPath(), expected);
 
     }
 
@@ -59,7 +63,9 @@ public class AnnotationTest extends BaseCheckTestSupport
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};
         verify(checkConfig,
-                getPath("grammars/java8/InputAnnotationsTest3.java"), expected);
+                  new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                        + "checkstyle/grammars/java8/"
+                        + "InputAnnotationsTest3.java").getCanonicalPath(), expected);
 
     }
 
@@ -71,7 +77,9 @@ public class AnnotationTest extends BaseCheckTestSupport
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};
         verify(checkConfig,
-                getPath("grammars/java8/InputAnnotationsTest4.java"), expected);
+                  new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                        + "checkstyle/grammars/java8/"
+                        + "InputAnnotationsTest4.java").getCanonicalPath(), expected);
 
     }
 
@@ -83,7 +91,9 @@ public class AnnotationTest extends BaseCheckTestSupport
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};
         verify(checkConfig,
-                getPath("grammars/java8/InputAnnotationsTest5.java"), expected);
+                  new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                        + "checkstyle/grammars/java8/"
+                        + "InputAnnotationsTest5.java").getCanonicalPath(), expected);
 
     }
 
@@ -95,7 +105,9 @@ public class AnnotationTest extends BaseCheckTestSupport
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};
         verify(checkConfig,
-                getPath("grammars/java8/InputAnnotationsTest6.java"), expected);
+                  new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                        + "checkstyle/grammars/java8/"
+                        + "InputAnnotationsTest6.java").getCanonicalPath(), expected);
 
     }
 
@@ -107,7 +119,9 @@ public class AnnotationTest extends BaseCheckTestSupport
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};
         verify(checkConfig,
-                getPath("grammars/java8/InputAnnotationsTest7.java"), expected);
+                  new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                        + "checkstyle/grammars/java8/"
+                        + "InputAnnotationsTest7.java").getCanonicalPath(), expected);
 
     }
 
@@ -119,7 +133,9 @@ public class AnnotationTest extends BaseCheckTestSupport
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};
         verify(checkConfig,
-                getPath("grammars/java8/InputAnnotationsTest8.java"), expected);
+                  new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                        + "checkstyle/grammars/java8/"
+                        + "InputAnnotationsTest8.java").getCanonicalPath(), expected);
 
     }
 
@@ -131,7 +147,9 @@ public class AnnotationTest extends BaseCheckTestSupport
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};
         verify(checkConfig,
-                getPath("grammars/java8/InputAnnotationsTest9.java"), expected);
+                  new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                        + "checkstyle/grammars/java8/"
+                        + "InputAnnotationsTest9.java").getCanonicalPath(), expected);
 
     }
 
@@ -143,7 +161,9 @@ public class AnnotationTest extends BaseCheckTestSupport
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};
         verify(checkConfig,
-                getPath("grammars/java8/InputAnnotationsTest10.java"), expected);
+                  new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                        + "checkstyle/grammars/java8/"
+                        + "InputAnnotationsTest10.java").getCanonicalPath(), expected);
 
     }
 
