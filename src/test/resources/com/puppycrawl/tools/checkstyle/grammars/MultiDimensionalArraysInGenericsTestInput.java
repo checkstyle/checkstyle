@@ -1,3 +1,4 @@
+package com.puppycrawl.tools.checkstyle.grammars;
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.GenericDeclaration;
 import java.lang.reflect.ParameterizedType;
