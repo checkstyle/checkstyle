@@ -43,7 +43,7 @@ public class StrictDuplicateCodeCheckTest extends BaseCheckTestSupport
         final Configuration checkConfig = createCheckConfig(StrictDuplicateCodeCheck.class);
         final String innerDupPath = getPath("duplicates/InnerDup.java");
         final String[] expected = {
-            "6: Found duplicate of 13 lines in " + innerDupPath + ", starting from line 22",
+            "7: Found duplicate of 13 lines in " + innerDupPath + ", starting from line 23",
         };
         final File[] checkedFiles = new File[] {
             new File(innerDupPath),

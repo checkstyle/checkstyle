@@ -1,3 +1,4 @@
+package com.puppycrawl.tools.checkstyle.duplicates;
 public class InnerDup
 {
     int x = 0;

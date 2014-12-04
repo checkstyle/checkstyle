@@ -1,5 +1,5 @@
+package com.puppycrawl.tools.checkstyle.duplicates;
 // A class that has overlapping areas of duplication (min=3)
-
 public class Overlapping {
 
     public void m1() {

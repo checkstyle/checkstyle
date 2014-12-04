@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle.duplicates;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.LinkedList;
