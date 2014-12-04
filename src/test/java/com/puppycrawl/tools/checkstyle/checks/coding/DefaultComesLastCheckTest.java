@@ -49,8 +49,9 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport
         final String[] expected = {
         };
         verify(checkConfig,
-                getPath("coding" + File.separator
-                        + "InputDefaultComesLast2.java"),
-                expected);
+                  new File(
+                        "src/test/resources-noncompilable/com/puppycrawl/tools/"
+                        + "checkstyle/coding/InputDefaultComesLast2.java").getCanonicalPath(),
+                  expected);
     }
 }
