@@ -12,5 +12,5 @@ import static java.io.File.createTempFile;
 import com.*;
 import org.apache.*;
 
-public class InputImportOrder {
+public class InputCustomImportOrderSamePackage {
 }

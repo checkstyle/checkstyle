@@ -16,5 +16,5 @@ import com.*;
 import com.google.common.*;
 import org.apache.*;
 
-public class InputImportOrder {
+public class InputCustomImportOrder3 {
 }

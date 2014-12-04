@@ -151,8 +151,9 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
             "11: Import statement is in the wrong order. Should be in the 'STATIC' group.",
         };
 
-        verify(checkConfig, getPath("imports" + File.separator
-                + "InputCustomImportOrderSamePackage.java"), expected);
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/"
+                + "InputCustomImportOrderSamePackage.java").getCanonicalPath(), expected);
     }
 
     @Test
@@ -170,8 +171,9 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
             "9: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
         };
 
-        verify(checkConfig, getPath("imports" + File.separator
-                + "InputCustomImportOrderSamePackage2.java"), expected);
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/"
+                + "InputCustomImportOrderSamePackage2.java").getCanonicalPath(), expected);
     }
 
     @Test
@@ -194,8 +196,9 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
             "11: Import statement is in the wrong order. Should be in the 'STATIC' group.",
         };
 
-        verify(checkConfig, getPath("imports" + File.separator
-                + "InputCustomImportOrderSamePackage.java"), expected);
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/"
+                + "InputCustomImportOrderSamePackage.java").getCanonicalPath(), expected);
     }
 
     @Test

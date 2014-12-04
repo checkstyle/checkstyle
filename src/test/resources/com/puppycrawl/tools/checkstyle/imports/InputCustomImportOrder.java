@@ -20,5 +20,5 @@ import com.puppycrawl.tools.*;
 import com.google.common.*;
 import org.apache.*;
 
-public class InputImportOrder {
+public class InputCustomImportOrder {
 }

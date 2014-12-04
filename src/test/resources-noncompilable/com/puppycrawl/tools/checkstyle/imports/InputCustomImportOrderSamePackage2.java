@@ -8,5 +8,5 @@ import java.util.*;
 import java.util.concurrent.AbstractExecutorService;
 import java.util.concurrent.*;
 
-public class InputImportOrder {
+public class InputCustomImportOrderSamePackage2 {
 }
