@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import java.io.File;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -35,8 +37,8 @@ public class NewHandlerTest extends BaseCheckTestSupport
         final String[] expected = {
 
         };
-        verify(checkConfig, getPath("indentation/NewHandlerTestInput.java"),
-                expected);
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/indentation/NewHandlerTestInput.java").getCanonicalPath(), expected);
     }
 
 }
