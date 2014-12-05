@@ -34,6 +34,7 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport
             "4: Missing package declaration.",
         };
 
-        verify(checkConfig, getPath("coding" + File.separator + "InputNoPackage.java"), expected);
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/coding/InputNoPackage.java").getCanonicalPath(), expected);
     }
 }
