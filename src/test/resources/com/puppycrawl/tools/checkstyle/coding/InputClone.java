@@ -47,17 +47,17 @@ class InnerClone
 
 // This could not pass as valid semantically but tests that
 // type arguments are ignored when checking super calls
-class CloneWithTypeArguments
+class CloneWithTypeArguments<T>
 {
-    public <T> Object clone()
+    public CloneWithTypeArguments<T> clone() throws CloneNotSupportedException
     {
-        return super.<T>clone();
+        return (CloneWithTypeArguments<T>) super.<T>clone();
     }
 }
 
-class CloneWithTypeArgumentsAndNoSuper
+class CloneWithTypeArgumentsAndNoSuper<T>
 {
-    public <T> Object clone()
+    public CloneWithTypeArgumentsAndNoSuper<T> clone()
     {
         return null;
     }
