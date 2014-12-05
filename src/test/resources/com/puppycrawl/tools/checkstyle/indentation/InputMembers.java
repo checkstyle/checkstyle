@@ -1,6 +1,6 @@
+package com.puppycrawl.tools.checkstyle.indentation;
 import java.util.HashMap;
-
-
+import java.util.Map;
 /**
  * Some Javadoc.
  */
@@ -74,7 +74,6 @@ abstract class WithAnnotations { // indent:0 ; exp:0; ok
        + "Charset") // indent:6 ; exp:6; ok
   public static final int FOO_CONSTANT = 111; // indent:2 ; exp:2; ok
   
-  @Override
   private void foo34() {}
   final Map<String, String> // indent:2 ; exp:2; ok
       comeMapWithLongName = new HashMap // indent:6 ; exp:6; ok
@@ -85,7 +84,7 @@ abstract class WithAnnotations { // indent:0 ; exp:0; ok
     return new byte[] {};
   }
   
-  @MyAnnotation public abstract ImmutableMap<R, Map<C, V>> rowMap();
+  @MyAnnotation public abstract <K, V> Map<K, V> rowMap();
 } // indent:0 ; exp:0; ok
 
 @interface GwtIncompatible { // indent:0 ; exp:0; ok
