@@ -1,6 +1,6 @@
-import java.util.Iterator;  // indent:0 ; exp:0; ok
+package com.puppycrawl.tools.checkstyle.indentation;
 
-import IndentationCorrectClassInput.InnerClass;
+import java.util.Iterator;  // indent:0 ; exp:0; ok
 
 class IndentationCorrectClassInput  // indent:0 ; exp:0; ok
     implements Runnable, Cloneable {  // indent:4 ; exp:4; ok
@@ -25,8 +25,7 @@ class IndentationCorrectClassInput  // indent:0 ; exp:0; ok
   public void run() {  // indent:2 ; exp:2; ok
     SecondClassWithLongLongLongLongName anon =  // indent:4 ; exp:4; ok
         new SecondClassWithLongLongLongLongName() {  // indent:8 ; exp:8; ok
-          @MyAnnotation
-          @Override
+          @MyAnnotation2
           String longLongLongLongLongMethodName() {  // indent:14 ; exp:14; ok
             return "String";  // indent:12 ; exp:12; ok
           }  // indent:10 ; exp:10; ok
@@ -54,7 +53,7 @@ class SecondClassWithLongLongLongLongName  // indent:0 ; exp:0; ok
   } // indent:2 ; exp:2; ok
 }  // indent:0 ; exp:0; ok
 
-@interface MyAnnotation {}
+@interface MyAnnotation2 {}
 
-@MyAnnotation
+@MyAnnotation2
 class Foo {}

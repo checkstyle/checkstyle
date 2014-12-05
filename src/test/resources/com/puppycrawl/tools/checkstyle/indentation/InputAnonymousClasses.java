@@ -1,9 +1,6 @@
-package InputAnonymousClasses;
+package com.puppycrawl.tools.checkstyle.indentation;
 
-import InputAnonymousClasses.StrangeInstance;
-import InputAnonymousClasses.InputAnonymousClasses;
-
-@MyAnnotation
+@MyAnnotation1
 public class
     InputAnonymousClasses { // indent:0 ; exp:0; ok
   public InputAnonymousClasses(String longString, String secondLongString) { // indent:2 ; exp:2; ok
@@ -43,4 +40,4 @@ class StrangeInstance { // indent:0 ; exp:0; ok
   void foo (String loongString, String secondLongString) {} // indent:2 ; exp:2; ok
 } // indent:0 ; exp:0; ok
 
-@interface MyAnnotation {}
+@interface MyAnnotation1 {}

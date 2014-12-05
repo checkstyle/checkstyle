@@ -1,4 +1,4 @@
-package InputLabels; // indent:0 ; exp:0; ok
+package com.puppycrawl.tools.checkstyle.indentation; // indent:0 ; exp:0; ok
 
 class InputLabels { // indent:0 ; exp:0; ok
   void foo() { // indent:2 ; exp:2; ok

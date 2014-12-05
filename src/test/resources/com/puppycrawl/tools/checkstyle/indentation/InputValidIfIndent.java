@@ -245,6 +245,7 @@ public class InputValidIfIndent {
 
 class FooFoo {
     void foo42() {
+        boolean test = false;
         if (test) {
             System.getProperty("blah");
         } else if (7 < 8
