@@ -1,5 +1,5 @@
 package com.puppycrawl.tools.
-    checkstyle;
+    checkstyle.whitespace;
 
 import com.google.common.annotations.Beta;
 
@@ -8,7 +8,7 @@ import javax.accessibility.
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
 public class
-    BadLineWrapInput {
+    NoLineWrapBadInput {
     
 	public void
 	    fooMethod() {
