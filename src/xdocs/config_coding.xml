@@ -1660,47 +1660,6 @@ if (&quot;something&quot;.equals(x))
       </subsection>
     </section>
 
-    <section name="JUnitTestCase">
-      <subsection name="Description">
-        <p>
-          Ensures that the <code>setUp()</code> and <code>tearDown()</code> methods are named correctly,
-          have no arguments, return void and are either public or
-          protected.
-        </p>
-
-        <p>
-          Also ensures that <code>suite()</code> is named correctly, has no arguments,
-          returns junit.framework.Test, and is public and static.
-        </p>
-
-        <p>
-          Rationale: Developers will often misname one or more of these
-          methods and not realise that the method is not being called.
-        </p>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check:
-        </p>
-        <source>
-&lt;module name=&quot;JUnitTestCase&quot;/&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
     <section name="ReturnCount">
       <subsection name="Description">
         <p>
