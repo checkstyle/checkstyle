@@ -316,11 +316,6 @@
         by the format property.</td>
       </tr>
       <tr>
-        <td><a href="config_coding.html#JUnitTestCase">JUnitTestCase</a></td>
-        <td>Ensures that the setUp(), tearDown()methods are named correctly,
-        have no arguments, return void and are either public or protected.</td>
-      </tr>
-      <tr>
         <td><a href="config_metrics.html#JavaNCSS">JavaNCSS</a></td>
         <td>This check calculates the Non Commenting Source Statements (NCSS) metric for
         Java source files and methods.</td>
