@@ -18,4 +18,4 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.whitespace;
 
-class InputEmptyLineSeparatorCheck {}
+class InputEmptyLineSeparatorCheckHeader {}

@@ -16,6 +16,8 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.whitespace;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +31,7 @@ import com.google.common.io.CharSource;
 import javax.swing.AbstractAction;
 
 import org.apache.commons.beanutils.locale.converters.ByteLocaleConverter;
-import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.beanutils.BasicDynaBean;
 class InputEmptyLineSeparatorCheck
 {
 	public static final double FOO_PI = 3.1415;
