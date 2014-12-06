@@ -57,4 +57,9 @@ class InputSuppressWarningsFilter
             // should NOT fail IllegalCatchCheck
         }
     }
+
+    enum AnEnum {
+        @SuppressWarnings("rawtypes")
+        ELEMENT;
+    }
 }

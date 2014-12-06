@@ -296,6 +296,7 @@ public class SuppressWarningsHolder
                         case TokenTypes.CLASS_DEF:
                         case TokenTypes.INTERFACE_DEF:
                         case TokenTypes.ENUM_DEF:
+                        case TokenTypes.ENUM_CONSTANT_DEF:
                         case TokenTypes.CTOR_DEF:
                         case TokenTypes.METHOD_DEF:
                         case TokenTypes.PARAMETER_DEF:
@@ -315,6 +316,7 @@ public class SuppressWarningsHolder
             }
             if (targetAST == null) {
                 log(aAST, "suppress.warnings.invalid.target");
+                return;
             }
 
             // get text range of target
