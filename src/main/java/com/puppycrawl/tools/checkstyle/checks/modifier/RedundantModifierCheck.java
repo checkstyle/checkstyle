@@ -20,7 +20,6 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -69,10 +68,8 @@ public class RedundantModifierCheck
                 }
             }
         }
-        else if (ScopeUtils.inInterfaceOrAnnotationBlock(aAST)) {
-            final DetailAST modifiers =
-                aAST.findFirstToken(TokenTypes.MODIFIERS);
-
+        else if (isInterfaceOrAnnotationMember(aAST)) {
+            final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
             DetailAST modifier = modifiers.getFirstChild();
             while (modifier != null) {
 
@@ -126,5 +123,17 @@ public class RedundantModifierCheck
                 }
             }
         }
+    }
+
+    /**
+     * Checks if current AST node is member of Interface or Annotation, not of their subnodes.
+     * @param aAST AST node
+     * @return true or false
+     */
+    private static boolean isInterfaceOrAnnotationMember(DetailAST aAST)
+    {
+        final DetailAST parentTypeDef = aAST.getParent().getParent();
+        return parentTypeDef.getType() == TokenTypes.INTERFACE_DEF
+               || parentTypeDef.getType() == TokenTypes.ANNOTATION_DEF;
     }
 }
