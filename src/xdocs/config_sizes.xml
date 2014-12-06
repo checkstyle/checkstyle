@@ -411,6 +411,12 @@
             <td>7</td>
           </tr>
           <tr>
+            <td>ignoreOverriddenMethods</td>
+            <td>Ignore number of parameters for methods with @Override annotation</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td>false</td>
+          </tr>
+          <tr>
             <td>tokens</td>
             <td>declarations to check</td>
 
@@ -448,6 +454,28 @@
    &lt;property name="tokens" value="METHOD_DEF"/&gt;
 &lt;/module&gt;
         </source>
+          <p>
+              To configure the check to ignore number of parameters for methods with @Override or @java.lang.Override annotation.
+          </p>
+          <p>
+              Rationale: developer may need to override method with many parameters from 3-rd party library.
+              In this case developer has no control over number of parameters.
+          </p>
+          <source>
+&lt;module name="ParameterNumber"&gt;
+    &lt;property name="ignoreOverriddenMethods" value="true"/&gt;
+    &lt;property name="tokens" value="METHOD_DEF"/&gt;
+&lt;/module&gt;
+          </source>
+          <p>
+              Java code example
+          </p>
+          <source>
+@Override
+public void needsLotsOfParameters(int a, int b, int c, int d, int e, int f, int g, int h) {
+    ...
+}
+          </source>
       </subsection>
 
       <subsection name="Package">
