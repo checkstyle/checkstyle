@@ -26,6 +26,6 @@ public class InputWhitespaceAround
 	Class<?>[] groups() default {}; 
 }
 
-@interface CronExpression {
+@interface CronExpression1 {
 	Class<?>[] groups() default { }; // extra space
 }
