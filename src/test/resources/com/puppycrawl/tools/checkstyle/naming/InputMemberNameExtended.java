@@ -1,9 +1,9 @@
 package com.puppycrawl.tools.checkstyle.naming;
 
-import test.Direction;
-import test.InputMemberName.Inner;
 
-public class InputMemberName
+
+
+public class InputMemberNameExtended
 {
     public int mPublic;
     protected int mProtected;
