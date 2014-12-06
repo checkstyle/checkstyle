@@ -67,10 +67,10 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport
         DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
 
         String[] expected = {
-            "6:11: Catching 'RuntimeException' is not allowed.",
-            "8:11: Catching 'RuntimeException' is not allowed.",
+            "7:11: Catching 'RuntimeException' is not allowed.",
             "10:11: Catching 'RuntimeException' is not allowed.",
-            "12:11: Catching 'RuntimeException' is not allowed.",
+            "13:11: Catching 'RuntimeException' is not allowed.",
+            "16:11: Catching 'RuntimeException' is not allowed.",
         };
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalCatchCheck2.java"), expected);

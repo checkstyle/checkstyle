@@ -1,17 +1,31 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.coding;
 
 public class InputIllegalCatchCheck2 {
-    public void foo() {
+    public void foo() throws OneMoreException {
         try {
-        } catch (RuntimeException | SQLException e) {
+        	foo1();
+        } catch (RuntimeException | SQLException e) {}
+        try {
+        	foo1();
+        } catch (RuntimeException | SQLException | OneMoreException e) {}
+        try {
+        	foo1();
+        } catch (OneMoreException | RuntimeException | SQLException e) {}
+        try {
+        	foo1();
+        } catch (OneMoreException | SQLException | RuntimeException e) {}
 
-        } catch (RuntimeException | SQLException | OneMoreException e) {
+    }
+    
+    private void foo1() throws RuntimeException, SQLException, OneMoreException {
 
-        } catch (OneMoreException | RuntimeException | SQLException e) {
+    }
 
-        } catch (OneMoreException | SQLException | RuntimeException e) {
+    private class SQLException extends Exception {
 
-        }
+    }
+
+    private class OneMoreException extends Exception {
 
     }
 }
