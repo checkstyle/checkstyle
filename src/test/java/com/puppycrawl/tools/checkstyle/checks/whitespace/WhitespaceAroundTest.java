@@ -159,12 +159,12 @@ public class WhitespaceAroundTest
     {
         checkConfig.addAttribute("allowEmptyTypes", "true");
         final String[] expected = {
-            "14:91: '{' is not followed by whitespace.",
-            "14:91: '}' is not preceded with whitespace.",
-            "15:32: '{' is not followed by whitespace.",
-            "15:32: '}' is not preceded with whitespace.",
-            "16:21: '{' is not followed by whitespace.",
-            "16:21: '}' is not preceded with whitespace.",
+            "29:95: '{' is not followed by whitespace.",
+            "29:95: '}' is not preceded with whitespace.",
+            "30:33: '{' is not followed by whitespace.",
+            "30:33: '}' is not preceded with whitespace.",
+            "31:21: '{' is not followed by whitespace.",
+            "31:21: '}' is not preceded with whitespace.",
         };
         verify(checkConfig, getPath("whitespace/InputEmptyTypesAndCycles.java"),
                expected);
@@ -175,16 +175,16 @@ public class WhitespaceAroundTest
     {
         checkConfig.addAttribute("allowEmptyLoops", "true");
         final String[] expected = {
-            "20:65: '{' is not followed by whitespace.",
-            "20:65: '}' is not preceded with whitespace.",
-            "22:17: '{' is not followed by whitespace.",
-            "22:17: '}' is not preceded with whitespace.",
-            "24:20: '{' is not followed by whitespace.",
-            "24:20: '}' is not preceded with whitespace.",
-            "30:44: '{' is not followed by whitespace.",
-            "30:44: '}' is not preceded with whitespace.",
-            "44:25: '{' is not followed by whitespace.",
-            "44:25: '}' is not preceded with whitespace.",
+            "40:65: '{' is not followed by whitespace.",
+            "40:65: '}' is not preceded with whitespace.",
+            "42:17: '{' is not followed by whitespace.",
+            "42:17: '}' is not preceded with whitespace.",
+            "44:20: '{' is not followed by whitespace.",
+            "44:20: '}' is not preceded with whitespace.",
+            "50:44: '{' is not followed by whitespace.",
+            "50:44: '}' is not preceded with whitespace.",
+            "60:18: '{' is not followed by whitespace.",
+            "60:18: '}' is not preceded with whitespace.",
         };
         verify(checkConfig, getPath("whitespace/InputEmptyTypesAndCycles.java"),
                expected);
