@@ -41,7 +41,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport
     {
         final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
         final String[] expected = {
-            "1: Javadoc comment at column 52 has parse error. Details: no viable "
+            "3: Javadoc comment at column 52 has parse error. Details: no viable "
                 + "alternative at input '<ul><li>a' {@link EntityEntry} (by way of {@link #;' "
                 + "while parsing HTML_TAG",
         };
