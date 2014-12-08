@@ -1,3 +1,7 @@
+package com.puppycrawl.tools.checkstyle.javadoc;
+
+import com.google.common.base.Function;
+
 class Foo {
 
     /**
@@ -8,6 +12,6 @@ class Foo {
      */
   public static <T extends Enum<T>> Function<String, T> valueOfFunction(
       Class<T> enumClass) {
-    return new ValueOfFunction<T>(enumClass);
+    return null;
   }
 }
