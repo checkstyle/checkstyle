@@ -193,5 +193,13 @@ class InputSemantic
             return true;
         }
     }
+    
+    private class InputBraces {
+        
+    }
+    
+    private class InputModifier {
+        
+    }
 
 }
