@@ -264,7 +264,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
             "21: Wrong lexicographical order for 'com.google.common.*' import.",
         };
 
-        verify(checkConfig, getPath("imports" + File.separator
-                + "InputDefaultPackage.java"), expected);
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/InputDefaultPackage.java").getCanonicalPath(), expected);
     }
 }
