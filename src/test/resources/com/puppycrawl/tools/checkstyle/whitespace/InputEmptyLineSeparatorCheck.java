@@ -54,7 +54,7 @@ class InputEmptyLineSeparatorCheck
 		//empty
 	}
 	//separator blank line
-    public int compareTo(InputGenericWhitespaceCheck aObject)
+    public int compareTo(Object aObject)
     {
     	int number = 0;
         return 0;
