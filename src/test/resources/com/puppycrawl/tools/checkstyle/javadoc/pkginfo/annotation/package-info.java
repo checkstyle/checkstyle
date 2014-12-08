@@ -8,5 +8,5 @@
  * with a legacy non-closed br element
  * </p>
  */
-@java.lang.annotation.Documented
+@Deprecated
 package com.puppycrawl.tools.checkstyle.javadoc.pkginfo.annotation;
