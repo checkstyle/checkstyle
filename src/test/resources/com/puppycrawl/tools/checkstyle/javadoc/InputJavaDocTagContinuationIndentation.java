@@ -310,7 +310,7 @@ class JavaDocTagContinuationIndentation implements Serializable
  *    Some javadoc. // warn
  * @author max
  */
-enum Foo {}
+enum Foo1 {}
 
 /**
  * Some javadoc.
@@ -322,4 +322,4 @@ enum Foo {}
  *   Some javadoc. // warn
  * @author max
  */
-interface FooIn {}
+interface FooIn1 {}
