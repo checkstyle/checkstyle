@@ -3,7 +3,7 @@ package com.puppycrawl.tools.checkstyle.javadoc;
 /**
  * Some Javadoc A {@code Foo} is a simple Javadoc.
  */
-class InputCorrectJavaDocParagraphCheck {
+class InputCorrectSummaryJavaDocCheck {
 
     /**
      * Some Javadoc This method returns.
