@@ -43,7 +43,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
         config.addAttribute("allowedAnnotations", "MyAnnotation, Override");
         config.addAttribute("minLineCount", "2");
         final String[] expected = {
-            "54:3: Missing a Javadoc comment.",
+            "46:1: Missing a Javadoc comment.",
         };
         verify(config, getPath("javadoc/ExtendAnnotation.java"), expected);
     }

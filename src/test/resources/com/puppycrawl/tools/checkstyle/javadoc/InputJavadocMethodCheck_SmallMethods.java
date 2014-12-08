@@ -4,7 +4,7 @@ package com.puppycrawl.tools.checkstyle.javadoc;
  * The following is a bad tag.
  * @mytag Hello
  */
-public class InputJavadocSelfExplanatoryMethodCheck
+public class InputJavadocMethodCheck_SmallMethods extends Some
 {
     //with comments
 
@@ -66,7 +66,7 @@ public class InputJavadocSelfExplanatoryMethodCheck
         foo2();
     }
 
-    int foo8() {
+    void foo9() {
         
         
         
@@ -75,7 +75,7 @@ public class InputJavadocSelfExplanatoryMethodCheck
     }
 
     @MyAnnotation
-    String foo9() 
+    String foo10() 
     {
         return "Fooooooooooooooo"
                 + "ooooo"
@@ -83,7 +83,7 @@ public class InputJavadocSelfExplanatoryMethodCheck
     }
 
     @Override
-    String foo9() 
+    protected String foo11() 
     {
         return "Fooooo"
         		+ "ooo"
@@ -94,3 +94,9 @@ public class InputJavadocSelfExplanatoryMethodCheck
 }
 
 @interface MyAnnotation {}
+
+class Some {
+    protected String foo11() {
+        return "4";
+    }
+}
