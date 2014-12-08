@@ -5,5 +5,5 @@ package com.puppycrawl.tools.checkstyle.grammars;
  */
 public class InputGrammar
 {
-    int Ã© = 1; // illegal, unless UTF-8
+    int é = 1; // illegal, unless UTF-8
 }
