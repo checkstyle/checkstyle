@@ -445,6 +445,7 @@ java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar \
         There are basically only few of them:
       </p>
       <ul>
+        <li>Java code should be written with <a href="http://en.wikipedia.org/wiki/ASCII">ASCII</a> characters only, no UTF-8 support.</li>
         <li>To get valid violations, code have to be compilable, in other case you can get not easy to understand parse errors.</li>
         <li>You cannot determine the type of an expression. Example: "getValue() + getValue2()"</li>
         <li>You cannot determine the full inheritance hierarchy of type.</li>
