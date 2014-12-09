@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle.javadoc;
 
 import com.google.common.base.Function;
 
-class Foo {
+class Foo5 {
 
     /**
      * This class implements the GWT serialization of {@link HashMultimap}.

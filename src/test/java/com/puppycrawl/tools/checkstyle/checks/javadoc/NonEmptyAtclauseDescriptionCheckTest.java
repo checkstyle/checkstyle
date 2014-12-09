@@ -34,28 +34,28 @@ public class NonEmptyAtclauseDescriptionCheckTest
                 createCheckConfig(NonEmptyAtclauseDescriptionCheck.class);
         final String[] expected = {
             //this is a case with description that is sequences of spaces
-            "25: At-clause should have a non-empty description.",
-            //this is a case with description that is sequences of spaces
             "26: At-clause should have a non-empty description.",
             //this is a case with description that is sequences of spaces
             "27: At-clause should have a non-empty description.",
             //this is a case with description that is sequences of spaces
-            "36: At-clause should have a non-empty description.",
+            "28: At-clause should have a non-empty description.",
             //this is a case with description that is sequences of spaces
             "37: At-clause should have a non-empty description.",
             //this is a case with description that is sequences of spaces
             "38: At-clause should have a non-empty description.",
-            "74: At-clause should have a non-empty description.",
+            //this is a case with description that is sequences of spaces
+            "39: At-clause should have a non-empty description.",
             "75: At-clause should have a non-empty description.",
             "76: At-clause should have a non-empty description.",
             "77: At-clause should have a non-empty description.",
             "78: At-clause should have a non-empty description.",
             "79: At-clause should have a non-empty description.",
-            "88: At-clause should have a non-empty description.",
+            "80: At-clause should have a non-empty description.",
             "89: At-clause should have a non-empty description.",
             "90: At-clause should have a non-empty description.",
             "91: At-clause should have a non-empty description.",
             "92: At-clause should have a non-empty description.",
+            "93: At-clause should have a non-empty description.",
         };
         verify(checkConfig, getPath("javadoc/InputNonEmptyAtclauseDescriptionCheck.java"), expected);
     }
