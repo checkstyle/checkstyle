@@ -1,3 +1,4 @@
+package com.puppycrawl.tools.checkstyle.javadoc;
 class InputNonEmptyAtclauseDescriptionCheck
 {
 	/**

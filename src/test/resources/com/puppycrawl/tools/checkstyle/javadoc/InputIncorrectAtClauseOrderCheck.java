@@ -277,7 +277,7 @@ class WithAnnotations implements Serializable
  * @see Some javadoc. //warn
  * @author max //warn
  */
-enum Foo {}
+enum Foo4 {}
 
 /**
  * Some javadoc.

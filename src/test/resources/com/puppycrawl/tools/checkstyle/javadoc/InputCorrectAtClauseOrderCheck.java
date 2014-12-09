@@ -277,7 +277,7 @@ class WithAnnotations implements Serializable
  * @since Some javadoc.
  * @deprecated Some javadoc.
  */
-enum Foo {}
+enum Foo3 {}
 
 /**
  * Some javadoc.
@@ -288,4 +288,4 @@ enum Foo {}
  * @since Some javadoc.
  * @deprecated Some javadoc.
  */
-interface FooIn {}
+interface FooIn3 {}
