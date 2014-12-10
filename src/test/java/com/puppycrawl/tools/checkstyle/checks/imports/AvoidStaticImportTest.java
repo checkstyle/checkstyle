@@ -37,10 +37,10 @@ public class AvoidStaticImportTest
             "25: Using a static member import should be avoided - javax.swing.WindowConstants.*.",
             "26: Using a static member import should be avoided - javax.swing.WindowConstants.*.",
             "27: Using a static member import should be avoided - java.io.File.createTempFile.",
-            "28: Using a static member import should be avoided - sun.net.ftpclient.FtpClient.*.",
+            "28: Using a static member import should be avoided - java.io.File.pathSeparator.",
         };
 
-        verify(checkConfig, getPath("imports" + File.separator + "InputImport.java"), expected);
+        verify(checkConfig, getPath("imports" + File.separator + "InputAvoidStaticImportCheck.java"), expected);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class AvoidStaticImportTest
             "25: Using a static member import should be avoided - javax.swing.WindowConstants.*.",
             "26: Using a static member import should be avoided - javax.swing.WindowConstants.*.",
         };
-        verify(checkConfig, getPath("imports" + File.separator + "InputImport.java"), expected);
+        verify(checkConfig, getPath("imports" + File.separator + "InputAvoidStaticImportCheck.java"), expected);
     }
 
     @Test
@@ -70,9 +70,9 @@ public class AvoidStaticImportTest
             "25: Using a static member import should be avoided - javax.swing.WindowConstants.*.",
             "26: Using a static member import should be avoided - javax.swing.WindowConstants.*.",
             "27: Using a static member import should be avoided - java.io.File.createTempFile.",
-            "28: Using a static member import should be avoided - sun.net.ftpclient.FtpClient.*.",
+            "28: Using a static member import should be avoided - java.io.File.pathSeparator.",
         };
-        verify(checkConfig, getPath("imports" + File.separator + "InputImport.java"), expected);
+        verify(checkConfig, getPath("imports" + File.separator + "InputAvoidStaticImportCheck.java"), expected);
     }
 
     @Test
@@ -91,8 +91,8 @@ public class AvoidStaticImportTest
             "25: Using a static member import should be avoided - javax.swing.WindowConstants.*.",
             "26: Using a static member import should be avoided - javax.swing.WindowConstants.*.",
             "27: Using a static member import should be avoided - java.io.File.createTempFile.",
-            "28: Using a static member import should be avoided - sun.net.ftpclient.FtpClient.*.",
+            "28: Using a static member import should be avoided - java.io.File.pathSeparator.",
         };
-        verify(checkConfig, getPath("imports" + File.separator + "InputImport.java"), expected);
+        verify(checkConfig, getPath("imports" + File.separator + "InputAvoidStaticImportCheck.java"), expected);
     }
 }
