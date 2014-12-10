@@ -34,12 +34,12 @@ public class RedundantImportCheckTest
             createCheckConfig(RedundantImportCheck.class);
         final String[] expected = {
             "7:1: Redundant import from the same package - com.puppycrawl.tools.checkstyle.imports.*.",
-            "8:38: Redundant import from the same package - com.puppycrawl.tools.checkstyle.imports.GlobalProperties.",
+            "8:1: Redundant import from the same package - com.puppycrawl.tools.checkstyle.imports.InputImportBug.",
             "10:1: Redundant import from the java.lang package - java.lang.*.",
             "11:1: Redundant import from the java.lang package - java.lang.String.",
             "14:1: Duplicate import to line 13 - java.util.List.",
             "26:1: Duplicate import to line 25 - javax.swing.WindowConstants.*.",
         };
-        verify(checkConfig, getPath("imports" + File.separator + "InputImport.java"), expected);
+        verify(checkConfig, getPath("imports" + File.separator + "InputRedundantImportCheck.java"), expected);
     }
 }
