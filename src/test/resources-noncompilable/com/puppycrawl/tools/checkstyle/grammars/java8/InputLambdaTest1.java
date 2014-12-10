@@ -1,5 +1,5 @@
+//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.grammars.java8;
-
 public class InputLambdaTest1 {
 	
 	static Runnable r1 = ()->System.out.println("Hello world one!");

@@ -1,5 +1,5 @@
+//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.coding;
-
 
 import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 

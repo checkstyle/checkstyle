@@ -1,5 +1,5 @@
+//Compilable with Java8
 import java.util.function.Predicate;
-
 public class InputLambdaTest19 {
 
     static <T> Predicate<T> isEqual(Object targetRef) {

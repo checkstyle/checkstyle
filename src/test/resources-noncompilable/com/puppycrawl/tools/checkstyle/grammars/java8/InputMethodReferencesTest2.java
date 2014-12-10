@@ -1,9 +1,9 @@
+//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.grammars.java8;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
-
 public class InputMethodReferencesTest2
 {
 

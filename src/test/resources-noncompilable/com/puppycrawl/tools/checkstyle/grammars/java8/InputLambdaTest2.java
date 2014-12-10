@@ -1,5 +1,5 @@
+//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.grammars.java8;
-
 public class InputLambdaTest2 {
 
 	public static void testVoidLambda(TestOfVoidLambdas test) {

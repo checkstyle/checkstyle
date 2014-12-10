@@ -1,5 +1,5 @@
+//Compilable with Java8
 public interface MyInterface {
-
 	final int k = 5; //WARNING
 	
     default int defaultMethod(final int x) {

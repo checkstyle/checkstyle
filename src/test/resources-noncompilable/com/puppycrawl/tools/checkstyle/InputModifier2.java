@@ -1,3 +1,4 @@
+//Compilable with Java8
 package com.puppycrawl.tools.checkstyle;
 import java.util.Comparator;
 public interface InputModifier2 extends Comparator<Integer> {

@@ -1,5 +1,5 @@
+//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.grammars.java8;
-
 import java.time.chrono.ChronoLocalDate;
 import java.time.chrono.ChronoLocalDateTime;
 import java.util.Comparator;

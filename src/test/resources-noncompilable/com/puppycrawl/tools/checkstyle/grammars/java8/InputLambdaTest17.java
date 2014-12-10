@@ -1,5 +1,5 @@
+//Compilable with Java8
 import java.util.function.Supplier;
-
 public class InputLambdaTest17{
 
     void initPartialTraversalState() {

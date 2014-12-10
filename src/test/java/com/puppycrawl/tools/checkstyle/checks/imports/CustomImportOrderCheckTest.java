@@ -250,9 +250,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
 
         final String[] expected = {
-            "5: Wrong lexicographical order for 'java.awt.Button.ABORT' import.",
-            "8: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "9: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "7: Wrong lexicographical order for 'java.awt.Button.ABORT' import.",
             "10: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
             "11: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
             "12: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
@@ -261,7 +259,9 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
             "15: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
             "16: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
             "17: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "21: Wrong lexicographical order for 'com.google.common.*' import.",
+            "18: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "19: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "23: Wrong lexicographical order for 'com.google.common.*' import.",
         };
 
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
