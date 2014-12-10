@@ -30,7 +30,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport
     {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
         final String[] expected = {
-            "8:45: Unused import - com.puppycrawl.tools.checkstyle.imports.GlobalProperties.",
+            "8:45: Unused import - com.puppycrawl.tools.checkstyle.imports.InputImportBug.",
             "11:8: Unused import - java.lang.String.",
             "13:8: Unused import - java.util.List.",
             "14:8: Unused import - java.util.List.",
@@ -45,18 +45,18 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport
             "33:8: Unused import - java.util.Date.",
             "34:8: Unused import - java.util.Calendar.",
             "35:8: Unused import - java.util.BitSet.",
-            "37:8: Unused import - com.test.TestClass1.",
-            "38:8: Unused import - com.test.TestClass2.",
-            "39:8: Unused import - com.test.TestClass3.",
-            "40:8: Unused import - com.test.TestClass4.",
-            "41:8: Unused import - com.test.TestClass5.",
-            "42:8: Unused import - com.test.TestClass6.",
-            "43:8: Unused import - com.test.TestClass7.",
-            "44:8: Unused import - com.test.TestClass8.",
-            "45:8: Unused import - com.test.TestClass9.",
+            "37:8: Unused import - com.puppycrawl.tools.checkstyle.Checker.",
+            "38:8: Unused import - com.puppycrawl.tools.checkstyle.CheckerTest.",
+            "39:8: Unused import - com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport.",
+            "40:8: Unused import - com.puppycrawl.tools.checkstyle.Defn.",
+            "41:8: Unused import - com.puppycrawl.tools.checkstyle.Input15Extensions.",
+            "42:8: Unused import - com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest.",
+            "43:8: Unused import - com.puppycrawl.tools.checkstyle.CheckStyleTask.",
+            "44:8: Unused import - com.puppycrawl.tools.checkstyle.DefaultConfiguration.",
+            "45:8: Unused import - com.puppycrawl.tools.checkstyle.DefaultLogger.",
         };
         verify(checkConfig, getPath("imports" + File.separator
-                + "InputImport.java"), expected);
+                + "InputUnusedImportsCheck.java"), expected);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
         checkConfig.addAttribute("processJavadoc", "true");
         final String[] expected = {
-            "8:45: Unused import - com.puppycrawl.tools.checkstyle.imports.GlobalProperties.",
+            "8:45: Unused import - com.puppycrawl.tools.checkstyle.imports.InputImportBug.",
             "11:8: Unused import - java.lang.String.",
             "13:8: Unused import - java.util.List.",
             "14:8: Unused import - java.util.List.",
@@ -75,10 +75,10 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport
             "27:15: Unused import - java.io.File.createTempFile.",
             //"29:8: Unused import - java.awt.Component.", // Should be detected
             "32:8: Unused import - java.awt.Label.",
-            "45:8: Unused import - com.test.TestClass9.",
+            "45:8: Unused import - com.puppycrawl.tools.checkstyle.DefaultLogger.",
         };
         verify(checkConfig, getPath("imports" + File.separator
-                + "InputImport.java"), expected);
+                + "InputUnusedImportsCheck.java"), expected);
     }
 
     @Test
