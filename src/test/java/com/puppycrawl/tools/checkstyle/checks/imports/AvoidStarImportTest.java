@@ -38,10 +38,11 @@ public class AvoidStarImportTest
             "10: Using the '.*' form of import should be avoided - java.lang.*.",
             "25: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
             "26: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
-            "28: Using the '.*' form of import should be avoided - sun.net.ftpclient.FtpClient.*.",
+            "28: Using the '.*' form of import should be avoided - java.io.File.*.",
         };
 
-        verify(checkConfig, getPath("imports" + File.separator + "InputImport.java"), expected);
+        verify(checkConfig, getPath("imports" + File.separator + "InputAvoidStarImportCheck.java"),
+                expected);
     }
 
     @Test
@@ -55,9 +56,10 @@ public class AvoidStarImportTest
         // allow the java.io/java.lang,javax.swing.WindowConstants star imports
         final String[] expected2 = new String[] {
             "7: Using the '.*' form of import should be avoided - com.puppycrawl.tools.checkstyle.imports.*.",
-            "28: Using the '.*' form of import should be avoided - sun.net.ftpclient.FtpClient.*.",
+            "28: Using the '.*' form of import should be avoided - java.io.File.*.",
         };
-        verify(checkConfig, getPath("imports" + File.separator + "InputImport.java"), expected2);
+        verify(checkConfig, getPath("imports" + File.separator + "InputAvoidStarImportCheck.java"),
+                expected2);
     }
 
     @Test
@@ -69,8 +71,8 @@ public class AvoidStarImportTest
         final String[] expected2 = new String[] {
             "25: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
             "26: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
-            "28: Using the '.*' form of import should be avoided - sun.net.ftpclient.FtpClient.*.", };
+            "28: Using the '.*' form of import should be avoided - java.io.File.*.", };
         verify(checkConfig, getPath("imports" + File.separator
-            + "InputImport.java"), expected2);
+            + "InputAvoidStarImportCheck.java"), expected2);
     }
 }
