@@ -1,3 +1,4 @@
+//Compilable with Java8
 public interface InputStaticModifierInInterface
 {
     static int f()
