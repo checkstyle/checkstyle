@@ -24,7 +24,8 @@ public class GeneratedJava14LexerTest
         final String[] expected = {
             "8:10: Got an exception - Unexpected character 0xa9 in identifier",
         };
-        verify(checkConfig, getPath("grammars/InputGrammar.java"), expected);
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/grammars/InputGrammar.java").getCanonicalPath(), expected);
     }
     
     @Test
