@@ -99,7 +99,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
     STRONG_ACCESS {
       <K, V> StrongAccessEntry<K, V> newEntry(
           Segment<K, V> segment, K key, int hash, @Nullable ReferenceEntry<K, V> next) {
-        return new StrongAccessEntry<K, V>((int) key, hash, next);
+        return new StrongAccessEntry<K, V>(key, hash, next);
       }
 
       <K, V> ReferenceEntry<K, V> copyEntry(
@@ -219,7 +219,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
 
   private static class StrongAccessEntry<T1, T2> {
 
-    public StrongAccessEntry(int key, int hash, ReferenceEntry<T1, T2> next)
+    public StrongAccessEntry(T1 key, int hash, ReferenceEntry<T1, T2> next)
     {
 
     }

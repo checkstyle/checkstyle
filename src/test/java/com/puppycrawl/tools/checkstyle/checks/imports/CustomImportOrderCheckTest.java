@@ -104,7 +104,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
             "15: Wrong lexicographical order for 'java.io.InputStream' import.",
             "18: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
             "20: Imports without groups should be placed at the end of the import list.",
-            "21: 'org.apache.*'should be separated from previous import group.",
+            "21: 'org.junit.*'should be separated from previous import group.",
         };
 
         verify(checkConfig, getPath("imports" + File.separator
