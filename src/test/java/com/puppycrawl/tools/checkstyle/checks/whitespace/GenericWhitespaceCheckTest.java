@@ -83,4 +83,14 @@ public class GenericWhitespaceCheckTest
         final String[] expected = {};
         verify(mCheckConfig, getPath("whitespace/Gh47.java"), expected);
     }
+
+    @Test
+    public void testInnerClass() throws Exception
+    {
+        final String[] expected = {
+
+        };
+        verify(mCheckConfig, getPath("whitespace/"
+                + "InputGenericWhitespaceInnerClassCheck.java"), expected);
+    }
 }
