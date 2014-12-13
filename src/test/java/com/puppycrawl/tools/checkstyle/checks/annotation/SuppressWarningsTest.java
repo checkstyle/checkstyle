@@ -822,4 +822,17 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsExpanded.java"), expected);
     }
+
+    @Test
+    public void testUncheckedInConstant() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
+
+        String[] expected = {
+
+        };
+
+        verify(checkConfig, getPath("annotation" + File.separator
+                + "SuppressWarningsConstants.java"), expected);
+    }
 }
