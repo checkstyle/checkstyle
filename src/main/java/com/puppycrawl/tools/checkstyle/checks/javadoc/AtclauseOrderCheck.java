@@ -75,7 +75,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
     };
 
     /**
-     * Default target of checking atclausts.
+     * Default target of checking atclauses.
      */
     private List<Integer> mTarget = Arrays.asList(
         TokenTypes.CLASS_DEF,

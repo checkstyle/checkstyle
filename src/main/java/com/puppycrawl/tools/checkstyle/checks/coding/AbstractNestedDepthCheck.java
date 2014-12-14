@@ -22,7 +22,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
- * Abstract class which provides helpers functionality for nestedchecks.
+ * Abstract class which provides helpers functionality for nested checks.
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
@@ -30,7 +30,7 @@ public abstract class AbstractNestedDepthCheck extends Check
 {
     /** maximum allowed nesting depth */
     private int mMax;
-    /** curren nesting depth */
+    /** current nesting depth */
     private int mDepth;
 
     /**
