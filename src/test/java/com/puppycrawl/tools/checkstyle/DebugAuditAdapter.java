@@ -24,36 +24,42 @@ class DebugAuditAdapter implements AuditListener
     }
 
     /** @see AuditListener */
+    @Override
     public void addError(AuditEvent aEvt)
     {
         mCalled = true;
     }
 
     /** @see AuditListener */
+    @Override
     public void addException(AuditEvent aEvt, Throwable aThrowable)
     {
         mCalled = true;
     }
 
     /** @see AuditListener */
+    @Override
     public void auditStarted(AuditEvent aEvt)
     {
         mCalled = true;
     }
 
     /** @see AuditListener */
+    @Override
     public void fileStarted(AuditEvent aEvt)
     {
         mCalled = true;
     }
 
     /** @see AuditListener */
+    @Override
     public void auditFinished(AuditEvent aEvt)
     {
         mCalled = true;
     }
 
     /** @see AuditListener */
+    @Override
     public void fileFinished(AuditEvent aEvt)
     {
         mCalled = true;

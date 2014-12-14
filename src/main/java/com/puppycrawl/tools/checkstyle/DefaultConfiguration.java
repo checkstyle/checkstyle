@@ -60,6 +60,7 @@ public final class DefaultConfiguration implements Configuration
     }
 
     /** {@inheritDoc} */
+    @Override
     public String[] getAttributeNames()
     {
         final Set<String> keySet = mAttributeMap.keySet();
@@ -67,6 +68,7 @@ public final class DefaultConfiguration implements Configuration
     }
 
     /** {@inheritDoc} */
+    @Override
     public String getAttribute(String aName) throws CheckstyleException
     {
         if (!mAttributeMap.containsKey(aName)) {
@@ -78,6 +80,7 @@ public final class DefaultConfiguration implements Configuration
     }
 
     /** {@inheritDoc} */
+    @Override
     public Configuration[] getChildren()
     {
         return mChildren.toArray(
@@ -85,6 +88,7 @@ public final class DefaultConfiguration implements Configuration
     }
 
     /** {@inheritDoc} */
+    @Override
     public String getName()
     {
         return mName;
@@ -139,6 +143,7 @@ public final class DefaultConfiguration implements Configuration
      * for this configuration.
      * @return unmodifiable map containing custom messages
      */
+    @Override
     public ImmutableMap<String, String> getMessages()
     {
         return ImmutableMap.copyOf(mMessages);

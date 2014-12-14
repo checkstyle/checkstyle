@@ -179,6 +179,7 @@ public class SuppressWithNearbyCommentFilter
          * tag is after the other tag.
          * @see java.lang.Comparable#compareTo(java.lang.Object)
          */
+        @Override
         public int compareTo(Tag aOther)
         {
             if (mFirstLine == aOther.mFirstLine) {
@@ -426,6 +427,7 @@ public class SuppressWithNearbyCommentFilter
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean accept(AuditEvent aEvent)
     {
         if (aEvent.getLocalizedMessage() == null) {

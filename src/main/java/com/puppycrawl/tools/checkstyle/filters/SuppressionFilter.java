@@ -50,6 +50,7 @@ public class SuppressionFilter
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean accept(AuditEvent aEvent)
     {
         return mFilters.accept(aEvent);
