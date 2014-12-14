@@ -83,6 +83,7 @@ public class FilterSet
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean accept(AuditEvent aEvent)
     {
         for (Filter filter : mFilters) {

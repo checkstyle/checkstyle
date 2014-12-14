@@ -473,6 +473,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * @param aFileName
      *            the file to be audited
      */
+    @Override
     public void fireFileStarted(String aFileName)
     {
         final String stripped = getStrippedFileName(aFileName);
@@ -488,6 +489,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * @param aFileName
      *            the audited file
      */
+    @Override
     public void fireFileFinished(String aFileName)
     {
         final String stripped = getStrippedFileName(aFileName);
@@ -503,6 +505,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * @param aFileName the audited file
      * @param aErrors the audit errors from the file
      */
+    @Override
     public void fireErrors(String aFileName,
         SortedSet<LocalizedMessage> aErrors)
     {

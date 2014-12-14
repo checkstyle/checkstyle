@@ -95,11 +95,13 @@ public class TreeTableModelAdapter extends AbstractTableModel
         {
             // Don't use fireTableRowsInserted() here; the selection model
             // would get updated twice.
+            @Override
             public void treeExpanded(TreeExpansionEvent event)
             {
                 fireTableDataChanged();
             }
 
+            @Override
             public void treeCollapsed(TreeExpansionEvent event)
             {
                 fireTableDataChanged();
@@ -112,21 +114,25 @@ public class TreeTableModelAdapter extends AbstractTableModel
         // the event before us.
         aTreeTableModel.addTreeModelListener(new TreeModelListener()
         {
+            @Override
             public void treeNodesChanged(TreeModelEvent e)
             {
                 delayedFireTableDataChanged();
             }
 
+            @Override
             public void treeNodesInserted(TreeModelEvent e)
             {
                 delayedFireTableDataChanged();
             }
 
+            @Override
             public void treeNodesRemoved(TreeModelEvent e)
             {
                 delayedFireTableDataChanged();
             }
 
+            @Override
             public void treeStructureChanged(TreeModelEvent e)
             {
                 delayedFireTableDataChanged();
@@ -136,6 +142,7 @@ public class TreeTableModelAdapter extends AbstractTableModel
 
     // Wrappers, implementing TableModel interface.
 
+    @Override
     public int getColumnCount()
     {
         return mTreeTableModel.getColumnCount();
@@ -159,6 +166,7 @@ public class TreeTableModelAdapter extends AbstractTableModel
         return mTreeTableModel.getColumnClass(column);
     }
 
+    @Override
     public int getRowCount()
     {
         return mTree.getRowCount();
@@ -170,6 +178,7 @@ public class TreeTableModelAdapter extends AbstractTableModel
         return treePath.getLastPathComponent();
     }
 
+    @Override
     public Object getValueAt(int row, int column)
     {
         return mTreeTableModel.getValueAt(nodeForRow(row), column);
@@ -201,6 +210,7 @@ public class TreeTableModelAdapter extends AbstractTableModel
     {
         SwingUtilities.invokeLater(new Runnable()
         {
+            @Override
             public void run()
             {
                 fireTableDataChanged();

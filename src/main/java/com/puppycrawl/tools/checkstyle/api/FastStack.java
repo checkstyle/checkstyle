@@ -123,6 +123,7 @@ public class FastStack<E> implements Iterable<E>
      * Returns an iterator that goes from the oldest element to the newest.
      * @return an iterator
      */
+    @Override
     public Iterator<E> iterator()
     {
         return mEntries.iterator();

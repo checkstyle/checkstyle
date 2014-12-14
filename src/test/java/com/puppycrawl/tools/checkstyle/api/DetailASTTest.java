@@ -71,6 +71,7 @@ public class DetailASTTest
     private void checkDir(File dir) throws Exception
     {
         File[] files = dir.listFiles(new FileFilter() {
+                @Override
                 public boolean accept(File file)
                 {
                     return (file.getName().endsWith(".java")

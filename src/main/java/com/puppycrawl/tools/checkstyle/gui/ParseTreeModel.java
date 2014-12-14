@@ -59,11 +59,13 @@ public class ParseTreeModel extends AbstractTreeTableModel
         fireTreeStructureChanged(this, path, null, null);
     }
 
+    @Override
     public int getColumnCount()
     {
         return COLUMN_NAMES.length;
     }
 
+    @Override
     public String getColumnName(int column)
     {
         return COLUMN_NAMES[column];
@@ -87,6 +89,7 @@ public class ParseTreeModel extends AbstractTreeTableModel
         return Object.class;
     }
 
+    @Override
     public Object getValueAt(Object node, int column)
     {
         final DetailAST ast = (DetailAST) node;
@@ -110,6 +113,7 @@ public class ParseTreeModel extends AbstractTreeTableModel
     {
     }
 
+    @Override
     public Object getChild(Object parent, int index)
     {
         final DetailAST ast = (DetailAST) parent;
@@ -122,6 +126,7 @@ public class ParseTreeModel extends AbstractTreeTableModel
         return child;
     }
 
+    @Override
     public int getChildCount(Object parent)
     {
         final DetailAST ast = (DetailAST) parent;

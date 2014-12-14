@@ -45,6 +45,7 @@ public final class SeverityLevelCounter implements AuditListener
     }
 
     /** {@inheritDoc} */
+    @Override
     public void addError(AuditEvent aEvt)
     {
         if (mLevel.equals(aEvt.getSeverityLevel())) {
@@ -53,6 +54,7 @@ public final class SeverityLevelCounter implements AuditListener
     }
 
     /** {@inheritDoc} */
+    @Override
     public void addException(AuditEvent aEvt, Throwable aThrowable)
     {
         if (SeverityLevel.ERROR.equals(mLevel)) {
@@ -61,22 +63,26 @@ public final class SeverityLevelCounter implements AuditListener
     }
 
     /** {@inheritDoc} */
+    @Override
     public void auditStarted(AuditEvent aEvt)
     {
         mCount = 0;
     }
 
     /** {@inheritDoc} */
+    @Override
     public void fileStarted(AuditEvent aEvt)
     {
     }
 
     /** {@inheritDoc} */
+    @Override
     public void auditFinished(AuditEvent aEvt)
     {
     }
 
     /** {@inheritDoc} */
+    @Override
     public void fileFinished(AuditEvent aEvt)
     {
     }

@@ -144,6 +144,7 @@ class FileDrop
         // drop target when the parent gets cleared out.
         c.addHierarchyListener(new HierarchyListener()
         {
+            @Override
             public void hierarchyChanged(HierarchyEvent evt)
             {
                 final Component parent = c.getParent();
@@ -256,6 +257,7 @@ class FileDrop
         private final Border mDragBorder;
         private final Listener mListener;
 
+        @Override
         public void dragEnter(DropTargetDragEvent evt)
         {
             if (isDragOk(evt)) {
@@ -271,6 +273,7 @@ class FileDrop
             }
         }
 
+        @Override
         @SuppressWarnings("unchecked")
         public void drop(DropTargetDropEvent evt)
         {
@@ -309,6 +312,7 @@ class FileDrop
             }
         }
 
+        @Override
         public void dragExit(DropTargetEvent evt)
         {
             if (mC instanceof JComponent) {
@@ -317,6 +321,7 @@ class FileDrop
             }
         }
 
+        @Override
         public void dropActionChanged(DropTargetDragEvent evt)
         {
             if (isDragOk(evt)) {
@@ -327,6 +332,7 @@ class FileDrop
             }
         }
 
+        @Override
         public void dragOver(DropTargetDragEvent dtde)
         {
         }

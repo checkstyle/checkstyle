@@ -37,6 +37,7 @@ class IntMatchFilter implements IntFilter
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean accept(int aInt)
     {
         return mMatchValue == aInt;

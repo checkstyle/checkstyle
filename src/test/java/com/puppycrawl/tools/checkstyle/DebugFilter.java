@@ -12,6 +12,7 @@ class DebugFilter implements Filter
 {
     private boolean mCalled;
 
+    @Override
     public boolean accept(AuditEvent aEvent)
     {
         mCalled = true;
