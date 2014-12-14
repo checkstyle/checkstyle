@@ -49,21 +49,25 @@ public abstract class AbstractFileSetCheck
     protected abstract void processFiltered(File aFile, List<String> aLines);
 
     /** {@inheritDoc} */
+    @Override
     public void init()
     {
     }
 
     /** {@inheritDoc} */
+    @Override
     public void destroy()
     {
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginProcessing(String aCharset)
     {
     }
 
     /** {@inheritDoc} */
+    @Override
     public final TreeSet<LocalizedMessage> process(File aFile,
                                                    List<String> aLines)
     {
@@ -76,11 +80,13 @@ public abstract class AbstractFileSetCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void finishProcessing()
     {
     }
 
     /** {@inheritDoc} */
+    @Override
     public final void setMessageDispatcher(MessageDispatcher aDispatcher)
     {
         mDispatcher = aDispatcher;

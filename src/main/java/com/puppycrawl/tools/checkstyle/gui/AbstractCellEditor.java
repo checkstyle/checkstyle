@@ -80,41 +80,48 @@ public class AbstractCellEditor implements CellEditor
     private final EventListenerList mListenerList = new EventListenerList();
 
     /** @see CellEditor */
+    @Override
     public Object getCellEditorValue()
     {
         return null;
     }
 
     /** @see CellEditor */
+    @Override
     public boolean isCellEditable(EventObject e)
     {
         return true;
     }
 
     /** @see CellEditor */
+    @Override
     public boolean shouldSelectCell(EventObject anEvent)
     {
         return false;
     }
 
     /** @see CellEditor */
+    @Override
     public boolean stopCellEditing()
     {
         return true;
     }
 
     /** @see CellEditor */
+    @Override
     public void cancelCellEditing()
     {
     }
 
     /** @see CellEditor */
+    @Override
     public void addCellEditorListener(CellEditorListener l)
     {
         mListenerList.add(CellEditorListener.class, l);
     }
 
     /** @see CellEditor */
+    @Override
     public void removeCellEditorListener(CellEditorListener l)
     {
         mListenerList.remove(CellEditorListener.class, l);

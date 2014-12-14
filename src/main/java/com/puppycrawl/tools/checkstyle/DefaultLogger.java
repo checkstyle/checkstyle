@@ -91,6 +91,7 @@ public class DefaultLogger
      * @param aEvt {@inheritDoc}
      * @see AuditListener
      **/
+    @Override
     public void addError(AuditEvent aEvt)
     {
         final SeverityLevel severityLevel = aEvt.getSeverityLevel();
@@ -118,6 +119,7 @@ public class DefaultLogger
     }
 
     /** {@inheritDoc} */
+    @Override
     public void addException(AuditEvent aEvt, Throwable aThrowable)
     {
         synchronized (mErrorWriter) {
@@ -127,22 +129,26 @@ public class DefaultLogger
     }
 
     /** {@inheritDoc} */
+    @Override
     public void auditStarted(AuditEvent aEvt)
     {
         mInfoWriter.println("Starting audit...");
     }
 
     /** {@inheritDoc} */
+    @Override
     public void fileFinished(AuditEvent aEvt)
     {
     }
 
     /** {@inheritDoc} */
+    @Override
     public void fileStarted(AuditEvent aEvt)
     {
     }
 
     /** {@inheritDoc} */
+    @Override
     public void auditFinished(AuditEvent aEvt)
     {
         mInfoWriter.println("Audit done.");

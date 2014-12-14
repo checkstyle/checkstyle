@@ -183,6 +183,7 @@ public class SuppressionCommentFilter
          * tag is after the other tag.
          * @see java.lang.Comparable#compareTo(java.lang.Object)
          */
+        @Override
         public int compareTo(Tag aObject)
         {
             if (mLine == aObject.mLine) {
@@ -406,6 +407,7 @@ public class SuppressionCommentFilter
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean accept(AuditEvent aEvent)
     {
         if (aEvent.getLocalizedMessage() == null) {

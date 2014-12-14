@@ -93,6 +93,7 @@ public final class FileContents implements CommentListener
     }
 
     /** {@inheritDoc} */
+    @Override
     public void reportSingleLineComment(String aType, int aStartLineNo,
             int aStartColNo)
     {
@@ -100,6 +101,7 @@ public final class FileContents implements CommentListener
     }
 
     /** {@inheritDoc} */
+    @Override
     public void reportBlockComment(String aType, int aStartLineNo,
             int aStartColNo, int aEndLineNo, int aEndColNo)
     {
