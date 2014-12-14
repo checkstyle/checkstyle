@@ -126,3 +126,14 @@ abstract interface InnerImplementation
 
 @interface MyAnnotation4 {
 }
+
+class SafeVarargsUsage {
+    @Deprecated
+    @SafeVarargs
+    private final void foo(int... k) {}
+    
+    @Deprecated
+    @SafeVarargs
+    @SuppressWarnings("")
+    private final void foo1(Object... obj) {}
+}
