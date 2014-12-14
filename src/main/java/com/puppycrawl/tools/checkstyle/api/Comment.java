@@ -93,7 +93,7 @@ public class Comment implements TextBlock
                               int aEndLineNo, int aEndColNo)
     {
         // compute a single number for start and end
-        // to simpify conditional logic
+        // to simplify conditional logic
         final long multiplier = Integer.MAX_VALUE;
         final long thisStart = mFirstLine * multiplier + mFirstCol;
         final long thisEnd = mLastLine * multiplier + mLastCol;

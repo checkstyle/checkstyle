@@ -94,7 +94,7 @@ public abstract class AbstractClassCouplingCheck extends Check
     }
 
     /**
-     * Sets maximul allowed complexity.
+     * Sets maximum allowed complexity.
      * @param aMax allowed complexity.
      */
     public final void setMax(int aMax)

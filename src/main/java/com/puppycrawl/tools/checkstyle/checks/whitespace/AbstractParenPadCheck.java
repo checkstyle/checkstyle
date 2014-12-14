@@ -34,7 +34,7 @@ abstract class AbstractParenPadCheck
     extends AbstractOptionCheck<PadOption>
 {
     /**
-     * Sets the paren pad otion to nospace.
+     * Sets the paren pad option to nospace.
      */
     AbstractParenPadCheck()
     {
