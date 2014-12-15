@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.checkstyle.design;
 
 public class InputMutableException {
-    public class FooException {
+    public class FooException extends Exception {
         private final int _finalErrorCode;
         private int _errorCode = 1;
 
@@ -9,7 +9,7 @@ public class InputMutableException {
             _finalErrorCode = 1;
         }
 
-        public class FooExceptionThisIsNot {
+        public class FooExceptionThisIsNot extends RuntimeException {
             private final int _finalErrorCode;
             private int _errorCode = 1;
             /** constructor */
@@ -19,7 +19,11 @@ public class InputMutableException {
         }
     }
 
-    public class FooError {
+    public class FooError extends Error {
+        private int _errorCode;
+    }
+
+    public class BarDoesNotExtendError {
         private int _errorCode;
     }
 }

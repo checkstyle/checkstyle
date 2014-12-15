@@ -314,8 +314,8 @@ public class StringUtils // not final to allow subclassing
       <subsection name="Description">
         <p>
           Ensures that exception classes (classes with names conforming to
-          some regular expression) are immutable, that is, that they have only final
-          fields.
+          some regular expression and explicitly extending some other classes)
+          are immutable, that is, that they have only final fields.
         </p>
 
         <p>
