@@ -31,7 +31,7 @@ public class CaseHandler extends ExpressionHandler
     /**
      * The child elements of a case expression.
      */
-    private final int[] mCaseChildren = new int[] {
+    private static final int[] CASE_CHILDREN = new int[] {
         TokenTypes.LITERAL_CASE,
         TokenTypes.LITERAL_DEFAULT,
     };
@@ -62,7 +62,7 @@ public class CaseHandler extends ExpressionHandler
      */
     private void checkCase()
     {
-        checkChildren(getMainAst(), mCaseChildren, getLevel(), true, false);
+        checkChildren(getMainAst(), CASE_CHILDREN, getLevel(), true, false);
     }
 
     @Override
