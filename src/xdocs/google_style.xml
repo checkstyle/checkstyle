@@ -278,7 +278,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L51">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/tree/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule331nowildcard">test</a>
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule331nowildcard/AvoidStarImportTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -489,7 +489,8 @@
                             <td>
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L142">config</a><br/>
-                                [test(will provided later)]
+                                <a
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4841indentation/IndentationTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -593,7 +594,8 @@
                             <td>
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L142">config</a><br/>
-                                [test(will provided later)]
+                                <a
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4841indentation/IndentationTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -736,8 +738,9 @@
                             </td>
                             <td>
                                 <a
-                                    href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L153">config</a><br/>
-                                [test]
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L155">config</a><br/>
+                                <a
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4822variabledistance/VariableDeclarationUsageDistanceTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -799,7 +802,8 @@
                             <td>
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L142">config</a><br/>
-                                [test(will provided later)]
+                                <a
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4841indentation/IndentationTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1000,7 +1004,13 @@
                                 <a href="config_naming.html">MethodName</a>
                                 <br/> No ability to distinguish verb at the beggining of name, no way distinguish Test method from others so "_" is allowed in names
                             </td>
-                            <td>[]</td>
+                            <td>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L193">config</a>
+                                <br />
+                                <a
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule523methodnames/MethodNameTest.java">test</a>
+                            </td>
                         </tr>
                         <tr>
                             <td>
@@ -1164,7 +1174,7 @@
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L54">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks/EmptyBlockTest.java">test</a>
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter6programpractice/rule62donotignoreexceptions/EmptyBlockTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1231,7 +1241,12 @@
                                     alt="" />
                                 <a href="config_javadoc.html#SingleLineJavadoc">SingleLineJavadoc</a>
                             </td>
-                            <td>[]</td>
+                            <td>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L198">config</a><br/>
+                                <a
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule711generalform/SingleLineJavadocTest.java">test</a>
+                            </td>
                         </tr>
                         <tr>
                             <td>
@@ -1244,7 +1259,12 @@
                                     alt="" />
                                 <a href="config_javadoc.html#JavadocParagraph">JavaDocParagraph</a>
                             </td>
-                            <td>[]</td>
+                            <td>
+                            <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L179">config</a><br/>
+                                <a
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/JavadocParagraphTest.java">test</a>
+                                    </td>
                         </tr>
                         <tr>
                             <td>
@@ -1267,7 +1287,20 @@
                                     alt="" />
                                 <a href="config_javadoc.html#NonEmptyAtclauseDescription">NonEmptyAtclauseDescription</a>
                             </td>
-                            <td>[]<br/>[]<br/>[]</td>
+                            <td>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L180">config</a><br/>
+                                <a
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/AtclauseOrderTest.java">test</a><br/>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L175">config</a><br/>
+                                <a
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/JavadocTagContinuationIndentationTest.java">test</a><br/>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L174">config</a><br/>
+                                <a
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/NonEmptyAtclauseDescriptionTest.java">test</a>
+                            </td>
                         </tr>
                         <tr>
                             <td>
@@ -1280,7 +1313,12 @@
                                     alt="" />
                                 <a href="config_javadoc.html#SummaryJavadoc">SummaryJavadoc</a>
                             </td>
-                            <td>[]</td>
+                            <td>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L176">config</a><br/>
+                                <a
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule72thesummaryfragment/SummaryJavadocTest.java">test</a>
+                            </td>
                         </tr>
                         <tr>
                             <td>
@@ -1296,7 +1334,12 @@
                                 <a
                                     href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
                             </td>
-                            <td>[]</td>
+                            <td>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L184">config</a><br/>
+                                <a
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/JavadocMethodTest.java">test</a>
+                            </td>
                         </tr>
                         <tr>
                             <td>
@@ -1309,7 +1352,12 @@
                                     alt="" />
                                 <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
                             </td>
-                            <td>[]</td>
+                            <td>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L184">config</a><br/>
+                                <a
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/JavadocMethodTest.java">test</a>
+                            </td>
                         </tr>
                         <tr>
                             <td>
@@ -1323,7 +1371,12 @@
                                 <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
                                 <br/> Overrides are checked by presense of "@Override" annotation on method.
                             </td>
-                            <td>[]</td>
+                            <td>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L184">config</a><br/>
+                                <a
+                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/JavadocMethodTest.java">test</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
