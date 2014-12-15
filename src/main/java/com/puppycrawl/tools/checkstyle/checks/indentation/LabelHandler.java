@@ -31,7 +31,7 @@ public class LabelHandler extends ExpressionHandler
     /**
      * The types of expressions that are children of a label.
      */
-    private final int[] mLabelChildren = new int[] {
+    private static final int[] LABEL_CHILDREN = new int[] {
         TokenTypes.IDENT,
     };
 
@@ -62,7 +62,7 @@ public class LabelHandler extends ExpressionHandler
      */
     private void checkLabel()
     {
-        checkChildren(getMainAst(), mLabelChildren, getLevel(), true, false);
+        checkChildren(getMainAst(), LABEL_CHILDREN, getLevel(), true, false);
     }
 
     @Override
