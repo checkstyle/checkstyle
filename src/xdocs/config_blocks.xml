@@ -221,6 +221,12 @@
 
             <td>all tokens</td>
           </tr>
+          <tr>
+            <td>allowSingleLineIf</td>
+            <td>allow one line if statements</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td>false</td>
+          </tr>
         </table>
       </subsection>
 
@@ -237,6 +243,15 @@
         <source>
 &lt;module name=&quot;NeedBraces&quot;&gt;
     &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check to allow one line <code>if</code> statements without braces:
+        </p>
+        <source>
+&lt;module name=&quot;NeedBraces&quot;&gt;
+    &lt;property name=&quot;allowSingleLineIf&quot; value=&quot;FALSE&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
