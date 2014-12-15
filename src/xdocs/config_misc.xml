@@ -1447,7 +1447,7 @@ public class PID extends StateMachine implements WebObject.Constants {
           Checks properties file for a duplicated properties.
         </p>
         <p>
-          Rationale: Multiple property keys usualy appears after merge
+          Rationale: Multiple property keys usually appears after merge
           or rebase of several branches. While there is no errors in
           runtime, there can be a confusion on having different values
           for the duplicated properties.
@@ -1531,7 +1531,7 @@ public class PID extends StateMachine implements WebObject.Constants {
           </tr>
           <tr>
             <td>allowIfAllCharactersEscaped</td>
-            <td>Allow if all characters in literal are excaped.</td>
+            <td>Allow if all characters in literal are escaped.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
           </tr>
@@ -1632,7 +1632,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
           Checks properties file for a duplicated properties.
         </p>
         <p>
-          Rationale: Multiple property keys usualy appears after merge
+          Rationale: Multiple property keys usually appears after merge
           or rebase of several branches. While there is no errors in
           runtime, there can be a confusion on having different values
           for the duplicated properties.
