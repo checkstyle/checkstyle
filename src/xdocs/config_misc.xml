@@ -215,15 +215,30 @@ messages.properties: Key 'ok' missing.
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>properties</code></td>
           </tr>
+          <tr>
+            <td>basenameSeparator</td>
+            <td>Allows setting file names separator</td>
+            <td><a href="property_types.html#string">String</a></td>
+            <td><code>_</code></td>
+          </tr>
         </table>
       </subsection>
 
       <subsection name="Example">
         <p>
-          To configure the check:
+          To configure the check for files with '_' name separator:
         </p>
         <source>
 &lt;module name=&quot;Translation&quot;/&gt;
+        </source>
+
+        <p>
+          To configure the check for files with user-set name separator:
+        </p>
+        <source>
+&lt;module name=&quot;Translation&quot;&gt;
+    &lt;property name=&quot;basenameSeparator&quot; value=&quot;STRING_LITERAL&quot;/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 

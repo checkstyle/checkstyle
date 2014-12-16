@@ -52,6 +52,18 @@ import java.util.Map.Entry;
  * <pre>
  * &lt;module name="Translation"/&gt;
  * </pre>
+ * Check has a property <b>basenameSeparator</b> which allows setting separator in file names,
+ * default value is '_'.
+ * <p>
+ * E.g.:
+ * </p>
+ * <p>
+ * messages_test.properties //separator is '_'
+ * </p>
+ * <p>
+ * app-dev.properties //separator is '-'
+ * </p>
+ * <br>
  * @author Alexandra Bunge
  * @author lkuehne
  */
