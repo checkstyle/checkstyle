@@ -93,4 +93,51 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
 
         verify(mCheckConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
     }
+
+    @Test
+    public void testSameFileNameFalsePositive() throws Exception
+    {
+        mCheckConfig.addAttribute("illegalClassNames", "java.util.GregorianCalendar, SubCalendar, "
+                + "java.util.List");
+
+        String[] expected = {
+            "12:5: Declaring variables, return values or parameters of type 'SubCalendar' is not allowed.",
+        };
+
+        verify(mCheckConfig, getPath("coding" + File.separator
+                + "InputIllegalTypeSameFileName.java"), expected);
+    }
+
+    @Test
+    public void testSameFileNameGeneral() throws Exception
+    {
+        mCheckConfig.addAttribute("illegalClassNames", "List, GregorianCalendar, java.io.File,"
+                + "java.util.*");
+        String[] expected = {
+            "4:1: Declaring variables, return values or parameters of type 'java.util.*' is not allowed.",
+            "10:5: Declaring variables, return values or parameters of type 'GregorianCalendar' is not allowed.",
+            "16:23: Declaring variables, return values or parameters of type 'GregorianCalendar' is not allowed.",
+            "24:9: Declaring variables, return values or parameters of type 'List' is not allowed.",
+            "25:9: Declaring variables, return values or parameters of type 'java.io.File' is not allowed.",
+        };
+        verify(mCheckConfig, getPath("coding" + File.separator
+                + "InputIllegalTypeSameFileName.java"), expected);
+    }
+
+    @Test
+    public void testStarImports() throws Exception
+    {
+        mCheckConfig.addAttribute("illegalClassNames", "java.util.*, java.*,"
+                + "org.abego.treelayout.*, List");
+
+        String[] expected = {
+            "3:1: Declaring variables, return values or parameters of type 'java.*' is not allowed.",
+            "4:1: Declaring variables, return values or parameters of type 'java.util.*' is not allowed.",
+            "5:1: Declaring variables, return values or parameters of type 'org.abego.treelayout.*' is not allowed.",
+            "10:5: Declaring variables, return values or parameters of type 'List' is not allowed.",
+        };
+
+        verify(mCheckConfig, getPath("coding" + File.separator
+                + "InputIllegalTypeStarImports.java"), expected);
+    }
 }
