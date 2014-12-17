@@ -114,7 +114,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L36">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter2filebasic/rule21filename/OuterTypeFilenameTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter2filebasic/rule21filename/OuterTypeFilenameTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -149,7 +149,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L31">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter2filebasic/rule231filetab/FileTabCharacterTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter2filebasic/rule231filetab/FileTabCharacterTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -168,7 +168,7 @@
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L37">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter2filebasic/rule232specialescape/IllegalTokenTextTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter2filebasic/rule232specialescape/IllegalTokenTextTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -187,7 +187,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L42">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter2filebasic/rule233nonascii/AvoidEscapedUnicodeCharactersCheckTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter2filebasic/rule233nonascii/AvoidEscapedUnicodeCharactersCheckTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -208,7 +208,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L84">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule461verticalwhitespace/EmptyLineSeparatorTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule461verticalwhitespace/EmptyLineSeparatorTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -242,13 +242,13 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L47">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule32packagestate/LineLengthTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule32packagestate/LineLengthTest.java">test</a>
                                 <br />
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L53">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap/NoLineWrapTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap/NoLineWrapTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -278,7 +278,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L51">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule331nowildcard/AvoidStarImportTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule331nowildcard/AvoidStarImportTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -304,13 +304,13 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L47">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule32packagestate/LineLengthTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule32packagestate/LineLengthTest.java">test</a>
                                 <br />
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L53">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap/NoLineWrapTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap/NoLineWrapTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -329,7 +329,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L154">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule333orderingandsoacing/CustomImportOrderTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule333orderingandsoacing/CustomImportOrderTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -358,7 +358,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L52">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule341onetoplevel/OneTopLevelClassTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule341onetoplevel/OneTopLevelClassTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -385,7 +385,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L152">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule3421overloadsplit/OverloadMethodsDeclarationOrderTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule3421overloadsplit/OverloadMethodsDeclarationOrderTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -425,7 +425,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L58">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule411bracesareused/NeedBracesTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule411bracesareused/NeedBracesTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -453,7 +453,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L62">config</a>
                                 <br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/LeftCurlyRightCurlyTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/LeftCurlyRightCurlyTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -471,7 +471,7 @@
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L54">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks/EmptyBlockTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks/EmptyBlockTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -490,7 +490,7 @@
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L142">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4841indentation/IndentationTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4841indentation/IndentationTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -510,7 +510,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L77">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule43onestatement/OneStatementPerLineTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule43onestatement/OneStatementPerLineTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -536,7 +536,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L47">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule32packagestate/LineLengthTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter3filestructure/rule32packagestate/LineLengthTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -571,13 +571,13 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L161">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule451wheretobreack/OperatorWrapTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule451wheretobreack/OperatorWrapTest.java">test</a>
                                 <br />
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L87">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule451wheretobreack/SeparatorWrapTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule451wheretobreack/SeparatorWrapTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -595,7 +595,7 @@
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L142">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4841indentation/IndentationTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4841indentation/IndentationTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -624,7 +624,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L84">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule461verticalwhitespace/EmptyLineSeparatorTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule461verticalwhitespace/EmptyLineSeparatorTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -649,13 +649,13 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L67">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/WhitespaceAroundTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/WhitespaceAroundTest.java">test</a>
                                 <br />
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L132">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/WhitespaceAroundTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/WhitespaceAroundTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -718,7 +718,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L78">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4821onevariablepreline/MultipleVariableDeclarationsTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4821onevariablepreline/MultipleVariableDeclarationsTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -740,7 +740,7 @@
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L155">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4822variabledistance/VariableDeclarationUsageDistanceTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4822variabledistance/VariableDeclarationUsageDistanceTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -776,7 +776,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L79">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4832nocstylearray/ArrayTypeStyleTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4832nocstylearray/ArrayTypeStyleTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -803,7 +803,7 @@
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L142">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4841indentation/IndentationTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4841indentation/IndentationTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -823,7 +823,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L81">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4842fallthrow/FallThroughTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4842fallthrow/FallThroughTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -843,7 +843,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L80">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4843defaultcasepresent/MissingSwitchDefaultTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule4843defaultcasepresent/MissingSwitchDefaultTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -862,7 +862,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L167">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule485annotations/AnnotationLocationTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule485annotations/AnnotationLocationTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -903,7 +903,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L83">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule487modifiers/ModifierOrderTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule487modifiers/ModifierOrderTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -922,7 +922,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L82">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule488numericliterals/UpperEllTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule488numericliterals/UpperEllTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -970,7 +970,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L95">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule521packagenames/PackageNameTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule521packagenames/PackageNameTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -989,7 +989,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L100">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule522typenames/TypeNameTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule522typenames/TypeNameTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1009,7 +1009,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L193">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule523methodnames/MethodNameTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule523methodnames/MethodNameTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1041,7 +1041,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L104">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule525nonconstantfieldnames/MemberNameTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule525nonconstantfieldnames/MemberNameTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1060,7 +1060,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L109">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule526parameternames/ParameterNameTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule526parameternames/ParameterNameTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1079,7 +1079,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L114">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule527localvariablenames/LocalVariableNameTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule527localvariablenames/LocalVariableNameTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1106,7 +1106,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L126">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/ClassMethodTypeParameterNameTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/ClassMethodTypeParameterNameTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1128,7 +1128,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L148">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule53camelcase/AbbreviationAsWordInNameTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter5naming/rule53camelcase/AbbreviationAsWordInNameTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1174,7 +1174,7 @@
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L54">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter6programpractice/rule62donotignoreexceptions/EmptyBlockTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter6programpractice/rule62donotignoreexceptions/EmptyBlockTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1207,7 +1207,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L131">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/maxvetrenko/testproject/blob/master/src/test/java/com/google/checkstyle/test/chapter6programpractice/rule64finalizers/NoFinalizerTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter6programpractice/rule64finalizers/NoFinalizerTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1245,7 +1245,7 @@
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L198">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule711generalform/SingleLineJavadocTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule711generalform/SingleLineJavadocTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1263,7 +1263,7 @@
                             <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L179">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/JavadocParagraphTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/JavadocParagraphTest.java">test</a>
                                     </td>
                         </tr>
                         <tr>
@@ -1291,15 +1291,15 @@
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L180">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/AtclauseOrderTest.java">test</a><br/>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/AtclauseOrderTest.java">test</a><br/>
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L175">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/JavadocTagContinuationIndentationTest.java">test</a><br/>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/JavadocTagContinuationIndentationTest.java">test</a><br/>
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L174">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/NonEmptyAtclauseDescriptionTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/NonEmptyAtclauseDescriptionTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1317,7 +1317,7 @@
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L176">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule72thesummaryfragment/SummaryJavadocTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule72thesummaryfragment/SummaryJavadocTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1338,7 +1338,7 @@
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L184">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/JavadocMethodTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/JavadocMethodTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1356,7 +1356,7 @@
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L184">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/JavadocMethodTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/JavadocMethodTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1375,7 +1375,7 @@
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/google_checks.xml#L184">config</a><br/>
                                 <a
-                                    href="https://github.com/maxvetrenko/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/JavadocMethodTest.java">test</a>
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/JavadocMethodTest.java">test</a>
                             </td>
                         </tr>
                     </tbody>
