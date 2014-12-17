@@ -36,9 +36,41 @@ import java.util.Set;
  * Rationale:
  * Helps reduce coupling on concrete classes. In addition abstract
  * classes should be thought of a convenience base class
- * implementations of interfaces and as such are not types themsleves.
+ * implementations of interfaces and as such are not types themselves.
  * </p>
+ * Check has following properties:
+ * <p>
+ * <b>format</b> - Pattern for illegal class names.
+ * </p>
+ * <p>
+ * <b>legalAbstractClassNames</b> - Abstract classes that may be used as types.
+ * </p>
+ * <p>
+ * <b>illegalClassNames</b> - Classes that should not be used as types in variable
+   declarations, return values or parameters.
+ * It is possible to set illegal class names via short or
+ * <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.7">
+ *  canonical</a> name.
+ *  Specifying illegal type invokes analyzing imports and Check puts violations at
+ *   corresponding declarations
+ *  (of variables, methods or parameters). This helps to avoid ambiguous cases, e.g.:
+ * <p>
+ * <code>java.awt.List</code> was set as illegal class name, then, code like:
+ * <p>
+ * <code>
+ * import java.util.List;<br>
+ * ...<br>
+ * List list; //No violation here
+ * </code>
+ * </p>
+ * will be ok.
+ * </p>
+ * <p>
+ * <b>ignoredMethodNames</b> - Methods that should not be checked..
+ * </p>
+ *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
+ * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 public final class IllegalTypeCheck extends AbstractFormatCheck
 {
@@ -101,6 +133,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
             TokenTypes.METHOD_DEF,
+            TokenTypes.IMPORT,
         };
     }
 
@@ -117,6 +150,9 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
         case TokenTypes.PARAMETER_DEF:
             visitParameterDef(aAST);
             break;
+        case TokenTypes.IMPORT:
+            visitImport(aAST);
+            break;
         default:
             throw new IllegalStateException(aAST.toString());
         }
@@ -124,37 +160,75 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
 
     /**
      * Checks return type of a given method.
-     * @param aAST method for check.
+     * @param aMethodDef method for check.
      */
-    private void visitMethodDef(DetailAST aAST)
+    private void visitMethodDef(DetailAST aMethodDef)
     {
-        if (isCheckedMethod(aAST)) {
-            checkClassName(aAST);
+        if (isCheckedMethod(aMethodDef)) {
+            checkClassName(aMethodDef);
         }
     }
 
     /**
      * Checks type of parameters.
-     * @param aAST parameter list for check.
+     * @param aParamDef parameter list for check.
      */
-    private void visitParameterDef(DetailAST aAST)
+    private void visitParameterDef(DetailAST aParamDef)
     {
-        final DetailAST grandParentAST = aAST.getParent().getParent();
+        final DetailAST grandParentAST = aParamDef.getParent().getParent();
 
         if ((grandParentAST.getType() == TokenTypes.METHOD_DEF)
             && isCheckedMethod(grandParentAST))
         {
-            checkClassName(aAST);
+            checkClassName(aParamDef);
         }
     }
 
     /**
      * Checks type of given variable.
-     * @param aAST variable to check.
+     * @param aVariableDef variable to check.
      */
-    private void visitVariableDef(DetailAST aAST)
+    private void visitVariableDef(DetailAST aVariableDef)
     {
-        checkClassName(aAST);
+        checkClassName(aVariableDef);
+    }
+
+    /**
+     * Checks imported type (as static and star imports are not supported by Check,
+     *  only type is in the consideration).<br>
+     * If this type is illegal due to Check's options - puts violation on it.
+     * @param aImport {@link TokenTypes#IMPORT Import}
+     */
+    private void visitImport(DetailAST aImport)
+    {
+        if (!isStarImport(aImport)) {
+            final String canonicalName = getCanonicalName(aImport);
+            extendIllegalClassNamesWithShortName(canonicalName);
+        }
+    }
+
+    /**
+     * Checks if current import is star import. E.g.:
+     * <p>
+     * <code>
+     * import java.util.*;
+     * </code>
+     * </p>
+     * @param aImport {@link TokenTypes#IMPORT Import}
+     * @return true if it is star import
+     */
+    private static boolean isStarImport(DetailAST aImport)
+    {
+        boolean result = false;
+        DetailAST toVisit = aImport;
+        while (toVisit != null) {
+            toVisit = getNextSubTreeNode(toVisit, aImport);
+            if (toVisit != null && toVisit.getType() == TokenTypes.STAR) {
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
@@ -179,9 +253,79 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      */
     private boolean isMatchingClassName(String aClassName)
     {
-        return mIllegalClassNames.contains(aClassName)
+        final String shortName = aClassName.substring(aClassName.lastIndexOf(".") + 1);
+        return (mIllegalClassNames.contains(aClassName)
+                || mIllegalClassNames.contains(shortName))
             || (!mLegalAbstractClassNames.contains(aClassName)
                 && getRegexp().matcher(aClassName).find());
+    }
+
+    /**
+     * Extends illegal class names set via imported short type name.
+     * @param aCanonicalName
+     *  <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.7">
+     *  Canonical</a> name of imported type.
+     */
+    private void extendIllegalClassNamesWithShortName(String aCanonicalName)
+    {
+        if (mIllegalClassNames.contains(aCanonicalName)) {
+            final String shortName = aCanonicalName.
+                substring(aCanonicalName.lastIndexOf(".") + 1);
+            mIllegalClassNames.add(shortName);
+        }
+    }
+
+    /**
+     * Gets imported type's
+     * <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.7">
+     *  canonical name</a>.
+     * @param aImport {@link TokenTypes#IMPORT Import}
+     * @return Imported canonical type's name.
+     */
+    private static String getCanonicalName(DetailAST aImport)
+    {
+        final StringBuilder canonicalNameBuilder = new StringBuilder();
+        DetailAST toVisit = aImport;
+        while (toVisit != null) {
+            toVisit = getNextSubTreeNode(toVisit, aImport);
+            if (toVisit != null
+                   && (toVisit.getType() == TokenTypes.IDENT
+                      || toVisit.getType() == TokenTypes.STAR))
+            {
+                canonicalNameBuilder.append(toVisit.getText());
+                final DetailAST nextSubTreeNode = getNextSubTreeNode(toVisit, aImport);
+                if (nextSubTreeNode.getType() != TokenTypes.SEMI) {
+                    canonicalNameBuilder.append('.');
+                }
+            }
+        }
+        return canonicalNameBuilder.toString();
+    }
+
+    /**
+     * Gets the next node of a syntactical tree (child of a current node or
+     * sibling of a current node, or sibling of a parent of a current node)
+     * @param aCurrentNodeAst Current node in considering
+     * @param aSubTreeRootAst SubTree root
+     * @return Current node after bypassing, if current node reached the root of a subtree
+     *        method returns null
+     */
+    private static DetailAST
+        getNextSubTreeNode(DetailAST aCurrentNodeAst, DetailAST aSubTreeRootAst)
+    {
+        DetailAST currentNode = aCurrentNodeAst;
+        DetailAST toVisitAst = currentNode.getFirstChild();
+        while (toVisitAst == null) {
+            toVisitAst = currentNode.getNextSibling();
+            if (toVisitAst == null) {
+                if (currentNode.getParent().equals(aSubTreeRootAst)) {
+                    break;
+                }
+                currentNode = currentNode.getParent();
+            }
+        }
+        currentNode = toVisitAst;
+        return currentNode;
     }
 
     /**
@@ -204,12 +348,6 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
         mIllegalClassNames.clear();
         for (String name : aClassNames) {
             mIllegalClassNames.add(name);
-            final int lastDot = name.lastIndexOf(".");
-            if ((lastDot > 0) && (lastDot < (name.length() - 1))) {
-                final String shortName =
-                    name.substring(name.lastIndexOf(".") + 1);
-                mIllegalClassNames.add(shortName);
-            }
         }
     }
 
