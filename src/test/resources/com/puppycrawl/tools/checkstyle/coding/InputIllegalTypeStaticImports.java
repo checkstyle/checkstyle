@@ -1,0 +1,16 @@
+package com.puppycrawl.tools.checkstyle.coding;
+
+import static com.puppycrawl.tools.checkstyle.checks.CheckUtils.isElseIf;
+import static com.puppycrawl.tools.checkstyle.checks.CheckUtils.*;
+import static com.puppycrawl.tools.checkstyle.coding.InputIllegalType.SomeStaticClass;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+//configuration: "illegalClassNames": SomeStaticClass
+public class InputIllegalTypeStaticImports
+{
+     private boolean foo(DetailAST ast) {
+         return isElseIf(ast);
+     }
+     SomeStaticClass staticClass; //WARNING
+     private static SomeStaticClass foo1() { return null;}
+     private static void foo2(SomeStaticClass s) {}
+}
