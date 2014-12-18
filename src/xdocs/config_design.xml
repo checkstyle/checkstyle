@@ -313,9 +313,9 @@ public class StringUtils // not final to allow subclassing
     <section name="MutableException">
       <subsection name="Description">
         <p>
-          Ensures that exception classes (classes with names conforming to
-          some regular expression) are immutable, that is, that they have only final
-          fields.
+          Ensures that exception classes (classes with names conforming to some regular
+          expression and explicitly extending classes with names conforming to other
+          regular expression) are immutable, that is, that they have only final fields.
         </p>
 
         <p>
@@ -348,7 +348,13 @@ public class StringUtils // not final to allow subclassing
             <td>format</td>
             <td>pattern for exception class names</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^.*Exception$|^.*Error$</code></td>
+            <td><code>^.*Exception$|^.*Error$|^.*Throwable$</code></td>
+          </tr>
+          <tr>
+            <td>extendedClassNameFormat</td>
+            <td>pattern for extended class names</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><code>^.*Exception$|^.*Error$|^.*Throwable$</code></td>
           </tr>
         </table>
       </subsection>

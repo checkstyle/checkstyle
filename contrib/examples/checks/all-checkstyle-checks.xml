@@ -281,11 +281,12 @@
             <property name="allowMarkerInterfaces" value="true"/>
         </module>
 
-        <!-- Ensures that exceptions (defined as any class name conforming to some regular expression) are immutable. !-->
-        <!-- That is, have only final fields. !-->
+        <!-- Ensures that exceptions (classes with names conforming to some regular expression and explicitly !-->
+        <!-- extending classes with names conforming to other regular expression) are immutable. !-->
+        <!-- That is, they have only final fields. !-->
         <!-- See http://checkstyle.sf.net/config_design.html !-->
         <module name="MutableException">
-            <property name="format" value="^.*Exception$|^.*Error$"/>
+            <property name="format" value="^.*Exception$|^.*Error$|^.*Throwable$"/>
         </module>
 
         <!-- Restricts throws statements to a specified count. !-->

@@ -637,9 +637,8 @@
         </module>
         
         <!-- See http://checkstyle.sf.net/config_design.html -->
-        <!-- Ensures that exceptions (defined as any class name conforming 
-            to some regular expression) are immutable. That is, have only final fields. -->
-            <!-- <property name="format" value="^.*Exception$|^.*Error$"/> -->
+        <!-- Ensures that exceptions classes are immutable. !-->
+            <!-- <property name="format" value="^.*Exception$|^.*Error$|^.*Throwable$"/> -->
         <module name="MutableException">
         </module>
         
