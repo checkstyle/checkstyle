@@ -281,7 +281,8 @@
             <property name="allowMarkerInterfaces" value="true"/>
         </module>
 
-        <!-- Ensures that exceptions (defined as any class name conforming to some regular expression) are immutable. !-->
+        <!-- Ensures that exceptions (classes with names conforming to some regular expression !-->
+        <!-- and explicitly extending some other classes) are immutable. !-->
         <!-- That is, have only final fields. !-->
         <!-- See http://checkstyle.sf.net/config_design.html !-->
         <module name="MutableException">

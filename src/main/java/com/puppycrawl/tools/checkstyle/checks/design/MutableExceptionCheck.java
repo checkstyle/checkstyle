@@ -24,9 +24,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 
 /**
- * <p> Ensures that exceptions (defined as any class name conforming
- * to some regular expression) are immutable. That is, have only final
- * fields.</p>
+ * <p> Ensures that exceptions (classes with names conforming to some
+ * regular expression and explicitly extending some other classes)
+ * are immutable. That is, have only final fields.</p>
  * <p> Rationale: Exception instances should represent an error
  * condition. Having non final fields not only allows the state to be
  * modified by accident and therefore mask the original condition but
@@ -97,8 +97,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     private void visitClassDef(DetailAST aAST)
     {
         mCheckingStack.push(mChecking ? Boolean.TRUE : Boolean.FALSE);
-        mChecking =
-            isExceptionClass(aAST.findFirstToken(TokenTypes.IDENT).getText());
+        mChecking = isExceptionClass(aAST);
     }
 
     /** Called when we leave class definition. */
@@ -125,11 +124,14 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     }
 
     /**
-     * @param aClassName class name to check
+     * @param aAST class definition node
      * @return true if a given class name confirms specified format
      */
-    private boolean isExceptionClass(String aClassName)
+    private boolean isExceptionClass(DetailAST aAST)
     {
-        return getRegexp().matcher(aClassName).find();
+        final String className = aAST.findFirstToken(TokenTypes.IDENT).getText();
+        final boolean isClassNamedAsException = getRegexp().matcher(className).find();
+        final boolean isExtendsPresent = aAST.findFirstToken(TokenTypes.EXTENDS_CLAUSE) != null;
+        return isClassNamedAsException && isExtendsPresent;
     }
 }
