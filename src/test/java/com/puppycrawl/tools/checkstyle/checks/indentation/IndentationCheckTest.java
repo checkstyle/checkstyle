@@ -60,6 +60,16 @@ public class IndentationCheckTest extends BaseCheckTestSupport
         verify(checkConfig, getPath("indentation/InputAndroidStyle.java"), expected);
     }
 
+    public void testMethodCallLineWrap() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        final String[] expected = {
+            "36: 'method call' child have incorrect indentation level 18, expected level should be 20.",
+            "37: 'method call rparen' have incorrect indentation level 14, expected level should be 16.",
+        };
+        verify(checkConfig, getPath("indentation/InputMethodCallLineWrap.java"), expected);
+    }
+
     @Test
     public void testAnonClassesFromGuava() throws Exception
     {
