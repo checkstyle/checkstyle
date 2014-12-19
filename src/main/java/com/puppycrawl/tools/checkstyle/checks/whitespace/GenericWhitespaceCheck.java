@@ -136,7 +136,7 @@ public class GenericWhitespaceCheck extends Check
                 else if (!Character.isWhitespace(charAfter)
                     && ('(' != charAfter) && (')' != charAfter)
                     && (',' != charAfter) && ('[' != charAfter)
-                    && ('.' != charAfter))
+                    && ('.' != charAfter) && (':' != charAfter))
                 {
                     log(aAST.getLineNo(), after, "ws.illegalFollow", ">");
                 }
