@@ -30,6 +30,27 @@ import org.junit.Test;
 public class IndentationCheckTest extends BaseCheckTestSupport
 {
     @Test
+    public void testAndroidStyle() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("throwsIndent", "8");
+        final String[] expected = {
+            "28: 'extends' have incorrect indentation level 3, expected level should be 8.",
+            "30: 'member def type' have incorrect indentation level 3, expected level should be 4.",
+            "33: 'foo' have incorrect indentation level 8, expected level should be 12.",
+            "36: 'int' have incorrect indentation level 8, expected level should be 12.",
+            "39: 'true' have incorrect indentation level 13, expected level should be 16.",
+            "42: '+' have incorrect indentation level 16, expected level should be 20.",
+            "43: 'if' have incorrect indentation level 8, expected level should be 12.",
+            "46: 'if rcurly' have incorrect indentation level 11, expected level should be 12.",
+            "48: 'method def' child have incorrect indentation level 7, expected level should be 8.",
+        };
+        verify(checkConfig, getPath("indentation/InputAndroidStyle.java"), expected);
+    }
+
+    @Test
     public void testAnonClassesFromGuava() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
