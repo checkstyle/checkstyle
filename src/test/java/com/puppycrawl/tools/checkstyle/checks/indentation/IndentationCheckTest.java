@@ -29,6 +29,16 @@ import org.junit.Test;
  */
 public class IndentationCheckTest extends BaseCheckTestSupport
 {
+
+    @Test
+    public void testZeroCaseLevel() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("caseIndent", "0");
+        final String[] expected = {};
+        verify(checkConfig, getPath("indentation/InputZeroCaseLevel.java"), expected);
+    }
+
     @Test
     public void testAnonClassesFromGuava() throws Exception
     {
