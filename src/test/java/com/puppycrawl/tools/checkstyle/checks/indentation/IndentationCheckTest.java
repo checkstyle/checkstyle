@@ -71,6 +71,18 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
+    public void testDifficultAnnotations() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        final String[] expected = {
+            "29: '@' have incorrect indentation level 0, expected level should be 4.",
+            "30: '@' have incorrect indentation level 0, expected level should be 4.",
+            "39: '@' have incorrect indentation level 6, expected level should be 8.",
+        };
+        verify(checkConfig, getPath("indentation/InputDifficultAnnotations.java"), expected);
+    }
+
+    @Test
     public void testAnonClassesFromGuava() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
