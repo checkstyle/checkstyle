@@ -16,7 +16,7 @@
       <p>Bug fixes:</p>
       <ul>
         <li>
-          Generics in postfix expression before method referencec can be parsed now. Author: Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/339">#339</a>
+          Generics in postfix expression before method references can be parsed now. Author: Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/339">#339</a>
         </li>
         <li>
           ArrayIndexOutOfBoundsException if Indentation and FileContentsFolder are enabled. Author: Ilja Dubinin. <a href="https://github.com/checkstyle/checkstyle/issues/92">#92</a>
@@ -118,7 +118,7 @@
       <ul>
         <li>
           <a href="https://google-styleguide.googlecode.com/svn-history/r130/trunk/javaguide.html">Google style</a>
-          is now covered to maxumum of Checkstyle ability. See detailed report <a href="google_style.html">here</a>. Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
+          is now covered to maximum of Checkstyle ability. See detailed report <a href="google_style.html">here</a>. Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
         </li>
         <li>
           All binaries are now compiled by Jdk6. Jdk5 is not supported any more.
@@ -588,7 +588,7 @@
           Enhanced <a href="config_coding.html#MagicNumber">MagicNumber</a>
           to support the parameter <code>ignoreHashCodeMethod</code> to ignore
           magic numbers in <code>hashCode()</code> methods. Thanks to
-          Daniel Solano Gómez for patch #3050788.
+          Daniel Solano G�mez for patch #3050788.
         </li>
         <li>
           Enhanced
@@ -2625,7 +2625,7 @@
         <li>Added DTD for XML output (request 622157).</li>
         <li>Added an XSL stylesheet to convert XML output to plain text, contributed by Jon Scott Stevens.</li>
         <li>Added a Portuguese localization, contributed by Pedro Morais.</li>
-        <li>Added a Finnish localization, contributed by Ville SkyttÃ¤.</li>
+        <li>Added a Finnish localization, contributed by Ville Skyttä.</li>
         <li>Added a French localization, contributed by Pierre Dittgen.</li>
       </ul>
 
@@ -2679,7 +2679,7 @@
         <li>Incorporate patch 566855 from Rob Worth to optionally check that parenthesis are padded with spaces.</li>
         <li>Incorporate patch 590931 from Vijay Aravamudhan to improve documentation of the build.xml file.</li>
         <li>Incorporate patch from Vijay Aravamudhan to enforce requiring @version tag (request 543964).</li>
-        <li>Incorporate patch 607481 from Ville SkyttÃ¤ to enforce wrap on operator at EOL.</li>
+        <li>Incorporate patch 607481 from Ville Skyttä to enforce wrap on operator at EOL.</li>
       </ul>
 
       <p>
