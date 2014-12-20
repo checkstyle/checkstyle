@@ -53,7 +53,6 @@
         <item name="Block Checks"       href="config_blocks.html"/>
         <item name="Class Design"       href="config_design.html"/>
         <item name="Coding"             href="config_coding.html"/>
-        <item name="Duplicate Code"     href="config_duplicates.html"/>
         <item name="Headers"            href="config_header.html"/>
         <item name="Imports"            href="config_imports.html"/>
         <item name="Javadoc Comments"   href="config_javadoc.html"/>
