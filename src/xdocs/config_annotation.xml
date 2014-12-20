@@ -444,19 +444,19 @@ public String getNameIfPresent() { ... }
           </tr>
           <tr>
             <td>allowSamelineMultipleAnnotations</td>
-            <td>To allow annotation to be located on the same line as taret element.</td>
+            <td>To allow annotation to be located on the same line as target element.</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
            <td><code>false</code></td>
           </tr>
           <tr>
             <td>allowSamelineSingleParameterlessAnnotation</td>
-            <td>To allow single prameterless annotation to be located on the same line as taret element.</td>
+            <td>To allow single prameterless annotation to be located on the same line as target element.</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><code>true</code></td>
           </tr>
           <tr>
             <td>allowSamelineParametrizedAnnotation</td>
-            <td>To allow prameterized annotation to be located on the same line as taret element.</td>
+            <td>To allow parametrized annotation to be located on the same line as target element.</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><code>false</code></td>
           </tr>
@@ -481,7 +481,7 @@ public String getNameIfPresent() { ... }
 &lt;/module&gt;
         </source>
         <p>
-          Example to allow multiple parameterized annotations on the same line
+          Example to allow multiple parametrized annotations on the same line
         </p>
         <source>
 @SuppressWarnings("deprecation") @Mock DataLoader loader;

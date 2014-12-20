@@ -16,7 +16,7 @@
       <p>Bug fixes:</p>
       <ul>
         <li>
-          Generics in postfix expression before method referencec can be parsed now. Author: Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/339">#339</a>
+          Generics in postfix expression before method references can be parsed now. Author: Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/339">#339</a>
         </li>
         <li>
           ArrayIndexOutOfBoundsException if Indentation and FileContentsFolder are enabled. Author: Ilja Dubinin. <a href="https://github.com/checkstyle/checkstyle/issues/92">#92</a>
@@ -118,7 +118,7 @@
       <ul>
         <li>
           <a href="https://google-styleguide.googlecode.com/svn-history/r130/trunk/javaguide.html">Google style</a>
-          is now covered to maxumum of Checkstyle ability. See detailed report <a href="google_style.html">here</a>. Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
+          is now covered to maximum of Checkstyle ability. See detailed report <a href="google_style.html">here</a>. Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
         </li>
         <li>
           All binaries are now compiled by Jdk6. Jdk5 is not supported any more.

@@ -1369,7 +1369,7 @@
                                     src="images/ok_blue.png"
                                     alt="" />
                                 <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
-                                <br/> Overrides are checked by presense of "@Override" annotation on method.
+                                <br/> Overrides are checked by presence of "@Override" annotation on method.
                             </td>
                             <td>
                                 <a
