@@ -60,4 +60,26 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport
         };
         verify(mCheckConfig, getPath("javadoc/InputIncorrectSummaryJavaDocCheck.java"), expected);
     }
+
+    @Test
+    public void testPeriod() throws Exception
+    {
+        mCheckConfig.addAttribute("period", "_");
+        final String[] expected = {
+            "5: First sentence should be present.",
+            "10: First sentence should be present.",
+        };
+
+        verify(mCheckConfig, getPath("javadoc/InputSummaryJavadocCheckPeriod.java"), expected);
+    }
+
+    @Test
+    public void testNoPeriod() throws Exception
+    {
+        mCheckConfig.addAttribute("period", "");
+        final String[] expected = {
+        };
+
+        verify(mCheckConfig, getPath("javadoc/InputSummaryJavadocCheckNoPeriod.java"), expected);
+    }
 }

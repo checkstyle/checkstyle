@@ -43,9 +43,18 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  *     value=&quot;^This method returns.*&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * To specify period symbol at the end of first javadoc sentence - use following config:
+ * <pre>
+ * &lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
+ *     &lt;property name=&quot;period&quot;
+ *     value=&quot;period&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * </p>
  *
  * @author max
- *
+ * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 public class SummaryJavadocCheck extends AbstractJavadocCheck
 {
@@ -56,12 +65,26 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
     private Pattern mForbiddenSummaryFragments = Utils.createPattern("^$");
 
     /**
+     * Period symbol at the end of first javadoc sentence.
+     */
+    private String mPeriod = ".";
+
+    /**
      * Sets custom value of regular expression for forbidden summary fragments.
      * @param aPattern user's value.
      */
     public void setForbiddenSummaryFragments(String aPattern)
     {
         mForbiddenSummaryFragments = Utils.createPattern(aPattern);
+    }
+
+    /**
+     * Sets value of period symbol at the end of first javadoc sentence.
+     * @param aPeriod period's value.
+     */
+    public void setPeriod(String aPeriod)
+    {
+        mPeriod = aPeriod;
     }
 
     @Override
@@ -76,7 +99,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
     public void visitJavadocToken(DetailNode aAst)
     {
         String firstSentence = getFirstSentence(aAst);
-        final int endOfSentence = firstSentence.lastIndexOf(".");
+        final int endOfSentence = firstSentence.lastIndexOf(mPeriod);
         if (endOfSentence == -1) {
             log(aAst.getLineNumber(), "summary.first.sentence");
         }

@@ -954,6 +954,12 @@ public boolean isSomething()
             <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^$</code></td>
           </tr>
+          <tr>
+            <td>period</td>
+            <td>period symbol at the end of first javadoc sentence</td>
+            <td><a href="property_types.html#string">String literal</a></td>
+            <td><code>.</code></td>
+          </tr>
         </table>
       </subsection>
 
@@ -970,6 +976,14 @@ public boolean isSomething()
         <source>
 &lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
     &lt;property name=&quot;forbiddenSummaryFragments&quot; value=&quot;^This method returns.*&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To specify period symbol at the end of first javadoc sentence:
+        </p>
+        <source>
+&lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
+    &lt;property name=&quot;period&quot; value=&quot;STRING_LITERAL&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
