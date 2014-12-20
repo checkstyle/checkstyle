@@ -757,16 +757,7 @@
         </module>
         
     </module>
-    
-    
-    <!-- See http://checkstyle.sf.net/config_duplicates.html -->
-    <!-- Performs a line-by-line comparison of all code lines and 
-        reports duplicate code. -->
-        <!-- <property name="min" value="12"/> -->
-    <module name="StrictDuplicateCode">
-    </module>
-    
-    
+
     <!-- See http://checkstyle.sf.net/config_misc.html#NewlineAtEndOfFile -->
     <!-- Checks whether files end with a new line.                        -->
         <!-- <property name="lineSeparator" value="system"/> -->

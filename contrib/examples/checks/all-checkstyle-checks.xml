@@ -19,21 +19,6 @@
     <property name="charset"        value=""/> JVM file.encoding property
     !-->
 
-
-    <!--
-     !________________________________________________________________________________________
-     !
-     !     D U P L I C A T E S
-     !________________________________________________________________________________________
-     !-->
-    <!-- Performs a line-by-line comparison of all code lines and reports duplicate code. !-->
-    <!-- See http://checkstyle.sf.net/config_duplicates.html !-->
-    <module name="StrictDuplicateCode">
-        <property name="min"            value="12"/>
-        <property name="fileExtensions" value=""/>
-    </module>
-
-
     <!--
      !________________________________________________________________________________________
      !

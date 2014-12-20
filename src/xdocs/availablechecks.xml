@@ -656,12 +656,6 @@
         by the format property.</td>
       </tr>
       <tr>
-        <td><a href="config_duplicates.html#StrictDuplicateCode">StrictDuplicateCode</a></td>
-        <td>Performs a line-by-line comparison of all code lines and reports
-        duplicate code if a sequence of lines differs only in
-        indentation.</td>
-      </tr>
-      <tr>
         <td><a href="config_coding.html#StringLiteralEquality">StringLiteralEquality</a></td>
         <td>Checks that string literals are not used with
         <code>==</code> or <code>&#33;=</code>.</td>
