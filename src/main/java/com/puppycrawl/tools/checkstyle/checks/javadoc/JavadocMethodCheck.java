@@ -50,6 +50,7 @@ import java.util.regex.Pattern;
  * @author Rick Giles
  * @author o_sukhodoslky
  */
+@SuppressWarnings("deprecation")
 public class JavadocMethodCheck extends AbstractTypeAwareCheck
 {
     /** compiled regexp to match Javadoc tags that take an argument * */
