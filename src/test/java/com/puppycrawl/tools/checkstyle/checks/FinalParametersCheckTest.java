@@ -104,4 +104,22 @@ public class FinalParametersCheckTest extends BaseCheckTestSupport
         };
         verify(checkConfig, getPath("InputFinalParameters.java"), expected);
     }
+
+    @Test
+    public void testIgnorePrimitiveTypesParameters() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(FinalParametersCheck.class);
+        checkConfig.addAttribute("ignorePrimitiveTypes", "true");
+        final String[] expected = {
+            "6:22: Parameter k should be final.",
+            "7:15: Parameter s should be final.",
+            "7:25: Parameter o should be final.",
+            "8:15: Parameter array should be final.",
+            "9:31: Parameter s should be final.",
+            "10:22: Parameter l should be final.",
+            "10:32: Parameter s should be final.",
+        };
+        verify(checkConfig, getPath("InputFinalParametersPrimitiveTypes.java"), expected);
+    }
 }

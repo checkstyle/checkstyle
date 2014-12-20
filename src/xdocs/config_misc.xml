@@ -459,6 +459,12 @@ messages.properties: Key 'ok' missing.
             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a></td>
 
           </tr>
+          <tr>
+            <td>ignorePrimitiveTypes</td>
+            <td>ignore primitive types as parameters</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
         </table>
       </subsection>
 
@@ -478,6 +484,16 @@ messages.properties: Key 'ok' missing.
         <source>
 &lt;module name=&quot;FinalParameters&quot;&gt;
     &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check to allow ignoring
+          <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
+           primitive datatypes</a> as parameters:
+        </p>
+        <source>
+&lt;module name=&quot;FinalParameters&quot;&gt;
+    &lt;property name=&quot;ignorePrimitiveTypes&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

@@ -18,6 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.Set;
+
+import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -28,13 +31,55 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * LITERAL_CATCH, FOR_EACH_CLAUSE or any combination of these token
  * types, to control the scope of this check.
  * Default scope is both METHOD_DEF and CONSTRUCTOR_DEF.
+ * <p>
+ * Check has an option <b>ignorePrimitiveTypes</b> which allows ignoring lack of
+ * final modifier at
+ * <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
+ *  primitive datatype</a> parameter. Default value <b>false</b>.
+ * </p>
+ * E.g.:
+ * <p>
+ * <code>
+ * private void foo(int x) { ... } //parameter is of primitive type
+ * </code>
+ * </p>
  *
  * @author lkuehne
  * @author o_sukhodolsky
  * @author Michael Studman
+ * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 public class FinalParametersCheck extends Check
 {
+    /**
+     * Option to ignore primitive types as params.
+     */
+    private boolean mIgnorePrimitiveTypes;
+
+    /**
+     * Sets ignoring primitive types as params.
+     * @param aIgnorePrimitiveTypes true or false.
+     */
+    public void setIgnorePrimitiveTypes(boolean aIgnorePrimitiveTypes)
+    {
+        mIgnorePrimitiveTypes = aIgnorePrimitiveTypes;
+    }
+
+    /**
+     * Contains
+     * <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
+     * primitive datatypes</a>.
+     */
+    private final Set<Integer> mPrimitiveDataTypes = ImmutableSet.of(
+            TokenTypes.LITERAL_BYTE,
+            TokenTypes.LITERAL_SHORT,
+            TokenTypes.LITERAL_INT,
+            TokenTypes.LITERAL_LONG,
+            TokenTypes.LITERAL_FLOAT,
+            TokenTypes.LITERAL_DOUBLE,
+            TokenTypes.LITERAL_BOOLEAN,
+            TokenTypes.LITERAL_CHAR);
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -130,11 +175,29 @@ public class FinalParametersCheck extends Check
      */
     private void checkParam(final DetailAST aParam)
     {
-        if (!aParam.branchContains(TokenTypes.FINAL)) {
+        if (!aParam.branchContains(TokenTypes.FINAL) && !isIgnoredParam(aParam)) {
             final DetailAST paramName = aParam.findFirstToken(TokenTypes.IDENT);
             final DetailAST firstNode = CheckUtils.getFirstNode(aParam);
             log(firstNode.getLineNo(), firstNode.getColumnNo(),
                 "final.parameter", paramName.getText());
         }
+    }
+
+    /**
+     * Checks for skip current param due to <b>ignorePrimitiveTypes</b> option.
+     * @param aParamDef {@link TokenTypes#PARAMETER_DEF PARAMETER_DEF}
+     * @return true if param has to be skipped.
+     */
+    private boolean isIgnoredParam(DetailAST aParamDef)
+    {
+        boolean result = false;
+        if (mIgnorePrimitiveTypes) {
+            final DetailAST parameterType = aParamDef.
+                    findFirstToken(TokenTypes.TYPE).getFirstChild();
+            if (mPrimitiveDataTypes.contains(parameterType.getType())) {
+                result = true;
+            }
+        }
+        return result;
     }
 }
