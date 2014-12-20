@@ -39,6 +39,7 @@ import java.util.Set;
  * implementations of interfaces and as such are not types themsleves.
  * </p>
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
+ * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 public final class IllegalTypeCheck extends AbstractFormatCheck
 {
@@ -101,6 +102,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
             TokenTypes.METHOD_DEF,
+            TokenTypes.IMPORT,
         };
     }
 
@@ -117,6 +119,11 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
         case TokenTypes.PARAMETER_DEF:
             visitParameterDef(aAST);
             break;
+        case TokenTypes.IMPORT:
+            visitImport(aAST);
+            final String packageMember = getPackageMember(aAST);
+            extendIllegalClassNamesWithPackageMember(packageMember);
+            break;
         default:
             throw new IllegalStateException(aAST.toString());
         }
@@ -124,37 +131,79 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
 
     /**
      * Checks return type of a given method.
-     * @param aAST method for check.
+     * @param aMethodDef method for check.
      */
-    private void visitMethodDef(DetailAST aAST)
+    private void visitMethodDef(DetailAST aMethodDef)
     {
-        if (isCheckedMethod(aAST)) {
-            checkClassName(aAST);
+        if (isCheckedMethod(aMethodDef)) {
+            checkClassName(aMethodDef);
         }
     }
 
     /**
      * Checks type of parameters.
-     * @param aAST parameter list for check.
+     * @param aParamDef parameter list for check.
      */
-    private void visitParameterDef(DetailAST aAST)
+    private void visitParameterDef(DetailAST aParamDef)
     {
-        final DetailAST grandParentAST = aAST.getParent().getParent();
+        final DetailAST grandParentAST = aParamDef.getParent().getParent();
 
         if ((grandParentAST.getType() == TokenTypes.METHOD_DEF)
             && isCheckedMethod(grandParentAST))
         {
-            checkClassName(aAST);
+            checkClassName(aParamDef);
         }
     }
 
     /**
      * Checks type of given variable.
-     * @param aAST variable to check.
+     * @param aVariableDef variable to check.
      */
-    private void visitVariableDef(DetailAST aAST)
+    private void visitVariableDef(DetailAST aVariableDef)
     {
-        checkClassName(aAST);
+        checkClassName(aVariableDef);
+    }
+
+    /**
+     * Checks imported
+     * <a href="https://docs.oracle.com/javase/tutorial/java/package/usepkgs.html">
+     *  package member</a>.<br>
+     * If this member is illegal due to Check's options - puts violation on it.
+     * @param aImport {@link TokenTypes#IMPORT Import}
+     */
+    private void visitImport(DetailAST aImport)
+    {
+        if (isStarImport(aImport)) {
+            final String packageMember = getPackageMember(aImport);
+            if (isMatchingClassName(packageMember)) {
+                log(aImport.getLineNo(), aImport.getColumnNo(),
+                    "illegal.type", packageMember);
+            }
+        }
+    }
+
+    /**
+     * Checks if current import is star import. E.g.:
+     * <p>
+     * <code>
+     * import java.util.*;
+     * </code>
+     * </p>
+     * @param aImport {@link TokenTypes#IMPORT Import}
+     * @return true if it is star import
+     */
+    private static boolean isStarImport(DetailAST aImport)
+    {
+        boolean result = false;
+        DetailAST toVisit = aImport;
+        while (toVisit != null) {
+            toVisit = getNextSubTreeNode(toVisit, aImport);
+            if (toVisit != null && toVisit.getType() == TokenTypes.STAR) {
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
@@ -185,6 +234,76 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     }
 
     /**
+     * Extends illegal class names set via imported
+     * <a href="https://docs.oracle.com/javase/tutorial/java/package/usepkgs.html">
+     *  package member</a>.
+     * @param aPackageMember Imported package member
+     */
+    private void extendIllegalClassNamesWithPackageMember(String aPackageMember)
+    {
+        if (mIllegalClassNames.contains(aPackageMember)) {
+            final String shortName = aPackageMember.
+                substring(aPackageMember.lastIndexOf(".") + 1);
+            if (!"*".equals(shortName)) {
+                mIllegalClassNames.add(shortName);
+            }
+        }
+    }
+
+    /**
+     * Gets imported
+     * <a href="https://docs.oracle.com/javase/tutorial/java/package/usepkgs.html">
+     *  package member</a>.
+     * @param aImport {@link TokenTypes#IMPORT Import}
+     * @return Imported package member
+     */
+    private static String getPackageMember(DetailAST aImport)
+    {
+        final StringBuilder packageBuilder = new StringBuilder();
+        DetailAST toVisit = aImport;
+        while (toVisit != null) {
+            toVisit = getNextSubTreeNode(toVisit, aImport);
+            if (toVisit != null
+                   && (toVisit.getType() == TokenTypes.IDENT
+                      || toVisit.getType() == TokenTypes.STAR))
+            {
+                packageBuilder.append(toVisit.getText());
+                final DetailAST nextSubTreeNode = getNextSubTreeNode(toVisit, aImport);
+                if (nextSubTreeNode.getType() != TokenTypes.SEMI) {
+                    packageBuilder.append('.');
+                }
+            }
+        }
+        return packageBuilder.toString();
+    }
+
+    /**
+     * Gets the next node of a syntactical tree (child of a current node or
+     * sibling of a current node, or sibling of a parent of a current node)
+     * @param aCurrentNodeAst Current node in considering
+     * @param aSubTreeRootAst SubTree root
+     * @return Current node after bypassing, if current node reached the root of a subtree
+     *        method returns null
+     */
+    private static DetailAST
+        getNextSubTreeNode(DetailAST aCurrentNodeAst, DetailAST aSubTreeRootAst)
+    {
+        DetailAST currentNode = aCurrentNodeAst;
+        DetailAST toVisitAst = currentNode.getFirstChild();
+        while (toVisitAst == null) {
+            toVisitAst = currentNode.getNextSibling();
+            if (toVisitAst == null) {
+                if (currentNode.getParent().equals(aSubTreeRootAst)) {
+                    break;
+                }
+                currentNode = currentNode.getParent();
+            }
+        }
+        currentNode = toVisitAst;
+        return currentNode;
+    }
+
+    /**
      * @param aAST method def to check.
      * @return true if we should check this method.
      */
@@ -204,12 +323,6 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
         mIllegalClassNames.clear();
         for (String name : aClassNames) {
             mIllegalClassNames.add(name);
-            final int lastDot = name.lastIndexOf(".");
-            if ((lastDot > 0) && (lastDot < (name.length() - 1))) {
-                final String shortName =
-                    name.substring(name.lastIndexOf(".") + 1);
-                mIllegalClassNames.add(shortName);
-            }
         }
     }
 
