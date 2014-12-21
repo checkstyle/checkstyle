@@ -58,3 +58,8 @@ enum E {
     @Another({"foo", "bar"}) //compact style
     String value1() default "";
 }
+
+@SomeArrays(pooches = {})
+@Another({})
+class Closing {
+}
