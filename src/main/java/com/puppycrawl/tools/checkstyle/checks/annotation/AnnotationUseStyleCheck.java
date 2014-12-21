@@ -416,6 +416,8 @@ public final class AnnotationUseStyleCheck extends Check
         }
         else if (ClosingParens.NEVER.equals(this.mParens)
             && !aAST.branchContains(TokenTypes.EXPR)
+            && !aAST.branchContains(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
+            && !aAST.branchContains(TokenTypes.ANNOTATION_ARRAY_INIT)
             && parenExists)
         {
             this.log(aAST.getLineNo(), "annotation.parens.present");
