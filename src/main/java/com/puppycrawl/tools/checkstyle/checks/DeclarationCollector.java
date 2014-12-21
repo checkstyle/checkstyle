@@ -144,10 +144,10 @@ public abstract class DeclarationCollector extends Check
                 final DetailAST mods =
                     aAST.findFirstToken(TokenTypes.MODIFIERS);
                 if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
-                    ((ClassFrame) frame).addStaticMember(name);
+                    ((ClassFrame) frame).addStaticMethod(name);
                 }
                 else {
-                    ((ClassFrame) frame).addInstanceMember(name);
+                    ((ClassFrame) frame).addInstanceMethod(name);
                 }
             }
         }
@@ -187,13 +187,25 @@ public abstract class DeclarationCollector extends Check
     /**
      * Check if given name is a name for class field in current environment.
      * @param aName a name to check
-     * @return true is the given name is name of method or member.
+     * @return true is the given name is name of member.
      */
     protected final boolean isClassField(String aName)
     {
         final LexicalFrame frame = findFrame(aName);
         return (frame instanceof ClassFrame)
                 && ((ClassFrame) frame).hasInstanceMember(aName);
+    }
+
+    /**
+     * Check if given name is a name for class method in current environment.
+     * @param aName a name to check
+     * @return true is the given name is name of method.
+     */
+    protected final boolean isClassMethod(String aName)
+    {
+        final LexicalFrame frame = findFrame(aName);
+        return (frame instanceof ClassFrame)
+                && ((ClassFrame) frame).hasInstanceMethod(aName);
     }
 
     /**
@@ -312,8 +324,12 @@ public abstract class DeclarationCollector extends Check
     {
         /** Set of name of instance members declared in this frame. */
         private final Set<String> mInstanceMembers;
+        /** Set of name of instance methods declared in this frame. */
+        private final Set<String> mInstanceMethods;
         /** Set of name of variables declared in this frame. */
         private final Set<String> mStaticMembers;
+        /** Set of name of static methods declared in this frame. */
+        private final Set<String> mStaticMethods;
 
         /**
          * Creates new instance of ClassFrame
@@ -323,7 +339,9 @@ public abstract class DeclarationCollector extends Check
         {
             super(aParent);
             mInstanceMembers = Sets.newHashSet();
+            mInstanceMethods = Sets.newHashSet();
             mStaticMembers = Sets.newHashSet();
+            mStaticMethods = Sets.newHashSet();
         }
 
         /**
@@ -336,12 +354,30 @@ public abstract class DeclarationCollector extends Check
         }
 
         /**
+         * Adds static method's name.
+         * @param aName a name of static method of the class
+         */
+        public void addStaticMethod(final String aName)
+        {
+            mStaticMethods.add(aName);
+        }
+
+        /**
          * Adds instance member's name.
          * @param aName a name of instance member of the class
          */
         public void addInstanceMember(final String aName)
         {
             mInstanceMembers.add(aName);
+        }
+
+        /**
+         * Adds instance method's name.
+         * @param aName a name of instance method of the class
+         */
+        public void addInstanceMethod(final String aName)
+        {
+            mInstanceMethods.add(aName);
         }
 
         /**
@@ -355,12 +391,25 @@ public abstract class DeclarationCollector extends Check
             return mInstanceMembers.contains(aName);
         }
 
+        /**
+         * Checks if a given name is a known instance method of the class.
+         * @param aName a name to check
+         * @return true is the given name is a name of a known
+         *         instance method of the class
+         */
+        public boolean hasInstanceMethod(final String aName)
+        {
+            return mInstanceMethods.contains(aName);
+        }
+
         @Override
         boolean contains(String aNameToFind)
         {
             return super.contains(aNameToFind)
                     || mInstanceMembers.contains(aNameToFind)
-                    || mStaticMembers.contains(aNameToFind);
+                    || mInstanceMethods.contains(aNameToFind)
+                    || mStaticMembers.contains(aNameToFind)
+                    || mStaticMethods.contains(aNameToFind);
         }
     }
 

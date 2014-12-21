@@ -148,7 +148,7 @@ public class RequireThisCheck extends DeclarationCollector
 
         // let's check method calls
         if (parentType == TokenTypes.METHOD_CALL) {
-            if (mCheckMethods && isClassField(aAST.getText())) {
+            if (mCheckMethods && isClassMethod(aAST.getText())) {
                 log(aAST, "require.this.method", aAST.getText());
             }
             return;
