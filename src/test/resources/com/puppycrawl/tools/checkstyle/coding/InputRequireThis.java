@@ -1,6 +1,9 @@
 package com.puppycrawl.tools.checkstyle.coding;
 
 import java.awt.Toolkit;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class InputRequireThis {
     int i;
@@ -91,4 +94,15 @@ class Bug1155921 {
 interface Issue155 {
     String BASE = "A";
     String EXT = BASE + "B";
+}
+
+class Issue257 {
+    public void foo() {
+        try (final InputStream foo = new ByteArrayInputStream(new byte[512])) {
+            foo.read();
+        }
+        catch (final IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

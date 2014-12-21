@@ -31,12 +31,11 @@ public class RequireThisCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(RequireThisCheck.class);
         final String[] expected = {
-            "8:9: Reference to instance variable 'i' needs \"this.\".",
-            "14:9: Method call to 'method1' needs \"this.\".",
-            "28:9: Reference to instance variable 'i' needs \"this.\".",
-            "46:13: Reference to instance variable 'z' needs \"this.\".",
-            "53:9: Reference to instance variable 'z' needs \"this.\".",
-//              "13:9: Unable find where 'j' is declared.",
+            "11:9: Reference to instance variable 'i' needs \"this.\".",
+            "17:9: Method call to 'method1' needs \"this.\".",
+            "31:9: Reference to instance variable 'i' needs \"this.\".",
+            "49:13: Reference to instance variable 'z' needs \"this.\".",
+            "56:9: Reference to instance variable 'z' needs \"this.\".",
         };
         verify(checkConfig,
                getPath("coding" + File.separator + "InputRequireThis.java"),
@@ -50,7 +49,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport
             createCheckConfig(RequireThisCheck.class);
         checkConfig.addAttribute("checkFields", "false");
         final String[] expected = {
-            "14:9: Method call to 'method1' needs \"this.\".",
+            "17:9: Method call to 'method1' needs \"this.\".",
         };
         verify(checkConfig,
                getPath("coding" + File.separator + "InputRequireThis.java"),
@@ -64,11 +63,10 @@ public class RequireThisCheckTest extends BaseCheckTestSupport
             createCheckConfig(RequireThisCheck.class);
         checkConfig.addAttribute("checkMethods", "false");
         final String[] expected = {
-            "8:9: Reference to instance variable 'i' needs \"this.\".",
-            "28:9: Reference to instance variable 'i' needs \"this.\".",
-            "46:13: Reference to instance variable 'z' needs \"this.\".",
-            "53:9: Reference to instance variable 'z' needs \"this.\".",
-//              "13:9: Unable find where 'j' is declared.",
+            "11:9: Reference to instance variable 'i' needs \"this.\".",
+            "31:9: Reference to instance variable 'i' needs \"this.\".",
+            "49:13: Reference to instance variable 'z' needs \"this.\".",
+            "56:9: Reference to instance variable 'z' needs \"this.\".",
         };
         verify(checkConfig,
                getPath("coding" + File.separator + "InputRequireThis.java"),
