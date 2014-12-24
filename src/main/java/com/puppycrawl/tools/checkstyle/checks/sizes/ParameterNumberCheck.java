@@ -69,8 +69,8 @@ public class ParameterNumberCheck
     /** {@link Override Override} annotation name */
     private static final String OVERRIDE = "Override";
 
-    /** fully-qualified {@link Override Override} annotation name */
-    private static final String FQ_OVERRIDE = "java.lang." + OVERRIDE;
+    /** canonical {@link Override Override} annotation name */
+    private static final String CANONICAL_OVERRIDE = "java.lang." + OVERRIDE;
 
     /** default maximum number of allowed parameters */
     private static final int DEFAULT_MAX_PARAMETERS = 7;
@@ -128,6 +128,6 @@ public class ParameterNumberCheck
         //if you override a method, you have no power over the number of parameters
         return mIgnoreOverriddenMethods
                 && (AnnotationUtility.containsAnnotation(aAST, OVERRIDE)
-                || AnnotationUtility.containsAnnotation(aAST, FQ_OVERRIDE));
+                || AnnotationUtility.containsAnnotation(aAST, CANONICAL_OVERRIDE));
     }
 }

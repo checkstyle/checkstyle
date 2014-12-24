@@ -73,6 +73,7 @@ public class ParameterNumberCheckTest
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
         final String[] expected = {
             "6:10: More than 7 parameters (found 8).",
+            "11:10: More than 7 parameters (found 8).",
         };
         verify(checkConfig, getPath("InputParameterNumberCheck.java"), expected);
     }
