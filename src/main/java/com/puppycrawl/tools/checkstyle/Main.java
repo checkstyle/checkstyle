@@ -49,7 +49,6 @@ public final class Main
     private static final Options OPTS = new Options();
     static {
         OPTS.addOption("c", true, "The check configuration file to use.");
-        OPTS.addOption("r", true, "Traverse the directory for source files");
         OPTS.addOption("o", true, "Sets the output file. Defaults to stdout");
         OPTS.addOption("p", true, "Loads the properties file");
         OPTS.addOption(
@@ -169,19 +168,12 @@ public final class Main
     private static List<File> getFilesToProcess(CommandLine aLine)
     {
         final List<File> files = Lists.newLinkedList();
-        if (aLine.hasOption("r")) {
-            final String[] values = aLine.getOptionValues("r");
-            for (String element : values) {
-                traverse(new File(element), files);
-            }
-        }
-
         final String[] remainingArgs = aLine.getArgs();
         for (String element : remainingArgs) {
-            files.add(new File(element));
+            traverse(new File(element), files);
         }
 
-        if (files.isEmpty() && !aLine.hasOption("r")) {
+        if (files.isEmpty()) {
             System.out.println("Must specify files to process");
             usage();
         }
