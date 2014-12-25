@@ -1600,6 +1600,13 @@ if (&quot;something&quot;.equals(x))
             <td><a href="property_types.html#stringSet">list of strings</a></td>
             <td><code>finalize</code></td>
           </tr>
+          <tr>
+            <td>ignoreOverridenMethods</td>
+            <td>ignore checking overriden methods (marked with Override or java.lang.Override
+             annotation).</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
         </table>
       </subsection>
 
@@ -1609,6 +1616,30 @@ if (&quot;something&quot;.equals(x))
         </p>
         <source>
 &lt;module name=&quot;IllegalThrows&quot;/&gt;
+        </source>
+        <p>
+          To configure the check rejecting throws NullPointerException from methods:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalThrows&quot;&gt;
+    &lt;property name=&quot;illegalClassNames&quot; value=&quot;NullPointerException&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check ignoring method named &quot;foo()&quot;:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalThrows&quot;&gt;
+    &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;foo&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check to warn on overriden methods:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalThrows&quot;&gt;
+    &lt;property name=&quot;ignoreOverridenMethods&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 

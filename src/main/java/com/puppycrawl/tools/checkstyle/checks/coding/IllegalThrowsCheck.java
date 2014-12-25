@@ -19,15 +19,32 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.google.common.collect.Sets;
+import com.puppycrawl.tools.checkstyle.api.AnnotationUtility;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.Set;
 
 /**
+ * <p>
  * Throwing java.lang.Error or java.lang.RuntimeException
  * is almost never acceptable.
+ * </p>
+ * Check has following properties:
+ * <p>
+ * <b>illegalClassNames</b> - throw class names to reject.
+ * </p>
+ * <p>
+ * <b>ignoredMethodNames</b> - names of methods to ignore.
+ * </p>
+ * <p>
+ * <b>ignoreOverridenMethods</b> - ignore checking overriden methods (marked with Override
+ *  or java.lang.Override annotation) default value is <b>true</b>.
+ * </p>
+ *
  * @author Oliver Burn
+ * @author John Sirois
+ * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 public final class IllegalThrowsCheck extends AbstractIllegalCheck
 {
@@ -36,6 +53,9 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
     private static final String[] DEFAULT_IGNORED_METHOD_NAMES = {
         "finalize",
     };
+
+    /** property for ignoring overriden methods. */
+    private boolean mIgnoreOverridenMethods = true;
 
     /** methods which should be ignored. */
     private final Set<String> mIgnoredMethodNames = Sets.newHashSet();
@@ -67,11 +87,10 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
     @Override
     public void visitToken(DetailAST aDetailAST)
     {
+        final DetailAST methodDef = aDetailAST.getParent();
         DetailAST token = aDetailAST.getFirstChild();
         // Check if the method with the given name should be ignored.
-        if (!(shouldIgnoreMethod(aDetailAST.getParent().findFirstToken(
-                                     TokenTypes.IDENT).getText())))
-        {
+        if (!isIgnorableMethod(methodDef)) {
             while (token != null) {
                 if (token.getType() != TokenTypes.COMMA) {
                     final FullIdent ident = FullIdent.createFullIdent(token);
@@ -82,6 +101,19 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
                 token = token.getNextSibling();
             }
         }
+    }
+
+    /**
+     * Checks if current method is ignorable due to Check's properties.
+     * @param aMethodDef {@link TokenTypes#METHOD_DEF METHOD_DEF}
+     * @return true if method is ignorable.
+     */
+    private boolean isIgnorableMethod(DetailAST aMethodDef)
+    {
+        return shouldIgnoreMethod(aMethodDef.findFirstToken(TokenTypes.IDENT).getText())
+            || mIgnoreOverridenMethods
+               && (AnnotationUtility.containsAnnotation(aMethodDef, "Override")
+                  || AnnotationUtility.containsAnnotation(aMethodDef, "java.lang.Override"));
     }
 
     /**
@@ -104,5 +136,14 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
         for (String element : aMethodNames) {
             mIgnoredMethodNames.add(element);
         }
+    }
+
+    /**
+     * Sets <b>ignoreOverridenMethods</b> property value.
+     * @param aIgnoreOverridenMethods Check's property.
+     */
+    public void setIgnoreOverridenMethods(boolean aIgnoreOverridenMethods)
+    {
+        this.mIgnoreOverridenMethods = aIgnoreOverridenMethods;
     }
 }
