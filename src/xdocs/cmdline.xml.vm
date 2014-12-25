@@ -28,7 +28,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      com.puppycrawl.tools.checkstyle.Main \
      -c &lt;configurationFile&gt; \
      [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
-     [-r &lt;dir&gt;] file...
+     file...
       </source>
       </p>
 
@@ -61,10 +61,6 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         <li>
           <code>-o file</code> - specify the file to output
           to.
-        </li>
-        <li>
-          <code>-r dir</code> - specify the directory to
-          traverse for Java source files.
         </li>
       </ul>
 
@@ -120,7 +116,7 @@ mvn clean compile
         Run validation with arguments:
         <source>
 mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" \
-              -Dexec.args="-c sun_checks.xml -r src/main/java "
+              -Dexec.args="-c sun_checks.xml src/main/java "
         </source>
         Run UI application for file :
         <source>
@@ -160,7 +156,7 @@ java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
       </p>
       <source>
 java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
-     -r src/
+     src/
       </source>
 
       <p>
