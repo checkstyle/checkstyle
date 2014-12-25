@@ -498,16 +498,6 @@
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
         <module name="ParameterAssignment"/>
 
-        <!-- Checks for redundant exceptions declared in throws clause such as duplicates, !-->
-        <!-- unchecked exceptions or subclasses of another declared exception. !-->
-        <!-- See http://checkstyle.sf.net/config_coding.html !-->
-        <module name="RedundantThrows">
-            <property name="allowUnchecked"     value="false"/>
-            <property name="allowSubclasses"    value="false"/>
-            <property name="logLoadErrors"      value="true"/>
-            <property name="suppressLoadErrors" value="false"/>
-        </module>
-
         <!-- Checks that code doesn't rely on the "this." default. !-->
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
         <module name="RequireThis">
