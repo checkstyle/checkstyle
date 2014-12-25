@@ -92,4 +92,22 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalThrowsCheck.java"), expected);
     }
+
+    /**
+     * Test to validate the IllegalThrowsCheck with <b>ignoreOverridenMethods</b>
+     * property.
+     * @throws Exception
+     */
+    @Test
+    public void testIgnoreOverridenMethods() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
+
+        String[] expected = {
+
+        };
+
+        verify(checkConfig, getPath("coding" + File.separator
+                + "InputIllegalThrowsCheckIgnoreOverridenMethods.java"), expected);
+    }
 }
