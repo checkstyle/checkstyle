@@ -11,6 +11,113 @@
 
   <body>
 
+    <section name="Release 6.2">
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Serious compatibility problems with versions 5.9, 6.0 and 6.1 . Author: Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/505">#505</a>
+        </li>
+        <li>
+          Added basenameSeparator configuration option for TranslationCheck. Author: Alex Kravin, pulse00 <a href="https://github.com/checkstyle/checkstyle/pull/149">#149</a>
+        </li>
+        <li>
+          Added google and sun configs to jar. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/305">#305</a>
+        </li>
+        <li>
+          Added UT for lambda expressions for InnerAssignmentCheck. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/377">#377</a>
+        </li>
+        <li>
+          Build and install the tests jar artifact. Author: Peter Palaga <a href="https://github.com/checkstyle/checkstyle/pull/477">#477</a>
+        </li>
+        <li>
+          Final Local Variable Check, fixed false-positive - native method's param should be declared final. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/158">#158</a>
+        </li>
+        <li>
+          Final Parameters Check, added option allows ignoring primitive types as params. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/446">#446</a>
+        </li>
+        <li>
+          Unsatisfiable Indentation module scenario with difficult annotations. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/321">#321</a>
+        </li>
+        <li>
+          Fixed false-positive in GenericWhitespaceCheck. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/51">#51</a>
+        </li>
+        <li>
+          Fix InnerAssignment check for lambda expressions. Author: Evan Cahill
+        </li>
+        <li>
+          Generic Whitespace Check, fixed bug - '>' is followed by an illegal character. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/350">#350</a>
+        </li>
+        <li>
+          InnerTypeLast within methods. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/6">#6</a>
+        </li>
+        <li>
+          AnnotationUseStyle closingParens check failed. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/131">#131</a>
+        </li>
+        <li>
+          RequireThis triggers when try-with-resources defines resource with same name as method. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/257">#257</a>
+        </li>
+        <li>
+          NullPointerException with SuppressWarningsHolder and enum fields. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/353">#353</a>
+        </li>
+        <li>
+          ParameterNumber check option to ignore methods with an @Override. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/66">#66</a>
+        </li>
+        <li>
+          MutableException check requires class to explicitly extend some other class. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/60">#60</a>
+        </li>
+        <li>
+          Need Braces, added option which allows one line if-statements without braces. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/300">#300</a>
+        </li>
+        <li>
+          Redundant Modifier Check fixed bug with warning on final variables in default methods. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/364">#364</a>
+        </li>
+        <li>
+          Redundant Modifier Check, fixed false-positive Redundant modifier final error for @SafeVarargs method. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/301">#301</a>
+        </li>
+        <li>
+          Summary Javadoc Check, added 'specify period' option. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/472">#472</a>
+        </li>
+        <li>
+          Suppress Warnings Check, annotation param in constant. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/268">#268</a>
+        </li>
+        <li>
+          Suppress Warnings Check, annotation param in constant. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/268">#268</a>
+        </li>
+      </ul>
+      <p>Breaking backward compatibility:</p>
+      <ul>
+        <li>
+          Checkstyle is switched to jdk7. Author: Roman Ivanov. <a href="https://github.com/checkstyle/checkstyle/commit/1712a2a0fee0f37a80e611e6b2c00517113eafb5">commit</a>.
+        </li>
+        <li>
+          Abstract Aware Type Check marked as deprecated, removed Redundant Throws Check. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/473">#473</a>
+        </li>
+        <li>
+          JUnitTestCaseCheck was removed from Checkstyle. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/457">#457</a>
+        </li>
+        <li>
+          Remove StrictDuplicateCodeCheck and whole package. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/523">#523</a>
+        </li>
+        <li>
+          removing ignoreDirectoryName option from PackageDeclarationCheck. Author: Ivan Sopov <a href="https://github.com/checkstyle/checkstyle/pull/209">#209</a>
+        </li>
+      </ul>
+      <p>Notes:</p>
+      <ul>
+        <li>
+          All UTs Inputs are now compilable. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/308">#308</a>
+        </li>
+        <li>
+          Fix for typos in documentation, fixes for Sonar violations, pom formatting, latest JUnit 4.12, .... . Author: Michal Kordas
+        </li>
+        <li>
+          <a href="https://github.com/checkstyle/google-style-config-test">google-style-config-test</a> project for Google style is introduces, google_style wiki was updated. Author: Max Vetrenko
+        </li>
+        <li>
+          New maven profile "assembly" for quick build without any report and checks has been created . Author: Ilja Dubinin
+        </li>
+      </ul>
+    </section>
 
     <section name="Release 6.1.1">
       <p>Bug fixes:</p>
