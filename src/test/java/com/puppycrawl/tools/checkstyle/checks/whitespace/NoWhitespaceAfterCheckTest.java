@@ -78,21 +78,4 @@ public class NoWhitespaceAfterCheckTest
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
 
-    @Test
-    public void testArrayDeclarations() throws Exception
-    {
-        checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
-        final String[] expected = {
-            "6:11: 'Object' is followed by whitespace.",
-            "8:22: 'someStuff3' is followed by whitespace.",
-            "9:8: 'int' is followed by whitespace.",
-            "10:13: 's' is followed by whitespace.",
-            "11:13: 'd' is followed by whitespace.",
-            "16:14: 'get' is followed by whitespace.",
-            "18:8: 'int' is followed by whitespace.",
-            "19:34: 'get1' is followed by whitespace.",
-        };
-        verify(checkConfig, getPath("whitespace/InputNoWhitespaceAfterArrayDeclarations.java"), expected);
-    }
-
 }

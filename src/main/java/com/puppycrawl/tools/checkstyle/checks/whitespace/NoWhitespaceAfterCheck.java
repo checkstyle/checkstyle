@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that there is no whitespace after a token.
  * More specifically, it checks that it is not followed by whitespace,
  * or (if linebreaks are allowed) all characters on the line after are
- * whitespace. To forbid linebreaks after a token, set property
+ * whitespace. To forbid linebreaks afer a token, set property
  * allowLineBreaks to false.
  * </p>
   * <p> By default the check will check the following operators:
@@ -39,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  {@link TokenTypes#INC INC},
  *  {@link TokenTypes#LNOT LNOT},
  *  {@link TokenTypes#UNARY_MINUS UNARY_MINUS},
- *  {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR},
  *  {@link TokenTypes#UNARY_PLUS UNARY_PLUS}. It also supports the operator
  *  {@link TokenTypes#TYPECAST TYPECAST}.
  * </p>
@@ -79,7 +78,6 @@ public class NoWhitespaceAfterCheck extends Check
             TokenTypes.BNOT,
             TokenTypes.LNOT,
             TokenTypes.DOT,
-            TokenTypes.ARRAY_DECLARATOR,
         };
     }
 
@@ -96,7 +94,6 @@ public class NoWhitespaceAfterCheck extends Check
             TokenTypes.LNOT,
             TokenTypes.DOT,
             TokenTypes.TYPECAST,
-            TokenTypes.ARRAY_DECLARATOR,
         };
     }
 
@@ -107,30 +104,9 @@ public class NoWhitespaceAfterCheck extends Check
         if (targetAST.getType() == TokenTypes.TYPECAST) {
             targetAST = targetAST.findFirstToken(TokenTypes.RPAREN);
         }
-        else {
-            if (targetAST.getType() == TokenTypes.ARRAY_DECLARATOR) {
-                final DetailAST arrayType = targetAST.getFirstChild();
-                if (!isCstyleArrayDeclaration(targetAST)) {
-                    targetAST = arrayType;
-                }
-                else {
-                    targetAST = targetAST.getParent().getNextSibling();
-                }
-            }
-        }
         final String line = getLine(aAST.getLineNo() - 1);
-        int after = 0;
-        //If target of possible redundant whitespace is in method definition
-        if (targetAST.getType() == TokenTypes.IDENT
-                && targetAST.getNextSibling().getType() == TokenTypes.LPAREN)
-        {
-            final DetailAST methodDef = targetAST.getParent();
-            final DetailAST endOfParams = methodDef.findFirstToken(TokenTypes.RPAREN);
-            after = endOfParams.getColumnNo() + 1;
-        }
-        else {
-            after = targetAST.getColumnNo() + targetAST.getText().length();
-        }
+        final int after =
+            targetAST.getColumnNo() + targetAST.getText().length();
 
         if ((after >= line.length())
             || Character.isWhitespace(line.charAt(after)))
@@ -156,28 +132,5 @@ public class NoWhitespaceAfterCheck extends Check
     public void setAllowLineBreaks(boolean aAllowLineBreaks)
     {
         mAllowLineBreaks = aAllowLineBreaks;
-    }
-
-    /**
-     * Checks if current array is declared in C style, e.g.:
-     * <p>
-     * <code>
-     * int array[] = { ... }; //C style
-     * </code>
-     * </p>
-     * <p>
-     * <code>
-     * int[] array = { ... }; //Java style
-     * </code>
-     * </p>
-     * @param aArrayDeclaration Array Declaration node
-     * @return true if array is declared in C style
-     */
-    private static boolean isCstyleArrayDeclaration(DetailAST aArrayDeclaration)
-    {
-        final DetailAST identifier = aArrayDeclaration.getParent().getNextSibling();
-        final int arrayDeclarationStart = aArrayDeclaration.getColumnNo();
-        final int identifierEnd = identifier.getColumnNo() + identifier.getText().length();
-        return arrayDeclarationStart == identifierEnd || arrayDeclarationStart > identifierEnd;
     }
 }
