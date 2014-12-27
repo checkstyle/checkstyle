@@ -739,7 +739,7 @@
         <li>
           Changed the default value of the property <code>logLoadErrors</code>
           to be <code>true</code> for the checks
-          <a href="config_coding.html#RedundantThrows">RedundantThrows</a> and
+          RedundantThrows and
           <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a> to
           ensure consistent behaviour.
         </li>
@@ -2853,7 +2853,7 @@
         <li>Problem when a Checker could not be created (Bug 528358).</li>
         <li>The documentation of the command line property names did not list the property checkstyle.allow.tabs (Bug 529975).</li>
         <li>The default regular expression for constant names allowed consecutive '_' characters to occur (Bug 540358).</li>
-        <li>Checkstyle reported unused @throws tag for multiple declarations of the same Exception. According to the <a href="http://developer.java.sun.com/developer/bugParade/bugs/4525364.html">Java BugParade</a> this is incorrect, multiple @throws tags for the same exception are OK (Bug 540384).</li>
+        <li>Checkstyle reported unused @throws tag for multiple declarations of the same Exception. According to the Java BugParade this is incorrect, multiple @throws tags for the same exception are OK (Bug 540384).</li>
       </ul>
 
       <p>

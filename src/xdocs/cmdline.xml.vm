@@ -95,8 +95,8 @@ java -jar checkstyle-${projectVersion}-all.jar -c /sun_checks.xml MyClass.java
 java -jar checkstyle-${projectVersion}-all.jar -c /google_checks.xml MyClass.java
         </source>
         It is recommended to use configuration files that are embeded in jar files, but latest configuration files are there:
-        <a href="https://raw.githubusercontent.com/checkstyle/checkstyle/master/sun_checks.xml">sun_checks.xml</a>
-        <a href="https://raw.githubusercontent.com/checkstyle/checkstyle/master/google_checks.xml">google_checks.xml</a>
+        <a href="https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/sun_checks.xml">sun_checks.xml</a>
+        <a href="https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml">google_checks.xml</a>
       </p>
       <p>
           To run Checkstyle UI viewer for AST tree directly from the JAR file using
