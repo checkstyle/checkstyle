@@ -59,7 +59,7 @@ public class UnnecessaryParenthesesCheck extends Check
     private static final int MAX_QUOTED_LENGTH = 25;
 
     /** Token types for literals. */
-    private static final int [] LITERALS = {
+    private static final int[] LITERALS = {
         TokenTypes.NUM_DOUBLE,
         TokenTypes.NUM_FLOAT,
         TokenTypes.NUM_INT,
@@ -71,7 +71,7 @@ public class UnnecessaryParenthesesCheck extends Check
     };
 
     /** Token types for assignment operations. */
-    private static final int [] ASSIGNMENTS = {
+    private static final int[] ASSIGNMENTS = {
         TokenTypes.ASSIGN,
         TokenTypes.BAND_ASSIGN,
         TokenTypes.BOR_ASSIGN,
@@ -97,7 +97,7 @@ public class UnnecessaryParenthesesCheck extends Check
     @Override
     public int[] getDefaultTokens()
     {
-        return new int [] {
+        return new int[] {
             TokenTypes.EXPR,
             TokenTypes.IDENT,
             TokenTypes.NUM_DOUBLE,
@@ -261,7 +261,7 @@ public class UnnecessaryParenthesesCheck extends Check
      * @return <code>true</code> if <code>aType</code> was found in <code>
      *         aTokens</code>.
      */
-    private boolean inTokenList(int aType, int [] aTokens)
+    private boolean inTokenList(int aType, int[] aTokens)
     {
         // NOTE: Given the small size of the two arrays searched, I'm not sure
         //       it's worth bothering with doing a binary search or using a
