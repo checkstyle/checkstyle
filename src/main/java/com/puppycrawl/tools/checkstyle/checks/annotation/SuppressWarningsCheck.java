@@ -97,6 +97,13 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
         "java.lang." + SUPPRESS_WARNINGS;
 
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED =
+        "suppressed.warning.not.allowed";
+
+    /**
      * Ctor that specifies the default for the format property
      * as specified in the class javadocs.
      */
@@ -216,7 +223,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
         final Matcher matcher = this.getRegexp().matcher(aWarningText);
         if (matcher.matches()) {
             this.log(aLineNo, aColNum,
-                "suppressed.warning.not.allowed", aWarningText);
+                    MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, aWarningText);
         }
     }
 

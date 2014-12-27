@@ -86,6 +86,19 @@ public final class MissingOverrideCheck extends Check
     private static final Pattern MATCH_INHERITDOC =
         Utils.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_TAG_NOT_VALID_ON = "tag.not.valid.on";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_ANNOTATION_MISSING_OVERRIDE =
+        "annotation.missing.override";
+
     /** @see #setJavaFiveCompatibility(boolean) */
     private boolean mJavaFiveCompatibility;
 
@@ -142,7 +155,7 @@ public final class MissingOverrideCheck extends Check
 
         final boolean containsTag = this.containsJavadocTag(javadoc);
         if (containsTag && !JavadocTagInfo.INHERIT_DOC.isValidOn(aAST)) {
-            this.log(aAST.getLineNo(), "tag.not.valid.on",
+            this.log(aAST.getLineNo(), MSG_KEY_TAG_NOT_VALID_ON,
                 JavadocTagInfo.INHERIT_DOC.getText());
             return;
         }
@@ -162,7 +175,7 @@ public final class MissingOverrideCheck extends Check
             && (!AnnotationUtility.containsAnnotation(aAST, OVERRIDE)
             && !AnnotationUtility.containsAnnotation(aAST, FQ_OVERRIDE)))
         {
-            this.log(aAST.getLineNo(), "annotation.missing.override");
+            this.log(aAST.getLineNo(), MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
         }
     }
 

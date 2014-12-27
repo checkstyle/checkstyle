@@ -23,6 +23,12 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
+import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_INCORRECT_STYLE;
+import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_PARENS_MISSING;
+import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_PARENS_PRESENT;
+import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING;
+import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT;
+
 public class AnnotationUseStyleTest extends BaseCheckTestSupport
 {
     /**
@@ -37,9 +43,9 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
         checkConfig.addAttribute("elementStyle", "ignore");
         checkConfig.addAttribute("trailingArrayComma", "ignore");
         final String[] expected = {
-            "3: Annotation must have closing parenthesis.",
-            "18: Annotation must have closing parenthesis.",
-            "23: Annotation must have closing parenthesis.",
+            "3: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
+            "18: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
+            "23: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "DifferentUseStyles.java"), expected);
@@ -57,9 +63,9 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
         checkConfig.addAttribute("elementStyle", "ignore");
         checkConfig.addAttribute("trailingArrayComma", "ignore");
         final String[] expected = {
-            "13: Annotation cannot have closing parenthesis.",
-            "30: Annotation cannot have closing parenthesis.",
-            "33: Annotation cannot have closing parenthesis.",
+            "13: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "30: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "33: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "DifferentUseStyles.java"), expected);
@@ -73,13 +79,13 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
         checkConfig.addAttribute("elementStyle", "EXPANDED");
         checkConfig.addAttribute("trailingArrayComma", "ignore");
         final String[] expected = {
-            "5: Annotation style must be 'EXPANDED'.",
-            "12: Annotation style must be 'EXPANDED'.",
-            "20: Annotation style must be 'EXPANDED'.",
-            "26: Annotation style must be 'EXPANDED'.",
-            "39: Annotation style must be 'EXPANDED'.",
-            "41: Annotation style must be 'EXPANDED'.",
-            "58: Annotation style must be 'EXPANDED'.",
+            "5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
+            "12: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
+            "20: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
+            "26: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
+            "39: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
+            "41: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
+            "58: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "DifferentUseStyles.java"), expected);
@@ -93,8 +99,8 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
         checkConfig.addAttribute("elementStyle", "COMPACT");
         checkConfig.addAttribute("trailingArrayComma", "ignore");
         final String[] expected = {
-            "43: Annotation style must be 'COMPACT'.",
-            "47: Annotation style must be 'COMPACT'.",
+            "43: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
+            "47: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "DifferentUseStyles.java"), expected);
@@ -108,11 +114,11 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
         checkConfig.addAttribute("elementStyle", "COMPACT_NO_ARRAY");
         checkConfig.addAttribute("trailingArrayComma", "ignore");
         final String[] expected = {
-            "5: Annotation style must be 'COMPACT_NO_ARRAY'.",
-            "20: Annotation style must be 'COMPACT_NO_ARRAY'.",
-            "41: Annotation style must be 'COMPACT_NO_ARRAY'.",
-            "43: Annotation style must be 'COMPACT_NO_ARRAY'.",
-            "47: Annotation style must be 'COMPACT_NO_ARRAY'.",
+            "5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "20: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "41: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "43: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "47: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "DifferentUseStyles.java"), expected);
@@ -126,19 +132,19 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
         checkConfig.addAttribute("elementStyle", "ignore");
         checkConfig.addAttribute("trailingArrayComma", "ALWAYS");
         final String[] expected = {
-            "3:20: Annotation array values must contain trailing comma.",
-            "6:30: Annotation array values must contain trailing comma.",
-            "10:40: Annotation array values must contain trailing comma.",
-            "13:44: Annotation array values must contain trailing comma.",
-            "16:54: Annotation array values must contain trailing comma.",
-            "24:37: Annotation array values must contain trailing comma.",
-            "24:65: Annotation array values must contain trailing comma.",
-            "26:21: Annotation array values must contain trailing comma.",
-            "26:30: Annotation array values must contain trailing comma.",
-            "29:39: Annotation array values must contain trailing comma.",
-            "29:49: Annotation array values must contain trailing comma.",
-            "32:21: Annotation array values must contain trailing comma.",
-            "32:56: Annotation array values must contain trailing comma.",
+            "3:20: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "6:30: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "10:40: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "13:44: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "16:54: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "24:37: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "24:65: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "26:21: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "26:30: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "29:39: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "29:49: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "32:21: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "32:56: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "AnnotationUseNoTrailingComma.java"), expected);
@@ -165,14 +171,14 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
         checkConfig.addAttribute("elementStyle", "ignore");
         checkConfig.addAttribute("trailingArrayComma", "NEVER");
         final String[] expected = {
-            "9:32: Annotation array values cannot contain trailing comma.",
-            "13:42: Annotation array values cannot contain trailing comma.",
-            "16:46: Annotation array values cannot contain trailing comma.",
-            "19:56: Annotation array values cannot contain trailing comma.",
-            "27:38: Annotation array values cannot contain trailing comma.",
-            "27:67: Annotation array values cannot contain trailing comma.",
-            "33:39: Annotation array values cannot contain trailing comma.",
-            "33:50: Annotation array values cannot contain trailing comma.",
+            "9:32: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "13:42: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "16:46: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "19:56: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "27:38: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "27:67: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "33:39: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "33:50: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "AnnotationUseWithTrailingComma.java"), expected);
