@@ -25,6 +25,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE;
+import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON;
+
 public class MissingOverrideCheckTest extends BaseCheckTestSupport
 {
     /**
@@ -39,10 +42,10 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("javaFiveCompatibility", "false");
 
         final String[] expected = {
-            "8: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
-            "30: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
-            "41: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
-            "50: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
+            "8: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "30: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "41: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "50: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "BadOverrideFromObject.java"), expected);
@@ -60,10 +63,10 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
         final String[] expected = {
-            "8: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
-            "30: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
-            "41: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
-            "50: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
+            "8: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "30: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "41: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "50: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "BadOverrideFromObject.java"), expected);
@@ -79,13 +82,13 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
     {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         final String[] expected = {
-            "10: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
-            "26: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
-            "34: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
-            "40: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
-            "47: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
-            "53: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
-            "63: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
+            "10: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "26: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "34: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "40: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "47: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "53: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "63: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "BadOverrideFromOther.java"), expected);
@@ -118,10 +121,10 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
     {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         final String[] expected = {
-            "10: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
-            "16: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
-            "29: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
-            "35: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.",
+            "10: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "16: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "29: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "35: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "BadAnnonOverride.java"), expected);
@@ -152,10 +155,8 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
     {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         final String[] expected = {
-            "8: The Javadoc {@inheritDoc} tag is not valid at this location.",
-            "15: The Javadoc {@inheritDoc} tag is not valid at this location.",
-            //this wont be flagged because this check only checks methods.
-            //"22: The Javadoc comment contains an {@inheritDoc} tag. The tag is not valid at this location.",
+            "8: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
+            "15: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "NotOverride.java"), expected);

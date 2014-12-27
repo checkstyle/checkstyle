@@ -23,6 +23,9 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
+import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION_ALONE;
+import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION;
+
 public class AnnotationLocationCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -40,25 +43,25 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport
     {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
         final String[] expected = {
-            "6: Annotation 'MyAnnotation1' should be alone on line.",
-            "11: Annotation 'MyAnnotation1' should be alone on line.",
-            "17: Annotation 'MyAnnotation1' have incorrect indentation level 8, expected level should be 4.",
-            "25: Annotation 'MyAnnotation1' have incorrect indentation level 8, expected level should be 4.",
-            "29: Annotation 'MyAnnotation1' should be alone on line.",
-            "29: Annotation 'MyAnnotation2' should be alone on line.",
-            "32: Annotation 'MyAnnotation2' have incorrect indentation level 7, expected level should be 4.",
-            "36: Annotation 'MyAnnotation2' have incorrect indentation level 8, expected level should be 4.",
-            "37: Annotation 'MyAnnotation3' have incorrect indentation level 6, expected level should be 4.",
-            "38: Annotation 'MyAnnotation4' have incorrect indentation level 10, expected level should be 4.",
-            "41: Annotation 'MyAnnotation1' should be alone on line.",
-            "48: Annotation 'MyAnnotation1' have incorrect indentation level 12, expected level should be 8.",
-            "61: Annotation 'MyAnnotation2' have incorrect indentation level 12, expected level should be 8.",
-            "65: Annotation 'MyAnnotation2' have incorrect indentation level 12, expected level should be 8.",
-            "70: Annotation 'MyAnnotation2' have incorrect indentation level 7, expected level should be 4.",
-            "73: Annotation 'MyAnnotation1' should be alone on line.",
-            "85: Annotation 'MyAnnotation2' have incorrect indentation level 11, expected level should be 8.",
-            "88: Annotation 'MyAnnotation2' have incorrect indentation level 10, expected level should be 8.",
-            "98: Annotation 'MyAnnotation2' have incorrect indentation level 0, expected level should be 3.",
+            "6: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation1"),
+            "11: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation1"),
+            "17: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation1", 8, 4),
+            "25: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation1", 8, 4),
+            "29: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation1"),
+            "29: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation2"),
+            "32: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 7, 4),
+            "36: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 8, 4),
+            "37: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation3", 6, 4),
+            "38: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation4", 10, 4),
+            "41: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation1"),
+            "48: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation1", 12, 8),
+            "61: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 12, 8),
+            "65: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 12, 8),
+            "70: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 7, 4),
+            "73: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation1"),
+            "85: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 11, 8),
+            "88: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 10, 8),
+            "98: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 0, 3),
         };
         verify(checkConfig, getPath("annotation/InputIncorrectAnnotationLocation.java"), expected);
     }

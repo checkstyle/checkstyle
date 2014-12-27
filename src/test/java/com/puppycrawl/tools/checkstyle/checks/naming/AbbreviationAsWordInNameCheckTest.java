@@ -19,7 +19,6 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck.MSG_KEY;
-import static java.text.MessageFormat.format;
 
 import org.junit.Test;
 
@@ -313,15 +312,5 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
         };
 
         verify(checkConfig, getPath("naming/AbstractMultisetSetCountTester.java"), expected);
-    }
-
-    /**
-     * Gets the check message 'as is' from appropriate 'messages.properties' file.
-     * @param messageKey the key of message in 'messages.properties' file.
-     * @param arguments the arguments of message in 'messages.properties' file.
-     */
-    public String getCheckMessage(String messageKey, Object ... arguments)
-    {
-        return format(getCheckMessage(messageKey), arguments);
     }
 }

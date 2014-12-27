@@ -20,7 +20,6 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.MessageFormat;
 
 import org.junit.Test;
 
@@ -28,14 +27,12 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck.DEFAULT_PATTERN;
+
 public class TypeNameCheckTest
     extends BaseCheckTestSupport
 {
-
-    /**
-     * Localized error message from @link {@link TypeNameCheck}.
-     */
-    private final String msg = getCheckMessage(AbstractNameCheck.MSG_INVALID_PATTERN);
 
     private final String inputFilename;
 
@@ -64,14 +61,14 @@ public class TypeNameCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(TypeNameCheck.class);
         final String[] expected = {
-                buildMesssage(3, 7, "inputHeaderClass",
-                        TypeNameCheck.DEFAULT_PATTERN),
-                buildMesssage(5, 22, "inputHeaderInterface",
-                        TypeNameCheck.DEFAULT_PATTERN),
-                buildMesssage(7, 17, "inputHeaderEnum",
-                        TypeNameCheck.DEFAULT_PATTERN),
-                buildMesssage(9, 23, "inputHeaderAnnotation",
-                    TypeNameCheck.DEFAULT_PATTERN),
+            "3:7: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "inputHeaderClass", DEFAULT_PATTERN),
+            "5:22: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "inputHeaderInterface", DEFAULT_PATTERN),
+            "7:17: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "inputHeaderEnum", DEFAULT_PATTERN),
+            "9:23: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "inputHeaderAnnotation", DEFAULT_PATTERN),
         };
         verify(checkConfig, inputFilename, expected);
     }
@@ -84,8 +81,8 @@ public class TypeNameCheckTest
             createCheckConfig(TypeNameCheck.class);
         checkConfig.addAttribute("tokens", TokenTypes.getTokenName(TokenTypes.CLASS_DEF));
         final String[] expected = {
-                buildMesssage(3, 7, "inputHeaderClass",
-                        TypeNameCheck.DEFAULT_PATTERN),
+            "3:7: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "inputHeaderClass", DEFAULT_PATTERN),
         };
         verify(checkConfig, inputFilename, expected);
     }
@@ -98,8 +95,8 @@ public class TypeNameCheckTest
             createCheckConfig(TypeNameCheck.class);
         checkConfig.addAttribute("tokens", TokenTypes.getTokenName(TokenTypes.INTERFACE_DEF));
         final String[] expected = {
-                buildMesssage(5, 22, "inputHeaderInterface",
-                        TypeNameCheck.DEFAULT_PATTERN),
+            "5:22: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "inputHeaderInterface", DEFAULT_PATTERN),
         };
         verify(checkConfig, inputFilename, expected);
     }
@@ -112,8 +109,8 @@ public class TypeNameCheckTest
             createCheckConfig(TypeNameCheck.class);
         checkConfig.addAttribute("tokens", TokenTypes.getTokenName(TokenTypes.ENUM_DEF));
         final String[] expected = {
-                buildMesssage(7, 17, "inputHeaderEnum",
-                        TypeNameCheck.DEFAULT_PATTERN),
+            "7:17: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "inputHeaderEnum", DEFAULT_PATTERN),
         };
         verify(checkConfig, inputFilename, expected);
     }
@@ -126,17 +123,9 @@ public class TypeNameCheckTest
             createCheckConfig(TypeNameCheck.class);
         checkConfig.addAttribute("tokens", TokenTypes.getTokenName(TokenTypes.ANNOTATION_DEF));
         final String[] expected = {
-            buildMesssage(9, 23, "inputHeaderAnnotation",
-                        TypeNameCheck.DEFAULT_PATTERN),
+            "9:23: " + getCheckMessage(MSG_INVALID_PATTERN,
+                "inputHeaderAnnotation", DEFAULT_PATTERN),
         };
         verify(checkConfig, inputFilename, expected);
     }
-
-    private String buildMesssage(int lineNumber, int colNumber, String name,
-            String pattern)
-    {
-        return lineNumber + ":" + colNumber + ": "
-                + MessageFormat.format(msg, name, pattern);
-    }
-
 }
