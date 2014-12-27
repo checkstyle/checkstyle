@@ -113,6 +113,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class AnnotationLocationCheck extends Check
 {
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_ANNOTATION_LOCATION_ALONE = "annotation.location.alone";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_ANNOTATION_LOCATION = "annotation.location";
+
+    /**
      * Some javadoc.
      */
     private boolean mAllowSamelineSingleParameterlessAnnotation = true;
@@ -191,10 +203,10 @@ public class AnnotationLocationCheck extends Check
 
             if (!isCorrectLocation(annotation, hasParameters)) {
                 log(annotation.getLineNo(),
-                    "annotation.location.alone", getAnnotationName(annotation));
+                        MSG_KEY_ANNOTATION_LOCATION_ALONE, getAnnotationName(annotation));
             }
             else if (annotation.getColumnNo() != aCorrectLevel && !hasNodeBefore(annotation)) {
-                log(annotation.getLineNo(), "annotation.location",
+                log(annotation.getLineNo(), MSG_KEY_ANNOTATION_LOCATION,
                     getAnnotationName(annotation), annotation.getColumnNo(), aCorrectLevel);
             }
             annotation = annotation.getNextSibling();

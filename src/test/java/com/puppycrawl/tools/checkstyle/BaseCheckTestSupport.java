@@ -1,5 +1,6 @@
 package com.puppycrawl.tools.checkstyle;
 
+import static java.text.MessageFormat.format;
 import static org.junit.Assert.assertEquals;
 
 import com.google.common.collect.Lists;
@@ -18,38 +19,41 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 
-public abstract class BaseCheckTestSupport
-{
-    /** a brief logger that only display info about errors */
+public abstract class BaseCheckTestSupport {
+    /**
+     * a brief logger that only display info about errors
+     */
     protected static class BriefLogger
-        extends DefaultLogger
-    {
-        public BriefLogger(OutputStream out)
-        {
+            extends DefaultLogger {
+        public BriefLogger(OutputStream out) {
             super(out, true);
         }
+
         @Override
-        public void auditStarted(AuditEvent evt) {}
+        public void auditStarted(AuditEvent evt) {
+        }
+
         @Override
-        public void fileFinished(AuditEvent evt) {}
+        public void fileFinished(AuditEvent evt) {
+        }
+
         @Override
-        public void fileStarted(AuditEvent evt) {}
+        public void fileStarted(AuditEvent evt) {
+        }
     }
 
     protected final ByteArrayOutputStream mBAOS = new ByteArrayOutputStream();
     protected final PrintStream mStream = new PrintStream(mBAOS);
     protected final Properties mProps = new Properties();
 
-    public static DefaultConfiguration createCheckConfig(Class<?> aClazz)
-    {
+    public static DefaultConfiguration createCheckConfig(Class<?> aClazz) {
         final DefaultConfiguration checkConfig =
-            new DefaultConfiguration(aClazz.getName());
+                new DefaultConfiguration(aClazz.getName());
         return checkConfig;
     }
 
     protected Checker createChecker(Configuration aCheckConfig)
-        throws Exception
-    {
+            throws Exception {
         final DefaultConfiguration dc = createCheckerConfig(aCheckConfig);
         final Checker c = new Checker();
         // make sure the tests always run with english error messages
@@ -63,10 +67,9 @@ public abstract class BaseCheckTestSupport
         return c;
     }
 
-    protected DefaultConfiguration createCheckerConfig(Configuration aConfig)
-    {
+    protected DefaultConfiguration createCheckerConfig(Configuration aConfig) {
         final DefaultConfiguration dc =
-            new DefaultConfiguration("configuration");
+                new DefaultConfiguration("configuration");
         final DefaultConfiguration twConf = createCheckConfig(TreeWalker.class);
         // make sure that the tests always run with this charset
         dc.addAttribute("charset", "iso-8859-1");
@@ -76,26 +79,22 @@ public abstract class BaseCheckTestSupport
     }
 
     protected static String getPath(String aFilename)
-        throws IOException
-    {
+            throws IOException {
         return new File("src/test/resources/com/puppycrawl/tools/checkstyle/" + aFilename).getCanonicalPath();
     }
 
-    protected static String getSrcPath(String aFilename) throws IOException
-    {
-        
+    protected static String getSrcPath(String aFilename) throws IOException {
+
         return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + aFilename).getCanonicalPath();
     }
 
     protected void verify(Configuration aConfig, String aFileName, String[] aExpected)
-            throws Exception
-    {
+            throws Exception {
         verify(createChecker(aConfig), aFileName, aFileName, aExpected);
     }
 
     protected void verify(Checker aC, String aFileName, String[] aExpected)
-            throws Exception
-    {
+            throws Exception {
         verify(aC, aFileName, aFileName, aExpected);
     }
 
@@ -103,19 +102,17 @@ public abstract class BaseCheckTestSupport
                           String aProcessedFilename,
                           String aMessageFileName,
                           String[] aExpected)
-        throws Exception
-    {
+            throws Exception {
         verify(aC,
-            new File[] {new File(aProcessedFilename)},
-            aMessageFileName, aExpected);
+                new File[]{new File(aProcessedFilename)},
+                aMessageFileName, aExpected);
     }
 
     protected void verify(Checker aC,
                           File[] aProcessedFiles,
                           String aMessageFileName,
                           String[] aExpected)
-        throws Exception
-    {
+            throws Exception {
         mStream.flush();
         final List<File> theFiles = Lists.newArrayList();
         Collections.addAll(theFiles, aProcessedFiles);
@@ -123,10 +120,10 @@ public abstract class BaseCheckTestSupport
 
         // process each of the lines
         final ByteArrayInputStream bais =
-            new ByteArrayInputStream(mBAOS.toByteArray());
+                new ByteArrayInputStream(mBAOS.toByteArray());
         final LineNumberReader lnr =
-            new LineNumberReader(new InputStreamReader(bais));
-       
+                new LineNumberReader(new InputStreamReader(bais));
+
         for (int i = 0; i < aExpected.length; i++) {
             final String expected = aMessageFileName + ":" + aExpected[i];
             final String actual = lnr.readLine();
@@ -134,7 +131,7 @@ public abstract class BaseCheckTestSupport
         }
 
         assertEquals("unexpected output: " + lnr.readLine(),
-                     aExpected.length, errs);
+                aExpected.length, errs);
         aC.destroy();
     }
 
@@ -142,19 +139,16 @@ public abstract class BaseCheckTestSupport
      * Gets the check message 'as is' from appropriate 'messages.properties'
      * file.
      *
-     * @param messageKey
-     *            the key of message in 'messages.properties' file.
+     * @param messageKey the key of message in 'messages.properties' file.
+     * @param arguments  the arguments of message in 'messages.properties' file.
      */
-    public String getCheckMessage(String messageKey)
-    {
+    public String getCheckMessage(String messageKey, Object... arguments) {
         Properties pr = new Properties();
         try {
             pr.load(getClass().getResourceAsStream("messages.properties"));
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             return null;
         }
-        return pr.getProperty(messageKey);
+        return format(pr.getProperty(messageKey), arguments);
     }
-
 }

@@ -22,7 +22,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,14 +35,14 @@ import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
+import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.IO_EXCEPTION_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_KEY;
+
 /**
  * JUnit tests for Unique Properties check.
  */
 public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport
 {
-
-    private String msg = getCheckMessage(UniquePropertiesCheck.MSG_KEY);
-    private String ioMsg = getCheckMessage(UniquePropertiesCheck.IO_EXCEPTION_KEY);
 
     private DefaultConfiguration mCheckConfig;
 
@@ -63,12 +62,12 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport
     {
         final String[] expected =
         {
-            buildMesssage(3, "general.exception", 2),
-            buildMesssage(5, "DefaultLogger.auditStarted", 2),
-            buildMesssage(11, "onlineManual", 3),
-            buildMesssage(22, "time stamp", 3),
-            buildMesssage(28, "Support Link ", 2),
-            buildMesssage(34, "failed", 2),
+            "3: " + getCheckMessage(MSG_KEY, "general.exception", 2),
+            "5: " + getCheckMessage(MSG_KEY, "DefaultLogger.auditStarted", 2),
+            "11: " + getCheckMessage(MSG_KEY, "onlineManual", 3),
+            "22: " + getCheckMessage(MSG_KEY, "time stamp", 3),
+            "28: " + getCheckMessage(MSG_KEY, "Support Link ", 2),
+            "34: " + getCheckMessage(MSG_KEY, "failed", 2),
         };
         verify(mCheckConfig, getPath("InputUniquePropertiesCheck.properties"),
                 expected);
@@ -118,7 +117,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport
                 "unable.open.cause");
         Assert.assertEquals("Message '" + message.getMessage()
                 + "' is not valid", message.getMessage(),
-                buildIOMessage(fileName, getFileNotFoundDetail(file)));
+                getCheckMessage(IO_EXCEPTION_KEY, fileName, getFileNotFoundDetail(file)));
     }
 
     /**
@@ -142,17 +141,4 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport
             return ex.getLocalizedMessage();
         }
     }
-
-    private String buildMesssage(int lineNumber, String keyName,
-            int nOccurrences)
-    {
-        return lineNumber + ": "
-                + MessageFormat.format(msg, keyName, nOccurrences);
-    }
-
-    private String buildIOMessage(String filename, String exceptionDetails)
-    {
-        return MessageFormat.format(ioMsg, filename, exceptionDetails);
-    }
-
 }

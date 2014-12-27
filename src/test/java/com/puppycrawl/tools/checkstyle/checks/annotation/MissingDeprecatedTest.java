@@ -25,6 +25,10 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
+import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_ANNOTATION_MISSING_DEPRECATED;
+import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_JAVADOC_DUPLICATE_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_JAVADOC_MISSING;
+
 public class MissingDeprecatedTest extends BaseCheckTestSupport
 {
     /**
@@ -36,15 +40,15 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport
         DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
-            "7: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "12: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "19: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "26: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "31: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "38: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "43: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "51: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "56: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
+            "7: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "12: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "19: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "26: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "31: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "38: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "43: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "51: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "56: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "BadDeprecatedAnnotation.java"), expected);
@@ -60,15 +64,15 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport
         DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
-            "5: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "11: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "16: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "23: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "29: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "38: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "40: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "48: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "55: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
+            "5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "11: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "16: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "23: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "29: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "38: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "40: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "48: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "55: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "BadDeprecatedJavadoc.java"), expected);
@@ -84,19 +88,19 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport
         DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
-            "5: Duplicate @deprecated tag.",
-            "12: Duplicate @deprecated tag.",
-            "14: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "17: Missing a Javadoc comment.",
-            "19: Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.",
-            "24: Missing a Javadoc comment.",
-            "32: Missing a Javadoc comment.",
-            "33: Duplicate @deprecated tag.",
-            "33: Missing a Javadoc comment.",
-            "42: Duplicate @deprecated tag.",
-            "42: Missing a Javadoc comment.",
-            "50: Missing a Javadoc comment.",
-            "51: Duplicate @deprecated tag.",
+            "5: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "12: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "14: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "17: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
+            "19: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "24: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
+            "32: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
+            "33: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "33: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
+            "42: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "42: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
+            "50: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
+            "51: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SpecialCaseDeprecated.java"), expected);
