@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import com.puppycrawl.tools.checkstyle.api.AnnotationUtility;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -35,6 +36,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * The default is false (it is not allowed).  It is legal in Java to have
  * method with the same name as a class.  As long as a return type is specified
  * it is a method and not a constructor which it could be easily confused as.
+ * <h3>Does not check-style the name of an overriden methods</h3> because the developer does not
+ * have a choice in renaming such methods.
  * </p>
  *
  * <p>
@@ -64,6 +67,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * @author Oliver Burn
  * @author Travis Schneeberger
+ * @author Utkarsh Srivastava
  * @version 1.1
  */
 public class MethodNameCheck
@@ -73,6 +77,16 @@ public class MethodNameCheck
      * for allowing method name to be the same as the class name.
      */
     private boolean mAllowClassName;
+
+    /**
+     * {@link Override Override} annotation name.
+     */
+    private static final String OVERRIDE = "Override";
+
+    /**
+     * Canonical {@link Override Override} annotation name.
+     */
+    private static final String CANONICAL_OVERRIDE = "java.lang." + OVERRIDE;
 
     /** Creates a new <code>MethodNameCheck</code> instance. */
     public MethodNameCheck()
@@ -89,7 +103,11 @@ public class MethodNameCheck
     @Override
     public void visitToken(DetailAST aAst)
     {
-        super.visitToken(aAst); // Will check the name against the format.
+        if (!AnnotationUtility.containsAnnotation(aAst, OVERRIDE)
+            && !AnnotationUtility.containsAnnotation(aAst, CANONICAL_OVERRIDE))
+        {
+            super.visitToken(aAst); // Will check the name against the format.
+        }
 
         if (!mAllowClassName) {
             final DetailAST method =
