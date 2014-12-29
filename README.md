@@ -7,7 +7,7 @@
 Checkstyle is a tool for
 checking Java source code for adherence to a Code standard or set of rules.
 
-The latest version can be found at http://checkstyle.sourceforge.net, see "Download" section.
+The latest version can be found at [SourceForge downloads](https://sourceforge.net/projects/checkstyle/files/checkstyle/) or at [Maven repo](http://repo1.maven.org/maven2/com/puppycrawl/tools/checkstyle/).
 
 Documentation is available in HTML format, see http://checkstyle.sourceforge.net/availablechecks.html.
 
