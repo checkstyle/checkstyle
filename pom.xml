@@ -932,7 +932,7 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <version>2.9</version>
             <configuration>
-              <argLine>${argLine} -Duser.language=en -Duser.country=US</argLine>
+              <argLine>${argLine} -Duser.language=en -Duser.country=US -XX:-UseSplitVerifier</argLine>
             </configuration>
           </plugin>
 
@@ -945,6 +945,7 @@
                 <exclude>com/puppycrawl/tools/checkstyle/CheckStyleTask*.class</exclude>
                 <exclude>com/puppycrawl/tools/checkstyle/doclets/*.class</exclude>
                 <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
+                <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
                 <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
               </excludes>
             </configuration>
