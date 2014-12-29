@@ -407,6 +407,12 @@ public boolean isSomething()
             <td><code>false</code></td>
           </tr>
           <tr>
+            <td>ignoreMethodNamesRegex</td>
+            <td>ignore method whose names are matching specified regex</td>
+            <td><a href="property_types.html#regex">regular expression</a></td>
+            <td><code>null</code> (tag not required)</td>
+          </tr>
+          <tr>
             <td>tokens</td>
             <td>definitions to check</td>
 
@@ -465,6 +471,14 @@ public boolean isSomething()
 &lt;module name="JavadocMethod"&gt;
    &lt;property name="scope" value="private"/&gt;
    &lt;property name="excludeScope" value="protected"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check for ignoring methods named <code>foo(),foo1(),foo2()</code>, etc.:
+        </p>
+        <source>
+&lt;module name="JavadocMethodRegex"&gt;
+   &lt;property name="ignoreMethodNamesRegex" value="^foo.*$"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

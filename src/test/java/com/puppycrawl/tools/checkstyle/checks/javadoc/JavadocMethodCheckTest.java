@@ -486,4 +486,14 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
         };
         verify(mCheckConfig, getPath("javadoc/InputInheritDoc.java"), expected);
     }
+
+    @Test
+    public void testSkipCertainMethods() throws Exception
+    {
+        mCheckConfig.addAttribute("ignoreMethodNamesRegex", "^foo.*$");
+        String[] expected = {
+
+        };
+        verify(mCheckConfig, getPath("javadoc/InputJavadocMethodIgnoreNameRegex.java"), expected);
+    }
 }
