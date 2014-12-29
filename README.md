@@ -58,4 +58,4 @@ https://github.com/checkstyle/checkstyle/issues
 
 Thanks for trying out checkstyle!
 
-Oliver Burn
+Checkstyle Team
