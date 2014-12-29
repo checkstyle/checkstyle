@@ -4,8 +4,8 @@
 
 ![](https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/images/logo.png)
 
-This directory contains the distribution for checkstyle. It is a tool for
-checking Java source code for adherence to a set of rules.
+Checkstyle is a tool for
+checking Java source code for adherence to a Code standard or set of rules.
 
 The latest version can be found at http://checkstyle.sourceforge.net, see "Download" section.
 
