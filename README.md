@@ -14,6 +14,7 @@ Documentation is available in HTML format, see http://checkstyle.sourceforge.net
 Continuous integration and Project reports
 ======================
 Travis: [![][travis img]][travis]
+
 Quality reports: http://checkstyle.sourceforge.net/project-reports.html
 
 Feedback/Support
