@@ -4,7 +4,7 @@ jdk:
   - openjdk7
   - oraclejdk7  
   - oraclejdk8
-  
+
 install: mvn clean verify site
 
 after_success:
