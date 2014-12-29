@@ -11,7 +11,7 @@ The latest version can be found at [SourceForge downloads](https://sourceforge.n
 
 Documentation is available in HTML format, see http://checkstyle.sourceforge.net/availablechecks.html.
 
-Continuous integration and Project reports
+Continuous integration and Quality reports
 ======================
 Travis: [![][travis img]][travis]
 
