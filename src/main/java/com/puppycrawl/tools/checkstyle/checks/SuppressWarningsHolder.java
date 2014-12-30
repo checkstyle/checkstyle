@@ -395,13 +395,17 @@ public class SuppressWarningsHolder
     {
         if (aAST != null && aAST.getType() == TokenTypes.EXPR) {
             final DetailAST firstChild = aAST.getFirstChild();
-            if (firstChild.getType() == TokenTypes.STRING_LITERAL) {
+            switch (firstChild.getType()) {
+            case TokenTypes.STRING_LITERAL:
                 // NOTE: escaped characters are not unescaped
                 final String quotedText = firstChild.getText();
                 return quotedText.substring(1, quotedText.length() - 1);
+            case TokenTypes.IDENT:
+                return firstChild.getText();
+            default:
+                throw new IllegalArgumentException("String literal AST expected: "
+                        + firstChild);
             }
-            throw new IllegalArgumentException("String literal AST expected: "
-                + firstChild);
         }
         throw new IllegalArgumentException("Expression AST expected: " + aAST);
     }
