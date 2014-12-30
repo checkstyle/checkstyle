@@ -62,4 +62,9 @@ class InputSuppressWarningsFilter
         @SuppressWarnings("rawtypes")
         ELEMENT;
     }
+    private static final String UNUSED="UnusedDeclaration";
+
+    @SuppressWarnings(UNUSED)
+    public void annotationUsingStringConstantValue(){
+    }
 }
