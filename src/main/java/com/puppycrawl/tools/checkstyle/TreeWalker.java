@@ -197,6 +197,8 @@ public final class TreeWalker
             return;
         }
 
+        final String msg = "%s occurred during the analysis of file %s .";
+
         try {
             final FileText text = FileText.fromLines(aFile, aLines);
             final FileContents contents = new FileContents(text);
@@ -211,8 +213,8 @@ public final class TreeWalker
             walk(astWithComments, contents, AstState.WITH_COMMENTS);
         }
         catch (final RecognitionException re) {
-            Utils.getExceptionLogger()
-                .debug("RecognitionException occured.", re);
+            final String exceptionMsg = String.format(msg, "RecognitionException", fileName);
+            Utils.getExceptionLogger().error(exceptionMsg);
             getMessageCollector().add(
                 new LocalizedMessage(
                     re.getLine(),
@@ -224,8 +226,9 @@ public final class TreeWalker
                     this.getClass(), null));
         }
         catch (final TokenStreamRecognitionException tre) {
-            Utils.getExceptionLogger()
-                .debug("TokenStreamRecognitionException occured.", tre);
+            final String exceptionMsg = String.format(msg, "TokenStreamRecognitionException",
+                     fileName);
+            Utils.getExceptionLogger().error(exceptionMsg);
             final RecognitionException re = tre.recog;
             if (re != null) {
                 getMessageCollector().add(
@@ -251,8 +254,9 @@ public final class TreeWalker
             }
         }
         catch (final TokenStreamException te) {
-            Utils.getExceptionLogger()
-                .debug("TokenStreamException occured.", te);
+            final String exceptionMsg = String.format(msg,
+                    "TokenStreamException", fileName);
+            Utils.getExceptionLogger().error(exceptionMsg);
             getMessageCollector().add(
                 new LocalizedMessage(
                     0,
@@ -263,8 +267,9 @@ public final class TreeWalker
                     this.getClass(), null));
         }
         catch (final Throwable err) {
+            final String exceptionMsg = String.format(msg, "Exception", fileName);
+            Utils.getExceptionLogger().error(exceptionMsg);
             err.printStackTrace();
-            Utils.getExceptionLogger().debug("Throwable occured.", err);
             getMessageCollector().add(
                 new LocalizedMessage(
                     0,
