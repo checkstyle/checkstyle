@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * <pre>
  * &lt;module name="SimplifyBooleanReturn"/&gt;
  * </pre>
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  */
 public class SimplifyBooleanReturnCheck
     extends Check

@@ -97,7 +97,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *
  * @author Philip Milne
  * @author Scott Violet
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  */
 public class JTreeTable extends JTable
 {

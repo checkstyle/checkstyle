@@ -147,7 +147,7 @@
   </mailingLists>
 
   <properties>
-    <project.build.sourceEncoding>iso-8859-1</project.build.sourceEncoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <projectVersion>${project.version}</projectVersion>
     <maven.site.plugin.version>3.4</maven.site.plugin.version>
     <tools.jar.version>1.7.0</tools.jar.version>

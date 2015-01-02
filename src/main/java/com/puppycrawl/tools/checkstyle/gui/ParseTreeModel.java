@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * The model that backs the parse tree in the GUI.
  *
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  */
 public class ParseTreeModel extends AbstractTreeTableModel
 {

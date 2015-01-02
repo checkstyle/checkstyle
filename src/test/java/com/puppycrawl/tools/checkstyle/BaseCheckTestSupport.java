@@ -72,7 +72,7 @@ public abstract class BaseCheckTestSupport {
                 new DefaultConfiguration("configuration");
         final DefaultConfiguration twConf = createCheckConfig(TreeWalker.class);
         // make sure that the tests always run with this charset
-        dc.addAttribute("charset", "iso-8859-1");
+        dc.addAttribute("charset", "UTF-8");
         dc.addChild(twConf);
         twConf.addChild(aConfig);
         return dc;

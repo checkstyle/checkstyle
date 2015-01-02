@@ -56,7 +56,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  */
 public class EmptyBlockCheck
     extends AbstractOptionCheck<BlockOption>
