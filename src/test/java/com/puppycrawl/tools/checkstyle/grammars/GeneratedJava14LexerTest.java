@@ -22,10 +22,9 @@ public class GeneratedJava14LexerTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         final String[] expected = {
-            "8:10: Got an exception - Unexpected character 0xa9 in identifier",
+            "8:9: Name 'é' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                + "checkstyle/grammars/InputGrammar.java").getCanonicalPath(), expected);
+        verify(checkConfig, getPath("grammars/InputGrammar.java"), expected);
     }
     
     @Test

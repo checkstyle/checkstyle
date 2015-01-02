@@ -18,7 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.Serializable;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,7 +32,9 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
+import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
+import java.util.ResourceBundle.Control;
 
 
 /**
@@ -310,7 +318,7 @@ public final class LocalizedMessage
                     .get(aBundleName);
             if (bundle == null) {
                 bundle = ResourceBundle.getBundle(aBundleName, sLocale,
-                        mSourceClass.getClassLoader());
+                        mSourceClass.getClassLoader(), new UTF8Control());
                 BUNDLE_CACHE.put(aBundleName, bundle);
             }
             return bundle;
@@ -380,5 +388,50 @@ public final class LocalizedMessage
         }
 
         return (getLineNo() < aOther.getLineNo()) ? -1 : 1;
+    }
+
+    /**
+     * <p>
+     * Custom ResourceBundle.Control implementation which allows explicitly read
+     * the properties files as UTF-8
+     * </p>
+     *
+     * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
+     */
+    private static class UTF8Control extends Control
+    {
+        @Override
+        public ResourceBundle newBundle(String aBaseName, Locale aLocale, String aFormat,
+                 ClassLoader aLoader, boolean aReload) throws IllegalAccessException,
+                  InstantiationException, IOException
+        {
+            // The below is a copy of the default implementation.
+            final String bundleName = toBundleName(aBaseName, aLocale);
+            final String resourceName = toResourceName(bundleName, "properties");
+            ResourceBundle bundle = null;
+            InputStream stream = null;
+            if (aReload) {
+                final URL url = aLoader.getResource(resourceName);
+                if (url != null) {
+                    final URLConnection connection = url.openConnection();
+                    if (connection != null) {
+                        connection.setUseCaches(false);
+                        stream = connection.getInputStream();
+                    }
+                }
+            }
+            else {
+                stream = aLoader.getResourceAsStream(resourceName);
+            }
+            if (stream != null) {
+                try (Reader streamReader = new InputStreamReader(stream, "UTF-8")) {
+                    // Only this line is changed to make it to read properties files as UTF-8.
+                    bundle = new PropertyResourceBundle(streamReader);
+                } finally {
+                    stream.close();
+                }
+            }
+            return bundle;
+        }
     }
 }

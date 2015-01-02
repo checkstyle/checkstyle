@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * Checks the header of the source against a fixed header file.
  *
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  */
 public class HeaderCheck extends AbstractHeaderCheck
 {

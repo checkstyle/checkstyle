@@ -11,7 +11,7 @@ import javax.swing.JButton;
 /**
  * Tests for length of anonymous inner types
  * @author Rob Worth
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  **/
 public class InputAnonInnerLength
 {

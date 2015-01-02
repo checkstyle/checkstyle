@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * {@link java.util.regex.Pattern regular expression}
  * for each line of the source header.
  *
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  * @author o_sukhodolsky
  */
 public class RegexpHeaderCheck extends AbstractHeaderCheck

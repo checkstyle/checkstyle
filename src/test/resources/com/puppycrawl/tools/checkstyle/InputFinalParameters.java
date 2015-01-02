@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Test case for detecting missing final parameters.
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  **/
 class InputFinalParameters
 {

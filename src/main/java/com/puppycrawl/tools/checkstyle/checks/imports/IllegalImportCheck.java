@@ -55,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * </pre>
  * @author Oliver Burn
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  * @version 1.0
  */
 public class IllegalImportCheck

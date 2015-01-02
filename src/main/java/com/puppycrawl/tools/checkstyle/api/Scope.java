@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 /**
  * Represents a Java visibility scope.
  *
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  * @author Travis Schneeberger
  */
 public enum Scope
