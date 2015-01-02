@@ -393,6 +393,18 @@
               </sources>
             </configuration>
           </execution>
+          <execution>
+            <id>add-test-source</id>
+            <phase>generate-test-sources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/test/resources</source>
+              </sources>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
 
@@ -447,9 +459,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.9</version>
+        <version>2.17</version>
         <configuration>
           <argLine>-Duser.language=en -Duser.country=US -XX:-UseSplitVerifier</argLine>
+          <additionalClasspathElements>
+            <additionalClasspathElement>src/test/resources-noncompilable</additionalClasspathElement>
+          </additionalClasspathElements>
         </configuration>
       </plugin>
 
@@ -521,35 +536,6 @@
           <downloadSources>true</downloadSources>
           <downloadJavadocs>true</downloadJavadocs>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.17</version>
-        <configuration>
-          <additionalClasspathElements>
-            <additionalClasspathElement>src/test/resources-noncompilable</additionalClasspathElement>
-          </additionalClasspathElements>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>1.9</version>
-        <executions>
-          <execution>
-            <id>add-test-source</id>
-            <phase>generate-test-sources</phase>
-            <goals>
-              <goal>add-test-source</goal>
-            </goals>
-            <configuration>
-              <sources>
-                <source>src/test/resources</source>
-              </sources>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
