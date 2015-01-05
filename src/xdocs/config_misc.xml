@@ -893,14 +893,14 @@ messages.properties: Key 'ok' missing.
         </p>
         <source>
 void foo(String aFooString,
-        int aFooInt) {} // indent:8 ; exp: 4; warn, because 8 != 4
+        int aFooInt) {} // indent:8 ; expected: 4; warn, because 8 != 4
         </source>
         <p>
           But if forceStrictCondition = false, this code is valid:
         </p>
         <source>
 void foo(String aFooString,
-        int aFooInt) {} // indent:8 ; exp: > 4; ok, because 8 > 4
+        int aFooInt) {} // indent:8 ; expected: > 4; ok, because 8 > 4
         </source>
       </subsection>
 
