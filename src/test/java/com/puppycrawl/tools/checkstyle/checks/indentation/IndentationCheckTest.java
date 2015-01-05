@@ -31,6 +31,21 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 {
 
     @Test
+    public void forbidCStyle() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("throwsIndent", "8");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        final String[] expected = {
+            "5: 'int' have incorrect indentation level 29, expected level should be 12.",
+            "6: 'int' have incorrect indentation level 29, expected level should be 12.",
+        };
+        verify(checkConfig, getPath("indentation/InputMethodCStyle.java"), expected);
+    }
+
+    @Test
     public void testZeroCaseLevel() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);

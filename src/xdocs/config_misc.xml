@@ -852,6 +852,13 @@ messages.properties: Key 'ok' missing.
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>4</td>
           </tr>
+          <tr>
+            <td>forceStrictCondition</td>
+            <td>force strict condition in line wrapping case. If value is true, line wrap indent
+                have to be same as lineWrappingIndentation parameter</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>false</td>
+          </tr>
         </table>
       </subsection>
 
@@ -872,6 +879,28 @@ messages.properties: Key 'ok' missing.
 &lt;module name=&quot;Indentation&quot;&gt;
     &lt;property name=&quot;caseIndent&quot; value=&quot;0&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          To configure the Check to enforce strict condition in line-wrapping validation.
+        </p>
+        <source>
+&lt;module name=&quot;Indentation&quot;&gt;
+    &lt;property name=&quot;forceStrictCondition&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Such config doesn't allow next cases:
+        </p>
+        <source>
+void foo(String aFooString,
+        int aFooInt) {} // indent:8 ; exp: 4; warn, because 8 != 4
+        </source>
+        <p>
+          But if forceStrictCondition = false, this code is valid:
+        </p>
+        <source>
+void foo(String aFooString,
+        int aFooInt) {} // indent:8 ; exp: > 4; ok, because 8 > 4
         </source>
       </subsection>
 

@@ -60,6 +60,11 @@ public class LineWrappingHandler
     private int mIndentLevel;
 
     /**
+     * Force strict condition in line wrapping case.
+     */
+    private boolean mForceStrictCondition;
+
+    /**
      * Sets values of class field, finds last node and calculates indentation level.
      *
      * @param aInstance
@@ -73,6 +78,7 @@ public class LineWrappingHandler
         mFirstNode = aFirstNode;
         mLastNode = findLastNode(mFirstNode);
         mIndentLevel = mIndentCheck.getLineWrappingIndentation();
+        mForceStrictCondition = mIndentCheck.getForceStrictCondition();
     }
 
     /**
@@ -301,10 +307,19 @@ public class LineWrappingHandler
      */
     private void logWarningMessage(DetailAST aCurrentNode, int aCurrentIndent)
     {
-        if (aCurrentNode.getColumnNo() < aCurrentIndent) {
-            mIndentCheck.indentationLog(aCurrentNode.getLineNo(),
-                    "indentation.error", aCurrentNode.getText(),
-                    aCurrentNode.getColumnNo(), aCurrentIndent);
+        if (mForceStrictCondition) {
+            if (aCurrentNode.getColumnNo() != aCurrentIndent) {
+                mIndentCheck.indentationLog(aCurrentNode.getLineNo(),
+                        "indentation.error", aCurrentNode.getText(),
+                        aCurrentNode.getColumnNo(), aCurrentIndent);
+            }
+        }
+        else {
+            if (aCurrentNode.getColumnNo() < aCurrentIndent) {
+                mIndentCheck.indentationLog(aCurrentNode.getLineNo(),
+                        "indentation.error", aCurrentNode.getText(),
+                        aCurrentNode.getColumnNo(), aCurrentIndent);
+            }
         }
     }
 }
