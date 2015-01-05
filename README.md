@@ -1,5 +1,6 @@
 [![][travis img]][travis]
 [![][coverage img]][coverage]
+[![][mavenbadge img]][mavenbadge]
 [![][sonar img]][sonar]
 
 ![](https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/images/logo.png)
@@ -57,3 +58,6 @@ directory.
 
 [coverage]:https://coveralls.io/r/checkstyle/checkstyle
 [coverage img]:https://coveralls.io/repos/checkstyle/checkstyle/badge.png
+
+[mavenbadge]:http://search.maven.org/#search|gav|1|g%3A%22com.puppycrawl.tools%22%20AND%20a%3A%22checkstyle%22
+[mavenbadge img]:https://maven-badges.herokuapp.com/maven-central/com.puppycrawl.tools/checkstyle/badge.svg
