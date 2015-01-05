@@ -127,6 +127,13 @@ public class IndentationCheck extends Check
     /** how far continuation line should be indented when line-wrapping is present */
     private int mLineWrappingIndentation = DEFAULT_INDENTATION;
 
+    /**
+     * Force strict condition in line wrapping case. If value is true, line wrap indent
+     * have to be same as lineWrappingIndentation parameter, if value is false, line wrap indent
+     * have to be not less than mLineWrappingIndentation parameter.
+     */
+    private boolean mForceStrictCondition;
+
     /** handlers currently in use */
     private final FastStack<ExpressionHandler> mHandlers =
         FastStack.newInstance();
@@ -137,6 +144,24 @@ public class IndentationCheck extends Check
     /** Creates a new instance of IndentationCheck. */
     public IndentationCheck()
     {
+    }
+
+    /**
+     * Get forcing strict condition.
+     * @return mForceStrictCondition value.
+     */
+    public boolean getForceStrictCondition()
+    {
+        return mForceStrictCondition;
+    }
+
+    /**
+     * Set forcing strict condition.
+     * @param aValue user's value of mForceStrictCondition.
+     */
+    public void setForceStrictCondition(boolean aValue)
+    {
+        mForceStrictCondition = aValue;
     }
 
     /**
