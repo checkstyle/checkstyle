@@ -6,7 +6,7 @@
 ![](https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/images/logo.png)
 
 Checkstyle is a tool for
-checking Java source code for adherence to a Code standard or set of rules.
+checking Java source code for adherence to a Code Standard or set of validation rules(best practices).
 
 The latest version can be found at [SourceForge downloads](https://sourceforge.net/projects/checkstyle/files/checkstyle/) or at [Maven repo](http://repo1.maven.org/maven2/com/puppycrawl/tools/checkstyle/).
 
