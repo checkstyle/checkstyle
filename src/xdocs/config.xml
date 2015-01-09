@@ -816,7 +816,7 @@
         </source>
 
         <p>
-          Suppress checks for non-java text files:
+          Suppress checks for non-java files:
         </p>
 
         <source>
@@ -824,11 +824,19 @@
         </source>
 
         <p>
-          Suppress all checks generated sources:
+          Suppress all checks in generated sources:
         </p>
 
         <source>
-&lt;suppress checks=&quot;FileLength&quot;files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
+&lt;suppress checks=&quot;.*&quot; files=&quot;com[\\/]mycompany[\\/]app[\\/]gen[\\/]&quot;/&gt;
+        </source>
+
+        <p>
+          Suppress FileLength check on integration tests in certain folder:
+        </p>
+
+        <source>
+&lt;suppress checks=&quot;FileLength&quot; files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
         </source>
 
       </subsection>
