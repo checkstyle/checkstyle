@@ -79,7 +79,7 @@ class FileDrop
     // that the panel layout does not change during the DnD operation.
 
     private transient Border normalBorder;
-    private transient final DropTargetListener dropListener;
+    private final transient DropTargetListener dropListener;
 
     // TODO: Blue is not a nice color in all LookAndFeels
     /* Default border color */

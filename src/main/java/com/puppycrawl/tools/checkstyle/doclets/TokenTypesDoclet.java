@@ -111,7 +111,7 @@ public final class TokenTypesDoclet
      * @param aReporter the reporter to report errors.
      * @return true if only valid options was specified
      */
-    public static boolean validOptions(String aOptions[][],
+    public static boolean validOptions(String[][] aOptions,
                                        DocErrorReporter aReporter)
     {
         boolean foundDestFileOption = false;

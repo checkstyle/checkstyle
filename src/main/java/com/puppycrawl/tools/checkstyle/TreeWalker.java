@@ -299,7 +299,7 @@ public final class TreeWalker
             tokens = aCheck.getRequiredTokens();
 
             //register configured tokens
-            final int acceptableTokens[] = aCheck.getAcceptableTokens();
+            final int[] acceptableTokens = aCheck.getAcceptableTokens();
             Arrays.sort(acceptableTokens);
             for (String token : checkTokens) {
                 try {
