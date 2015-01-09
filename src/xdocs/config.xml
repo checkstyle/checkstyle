@@ -1005,9 +1005,9 @@ private static void foo(int a, int b) // UNUSED OFF: b
     System.out.println(a);
 }
 
-private static void foo1(int a, int b) // UNUSED ON: a
+private static void foo1(int a, int b) // UNUSED ON: b
 {
-    System.out.println(b);
+    System.out.println(a);
 }
       </source>
 
@@ -1032,8 +1032,8 @@ public static final int lowerCaseConstant1; // CSON: ConstantNameCheck
 
       <p>
         To configure a filter to suppress all audit events between a comment
-        containing <code>CHECKSTYLE_OFF: ALL</code> and a comment containing
-        <code>CHECKSTYLE_OFF: ALL</code> except for the <em>EqualsHashCode</em> check:
+        containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> and a comment containing
+        <code>CHECKSTYLE_OFF: ALMOST_ALL</code> except for the <em>EqualsHashCode</em> check:
       </p>
 
       <source>
@@ -1045,9 +1045,9 @@ public static final int lowerCaseConstant1; // CSON: ConstantNameCheck
       </source>
 
       <source>
-public static final int array []; // CHECKSTYLE_OFF: ALL
+public static final int array []; // CHECKSTYLE_OFF: ALMOST_ALL
 private String [] strArray;
-private int array1 []; // CHECKSTYLE_ON: ALL
+private int array1 []; // CHECKSTYLE_ON: ALMOST_ALL
       </source>
 
       </subsection>
@@ -1287,7 +1287,7 @@ public static final int [] array; // @cs.suppress ConstantName | NoWhitespaceAft
         <source>
 &lt;module name="TreeWalker"&gt;
   ...
-&lt;module name="SuppressWarningsHolder" /&gt;
+    &lt;module name="SuppressWarningsHolder" /&gt;
   ...
 &lt;/module&gt;
         </source>
