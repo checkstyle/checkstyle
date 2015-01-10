@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import com.google.common.collect.Sets;
@@ -30,6 +31,17 @@ import org.junit.Test;
 
 public class CheckerTest
 {
+
+    @Test
+    public void testNullBasedir() throws Exception
+    {
+        final Checker c = new Checker();
+
+        c.setBasedir("c:/a\\b/./c\\..\\d");
+        c.setBasedir(null);
+        assertNull(c.getBasedir());
+    }
+
     @Test
     public void testDosBasedir() throws Exception
     {
