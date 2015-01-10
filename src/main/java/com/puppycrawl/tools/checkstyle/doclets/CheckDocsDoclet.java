@@ -125,7 +125,7 @@ public final class CheckDocsDoclet
             final PrintWriter aPrintWriter,
             final String aTitle)
     {
-        aPrintWriter.println("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>");
+        aPrintWriter.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
         aPrintWriter.println("<document>");
         aPrintWriter.println("<properties>");
         aPrintWriter.println("<title>" + aTitle + "</title>");

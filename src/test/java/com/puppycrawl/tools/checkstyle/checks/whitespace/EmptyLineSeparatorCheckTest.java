@@ -32,11 +32,11 @@ public class EmptyLineSeparatorCheckTest
         DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
 
         final String[] expected = {
-            "20: 'import' should be separated from previous statement.",
-            "33: 'CLASS_DEF' should be separated from previous statement.",
-            "36: 'VARIABLE_DEF' should be separated from previous statement.",
-            "37: 'STATIC_INIT' should be separated from previous statement.",
-            "75: 'INTERFACE_DEF' should be separated from previous statement.",
+            "21: 'import' should be separated from previous statement.",
+            "35: 'CLASS_DEF' should be separated from previous statement.",
+            "38: 'VARIABLE_DEF' should be separated from previous statement.",
+            "39: 'STATIC_INIT' should be separated from previous statement.",
+            "77: 'INTERFACE_DEF' should be separated from previous statement.",
         };
         verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorCheck.java"), expected);
     }
@@ -49,10 +49,10 @@ public class EmptyLineSeparatorCheckTest
         checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "true");
 
         final String[] expected = {
-            "20: 'import' should be separated from previous statement.",
-            "33: 'CLASS_DEF' should be separated from previous statement.",
-            "37: 'STATIC_INIT' should be separated from previous statement.",
-            "75: 'INTERFACE_DEF' should be separated from previous statement.",
+            "21: 'import' should be separated from previous statement.",
+            "35: 'CLASS_DEF' should be separated from previous statement.",
+            "39: 'STATIC_INIT' should be separated from previous statement.",
+            "77: 'INTERFACE_DEF' should be separated from previous statement.",
         };
         verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorCheck.java"), expected);
     }

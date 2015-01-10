@@ -296,6 +296,7 @@ public class SuppressWarningsHolder
                         case TokenTypes.CLASS_DEF:
                         case TokenTypes.INTERFACE_DEF:
                         case TokenTypes.ENUM_DEF:
+                        case TokenTypes.ENUM_CONSTANT_DEF:
                         case TokenTypes.CTOR_DEF:
                         case TokenTypes.METHOD_DEF:
                         case TokenTypes.PARAMETER_DEF:
@@ -315,6 +316,7 @@ public class SuppressWarningsHolder
             }
             if (targetAST == null) {
                 log(aAST, "suppress.warnings.invalid.target");
+                return;
             }
 
             // get text range of target
@@ -393,13 +395,17 @@ public class SuppressWarningsHolder
     {
         if (aAST != null && aAST.getType() == TokenTypes.EXPR) {
             final DetailAST firstChild = aAST.getFirstChild();
-            if (firstChild.getType() == TokenTypes.STRING_LITERAL) {
+            switch (firstChild.getType()) {
+            case TokenTypes.STRING_LITERAL:
                 // NOTE: escaped characters are not unescaped
                 final String quotedText = firstChild.getText();
                 return quotedText.substring(1, quotedText.length() - 1);
+            case TokenTypes.IDENT:
+                return firstChild.getText();
+            default:
+                throw new IllegalArgumentException("String literal AST expected: "
+                        + firstChild);
             }
-            throw new IllegalArgumentException("String literal AST expected: "
-                + firstChild);
         }
         throw new IllegalArgumentException("Expression AST expected: " + aAST);
     }

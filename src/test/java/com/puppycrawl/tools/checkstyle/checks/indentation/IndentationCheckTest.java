@@ -29,6 +29,74 @@ import org.junit.Test;
  */
 public class IndentationCheckTest extends BaseCheckTestSupport
 {
+
+    @Test
+    public void forbidCStyle() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("throwsIndent", "8");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        final String[] expected = {
+            "5: 'int' have incorrect indentation level 29, expected level should be 12.",
+            "6: 'int' have incorrect indentation level 29, expected level should be 12.",
+        };
+        verify(checkConfig, getPath("indentation/InputMethodCStyle.java"), expected);
+    }
+
+    @Test
+    public void testZeroCaseLevel() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("caseIndent", "0");
+        final String[] expected = {};
+        verify(checkConfig, getPath("indentation/InputZeroCaseLevel.java"), expected);
+    }
+
+    @Test
+    public void testAndroidStyle() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("throwsIndent", "8");
+        final String[] expected = {
+            "28: 'extends' have incorrect indentation level 3, expected level should be 8.",
+            "30: 'member def type' have incorrect indentation level 3, expected level should be 4.",
+            "33: 'foo' have incorrect indentation level 8, expected level should be 12.",
+            "36: 'int' have incorrect indentation level 8, expected level should be 12.",
+            "39: 'true' have incorrect indentation level 13, expected level should be 16.",
+            "42: '+' have incorrect indentation level 16, expected level should be 20.",
+            "43: 'if' have incorrect indentation level 8, expected level should be 12.",
+            "46: 'if rcurly' have incorrect indentation level 11, expected level should be 12.",
+            "48: 'method def' child have incorrect indentation level 7, expected level should be 8.",
+        };
+        verify(checkConfig, getPath("indentation/InputAndroidStyle.java"), expected);
+    }
+
+    public void testMethodCallLineWrap() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        final String[] expected = {
+            "36: 'method call' child have incorrect indentation level 18, expected level should be 20.",
+            "37: 'method call rparen' have incorrect indentation level 14, expected level should be 16.",
+        };
+        verify(checkConfig, getPath("indentation/InputMethodCallLineWrap.java"), expected);
+    }
+
+    @Test
+    public void testDifficultAnnotations() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        final String[] expected = {
+            "29: '@' have incorrect indentation level 0, expected level should be 4.",
+            "30: '@' have incorrect indentation level 0, expected level should be 4.",
+            "39: '@' have incorrect indentation level 6, expected level should be 8.",
+        };
+        verify(checkConfig, getPath("indentation/InputDifficultAnnotations.java"), expected);
+    }
+
     @Test
     public void testAnonClassesFromGuava() throws Exception
     {
@@ -864,6 +932,19 @@ public class IndentationCheckTest extends BaseCheckTestSupport
             createCheckConfig(IndentationCheck.class);
         final String[] expected = {};
         verify(checkConfig, getPath("indentation/InputValidTryResourcesIndent.java"),
+               expected);
+    }
+
+    @Test
+    public void testSwitchCustom() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("throwsIndent", "8");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        final String[] expected = {};
+        verify(checkConfig, getPath("indentation/InputSwitchCustom.java"),
                expected);
     }
 }

@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.grammars.java8;
 
+import java.io.File;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -35,7 +37,9 @@ public class DefaulMethodsTest extends BaseCheckTestSupport
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};
         verify(checkConfig,
-                getPath("grammars/java8/InputDefaultMethodsTest.java"),
+                new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
+                        + "grammars/java8/"
+                        + "InputDefaultMethodsTest.java").getCanonicalPath(),
                 expected);
 
     }

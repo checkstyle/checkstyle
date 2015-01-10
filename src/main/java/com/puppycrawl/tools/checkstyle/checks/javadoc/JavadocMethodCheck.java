@@ -50,6 +50,7 @@ import java.util.regex.Pattern;
  * @author Rick Giles
  * @author o_sukhodoslky
  */
+@SuppressWarnings("deprecation")
 public class JavadocMethodCheck extends AbstractTypeAwareCheck
 {
     /** compiled regexp to match Javadoc tags that take an argument * */
@@ -147,6 +148,18 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
     /** List of annotations that could allow missed documentation. */
     private List<String> mAllowedAnnotations = Arrays.asList("Override");
+
+    /** Method names that match this pattern do not require javadoc blocks. */
+    private Pattern mIgnoreMethodNamesRegex;
+
+    /**
+     * Set regex for matching method names to ignore.
+     * @param aRegex regex for matching method names.
+     */
+    public void setIgnoreMethodNamesRegex(String aRegex)
+    {
+        mIgnoreMethodNamesRegex = Utils.createPattern(aRegex);
+    }
 
     /**
      * Sets minimal amount of lines in method.
@@ -393,7 +406,28 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     {
         return mAllowMissingJavadoc
             || (mAllowMissingPropertyJavadoc
-                && (isSetterMethod(aAST) || isGetterMethod(aAST)));
+                && (isSetterMethod(aAST) || isGetterMethod(aAST)))
+            || matchesSkipRegex(aAST);
+    }
+
+    /**
+     * Checks if the given method name matches the regex. In that case
+     * we skip enforcement of javadoc for this method
+     * @param aMethodDef {@link TokenTypes#METHOD_DEF METHOD_DEF}
+     * @return true if given method name matches the regex.
+     */
+    private boolean matchesSkipRegex(DetailAST aMethodDef)
+    {
+        if (mIgnoreMethodNamesRegex != null) {
+            final DetailAST ident = aMethodDef.findFirstToken(TokenTypes.IDENT);
+            final String methodName = ident.getText();
+
+            final Matcher matcher = mIgnoreMethodNamesRegex.matcher(methodName);
+            if (matcher.matches()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

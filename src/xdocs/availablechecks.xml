@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <document xmlns="http://maven.apache.org/XDOC/2.0"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -316,11 +316,6 @@
         by the format property.</td>
       </tr>
       <tr>
-        <td><a href="config_coding.html#JUnitTestCase">JUnitTestCase</a></td>
-        <td>Ensures that the setUp(), tearDown()methods are named correctly,
-        have no arguments, return void and are either public or protected.</td>
-      </tr>
-      <tr>
         <td><a href="config_metrics.html#JavaNCSS">JavaNCSS</a></td>
         <td>This check calculates the Non Commenting Source Statements (NCSS) metric for
         Java source files and methods.</td>
@@ -592,12 +587,6 @@
         <td>Checks for redundant modifiers in interface and annotation definitions.</td>
       </tr>
       <tr>
-        <td><a href="config_coding.html#RedundantThrows">RedundantThrows</a></td>
-        <td>Checks for redundant exceptions declared in throws clause
-        such as duplicates, unchecked exceptions or subclasses of
-        another declared exception.</td>
-      </tr>
-      <tr>
         <td><a href="config_misc.html#Regexp">Regexp</a></td>
         <td>
         A check that makes sure that a specified pattern exists (or not) in the file.</td>
@@ -659,12 +648,6 @@
         <td>
           Checks that static, non-final variable names conform to a format specified
         by the format property.</td>
-      </tr>
-      <tr>
-        <td><a href="config_duplicates.html#StrictDuplicateCode">StrictDuplicateCode</a></td>
-        <td>Performs a line-by-line comparison of all code lines and reports
-        duplicate code if a sequence of lines differs only in
-        indentation.</td>
       </tr>
       <tr>
         <td><a href="config_coding.html#StringLiteralEquality">StringLiteralEquality</a></td>

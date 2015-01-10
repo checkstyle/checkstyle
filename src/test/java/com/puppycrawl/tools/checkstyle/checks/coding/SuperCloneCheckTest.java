@@ -33,7 +33,7 @@ public class SuperCloneCheckTest
         final String[] expected = {
             "27:19: Method 'clone' should call 'super.clone'.",
             "35:19: Method 'clone' should call 'super.clone'.",
-            "60:23: Method 'clone' should call 'super.clone'.",
+            "60:48: Method 'clone' should call 'super.clone'.",
         };
         verify(checkConfig, getPath("coding/InputClone.java"), expected);
     }

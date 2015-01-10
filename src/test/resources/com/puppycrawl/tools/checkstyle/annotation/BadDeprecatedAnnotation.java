@@ -35,7 +35,7 @@ public class BadDeprecatedAnnotation
 /**
  * @deprecated stuff
  */
-interface Foo {
+interface Foo1 {
 
     /**
      * @deprecated stuff

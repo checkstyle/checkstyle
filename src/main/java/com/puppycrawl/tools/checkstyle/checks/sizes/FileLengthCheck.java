@@ -50,7 +50,7 @@ import java.util.List;
  *    &lt;property name="max" value="1500"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  */
 public class FileLengthCheck extends AbstractFileSetCheck
 {

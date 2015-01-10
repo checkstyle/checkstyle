@@ -1,4 +1,6 @@
-public abstract class CronExpression<E> {
+package com.puppycrawl.tools.checkstyle.naming;
+
+public abstract class AbstractMultisetSetCountTester<E> {
 
   private static final String SUPPORTS_REMOVE = "";
 

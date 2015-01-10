@@ -1,4 +1,4 @@
-package InputAnonymousClasses;
+package com.puppycrawl.tools.checkstyle.indentation;
 
 class InputArrays { // indent:0 ; exp:0; ok
   /**
@@ -40,8 +40,8 @@ class InputArrays { // indent:0 ; exp:0; ok
   @VisibleForTesting static final int[] halfPowersOf10 =
       {3, 31, 316, 3162, 31622, 316227, 3162277, 31622776, 316227766, Integer.MAX_VALUE};
   
-  @Override
   public byte[] asBytes() {
+    byte hash = 0;
     return new byte[] {
         (byte) hash,
         (byte) (hash >> 8),

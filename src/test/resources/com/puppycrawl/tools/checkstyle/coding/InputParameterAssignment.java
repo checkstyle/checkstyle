@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.coding;
 /**Input*/
 public class InputParameterAssignment {
     int field;

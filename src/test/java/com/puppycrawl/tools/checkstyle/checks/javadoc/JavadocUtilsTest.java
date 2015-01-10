@@ -38,7 +38,7 @@ public class JavadocUtilsTest
     @Test
     public void testTags()
     {
-        final String [] text = {
+        final String[] text = {
             "/** @see elsewhere ",
             " * {@link List }, {@link  List link text }",
             "   {@link List#add(Object) link text}",
@@ -53,7 +53,7 @@ public class JavadocUtilsTest
     @Test
     public void testTagType()
     {
-        final String [] text = {
+        final String[] text = {
             "/** @see block",
             " * {@link List inline}, {@link List#add(Object)}",
         };
@@ -69,7 +69,7 @@ public class JavadocUtilsTest
     @Test
     public void testInlineTagLinkText()
     {
-        final String [] text = {
+        final String[] text = {
             "/** {@link  List link text }",
         };
         final Comment comment = new Comment(text, 1, 1, text[0].length());
@@ -81,7 +81,7 @@ public class JavadocUtilsTest
     @Test
     public void testInlineTagMethodRef()
     {
-        final String [] text = {
+        final String[] text = {
             "/** {@link  List#add(Object)}",
         };
         final Comment comment = new Comment(text, 1, 1, text[0].length());
@@ -93,7 +93,7 @@ public class JavadocUtilsTest
     @Test
     public void testTagPositions()
     {
-        final String [] text = {
+        final String[] text = {
             "/** @see elsewhere",
             "    also {@link Name value} */",
         };
@@ -121,7 +121,7 @@ public class JavadocUtilsTest
     @Test
     public void testInvalidTags()
     {
-        final String [] text = {
+        final String[] text = {
             "/** @fake block",
             " * {@bogus inline}",
             " * {@link List valid}",

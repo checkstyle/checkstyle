@@ -4,7 +4,7 @@ package com.puppycrawl.tools.checkstyle.javadoc;
  * A {@code Foo. Foo}
  * is a simple Javadoc. Some javadoc.
  */
-class InputCorrectJavaDocParagraphCheck {
+class InputInCorrectSummaryJavaDocCheck {
     
     /**
      * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}

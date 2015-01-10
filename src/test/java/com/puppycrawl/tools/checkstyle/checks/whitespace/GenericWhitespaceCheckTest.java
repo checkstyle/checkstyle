@@ -21,7 +21,10 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
+import java.io.File;
 import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -82,5 +85,24 @@ public class GenericWhitespaceCheckTest
     {
         final String[] expected = {};
         verify(mCheckConfig, getPath("whitespace/Gh47.java"), expected);
+    }
+
+    @Test
+    public void testInnerClass() throws Exception
+    {
+        final String[] expected = {
+
+        };
+        verify(mCheckConfig, getPath("whitespace/"
+                + "InputGenericWhitespaceInnerClassCheck.java"), expected);
+    }
+
+    @Test
+    public void testMethodReferences() throws Exception
+    {
+        final String[] expected = {};
+        verify(mCheckConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/grammars/java8/"
+                + "InputMethodReferencesTest3.java").getCanonicalPath(), expected);
     }
 }

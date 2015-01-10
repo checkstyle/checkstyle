@@ -19,21 +19,6 @@
     <property name="charset"        value=""/> JVM file.encoding property
     !-->
 
-
-    <!--
-     !________________________________________________________________________________________
-     !
-     !     D U P L I C A T E S
-     !________________________________________________________________________________________
-     !-->
-    <!-- Performs a line-by-line comparison of all code lines and reports duplicate code. !-->
-    <!-- See http://checkstyle.sf.net/config_duplicates.html !-->
-    <module name="StrictDuplicateCode">
-        <property name="min"            value="12"/>
-        <property name="fileExtensions" value=""/>
-    </module>
-
-
     <!--
      !________________________________________________________________________________________
      !
@@ -281,11 +266,12 @@
             <property name="allowMarkerInterfaces" value="true"/>
         </module>
 
-        <!-- Ensures that exceptions (defined as any class name conforming to some regular expression) are immutable. !-->
-        <!-- That is, have only final fields. !-->
+        <!-- Ensures that exceptions (classes with names conforming to some regular expression and explicitly !-->
+        <!-- extending classes with names conforming to other regular expression) are immutable. !-->
+        <!-- That is, they have only final fields. !-->
         <!-- See http://checkstyle.sf.net/config_design.html !-->
         <module name="MutableException">
-            <property name="format" value="^.*Exception$|^.*Error$"/>
+            <property name="format" value="^.*Exception$|^.*Error$|^.*Throwable$"/>
         </module>
 
         <!-- Restricts throws statements to a specified count. !-->
@@ -506,23 +492,11 @@
 
         <!-- Ensure a class has a package declaration. !-->
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
-        <module name="PackageDeclaration">
-            <property name="ignoreDirectoryName" value="false"/>
-        </module>
+        <module name="PackageDeclaration"/>
 
         <!-- Disallow assignment of parameters. !-->
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
         <module name="ParameterAssignment"/>
-
-        <!-- Checks for redundant exceptions declared in throws clause such as duplicates, !-->
-        <!-- unchecked exceptions or subclasses of another declared exception. !-->
-        <!-- See http://checkstyle.sf.net/config_coding.html !-->
-        <module name="RedundantThrows">
-            <property name="allowUnchecked"     value="false"/>
-            <property name="allowSubclasses"    value="false"/>
-            <property name="logLoadErrors"      value="true"/>
-            <property name="suppressLoadErrors" value="false"/>
-        </module>
 
         <!-- Checks that code doesn't rely on the "this." default. !-->
         <!-- See http://checkstyle.sf.net/config_coding.html !-->

@@ -123,7 +123,8 @@ public class ConstantNameCheckTest
         final String[] expected = {
         };
         verify(checkConfig,
-                getPath("InputStaticModifierInInterface.java"),
+                new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                        + "checkstyle/InputStaticModifierInInterface.java").getCanonicalPath(),
                 expected);
     }
 }

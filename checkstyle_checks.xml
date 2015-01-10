@@ -130,6 +130,7 @@
       <property name="tokens" value="LNOT"/>
       <property name="tokens" value="UNARY_MINUS"/>
       <property name="tokens" value="UNARY_PLUS"/>
+      <property name="tokens" value="ARRAY_DECLARATOR"/>
     </module>
 
     <module name="NoWhitespaceBefore"/>

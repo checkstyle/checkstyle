@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @see Some javadoc. //warn
  * @author max //warn
  */
-class WithAnnotations implements Serializable
+class WithAnnotations1 implements Serializable
 {
 	/**
      * The client's first name.
@@ -277,7 +277,7 @@ class WithAnnotations implements Serializable
  * @see Some javadoc. //warn
  * @author max //warn
  */
-enum Foo {}
+enum Foo4 {}
 
 /**
  * Some javadoc.

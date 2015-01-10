@@ -78,4 +78,38 @@ public class NoWhitespaceAfterCheckTest
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
 
+    @Test
+    public void testArrayDeclarations() throws Exception
+    {
+        checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
+        final String[] expected = {
+            "6:11: 'Object' is followed by whitespace.",
+            "8:22: 'someStuff3' is followed by whitespace.",
+            "9:8: 'int' is followed by whitespace.",
+            "10:13: 's' is followed by whitespace.",
+            "11:13: 'd' is followed by whitespace.",
+            "16:14: 'get' is followed by whitespace.",
+            "18:8: 'int' is followed by whitespace.",
+            "19:34: 'get1' is followed by whitespace.",
+            "28:8: 'int' is followed by whitespace.",
+            "29:12: 'cba' is followed by whitespace.",
+            "31:26: 'String' is followed by whitespace.",
+            "32:27: 'String' is followed by whitespace.",
+            "39:11: 'ar' is followed by whitespace.",
+            "39:24: 'int' is followed by whitespace.",
+            "40:16: 'int' is followed by whitespace.",
+            "43:63: 'getLongMultArray' is followed by whitespace.",
+        };
+        verify(checkConfig, getPath("whitespace/InputNoWhitespaceAfterArrayDeclarations.java"), expected);
+    }
+
+    @Test
+    public void testNpe() throws Exception
+    {
+        final String[] expected = {
+
+        };
+        verify(checkConfig, getPath("whitespace/InputNoWhiteSpaceAfterCheckFormerNpe.java"),
+                 expected);
+    }
 }

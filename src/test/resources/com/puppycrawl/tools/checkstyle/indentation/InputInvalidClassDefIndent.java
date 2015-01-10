@@ -36,21 +36,21 @@ class InputInvalidClassDefIndentB extends java.awt.event.MouseAdapter implements
 
 
 
-class InputValidClassDefIndent2 
+class InputValidClassDefIndent22 
   extends java.awt.event.MouseAdapter 
   implements java.awt.event.MouseListener 
 {
 
 }
 
-class InputValidClassDefIndent3
+class InputValidClassDefIndent33
   extends java.awt.event.MouseAdapter 
     implements java.awt.event.MouseListener 
 {
 
 }
 
-final class InputValidClassDefIndent4
+final class InputValidClassDefIndent44
     extends java.awt.event.MouseAdapter 
   implements 
   java.awt.event.MouseListener 
@@ -58,7 +58,7 @@ final class InputValidClassDefIndent4
 
 }
 
-  final class InputValidClassDefIndent5 extends java.awt.event.MouseAdapter implements java.awt.event.MouseListener 
+  final class InputValidClassDefIndent55 extends java.awt.event.MouseAdapter implements java.awt.event.MouseListener 
   {
 
 }
@@ -78,7 +78,7 @@ class InputInvalidClassDefIndentc
   
 
 
-final class InputValidClassDefIndent6 extends java.awt.event.MouseAdapter implements java.awt.event.MouseListener {
+final class InputValidClassDefIndent66 extends java.awt.event.MouseAdapter implements java.awt.event.MouseListener {
 
   class foo { }
   

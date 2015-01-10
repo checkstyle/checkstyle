@@ -31,8 +31,8 @@ public class SingleLineJavadocCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
                 createCheckConfig(SingleLineJavadocCheck.class);
         final String[] expected = {
-            "3: Single-line Javadoc comment should be multi-line.",
-            "11: Single-line Javadoc comment should be multi-line.",
+            "4: Single-line Javadoc comment should be multi-line.",
+            "12: Single-line Javadoc comment should be multi-line.",
         };
         verify(checkConfig, getPath("javadoc/InputSingleLineJavadocCheck.java"), expected);
     }

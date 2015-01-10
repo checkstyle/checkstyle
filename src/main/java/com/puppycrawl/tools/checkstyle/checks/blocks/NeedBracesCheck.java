@@ -49,12 +49,35 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     &lt;property name="tokens" value="LITERAL_IF, LITERAL_ELSE"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * Check has an option <b>allowSingleLineIf</b> which allows one line
+ * if-statements without braces, e.g.:
+ * <p>
+ * <code>
+ * if (obj.isValid()) return true;
+ * </code>
+ * </p>
+ * <br>
  *
  * @author Rick Giles
+ * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  * @version 1.0
  */
 public class NeedBracesCheck extends Check
 {
+    /**
+     * Check's option for skipping single-line if-statements.
+     */
+    private boolean mAllowSingleLineIf;
+
+    /**
+     * Setter.
+     * @param aAllowSingleLineIf Check's option for skipping single-line if-statements
+     */
+    public void setAllowSingleLineIf(boolean aAllowSingleLineIf)
+    {
+        this.mAllowSingleLineIf = aAllowSingleLineIf;
+    }
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -77,8 +100,46 @@ public class NeedBracesCheck extends Check
         {
             isElseIf = true;
         }
-        if ((slistAST == null) && !isElseIf) {
+        boolean skipStatement = false;
+        if (aAST.getType() == TokenTypes.LITERAL_IF) {
+            skipStatement = isSkipIfBlock(aAST);
+        }
+        if ((slistAST == null) && !isElseIf && !skipStatement) {
             log(aAST.getLineNo(), "needBraces", aAST.getText());
         }
+    }
+
+    /**
+     * Checks if current if-block can be skipped by "need braces" warning.
+     * @param aLiteralIf {@link TokenTypes#LITERAL_IF LITERAL_IF}
+     * @return true if current if block can be skipped by Check
+     */
+    private boolean isSkipIfBlock(DetailAST aLiteralIf)
+    {
+        return mAllowSingleLineIf && isSingleLineIf(aLiteralIf);
+    }
+
+    /**
+     * Checks if current if-statement is single-line statement, e.g.:
+     * <p>
+     * <code>
+     * if (obj.isValid()) return true;
+     * </code>
+     * </p>
+     * @param aLiteralIf {@link TokenTypes#LITERAL_IF LITERAL_IF}
+     * @return true if current if-statement is single-line statement
+     */
+    private static boolean isSingleLineIf(DetailAST aLiteralIf)
+    {
+        boolean result = false;
+        final DetailAST ifBlock = aLiteralIf.getLastChild();
+        final DetailAST lastElementInIfBlock = ifBlock.getLastChild();
+        if (lastElementInIfBlock != null
+            && lastElementInIfBlock.getFirstChild() == null
+            && aLiteralIf.getLineNo() == lastElementInIfBlock.getLineNo())
+        {
+            result = true;
+        }
+        return result;
     }
 }

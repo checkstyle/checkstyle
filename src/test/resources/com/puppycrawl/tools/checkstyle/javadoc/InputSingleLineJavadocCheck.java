@@ -1,7 +1,8 @@
+package com.puppycrawl.tools.checkstyle.javadoc;
 class Foo{
 
 	/** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)} */
-    void foo1() {}
+    void foo() {}
 
     /**
      * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
@@ -9,18 +10,18 @@ class Foo{
     void foo1() {}
 
     /** @throws CheckstyleException if an error occurs */
-    void foo1() {}
+    void foo2() {}
 
     /**
      * @throws CheckstyleException if an error occurs
      */
-    void foo1() {}
+    void foo3() {}
 
     /** An especially short bit of Javadoc. */
-    void foo1() {}
+    void foo4() {}
 
     /**
      * An especially short bit of Javadoc.
      */
-    void foo1() {}
+    void foo5() {}
 }

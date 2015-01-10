@@ -6,7 +6,7 @@
 
 package com.puppycrawl.tools.checkstyle.indentation;
 
-public class InputValidArrayInitIndent {
+public class InputValidArrayInitDefaultIndent {
 
     private static char[] sHexChars = {
         '0', '1', '2', '3', '4', '5', '6', '7',
@@ -93,7 +93,7 @@ public class InputValidArrayInitIndent {
     }
 
     /** Creates a new instance of InputValidArrayInitIndent */
-    public InputValidArrayInitIndent() {
+    public InputValidArrayInitDefaultIndent() {
 
         func1(new int[] {1, 2});
         func1(new int[] {});

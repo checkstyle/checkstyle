@@ -14,23 +14,12 @@
  * limitations under the License.
  */
 
-package com.google.common.collect.testing.google;
-
-import static com.google.common.collect.testing.features.CollectionFeature.ALLOWS_NULL_VALUES;
-import static com.google.common.collect.testing.features.CollectionFeature.FAILS_FAST_ON_CONCURRENT_MODIFICATION;
-import static com.google.common.collect.testing.features.CollectionFeature.RESTRICTS_ELEMENTS;
-import static com.google.common.collect.testing.features.CollectionFeature.SUPPORTS_ADD;
-import static com.google.common.collect.testing.features.CollectionFeature.SUPPORTS_REMOVE;
-import static com.google.common.collect.testing.features.CollectionSize.SEVERAL;
-import static com.google.common.collect.testing.features.CollectionSize.ZERO;
+package com.puppycrawl.tools.checkstyle.javadoc;
 
 import com.google.common.annotations.GwtCompatible;
 import com.google.common.annotations.GwtIncompatible;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multiset.Entry;
-import com.google.common.collect.testing.Helpers;
-import com.google.common.collect.testing.features.CollectionFeature;
-import com.google.common.collect.testing.features.CollectionSize;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -48,14 +37,26 @@ import java.util.List;
  * @author Chris Povirk
  */
 @GwtCompatible(emulated = true)
-public abstract class AbstractMultisetSetCountTester<E>
-    extends AbstractMultisetTester<E> {
+public abstract class ExtendAnnotation<E>
+  {
 
-  @CollectionFeature.Require(absent = {SUPPORTS_ADD, SUPPORTS_REMOVE})
+  private static final String SUPPORTS_ADD = "";
+  private static final String SUPPORTS_REMOVE = null;
+
+@CollectionFeature.Require
   public void testSetCount_zeroToZero_unsupported() {
     try {
       assertZeroToZero();
     } catch (UnsupportedOperationException tolerated) {
     }
+  }
+
+  private void assertZeroToZero() {
+      
+  }
+  
+  @interface CollectionFeature {
+      @interface Require {
+      }
   }
 }

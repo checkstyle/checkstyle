@@ -37,7 +37,8 @@ public class IllegalImportCheckTest extends BaseCheckTestSupport
             "23:1: Import from illegal package - java.io.File.listRoots.",
             "27:1: Import from illegal package - java.io.File.createTempFile.",
         };
-        verify(checkConfig, getPath("imports" + File.separator + "InputImport.java"), expected);
+        verify(checkConfig, getPath("imports" + File.separator + "InputIllegalImportCheck.java"),
+                expected);
     }
 
     @Test
@@ -47,9 +48,10 @@ public class IllegalImportCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(IllegalImportCheck.class);
         final String[] expected = {
-            "15:1: Import from illegal package - sun.net.ftpclient.FtpClient.",
-            "28:1: Import from illegal package - sun.net.ftpclient.FtpClient.*.",
+            "15:1: Import from illegal package - sun.applet.*.",
+            "28:1: Import from illegal package - sun.*.",
         };
-        verify(checkConfig, getPath("imports" + File.separator + "InputImport.java"), expected);
+        verify(checkConfig, getPath("imports" + File.separator + "InputIllegalImportCheck.java"),
+                expected);
     }
 }

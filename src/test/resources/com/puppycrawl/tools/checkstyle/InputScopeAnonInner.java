@@ -10,7 +10,7 @@ import javax.swing.JButton;
 
 /**
  * Tests for anonymous inner types
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  **/
 public class InputScopeAnonInner
 {

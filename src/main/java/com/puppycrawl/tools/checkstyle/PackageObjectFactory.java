@@ -140,6 +140,7 @@ class PackageObjectFactory implements ModuleFactory
      * @return the <code>Object</code> created by aLoader.
      * @throws CheckstyleException if an error occurs.
      */
+    @Override
     public Object createModule(String aName)
         throws CheckstyleException
     {

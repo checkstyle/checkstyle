@@ -1,4 +1,4 @@
-package com.google.common.base;
+package com.puppycrawl.tools.checkstyle.imports;
 
 import com.google.common.annotations.VisibleForTesting;
 
@@ -14,5 +14,5 @@ import java.net.URLClassLoader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class InputImportOrder {
+public class InputCustomImportOrderTemp {
 }

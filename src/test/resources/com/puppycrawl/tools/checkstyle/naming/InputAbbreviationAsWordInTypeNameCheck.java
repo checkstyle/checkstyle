@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.naming;
 
-abstract public class IIIInputAbstractClassName {
+abstract class IIIInputAbstractClassName {
 }
 
 abstract class NonAAAAbstractClassName {
@@ -14,26 +14,26 @@ abstract class AbstractCLASSName {
     }
 }
 
-abstract class ClassFactory {
+abstract class ClassFactory1 {
     abstract class WellNamedFactory {
     }
 }
 
-class NonAbstractClass {
+class NonAbstractClass1 {
 }
 
-class AbstractClass {
+class AbstractClass1 {
 }
 
-class Class1Factory {
+class Class1Factory1 {
 }
 
-abstract class AbstractClassName2 {
+abstract class AbstractClassName3 {
     class AbstractINNERRClass {
     }
 }
 
-abstract class Class2Factory {
+abstract class Class3Factory {
     class WellNamedFACTORY {
     	public void marazmaticMETHODName() {
     		int marazmaticVARIABLEName = 2;
@@ -42,7 +42,7 @@ abstract class Class2Factory {
     }
 }
 
-public interface Directions {
+interface Directions {
   int RIGHT=1;
   int LEFT=2;
   int UP=3;
@@ -54,7 +54,7 @@ interface BadNameForInterfeis
    void interfaceMethod();
 }
 
-abstract class NonAAAAbstractClassName1 {
+abstract class NonAAAAbstractClassName2 {
 	public int serialNUMBER = 6;
 	public final int s1erialNUMBER = 6;
 	private static int s2erialNUMBER = 6;
@@ -85,7 +85,7 @@ interface Interface4 {
 	
 }
 
-public class FIleNameFormatException extends Exception {
+class FIleNameFormatException extends Exception {
 
     private static final long serialVersionUID = 1L;
 

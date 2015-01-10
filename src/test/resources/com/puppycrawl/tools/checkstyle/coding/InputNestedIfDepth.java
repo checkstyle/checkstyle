@@ -1,3 +1,4 @@
+package com.puppycrawl.tools.checkstyle.coding;
 public class InputNestedIfDepth
 {
     void foo() {

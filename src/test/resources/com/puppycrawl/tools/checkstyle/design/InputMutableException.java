@@ -1,25 +1,37 @@
-package com.puppycrawl.tools.checkstyle.checks.design;
+package com.puppycrawl.tools.checkstyle.design;
 
 public class InputMutableException {
-    public class FooException {
-        private final int _finalErrorCode;
-        private int _errorCode = 1;
+    public class FooException extends Exception {
+        private final int finalErrorCode;
+        private int errorCode = 1;
 
         public FooException() {
-            _finalErrorCode = 1;
+            finalErrorCode = 1;
         }
 
-        public class FooExceptionThisIsNot {
-            private final int _finalErrorCode;
-            private int _errorCode = 1;
+        public class FooExceptionThisIsNot extends RuntimeException {
+            private final int finalErrorCode;
+            private int errorCode = 1;
             /** constructor */
             public FooExceptionThisIsNot() {
-                _finalErrorCode = 1;
+                finalErrorCode = 1;
             }
         }
     }
 
-    public class FooError {
-        private int _errorCode;
+    public class BarError extends Throwable {
+        private int errorCode;
+    }
+
+    public class BazDoesNotExtendError {
+        private int errorCode;
+    }
+
+    public class CustomProblem extends ThreadDeath {
+        private int errorCode;
+
+        public class CustomFailure extends ThreadDeath {
+            private int errorCode;
+        }
     }
 }

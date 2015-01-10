@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <document xmlns="http://maven.apache.org/XDOC/2.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -215,15 +215,30 @@ messages.properties: Key 'ok' missing.
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>properties</code></td>
           </tr>
+          <tr>
+            <td>basenameSeparator</td>
+            <td>Allows setting file names separator</td>
+            <td><a href="property_types.html#string">String</a></td>
+            <td><code>_</code></td>
+          </tr>
         </table>
       </subsection>
 
       <subsection name="Example">
         <p>
-          To configure the check:
+          To configure the check for files with '_' name separator:
         </p>
         <source>
 &lt;module name=&quot;Translation&quot;/&gt;
+        </source>
+
+        <p>
+          To configure the check for files with user-set name separator:
+        </p>
+        <source>
+&lt;module name=&quot;Translation&quot;&gt;
+    &lt;property name=&quot;basenameSeparator&quot; value=&quot;STRING_LITERAL&quot;/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 
@@ -444,6 +459,12 @@ messages.properties: Key 'ok' missing.
             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a></td>
 
           </tr>
+          <tr>
+            <td>ignorePrimitiveTypes</td>
+            <td>ignore primitive types as parameters</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
         </table>
       </subsection>
 
@@ -463,6 +484,16 @@ messages.properties: Key 'ok' missing.
         <source>
 &lt;module name=&quot;FinalParameters&quot;&gt;
     &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check to allow ignoring
+          <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
+           primitive datatypes</a> as parameters:
+        </p>
+        <source>
+&lt;module name=&quot;FinalParameters&quot;&gt;
+    &lt;property name=&quot;ignorePrimitiveTypes&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -821,6 +852,13 @@ messages.properties: Key 'ok' missing.
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>4</td>
           </tr>
+          <tr>
+            <td>forceStrictCondition</td>
+            <td>force strict condition in line wrapping case. If value is true, line wrap indent
+                have to be same as lineWrappingIndentation parameter</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>false</td>
+          </tr>
         </table>
       </subsection>
 
@@ -841,6 +879,28 @@ messages.properties: Key 'ok' missing.
 &lt;module name=&quot;Indentation&quot;&gt;
     &lt;property name=&quot;caseIndent&quot; value=&quot;0&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          To configure the Check to enforce strict condition in line-wrapping validation.
+        </p>
+        <source>
+&lt;module name=&quot;Indentation&quot;&gt;
+    &lt;property name=&quot;forceStrictCondition&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Such config doesn't allow next cases:
+        </p>
+        <source>
+void foo(String aFooString,
+        int aFooInt) {} // indent:8 ; expected: 4; warn, because 8 != 4
+        </source>
+        <p>
+          But if forceStrictCondition = false, this code is valid:
+        </p>
+        <source>
+void foo(String aFooString,
+        int aFooInt) {} // indent:8 ; expected: > 4; ok, because 8 > 4
         </source>
       </subsection>
 
@@ -1447,7 +1507,7 @@ public class PID extends StateMachine implements WebObject.Constants {
           Checks properties file for a duplicated properties.
         </p>
         <p>
-          Rationale: Multiple property keys usualy appears after merge
+          Rationale: Multiple property keys usually appears after merge
           or rebase of several branches. While there is no errors in
           runtime, there can be a confusion on having different values
           for the duplicated properties.
@@ -1531,7 +1591,7 @@ public class PID extends StateMachine implements WebObject.Constants {
           </tr>
           <tr>
             <td>allowIfAllCharactersEscaped</td>
-            <td>Allow if all characters in literal are excaped.</td>
+            <td>Allow if all characters in literal are escaped.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
           </tr>
@@ -1632,7 +1692,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
           Checks properties file for a duplicated properties.
         </p>
         <p>
-          Rationale: Multiple property keys usualy appears after merge
+          Rationale: Multiple property keys usually appears after merge
           or rebase of several branches. While there is no errors in
           runtime, there can be a confusion on having different values
           for the duplicated properties.

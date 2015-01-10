@@ -36,12 +36,14 @@ public final class DefaultContext implements Context
     private final Map<String, Object> mEntries = Maps.newHashMap();
 
     /** {@inheritDoc} */
+    @Override
     public Object get(String aKey)
     {
         return mEntries.get(aKey);
     }
 
     /** {@inheritDoc} */
+    @Override
     public ImmutableCollection<String> getAttributeNames()
     {
         return ImmutableList.copyOf(mEntries.keySet());

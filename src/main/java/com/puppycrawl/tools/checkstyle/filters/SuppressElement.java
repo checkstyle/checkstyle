@@ -135,6 +135,7 @@ public class SuppressElement
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean accept(AuditEvent aEvent)
     {
         // file and check match?

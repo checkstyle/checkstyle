@@ -155,7 +155,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "26:33: '{' should be on a new line.",
             "91:19: '{' should be on a new line.",
             "97:19: '{' should be on a new line.",
-            "142:36: '{' should be on a new line.",
+            "142:37: '{' should be on a new line.",
         };
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
@@ -217,9 +217,9 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "39:29: '{' should have line break after.",
             "39:34: '{' should have line break after.",
             "45:37: '{' should have line break after.",
-            "53:5: '{' should be on the previous line.",
-            "54:19: '{' should have line break after.",
-            "64:1: '{' should be on the previous line.",
+            "54:5: '{' should be on the previous line.",
+            "56:27: '{' should have line break after.",
+            "66:1: '{' should be on the previous line.",
         };
         verify(mCheckConfig, getPath("InputLeftCurlyLineBreakAfter.java"), expected);
     }

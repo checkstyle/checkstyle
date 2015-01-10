@@ -21,8 +21,12 @@ package com.puppycrawl.tools.checkstyle.filters;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.regex.PatternSyntaxException;
 
+import org.junit.Assume;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -60,6 +64,10 @@ public class SuppressionsLoaderTest
     public void testLoadFromURL()
         throws CheckstyleException, InterruptedException
     {
+        boolean online = isInternetReachable();
+
+        Assume.assumeTrue(online);
+
         FilterSet fc = null;
 
         int attemptCount = 0;
@@ -170,5 +178,19 @@ public class SuppressionsLoaderTest
                 ex.getMessage(),
                 ex.getMessage().startsWith("number format exception " + fn + " - "));
         }
+    }
+
+    private static boolean isInternetReachable()
+    {
+        try {
+            URL url = new URL("http://www.yahoo.com");
+            HttpURLConnection urlConnect = (HttpURLConnection) url.openConnection();
+            @SuppressWarnings("unused")
+            Object objData = urlConnect.getContent();
+        }
+        catch (IOException e) {
+            return false;
+        }
+        return true;
     }
 }

@@ -18,6 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.Map;
+import java.util.Set;
+
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
@@ -26,8 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Abstract class that endeavours to maintain type information for the Java
@@ -36,7 +37,10 @@ import java.util.Set;
  *
  * @author Oliver Burn
  * @version 1.0
+ * @deprecated Checkstyle is not type aware tool and all Checks derived from this
+ * class are potentially unstable.
  */
+@Deprecated
 public abstract class AbstractTypeAwareCheck extends Check
 {
     /** imports details **/

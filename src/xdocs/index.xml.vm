@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <document xmlns="http://maven.apache.org/XDOC/2.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -88,7 +88,7 @@
     <section name="Download">
       <p>
         The latest release of Checkstyle can be downloaded from <a
-        href="http://sourceforge.net/project/showfiles.php?group_id=29721">the
+        href="https://sourceforge.net/projects/checkstyle/files/checkstyle/">the
         SourceForge download page</a>, or <a href="http://search.maven.org/#search|gav|1|g%3A%22com.puppycrawl.tools%22%20AND%20a%3A%22checkstyle%22">Maven central</a>.
       </p>
 
@@ -252,7 +252,7 @@
           <td></td>
         </tr>
         <tr>
-          <td><a href="http://tide.olympe-network.com/">tIDE</a></td>
+          <td><a href="http://tide.olympe.in/">tIDE</a></td>
           <td></td>
           <td>Built in</td>
           <td></td>
@@ -300,6 +300,12 @@
           <td></td>
           <td><a href="https://wiki.jenkins-ci.org/display/JENKINS/Checkstyle+Plugin">Jenkins Checkstyle plug-in Home Page</a></td>
           <td>This plug-in is supported by the Static Analysis Collector plug-in that collects different analysis results and shows the results in aggregated trend graphs.</td>
+        </tr>
+        <tr>
+          <td><a href="https://bitbucket.org/atlassian/bamboo-checkstyle-plugin">Bamboo Checkstyle plug-in</a></td>
+          <td>Atlassian (formely by Ross Rowe and Stephan Paulicke)</td>
+          <td><a href="https://marketplace.atlassian.com/plugins/com.atlassian.bamboo.plugins.bamboo-checkstyle-plugin">Bamboo Checkstyle plug-in Atlassian Marketplace page</a></td>
+          <td>An add-on that will parse and record CheckStyle reports and report your style violations over time.</td>
         </tr>
       </table>
 

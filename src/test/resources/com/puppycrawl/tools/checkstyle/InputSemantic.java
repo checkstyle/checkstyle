@@ -10,7 +10,7 @@ import java.awt.Color;
 
 /**
  * Test case for detecting simple semantic errors.
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  **/
 class InputSemantic
 {
@@ -192,6 +192,14 @@ class InputSemantic
         {
             return true;
         }
+    }
+    
+    private class InputBraces {
+        
+    }
+    
+    private class InputModifier {
+        
     }
 
 }

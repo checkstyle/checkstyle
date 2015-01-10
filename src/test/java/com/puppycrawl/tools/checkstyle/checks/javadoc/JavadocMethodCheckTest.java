@@ -43,7 +43,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
         config.addAttribute("allowedAnnotations", "MyAnnotation, Override");
         config.addAttribute("minLineCount", "2");
         final String[] expected = {
-            "54:3: Missing a Javadoc comment.",
+            "46:1: Missing a Javadoc comment.",
         };
         verify(config, getPath("javadoc/ExtendAnnotation.java"), expected);
     }
@@ -485,5 +485,15 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
             "46:5: Invalid use of the {@inheritDoc} tag.",
         };
         verify(mCheckConfig, getPath("javadoc/InputInheritDoc.java"), expected);
+    }
+
+    @Test
+    public void testSkipCertainMethods() throws Exception
+    {
+        mCheckConfig.addAttribute("ignoreMethodNamesRegex", "^foo.*$");
+        String[] expected = {
+
+        };
+        verify(mCheckConfig, getPath("javadoc/InputJavadocMethodIgnoreNameRegex.java"), expected);
     }
 }

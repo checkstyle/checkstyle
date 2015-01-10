@@ -58,7 +58,7 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testCustomMessage() throws CheckstyleException
+    public void testCustomMessage() throws Exception
     {
         DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
         config.addMessage("msgKey", "This is a custom message.");
@@ -76,7 +76,7 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testCustomMessageWithParameters() throws CheckstyleException
+    public void testCustomMessageWithParameters() throws Exception
     {
         DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
         config.addMessage("msgKey", "This is a custom message with {0}.");
@@ -95,7 +95,7 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testCustomMessageWithParametersNegative() throws CheckstyleException
+    public void testCustomMessageWithParametersNegative() throws Exception
     {
         DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
         config.addMessage("msgKey", "This is a custom message {0.");

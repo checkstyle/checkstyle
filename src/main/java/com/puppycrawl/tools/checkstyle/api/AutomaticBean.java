@@ -119,6 +119,7 @@ public class AutomaticBean
      * @throws CheckstyleException {@inheritDoc}
      * @see Configurable
      */
+    @Override
     public final void configure(Configuration aConfiguration)
         throws CheckstyleException
     {
@@ -191,6 +192,7 @@ public class AutomaticBean
      * @throws CheckstyleException {@inheritDoc}
      * @see Contextualizable
      */
+    @Override
     public final void contextualize(Context aContext)
         throws CheckstyleException
     {
@@ -273,6 +275,7 @@ public class AutomaticBean
     private static class RelaxedStringArrayConverter implements Converter
     {
         /** {@inheritDoc} */
+        @Override
         public Object convert(@SuppressWarnings("rawtypes") Class aType,
             Object aValue)
         {

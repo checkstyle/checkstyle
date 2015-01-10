@@ -14,7 +14,7 @@ import com.puppycrawl.tools.*;
 import com.*;
 
 import com.google.common.*;
-import org.apache.*;
+import org.junit.*;
 
-public class InputImportOrder {
+public class InputCustomImportOrder2 {
 }

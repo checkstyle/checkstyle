@@ -61,4 +61,23 @@ public class TranslationCheckTest
     //     key2=y
     // should not result in error message about key1 missing in the y bundle
 
+    @Test
+    public void testBaseNameSeparator() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        checkConfig.addAttribute("basenameSeparator", "-");
+        final String[] expected = {
+            "0: Key 'only.english' missing.",
+        };
+        final File[] propertyFiles = new File[] {
+            new File(getPath("app-dev.properties")),
+            new File(getPath("app-stage.properties")),
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath("app-dev.properties"),
+            expected);
+    }
+
 }

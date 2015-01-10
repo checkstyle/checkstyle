@@ -59,41 +59,47 @@ public class Comment implements TextBlock
     }
 
     /** {@inheritDoc} */
+    @Override
     public final String[] getText()
     {
         return mText.clone();
     }
 
     /** {@inheritDoc} */
+    @Override
     public final int getStartLineNo()
     {
         return mFirstLine;
     }
 
     /** {@inheritDoc} */
+    @Override
     public final int getEndLineNo()
     {
         return mLastLine;
     }
 
     /** {@inheritDoc} */
+    @Override
     public int getStartColNo()
     {
         return mFirstCol;
     }
 
     /** {@inheritDoc} */
+    @Override
     public int getEndColNo()
     {
         return mLastCol;
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean intersects(int aStartLineNo, int aStartColNo,
                               int aEndLineNo, int aEndColNo)
     {
         // compute a single number for start and end
-        // to simpify conditional logic
+        // to simplify conditional logic
         final long multiplier = Integer.MAX_VALUE;
         final long thisStart = mFirstLine * multiplier + mFirstCol;
         final long thisEnd = mLastLine * multiplier + mLastCol;

@@ -26,7 +26,7 @@ import org.junit.Test;
 /**
  * Testcase for the JavaNCSS-Check.
  *
- * @author Lars Ködderitzsch
+ * @author Lars KÃ¶dderitzsch
  */
 public class JavaNCSSCheckTest extends BaseCheckTestSupport
 {

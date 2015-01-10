@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <document xmlns="http://maven.apache.org/XDOC/2.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -407,6 +407,12 @@ public boolean isSomething()
             <td><code>false</code></td>
           </tr>
           <tr>
+            <td>ignoreMethodNamesRegex</td>
+            <td>ignore method whose names are matching specified regex</td>
+            <td><a href="property_types.html#regex">regular expression</a></td>
+            <td><code>null</code> (tag not required)</td>
+          </tr>
+          <tr>
             <td>tokens</td>
             <td>definitions to check</td>
 
@@ -465,6 +471,14 @@ public boolean isSomething()
 &lt;module name="JavadocMethod"&gt;
    &lt;property name="scope" value="private"/&gt;
    &lt;property name="excludeScope" value="protected"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check for ignoring methods named <code>foo(),foo1(),foo2()</code>, etc.:
+        </p>
+        <source>
+&lt;module name="JavadocMethodRegex"&gt;
+   &lt;property name="ignoreMethodNamesRegex" value="^foo.*$"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -954,6 +968,12 @@ public boolean isSomething()
             <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^$</code></td>
           </tr>
+          <tr>
+            <td>period</td>
+            <td>period symbol at the end of first javadoc sentence</td>
+            <td><a href="property_types.html#string">String literal</a></td>
+            <td><code>.</code></td>
+          </tr>
         </table>
       </subsection>
 
@@ -970,6 +990,14 @@ public boolean isSomething()
         <source>
 &lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
     &lt;property name=&quot;forbiddenSummaryFragments&quot; value=&quot;^This method returns.*&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To specify period symbol at the end of first javadoc sentence:
+        </p>
+        <source>
+&lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
+    &lt;property name=&quot;period&quot; value=&quot;STRING_LITERAL&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1099,7 +1127,7 @@ public boolean isSomething()
       <subsection name="Description">
         <p>
            Checks that a JavaDoc block which can fit on a single line and doesn't
-           contain at-clauses. Javadoc comment that contains at leat one at-clause
+           contain at-clauses. Javadoc comment that contains at least one at-clause
            should be formatted in few lines.
         </p>
       </subsection>

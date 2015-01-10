@@ -63,7 +63,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
 {
 
     /**
-     * Some javadoc.
+     * Default order of atclauses.
      */
     private static final String[] DEFAULT_ORDER = {
         "@author", "@version",
@@ -75,7 +75,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
     };
 
     /**
-     * Some javadoc.
+     * Default target of checking atclauses.
      */
     private List<Integer> mTarget = Arrays.asList(
         TokenTypes.CLASS_DEF,
@@ -87,13 +87,13 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
     );
 
     /**
-     * Some javadoc.
+     * Order of atclauses.
      */
     private List<String> mTagOrder = Arrays.asList(DEFAULT_ORDER);
 
     /**
-     * Some javadoc.
-     * @param aTarget Some javadoc.
+     * Sets custom targets.
+     * @param aTarget user's targets.
      */
     public void setTarget(String aTarget)
     {
@@ -105,8 +105,8 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
     }
 
     /**
-     * Some javadoc.
-     * @param aOrder Some javadoc.
+     * Sets custom order of atclauses.
+     * @param aOrder user's order.
      */
     public void setTagOrder(String aOrder)
     {
@@ -136,8 +136,8 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
     }
 
     /**
-     * Some javadoc.
-     * @param aJavadoc Some javadoc.
+     * Checks order of atclauses in tag section node.
+     * @param aJavadoc Javadoc root node.
      */
     private void checkOrderInTagSection(DetailNode aJavadoc)
     {
@@ -160,9 +160,9 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
     }
 
     /**
-     * Some javadoc.
-     * @param aCommentBlock Some javadoc.
-     * @return Some javadoc.
+     * Returns type of parent node.
+     * @param aCommentBlock child node.
+     * @return parent type.
      */
     private int getParentType(DetailAST aCommentBlock)
     {

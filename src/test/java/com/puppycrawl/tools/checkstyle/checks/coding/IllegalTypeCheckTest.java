@@ -93,4 +93,63 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
 
         verify(mCheckConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
     }
+
+    @Test
+    public void testSameFileNameFalsePositive() throws Exception
+    {
+        mCheckConfig.addAttribute("illegalClassNames", "java.util.GregorianCalendar, SubCalendar, "
+                + "java.util.List");
+
+        String[] expected = {
+            "12:5: Declaring variables, return values or parameters of type 'SubCalendar' is not allowed.",
+            "27:5: Declaring variables, return values or parameters of type 'java.util.List' is not allowed.",
+        };
+
+        verify(mCheckConfig, getPath("coding" + File.separator
+                + "InputIllegalTypeSameFileName.java"), expected);
+    }
+
+    @Test
+    public void testSameFileNameGeneral() throws Exception
+    {
+        mCheckConfig.addAttribute("illegalClassNames", "List, GregorianCalendar, java.io.File, ArrayList");
+        String[] expected = {
+            "10:5: Declaring variables, return values or parameters of type 'GregorianCalendar' is not allowed.",
+            "16:23: Declaring variables, return values or parameters of type 'GregorianCalendar' is not allowed.",
+            "24:9: Declaring variables, return values or parameters of type 'List' is not allowed.",
+            "25:9: Declaring variables, return values or parameters of type 'java.io.File' is not allowed.",
+            "27:5: Declaring variables, return values or parameters of type 'java.util.List' is not allowed.",
+            "28:13: Declaring variables, return values or parameters of type 'ArrayList' is not allowed.",
+        };
+        verify(mCheckConfig, getPath("coding" + File.separator
+                + "InputIllegalTypeSameFileName.java"), expected);
+    }
+
+    @Test
+    public void testStarImports() throws Exception
+    {
+        mCheckConfig.addAttribute("illegalClassNames", "List");
+
+        String[] expected = {
+            "10:5: Declaring variables, return values or parameters of type 'List' is not allowed.",
+        };
+
+        verify(mCheckConfig, getPath("coding" + File.separator
+                + "InputIllegalTypeStarImports.java"), expected);
+    }
+
+    @Test
+    public void testStaticImports() throws Exception
+    {
+        mCheckConfig.addAttribute("illegalClassNames", "SomeStaticClass");
+        mCheckConfig.addAttribute("ignoredMethodNames", "foo1");
+
+        String[] expected = {
+            "13:6: Declaring variables, return values or parameters of type 'SomeStaticClass' is not allowed.",
+            "15:31: Declaring variables, return values or parameters of type 'SomeStaticClass' is not allowed.",
+        };
+
+        verify(mCheckConfig, getPath("coding" + File.separator
+                + "InputIllegalTypeStaticImports.java"), expected);
+    }
 }

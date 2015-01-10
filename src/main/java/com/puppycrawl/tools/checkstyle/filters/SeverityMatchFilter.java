@@ -62,6 +62,7 @@ public class SeverityMatchFilter
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean accept(AuditEvent aEvent)
     {
         final boolean result = mSeverityLevel.equals(aEvent.getSeverityLevel());

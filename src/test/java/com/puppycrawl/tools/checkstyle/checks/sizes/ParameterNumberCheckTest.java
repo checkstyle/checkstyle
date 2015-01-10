@@ -63,4 +63,18 @@ public class ParameterNumberCheckTest
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
+
+    @Test
+    public void shouldIgnoreMethodsWithOverrideAnnotation()
+            throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(ParameterNumberCheck.class);
+        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
+        final String[] expected = {
+            "6:10: More than 7 parameters (found 8).",
+            "11:10: More than 7 parameters (found 8).",
+        };
+        verify(checkConfig, getPath("InputParameterNumberCheck.java"), expected);
+    }
 }

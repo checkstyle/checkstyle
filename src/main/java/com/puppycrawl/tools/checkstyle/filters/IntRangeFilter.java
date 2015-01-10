@@ -46,6 +46,7 @@ class IntRangeFilter implements IntFilter
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean accept(int aInt)
     {
         return ((mLowerBound.compareTo(aInt) <= 0)

@@ -52,6 +52,18 @@ import java.util.Map.Entry;
  * <pre>
  * &lt;module name="Translation"/&gt;
  * </pre>
+ * Check has a property <b>basenameSeparator</b> which allows setting separator in file names,
+ * default value is '_'.
+ * <p>
+ * E.g.:
+ * </p>
+ * <p>
+ * messages_test.properties //separator is '_'
+ * </p>
+ * <p>
+ * app-dev.properties //separator is '-'
+ * </p>
+ * <br>
  * @author Alexandra Bunge
  * @author lkuehne
  */
@@ -61,12 +73,16 @@ public class TranslationCheck
     /** The property files to process. */
     private final List<File> mPropertyFiles = Lists.newArrayList();
 
+    /** The separator string used to separate translation files */
+    private String mBasenameSeparator;
+
     /**
      * Creates a new <code>TranslationCheck</code> instance.
      */
     public TranslationCheck()
     {
         setFileExtensions(new String[]{"properties"});
+        setBasenameSeparator("_");
     }
 
     @Override
@@ -87,7 +103,7 @@ public class TranslationCheck
     {
         super.finishProcessing();
         final Map<String, Set<File>> propFilesMap =
-            arrangePropertyFiles(mPropertyFiles);
+            arrangePropertyFiles(mPropertyFiles, mBasenameSeparator);
         checkPropertyFileSets(propFilesMap);
     }
 
@@ -97,17 +113,31 @@ public class TranslationCheck
      * "xyz/messages_de_AT.properties", "xyz/messages_en.properties", etc.
      *
      * @param aFile the file
+     * @param aBasenameSeparator the basename separator
      * @return the extracted basename
      */
-    private static String extractPropertyIdentifier(final File aFile)
+    private static String extractPropertyIdentifier(final File aFile,
+            final String aBasenameSeparator)
     {
         final String filePath = aFile.getPath();
         final int dirNameEnd = filePath.lastIndexOf(File.separatorChar);
         final int baseNameStart = dirNameEnd + 1;
-        final int underscoreIdx = filePath.indexOf('_', baseNameStart);
+        final int underscoreIdx = filePath.indexOf(aBasenameSeparator,
+            baseNameStart);
         final int dotIdx = filePath.indexOf('.', baseNameStart);
         final int cutoffIdx = (underscoreIdx != -1) ? underscoreIdx : dotIdx;
         return filePath.substring(0, cutoffIdx);
+    }
+
+   /**
+    * Sets the separator used to determine the basename of a property file.
+    * This defaults to "_"
+    *
+    * @param aBasenameSeparator the basename separator
+    */
+    public void setBasenameSeparator(String aBasenameSeparator)
+    {
+        mBasenameSeparator = aBasenameSeparator;
     }
 
     /**
@@ -115,15 +145,17 @@ public class TranslationCheck
      * The method returns a Map object. The filename prefixes
      * work as keys each mapped to a set of files.
      * @param aPropFiles the set of property files
+     * @param aBasenameSeparator the basename separator
      * @return a Map object which holds the arranged property file sets
      */
     private static Map<String, Set<File>> arrangePropertyFiles(
-        List<File> aPropFiles)
+        List<File> aPropFiles, String aBasenameSeparator)
     {
         final Map<String, Set<File>> propFileMap = Maps.newHashMap();
 
         for (final File f : aPropFiles) {
-            final String identifier = extractPropertyIdentifier(f);
+            final String identifier = extractPropertyIdentifier(f,
+                aBasenameSeparator);
 
             Set<File> fileSet = propFileMap.get(identifier);
             if (fileSet == null) {

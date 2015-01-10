@@ -96,6 +96,26 @@ public final class MissingDeprecatedCheck extends Check
     /** Multiline finished at next Javadoc * */
     private static final String NEXT_TAG = "@";
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_ANNOTATION_MISSING_DEPRECATED =
+        "annotation.missing.deprecated";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_JAVADOC_DUPLICATE_TAG =
+        "javadoc.duplicateTag";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_JAVADOC_MISSING = "javadoc.missing";
+
     /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
@@ -134,7 +154,7 @@ public final class MissingDeprecatedCheck extends Check
         final boolean containsJavadocTag = this.containsJavadocTag(javadoc);
 
         if (containsAnnotation ^ containsJavadocTag) {
-            this.log(aAST.getLineNo(), "annotation.missing.deprecated");
+            this.log(aAST.getLineNo(), MSG_KEY_ANNOTATION_MISSING_DEPRECATED);
         }
     }
 
@@ -168,7 +188,7 @@ public final class MissingDeprecatedCheck extends Check
 
             if (javadocNoargMatcher.find()) {
                 if (found) {
-                    this.log(currentLine, "javadoc.duplicateTag",
+                    this.log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
                         JavadocTagInfo.DEPRECATED.getText());
                 }
                 found = true;
@@ -193,15 +213,15 @@ public final class MissingDeprecatedCheck extends Check
                             && !lFin.equals(MissingDeprecatedCheck.END_JAVADOC))
                         {
                             if (found) {
-                                this.log(currentLine, "javadoc.duplicateTag",
+                                this.log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
                                     JavadocTagInfo.DEPRECATED.getText());
                             }
                             found = true;
                         }
                         else {
-                            this.log(currentLine, "javadoc.missing");
+                            this.log(currentLine, MSG_KEY_JAVADOC_MISSING);
                             if (found) {
-                                this.log(currentLine, "javadoc.duplicateTag",
+                                this.log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
                                     JavadocTagInfo.DEPRECATED.getText());
                             }
                             found = true;

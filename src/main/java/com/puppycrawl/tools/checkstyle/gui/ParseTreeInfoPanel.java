@@ -53,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * The user can change the file that is parsed and displayed
  * through a JFileChooser.
  *
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  */
 public class ParseTreeInfoPanel extends JPanel
 {
@@ -118,6 +118,7 @@ public class ParseTreeInfoPanel extends JPanel
             putValue(Action.MNEMONIC_KEY, KeyEvent.VK_S);
         }
 
+        @Override
         public void actionPerformed(ActionEvent e)
         {
             final JFileChooser fc = new JFileChooser( mLastDirectory );
@@ -145,6 +146,7 @@ public class ParseTreeInfoPanel extends JPanel
             putValue(Action.MNEMONIC_KEY, KeyEvent.VK_R);
         }
 
+        @Override
         public void actionPerformed(ActionEvent e)
         {
             final Component parent =
@@ -158,6 +160,7 @@ public class ParseTreeInfoPanel extends JPanel
     {
         private final JScrollPane mSp;
 
+        @Override
         public void filesDropped(File[] files)
         {
             if ((files != null) && (files.length > 0))
@@ -315,6 +318,7 @@ public class ParseTreeInfoPanel extends JPanel
     {
         final Runnable showError = new Runnable()
         {
+            @Override
             public void run()
             {
                 JOptionPane.showMessageDialog(parent, msg);

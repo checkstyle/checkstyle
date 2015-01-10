@@ -125,6 +125,41 @@ public final class AnnotationUseStyleCheck extends Check
     private static final String ANNOTATION_ELEMENT_SINGLE_NAME =
         "value";
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_ANNOTATION_INCORRECT_STYLE =
+        "annotation.incorrect.style";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_ANNOTATION_PARENS_MISSING =
+        "annotation.parens.missing";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_ANNOTATION_PARENS_PRESENT =
+        "annotation.parens.present";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING =
+        "annotation.trailing.comma.missing";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT =
+        "annotation.trailing.comma.present";
+
     //not extending AbstractOptionCheck because check
     //has more than one option type.
 
@@ -260,7 +295,7 @@ public final class AnnotationUseStyleCheck extends Check
         if (valuePairCount == 0
             && aAnnotation.branchContains(TokenTypes.EXPR))
         {
-            this.log(aAnnotation.getLineNo(), "annotation.incorrect.style",
+            this.log(aAnnotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.EXPANDED);
         }
     }
@@ -382,13 +417,13 @@ public final class AnnotationUseStyleCheck extends Check
             && (comma == null || comma.getType() != TokenTypes.COMMA))
         {
             this.log(rCurly.getLineNo(),
-                rCurly.getColumnNo(), "annotation.trailing.comma.missing");
+                rCurly.getColumnNo(), MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING);
         }
         else if (TrailingArrayComma.NEVER.equals(this.mComma)
             && comma != null && comma.getType() == TokenTypes.COMMA)
         {
             this.log(comma.getLineNo(),
-                comma.getColumnNo(), "annotation.trailing.comma.present");
+                comma.getColumnNo(), MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT);
         }
     }
 
@@ -412,13 +447,15 @@ public final class AnnotationUseStyleCheck extends Check
         if (ClosingParens.ALWAYS.equals(this.mParens)
             && !parenExists)
         {
-            this.log(aAST.getLineNo(), "annotation.parens.missing");
+            this.log(aAST.getLineNo(), MSG_KEY_ANNOTATION_PARENS_MISSING);
         }
         else if (ClosingParens.NEVER.equals(this.mParens)
             && !aAST.branchContains(TokenTypes.EXPR)
+            && !aAST.branchContains(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
+            && !aAST.branchContains(TokenTypes.ANNOTATION_ARRAY_INIT)
             && parenExists)
         {
-            this.log(aAST.getLineNo(), "annotation.parens.present");
+            this.log(aAST.getLineNo(), MSG_KEY_ANNOTATION_PARENS_PRESENT);
         }
     }
 

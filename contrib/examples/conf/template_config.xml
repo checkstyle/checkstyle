@@ -466,14 +466,6 @@
         </module>
         
         <!-- See http://checkstyle.sf.net/config_coding.html -->
-        <!-- Checks for redundant exceptions declared in throws clause such 
-            as duplicates, unchecked exceptions or subclasses of another declared exception. -->
-            <!-- <property name="allowUnchecked" value="false"/> -->
-            <!-- <property name="allowSubclasses" value="false"/> -->
-        <module name="RedundantThrows">
-        </module>
-        
-        <!-- See http://checkstyle.sf.net/config_coding.html -->
         <!-- Checks for overly complicated boolean expressions. -->
         <module name="SimplifyBooleanExpression">
         </module>
@@ -637,9 +629,8 @@
         </module>
         
         <!-- See http://checkstyle.sf.net/config_design.html -->
-        <!-- Ensures that exceptions (defined as any class name conforming 
-            to some regular expression) are immutable. That is, have only final fields. -->
-            <!-- <property name="format" value="^.*Exception$|^.*Error$"/> -->
+        <!-- Ensures that exceptions classes are immutable. !-->
+            <!-- <property name="format" value="^.*Exception$|^.*Error$|^.*Throwable$"/> -->
         <module name="MutableException">
         </module>
         
@@ -757,16 +748,7 @@
         </module>
         
     </module>
-    
-    
-    <!-- See http://checkstyle.sf.net/config_duplicates.html -->
-    <!-- Performs a line-by-line comparison of all code lines and 
-        reports duplicate code. -->
-        <!-- <property name="min" value="12"/> -->
-    <module name="StrictDuplicateCode">
-    </module>
-    
-    
+
     <!-- See http://checkstyle.sf.net/config_misc.html#NewlineAtEndOfFile -->
     <!-- Checks whether files end with a new line.                        -->
         <!-- <property name="lineSeparator" value="system"/> -->

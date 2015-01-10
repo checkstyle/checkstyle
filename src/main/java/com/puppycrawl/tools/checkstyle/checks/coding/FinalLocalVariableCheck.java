@@ -103,7 +103,7 @@ public class FinalLocalVariableCheck extends Check
 
         case TokenTypes.PARAMETER_DEF:
             if (ScopeUtils.inInterfaceBlock(aAST)
-                || inAbstractMethod(aAST))
+                || inAbstractOrNativeMethod(aAST))
             {
                 break;
             }
@@ -147,18 +147,19 @@ public class FinalLocalVariableCheck extends Check
     }
 
     /**
-     * Determines whether an AST is a descentant of an abstract method.
+     * Determines whether an AST is a descendant of an abstract or native method.
      * @param aAST the AST to check.
-     * @return true if aAST is a descentant of an abstract method.
+     * @return true if aAST is a descendant of an abstract or native method.
      */
-    private boolean inAbstractMethod(DetailAST aAST)
+    private static boolean inAbstractOrNativeMethod(DetailAST aAST)
     {
         DetailAST parent = aAST.getParent();
         while (parent != null) {
             if (parent.getType() == TokenTypes.METHOD_DEF) {
                 final DetailAST modifiers =
                     parent.findFirstToken(TokenTypes.MODIFIERS);
-                return modifiers.branchContains(TokenTypes.ABSTRACT);
+                return modifiers.branchContains(TokenTypes.ABSTRACT)
+                        || modifiers.branchContains(TokenTypes.LITERAL_NATIVE);
             }
             parent = parent.getParent();
         }

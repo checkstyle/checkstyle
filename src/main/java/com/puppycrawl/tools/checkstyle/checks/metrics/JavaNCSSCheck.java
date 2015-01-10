@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * by counting the non commenting lines. Roughly said this is (nearly)
  * equivalent to counting the semicolons and opening curly braces.
  *
- * @author Lars Ködderitzsch
+ * @author Lars KÃ¶dderitzsch
  */
 public class JavaNCSSCheck extends Check
 {
@@ -326,7 +326,7 @@ public class JavaNCSSCheck extends Check
     }
 
     /**
-     * @author Lars Ködderitzsch
+     * @author Lars KÃ¶dderitzsch
      *
      * Class representing a counter,
      */

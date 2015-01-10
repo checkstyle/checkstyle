@@ -104,7 +104,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
             "15: Wrong lexicographical order for 'java.io.InputStream' import.",
             "18: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
             "20: Imports without groups should be placed at the end of the import list.",
-            "21: 'org.apache.*'should be separated from previous import group.",
+            "21: 'org.junit.*'should be separated from previous import group.",
         };
 
         verify(checkConfig, getPath("imports" + File.separator
@@ -151,8 +151,9 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
             "11: Import statement is in the wrong order. Should be in the 'STATIC' group.",
         };
 
-        verify(checkConfig, getPath("imports" + File.separator
-                + "InputCustomImportOrderSamePackage.java"), expected);
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/"
+                + "InputCustomImportOrderSamePackage.java").getCanonicalPath(), expected);
     }
 
     @Test
@@ -170,8 +171,9 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
             "9: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
         };
 
-        verify(checkConfig, getPath("imports" + File.separator
-                + "InputCustomImportOrderSamePackage2.java"), expected);
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/"
+                + "InputCustomImportOrderSamePackage2.java").getCanonicalPath(), expected);
     }
 
     @Test
@@ -194,8 +196,9 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
             "11: Import statement is in the wrong order. Should be in the 'STATIC' group.",
         };
 
-        verify(checkConfig, getPath("imports" + File.separator
-                + "InputCustomImportOrderSamePackage.java"), expected);
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/"
+                + "InputCustomImportOrderSamePackage.java").getCanonicalPath(), expected);
     }
 
     @Test
@@ -230,5 +233,38 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
 
         verify(checkConfig, getPath("imports" + File.separator
                 + "DOMSource.java"), expected);
+    }
+
+    /**
+     * @throws Exception
+     */
+    @Test
+    public void testDefaultPackage2() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("standardPackageRegExp", "java|javax");
+        checkConfig.addAttribute("thirdPartyPackageRegExp", "com|org");
+        checkConfig.addAttribute("customImportOrderRules",
+            "STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE");
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
+
+        final String[] expected = {
+            "7: Wrong lexicographical order for 'java.awt.Button.ABORT' import.",
+            "10: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "11: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "12: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "13: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "14: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "15: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "16: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "17: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "18: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "19: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "23: Wrong lexicographical order for 'com.google.common.*' import.",
+        };
+
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/InputDefaultPackage.java").getCanonicalPath(), expected);
     }
 }

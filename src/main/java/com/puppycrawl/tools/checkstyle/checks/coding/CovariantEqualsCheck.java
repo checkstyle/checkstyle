@@ -30,7 +30,7 @@ import java.util.Set;
  * <p>Checks that if a class defines a covariant method equals,
  * then it defines method equals(java.lang.Object).
  * Inspired by findbugs,
- * http://www.cs.umd.edu/~pugh/java/bugs/docs/findbugsPaper.pdf
+ * http://findbugs.sourceforge.net/bugDescriptions.html#EQ_SELF_NO_OBJECT
  * </p>
  * <p>
  * An example of how to configure the check is:

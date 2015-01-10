@@ -50,4 +50,17 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport
         };
         verify(checkConfig, getPath("InputBraces.java"), expected);
     }
+
+    @Test
+    public void testSigleLineIfBlock() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(NeedBracesCheck.class);
+        checkConfig.addAttribute("allowSingleLineIf", "true");
+        final String[] expected = {
+            "23: 'if' construct must use '{}'s." ,
+            "29: 'if' construct must use '{}'s." ,
+        };
+        verify(checkConfig, getPath("InputBracesSingleLineIfBlock.java"), expected);
+    }
 }

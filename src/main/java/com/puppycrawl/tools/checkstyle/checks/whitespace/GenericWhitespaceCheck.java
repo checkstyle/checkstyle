@@ -136,7 +136,7 @@ public class GenericWhitespaceCheck extends Check
                 else if (!Character.isWhitespace(charAfter)
                     && ('(' != charAfter) && (')' != charAfter)
                     && (',' != charAfter) && ('[' != charAfter)
-                    && ('.' != charAfter))
+                    && ('.' != charAfter) && (':' != charAfter))
                 {
                     log(aAST.getLineNo(), after, "ws.illegalFollow", ">");
                 }
@@ -161,10 +161,7 @@ public class GenericWhitespaceCheck extends Check
                         log(aAST.getLineNo(), after, "ws.followed", ">");
                     }
                 }
-                else if ((line.charAt(after) != '>')
-                         && (line.charAt(after) != ',')
-                         && (line.charAt(after) != '['))
-                {
+                else if (line.charAt(after) == ' ') {
                     log(aAST.getLineNo(), after, "ws.followed", ">");
                 }
             }

@@ -44,7 +44,6 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer;
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
@@ -55,6 +54,17 @@ import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
  */
 public abstract class AbstractJavadocCheck extends Check
 {
+    /**
+     * Error message key for common javadoc errors.
+     */
+    private static final String PARSE_ERROR_MESSAGE_KEY = "javadoc.parse.error";
+
+    /**
+     * Unrecognized error from antlr parser
+     */
+    private static final String UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY =
+            "javadoc.unrecognized.antlr.error";
+
     /**
      * key is "line:column"
      * value is DetailNode tree
@@ -116,24 +126,40 @@ public abstract class AbstractJavadocCheck extends Check
     {
     }
 
+    /**
+     * Defined final to not allow JavadocChecks to change default tokens.
+     * @return default tokens
+     */
     @Override
     public final int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
     }
 
+    /**
+     * Defined final to not allow JavadocChecks to change acceptable tokens.
+     * @return acceptable tokens
+     */
     @Override
     public final int[] getAcceptableTokens()
     {
         return super.getAcceptableTokens();
     }
 
+    /**
+     * Defined final to not allow JavadocChecks to change required tokens.
+     * @return required tokens
+     */
     @Override
     public final int[] getRequiredTokens()
     {
         return super.getRequiredTokens();
     }
 
+    /**
+     * Defined final because all JavadocChecks require comment nodes.
+     * @return true
+     */
     @Override
     public final boolean isCommentNodesRequired()
     {
@@ -143,6 +169,7 @@ public abstract class AbstractJavadocCheck extends Check
     @Override
     public final void beginTree(DetailAST aRootAST)
     {
+        TREE_CACHE.clear();
     }
 
     @Override
@@ -179,8 +206,10 @@ public abstract class AbstractJavadocCheck extends Check
                 processTree(ps.getTree());
             }
             else {
-                final LocalizedMessage parseErrorMessage = ps.getParseErrorMessage();
-                log(parseErrorMessage.getLineNo(), parseErrorMessage.getMessage());
+                final ParseErrorMessage parseErrorMessage = ps.getParseErrorMessage();
+                log(parseErrorMessage.getLineNumber(),
+                        parseErrorMessage.getMessageKey(),
+                        parseErrorMessage.getMessageArguments());
             }
         }
 
@@ -208,15 +237,15 @@ public abstract class AbstractJavadocCheck extends Check
 
         final ParseStatus result = new ParseStatus();
         ParseTree parseTree = null;
-        LocalizedMessage parseErrorMessage = null;
+        ParseErrorMessage parseErrorMessage = null;
 
         try {
             parseTree = parseJavadocAsParseTree(javadocComment);
         }
         catch (IOException e) {
             // Antlr can not initiate its ANTLRInputStream
-            parseErrorMessage = createLogMessage(aJavadocCommentAst.getLineNo(),
-                    "javadoc.parse.error",
+            parseErrorMessage = new ParseErrorMessage(aJavadocCommentAst.getLineNo(),
+                    PARSE_ERROR_MESSAGE_KEY,
                     aJavadocCommentAst.getColumnNo(), e.getMessage());
         }
         catch (ParseCancellationException e) {
@@ -224,6 +253,13 @@ public abstract class AbstractJavadocCheck extends Check
             // and parser throws this runtime exception to stop parsing.
             // Just stop processing current Javadoc comment.
             parseErrorMessage = mErrorListener.getErrorMessage();
+
+            // There are cases when antlr error listener does not handle syntax error
+            if (parseErrorMessage == null) {
+                parseErrorMessage = new ParseErrorMessage(aJavadocCommentAst.getLineNo(),
+                        UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY,
+                        aJavadocCommentAst.getColumnNo(), e.getMessage());
+            }
         }
 
         if (parseErrorMessage == null) {
@@ -236,30 +272,6 @@ public abstract class AbstractJavadocCheck extends Check
 
         return result;
     }
-
-    /**
-     * Creates log message.
-     * @param aLine
-     *        line number
-     * @param aKey
-     *        key in messages.properties
-     * @param aArgs
-     *        message arguments
-     * @return log localized message.
-     */
-    private LocalizedMessage createLogMessage(int aLine, String aKey, Object... aArgs)
-    {
-        return new LocalizedMessage(
-                aLine,
-                getMessageBundle(),
-                aKey,
-                aArgs,
-                getSeverityLevel(),
-                getId(),
-                this.getClass(),
-                this.getCustomMessages().get(aKey));
-    }
-
 
     /**
      * Converts ParseTree (that is generated by ANTLRv4) to DetailNode tree.
@@ -586,9 +598,9 @@ public abstract class AbstractJavadocCheck extends Check
         /**
          * Error message that appeared while parsing.
          */
-        private LocalizedMessage mErrorMessage;
+        private ParseErrorMessage mErrorMessage;
 
-        public LocalizedMessage getErrorMessage()
+        public ParseErrorMessage getErrorMessage()
         {
             return mErrorMessage;
         }
@@ -625,13 +637,13 @@ public abstract class AbstractJavadocCheck extends Check
             final Token token = (Token) aOffendingSymbol;
 
             if (JAVADOC_MISSED_HTML_CLOSE.equals(aMsg)) {
-                mErrorMessage = createLogMessage(lineNumber,
+                mErrorMessage = new ParseErrorMessage(lineNumber,
                         JAVADOC_MISSED_HTML_CLOSE, aCharPositionInLine, token.getText());
 
                 throw new ParseCancellationException();
             }
             else if (JAVADOC_WRONG_SINGLETON_TAG.equals(aMsg)) {
-                mErrorMessage = createLogMessage(lineNumber,
+                mErrorMessage = new ParseErrorMessage(lineNumber,
                         JAVADOC_WRONG_SINGLETON_TAG, aCharPositionInLine, token.getText());
 
                 throw new ParseCancellationException();
@@ -644,11 +656,11 @@ public abstract class AbstractJavadocCheck extends Check
                     final String upperCaseRuleName = CaseFormat.UPPER_CAMEL.to(
                             CaseFormat.UPPER_UNDERSCORE, ruleName);
 
-                    mErrorMessage = createLogMessage(lineNumber,
+                    mErrorMessage = new ParseErrorMessage(lineNumber,
                             JAVADOC_PARSE_RULE_ERROR, aCharPositionInLine, aMsg, upperCaseRuleName);
                 }
                 else {
-                    mErrorMessage = createLogMessage(lineNumber, JAVADOC_PARSE_TOKEN_ERROR,
+                    mErrorMessage = new ParseErrorMessage(lineNumber, JAVADOC_PARSE_TOKEN_ERROR,
                             aCharPositionInLine, aMsg, aCharPositionInLine);
                 }
             }
@@ -669,7 +681,7 @@ public abstract class AbstractJavadocCheck extends Check
         /**
          * Parse error message (is null if parsing is successful)
          */
-        private LocalizedMessage mParseErrorMessage;
+        private ParseErrorMessage mParseErrorMessage;
 
         public DetailNode getTree()
         {
@@ -681,14 +693,65 @@ public abstract class AbstractJavadocCheck extends Check
             this.mTree = aTree;
         }
 
-        public LocalizedMessage getParseErrorMessage()
+        public ParseErrorMessage getParseErrorMessage()
         {
             return mParseErrorMessage;
         }
 
-        public void setParseErrorMessage(LocalizedMessage aParseErrorMessage)
+        public void setParseErrorMessage(ParseErrorMessage aParseErrorMessage)
         {
             this.mParseErrorMessage = aParseErrorMessage;
+        }
+
+    }
+
+    /**
+     * Contains information about parse error message.
+     */
+    private static class ParseErrorMessage
+    {
+        /**
+         * Line number where parse error occurred.
+         */
+        private int mLineNumber;
+
+        /**
+         * Key for error message.
+         */
+        private String mMessageKey;
+
+        /**
+         * Error message arguments.
+         */
+        private Object[] mMessageArguments;
+
+        /**
+         * Initializes parse error message.
+         *
+         * @param aLineNumber line number
+         * @param aMessageKey message key
+         * @param aMessageArguments message arguments
+         */
+        public ParseErrorMessage(int aLineNumber, String aMessageKey, Object ... aMessageArguments)
+        {
+            mLineNumber = aLineNumber;
+            mMessageKey = aMessageKey;
+            mMessageArguments = aMessageArguments;
+        }
+
+        public int getLineNumber()
+        {
+            return mLineNumber;
+        }
+
+        public String getMessageKey()
+        {
+            return mMessageKey;
+        }
+
+        public Object[] getMessageArguments()
+        {
+            return mMessageArguments;
         }
 
     }

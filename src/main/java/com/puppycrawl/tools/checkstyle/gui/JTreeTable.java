@@ -97,7 +97,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *
  * @author Philip Milne
  * @author Scott Violet
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  */
 public class JTreeTable extends JTable
 {
@@ -147,6 +147,7 @@ public class JTreeTable extends JTable
              */
             private static final long serialVersionUID = -5859674518660156121L;
 
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     final TreePath selected = tree.getSelectionPath();
 
@@ -303,6 +304,7 @@ public class JTreeTable extends JTable
          * TreeCellRenderer method. Overridden to update the visible row.
          * @see TableCellRenderer
          */
+        @Override
         public Component getTableCellRendererComponent(JTable table,
                 Object value,
                 boolean isSelected,
@@ -328,6 +330,7 @@ public class JTreeTable extends JTable
     public class TreeTableCellEditor extends AbstractCellEditor implements
             TableCellEditor
     {
+        @Override
         public Component getTableCellEditorComponent(JTable table,
                 Object value,
                 boolean isSelected,
@@ -485,6 +488,7 @@ public class JTreeTable extends JTable
          */
         class ListSelectionHandler implements ListSelectionListener
         {
+            @Override
             public void valueChanged(ListSelectionEvent e)
             {
                 updateSelectedPathsFromSelectedRows();

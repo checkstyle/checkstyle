@@ -24,9 +24,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 
 /**
- * <p> Ensures that exceptions (defined as any class name conforming
- * to some regular expression) are immutable. That is, have only final
- * fields.</p>
+ * <p> Ensures that exceptions (classes with names conforming to some regular
+ * expression and explicitly extending classes with names conforming to other
+ * regular expression) are immutable. That is, they have only final fields.</p>
  * <p> Rationale: Exception instances should represent an error
  * condition. Having non final fields not only allows the state to be
  * modified by accident and therefore mask the original condition but
@@ -38,8 +38,10 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  */
 public final class MutableExceptionCheck extends AbstractFormatCheck
 {
-    /** Default value for format property. */
-    private static final String DEFAULT_FORMAT = "^.*Exception$|^.*Error$";
+    /** Default value for format and extendedClassNameFormat properties. */
+    private static final String DEFAULT_FORMAT = "^.*Exception$|^.*Error$|^.*Throwable$";
+    /** Pattern for class name that is being extended */
+    private String mExtendedClassNameFormat;
     /** Stack of checking information for classes. */
     private final FastStack<Boolean> mCheckingStack = FastStack.newInstance();
     /** Should we check current class or not. */
@@ -49,6 +51,16 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     public MutableExceptionCheck()
     {
         super(DEFAULT_FORMAT);
+        setExtendedClassNameFormat(DEFAULT_FORMAT);
+    }
+
+    /**
+     * Sets the format of extended class name to the specified regular expression.
+     * @param aExtendedClassNameFormat a <code>String</code> value
+     */
+    public void setExtendedClassNameFormat(String aExtendedClassNameFormat)
+    {
+        mExtendedClassNameFormat = aExtendedClassNameFormat;
     }
 
     @Override
@@ -97,19 +109,18 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     private void visitClassDef(DetailAST aAST)
     {
         mCheckingStack.push(mChecking ? Boolean.TRUE : Boolean.FALSE);
-        mChecking =
-            isExceptionClass(aAST.findFirstToken(TokenTypes.IDENT).getText());
+        mChecking = isNamedAsException(aAST) && isExtendedClassNamedAsException(aAST);
     }
 
     /** Called when we leave class definition. */
     private void leaveClassDef()
     {
-        mChecking = (mCheckingStack.pop()).booleanValue();
+        mChecking = mCheckingStack.pop();
     }
 
     /**
      * Checks variable definition.
-     * @param aAST variable def node for check.
+     * @param aAST variable def node for check
      */
     private void visitVariableDef(DetailAST aAST)
     {
@@ -117,7 +128,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
             final DetailAST modifiersAST =
                 aAST.findFirstToken(TokenTypes.MODIFIERS);
 
-            if (!(modifiersAST.findFirstToken(TokenTypes.FINAL) != null)) {
+            if (modifiersAST.findFirstToken(TokenTypes.FINAL) == null) {
                 log(aAST.getLineNo(),  aAST.getColumnNo(), "mutable.exception",
                         aAST.findFirstToken(TokenTypes.IDENT).getText());
             }
@@ -125,11 +136,29 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     }
 
     /**
-     * @param aClassName class name to check
-     * @return true if a given class name confirms specified format
+     * @param aAST class definition node
+     * @return true if a class name conforms to specified format
      */
-    private boolean isExceptionClass(String aClassName)
+    private boolean isNamedAsException(DetailAST aAST)
     {
-        return getRegexp().matcher(aClassName).find();
+        final String className = aAST.findFirstToken(TokenTypes.IDENT).getText();
+        return getRegexp().matcher(className).find();
+    }
+
+    /**
+     * @param aAST class definition node
+     * @return true if extended class name conforms to specified format
+     */
+    private boolean isExtendedClassNamedAsException(DetailAST aAST)
+    {
+        final DetailAST extendsClause = aAST.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
+        if (extendsClause != null) {
+            final DetailAST extendedClass = extendsClause.findFirstToken(TokenTypes.IDENT);
+            if (extendedClass != null) {
+                final String extendedClassName = extendedClass.getText();
+                return extendedClassName.matches(mExtendedClassNameFormat);
+            }
+        }
+        return false;
     }
 }

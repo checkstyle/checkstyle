@@ -34,32 +34,7 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport
             "4: Missing package declaration.",
         };
 
-        verify(checkConfig, getPath("coding" + File.separator + "InputNoPackage.java"), expected);
-    }
-
-    @Test
-    public void testDefault1() throws Exception
-    {
-        DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
-        final String dname = "com/puppycrawl/tools/checkstyle/checks/coding"
-            .replace('/', File.separatorChar);
-
-        String[] expected = {
-            "1:9: Package declaration does not match directory '" + dname + "'.",
-        };
-
-        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalCatchCheck.java"), expected);
-    }
-
-    @Test
-    public void testQuiet() throws Exception
-    {
-        DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
-        checkConfig.addAttribute("ignoreDirectoryName", "true");
-
-        String[] expected = {
-        };
-
-        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalCatchCheck.java"), expected);
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/coding/InputNoPackage.java").getCanonicalPath(), expected);
     }
 }

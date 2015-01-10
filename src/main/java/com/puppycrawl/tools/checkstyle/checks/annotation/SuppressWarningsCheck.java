@@ -97,6 +97,13 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
         "java.lang." + SUPPRESS_WARNINGS;
 
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED =
+        "suppressed.warning.not.allowed";
+
+    /**
      * Ctor that specifies the default for the format property
      * as specified in the class javadocs.
      */
@@ -156,23 +163,28 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
         while (warning != null) {
             if (warning.getType() == TokenTypes.EXPR) {
                 final DetailAST fChild = warning.getFirstChild();
-
+                switch (fChild.getType()) {
                 //typical case
-                if (fChild.getType() == TokenTypes.STRING_LITERAL) {
+                case TokenTypes.STRING_LITERAL:
                     final String warningText =
                         this.removeQuotes(warning.getFirstChild().getText());
                     this.logMatch(warning.getLineNo(),
                         warning.getColumnNo(), warningText);
-
-     //conditional case
-     //ex: @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
-                }
-                else if (fChild.getType() == TokenTypes.QUESTION) {
+                    break;
+                //conditional case
+                //ex: @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
+                case TokenTypes.QUESTION:
                     this.walkConditional(fChild);
-                }
-                else {
-                    assert false : "Should never get here, type: "
-                        + fChild.getType() + " text: " + fChild.getText();
+                    break;
+                //param in constant case
+                //ex: public static final String UNCHECKED = "unchecked";
+                //@SuppressWarnings(UNCHECKED) or @SuppressWarnings(SomeClass.UNCHECKED)
+                case TokenTypes.IDENT:
+                case TokenTypes.DOT:
+                    break;
+                default:
+                    throw new IllegalStateException("Should never get here, type: "
+                        + fChild.getType() + " text: " + fChild.getText());
                 }
             }
             warning = warning.getNextSibling();
@@ -211,7 +223,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
         final Matcher matcher = this.getRegexp().matcher(aWarningText);
         if (matcher.matches()) {
             this.log(aLineNo, aColNum,
-                "suppressed.warning.not.allowed", aWarningText);
+                    MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, aWarningText);
         }
     }
 

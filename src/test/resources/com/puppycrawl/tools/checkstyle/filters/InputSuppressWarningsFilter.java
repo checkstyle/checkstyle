@@ -57,4 +57,14 @@ class InputSuppressWarningsFilter
             // should NOT fail IllegalCatchCheck
         }
     }
+
+    enum AnEnum {
+        @SuppressWarnings("rawtypes")
+        ELEMENT;
+    }
+    private static final String UNUSED="UnusedDeclaration";
+
+    @SuppressWarnings(UNUSED)
+    public void annotationUsingStringConstantValue(){
+    }
 }

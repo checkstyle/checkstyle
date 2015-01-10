@@ -39,13 +39,14 @@ options {
 	buildAST = true;
 }
 
+//Please add new tokens only in the end of list! Otherwise you break compatibility!
 tokens {
     //Pre-1.4 tokens
 	BLOCK; MODIFIERS; OBJBLOCK; SLIST; CTOR_DEF; METHOD_DEF; VARIABLE_DEF;
 	INSTANCE_INIT; STATIC_INIT; TYPE; CLASS_DEF; INTERFACE_DEF;
 	PACKAGE_DEF; ARRAY_DECLARATOR; EXTENDS_CLAUSE; IMPLEMENTS_CLAUSE;
 	PARAMETERS; PARAMETER_DEF; LABELED_STAT; TYPECAST; INDEX_OP;
-	POST_INC; POST_DEC; METHOD_CALL; METHOD_REF; EXPR; ARRAY_INIT;
+	POST_INC; POST_DEC; METHOD_CALL; EXPR; ARRAY_INIT;
 	IMPORT; UNARY_MINUS; UNARY_PLUS; CASE_GROUP; ELIST; FOR_INIT; FOR_CONDITION;
 	FOR_ITERATOR; EMPTY_STAT; FINAL="final"; ABSTRACT="abstract";
 	STRICTFP="strictfp"; SUPER_CTOR_CALL; CTOR_CALL;
@@ -60,14 +61,18 @@ tokens {
     LITERAL_protected="protected";LITERAL_static="static";
     LITERAL_transient="transient";LITERAL_native="native";
     LITERAL_synchronized="synchronized";LITERAL_volatile="volatile";
+
+    //Please add new tokens only in the end of list! Otherwise you break compatibility!
     LITERAL_class="class";LITERAL_extends="extends";
     LITERAL_interface="interface";LCURLY;RCURLY;COMMA;
     LITERAL_implements="implements";LPAREN;RPAREN;LITERAL_this="this";
-    LITERAL_super="super";ASSIGN;LITERAL_throws="throws";COLON;DOUBLE_COLON;
+    LITERAL_super="super";ASSIGN;LITERAL_throws="throws";COLON;
     LITERAL_if="if";LITERAL_while="while";LITERAL_do="do";
     LITERAL_break="break";LITERAL_continue="continue";LITERAL_return="return";
     LITERAL_switch="switch";LITERAL_throw="throw";LITERAL_for="for";
     LITERAL_else="else";LITERAL_case="case";LITERAL_default="default";
+
+    //Please add new tokens only in the end of list! Otherwise you break compatibility!
     LITERAL_try="try";LITERAL_catch="catch";LITERAL_finally="finally";
     PLUS_ASSIGN;MINUS_ASSIGN;STAR_ASSIGN;DIV_ASSIGN;MOD_ASSIGN;SR_ASSIGN;
     BSR_ASSIGN;SL_ASSIGN;BAND_ASSIGN;BXOR_ASSIGN;BOR_ASSIGN;QUESTION;
@@ -75,14 +80,10 @@ tokens {
     LITERAL_instanceof="instanceof";SL;SR;BSR;PLUS;MINUS;DIV;MOD;
     INC;DEC;BNOT;LNOT;LITERAL_true="true";LITERAL_false="false";
     LITERAL_null="null";LITERAL_new="new";NUM_INT;CHAR_LITERAL;
-    STRING_LITERAL;NUM_FLOAT;NUM_LONG;NUM_DOUBLE;WS;
-    ESC;HEX_DIGIT;VOCAB;EXPONENT;FLOAT_SUFFIX;
+    STRING_LITERAL;NUM_FLOAT;NUM_LONG;NUM_DOUBLE;WS;SINGLE_LINE_COMMENT;
+    BLOCK_COMMENT_BEGIN;ESC;HEX_DIGIT;VOCAB;EXPONENT;FLOAT_SUFFIX;
 
-    SINGLE_LINE_COMMENT;
-    BLOCK_COMMENT_BEGIN;
-    BLOCK_COMMENT_END;
-    COMMENT_CONTENT;
-
+    //Please add new tokens only in the end of list! Otherwise you break compatibility!
     //Token for Java 1.4 language enhancements
     ASSERT;
 
@@ -93,6 +94,8 @@ tokens {
 	TYPE_PARAMETER; WILDCARD_TYPE; TYPE_UPPER_BOUNDS; TYPE_LOWER_BOUNDS; AT; ELLIPSIS;
 	GENERIC_START; GENERIC_END; TYPE_EXTENSION_AND;
 
+    //Please add new tokens only in the end of list! Otherwise you break compatibility!
+
     // token which was not included to grammar initially
     // we need to put it to the end to maintain binary compatibility
     // with previous versions
@@ -101,8 +104,11 @@ tokens {
     //Tokens for Java 1.7 language enhancements
     RESOURCE_SPECIFICATION; RESOURCES; RESOURCE;
 
-    //TOkens for 1.8
-    LAMBDA;
+    //Tokens for Java 1.8
+    DOUBLE_COLON;  METHOD_REF; LAMBDA;
+
+    //Support of java comments has been extended
+    BLOCK_COMMENT_END;COMMENT_CONTENT;
 }
 
 {
@@ -1112,7 +1118,7 @@ casesGroup
 			:
 			aCase
 		)+
-		caseSList
+		(caseSList)?
 		{#casesGroup = #([CASE_GROUP, "CASE_GROUP"], #casesGroup);}
 	;
 
@@ -1131,7 +1137,7 @@ caseSList
 			:
 			{LA(1)!=LITERAL_default}?
 				statement
-		)*
+        )+
 		{#caseSList = #(#[SLIST,"SLIST"],#caseSList);}
 	;
 
@@ -1400,7 +1406,7 @@ postfixExpression
 		(options{warnWhenFollowAmbig=false;} : 	// qualified id (id.id.id.id...) -- build the name
 			DOT^
 			( (typeArguments[false])?
-			  ( IDENT
+			  ( IDENT ((typeArguments[false] DOUBLE_COLON)=>typeArguments[false])? 
 			  | "this"
 			  | "super" // ClassName.super.field
 			  )

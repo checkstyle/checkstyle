@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <document xmlns="http://maven.apache.org/XDOC/2.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -28,7 +28,7 @@
 
         <a href="http://git-scm.com/">GIT</a>,
         <a href="http://maven.apache.org">Maven</a>,
-        <a href="http://www.junit.org">JUnit</a>).
+        <a href="http://junit.org">JUnit</a>).
       </p>
       <p>
         <b>ATTENTION:</b> if you have idea how to improve Checkstyle please create issue on

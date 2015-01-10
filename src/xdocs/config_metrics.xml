@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <document xmlns="http://maven.apache.org/XDOC/2.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -407,7 +407,7 @@
           specification</a> for the
           <a href="http://www.kclee.de/clemens/java/javancss/">JavaNCSS-Tool</a>
           written by <b>Chr. Clemens Lee</b>.<br/>
-          Rougly said the NCSS metric is calculated by
+          Roughly said the NCSS metric is calculated by
           counting the source lines which are not comments, (nearly)
           equivalent to counting the semicolons and opening curly
           braces.<br/> The NCSS for a class is summarized from the NCSS

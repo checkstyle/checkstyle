@@ -12,7 +12,7 @@ public class InputInnerClassCheck {
 			}
 		}
 
-		int test3 = 300; //error
+		int test3 = 300;
 	}
 
 	public void methodTestInner2() {
@@ -22,8 +22,8 @@ public class InputInnerClassCheck {
 			int test6 = 500;
 		}
 
-		int test6 = 600; //error
-		int test8 = 800; //error
+		int test6 = 600;
+		int test8 = 800;
 	}
 
 	class Inner1 {
@@ -36,8 +36,8 @@ public class InputInnerClassCheck {
 				int test10 = 500;
 			}
 
-			int test11 = 600; //error
-			int test12 = 800; //error
+			int test11 = 600;
+			int test12 = 800;
 		}
 	}
 
@@ -57,8 +57,8 @@ class Temp2 {
 				int test10 = 500;
 			}
 
-			int test11 = 600; //error
-			int test12 = 800; //error
+			int test11 = 600;
+			int test12 = 800;
 		}
 	}
 
@@ -78,5 +78,20 @@ class Temp3 {
     public int[] getDefaultTokens()
     {
         return new int[]{1, };
+    }
+}
+
+class Temp4 {
+
+    class InnerCheck {
+        class InnerInnerCheck {
+            private int a = 0;
+        }
+
+        class InnerInnerCheck2 {
+            private int a = 0;
+        }
+
+        private int I = 0; // error
     }
 }

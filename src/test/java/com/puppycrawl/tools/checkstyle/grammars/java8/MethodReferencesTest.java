@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.grammars.java8;
 
+import java.io.File;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -34,7 +36,9 @@ public class MethodReferencesTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};
-        verify(checkConfig, getPath("grammars/java8/InputMethodReferencesTest.java"), expected);
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/"
+                + "puppycrawl/tools/checkstyle/grammars/java8/"
+                + "InputMethodReferencesTest.java").getCanonicalPath(), expected);
 
     }
 
@@ -45,7 +49,22 @@ public class MethodReferencesTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};
-        verify(checkConfig, getPath("grammars/java8/InputMethodReferencesTest2.java"), expected);
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/"
+                + "puppycrawl/tools/checkstyle/grammars/java8/"
+                + "InputMethodReferencesTest2.java").getCanonicalPath(), expected);
+
+    }
+
+    @Test
+    public void testGenericInPostfixExpressionBeforeReference()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(MemberNameCheck.class);
+        final String[] expected = {};
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/"
+                + "puppycrawl/tools/checkstyle/grammars/java8/"
+                + "InputMethodReferencesTest3.java").getCanonicalPath(), expected);
 
     }
 }

@@ -51,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name="max" value="60"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  */
 public class MethodLengthCheck extends Check
 {

@@ -24,7 +24,7 @@ import org.junit.Test;
 
 /**
  * @author Rob Worth
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  */
 public class AnonInnerLengthCheckTest extends BaseCheckTestSupport
 {

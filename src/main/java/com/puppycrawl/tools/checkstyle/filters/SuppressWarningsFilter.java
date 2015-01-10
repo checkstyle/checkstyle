@@ -33,6 +33,7 @@ public class SuppressWarningsFilter
     implements Filter
 {
     /** {@inheritDoc} */
+    @Override
     public boolean accept(AuditEvent aEvent)
     {
         return !SuppressWarningsHolder.isSuppressed(aEvent.getSourceName(),

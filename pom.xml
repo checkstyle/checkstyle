@@ -22,7 +22,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>6.2-SNAPSHOT</version>
+  <version>6.3-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>checkstyle</name>
   <url>http://checkstyle.sourceforge.net/</url>
@@ -147,11 +147,12 @@
   </mailingLists>
 
   <properties>
-    <project.build.sourceEncoding>iso-8859-1</project.build.sourceEncoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <projectVersion>${project.version}</projectVersion>
     <maven.site.plugin.version>3.4</maven.site.plugin.version>
-    <tools.jar.version>1.6.0</tools.jar.version>
+    <tools.jar.version>1.7.0</tools.jar.version>
     <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
+    <java.version>1.7</java.version>
   </properties>
 
   <dependencies>
@@ -192,7 +193,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -200,7 +201,7 @@
   <build>
     <pluginManagement>
       <plugins>
-        <!-- This plugin's configuration is used to store Eclipse 
+        <!-- This plugin's configuration is used to store Eclipse
              m2e settings only. It has no influence on the Maven build itself.
         -->
         <plugin>
@@ -236,49 +237,49 @@
                     <execute />
                   </action>
                 </pluginExecution>
-				<pluginExecution>
-						<pluginExecutionFilter>
-							<groupId>org.antlr</groupId>
-							<artifactId>antlr4-maven-plugin</artifactId>
-							<versionRange>[4.0,)</versionRange>
-							<goals>
-								<goal>antlr4</goal>
-							</goals>
-						</pluginExecutionFilter>
-						<action>
-							<execute>
-								<runOnIncremental>true</runOnIncremental>
-							</execute>
-						</action>
-				</pluginExecution>
-				<pluginExecution>
-					<pluginExecutionFilter>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-enforcer-plugin</artifactId>
-						<versionRange>[1.2,)</versionRange>
-						<goals>
-							<goal>enforce</goal>
-						</goals>
-					</pluginExecutionFilter>
-					<action>
-						<ignore />
-					</action>
-				</pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.antlr</groupId>
+                    <artifactId>antlr4-maven-plugin</artifactId>
+                    <versionRange>[4.0,)</versionRange>
+                    <goals>
+                      <goal>antlr4</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <execute>
+                      <runOnIncremental>true</runOnIncremental>
+                    </execute>
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <versionRange>[1.2,)</versionRange>
+                    <goals>
+                      <goal>enforce</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore />
+                  </action>
+                </pluginExecution>
               </pluginExecutions>
             </lifecycleMappingMetadata>
           </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
-    
+
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.3.2</version>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
         </configuration>
       </plugin>
 
@@ -291,12 +292,13 @@
           <validate>true</validate>
         </configuration>
         <dependencies>
-          <dependency><!-- add support for ssh/scp -->
+          <!-- add support for ssh/scp -->
+          <dependency>
             <groupId>org.apache.maven.wagon</groupId>
             <artifactId>wagon-ssh</artifactId>
             <version>1.0</version>
           </dependency>
-        </dependencies>        
+        </dependencies>
       </plugin>
 
       <plugin>
@@ -357,23 +359,23 @@
 
       <!-- Generate the ANTLRv4 grammar -->
       <plugin>
-          <groupId>org.antlr</groupId>
-          <artifactId>antlr4-maven-plugin</artifactId>
-          <version>4.3</version>
-		  <configuration>
-		      <visitor>true</visitor>
-		      <sourceDirectory>${basedir}/src/main/resources/com/puppycrawl/tools/checkstyle/grammars/javadoc</sourceDirectory>
-		      <outputDirectory>${project.build.directory}/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammars/javadoc</outputDirectory>
-		  </configuration>
-          <executions>
-              <execution>
-                  <goals>
-                      <goal>antlr4</goal>
-                  </goals>
-              </execution>
-          </executions>
+        <groupId>org.antlr</groupId>
+        <artifactId>antlr4-maven-plugin</artifactId>
+        <version>4.3</version>
+        <configuration>
+          <visitor>true</visitor>
+          <sourceDirectory>${basedir}/src/main/resources/com/puppycrawl/tools/checkstyle/grammars/javadoc</sourceDirectory>
+          <outputDirectory>${project.build.directory}/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammars/javadoc</outputDirectory>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>antlr4</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
-      
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
@@ -392,11 +394,23 @@
               </sources>
             </configuration>
           </execution>
+          <execution>
+            <id>add-test-source</id>
+            <phase>generate-test-sources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/test/resources</source>
+              </sources>
+            </configuration>
+          </execution>
         </executions>
-       </plugin>
-      
+      </plugin>
+
       <!-- Generate checkstylecompilation.properties -->
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
@@ -446,9 +460,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.9</version>
+        <version>2.17</version>
         <configuration>
-          <argLine> -Duser.language=en -Duser.country=US</argLine>
+          <argLine>-Duser.language=en -Duser.country=US -XX:-UseSplitVerifier</argLine>
+          <additionalClasspathElements>
+            <additionalClasspathElement>src/test/resources-noncompilable</additionalClasspathElement>
+          </additionalClasspathElements>
         </configuration>
       </plugin>
 
@@ -465,6 +482,13 @@
             </manifest>
           </archive>
         </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>
@@ -488,20 +512,20 @@
         <artifactId>maven-linkcheck-plugin</artifactId>
         <version>1.2</version>
         <configuration>
-	  <excludedPages>
-	    <excludedPage>dependencies.html</excludedPage>
-	  </excludedPages>
-	  <excludedLinks>
-	    <excludedLink>**apidocs/*</excludedLink>
-	    <excludedLink>reports/google-style/guava</excludedLink>
-	    <excludedLink>reports/javadoc/openjdk8</excludedLink>
-	    <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
-	    <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
-	    <excludedLink>http://search.maven.org/*</excludedLink>
-	  </excludedLinks>
+          <excludedPages>
+            <excludedPage>dependencies.html</excludedPage>
+          </excludedPages>
+          <excludedLinks>
+            <excludedLink>reports/google-style/guava</excludedLink>
+            <excludedLink>reports/javadoc/openjdk8</excludedLink>
+            <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
+            <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
+            <excludedLink>http://search.maven.org/*</excludedLink>
+            <excludedLink>hhttp://junit.org</excludedLink>
+          </excludedLinks>
           <excludedHttpStatusErrors>
-	    <excludedHttpStatusError>401</excludedHttpStatusError>
-	  </excludedHttpStatusErrors>
+            <excludedHttpStatusError>401</excludedHttpStatusError>
+          </excludedHttpStatusErrors>
         </configuration>
       </plugin>
 
@@ -524,9 +548,9 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>2.10.1</version>
         <configuration>
-          <source>1.6</source>
-	  <failOnError>false</failOnError>
-	  <linksource>true</linksource>
+          <source>1.7</source>
+          <failOnError>false</failOnError>
+          <linksource>true</linksource>
         </configuration>
         <reportSets>
           <reportSet>
@@ -552,20 +576,20 @@
         <artifactId>maven-linkcheck-plugin</artifactId>
         <version>1.2</version>
         <configuration>
-	  <excludedPages>
-	    <excludedPage>dependencies.html</excludedPage>
-	  </excludedPages>
-	  <excludedLinks>
-	    <excludedLink>**apidocs/*</excludedLink>
-	    <excludedLink>reports/google-style/guava</excludedLink>
-	    <excludedLink>reports/javadoc/openjdk8</excludedLink>
-	    <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
-	    <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
-	    <excludedLink>http://search.maven.org/*</excludedLink>
-	  </excludedLinks>
+          <excludedPages>
+            <excludedPage>dependencies.html</excludedPage>
+          </excludedPages>
+          <excludedLinks>
+            <excludedLink>reports/google-style/guava</excludedLink>
+            <excludedLink>reports/javadoc/openjdk8</excludedLink>
+            <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
+            <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
+            <excludedLink>http://search.maven.org/*</excludedLink>
+            <excludedLink>hhttp://junit.org</excludedLink>
+          </excludedLinks>
           <excludedHttpStatusErrors>
-	    <excludedHttpStatusError>401</excludedHttpStatusError>
-	  </excludedHttpStatusErrors>
+            <excludedHttpStatusError>401</excludedHttpStatusError>
+          </excludedHttpStatusErrors>
         </configuration>
       </plugin>
 
@@ -579,85 +603,85 @@
       <id>distro</id>
 
       <build>
-      	<plugins>
+        <plugins>
 
-	        <plugin>
-	          <groupId>org.apache.maven.plugins</groupId>
-	          <artifactId>maven-checkstyle-plugin</artifactId>
-	          <executions>
-	            <execution>
-	              <id>verify_checkstyle</id>
-	              <phase>verify</phase>
-	              <goals>
-	                <goal>checkstyle</goal>
-	              </goals>
-	            </execution>
-	          </executions>
-	          <configuration>
-	            <configLocation>checkstyle_checks.xml</configLocation>
-	            <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
-	            <suppressionsLocation>suppressions.xml</suppressionsLocation>
-	            <headerLocation>java.header</headerLocation>
-	            <propertyExpansion>checkstyle.importcontrol.file=import-control.xml</propertyExpansion>
-	            <enableFilesSummary>false</enableFilesSummary>
-	          </configuration>
-	        </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>verify_checkstyle</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>checkstyle</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <configLocation>checkstyle_checks.xml</configLocation>
+              <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+              <suppressionsLocation>suppressions.xml</suppressionsLocation>
+              <headerLocation>java.header</headerLocation>
+              <propertyExpansion>checkstyle.importcontrol.file=import-control.xml</propertyExpansion>
+              <enableFilesSummary>false</enableFilesSummary>
+            </configuration>
+          </plugin>
 
-	        <plugin>
-	          <groupId>org.codehaus.mojo</groupId>
-	          <artifactId>cobertura-maven-plugin</artifactId>
-	          <executions>
-	            <execution>
-	              <id>verify_cobertura</id>
-	              <phase>verify</phase>
-	              <goals>
-	                <goal>cobertura</goal>
-	              </goals>
-	              <configuration>
-	                <formats>
-	                  <format>xml</format>
-	                  <format>html</format>
-	                </formats>
-	              </configuration>
-	            </execution>
-	          </executions>
-	        </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>cobertura-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>verify_cobertura</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>cobertura</goal>
+                </goals>
+                <configuration>
+                  <formats>
+                    <format>xml</format>
+                    <format>html</format>
+                  </formats>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
 
-			 <plugin>
-	          <groupId>org.apache.maven.plugins</groupId>
-	          <artifactId>maven-pmd-plugin</artifactId>
-	          <executions>
-	            <execution>
-	              <id>verify_pmd</id>
-	              <phase>verify</phase>
-	              <goals>
-	                <goal>pmd</goal>
-	              </goals>
-	              <configuration>
-	                <targetJdk>1.6</targetJdk>
-	                <minimumTokens>20</minimumTokens>
-	              </configuration>
-	            </execution>
-	          </executions>
-	        </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>verify_pmd</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>pmd</goal>
+                </goals>
+                <configuration>
+                  <targetJdk>1.7</targetJdk>
+                  <minimumTokens>20</minimumTokens>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
 
-	        <plugin>
-	          <groupId>org.codehaus.mojo</groupId>
-	          <artifactId>findbugs-maven-plugin</artifactId>
-	          <version>3.0.0</version>
-	          <executions>
-	            <execution>
-	              <id>verify_findbugs</id>
-	              <phase>verify</phase>
-	              <goals>
-	                <goal>findbugs</goal>
-	              </goals>
-	              <configuration>
-	                <reportFormat>xml</reportFormat>
-	              </configuration>
-	            </execution>
-	          </executions>
-	        </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <version>3.0.0</version>
+            <executions>
+              <execution>
+                <id>verify_findbugs</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>findbugs</goal>
+                </goals>
+                <configuration>
+                  <reportFormat>xml</reportFormat>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
 
           <!-- Generates the site, which is required for assembly -->
           <plugin>
@@ -725,76 +749,83 @@
 
       <!-- Reports -->
       <reporting>
-	      <plugins>
+        <plugins>
 
-	        <plugin>
-	          <groupId>org.apache.maven.plugins</groupId>
-	          <artifactId>maven-checkstyle-plugin</artifactId>
-	          <configuration>
-	            <configLocation>${project.build.directory}/../checkstyle_checks.xml</configLocation>
-	            <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
-	            <suppressionsLocation>suppressions.xml</suppressionsLocation>
-	            <headerLocation>java.header</headerLocation>
-	            <!-- this does not work
-	            <propertyExpansion>translation.severity=ignore</propertyExpansion>
-	        	-->
-	            <propertyExpansion>checkstyle.importcontrol.file=import-control.xml</propertyExpansion>          
-	        
-	          </configuration>
-	        </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <configuration>
+              <configLocation>${project.build.directory}/../checkstyle_checks.xml</configLocation>
+              <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+              <suppressionsLocation>suppressions.xml</suppressionsLocation>
+              <headerLocation>java.header</headerLocation>
+              <!-- this does not work
+              <propertyExpansion>translation.severity=ignore</propertyExpansion>
+              -->
+              <propertyExpansion>checkstyle.importcontrol.file=import-control.xml</propertyExpansion>
 
-	        <plugin>
-	          <groupId>org.apache.maven.plugins</groupId>
-	          <artifactId>maven-surefire-report-plugin</artifactId>
-	        </plugin>
-	        
-	        <plugin>
-	          <groupId>org.codehaus.mojo</groupId>
-	          <artifactId>cobertura-maven-plugin</artifactId>
-	          <configuration>
-	            <formats>
-	              <format>xml</format>
-	              <format>html</format>
-	            </formats>
-	          </configuration>
-	        </plugin>
+            </configuration>
+          </plugin>
 
-	        <plugin>
-	          <groupId>org.codehaus.mojo</groupId>
-	          <artifactId>taglist-maven-plugin</artifactId>
-	          <version>2.4</version>
-	          <configuration>
-	            <tags>
-	              <tag>TODO</tag>
-	              <tag>@todo</tag>
-	              <tag>FIXME</tag>
-	            </tags>
-	          </configuration>
-	        </plugin>
-	       
-	        <plugin>
-	          <groupId>org.apache.maven.plugins</groupId>
-	          <artifactId>maven-pmd-plugin</artifactId>
-	          <configuration>
-	            <targetJdk>1.6</targetJdk>
-	            <minimumTokens>20</minimumTokens>
-	          </configuration>
-		      <reportSets>
-		          <reportSet>
-		            <reports>
-		              <report>pmd</report>
-		            </reports>
-		          </reportSet>
-		      </reportSets>	          
-	        </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+          </plugin>
 
-	        <plugin>
-	          <groupId>org.codehaus.mojo</groupId>
-	          <artifactId>findbugs-maven-plugin</artifactId>
-	          <version>3.0.0</version>
-	        </plugin> 
-	       
-	       </plugins>     	
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>cobertura-maven-plugin</artifactId>
+            <configuration>
+              <formats>
+                <format>xml</format>
+                <format>html</format>
+              </formats>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>taglist-maven-plugin</artifactId>
+            <version>2.4</version>
+            <configuration>
+              <tags>
+                <tag>TODO</tag>
+                <tag>@todo</tag>
+                <tag>FIXME</tag>
+              </tags>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>1.7</targetJdk>
+              <minimumTokens>20</minimumTokens>
+            </configuration>
+            <reportSets>
+              <reportSet>
+                <reports>
+                  <report>pmd</report>
+                </reports>
+              </reportSet>
+            </reportSets>
+          </plugin>
+
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <version>3.0.0</version>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jxr-plugin</artifactId>
+            <version>2.4</version>
+          </plugin>
+
+        </plugins>
+
       </reporting>
     </profile>
 
@@ -875,50 +906,51 @@
         </dependency>
       </dependencies>
     </profile>
-    
+
     <profile>
-    <!-- that profile is used only for coveralls.io banner that show coverage at ReadMe.md  -->
+      <!-- that profile is used only for coveralls.io banner that show coverage at ReadMe.md  -->
       <id>travis</id>
       <build>
-      <plugins>
-        
-      <!-- Used to set custom properties by means of ${argLine}, that is required for jacoco -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.9</version>
-        <configuration>
-          <argLine>${argLine} -Duser.language=en -Duser.country=US</argLine>
-        </configuration>
-      </plugin>
+        <plugins>
+
+          <!-- Used to set custom properties by means of ${argLine}, that is required for jacoco -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.9</version>
+            <configuration>
+              <argLine>${argLine} -Duser.language=en -Duser.country=US -XX:-UseSplitVerifier</argLine>
+            </configuration>
+          </plugin>
 
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>0.7.1.201405082137</version>
-	        <configuration>
-	            <excludes>
-	              <exclude>com/puppycrawl/tools/checkstyle/CheckStyleTask*.class</exclude>
-	              <exclude>com/puppycrawl/tools/checkstyle/doclets/*.class</exclude>
-	              <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
-	              <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
-	            </excludes>
-	        </configuration>               
-		<executions>
-			<execution>
-				<id>prepare-agent</id>
-				<goals>
-					<goal>prepare-agent</goal>
-				</goals>
-			</execution>
-			<execution>
-				<id>report</id>
-				<goals>
-					<goal>report</goal>
-				</goals>
-				<phase>prepare-package</phase>
-			</execution>
-		</executions>            
+            <configuration>
+              <excludes>
+                <exclude>com/puppycrawl/tools/checkstyle/CheckStyleTask*.class</exclude>
+                <exclude>com/puppycrawl/tools/checkstyle/doclets/*.class</exclude>
+                <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
+                <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
+                <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
+              </excludes>
+            </configuration>
+            <executions>
+              <execution>
+                <id>prepare-agent</id>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>report</id>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+                <phase>prepare-package</phase>
+              </execution>
+            </executions>
           </plugin>
 
           <plugin>
@@ -930,6 +962,64 @@
       </build>
     </profile>
 
-    
+    <profile>
+      <!-- To be used during development. Run the command-->
+      <!-- mvn -Passembly package -->
+      <id>assembly</id>
+
+      <build>
+        <plugins>
+
+          <!-- Creates the all inclusive uber jar -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>1.4</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>shade</goal>
+                </goals>
+                <configuration>
+                  <shadedArtifactAttached>true</shadedArtifactAttached>
+                  <shadedClassifierName>all</shadedClassifierName>
+                  <transformers>
+                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                      <mainClass>com.puppycrawl.tools.checkstyle.Main</mainClass>
+                    </transformer>
+                  </transformers>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- Creates the binary and source distributions -->
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>2.2.1</version>
+            <configuration>
+              <descriptors>
+                <descriptor>config/assembly-bin.xml</descriptor>
+                <descriptor>config/assembly-src.xml</descriptor>
+              </descriptors>
+              <tarLongFileMode>gnu</tarLongFileMode>
+            </configuration>
+            <executions>
+              <execution>
+                <id>make-bundle</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+
+    </profile>
+
+
   </profiles>
 </project>

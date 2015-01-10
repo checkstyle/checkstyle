@@ -6,7 +6,7 @@ package com.puppycrawl.tools.checkstyle;
 
 /**
  * Test case for the "design for inheritance" check.
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  **/
 public abstract class InputDesignForExtension
 {

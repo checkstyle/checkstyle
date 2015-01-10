@@ -72,7 +72,7 @@ import org.apache.commons.beanutils.ConversionException;
  * &lt;/module&gt;
  * </pre>
  *
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  */
 public class LineLengthCheck extends Check
 {

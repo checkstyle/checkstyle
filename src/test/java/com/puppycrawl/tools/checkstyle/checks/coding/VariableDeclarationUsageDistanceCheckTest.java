@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck.MSG_KEY_EXT;
 
-import static java.text.MessageFormat.format;
-
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -203,15 +201,5 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "542: " + getCheckMessage(MSG_KEY_EXT, "parentId", 3, 1),
         };
         verify(checkConfig, getPath("coding/InputVariableDeclarationUsageDistanceCheck.java"), expected);
-    }
-
-    /**
-     * Gets the check message 'as is' from appropriate 'messages.properties' file.
-     * @param messageKey the key of message in 'messages.properties' file.
-     * @param arguments the arguments of message in 'messages.properties' file.
-     */
-    public String getCheckMessage(String messageKey, Object ... arguments)
-    {
-        return format(getCheckMessage(messageKey), arguments);
     }
 }

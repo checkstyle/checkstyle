@@ -111,4 +111,18 @@ public class MethodNameCheckTest
 
         verify(checkConfig, getPath("naming/InputMethodNameExtra.java"), expected);
     }
+
+    @Test
+    public void testOverridenMethods() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(MethodNameCheck.class);
+
+        final String[] expected = {
+            "17:17: Name 'PUBLICfoo' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "20:20: Name 'PROTECTEDfoo' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        };
+
+        verify(checkConfig, getPath("naming/InputMethodNameOverridenMethods.java"), expected);
+    }
 }

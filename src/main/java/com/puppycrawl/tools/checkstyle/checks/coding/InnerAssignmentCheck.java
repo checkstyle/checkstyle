@@ -59,6 +59,7 @@ public class InnerAssignmentCheck
             TokenTypes.RESOURCES,
             TokenTypes.RESOURCE_SPECIFICATION,
         },
+        {TokenTypes.EXPR, TokenTypes.LAMBDA},
     };
 
     /**

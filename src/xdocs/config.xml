@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <document xmlns="http://maven.apache.org/XDOC/2.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -6,7 +6,7 @@
 
   <properties>
     <title>Configuration</title>
-    <author>Lars Kühne</author>
+    <author>Lars KÃ¼hne</author>
   </properties>
 
   <body>
@@ -752,8 +752,7 @@
         </source>
 
         <p>
-          As another example, imagine that a configuration contains the
-          following:
+          As another example to suppress Check by module id:
         </p>
 
         <source>
@@ -782,6 +781,54 @@
 
         <source>
 &lt;suppress id=&quot;stringEqual&quot; files=&quot;SomeTestCode.java&quot;/&gt;
+        </source>
+
+        <p>
+          Suppress checks for hidden files and folders:
+        </p>
+
+        <source>
+&lt;suppress files=&quot;[/\\]\..+&quot; checks=&quot;.*&quot;/&gt;
+        </source>
+
+        <p>
+          Suppress checks for Maven-generated code:
+        </p>
+
+        <source>
+&lt;suppress files=&quot;[/\\]target[/\\]&quot; checks=&quot;.*&quot;/&gt;
+        </source>
+
+        <p>
+          Suppress checks for archives, classes and other binary files:
+        </p>
+
+        <source>
+&lt;suppress files=&quot;.+\.(?:jar|zip|war|class|tar|bin)$&quot; checks=&quot;.*&quot;/&gt;
+        </source>
+
+        <p>
+          Suppress checks for image files:
+        </p>
+
+        <source>
+&lt;suppress files=&quot;.+\.(?:png|gif|jpg|jpeg)$&quot; checks=&quot;.*&quot;/&gt;
+        </source>
+
+        <p>
+          Suppress checks for non-java text files:
+        </p>
+
+        <source>
+&lt;suppress files=&quot;.+\.(?:txt|xml|csv|sh|thrift|html|sql|eot|ttf|woff|css|png)$&quot; checks=&quot;.*&quot;/&gt;
+        </source>
+
+        <p>
+          Suppress all checks generated sources:
+        </p>
+
+        <source>
+&lt;suppress checks=&quot;FileLength&quot;files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
         </source>
 
       </subsection>
@@ -903,6 +950,17 @@
 &lt;/module>
       </source>
 
+      <source>
+//BEGIN GENERATED CODE
+@Override
+public boolean equals(Object obj) { ... } // No violation events will be reported
+
+@Override
+public int hashCode() { ... } // No violation events will be reported
+//END GENERATED CODE
+. . .
+      </source>
+
       <p>
         To configure a filter so that <code>// stop constant
         check</code> and <code>// resume constant check</code> marks
@@ -915,6 +973,14 @@
     &lt;property name=&quot;onCommentFormat&quot; value=&quot;resume constant check&quot;/&gt;
     &lt;property name=&quot;checkFormat&quot; value=&quot;ConstantNameCheck&quot;/&gt;
 &lt;/module>
+      </source>
+
+      <source>
+//stop constant check
+public static final int someConstant; // won't warn here
+//resume constant check
+public static final int someConstant; // will warn here as constant's name doesn't match the
+                                      // pattern &quot;^[A-Z][A-Z0-9]*$&quot;
       </source>
 
       <p>
@@ -933,8 +999,21 @@
 &lt;/module&gt;
       </source>
 
+      <source>
+private static void foo(int a, int b) // UNUSED OFF: b
+{
+    System.out.println(a);
+}
+
+private static void foo1(int a, int b) // UNUSED ON: b
+{
+    System.out.println(a);
+}
+      </source>
+
       <p>
-        To configure a filter so that <code>CSOFF: <i>regexp</i></code>
+        To configure a filter so that name of suppressed check mentioned
+         in comment <code>CSOFF: <i>regexp</i></code>
         and <code>CSN: <i>regexp</i></code> mark a matching check:
       </p>
 
@@ -946,19 +1025,31 @@
 &lt;/module&gt;
       </source>
 
+      <source>
+public static final int lowerCaseConstant; // CSOFF: ConstantNameCheck
+public static final int lowerCaseConstant1; // CSON: ConstantNameCheck
+      </source>
+
       <p>
         To configure a filter to suppress all audit events between a comment
-        containing <code>CHECKSTYLE_OFF: ALL</code> and a comment containing
-        <code>CHECKSTYLE_OFF: ALL</code> except for the <em>EqualsHashCode</em> check:
+        containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> and a comment containing
+        <code>CHECKSTYLE_OFF: ALMOST_ALL</code> except for the <em>EqualsHashCode</em> check:
       </p>
 
       <source>
 &lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;CHECKSTYLE_OFF: ALL&quot;/&gt;
-    &lt;property name=&quot;onCommentFormat&quot; value=&quot;CHECKSTYLE_ON: ALL&quot;/&gt;
+    &lt;property name=&quot;offCommentFormat&quot; value=&quot;CHECKSTYLE_OFF: ALMOST_ALL&quot;/&gt;
+    &lt;property name=&quot;onCommentFormat&quot; value=&quot;CHECKSTYLE_ON: ALMOST_ALL&quot;/&gt;
     &lt;property name=&quot;checkFormat&quot; value=&quot;^((?!(EqualsHashCode)).)*$&quot;/&gt;
 &lt;/module&gt;
       </source>
+
+      <source>
+public static final int array []; // CHECKSTYLE_OFF: ALMOST_ALL
+private String [] strArray;
+private int array1 []; // CHECKSTYLE_ON: ALMOST_ALL
+      </source>
+
       </subsection>
 
       <subsection name="SuppressWithNearbyCommentFilter">
@@ -1054,6 +1145,10 @@
 &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;/&gt;
       </source>
 
+      <source>
+private int [] array; // SUPPRESS CHECKSTYLE
+      </source>
+
       <p>
         To configure a filter to suppress all audit events on any line
         containing the comment <code>CHECKSTYLE IGNORE THIS LINE</code>:
@@ -1065,6 +1160,10 @@
     &lt;property name=&quot;checkFormat&quot; value=&quot;.*&quot;/&gt;
     &lt;property name=&quot;influenceFormat&quot; value=&quot;0&quot;/&gt;
 &lt;/module>
+      </source>
+
+      <source>
+public static final int lowerCaseConstant; // CHECKSTYLE IGNORE THIS LINE
       </source>
 
       <p>
@@ -1083,6 +1182,15 @@
 &lt;/module>
       </source>
 
+      <source>
+. . .
+catch (RuntimeException re) {
+       // OK to catch RuntimeException here
+}
+catch (Throwable th) { ... }
+. . .
+      </source>
+
       <p>
         To configure a filter so that <code>CHECKSTYLE IGNORE <i>check</i> FOR NEXT <i>var</i> LINES</code>
         avoids triggering any audits for the given check for the current line and the next <i>var</i> lines
@@ -1095,6 +1203,49 @@
     &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
     &lt;property name=&quot;influenceFormat&quot; value=&quot;$2&quot;/&gt;
 &lt;/module&gt;
+      </source>
+
+      <source>
+public static final int lowerCaseConstant; // CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 3 LINES
+public static final int lowerCaseConstant1;
+public static final int lowerCaseConstant2;
+public static final int lowerCaseConstant3;
+public static final int lowerCaseConstant4; // will warn here
+      </source>
+
+      <p>
+        To configure a filter to avoid any audits on code like:
+      </p>
+
+      <source>
+&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
+    &lt;property name=&quot;commentFormat&quot; value=&quot;ALLOW (\\w+) ON PREVIOUS LINE&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+    &lt;property name=&quot;influenceFormat&quot; value=&quot;-1&quot;/&gt;
+&lt;/module&gt;
+      </source>
+
+      <source>
+private int D2;
+// ALLOW MemberName ON PREVIOUS LINE
+. . .
+      </source>
+
+      <p>
+        To configure a filter to allow suppress one or more Checks(separated by &quot;|&quot;)
+         and demand comment no less than 14 symbols:
+      </p>
+
+      <source>
+&lt;module name="SuppressWithNearbyCommentFilter&quot;&gt;
+    &lt;property name="commentFormat" value="@cs.suppress \[(\w(\|\w)*)\] \w[-\.'`,:;\w ]{14,}"/&gt;
+    &lt;property name="checkFormat" value="$1"/&gt;
+    &lt;property name="influenceFormat" value="1"/&gt;
+&lt;/module>
+      </source>
+
+      <source>
+public static final int [] array; // @cs.suppress ConstantName | NoWhitespaceAfter
       </source>
 
       </subsection>
@@ -1121,7 +1272,8 @@
           the filter. Because of that, a configuration that includes
           this filter must also include
           <code>SuppressWarningsHolder</code> as a child module of the
-          <code>TreeWalker</code>.
+          <code>TreeWalker</code>. Name of check in annotation should
+           be written in lower case with any dotted prefix or "Check" suffix removed.
         </p>
 
         <h5>SuppressWarningsFilter Properties</h5>
@@ -1133,18 +1285,26 @@
           the filter.
         </p>
         <source>
-          &lt;module name="TreeWalker"&gt;
-            ...
-              &lt;module name="SuppressWarningsHolder" /&gt;
-            ...
-          &lt;/module&gt;
+&lt;module name="TreeWalker"&gt;
+  ...
+    &lt;module name="SuppressWarningsHolder" /&gt;
+  ...
+&lt;/module&gt;
         </source>
 
         <p>To configure filter to suppress audit events for annotations add:</p>
         <source>
-          &lt;module name="SuppressWarningsFilter" /&gt;
+&lt;module name="SuppressWarningsFilter" /&gt;
         </source>
 
+        <source>
+@SuppressWarnings({"membername"})
+private int J; // should NOT fail MemberNameCheck
+
+@SuppressWarnings({"membername"})
+@SuppressWarnings({"nowhitespaceafter"})
+private int [] ARRAY; // should NOT fail MemberNameCheck and NoWhitespaceAfterCheck
+        </source>
       </subsection>
 
     </section>

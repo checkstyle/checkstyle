@@ -1,4 +1,4 @@
-package net.ubiquity.tools.checkstyle.tests;
+package com.puppycrawl.tools.checkstyle.design;
 
 public class InputOneTopLevelClass
 {
@@ -51,7 +51,7 @@ public class InputOneTopLevelClass
     }
 
     //  error ctors before methods
-    public InputDeclarationOrder()
+    public InputOneTopLevelClass()
     {
         String foo = ERROR;
         foo += ERROR1;

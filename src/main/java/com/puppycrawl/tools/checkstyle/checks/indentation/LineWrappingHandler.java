@@ -60,6 +60,11 @@ public class LineWrappingHandler
     private int mIndentLevel;
 
     /**
+     * Force strict condition in line wrapping case.
+     */
+    private boolean mForceStrictCondition;
+
+    /**
      * Sets values of class field, finds last node and calculates indentation level.
      *
      * @param aInstance
@@ -73,6 +78,7 @@ public class LineWrappingHandler
         mFirstNode = aFirstNode;
         mLastNode = findLastNode(mFirstNode);
         mIndentLevel = mIndentCheck.getLineWrappingIndentation();
+        mForceStrictCondition = mIndentCheck.getForceStrictCondition();
     }
 
     /**
@@ -236,83 +242,59 @@ public class LineWrappingHandler
     /**
      * Checks line wrapping into annotations.
      *
-     * @param aModifiersNode modifiers node.
+     * @param aAtNode at-clause node.
      * @param aFirstNodesOnLines map which contains
      *     first nodes as values and line numbers as keys.
      */
-    private void checkAnnotationIndentation(DetailAST aModifiersNode,
+    private void checkAnnotationIndentation(DetailAST aAtNode,
             NavigableMap<Integer, DetailAST> aFirstNodesOnLines)
     {
-        final int currentIndent = aModifiersNode.getColumnNo() + mIndentLevel;
-        final int firstNodeIndent = aModifiersNode.getColumnNo();
+        final int currentIndent = aAtNode.getColumnNo() + mIndentLevel;
+        final int firstNodeIndent = aAtNode.getColumnNo();
         final Collection<DetailAST> values = aFirstNodesOnLines.values();
+        final DetailAST lastAnnotationNode = getLastAnnotationNode(aAtNode);
+        final int lastAnnotationLine = lastAnnotationNode.getLineNo();
+        final int lastAnnotattionColumn = lastAnnotationNode.getColumnNo();
 
         final Iterator<DetailAST> itr = values.iterator();
         while (itr.hasNext() && aFirstNodesOnLines.size() > 1) {
             final DetailAST node = itr.next();
-            final int parentType = node.getParent().getType();
 
-            if (node.getType() == TokenTypes.AT) {
-
-                if (isAnnotationAloneOnLine(node.getParent())) {
-                    logWarningMessage(node, firstNodeIndent);
-                    itr.remove();
-                }
-            }
-            else if (parentType != TokenTypes.MODIFIERS
-                    && !hasTypeNodeAsParent(node)
-                    && parentType != TokenTypes.ENUM_DEF
-                    && parentType != TokenTypes.CTOR_DEF
-                    && node.getType() != TokenTypes.LITERAL_CLASS)
+            if (node.getLineNo() < lastAnnotationLine
+                    || node.getLineNo() == lastAnnotationLine
+                    && node.getColumnNo() <= lastAnnotattionColumn)
             {
-                logWarningMessage(node, currentIndent);
+                final DetailAST parentNode = node.getParent();
+                if (node.getType() == TokenTypes.AT
+                        && parentNode.getParent().getType() == TokenTypes.MODIFIERS)
+                {
+                    logWarningMessage(node, firstNodeIndent);
+                }
+                else {
+                    logWarningMessage(node, currentIndent);
+                }
                 itr.remove();
             }
-        }
-    }
-
-    /**
-     * Checks if annotation is alone on line.
-     *
-     * @param aAnnotationNode
-     *            current annotation.
-     * @return true if annotation is alone on line.
-     */
-    private boolean isAnnotationAloneOnLine(DetailAST aAnnotationNode)
-    {
-        final DetailAST nextSibling = aAnnotationNode.getNextSibling();
-        if (nextSibling == null) {
-            final DetailAST typeNode = aAnnotationNode.getParent().getNextSibling();
-            return aAnnotationNode.getLineNo() != typeNode.getLineNo();
-        }
-        else {
-            return (nextSibling.getType() == TokenTypes.ANNOTATION
-                || aAnnotationNode.getLineNo() != nextSibling.getLineNo());
-        }
-    }
-
-    /**
-     * Checks if current node has TYPE node as a parent.
-     *
-     * @param aCurrentNode
-     *            current node.
-     * @return true if current node has TYPE node as a parent.
-     */
-    private boolean hasTypeNodeAsParent(DetailAST aCurrentNode)
-    {
-        DetailAST typeNode = aCurrentNode;
-        boolean result = false;
-        while (typeNode != null && typeNode.getType() != TokenTypes.SLIST
-                && typeNode.getType() != TokenTypes.OBJBLOCK)
-        {
-            if (typeNode.getType() == TokenTypes.TYPE
-                    || typeNode.getType() == TokenTypes.TYPE_PARAMETERS)
-            {
-                result = true;
+            else {
+                break;
             }
-            typeNode = typeNode.getParent();
         }
-        return result;
+    }
+
+    /**
+     * Finds and returns last annotation node.
+     * @param aAtNode first at-clause node.
+     * @return last annotation node.
+     */
+    private DetailAST getLastAnnotationNode(DetailAST aAtNode)
+    {
+        DetailAST lastAnnotation = aAtNode.getParent();
+        while (lastAnnotation.getNextSibling() != null
+                && lastAnnotation.getNextSibling().getType() == TokenTypes.ANNOTATION)
+        {
+            lastAnnotation = lastAnnotation.getNextSibling();
+        }
+        return lastAnnotation.getLastChild();
     }
 
     /**
@@ -325,10 +307,19 @@ public class LineWrappingHandler
      */
     private void logWarningMessage(DetailAST aCurrentNode, int aCurrentIndent)
     {
-        if (aCurrentNode.getColumnNo() < aCurrentIndent) {
-            mIndentCheck.indentationLog(aCurrentNode.getLineNo(),
-                    "indentation.error", aCurrentNode.getText(),
-                    aCurrentNode.getColumnNo(), aCurrentIndent);
+        if (mForceStrictCondition) {
+            if (aCurrentNode.getColumnNo() != aCurrentIndent) {
+                mIndentCheck.indentationLog(aCurrentNode.getLineNo(),
+                        "indentation.error", aCurrentNode.getText(),
+                        aCurrentNode.getColumnNo(), aCurrentIndent);
+            }
+        }
+        else {
+            if (aCurrentNode.getColumnNo() < aCurrentIndent) {
+                mIndentCheck.indentationLog(aCurrentNode.getLineNo(),
+                        "indentation.error", aCurrentNode.getText(),
+                        aCurrentNode.getColumnNo(), aCurrentIndent);
+            }
         }
     }
 }

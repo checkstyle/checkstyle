@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.javadoc;
 
-import InputCorrectJavaDocParagraphCheck.InnerInputCorrectJavaDocParagraphCheck;
+
 
 /**
  * Some Javadoc.
@@ -8,7 +8,7 @@ import InputCorrectJavaDocParagraphCheck.InnerInputCorrectJavaDocParagraphCheck;
  * /^ WARN/   Some Javadoc.<p>
  *
  */
-class InputCorrectJavaDocParagraphCheck {
+class InputInCorrectJavaDocParagraphCheck {
 
     /**
      * Some Javadoc.<P>  //WARN

@@ -60,7 +60,7 @@ import java.util.List;
  * <pre>
  * &lt;module name="ModifierOrder"/&gt;
  * </pre>
- * @author Lars Kühne
+ * @author Lars KÃ¼hne
  */
 public class ModifierOrderCheck
     extends Check
