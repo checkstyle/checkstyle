@@ -332,6 +332,11 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      */
     public String normalize(String aPath)
     {
+
+        if (aPath == null) {
+            return aPath;
+        }
+
         final String osName = System.getProperty("os.name").toLowerCase(
                 Locale.US);
         final boolean onNetWare = (osName.indexOf("netware") > -1);
