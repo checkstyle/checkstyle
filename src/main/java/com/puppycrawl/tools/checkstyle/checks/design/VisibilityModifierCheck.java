@@ -46,10 +46,10 @@ public class VisibilityModifierCheck
     extends Check
 {
     /** whether protected members are allowed */
-    private boolean mProtectedAllowed;
+    private boolean protectedAllowed;
 
     /** whether package visible members are allowed */
-    private boolean mPackageAllowed;
+    private boolean packageAllowed;
 
     /**
      * pattern for public members that should be ignored.  Note:
@@ -58,59 +58,59 @@ public class VisibilityModifierCheck
      * With EJB 2.0 it is not longer necessary to have public access
      * for persistent fields.
      */
-    private String mPublicMemberFormat = "^serialVersionUID$";
+    private String publicMemberFormat = "^serialVersionUID$";
 
     /** regexp for public members that should be ignored */
-    private Pattern mPublicMemberPattern;
+    private Pattern publicMemberPattern;
 
     /** Create an instance. */
     public VisibilityModifierCheck()
     {
-        setPublicMemberPattern(mPublicMemberFormat);
+        setPublicMemberPattern(publicMemberFormat);
     }
 
     /** @return whether protected members are allowed */
     public boolean isProtectedAllowed()
     {
-        return mProtectedAllowed;
+        return protectedAllowed;
     }
 
     /**
      * Set whether protected members are allowed.
-     * @param aProtectedAllowed whether protected members are allowed
+     * @param protectedAllowed whether protected members are allowed
      */
-    public void setProtectedAllowed(boolean aProtectedAllowed)
+    public void setProtectedAllowed(boolean protectedAllowed)
     {
-        mProtectedAllowed = aProtectedAllowed;
+        this.protectedAllowed = protectedAllowed;
     }
 
     /** @return whether package visible members are allowed */
     public boolean isPackageAllowed()
     {
-        return mPackageAllowed;
+        return packageAllowed;
     }
 
     /**
      * Set whether package visible members are allowed.
-     * @param aPackageAllowed whether package visible members are allowed
+     * @param packageAllowed whether package visible members are allowed
      */
-    public void setPackageAllowed(boolean aPackageAllowed)
+    public void setPackageAllowed(boolean packageAllowed)
     {
-        mPackageAllowed = aPackageAllowed;
+        this.packageAllowed = packageAllowed;
     }
 
     /**
      * Set the pattern for public members to ignore.
-     * @param aPattern pattern for public members to ignore.
+     * @param pattern pattern for public members to ignore.
      */
-    public void setPublicMemberPattern(String aPattern)
+    public void setPublicMemberPattern(String pattern)
     {
         try {
-            mPublicMemberPattern = Utils.getPattern(aPattern);
-            mPublicMemberFormat = aPattern;
+            publicMemberPattern = Utils.getPattern(pattern);
+            publicMemberFormat = pattern;
         }
         catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + aPattern, e);
+            throw new ConversionException("unable to parse " + pattern, e);
         }
     }
 
@@ -119,7 +119,7 @@ public class VisibilityModifierCheck
      */
     private Pattern getPublicMemberRegexp()
     {
-        return mPublicMemberPattern;
+        return publicMemberPattern;
     }
 
     @Override
@@ -129,19 +129,19 @@ public class VisibilityModifierCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if ((aAST.getType() != TokenTypes.VARIABLE_DEF)
-            || (aAST.getParent().getType() != TokenTypes.OBJBLOCK))
+        if ((ast.getType() != TokenTypes.VARIABLE_DEF)
+            || (ast.getParent().getType() != TokenTypes.OBJBLOCK))
         {
             return;
         }
 
-        final DetailAST varNameAST = getVarNameAST(aAST);
+        final DetailAST varNameAST = getVarNameAST(ast);
         final String varName = varNameAST.getText();
         final boolean inInterfaceOrAnnotationBlock =
-            ScopeUtils.inInterfaceOrAnnotationBlock(aAST);
-        final Set<String> mods = getModifiers(aAST);
+            ScopeUtils.inInterfaceOrAnnotationBlock(ast);
+        final Set<String> mods = getModifiers(ast);
         final String declaredScope = getVisibilityScope(mods);
         final String variableScope =
              inInterfaceOrAnnotationBlock ? "public" : declaredScope;
@@ -161,12 +161,12 @@ public class VisibilityModifierCheck
 
     /**
      * Returns the variable name in a VARIABLE_DEF AST.
-     * @param aVariableDefAST an AST where type == VARIABLE_DEF AST.
-     * @return the variable name in aVariableDefAST
+     * @param variableDefAST an AST where type == VARIABLE_DEF AST.
+     * @return the variable name in variableDefAST
      */
-    private DetailAST getVarNameAST(DetailAST aVariableDefAST)
+    private DetailAST getVarNameAST(DetailAST variableDefAST)
     {
-        DetailAST ast = aVariableDefAST.getFirstChild();
+        DetailAST ast = variableDefAST.getFirstChild();
         while (ast != null) {
             final DetailAST nextSibling = ast.getNextSibling();
             if (ast.getType() == TokenTypes.TYPE) {
@@ -179,12 +179,12 @@ public class VisibilityModifierCheck
 
     /**
      * Returns the set of modifier Strings for a VARIABLE_DEF AST.
-     * @param aVariableDefAST AST for a vraiable definition
+     * @param variableDefAST AST for a vraiable definition
      * @return the set of modifier Strings for variableDefAST
      */
-    private Set<String> getModifiers(DetailAST aVariableDefAST)
+    private Set<String> getModifiers(DetailAST variableDefAST)
     {
-        final AST modifiersAST = aVariableDefAST.getFirstChild();
+        final AST modifiersAST = variableDefAST.getFirstChild();
         if (modifiersAST.getType() != TokenTypes.MODIFIERS) {
             throw new IllegalStateException("Strange parse tree");
         }
@@ -200,14 +200,14 @@ public class VisibilityModifierCheck
 
     /**
      * Returns the visibility scope specified with a set of modifiers.
-     * @param aModifiers the set of modifier Strings
+     * @param modifiers the set of modifier Strings
      * @return one of "public", "private", "protected", "package"
      */
-    private String getVisibilityScope(Set<String> aModifiers)
+    private String getVisibilityScope(Set<String> modifiers)
     {
         final String[] explicitModifiers = {"public", "private", "protected"};
         for (final String candidate : explicitModifiers) {
-            if (aModifiers.contains(candidate)) {
+            if (modifiers.contains(candidate)) {
                 return candidate;
             }
         }

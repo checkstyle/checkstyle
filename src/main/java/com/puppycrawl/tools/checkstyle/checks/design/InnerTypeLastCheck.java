@@ -40,19 +40,19 @@ public class InnerTypeLastCheck extends Check
     }
 
     /** Meet a root class. */
-    private boolean mRootClass = true;
+    private boolean rootClass = true;
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         /** First root class */
-        if (mRootClass) {
-            mRootClass = false;
+        if (rootClass) {
+            rootClass = false;
         }
         else {
-            DetailAST nextSibling = aAST.getNextSibling();
+            DetailAST nextSibling = ast.getNextSibling();
             while (null != nextSibling) {
-                if (!ScopeUtils.inCodeBlock(aAST)
+                if (!ScopeUtils.inCodeBlock(ast)
                     && (nextSibling.getType() == TokenTypes.VARIABLE_DEF
                         || nextSibling.getType() == TokenTypes.METHOD_DEF))
                 {
@@ -65,11 +65,11 @@ public class InnerTypeLastCheck extends Check
     }
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
         /** Is this a root class */
-        if (null == aAST.getParent()) {
-            mRootClass = true;
+        if (null == ast.getParent()) {
+            rootClass = true;
         }
     }
 }

@@ -41,7 +41,7 @@ public class FinalClassCheck
     extends Check
 {
     /** Keeps ClassDesc objects for stack of declared classes. */
-    private final FastStack<ClassDesc> mClasses = FastStack.newInstance();
+    private final FastStack<ClassDesc> classes = FastStack.newInstance();
 
     @Override
     public int[] getDefaultTokens()
@@ -50,19 +50,19 @@ public class FinalClassCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
 
-        if (aAST.getType() == TokenTypes.CLASS_DEF) {
+        if (ast.getType() == TokenTypes.CLASS_DEF) {
             final boolean isFinal = (modifiers != null)
                     && modifiers.branchContains(TokenTypes.FINAL);
             final boolean isAbstract = (modifiers != null)
                     && modifiers.branchContains(TokenTypes.ABSTRACT);
-            mClasses.push(new ClassDesc(isFinal, isAbstract));
+            classes.push(new ClassDesc(isFinal, isAbstract));
         }
-        else if (!ScopeUtils.inEnumBlock(aAST)) { //ctors in enums don't matter
-            final ClassDesc desc = mClasses.peek();
+        else if (!ScopeUtils.inEnumBlock(ast)) { //ctors in enums don't matter
+            final ClassDesc desc = classes.peek();
             if ((modifiers != null)
                 && modifiers.branchContains(TokenTypes.LITERAL_PRIVATE))
             {
@@ -75,21 +75,21 @@ public class FinalClassCheck
     }
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
-        if (aAST.getType() != TokenTypes.CLASS_DEF) {
+        if (ast.getType() != TokenTypes.CLASS_DEF) {
             return;
         }
 
-        final ClassDesc desc = mClasses.pop();
+        final ClassDesc desc = classes.pop();
         if (!desc.isDeclaredAsFinal()
             && !desc.isDeclaredAsAbstract()
             && desc.hasPrivateCtor()
             && !desc.hasNonPrivateCtor())
         {
             final String className =
-                aAST.findFirstToken(TokenTypes.IDENT).getText();
-            log(aAST.getLineNo(), "final.class", className);
+                ast.findFirstToken(TokenTypes.IDENT).getText();
+            log(ast.getLineNo(), "final.class", className);
         }
     }
 
@@ -97,40 +97,40 @@ public class FinalClassCheck
     private static final class ClassDesc
     {
         /** is class declared as final */
-        private final boolean mDeclaredAsFinal;
+        private final boolean declaredAsFinal;
 
         /** is class declared as abstract */
-        private final boolean mDeclaredAsAbstract;
+        private final boolean declaredAsAbstract;
 
         /** does class have non-provate ctors */
-        private boolean mHasNonPrivateCtor;
+        private boolean hasNonPrivateCtor;
 
         /** does class have private ctors */
-        private boolean mHasPrivateCtor;
+        private boolean hasPrivateCtor;
 
         /**
          *  create a new ClassDesc instance.
-         *  @param aDeclaredAsFinal indicates if the
+         *  @param declaredAsFinal indicates if the
          *         class declared as final
-         *  @param aDeclaredAsAbstract indicates if the
+         *  @param declaredAsAbstract indicates if the
          *         class declared as abstract
          */
-        ClassDesc(boolean aDeclaredAsFinal, boolean aDeclaredAsAbstract)
+        ClassDesc(boolean declaredAsFinal, boolean declaredAsAbstract)
         {
-            mDeclaredAsFinal = aDeclaredAsFinal;
-            mDeclaredAsAbstract = aDeclaredAsAbstract;
+            this.declaredAsFinal = declaredAsFinal;
+            this.declaredAsAbstract = declaredAsAbstract;
         }
 
         /** adds private ctor. */
         void reportPrivateCtor()
         {
-            mHasPrivateCtor = true;
+            hasPrivateCtor = true;
         }
 
         /** adds non-private ctor. */
         void reportNonPrivateCtor()
         {
-            mHasNonPrivateCtor = true;
+            hasNonPrivateCtor = true;
         }
 
         /**
@@ -139,7 +139,7 @@ public class FinalClassCheck
          */
         boolean hasPrivateCtor()
         {
-            return mHasPrivateCtor;
+            return hasPrivateCtor;
         }
 
         /**
@@ -148,7 +148,7 @@ public class FinalClassCheck
          */
         boolean hasNonPrivateCtor()
         {
-            return mHasNonPrivateCtor;
+            return hasNonPrivateCtor;
         }
 
         /**
@@ -157,7 +157,7 @@ public class FinalClassCheck
          */
         boolean isDeclaredAsFinal()
         {
-            return mDeclaredAsFinal;
+            return declaredAsFinal;
         }
 
         /**
@@ -166,7 +166,7 @@ public class FinalClassCheck
          */
         boolean isDeclaredAsAbstract()
         {
-            return mDeclaredAsAbstract;
+            return declaredAsAbstract;
         }
 
         @Override
@@ -174,10 +174,10 @@ public class FinalClassCheck
         {
             return this.getClass().getName()
                 + "["
-                + "final=" + mDeclaredAsFinal
-                + " abstract=" + mDeclaredAsAbstract
-                + " pctor=" + mHasPrivateCtor
-                + " ctor=" + mHasNonPrivateCtor
+                + "final=" + declaredAsFinal
+                + " abstract=" + declaredAsAbstract
+                + " pctor=" + hasPrivateCtor
+                + " ctor=" + hasNonPrivateCtor
                 + "]";
         }
     }
