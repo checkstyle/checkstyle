@@ -63,40 +63,40 @@ public class UnusedImportsCheck extends Check
            "[(,]\\s*" + CLASS_NAME.pattern());
 
     /** flag to indicate when time to start collecting references. */
-    private boolean mCollect;
-    /** flag whether to process Javadoc comments. */
-    private boolean mProcessJavadoc;
+    private boolean collect;
+    /** flag whether to process Javdoc comments. */
+    private boolean processJavadoc;
 
     /** set of the imports. */
-    private final Set<FullIdent> mImports = Sets.newHashSet();
+    private final Set<FullIdent> imports = Sets.newHashSet();
 
     /** set of references - possibly to imports or other things. */
-    private final Set<String> mReferenced = Sets.newHashSet();
+    private final Set<String> referenced = Sets.newHashSet();
 
     /** Default constructor. */
     public UnusedImportsCheck()
     {
     }
 
-    public void setProcessJavadoc(boolean aValue)
+    public void setProcessJavadoc(boolean value)
     {
-        mProcessJavadoc = aValue;
+        processJavadoc = value;
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
-        mCollect = false;
-        mImports.clear();
-        mReferenced.clear();
+        collect = false;
+        imports.clear();
+        referenced.clear();
     }
 
     @Override
-    public void finishTree(DetailAST aRootAST)
+    public void finishTree(DetailAST rootAST)
     {
         // loop over all the imports to see if referenced.
-        for (final FullIdent imp : mImports) {
-            if (!mReferenced.contains(Utils.baseClassname(imp.getText()))) {
+        for (final FullIdent imp : imports) {
+            if (!referenced.contains(Utils.baseClassname(imp.getText()))) {
                 log(imp.getLineNo(),
                     imp.getColumnNo(),
                     "import.unused", imp.getText());
@@ -111,7 +111,7 @@ public class UnusedImportsCheck extends Check
             TokenTypes.IDENT,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
-            // Definitions that may contain Javadoc...
+            // Definitions that may contain Javdoc...
             TokenTypes.PACKAGE_DEF,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
@@ -132,97 +132,97 @@ public class UnusedImportsCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (aAST.getType() == TokenTypes.IDENT) {
-            if (mCollect) {
-                processIdent(aAST);
+        if (ast.getType() == TokenTypes.IDENT) {
+            if (collect) {
+                processIdent(ast);
             }
         }
-        else if (aAST.getType() == TokenTypes.IMPORT) {
-            processImport(aAST);
+        else if (ast.getType() == TokenTypes.IMPORT) {
+            processImport(ast);
         }
-        else if (aAST.getType() == TokenTypes.STATIC_IMPORT) {
-            processStaticImport(aAST);
+        else if (ast.getType() == TokenTypes.STATIC_IMPORT) {
+            processStaticImport(ast);
         }
         else {
-            mCollect = true;
-            if (mProcessJavadoc) {
-                processJavadoc(aAST);
+            collect = true;
+            if (processJavadoc) {
+                processJavadoc(ast);
             }
         }
     }
 
     /**
      * Collects references made by IDENT.
-     * @param aAST the IDENT node to process
+     * @param ast the IDENT node to process
      */
-    private void processIdent(DetailAST aAST)
+    private void processIdent(DetailAST ast)
     {
-        final DetailAST parent = aAST.getParent();
+        final DetailAST parent = ast.getParent();
         final int parentType = parent.getType();
         if (((parentType != TokenTypes.DOT)
             && (parentType != TokenTypes.METHOD_DEF))
             || ((parentType == TokenTypes.DOT)
-                && (aAST.getNextSibling() != null)))
+                && (ast.getNextSibling() != null)))
         {
-            mReferenced.add(aAST.getText());
+            referenced.add(ast.getText());
         }
     }
 
     /**
      * Collects the details of imports.
-     * @param aAST node containing the import details
+     * @param ast node containing the import details
      */
-    private void processImport(DetailAST aAST)
+    private void processImport(DetailAST ast)
     {
-        final FullIdent name = FullIdent.createFullIdentBelow(aAST);
+        final FullIdent name = FullIdent.createFullIdentBelow(ast);
         if ((name != null) && !name.getText().endsWith(".*")) {
-            mImports.add(name);
+            imports.add(name);
         }
     }
 
     /**
      * Collects the details of static imports.
-     * @param aAST node containing the static import details
+     * @param ast node containing the static import details
      */
-    private void processStaticImport(DetailAST aAST)
+    private void processStaticImport(DetailAST ast)
     {
         final FullIdent name =
             FullIdent.createFullIdent(
-                aAST.getFirstChild().getNextSibling());
+                ast.getFirstChild().getNextSibling());
         if ((name != null) && !name.getText().endsWith(".*")) {
-            mImports.add(name);
+            imports.add(name);
         }
     }
 
     /**
-     * Collects references made in JavaDoc comments.
-     * @param aAST node to inspect for JavaDoc
+     * Collects references made in Javadoc comments.
+     * @param ast node to inspect for Javadoc
      */
-    private void processJavadoc(DetailAST aAST)
+    private void processJavadoc(DetailAST ast)
     {
         final FileContents contents = getFileContents();
-        final int lineNo = aAST.getLineNo();
+        final int lineNo = ast.getLineNo();
         final TextBlock cmt = contents.getJavadocBefore(lineNo);
         if (cmt != null) {
-            mReferenced.addAll(processJavadoc(cmt));
+            referenced.addAll(processJavadoc(cmt));
         }
     }
 
     /**
      * Process a javadoc {@link TextBlock} and return the set of classes
      * referenced within.
-     * @param aCmt The javadoc block to parse
+     * @param cmt The javadoc block to parse
      * @return a set of classes referenced in the javadoc block
      */
-    private Set<String> processJavadoc(TextBlock aCmt)
+    private Set<String> processJavadoc(TextBlock cmt)
     {
         final Set<String> references = new HashSet<String>();
         // process all the @link type tags
         // INLINEs inside BLOCKs get hidden when using ALL
         for (final JavadocTag tag
-                : getValidTags(aCmt, JavadocUtils.JavadocTagType.INLINE))
+                : getValidTags(cmt, JavadocUtils.JavadocTagType.INLINE))
         {
             if (tag.canReferenceImports()) {
                 references.addAll(processJavadocTag(tag));
@@ -230,7 +230,7 @@ public class UnusedImportsCheck extends Check
         }
         // process all the @throws type tags
         for (final JavadocTag tag
-                : getValidTags(aCmt, JavadocUtils.JavadocTagType.BLOCK))
+                : getValidTags(cmt, JavadocUtils.JavadocTagType.BLOCK))
         {
             if (tag.canReferenceImports()) {
                 references.addAll(
@@ -242,25 +242,25 @@ public class UnusedImportsCheck extends Check
 
     /**
      * Returns the list of valid tags found in a javadoc {@link TextBlock}
-     * @param aCmt The javadoc block to parse
-     * @param aTagType The type of tags we're interested in
+     * @param cmt The javadoc block to parse
+     * @param tagType The type of tags we're interested in
      * @return the list of tags
      */
-    private List<JavadocTag> getValidTags(TextBlock aCmt,
-            JavadocUtils.JavadocTagType aTagType)
+    private List<JavadocTag> getValidTags(TextBlock cmt,
+            JavadocUtils.JavadocTagType tagType)
     {
-        return JavadocUtils.getJavadocTags(aCmt, aTagType).getValidTags();
+        return JavadocUtils.getJavadocTags(cmt, tagType).getValidTags();
     }
 
     /**
      * Returns a list of references found in a javadoc {@link JavadocTag}
-     * @param aTag The javadoc tag to parse
+     * @param tag The javadoc tag to parse
      * @return A list of references found in this tag
      */
-    private Set<String> processJavadocTag(JavadocTag aTag)
+    private Set<String> processJavadocTag(JavadocTag tag)
     {
         final Set<String> references = new HashSet<String>();
-        final String identifier = aTag.getArg1().trim();
+        final String identifier = tag.getArg1().trim();
         for (Pattern pattern : new Pattern[]
         {FIRST_CLASS_NAME, ARGUMENT_NAME})
         {
@@ -272,14 +272,14 @@ public class UnusedImportsCheck extends Check
     /**
      * Extracts a list of texts matching a {@link Pattern} from a
      * {@link String}.
-     * @param aIdentifier The String to match the pattern against
-     * @param aPattern The Pattern used to extract the texts
+     * @param identifier The String to match the pattern against
+     * @param pattern The Pattern used to extract the texts
      * @return A list of texts which matched the pattern
      */
-    private Set<String> matchPattern(String aIdentifier, Pattern aPattern)
+    private Set<String> matchPattern(String identifier, Pattern pattern)
     {
         final Set<String> references = new HashSet<String>();
-        final Matcher matcher = aPattern.matcher(aIdentifier);
+        final Matcher matcher = pattern.matcher(identifier);
         while (matcher.find()) {
             references.add(matcher.group(1));
         }

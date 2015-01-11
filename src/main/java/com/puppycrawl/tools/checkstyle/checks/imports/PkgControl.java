@@ -32,46 +32,46 @@ import java.util.List;
 class PkgControl
 {
     /** List of {@link Guard} objects to check. */
-    private final LinkedList<Guard> mGuards = Lists.newLinkedList();
+    private final LinkedList<Guard> guards = Lists.newLinkedList();
     /** List of children {@link PkgControl} objects. */
-    private final List<PkgControl> mChildren = Lists.newArrayList();
+    private final List<PkgControl> children = Lists.newArrayList();
     /** The parent. Null indicates we are the root node. */
-    private final PkgControl mParent;
+    private final PkgControl parent;
     /** The full package name for the node. */
-    private final String mFullPackage;
+    private final String fullPackage;
 
     /**
      * Construct a root node.
-     * @param aPkgName the name of the package.
+     * @param pkgName the name of the package.
      */
-    PkgControl(final String aPkgName)
+    PkgControl(final String pkgName)
     {
-        assert aPkgName != null;
-        mParent = null;
-        mFullPackage = aPkgName;
+        assert pkgName != null;
+        parent = null;
+        fullPackage = pkgName;
     }
 
     /**
      * Construct a child node.
-     * @param aParent the parent node.
-     * @param aSubPkg the sub package name.
+     * @param parent the parent node.
+     * @param subPkg the sub package name.
      */
-    PkgControl(final PkgControl aParent, final String aSubPkg)
+    PkgControl(final PkgControl parent, final String subPkg)
     {
-        assert aParent != null;
-        assert aSubPkg != null;
-        mParent = aParent;
-        mFullPackage = aParent.getFullPackage() + "." + aSubPkg;
-        mParent.mChildren.add(this);
+        assert parent != null;
+        assert subPkg != null;
+        this.parent = parent;
+        fullPackage = parent.getFullPackage() + "." + subPkg;
+        parent.children.add(this);
     }
 
     /**
      * Adds a guard to the node.
-     * @param aThug the guard to be added.
+     * @param thug the guard to be added.
      */
-    void addGuard(final Guard aThug)
+    void addGuard(final Guard thug)
     {
-        mGuards.addFirst(aThug);
+        guards.addFirst(thug);
     }
 
     /**
@@ -79,26 +79,26 @@ class PkgControl
      */
     String getFullPackage()
     {
-        return mFullPackage;
+        return fullPackage;
     }
 
     /**
      * Search down the tree to locate the finest match for a supplied package.
-     * @param aForPkg the package to search for.
+     * @param forPkg the package to search for.
      * @return the finest match, or null if no match at all.
      */
-    PkgControl locateFinest(final String aForPkg)
+    PkgControl locateFinest(final String forPkg)
     {
         // Check if we are a match.
         // This algormithm should be improved to check for a trailing "."
         // or nothing following.
-        if (!aForPkg.startsWith(getFullPackage())) {
+        if (!forPkg.startsWith(getFullPackage())) {
             return null;
         }
 
         // Check if any of the children match.
-        for (PkgControl pc : mChildren) {
-            final PkgControl match = pc.locateFinest(aForPkg);
+        for (PkgControl pc : children) {
+            final PkgControl match = pc.locateFinest(forPkg);
             if (match != null) {
                 return match;
             }
@@ -114,40 +114,40 @@ class PkgControl
      * its parent looking for a match. This will recurse looking for match.
      * If there is no clear result then {@link AccessResult#UNKNOWN} is
      * returned.
-     * @param aForImport the package to check on.
-     * @param aInPkg the package doing the import.
+     * @param forImport the package to check on.
+     * @param inPkg the package doing the import.
      * @return an {@link AccessResult}.
      */
-    AccessResult checkAccess(final String aForImport, final String aInPkg)
+    AccessResult checkAccess(final String forImport, final String inPkg)
     {
-        final AccessResult retVal = localCheckAccess(aForImport, aInPkg);
+        final AccessResult retVal = localCheckAccess(forImport, inPkg);
         if (retVal != AccessResult.UNKNOWN) {
             return retVal;
         }
-        else if (mParent == null) {
+        else if (parent == null) {
             // we are the top, so default to not allowed.
             return AccessResult.DISALLOWED;
         }
 
-        return mParent.checkAccess(aForImport, aInPkg);
+        return parent.checkAccess(forImport, inPkg);
     }
 
     /**
      * Checks whether any of the guards for this node control access to
      * a specified package.
-     * @param aForImport the package to check.
-     * @param aInPkg the package doing the import.
+     * @param forImport the package to check.
+     * @param inPkg the package doing the import.
      * @return an {@link AccessResult}.
      */
-    private AccessResult localCheckAccess(final String aForImport,
-        final String aInPkg)
+    private AccessResult localCheckAccess(final String forImport,
+        final String inPkg)
     {
-        for (Guard g : mGuards) {
+        for (Guard g : guards) {
             // Check if a Guard is only meant to be applied locally.
-            if (g.isLocalOnly() && !mFullPackage.equals(aInPkg)) {
+            if (g.isLocalOnly() && !fullPackage.equals(inPkg)) {
                 continue;
             }
-            final AccessResult result = g.verifyImport(aForImport);
+            final AccessResult result = g.verifyImport(forImport);
             if (result != AccessResult.UNKNOWN) {
                 return result;
             }

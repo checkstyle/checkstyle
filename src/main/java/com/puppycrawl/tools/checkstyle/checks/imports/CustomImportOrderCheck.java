@@ -145,100 +145,100 @@ public class CustomImportOrderCheck extends Check
     private static final String NON_GROUP_RULE_GROUP = "NON_GROUP";
 
     /** RegExp for SAME_PACKAGE group imports */
-    private String mSamePackageDomainsRegExp = "";
+    private String samePackageDomainsRegExp = "";
 
     /** RegExp for STANDARD_JAVA_PACKAGE group imports */
-    private Pattern mStandardPackageRegExp = Utils.getPattern("java|javax");
+    private Pattern standardPackageRegExp = Utils.getPattern("java|javax");
 
     /** RegExp for THIRDPARTY_PACKAGE group imports */
-    private Pattern mThirdPartyPackageRegExp = Utils.getPattern("^$");
+    private Pattern thirdPartyPackageRegExp = Utils.getPattern("^$");
 
     /** RegExp for SPECIAL_IMPORTS group imports */
-    private Pattern mSpecialImportsRegExp = Utils.getPattern("^$");
+    private Pattern specialImportsRegExp = Utils.getPattern("^$");
 
     /** Force empty line separator between import groups */
-    private boolean mSeparateLineBetweenGroups = true;
+    private boolean separateLineBetweenGroups = true;
 
     /** Force grouping alphabetically */
-    private boolean mSortImportsInGroupAlphabetically;
+    private boolean sortImportsInGroupAlphabetically;
 
     /** List of order declaration customizing by user */
-    private final List<String> mCustomImportOrderRules =
+    private final List<String> customImportOrderRules =
             new ArrayList<String>();
 
     /** Number of first domains for SAME_PACKAGE group. */
-    private int mSamePackageMatchingDepth = 2;
+    private int samePackageMatchingDepth = 2;
 
     /** Contains objects with import attributes */
-    private List<ImportDetails> mImportToGroupList =
+    private List<ImportDetails> importToGroupList =
             new ArrayList<CustomImportOrderCheck.ImportDetails>();
 
     /**
-     * Sets mStandardRegExp specified by user.
-     * @param aRegexp
+     * Sets standardRegExp specified by user.
+     * @param regexp
      *        user value.
      */
-    public final void setStandardPackageRegExp(String aRegexp)
+    public final void setStandardPackageRegExp(String regexp)
     {
-        mStandardPackageRegExp = Utils.getPattern(aRegexp);
+        standardPackageRegExp = Utils.getPattern(regexp);
     }
 
     /**
-     * Sets mThirdPartyRegExp specified by user.
-     * @param aRegexp
+     * Sets thirdPartyRegExp specified by user.
+     * @param regexp
      *        user value.
      */
-    public final void setThirdPartyPackageRegExp(String aRegexp)
+    public final void setThirdPartyPackageRegExp(String regexp)
     {
-        mThirdPartyPackageRegExp = Utils.getPattern(aRegexp);
+        thirdPartyPackageRegExp = Utils.getPattern(regexp);
     }
 
     /**
-     * Sets mSpecialImportsRegExp specified by user.
-     * @param aRegexp
+     * Sets specialImportsRegExp specified by user.
+     * @param regexp
      *        user value.
      */
-    public final void setSpecialImportsRegExp(String aRegexp)
+    public final void setSpecialImportsRegExp(String regexp)
     {
-        mSpecialImportsRegExp = Utils.getPattern(aRegexp);
+        specialImportsRegExp = Utils.getPattern(regexp);
     }
 
     /**
-     * Sets mSeparateLineBetweenGroups specified by user.
-     * @param aValue
+     * Sets separateLineBetweenGroups specified by user.
+     * @param value
      *        user value.
      */
-    public final void setSeparateLineBetweenGroups(boolean aValue)
+    public final void setSeparateLineBetweenGroups(boolean value)
     {
-        mSeparateLineBetweenGroups = aValue;
+        separateLineBetweenGroups = value;
     }
 
     /**
-     * Sets mSortImportsInGroupAlphabetically specified by user.
-     * @param aValue
+     * Sets sortImportsInGroupAlphabetically specified by user.
+     * @param value
      *        user value.
      */
-    public final void setSortImportsInGroupAlphabetically(boolean aValue)
+    public final void setSortImportsInGroupAlphabetically(boolean value)
     {
-        mSortImportsInGroupAlphabetically = aValue;
+        sortImportsInGroupAlphabetically = value;
     }
 
     /**
      * Sets a custom import order from the rules in the string format specified
      * by user.
-     * @param aInputCustomImportOrder
+     * @param inputCustoimportOrder
      *        user value.
      */
-    public final void setCustomImportOrderRules(final String aInputCustomImportOrder)
+    public final void setCustomImportOrderRules(final String inputCustoimportOrder)
     {
-        mCustomImportOrderRules.clear();
+        customImportOrderRules.clear();
         try {
-            for (String currentState : aInputCustomImportOrder
+            for (String currentState : inputCustoimportOrder
                     .split("\\s*###\\s*"))
             {
-                addRulesToList(currentState);
+                addRuleastoList(currentState);
             }
-            mCustomImportOrderRules.add(NON_GROUP_RULE_GROUP);
+            customImportOrderRules.add(NON_GROUP_RULE_GROUP);
         }
         catch (StringIndexOutOfBoundsException exp) {
             //if the structure of the input rule isn't correct
@@ -257,62 +257,62 @@ public class CustomImportOrderCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
-        mImportToGroupList.clear();
+        importToGroupList.clear();
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
-            if (mCustomImportOrderRules.contains(SAME_PACKAGE_RULE_GROUP)
-                    && mSamePackageMatchingDepth != -1)
+        if (ast.getType() == TokenTypes.PACKAGE_DEF) {
+            if (customImportOrderRules.contains(SAME_PACKAGE_RULE_GROUP)
+                    && samePackageMatchingDepth != -1)
             {
-                mSamePackageDomainsRegExp = createSamePackageRegexp(
-                        mSamePackageMatchingDepth, aAST);
+                samePackageDomainsRegExp = createSamePackageRegexp(
+                        samePackageMatchingDepth, ast);
             }
         }
         else {
-            final String importFullPath = getFullImportIdent(aAST);
-            final int lineNo = aAST.getLineNo();
-            final boolean isStatic = aAST.getType() == TokenTypes.STATIC_IMPORT;
-            mImportToGroupList.add(new ImportDetails(importFullPath,
+            final String importFullPath = getFullImportIdent(ast);
+            final int lineNo = ast.getLineNo();
+            final boolean isStatic = ast.getType() == TokenTypes.STATIC_IMPORT;
+            importToGroupList.add(new ImportDetails(importFullPath,
                     lineNo, getImportGroup(isStatic, importFullPath),
                     isStatic));
         }
     }
 
     @Override
-    public void finishTree(DetailAST aRootAST)
+    public void finishTree(DetailAST rootAST)
     {
 
-        if (mImportToGroupList.isEmpty()) {
+        if (importToGroupList.isEmpty()) {
             return;
         }
 
-        final ImportDetails firstImport = mImportToGroupList.get(0);
+        final ImportDetails firstImport = importToGroupList.get(0);
         String currentGroup = getImportGroup(firstImport.isStatic(),
                 firstImport.getImportFullPath());
-        int groupNumber = mCustomImportOrderRules.indexOf(currentGroup);
+        int groupNumber = customImportOrderRules.indexOf(currentGroup);
         String previousImport = null;
 
-        for (ImportDetails importObject : mImportToGroupList) {
+        for (ImportDetails importObject : importToGroupList) {
             final String importGroup = importObject.getImportGroup();
-            final String fullImportIdent = importObject.mImportFullPath;
+            final String fullImportIdent = importObject.importFullPath;
 
             if (!importGroup.equals(currentGroup)) {
-                if (mCustomImportOrderRules.size() > groupNumber + 1) {
+                if (customImportOrderRules.size() > groupNumber + 1) {
                     final String nextGroup = getNextImportGroup(groupNumber + 1);
                     if (importGroup.equals(nextGroup)) {
-                        if (mSeparateLineBetweenGroups && previousImport != null
+                        if (separateLineBetweenGroups && previousImport != null
                                 && !hasEmptyLineBefore(importObject.getLineNumber()))
                         {
                             log(importObject.getLineNumber(), "custom.import.order.line.separator",
                                     fullImportIdent);
                         }
                         currentGroup = nextGroup;
-                        groupNumber = mCustomImportOrderRules.indexOf(nextGroup);
+                        groupNumber = customImportOrderRules.indexOf(nextGroup);
                     }
                     else {
                         logWrongImportGroupOrder(importObject.getLineNumber(),
@@ -324,7 +324,7 @@ public class CustomImportOrderCheck extends Check
                             importGroup);
                 }
             }
-            else if (mSortImportsInGroupAlphabetically
+            else if (sortImportsInGroupAlphabetically
                     && previousImport != null
                     && matchesImportGroup(importObject.isStatic(),
                             fullImportIdent, currentGroup)
@@ -338,53 +338,53 @@ public class CustomImportOrderCheck extends Check
 
     /**
      * Log wrong import group order.
-     * @param aCurrentImportLine
+     * @param currentImportLine
      *        line number of current import current import.
-     * @param aImportGroup
+     * @param importGroup
      *        import group.
      */
-    private void logWrongImportGroupOrder(int aCurrentImportLine, String aImportGroup)
+    private void logWrongImportGroupOrder(int currentImportLine, String importGroup)
     {
-        if (NON_GROUP_RULE_GROUP.equals(aImportGroup)) {
-            log(aCurrentImportLine, "custom.import.order.nongroup.import");
+        if (NON_GROUP_RULE_GROUP.equals(importGroup)) {
+            log(currentImportLine, "custom.import.order.nongroup.import");
         }
         else {
-            log(aCurrentImportLine, "custom.import.order", aImportGroup);
+            log(currentImportLine, "custom.import.order", importGroup);
         }
     }
 
     /**
      * Get next import group.
-     * @param aCurrentGroupNumber
+     * @param currentGroupNumber
      *        current group number.
      * @return
      *        next import group.
      */
-    private String getNextImportGroup(int aCurrentGroupNumber)
+    private String getNextImportGroup(int currentGroupNumber)
     {
-        int nextGroupNumber = aCurrentGroupNumber;
+        int nextGroupNumber = currentGroupNumber;
 
-        while (mCustomImportOrderRules.size() > nextGroupNumber + 1) {
-            if (hasAnyImportInCurrentGroup(mCustomImportOrderRules.get(nextGroupNumber)))
+        while (customImportOrderRules.size() > nextGroupNumber + 1) {
+            if (hasAnyImportInCurrentGroup(customImportOrderRules.get(nextGroupNumber)))
             {
                 break;
             }
             nextGroupNumber++;
         }
-        return mCustomImportOrderRules.get(nextGroupNumber);
+        return customImportOrderRules.get(nextGroupNumber);
     }
 
     /**
      * Checks if current group contains any import.
-     * @param aCurrentGroup
+     * @param currentGroup
      *        current group.
      * @return
      *        true, if current group contains at least one import.
      */
-    private boolean hasAnyImportInCurrentGroup(String aCurrentGroup)
+    private boolean hasAnyImportInCurrentGroup(String currentGroup)
     {
-        for (ImportDetails currentImport : mImportToGroupList) {
-            if (aCurrentGroup.equals(currentImport.getImportGroup())) {
+        for (ImportDetails currentImport : importToGroupList) {
+            if (currentGroup.equals(currentImport.getImportGroup())) {
                 return true;
             }
         }
@@ -393,16 +393,16 @@ public class CustomImportOrderCheck extends Check
 
     /**
      * Get import valid group.
-     * @param aStatic
+     * @param isStatic
      *        is static import.
-     * @param aImportPath
+     * @param importPath
      *        full import path.
      * @return import valid group.
      */
-    private String getImportGroup(boolean aStatic, String aImportPath)
+    private String getImportGroup(boolean isStatic, String importPath)
     {
-        for (String group : mCustomImportOrderRules) {
-            if (matchesImportGroup(aStatic, aImportPath, group)) {
+        for (String group : customImportOrderRules) {
+            if (matchesImportGroup(isStatic, importPath, group)) {
                 return group;
             }
         }
@@ -411,117 +411,117 @@ public class CustomImportOrderCheck extends Check
 
     /**
      * Checks if the import is placed in the correct group.
-     * @param aStatic
+     * @param isStatic
      *        if import is static.
-     * @param aImportPath
+     * @param importPath
      *        import full path.
-     * @param aCurrentGroup
+     * @param currentGroup
      *        current group.
      * @return true, if import placed in the correct group.
      */
-    private boolean matchesImportGroup(boolean aStatic, String aImportPath, String aCurrentGroup)
+    private boolean matchesImportGroup(boolean isStatic, String importPath, String currentGroup)
     {
-        return matchesStaticImportGroup(aStatic, aCurrentGroup)
-                || matchesSamePackageImportGroup(aStatic, aImportPath, aCurrentGroup)
-                || matchesSpecialImportsGroup(aStatic, aImportPath, aCurrentGroup)
-                || matchesStandartImportGroup(aStatic, aImportPath, aCurrentGroup)
-                || matchesThirdPartyImportGroup(aStatic, aImportPath, aCurrentGroup);
+        return matchesStaticImportGroup(isStatic, currentGroup)
+                || matchesSamePackageImportGroup(isStatic, importPath, currentGroup)
+                || matchesSpecialImportsGroup(isStatic, importPath, currentGroup)
+                || matchesStandartImportGroup(isStatic, importPath, currentGroup)
+                || matcheasthirdPartyImportGroup(isStatic, importPath, currentGroup);
     }
 
     /**
      * Checks if the import is placed in the STATIC group.
-     * @param aStatic
+     * @param isStatic
      *        is static import.
-     * @param aCurrentGroup
+     * @param currentGroup
      *        current group.
      * @return true, if the import is placed in the static group.
      */
-    private boolean matchesStaticImportGroup(boolean aStatic, String aCurrentGroup)
+    private boolean matchesStaticImportGroup(boolean isStatic, String currentGroup)
     {
-        return aStatic && STATIC_RULE_GROUP.equals(aCurrentGroup);
+        return isStatic && STATIC_RULE_GROUP.equals(currentGroup);
     }
 
     /**
      * Checks if the import is placed in the correct group.
-     * @param aStatic
+     * @param isStatic
      *        if import is static.
-     * @param aImportPath
+     * @param importFullPath
      *        import full path.
-     * @param aCurrentGroup
+     * @param currentGroup
      *        current group.
      * @return true, if the import is placed in the static group.
      */
-    private boolean matchesSamePackageImportGroup(boolean aStatic,
-        String aImportPath, String aCurrentGroup)
+    private boolean matchesSamePackageImportGroup(boolean isStatic,
+        String importFullPath, String currentGroup)
     {
-        final String importPath = aImportPath.substring(0, aImportPath.lastIndexOf("."));
-        return !aStatic && SAME_PACKAGE_RULE_GROUP.equals(aCurrentGroup)
-                && mSamePackageDomainsRegExp.contains(importPath);
+        final String importPath = importFullPath.substring(0, importFullPath.lastIndexOf("."));
+        return !isStatic && SAME_PACKAGE_RULE_GROUP.equals(currentGroup)
+                && samePackageDomainsRegExp.contains(importPath);
     }
 
     /**
      * Checks if the import is placed in the correct group.
-     * @param aStatic
+     * @param isStatic
      *        if import is static.
-     * @param aCurrentImport
+     * @param currentImport
      *        import full path.
-     * @param aCurrentGroup
+     * @param currentGroup
      *        current group.
      * @return true, if the import is placed in the static group.
      */
-    private boolean matchesStandartImportGroup(boolean aStatic,
-        String aCurrentImport, String aCurrentGroup)
+    private boolean matchesStandartImportGroup(boolean isStatic,
+        String currentImport, String currentGroup)
     {
-        return !aStatic && STANDARD_JAVA_PACKAGE_RULE_GROUP.equals(aCurrentGroup)
-                && mStandardPackageRegExp.matcher(aCurrentImport).find();
+        return !isStatic && STANDARD_JAVA_PACKAGE_RULE_GROUP.equals(currentGroup)
+                && standardPackageRegExp.matcher(currentImport).find();
     }
 
     /**
      * Checks if the import is placed in the correct group.
-     * @param aStatic
+     * @param isStatic
      *        if import is static.
-     * @param aCurrentImport
+     * @param currentImport
      *        import full path.
-     * @param aCurrentGroup
+     * @param currentGroup
      *        current group.
      * @return true, if the import is placed in the static group.
      */
-    private boolean matchesSpecialImportsGroup(boolean aStatic,
-        String aCurrentImport, String aCurrentGroup)
+    private boolean matchesSpecialImportsGroup(boolean isStatic,
+        String currentImport, String currentGroup)
     {
-        return !aStatic && SPECIAL_IMPORTS_RULE_GROUP.equals(aCurrentGroup)
-                && mSpecialImportsRegExp.matcher(aCurrentImport).find();
+        return !isStatic && SPECIAL_IMPORTS_RULE_GROUP.equals(currentGroup)
+                && specialImportsRegExp.matcher(currentImport).find();
     }
 
     /**
      * Checks if the import is placed in the correct group.
-     * @param aStatic
+     * @param isStatic
      *        if import is static.
-     * @param aCurrentImport
+     * @param currentImport
      *        import full path.
-     * @param aCurrentGroup
+     * @param currentGroup
      *        current group.
      * @return true, if the import is placed in the static group.
      */
-    private boolean matchesThirdPartyImportGroup(boolean aStatic,
-        String aCurrentImport, String aCurrentGroup)
+    private boolean matcheasthirdPartyImportGroup(boolean isStatic,
+        String currentImport, String currentGroup)
     {
-        return !aStatic && THIRD_PARTY_PACKAGE_RULE_GROUP.equals(aCurrentGroup)
-                && mThirdPartyPackageRegExp.matcher(aCurrentImport).find()
-                && !mStandardPackageRegExp.matcher(aCurrentImport).find();
+        return !isStatic && THIRD_PARTY_PACKAGE_RULE_GROUP.equals(currentGroup)
+                && thirdPartyPackageRegExp.matcher(currentImport).find()
+                && !standardPackageRegExp.matcher(currentImport).find();
     }
 
     /**
      * Checks compare two import paths.
-     * @param aCurrentImport
+     * @param currentImport
      *        current import.
-     * @param aPreviousImport
+     * @param previousImport
      *        previous import.
      * @return a negative integer, zero, or a positive integer as the
      *        specified String is greater than, equal to, or less
      *        than this String, ignoring case considerations.
      */
-    private int compare(String aCurrentImport, String aPreviousImport)
+    private int compare(String currentImport, String previousImport)
     {
         int indexOfPreviousDotCurrent = 0;
         int indexOfNextDotCurrent = 0;
@@ -529,18 +529,18 @@ public class CustomImportOrderCheck extends Check
         int indexOfPreviousDotPrevious = 0;
         int indexOfNextDotPrevious = 0;
         String tokenPrevious = "";
-        final int currentImportDomainCount = countDomains(aCurrentImport);
-        final int previousImportDomainCount = countDomains(aPreviousImport);
+        final int currentImportDomainCount = countDomains(currentImport);
+        final int previousImportDomainCount = countDomains(previousImport);
         int result = 0;
 
-        while (aCurrentImport.lastIndexOf(".") != indexOfPreviousDotCurrent - 1
-                && aPreviousImport.lastIndexOf(".") != indexOfPreviousDotPrevious - 1)
+        while (currentImport.lastIndexOf(".") != indexOfPreviousDotCurrent - 1
+                && previousImport.lastIndexOf(".") != indexOfPreviousDotPrevious - 1)
         {
-            indexOfNextDotCurrent = aCurrentImport.indexOf(".", indexOfPreviousDotCurrent + 1);
-            indexOfNextDotPrevious = aPreviousImport.indexOf(".", indexOfPreviousDotPrevious + 1);
-            tokenCurrent = aCurrentImport.substring(indexOfPreviousDotCurrent,
+            indexOfNextDotCurrent = currentImport.indexOf(".", indexOfPreviousDotCurrent + 1);
+            indexOfNextDotPrevious = previousImport.indexOf(".", indexOfPreviousDotPrevious + 1);
+            tokenCurrent = currentImport.substring(indexOfPreviousDotCurrent,
                     indexOfNextDotCurrent);
-            tokenPrevious = aPreviousImport.substring(indexOfPreviousDotPrevious,
+            tokenPrevious = previousImport.substring(indexOfPreviousDotPrevious,
                     indexOfNextDotPrevious);
             result = tokenCurrent.compareToIgnoreCase(tokenPrevious);
             if (result != 0) {
@@ -550,18 +550,18 @@ public class CustomImportOrderCheck extends Check
             indexOfPreviousDotPrevious = indexOfNextDotPrevious + 1;
         }
 
-        if (result == 0 && (aCurrentImport.lastIndexOf(".") == indexOfPreviousDotCurrent - 1
-                || aPreviousImport.lastIndexOf(".") == indexOfPreviousDotPrevious - 1))
+        if (result == 0 && (currentImport.lastIndexOf(".") == indexOfPreviousDotCurrent - 1
+                || previousImport.lastIndexOf(".") == indexOfPreviousDotPrevious - 1))
         {
             if (currentImportDomainCount != previousImportDomainCount) {
-                getClassName(indexOfNextDotPrevious, aPreviousImport);
+                getClassName(indexOfNextDotPrevious, previousImport);
                 return currentImportDomainCount - previousImportDomainCount;
             }
             else {
-                getClassName(indexOfNextDotPrevious, aPreviousImport);
+                getClassName(indexOfNextDotPrevious, previousImport);
                 return getClassName(indexOfNextDotCurrent,
-                        aCurrentImport).compareToIgnoreCase(getClassName(indexOfNextDotPrevious,
-                                aPreviousImport));
+                        currentImport).compareToIgnoreCase(getClassName(indexOfNextDotPrevious,
+                                previousImport));
             }
         }
         return 0;
@@ -569,26 +569,26 @@ public class CustomImportOrderCheck extends Check
 
     /**
      * Return class name from import full path.
-     * @param aStartFrom number of start.
-     * @param aImport import full path.
+     * @param startFrom number of start.
+     * @param import import full path.
      * @return class name.
      */
-    private String getClassName(int aStartFrom, String aImport)
+    private String getClassName(int startFrom, String importStr)
     {
-        String className = aImport;
-        className = className.substring(aStartFrom, className.length());
+        String className = importStr;
+        className = className.substring(startFrom, className.length());
         final StringTokenizer token = new StringTokenizer(className, ".\r");
         return token.nextToken();
     }
 
     /**
      * Count number of domains.
-     * @param aImportPath current import.
+     * @param importPath current import.
      * @return number of domains.
      */
-    private static int countDomains(String aImportPath)
+    private static int countDomains(String importPath)
     {
-        final StringTokenizer tokens = new StringTokenizer(aImportPath, ".");
+        final StringTokenizer tokens = new StringTokenizer(importPath, ".");
         int count = 0;
 
         while (tokens.hasMoreTokens()) {
@@ -604,77 +604,78 @@ public class CustomImportOrderCheck extends Check
 
     /**
      * Checks if a token has a empty line before.
-     * @param aLineNo
+     * @param lineNo
      *        Line number of current import.
      * @return true, if token have empty line before.
      */
-    private boolean hasEmptyLineBefore(int aLineNo)
+    private boolean hasEmptyLineBefore(int lineNo)
     {
         //  [lineNo - 2] is the number of the previous line
         //  because the numbering starts from zero.
-        final String lineBefore = getLine(aLineNo - 2);
+        final String lineBefore = getLine(lineNo - 2);
         return lineBefore.trim().isEmpty();
     }
 
     /**
      * Forms import full path.
-     * @param aToken
+     * @param token
      *        current token.
      * @return full path or null.
      */
-    private static String getFullImportIdent(DetailAST aToken)
+    private static String getFullImportIdent(DetailAST token)
     {
-        return aToken != null ? FullIdent.createFullIdent(aToken.
+        return token != null ? FullIdent.createFullIdent(token.
                 findFirstToken(TokenTypes.DOT)).getText() : "";
     }
 
     /**
      * Parses ordering rule and adds it to the list with rules.
-     * @param aRule
+     * @param ruleStr
      *        String with rule.
      */
-    private void addRulesToList(String aRule)
+    private void addRuleastoList(String ruleStr)
     {
-        if (STATIC_RULE_GROUP.equals(aRule)
-                || THIRD_PARTY_PACKAGE_RULE_GROUP.equals(aRule)
-                || STANDARD_JAVA_PACKAGE_RULE_GROUP.equals(aRule)
-                || SPECIAL_IMPORTS_RULE_GROUP.equals(aRule))
+        if (STATIC_RULE_GROUP.equals(ruleStr)
+                || THIRD_PARTY_PACKAGE_RULE_GROUP.equals(ruleStr)
+                || STANDARD_JAVA_PACKAGE_RULE_GROUP.equals(ruleStr)
+                || SPECIAL_IMPORTS_RULE_GROUP.equals(ruleStr))
         {
-            mCustomImportOrderRules.add(aRule);
+            customImportOrderRules.add(ruleStr);
 
         }
-        else if (aRule.startsWith(SAME_PACKAGE_RULE_GROUP)) {
+        else if (ruleStr.startsWith(SAME_PACKAGE_RULE_GROUP)) {
 
-            final String rule = aRule.substring(aRule.indexOf("(") + 1,
-                    aRule.indexOf(")"));
+            final String rule = ruleStr.substring(ruleStr.indexOf("(") + 1,
+                    ruleStr.indexOf(")"));
             try {
-                mSamePackageMatchingDepth = Integer.parseInt(rule);
+                samePackageMatchingDepth = Integer.parseInt(rule);
             }
             catch (Exception e) {
-                mSamePackageDomainsRegExp = rule;
+                samePackageDomainsRegExp = rule;
             }
-            mCustomImportOrderRules.add(SAME_PACKAGE_RULE_GROUP);
+            customImportOrderRules.add(SAME_PACKAGE_RULE_GROUP);
 
         }
         else {
-            throw new RuntimeException("Unexpected rule: " + aRule);
+            throw new RuntimeException("Unexpected rule: " + ruleStr);
         }
     }
 
     /**
-     * Creates mSamePackageDomainsRegExp of the first package domains.
-     * @param aCount
+     * Creates samePackageDomainsRegExp of the first package domains.
+     * @param firstPackageDomainsCount
      *        number of first package domains.
-     * @param aPackageNode
+     * @param packageNode
      *        package node.
      * @return same package regexp.
      */
-    private static String createSamePackageRegexp(int aCount, DetailAST aPackageNode)
+    private static String createSamePackageRegexp(int firstPackageDomainsCount,
+             DetailAST packageNode)
     {
         final StringBuilder builder = new StringBuilder();
-        final String packageFullPath = getFullImportIdent(aPackageNode);
+        final String packageFullPath = getFullImportIdent(packageNode);
         final StringTokenizer tokens = new StringTokenizer(packageFullPath, ".");
-        int count = aCount;
+        int count = firstPackageDomainsCount;
 
         while (tokens.hasMoreTokens() && count > 0) {
             builder.append(tokens.nextToken()).append(".");
@@ -691,34 +692,34 @@ public class CustomImportOrderCheck extends Check
     class ImportDetails
     {
         /** Import full path */
-        private String mImportFullPath;
+        private String importFullPath;
 
         /** Import line number */
-        private int mLineNumber;
+        private int lineNumber;
 
         /** Import group */
-        private String mImportGroup;
+        private String importGroup;
 
         /** Is static import */
-        private boolean mStatic;
+        private boolean isStatic;
 
         /**
-         * @param aImportFullPath
+         * @param importFullPath
          *        import full path.
-         * @param aLineNumber
+         * @param lineNumber
          *        import line number.
-         * @param aImportGroup
+         * @param importGroup
          *        import group.
-         * @param aStatic
+         * @param isStatic
          *        if import is static.
          */
-        public ImportDetails(String aImportFullPath,
-                int aLineNumber, String aImportGroup, boolean aStatic)
+        public ImportDetails(String importFullPath,
+                int lineNumber, String importGroup, boolean isStatic)
         {
-            setImportFullPath(aImportFullPath);
-            setLineNumber(aLineNumber);
-            setImportGroup(aImportGroup);
-            setStatic(aStatic);
+            setImportFullPath(importFullPath);
+            setLineNumber(lineNumber);
+            setImportGroup(importGroup);
+            setStatic(isStatic);
         }
 
         /**
@@ -727,17 +728,17 @@ public class CustomImportOrderCheck extends Check
          */
         public String getImportFullPath()
         {
-            return mImportFullPath;
+            return importFullPath;
         }
 
         /**
          * Set import full path variable.
-         * @param aImportFullPath
+         * @param importFullPath
          *        import full path variable.
          */
-        public void setImportFullPath(String aImportFullPath)
+        public void setImportFullPath(String importFullPath)
         {
-            this.mImportFullPath = aImportFullPath;
+            this.importFullPath = importFullPath;
         }
 
         /**
@@ -746,17 +747,17 @@ public class CustomImportOrderCheck extends Check
          */
         public int getLineNumber()
         {
-            return mLineNumber;
+            return lineNumber;
         }
 
         /**
          * Set import line number.
-         * @param aLineNumber
+         * @param lineNumber
          *        import line number.
          */
-        public void setLineNumber(int aLineNumber)
+        public void setLineNumber(int lineNumber)
         {
-            this.mLineNumber = aLineNumber;
+            this.lineNumber = lineNumber;
         }
 
         /**
@@ -765,17 +766,17 @@ public class CustomImportOrderCheck extends Check
          */
         public String getImportGroup()
         {
-            return mImportGroup;
+            return importGroup;
         }
 
         /**
          * Set import group.
-         * @param aImportGroup
+         * @param importGroup
          *        import group.
          */
-        public void setImportGroup(String aImportGroup)
+        public void setImportGroup(String importGroup)
         {
-            this.mImportGroup = aImportGroup;
+            this.importGroup = importGroup;
         }
 
         /**
@@ -784,17 +785,17 @@ public class CustomImportOrderCheck extends Check
          */
         public boolean isStatic()
         {
-            return mStatic;
+            return isStatic;
         }
 
         /**
          * Set true, if import is static
-         * @param aStatic
+         * @param isStatic
          *        if import is static.
          */
-        public void setStatic(boolean aStatic)
+        public void setStatic(boolean isStatic)
         {
-            this.mStatic = aStatic;
+            this.isStatic = isStatic;
         }
     }
 }

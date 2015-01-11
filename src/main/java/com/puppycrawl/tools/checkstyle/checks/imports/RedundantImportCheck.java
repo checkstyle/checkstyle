@@ -55,18 +55,18 @@ public class RedundantImportCheck
     extends Check
 {
     /** name of package in file */
-    private String mPkgName;
+    private String pkgName;
     /** set of the imports */
-    private final Set<FullIdent> mImports = Sets.newHashSet();
+    private final Set<FullIdent> imports = Sets.newHashSet();
     /** set of static imports */
-    private final Set<FullIdent> mStaticImports = Sets.newHashSet();
+    private final Set<FullIdent> staticImports = Sets.newHashSet();
 
     @Override
     public void beginTree(DetailAST aRootAST)
     {
-        mPkgName = null;
-        mImports.clear();
-        mStaticImports.clear();
+        pkgName = null;
+        imports.clear();
+        staticImports.clear();
     }
 
     @Override
@@ -79,67 +79,67 @@ public class RedundantImportCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
-            mPkgName = FullIdent.createFullIdent(
-                    aAST.getLastChild().getPreviousSibling()).getText();
+        if (ast.getType() == TokenTypes.PACKAGE_DEF) {
+            pkgName = FullIdent.createFullIdent(
+                    ast.getLastChild().getPreviousSibling()).getText();
         }
-        else if (aAST.getType() == TokenTypes.IMPORT) {
-            final FullIdent imp = FullIdent.createFullIdentBelow(aAST);
+        else if (ast.getType() == TokenTypes.IMPORT) {
+            final FullIdent imp = FullIdent.createFullIdentBelow(ast);
             if (fromPackage(imp.getText(), "java.lang")) {
-                log(aAST.getLineNo(), aAST.getColumnNo(), "import.lang",
+                log(ast.getLineNo(), ast.getColumnNo(), "import.lang",
                     imp.getText());
             }
-            else if (fromPackage(imp.getText(), mPkgName)) {
-                log(aAST.getLineNo(), aAST.getColumnNo(), "import.same",
+            else if (fromPackage(imp.getText(), pkgName)) {
+                log(ast.getLineNo(), ast.getColumnNo(), "import.same",
                     imp.getText());
             }
             // Check for a duplicate import
-            for (FullIdent full : mImports) {
+            for (FullIdent full : imports) {
                 if (imp.getText().equals(full.getText())) {
-                    log(aAST.getLineNo(), aAST.getColumnNo(),
+                    log(ast.getLineNo(), ast.getColumnNo(),
                             "import.duplicate", full.getLineNo(),
                             imp.getText());
                 }
             }
 
-            mImports.add(imp);
+            imports.add(imp);
         }
         else {
             // Check for a duplicate static import
             final FullIdent imp =
                 FullIdent.createFullIdent(
-                    aAST.getLastChild().getPreviousSibling());
-            for (FullIdent full : mStaticImports) {
+                    ast.getLastChild().getPreviousSibling());
+            for (FullIdent full : staticImports) {
                 if (imp.getText().equals(full.getText())) {
-                    log(aAST.getLineNo(), aAST.getColumnNo(),
+                    log(ast.getLineNo(), ast.getColumnNo(),
                         "import.duplicate", full.getLineNo(), imp.getText());
                 }
             }
 
-            mStaticImports.add(imp);
+            staticImports.add(imp);
         }
     }
 
     /**
      * Determines if an import statement is for types from a specified package.
-     * @param aImport the import name
-     * @param aPkg the package name
+     * @param importName the import name
+     * @param pkg the package name
      * @return whether from the package
      */
-    private static boolean fromPackage(String aImport, String aPkg)
+    private static boolean fromPackage(String importName, String pkg)
     {
         boolean retVal = false;
-        if (aPkg == null) {
+        if (pkg == null) {
             // If not package, then check for no package in the import.
-            retVal = (aImport.indexOf('.') == -1);
+            retVal = (importName.indexOf('.') == -1);
         }
         else {
-            final int index = aImport.lastIndexOf('.');
+            final int index = importName.lastIndexOf('.');
             if (index != -1) {
-                final String front = aImport.substring(0, index);
-                retVal = front.equals(aPkg);
+                final String front = importName.substring(0, index);
+                retVal = front.equals(pkg);
             }
         }
         return retVal;

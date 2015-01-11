@@ -44,15 +44,15 @@ import org.apache.commons.beanutils.ConversionException;
 public class ImportControlCheck extends Check
 {
     /** The root package controller. */
-    private PkgControl mRoot;
+    private PkgControl root;
     /** The package doing the import. */
-    private String mInPkg;
+    private String inPkg;
 
     /**
      * The package controller for the current file. Used for performance
      * optimisation.
      */
-    private PkgControl mCurrentLeaf;
+    private PkgControl currentLeaf;
 
     @Override
     public int[] getDefaultTokens()
@@ -62,42 +62,42 @@ public class ImportControlCheck extends Check
     }
 
     @Override
-    public void beginTree(final DetailAST aRootAST)
+    public void beginTree(final DetailAST rootAST)
     {
-        mCurrentLeaf = null;
+        currentLeaf = null;
     }
 
     @Override
-    public void visitToken(final DetailAST aAST)
+    public void visitToken(final DetailAST ast)
     {
-        if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
-            final DetailAST nameAST = aAST.getLastChild().getPreviousSibling();
+        if (ast.getType() == TokenTypes.PACKAGE_DEF) {
+            final DetailAST nameAST = ast.getLastChild().getPreviousSibling();
             final FullIdent full = FullIdent.createFullIdent(nameAST);
-            if (mRoot == null) {
+            if (root == null) {
                 log(nameAST, "import.control.missing.file");
             }
             else {
-                mInPkg = full.getText();
-                mCurrentLeaf = mRoot.locateFinest(mInPkg);
-                if (mCurrentLeaf == null) {
+                inPkg = full.getText();
+                currentLeaf = root.locateFinest(inPkg);
+                if (currentLeaf == null) {
                     log(nameAST, "import.control.unknown.pkg");
                 }
             }
         }
-        else if (mCurrentLeaf != null) {
+        else if (currentLeaf != null) {
             final FullIdent imp;
-            if (aAST.getType() == TokenTypes.IMPORT) {
-                imp = FullIdent.createFullIdentBelow(aAST);
+            if (ast.getType() == TokenTypes.IMPORT) {
+                imp = FullIdent.createFullIdentBelow(ast);
             }
             else {
                 // know it is a static import
-                imp = FullIdent.createFullIdent(aAST
+                imp = FullIdent.createFullIdent(ast
                         .getFirstChild().getNextSibling());
             }
-            final AccessResult access = mCurrentLeaf.checkAccess(imp.getText(),
-                    mInPkg);
+            final AccessResult access = currentLeaf.checkAccess(imp.getText(),
+                    inPkg);
             if (!AccessResult.ALLOWED.equals(access)) {
-                log(aAST, "import.control.disallowed", imp.getText());
+                log(ast, "import.control.disallowed", imp.getText());
             }
         }
     }
@@ -105,48 +105,48 @@ public class ImportControlCheck extends Check
     /**
      * Set the parameter for the url containing the import control
      * configuration. It will cause the url to be loaded.
-     * @param aUrl the url of the file to load.
+     * @param url the url of the file to load.
      * @throws ConversionException on error loading the file.
      */
-    public void setUrl(final String aUrl)
+    public void setUrl(final String url)
     {
         // Handle empty param
-        if ((aUrl == null) || (aUrl.trim().length() == 0)) {
+        if ((url == null) || (url.trim().length() == 0)) {
             return;
         }
         final URI uri;
         try {
-            uri = URI.create(aUrl);
+            uri = URI.create(url);
         }
         catch (final IllegalArgumentException ex) {
-            throw new ConversionException("syntax error in url " + aUrl, ex);
+            throw new ConversionException("syntax error in url " + url, ex);
         }
         try {
-            mRoot = ImportControlLoader.load(uri);
+            root = ImportControlLoader.load(uri);
         }
         catch (final CheckstyleException ex) {
-            throw new ConversionException("Unable to load " + aUrl, ex);
+            throw new ConversionException("Unable to load " + url, ex);
         }
     }
 
     /**
-     * Set the parameter for the file containing the import control
+     * Set the pnameter for the file containing the import control
      * configuration. It will cause the file to be loaded.
-     * @param aName the name of the file to load.
+     * @param name the name of the file to load.
      * @throws ConversionException on error loading the file.
      */
-    public void setFile(final String aName)
+    public void setFile(final String name)
     {
         // Handle empty param
-        if ((aName == null) || (aName.trim().length() == 0)) {
+        if ((name == null) || (name.trim().length() == 0)) {
             return;
         }
 
         try {
-            mRoot = ImportControlLoader.load(new File(aName).toURI());
+            root = ImportControlLoader.load(new File(name).toURI());
         }
         catch (final CheckstyleException ex) {
-            throw new ConversionException("Unable to load " + aName, ex);
+            throw new ConversionException("Unable to load " + name, ex);
         }
     }
 }
