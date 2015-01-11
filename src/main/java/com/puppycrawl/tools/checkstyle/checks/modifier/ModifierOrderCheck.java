@@ -82,10 +82,10 @@ public class ModifierOrderCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         final List<DetailAST> mods = Lists.newArrayList();
-        DetailAST modifier = aAST.getFirstChild();
+        DetailAST modifier = ast.getFirstChild();
         while (modifier != null) {
             mods.add(modifier);
             modifier = modifier.getNextSibling();
@@ -114,15 +114,15 @@ public class ModifierOrderCheck
      * Checks if the modifiers were added in the order suggested
      * in the Java language specification.
      *
-     * @param aModifiers list of modifier AST tokens
+     * @param modifiers list of modifier AST tokens
      * @return null if the order is correct, otherwise returns the offending
      * *       modifier AST.
      */
-    DetailAST checkOrderSuggestedByJLS(List<DetailAST> aModifiers)
+    DetailAST checkOrderSuggestedByJLS(List<DetailAST> modifiers)
     {
         int i = 0;
         DetailAST modifier;
-        final Iterator<DetailAST> it = aModifiers.iterator();
+        final Iterator<DetailAST> it = modifiers.iterator();
         //No modifiers, no problems
         if (!it.hasNext()) {
             return null;
