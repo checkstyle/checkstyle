@@ -76,28 +76,28 @@ public class ParameterNumberCheck
     private static final int DEFAULT_MAX_PARAMETERS = 7;
 
     /** the maximum number of allowed parameters */
-    private int mMax = DEFAULT_MAX_PARAMETERS;
+    private int max = DEFAULT_MAX_PARAMETERS;
 
     /** ignore overridden methods */
-    private boolean mIgnoreOverriddenMethods;
+    private boolean ignoreOverriddenMethods;
 
     /**
      * Sets the maximum number of allowed parameters.
-     * @param aMax the max allowed parameters
+     * @param max the max allowed parameters
      */
-    public void setMax(int aMax)
+    public void setMax(int max)
     {
-        mMax = aMax;
+        this.max = max;
     }
 
     /**
      * Ignore number of parameters for methods with
      * &#064;{@link java.lang.Override} annotation.
-     * @param aIgnoreOverriddenMethods set ignore overridden methods
+     * @param ignoreOverriddenMethods set ignore overridden methods
      */
-    public void setIgnoreOverriddenMethods(boolean aIgnoreOverriddenMethods)
+    public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods)
     {
-        mIgnoreOverriddenMethods = aIgnoreOverriddenMethods;
+        this.ignoreOverriddenMethods = ignoreOverriddenMethods;
     }
 
     @Override
@@ -107,27 +107,27 @@ public class ParameterNumberCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
+        final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
         final int count = params.getChildCount(TokenTypes.PARAMETER_DEF);
-        if (count > mMax && !ignoreNumberOfParameters(aAST)) {
-            final DetailAST name = aAST.findFirstToken(TokenTypes.IDENT);
-            log(name.getLineNo(), name.getColumnNo(), "maxParam", mMax, count);
+        if (count > max && !ignoreNumberOfParameters(ast)) {
+            final DetailAST name = ast.findFirstToken(TokenTypes.IDENT);
+            log(name.getLineNo(), name.getColumnNo(), "maxParam", max, count);
         }
     }
 
     /** Determine whether to ignore number of parameters for the method.
      *
-     * @param aAST the token to process
+     * @param ast the token to process
      * @return true if this is overridden method and number of parameters should be ignored
      *         false otherwise
      */
-    private boolean ignoreNumberOfParameters(DetailAST aAST)
+    private boolean ignoreNumberOfParameters(DetailAST ast)
     {
         //if you override a method, you have no power over the number of parameters
-        return mIgnoreOverriddenMethods
-                && (AnnotationUtility.containsAnnotation(aAST, OVERRIDE)
-                || AnnotationUtility.containsAnnotation(aAST, CANONICAL_OVERRIDE));
+        return ignoreOverriddenMethods
+                && (AnnotationUtility.containsAnnotation(ast, OVERRIDE)
+                || AnnotationUtility.containsAnnotation(ast, CANONICAL_OVERRIDE));
     }
 }

@@ -56,13 +56,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class MethodLengthCheck extends Check
 {
     /** whether to ignore empty lines and single line comments */
-    private boolean mCountEmpty = true;
+    private boolean countEmpty = true;
 
     /** default maximum number of lines */
     private static final int DEFAULT_MAX_LINES = 150;
 
     /** the maximum number of lines */
-    private int mMax = DEFAULT_MAX_LINES;
+    private int max = DEFAULT_MAX_LINES;
 
     @Override
     public int[] getDefaultTokens()
@@ -71,16 +71,16 @@ public class MethodLengthCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final DetailAST openingBrace = aAST.findFirstToken(TokenTypes.SLIST);
+        final DetailAST openingBrace = ast.findFirstToken(TokenTypes.SLIST);
         if (openingBrace != null) {
             final DetailAST closingBrace =
                 openingBrace.findFirstToken(TokenTypes.RCURLY);
             int length =
                 closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
 
-            if (!mCountEmpty) {
+            if (!countEmpty) {
                 final FileContents contents = getFileContents();
                 final int lastLine = closingBrace.getLineNo();
                 for (int i = openingBrace.getLineNo() - 1; i < lastLine; i++) {
@@ -89,27 +89,27 @@ public class MethodLengthCheck extends Check
                     }
                 }
             }
-            if (length > mMax) {
-                log(aAST.getLineNo(), aAST.getColumnNo(), "maxLen.method",
-                        length, mMax);
+            if (length > max) {
+                log(ast.getLineNo(), ast.getColumnNo(), "maxLen.method",
+                        length, max);
             }
         }
     }
 
     /**
-     * @param aLength the maximum length of a method.
+     * @param length the maximum length of a method.
      */
-    public void setMax(int aLength)
+    public void setMax(int length)
     {
-        mMax = aLength;
+        max = length;
     }
 
     /**
-     * @param aCountEmpty whether to count empty and single line comments
+     * @param countEmpty whether to count empty and single line comments
      * of the form //.
      */
-    public void setCountEmpty(boolean aCountEmpty)
+    public void setCountEmpty(boolean countEmpty)
     {
-        mCountEmpty = aCountEmpty;
+        this.countEmpty = countEmpty;
     }
 }

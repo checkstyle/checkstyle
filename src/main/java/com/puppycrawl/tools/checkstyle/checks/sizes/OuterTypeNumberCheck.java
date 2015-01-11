@@ -13,7 +13,7 @@
 // Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public
-// License along with this library; if not, write to the Free Software
+// License tong with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.sizes;
@@ -29,11 +29,11 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 public class OuterTypeNumberCheck extends Check
 {
     /** The maximum allowed number of outer types. */
-    private int mMax = 1;
+    private int max = 1;
     /** Tracks the current depth in types. */
-    private int mCurrentDepth;
+    private int currentDepth;
     /** Tracks the number of outer types found. */
-    private int mOuterNum;
+    private int outerNum;
 
     @Override
     public int[] getDefaultTokens()
@@ -43,41 +43,41 @@ public class OuterTypeNumberCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST aAst)
+    public void beginTree(DetailAST ast)
     {
-        mCurrentDepth = 0;
-        mOuterNum = 0;
+        currentDepth = 0;
+        outerNum = 0;
     }
 
     @Override
-    public void finishTree(DetailAST aAst)
+    public void finishTree(DetailAST ast)
     {
-        if (mMax < mOuterNum) {
-            log(aAst, "maxOuterTypes", mOuterNum, mMax);
+        if (max < outerNum) {
+            log(ast, "maxOuterTypes", outerNum, max);
         }
     }
 
     @Override
-    public void visitToken(DetailAST aAst)
+    public void visitToken(DetailAST ast)
     {
-        if (0 == mCurrentDepth) {
-            mOuterNum++;
+        if (0 == currentDepth) {
+            outerNum++;
         }
-        mCurrentDepth++;
+        currentDepth++;
     }
 
     @Override
-    public void leaveToken(DetailAST aAst)
+    public void leaveToken(DetailAST ast)
     {
-        mCurrentDepth--;
+        currentDepth--;
     }
 
     /**
      * Sets the maximum allowed number of outer types.
-     * @param aTo the new number.
+     * @param to the new number.
      */
-    public void setMax(int aTo)
+    public void setMax(int to)
     {
-        mMax = aTo;
+        max = to;
     }
 }
