@@ -54,15 +54,15 @@ public class FinalParametersCheck extends Check
     /**
      * Option to ignore primitive types as params.
      */
-    private boolean mIgnorePrimitiveTypes;
+    private boolean ignorePrimitiveTypes;
 
     /**
      * Sets ignoring primitive types as params.
-     * @param aIgnorePrimitiveTypes true or false.
+     * @param ignorePrimitiveTypes true or false.
      */
-    public void setIgnorePrimitiveTypes(boolean aIgnorePrimitiveTypes)
+    public void setIgnorePrimitiveTypes(boolean ignorePrimitiveTypes)
     {
-        mIgnorePrimitiveTypes = aIgnorePrimitiveTypes;
+        this.ignorePrimitiveTypes = ignorePrimitiveTypes;
     }
 
     /**
@@ -70,7 +70,7 @@ public class FinalParametersCheck extends Check
      * <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
      * primitive datatypes</a>.
      */
-    private final Set<Integer> mPrimitiveDataTypes = ImmutableSet.of(
+    private final Set<Integer> primitiveDataTypes = ImmutableSet.of(
             TokenTypes.LITERAL_BYTE,
             TokenTypes.LITERAL_SHORT,
             TokenTypes.LITERAL_INT,
@@ -101,46 +101,46 @@ public class FinalParametersCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         // don't flag interfaces
-        final DetailAST container = aAST.getParent().getParent();
+        final DetailAST container = ast.getParent().getParent();
         if (container.getType() == TokenTypes.INTERFACE_DEF) {
             return;
         }
 
-        if (aAST.getType() == TokenTypes.LITERAL_CATCH) {
-            visitCatch(aAST);
+        if (ast.getType() == TokenTypes.LITERAL_CATCH) {
+            visitCatch(ast);
         }
-        else if (aAST.getType() == TokenTypes.FOR_EACH_CLAUSE) {
-            visitForEachClause(aAST);
+        else if (ast.getType() == TokenTypes.FOR_EACH_CLAUSE) {
+            visitForEachClause(ast);
         }
         else {
-            visitMethod(aAST);
+            visitMethod(ast);
         }
     }
 
     /**
      * Checks parameters of the method or ctor.
-     * @param aMethod method or ctor to check.
+     * @param method method or ctor to check.
      */
-    private void visitMethod(final DetailAST aMethod)
+    private void visitMethod(final DetailAST method)
     {
         // exit on fast lane if there is nothing to check here
-        if (!aMethod.branchContains(TokenTypes.PARAMETER_DEF)) {
+        if (!method.branchContains(TokenTypes.PARAMETER_DEF)) {
             return;
         }
 
         // ignore abstract method
         final DetailAST modifiers =
-            aMethod.findFirstToken(TokenTypes.MODIFIERS);
+            method.findFirstToken(TokenTypes.MODIFIERS);
         if (modifiers.branchContains(TokenTypes.ABSTRACT)) {
             return;
         }
 
         // we can now be sure that there is at least one parameter
         final DetailAST parameters =
-            aMethod.findFirstToken(TokenTypes.PARAMETERS);
+            method.findFirstToken(TokenTypes.PARAMETERS);
         DetailAST child = parameters.getFirstChild();
         while (child != null) {
             // childs are PARAMETER_DEF and COMMA
@@ -153,31 +153,31 @@ public class FinalParametersCheck extends Check
 
     /**
      * Checks parameter of the catch block.
-     * @param aCatch catch block to check.
+     * @param catch catch block to check.
      */
-    private void visitCatch(final DetailAST aCatch)
+    private void visitCatch(final DetailAST literalCatch)
     {
-        checkParam(aCatch.findFirstToken(TokenTypes.PARAMETER_DEF));
+        checkParam(literalCatch.findFirstToken(TokenTypes.PARAMETER_DEF));
     }
 
     /**
      * Checks parameter of the for each clause.
-     * @param aForEachClause for each clause to check.
+     * @param forEachClause for each clause to check.
      */
-    private void visitForEachClause(final DetailAST aForEachClause)
+    private void visitForEachClause(final DetailAST forEachClause)
     {
-        checkParam(aForEachClause.findFirstToken(TokenTypes.VARIABLE_DEF));
+        checkParam(forEachClause.findFirstToken(TokenTypes.VARIABLE_DEF));
     }
 
     /**
      * Checks if the given parameter is final.
-     * @param aParam parameter to check.
+     * @param param parameter to check.
      */
-    private void checkParam(final DetailAST aParam)
+    private void checkParam(final DetailAST param)
     {
-        if (!aParam.branchContains(TokenTypes.FINAL) && !isIgnoredParam(aParam)) {
-            final DetailAST paramName = aParam.findFirstToken(TokenTypes.IDENT);
-            final DetailAST firstNode = CheckUtils.getFirstNode(aParam);
+        if (!param.branchContains(TokenTypes.FINAL) && !isIgnoredParam(param)) {
+            final DetailAST paramName = param.findFirstToken(TokenTypes.IDENT);
+            final DetailAST firstNode = CheckUtils.getFirstNode(param);
             log(firstNode.getLineNo(), firstNode.getColumnNo(),
                 "final.parameter", paramName.getText());
         }
@@ -185,16 +185,16 @@ public class FinalParametersCheck extends Check
 
     /**
      * Checks for skip current param due to <b>ignorePrimitiveTypes</b> option.
-     * @param aParamDef {@link TokenTypes#PARAMETER_DEF PARAMETER_DEF}
+     * @param paramDef {@link TokenTypes#PARAMETER_DEF PARAMETER_DEF}
      * @return true if param has to be skipped.
      */
-    private boolean isIgnoredParam(DetailAST aParamDef)
+    private boolean isIgnoredParam(DetailAST paramDef)
     {
         boolean result = false;
-        if (mIgnorePrimitiveTypes) {
-            final DetailAST parameterType = aParamDef.
+        if (ignorePrimitiveTypes) {
+            final DetailAST parameterType = paramDef.
                     findFirstToken(TokenTypes.TYPE).getFirstChild();
-            if (mPrimitiveDataTypes.contains(parameterType.getType())) {
+            if (primitiveDataTypes.contains(parameterType.getType())) {
                 result = true;
             }
         }

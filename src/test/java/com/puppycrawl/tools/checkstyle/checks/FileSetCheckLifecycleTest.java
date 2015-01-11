@@ -32,10 +32,10 @@ public class FileSetCheckLifecycleTest
 {
     @Override
     protected DefaultConfiguration createCheckerConfig(
-        Configuration aCheckConfig)
+        Configuration checkConfig)
     {
         final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(aCheckConfig);
+        dc.addChild(checkConfig);
         return dc;
     }
 
@@ -55,7 +55,7 @@ public class FileSetCheckLifecycleTest
         }
 
         @Override
-        protected void processFiltered(File aFile, List<String> aLines)
+        protected void processFiltered(File file, List<String> lines)
         {
         }
     }

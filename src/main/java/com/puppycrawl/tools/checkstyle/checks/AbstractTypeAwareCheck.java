@@ -44,19 +44,19 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public abstract class AbstractTypeAwareCheck extends Check
 {
     /** imports details **/
-    private final Set<String> mImports = Sets.newHashSet();
+    private final Set<String> imports = Sets.newHashSet();
 
     /** full identifier for package of the method **/
-    private FullIdent mPackageFullIdent;
+    private FullIdent packageFullIdent;
 
     /** Name of current class. */
-    private String mCurrentClass;
+    private String currentClass;
 
     /** <code>ClassResolver</code> instance for current tree. */
-    private ClassResolver mClassResolver;
+    private ClassResolver classResolver;
 
     /** Stack of maps for type params. */
-    private final FastStack<Map<String, ClassInfo>> mTypeParams =
+    private final FastStack<Map<String, ClassInfo>> typeParams =
         FastStack.newInstance();
 
     /**
@@ -71,41 +71,41 @@ public abstract class AbstractTypeAwareCheck extends Check
      *
      * This configuration option was triggered by bug 1422462.
      */
-    private boolean mLogLoadErrors = true;
+    private boolean logLoadErrors = true;
 
     /**
      * Controls whether to log class loading errors to the checkstyle report
      * instead of throwing a RTE.
      *
-     * @param aLogLoadErrors true if errors should be logged
+     * @param logLoadErrors true if errors should be logged
      */
-    public final void setLogLoadErrors(boolean aLogLoadErrors)
+    public final void setLogLoadErrors(boolean logLoadErrors)
     {
-        mLogLoadErrors = aLogLoadErrors;
+        this.logLoadErrors = logLoadErrors;
     }
 
     /**
      * Whether to show class loading errors in the checkstyle report.
      * Request ID 1491630
      */
-    private boolean mSuppressLoadErrors;
+    private boolean suppressLoadErrors;
 
     /**
      * Controls whether to show class loading errors in the checkstyle report.
      *
-     * @param aSuppressLoadErrors true if errors shouldn't be shown
+     * @param suppressLoadErrors true if errors shouldn't be shown
      */
-    public final void setSuppressLoadErrors(boolean aSuppressLoadErrors)
+    public final void setSuppressLoadErrors(boolean suppressLoadErrors)
     {
-        mSuppressLoadErrors = aSuppressLoadErrors;
+        this.suppressLoadErrors = suppressLoadErrors;
     }
 
     /**
      * Called to process an AST when visiting it.
-     * @param aAST the AST to process. Guaranteed to not be PACKAGE_DEF or
+     * @param ast the AST to process. Guaranteed to not be PACKAGE_DEF or
      *             IMPORT tokens.
      */
-    protected abstract void processAST(DetailAST aAST);
+    protected abstract void processAST(DetailAST ast);
 
     @Override
     public final int[] getRequiredTokens()
@@ -120,78 +120,78 @@ public abstract class AbstractTypeAwareCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
-        mPackageFullIdent = FullIdent.createFullIdent(null);
-        mImports.clear();
+        packageFullIdent = FullIdent.createFullIdent(null);
+        imports.clear();
         // add java.lang.* since it's always imported
-        mImports.add("java.lang.*");
-        mClassResolver = null;
-        mCurrentClass = "";
-        mTypeParams.clear();
+        imports.add("java.lang.*");
+        classResolver = null;
+        currentClass = "";
+        typeParams.clear();
     }
 
     @Override
-    public final void visitToken(DetailAST aAST)
+    public final void visitToken(DetailAST ast)
     {
-        if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
-            processPackage(aAST);
+        if (ast.getType() == TokenTypes.PACKAGE_DEF) {
+            processPackage(ast);
         }
-        else if (aAST.getType() == TokenTypes.IMPORT) {
-            processImport(aAST);
+        else if (ast.getType() == TokenTypes.IMPORT) {
+            processImport(ast);
         }
-        else if ((aAST.getType() == TokenTypes.CLASS_DEF)
-                 || (aAST.getType() == TokenTypes.INTERFACE_DEF)
-                 || (aAST.getType() == TokenTypes.ENUM_DEF))
+        else if ((ast.getType() == TokenTypes.CLASS_DEF)
+                 || (ast.getType() == TokenTypes.INTERFACE_DEF)
+                 || (ast.getType() == TokenTypes.ENUM_DEF))
         {
-            processClass(aAST);
+            processClass(ast);
         }
         else {
-            if (aAST.getType() == TokenTypes.METHOD_DEF) {
-                processTypeParams(aAST);
+            if (ast.getType() == TokenTypes.METHOD_DEF) {
+                processTypeParams(ast);
             }
-            processAST(aAST);
+            processAST(ast);
         }
     }
 
     @Override
-    public final void leaveToken(DetailAST aAST)
+    public final void leaveToken(DetailAST ast)
     {
-        if ((aAST.getType() == TokenTypes.CLASS_DEF)
-            || (aAST.getType() == TokenTypes.ENUM_DEF))
+        if ((ast.getType() == TokenTypes.CLASS_DEF)
+            || (ast.getType() == TokenTypes.ENUM_DEF))
         {
             // perhaps it was inner class
-            int dotIdx = mCurrentClass.lastIndexOf("$");
+            int dotIdx = currentClass.lastIndexOf("$");
             if (dotIdx == -1) {
                 // perhaps just a class
-                dotIdx = mCurrentClass.lastIndexOf(".");
+                dotIdx = currentClass.lastIndexOf(".");
             }
             if (dotIdx == -1) {
                 // looks like a topmost class
-                mCurrentClass = "";
+                currentClass = "";
             }
             else {
-                mCurrentClass = mCurrentClass.substring(0, dotIdx);
+                currentClass = currentClass.substring(0, dotIdx);
             }
-            mTypeParams.pop();
+            typeParams.pop();
         }
-        else if (aAST.getType() == TokenTypes.METHOD_DEF) {
-            mTypeParams.pop();
+        else if (ast.getType() == TokenTypes.METHOD_DEF) {
+            typeParams.pop();
         }
-        else if ((aAST.getType() != TokenTypes.PACKAGE_DEF)
-                 && (aAST.getType() != TokenTypes.IMPORT))
+        else if ((ast.getType() != TokenTypes.PACKAGE_DEF)
+                 && (ast.getType() != TokenTypes.IMPORT))
         {
-            leaveAST(aAST);
+            leaveAST(ast);
         }
     }
 
     /**
      * Called when exiting an AST. A no-op by default, extending classes
      * may choose to override this to augment their processing.
-     * @param aAST the AST we are departing. Guaranteed to not be PACKAGE_DEF,
+     * @param ast the AST we are departing. Guaranteed to not be PACKAGE_DEF,
      *             CLASS_DEF, or IMPORT
      */
-    protected void leaveAST(DetailAST aAST)
+    protected void leaveAST(DetailAST ast)
     {
     }
 
@@ -199,56 +199,56 @@ public abstract class AbstractTypeAwareCheck extends Check
      * Is exception is unchecked (subclass of <code>RuntimeException</code>
      * or <code>Error</code>
      *
-     * @param aException <code>Class</code> of exception to check
+     * @param exception <code>Class</code> of exception to check
      * @return true  if exception is unchecked
      *         false if exception is checked
      */
-    protected boolean isUnchecked(Class<?> aException)
+    protected boolean isUnchecked(Class<?> exception)
     {
-        return isSubclass(aException, RuntimeException.class)
-            || isSubclass(aException, Error.class);
+        return isSubclass(exception, RuntimeException.class)
+            || isSubclass(exception, Error.class);
     }
 
     /**
      * Checks if one class is subclass of another
      *
-     * @param aChild <code>Class</code> of class
+     * @param child <code>Class</code> of class
      *               which should be child
-     * @param aParent <code>Class</code> of class
+     * @param parent <code>Class</code> of class
      *                which should be parent
      * @return true  if aChild is subclass of aParent
      *         false otherwise
      */
-    protected boolean isSubclass(Class<?> aChild, Class<?> aParent)
+    protected boolean isSubclass(Class<?> child, Class<?> parent)
     {
-        return (aParent != null) && (aChild != null)
-            &&  aParent.isAssignableFrom(aChild);
+        return (parent != null) && (child != null)
+            &&  parent.isAssignableFrom(child);
     }
 
     /** @return <code>ClassResolver</code> for current tree. */
     private ClassResolver getClassResolver()
     {
-        if (mClassResolver == null) {
-            mClassResolver =
+        if (classResolver == null) {
+            classResolver =
                 new ClassResolver(getClassLoader(),
-                                  mPackageFullIdent.getText(),
-                                  mImports);
+                                  packageFullIdent.getText(),
+                                  imports);
         }
-        return mClassResolver;
+        return classResolver;
     }
 
     /**
      * Attempts to resolve the Class for a specified name.
-     * @param aClassName name of the class to resolve
-     * @param aCurrentClass name of surrounding class.
+     * @param className name of the class to resolve
+     * @param currentClass name of surrounding class.
      * @return the resolved class or <code>null</code>
      *          if unable to resolve the class.
      */
-    protected final Class<?> resolveClass(String aClassName,
-            String aCurrentClass)
+    protected final Class<?> resolveClass(String className,
+            String currentClass)
     {
         try {
-            return getClassResolver().resolve(aClassName, aCurrentClass);
+            return getClassResolver().resolve(className, currentClass);
         }
         catch (final ClassNotFoundException e) {
             return null;
@@ -257,15 +257,15 @@ public abstract class AbstractTypeAwareCheck extends Check
 
     /**
      * Tries to load class. Logs error if unable.
-     * @param aIdent name of class which we try to load.
-     * @param aCurrentClass name of surrounding class.
+     * @param ident name of class which we try to load.
+     * @param currentClass name of surrounding class.
      * @return <code>Class</code> for a ident.
      */
-    protected final Class<?> tryLoadClass(Token aIdent, String aCurrentClass)
+    protected final Class<?> tryLoadClass(Token ident, String currentClass)
     {
-        final Class<?> clazz = resolveClass(aIdent.getText(), aCurrentClass);
+        final Class<?> clazz = resolveClass(ident.getText(), currentClass);
         if (clazz == null) {
-            logLoadError(aIdent);
+            logLoadError(ident);
         }
         return clazz;
     }
@@ -273,26 +273,26 @@ public abstract class AbstractTypeAwareCheck extends Check
     /**
      * Logs error if unable to load class information.
      * Abstract, should be overrided in subclasses.
-     * @param aIdent class name for which we can no load class.
+     * @param ident class name for which we can no load class.
      */
-    protected abstract void logLoadError(Token aIdent);
+    protected abstract void logLoadError(Token ident);
 
     /**
      * Common implementation for logLoadError() method.
-     * @param aLineNo line number of the problem.
-     * @param aColumnNo column number of the problem.
-     * @param aMsgKey message key to use.
-     * @param aValues values to fill the message out.
+     * @param lineNo line number of the problem.
+     * @param columnNo column number of the problem.
+     * @param msgKey message key to use.
+     * @param values values to fill the message out.
      */
-    protected final void logLoadErrorImpl(int aLineNo, int aColumnNo,
-                                          String aMsgKey, Object... aValues)
+    protected final void logLoadErrorImpl(int lineNo, int columnNo,
+                                          String msgKey, Object... values)
     {
-        if (!mLogLoadErrors) {
-            final LocalizedMessage msg = new LocalizedMessage(aLineNo,
-                                                    aColumnNo,
+        if (!logLoadErrors) {
+            final LocalizedMessage msg = new LocalizedMessage(lineNo,
+                                                    columnNo,
                                                     getMessageBundle(),
-                                                    aMsgKey,
-                                                    aValues,
+                                                    msgKey,
+                                                    values,
                                                     getSeverityLevel(),
                                                     getId(),
                                                     this.getClass(),
@@ -300,50 +300,50 @@ public abstract class AbstractTypeAwareCheck extends Check
             throw new RuntimeException(msg.getMessage());
         }
 
-        if (!mSuppressLoadErrors) {
-            log(aLineNo, aColumnNo, aMsgKey, aValues);
+        if (!suppressLoadErrors) {
+            log(lineNo, columnNo, msgKey, values);
         }
     }
 
     /**
      * Collects the details of a package.
-     * @param aAST node containing the package details
+     * @param ast node containing the package details
      */
-    private void processPackage(DetailAST aAST)
+    private void processPackage(DetailAST ast)
     {
-        final DetailAST nameAST = aAST.getLastChild().getPreviousSibling();
-        mPackageFullIdent = FullIdent.createFullIdent(nameAST);
+        final DetailAST nameAST = ast.getLastChild().getPreviousSibling();
+        packageFullIdent = FullIdent.createFullIdent(nameAST);
     }
 
     /**
      * Collects the details of imports.
-     * @param aAST node containing the import details
+     * @param ast node containing the import details
      */
-    private void processImport(DetailAST aAST)
+    private void processImport(DetailAST ast)
     {
-        final FullIdent name = FullIdent.createFullIdentBelow(aAST);
+        final FullIdent name = FullIdent.createFullIdentBelow(ast);
         if (name != null) {
-            mImports.add(name.getText());
+            imports.add(name.getText());
         }
     }
 
     /**
      * Process type params (if any) for given class, enum or method.
-     * @param aAST class, enum or method to process.
+     * @param ast class, enum or method to process.
      */
-    private void processTypeParams(DetailAST aAST)
+    private void processTypeParams(DetailAST ast)
     {
-        final DetailAST typeParams =
-            aAST.findFirstToken(TokenTypes.TYPE_PARAMETERS);
+        final DetailAST params =
+            ast.findFirstToken(TokenTypes.TYPE_PARAMETERS);
 
         final Map<String, ClassInfo> paramsMap = Maps.newHashMap();
-        mTypeParams.push(paramsMap);
+        typeParams.push(paramsMap);
 
-        if (typeParams == null) {
+        if (params == null) {
             return;
         }
 
-        for (DetailAST child = typeParams.getFirstChild();
+        for (DetailAST child = params.getFirstChild();
              child != null;
              child = child.getNextSibling())
         {
@@ -366,15 +366,15 @@ public abstract class AbstractTypeAwareCheck extends Check
 
     /**
      * Processes class definition.
-     * @param aAST class definition to process.
+     * @param ast class definition to process.
      */
-    private void processClass(DetailAST aAST)
+    private void processClass(DetailAST ast)
     {
-        final DetailAST ident = aAST.findFirstToken(TokenTypes.IDENT);
-        mCurrentClass += ("".equals(mCurrentClass) ? "" : "$")
+        final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
+        currentClass += ("".equals(currentClass) ? "" : "$")
             + ident.getText();
 
-        processTypeParams(aAST);
+        processTypeParams(ast);
     }
 
     /**
@@ -383,36 +383,36 @@ public abstract class AbstractTypeAwareCheck extends Check
      */
     protected final String getCurrentClassName()
     {
-        return mCurrentClass;
+        return currentClass;
     }
 
     /**
      * Creates class info for given name.
-     * @param aName name of type.
-     * @param aSurroundingClass name of surrounding class.
+     * @param name name of type.
+     * @param surroundingClass name of surrounding class.
      * @return class infor for given name.
      */
-    protected final ClassInfo createClassInfo(final Token aName,
-                                              final String aSurroundingClass)
+    protected final ClassInfo createClassInfo(final Token name,
+                                              final String surroundingClass)
     {
-        final ClassInfo ci = findClassAlias(aName.getText());
+        final ClassInfo ci = findClassAlias(name.getText());
         if (ci != null) {
-            return new ClassAlias(aName, ci);
+            return new ClassAlias(name, ci);
         }
-        return new RegularClass(aName, aSurroundingClass, this);
+        return new RegularClass(name, surroundingClass, this);
     }
 
     /**
      * Looking if a given name is alias.
-     * @param aName given name
+     * @param name given name
      * @return ClassInfo for alias if it exists, null otherwise
      */
-    protected final ClassInfo findClassAlias(final String aName)
+    protected final ClassInfo findClassAlias(final String name)
     {
         ClassInfo ci = null;
-        for (int i = mTypeParams.size() - 1; i >= 0; i--) {
-            final Map<String, ClassInfo> paramMap = mTypeParams.peek(i);
-            ci = paramMap.get(aName);
+        for (int i = typeParams.size() - 1; i >= 0; i--) {
+            final Map<String, ClassInfo> paramMap = typeParams.peek(i);
+            ci = paramMap.get(name);
             if (ci != null) {
                 break;
             }
@@ -426,12 +426,12 @@ public abstract class AbstractTypeAwareCheck extends Check
     protected abstract static class ClassInfo
     {
         /** <code>FullIdent</code> associated with this class. */
-        private final Token mName;
+        private final Token name;
 
         /** @return class name */
         public final Token getName()
         {
-            return mName;
+            return name;
         }
 
         /** @return <code>Class</code> associated with an object. */
@@ -439,15 +439,15 @@ public abstract class AbstractTypeAwareCheck extends Check
 
         /**
          * Creates new instance of class inforamtion object.
-         * @param aName token which represents class name.
+         * @param className token which represents class name.
          */
-        protected ClassInfo(final Token aName)
+        protected ClassInfo(final Token className)
         {
-            if (aName == null) {
+            if (className == null) {
                 throw new NullPointerException(
                     "ClassInfo's name should be non-null");
             }
-            mName = aName;
+            name = className;
         }
     }
 
@@ -455,60 +455,60 @@ public abstract class AbstractTypeAwareCheck extends Check
     private static final class RegularClass extends ClassInfo
     {
         /** name of surrounding class. */
-        private final String mSurroundingClass;
+        private final String surroundingClass;
         /** is class loadable. */
-        private boolean mIsLoadable = true;
+        private boolean isLoadable = true;
         /** <code>Class</code> object of this class if it's loadable. */
-        private Class<?> mClass;
+        private Class<?> classObj;
         /** the check we use to resolve classes. */
-        private final AbstractTypeAwareCheck mCheck;
+        private final AbstractTypeAwareCheck check;
 
         /**
          * Creates new instance of of class information object.
-         * @param aName <code>FullIdent</code> associated with new object.
-         * @param aSurroundingClass name of current surrounding class.
-         * @param aCheck the check we use to load class.
+         * @param name <code>FullIdent</code> associated with new object.
+         * @param surroundingClass name of current surrounding class.
+         * @param check the check we use to load class.
          */
-        private RegularClass(final Token aName,
-                             final String aSurroundingClass,
-                             final AbstractTypeAwareCheck aCheck)
+        private RegularClass(final Token name,
+                             final String surroundingClass,
+                             final AbstractTypeAwareCheck check)
         {
-            super(aName);
-            mSurroundingClass = aSurroundingClass;
-            mCheck = aCheck;
+            super(name);
+            this.surroundingClass = surroundingClass;
+            this.check = check;
         }
         /** @return if class is loadable ot not. */
         private boolean isLoadable()
         {
-            return mIsLoadable;
+            return isLoadable;
         }
 
         @Override
         public Class<?> getClazz()
         {
-            if (isLoadable() && (mClass == null)) {
-                setClazz(mCheck.tryLoadClass(getName(), mSurroundingClass));
+            if (isLoadable() && (classObj == null)) {
+                setClazz(check.tryLoadClass(getName(), surroundingClass));
             }
-            return mClass;
+            return classObj;
         }
 
         /**
          * Associates <code> Class</code> with an object.
-         * @param aClass <code>Class</code> to associate with.
+         * @param classObj <code>Class</code> to associate with.
          */
-        private void setClazz(Class<?> aClass)
+        private void setClazz(Class<?> classObj)
         {
-            mClass = aClass;
-            mIsLoadable = (mClass != null);
+            this.classObj = classObj;
+            isLoadable = (classObj != null);
         }
 
         @Override
         public String toString()
         {
             return "RegularClass[name=" + getName()
-                + ", in class=" + mSurroundingClass
-                + ", loadable=" + mIsLoadable
-                + ", class=" + mClass + "]";
+                + ", in class=" + surroundingClass
+                + ", loadable=" + isLoadable
+                + ", class=" + classObj + "]";
         }
     }
 
@@ -516,30 +516,30 @@ public abstract class AbstractTypeAwareCheck extends Check
     private static class ClassAlias extends ClassInfo
     {
         /** Class information associated with the alias. */
-        private final ClassInfo mClassInfo;
+        private final ClassInfo classInfo;
 
         /**
          * Creates nnew instance of the class.
-         * @param aName token which represents name of class alias.
-         * @param aClassInfo class information associated with the alias.
+         * @param name token which represents name of class alias.
+         * @param classInfo class information associated with the alias.
          */
-        ClassAlias(final Token aName, ClassInfo aClassInfo)
+        ClassAlias(final Token name, ClassInfo classInfo)
         {
-            super(aName);
-            mClassInfo = aClassInfo;
+            super(name);
+            this.classInfo = classInfo;
         }
 
         @Override
         public final Class<?> getClazz()
         {
-            return mClassInfo.getClazz();
+            return classInfo.getClazz();
         }
 
         @Override
         public String toString()
         {
             return "ClassAlias[alias " + getName()
-                + " for " + mClassInfo + "]";
+                + " for " + classInfo + "]";
         }
     }
 
@@ -549,11 +549,11 @@ public abstract class AbstractTypeAwareCheck extends Check
     protected static class Token
     {
         /** token's column number. */
-        private final int mColumn;
+        private final int column;
         /** token's line number. */
-        private final int mLine;
+        private final int line;
         /** token's text. */
-        private final String mText;
+        private final String text;
 
         /**
          * Creates token.
@@ -561,40 +561,40 @@ public abstract class AbstractTypeAwareCheck extends Check
          * @param aLine token's line number
          * @param aColumn token's column number
          */
-        public Token(String aText, int aLine, int aColumn)
+        public Token(String text, int line, int column)
         {
-            mText = aText;
-            mLine = aLine;
-            mColumn = aColumn;
+            this.text = text;
+            this.line = line;
+            this.column = column;
         }
 
         /**
          * Converts FullIdent to Token.
-         * @param aFullIdent full ident to convert.
+         * @param fullIdent full ident to convert.
          */
-        public Token(FullIdent aFullIdent)
+        public Token(FullIdent fullIdent)
         {
-            mText = aFullIdent.getText();
-            mLine = aFullIdent.getLineNo();
-            mColumn = aFullIdent.getColumnNo();
+            text = fullIdent.getText();
+            line = fullIdent.getLineNo();
+            column = fullIdent.getColumnNo();
         }
 
         /** @return line number of the token */
         public int getLineNo()
         {
-            return mLine;
+            return line;
         }
 
         /** @return column number of the token */
         public int getColumnNo()
         {
-            return mColumn;
+            return column;
         }
 
         /** @return text of the token */
         public String getText()
         {
-            return mText;
+            return text;
         }
 
         @Override

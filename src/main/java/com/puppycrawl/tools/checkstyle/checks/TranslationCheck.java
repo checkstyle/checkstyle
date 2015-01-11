@@ -71,10 +71,10 @@ public class TranslationCheck
     extends AbstractFileSetCheck
 {
     /** The property files to process. */
-    private final List<File> mPropertyFiles = Lists.newArrayList();
+    private final List<File> propertyFiles = Lists.newArrayList();
 
     /** The separator string used to separate translation files */
-    private String mBasenameSeparator;
+    private String basenameSeparator;
 
     /**
      * Creates a new <code>TranslationCheck</code> instance.
@@ -86,16 +86,16 @@ public class TranslationCheck
     }
 
     @Override
-    public void beginProcessing(String aCharset)
+    public void beginProcessing(String charset)
     {
-        super.beginProcessing(aCharset);
-        mPropertyFiles.clear();
+        super.beginProcessing(charset);
+        propertyFiles.clear();
     }
 
     @Override
-    protected void processFiltered(File aFile, List<String> aLines)
+    protected void processFiltered(File file, List<String> lines)
     {
-        mPropertyFiles.add(aFile);
+        propertyFiles.add(file);
     }
 
     @Override
@@ -103,7 +103,7 @@ public class TranslationCheck
     {
         super.finishProcessing();
         final Map<String, Set<File>> propFilesMap =
-            arrangePropertyFiles(mPropertyFiles, mBasenameSeparator);
+            arrangePropertyFiles(propertyFiles, basenameSeparator);
         checkPropertyFileSets(propFilesMap);
     }
 
@@ -112,17 +112,17 @@ public class TranslationCheck
      * "xyz/messages" is the basename of "xyz/messages.properties",
      * "xyz/messages_de_AT.properties", "xyz/messages_en.properties", etc.
      *
-     * @param aFile the file
-     * @param aBasenameSeparator the basename separator
+     * @param file the file
+     * @param basenameSeparator the basename separator
      * @return the extracted basename
      */
-    private static String extractPropertyIdentifier(final File aFile,
-            final String aBasenameSeparator)
+    private static String extractPropertyIdentifier(final File file,
+            final String basenameSeparator)
     {
-        final String filePath = aFile.getPath();
+        final String filePath = file.getPath();
         final int dirNameEnd = filePath.lastIndexOf(File.separatorChar);
         final int baseNameStart = dirNameEnd + 1;
-        final int underscoreIdx = filePath.indexOf(aBasenameSeparator,
+        final int underscoreIdx = filePath.indexOf(basenameSeparator,
             baseNameStart);
         final int dotIdx = filePath.indexOf('.', baseNameStart);
         final int cutoffIdx = (underscoreIdx != -1) ? underscoreIdx : dotIdx;
@@ -133,29 +133,29 @@ public class TranslationCheck
     * Sets the separator used to determine the basename of a property file.
     * This defaults to "_"
     *
-    * @param aBasenameSeparator the basename separator
+    * @param basenameSeparator the basename separator
     */
-    public void setBasenameSeparator(String aBasenameSeparator)
+    public void setBasenameSeparator(String basenameSeparator)
     {
-        mBasenameSeparator = aBasenameSeparator;
+        this.basenameSeparator = basenameSeparator;
     }
 
     /**
      * Arranges a set of property files by their prefix.
      * The method returns a Map object. The filename prefixes
      * work as keys each mapped to a set of files.
-     * @param aPropFiles the set of property files
-     * @param aBasenameSeparator the basename separator
+     * @param propFiles the set of property files
+     * @param basenameSeparator the basename separator
      * @return a Map object which holds the arranged property file sets
      */
     private static Map<String, Set<File>> arrangePropertyFiles(
-        List<File> aPropFiles, String aBasenameSeparator)
+        List<File> propFiles, String basenameSeparator)
     {
         final Map<String, Set<File>> propFileMap = Maps.newHashMap();
 
-        for (final File f : aPropFiles) {
+        for (final File f : propFiles) {
             final String identifier = extractPropertyIdentifier(f,
-                aBasenameSeparator);
+                basenameSeparator);
 
             Set<File> fileSet = propFileMap.get(identifier);
             if (fileSet == null) {
@@ -169,17 +169,17 @@ public class TranslationCheck
 
     /**
      * Loads the keys of the specified property file into a set.
-     * @param aFile the property file
+     * @param file the property file
      * @return a Set object which holds the loaded keys
      */
-    private Set<Object> loadKeys(File aFile)
+    private Set<Object> loadKeys(File file)
     {
         final Set<Object> keys = Sets.newHashSet();
         InputStream inStream = null;
 
         try {
             // Load file and properties.
-            inStream = new FileInputStream(aFile);
+            inStream = new FileInputStream(file);
             final Properties props = new Properties();
             props.load(inStream);
 
@@ -190,7 +190,7 @@ public class TranslationCheck
             }
         }
         catch (final IOException e) {
-            logIOException(e, aFile);
+            logIOException(e, file);
         }
         finally {
             Utils.closeQuietly(inStream);
@@ -200,15 +200,15 @@ public class TranslationCheck
 
     /**
      * helper method to log an io exception.
-     * @param aEx the exception that occured
-     * @param aFile the file that could not be processed
+     * @param ex the exception that occured
+     * @param file the file that could not be processed
      */
-    private void logIOException(IOException aEx, File aFile)
+    private void logIOException(IOException ex, File file)
     {
         String[] args = null;
         String key = "general.fileNotFound";
-        if (!(aEx instanceof FileNotFoundException)) {
-            args = new String[] {aEx.getMessage()};
+        if (!(ex instanceof FileNotFoundException)) {
+            args = new String[] {ex.getMessage()};
             key = "general.exception";
         }
         final LocalizedMessage message =
@@ -221,21 +221,21 @@ public class TranslationCheck
                 this.getClass(), null);
         final TreeSet<LocalizedMessage> messages = Sets.newTreeSet();
         messages.add(message);
-        getMessageDispatcher().fireErrors(aFile.getPath(), messages);
-        Utils.getExceptionLogger().debug("IOException occured.", aEx);
+        getMessageDispatcher().fireErrors(file.getPath(), messages);
+        Utils.getExceptionLogger().debug("IOException occured.", ex);
     }
 
 
     /**
      * Compares the key sets of the given property files (arranged in a map)
      * with the specified key set. All missing keys are reported.
-     * @param aKeys the set of keys to compare with
-     * @param aFileMap a Map from property files to their key sets
+     * @param keys the set of keys to compare with
+     * @param fileMap a Map from property files to their key sets
      */
-    private void compareKeySets(Set<Object> aKeys,
-            Map<File, Set<Object>> aFileMap)
+    private void compareKeySets(Set<Object> keys,
+            Map<File, Set<Object>> fileMap)
     {
-        final Set<Entry<File, Set<Object>>> fls = aFileMap.entrySet();
+        final Set<Entry<File, Set<Object>>> fls = fileMap.entrySet();
 
         for (Entry<File, Set<Object>> entry : fls) {
             final File currentFile = entry.getKey();
@@ -245,7 +245,7 @@ public class TranslationCheck
             final Set<Object> currentKeys = entry.getValue();
 
             // Clone the keys so that they are not lost
-            final Set<Object> keysClone = Sets.newHashSet(aKeys);
+            final Set<Object> keysClone = Sets.newHashSet(keys);
             keysClone.removeAll(currentKeys);
 
             // Remaining elements in the key set are missing in the current file
@@ -268,11 +268,11 @@ public class TranslationCheck
      * an error message is posted giving information which key misses in
      * which file.
      *
-     * @param aPropFiles the property files organized as Map
+     * @param propFiles the property files organized as Map
      */
-    private void checkPropertyFileSets(Map<String, Set<File>> aPropFiles)
+    private void checkPropertyFileSets(Map<String, Set<File>> propFiles)
     {
-        final Set<Entry<String, Set<File>>> entrySet = aPropFiles.entrySet();
+        final Set<Entry<String, Set<File>>> entrySet = propFiles.entrySet();
 
         for (Entry<String, Set<File>> entry : entrySet) {
             final Set<File> files = entry.getValue();

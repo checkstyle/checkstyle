@@ -59,16 +59,16 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck
     }
 
     @Override
-    protected void processFiltered(File aFile, List<String> aLines)
+    protected void processFiltered(File file, List<String> lines)
     {
         final UniqueProperties properties = new UniqueProperties();
 
         try {
             // As file is already read, there should not be any exceptions.
-            properties.load(new FileInputStream(aFile));
+            properties.load(new FileInputStream(file));
         }
         catch (IOException e) {
-            log(0, IO_EXCEPTION_KEY, aFile.getPath(),
+            log(0, IO_EXCEPTION_KEY, file.getPath(),
                     e.getLocalizedMessage());
         }
 
@@ -76,7 +76,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck
                 .getDuplicatedStrings().entrySet())
         {
             final String keyName = duplication.getElement();
-            final int lineNumber = getLineNumber(aLines, keyName);
+            final int lineNumber = getLineNumber(lines, keyName);
             // Number of occurrences is number of duplications + 1
             log(lineNumber, MSG_KEY, keyName, duplication.getCount() + 1);
         }
@@ -86,28 +86,28 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck
      * Method returns line number the key is detected in the checked properties
      * files first.
      *
-     * @param aLines
+     * @param lines
      *            properties file lines list
-     * @param aKeyNane
+     * @param keyName
      *            key name to look for
      * @return line number of first occurrence. If no key found in properties
      *         file, 0 is returned
      */
-    protected int getLineNumber(List<String> aLines, String aKeyNane)
+    protected int getLineNumber(List<String> lines, String keyName)
     {
         final String keyPatternString =
-                "^" + aKeyNane.replace(" ", "\\\\ ") + "[\\s:=].*$";
+                "^" + keyName.replace(" ", "\\\\ ") + "[\\s:=].*$";
         final Pattern keyPattern = Pattern.compile(keyPatternString);
         int lineNumber = 1;
         final Matcher matcher = keyPattern.matcher("");
-        for (String line : aLines) {
+        for (String line : lines) {
             matcher.reset(line);
             if (matcher.matches()) {
                 break;
             }
             ++lineNumber;
         }
-        if (lineNumber > aLines.size()) {
+        if (lineNumber > lines.size()) {
             lineNumber = 0;
         }
         return lineNumber;
@@ -128,23 +128,23 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck
          * Multiset, holding duplicated keys. Keys are added here only if they
          * already exist in Properties' inner map.
          */
-        private final Multiset<String> mDuplicatedStrings = HashMultiset
+        private final Multiset<String> duplicatedStrings = HashMultiset
                 .create();
 
         @Override
-        public synchronized Object put(Object aKey, Object aValue)
+        public synchronized Object put(Object key, Object value)
         {
-            final Object oldValue = super.put(aKey, aValue);
-            if (oldValue != null && aKey instanceof String) {
-                final String keyString = (String) aKey;
-                mDuplicatedStrings.add(keyString);
+            final Object oldValue = super.put(key, value);
+            if (oldValue != null && key instanceof String) {
+                final String keyString = (String) key;
+                duplicatedStrings.add(keyString);
             }
             return oldValue;
         }
 
         public Multiset<String> getDuplicatedStrings()
         {
-            return mDuplicatedStrings;
+            return duplicatedStrings;
         }
     }
 }

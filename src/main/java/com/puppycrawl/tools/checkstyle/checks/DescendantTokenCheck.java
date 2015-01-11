@@ -165,27 +165,27 @@ import java.util.Set;
 public class DescendantTokenCheck extends Check
 {
      /** minimum  depth */
-    private int mMinimumDepth;
+    private int minimumDepth;
     /** maximum depth */
-    private int mMaximumDepth = Integer.MAX_VALUE;
+    private int maximumDepth = Integer.MAX_VALUE;
     /** minimum number */
-    private int mMinimumNumber;
+    private int minimumNumber;
     /** maximum number */
-    private int mMaximumNumber = Integer.MAX_VALUE;
+    private int maximumNumber = Integer.MAX_VALUE;
     /** Whether to sum the number of tokens found. */
-    private boolean mSumTokenCounts;
+    private boolean sumTokenCounts;
     /** limited tokens */
-    private int[] mLimitedTokens = new int[0];
+    private int[] limitedTokens = new int[0];
     /** error message when minimum count not reached */
-    private String mMinimumMessage;
+    private String minimumMessage;
     /** error message when maximum count exceeded */
-    private String mMaximumMessage;
+    private String maximumMessage;
 
     /**
      * Counts of descendant tokens.
      * Indexed by (token ID - 1) for performance.
      */
-    private int[] mCounts = new int[0];
+    private int[] counts = new int[0];
 
     @Override
     public int[] getDefaultTokens()
@@ -194,58 +194,58 @@ public class DescendantTokenCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         //reset counts
-        Arrays.fill(mCounts, 0);
-        countTokens(aAST, 0);
+        Arrays.fill(counts, 0);
+        countTokens(ast, 0);
 
         // name of this token
-        final String name = TokenTypes.getTokenName(aAST.getType());
+        final String name = TokenTypes.getTokenName(ast.getType());
 
-        if (mSumTokenCounts) {
+        if (sumTokenCounts) {
             int total = 0;
-            for (int element : mLimitedTokens) {
-                total += mCounts[element - 1];
+            for (int element : limitedTokens) {
+                total += counts[element - 1];
             }
-            if (total < mMinimumNumber) {
-                log(aAST.getLineNo(), aAST.getColumnNo(),
-                        (null == mMinimumMessage) ? "descendant.token.sum.min"
-                                : mMinimumMessage,
+            if (total < minimumNumber) {
+                log(ast.getLineNo(), ast.getColumnNo(),
+                        (null == minimumMessage) ? "descendant.token.sum.min"
+                                : minimumMessage,
                         String.valueOf(total),
-                        String.valueOf(mMinimumNumber), name);
+                        String.valueOf(minimumNumber), name);
             }
-            if (total > mMaximumNumber) {
-                log(aAST.getLineNo(), aAST.getColumnNo(),
-                        (null == mMaximumMessage) ? "descendant.token.sum.max"
-                                : mMaximumMessage,
+            if (total > maximumNumber) {
+                log(ast.getLineNo(), ast.getColumnNo(),
+                        (null == maximumMessage) ? "descendant.token.sum.max"
+                                : maximumMessage,
                         String.valueOf(total),
-                        String.valueOf(mMaximumNumber),
+                        String.valueOf(maximumNumber),
                         name);
             }
         }
         else {
-            for (int element : mLimitedTokens) {
-                final int tokenCount = mCounts[element - 1];
-                if (tokenCount < mMinimumNumber) {
+            for (int element : limitedTokens) {
+                final int tokenCount = counts[element - 1];
+                if (tokenCount < minimumNumber) {
                     final String descendantName = TokenTypes
                             .getTokenName(element);
-                    log(aAST.getLineNo(), aAST.getColumnNo(),
-                            (null == mMinimumMessage) ? "descendant.token.min"
-                                    : mMinimumMessage,
+                    log(ast.getLineNo(), ast.getColumnNo(),
+                            (null == minimumMessage) ? "descendant.token.min"
+                                    : minimumMessage,
                             String.valueOf(tokenCount),
-                            String.valueOf(mMinimumNumber),
+                            String.valueOf(minimumNumber),
                             name,
                             descendantName);
                 }
-                if (tokenCount > mMaximumNumber) {
+                if (tokenCount > maximumNumber) {
                     final String descendantName = TokenTypes
                             .getTokenName(element);
-                    log(aAST.getLineNo(), aAST.getColumnNo(),
-                            (null == mMaximumMessage) ? "descendant.token.max"
-                                    : mMaximumMessage,
+                    log(ast.getLineNo(), ast.getColumnNo(),
+                            (null == maximumMessage) ? "descendant.token.max"
+                                    : maximumMessage,
                             String.valueOf(tokenCount),
-                            String.valueOf(mMaximumNumber),
+                            String.valueOf(maximumNumber),
                             name,
                             descendantName);
                 }
@@ -255,21 +255,21 @@ public class DescendantTokenCheck extends Check
 
     /**
      * Counts the number of occurrences of descendant tokens.
-     * @param aAST the root token for descendants.
-     * @param aDepth the maximum depth of the counted descendants.
+     * @param ast the root token for descendants.
+     * @param depth the maximum depth of the counted descendants.
      */
-    private void countTokens(AST aAST, int aDepth)
+    private void countTokens(AST ast, int depth)
     {
-        if (aDepth <= mMaximumDepth) {
+        if (depth <= maximumDepth) {
             //update count
-            if (aDepth >= mMinimumDepth) {
-                final int type = aAST.getType();
-                if (type <= mCounts.length) {
-                    mCounts[type - 1]++;
+            if (depth >= minimumDepth) {
+                final int type = ast.getType();
+                if (type <= counts.length) {
+                    counts[type - 1]++;
                 }
             }
-            AST child = aAST.getFirstChild();
-            final int nextDepth = aDepth + 1;
+            AST child = ast.getFirstChild();
+            final int nextDepth = depth + 1;
             while (child != null) {
                 countTokens(child, nextDepth);
                 child = child.getNextSibling();
@@ -292,61 +292,61 @@ public class DescendantTokenCheck extends Check
 
     /**
      * Sets the tokens which occurance as descendant is limited.
-     * @param aLimitedTokens - list of tokens to ignore.
+     * @param limitedTokens - list of tokens to ignore.
      */
-    public void setLimitedTokens(String[] aLimitedTokens)
+    public void setLimitedTokens(String[] limitedTokensParam)
     {
-        mLimitedTokens = new int[aLimitedTokens.length];
+        limitedTokens = new int[limitedTokensParam.length];
 
         int maxToken = 0;
-        for (int i = 0; i < aLimitedTokens.length; i++) {
-            mLimitedTokens[i] = TokenTypes.getTokenId(aLimitedTokens[i]);
-            if (mLimitedTokens[i] > maxToken) {
-                maxToken = mLimitedTokens[i];
+        for (int i = 0; i < limitedTokensParam.length; i++) {
+            limitedTokens[i] = TokenTypes.getTokenId(limitedTokensParam[i]);
+            if (limitedTokens[i] > maxToken) {
+                maxToken = limitedTokens[i];
             }
         }
-        mCounts = new int[maxToken];
+        counts = new int[maxToken];
     }
 
     /**
      * Sets the minimum depth for descendant counts.
-     * @param aMinimumDepth the minimum depth for descendant counts.
+     * @param minimumDepth the minimum depth for descendant counts.
      */
-    public void setMinimumDepth(int aMinimumDepth)
+    public void setMinimumDepth(int minimumDepth)
     {
-        mMinimumDepth = aMinimumDepth;
+        this.minimumDepth = minimumDepth;
     }
 
     /**
      * Sets the maximum depth for descendant counts.
-     * @param aMaximumDepth the maximum depth for descendant counts.
+     * @param maximumDepth the maximum depth for descendant counts.
      */
-    public void setMaximumDepth(int aMaximumDepth)
+    public void setMaximumDepth(int maximumDepth)
     {
-        mMaximumDepth = aMaximumDepth;
+        this.maximumDepth = maximumDepth;
     }
 
    /**
     * Sets a minimum count for descendants.
-    * @param aMinimumNumber the minimum count for descendants.
+    * @param minimumNumber the minimum count for descendants.
     */
-    public void setMinimumNumber(int aMinimumNumber)
+    public void setMinimumNumber(int minimumNumber)
     {
-        mMinimumNumber = aMinimumNumber;
+        this.minimumNumber = minimumNumber;
     }
 
     /**
       * Sets a maximum count for descendants.
-      * @param aMaximumNumber the maximum count for descendants.
+      * @param maximumNumber the maximum count for descendants.
       */
-    public void setMaximumNumber(int aMaximumNumber)
+    public void setMaximumNumber(int maximumNumber)
     {
-        mMaximumNumber = aMaximumNumber;
+        this.maximumNumber = maximumNumber;
     }
 
     /**
      * Sets the error message for minimum count not reached.
-     * @param aMessage the error message for minimum count not reached.
+     * @param message the error message for minimum count not reached.
      * Used as a <code>MessageFormat</code> pattern with arguments
      * <ul>
      * <li>{0} - token count</li>
@@ -355,14 +355,14 @@ public class DescendantTokenCheck extends Check
      * <li>{3} - name of limited token</li>
      * </ul>
      */
-    public void setMinimumMessage(String aMessage)
+    public void setMinimumMessage(String message)
     {
-        mMinimumMessage = aMessage;
+        minimumMessage = message;
     }
 
     /**
      * Sets the error message for maximum count exceeded.
-     * @param aMessage the error message for maximum count exceeded.
+     * @param message the error message for maximum count exceeded.
      * Used as a <code>MessageFormat</code> pattern with arguments
      * <ul>
      * <li>{0} - token count</li>
@@ -372,18 +372,18 @@ public class DescendantTokenCheck extends Check
      * </ul>
      */
 
-    public void setMaximumMessage(String aMessage)
+    public void setMaximumMessage(String message)
     {
-        mMaximumMessage = aMessage;
+        maximumMessage = message;
     }
 
     /**
      * Sets whether to use the sum of the tokens found, rather than the
      * individual counts.
-     * @param aSum whether to use the sum.
+     * @param sum whether to use the sum.
      */
-    public void setSumTokenCounts(boolean aSum)
+    public void setSumTokenCounts(boolean sum)
     {
-        mSumTokenCounts = aSum;
+        sumTokenCounts = sum;
     }
 }

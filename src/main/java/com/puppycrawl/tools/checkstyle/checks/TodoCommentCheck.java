@@ -56,12 +56,12 @@ public class TodoCommentCheck
     /**
      * Format of todo comment.
      */
-    private String mFormat = "TODO:";
+    private String format = "TODO:";
 
     /**
-     * Regular expression pattern compiled from mFormat.
+     * Regular expression pattern compiled from format.
      */
-    private Pattern mRegexp = Pattern.compile(mFormat);
+    private Pattern regexp = Pattern.compile(format);
 
     @Override
     public boolean isCommentNodesRequired()
@@ -71,12 +71,12 @@ public class TodoCommentCheck
 
     /**
      * Setter for todo comment format.
-     * @param aFormat format of todo comment.
+     * @param format format of todo comment.
      */
-    public void setFormat(String aFormat)
+    public void setFormat(String format)
     {
-        mFormat = aFormat;
-        mRegexp = Pattern.compile(aFormat);
+        this.format = format;
+        regexp = Pattern.compile(format);
     }
 
     @Override
@@ -86,13 +86,13 @@ public class TodoCommentCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final String[] lines = aAST.getText().split("\n");
+        final String[] lines = ast.getText().split("\n");
 
         for (int i = 0; i < lines.length; i++) {
-            if (mRegexp.matcher(lines[i]).find()) {
-                log(aAST.getLineNo() + i, "todo.match", mFormat);
+            if (regexp.matcher(lines[i]).find()) {
+                log(ast.getLineNo() + i, "todo.match", format);
             }
         }
     }

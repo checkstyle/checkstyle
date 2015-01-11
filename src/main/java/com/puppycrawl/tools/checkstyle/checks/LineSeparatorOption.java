@@ -39,26 +39,26 @@ public enum LineSeparatorOption
     SYSTEM(System.getProperty("line.separator"));
 
     /** the line separator representation */
-    private final String mLineSeparator;
+    private final String lineSeparator;
 
     /**
      * Creates a new <code>LineSeparatorOption</code> instance.
-     * @param aSep the line separator, e.g. "\r\n"
+     * @param sep the line separator, e.g. "\r\n"
      */
-    private LineSeparatorOption(String aSep)
+    private LineSeparatorOption(String sep)
     {
-        mLineSeparator = aSep;
+        lineSeparator = sep;
     }
 
     /**
-     * @param aBytes a bytes array to check
-     * @return if aBytes is equal to the byte representation
+     * @param bytes a bytes array to check
+     * @return if bytes is equal to the byte representation
      * of this line separator
      */
-    public boolean matches(byte[] aBytes)
+    public boolean matches(byte[] bytes)
     {
-        final String s = new String(aBytes);
-        return s.equals(mLineSeparator);
+        final String s = new String(bytes);
+        return s.equals(lineSeparator);
     }
 
     /**
@@ -67,6 +67,6 @@ public enum LineSeparatorOption
      */
     public int length()
     {
-        return mLineSeparator.length();
+        return lineSeparator.length();
     }
 }

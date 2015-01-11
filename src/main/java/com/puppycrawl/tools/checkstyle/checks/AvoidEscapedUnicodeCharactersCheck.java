@@ -149,51 +149,51 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|\\\\u(f|F){2}0(e|E)|\\\\u(f|F){2}61");
 
     /** Allow use escapes for non-printable(control) characters.  */
-    private boolean mAllowEscapesForControlCharacters;
+    private boolean allowEscapesForControlCharacters;
 
     /** Allow use escapes if trail comment is present*/
-    private boolean mAllowByTailComment;
+    private boolean allowByTailComment;
 
     /** Allow if all characters in literal are excaped*/
-    private boolean mAllowIfAllCharactersEscaped;
+    private boolean allowIfAllCharactersEscaped;
 
     /** Allow escapes for space literals*/
-    private boolean mAllowNonPrintableEscapes;
+    private boolean allowNonPrintableEscapes;
 
     /**
-     * Set mAllowIfAllCharactersEscaped.
-     * @param aAllow user's value.
+     * Set allowIfAllCharactersEscaped.
+     * @param allow user's value.
      */
-    public final void setAllowEscapesForControlCharacters(boolean aAllow)
+    public final void setAllowEscapesForControlCharacters(boolean allow)
     {
-        mAllowEscapesForControlCharacters = aAllow;
+        allowEscapesForControlCharacters = allow;
     }
 
     /**
-     * Set mAllowByTailComment.
-     * @param aAllow user's value.
+     * Set allowByTailComment.
+     * @param allow user's value.
      */
-    public final void setAllowByTailComment(boolean aAllow)
+    public final void setAllowByTailComment(boolean allow)
     {
-        mAllowByTailComment = aAllow;
+        allowByTailComment = allow;
     }
 
     /**
-     * Set mAllowIfAllCharactersEscaped.
-     * @param aAllow user's value.
+     * Set allowIfAllCharactersEscaped.
+     * @param allow user's value.
      */
-    public final void setAllowIfAllCharactersEscaped(boolean aAllow)
+    public final void setAllowIfAllCharactersEscaped(boolean allow)
     {
-        mAllowIfAllCharactersEscaped = aAllow;
+        allowIfAllCharactersEscaped = allow;
     }
 
     /**
-     * Set mAllowSpaceEscapes.
-     * @param aAllow user's value.
+     * Set allowSpaceEscapes.
+     * @param allow user's value.
      */
-    public final void setAllowNonPrintableEscapes(boolean aAllow)
+    public final void setAllowNonPrintableEscapes(boolean allow)
     {
-        mAllowNonPrintableEscapes = aAllow;
+        allowNonPrintableEscapes = allow;
     }
 
     @Override
@@ -203,58 +203,58 @@ public class AvoidEscapedUnicodeCharactersCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
 
-        final String literal = aAST.getText();
+        final String literal = ast.getText();
 
         if (hasUnicodeChar(literal)) {
-            if (!(mAllowByTailComment && hasTrailComment(aAST)
+            if (!(allowByTailComment && haastrailComment(ast)
                     || isAllCharactersEscaped(literal)
-                    || (mAllowEscapesForControlCharacters
+                    || (allowEscapesForControlCharacters
                             && isOnlyUnicodeValidChars(literal, sUnicodeControl))
-                    || (mAllowNonPrintableEscapes
+                    || (allowNonPrintableEscapes
                             && isOnlyUnicodeValidChars(literal, sNonPrintableChars))))
             {
-                log(aAST.getLineNo(), "forbid.escaped.unicode.char");
+                log(ast.getLineNo(), "forbid.escaped.unicode.char");
             }
         }
     }
 
     /**
      * Checks if literal has Unicode chars.
-     * @param aLiteral String literal.
+     * @param literal String literal.
      * @return true if literal has Unicode chars.
      */
-    private boolean hasUnicodeChar(String aLiteral)
+    private boolean hasUnicodeChar(String literal)
     {
-        return sUnicodeRegexp.matcher(aLiteral).find();
+        return sUnicodeRegexp.matcher(literal).find();
     }
 
     /**
      * Check if String literal contains Unicode control chars.
-     * @param aLiteral String llteral.
-     * @param aPattern RegExp for valid characters.
+     * @param literal String llteral.
+     * @param pattern RegExp for valid characters.
      * @return true, if String literal contains Unicode control chars.
      */
-    private boolean isOnlyUnicodeValidChars(String aLiteral, Pattern aPattern)
+    private boolean isOnlyUnicodeValidChars(String literal, Pattern pattern)
     {
         final int unicodeMatchesCounter =
-                countMatches(sUnicodeRegexp, aLiteral);
+                countMatches(sUnicodeRegexp, literal);
         final int unicodeValidMatchesCouter =
-                countMatches(aPattern, aLiteral);
+                countMatches(pattern, literal);
         return unicodeMatchesCounter - unicodeValidMatchesCouter == 0;
     }
 
     /**
-     * Check if trail comment is present after aAst token.
-     * @param aAst current token.
-     * @return true if trail comment is present after aAst token.
+     * Check if trail comment is present after ast token.
+     * @param ast current token.
+     * @return true if trail comment is present after ast token.
      */
-    private boolean hasTrailComment(DetailAST aAst)
+    private boolean haastrailComment(DetailAST ast)
     {
         boolean result = false;
-        final DetailAST variableDef = getVariableDef(aAst);
+        final DetailAST variableDef = getVariableDef(ast);
         DetailAST semi;
 
         if (variableDef != null) {
@@ -266,7 +266,7 @@ public class AvoidEscapedUnicodeCharactersCheck
             }
         }
         else {
-            semi = getSemi(aAst);
+            semi = getSemi(ast);
         }
 
         if (semi != null) {
@@ -283,14 +283,14 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Count regexp matchers into String literal.
-     * @param aPattern pattern.
-     * @param aTarget String literal.
+     * @param pattern pattern.
+     * @param target String literal.
      * @return count of regexp matchers.
      */
-    private int countMatches(Pattern aPattern, String aTarget)
+    private int countMatches(Pattern pattern, String target)
     {
         int matcherCounter = 0;
-        final Matcher matcher = aPattern.matcher(aTarget);
+        final Matcher matcher = pattern.matcher(target);
         while (matcher.find()) {
             matcherCounter++;
         }
@@ -299,12 +299,12 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Get variable definition.
-     * @param aAst current token.
+     * @param ast current token.
      * @return variable definition.
      */
-    private DetailAST getVariableDef(DetailAST aAst)
+    private DetailAST getVariableDef(DetailAST ast)
     {
-        DetailAST result = aAst.getParent();
+        DetailAST result = ast.getParent();
         while (result != null
                 && result.getType() != TokenTypes.VARIABLE_DEF)
         {
@@ -315,12 +315,12 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Get semi token.
-     * @param aAst current token.
+     * @param ast current token.
      * @return semi token or null.
      */
-    private DetailAST getSemi(DetailAST aAst)
+    private DetailAST getSemi(DetailAST ast)
     {
-        DetailAST result = aAst.getParent();
+        DetailAST result = ast.getParent();
         while (result != null
                 && result.getLastChild().getType() != TokenTypes.SEMI)
         {
@@ -334,13 +334,13 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Checks if all characters in String literal is escaped.
-     * @param aLiteral current literal.
+     * @param literal current literal.
      * @return true if all characters in String literal is escaped.
      */
-    private boolean isAllCharactersEscaped(String aLiteral)
+    private boolean isAllCharactersEscaped(String literal)
     {
-        return mAllowIfAllCharactersEscaped
-                && sAllEscapedChars.matcher(aLiteral.substring(1,
-                        aLiteral.length() - 1)).find();
+        return allowIfAllCharactersEscaped
+                && sAllEscapedChars.matcher(literal.substring(1,
+                        literal.length() - 1)).find();
     }
 }

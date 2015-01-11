@@ -64,31 +64,31 @@ public class RegexpCheck extends AbstractFormatCheck
         + "the check is aborting, there may be more unreported errors.";
 
     /** Custom message for report. */
-    private String mMessage = "";
+    private String message = "";
 
     /** Ignore matches within comments? **/
-    private boolean mIgnoreComments;
+    private boolean ignoreComments;
 
     /** Pattern illegal? */
-    private boolean mIllegalPattern;
+    private boolean illegalPattern;
 
     /** Error report limit */
-    private int mErrorLimit = DEFAULT_ERROR_LIMIT;
+    private int errorLimit = DEFAULT_ERROR_LIMIT;
 
     /** Disallow more than x duplicates? */
-    private int mDuplicateLimit;
+    private int duplicateLimit;
 
     /** Boolean to say if we should check for duplicates. */
-    private boolean mCheckForDuplicates;
+    private boolean checkForDuplicates;
 
     /** Tracks number of matches made */
-    private int mMatchCount;
+    private int matchCount;
 
     /** Tracks number of errors */
-    private int mErrorCount;
+    private int errorCount;
 
-    /** The mMatcher */
-    private Matcher mMatcher;
+    /** The matcher */
+    private Matcher matcher;
 
     /**
      * Instantiates an new RegexpCheck.
@@ -100,11 +100,11 @@ public class RegexpCheck extends AbstractFormatCheck
 
     /**
      * Setter for message property.
-     * @param aMessage custom message which should be used in report.
+     * @param message custom message which should be used in report.
      */
-    public void setMessage(String aMessage)
+    public void setMessage(String message)
     {
-        mMessage = (aMessage == null) ? "" : aMessage;
+        this.message = (message == null) ? "" : message;
     }
 
     /**
@@ -116,45 +116,45 @@ public class RegexpCheck extends AbstractFormatCheck
      */
     public String getMessage()
     {
-        return mMessage;
+        return message;
     }
 
     /**
      * Sets if matches within comments should be ignored.
-     * @param aIgnoreComments True if comments should be ignored.
+     * @param ignoreComments True if comments should be ignored.
      */
-    public void setIgnoreComments(boolean aIgnoreComments)
+    public void setIgnoreComments(boolean ignoreComments)
     {
-        mIgnoreComments = aIgnoreComments;
+        this.ignoreComments = ignoreComments;
     }
 
     /**
      * Sets if pattern is illegal, otherwise pattern is required.
-     * @param aIllegalPattern True if pattern is not allowed.
+     * @param illegalPattern True if pattern is not allowed.
      */
-    public void setIllegalPattern(boolean aIllegalPattern)
+    public void setIllegalPattern(boolean illegalPattern)
     {
-        mIllegalPattern = aIllegalPattern;
+        this.illegalPattern = illegalPattern;
     }
 
     /**
      * Sets the limit on the number of errors to report.
-     * @param aErrorLimit the number of errors to report.
+     * @param errorLimit the number of errors to report.
      */
-    public void setErrorLimit(int aErrorLimit)
+    public void setErrorLimit(int errorLimit)
     {
-        mErrorLimit = aErrorLimit;
+        this.errorLimit = errorLimit;
     }
 
     /**
      * Sets the maximum number of instances of required pattern allowed.
-     * @param aDuplicateLimit negative values mean no duplicate checking,
+     * @param duplicateLimit negative values mean no duplicate checking,
      * any positive value is used as the limit.
      */
-    public void setDuplicateLimit(int aDuplicateLimit)
+    public void setDuplicateLimit(int duplicateLimit)
     {
-        mDuplicateLimit = aDuplicateLimit;
-        mCheckForDuplicates = (mDuplicateLimit > DEFAULT_DUPLICATE_LIMIT);
+        this.duplicateLimit = duplicateLimit;
+        checkForDuplicates = (duplicateLimit > DEFAULT_DUPLICATE_LIMIT);
     }
 
     @Override
@@ -164,12 +164,12 @@ public class RegexpCheck extends AbstractFormatCheck
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
         final Pattern pattern = getRegexp();
-        mMatcher = pattern.matcher(getFileContents().getText().getFullText());
-        mMatchCount = 0;
-        mErrorCount = 0;
+        matcher = pattern.matcher(getFileContents().getText().getFullText());
+        matchCount = 0;
+        errorCount = 0;
         findMatch();
     }
 
@@ -183,34 +183,34 @@ public class RegexpCheck extends AbstractFormatCheck
         boolean foundMatch;
         boolean ignore = false;
 
-        foundMatch = mMatcher.find();
-        if (!foundMatch && !mIllegalPattern && (mMatchCount == 0)) {
+        foundMatch = matcher.find();
+        if (!foundMatch && !illegalPattern && (matchCount == 0)) {
             logMessage(0);
         }
         else if (foundMatch) {
             final FileText text = getFileContents().getText();
-            final LineColumn start = text.lineColumn(mMatcher.start());
-            final LineColumn end = text.lineColumn(mMatcher.end() - 1);
+            final LineColumn start = text.lineColumn(matcher.start());
+            final LineColumn end = text.lineColumn(matcher.end() - 1);
             startLine = start.getLine();
             startColumn = start.getColumn();
             endLine = end.getLine();
             endColumn = end.getColumn();
-            if (mIgnoreComments) {
+            if (ignoreComments) {
                 final FileContents theFileContents = getFileContents();
                 ignore = theFileContents.hasIntersectionWithComment(startLine,
                     startColumn, endLine, endColumn);
             }
             if (!ignore) {
-                mMatchCount++;
-                if (mIllegalPattern || (mCheckForDuplicates
-                        && ((mMatchCount - 1) > mDuplicateLimit)))
+                matchCount++;
+                if (illegalPattern || (checkForDuplicates
+                        && ((matchCount - 1) > duplicateLimit)))
                 {
-                    mErrorCount++;
+                    errorCount++;
                     logMessage(startLine);
                 }
             }
-            if ((mErrorCount < mErrorLimit)
-                    && (ignore || mIllegalPattern || mCheckForDuplicates))
+            if ((errorCount < errorLimit)
+                    && (ignore || illegalPattern || checkForDuplicates))
             {
                 findMatch();
             }
@@ -219,23 +219,23 @@ public class RegexpCheck extends AbstractFormatCheck
 
     /**
      * Displays the right message.
-     * @param aLineNumber the line number the message relates to.
+     * @param lineNumber the line number the message relates to.
      */
-    private void logMessage(int aLineNumber)
+    private void logMessage(int lineNumber)
     {
-        String message = "".equals(getMessage()) ? getFormat() : mMessage;
-        if (mErrorCount >= mErrorLimit) {
-            message = ERROR_LIMIT_EXCEEDED_MESSAGE + message;
+        String msg = "".equals(getMessage()) ? getFormat() : message;
+        if (errorCount >= errorLimit) {
+            msg = ERROR_LIMIT_EXCEEDED_MESSAGE + msg;
         }
-        if (mIllegalPattern) {
-            log(aLineNumber, "illegal.regexp", message);
+        if (illegalPattern) {
+            log(lineNumber, "illegal.regexp", msg);
         }
         else {
-            if (aLineNumber > 0) {
-                log(aLineNumber, "duplicate.regexp", message);
+            if (lineNumber > 0) {
+                log(lineNumber, "duplicate.regexp", msg);
             }
             else {
-                log(aLineNumber, "required.regexp", message);
+                log(lineNumber, "required.regexp", msg);
             }
         }
     }

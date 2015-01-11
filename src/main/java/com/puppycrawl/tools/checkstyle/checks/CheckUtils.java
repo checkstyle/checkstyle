@@ -41,19 +41,19 @@ public final class CheckUtils
 
     /**
      * Tests whether a method definition AST defines an equals covariant.
-     * @param aAST the method definition AST to test.
-     * Precondition: aAST is a TokenTypes.METHOD_DEF node.
-     * @return true if aAST defines an equals covariant.
+     * @param ast the method definition AST to test.
+     * Precondition: ast is a TokenTypes.METHOD_DEF node.
+     * @return true if ast defines an equals covariant.
      */
-    public static boolean isEqualsMethod(DetailAST aAST)
+    public static boolean isEqualsMethod(DetailAST ast)
     {
-        if (aAST.getType() != TokenTypes.METHOD_DEF) {
+        if (ast.getType() != TokenTypes.METHOD_DEF) {
             // A node must be method def
             return false;
         }
 
         // non-static, non-abstract?
-        final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         if (modifiers.branchContains(TokenTypes.LITERAL_STATIC)
             || modifiers.branchContains(TokenTypes.ABSTRACT))
         {
@@ -61,74 +61,74 @@ public final class CheckUtils
         }
 
         // named "equals"?
-        final DetailAST nameNode = aAST.findFirstToken(TokenTypes.IDENT);
+        final DetailAST nameNode = ast.findFirstToken(TokenTypes.IDENT);
         final String name = nameNode.getText();
         if (!"equals".equals(name)) {
             return false;
         }
 
         // one parameter?
-        final DetailAST paramsNode = aAST.findFirstToken(TokenTypes.PARAMETERS);
+        final DetailAST paramsNode = ast.findFirstToken(TokenTypes.PARAMETERS);
         return (paramsNode.getChildCount() == 1);
     }
 
     /**
      * Returns whether a token represents an ELSE as part of an ELSE / IF set.
-     * @param aAST the token to check
+     * @param ast the token to check
      * @return whether it is
      */
-    public static boolean isElseIf(DetailAST aAST)
+    public static boolean isElseIf(DetailAST ast)
     {
-        final DetailAST parentAST = aAST.getParent();
+        final DetailAST parentAST = ast.getParent();
 
-        return (aAST.getType() == TokenTypes.LITERAL_IF)
+        return (ast.getType() == TokenTypes.LITERAL_IF)
             && (isElse(parentAST) || isElseWithCurlyBraces(parentAST));
     }
 
     /**
      * Returns whether a token represents an ELSE.
-     * @param aAST the token to check
+     * @param ast the token to check
      * @return whether the token represents an ELSE
      */
-    private static boolean isElse(DetailAST aAST)
+    private static boolean isElse(DetailAST ast)
     {
-        return aAST.getType() == TokenTypes.LITERAL_ELSE;
+        return ast.getType() == TokenTypes.LITERAL_ELSE;
     }
 
     /**
      * Returns whether a token represents an SLIST as part of an ELSE
      * statement.
-     * @param aAST the token to check
+     * @param ast the token to check
      * @return whether the toke does represent an SLIST as part of an ELSE
      */
-    private static boolean isElseWithCurlyBraces(DetailAST aAST)
+    private static boolean isElseWithCurlyBraces(DetailAST ast)
     {
-        return (aAST.getType() == TokenTypes.SLIST)
-            && (aAST.getChildCount() == 2)
-            && isElse(aAST.getParent());
+        return (ast.getType() == TokenTypes.SLIST)
+            && (ast.getChildCount() == 2)
+            && isElse(ast.getParent());
     }
 
     /**
      * Creates <code>FullIdent</code> for given type node.
-     * @param aTypeAST a type node.
+     * @param typeAST a type node.
      * @return <code>FullIdent</code> for given type.
      */
-    public static FullIdent createFullType(DetailAST aTypeAST)
+    public static FullIdent createFullType(DetailAST typeAST)
     {
         final DetailAST arrayDeclAST =
-            aTypeAST.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
+            typeAST.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
 
-        return createFullTypeNoArrays(arrayDeclAST == null ? aTypeAST
+        return createFullTypeNoArrays(arrayDeclAST == null ? typeAST
                                                            : arrayDeclAST);
     }
 
     /**
-     * @param aTypeAST a type node (no array)
+     * @param typeAST a type node (no array)
      * @return <code>FullIdent</code> for given type.
      */
-    private static FullIdent createFullTypeNoArrays(DetailAST aTypeAST)
+    private static FullIdent createFullTypeNoArrays(DetailAST typeAST)
     {
-        return FullIdent.createFullIdent(aTypeAST.getFirstChild());
+        return FullIdent.createFullIdent(typeAST.getFirstChild());
     }
 
     // constants for parseDouble()
@@ -144,16 +144,16 @@ public final class CheckUtils
     /**
      * Returns the value represented by the specified string of the specified
      * type. Returns 0 for types other than float, double, int, and long.
-     * @param aText the string to be parsed.
-     * @param aType the token type of the text. Should be a constant of
+     * @param text the string to be parsed.
+     * @param type the token type of the text. Should be a constant of
      * {@link com.puppycrawl.tools.checkstyle.api.TokenTypes}.
      * @return the double value represented by the string argument.
      */
-    public static double parseDouble(String aText, int aType)
+    public static double parseDouble(String text, int type)
     {
-        String txt = aText.replaceAll("_", "");
+        String txt = text.replaceAll("_", "");
         double result = 0;
-        switch (aType) {
+        switch (type) {
         case TokenTypes.NUM_FLOAT:
         case TokenTypes.NUM_DOUBLE:
             result = Double.parseDouble(txt);
@@ -173,7 +173,7 @@ public final class CheckUtils
                 txt = txt.substring(0, txt.length() - 1);
             }
             if (txt.length() > 0) {
-                if (aType == TokenTypes.NUM_INT) {
+                if (type == TokenTypes.NUM_INT) {
                     result = parseInt(txt, radix);
                 }
                 else {
@@ -192,19 +192,19 @@ public final class CheckUtils
      * the second argument. The characters in the string must all be digits of
      * the specified radix. Handles negative values, which method
      * java.lang.Integer.parseInt(String, int) does not.
-     * @param aText the String containing the integer representation to be
-     * parsed. Precondition: aText contains a parsable int.
-     * @param aRadix the radix to be used while parsing aText.
+     * @param text the String containing the integer representation to be
+     * parsed. Precondition: text contains a parsable int.
+     * @param radix the radix to be used while parsing text.
      * @return the integer represented by the string argument in the specified
      * radix.
      */
-    public static int parseInt(String aText, int aRadix)
+    public static int parseInt(String text, int radix)
     {
         int result = 0;
-        final int max = aText.length();
+        final int max = text.length();
         for (int i = 0; i < max; i++) {
-            final int digit = Character.digit(aText.charAt(i), aRadix);
-            result *= aRadix;
+            final int digit = Character.digit(text.charAt(i), radix);
+            result *= radix;
             result += digit;
         }
         return result;
@@ -215,19 +215,19 @@ public final class CheckUtils
      * the second argument. The characters in the string must all be digits of
      * the specified radix. Handles negative values, which method
      * java.lang.Integer.parseInt(String, int) does not.
-     * @param aText the String containing the integer representation to be
-     * parsed. Precondition: aText contains a parsable int.
-     * @param aRadix the radix to be used while parsing aText.
+     * @param text the String containing the integer representation to be
+     * parsed. Precondition: text contains a parsable int.
+     * @param radix the radix to be used while parsing text.
      * @return the long represented by the string argument in the specified
      * radix.
      */
-    public static long parseLong(String aText, int aRadix)
+    public static long parseLong(String text, int radix)
     {
         long result = 0;
-        final int max = aText.length();
+        final int max = text.length();
         for (int i = 0; i < max; i++) {
-            final int digit = Character.digit(aText.charAt(i), aRadix);
-            result *= aRadix;
+            final int digit = Character.digit(text.charAt(i), radix);
+            result *= radix;
             result += digit;
         }
         return result;
@@ -236,25 +236,25 @@ public final class CheckUtils
     /**
      * Returns the value represented by the specified string of the specified
      * type. Returns 0 for types other than float, double, int, and long.
-     * @param aText the string to be parsed.
-     * @param aType the token type of the text. Should be a constant of
+     * @param text the string to be parsed.
+     * @param type the token type of the text. Should be a constant of
      * {@link com.puppycrawl.tools.checkstyle.api.TokenTypes}.
      * @return the float value represented by the string argument.
      */
-    public static double parseFloat(String aText, int aType)
+    public static double parseFloat(String text, int type)
     {
-        return (float) parseDouble(aText, aType);
+        return (float) parseDouble(text, type);
     }
 
     /**
      * Finds sub-node for given node minimal (line, column) pair.
-     * @param aNode the root of tree for search.
+     * @param node the root of tree for search.
      * @return sub-node with minimal (line, column) pair.
      */
-    public static DetailAST getFirstNode(final DetailAST aNode)
+    public static DetailAST getFirstNode(final DetailAST node)
     {
-        DetailAST currentNode = aNode;
-        DetailAST child = aNode.getFirstChild();
+        DetailAST currentNode = node;
+        DetailAST child = node.getFirstChild();
         while (child != null) {
             final DetailAST newNode = getFirstNode(child);
             if ((newNode.getLineNo() < currentNode.getLineNo())
@@ -271,43 +271,43 @@ public final class CheckUtils
 
     /**
      * Retrieves the names of the type parameters to the node.
-     * @param aNode the parameterised AST node
+     * @param node the parameterised AST node
      * @return a list of type parameter names
      */
-    public static List<String> getTypeParameterNames(final DetailAST aNode)
+    public static List<String> getTypeParameterNames(final DetailAST node)
     {
         final DetailAST typeParameters =
-            aNode.findFirstToken(TokenTypes.TYPE_PARAMETERS);
+            node.findFirstToken(TokenTypes.TYPE_PARAMETERS);
 
-        final List<String> typeParamNames = Lists.newArrayList();
+        final List<String> typeParanames = Lists.newArrayList();
         if (typeParameters != null) {
             final DetailAST typeParam =
                 typeParameters.findFirstToken(TokenTypes.TYPE_PARAMETER);
-            typeParamNames.add(
+            typeParanames.add(
                 typeParam.findFirstToken(TokenTypes.IDENT).getText());
 
             DetailAST sibling = typeParam.getNextSibling();
             while (sibling != null) {
                 if (sibling.getType() == TokenTypes.TYPE_PARAMETER) {
-                    typeParamNames.add(
+                    typeParanames.add(
                         sibling.findFirstToken(TokenTypes.IDENT).getText());
                 }
                 sibling = sibling.getNextSibling();
             }
         }
 
-        return typeParamNames;
+        return typeParanames;
     }
 
     /**
      * Retrieves the type parameters to the node.
-     * @param aNode the parameterised AST node
+     * @param node the parameterised AST node
      * @return a list of type parameter names
      */
-    public static List<DetailAST> getTypeParameters(final DetailAST aNode)
+    public static List<DetailAST> getTypeParameters(final DetailAST node)
     {
         final DetailAST typeParameters =
-            aNode.findFirstToken(TokenTypes.TYPE_PARAMETERS);
+            node.findFirstToken(TokenTypes.TYPE_PARAMETERS);
 
         final List<DetailAST> typeParams = Lists.newArrayList();
         if (typeParameters != null) {

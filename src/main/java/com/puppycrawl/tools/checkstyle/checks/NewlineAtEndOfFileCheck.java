@@ -59,21 +59,21 @@ public class NewlineAtEndOfFileCheck
     extends AbstractFileSetCheck
 {
     /** the line separator to check against. */
-    private LineSeparatorOption mLineSeparator = LineSeparatorOption.SYSTEM;
+    private LineSeparatorOption lineSeparator = LineSeparatorOption.SYSTEM;
 
     @Override
-    protected void processFiltered(File aFile, List<String> aLines)
+    protected void processFiltered(File file, List<String> lines)
     {
-        // Cannot use aLines as the line separators have been removed!
+        // Cannot use lines as the line separators have been removed!
         RandomAccessFile randomAccessFile = null;
         try {
-            randomAccessFile = new RandomAccessFile(aFile, "r");
+            randomAccessFile = new RandomAccessFile(file, "r");
             if (!endsWithNewline(randomAccessFile)) {
-                log(0, "noNewlineAtEOF", aFile.getPath());
+                log(0, "noNewlineAtEOF", file.getPath());
             }
         }
         catch (final IOException e) {
-            log(0, "unable.open", aFile.getPath());
+            log(0, "unable.open", file.getPath());
         }
         finally {
             Utils.closeQuietly(randomAccessFile);
@@ -83,19 +83,19 @@ public class NewlineAtEndOfFileCheck
     /**
      * Sets the line separator to one of 'crlf', 'lf' or 'cr'.
      *
-     * @param aLineSeparator The line separator to set
+     * @param lineSeparator The line separator to set
      * @throws IllegalArgumentException If the specified line separator is not
      *         one of 'crlf', 'lf' or 'cr'
      */
-    public void setLineSeparator(String aLineSeparator)
+    public void setLineSeparator(String lineSeparatorParam)
     {
         try {
-            mLineSeparator =
-                Enum.valueOf(LineSeparatorOption.class, aLineSeparator.trim()
+            lineSeparator =
+                Enum.valueOf(LineSeparatorOption.class, lineSeparatorParam.trim()
                     .toUpperCase());
         }
         catch (IllegalArgumentException iae) {
-            throw new ConversionException("unable to parse " + aLineSeparator,
+            throw new ConversionException("unable to parse " + lineSeparatorParam,
                 iae);
         }
     }
@@ -103,25 +103,25 @@ public class NewlineAtEndOfFileCheck
     /**
      * Checks whether the content provided by the Reader ends with the platform
      * specific line separator.
-     * @param aRandomAccessFile The reader for the content to check
+     * @param randomAccessFile The reader for the content to check
      * @return boolean Whether the content ends with a line separator
      * @throws IOException When an IO error occurred while reading from the
      *         provided reader
      */
-    private boolean endsWithNewline(RandomAccessFile aRandomAccessFile)
+    private boolean endsWithNewline(RandomAccessFile randomAccessFile)
         throws IOException
     {
-        final int len = mLineSeparator.length();
-        if (aRandomAccessFile.length() < len) {
+        final int len = lineSeparator.length();
+        if (randomAccessFile.length() < len) {
             return false;
         }
-        aRandomAccessFile.seek(aRandomAccessFile.length() - len);
+        randomAccessFile.seek(randomAccessFile.length() - len);
         final byte[] lastBytes = new byte[len];
-        final int readBytes = aRandomAccessFile.read(lastBytes);
+        final int readBytes = randomAccessFile.read(lastBytes);
         if (readBytes != len) {
             throw new IOException("Unable to read " + len + " bytes, got "
                     + readBytes);
         }
-        return mLineSeparator.matches(lastBytes);
+        return lineSeparator.matches(lastBytes);
     }
 }

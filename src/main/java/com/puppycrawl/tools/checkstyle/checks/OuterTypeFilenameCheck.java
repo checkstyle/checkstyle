@@ -31,19 +31,19 @@ import java.io.File;
 public class OuterTypeFilenameCheck extends Check
 {
     /** indicates whether the first token has been seen in the file. */
-    private boolean mSeenFirstToken;
+    private boolean seenFirstToken;
 
     /** Current file name*/
-    private String mFileName;
+    private String fileName;
 
     /** If file has public type*/
-    private boolean mHasPublic;
+    private boolean hasPublic;
 
     /** If first type has has same name as file*/
-    private boolean mValidFirst;
+    private boolean validFirst;
 
     /** Outer type with mismatched file name*/
-    private DetailAST mWrongType;
+    private DetailAST wrongType;
 
     @Override
     public int[] getDefaultTokens()
@@ -55,44 +55,44 @@ public class OuterTypeFilenameCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST aAST)
+    public void beginTree(DetailAST ast)
     {
-        mFileName = getFileName();
-        mSeenFirstToken = false;
-        mValidFirst = false;
-        mHasPublic = false;
-        mWrongType = null;
+        fileName = getFileName();
+        seenFirstToken = false;
+        validFirst = false;
+        hasPublic = false;
+        wrongType = null;
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final String outerTypeName = aAST.findFirstToken(TokenTypes.IDENT).getText();
-        if (!mSeenFirstToken) {
+        final String outerTypeName = ast.findFirstToken(TokenTypes.IDENT).getText();
+        if (!seenFirstToken) {
 
-            if (mFileName.equals(outerTypeName)) {
-                mValidFirst = true;
+            if (fileName.equals(outerTypeName)) {
+                validFirst = true;
             }
             else {
-                mWrongType = aAST;
+                wrongType = ast;
             }
         }
         else {
-            final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
+            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             if (modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
-                    && aAST.getParent() == null)
+                    && ast.getParent() == null)
             {
-                mHasPublic = true;
+                hasPublic = true;
             }
         }
-        mSeenFirstToken = true;
+        seenFirstToken = true;
     }
 
     @Override
-    public void finishTree(DetailAST aRootAST)
+    public void finishTree(DetailAST rootAST)
     {
-        if (!(mValidFirst || mHasPublic) && mWrongType != null) {
-            log(mWrongType.getLineNo(), "type.file.mismatch");
+        if (!(validFirst || hasPublic) && wrongType != null) {
+            log(wrongType.getLineNo(), "type.file.mismatch");
         }
     }
 

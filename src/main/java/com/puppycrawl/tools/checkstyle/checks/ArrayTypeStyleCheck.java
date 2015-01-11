@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class ArrayTypeStyleCheck extends Check
 {
     /** controls whether to use Java or C style */
-    private boolean mJavaStyle = true;
+    private boolean javaStyle = true;
 
     @Override
     public int[] getDefaultTokens()
@@ -42,9 +42,9 @@ public class ArrayTypeStyleCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final DetailAST typeAST = aAST.getParent();
+        final DetailAST typeAST = ast.getParent();
         if (typeAST.getType() != TokenTypes.TYPE) {
             return;
         }
@@ -58,21 +58,21 @@ public class ArrayTypeStyleCheck extends Check
         final DetailAST variableAST = typeAST.getNextSibling();
         if (variableAST != null) {
             final boolean isJavaStyle =
-                (variableAST.getLineNo() > aAST.getLineNo())
-                || (variableAST.getColumnNo() > aAST.getColumnNo());
+                (variableAST.getLineNo() > ast.getLineNo())
+                || (variableAST.getColumnNo() > ast.getColumnNo());
 
-            if (isJavaStyle != mJavaStyle) {
-                log(aAST.getLineNo(), aAST.getColumnNo(), "array.type.style");
+            if (isJavaStyle != javaStyle) {
+                log(ast.getLineNo(), ast.getColumnNo(), "array.type.style");
             }
         }
     }
 
     /**
      * Controls whether to check for Java or C style.
-     * @param aJavaStyle true if Java style should be used.
+     * @param javstyle true if Java style should be used.
      */
-    public void setJavaStyle(boolean aJavaStyle)
+    public void setJavaStyle(boolean javaStyle)
     {
-        mJavaStyle = aJavaStyle;
+        this.javaStyle = javaStyle;
     }
 }

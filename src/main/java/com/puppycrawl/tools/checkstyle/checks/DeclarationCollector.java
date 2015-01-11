@@ -42,27 +42,27 @@ public abstract class DeclarationCollector extends Check
     /**
      * Tree of all the parsed frames
      */
-    private Map<DetailAST, LexicalFrame> mFrames;
+    private Map<DetailAST, LexicalFrame> frames;
 
     /**
      * Frame for the currently processed AST
      */
-    private LexicalFrame mCurrent;
+    private LexicalFrame current;
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
-        final Deque<LexicalFrame> aFrameStack = Lists.newLinkedList();
-        aFrameStack.add(new GlobalFrame());
+        final Deque<LexicalFrame> frameStack = Lists.newLinkedList();
+        frameStack.add(new GlobalFrame());
 
-        mFrames = Maps.newHashMap();
+        frames = Maps.newHashMap();
 
-        DetailAST curNode = aRootAST;
+        DetailAST curNode = rootAST;
         while (curNode != null) {
-            collectDeclarations(aFrameStack, curNode);
+            collectDeclarations(frameStack, curNode);
             DetailAST toVisit = curNode.getFirstChild();
             while (curNode != null && toVisit == null) {
-                endCollectingDeclarations(aFrameStack, curNode);
+                endCollectingDeclarations(frameStack, curNode);
                 toVisit = curNode.getNextSibling();
                 if (toVisit == null) {
                     curNode = curNode.getParent();
@@ -73,9 +73,9 @@ public abstract class DeclarationCollector extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
+        switch (ast.getType()) {
         case TokenTypes.CLASS_DEF :
         case TokenTypes.INTERFACE_DEF :
         case TokenTypes.ENUM_DEF :
@@ -83,7 +83,7 @@ public abstract class DeclarationCollector extends Check
         case TokenTypes.SLIST :
         case TokenTypes.METHOD_DEF :
         case TokenTypes.CTOR_DEF :
-            this.mCurrent = this.mFrames.get(aAST);
+            this.current = this.frames.get(ast);
             break;
         default :
             // do nothing
@@ -93,21 +93,21 @@ public abstract class DeclarationCollector extends Check
     /**
      * Parse the next AST for declarations
      *
-     * @param aFrameStack Stack containing the FrameTree being built
-     * @param aAST AST to parse
+     * @param frameStack Stack containing the FrameTree being built
+     * @param ast AST to parse
      */
-    private void collectDeclarations(Deque<LexicalFrame> aFrameStack,
-        DetailAST aAST)
+    private void collectDeclarations(Deque<LexicalFrame> frameStack,
+        DetailAST ast)
     {
-        final LexicalFrame frame = aFrameStack.peek();
-        switch (aAST.getType()) {
+        final LexicalFrame frame = frameStack.peek();
+        switch (ast.getType()) {
         case TokenTypes.VARIABLE_DEF :  {
             final String name =
-                    aAST.findFirstToken(TokenTypes.IDENT).getText();
+                    ast.findFirstToken(TokenTypes.IDENT).getText();
             if (frame instanceof ClassFrame) {
                 final DetailAST mods =
-                    aAST.findFirstToken(TokenTypes.MODIFIERS);
-                if (ScopeUtils.inInterfaceBlock(aAST)
+                    ast.findFirstToken(TokenTypes.MODIFIERS);
+                if (ScopeUtils.inInterfaceBlock(ast)
                         || mods.branchContains(TokenTypes.LITERAL_STATIC))
                 {
                     ((ClassFrame) frame).addStaticMember(name);
@@ -122,7 +122,7 @@ public abstract class DeclarationCollector extends Check
             break;
         }
         case TokenTypes.PARAMETER_DEF : {
-            final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
+            final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             frame.addName(nameAST.getText());
             break;
         }
@@ -130,19 +130,19 @@ public abstract class DeclarationCollector extends Check
         case TokenTypes.INTERFACE_DEF :
         case TokenTypes.ENUM_DEF :
         case TokenTypes.ANNOTATION_DEF : {
-            final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
+            final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             frame.addName(nameAST.getText());
-            aFrameStack.addFirst(new ClassFrame(frame));
+            frameStack.addFirst(new ClassFrame(frame));
             break;
         }
         case TokenTypes.SLIST :
-            aFrameStack.addFirst(new BlockFrame(frame));
+            frameStack.addFirst(new BlockFrame(frame));
             break;
         case TokenTypes.METHOD_DEF : {
-            final String name = aAST.findFirstToken(TokenTypes.IDENT).getText();
+            final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
             if (frame instanceof ClassFrame) {
                 final DetailAST mods =
-                    aAST.findFirstToken(TokenTypes.MODIFIERS);
+                    ast.findFirstToken(TokenTypes.MODIFIERS);
                 if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
                     ((ClassFrame) frame).addStaticMethod(name);
                 }
@@ -152,7 +152,7 @@ public abstract class DeclarationCollector extends Check
             }
         }
         case TokenTypes.CTOR_DEF :
-            aFrameStack.addFirst(new MethodFrame(frame));
+            frameStack.addFirst(new MethodFrame(frame));
             break;
         default:
             // do nothing
@@ -163,13 +163,13 @@ public abstract class DeclarationCollector extends Check
     /**
      * End parsing of the AST for declarations.
      *
-     * @param aFrameStack Stack containing the FrameTree being built
-     * @param aAST AST that was parsed
+     * @param frameStack Stack containing the FrameTree being built
+     * @param ast AST that was parsed
      */
-    private void endCollectingDeclarations(Queue<LexicalFrame> aFrameStack,
-        DetailAST aAST)
+    private void endCollectingDeclarations(Queue<LexicalFrame> frameStack,
+        DetailAST ast)
     {
-        switch (aAST.getType()) {
+        switch (ast.getType()) {
         case TokenTypes.CLASS_DEF :
         case TokenTypes.INTERFACE_DEF :
         case TokenTypes.ENUM_DEF :
@@ -177,7 +177,7 @@ public abstract class DeclarationCollector extends Check
         case TokenTypes.SLIST :
         case TokenTypes.METHOD_DEF :
         case TokenTypes.CTOR_DEF :
-            this.mFrames.put(aAST, aFrameStack.poll());
+            this.frames.put(ast, frameStack.poll());
             break;
         default :
             // do nothing
@@ -186,37 +186,37 @@ public abstract class DeclarationCollector extends Check
 
     /**
      * Check if given name is a name for class field in current environment.
-     * @param aName a name to check
+     * @param name a name to check
      * @return true is the given name is name of member.
      */
-    protected final boolean isClassField(String aName)
+    protected final boolean isClassField(String name)
     {
-        final LexicalFrame frame = findFrame(aName);
+        final LexicalFrame frame = findFrame(name);
         return (frame instanceof ClassFrame)
-                && ((ClassFrame) frame).hasInstanceMember(aName);
+                && ((ClassFrame) frame).hasInstanceMember(name);
     }
 
     /**
      * Check if given name is a name for class method in current environment.
-     * @param aName a name to check
+     * @param name a name to check
      * @return true is the given name is name of method.
      */
-    protected final boolean isClassMethod(String aName)
+    protected final boolean isClassMethod(String name)
     {
-        final LexicalFrame frame = findFrame(aName);
+        final LexicalFrame frame = findFrame(name);
         return (frame instanceof ClassFrame)
-                && ((ClassFrame) frame).hasInstanceMethod(aName);
+                && ((ClassFrame) frame).hasInstanceMethod(name);
     }
 
     /**
      * Find frame containing declaration
-     * @param aName name of the declaration to find
+     * @param name name of the declaration to find
      * @return LexicalFrame containing declaration or null
      */
-    private LexicalFrame findFrame(String aName)
+    private LexicalFrame findFrame(String name)
     {
-        if (mCurrent != null) {
-            return mCurrent.getIfContains(aName);
+        if (current != null) {
+            return current.getIfContains(name);
         }
         else {
             return null;
@@ -231,51 +231,51 @@ public abstract class DeclarationCollector extends Check
     private abstract static class LexicalFrame
     {
         /** Set of name of variables declared in this frame. */
-        private final Set<String> mVarNames;
+        private final Set<String> varNames;
         /**
          * Parent frame.
          */
-        private final LexicalFrame mParent;
+        private final LexicalFrame parent;
 
         /**
          * constructor -- invokable only via super() from subclasses
          *
-         * @param aParent parent frame
+         * @param parent parent frame
          */
-        protected LexicalFrame(LexicalFrame aParent)
+        protected LexicalFrame(LexicalFrame parent)
         {
-            mParent = aParent;
-            mVarNames = Sets.newHashSet();
+            this.parent = parent;
+            varNames = Sets.newHashSet();
         }
 
         /** add a name to the frame.
-         * @param aNameToAdd  the name we're adding
+         * @param nameToAdd  the name we're adding
          */
-        void addName(String aNameToAdd)
+        void addName(String nameToAdd)
         {
-            mVarNames.add(aNameToAdd);
+            varNames.add(nameToAdd);
         }
 
         /** check whether the frame contains a given name.
-         * @param aNameToFind  the name we're looking for
+         * @param nameToFind  the name we're looking for
          * @return whether it was found
          */
-        boolean contains(String aNameToFind)
+        boolean contains(String nameToFind)
         {
-            return mVarNames.contains(aNameToFind);
+            return varNames.contains(nameToFind);
         }
 
         /** check whether the frame contains a given name.
-         * @param aNameToFind  the name we're looking for
+         * @param nameToFind  the name we're looking for
          * @return whether it was found
          */
-        LexicalFrame getIfContains(String aNameToFind)
+        LexicalFrame getIfContains(String nameToFind)
         {
-            if (contains(aNameToFind)) {
+            if (contains(nameToFind)) {
                 return this;
             }
-            else if (mParent != null) {
-                return mParent.getIfContains(aNameToFind);
+            else if (parent != null) {
+                return parent.getIfContains(nameToFind);
             }
             else {
                 return null;
@@ -306,11 +306,11 @@ public abstract class DeclarationCollector extends Check
     private static class MethodFrame extends LexicalFrame
     {
         /**
-         * @param aParent parent frame
+         * @param parent parent frame
          */
-        protected MethodFrame(LexicalFrame aParent)
+        protected MethodFrame(LexicalFrame parent)
         {
-            super(aParent);
+            super(parent);
         }
     }
 
@@ -323,93 +323,93 @@ public abstract class DeclarationCollector extends Check
     private static class ClassFrame extends LexicalFrame
     {
         /** Set of name of instance members declared in this frame. */
-        private final Set<String> mInstanceMembers;
+        private final Set<String> instanceMembers;
         /** Set of name of instance methods declared in this frame. */
-        private final Set<String> mInstanceMethods;
+        private final Set<String> instanceMethods;
         /** Set of name of variables declared in this frame. */
-        private final Set<String> mStaticMembers;
+        private final Set<String> staticMembers;
         /** Set of name of static methods declared in this frame. */
-        private final Set<String> mStaticMethods;
+        private final Set<String> staticMethods;
 
         /**
          * Creates new instance of ClassFrame
-         * @param aParent parent frame
+         * @param parent parent frame
          */
-        public ClassFrame(LexicalFrame aParent)
+        public ClassFrame(LexicalFrame parent)
         {
-            super(aParent);
-            mInstanceMembers = Sets.newHashSet();
-            mInstanceMethods = Sets.newHashSet();
-            mStaticMembers = Sets.newHashSet();
-            mStaticMethods = Sets.newHashSet();
+            super(parent);
+            instanceMembers = Sets.newHashSet();
+            instanceMethods = Sets.newHashSet();
+            staticMembers = Sets.newHashSet();
+            staticMethods = Sets.newHashSet();
         }
 
         /**
          * Adds static member's name.
-         * @param aName a name of static member of the class
+         * @param name a name of static member of the class
          */
-        public void addStaticMember(final String aName)
+        public void addStaticMember(final String name)
         {
-            mStaticMembers.add(aName);
+            staticMembers.add(name);
         }
 
         /**
          * Adds static method's name.
-         * @param aName a name of static method of the class
+         * @param name a name of static method of the class
          */
-        public void addStaticMethod(final String aName)
+        public void addStaticMethod(final String name)
         {
-            mStaticMethods.add(aName);
+            staticMethods.add(name);
         }
 
         /**
          * Adds instance member's name.
-         * @param aName a name of instance member of the class
+         * @param name a name of instance member of the class
          */
-        public void addInstanceMember(final String aName)
+        public void addInstanceMember(final String name)
         {
-            mInstanceMembers.add(aName);
+            instanceMembers.add(name);
         }
 
         /**
          * Adds instance method's name.
-         * @param aName a name of instance method of the class
+         * @param name a name of instance method of the class
          */
-        public void addInstanceMethod(final String aName)
+        public void addInstanceMethod(final String name)
         {
-            mInstanceMethods.add(aName);
+            instanceMethods.add(name);
         }
 
         /**
          * Checks if a given name is a known instance member of the class.
-         * @param aName a name to check
+         * @param name a name to check
          * @return true is the given name is a name of a known
          *         instance member of the class
          */
-        public boolean hasInstanceMember(final String aName)
+        public boolean hasInstanceMember(final String name)
         {
-            return mInstanceMembers.contains(aName);
+            return instanceMembers.contains(name);
         }
 
         /**
          * Checks if a given name is a known instance method of the class.
-         * @param aName a name to check
+         * @param name a name to check
          * @return true is the given name is a name of a known
          *         instance method of the class
          */
-        public boolean hasInstanceMethod(final String aName)
+        public boolean hasInstanceMethod(final String name)
         {
-            return mInstanceMethods.contains(aName);
+            return instanceMethods.contains(name);
         }
 
         @Override
-        boolean contains(String aNameToFind)
+        boolean contains(String nameToFind)
         {
-            return super.contains(aNameToFind)
-                    || mInstanceMembers.contains(aNameToFind)
-                    || mInstanceMethods.contains(aNameToFind)
-                    || mStaticMembers.contains(aNameToFind)
-                    || mStaticMethods.contains(aNameToFind);
+            return super.contains(nameToFind)
+                    || instanceMembers.contains(nameToFind)
+                    || instanceMethods.contains(nameToFind)
+                    || staticMembers.contains(nameToFind)
+                    || staticMethods.contains(nameToFind);
         }
     }
 
@@ -423,11 +423,11 @@ public abstract class DeclarationCollector extends Check
     {
 
         /**
-         * @param aParent parent frame
+         * @param parent parent frame
          */
-        protected BlockFrame(LexicalFrame aParent)
+        protected BlockFrame(LexicalFrame parent)
         {
-            super(aParent);
+            super(parent);
         }
     }
 }
