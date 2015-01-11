@@ -32,12 +32,12 @@ public interface CommentListener
      * by a String whose value depends on the language being parsed, but would
      * typically be the delimiter for the comment.
      *
-     * @param aType an identifier for what type of comment it is.
-     * @param aStartLineNo the starting line number
-     * @param aStartColNo the starting column number
+     * @param type an identifier for what type of comment it is.
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
      */
-    void reportSingleLineComment(String aType,
-                                 int aStartLineNo, int aStartColNo);
+    void reportSingleLineComment(String type,
+                                 int startLineNo, int startColNo);
 
     /**
      * Report the location of a block comment that can span multiple lines.
@@ -45,13 +45,13 @@ public interface CommentListener
      * the language being parsed, but would typically be the delimiter for the
      * comment.
      *
-     * @param aType an identifier for what type of comment it is.
-     * @param aStartLineNo the starting line number
-     * @param aStartColNo the starting column number
-     * @param aEndLineNo the ending line number
-     * @param aEndColNo the ending column number
+     * @param type an identifier for what type of comment it is.
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
+     * @param endLineNo the ending line number
+     * @param endColNo the ending column number
      */
-    void reportBlockComment(String aType,
-                            int aStartLineNo, int aStartColNo,
-                            int aEndLineNo, int aEndColNo);
+    void reportBlockComment(String type,
+                            int startLineNo, int startColNo,
+                            int endLineNo, int endColNo);
 }
