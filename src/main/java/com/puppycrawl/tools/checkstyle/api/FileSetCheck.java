@@ -34,9 +34,9 @@ public interface FileSetCheck
     /**
      * Sets the MessageDispatcher that is used to dispatch error
      * messages to AuditListeners during processing.
-     * @param aDispatcher the dispatcher
+     * @param dispatcher the dispatcher
      */
-    void setMessageDispatcher(MessageDispatcher aDispatcher);
+    void setMessageDispatcher(MessageDispatcher dispatcher);
 
     /**
      * Initialise the instance. This is the time to verify that everything
@@ -49,9 +49,9 @@ public interface FileSetCheck
 
     /**
      * Called when about to be called to process a set of files.
-     * @param aCharset the character set used to read the files.
+     * @param charset the character set used to read the files.
      */
-    void beginProcessing(String aCharset);
+    void beginProcessing(String charset);
 
     /**
      * Request to process a file. The implementation should use the supplied
@@ -67,11 +67,11 @@ public interface FileSetCheck
      * The method should return the set of messages to be logged.
      * </p>
      *
-     * @param aFile the file to be processed
-     * @param aLines an immutable list of the contents of the file.
+     * @param file the file to be processed
+     * @param lines an immutable list of the contents of the file.
      * @return the list of messages to be logged.
      */
-    TreeSet<LocalizedMessage> process(File aFile, List<String> aLines);
+    TreeSet<LocalizedMessage> process(File file, List<String> lines);
 
     /**
      * Called when all the files have been processed. This is the time to

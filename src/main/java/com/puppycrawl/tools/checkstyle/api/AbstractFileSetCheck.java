@@ -33,20 +33,20 @@ public abstract class AbstractFileSetCheck
     implements FileSetCheck
 {
     /** The dispatcher errors are fired to. */
-    private MessageDispatcher mDispatcher;
+    private MessageDispatcher dispatcher;
 
     /** the file extensions that are accepted by this filter */
-    private String[] mFileExtensions = {};
+    private String[] fileExtensions = {};
 
     /** collects the error messages */
-    private final LocalizedMessages mMessages = new LocalizedMessages();
+    private final LocalizedMessages messages = new LocalizedMessages();
 
     /**
      * Called to process a file that matches the specified file extensions.
-     * @param aFile the file to be processed
-     * @param aLines an immutable list of the contents of the file.
+     * @param file the file to be processed
+     * @param lines an immutable list of the contents of the file.
      */
-    protected abstract void processFiltered(File aFile, List<String> aLines);
+    protected abstract void processFiltered(File file, List<String> lines);
 
     /** {@inheritDoc} */
     @Override
@@ -62,19 +62,19 @@ public abstract class AbstractFileSetCheck
 
     /** {@inheritDoc} */
     @Override
-    public void beginProcessing(String aCharset)
+    public void beginProcessing(String charset)
     {
     }
 
     /** {@inheritDoc} */
     @Override
-    public final TreeSet<LocalizedMessage> process(File aFile,
-                                                   List<String> aLines)
+    public final TreeSet<LocalizedMessage> process(File file,
+                                                   List<String> lines)
     {
         getMessageCollector().reset();
         // Process only what interested in
-        if (fileExtensionMatches(aFile)) {
-            processFiltered(aFile, aLines);
+        if (fileExtensionMatches(file)) {
+            processFiltered(file, lines);
         }
         return getMessageCollector().getMessages();
     }
@@ -87,9 +87,9 @@ public abstract class AbstractFileSetCheck
 
     /** {@inheritDoc} */
     @Override
-    public final void setMessageDispatcher(MessageDispatcher aDispatcher)
+    public final void setMessageDispatcher(MessageDispatcher dispatcher)
     {
-        mDispatcher = aDispatcher;
+        this.dispatcher = dispatcher;
     }
 
     /**
@@ -100,30 +100,30 @@ public abstract class AbstractFileSetCheck
      */
     protected final MessageDispatcher getMessageDispatcher()
     {
-        return mDispatcher;
+        return dispatcher;
     }
 
     /**
      * Sets the file extensions that identify the files that pass the
      * filter of this FileSetCheck.
-     * @param aExtensions the set of file extensions. A missing
+     * @param extensions the set of file extensions. A missing
      * initial '.' character of an extension is automatically added.
      */
-    public final void setFileExtensions(String[] aExtensions)
+    public final void setFileExtensions(String[] extensions)
     {
-        if (aExtensions == null) {
-            mFileExtensions = null;
+        if (extensions == null) {
+            fileExtensions = null;
             return;
         }
 
-        mFileExtensions = new String[aExtensions.length];
-        for (int i = 0; i < aExtensions.length; i++) {
-            final String extension = aExtensions[i];
+        fileExtensions = new String[extensions.length];
+        for (int i = 0; i < extensions.length; i++) {
+            final String extension = extensions[i];
             if (extension.startsWith(".")) {
-                mFileExtensions[i] = extension;
+                fileExtensions[i] = extension;
             }
             else {
-                mFileExtensions[i] = "." + extension;
+                fileExtensions[i] = "." + extension;
             }
         }
     }
@@ -137,61 +137,61 @@ public abstract class AbstractFileSetCheck
      */
     protected final LocalizedMessages getMessageCollector()
     {
-        return mMessages;
+        return messages;
     }
 
     @Override
-    public final void log(int aLine, String aKey, Object... aArgs)
+    public final void log(int line, String key, Object... args)
     {
-        log(aLine, 0, aKey, aArgs);
+        log(line, 0, key, args);
     }
 
     @Override
-    public final void log(int aLineNo, int aColNo, String aKey,
-            Object... aArgs)
+    public final void log(int lineNo, int colNo, String key,
+            Object... args)
     {
         getMessageCollector().add(
-            new LocalizedMessage(aLineNo,
-                                 aColNo,
+            new LocalizedMessage(lineNo,
+                                 colNo,
                                  getMessageBundle(),
-                                 aKey,
-                                 aArgs,
+                                 key,
+                                 args,
                                  getSeverityLevel(),
                                  getId(),
                                  this.getClass(),
-                                 this.getCustomMessages().get(aKey)));
+                                 this.getCustomMessages().get(key)));
     }
 
     /**
      * Notify all listeners about the errors in a file.
      * Calls <code>MessageDispatcher.fireErrors()</code> with
      * all logged errors and than clears errors' list.
-     * @param aFileName the audited file
+     * @param fileName the audited file
      */
-    protected final void fireErrors(String aFileName)
+    protected final void fireErrors(String fileName)
     {
         final TreeSet<LocalizedMessage> errors = getMessageCollector()
                 .getMessages();
         getMessageCollector().reset();
-        getMessageDispatcher().fireErrors(aFileName, errors);
+        getMessageDispatcher().fireErrors(fileName, errors);
     }
 
     /**
      * Returns whether the file extension matches what we are meant to
      * process.
-     * @param aFile the file to be checked.
+     * @param file the file to be checked.
      * @return whether there is a match.
      */
-    private boolean fileExtensionMatches(File aFile)
+    private boolean fileExtensionMatches(File file)
     {
-        if ((null == mFileExtensions) || (mFileExtensions.length == 0)) {
+        if ((null == fileExtensions) || (fileExtensions.length == 0)) {
             return true;
         }
 
         // normalize extensions so all of them have a leading dot
-        final String[] withDotExtensions = new String[mFileExtensions.length];
-        for (int i = 0; i < mFileExtensions.length; i++) {
-            final String extension = mFileExtensions[i];
+        final String[] withDotExtensions = new String[fileExtensions.length];
+        for (int i = 0; i < fileExtensions.length; i++) {
+            final String extension = fileExtensions[i];
             if (extension.startsWith(".")) {
                 withDotExtensions[i] = extension;
             }
@@ -200,7 +200,7 @@ public abstract class AbstractFileSetCheck
             }
         }
 
-        final String fileName = aFile.getName();
+        final String fileName = file.getName();
         for (final String fileExtension : withDotExtensions) {
             if (fileName.endsWith(fileExtension)) {
                 return true;

@@ -27,63 +27,63 @@ package com.puppycrawl.tools.checkstyle.api;
 public final class SeverityLevelCounter implements AuditListener
 {
     /** The severity level to watch out for. */
-    private SeverityLevel mLevel;
+    private SeverityLevel level;
 
     /** Keeps track of the number of counted events. */
-    private int mCount;
+    private int count;
 
     /**
      * Creates a new counter.
-     * @param aLevel the severity level events need to have, must be non-null.
+     * @param level the severity level events need to have, must be non-null.
      */
-    public SeverityLevelCounter(SeverityLevel aLevel)
+    public SeverityLevelCounter(SeverityLevel level)
     {
-        if (aLevel == null) {
+        if (level == null) {
             throw new IllegalArgumentException();
         }
-        mLevel = aLevel;
+        this.level = level;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void addError(AuditEvent aEvt)
+    public void addError(AuditEvent evt)
     {
-        if (mLevel.equals(aEvt.getSeverityLevel())) {
-            mCount++;
+        if (level.equals(evt.getSeverityLevel())) {
+            count++;
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public void addException(AuditEvent aEvt, Throwable aThrowable)
+    public void addException(AuditEvent evt, Throwable throwable)
     {
-        if (SeverityLevel.ERROR.equals(mLevel)) {
-            mCount++;
+        if (SeverityLevel.ERROR.equals(level)) {
+            count++;
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public void auditStarted(AuditEvent aEvt)
+    public void auditStarted(AuditEvent evt)
     {
-        mCount = 0;
+        count = 0;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void fileStarted(AuditEvent aEvt)
-    {
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void auditFinished(AuditEvent aEvt)
+    public void fileStarted(AuditEvent evt)
     {
     }
 
     /** {@inheritDoc} */
     @Override
-    public void fileFinished(AuditEvent aEvt)
+    public void auditFinished(AuditEvent evt)
+    {
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void fileFinished(AuditEvent evt)
     {
     }
 
@@ -93,6 +93,6 @@ public final class SeverityLevelCounter implements AuditListener
      */
     public int getCount()
     {
-        return mCount;
+        return count;
     }
 }

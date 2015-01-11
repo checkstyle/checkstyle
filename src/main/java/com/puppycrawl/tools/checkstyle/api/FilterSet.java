@@ -31,24 +31,24 @@ public class FilterSet
     implements Filter
 {
     /** filter set */
-    private final Set<Filter> mFilters = Sets.newHashSet();
+    private final Set<Filter> filters = Sets.newHashSet();
 
     /**
      * Adds a Filter to the set.
-     * @param aFilter the Filter to add.
+     * @param filter the Filter to add.
      */
-    public void addFilter(Filter aFilter)
+    public void addFilter(Filter filter)
     {
-        mFilters.add(aFilter);
+        filters.add(filter);
     }
 
     /**
      * Removes filter.
-     * @param aFilter filter to remove.
+     * @param filter filter to remove.
      */
-    public void removeFilter(Filter aFilter)
+    public void removeFilter(Filter filter)
     {
-        mFilters.remove(aFilter);
+        filters.remove(filter);
     }
 
     /**
@@ -57,37 +57,37 @@ public class FilterSet
      */
     protected Set<Filter> getFilters()
     {
-        return mFilters;
+        return filters;
     }
 
     @Override
     public String toString()
     {
-        return mFilters.toString();
+        return filters.toString();
     }
 
     @Override
     public int hashCode()
     {
-        return mFilters.hashCode();
+        return filters.hashCode();
     }
 
     @Override
-    public boolean equals(Object aObject)
+    public boolean equals(Object object)
     {
-        if (aObject instanceof FilterSet) {
-            final FilterSet other = (FilterSet) aObject;
-            return this.mFilters.equals(other.mFilters);
+        if (object instanceof FilterSet) {
+            final FilterSet other = (FilterSet) object;
+            return this.filters.equals(other.filters);
         }
         return false;
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean accept(AuditEvent aEvent)
+    public boolean accept(AuditEvent event)
     {
-        for (Filter filter : mFilters) {
-            if (!filter.accept(aEvent)) {
+        for (Filter filter : filters) {
+            if (!filter.accept(event)) {
                 return false;
             }
         }
@@ -97,6 +97,6 @@ public class FilterSet
     /** Clears the FilterSet. */
     public void clear()
     {
-        mFilters.clear();
+        filters.clear();
     }
 }

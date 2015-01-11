@@ -27,8 +27,8 @@ public interface Filter
 {
     /**
      * Determines whether or not a filtered AuditEvent is accepted.
-     * @param aEvent the AudtiEvent to filter.
-     * @return true if the aEvent is accepted.
+     * @param event the AuditEvent to filter.
+     * @return true if the event is accepted.
      */
-    boolean accept(AuditEvent aEvent);
+    boolean accept(AuditEvent event);
 }

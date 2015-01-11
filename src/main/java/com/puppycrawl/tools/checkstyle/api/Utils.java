@@ -74,14 +74,14 @@ public final class Utils
      * Returns whether the specified string contains only whitespace up to the
      * specified index.
      *
-     * @param aIndex index to check up to
-     * @param aLine the line to check
+     * @param index index to check up to
+     * @param line the line to check
      * @return whether there is only whitespace
      */
-    public static boolean whitespaceBefore(int aIndex, String aLine)
+    public static boolean whitespaceBefore(int index, String line)
     {
-        for (int i = 0; i < aIndex; i++) {
-            if (!Character.isWhitespace(aLine.charAt(i))) {
+        for (int i = 0; i < index; i++) {
+            if (!Character.isWhitespace(line.charAt(i))) {
                 return false;
             }
         }
@@ -92,14 +92,14 @@ public final class Utils
      * Returns the length of a string ignoring all trailing whitespace. It is a
      * pity that there is not a trim() like method that only removed the
      * trailing whitespace.
-     * @param aLine the string to process
+     * @param line the string to process
      * @return the length of the string ignoring all trailing whitespace
      **/
-    public static int lengthMinusTrailingWhitespace(String aLine)
+    public static int lengthMinusTrailingWhitespace(String line)
     {
-        int len = aLine.length();
+        int len = line.length();
         for (int i = len - 1; i >= 0; i--) {
-            if (!Character.isWhitespace(aLine.charAt(i))) {
+            if (!Character.isWhitespace(line.charAt(i))) {
                 break;
             }
             len--;
@@ -111,19 +111,19 @@ public final class Utils
      * Returns the length of a String prefix with tabs expanded.
      * Each tab is counted as the number of characters is takes to
      * jump to the next tab stop.
-     * @param aString the input String
-     * @param aToIdx index in aString (exclusive) where the calculation stops
-     * @param aTabWidth the distance between tab stop position.
-     * @return the length of aString.substring(0, aToIdx) with tabs expanded.
+     * @param string the input String
+     * @param toIdx index in string (exclusive) where the calculation stops
+     * @param tabWidth the distance between tab stop position.
+     * @return the length of string.substring(0, toIdx) with tabs expanded.
      */
-    public static int lengthExpandedTabs(String aString,
-                                         int aToIdx,
-                                         int aTabWidth)
+    public static int lengthExpandedTabs(String string,
+                                         int toIdx,
+                                         int tabWidth)
     {
         int len = 0;
-        for (int idx = 0; idx < aToIdx; idx++) {
-            if (aString.charAt(idx) == '\t') {
-                len = (len / aTabWidth + 1) * aTabWidth;
+        for (int idx = 0; idx < toIdx; idx++) {
+            if (string.charAt(idx) == '\t') {
+                len = (len / tabWidth + 1) * tabWidth;
             }
             else {
                 len++;
@@ -137,30 +137,30 @@ public final class Utils
      * regular expression. It calls {@link #getPattern(String, int)} with the
      * compile flags defaults to 0.
      * @return an Pattern object for the supplied pattern
-     * @param aPattern the regular expression pattern
+     * @param pattern the regular expression pattern
      * @throws PatternSyntaxException an invalid pattern was supplied
      **/
-    public static Pattern getPattern(String aPattern)
+    public static Pattern getPattern(String pattern)
         throws PatternSyntaxException
     {
-        return getPattern(aPattern, 0);
+        return getPattern(pattern, 0);
     }
 
     /**
      * This is a factory method to return an Pattern object for the specified
      * regular expression and compile flags.
      * @return an Pattern object for the supplied pattern
-     * @param aPattern the regular expression pattern
-     * @param aCompileFlags the compilation flags
+     * @param pattern the regular expression pattern
+     * @param compileFlags the compilation flags
      * @throws PatternSyntaxException an invalid pattern was supplied
      **/
-    public static Pattern getPattern(String aPattern, int aCompileFlags)
+    public static Pattern getPattern(String pattern, int compileFlags)
         throws PatternSyntaxException
     {
-        final String key = aPattern + ":flags-" + aCompileFlags;
+        final String key = pattern + ":flags-" + compileFlags;
         Pattern retVal = CREATED_RES.get(key);
         if (retVal == null) {
-            retVal = Pattern.compile(aPattern, aCompileFlags);
+            retVal = Pattern.compile(pattern, compileFlags);
             CREATED_RES.putIfAbsent(key, retVal);
         }
         return retVal;
@@ -169,16 +169,16 @@ public final class Utils
     /**
      * Loads the contents of a file in a String array.
      * @return the lines in the file
-     * @param aFileName the name of the file to load
+     * @param fileName the name of the file to load
      * @throws IOException error occurred
      * @deprecated consider using {@link FileText} instead
      **/
     @Deprecated
-    public static String[] getLines(String aFileName)
+    public static String[] getLines(String fileName)
         throws IOException
     {
         return getLines(
-            aFileName,
+            fileName,
             System.getProperty("file.encoding", "UTF-8"));
     }
 
@@ -186,20 +186,20 @@ public final class Utils
      * Loads the contents of a file in a String array using
      * the named charset.
      * @return the lines in the file
-     * @param aFileName the name of the file to load
-     * @param aCharsetName the name of a supported charset
+     * @param fileName the name of the file to load
+     * @param charsetName the name of a supported charset
      * @throws IOException error occurred
      * @deprecated consider using {@link FileText} instead
      **/
     @Deprecated
-    public static String[] getLines(String aFileName, String aCharsetName)
+    public static String[] getLines(String fileName, String charsetName)
         throws IOException
     {
         final List<String> lines = Lists.newArrayList();
-        final FileInputStream fr = new FileInputStream(aFileName);
+        final FileInputStream fr = new FileInputStream(fileName);
         LineNumberReader lnr = null;
         try {
-            lnr = new LineNumberReader(new InputStreamReader(fr, aCharsetName));
+            lnr = new LineNumberReader(new InputStreamReader(fr, charsetName));
         }
         catch (final UnsupportedEncodingException ex) {
             fr.close();
@@ -223,51 +223,51 @@ public final class Utils
 
     /**
      * Helper method to create a regular expression.
-     * @param aPattern the pattern to match
+     * @param pattern the pattern to match
      * @return a created regexp object
      * @throws ConversionException if unable to create Pattern object.
      **/
-    public static Pattern createPattern(String aPattern)
+    public static Pattern createPattern(String pattern)
         throws ConversionException
     {
         Pattern retVal = null;
         try {
-            retVal = getPattern(aPattern);
+            retVal = getPattern(pattern);
         }
         catch (final PatternSyntaxException e) {
             throw new ConversionException(
-                "Failed to initialise regexp expression " + aPattern, e);
+                "Failed to initialise regexp expression " + pattern, e);
         }
         return retVal;
     }
 
     /**
      * @return the base class name from a fully qualified name
-     * @param aType the fully qualified name. Cannot be null
+     * @param type the fully qualified name. Cannot be null
      */
-    public static String baseClassname(String aType)
+    public static String baseClassname(String type)
     {
-        final int i = aType.lastIndexOf(".");
-        return (i == -1) ? aType : aType.substring(i + 1);
+        final int i = type.lastIndexOf(".");
+        return (i == -1) ? type : type.substring(i + 1);
     }
 
     /**
      * Create a stripped down version of a filename.
-     * @param aBasedir the prefix to strip off the original filename
-     * @param aFileName the original filename
+     * @param basedir the prefix to strip off the original filename
+     * @param fileName the original filename
      * @return the filename where an initial prefix of basedir is stripped
      */
     public static String getStrippedFileName(
-            final String aBasedir, final String aFileName)
+            final String basedir, final String fileName)
     {
         final String stripped;
-        if ((aBasedir == null) || !aFileName.startsWith(aBasedir)) {
-            stripped = aFileName;
+        if ((basedir == null) || !fileName.startsWith(basedir)) {
+            stripped = fileName;
         }
         else {
             // making the assumption that there is text after basedir
-            final int skipSep = aBasedir.endsWith(File.separator) ? 0 : 1;
-            stripped = aFileName.substring(aBasedir.length() + skipSep);
+            final int skipSep = basedir.endsWith(File.separator) ? 0 : 1;
+            stripped = fileName.substring(basedir.length() + skipSep);
         }
         return stripped;
     }
@@ -276,13 +276,13 @@ public final class Utils
      * Closes the supplied {@link Closeable} object ignoring an
      * {@link IOException} if it is thrown. Honestly, what are you going to
      * do if you cannot close a file.
-     * @param aShutting the object to be closed.
+     * @param shutting the object to be closed.
      */
-    public static void closeQuietly(Closeable aShutting)
+    public static void closeQuietly(Closeable shutting)
     {
-        if (null != aShutting) {
+        if (null != shutting) {
             try {
-                aShutting.close();
+                shutting.close();
             }
             catch (IOException e) {
                 ; // ignore

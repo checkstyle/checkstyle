@@ -27,40 +27,40 @@ public class LineColumn implements Comparable<LineColumn>
 {
 
     /** The one-based line number */
-    private final int mLine;
+    private final int line;
 
     /** The zero-based column number */
-    private final int mCol;
+    private final int col;
 
     /**
      * Constructs a new pair of line and column numbers.
-     * @param aLine the one-based line number
-     * @param aCol the zero-based column number
+     * @param line the one-based line number
+     * @param col the zero-based column number
      */
-    public LineColumn(int aLine, int aCol)
+    public LineColumn(int line, int col)
     {
-        mLine = aLine;
-        mCol = aCol;
+        this.line = line;
+        this.col = col;
     }
 
     /** @return the one-based line number */
     public int getLine()
     {
-        return mLine;
+        return line;
     }
 
     /** @return the zero-based column number */
     public int getColumn()
     {
-        return mCol;
+        return col;
     }
 
     /** {@inheritDoc} */
     @Override
-    public int compareTo(LineColumn aLineColumn)
+    public int compareTo(LineColumn lineColumn)
     {
-        return (this.getLine() != aLineColumn.getLine())
-            ? this.getLine() - aLineColumn.getLine()
-            : this.getColumn() - aLineColumn.getColumn();
+        return (this.getLine() != lineColumn.getLine())
+            ? this.getLine() - lineColumn.getLine()
+            : this.getColumn() - lineColumn.getColumn();
     }
 }

@@ -66,9 +66,9 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
+            final int type = ast.getType();
             return type == TokenTypes.PACKAGE_DEF
                 || type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.INTERFACE_DEF
@@ -84,9 +84,9 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
+            final int type = ast.getType();
             return type == TokenTypes.PACKAGE_DEF
                 || type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.INTERFACE_DEF
@@ -95,7 +95,7 @@ public enum JavadocTagInfo
                 || type == TokenTypes.METHOD_DEF
                 || type == TokenTypes.CTOR_DEF
                 || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(aAst));
+                && !ScopeUtils.isLocalVariableDef(ast));
         }
     },
 
@@ -106,9 +106,9 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
+            final int type = ast.getType();
             return type == TokenTypes.PACKAGE_DEF
                 || type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.INTERFACE_DEF
@@ -116,7 +116,7 @@ public enum JavadocTagInfo
                 || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.METHOD_DEF || type == TokenTypes.CTOR_DEF
                 || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(aAst));
+                && !ScopeUtils.isLocalVariableDef(ast));
         }
     },
 
@@ -127,9 +127,9 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
+            final int type = ast.getType();
             return type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.INTERFACE_DEF
                 || type == TokenTypes.ENUM_DEF
@@ -139,7 +139,7 @@ public enum JavadocTagInfo
                 || type == TokenTypes.ENUM_CONSTANT_DEF
                 || type == TokenTypes.ANNOTATION_FIELD_DEF
                 || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(aAst));
+                && !ScopeUtils.isLocalVariableDef(ast));
         }
     },
 
@@ -150,9 +150,9 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
+            final int type = ast.getType();
             return type == TokenTypes.METHOD_DEF || type == TokenTypes.CTOR_DEF;
         }
     },
@@ -164,13 +164,13 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
+            final int type = ast.getType();
 
             return type == TokenTypes.METHOD_DEF
-                && !aAst.branchContains(TokenTypes.LITERAL_STATIC)
-                && ScopeUtils.getScopeFromMods(aAst
+                && !ast.branchContains(TokenTypes.LITERAL_STATIC)
+                && ScopeUtils.getScopeFromMods(ast
                     .findFirstToken(TokenTypes.MODIFIERS)) != Scope.PRIVATE;
         }
     },
@@ -182,9 +182,9 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
+            final int type = ast.getType();
             return type == TokenTypes.PACKAGE_DEF
                 || type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.INTERFACE_DEF
@@ -192,7 +192,7 @@ public enum JavadocTagInfo
                 || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.METHOD_DEF || type == TokenTypes.CTOR_DEF
                 || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(aAst));
+                && !ScopeUtils.isLocalVariableDef(ast));
         }
     },
 
@@ -203,9 +203,9 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
+            final int type = ast.getType();
             return type == TokenTypes.PACKAGE_DEF
                 || type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.INTERFACE_DEF
@@ -213,7 +213,7 @@ public enum JavadocTagInfo
                 || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.METHOD_DEF || type == TokenTypes.CTOR_DEF
                 || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(aAst));
+                && !ScopeUtils.isLocalVariableDef(ast));
         }
     },
 
@@ -224,9 +224,9 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
+            final int type = ast.getType();
             return type == TokenTypes.PACKAGE_DEF
                 || type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.INTERFACE_DEF
@@ -234,7 +234,7 @@ public enum JavadocTagInfo
                 || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.METHOD_DEF || type == TokenTypes.CTOR_DEF
                 || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(aAst));
+                && !ScopeUtils.isLocalVariableDef(ast));
         }
     },
 
@@ -245,9 +245,9 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
+            final int type = ast.getType();
             return type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.INTERFACE_DEF
                 || type == TokenTypes.METHOD_DEF
@@ -262,10 +262,10 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
-            final DetailAST returnType = aAst.findFirstToken(TokenTypes.TYPE);
+            final int type = ast.getType();
+            final DetailAST returnType = ast.findFirstToken(TokenTypes.TYPE);
 
             return type == TokenTypes.METHOD_DEF
                 && returnType.getFirstChild().getType()
@@ -281,9 +281,9 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
+            final int type = ast.getType();
             return type == TokenTypes.PACKAGE_DEF
                 || type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.INTERFACE_DEF
@@ -292,7 +292,7 @@ public enum JavadocTagInfo
                 || type == TokenTypes.METHOD_DEF
                 || type == TokenTypes.CTOR_DEF
                 || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(aAst));
+                && !ScopeUtils.isLocalVariableDef(ast));
         }
     },
 
@@ -303,12 +303,12 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
+            final int type = ast.getType();
 
             return type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(aAst);
+                && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
 
@@ -319,10 +319,10 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
-            final DetailAST methodNameAst = aAst
+            final int type = ast.getType();
+            final DetailAST methodNameAst = ast
                 .findFirstToken(TokenTypes.IDENT);
             final String methodName = methodNameAst.getText();
 
@@ -344,14 +344,14 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
-            final DetailAST varType = aAst.findFirstToken(TokenTypes.TYPE);
+            final int type = ast.getType();
+            final DetailAST varType = ast.findFirstToken(TokenTypes.TYPE);
 
             return type == TokenTypes.VARIABLE_DEF
                 && varType.getType() == TokenTypes.ARRAY_DECLARATOR
-                && "ObjectStreamField"
+                && "ObjectStreafield"
                     .equals(varType.getFirstChild().getText());
         }
     },
@@ -363,9 +363,9 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
+            final int type = ast.getType();
             return type == TokenTypes.PACKAGE_DEF
                 || type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.INTERFACE_DEF
@@ -374,7 +374,7 @@ public enum JavadocTagInfo
                 || type == TokenTypes.METHOD_DEF
                 || type == TokenTypes.CTOR_DEF
                 || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(aAst));
+                && !ScopeUtils.isLocalVariableDef(ast));
         }
     },
 
@@ -385,9 +385,9 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
+            final int type = ast.getType();
             return type == TokenTypes.METHOD_DEF
                 || type == TokenTypes.CTOR_DEF;
         }
@@ -400,9 +400,9 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
+            final int type = ast.getType();
             return type == TokenTypes.PACKAGE_DEF
                 || type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.INTERFACE_DEF
@@ -411,7 +411,7 @@ public enum JavadocTagInfo
                 || type == TokenTypes.METHOD_DEF
                 || type == TokenTypes.CTOR_DEF
                 || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(aAst));
+                && !ScopeUtils.isLocalVariableDef(ast));
         }
     },
 
@@ -422,9 +422,9 @@ public enum JavadocTagInfo
     {
         /** {@inheritDoc} */
         @Override
-        public boolean isValidOn(final DetailAST aAst)
+        public boolean isValidOn(final DetailAST ast)
         {
-            final int type = aAst.getType();
+            final int type = ast.getType();
             return type == TokenTypes.PACKAGE_DEF
                 || type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.INTERFACE_DEF
@@ -456,36 +456,36 @@ public enum JavadocTagInfo
     }
 
     /** the tag text **/
-    private final String mText;
+    private final String text;
     /** the tag name **/
-    private final String mName;
+    private final String name;
     /** the tag type **/
-    private final Type mType;
+    private final Type type;
     /** if tag is valid in package.html **/
-    private final boolean mValidInPackageHtml;
+    private final boolean validInPackageHtml;
     /** if tag is valid in overview.html **/
-    private final boolean mValidInOverviewHtml;
+    private final boolean validInOverviewHtml;
 
     /**
      * Sets the various properties of a Javadoc tag.
      *
-     * @param aText the tag text
-     * @param aName the tag name
-     * @param aType the type of tag
-     * @param aValidInPackageHtml whether the tag is valid
+     * @param text the tag text
+     * @param name the tag name
+     * @param type the type of tag
+     * @param validInPackageHtml whether the tag is valid
      * in package.html file
-     * @param aValidInOverviewHtml whether the tag is valid
+     * @param validInOverviewHtml whether the tag is valid
      * in overview.html file
      */
-    private JavadocTagInfo(final String aText, final String aName,
-        final Type aType, final boolean aValidInPackageHtml,
-        final boolean aValidInOverviewHtml)
+    private JavadocTagInfo(final String text, final String name,
+        final Type type, final boolean validInPackageHtml,
+        final boolean validInOverviewHtml)
     {
-        this.mText = aText;
-        this.mName = aName;
-        this.mType = aType;
-        this.mValidInPackageHtml = aValidInPackageHtml;
-        this.mValidInOverviewHtml = aValidInOverviewHtml;
+        this.text = text;
+        this.name = name;
+        this.type = type;
+        this.validInPackageHtml = validInPackageHtml;
+        this.validInOverviewHtml = validInOverviewHtml;
     }
 
     /**
@@ -504,10 +504,10 @@ public enum JavadocTagInfo
      * CLASS_DEF's cannot return a value.
      * </p>
      *
-     * @param aAST the AST representing a type that can be Javadoc'd
+     * @param ast the AST representing a type that can be Javadoc'd
      * @return true if tag is valid.
      */
-    public abstract boolean isValidOn(DetailAST aAST);
+    public abstract boolean isValidOn(DetailAST ast);
 
     /**
      * Checks if tag is valid in a package.html Javadoc file.
@@ -516,7 +516,7 @@ public enum JavadocTagInfo
      */
     public boolean isValidInPackageHtml()
     {
-        return this.mValidInPackageHtml;
+        return this.validInPackageHtml;
     }
 
     /**
@@ -526,7 +526,7 @@ public enum JavadocTagInfo
      */
     public boolean isValidInOverviewHtml()
     {
-        return this.mValidInOverviewHtml;
+        return this.validInOverviewHtml;
     }
 
     /**
@@ -535,7 +535,7 @@ public enum JavadocTagInfo
      */
     public String getText()
     {
-        return this.mText;
+        return this.text;
     }
 
     /**
@@ -544,7 +544,7 @@ public enum JavadocTagInfo
      */
     public String getName()
     {
-        return this.mName;
+        return this.name;
     }
 
     /**
@@ -553,26 +553,26 @@ public enum JavadocTagInfo
      */
     public Type getType()
     {
-        return this.mType;
+        return this.type;
     }
 
     /**
      * returns a JavadocTag from the tag text.
-     * @param aText String representing the tag text
+     * @param text String representing the tag text
      * @return Returns a JavadocTag type from a String representing the tag
      * @throws NullPointerException if the text is null
      * @throws IllegalArgumentException if the text is not a valid tag
      */
-    public static JavadocTagInfo fromText(final String aText)
+    public static JavadocTagInfo fromText(final String text)
     {
-        if (aText == null) {
+        if (text == null) {
             throw new NullPointerException("the text is null");
         }
 
-        final JavadocTagInfo tag = TEXT_TO_TAG.get(aText);
+        final JavadocTagInfo tag = TEXT_TO_TAG.get(text);
 
         if (tag == null) {
-            throw new IllegalArgumentException("the text [" + aText
+            throw new IllegalArgumentException("the text [" + text
                 + "] is not a valid Javadoc tag text");
         }
 
@@ -581,22 +581,22 @@ public enum JavadocTagInfo
 
     /**
      * returns a JavadocTag from the tag name.
-     * @param aName String name of the tag
+     * @param name String name of the tag
      * @return Returns a JavadocTag type from a String representing the tag
      * @throws NullPointerException if the text is null
      * @throws IllegalArgumentException if the text is not a valid tag. The name
      *    can be checked using {@link JavadocTagInfo#isValidName(String)}
      */
-    public static JavadocTagInfo fromName(final String aName)
+    public static JavadocTagInfo fromName(final String name)
     {
-        if (aName == null) {
+        if (name == null) {
             throw new NullPointerException("the name is null");
         }
 
-        final JavadocTagInfo tag = NAME_TO_TAG.get(aName);
+        final JavadocTagInfo tag = NAME_TO_TAG.get(name);
 
         if (tag == null) {
-            throw new IllegalArgumentException("the name [" + aName
+            throw new IllegalArgumentException("the name [" + name
                 + "] is not a valid Javadoc tag name");
         }
 
@@ -605,12 +605,12 @@ public enum JavadocTagInfo
 
     /**
      * Returns whether the provided name is for a valid tag.
-     * @param aName the tag name to check.
+     * @param name the tag name to check.
      * @return whether the provided name is for a valid tag.
      */
-    public static boolean isValidName(final String aName)
+    public static boolean isValidName(final String name)
     {
-        return NAME_TO_TAG.containsKey(aName);
+        return NAME_TO_TAG.containsKey(name);
     }
 
     /**
@@ -619,10 +619,10 @@ public enum JavadocTagInfo
     @Override
     public String toString()
     {
-        return "text [" + this.mText + "] name [" + this.mName
-            + "] type [" + this.mType
-            + "] validInPackageHtml [" + this.mValidInPackageHtml
-            + "] validInOverviewHtml [" + this.mValidInOverviewHtml + "]";
+        return "text [" + this.text + "] name [" + this.name
+            + "] type [" + this.type
+            + "] validInPackageHtml [" + this.validInPackageHtml
+            + "] validInOverviewHtml [" + this.validInOverviewHtml + "]";
     }
 
     /**

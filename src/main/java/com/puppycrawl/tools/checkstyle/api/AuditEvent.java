@@ -44,41 +44,41 @@ public final class AuditEvent
     /** Record a version. */
     private static final long serialVersionUID = -3774725606973812736L;
     /** filename event associated with **/
-    private final String mFileName;
+    private final String fileName;
     /** message associated with the event **/
-    private final transient LocalizedMessage mMessage;
+    private final transient LocalizedMessage message;
 
     /**
      * Creates a new instance.
-     * @param aSource the object that created the event
+     * @param source the object that created the event
      */
-    public AuditEvent(Object aSource)
+    public AuditEvent(Object source)
     {
-        this(aSource, null);
+        this(source, null);
     }
 
     /**
      * Creates a new <code>AuditEvent</code> instance.
-     * @param aSrc source of the event
-     * @param aFileName file associated with the event
+     * @param src source of the event
+     * @param fileName file associated with the event
      */
-    public AuditEvent(Object aSrc, String aFileName)
+    public AuditEvent(Object src, String fileName)
     {
-        this(aSrc, aFileName, null);
+        this(src, fileName, null);
     }
 
     /**
      * Creates a new <code>AuditEvent</code> instance.
      *
-     * @param aSrc source of the event
-     * @param aFileName file associated with the event
-     * @param aMessage the actual message
+     * @param src source of the event
+     * @param fileName file associated with the event
+     * @param message the actual message
      */
-    public AuditEvent(Object aSrc, String aFileName, LocalizedMessage aMessage)
+    public AuditEvent(Object src, String fileName, LocalizedMessage message)
     {
-        super(aSrc);
-        mFileName = aFileName;
-        mMessage = aMessage;
+        super(src);
+        this.fileName = fileName;
+        this.message = message;
     }
 
     /**
@@ -87,7 +87,7 @@ public final class AuditEvent
      */
     public String getFileName()
     {
-        return mFileName;
+        return fileName;
     }
 
     /**
@@ -97,7 +97,7 @@ public final class AuditEvent
      */
     public int getLine()
     {
-        return mMessage.getLineNo();
+        return message.getLineNo();
     }
 
     /**
@@ -106,21 +106,21 @@ public final class AuditEvent
      */
     public String getMessage()
     {
-        return mMessage.getMessage();
+        return message.getMessage();
     }
 
     /** @return the column associated with the message **/
     public int getColumn()
     {
-        return mMessage.getColumnNo();
+        return message.getColumnNo();
     }
 
     /** @return the audit event severity level **/
     public SeverityLevel getSeverityLevel()
     {
-        return (mMessage == null)
+        return (message == null)
             ? SeverityLevel.INFO
-            : mMessage.getSeverityLevel();
+            : message.getSeverityLevel();
     }
 
     /**
@@ -129,18 +129,18 @@ public final class AuditEvent
      */
     public String getModuleId()
     {
-        return mMessage.getModuleId();
+        return message.getModuleId();
     }
 
     /** @return the name of the source for the message **/
     public String getSourceName()
     {
-        return mMessage.getSourceName();
+        return message.getSourceName();
     }
 
     /** @return the localized message **/
     public LocalizedMessage getLocalizedMessage()
     {
-        return mMessage;
+        return message;
     }
 }

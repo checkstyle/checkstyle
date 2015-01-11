@@ -52,29 +52,29 @@ public final class AnnotationUtility
      * name given.
      * </p>
      *
-     * @param aAST the current node
-     * @param aAnnotation the annotation name to check for
+     * @param ast the current node
+     * @param annotation the annotation name to check for
      * @return true if contains the annotation
-     * @throws NullPointerException if the aAST or
-     * aAnnotation is null
+     * @throws NullPointerException if the ast or
+     * annotation is null
      */
-    public static boolean containsAnnotation(final DetailAST aAST,
-        String aAnnotation)
+    public static boolean containsAnnotation(final DetailAST ast,
+        String annotation)
     {
-        return AnnotationUtility.getAnnotation(aAST, aAnnotation) != null;
+        return AnnotationUtility.getAnnotation(ast, annotation) != null;
     }
 
     /**
      * Checks to see if the AST is annotated with
      * any annotation.
      *
-     * @param aAST the current node
+     * @param ast the current node
      * @return true if contains an annotation
-     * @throws NullPointerException if the aAST is null
+     * @throws NullPointerException if the ast is null
      */
-    public static boolean containsAnnotation(final DetailAST aAST)
+    public static boolean containsAnnotation(final DetailAST ast)
     {
-        final DetailAST holder = AnnotationUtility.getAnnotationHolder(aAST);
+        final DetailAST holder = AnnotationUtility.getAnnotationHolder(ast);
         return holder != null && holder.branchContains(TokenTypes.ANNOTATION);
     }
 
@@ -83,25 +83,25 @@ public final class AnnotationUtility
      * potentially annotated AST.  Returns <code>null</code>
      * the passed in AST is not have an Annotation Holder.
      *
-     * @param aAST the current node
+     * @param ast the current node
      * @return the Annotation Holder
-     * @throws NullPointerException if the aAST is null
+     * @throws NullPointerException if the ast is null
      */
-    public static DetailAST getAnnotationHolder(DetailAST aAST)
+    public static DetailAST getAnnotationHolder(DetailAST ast)
     {
-        if (aAST == null) {
-            throw new NullPointerException("the aAST is null");
+        if (ast == null) {
+            throw new NullPointerException("the ast is null");
         }
 
         final DetailAST annotationHolder;
 
-        if (aAST.getType() == TokenTypes.ENUM_CONSTANT_DEF
-            || aAST.getType() == TokenTypes.PACKAGE_DEF)
+        if (ast.getType() == TokenTypes.ENUM_CONSTANT_DEF
+            || ast.getType() == TokenTypes.PACKAGE_DEF)
         {
-            annotationHolder = aAST.findFirstToken(TokenTypes.ANNOTATIONS);
+            annotationHolder = ast.findFirstToken(TokenTypes.ANNOTATIONS);
         }
         else {
-            annotationHolder = aAST.findFirstToken(TokenTypes.MODIFIERS);
+            annotationHolder = ast.findFirstToken(TokenTypes.MODIFIERS);
         }
 
         return annotationHolder;
@@ -125,38 +125,38 @@ public final class AnnotationUtility
      * name given.
      * </p>
      *
-     * @param aAST the current node
-     * @param aAnnotation the annotation name to check for
+     * @param ast the current node
+     * @param annotation the annotation name to check for
      * @return the AST representing that annotation
-     * @throws NullPointerException if the aAST or
-     * aAnnotation is null
+     * @throws NullPointerException if the ast or
+     * annotation is null
      */
-    public static DetailAST getAnnotation(final DetailAST aAST,
-        String aAnnotation)
+    public static DetailAST getAnnotation(final DetailAST ast,
+        String annotation)
     {
-        if (aAST == null) {
-            throw new NullPointerException("the aAST is null");
+        if (ast == null) {
+            throw new NullPointerException("the ast is null");
         }
 
-        if (aAnnotation == null) {
-            throw new NullPointerException("the aAnnotation is null");
+        if (annotation == null) {
+            throw new NullPointerException("the annotation is null");
         }
 
-        if (aAnnotation.trim().length() == 0) {
-            throw new IllegalArgumentException("the aAnnotation"
+        if (annotation.trim().length() == 0) {
+            throw new IllegalArgumentException("the annotation"
                 + "is empty or spaces");
         }
 
-        final DetailAST holder = AnnotationUtility.getAnnotationHolder(aAST);
+        final DetailAST holder = AnnotationUtility.getAnnotationHolder(ast);
 
         for (DetailAST child = holder.getFirstChild();
             child != null; child = child.getNextSibling())
         {
             if (child.getType() == TokenTypes.ANNOTATION) {
                 final DetailAST at = child.getFirstChild();
-                final String aName =
+                final String name =
                     FullIdent.createFullIdent(at.getNextSibling()).getText();
-                if (aAnnotation.equals(aName)) {
+                if (annotation.equals(name)) {
                     return child;
                 }
             }
@@ -169,40 +169,40 @@ public final class AnnotationUtility
      * Checks to see what the passed in AST (representing
      * an annotation) is annotating.
      *
-     * @param aAST the AST representing an annotation.
+     * @param ast the AST representing an annotation.
      * @return the AST the annotation is annotating.
-     * @throws NullPointerException if the aAST is null
-     * @throws IllegalArgumentException if the aAST is not
+     * @throws NullPointerException if the ast is null
+     * @throws IllegalArgumentException if the ast is not
      * an {@link TokenTypes#ANNOTATION}
      */
-    public static DetailAST annotatingWhat(DetailAST aAST)
+    public static DetailAST annotatingWhat(DetailAST ast)
     {
-        if (aAST == null) {
-            throw new NullPointerException("the aAST is null");
+        if (ast == null) {
+            throw new NullPointerException("the ast is null");
         }
 
-        if (aAST.getType() != TokenTypes.ANNOTATION) {
+        if (ast.getType() != TokenTypes.ANNOTATION) {
             throw new IllegalArgumentException(
-                "The aAST is not an annotation. AST: " + aAST);
+                "The ast is not an annotation. AST: " + ast);
         }
 
-        return aAST.getParent().getParent();
+        return ast.getParent().getParent();
     }
 
     /**
      * Checks to see if the passed in AST (representing
      * an annotation) is annotating the passed in type.
-     * @param aAST the AST representing an annotation
-     * @param aTokenType the passed in type
+     * @param ast the AST representing an annotation
+     * @param tokenType the passed in type
      * @return true if the annotation is annotating a type
      * equal to the passed in type
-     * @throws NullPointerException if the aAST is null
-     * @throws IllegalArgumentException if the aAST is not
+     * @throws NullPointerException if the ast is null
+     * @throws IllegalArgumentException if the ast is not
      * an {@link TokenTypes#ANNOTATION}
      */
-    public static boolean isAnnotatingType(DetailAST aAST, int aTokenType)
+    public static boolean isAnnotatingType(DetailAST ast, int tokenType)
     {
-        final DetailAST ast = AnnotationUtility.annotatingWhat(aAST);
-        return ast.getType() == aTokenType;
+        final DetailAST astNode = AnnotationUtility.annotatingWhat(ast);
+        return astNode.getType() == tokenType;
     }
 }
