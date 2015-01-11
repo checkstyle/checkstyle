@@ -65,10 +65,10 @@ public class ParameterNameCheck
     }
 
     @Override
-    protected boolean mustCheckName(DetailAST aAST)
+    protected boolean mustCheckName(DetailAST ast)
     {
         return !(
-            (aAST.getParent() != null)
-                && (aAST.getParent().getType() == TokenTypes.LITERAL_CATCH));
+            (ast.getParent() != null)
+                && (ast.getParent().getType() == TokenTypes.LITERAL_CATCH));
     }
 }

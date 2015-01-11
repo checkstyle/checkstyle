@@ -76,7 +76,7 @@ public class MethodNameCheck
     /**
      * for allowing method name to be the same as the class name.
      */
-    private boolean mAllowClassName;
+    private boolean allowClassName;
 
     /**
      * {@link Override Override} annotation name.
@@ -101,20 +101,20 @@ public class MethodNameCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAst)
+    public void visitToken(DetailAST ast)
     {
-        if (!AnnotationUtility.containsAnnotation(aAst, OVERRIDE)
-            && !AnnotationUtility.containsAnnotation(aAst, CANONICAL_OVERRIDE))
+        if (!AnnotationUtility.containsAnnotation(ast, OVERRIDE)
+            && !AnnotationUtility.containsAnnotation(ast, CANONICAL_OVERRIDE))
         {
-            super.visitToken(aAst); // Will check the name against the format.
+            super.visitToken(ast); // Will check the name against the format.
         }
 
-        if (!mAllowClassName) {
+        if (!allowClassName) {
             final DetailAST method =
-                aAst.findFirstToken(TokenTypes.IDENT);
+                ast.findFirstToken(TokenTypes.IDENT);
             //in all cases this will be the classDef type except anon inner
             //with anon inner classes this will be the Literal_New keyword
-            final DetailAST classDefOrNew = aAst.getParent().getParent();
+            final DetailAST classDefOrNew = ast.getParent().getParent();
             final DetailAST classIdent =
                 classDefOrNew.findFirstToken(TokenTypes.IDENT);
             // Following logic is to handle when a classIdent can not be
@@ -134,10 +134,10 @@ public class MethodNameCheck
 
     /**
      * Sets the property for allowing a method to be the same name as a class.
-     * @param aAllowClassName true to allow false to disallow
+     * @param allowClassName true to allow false to disallow
      */
-    public void setAllowClassName(boolean aAllowClassName)
+    public void setAllowClassName(boolean allowClassName)
     {
-        mAllowClassName = aAllowClassName;
+        this.allowClassName = allowClassName;
     }
 }

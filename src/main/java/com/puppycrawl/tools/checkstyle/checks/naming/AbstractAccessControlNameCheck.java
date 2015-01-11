@@ -49,102 +49,102 @@ public abstract class AbstractAccessControlNameCheck
     extends AbstractNameCheck
 {
     /** If true, applies the check be public members. */
-    private boolean mApplyToPublic = true;
+    private boolean applyToPublic = true;
 
     /** If true, applies the check be protected members. */
-    private boolean mApplyToProtected = true;
+    private boolean applyToProtected = true;
 
     /** If true, applies the check be "package" members. */
-    private boolean mApplyToPackage = true;
+    private boolean applyToPackage = true;
 
     /** If true, applies the check be private members. */
-    private boolean mApplyToPrivate = true;
+    private boolean applyToPrivate = true;
 
     /**
      * Creates a new {@code AbstractAccessControlNameCheck} instance.
      *
-     * @param aFormat
+     * @param format
      *                format to check with
      */
-    public AbstractAccessControlNameCheck(String aFormat)
+    public AbstractAccessControlNameCheck(String format)
     {
-        super(aFormat);
+        super(format);
     }
 
     @Override
-    protected boolean mustCheckName(DetailAST aAST)
+    protected boolean mustCheckName(DetailAST ast)
     {
-        return shouldCheckInScope(aAST);
+        return shouldCheckInScope(ast);
     }
 
     /**
      * Should we check member with given modifiers.
      *
-     * @param aModifiers
+     * @param modifiers
      *                modifiers of member to check.
      * @return true if we should check such member.
      */
-    protected boolean shouldCheckInScope(DetailAST aModifiers)
+    protected boolean shouldCheckInScope(DetailAST modifiers)
     {
-        if (aModifiers == null) {
+        if (modifiers == null) {
             // if there are no modifiers it is a package-private
-            return mApplyToPackage;
+            return applyToPackage;
         }
 
-        final boolean isPublic = aModifiers
+        final boolean isPublic = modifiers
                 .branchContains(TokenTypes.LITERAL_PUBLIC);
-        final boolean isProtected = aModifiers
+        final boolean isProtected = modifiers
                 .branchContains(TokenTypes.LITERAL_PROTECTED);
-        final boolean isPrivate = aModifiers
+        final boolean isPrivate = modifiers
                 .branchContains(TokenTypes.LITERAL_PRIVATE);
         final boolean isPackage = !(isPublic || isProtected || isPrivate);
 
-        return (mApplyToPublic && isPublic)
-                || (mApplyToProtected && isProtected)
-                || (mApplyToPackage && isPackage)
-                || (mApplyToPrivate && isPrivate);
+        return (applyToPublic && isPublic)
+                || (applyToProtected && isProtected)
+                || (applyToPackage && isPackage)
+                || (applyToPrivate && isPrivate);
     }
 
     /**
      * Sets whether we should apply the check to public members.
      *
-     * @param aApplyTo new value of the property.
+     * @param applyTo new value of the property.
      */
-    public void setApplyToPublic(boolean aApplyTo)
+    public void setApplyToPublic(boolean applyTo)
     {
-        mApplyToPublic = aApplyTo;
+        applyToPublic = applyTo;
     }
 
     /** @return true if the check should be applied to public members. */
     public boolean getApplyToPublic()
     {
-        return mApplyToPublic;
+        return applyToPublic;
     }
 
     /**
      * Sets whether we should apply the check to protected members.
      *
-     * @param aApplyTo new value of the property.
+     * @param applyTo new value of the property.
      */
-    public void setApplyToProtected(boolean aApplyTo)
+    public void setApplyToProtected(boolean applyTo)
     {
-        mApplyToProtected = aApplyTo;
+        applyToProtected = applyTo;
     }
 
     /** @return true if the check should be applied to protected members. */
     public boolean getApplyToProtected()
     {
-        return mApplyToProtected;
+        return applyToProtected;
     }
 
     /**
      * Sets whether we should apply the check to package-private members.
      *
-     * @param aApplyTo new value of the property.
+     * @param applyTo new value of the property.
      */
-    public void setApplyToPackage(boolean aApplyTo)
+    public void setApplyToPackage(boolean applyTo)
     {
-        mApplyToPackage = aApplyTo;
+        applyToPackage = applyTo;
     }
 
     /**
@@ -152,22 +152,22 @@ public abstract class AbstractAccessControlNameCheck
      */
     public boolean getApplyToPackage()
     {
-        return mApplyToPackage;
+        return applyToPackage;
     }
 
     /**
      * Sets whether we should apply the check to private members.
      *
-     * @param aApplyTo new value of the property.
+     * @param applyTo new value of the property.
      */
-    public void setApplyToPrivate(boolean aApplyTo)
+    public void setApplyToPrivate(boolean applyTo)
     {
-        mApplyToPrivate = aApplyTo;
+        applyToPrivate = applyTo;
     }
 
     /** @return true if the check should be applied to private members. */
     public boolean getApplyToPrivate()
     {
-        return mApplyToPrivate;
+        return applyToPrivate;
     }
 }

@@ -44,10 +44,10 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
     private static final String DEFAULT_FORMAT = "^Abstract.*$|^.*Factory$";
 
     /** whether to ignore checking the modifier */
-    private boolean mIgnoreModifier;
+    private boolean ignoreModifier;
 
     /** whether to ignore checking the name */
-    private boolean mIgnoreName;
+    private boolean ignoreName;
 
     /** Creates new instance of the check. */
     public AbstractClassNameCheck()
@@ -57,20 +57,20 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
 
     /**
      * Whether to ignore checking for the <code>abstract</code> modifier.
-     * @param aValue new value
+     * @param value new value
      */
-    public void setIgnoreModifier(boolean aValue)
+    public void setIgnoreModifier(boolean value)
     {
-        mIgnoreModifier = aValue;
+        ignoreModifier = value;
     }
 
     /**
      * Whether to ignore checking the name.
-     * @param aValue new value.
+     * @param value new value.
      */
-    public void setIgnoreName(boolean aValue)
+    public void setIgnoreName(boolean value)
     {
-        mIgnoreName = aValue;
+        ignoreName = value;
     }
 
     @Override
@@ -86,52 +86,52 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (TokenTypes.CLASS_DEF == aAST.getType()) {
-            visitClassDef(aAST);
+        if (TokenTypes.CLASS_DEF == ast.getType()) {
+            visitClassDef(ast);
         }
     }
 
     /**
      * Checks class definition.
-     * @param aAST class definition for check.
+     * @param ast class definition for check.
      */
-    private void visitClassDef(DetailAST aAST)
+    private void visitClassDef(DetailAST ast)
     {
         final String className =
-            aAST.findFirstToken(TokenTypes.IDENT).getText();
-        if (isAbstract(aAST)) {
+            ast.findFirstToken(TokenTypes.IDENT).getText();
+        if (isAbstract(ast)) {
             // if class has abstract modifier
-            if (!mIgnoreName && !isMatchingClassName(className)) {
-                log(aAST.getLineNo(), aAST.getColumnNo(),
+            if (!ignoreName && !isMatchingClassName(className)) {
+                log(ast.getLineNo(), ast.getColumnNo(),
                     "illegal.abstract.class.name", className, getFormat());
             }
         }
-        else if (!mIgnoreModifier && isMatchingClassName(className)) {
-            log(aAST.getLineNo(), aAST.getColumnNo(),
+        else if (!ignoreModifier && isMatchingClassName(className)) {
+            log(ast.getLineNo(), ast.getColumnNo(),
                 "no.abstract.class.modifier", className);
         }
     }
 
     /**
-     * @param aAST class definition for check.
+     * @param ast class definition for check.
      * @return true if a given class declared as abstract.
      */
-    private boolean isAbstract(DetailAST aAST)
+    private boolean isAbstract(DetailAST ast)
     {
-        final DetailAST abstractAST = aAST.findFirstToken(TokenTypes.MODIFIERS)
+        final DetailAST abstractAST = ast.findFirstToken(TokenTypes.MODIFIERS)
             .findFirstToken(TokenTypes.ABSTRACT);
 
         return abstractAST != null;
     }
 
     /**
-     * @param aClassName class name for check.
+     * @param className class name for check.
      * @return true if class name matches format of abstract class names.
      */
-    private boolean isMatchingClassName(String aClassName)
+    private boolean isMatchingClassName(String className)
     {
-        return getRegexp().matcher(aClassName).find();
+        return getRegexp().matcher(className).find();
     }
 }

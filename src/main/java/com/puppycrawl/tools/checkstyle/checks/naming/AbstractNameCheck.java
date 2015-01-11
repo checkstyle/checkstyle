@@ -39,30 +39,30 @@ public abstract class AbstractNameCheck
 
     /**
      * Creates a new <code>AbstractNameCheck</code> instance.
-     * @param aFormat format to check with
+     * @param format format to check with
      */
-    public AbstractNameCheck(String aFormat)
+    public AbstractNameCheck(String format)
     {
-        super(aFormat);
+        super(format);
     }
 
     /**
      * Decides whether the name of an AST should be checked against
      * the format regexp.
-     * @param aAST the AST to check.
-     * @return true if the IDENT subnode of aAST should be checked against
+     * @param ast the AST to check.
+     * @return true if the IDENT subnode of ast should be checked against
      * the format regexp.
      */
-    protected boolean mustCheckName(DetailAST aAST)
+    protected boolean mustCheckName(DetailAST ast)
     {
         return true;
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (mustCheckName(aAST)) {
-            final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
+        if (mustCheckName(ast)) {
+            final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             if (!getRegexp().matcher(nameAST.getText()).find()) {
                 log(nameAST.getLineNo(),
                     nameAST.getColumnNo(),

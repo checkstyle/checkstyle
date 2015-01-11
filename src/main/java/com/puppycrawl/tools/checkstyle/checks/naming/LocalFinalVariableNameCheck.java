@@ -68,12 +68,12 @@ public class LocalFinalVariableNameCheck
     }
 
     @Override
-    protected final boolean mustCheckName(DetailAST aAST)
+    protected final boolean mustCheckName(DetailAST ast)
     {
         final DetailAST modifiersAST =
-            aAST.findFirstToken(TokenTypes.MODIFIERS);
+            ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isFinal = (modifiersAST != null)
             && modifiersAST.branchContains(TokenTypes.FINAL);
-        return (isFinal && ScopeUtils.isLocalVariableDef(aAST));
+        return (isFinal && ScopeUtils.isLocalVariableDef(ast));
     }
 }

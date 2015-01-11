@@ -78,7 +78,7 @@ public class LocalVariableNameCheck
     /**
      * Allow one character name for initialization expression in FOR loop.
      */
-    private boolean mAllowOneCharVarInForLoop;
+    private boolean allowOneCharVarInForLoop;
 
     /** Regexp for one-char loop variables. */
     private static Pattern sSingleChar = Utils.getPattern("^[a-z]$");
@@ -89,9 +89,9 @@ public class LocalVariableNameCheck
         super("^[a-z][a-zA-Z0-9]*$");
     }
 
-    public final void setAllowOneCharVarInForLoop(boolean aAllow)
+    public final void setAllowOneCharVarInForLoop(boolean allow)
     {
-        mAllowOneCharVarInForLoop = aAllow;
+        allowOneCharVarInForLoop = allow;
     }
 
     @Override
@@ -104,28 +104,28 @@ public class LocalVariableNameCheck
     }
 
     @Override
-    protected final boolean mustCheckName(DetailAST aAST)
+    protected final boolean mustCheckName(DetailAST ast)
     {
         final DetailAST modifiersAST =
-            aAST.findFirstToken(TokenTypes.MODIFIERS);
+            ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isFinal = (modifiersAST != null)
             && modifiersAST.branchContains(TokenTypes.FINAL);
-        if (mAllowOneCharVarInForLoop && isForLoopVariable(aAST)) {
+        if (allowOneCharVarInForLoop && isForLoopVariable(ast)) {
             final String variableName =
-                    aAST.findFirstToken(TokenTypes.IDENT).getText();
+                    ast.findFirstToken(TokenTypes.IDENT).getText();
             return !sSingleChar.matcher(variableName).find();
         }
-        return (!isFinal && ScopeUtils.isLocalVariableDef(aAST));
+        return (!isFinal && ScopeUtils.isLocalVariableDef(ast));
     }
 
     /**
      * Checks if a variable is the loop's one.
-     * @param aVariableDef variable definition.
+     * @param variableDef variable definition.
      * @return true if a variable is the loop's one.
      */
-    private boolean isForLoopVariable(DetailAST aVariableDef)
+    private boolean isForLoopVariable(DetailAST variableDef)
     {
-        final int parentType = aVariableDef.getParent().getType();
+        final int parentType = variableDef.getParent().getType();
         return  parentType == TokenTypes.FOR_INIT
                 || parentType == TokenTypes.FOR_EACH_CLAUSE;
     }

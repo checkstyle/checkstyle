@@ -81,9 +81,9 @@ public class PackageNameCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final DetailAST nameAST = aAST.getLastChild().getPreviousSibling();
+        final DetailAST nameAST = ast.getLastChild().getPreviousSibling();
         final FullIdent full = FullIdent.createFullIdent(nameAST);
         if (!getRegexp().matcher(full.getText()).find()) {
             log(full.getLineNo(),

@@ -63,10 +63,10 @@ public class StaticVariableNameCheck
     }
 
     @Override
-    protected final boolean mustCheckName(DetailAST aAST)
+    protected final boolean mustCheckName(DetailAST ast)
     {
         final DetailAST modifiersAST =
-            aAST.findFirstToken(TokenTypes.MODIFIERS);
+            ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isStatic = (modifiersAST != null)
             && modifiersAST.branchContains(TokenTypes.LITERAL_STATIC);
         final boolean isFinal = (modifiersAST != null)
@@ -75,6 +75,6 @@ public class StaticVariableNameCheck
         return (isStatic
                 && !isFinal
                 && shouldCheckInScope(modifiersAST)
-                && !ScopeUtils.inInterfaceOrAnnotationBlock(aAST));
+                && !ScopeUtils.inInterfaceOrAnnotationBlock(ast));
     }
 }
