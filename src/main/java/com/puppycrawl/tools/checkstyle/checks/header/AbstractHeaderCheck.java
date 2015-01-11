@@ -50,13 +50,13 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 {
     /** The file that contains the header to check against. */
-    private String mFilename;
+    private String filename;
 
     /** Name of a charset to use for loading the header from a file. */
-    private String mCharset = System.getProperty("file.encoding", "UTF-8");
+    private String charset = System.getProperty("file.encoding", "UTF-8");
 
     /** the lines of the header file. */
-    private final List<String> mHeaderLines = Lists.newArrayList();
+    private final List<String> readerLines = Lists.newArrayList();
 
 
     /**
@@ -65,35 +65,35 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      */
     protected ImmutableList<String> getHeaderLines()
     {
-        return ImmutableList.copyOf(mHeaderLines);
+        return ImmutableList.copyOf(readerLines);
     }
 
     /**
      * Set the charset to use for loading the header from a file.
-     * @param aCharset the charset to use for loading the header from a file
-     * @throws UnsupportedEncodingException if aCharset is unsupported
+     * @param charset the charset to use for loading the header from a file
+     * @throws UnsupportedEncodingException if charset is unsupported
      */
-    public void setCharset(String aCharset) throws UnsupportedEncodingException
+    public void setCharset(String charset) throws UnsupportedEncodingException
     {
-        if (!Charset.isSupported(aCharset)) {
-            final String message = "unsupported charset: '" + aCharset + "'";
+        if (!Charset.isSupported(charset)) {
+            final String message = "unsupported charset: '" + charset + "'";
             throw new UnsupportedEncodingException(message);
         }
-        mCharset = aCharset;
+        this.charset = charset;
     }
 
     /**
      * Set the header file to check against.
-     * @param aFileName the file that contains the header to check against.
+     * @param fileName the file that contains the header to check against.
      */
-    public void setHeaderFile(String aFileName)
+    public void setHeaderFile(String fileName)
     {
         // Handle empty param
-        if ((aFileName == null) || (aFileName.trim().length() == 0)) {
+        if ((fileName == null) || (fileName.trim().length() == 0)) {
             return;
         }
 
-        mFilename = aFileName;
+        filename = fileName;
     }
 
     /**
@@ -107,12 +107,12 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
         try {
             final URI uri = resolveHeaderFile();
             headerReader = new InputStreamReader(new BufferedInputStream(
-                    uri.toURL().openStream()), mCharset);
+                    uri.toURL().openStream()), charset);
             loadHeader(headerReader);
         }
         catch (final IOException ex) {
             throw new CheckstyleException(
-                    "unable to load header file " + mFilename, ex);
+                    "unable to load header file " + filename, ex);
         }
         finally {
             Utils.closeQuietly(headerReader);
@@ -129,7 +129,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
         // figure out if this is a File or a URL
         URI uri;
         try {
-            final URL url = new URL(mFilename);
+            final URL url = new URL(filename);
             uri = url.toURI();
         }
         catch (final MalformedURLException ex) {
@@ -140,7 +140,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
             uri = null;
         }
         if (uri == null) {
-            final File file = new File(mFilename);
+            final File file = new File(filename);
             if (file.exists()) {
                 uri = file.toURI();
             }
@@ -148,14 +148,14 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
                 // check to see if the file is in the classpath
                 try {
                     final URL configUrl = AbstractHeaderCheck.class
-                            .getResource(mFilename);
+                            .getResource(filename);
                     if (configUrl == null) {
-                        throw new FileNotFoundException(mFilename);
+                        throw new FileNotFoundException(filename);
                     }
                     uri = configUrl.toURI();
                 }
                 catch (final URISyntaxException e) {
-                    throw new FileNotFoundException(mFilename);
+                    throw new FileNotFoundException(filename);
                 }
             }
         }
@@ -168,7 +168,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      */
     private void checkHeaderNotInitialized()
     {
-        if (!mHeaderLines.isEmpty()) {
+        if (!readerLines.isEmpty()) {
             throw new ConversionException(
                     "header has already been set - "
                     + "set either header or headerFile, not both");
@@ -178,18 +178,18 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     /**
      * Set the header to check against. Individual lines in the header
      * must be separated by '\n' characters.
-     * @param aHeader header content to check against.
+     * @param header header content to check against.
      * @throws ConversionException if the header cannot be interpreted
      */
-    public void setHeader(String aHeader)
+    public void setHeader(String header)
     {
-        if ((aHeader == null) || (aHeader.trim().length() == 0)) {
+        if ((header == null) || (header.trim().length() == 0)) {
             return;
         }
 
         checkHeaderNotInitialized();
 
-        final String headerExpandedNewLines = aHeader.replaceAll("\\\\n", "\n");
+        final String headerExpandedNewLines = header.replaceAll("\\\\n", "\n");
 
         final Reader headerReader = new StringReader(headerExpandedNewLines);
         try {
@@ -204,20 +204,20 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     }
 
     /**
-     * Load header to check against from a Reader into mHeaderLines.
-     * @param aHeaderReader delivers the header to check against
+     * Load header to check against from a Reader into readerLines.
+     * @param headerReader delivers the header to check against
      * @throws IOException if
      */
-    private void loadHeader(final Reader aHeaderReader) throws IOException
+    private void loadHeader(final Reader headerReader) throws IOException
     {
-        final LineNumberReader lnr = new LineNumberReader(aHeaderReader);
-        mHeaderLines.clear();
+        final LineNumberReader lnr = new LineNumberReader(headerReader);
+        readerLines.clear();
         while (true) {
             final String l = lnr.readLine();
             if (l == null) {
                 break;
             }
-            mHeaderLines.add(l);
+            readerLines.add(l);
         }
         postprocessHeaderLines();
     }
@@ -233,10 +233,10 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     @Override
     protected final void finishLocalSetup() throws CheckstyleException
     {
-        if (mFilename != null) {
+        if (filename != null) {
             loadHeaderFile();
         }
-        if (mHeaderLines.isEmpty()) {
+        if (readerLines.isEmpty()) {
             throw new CheckstyleException(
                     "property 'headerFile' is missing or invalid in module "
                     + getConfiguration().getName());
