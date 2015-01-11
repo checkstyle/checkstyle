@@ -31,18 +31,18 @@ public class LineSet
     /**
      * Maps line numbers to their start column.
      */
-    private final SortedMap<Integer, Integer> mLines = Maps.newTreeMap();
+    private final SortedMap<Integer, Integer> lines = Maps.newTreeMap();
 
     /**
      * Get the starting column for a given line number.
      *
-     * @param aLineNum   the specified line number
+     * @param lineNum   the specified line number
      *
      * @return the starting column for the given line number
      */
-    public Integer getStartColumn(Integer aLineNum)
+    public Integer getStartColumn(Integer lineNum)
     {
-        return mLines.get(aLineNum);
+        return lines.get(lineNum);
     }
 
     /**
@@ -52,8 +52,8 @@ public class LineSet
      */
     public int firstLineCol()
     {
-        final Object firstLineKey = mLines.firstKey();
-        return (mLines.get(firstLineKey)).intValue();
+        final Object firstLineKey = lines.firstKey();
+        return (lines.get(firstLineKey)).intValue();
     }
 
     /**
@@ -63,7 +63,7 @@ public class LineSet
      */
     public int firstLine()
     {
-        return (mLines.firstKey()).intValue();
+        return (lines.firstKey()).intValue();
     }
 
     /**
@@ -73,18 +73,18 @@ public class LineSet
      */
     public int lastLine()
     {
-        return (mLines.lastKey()).intValue();
+        return (lines.lastKey()).intValue();
     }
 
     /**
      * Add a line to this set of lines.
      *
-     * @param aLineNum   the line to add
-     * @param aCol       the starting column of the new line
+     * @param lineNum   the line to add
+     * @param col       the starting column of the new line
      */
-    public void addLineAndCol(int aLineNum, int aCol)
+    public void addLineAndCol(int lineNum, int col)
     {
-        mLines.put(aLineNum, aCol);
+        lines.put(lineNum, col);
     }
 
     /**
@@ -94,7 +94,7 @@ public class LineSet
      */
     public boolean isEmpty()
     {
-        return mLines.isEmpty();
+        return lines.isEmpty();
     }
 
     @Override

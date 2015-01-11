@@ -32,14 +32,14 @@ public class PackageDefHandler extends ExpressionHandler
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
-     * @param aIndentCheck   the indentation check
-     * @param aAst           the abstract syntax tree
-     * @param aParent        the parent handler
+     * @param indentCheck   the indentation check
+     * @param ast           the abstract syntax tree
+     * @param parent        the parent handler
      */
-    public PackageDefHandler(IndentationCheck aIndentCheck,
-            DetailAST aAst, ExpressionHandler aParent)
+    public PackageDefHandler(IndentationCheck indentCheck,
+            DetailAST ast, ExpressionHandler parent)
     {
-        super(aIndentCheck, "package def", aAst, aParent);
+        super(indentCheck, "package def", ast, parent);
     }
 
     @Override

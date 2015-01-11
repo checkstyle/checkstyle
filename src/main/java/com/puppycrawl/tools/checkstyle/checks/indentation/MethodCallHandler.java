@@ -32,18 +32,18 @@ public class MethodCallHandler extends ExpressionHandler
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
-     * @param aIndentCheck   the indentation check
-     * @param aAST           the abstract syntax tree
-     * @param aParent        the parent handler
+     * @param indentCheck   the indentation check
+     * @param ast           the abstract syntax tree
+     * @param parent        the parent handler
      */
-    public MethodCallHandler(IndentationCheck aIndentCheck,
-        DetailAST aAST, ExpressionHandler aParent)
+    public MethodCallHandler(IndentationCheck indentCheck,
+        DetailAST ast, ExpressionHandler parent)
     {
-        super(aIndentCheck,
-            aAST.getType() == TokenTypes.METHOD_CALL
+        super(indentCheck,
+            ast.getType() == TokenTypes.METHOD_CALL
                 ? "method call" : "ctor call",
-            aAST,
-            aParent);
+            ast,
+            parent);
     }
 
     @Override
@@ -106,30 +106,30 @@ public class MethodCallHandler extends ExpressionHandler
     /**
      * Get the first AST of the specified method call.
      *
-     * @param aAst
+     * @param ast
      *            the method call
      *
      * @return the first AST of the specified method call
      */
-    private DetailAST getFirstAst(DetailAST aAst)
+    private DetailAST getFirstAst(DetailAST ast)
     {
         // walk down the first child part of the dots that make up a method
         // call name
 
-        DetailAST ast = aAst.getFirstChild();
-        while ((ast != null) && (ast.getType() == TokenTypes.DOT)) {
-            ast = ast.getFirstChild();
+        DetailAST astNode = ast.getFirstChild();
+        while ((astNode != null) && (astNode.getType() == TokenTypes.DOT)) {
+            astNode = astNode.getFirstChild();
         }
 
-        if (ast == null) {
-            ast = aAst;
+        if (astNode == null) {
+            astNode = ast;
         }
 
-        return ast;
+        return astNode;
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
+    public IndentLevel suggestedChildLevel(ExpressionHandler child)
     {
         // for whatever reason a method that crosses lines, like asList
         // here:
@@ -139,7 +139,7 @@ public class MethodCallHandler extends ExpressionHandler
 
         final DetailAST first = getMainAst().getFirstChild();
         int indentLevel = getLineStart(first);
-        if (!areOnSameLine(aChild.getMainAst().getFirstChild(),
+        if (!areOnSameLine(child.getMainAst().getFirstChild(),
                            getMainAst().getFirstChild()))
         {
             indentLevel += getBasicOffset();
@@ -176,7 +176,7 @@ public class MethodCallHandler extends ExpressionHandler
         final LineWrappingHandler lineWrap =
             new LineWrappingHandler(getIndentCheck(), getMainAst()) {
                 @Override
-                public DetailAST findLastNode(DetailAST aFirstNode)
+                public DetailAST findLastNode(DetailAST firstNode)
                 {
                     DetailAST lastNode;
                     if (getFirstNode().getNextSibling() == null) {

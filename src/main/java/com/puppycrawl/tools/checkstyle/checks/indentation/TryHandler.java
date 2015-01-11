@@ -31,24 +31,24 @@ public class TryHandler extends BlockParentHandler
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
-     * @param aIndentCheck   the indentation check
-     * @param aAst           the abstract syntax tree
-     * @param aParent        the parent handler
+     * @param indentCheck   the indentation check
+     * @param ast           the abstract syntax tree
+     * @param parent        the parent handler
      */
-    public TryHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent)
+    public TryHandler(IndentationCheck indentCheck,
+        DetailAST ast, ExpressionHandler parent)
     {
-        super(aIndentCheck, "try", aAst, aParent);
+        super(indentCheck, "try", ast, parent);
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
+    public IndentLevel suggestedChildLevel(ExpressionHandler child)
     {
-        if ((aChild instanceof CatchHandler)
-            || (aChild instanceof FinallyHandler))
+        if ((child instanceof CatchHandler)
+            || (child instanceof FinallyHandler))
         {
             return getLevel();
         }
-        return super.suggestedChildLevel(aChild);
+        return super.suggestedChildLevel(child);
     }
 }

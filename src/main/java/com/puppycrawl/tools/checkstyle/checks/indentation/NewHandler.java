@@ -32,15 +32,15 @@ public class NewHandler extends ExpressionHandler
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
-     * @param aIndentCheck   the indentation check
-     * @param aAST           the abstract syntax tree
-     * @param aParent        the parent handler
+     * @param indentCheck   the indentation check
+     * @param ast           the abstract syntax tree
+     * @param parent        the parent handler
      */
-    public NewHandler(IndentationCheck aIndentCheck,
-                      DetailAST aAST,
-                      ExpressionHandler aParent)
+    public NewHandler(IndentationCheck indentCheck,
+                      DetailAST ast,
+                      ExpressionHandler parent)
     {
-        super(aIndentCheck, "operator new", aAST, aParent);
+        super(indentCheck, "operator new", ast, parent);
     }
 
     @Override

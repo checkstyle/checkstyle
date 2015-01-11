@@ -40,14 +40,14 @@ public class CaseHandler extends ExpressionHandler
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
-     * @param aIndentCheck   the indentation check
-     * @param aExpr          the abstract syntax tree
-     * @param aParent        the parent handler
+     * @param indentCheck   the indentation check
+     * @param expr          the abstract syntax tree
+     * @param parent        the parent handler
      */
-    public CaseHandler(IndentationCheck aIndentCheck,
-        DetailAST aExpr, ExpressionHandler aParent)
+    public CaseHandler(IndentationCheck indentCheck,
+        DetailAST expr, ExpressionHandler parent)
     {
-        super(aIndentCheck, "case", aExpr, aParent);
+        super(indentCheck, "case", expr, parent);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class CaseHandler extends ExpressionHandler
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
+    public IndentLevel suggestedChildLevel(ExpressionHandler child)
     {
         return getLevel();
     }

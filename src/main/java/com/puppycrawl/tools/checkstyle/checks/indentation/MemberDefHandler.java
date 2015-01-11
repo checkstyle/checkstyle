@@ -32,14 +32,14 @@ public class MemberDefHandler extends ExpressionHandler
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
-     * @param aIndentCheck   the indentation check
-     * @param aAST           the abstract syntax tree
-     * @param aParent        the parent handler
+     * @param indentCheck   the indentation check
+     * @param ast           the abstract syntax tree
+     * @param parent        the parent handler
      */
-    public MemberDefHandler(IndentationCheck aIndentCheck,
-        DetailAST aAST, ExpressionHandler aParent)
+    public MemberDefHandler(IndentationCheck indentCheck,
+        DetailAST ast, ExpressionHandler parent)
     {
-        super(aIndentCheck, "member def", aAST, aParent);
+        super(indentCheck, "member def", ast, parent);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class MemberDefHandler extends ExpressionHandler
         final LineWrappingHandler lineWrap =
             new LineWrappingHandler(getIndentCheck(), getMainAst()) {
                 @Override
-                public DetailAST findLastNode(DetailAST aFirstNode)
+                public DetailAST findLastNode(DetailAST firstNode)
                 {
                     DetailAST lastNode = getFirstNode().getLastChild();
                     if (lastNode.getType() != TokenTypes.SEMI) {
@@ -70,7 +70,7 @@ public class MemberDefHandler extends ExpressionHandler
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
+    public IndentLevel suggestedChildLevel(ExpressionHandler child)
     {
         return getLevel();
     }
@@ -101,12 +101,12 @@ public class MemberDefHandler extends ExpressionHandler
 
     /**
      * Checks if variable_def node is array declaration.
-     * @param aVariableDef current variable_def.
+     * @param variableDef current variable_def.
      * @return true if variable_def node is array declaration.
      */
-    private boolean isArrayDeclaration(DetailAST aVariableDef)
+    private boolean isArrayDeclaration(DetailAST variableDef)
     {
-        return aVariableDef.findFirstToken(TokenTypes.TYPE)
+        return variableDef.findFirstToken(TokenTypes.TYPE)
             .findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null;
     }
 }

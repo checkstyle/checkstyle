@@ -68,15 +68,15 @@ public class BlockParentHandler extends ExpressionHandler
      * Construct an instance of this handler with the given indentation check,
      * name, abstract syntax tree, and parent handler.
      *
-     * @param aIndentCheck   the indentation check
-     * @param aName          the name of the handler
-     * @param aAst           the abstract syntax tree
-     * @param aParent        the parent handler
+     * @param indentCheck   the indentation check
+     * @param name          the name of the handler
+     * @param ast           the abstract syntax tree
+     * @param parent        the parent handler
      */
-    public BlockParentHandler(IndentationCheck aIndentCheck,
-        String aName, DetailAST aAst, ExpressionHandler aParent)
+    public BlockParentHandler(IndentationCheck indentCheck,
+        String name, DetailAST ast, ExpressionHandler parent)
     {
-        super(aIndentCheck, aName, aAst, aParent);
+        super(indentCheck, name, ast, parent);
     }
 
     /**
@@ -339,7 +339,7 @@ public class BlockParentHandler extends ExpressionHandler
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
+    public IndentLevel suggestedChildLevel(ExpressionHandler child)
     {
         return getChildrenExpectedLevel();
     }

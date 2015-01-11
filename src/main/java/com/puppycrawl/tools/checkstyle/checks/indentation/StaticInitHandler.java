@@ -31,14 +31,14 @@ public class StaticInitHandler extends BlockParentHandler
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
-     * @param aIndentCheck   the indentation check
-     * @param aAst           the abstract syntax tree
-     * @param aParent        the parent handler
+     * @param indentCheck   the indentation check
+     * @param ast           the abstract syntax tree
+     * @param parent        the parent handler
      */
-    public StaticInitHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent)
+    public StaticInitHandler(IndentationCheck indentCheck,
+        DetailAST ast, ExpressionHandler parent)
     {
-        super(aIndentCheck, "static initialization", aAst, aParent);
+        super(indentCheck, "static initialization", ast, parent);
     }
 
     @Override

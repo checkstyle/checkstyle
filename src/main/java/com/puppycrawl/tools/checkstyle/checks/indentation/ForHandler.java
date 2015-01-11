@@ -32,14 +32,14 @@ public class ForHandler extends BlockParentHandler
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
-     * @param aIndentCheck   the indentation check
-     * @param aAst           the abstract syntax tree
-     * @param aParent        the parent handler
+     * @param indentCheck   the indentation check
+     * @param ast           the abstract syntax tree
+     * @param parent        the parent handler
      */
-    public ForHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent)
+    public ForHandler(IndentationCheck indentCheck,
+        DetailAST ast, ExpressionHandler parent)
     {
-        super(aIndentCheck, "for", aAst, aParent);
+        super(indentCheck, "for", ast, parent);
     }
 
     /**
@@ -81,11 +81,11 @@ public class ForHandler extends BlockParentHandler
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
+    public IndentLevel suggestedChildLevel(ExpressionHandler child)
     {
-        if (aChild instanceof ElseHandler) {
+        if (child instanceof ElseHandler) {
             return getLevel();
         }
-        return super.suggestedChildLevel(aChild);
+        return super.suggestedChildLevel(child);
     }
 }

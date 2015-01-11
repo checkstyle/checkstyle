@@ -28,11 +28,11 @@ public class PrimordialHandler extends ExpressionHandler
     /**
      * Construct an instance of this handler with the given indentation check.
      *
-     * @param aIndentCheck   the indentation check
+     * @param indentCheck   the indentation check
      */
-    public PrimordialHandler(IndentationCheck aIndentCheck)
+    public PrimordialHandler(IndentationCheck indentCheck)
     {
-        super(aIndentCheck, null, null, null);
+        super(indentCheck, null, null, null);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class PrimordialHandler extends ExpressionHandler
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
+    public IndentLevel suggestedChildLevel(ExpressionHandler child)
     {
         return new IndentLevel(0);
     }
