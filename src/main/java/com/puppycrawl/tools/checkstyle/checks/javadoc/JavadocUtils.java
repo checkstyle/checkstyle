@@ -99,16 +99,16 @@ public final class JavadocUtils
 
     /**
      * Gets validTags from a given piece of Javadoc.
-     * @param aCmt
+     * @param cmt
      *        the Javadoc comment to process.
-     * @param aTagType
+     * @param tagType
      *        the type of validTags we're interested in
-     * @return all standalone validTags from the given javadoc.
+     * @return all standalone validTags from the given javdoc.
      */
-    public static JavadocTags getJavadocTags(TextBlock aCmt,
-            JavadocTagType aTagType)
+    public static JavadocTags getJavadocTags(TextBlock cmt,
+            JavadocTagType tagType)
     {
-        final String[] text = aCmt.getText();
+        final String[] text = cmt.getText();
         final List<JavadocTag> tags = Lists.newArrayList();
         final List<InvalidJavadocTag> invalidTags = Lists.newArrayList();
         Pattern blockTagPattern =
@@ -116,7 +116,7 @@ public final class JavadocUtils
         for (int i = 0; i < text.length; i++) {
             final String s = text[i];
             final Matcher blockTagMatcher = blockTagPattern.matcher(s);
-            if ((aTagType.equals(JavadocTagType.ALL) || aTagType
+            if ((tagType.equals(JavadocTagType.ALL) || tagType
                     .equals(JavadocTagType.BLOCK)) && blockTagMatcher.find())
             {
                 final String tagName = blockTagMatcher.group(1);
@@ -124,10 +124,10 @@ public final class JavadocUtils
                 if (content.endsWith("*/")) {
                     content = content.substring(0, content.length() - 2);
                 }
-                final int line = aCmt.getStartLineNo() + i;
+                final int line = cmt.getStartLineNo() + i;
                 int col = blockTagMatcher.start(1) - 1;
                 if (i == 0) {
-                    col += aCmt.getStartColNo();
+                    col += cmt.getStartColNo();
                 }
                 if (JavadocTagInfo.isValidName(tagName)) {
                     tags.add(
@@ -138,10 +138,10 @@ public final class JavadocUtils
                 }
             }
             // No block tag, so look for inline validTags
-            else if (aTagType.equals(JavadocTagType.ALL)
-                    || aTagType.equals(JavadocTagType.INLINE))
+            else if (tagType.equals(JavadocTagType.ALL)
+                    || tagType.equals(JavadocTagType.INLINE))
             {
-                // Match JavaDoc text after comment characters
+                // Match Javadoc text after comment characters
                 final Pattern commentPattern =
                         Utils.getPattern("^\\s*(?:/\\*{2,}|\\*+)\\s*(.*)");
                 final Matcher commentMatcher = commentPattern.matcher(s);
@@ -162,10 +162,10 @@ public final class JavadocUtils
                     if (tagMatcher.groupCount() == 2) {
                         final String tagName = tagMatcher.group(1);
                         final String tagValue = tagMatcher.group(2).trim();
-                        final int line = aCmt.getStartLineNo() + i;
+                        final int line = cmt.getStartLineNo() + i;
                         int col = commentOffset + (tagMatcher.start(1) - 1);
                         if (i == 0) {
-                            col += aCmt.getStartColNo();
+                            col += cmt.getStartColNo();
                         }
                         if (JavadocTagInfo.isValidName(tagName)) {
                             tags.add(new JavadocTag(line, col, tagName,
@@ -176,7 +176,7 @@ public final class JavadocUtils
                                     tagName));
                         }
                     }
-                    // else Error: Unexpected match count for inline JavaDoc
+                    // else Error: Unexpected match count for inline Javadoc
                     // tag!
                 }
             }
@@ -200,18 +200,18 @@ public final class JavadocUtils
     }
 
     /**
-     * Checks that aCommentContent starts with '*' javadoc comment identifier.
-     * @param aCommentContent
+     * Checks that commentContent starts with '*' javdoc comment identifier.
+     * @param commentContent
      *        content of block comment
-     * @return true if aCommentContent starts with '*' javadoc comment
+     * @return true if commentContent starts with '*' javdoc comment
      *         identifier.
      */
-    public static boolean isJavadocComment(String aCommentContent)
+    public static boolean isJavadocComment(String commentContent)
     {
         boolean result = false;
 
-        if (!aCommentContent.isEmpty()) {
-            final char docCommentIdentificator = aCommentContent.charAt(0);
+        if (!commentContent.isEmpty()) {
+            final char docCommentIdentificator = commentContent.charAt(0);
             result = docCommentIdentificator == '*';
         }
 
@@ -219,55 +219,55 @@ public final class JavadocUtils
     }
 
     /**
-     * Checks block comment content starts with '*' javadoc comment identifier.
-     * @param aBlockCommentBegin
+     * Checks block comment content starts with '*' javdoc comment identifier.
+     * @param blockCommentBegin
      *        block comment AST
-     * @return true if block comment content starts with '*' javadoc comment
+     * @return true if block comment content starts with '*' javdoc comment
      *         identifier.
      */
-    public static boolean isJavadocComment(DetailAST aBlockCommentBegin)
+    public static boolean isJavadocComment(DetailAST blockCommentBegin)
     {
-        final String commentContent = getBlockCommentContent(aBlockCommentBegin);
+        final String commentContent = getBlockCommentContent(blockCommentBegin);
         return isJavadocComment(commentContent);
     }
 
     /**
      * Gets content of block comment.
-     * @param aBlockCommentBegin
+     * @param blockCommentBegin
      *        block comment AST.
      * @return content of block comment.
      */
-    public static String getBlockCommentContent(DetailAST aBlockCommentBegin)
+    public static String getBlockCommentContent(DetailAST blockCommentBegin)
     {
-        final DetailAST commentContent = aBlockCommentBegin.getFirstChild();
+        final DetailAST commentContent = blockCommentBegin.getFirstChild();
         return commentContent.getText();
     }
 
     /**
      * Get content of Javadoc comment.
-     * @param aJavadocCommentBegin
+     * @param javdocCommentBegin
      *        Javadoc comment AST
      * @return content of Javadoc comment.
      */
-    public static String getJavadocCommentContent(DetailAST aJavadocCommentBegin)
+    public static String getJavadocCommentContent(DetailAST javdocCommentBegin)
     {
-        final DetailAST commentContent = aJavadocCommentBegin.getFirstChild();
+        final DetailAST commentContent = javdocCommentBegin.getFirstChild();
         return commentContent.getText().substring(1);
     }
 
     /**
      * Returns the first child token that has a specified type.
-     * @param aNode
+     * @param node
      *        Javadoc AST node
-     * @param aType
+     * @param type
      *        the token type to match
      * @return the matching token, or null if no match
      */
-    public static DetailNode findFirstToken(DetailNode aNode, int aType)
+    public static DetailNode findFirstToken(DetailNode node, int type)
     {
         DetailNode retVal = null;
-        for (DetailNode i = getFirstChild(aNode); i != null; i = getNextSibling(i)) {
-            if (i.getType() == aType) {
+        for (DetailNode i = getFirstChild(node); i != null; i = getNextSibling(i)) {
+            if (i.getType() == type) {
                 retVal = i;
                 break;
             }
@@ -278,27 +278,27 @@ public final class JavadocUtils
     /**
      * Gets first child node of specified node.
      *
-     * @param aNode DetailNode
+     * @param node DetailNode
      * @return first child
      */
-    public static DetailNode getFirstChild(DetailNode aNode)
+    public static DetailNode getFirstChild(DetailNode node)
     {
-        return aNode.getChildren().length > 0 ? aNode.getChildren()[0] : null;
+        return node.getChildren().length > 0 ? node.getChildren()[0] : null;
     }
 
     /**
-     * Checks whether aNode contains any node of specified type among children on any deep level.
+     * Checks whether node contains any node of specified type among children on any deep level.
      *
-     * @param aNode DetailNode
-     * @param aType token type
-     * @return true if aNode contains any node of aType type among children on any deep level.
+     * @param node DetailNode
+     * @param type token type
+     * @return true if node contains any node of type type among children on any deep level.
      */
-    public static boolean branchContains(DetailNode aNode, int aType)
+    public static boolean branchContains(DetailNode node, int type)
     {
-        DetailNode curNode = aNode;
+        DetailNode curNode = node;
         while (curNode != null) {
 
-            if (aType == curNode.getType()) {
+            if (type == curNode.getType()) {
                 return true;
             }
 
@@ -323,14 +323,14 @@ public final class JavadocUtils
     /**
      * Gets next sibling of specified node.
      *
-     * @param aNode DetailNode
+     * @param node DetailNode
      * @return next sibling.
      */
-    public static DetailNode getNextSibling(DetailNode aNode)
+    public static DetailNode getNextSibling(DetailNode node)
     {
-        final DetailNode parent = aNode.getParent();
+        final DetailNode parent = node.getParent();
         if (parent != null) {
-            final int nextSiblingIndex = aNode.getIndex() + 1;
+            final int nextSiblingIndex = node.getIndex() + 1;
             final DetailNode[] children = parent.getChildren();
             if (nextSiblingIndex <= children.length - 1) {
                 return children[nextSiblingIndex];
@@ -341,14 +341,14 @@ public final class JavadocUtils
 
     /**
      * Gets previous sibling of specified node.
-     * @param aNode DetailNode
+     * @param node DetailNode
      * @return previous sibling
      */
-    public static DetailNode getPreviousSibling(DetailNode aNode)
+    public static DetailNode getPreviousSibling(DetailNode node)
     {
-        final DetailNode parent = aNode.getParent();
+        final DetailNode parent = node.getParent();
         if (parent != null) {
-            final int previousSiblingIndex = aNode.getIndex() - 1;
+            final int previousSiblingIndex = node.getIndex() - 1;
             final DetailNode[] children = parent.getChildren();
             if (previousSiblingIndex >= 0) {
                 return children[previousSiblingIndex];
@@ -359,36 +359,36 @@ public final class JavadocUtils
 
     /**
      * Returns the name of a token for a given ID.
-     * @param aID
+     * @param iD
      *        the ID of the token name to get
      * @return a token name
      */
-    public static String getTokenName(int aID)
+    public static String getTokenName(int iD)
     {
-        if (aID == JavadocTokenTypes.EOF) {
+        if (iD == JavadocTokenTypes.EOF) {
             return "EOF";
         }
-        if (aID > TOKEN_VALUE_TO_NAME.length - 1) {
-            throw new IllegalArgumentException("Unknown javadoc token id. Given id: " + aID);
+        if (iD > TOKEN_VALUE_TO_NAME.length - 1) {
+            throw new IllegalArgumentException("Unknown javdoc token id. Given id: " + iD);
         }
-        final String name = TOKEN_VALUE_TO_NAME[aID];
+        final String name = TOKEN_VALUE_TO_NAME[iD];
         if (name == null) {
-            throw new IllegalArgumentException("Unknown javadoc token id. Given id: " + aID);
+            throw new IllegalArgumentException("Unknown javdoc token id. Given id: " + iD);
         }
         return name;
     }
 
     /**
      * Returns the ID of a token for a given name.
-     * @param aName
+     * @param name
      *        the name of the token ID to get
      * @return a token ID
      */
-    public static int getTokenId(String aName)
+    public static int getTokenId(String name)
     {
-        final Integer id = TOKEN_NAME_TO_VALUE.get(aName);
+        final Integer id = TOKEN_NAME_TO_VALUE.get(name);
         if (id == null) {
-            throw new IllegalArgumentException("Unknown javadoc token name. Given name " + aName);
+            throw new IllegalArgumentException("Unknown javdoc token name. Given name " + name);
         }
         return id.intValue();
     }

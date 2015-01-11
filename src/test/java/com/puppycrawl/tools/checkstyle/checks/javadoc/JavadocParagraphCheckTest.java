@@ -25,12 +25,12 @@ import org.junit.Test;
 
 public class JavadocParagraphCheckTest extends BaseCheckTestSupport
 {
-    private DefaultConfiguration mCheckConfig;
+    private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp()
     {
-        mCheckConfig = createCheckConfig(JavadocParagraphCheck.class);
+        checkConfig = createCheckConfig(JavadocParagraphCheck.class);
     }
 
     @Test
@@ -38,7 +38,7 @@ public class JavadocParagraphCheckTest extends BaseCheckTestSupport
     {
         final String[] expected = {};
 
-        verify(mCheckConfig, getPath("javadoc/InputCorrectJavaDocParagraphCheck.java"), expected);
+        verify(checkConfig, getPath("javadoc/InputCorrectJavaDocParagraphCheck.java"), expected);
     }
 
     @Test
@@ -63,6 +63,6 @@ public class JavadocParagraphCheckTest extends BaseCheckTestSupport
             "70: <p> tag should be precede with empty line.",
             "75: <p> tag should be precede with empty line.",
         };
-        verify(mCheckConfig, getPath("javadoc/InputIncorrectJavaDocParagraphCheck.java"), expected);
+        verify(checkConfig, getPath("javadoc/InputIncorrectJavaDocParagraphCheck.java"), expected);
     }
 }

@@ -25,29 +25,29 @@ import org.junit.Test;
 
 public class SummaryJavadocCheckTest extends BaseCheckTestSupport
 {
-    private DefaultConfiguration mCheckConfig;
+    private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp()
     {
-        mCheckConfig = createCheckConfig(SummaryJavadocCheck.class);
+        checkConfig = createCheckConfig(SummaryJavadocCheck.class);
     }
 
     @Test
     public void testCorrect() throws Exception
     {
-        mCheckConfig.addAttribute("forbiddenSummaryFragments",
+        checkConfig.addAttribute("forbiddenSummaryFragments",
                 "^@return the *|^This method returns *|^A [{]@code [a-zA-Z0-9]+[}]( is a )");
         final String[] expected = {
         };
 
-        verify(mCheckConfig, getPath("javadoc/InputCorrectSummaryJavaDocCheck.java"), expected);
+        verify(checkConfig, getPath("javadoc/InputCorrectSummaryJavaDocCheck.java"), expected);
     }
 
     @Test
     public void testIncorrect() throws Exception
     {
-        mCheckConfig.addAttribute("forbiddenSummaryFragments",
+        checkConfig.addAttribute("forbiddenSummaryFragments",
                 "^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )");
         final String[] expected = {
             "14: First sentence should be present.",
@@ -58,28 +58,28 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport
             "83: Forbidden summary fragment.",
             "103: First sentence should be present.",
         };
-        verify(mCheckConfig, getPath("javadoc/InputIncorrectSummaryJavaDocCheck.java"), expected);
+        verify(checkConfig, getPath("javadoc/InputIncorrectSummaryJavaDocCheck.java"), expected);
     }
 
     @Test
     public void testPeriod() throws Exception
     {
-        mCheckConfig.addAttribute("period", "_");
+        checkConfig.addAttribute("period", "_");
         final String[] expected = {
             "5: First sentence should be present.",
             "10: First sentence should be present.",
         };
 
-        verify(mCheckConfig, getPath("javadoc/InputSummaryJavadocCheckPeriod.java"), expected);
+        verify(checkConfig, getPath("javadoc/InputSummaryJavadocCheckPeriod.java"), expected);
     }
 
     @Test
     public void testNoPeriod() throws Exception
     {
-        mCheckConfig.addAttribute("period", "");
+        checkConfig.addAttribute("period", "");
         final String[] expected = {
         };
 
-        verify(mCheckConfig, getPath("javadoc/InputSummaryJavadocCheckNoPeriod.java"), expected);
+        verify(checkConfig, getPath("javadoc/InputSummaryJavadocCheckNoPeriod.java"), expected);
     }
 }

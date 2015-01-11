@@ -57,22 +57,22 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck
     }
 
     @Override
-    public void visitJavadocToken(DetailNode aAst)
+    public void visitJavadocToken(DetailNode ast)
     {
-        if (isEmptyTag(aAst.getParent())) {
-            log(aAst.getLineNumber(), "non.empty.atclause", aAst.getText());
+        if (isEmptyTag(ast.getParent())) {
+            log(ast.getLineNumber(), "non.empty.atclause", ast.getText());
         }
     }
 
     /**
      * Tests if at-clause tag is empty.
-     * @param aTagNode at-clause tag.
+     * @param tagNode at-clause tag.
      * @return true, if at-clause tag is empty.
      */
-    private boolean isEmptyTag(DetailNode aTagNode)
+    private boolean isEmptyTag(DetailNode tagNode)
     {
         final DetailNode tagDescription =
-                JavadocUtils.findFirstToken(aTagNode, JavadocTokenTypes.DESCRIPTION);
+                JavadocUtils.findFirstToken(tagNode, JavadocTokenTypes.DESCRIPTION);
         return tagDescription == null;
     }
 }

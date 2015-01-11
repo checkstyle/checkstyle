@@ -44,74 +44,74 @@ public class JavadocTypeCheck
     extends Check
 {
     /** the scope to check for */
-    private Scope mScope = Scope.PRIVATE;
+    private Scope scope = Scope.PRIVATE;
     /** the visibility scope where Javadoc comments shouldn't be checked **/
-    private Scope mExcludeScope;
+    private Scope excludeScope;
     /** compiled regexp to match author tag content **/
-    private Pattern mAuthorFormatPattern;
+    private Pattern authorFormatPattern;
     /** compiled regexp to match version tag content **/
-    private Pattern mVersionFormatPattern;
+    private Pattern versionFormatPattern;
     /** regexp to match author tag content */
-    private String mAuthorFormat;
+    private String authorFormat;
     /** regexp to match version tag content */
-    private String mVersionFormat;
+    private String versionFormat;
     /**
      * controls whether to ignore errors when a method has type parameters but
      * does not have matching param tags in the javadoc. Defaults to false.
      */
-    private boolean mAllowMissingParamTags;
+    private boolean allowMissingParamTags;
     /** controls whether to flag errors for unknown tags. Defaults to false. */
-    private boolean mAllowUnknownTags;
+    private boolean allowUnknownTags;
 
     /**
      * Sets the scope to check.
-     * @param aFrom string to set scope from
+     * @param from string to set scope from
      */
-    public void setScope(String aFrom)
+    public void setScope(String from)
     {
-        mScope = Scope.getInstance(aFrom);
+        scope = Scope.getInstance(from);
     }
 
     /**
      * Set the excludeScope.
-     * @param aScope a <code>String</code> value
+     * @param scope a <code>String</code> value
      */
-    public void setExcludeScope(String aScope)
+    public void setExcludeScope(String scope)
     {
-        mExcludeScope = Scope.getInstance(aScope);
+        excludeScope = Scope.getInstance(scope);
     }
 
     /**
      * Set the author tag pattern.
-     * @param aFormat a <code>String</code> value
+     * @param format a <code>String</code> value
      * @throws ConversionException unable to parse aFormat
      */
-    public void setAuthorFormat(String aFormat)
+    public void setAuthorFormat(String format)
         throws ConversionException
     {
         try {
-            mAuthorFormat = aFormat;
-            mAuthorFormatPattern = Utils.getPattern(aFormat);
+            authorFormat = format;
+            authorFormatPattern = Utils.getPattern(format);
         }
         catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + aFormat, e);
+            throw new ConversionException("unable to parse " + format, e);
         }
     }
 
     /**
      * Set the version format pattern.
-     * @param aFormat a <code>String</code> value
+     * @param format a <code>String</code> value
      * @throws ConversionException unable to parse aFormat
      */
-    public void setVersionFormat(String aFormat)
+    public void setVersionFormat(String format)
         throws ConversionException
     {
         try {
-            mVersionFormat = aFormat;
-            mVersionFormatPattern = Utils.getPattern(aFormat);
+            versionFormat = format;
+            versionFormatPattern = Utils.getPattern(format);
         }
         catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + aFormat, e);
+            throw new ConversionException("unable to parse " + format, e);
         }
 
     }
@@ -120,20 +120,20 @@ public class JavadocTypeCheck
      * Controls whether to allow a type which has type parameters to
      * omit matching param tags in the javadoc. Defaults to false.
      *
-     * @param aFlag a <code>Boolean</code> value
+     * @param flag a <code>Boolean</code> value
      */
-    public void setAllowMissingParamTags(boolean aFlag)
+    public void setAllowMissingParamTags(boolean flag)
     {
-        mAllowMissingParamTags = aFlag;
+        allowMissingParamTags = flag;
     }
 
     /**
      * Controls whether to flag errors for unknown tags. Defaults to false.
-     * @param aFlag a <code>Boolean</code> value
+     * @param flag a <code>Boolean</code> value
      */
-    public void setAllowUnknownTags(boolean aFlag)
+    public void setAllowUnknownTags(boolean flag)
     {
-        mAllowUnknownTags = aFlag;
+        allowUnknownTags = flag;
     }
 
     @Override
@@ -148,27 +148,27 @@ public class JavadocTypeCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (shouldCheck(aAST)) {
+        if (shouldCheck(ast)) {
             final FileContents contents = getFileContents();
-            final int lineNo = aAST.getLineNo();
+            final int lineNo = ast.getLineNo();
             final TextBlock cmt = contents.getJavadocBefore(lineNo);
             if (cmt == null) {
                 log(lineNo, "javadoc.missing");
             }
-            else if (ScopeUtils.isOuterMostType(aAST)) {
+            else if (ScopeUtils.isOuterMostType(ast)) {
                 // don't check author/version for inner classes
                 final List<JavadocTag> tags = getJavadocTags(cmt);
                 checkTag(lineNo, tags, JavadocTagInfo.AUTHOR.getName(),
-                         mAuthorFormatPattern, mAuthorFormat);
+                         authorFormatPattern, authorFormat);
                 checkTag(lineNo, tags, JavadocTagInfo.VERSION.getName(),
-                         mVersionFormatPattern, mVersionFormat);
+                         versionFormatPattern, versionFormat);
 
                 final List<String> typeParamNames =
-                    CheckUtils.getTypeParameterNames(aAST);
+                    CheckUtils.getTypeParameterNames(ast);
 
-                if (!mAllowMissingParamTags) {
+                if (!allowMissingParamTags) {
                     //Check type parameters that should exist, do
                     for (final String string : typeParamNames) {
                         checkTypeParamTag(
@@ -183,36 +183,36 @@ public class JavadocTypeCheck
 
     /**
      * Whether we should check this node.
-     * @param aAST a given node.
+     * @param ast a given node.
      * @return whether we should check a given node.
      */
-    private boolean shouldCheck(final DetailAST aAST)
+    private boolean shouldCheck(final DetailAST ast)
     {
-        final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
         final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
         final Scope scope =
-            ScopeUtils.inInterfaceOrAnnotationBlock(aAST)
+            ScopeUtils.inInterfaceOrAnnotationBlock(ast)
                 ? Scope.PUBLIC : declaredScope;
-        final Scope surroundingScope = ScopeUtils.getSurroundingScope(aAST);
+        final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
 
-        return scope.isIn(mScope)
-            && ((surroundingScope == null) || surroundingScope.isIn(mScope))
-            && ((mExcludeScope == null)
-                || !scope.isIn(mExcludeScope)
+        return scope.isIn(this.scope)
+            && ((surroundingScope == null) || surroundingScope.isIn(this.scope))
+            && ((excludeScope == null)
+                || !scope.isIn(excludeScope)
                 || ((surroundingScope != null)
-                && !surroundingScope.isIn(mExcludeScope)));
+                && !surroundingScope.isIn(excludeScope)));
     }
 
     /**
      * Gets all standalone tags from a given javadoc.
-     * @param aCmt the Javadoc comment to process.
+     * @param cmt the Javadoc comment to process.
      * @return all standalone tags from the given javadoc.
      */
-    private List<JavadocTag> getJavadocTags(TextBlock aCmt)
+    private List<JavadocTag> getJavadocTags(TextBlock cmt)
     {
-        final JavadocTags tags = JavadocUtils.getJavadocTags(aCmt,
+        final JavadocTags tags = JavadocUtils.getJavadocTags(cmt,
             JavadocUtils.JavadocTagType.BLOCK);
-        if (!mAllowUnknownTags) {
+        if (!allowUnknownTags) {
             for (final InvalidJavadocTag tag : tags.getInvalidTags()) {
                 log(tag.getLine(), tag.getCol(), "javadoc.unknownTag",
                     tag.getName());
@@ -223,72 +223,72 @@ public class JavadocTypeCheck
 
     /**
      * Verifies that a type definition has a required tag.
-     * @param aLineNo the line number for the type definition.
-     * @param aTags tags from the Javadoc comment for the type definition.
-     * @param aTag the required tag name.
-     * @param aFormatPattern regexp for the tag value.
-     * @param aFormat pattern for the tag value.
+     * @param lineNo the line number for the type definition.
+     * @param tags tags from the Javadoc comment for the type definition.
+     * @param tag the required tag name.
+     * @param formatPattern regexp for the tag value.
+     * @param format pattern for the tag value.
      */
-    private void checkTag(int aLineNo, List<JavadocTag> aTags, String aTag,
-                          Pattern aFormatPattern, String aFormat)
+    private void checkTag(int lineNo, List<JavadocTag> tags, String tagName,
+                          Pattern formatPattern, String format)
     {
-        if (aFormatPattern == null) {
+        if (formatPattern == null) {
             return;
         }
 
         int tagCount = 0;
-        for (int i = aTags.size() - 1; i >= 0; i--) {
-            final JavadocTag tag = aTags.get(i);
-            if (tag.getTagName().equals(aTag)) {
+        for (int i = tags.size() - 1; i >= 0; i--) {
+            final JavadocTag tag = tags.get(i);
+            if (tag.getTagName().equals(tagName)) {
                 tagCount++;
-                if (!aFormatPattern.matcher(tag.getArg1()).find()) {
-                    log(aLineNo, "type.tagFormat", "@" + aTag, aFormat);
+                if (!formatPattern.matcher(tag.getArg1()).find()) {
+                    log(lineNo, "type.tagFormat", "@" + tagName, format);
                 }
             }
         }
         if (tagCount == 0) {
-            log(aLineNo, "type.missingTag", "@" + aTag);
+            log(lineNo, "type.missingTag", "@" + tagName);
         }
     }
 
     /**
      * Verifies that a type definition has the specified param tag for
      * the specified type parameter name.
-     * @param aLineNo the line number for the type definition.
-     * @param aTags tags from the Javadoc comment for the type definition.
-     * @param aTypeParamName the name of the type parameter
+     * @param lineNo the line number for the type definition.
+     * @param tags tags from the Javadoc comment for the type definition.
+     * @param typeParamName the name of the type parameter
      */
-    private void checkTypeParamTag(final int aLineNo,
-            final List<JavadocTag> aTags, final String aTypeParamName)
+    private void checkTypeParamTag(final int lineNo,
+            final List<JavadocTag> tags, final String typeParamName)
     {
         boolean found = false;
-        for (int i = aTags.size() - 1; i >= 0; i--) {
-            final JavadocTag tag = aTags.get(i);
+        for (int i = tags.size() - 1; i >= 0; i--) {
+            final JavadocTag tag = tags.get(i);
             if (tag.isParamTag()
                 && (tag.getArg1() != null)
-                && (tag.getArg1().indexOf("<" + aTypeParamName + ">") == 0))
+                && (tag.getArg1().indexOf("<" + typeParamName + ">") == 0))
             {
                 found = true;
             }
         }
         if (!found) {
-            log(aLineNo, "type.missingTag",
-                JavadocTagInfo.PARAM.getText() + " <" + aTypeParamName + ">");
+            log(lineNo, "type.missingTag",
+                JavadocTagInfo.PARAM.getText() + " <" + typeParamName + ">");
         }
     }
 
     /**
      * Checks for unused param tags for type parameters.
-     * @param aTags tags from the Javadoc comment for the type definition.
-     * @param aTypeParamNames names of type parameters
+     * @param tags tags from the Javadoc comment for the type definition.
+     * @param typeParamNames names of type parameters
      */
     private void checkUnusedTypeParamTags(
-        final List<JavadocTag> aTags,
-        final List<String> aTypeParamNames)
+        final List<JavadocTag> tags,
+        final List<String> typeParamNames)
     {
         final Pattern pattern = Utils.getPattern("\\s*<([^>]+)>.*");
-        for (int i = aTags.size() - 1; i >= 0; i--) {
-            final JavadocTag tag = aTags.get(i);
+        for (int i = tags.size() - 1; i >= 0; i--) {
+            final JavadocTag tag = tags.get(i);
             if (tag.isParamTag()) {
 
                 if (tag.getArg1() != null) {
@@ -298,7 +298,7 @@ public class JavadocTypeCheck
 
                     if (matcher.matches()) {
                         typeParamName = matcher.group(1).trim();
-                        if (!aTypeParamNames.contains(typeParamName)) {
+                        if (!typeParamNames.contains(typeParamName)) {
                             log(tag.getLineNo(), tag.getColumnNo(),
                                 "javadoc.unusedTag",
                                 JavadocTagInfo.PARAM.getText(),

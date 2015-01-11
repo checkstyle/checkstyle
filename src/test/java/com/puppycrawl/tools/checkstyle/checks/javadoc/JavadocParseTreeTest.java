@@ -43,7 +43,7 @@ public class JavadocParseTreeTest
     private final File folderWithInputFiles = new File(
             "src/test/resources/com/puppycrawl/tools/checkstyle/grammars/javadoc");
     private JavadocParser parser;
-    private final BaseErrorListener mErrorListener = new FailOnErrorListener();
+    private final BaseErrorListener errorListener = new FailOnErrorListener();
 
     public ParseTree parseJavadoc(String aBlockComment)
         throws IOException
@@ -54,13 +54,13 @@ public class JavadocParseTreeTest
         final ANTLRInputStream input = new ANTLRInputStream(in);
         final JavadocLexer lexer = new JavadocLexer(input);
         lexer.removeErrorListeners();
-        lexer.addErrorListener(mErrorListener);
+        lexer.addErrorListener(errorListener);
 
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
 
         parser = new JavadocParser(tokens);
         parser.removeErrorListeners();
-        parser.addErrorListener(mErrorListener);
+        parser.addErrorListener(errorListener);
 
         return parser.javadoc();
     }

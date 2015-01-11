@@ -32,9 +32,9 @@ import java.util.Set;
 public class JavadocPackageCheck extends AbstractFileSetCheck
 {
     /** Indicates if allow legacy "package.html" file to be used. */
-    private boolean mAllowLegacy;
+    private boolean allowLegacy;
     /** The directories checked. */
-    private final Set<File> mDirectoriesChecked = Sets.newHashSet();
+    private final Set<File> directoriesChecked = Sets.newHashSet();
 
     /**
      * Creates a new instance.
@@ -47,21 +47,21 @@ public class JavadocPackageCheck extends AbstractFileSetCheck
     }
 
     @Override
-    public void beginProcessing(String aCharset)
+    public void beginProcessing(String charset)
     {
-        super.beginProcessing(aCharset);
-        mDirectoriesChecked.clear();
+        super.beginProcessing(charset);
+        directoriesChecked.clear();
     }
 
     @Override
-    protected void processFiltered(File aFile, List<String> aLines)
+    protected void processFiltered(File file, List<String> lines)
     {
         // Check if already processed directory
-        final File dir = aFile.getParentFile();
-        if (mDirectoriesChecked.contains(dir)) {
+        final File dir = file.getParentFile();
+        if (directoriesChecked.contains(dir)) {
             return;
         }
-        mDirectoriesChecked.add(dir);
+        directoriesChecked.add(dir);
 
         // Check for the preferred file.
         final File packageInfo = new File(dir, "package-info.java");
@@ -72,7 +72,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck
                 log(0, "javadoc.legacyPackageHtml");
             }
         }
-        else if (!mAllowLegacy || !packageHtml.exists()) {
+        else if (!allowLegacy || !packageHtml.exists()) {
             log(0, "javadoc.packageInfo");
         }
     }
@@ -80,10 +80,10 @@ public class JavadocPackageCheck extends AbstractFileSetCheck
     /**
      * Indicates whether to allow support for the legacy <i>package.html</i>
      * file.
-     * @param aAllowLegacy whether to allow support.
+     * @param allowLegacy whether to allow support.
      */
-    public void setAllowLegacy(boolean aAllowLegacy)
+    public void setAllowLegacy(boolean allowLegacy)
     {
-        mAllowLegacy = aAllowLegacy;
+        this.allowLegacy = allowLegacy;
     }
 }

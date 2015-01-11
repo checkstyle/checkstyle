@@ -23,13 +23,13 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 
 /**
- * Checks that a JavaDoc block which can fit on a single line and doesn't
- * contain at-clauses. Javadoc comment that contains at leat one at-clause
+ * Checks that a Javadoc block which can fit on a single line and doesn't
+ * contain at-clauses. Javadoc comment that contains at least one at-clause
  * should be formatted in few lines.
  *
  * Default configuration:
  * <pre>
- * &lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
+ * &lt;module name=&quot;SingleLineJavdoc&quot;/&gt;
  * </pre>
  *
  * @author baratali
@@ -48,12 +48,12 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck
     }
 
     @Override
-    public void visitJavadocToken(DetailNode aAst)
+    public void visitJavadocToken(DetailNode ast)
     {
-        if (isSingleLineJavadoc()
-                && (hasJavadocTags(aAst) || hasJavadocInlineTags(aAst)))
+        if (isSingleLineJavdoc()
+                && (hasJavadocTags(ast) || hasJavadocInlineTags(ast)))
         {
-            log(aAst.getLineNumber(), "singleline.javadoc");
+            log(ast.getLineNumber(), "singleline.javadoc");
         }
     }
 
@@ -62,7 +62,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck
      *
      * @return true, if comment is single line comment.
      */
-    private boolean isSingleLineJavadoc()
+    private boolean isSingleLineJavdoc()
     {
         final DetailAST blockCommentStart = getBlockCommentAst();
         final DetailAST blockCommentEnd = blockCommentStart.getLastChild();
@@ -73,24 +73,24 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck
     /**
      * Checks if comment has javadoc tags.
      *
-     * @param aJavadocRoot javadoc root node.
+     * @param javdocRoot javadoc root node.
      * @return true, if comment has javadoc tags.
      */
-    private boolean hasJavadocTags(DetailNode aJavadocRoot)
+    private boolean hasJavadocTags(DetailNode javadocRoot)
     {
-        final DetailNode javadocTagSection =
-                JavadocUtils.findFirstToken(aJavadocRoot, JavadocTokenTypes.JAVADOC_TAG);
-        return javadocTagSection != null;
+        final DetailNode javdocTagSection =
+                JavadocUtils.findFirstToken(javadocRoot, JavadocTokenTypes.JAVADOC_TAG);
+        return javdocTagSection != null;
     }
 
     /**
      * Checks if comment has in-line tags tags.
      *
-     * @param aJavadocRoot javadoc root node.
+     * @param javdocRoot javadoc root node.
      * @return true, if comment has in-line tags tags.
      */
-    private boolean hasJavadocInlineTags(DetailNode aJavadocRoot)
+    private boolean hasJavadocInlineTags(DetailNode javadocRoot)
     {
-        return JavadocUtils.branchContains(aJavadocRoot, JavadocTokenTypes.JAVADOC_INLINE_TAG);
+        return JavadocUtils.branchContains(javadocRoot, JavadocTokenTypes.JAVADOC_INLINE_TAG);
     }
 }
