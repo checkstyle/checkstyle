@@ -25,23 +25,23 @@ import org.junit.Test;
 
 public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport
 {
-    private DefaultConfiguration mCheckConfig;
+    private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp()
     {
-        mCheckConfig = createCheckConfig(RegexpSinglelineCheck.class);
+        checkConfig = createCheckConfig(RegexpSinglelineCheck.class);
     }
 
     @Test
     public void testIt() throws Exception
     {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
-        mCheckConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", illegal);
         final String[] expected = {
             "69: Line matches the illegal pattern '" + illegal + "'.",
         };
-        verify(mCheckConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
     @Test
@@ -50,33 +50,33 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport
     {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         final String message = "Bad line :(";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("message", message);
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("message", message);
         final String[] expected = {
             "69: " + message,
         };
-        verify(mCheckConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
     @Test
     public void testIgnoreCaseTrue() throws Exception
     {
         final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("ignoreCase", "true");
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreCase", "true");
         final String[] expected = {
             "69: Line matches the illegal pattern '" + illegal + "'.",
         };
-        verify(mCheckConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
     @Test
     public void testIgnoreCaseFalse() throws Exception
     {
         final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("ignoreCase", "false");
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreCase", "false");
         final String[] expected = {};
-        verify(mCheckConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 }

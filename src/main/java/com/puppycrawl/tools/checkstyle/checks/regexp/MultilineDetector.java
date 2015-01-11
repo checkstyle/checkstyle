@@ -29,32 +29,32 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
 class MultilineDetector
 {
     /** The detection options to use. */
-    private final DetectorOptions mOptions;
+    private final DetectorOptions options;
     /** Tracks the number of matches. */
-    private int mCurrentMatches;
-    /** The mMatcher */
-    private Matcher mMatcher;
+    private int currentMatches;
+    /** The matcher */
+    private Matcher matcher;
     /** The file text content */
-    private FileText mText;
+    private FileText text;
 
     /**
      * Creates an instance.
-     * @param aOptions the options to use.
+     * @param options the options to use.
      */
-    public MultilineDetector(DetectorOptions aOptions)
+    public MultilineDetector(DetectorOptions options)
     {
-        mOptions = aOptions;
+        this.options = options;
     }
 
     /**
      * Processes an entire text file looking for matches.
-     * @param aText the text to process
+     * @param text the text to process
      */
-    public void processLines(FileText aText)
+    public void processLines(FileText text)
     {
-        mText = aText;
+        this.text = text;
         resetState();
-        mMatcher = mOptions.getPattern().matcher(mText.getFullText());
+        matcher = options.getPattern().matcher(text.getFullText());
         findMatch();
         finish();
     }
@@ -62,26 +62,26 @@ class MultilineDetector
     /** recursive method that finds the matches. */
     private void findMatch()
     {
-        final boolean foundMatch = mMatcher.find();
+        final boolean foundMatch = matcher.find();
         if (!foundMatch) {
             return;
         }
 
-        final LineColumn start = mText.lineColumn(mMatcher.start());
-        final LineColumn end = mText.lineColumn(mMatcher.end());
+        final LineColumn start = text.lineColumn(matcher.start());
+        final LineColumn end = text.lineColumn(matcher.end());
 
-        if (!mOptions.getSuppressor().shouldSuppress(start.getLine(),
+        if (!options.getSuppressor().shouldSuppress(start.getLine(),
                 start.getColumn(), end.getLine(), end.getColumn()))
         {
-            mCurrentMatches++;
-            if (mCurrentMatches > mOptions.getMaximum()) {
-                if ("".equals(mOptions.getMessage())) {
-                    mOptions.getReporter().log(start.getLine(),
-                            "regexp.exceeded", mMatcher.pattern().toString());
+            currentMatches++;
+            if (currentMatches > options.getMaximum()) {
+                if ("".equals(options.getMessage())) {
+                    options.getReporter().log(start.getLine(),
+                            "regexp.exceeded", matcher.pattern().toString());
                 }
                 else {
-                    mOptions.getReporter()
-                            .log(start.getLine(), mOptions.getMessage());
+                    options.getReporter()
+                            .log(start.getLine(), options.getMessage());
                 }
             }
         }
@@ -90,13 +90,13 @@ class MultilineDetector
     /** Perform processing at the end of a set of lines. */
     private void finish()
     {
-        if (mCurrentMatches < mOptions.getMinimum()) {
-            if ("".equals(mOptions.getMessage())) {
-                mOptions.getReporter().log(0, "regexp.minimum",
-                        mOptions.getMinimum(), mOptions.getFormat());
+        if (currentMatches < options.getMinimum()) {
+            if ("".equals(options.getMessage())) {
+                options.getReporter().log(0, "regexp.minimum",
+                        options.getMinimum(), options.getFormat());
             }
             else {
-                mOptions.getReporter().log(0, mOptions.getMessage());
+                options.getReporter().log(0, options.getMessage());
             }
         }
     }
@@ -106,6 +106,6 @@ class MultilineDetector
      */
     private void resetState()
     {
-        mCurrentMatches = 0;
+        currentMatches = 0;
     }
 }

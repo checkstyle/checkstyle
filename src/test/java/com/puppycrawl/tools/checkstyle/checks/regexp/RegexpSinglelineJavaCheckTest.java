@@ -25,23 +25,23 @@ import org.junit.Test;
 
 public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
 {
-    private DefaultConfiguration mCheckConfig;
+    private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp()
     {
-        mCheckConfig = createCheckConfig(RegexpSinglelineJavaCheck.class);
+        checkConfig = createCheckConfig(RegexpSinglelineJavaCheck.class);
     }
 
     @Test
     public void testIt() throws Exception
     {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
-        mCheckConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("format", illegal);
         final String[] expected = {
             "69: Line matches the illegal pattern '" + illegal + "'.",
         };
-        verify(mCheckConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
     @Test
@@ -50,34 +50,34 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
     {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         final String message = "Bad line :(";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("message", message);
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("message", message);
         final String[] expected = {
             "69: " + message,
         };
-        verify(mCheckConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
     @Test
     public void testIgnoreCaseTrue() throws Exception
     {
         final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("ignoreCase", "true");
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreCase", "true");
         final String[] expected = {
             "69: Line matches the illegal pattern '" + illegal + "'.",
         };
-        verify(mCheckConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
     @Test
     public void testIgnoreCaseFalse() throws Exception
     {
         final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("ignoreCase", "false");
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreCase", "false");
         final String[] expected = {};
-        verify(mCheckConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
     @Test
@@ -85,11 +85,11 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
     {
         // See if the comment is removed properly
         final String illegal = "don't use trailing comments";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("ignoreComments", "true");
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
         };
-        verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
     @Test
@@ -97,12 +97,12 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
     {
         // See if the comment is removed properly
         final String illegal = "don't use trailing comments";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("ignoreComments", "false");
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "false");
         final String[] expected = {
             "4: Line matches the illegal pattern '" + illegal + "'.",
         };
-        verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
     @Test
@@ -110,23 +110,23 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
     {
         // See if the comment is removed properly
         final String illegal = "c-style 1";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("ignoreComments", "true");
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
         };
-        verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsFalseCStyle() throws Exception
     {
         final String illegal = "c-style 1";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("ignoreComments", "false");
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "false");
         final String[] expected = {
             "19: Line matches the illegal pattern '" + illegal + "'.",
         };
-        verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
     @Test
@@ -134,57 +134,57 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
     {
         // See if a second comment on the same line is removed properly
         final String illegal = "c-style 2";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("ignoreComments", "true");
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
         };
-        verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsMultiLine() throws Exception
     {
         final String illegal = "Let's check multi-line comments";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("ignoreComments", "true");
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
         };
-        verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsInlineStart() throws Exception
     {
         final String illegal = "long ms /";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("ignoreComments", "true");
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
         };
-        verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsInlineEnd() throws Exception
     {
         final String illegal = "int z";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("ignoreComments", "true");
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
             "22: Line matches the illegal pattern '" + illegal + "'.",
         };
-        verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsInlineMiddle() throws Exception
     {
         final String illegal = "int y";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("ignoreComments", "true");
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
             "23: Line matches the illegal pattern '" + illegal + "'.",
         };
-        verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
     @Test
@@ -192,11 +192,11 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
     {
         // make sure the comment is not turned into spaces
         final String illegal = "long ms  ";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("ignoreComments", "true");
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
         };
-        verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
     @Test
@@ -204,47 +204,47 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
     {
         // StackOverflowError with trailing space and ignoreComments
         final String illegal = "\\s+$";
-        mCheckConfig.addAttribute("format", illegal);
-        mCheckConfig.addAttribute("ignoreComments", "true");
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
         };
-        verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
     @Test
     public void testExistingInDoc() throws Exception
     {
         final String required = "Test case file";
-        mCheckConfig.addAttribute("format", required);
-        mCheckConfig.addAttribute("minimum", "1");
-        mCheckConfig.addAttribute("maximum", "1000");
+        checkConfig.addAttribute("format", required);
+        checkConfig.addAttribute("minimum", "1");
+        checkConfig.addAttribute("maximum", "1000");
         final String[] expected = {
         };
-        verify(mCheckConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
     @Test
     public void testExistingInCode() throws Exception
     {
         final String required = "package";
-        mCheckConfig.addAttribute("format", required);
-        mCheckConfig.addAttribute("minimum", "1");
-        mCheckConfig.addAttribute("maximum", "1000");
+        checkConfig.addAttribute("format", required);
+        checkConfig.addAttribute("minimum", "1");
+        checkConfig.addAttribute("maximum", "1000");
         final String[] expected = {
         };
-        verify(mCheckConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
     @Test
     public void testMissing() throws Exception
     {
         final String required = "This text is not in the file";
-        mCheckConfig.addAttribute("format", required);
-        mCheckConfig.addAttribute("minimum", "1");
-        mCheckConfig.addAttribute("maximum", "1000");
+        checkConfig.addAttribute("format", required);
+        checkConfig.addAttribute("minimum", "1");
+        checkConfig.addAttribute("maximum", "1000");
         final String[] expected = {
             "0: File does not contain at least 1 matches for pattern '" + required + "'.",
         };
-        verify(mCheckConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 }
