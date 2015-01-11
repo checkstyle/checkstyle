@@ -42,17 +42,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Check have following options:
  * </p>
  * <ul>
- * <li>mAllowSamelineMultipleAnnotations - to allow annotation to be located on
+ * <li>allowSamelineMultipleAnnotations - to allow annotation to be located on
  * the same line as target element. Default value is false.
  * </li>
  *
  * <li>
- * mAllowSamelineSingleParameterlessAnnotation - to allow single parameterless
+ * allowSamelineSingleParameterlessAnnotation - to allow single parameterless
  * annotation to be located on the same line as target element. Default value is false.
  * </li>
  *
  * <li>
- * mAllowSamelineParametrizedAnnotation - to allow parameterized annotation
+ * allowSamelineParametrizedAnnotation - to allow parameterized annotation
  * to be located on the same line as target element. Default value is false.
  * </li>
  * </ul>
@@ -127,43 +127,43 @@ public class AnnotationLocationCheck extends Check
     /**
      * Some javadoc.
      */
-    private boolean mAllowSamelineSingleParameterlessAnnotation = true;
+    private boolean allowSamelineSingleParameterlessAnnotation = true;
 
     /**
      * Some javadoc.
      */
-    private boolean mAllowSamelineParametrizedAnnotation;
+    private boolean allowSamelineParametrizedAnnotation;
 
     /**
      * Some javadoc.
      */
-    private boolean mAllowSamelineMultipleAnnotations;
+    private boolean allowSamelineMultipleAnnotations;
 
     /**
      * Some javadoc.
-     * @param aAllow Some javadoc.
+     * @param allow Some javadoc.
      */
-    public final void setAllowSamelineSingleParameterlessAnnotation(boolean aAllow)
+    public final void setAllowSamelineSingleParameterlessAnnotation(boolean allow)
     {
-        mAllowSamelineSingleParameterlessAnnotation = aAllow;
+        allowSamelineSingleParameterlessAnnotation = allow;
     }
 
     /**
      * Some javadoc.
-     * @param aAllow Some javadoc.
+     * @param allow Some javadoc.
      */
-    public final void setAllowSamelineParametrizedAnnotation(boolean aAllow)
+    public final void setAllowSamelineParametrizedAnnotation(boolean allow)
     {
-        mAllowSamelineParametrizedAnnotation = aAllow;
+        allowSamelineParametrizedAnnotation = allow;
     }
 
     /**
      * Some javadoc.
-     * @param aAllow Some javadoc.
+     * @param allow Some javadoc.
      */
-    public final void setAllowSamelineMultipleAnnotations(boolean aAllow)
+    public final void setAllowSamelineMultipleAnnotations(boolean allow)
     {
-        mAllowSamelineMultipleAnnotations = aAllow;
+        allowSamelineMultipleAnnotations = allow;
     }
 
     @Override
@@ -180,9 +180,9 @@ public class AnnotationLocationCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final DetailAST modifiersNode = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modifiersNode = ast.findFirstToken(TokenTypes.MODIFIERS);
 
         if (hasAnnotations(modifiersNode)) {
             checkAnnotations(modifiersNode, getAnnotationLevel(modifiersNode));
@@ -191,12 +191,12 @@ public class AnnotationLocationCheck extends Check
 
     /**
      * Some javadoc.
-     * @param aModifierNode Some javadoc.
-     * @param aCorrectLevel Some javadoc.
+     * @param modifierNode Some javadoc.
+     * @param correctLevel Some javadoc.
      */
-    private void checkAnnotations(DetailAST aModifierNode, int aCorrectLevel)
+    private void checkAnnotations(DetailAST modifierNode, int correctLevel)
     {
-        DetailAST annotation = aModifierNode.getFirstChild();
+        DetailAST annotation = modifierNode.getFirstChild();
 
         while (annotation != null && annotation.getType() == TokenTypes.ANNOTATION) {
             final boolean hasParameters = isParameterized(annotation);
@@ -205,9 +205,9 @@ public class AnnotationLocationCheck extends Check
                 log(annotation.getLineNo(),
                         MSG_KEY_ANNOTATION_LOCATION_ALONE, getAnnotationName(annotation));
             }
-            else if (annotation.getColumnNo() != aCorrectLevel && !hasNodeBefore(annotation)) {
+            else if (annotation.getColumnNo() != correctLevel && !hasNodeBefore(annotation)) {
                 log(annotation.getLineNo(), MSG_KEY_ANNOTATION_LOCATION,
-                    getAnnotationName(annotation), annotation.getColumnNo(), aCorrectLevel);
+                    getAnnotationName(annotation), annotation.getColumnNo(), correctLevel);
             }
             annotation = annotation.getNextSibling();
         }
@@ -215,45 +215,45 @@ public class AnnotationLocationCheck extends Check
 
     /**
      * Some javadoc.
-     * @param aAnnotation Some javadoc.
-     * @param aHasParams Some javadoc.
+     * @param annotation Some javadoc.
+     * @param hasParams Some javadoc.
      * @return Some javadoc.
      */
-    private boolean isCorrectLocation(DetailAST aAnnotation, boolean aHasParams)
+    private boolean isCorrectLocation(DetailAST annotation, boolean hasParams)
     {
-        final boolean allowingCondition = aHasParams ? mAllowSamelineParametrizedAnnotation
-            : mAllowSamelineSingleParameterlessAnnotation;
-        return allowingCondition && !hasNodeBefore(aAnnotation)
-            || !allowingCondition && !hasNodeBeside(aAnnotation)
-            || mAllowSamelineMultipleAnnotations;
+        final boolean allowingCondition = hasParams ? allowSamelineParametrizedAnnotation
+            : allowSamelineSingleParameterlessAnnotation;
+        return allowingCondition && !hasNodeBefore(annotation)
+            || !allowingCondition && !hasNodeBeside(annotation)
+            || allowSamelineMultipleAnnotations;
     }
 
     /**
      * Some javadoc.
-     * @param aAnnotation Some javadoc.
+     * @param annotation Some javadoc.
      * @return Some javadoc.
      */
-    private static String getAnnotationName(DetailAST aAnnotation)
+    private static String getAnnotationName(DetailAST annotation)
     {
-        DetailAST idenNode = aAnnotation.findFirstToken(TokenTypes.IDENT);
+        DetailAST idenNode = annotation.findFirstToken(TokenTypes.IDENT);
         if (idenNode == null) {
-            idenNode = aAnnotation.findFirstToken(TokenTypes.DOT).findFirstToken(TokenTypes.IDENT);
+            idenNode = annotation.findFirstToken(TokenTypes.DOT).findFirstToken(TokenTypes.IDENT);
         }
         return idenNode.getText();
     }
 
     /**
      * Some javadoc.
-     * @param aAnnotation Some javadoc.
+     * @param annotation Some javadoc.
      * @return Some javadoc.
      */
-    private static boolean hasNodeAfter(DetailAST aAnnotation)
+    private static boolean hasNodeAfter(DetailAST annotation)
     {
-        final int annotationLineNo = aAnnotation.getLineNo();
-        DetailAST nextNode = aAnnotation.getNextSibling();
+        final int annotationLineNo = annotation.getLineNo();
+        DetailAST nextNode = annotation.getNextSibling();
 
         if (nextNode == null) {
-            nextNode = aAnnotation.getParent().getNextSibling();
+            nextNode = annotation.getParent().getNextSibling();
         }
 
         return nextNode != null && annotationLineNo == nextNode.getLineNo();
@@ -261,54 +261,54 @@ public class AnnotationLocationCheck extends Check
 
     /**
      * Some javadoc.
-     * @param aAnnotation Some javadoc.
+     * @param annotation Some javadoc.
      * @return Some javadoc.
      */
-    private static boolean hasNodeBefore(DetailAST aAnnotation)
+    private static boolean hasNodeBefore(DetailAST annotation)
     {
-        final int annotationLineNo = aAnnotation.getLineNo();
-        final DetailAST previousNode = aAnnotation.getPreviousSibling();
+        final int annotationLineNo = annotation.getLineNo();
+        final DetailAST previousNode = annotation.getPreviousSibling();
 
         return previousNode != null && annotationLineNo == previousNode.getLineNo();
     }
 
     /**
      * Some javadoc.
-     * @param aAnnotation Some javadoc.
+     * @param annotation Some javadoc.
      * @return Some javadoc.
      */
-    private static boolean hasNodeBeside(DetailAST aAnnotation)
+    private static boolean hasNodeBeside(DetailAST annotation)
     {
-        return hasNodeBefore(aAnnotation) || hasNodeAfter(aAnnotation);
+        return hasNodeBefore(annotation) || hasNodeAfter(annotation);
     }
 
     /**
      * Some javadoc.
-     * @param aModifierNode Some javadoc.
+     * @param modifierNode Some javadoc.
      * @return Some javadoc.
      */
-    private static int getAnnotationLevel(DetailAST aModifierNode)
+    private static int getAnnotationLevel(DetailAST modifierNode)
     {
-        return aModifierNode.getParent().getColumnNo();
+        return modifierNode.getParent().getColumnNo();
     }
 
     /**
      * Some javadoc.
-     * @param aAnnotation Some javadoc.
+     * @param annotation Some javadoc.
      * @return Some javadoc.
      */
-    private static boolean isParameterized(DetailAST aAnnotation)
+    private static boolean isParameterized(DetailAST annotation)
     {
-        return aAnnotation.findFirstToken(TokenTypes.EXPR) != null;
+        return annotation.findFirstToken(TokenTypes.EXPR) != null;
     }
 
     /**
      * Some javadoc.
-     * @param aModifierNode Some javadoc.
+     * @param modifierNode Some javadoc.
      * @return Some javadoc.
      */
-    private static boolean hasAnnotations(DetailAST aModifierNode)
+    private static boolean hasAnnotations(DetailAST modifierNode)
     {
-        return aModifierNode.findFirstToken(TokenTypes.ANNOTATION) != null;
+        return modifierNode.findFirstToken(TokenTypes.ANNOTATION) != null;
     }
 }

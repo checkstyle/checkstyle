@@ -139,9 +139,9 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
 
     /** {@inheritDoc} */
     @Override
-    public void visitToken(final DetailAST aAST)
+    public void visitToken(final DetailAST ast)
     {
-        final DetailAST annotation = this.getSuppressWarnings(aAST);
+        final DetailAST annotation = this.getSuppressWarnings(ast);
 
         if (annotation == null) {
             return;
@@ -196,47 +196,47 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
      * that is annotating the AST.  If the annotation does not exist
      * this method will return {@code null}.
      *
-     * @param aAST the AST
+     * @param ast the AST
      * @return the {@link SuppressWarnings SuppressWarnings} annotation
      */
-    private DetailAST getSuppressWarnings(DetailAST aAST)
+    private DetailAST getSuppressWarnings(DetailAST ast)
     {
         final DetailAST annotation = AnnotationUtility.getAnnotation(
-            aAST, SuppressWarningsCheck.SUPPRESS_WARNINGS);
+            ast, SuppressWarningsCheck.SUPPRESS_WARNINGS);
 
         return (annotation != null) ? annotation
             : AnnotationUtility.getAnnotation(
-                aAST, SuppressWarningsCheck.FQ_SUPPRESS_WARNINGS);
+                ast, SuppressWarningsCheck.FQ_SUPPRESS_WARNINGS);
     }
 
     /**
      * This method looks for a warning that matches a configured expression.
      * If found it logs a violation at the given line and column number.
      *
-     * @param aLineNo the line number
-     * @param aColNum the column number
-     * @param aWarningText the warning.
+     * @param lineNo the line number
+     * @param colNum the column number
+     * @param warningText the warning.
      */
-    private void logMatch(final int aLineNo,
-        final int aColNum, final String aWarningText)
+    private void logMatch(final int lineNo,
+        final int colNum, final String warningText)
     {
-        final Matcher matcher = this.getRegexp().matcher(aWarningText);
+        final Matcher matcher = this.getRegexp().matcher(warningText);
         if (matcher.matches()) {
-            this.log(aLineNo, aColNum,
-                    MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, aWarningText);
+            this.log(lineNo, colNum,
+                    MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, warningText);
         }
     }
 
     /**
      * Find the parent (holder) of the of the warnings (Expr).
      *
-     * @param aAnnotation the annotation
+     * @param annotation the annotation
      * @return a Token representing the expr.
      */
-    private DetailAST findWarningsHolder(final DetailAST aAnnotation)
+    private DetailAST findWarningsHolder(final DetailAST annotation)
     {
         final DetailAST annValuePair =
-            aAnnotation.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
+            annotation.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
         final DetailAST annArrayInit;
 
         if (annValuePair != null) {
@@ -245,14 +245,14 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
         }
         else {
             annArrayInit =
-                aAnnotation.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
+                annotation.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
         }
 
         if (annArrayInit != null) {
             return annArrayInit;
         }
 
-        return aAnnotation;
+        return annotation;
     }
 
     /**
@@ -264,16 +264,16 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
      * <br/>
      * Output String = unchecked
      *
-     * @param aWarning the warning string
+     * @param warning the warning string
      * @return the string without two quotes
      */
-    private String removeQuotes(final String aWarning)
+    private String removeQuotes(final String warning)
     {
-        assert aWarning != null : "the aWarning was null";
-        assert aWarning.charAt(0) == '"';
-        assert aWarning.charAt(aWarning.length() - 1) == '"';
+        assert warning != null : "the warning was null";
+        assert warning.charAt(0) == '"';
+        assert warning.charAt(warning.length() - 1) == '"';
 
-        return aWarning.substring(1, aWarning.length() - 1);
+        return warning.substring(1, warning.length() - 1);
     }
 
     /**
@@ -281,47 +281,47 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
      * and right sides, checking for matches and
      * logging violations.
      *
-     * @param aCond a Conditional type
+     * @param cond a Conditional type
      * {@link TokenTypes#QUESTION QUESTION}
      */
-    private void walkConditional(final DetailAST aCond)
+    private void walkConditional(final DetailAST cond)
     {
-        if (aCond.getType() != TokenTypes.QUESTION) {
+        if (cond.getType() != TokenTypes.QUESTION) {
             final String warningText =
-                this.removeQuotes(aCond.getText());
-            this.logMatch(aCond.getLineNo(), aCond.getColumnNo(), warningText);
+                this.removeQuotes(cond.getText());
+            this.logMatch(cond.getLineNo(), cond.getColumnNo(), warningText);
             return;
         }
 
-        this.walkConditional(this.getCondLeft(aCond));
-        this.walkConditional(this.getCondRight(aCond));
+        this.walkConditional(this.getCondLeft(cond));
+        this.walkConditional(this.getCondRight(cond));
     }
 
     /**
      * Retrieves the left side of a conditional.
      *
-     * @param aCond aCond a conditional type
+     * @param cond cond a conditional type
      * {@link TokenTypes#QUESTION QUESTION}
      * @return either the value
      * or another conditional
      */
-    private DetailAST getCondLeft(final DetailAST aCond)
+    private DetailAST getCondLeft(final DetailAST cond)
     {
-        final DetailAST colon = aCond.findFirstToken(TokenTypes.COLON);
+        final DetailAST colon = cond.findFirstToken(TokenTypes.COLON);
         return colon.getPreviousSibling();
     }
 
     /**
      * Retrieves the right side of a conditional.
      *
-     * @param aCond a conditional type
+     * @param cond a conditional type
      * {@link TokenTypes#QUESTION QUESTION}
      * @return either the value
      * or another conditional
      */
-    private DetailAST getCondRight(final DetailAST aCond)
+    private DetailAST getCondRight(final DetailAST cond)
     {
-        final DetailAST colon = aCond.findFirstToken(TokenTypes.COLON);
+        final DetailAST colon = cond.findFirstToken(TokenTypes.COLON);
         return colon.getNextSibling();
     }
 }

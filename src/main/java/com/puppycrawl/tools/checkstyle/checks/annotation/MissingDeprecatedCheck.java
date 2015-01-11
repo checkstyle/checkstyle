@@ -142,39 +142,39 @@ public final class MissingDeprecatedCheck extends Check
 
     /** {@inheritDoc} */
     @Override
-    public void visitToken(final DetailAST aAST)
+    public void visitToken(final DetailAST ast)
     {
         final TextBlock javadoc =
-            this.getFileContents().getJavadocBefore(aAST.getLineNo());
+            this.getFileContents().getJavadocBefore(ast.getLineNo());
 
         final boolean containsAnnotation =
-            AnnotationUtility.containsAnnotation(aAST, DEPRECATED)
-            || AnnotationUtility.containsAnnotation(aAST, FQ_DEPRECATED);
+            AnnotationUtility.containsAnnotation(ast, DEPRECATED)
+            || AnnotationUtility.containsAnnotation(ast, FQ_DEPRECATED);
 
         final boolean containsJavadocTag = this.containsJavadocTag(javadoc);
 
         if (containsAnnotation ^ containsJavadocTag) {
-            this.log(aAST.getLineNo(), MSG_KEY_ANNOTATION_MISSING_DEPRECATED);
+            this.log(ast.getLineNo(), MSG_KEY_ANNOTATION_MISSING_DEPRECATED);
         }
     }
 
     /**
      * Checks to see if the text block contains a deprecated tag.
      *
-     * @param aJavadoc the javadoc of the AST
+     * @param javadoc the javadoc of the AST
      * @return true if contains the tag
      */
-    private boolean containsJavadocTag(final TextBlock aJavadoc)
+    private boolean containsJavadocTag(final TextBlock javadoc)
     {
-        if (aJavadoc == null) {
+        if (javadoc == null) {
             return false;
         }
 
-        final String[] lines = aJavadoc.getText();
+        final String[] lines = javadoc.getText();
 
         boolean found = false;
 
-        int currentLine = aJavadoc.getStartLineNo() - 1;
+        int currentLine = javadoc.getStartLineNo() - 1;
 
         for (int i = 0; i < lines.length; i++) {
             currentLine++;
@@ -199,15 +199,15 @@ public final class MissingDeprecatedCheck extends Check
                 // Javadoc), '@' (start of next tag), or anything that's
                 // not whitespace or '*' characters.
 
-                for (int remIndex = i + 1;
-                    remIndex < lines.length; remIndex++)
+                for (int reindex = i + 1;
+                    reindex < lines.length; reindex++)
                 {
                     final Matcher multilineCont =
                         MissingDeprecatedCheck.MATCH_DEPRECATED_MULTILINE_CONT
-                        .matcher(lines[remIndex]);
+                        .matcher(lines[reindex]);
 
                     if (multilineCont.find()) {
-                        remIndex = lines.length;
+                        reindex = lines.length;
                         final String lFin = multilineCont.group(1);
                         if (!lFin.equals(MissingDeprecatedCheck.NEXT_TAG)
                             && !lFin.equals(MissingDeprecatedCheck.END_JAVADOC))
