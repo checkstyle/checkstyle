@@ -570,12 +570,12 @@ public class CustomImportOrderCheck extends Check
     /**
      * Return class name from import full path.
      * @param startFrom number of start.
-     * @param import import full path.
+     * @param importPath import full path.
      * @return class name.
      */
-    private String getClassName(int startFrom, String importStr)
+    private String getClassName(int startFrom, String importPath)
     {
-        String className = importStr;
+        String className = importPath;
         className = className.substring(startFrom, className.length());
         final StringTokenizer token = new StringTokenizer(className, ".\r");
         return token.nextToken();

@@ -135,7 +135,7 @@ class TagParser
 
     /**
      * Checks if the given position is start one for HTML tag.
-     * @param text text of javadoc comments.
+     * @param javadocText text of javadoc comments.
      * @param pos position to check.
      * @return <code>true</code> some HTML tag starts from given position.
      */
@@ -155,7 +155,7 @@ class TagParser
 
     /**
      * Parse tag id.
-     * @param text text of javadoc comments.
+     * @param javadocText text of javadoc comments.
      * @param tagStart start position of the tag
      * @return id for given tag
      */
@@ -220,7 +220,7 @@ class TagParser
     /**
      * Finds next occurrence of given character.
      * @param text text to search
-     * @param char character to search
+     * @param character character to search
      * @param from position to start search
      * @return position of next occurrence of given character
      */

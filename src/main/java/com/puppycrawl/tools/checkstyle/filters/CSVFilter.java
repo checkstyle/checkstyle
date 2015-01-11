@@ -85,8 +85,8 @@ class CSVFilter implements IntFilter
 
     /**
      * Determines whether an Integer matches a CSV integer value.
-     * @param int the Integer to check.
-     * @return true if int is an Integer that matches a CSV value.
+     * @param intValue the Integer to check.
+     * @return true if intValue is an Integer that matches a CSV value.
      */
     @Override
     public boolean accept(int intValue)

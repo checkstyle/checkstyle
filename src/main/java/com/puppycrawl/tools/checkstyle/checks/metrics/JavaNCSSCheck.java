@@ -26,8 +26,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * This check calculates the Non Commenting Source Statements (NCSS) metric for
  * java source files and methods. The check adheres to the <a
- * href="http://www.kclee.com/clemens/java/javancss/">JavnCSS specification
- * </a> and gives the same results as the JavnCSS tool.
+ * href="http://www.kclee.com/clemens/java/javancss/">JavaNCSS specification
+ * </a> and gives the same results as the JavaNCSS tool.
  *
  * The NCSS-metric tries to determine complexity of methods, classes and files
  * by counting the non commenting lines. Roughly said this is (nearly)
@@ -326,11 +326,7 @@ public class JavaNCSSCheck extends Check
     }
 
     /**
-<<<<<<< HEAD
      * @author Lars Ködderitzsch
-=======
-     * @author Lars K�dderitzsch
->>>>>>> ca5a59d... Prefixes, Metrics, #512
      *
      * Class representing a counter,
      */

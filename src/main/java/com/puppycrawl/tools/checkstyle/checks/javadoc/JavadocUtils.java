@@ -103,7 +103,7 @@ public final class JavadocUtils
      *        the Javadoc comment to process.
      * @param tagType
      *        the type of validTags we're interested in
-     * @return all standalone validTags from the given javdoc.
+     * @return all standalone validTags from the given javadoc.
      */
     public static JavadocTags getJavadocTags(TextBlock cmt,
             JavadocTagType tagType)
@@ -200,10 +200,10 @@ public final class JavadocUtils
     }
 
     /**
-     * Checks that commentContent starts with '*' javdoc comment identifier.
+     * Checks that commentContent starts with '*' javadoc comment identifier.
      * @param commentContent
      *        content of block comment
-     * @return true if commentContent starts with '*' javdoc comment
+     * @return true if commentContent starts with '*' javadoc comment
      *         identifier.
      */
     public static boolean isJavadocComment(String commentContent)
@@ -219,10 +219,10 @@ public final class JavadocUtils
     }
 
     /**
-     * Checks block comment content starts with '*' javdoc comment identifier.
+     * Checks block comment content starts with '*' javadoc comment identifier.
      * @param blockCommentBegin
      *        block comment AST
-     * @return true if block comment content starts with '*' javdoc comment
+     * @return true if block comment content starts with '*' javadoc comment
      *         identifier.
      */
     public static boolean isJavadocComment(DetailAST blockCommentBegin)

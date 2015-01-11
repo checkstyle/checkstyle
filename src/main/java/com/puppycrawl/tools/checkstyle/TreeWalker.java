@@ -85,33 +85,33 @@ public final class TreeWalker
     private static final int DEFAULT_TAB_WIDTH = 8;
 
     /** maps from token name to ordinary checks */
-    private final Multimap<String, Check> mTokenToOrdinaryChecks =
+    private final Multimap<String, Check> tokenToOrdinaryChecks =
         HashMultimap.create();
 
     /** maps from token name to comment checks */
-    private final Multimap<String, Check> mTokenToCommentChecks =
+    private final Multimap<String, Check> tokenToCommentChecks =
             HashMultimap.create();
 
     /** registered ordinary checks, that don't use comment nodes */
-    private final Set<Check> mOrdinaryChecks = Sets.newHashSet();
+    private final Set<Check> ordinaryChecks = Sets.newHashSet();
 
     /** registered comment checks */
-    private final Set<Check> mCommentChecks = Sets.newHashSet();
+    private final Set<Check> commentChecks = Sets.newHashSet();
 
     /** the distance between tab stops */
-    private int mTabWidth = DEFAULT_TAB_WIDTH;
+    private int tabWidth = DEFAULT_TAB_WIDTH;
 
     /** cache file **/
-    private PropertyCacheFile mCache = new PropertyCacheFile(null, null);
+    private PropertyCacheFile cache = new PropertyCacheFile(null, null);
 
     /** class loader to resolve classes with. **/
-    private ClassLoader mClassLoader;
+    private ClassLoader classLoader;
 
     /** context of child components */
-    private Context mChildContext;
+    private Context childContext;
 
     /** a factory for creating submodules (i.e. the Checks) */
-    private ModuleFactory mModuleFactory;
+    private ModuleFactory moduleFactory;
 
     /** logger for debug purpose */
     private static final Log LOG =
@@ -125,82 +125,82 @@ public final class TreeWalker
         setFileExtensions(new String[]{"java"});
     }
 
-    /** @param aTabWidth the distance between tab stops */
-    public void setTabWidth(int aTabWidth)
+    /** @param tabWidth the distance between tab stops */
+    public void setTabWidth(int tabWidth)
     {
-        mTabWidth = aTabWidth;
+        this.tabWidth = tabWidth;
     }
 
-    /** @param aFileName the cache file */
-    public void setCacheFile(String aFileName)
+    /** @param fileName the cache file */
+    public void setCacheFile(String fileName)
     {
         final Configuration configuration = getConfiguration();
-        mCache = new PropertyCacheFile(configuration, aFileName);
+        cache = new PropertyCacheFile(configuration, fileName);
     }
 
-    /** @param aClassLoader class loader to resolve classes with. */
-    public void setClassLoader(ClassLoader aClassLoader)
+    /** @param classLoader class loader to resolve classes with. */
+    public void setClassLoader(ClassLoader classLoader)
     {
-        mClassLoader = aClassLoader;
+        this.classLoader = classLoader;
     }
 
     /**
      * Sets the module factory for creating child modules (Checks).
-     * @param aModuleFactory the factory
+     * @param moduleFactory the factory
      */
-    public void setModuleFactory(ModuleFactory aModuleFactory)
+    public void setModuleFactory(ModuleFactory moduleFactory)
     {
-        mModuleFactory = aModuleFactory;
+        this.moduleFactory = moduleFactory;
     }
 
     @Override
     public void finishLocalSetup()
     {
         final DefaultContext checkContext = new DefaultContext();
-        checkContext.add("classLoader", mClassLoader);
+        checkContext.add("classLoader", classLoader);
         checkContext.add("messages", getMessageCollector());
         checkContext.add("severity", getSeverity());
         // TODO: hmmm.. this looks less than elegant
         // we have just parsed the string,
         // now we're recreating it only to parse it again a few moments later
-        checkContext.add("tabWidth", String.valueOf(mTabWidth));
+        checkContext.add("tabWidth", String.valueOf(tabWidth));
 
-        mChildContext = checkContext;
+        childContext = checkContext;
     }
 
     @Override
-    public void setupChild(Configuration aChildConf)
+    public void setupChild(Configuration childConf)
         throws CheckstyleException
     {
         // TODO: improve the error handing
-        final String name = aChildConf.getName();
-        final Object module = mModuleFactory.createModule(name);
+        final String name = childConf.getName();
+        final Object module = moduleFactory.createModule(name);
         if (!(module instanceof Check)) {
             throw new CheckstyleException(
                 "TreeWalker is not allowed as a parent of " + name);
         }
         final Check c = (Check) module;
-        c.contextualize(mChildContext);
-        c.configure(aChildConf);
+        c.contextualize(childContext);
+        c.configure(childConf);
         c.init();
 
         registerCheck(c);
     }
 
     @Override
-    protected void processFiltered(File aFile, List<String> aLines)
+    protected void processFiltered(File file, List<String> lines)
     {
         // check if already checked and passed the file
-        final String fileName = aFile.getPath();
-        final long timestamp = aFile.lastModified();
-        if (mCache.alreadyChecked(fileName, timestamp)) {
+        final String fileName = file.getPath();
+        final long timestamp = file.lastModified();
+        if (cache.alreadyChecked(fileName, timestamp)) {
             return;
         }
 
         final String msg = "%s occurred during the analysis of file %s .";
 
         try {
-            final FileText text = FileText.fromLines(aFile, aLines);
+            final FileText text = FileText.fromLines(file, lines);
             final FileContents contents = new FileContents(text);
             final DetailAST rootAST = TreeWalker.parse(contents);
 
@@ -281,212 +281,212 @@ public final class TreeWalker
         }
 
         if (getMessageCollector().size() == 0) {
-            mCache.checkedOk(fileName, timestamp);
+            cache.checkedOk(fileName, timestamp);
         }
     }
 
     /**
      * Register a check for a given configuration.
-     * @param aCheck the check to register
+     * @param check the check to register
      * @throws CheckstyleException if an error occurs
      */
-    private void registerCheck(Check aCheck)
+    private void registerCheck(Check check)
         throws CheckstyleException
     {
         final int[] tokens;
-        final Set<String> checkTokens = aCheck.getTokenNames();
+        final Set<String> checkTokens = check.getTokenNames();
         if (!checkTokens.isEmpty()) {
-            tokens = aCheck.getRequiredTokens();
+            tokens = check.getRequiredTokens();
 
             //register configured tokens
-            final int[] acceptableTokens = aCheck.getAcceptableTokens();
+            final int[] acceptableTokens = check.getAcceptableTokens();
             Arrays.sort(acceptableTokens);
             for (String token : checkTokens) {
                 try {
                     final int tokenId = TokenTypes.getTokenId(token);
                     if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
-                        registerCheck(token, aCheck);
+                        registerCheck(token, check);
                     }
                     // TODO: else log warning
                 }
                 catch (final IllegalArgumentException ex) {
                     throw new CheckstyleException("illegal token \""
-                        + token + "\" in check " + aCheck, ex);
+                        + token + "\" in check " + check, ex);
                 }
             }
         }
         else {
-            tokens = aCheck.getDefaultTokens();
+            tokens = check.getDefaultTokens();
         }
         for (int element : tokens) {
-            registerCheck(element, aCheck);
+            registerCheck(element, check);
         }
-        if (aCheck.isCommentNodesRequired()) {
-            mCommentChecks.add(aCheck);
+        if (check.isCommentNodesRequired()) {
+            commentChecks.add(check);
         }
         else {
-            mOrdinaryChecks.add(aCheck);
+            ordinaryChecks.add(check);
         }
     }
 
     /**
      * Register a check for a specified token id.
-     * @param aTokenID the id of the token
-     * @param aCheck the check to register
+     * @param tokenID the id of the token
+     * @param check the check to register
      */
-    private void registerCheck(int aTokenID, Check aCheck)
+    private void registerCheck(int tokenID, Check check)
     {
-        registerCheck(TokenTypes.getTokenName(aTokenID), aCheck);
+        registerCheck(TokenTypes.getTokenName(tokenID), check);
     }
 
     /**
      * Register a check for a specified token name
-     * @param aToken the name of the token
-     * @param aCheck the check to register
+     * @param token the name of the token
+     * @param check the check to register
      */
-    private void registerCheck(String aToken, Check aCheck)
+    private void registerCheck(String token, Check check)
     {
-        if (aCheck.isCommentNodesRequired()) {
-            mTokenToCommentChecks.put(aToken, aCheck);
+        if (check.isCommentNodesRequired()) {
+            tokenToCommentChecks.put(token, check);
         }
-        else if (TokenTypes.isCommentType(aToken)) {
+        else if (TokenTypes.isCommentType(token)) {
             LOG.warn("Check '"
-                    + aCheck.getClass().getName()
+                    + check.getClass().getName()
                     + "' waits for comment type token ('"
-                    + aToken
+                    + token
                     + "') and should override 'isCommentNodesRequred()'"
                     + " method to return 'true'");
         }
         else {
-            mTokenToOrdinaryChecks.put(aToken, aCheck);
+            tokenToOrdinaryChecks.put(token, check);
         }
     }
 
     /**
      * Initiates the walk of an AST.
-     * @param aAST the root AST
-     * @param aContents the contents of the file the AST was generated from.
-     * @param aAstState state of AST.
+     * @param ast the root AST
+     * @param contents the contents of the file the AST was generated from.
+     * @param astState state of AST.
      */
-    private void walk(DetailAST aAST, FileContents aContents
-            , AstState aAstState)
+    private void walk(DetailAST ast, FileContents contents
+            , AstState astState)
     {
-        notifyBegin(aAST, aContents, aAstState);
+        notifyBegin(ast, contents, astState);
 
-        // empty files are not flagged by javac, will yield aAST == null
-        if (aAST != null) {
-            processIter(aAST, aAstState);
+        // empty files are not flagged by javac, will yield ast == null
+        if (ast != null) {
+            processIter(ast, astState);
         }
 
-        notifyEnd(aAST, aAstState);
+        notifyEnd(ast, astState);
     }
 
     /**
      * Notify checks that we are about to begin walking a tree.
-     * @param aRootAST the root of the tree.
-     * @param aContents the contents of the file the AST was generated from.
-     * @param aAstState state of AST.
+     * @param rootAST the root of the tree.
+     * @param contents the contents of the file the AST was generated from.
+     * @param astState state of AST.
      */
-    private void notifyBegin(DetailAST aRootAST, FileContents aContents
-            , AstState aAstState)
+    private void notifyBegin(DetailAST rootAST, FileContents contents
+            , AstState astState)
     {
         Set<Check> checks;
 
-        if (aAstState == AstState.WITH_COMMENTS) {
-            checks = mCommentChecks;
+        if (astState == AstState.WITH_COMMENTS) {
+            checks = commentChecks;
         }
         else {
-            checks = mOrdinaryChecks;
+            checks = ordinaryChecks;
         }
 
         for (Check ch : checks) {
-            ch.setFileContents(aContents);
-            ch.beginTree(aRootAST);
+            ch.setFileContents(contents);
+            ch.beginTree(rootAST);
         }
     }
 
     /**
      * Notify checks that we have finished walking a tree.
-     * @param aRootAST the root of the tree.
-     * @param aAstState state of AST.
+     * @param rootAST the root of the tree.
+     * @param astState state of AST.
      */
-    private void notifyEnd(DetailAST aRootAST, AstState aAstState)
+    private void notifyEnd(DetailAST rootAST, AstState astState)
     {
         Set<Check> checks;
 
-        if (aAstState == AstState.WITH_COMMENTS) {
-            checks = mCommentChecks;
+        if (astState == AstState.WITH_COMMENTS) {
+            checks = commentChecks;
         }
         else {
-            checks = mOrdinaryChecks;
+            checks = ordinaryChecks;
         }
 
         for (Check ch : checks) {
-            ch.finishTree(aRootAST);
+            ch.finishTree(rootAST);
         }
     }
 
     /**
      * Notify checks that visiting a node.
-     * @param aAST the node to notify for.
-     * @param aAstState state of AST.
+     * @param ast the node to notify for.
+     * @param astState state of AST.
      */
-    private void notifyVisit(DetailAST aAST, AstState aAstState)
+    private void notifyVisit(DetailAST ast, AstState astState)
     {
         Collection<Check> visitors;
-        final String tokenType = TokenTypes.getTokenName(aAST.getType());
+        final String tokenType = TokenTypes.getTokenName(ast.getType());
 
-        if (aAstState == AstState.WITH_COMMENTS) {
-            if (!mTokenToCommentChecks.containsKey(tokenType)) {
+        if (astState == AstState.WITH_COMMENTS) {
+            if (!tokenToCommentChecks.containsKey(tokenType)) {
                 return;
             }
-            visitors = mTokenToCommentChecks.get(tokenType);
+            visitors = tokenToCommentChecks.get(tokenType);
         }
         else {
-            if (!mTokenToOrdinaryChecks.containsKey(tokenType)) {
+            if (!tokenToOrdinaryChecks.containsKey(tokenType)) {
                 return;
             }
-            visitors = mTokenToOrdinaryChecks.get(tokenType);
+            visitors = tokenToOrdinaryChecks.get(tokenType);
         }
 
         for (Check c : visitors) {
-            c.visitToken(aAST);
+            c.visitToken(ast);
         }
     }
 
     /**
      * Notify checks that leaving a node.
-     * @param aAST
+     * @param ast
      *        the node to notify for
-     * @param aAstState state of AST.
+     * @param astState state of AST.
      */
-    private void notifyLeave(DetailAST aAST, AstState aAstState)
+    private void notifyLeave(DetailAST ast, AstState astState)
     {
         Collection<Check> visitors;
-        final String tokenType = TokenTypes.getTokenName(aAST.getType());
+        final String tokenType = TokenTypes.getTokenName(ast.getType());
 
-        if (aAstState == AstState.WITH_COMMENTS) {
-            if (!mTokenToCommentChecks.containsKey(tokenType)) {
+        if (astState == AstState.WITH_COMMENTS) {
+            if (!tokenToCommentChecks.containsKey(tokenType)) {
                 return;
             }
-            visitors = mTokenToCommentChecks.get(tokenType);
+            visitors = tokenToCommentChecks.get(tokenType);
         }
         else {
-            if (!mTokenToOrdinaryChecks.containsKey(tokenType)) {
+            if (!tokenToOrdinaryChecks.containsKey(tokenType)) {
                 return;
             }
-            visitors = mTokenToOrdinaryChecks.get(tokenType);
+            visitors = tokenToOrdinaryChecks.get(tokenType);
         }
 
         for (Check ch : visitors) {
-            ch.leaveToken(aAST);
+            ch.leaveToken(ast);
         }
     }
 
     /**
      * Static helper method to parses a Java source file.
      *
-     * @param aContents
+     * @param contents
      *                contains the contents of the file
      * @throws TokenStreamException
      *                 if lexing failed
@@ -494,14 +494,14 @@ public final class TreeWalker
      *                 if parsing failed
      * @return the root of the AST
      */
-    public static DetailAST parse(FileContents aContents)
+    public static DetailAST parse(FileContents contents)
         throws RecognitionException, TokenStreamException
     {
-        final String fullText = aContents.getText().getFullText().toString();
+        final String fullText = contents.getText().getFullText().toString();
         final Reader sr = new StringReader(fullText);
         final GeneratedJavaLexer lexer = new GeneratedJavaLexer(sr);
-        lexer.setFilename(aContents.getFilename());
-        lexer.setCommentListener(aContents);
+        lexer.setFilename(contents.getFilename());
+        lexer.setCommentListener(contents);
         lexer.setTreatAssertAsKeyword(true);
         lexer.setTreatEnumAsKeyword(true);
         lexer.setTokenObjectClass("antlr.CommonHiddenStreamToken");
@@ -513,7 +513,7 @@ public final class TreeWalker
 
         final GeneratedJavaRecognizer parser =
             new GeneratedJavaRecognizer(filter);
-        parser.setFilename(aContents.getFilename());
+        parser.setFilename(contents.getFilename());
         parser.setASTNodeClass(DetailAST.class.getName());
         parser.compilationUnit();
 
@@ -523,30 +523,30 @@ public final class TreeWalker
     @Override
     public void destroy()
     {
-        for (Check c : mOrdinaryChecks) {
+        for (Check c : ordinaryChecks) {
             c.destroy();
         }
-        for (Check c : mCommentChecks) {
+        for (Check c : commentChecks) {
             c.destroy();
         }
-        mCache.destroy();
+        cache.destroy();
         super.destroy();
     }
 
     /**
      * Processes a node calling interested checks at each node.
      * Uses iterative algorithm.
-     * @param aRoot the root of tree for process
-     * @param aAstState state of AST.
+     * @param root the root of tree for process
+     * @param astState state of AST.
      */
-    private void processIter(DetailAST aRoot, AstState aAstState)
+    private void processIter(DetailAST root, AstState astState)
     {
-        DetailAST curNode = aRoot;
+        DetailAST curNode = root;
         while (curNode != null) {
-            notifyVisit(curNode, aAstState);
+            notifyVisit(curNode, astState);
             DetailAST toVisit = curNode.getFirstChild();
             while ((curNode != null) && (toVisit == null)) {
-                notifyLeave(curNode, aAstState);
+                notifyLeave(curNode, astState);
                 toVisit = curNode.getNextSibling();
                 if (toVisit == null) {
                     curNode = curNode.getParent();
@@ -560,15 +560,15 @@ public final class TreeWalker
      * Appends comment nodes to existing AST.
      * It traverses each node in AST, looks for hidden comment tokens
      * and appends found comment tokens as nodes in AST.
-     * @param aRoot
+     * @param root
      *        root of AST.
      * @return root of AST with comment nodes.
      */
-    private static DetailAST appendHiddenCommentNodes(DetailAST aRoot)
+    private static DetailAST appendHiddenCommentNodes(DetailAST root)
     {
-        DetailAST result = aRoot;
-        DetailAST curNode = aRoot;
-        DetailAST lastNode = aRoot;
+        DetailAST result = root;
+        DetailAST curNode = root;
+        DetailAST lastNode = root;
 
         while (curNode != null) {
             if (isPositionGreater(curNode, lastNode)) {
@@ -620,22 +620,22 @@ public final class TreeWalker
      * Checks if position of first DetailAST is greater than position of
      * second DetailAST. Position is line number and column number in source
      * file.
-     * @param aAST1
+     * @param ast1
      *        first DetailAST node.
-     * @param aAst2
+     * @param ast2
      *        second DetailAST node.
-     * @return true if position of aAst1 is greater than position of aAst2.
+     * @return true if position of ast1 is greater than position of ast2.
      */
-    private static boolean isPositionGreater(DetailAST aAST1, DetailAST aAst2)
+    private static boolean isPositionGreater(DetailAST ast1, DetailAST ast2)
     {
-        if (aAST1.getLineNo() > aAst2.getLineNo()) {
+        if (ast1.getLineNo() > ast2.getLineNo()) {
             return true;
         }
-        else if (aAST1.getLineNo() < aAst2.getLineNo()) {
+        else if (ast1.getLineNo() < ast2.getLineNo()) {
             return false;
         }
         else {
-            if (aAST1.getColumnNo() > aAst2.getColumnNo()) {
+            if (ast1.getColumnNo() > ast2.getColumnNo()) {
                 return true;
             }
         }
@@ -645,17 +645,17 @@ public final class TreeWalker
     /**
      * Create comment AST from token. Depending on token type
      * SINGLE_LINE_COMMENT or BLOCK_COMMENT_BEGIN is created.
-     * @param aToken
+     * @param token
      *        Token object.
      * @return DetailAST of comment node.
      */
-    private static DetailAST createCommentAstFromToken(Token aToken)
+    private static DetailAST createCommentAstFromToken(Token token)
     {
-        switch (aToken.getType()) {
+        switch (token.getType()) {
         case TokenTypes.SINGLE_LINE_COMMENT:
-            return createSlCommentNode(aToken);
+            return createSlCommentNode(token);
         case TokenTypes.BLOCK_COMMENT_BEGIN:
-            return createBlockCommentNode(aToken);
+            return createBlockCommentNode(token);
         default:
             throw new IllegalArgumentException("Unknown comment type");
         }
@@ -663,29 +663,29 @@ public final class TreeWalker
 
     /**
      * Create single-line comment from token.
-     * @param aToken
+     * @param token
      *        Token object.
      * @return DetailAST with SINGLE_LINE_COMMENT type.
      */
-    private static DetailAST createSlCommentNode(Token aToken)
+    private static DetailAST createSlCommentNode(Token token)
     {
         final DetailAST slComment = new DetailAST();
         slComment.setType(TokenTypes.SINGLE_LINE_COMMENT);
         slComment.setText("//");
 
         // column counting begins from 0
-        slComment.setColumnNo(aToken.getColumn() - 1);
-        slComment.setLineNo(aToken.getLine());
+        slComment.setColumnNo(token.getColumn() - 1);
+        slComment.setLineNo(token.getLine());
 
         final DetailAST slCommentContent = new DetailAST();
-        slCommentContent.initialize(aToken);
+        slCommentContent.initialize(token);
         slCommentContent.setType(TokenTypes.COMMENT_CONTENT);
 
         // column counting begins from 0
         // plus length of '//'
-        slCommentContent.setColumnNo(aToken.getColumn() - 1 + 2);
-        slCommentContent.setLineNo(aToken.getLine());
-        slCommentContent.setText(aToken.getText());
+        slCommentContent.setColumnNo(token.getColumn() - 1 + 2);
+        slCommentContent.setLineNo(token.getLine());
+        slCommentContent.setText(token.getText());
 
         slComment.addChild(slCommentContent);
         return slComment;
@@ -693,34 +693,34 @@ public final class TreeWalker
 
     /**
      * Create block comment from token.
-     * @param aToken
+     * @param token
      *        Token object.
      * @return DetailAST with BLOCK_COMMENT type.
      */
-    private static DetailAST createBlockCommentNode(Token aToken)
+    private static DetailAST createBlockCommentNode(Token token)
     {
         final DetailAST blockComment = new DetailAST();
         blockComment.initialize(TokenTypes.BLOCK_COMMENT_BEGIN, "/*");
 
         // column counting begins from 0
-        blockComment.setColumnNo(aToken.getColumn() - 1);
-        blockComment.setLineNo(aToken.getLine());
+        blockComment.setColumnNo(token.getColumn() - 1);
+        blockComment.setLineNo(token.getLine());
 
         final DetailAST blockCommentContent = new DetailAST();
-        blockCommentContent.initialize(aToken);
+        blockCommentContent.initialize(token);
         blockCommentContent.setType(TokenTypes.COMMENT_CONTENT);
 
         // column counting begins from 0
         // plus length of '/*'
-        blockCommentContent.setColumnNo(aToken.getColumn() - 1 + 2);
-        blockCommentContent.setLineNo(aToken.getLine());
-        blockCommentContent.setText(aToken.getText());
+        blockCommentContent.setColumnNo(token.getColumn() - 1 + 2);
+        blockCommentContent.setLineNo(token.getLine());
+        blockCommentContent.setText(token.getText());
 
         final DetailAST blockCommentClose = new DetailAST();
         blockCommentClose.initialize(TokenTypes.BLOCK_COMMENT_END, "*/");
 
         final Entry<Integer, Integer> linesColumns = countLinesColumns(
-                aToken.getText(), aToken.getLine(), aToken.getColumn());
+                token.getText(), token.getLine(), token.getColumn());
         blockCommentClose.setLineNo(linesColumns.getKey());
         blockCommentClose.setColumnNo(linesColumns.getValue());
 
@@ -731,21 +731,21 @@ public final class TreeWalker
 
     /**
      * Count lines and columns (in last line) in text.
-     * @param aText
+     * @param text
      *        String.
-     * @param aInitialLinesCnt
+     * @param initialLinesCnt
      *        initial value of lines counter.
-     * @param aInitialColumnsCnt
+     * @param initialColumnsCnt
      *        initial value of columns counter.
      * @return entry(pair), first element is lines counter, second - columns
      *         counter.
      */
     private static Entry<Integer, Integer> countLinesColumns(
-            String aText, int aInitialLinesCnt, int aInitialColumnsCnt)
+            String text, int initialLinesCnt, int initialColumnsCnt)
     {
-        int lines = aInitialLinesCnt;
-        int columns = aInitialColumnsCnt;
-        for (char c : aText.toCharArray()) {
+        int lines = initialLinesCnt;
+        int columns = initialColumnsCnt;
+        for (char c : text.toCharArray()) {
             switch (c) {
             case '\n':
                 lines++;

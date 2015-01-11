@@ -70,7 +70,7 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
 
     /**
      * Increases current nesting depth.
-     * @param if node for if.
+     * @param literalIf node for if.
      */
     private void visitLiteralIf(DetailAST literalIf)
     {
@@ -81,7 +81,7 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
 
     /**
      * Decreases current nesting depth.
-     * @param if node for if.
+     * @param literalIf node for if.
      */
     private void leaveLiteralIf(DetailAST literalIf)
     {

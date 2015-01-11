@@ -42,7 +42,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
 
     /**
      * Creates a new <code>AbstractOptionCheck</code> instance.
-     * @param default the default option.
+     * @param literalDefault the default option.
      * @param optionClass the class for the option. Required due to a quirk
      *        in the Java language.
      */
@@ -54,7 +54,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
 
     /**
      * Set the option to enforce.
-     * @param option string to decode option from
+     * @param optionStr string to decode option from
      * @throws ConversionException if unable to decode
      */
     public void setOption(String optionStr) throws ConversionException

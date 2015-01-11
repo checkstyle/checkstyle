@@ -83,7 +83,7 @@ public class NewlineAtEndOfFileCheck
     /**
      * Sets the line separator to one of 'crlf', 'lf' or 'cr'.
      *
-     * @param lineSeparator The line separator to set
+     * @param lineSeparatorParam The line separator to set
      * @throws IllegalArgumentException If the specified line separator is not
      *         one of 'crlf', 'lf' or 'cr'
      */

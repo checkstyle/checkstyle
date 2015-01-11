@@ -128,7 +128,7 @@ public class ImportOrderCheck
      * Sets the list of package groups and the order they should occur in the
      * file.
      *
-     * @param groups a comma-separated list of package names/prefixes.
+     * @param packageGroups a comma-separated list of package names/prefixes.
      */
     public void setGroups(String[] packageGroups)
     {

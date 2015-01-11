@@ -30,26 +30,26 @@ public final class PropertiesExpander
     implements PropertyResolver
 {
     /** the underlying Properties object. */
-    private final Properties mProperties;
+    private final Properties properties;
 
     /**
      * Creates a new PropertiesExpander.
-     * @param aProperties the underlying properties to use for
+     * @param properties the underlying properties to use for
      * property resolution.
      * @throws IllegalArgumentException indicates null was passed
      */
-    public PropertiesExpander(Properties aProperties)
+    public PropertiesExpander(Properties properties)
     {
-        if (aProperties == null) {
+        if (properties == null) {
             throw new IllegalArgumentException("cannot pass null");
         }
-        mProperties = aProperties;
+        this.properties = properties;
     }
 
     /** {@inheritDoc} */
     @Override
-    public String resolve(String aPropertyName)
+    public String resolve(String propertyName)
     {
-        return mProperties.getProperty(aPropertyName);
+        return properties.getProperty(propertyName);
     }
 }

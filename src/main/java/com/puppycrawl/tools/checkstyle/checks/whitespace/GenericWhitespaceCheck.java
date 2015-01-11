@@ -146,7 +146,7 @@ public class GenericWhitespaceCheck extends Check
 
                 // In case of several extends definitions:
                 //
-                //   class IntEnuvalueType<E extends Enum<E> & IntEnum>
+                //   class IntEnumValueType<E extends Enum<E> & IntEnum>
                 //                                          ^
                 //   should be whitespace if followed by & -+
                 //
@@ -216,15 +216,15 @@ public class GenericWhitespaceCheck extends Check
      * Returns whether the specified string contains only whitespace between
      * specified indices.
      *
-     * @param froindex the index to start the search from. Inclusive
+     * @param fromIndex the index to start the search from. Inclusive
      * @param toIndex the index to finish the search. Exclusive
      * @param line the line to check
      * @return whether there are only whitespaces (or nothing)
      */
     private static boolean whitespaceBetween(
-        int froindex, int toIndex, String line)
+        int fromIndex, int toIndex, String line)
     {
-        for (int i = froindex; i < toIndex; i++) {
+        for (int i = fromIndex; i < toIndex; i++) {
             if (!Character.isWhitespace(line.charAt(i))) {
                 return false;
             }

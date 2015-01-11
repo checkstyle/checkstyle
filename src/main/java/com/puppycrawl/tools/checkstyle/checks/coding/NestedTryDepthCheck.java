@@ -68,7 +68,7 @@ public final class NestedTryDepthCheck extends AbstractNestedDepthCheck
 
     /**
      * Increases current nesting depth.
-     * @param try node for try.
+     * @param literalTry node for try.
      */
     private void visitLiteralTry(DetailAST literalTry)
     {

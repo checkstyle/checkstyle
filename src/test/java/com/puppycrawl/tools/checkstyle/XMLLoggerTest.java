@@ -208,20 +208,20 @@ public class XMLLoggerTest
     /**
      * Verify output lines from auditStart to auditEnd.
      * Take into consideration checkstyle element (first and last lines).
-     * @param aExpectedLines expected error report lines
+     * @param expectedLines expected error report lines
      */
-    private void verifyLines(String[] aExpectedLines)
+    private void verifyLines(String[] expectedLines)
         throws IOException
     {
         final String[] lines = getOutStreamLines();
-        assertEquals("length.", aExpectedLines.length + 3, lines.length);
+        assertEquals("length.", expectedLines.length + 3, lines.length);
         assertEquals("first line.",
                      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
                      lines[0]);
         Pattern checkstyleOpenTag = Utils.getPattern("^<checkstyle version=\".*\">$");
         assertTrue("second line.", checkstyleOpenTag.matcher(lines[1]).matches());
-        for (int i = 0; i < aExpectedLines.length; i++) {
-            assertEquals("line " + i + ".", aExpectedLines[i], lines[i + 2]);
+        for (int i = 0; i < expectedLines.length; i++) {
+            assertEquals("line " + i + ".", expectedLines[i], lines[i + 2]);
         }
         assertEquals("last line.", "</checkstyle>", lines[lines.length - 1]);
     }

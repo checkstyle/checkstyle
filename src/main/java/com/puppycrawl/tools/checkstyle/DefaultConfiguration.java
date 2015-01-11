@@ -39,103 +39,103 @@ public final class DefaultConfiguration implements Configuration
     private static final long serialVersionUID = 1157875385356127169L;
 
     /** The name of this configuration */
-    private final String mName;
+    private final String name;
 
     /** the list of child Configurations */
-    private final List<Configuration> mChildren = Lists.newArrayList();
+    private final List<Configuration> children = Lists.newArrayList();
 
     /** the map from attribute names to attribute values */
-    private final Map<String, String> mAttributeMap = Maps.newHashMap();
+    private final Map<String, String> attributeMap = Maps.newHashMap();
 
     /** the map containing custom messages. */
-    private final Map<String, String> mMessages = Maps.newHashMap();
+    private final Map<String, String> messages = Maps.newHashMap();
 
     /**
      * Instantiates a DefaultConfiguration.
-     * @param aName the name for this DefaultConfiguration.
+     * @param name the name for this DefaultConfiguration.
      */
-    public DefaultConfiguration(String aName)
+    public DefaultConfiguration(String name)
     {
-        mName = aName;
+        this.name = name;
     }
 
     /** {@inheritDoc} */
     @Override
     public String[] getAttributeNames()
     {
-        final Set<String> keySet = mAttributeMap.keySet();
+        final Set<String> keySet = attributeMap.keySet();
         return keySet.toArray(new String[keySet.size()]);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getAttribute(String aName) throws CheckstyleException
+    public String getAttribute(String name) throws CheckstyleException
     {
-        if (!mAttributeMap.containsKey(aName)) {
+        if (!attributeMap.containsKey(name)) {
             // TODO: i18n
             throw new CheckstyleException(
-                    "missing key '" + aName + "' in " + getName());
+                    "missing key '" + name + "' in " + getName());
         }
-        return mAttributeMap.get(aName);
+        return attributeMap.get(name);
     }
 
     /** {@inheritDoc} */
     @Override
     public Configuration[] getChildren()
     {
-        return mChildren.toArray(
-            new Configuration[mChildren.size()]);
+        return children.toArray(
+            new Configuration[children.size()]);
     }
 
     /** {@inheritDoc} */
     @Override
     public String getName()
     {
-        return mName;
+        return name;
     }
 
     /**
      * Makes a configuration a child of this configuration.
-     * @param aConfiguration the child configuration.
+     * @param configuration the child configuration.
      */
-    public void addChild(Configuration aConfiguration)
+    public void addChild(Configuration configuration)
     {
-        mChildren.add(aConfiguration);
+        children.add(configuration);
     }
 
     /**
      * Removes a child of this configuration.
-     * @param aConfiguration the child configuration to remove.
+     * @param configuration the child configuration to remove.
      */
-    public void removeChild(final Configuration aConfiguration)
+    public void removeChild(final Configuration configuration)
     {
-        mChildren.remove(aConfiguration);
+        children.remove(configuration);
     }
 
     /**
      * Adds an attribute to this configuration.
-     * @param aName the name of the attribute.
-     * @param aValue the value of the attribute.
+     * @param name the name of the attribute.
+     * @param value the value of the attribute.
      */
-    public void addAttribute(String aName, String aValue)
+    public void addAttribute(String name, String value)
     {
-        final String current = mAttributeMap.put(aName, aValue);
+        final String current = attributeMap.put(name, value);
         if (null == current) {
-            mAttributeMap.put(aName, aValue);
+            attributeMap.put(name, value);
         }
         else {
-            mAttributeMap.put(aName, current + "," + aValue);
+            attributeMap.put(name, current + "," + value);
         }
     }
 
     /**
      * Adds a custom message to this configuration.
-     * @param aKey the message key
-     * @param aValue the custom message pattern
+     * @param key the message key
+     * @param value the custom message pattern
      */
-    public void addMessage(String aKey, String aValue)
+    public void addMessage(String key, String value)
     {
-        mMessages.put(aKey, aValue);
+        messages.put(key, value);
     }
 
     /**
@@ -146,6 +146,6 @@ public final class DefaultConfiguration implements Configuration
     @Override
     public ImmutableMap<String, String> getMessages()
     {
-        return ImmutableMap.copyOf(mMessages);
+        return ImmutableMap.copyOf(messages);
     }
 }

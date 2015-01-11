@@ -65,7 +65,7 @@ public class UncommentedMainCheck
         throws ConversionException
     {
         try {
-            excludedClasses = excludedClasses;
+            this.excludedClasses = excludedClasses;
             excludedClassesPattern = Utils.getPattern(excludedClasses);
         }
         catch (final PatternSyntaxException e) {
@@ -130,7 +130,7 @@ public class UncommentedMainCheck
 
     /**
      * Sets current package.
-     * @param package node for package definition
+     * @param packageDef node for package definition
      */
     private void visitPackageDef(DetailAST packageDef)
     {
@@ -140,7 +140,7 @@ public class UncommentedMainCheck
 
     /**
      * If not inner class then change current class name.
-     * @param class node for class definition
+     * @param classDef node for class definition
      */
     private void visitClassDef(DetailAST classDef)
     {

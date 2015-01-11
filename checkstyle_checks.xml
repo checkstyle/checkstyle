@@ -114,7 +114,7 @@
     <module name="LocalFinalVariableName"/>
     <module name="LocalVariableName"/>
     <module name="MemberName">
-      <property name="format" value="^m[A-Z][a-zA-Z0-9]*$"/>
+      <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
     </module>
     <module name="MethodLength"/>
     <module name="MethodName"/>
@@ -157,7 +157,7 @@
     </module>
     <module name="PackageName"/>
     <module name="ParameterName">
-      <property name="format" value="^a[A-Z][a-zA-Z0-9]*$"/>
+      <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
     </module>
     <module name="ParameterNumber">
       <property name="max" value="9"/>

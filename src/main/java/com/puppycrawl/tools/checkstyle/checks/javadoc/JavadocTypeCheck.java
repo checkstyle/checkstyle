@@ -225,7 +225,7 @@ public class JavadocTypeCheck
      * Verifies that a type definition has a required tag.
      * @param lineNo the line number for the type definition.
      * @param tags tags from the Javadoc comment for the type definition.
-     * @param tag the required tag name.
+     * @param tagName the required tag name.
      * @param formatPattern regexp for the tag value.
      * @param format pattern for the tag value.
      */

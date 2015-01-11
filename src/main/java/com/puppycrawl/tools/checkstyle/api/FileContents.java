@@ -208,7 +208,7 @@ public final class FileContents implements CommentListener
      * Returns the Javadoc comment before the specified line.
      * A return value of <code>null</code> means there is no such comment.
      * @return the Javadoc comment, or <code>null</code> if none
-     * @param lineNo the line number to check before
+     * @param lineNoBefore the line number to check before
      **/
     public TextBlock getJavadocBefore(int lineNoBefore)
     {

@@ -60,44 +60,44 @@ public class CheckStyleTask extends Task
     private static final String E_PLAIN = "plain";
 
     /** class path to locate class files */
-    private Path mClasspath;
+    private Path classpath;
 
     /** name of file to check */
-    private String mFileName;
+    private String fileName;
 
     /** config file containing configuration */
-    private String mConfigLocation;
+    private String configLocation;
 
     /** whether to fail build on violations */
-    private boolean mFailOnViolation = true;
+    private boolean failOnViolation = true;
 
     /** property to set on violations */
-    private String mFailureProperty;
+    private String failureProperty;
 
     /** contains the filesets to process */
-    private final List<FileSet> mFileSets = Lists.newArrayList();
+    private final List<FileSet> fileSets = Lists.newArrayList();
 
     /** contains the formatters to log to */
-    private final List<Formatter> mFormatters = Lists.newArrayList();
+    private final List<Formatter> formatters = Lists.newArrayList();
 
     /** contains the Properties to override */
-    private final List<Property> mOverrideProps = Lists.newArrayList();
+    private final List<Property> overrideProps = Lists.newArrayList();
 
     /** the name of the properties file */
-    private File mPropertiesFile;
+    private File propertiesFile;
 
     /** the maximum number of errors that are tolerated. */
-    private int mMaxErrors;
+    private int maxErrors;
 
     /** the maximum number of warnings that are tolerated. */
-    private int mMaxWarnings = Integer.MAX_VALUE;
+    private int maxWarnings = Integer.MAX_VALUE;
 
     /**
-     * whether to omit ignored modules - some modules may log above
+     * whether to omit ignored modules - some modules may log tove
      * their severity depending on their configuration (e.g. WriteTag) so
      * need to be included
      */
-    private boolean mOmitIgnoredModules = true;
+    private boolean omitIgnoredModules = true;
 
     ////////////////////////////////////////////////////////////////////////////
     // Setters for ANT specific attributes
@@ -106,133 +106,133 @@ public class CheckStyleTask extends Task
     /**
      * Tells this task to set the named property to "true" when there
      * is a violation.
-     * @param aPropertyName the name of the property to set
+     * @param propertyName the name of the property to set
      *                      in the event of an failure.
      */
-    public void setFailureProperty(String aPropertyName)
+    public void setFailureProperty(String propertyName)
     {
-        mFailureProperty = aPropertyName;
+        failureProperty = propertyName;
     }
 
-    /** @param aFail whether to fail if a violation is found */
-    public void setFailOnViolation(boolean aFail)
+    /** @param fail whether to fail if a violation is found */
+    public void setFailOnViolation(boolean fail)
     {
-        mFailOnViolation = aFail;
+        failOnViolation = fail;
     }
 
     /**
      * Sets the maximum number of errors allowed. Default is 0.
-     * @param aMaxErrors the maximum number of errors allowed.
+     * @param maxErrors the maximum number of errors allowed.
      */
-    public void setMaxErrors(int aMaxErrors)
+    public void setMaxErrors(int maxErrors)
     {
-        mMaxErrors = aMaxErrors;
+        this.maxErrors = maxErrors;
     }
 
     /**
      * Sets the maximum number of warings allowed. Default is
      * {@link Integer#MAX_VALUE}.
-     * @param aMaxWarnings the maximum number of warnings allowed.
+     * @param maxWarnings the maximum number of warnings allowed.
      */
-    public void setMaxWarnings(int aMaxWarnings)
+    public void setMaxWarnings(int maxWarnings)
     {
-        mMaxWarnings = aMaxWarnings;
+        this.maxWarnings = maxWarnings;
     }
 
     /**
-     * Adds a set of files (nested fileset attribute).
-     * @param aFS the file set to add
+     * Adds uset of files (nested fileset attribute).
+     * @param fS the file set to add
      */
-    public void addFileset(FileSet aFS)
+    public void addFileset(FileSet fS)
     {
-        mFileSets.add(aFS);
+        fileSets.add(fS);
     }
 
     /**
      * Add a formatter.
-     * @param aFormatter the formatter to add for logging.
+     * @param formatter the formatter to add for logging.
      */
-    public void addFormatter(Formatter aFormatter)
+    public void addFormatter(Formatter formatter)
     {
-        mFormatters.add(aFormatter);
+        formatters.add(formatter);
     }
 
     /**
      * Add an override property.
-     * @param aProperty the property to add
+     * @param property the property to add
      */
-    public void addProperty(Property aProperty)
+    public void addProperty(Property property)
     {
-        mOverrideProps.add(aProperty);
+        overrideProps.add(property);
     }
 
     /**
      * Set the class path.
-     * @param aClasspath the path to locate classes
+     * @param classpath the path to locate cluses
      */
-    public void setClasspath(Path aClasspath)
+    public void setClasspath(Path classpath)
     {
-        if (mClasspath == null) {
-            mClasspath = aClasspath;
+        if (classpath == null) {
+            this.classpath = classpath;
         }
         else {
-            mClasspath.append(aClasspath);
+            this.classpath.append(classpath);
         }
     }
 
     /**
      * Set the class path from a reference defined elsewhere.
-     * @param aClasspathRef the reference to an instance defining the classpath
+     * @param classpathRef the reference to an instance defining the classpath
      */
-    public void setClasspathRef(Reference aClasspathRef)
+    public void setClasspathRef(Reference classpathRef)
     {
-        createClasspath().setRefid(aClasspathRef);
+        createClasspath().setRefid(classpathRef);
     }
 
-    /** @return a created path for locating classes */
+    /** @return a created path for locating cluses */
     public Path createClasspath()
     {
-        if (mClasspath == null) {
-            mClasspath = new Path(getProject());
+        if (classpath == null) {
+            classpath = new Path(getProject());
         }
-        return mClasspath.createPath();
+        return classpath.createPath();
     }
 
-    /** @param aFile the file to be checked */
-    public void setFile(File aFile)
+    /** @param file the file to be checked */
+    public void setFile(File file)
     {
-        mFileName = aFile.getAbsolutePath();
+        fileName = file.getAbsolutePath();
     }
 
-    /** @param aFile the configuration file to use */
-    public void setConfig(File aFile)
+    /** @param file the configuration file to use */
+    public void setConfig(File file)
     {
-        setConfigLocation(aFile.getAbsolutePath());
+        setConfigLocation(file.getAbsolutePath());
     }
 
-    /** @param aURL the URL of the configuration to use */
-    public void setConfigURL(URL aURL)
+    /** @param url the URL of the configuration to use */
+    public void setConfigURL(URL url)
     {
-        setConfigLocation(aURL.toExternalForm());
+        setConfigLocation(url.toExternalForm());
     }
 
     /**
      * Sets the location of the configuration.
-     * @param aLocation the location, which is either a
+     * @param location the location, which is either a
      */
-    private void setConfigLocation(String aLocation)
+    private void setConfigLocation(String location)
     {
-        if (mConfigLocation != null) {
+        if (configLocation != null) {
             throw new BuildException("Attributes 'config' and 'configURL' "
                     + "must not be set at the same time");
         }
-        mConfigLocation = aLocation;
+        configLocation = location;
     }
 
-    /** @param aOmit whether to omit ignored modules */
-    public void setOmitIgnoredModules(boolean aOmit)
+    /** @param omit whether to omit ignored modules */
+    public void setOmitIgnoredModules(boolean omit)
     {
-        mOmitIgnoredModules = aOmit;
+        omitIgnoredModules = omit;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -242,11 +242,11 @@ public class CheckStyleTask extends Task
     /**
      * Sets a properties file for use instead
      * of individually setting them.
-     * @param aProps the properties File to use
+     * @param props the properties File to use
      */
-    public void setProperties(File aProps)
+    public void setProperties(File props)
     {
-        mPropertiesFile = aProps;
+        propertiesFile = props;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -284,13 +284,13 @@ public class CheckStyleTask extends Task
         log("compiled on " + compileTimestamp, Project.MSG_VERBOSE);
 
         // Check for no arguments
-        if ((mFileName == null) && mFileSets.isEmpty()) {
+        if ((fileName == null) && fileSets.isEmpty()) {
             throw new BuildException(
                     "Must specify at least one of 'file' or nested 'fileset'.",
                     getLocation());
         }
 
-        if (mConfigLocation == null) {
+        if (configLocation == null) {
             throw new BuildException("Must specify 'config'.", getLocation());
         }
 
@@ -312,7 +312,7 @@ public class CheckStyleTask extends Task
 
             log("Running Checkstyle " + version + " on " + files.size()
                     + " files", Project.MSG_INFO);
-            log("Using configuration " + mConfigLocation, Project.MSG_VERBOSE);
+            log("Using configuration " + configLocation, Project.MSG_VERBOSE);
 
             startTime = System.currentTimeMillis();
             final int numErrs = c.process(files);
@@ -320,19 +320,19 @@ public class CheckStyleTask extends Task
             log("To process the files took " + (endTime - startTime) + " ms.",
                 Project.MSG_VERBOSE);
             final int numWarnings = warningCounter.getCount();
-            final boolean ok = (numErrs <= mMaxErrors)
-                    && (numWarnings <= mMaxWarnings);
+            final boolean ok = (numErrs <= maxErrors)
+                    && (numWarnings <= maxWarnings);
 
             // Handle the return status
             if (!ok) {
                 final String failureMsg =
                         "Got " + numErrs + " errors and " + numWarnings
                                 + " warnings.";
-                if (mFailureProperty != null) {
-                    getProject().setProperty(mFailureProperty, failureMsg);
+                if (failureProperty != null) {
+                    getProject().setProperty(failureProperty, failureMsg);
                 }
 
-                if (mFailOnViolation) {
+                if (failOnViolation) {
                     throw new BuildException(failureMsg, getLocation());
                 }
             }
@@ -355,13 +355,13 @@ public class CheckStyleTask extends Task
             final Properties props = createOverridingProperties();
             final Configuration config =
                 ConfigurationLoader.loadConfiguration(
-                    mConfigLocation,
+                    configLocation,
                     new PropertiesExpander(props),
-                    mOmitIgnoredModules);
+                    omitIgnoredModules);
 
             final DefaultContext context = new DefaultContext();
             final ClassLoader loader = new AntClassLoader(getProject(),
-                    mClasspath);
+                    classpath);
             context.add("classloader", loader);
 
             final ClassLoader moduleClassLoader =
@@ -398,19 +398,19 @@ public class CheckStyleTask extends Task
         final Properties retVal = new Properties();
 
         // Load the properties file if specified
-        if (mPropertiesFile != null) {
+        if (propertiesFile != null) {
             FileInputStream inStream = null;
             try {
-                inStream = new FileInputStream(mPropertiesFile);
+                inStream = new FileInputStream(propertiesFile);
                 retVal.load(inStream);
             }
             catch (final FileNotFoundException e) {
                 throw new BuildException("Could not find Properties file '"
-                        + mPropertiesFile + "'", e, getLocation());
+                        + propertiesFile + "'", e, getLocation());
             }
             catch (final IOException e) {
                 throw new BuildException("Error loading Properties file '"
-                        + mPropertiesFile + "'", e, getLocation());
+                        + propertiesFile + "'", e, getLocation());
             }
             finally {
                 Utils.closeQuietly(inStream);
@@ -426,7 +426,7 @@ public class CheckStyleTask extends Task
         }
 
         // override with properties specified in subelements
-        for (Property p : mOverrideProps) {
+        for (Property p : overrideProps) {
             retVal.put(p.getKey(), p.getValue());
         }
 
@@ -444,12 +444,12 @@ public class CheckStyleTask extends Task
     protected AuditListener[] getListeners() throws ClassNotFoundException,
             InstantiationException, IllegalAccessException, IOException
     {
-        final int formatterCount = Math.max(1, mFormatters.size());
+        final int formatterCount = Math.max(1, formatters.size());
 
         final AuditListener[] listeners = new AuditListener[formatterCount];
 
         // formatters
-        if (mFormatters.isEmpty()) {
+        if (formatters.isEmpty()) {
             final OutputStream debug = new LogOutputStream(this,
                     Project.MSG_DEBUG);
             final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
@@ -457,7 +457,7 @@ public class CheckStyleTask extends Task
         }
         else {
             for (int i = 0; i < formatterCount; i++) {
-                final Formatter f = mFormatters.get(i);
+                final Formatter f = formatters.get(i);
                 listeners[i] = f.createListener(this);
             }
         }
@@ -471,14 +471,14 @@ public class CheckStyleTask extends Task
     protected List<File> scanFileSets()
     {
         final List<File> list = Lists.newArrayList();
-        if (mFileName != null) {
+        if (fileName != null) {
             // oops we've got an additional one to process, don't
             // forget it. No sweat, it's fully resolved via the setter.
             log("Adding standalone file for audit", Project.MSG_VERBOSE);
-            list.add(new File(mFileName));
+            list.add(new File(fileName));
         }
-        for (int i = 0; i < mFileSets.size(); i++) {
-            final FileSet fs = mFileSets.get(i);
+        for (int i = 0; i < fileSets.size(); i++) {
+            final FileSet fs = fileSets.get(i);
             final DirectoryScanner ds = fs.getDirectoryScanner(getProject());
             ds.scan();
 
@@ -519,88 +519,88 @@ public class CheckStyleTask extends Task
     public static class Formatter
     {
         /** the formatter type */
-        private FormatterType mFormatterType;
+        private FormatterType formatterType;
         /** the file to output to */
-        private File mToFile;
+        private File toFile;
         /** Whether or not the write to the named file. */
-        private boolean mUseFile = true;
+        private boolean useFile = true;
 
         /**
          * Set the type of the formatter.
-         * @param aType the type
+         * @param type the type
          */
-        public void setType(FormatterType aType)
+        public void setType(FormatterType type)
         {
-            final String val = aType.getValue();
+            final String val = type.getValue();
             if (!E_XML.equals(val) && !E_PLAIN.equals(val)) {
                 throw new BuildException("Invalid formatter type: " + val);
             }
 
-            mFormatterType = aType;
+            formatterType = type;
         }
 
         /**
          * Set the file to output to.
-         * @param aTo the file to output to
+         * @param to the file to output to
          */
-        public void setTofile(File aTo)
+        public void setTofile(File to)
         {
-            mToFile = aTo;
+            toFile = to;
         }
 
         /**
          * Sets whether or not we write to a file if it is provided.
-         * @param aUse whether not not to use provided file.
+         * @param use whether not not to use provided file.
          */
-        public void setUseFile(boolean aUse)
+        public void setUseFile(boolean use)
         {
-            mUseFile = aUse;
+            useFile = use;
         }
 
         /**
          * Creates a listener for the formatter.
-         * @param aTask the task running
+         * @param task the task running
          * @return a listener
          * @throws IOException if an error occurs
          */
-        public AuditListener createListener(Task aTask) throws IOException
+        public AuditListener createListener(Task task) throws IOException
         {
-            if ((mFormatterType != null)
-                    && E_XML.equals(mFormatterType.getValue()))
+            if ((formatterType != null)
+                    && E_XML.equals(formatterType.getValue()))
             {
-                return createXMLLogger(aTask);
+                return createXMLLogger(task);
             }
-            return createDefaultLogger(aTask);
+            return createDefaultLogger(task);
         }
 
         /**
          * @return a DefaultLogger instance
-         * @param aTask the task to possibly log to
+         * @param task the task to possibly log to
          * @throws IOException if an error occurs
          */
-        private AuditListener createDefaultLogger(Task aTask)
+        private AuditListener createDefaultLogger(Task task)
             throws IOException
         {
-            if ((mToFile == null) || !mUseFile) {
+            if ((toFile == null) || !useFile) {
                 return new DefaultLogger(
-                    new LogOutputStream(aTask, Project.MSG_DEBUG),
-                    true, new LogOutputStream(aTask, Project.MSG_ERR), true);
+                    new LogOutputStream(task, Project.MSG_DEBUG),
+                    true, new LogOutputStream(task, Project.MSG_ERR), true);
             }
-            return new DefaultLogger(new FileOutputStream(mToFile), true);
+            return new DefaultLogger(new FileOutputStream(toFile), true);
         }
 
         /**
          * @return an XMLLogger instance
-         * @param aTask the task to possibly log to
+         * @param task the task to possibly log to
          * @throws IOException if an error occurs
          */
-        private AuditListener createXMLLogger(Task aTask) throws IOException
+        private AuditListener createXMLLogger(Task task) throws IOException
         {
-            if ((mToFile == null) || !mUseFile) {
-                return new XMLLogger(new LogOutputStream(aTask,
+            if ((toFile == null) || !useFile) {
+                return new XMLLogger(new LogOutputStream(task,
                         Project.MSG_INFO), true);
             }
-            return new XMLLogger(new FileOutputStream(mToFile), true);
+            return new XMLLogger(new FileOutputStream(toFile), true);
         }
     }
 
@@ -610,38 +610,38 @@ public class CheckStyleTask extends Task
     public static class Property
     {
         /** the property key */
-        private String mKey;
+        private String key;
         /** the property value */
-        private String mValue;
+        private String value;
 
         /** @return the property key */
         public String getKey()
         {
-            return mKey;
+            return key;
         }
 
-        /** @param aKey sets the property key */
-        public void setKey(String aKey)
+        /** @param key sets the property key */
+        public void setKey(String key)
         {
-            mKey = aKey;
+            this.key = key;
         }
 
         /** @return the property value */
         public String getValue()
         {
-            return mValue;
+            return value;
         }
 
-        /** @param aValue set the property value */
-        public void setValue(String aValue)
+        /** @param value set the property value */
+        public void setValue(String value)
         {
-            mValue = aValue;
+            this.value = value;
         }
 
-        /** @param aValue set the property value from a File */
-        public void setFile(File aValue)
+        /** @param value set the property value from a File */
+        public void setFile(File value)
         {
-            setValue(aValue.getAbsolutePath());
+            setValue(value.getAbsolutePath());
         }
     }
 
@@ -649,18 +649,18 @@ public class CheckStyleTask extends Task
     public static class Listener
     {
         /** classname of the listener class */
-        private String mClassname;
+        private String classname;
 
         /** @return the classname */
         public String getClassname()
         {
-            return mClassname;
+            return classname;
         }
 
-        /** @param aClassname set the classname */
-        public void setClassname(String aClassname)
+        /** @param classname set the classname */
+        public void setClassname(String classname)
         {
-            mClassname = aClassname;
+            this.classname = classname;
         }
     }
 }

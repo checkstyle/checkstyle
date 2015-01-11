@@ -45,14 +45,14 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;module name="MethodParapad"/&gt;
+ * &lt;module name="MethodParamPad"/&gt;
  * </pre>
  * <p> An example of how to configure the check to require a space
  * after the identifier of a method definition, except if the left
  * parenthesis occurs on a new line, is:
  * </p>
  * <pre>
- * &lt;module name="MethodParapad"&gt;
+ * &lt;module name="MethodParamPad"&gt;
  *     &lt;property name="tokens" value="METHOD_DEF"/&gt;
  *     &lt;property name="option" value="space"/&gt;
  *     &lt;property name="allowLineBreaks" value="true"/&gt;

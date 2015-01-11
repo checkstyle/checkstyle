@@ -32,7 +32,7 @@ import org.apache.commons.beanutils.ConversionException;
 
 /**
  * <p>
- * Outputs a Javadoc tag as information. Can be used e.g. with the stylesheets
+ * Outputs a JavaDoc tag as information. Can be used e.g. with the stylesheets
  * that sort the report by author name.
  * To define the format for a tag, set property tagFormat to a
  * regular expression.

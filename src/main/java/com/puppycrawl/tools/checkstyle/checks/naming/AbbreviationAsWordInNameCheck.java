@@ -275,19 +275,19 @@ public class AbbreviationAsWordInNameCheck extends Check
 
     /**
      * Gets the disallowed abbreviation contained in given String.
-     * @param string
+     * @param str
      *        the given String.
      * @return the disallowed abbreviation contained in given String as a
      *         separate String.
      */
-    private String getDisallowedAbbreviation(String string)
+    private String getDisallowedAbbreviation(String str)
     {
         int beginIndex = 0;
         boolean abbrStarted = false;
         String result = null;
 
-        for (int index = 0; index < string.length(); index++) {
-            final char symbol = string.charAt(index);
+        for (int index = 0; index < str.length(); index++) {
+            final char symbol = str.charAt(index);
 
             if (Character.isUpperCase(symbol)) {
                 if (!abbrStarted) {
@@ -303,7 +303,7 @@ public class AbbreviationAsWordInNameCheck extends Check
                     final int endIndex = index - 1;
                     final int abbrLength = endIndex - beginIndex;
                     if (abbrLength > allowedAbbreviationLength) {
-                        result = string.substring(beginIndex, endIndex);
+                        result = str.substring(beginIndex, endIndex);
                         if (!allowedAbbreviations.contains(result)) {
                             break;
                         }
@@ -316,10 +316,10 @@ public class AbbreviationAsWordInNameCheck extends Check
             }
         }
         if (abbrStarted) {
-            final int endIndex = string.length();
+            final int endIndex = str.length();
             final int abbrLength = endIndex - beginIndex;
             if (abbrLength > 1 && abbrLength > allowedAbbreviationLength) {
-                result = string.substring(beginIndex, endIndex);
+                result = str.substring(beginIndex, endIndex);
                 if (allowedAbbreviations.contains(result)) {
                     result = null;
                 }

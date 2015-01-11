@@ -87,7 +87,7 @@ public final class SuppressionsLoader
 
     @Override
     public void startElement(String namespaceURI,
-                             String locqName,
+                             String localName,
                              String qName,
                              Attributes atts)
         throws SAXException

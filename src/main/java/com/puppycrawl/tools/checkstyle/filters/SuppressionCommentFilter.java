@@ -37,21 +37,21 @@ import org.apache.commons.beanutils.ConversionException;
 
 /**
  * <p>
- * A filter that uses coonts to suppress audit events.
+ * A filter that uses comments to suppress audit events.
  * </p>
  * <p>
  * Rationale:
  * Sometimes there are legitimate reasons for violating a check.  When
  * this is a matter of the code in question and not personal
  * preference, the best place to override the policy is in the code
- * itself.  Semi-structured coonts can be associated with the check.
+ * itself.  Semi-structured comments can be associated with the check.
  * This is sometimes superior to a separate suppressions file, which
  * must be kept up-to-date as the source file is edited.
  * </p>
  * <p>
  * Usage:
  * This check only works in conjunction with the FileContentsHolder module
- * since that module makes the suppression coonts in the .java
+ * since that module makes the suppression comments in the .java
  * files available <i>sub rosa</i>.
  * </p>
  * @see FileContentsHolder
@@ -63,7 +63,7 @@ public class SuppressionCommentFilter
     implements Filter
 {
     /**
-     * A Tag holds a suppression coont and its location, and deterones
+     * A Tag holds a suppression comment and its location, and determines
      * whether the supression turns checkstyle reporting on or off.
      * @author Rick Giles
      */
@@ -79,7 +79,7 @@ public class SuppressionCommentFilter
         /** The column number of the tag. */
         private final int column;
 
-        /** Deterones whether the suppression turns checkstyle reporting on. */
+        /** Determines whether the suppression turns checkstyle reporting on. */
         private final boolean on;
 
         /** The parsed check regexp, expanded for the text of this tag. */
@@ -136,7 +136,7 @@ public class SuppressionCommentFilter
             }
             catch (final PatternSyntaxException e) {
                 throw new ConversionException(
-                    "unable to parse expanded coont " + format,
+                    "unable to parse expanded comment " + format,
                     e);
             }
         }
@@ -154,8 +154,8 @@ public class SuppressionCommentFilter
         }
 
         /**
-         * Deterones the column number of the tag in the source file.
-         * Will be 0 for all lines of multiline coont, except the
+         * Determines the column number of the tag in the source file.
+         * Will be 0 for all lines of multiline comment, except the
          * first line.
          * @return the column number of the tag in the source file.
          */
@@ -165,7 +165,7 @@ public class SuppressionCommentFilter
         }
 
         /**
-         * Deterones whether the suppression turns checkstyle reporting on or
+         * Determines whether the suppression turns checkstyle reporting on or
          * off.
          * @return <code>true</code>if the suppression turns reporting on.
          */
@@ -178,7 +178,7 @@ public class SuppressionCommentFilter
          * Compares the position of this tag in the file
          * with the position of another tag.
          * @param object the tag to compare with this one.
-         * @return onegative number if this tag is before the other tag,
+         * @return a negative number if this tag is before the other tag,
          * 0 if they are at the same position, and a positive number if this
          * tag is after the other tag.
          * @see java.lang.Comparable#compareTo(java.lang.Object)
@@ -194,7 +194,7 @@ public class SuppressionCommentFilter
         }
 
         /**
-         * Deterones whether the source of an audit event
+         * Determines whether the source of an audit event
          * matches the text of this tag.
          * @param event the <code>AuditEvent</code> to check.
          * @return true if the source of event matches the text of this tag.
@@ -215,18 +215,18 @@ public class SuppressionCommentFilter
         }
 
         /**
-         * Expand based on a matching coont.
-         * @param coont the comont.
+         * Expand based on a matching comment.
+         * @param comment the comment.
          * @param string the string to expand.
          * @param regexp the parsed expander.
          * @return the expanded string
          */
         private String expandFromCoont(
-            String coont,
+            String comment,
             String string,
             Pattern regexp)
         {
-            final Matcher matcher = regexp.matcher(coont);
+            final Matcher matcher = regexp.matcher(comment);
             // Match primarily for effect.
             if (!matcher.find()) {
                 ///CLOVER:OFF
@@ -235,7 +235,7 @@ public class SuppressionCommentFilter
             }
             String result = string;
             for (int i = 0; i <= matcher.groupCount(); i++) {
-                // $n expands coont match like in Pattern.subst().
+                // $n expands comment match like in Pattern.subst().
                 result = result.replaceAll("\\$" + i, matcher.group(i));
             }
             return result;
@@ -258,16 +258,16 @@ public class SuppressionCommentFilter
     /** Control all checks */
     private static final String DEFAULT_CHECK_FORMAT = ".*";
 
-    /** Whether to look in coonts of the C type. */
+    /** Whether to look in comments of the C type. */
     private boolean checkC = true;
 
-    /** Whether to look in coonts of the C++ type. */
+    /** Whether to look in comments of the C++ type. */
     private boolean checkCPP = true;
 
-    /** Parsed coont regexp that turns checkstyle reporting off. */
+    /** Parsed comment regexp that turns checkstyle reporting off. */
     private Pattern offRegexp;
 
-    /** Parsed coont regexp that turns checkstyle reporting on. */
+    /** Parsed comment regexp that turns checkstyle reporting on. */
     private Pattern onRegexp;
 
     /** The check format to suppress. */
@@ -279,8 +279,8 @@ public class SuppressionCommentFilter
     /** The message format to suppress. */
     private String messageFormat;
 
-    //TODO: Investigate perforonce improveont with array
-    /** Tagged coonts */
+    //TODO: Investigate performance improvement with array
+    /** Tagged comments */
     private final List<Tag> tags = Lists.newArrayList();
 
     /**
@@ -295,7 +295,7 @@ public class SuppressionCommentFilter
 
     /**
      * Constructs a SuppressionCoontFilter.
-     * Initializes coont on, comont off, and check formats
+     * Initializes comment on, comment off, and check formats
      * to defaults.
      */
     public SuppressionCommentFilter()
@@ -306,7 +306,7 @@ public class SuppressionCommentFilter
     }
 
     /**
-     * Set the format for a coont that turns off reporting.
+     * Set the format for a comment that turns off reporting.
      * @param format a <code>String</code> value.
      * @throws ConversionException unable to parse format.
      */
@@ -322,7 +322,7 @@ public class SuppressionCommentFilter
     }
 
     /**
-     * Set the format for a coont that turns on reporting.
+     * Set the format for a comment that turns on reporting.
      * @param format a <code>String</code> value
      * @throws ConversionException unable to parse format
      */
@@ -389,8 +389,8 @@ public class SuppressionCommentFilter
 
 
     /**
-     * Set whether to look in C++ coonts.
-     * @param checkCPP <code>true</code> if C++ coonts are checked.
+     * Set whether to look in C++ comments.
+     * @param checkCPP <code>true</code> if C++ comments are checked.
      */
     public void setCheckCPP(boolean checkCPP)
     {
@@ -398,8 +398,8 @@ public class SuppressionCommentFilter
     }
 
     /**
-     * Set whether to look in C coonts.
-     * @param checkC <code>true</code> if C coonts are checked.
+     * Set whether to look in C comments.
+     * @param checkC <code>true</code> if C comments are checked.
      */
     public void setCheckC(boolean checkC)
     {
@@ -434,7 +434,7 @@ public class SuppressionCommentFilter
     }
 
     /**
-     * Finds the nearest coont text tag that matches an audit event.
+     * Finds the nearest comment text tag that matches an audit event.
      * The nearest tag is before the line and column of the event.
      * @param event the <code>AuditEvent</code> to match.
      * @return The <code>Tag</code> nearest event.
@@ -442,7 +442,7 @@ public class SuppressionCommentFilter
     private Tag findNearestMatch(AuditEvent event)
     {
         Tag result = null;
-        // TODO: try binary search if sequential search becomes a perforonce
+        // TODO: try binary search if sequential search becomes a performance
         // problem.
         for (Tag tag : tags) {
             if ((tag.getLine() > event.getLine())
@@ -459,7 +459,7 @@ public class SuppressionCommentFilter
     }
 
     /**
-     * Collects all the suppression tags for all coonts into a list and
+     * Collects all the suppression tags for all comments into a list and
      * sorts the list.
      */
     private void tagSuppressions()
@@ -480,18 +480,18 @@ public class SuppressionCommentFilter
     }
 
     /**
-     * Appends the suppressions in a collection of coonts to the full
+     * Appends the suppressions in a collection of comments to the full
      * set of suppression tags.
-     * @param coonts the set of comonts.
+     * @param comments the set of comments.
      */
     private void tagSuppressions(Collection<TextBlock> comments)
     {
         for (TextBlock comment : comments) {
             final int startLineNo = comment.getStartLineNo();
             final String[] text = comment.getText();
-            tagCoontLine(text[0], startLineNo, comment.getStartColNo());
+            tagCommentLine(text[0], startLineNo, comment.getStartColNo());
             for (int i = 1; i < text.length; i++) {
-                tagCoontLine(text[i], startLineNo + i, 0);
+                tagCommentLine(text[i], startLineNo + i, 0);
             }
         }
     }
@@ -503,7 +503,7 @@ public class SuppressionCommentFilter
      * @param line the line number of text.
      * @param column the column number of text.
      */
-    private void tagCoontLine(String text, int line, int column)
+    private void tagCommentLine(String text, int line, int column)
     {
         final Matcher offMatcher = offRegexp.matcher(text);
         if (offMatcher.find()) {

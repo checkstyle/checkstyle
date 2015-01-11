@@ -83,7 +83,7 @@ public class AvoidStarImportCheck
     /**
      * Sets the list of packages or classes to be exempt from the check.
      * The excludes can contain a .* or not.
-     * @param excludes a list of package names/fully-qualifies class names
+     * @param excludesParam a list of package names/fully-qualifies class names
      * where star imports are ok
      */
     public void setExcludes(String[] excludesParam)

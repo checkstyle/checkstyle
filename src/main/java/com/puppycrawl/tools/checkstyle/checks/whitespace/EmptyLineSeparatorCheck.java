@@ -150,7 +150,7 @@ public class EmptyLineSeparatorCheck extends Check
             final int astType = ast.getType();
             switch (astType) {
             case TokenTypes.VARIABLE_DEF:
-                if (iastypeField(ast) && !hasEmptyLineAfter(ast)) {
+                if (isTypeField(ast) && !hasEmptyLineAfter(ast)) {
                     if (allowNoEmptyLineBetweenFields
                             && nextToken.getType() != TokenTypes.VARIABLE_DEF)
                     {
@@ -213,7 +213,7 @@ public class EmptyLineSeparatorCheck extends Check
      * @param variableDef variable definition.
      * @return true variable definition is a type field.
      */
-    private boolean iastypeField(DetailAST variableDef)
+    private boolean isTypeField(DetailAST variableDef)
     {
         final int parentType = variableDef.getParent().getParent().getType();
         return parentType == TokenTypes.CLASS_DEF;

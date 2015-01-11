@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * Default configuration:
  * </p>
  * <pre>
- * &lt;module name=&quot;JavadocPtagraph&quot;/&gt;
+ * &lt;module name=&quot;JavadocParagraph&quot;/&gt;
  * </pre>
  *
  * @author maxvetrenko
@@ -87,7 +87,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
     private void checkParagraphTag(DetailNode tag)
     {
         final DetailNode newLine = getNearestEmptyLine(tag);
-        if (isFirstPtagraph(tag)) {
+        if (isFirstParagraph(tag)) {
             log(tag.getLineNumber(), "javadoc.paragraph.redundant.paragraph");
         }
         else if (newLine == null || tag.getLineNumber() - newLine.getLineNumber() != 1) {
@@ -138,7 +138,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
      * @param paragraphTag paragraph tag.
      * @return true, if line with paragraph tag is first line in javadoc.
      */
-    private boolean isFirstPtagraph(DetailNode paragraphTag)
+    private boolean isFirstParagraph(DetailNode paragraphTag)
     {
         DetailNode previousNode = JavadocUtils.getPreviousSibling(paragraphTag);
         while (previousNode != null) {

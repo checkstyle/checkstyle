@@ -49,10 +49,10 @@ public class XMLLogger
     private static final int BASE_16 = 16;
 
     /** close output stream in auditFinished */
-    private boolean mCloseStream;
+    private boolean closeStream;
 
     /** helper writer that allows easy encoding and printing */
-    private PrintWriter mWriter;
+    private PrintWriter writer;
 
     /** some known entities to detect */
     private static final String[] ENTITIES = {"gt", "amp", "lt", "apos",
@@ -61,24 +61,24 @@ public class XMLLogger
     /**
      * Creates a new <code>XMLLogger</code> instance.
      * Sets the output to a defined stream.
-     * @param aOS the stream to write logs to.
-     * @param aCloseStream close aOS in auditFinished
+     * @param os the stream to write logs to.
+     * @param closeStream close oS in auditFinished
      */
-    public XMLLogger(OutputStream aOS, boolean aCloseStream)
+    public XMLLogger(OutputStream os, boolean closeStream)
     {
-        setOutputStream(aOS);
-        mCloseStream = aCloseStream;
+        setOutputStream(os);
+        this.closeStream = closeStream;
     }
 
     /**
      * sets the OutputStream
-     * @param aOS the OutputStream to use
+     * @param oS the OutputStream to use
      **/
-    private void setOutputStream(OutputStream aOS)
+    private void setOutputStream(OutputStream oS)
     {
         try {
-            final OutputStreamWriter osw = new OutputStreamWriter(aOS, "UTF-8");
-            mWriter = new PrintWriter(osw);
+            final OutputStreamWriter osw = new OutputStreamWriter(oS, "UTF-8");
+            writer = new PrintWriter(osw);
         }
         catch (final UnsupportedEncodingException e) {
             // unlikely to happen...
@@ -88,91 +88,91 @@ public class XMLLogger
 
     /** {@inheritDoc} */
     @Override
-    public void auditStarted(AuditEvent aEvt)
+    public void auditStarted(AuditEvent evt)
     {
-        mWriter.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+        writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 
         final ResourceBundle compilationProperties =
             ResourceBundle.getBundle("checkstylecompilation");
         final String version =
             compilationProperties.getString("checkstyle.compile.version");
 
-        mWriter.println("<checkstyle version=\"" + version + "\">");
+        writer.println("<checkstyle version=\"" + version + "\">");
     }
 
     /** {@inheritDoc} */
     @Override
-    public void auditFinished(AuditEvent aEvt)
+    public void auditFinished(AuditEvent evt)
     {
-        mWriter.println("</checkstyle>");
-        if (mCloseStream) {
-            mWriter.close();
+        writer.println("</checkstyle>");
+        if (closeStream) {
+            writer.close();
         }
         else {
-            mWriter.flush();
+            writer.flush();
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public void fileStarted(AuditEvent aEvt)
+    public void fileStarted(AuditEvent evt)
     {
-        mWriter.println("<file name=\"" + encode(aEvt.getFileName()) + "\">");
+        writer.println("<file name=\"" + encode(evt.getFileName()) + "\">");
     }
 
     /** {@inheritDoc} */
     @Override
-    public void fileFinished(AuditEvent aEvt)
+    public void fileFinished(AuditEvent evt)
     {
-        mWriter.println("</file>");
+        writer.println("</file>");
     }
 
     /** {@inheritDoc} */
     @Override
-    public void addError(AuditEvent aEvt)
+    public void addError(AuditEvent evt)
     {
-        if (!SeverityLevel.IGNORE.equals(aEvt.getSeverityLevel())) {
-            mWriter.print("<error" + " line=\"" + aEvt.getLine() + "\"");
-            if (aEvt.getColumn() > 0) {
-                mWriter.print(" column=\"" + aEvt.getColumn() + "\"");
+        if (!SeverityLevel.IGNORE.equals(evt.getSeverityLevel())) {
+            writer.print("<error" + " line=\"" + evt.getLine() + "\"");
+            if (evt.getColumn() > 0) {
+                writer.print(" column=\"" + evt.getColumn() + "\"");
             }
-            mWriter.print(" severity=\""
-                + aEvt.getSeverityLevel().getName()
+            writer.print(" severity=\""
+                + evt.getSeverityLevel().getName()
                 + "\"");
-            mWriter.print(" message=\""
-                + encode(aEvt.getMessage())
+            writer.print(" message=\""
+                + encode(evt.getMessage())
                 + "\"");
-            mWriter.println(" source=\""
-                + encode(aEvt.getSourceName())
+            writer.println(" source=\""
+                + encode(evt.getSourceName())
                 + "\"/>");
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public void addException(AuditEvent aEvt, Throwable aThrowable)
+    public void addException(AuditEvent evt, Throwable throwable)
     {
         final StringWriter sw = new StringWriter();
         final PrintWriter pw = new PrintWriter(sw);
         pw.println("<exception>");
         pw.println("<![CDATA[");
-        aThrowable.printStackTrace(pw);
+        throwable.printStackTrace(pw);
         pw.println("]]>");
         pw.println("</exception>");
         pw.flush();
-        mWriter.println(encode(sw.toString()));
+        writer.println(encode(sw.toString()));
     }
 
     /**
      * Escape &lt;, &gt; &amp; &#39; and &quot; as their entities.
-     * @param aValue the value to escape.
+     * @param value the value to escape.
      * @return the escaped value if necessary.
      */
-    public String encode(String aValue)
+    public String encode(String value)
     {
         final StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < aValue.length(); i++) {
-            final char c = aValue.charAt(i);
+        for (int i = 0; i < value.length(); i++) {
+            final char c = value.charAt(i);
             switch (c) {
             case '<':
                 sb.append("&lt;");
@@ -187,9 +187,9 @@ public class XMLLogger
                 sb.append("&quot;");
                 break;
             case '&':
-                final int nextSemi = aValue.indexOf(";", i);
+                final int nextSemi = value.indexOf(";", i);
                 if ((nextSemi < 0)
-                    || !isReference(aValue.substring(i, nextSemi + 1)))
+                    || !isReference(value.substring(i, nextSemi + 1)))
                 {
                     sb.append("&amp;");
                 }
@@ -207,24 +207,24 @@ public class XMLLogger
 
     /**
      * @return whether the given argument a character or entity reference
-     * @param aEnt the possible entity to look for.
+     * @param ent the possible entity to look for.
      */
-    public boolean isReference(String aEnt)
+    public boolean isReference(String ent)
     {
-        if (!(aEnt.charAt(0) == '&') || !aEnt.endsWith(";")) {
+        if (!(ent.charAt(0) == '&') || !ent.endsWith(";")) {
             return false;
         }
 
-        if (aEnt.charAt(1) == '#') {
+        if (ent.charAt(1) == '#') {
             int prefixLength = 2; // "&#"
             int radix = BASE_10;
-            if (aEnt.charAt(2) == 'x') {
+            if (ent.charAt(2) == 'x') {
                 prefixLength++;
                 radix = BASE_16;
             }
             try {
                 Integer.parseInt(
-                    aEnt.substring(prefixLength, aEnt.length() - 1), radix);
+                    ent.substring(prefixLength, ent.length() - 1), radix);
                 return true;
             }
             catch (final NumberFormatException nfe) {
@@ -232,7 +232,7 @@ public class XMLLogger
             }
         }
 
-        final String name = aEnt.substring(1, aEnt.length() - 1);
+        final String name = ent.substring(1, ent.length() - 1);
         for (String element : ENTITIES) {
             if (name.equals(element)) {
                 return true;

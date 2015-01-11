@@ -35,20 +35,20 @@ import static org.junit.Assert.fail;
  */
 public class ConfigurationLoaderTest
 {
-    private Configuration loadConfiguration(String aName)
+    private Configuration loadConfiguration(String name)
         throws CheckstyleException
     {
-        return loadConfiguration(aName, new Properties());
+        return loadConfiguration(name, new Properties());
     }
 
     private Configuration loadConfiguration(
-        String aName, Properties aProps) throws CheckstyleException
+        String name, Properties props) throws CheckstyleException
     {
         final String fName =
-            "src/test/resources/com/puppycrawl/tools/checkstyle/configs/" + aName;
+            "src/test/resources/com/puppycrawl/tools/checkstyle/configs/" + name;
 
         return ConfigurationLoader.loadConfiguration(
-            fName, new PropertiesExpander(aProps));
+            fName, new PropertiesExpander(props));
     }
 
 
@@ -202,23 +202,23 @@ public class ConfigurationLoaderTest
 
 
     private void verifyConfigNode(
-        DefaultConfiguration aConfig, String aName, int aChildrenLength,
+        DefaultConfiguration config, String name, int childrenLength,
         Properties atts) throws Exception
     {
-        assertEquals("name.", aName, aConfig.getName());
+        assertEquals("name.", name, config.getName());
         assertEquals(
             "children.length.",
-            aChildrenLength,
-            aConfig.getChildren().length);
+            childrenLength,
+            config.getChildren().length);
 
-        final String[] attNames = aConfig.getAttributeNames();
+        final String[] attNames = config.getAttributeNames();
         assertEquals("attributes.length", atts.size(), attNames.length);
 
         for (int i = 0; i < attNames.length; i++) {
             assertEquals(
                 "attribute[" + attNames[i] + "]",
                 atts.get(attNames[i]),
-                aConfig.getAttribute(attNames[i]));
+                config.getAttribute(attNames[i]));
         }
     }
 

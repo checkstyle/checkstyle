@@ -828,7 +828,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      * Checks a set of tags for matching throws.
      *
      * @param tags the tags to check
-     * @param throws the throws to check
+     * @param throwsList the throws to check
      * @param reportExpectedTags whether we should report if do not find
      *            expected tag
      */

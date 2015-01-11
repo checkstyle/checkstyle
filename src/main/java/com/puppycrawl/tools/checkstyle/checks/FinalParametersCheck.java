@@ -153,11 +153,11 @@ public class FinalParametersCheck extends Check
 
     /**
      * Checks parameter of the catch block.
-     * @param catch catch block to check.
+     * @param catchClause catch block to check.
      */
-    private void visitCatch(final DetailAST literalCatch)
+    private void visitCatch(final DetailAST catchClause)
     {
-        checkParam(literalCatch.findFirstToken(TokenTypes.PARAMETER_DEF));
+        checkParam(catchClause.findFirstToken(TokenTypes.PARAMETER_DEF));
     }
 
     /**

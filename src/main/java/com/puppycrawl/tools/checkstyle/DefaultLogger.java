@@ -44,61 +44,61 @@ public class DefaultLogger
     private static final int BUFFER_CUSHION = 12;
 
     /** where to write info messages **/
-    private final PrintWriter mInfoWriter;
+    private final PrintWriter infoWriter;
     /** close info stream after use */
-    private final boolean mCloseInfo;
+    private final boolean closeInfo;
 
     /** where to write error messages **/
-    private final PrintWriter mErrorWriter;
+    private final PrintWriter errorWriter;
     /** close error stream after use */
-    private final boolean mCloseError;
+    private final boolean closeError;
 
     /**
      * Creates a new <code>DefaultLogger</code> instance.
-     * @param aOS where to log infos and errors
-     * @param aCloseStreamsAfterUse if aOS should be closed in auditFinished()
+     * @param os where to log infos and errors
+     * @param closeStreamsAfterUse if oS should be closed in auditFinished()
      */
-    public DefaultLogger(OutputStream aOS, boolean aCloseStreamsAfterUse)
+    public DefaultLogger(OutputStream os, boolean closeStreamsAfterUse)
     {
-        // no need to close aOS twice
-        this(aOS, aCloseStreamsAfterUse, aOS, false);
+        // no need to close oS twice
+        this(os, closeStreamsAfterUse, os, false);
     }
 
     /**
      * Creates a new <code>DefaultLogger</code> instance.
      *
-     * @param aInfoStream the <code>OutputStream</code> for info messages
-     * @param aCloseInfoAfterUse auditFinished should close aInfoStream
-     * @param aErrorStream the <code>OutputStream</code> for error messages
-     * @param aCloseErrorAfterUse auditFinished should close aErrorStream
+     * @param infoStream the <code>OutputStream</code> for info messages
+     * @param closeInfoAfterUse auditFinished should close infoStream
+     * @param errorStream the <code>OutputStream</code> for error messages
+     * @param closeErrorAfterUse auditFinished should close errorStream
      */
-    public DefaultLogger(OutputStream aInfoStream,
-                         boolean aCloseInfoAfterUse,
-                         OutputStream aErrorStream,
-                         boolean aCloseErrorAfterUse)
+    public DefaultLogger(OutputStream infoStream,
+                         boolean closeInfoAfterUse,
+                         OutputStream errorStream,
+                         boolean closeErrorAfterUse)
     {
-        mCloseInfo = aCloseInfoAfterUse;
-        mCloseError = aCloseErrorAfterUse;
-        mInfoWriter = new PrintWriter(aInfoStream);
-        mErrorWriter = (aInfoStream == aErrorStream)
-            ? mInfoWriter
-            : new PrintWriter(aErrorStream);
+        closeInfo = closeInfoAfterUse;
+        closeError = closeErrorAfterUse;
+        infoWriter = new PrintWriter(infoStream);
+        errorWriter = (infoStream == errorStream)
+            ? infoWriter
+            : new PrintWriter(errorStream);
     }
 
     /**
      * Print an Emacs compliant line on the error stream.
      * If the column number is non zero, then also display it.
-     * @param aEvt {@inheritDoc}
+     * @param evt {@inheritDoc}
      * @see AuditListener
      **/
     @Override
-    public void addError(AuditEvent aEvt)
+    public void addError(AuditEvent evt)
     {
-        final SeverityLevel severityLevel = aEvt.getSeverityLevel();
+        final SeverityLevel severityLevel = evt.getSeverityLevel();
         if (!SeverityLevel.IGNORE.equals(severityLevel)) {
 
-            final String fileName = aEvt.getFileName();
-            final String message = aEvt.getMessage();
+            final String fileName = evt.getFileName();
+            final String message = evt.getMessage();
 
             // avoid StringBuffer.expandCapacity
             final int bufLen = fileName.length() + message.length()
@@ -106,52 +106,52 @@ public class DefaultLogger
             final StringBuffer sb = new StringBuffer(bufLen);
 
             sb.append(fileName);
-            sb.append(':').append(aEvt.getLine());
-            if (aEvt.getColumn() > 0) {
-                sb.append(':').append(aEvt.getColumn());
+            sb.append(':').append(evt.getLine());
+            if (evt.getColumn() > 0) {
+                sb.append(':').append(evt.getColumn());
             }
             if (SeverityLevel.WARNING.equals(severityLevel)) {
                 sb.append(": warning");
             }
             sb.append(": ").append(message);
-            mErrorWriter.println(sb.toString());
+            errorWriter.println(sb.toString());
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public void addException(AuditEvent aEvt, Throwable aThrowable)
+    public void addException(AuditEvent evt, Throwable throwable)
     {
-        synchronized (mErrorWriter) {
-            mErrorWriter.println("Error auditing " + aEvt.getFileName());
-            aThrowable.printStackTrace(mErrorWriter);
+        synchronized (errorWriter) {
+            errorWriter.println("Error auditing " + evt.getFileName());
+            throwable.printStackTrace(errorWriter);
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public void auditStarted(AuditEvent aEvt)
+    public void auditStarted(AuditEvent evt)
     {
-        mInfoWriter.println("Starting audit...");
+        infoWriter.println("Starting audit...");
     }
 
     /** {@inheritDoc} */
     @Override
-    public void fileFinished(AuditEvent aEvt)
-    {
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void fileStarted(AuditEvent aEvt)
+    public void fileFinished(AuditEvent evt)
     {
     }
 
     /** {@inheritDoc} */
     @Override
-    public void auditFinished(AuditEvent aEvt)
+    public void fileStarted(AuditEvent evt)
     {
-        mInfoWriter.println("Audit done.");
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void auditFinished(AuditEvent evt)
+    {
+        infoWriter.println("Audit done.");
         closeStreams();
     }
 
@@ -160,14 +160,14 @@ public class DefaultLogger
      */
     protected void closeStreams()
     {
-        mInfoWriter.flush();
-        if (mCloseInfo) {
-            mInfoWriter.close();
+        infoWriter.flush();
+        if (closeInfo) {
+            infoWriter.close();
         }
 
-        mErrorWriter.flush();
-        if (mCloseError) {
-            mErrorWriter.close();
+        errorWriter.flush();
+        if (closeError) {
+            errorWriter.close();
         }
     }
 }

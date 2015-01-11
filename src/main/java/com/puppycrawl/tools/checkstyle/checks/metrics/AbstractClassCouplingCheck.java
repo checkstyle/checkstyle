@@ -230,7 +230,7 @@ public abstract class AbstractClassCouplingCheck extends Check
 
         /**
          * Visits throws clause and collects all exceptions we throw.
-         * @param throws throws to process.
+         * @param literalThrows throws to process.
          */
         public void visitLiteralThrows(DetailAST literalThrows)
         {

@@ -368,7 +368,7 @@ public class HiddenFieldCheck
 
     /**
      * Set whether to ignore constructor parameters.
-     * @param ignoreConstructorPnameter decide whether to ignore
+     * @param ignoreConstructorParameter decide whether to ignore
      * constructor parameters.
      */
     public void setIgnoreConstructorParameter(

@@ -557,9 +557,9 @@ public abstract class AbstractTypeAwareCheck extends Check
 
         /**
          * Creates token.
-         * @param aText token's text
-         * @param aLine token's line number
-         * @param aColumn token's column number
+         * @param text token's text
+         * @param line token's line number
+         * @param column token's column number
          */
         public Token(String text, int line, int column)
         {

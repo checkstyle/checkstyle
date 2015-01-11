@@ -69,7 +69,7 @@ public class ArrayTypeStyleCheck extends Check
 
     /**
      * Controls whether to check for Java or C style.
-     * @param javstyle true if Java style should be used.
+     * @param javaStyle true if Java style should be used.
      */
     public void setJavaStyle(boolean javaStyle)
     {

@@ -106,7 +106,7 @@ public abstract class AbstractFormatCheck
      * Updates the regular expression using the supplied format and compiler
      * flags. Will also update the member variables.
      * @param format the format of the regular expression.
-     * @param compileFlags the compiler flags to use.
+     * @param compileFlagsParam the compiler flags to use.
      */
     private void updateRegexp(String format, int compileFlagsParam)
     {

@@ -197,7 +197,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      * Checks imported type (as static and star imports are not supported by Check,
      *  only type is in the consideration).<br>
      * If this type is illegal due to Check's options - puts violation on it.
-     * @param import {@link TokenTypes#IMPORT Import}
+     * @param importAst {@link TokenTypes#IMPORT Import}
      */
     private void visitImport(DetailAST importAst)
     {
@@ -214,7 +214,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      * import java.util.*;
      * </code>
      * </p>
-     * @param import {@link TokenTypes#IMPORT Import}
+     * @param importAst {@link TokenTypes#IMPORT Import}
      * @return true if it is star import
      */
     private static boolean isStarImport(DetailAST importAst)
@@ -279,7 +279,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      * Gets imported type's
      * <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.7">
      *  canonical name</a>.
-     * @param import {@link TokenTypes#IMPORT Import}
+     * @param importAst {@link TokenTypes#IMPORT Import}
      * @return Imported canonical type's name.
      */
     private static String getCanonicalName(DetailAST importAst)
