@@ -66,11 +66,11 @@ public class EmptyForIteratorPadCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (aAST.getChildCount() == 0) {
+        if (ast.getChildCount() == 0) {
             //empty for iterator. test pad after semi.
-            final DetailAST semi = aAST.getPreviousSibling();
+            final DetailAST semi = ast.getPreviousSibling();
             final String line = getLines()[semi.getLineNo() - 1];
             final int after = semi.getColumnNo() + 1;
             //don't check if at end of line

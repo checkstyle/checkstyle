@@ -66,18 +66,18 @@ public class WhitespaceAfterCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         final Object[] message;
         final DetailAST targetAST;
-        if (aAST.getType() == TokenTypes.TYPECAST) {
-            targetAST = aAST.findFirstToken(TokenTypes.RPAREN);
+        if (ast.getType() == TokenTypes.TYPECAST) {
+            targetAST = ast.findFirstToken(TokenTypes.RPAREN);
             // TODO: i18n
             message = new Object[]{"cast"};
         }
         else {
-            targetAST = aAST;
-            message = new Object[]{aAST.getText()};
+            targetAST = ast;
+            message = new Object[]{ast.getText()};
         }
         final String line = getLine(targetAST.getLineNo() - 1);
         final int after =

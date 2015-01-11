@@ -112,16 +112,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class EmptyLineSeparatorCheck extends Check
 {
     /** */
-    private boolean mAllowNoEmptyLineBetweenFields;
+    private boolean allowNoEmptyLineBetweenFields;
 
     /**
      * Allow no empty line between fields.
-     * @param aAllow
+     * @param allow
      *        User's value.
      */
-    public final void setAllowNoEmptyLineBetweenFields(boolean aAllow)
+    public final void setAllowNoEmptyLineBetweenFields(boolean allow)
     {
-        mAllowNoEmptyLineBetweenFields = aAllow;
+        allowNoEmptyLineBetweenFields = allow;
     }
 
     @Override
@@ -142,39 +142,39 @@ public class EmptyLineSeparatorCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final DetailAST nextToken = aAST.getNextSibling();
+        final DetailAST nextToken = ast.getNextSibling();
 
         if (nextToken != null && nextToken.getType() != TokenTypes.RCURLY) {
-            final int astType = aAST.getType();
+            final int astType = ast.getType();
             switch (astType) {
             case TokenTypes.VARIABLE_DEF:
-                if (isTypeField(aAST) && !hasEmptyLineAfter(aAST)) {
-                    if (mAllowNoEmptyLineBetweenFields
+                if (iastypeField(ast) && !hasEmptyLineAfter(ast)) {
+                    if (allowNoEmptyLineBetweenFields
                             && nextToken.getType() != TokenTypes.VARIABLE_DEF)
                     {
                         log(nextToken.getLineNo(), "empty.line.separator", nextToken.getText());
                     }
-                    else if (!mAllowNoEmptyLineBetweenFields) {
+                    else if (!allowNoEmptyLineBetweenFields) {
                         log(nextToken.getLineNo(), "empty.line.separator", nextToken.getText());
                     }
                 }
                 break;
             case TokenTypes.IMPORT:
-                if (astType != nextToken.getType() && !hasEmptyLineAfter(aAST)
-                    || (aAST.getLineNo() > 1 && !hasEmptyLineBefore(aAST)
-                            && aAST.getPreviousSibling() == null))
+                if (astType != nextToken.getType() && !hasEmptyLineAfter(ast)
+                    || (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)
+                            && ast.getPreviousSibling() == null))
                 {
                     log(nextToken.getLineNo(), "empty.line.separator", nextToken.getText());
                 }
                 break;
             case TokenTypes.PACKAGE_DEF:
-                if (aAST.getLineNo() > 1 && !hasEmptyLineBefore(aAST)) {
-                    log(aAST.getLineNo(), "empty.line.separator", aAST.getText());
+                if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
+                    log(ast.getLineNo(), "empty.line.separator", ast.getText());
                 }
             default:
-                if (!hasEmptyLineAfter(aAST)) {
+                if (!hasEmptyLineAfter(ast)) {
                     log(nextToken.getLineNo(), "empty.line.separator", nextToken.getText());
                 }
             }
@@ -183,26 +183,26 @@ public class EmptyLineSeparatorCheck extends Check
 
     /**
      * Checks if token have empty line after.
-     * @param aToken token.
+     * @param token token.
      * @return true if token have empty line after.
      */
-    private boolean hasEmptyLineAfter(DetailAST aToken)
+    private boolean hasEmptyLineAfter(DetailAST token)
     {
-        DetailAST lastToken = aToken.getLastChild().getLastChild();
+        DetailAST lastToken = token.getLastChild().getLastChild();
         if (null == lastToken) {
-            lastToken = aToken.getLastChild();
+            lastToken = token.getLastChild();
         }
-        return aToken.getNextSibling().getLineNo() - lastToken.getLineNo() > 1;
+        return token.getNextSibling().getLineNo() - lastToken.getLineNo() > 1;
     }
 
     /**
      * Checks if a token has a empty line before.
-     * @param aToken token.
+     * @param token token.
      * @return true, if token have empty line before.
      */
-    private boolean hasEmptyLineBefore(DetailAST aToken)
+    private boolean hasEmptyLineBefore(DetailAST token)
     {
-        final int lineNo = aToken.getLineNo();
+        final int lineNo = token.getLineNo();
         //  [lineNo - 2] is the number of the previous line because the numbering starts from zero.
         final String lineBefore = getLines()[lineNo - 2];
         return lineBefore.trim().isEmpty();
@@ -210,12 +210,12 @@ public class EmptyLineSeparatorCheck extends Check
 
     /**
      * If variable definition is a type field.
-     * @param aVariableDef variable definition.
+     * @param variableDef variable definition.
      * @return true variable definition is a type field.
      */
-    private boolean isTypeField(DetailAST aVariableDef)
+    private boolean iastypeField(DetailAST variableDef)
     {
-        final int parentType = aVariableDef.getParent().getParent().getType();
+        final int parentType = variableDef.getParent().getParent().getType();
         return parentType == TokenTypes.CLASS_DEF;
     }
 }

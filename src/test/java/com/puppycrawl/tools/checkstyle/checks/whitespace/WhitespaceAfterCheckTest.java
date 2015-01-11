@@ -26,12 +26,12 @@ import org.junit.Test;
 public class WhitespaceAfterCheckTest
     extends BaseCheckTestSupport
 {
-    private DefaultConfiguration mCheckConfig;
+    private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp()
     {
-        mCheckConfig = createCheckConfig(WhitespaceAfterCheck.class);
+        checkConfig = createCheckConfig(WhitespaceAfterCheck.class);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class WhitespaceAfterCheckTest
             "42:40: ',' is not followed by whitespace.",
             "71:30: ',' is not followed by whitespace.",
         };
-        verify(mCheckConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
     @Test
@@ -50,7 +50,7 @@ public class WhitespaceAfterCheckTest
         final String[] expected = {
             "88:21: 'cast' is not followed by whitespace.",
         };
-        verify(mCheckConfig, getPath("InputWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class WhitespaceAfterCheckTest
             "58:29: ';' is not followed by whitespace.",
             "107:19: ';' is not followed by whitespace.",
         };
-        verify(mCheckConfig, getPath("InputBraces.java"), expected);
+        verify(checkConfig, getPath("InputBraces.java"), expected);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class WhitespaceAfterCheckTest
             "14:31: ';' is not followed by whitespace.",
             "17:31: ';' is not followed by whitespace.",
         };
-        verify(mCheckConfig, getPath("InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class WhitespaceAfterCheckTest
             "11:23: ',' is not followed by whitespace.",
             "11:41: ',' is not followed by whitespace.",
         };
-        verify(mCheckConfig, getPath("InputGenerics.java"), expected);
+        verify(checkConfig, getPath("InputGenerics.java"), expected);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class WhitespaceAfterCheckTest
     {
         final String[] expected = {
         };
-        verify(mCheckConfig, getPath("whitespace/InputWhitespaceAround.java"),
+        verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
                expected);
     }
 }
