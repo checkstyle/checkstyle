@@ -67,7 +67,7 @@ public class CyclomaticComplexityCheck
     }
 
     @Override
-    protected final void visitTokenHook(DetailAST aAST)
+    protected final void visitTokenHook(DetailAST ast)
     {
         incrementCurrentValue(BigInteger.ONE);
     }

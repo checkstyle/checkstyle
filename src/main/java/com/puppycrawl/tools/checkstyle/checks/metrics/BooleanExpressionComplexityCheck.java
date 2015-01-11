@@ -37,11 +37,11 @@ public final class BooleanExpressionComplexityCheck extends Check
     private static final int DEFAULT_MAX = 3;
 
     /** Stack of contexts. */
-    private final FastStack<Context> mContextStack = FastStack.newInstance();
+    private final FastStack<Context> contextStack = FastStack.newInstance();
     /** Maximum allowed complexity. */
-    private int mMax;
+    private int max;
     /** Current context. */
-    private Context mContext;
+    private Context context;
 
     /** Creates new instance of the check. */
     public BooleanExpressionComplexityCheck()
@@ -80,25 +80,25 @@ public final class BooleanExpressionComplexityCheck extends Check
      */
     public int getMax()
     {
-        return mMax;
+        return max;
     }
 
     /**
      * Setter for maximum allowed complexity.
-     * @param aMax new maximum allowed complexity.
+     * @param max new maximum allowed complexity.
      */
-    public void setMax(int aMax)
+    public void setMax(int max)
     {
-        mMax = aMax;
+        this.max = max;
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
+        switch (ast.getType()) {
         case TokenTypes.CTOR_DEF:
         case TokenTypes.METHOD_DEF:
-            visitMethodDef(aAST);
+            visitMethodDef(ast);
             break;
         case TokenTypes.EXPR:
             visitExpr();
@@ -108,23 +108,23 @@ public final class BooleanExpressionComplexityCheck extends Check
         case TokenTypes.LOR:
         case TokenTypes.BOR:
         case TokenTypes.BXOR:
-            mContext.visitBooleanOperator();
+            context.visitBooleanOperator();
             break;
         default:
-            throw new IllegalStateException(aAST.toString());
+            throw new IllegalStateException(ast.toString());
         }
     }
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
+        switch (ast.getType()) {
         case TokenTypes.CTOR_DEF:
         case TokenTypes.METHOD_DEF:
             leaveMethodDef();
             break;
         case TokenTypes.EXPR:
-            leaveExpr(aAST);
+            leaveExpr(ast);
             break;
         default:
             // Do nothing
@@ -133,35 +133,35 @@ public final class BooleanExpressionComplexityCheck extends Check
 
     /**
      * Creates new context for a given method.
-     * @param aAST a method we start to check.
+     * @param ast a method we start to check.
      */
-    private void visitMethodDef(DetailAST aAST)
+    private void visitMethodDef(DetailAST ast)
     {
-        mContextStack.push(mContext);
-        mContext = new Context(!CheckUtils.isEqualsMethod(aAST));
+        contextStack.push(context);
+        context = new Context(!CheckUtils.isEqualsMethod(ast));
     }
 
     /** Removes old context. */
     private void leaveMethodDef()
     {
-        mContext = mContextStack.pop();
+        context = contextStack.pop();
     }
 
     /** Creates and pushes new context. */
     private void visitExpr()
     {
-        mContextStack.push(mContext);
-        mContext = new Context((mContext == null) || mContext.isChecking());
+        contextStack.push(context);
+        context = new Context((context == null) || context.isChecking());
     }
 
     /**
      * Restores previous context.
-     * @param aAST expression we leave.
+     * @param ast expression we leave.
      */
-    private void leaveExpr(DetailAST aAST)
+    private void leaveExpr(DetailAST ast)
     {
-        mContext.checkCount(aAST);
-        mContext = mContextStack.pop();
+        context.checkCount(ast);
+        context = contextStack.pop();
     }
 
     /**
@@ -176,18 +176,18 @@ public final class BooleanExpressionComplexityCheck extends Check
          * Should we perform check in current context or not.
          * Usually false if we are inside equals() method.
          */
-        private final boolean mChecking;
+        private final boolean checking;
         /** Count of boolean operators. */
-        private int mCount;
+        private int count;
 
         /**
          * Creates new instance.
-         * @param aChecking should we check in current context or not.
+         * @param checking should we check in current context or not.
          */
-        public Context(boolean aChecking)
+        public Context(boolean checking)
         {
-            mChecking = aChecking;
-            mCount = 0;
+            this.checking = checking;
+            count = 0;
         }
 
         /**
@@ -196,26 +196,26 @@ public final class BooleanExpressionComplexityCheck extends Check
          */
         public boolean isChecking()
         {
-            return mChecking;
+            return checking;
         }
 
         /** Increases operator counter. */
         public void visitBooleanOperator()
         {
-            ++mCount;
+            ++count;
         }
 
         /**
          * Checks if we violates maximum allowed complexity.
-         * @param aAST a node we check now.
+         * @param ast a node we check now.
          */
-        public void checkCount(DetailAST aAST)
+        public void checkCount(DetailAST ast)
         {
-            if (mChecking && (mCount > getMax())) {
-                final DetailAST parentAST = aAST.getParent();
+            if (checking && (count > getMax())) {
+                final DetailAST parentAST = ast.getParent();
 
                 log(parentAST.getLineNo(), parentAST.getColumnNo(),
-                    "booleanExpressionComplexity", mCount, getMax());
+                    "booleanExpressionComplexity", count, getMax());
             }
         }
     }

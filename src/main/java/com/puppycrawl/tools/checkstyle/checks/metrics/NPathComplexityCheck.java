@@ -68,9 +68,9 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
+        switch (ast.getType()) {
         case TokenTypes.LITERAL_WHILE:
         case TokenTypes.LITERAL_DO:
         case TokenTypes.LITERAL_FOR:
@@ -86,14 +86,14 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck
             visitAddingConditional();
             break;
         default:
-            super.visitToken(aAST);
+            super.visitToken(ast);
         }
     }
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
+        switch (ast.getType()) {
         case TokenTypes.LITERAL_WHILE:
         case TokenTypes.LITERAL_DO:
         case TokenTypes.LITERAL_FOR:
@@ -109,7 +109,7 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck
             leaveAddingConditional();
             break;
         default:
-            super.leaveToken(aAST);
+            super.leaveToken(ast);
         }
     }
 

@@ -2,18 +2,18 @@
 // checkstyle: Checks Java source code for adherence to a set of rules.
 // Copyright (C) 2001-2014  Oliver Burn
 //
-// This library is free software; you can redistribute it and/or
+// This librby is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
 // License as published by the Free Software Foundation; either
-// version 2.1 of the License, or (at your option) any later version.
+// version 2.1 of the License, or (at your option) by later version.
 //
-// This library is distributed in the hope that it will be useful,
+// This librby is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public
-// License along with this library; if not, write to the Free Software
+// License along with this librby; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.metrics;
@@ -37,21 +37,21 @@ public abstract class AbstractComplexityCheck
     private static final BigInteger INITIAL_VALUE = BigInteger.ONE;
 
     /** stack of values - all but the current value */
-    private final FastStack<BigInteger> mValueStack = FastStack.newInstance();
+    private final FastStack<BigInteger> valueStack = FastStack.newInstance();
 
     /** the current value */
-    private BigInteger mCurrentValue = BigInteger.ZERO;
+    private BigInteger currentValue = BigInteger.ZERO;
 
     /** threshold to report error for */
-    private int mMax;
+    private int max;
 
     /**
      * Creates an instance.
-     * @param aMax the threshold of when to report an error
+     * @param max the threshold of when to report an error
      */
-    public AbstractComplexityCheck(int aMax)
+    public AbstractComplexityCheck(int max)
     {
-        mMax = aMax;
+        this.max = max;
     }
 
     /**
@@ -63,9 +63,9 @@ public abstract class AbstractComplexityCheck
      * Hook called when visiting a token. Will not be called the method
      * definition tokens.
      *
-     * @param aAST the token being visited
+     * @param ast the token being visited
      */
-    protected void visitTokenHook(DetailAST aAST)
+    protected void visitTokenHook(DetailAST ast)
     {
     }
 
@@ -73,9 +73,9 @@ public abstract class AbstractComplexityCheck
      * Hook called when leaving a token. Will not be called the method
      * definition tokens.
      *
-     * @param aAST the token being left
+     * @param ast the token being left
      */
-    protected void leaveTokenHook(DetailAST aAST)
+    protected void leaveTokenHook(DetailAST ast)
     {
     }
 
@@ -93,23 +93,23 @@ public abstract class AbstractComplexityCheck
     /** @return the maximum threshold allowed */
     public final int getMax()
     {
-        return mMax;
+        return max;
     }
 
     /**
      * Set the maximum threshold allowed.
      *
-     * @param aMax the maximum threshold
+     * @param max the maximum threshold
      */
-    public final void setMax(int aMax)
+    public final void setMax(int max)
     {
-        mMax = aMax;
+        this.max = max;
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
+        switch (ast.getType()) {
         case TokenTypes.CTOR_DEF:
         case TokenTypes.METHOD_DEF:
         case TokenTypes.INSTANCE_INIT:
@@ -117,22 +117,22 @@ public abstract class AbstractComplexityCheck
             visitMethodDef();
             break;
         default:
-            visitTokenHook(aAST);
+            visitTokenHook(ast);
         }
     }
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
+        switch (ast.getType()) {
         case TokenTypes.CTOR_DEF:
         case TokenTypes.METHOD_DEF:
         case TokenTypes.INSTANCE_INIT:
         case TokenTypes.STATIC_INIT:
-            leaveMethodDef(aAST);
+            leaveMethodDef(ast);
             break;
         default:
-            leaveTokenHook(aAST);
+            leaveTokenHook(ast);
         }
     }
 
@@ -141,33 +141,33 @@ public abstract class AbstractComplexityCheck
      */
     protected final BigInteger getCurrentValue()
     {
-        return mCurrentValue;
+        return currentValue;
     }
 
     /**
      * Set the current value
-     * @param aValue the new value
+     * @param value the new value
      */
-    protected final void setCurrentValue(BigInteger aValue)
+    protected final void setCurrentValue(BigInteger value)
     {
-        mCurrentValue = aValue;
+        currentValue = value;
     }
 
     /**
      * Increments the current value by a specified amount.
      *
-     * @param aBy the amount to increment by
+     * @param by the amount to increment by
      */
-    protected final void incrementCurrentValue(BigInteger aBy)
+    protected final void incrementCurrentValue(BigInteger by)
     {
-        setCurrentValue(getCurrentValue().add(aBy));
+        setCurrentValue(getCurrentValue().add(by));
     }
 
     /** Push the current value on the stack */
     protected final void pushValue()
     {
-        mValueStack.push(mCurrentValue);
-        mCurrentValue = INITIAL_VALUE;
+        valueStack.push(currentValue);
+        currentValue = INITIAL_VALUE;
     }
 
     /**
@@ -175,8 +175,8 @@ public abstract class AbstractComplexityCheck
      */
     protected final BigInteger popValue()
     {
-        mCurrentValue = mValueStack.pop();
-        return mCurrentValue;
+        currentValue = valueStack.pop();
+        return currentValue;
     }
 
     /** Process the start of the method definition */
@@ -188,13 +188,13 @@ public abstract class AbstractComplexityCheck
     /**
      * Process the end of a method definition.
      *
-     * @param aAST the token representing the method definition
+     * @param ast the token representing the method definition
      */
-    private void leaveMethodDef(DetailAST aAST)
+    private void leaveMethodDef(DetailAST ast)
     {
-        final BigInteger max = BigInteger.valueOf(mMax);
-        if (mCurrentValue.compareTo(max) > 0) {
-            log(aAST, getMessageID(), mCurrentValue, max);
+        final BigInteger bigIntegerMax = BigInteger.valueOf(max);
+        if (currentValue.compareTo(bigIntegerMax) > 0) {
+            log(ast, getMessageID(), currentValue, bigIntegerMax);
         }
         popValue();
     }
