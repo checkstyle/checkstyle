@@ -31,12 +31,12 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_
 
 public class RightCurlyCheckTest extends BaseCheckTestSupport
 {
-    private DefaultConfiguration mCheckConfig;
+    private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp()
     {
-        mCheckConfig = createCheckConfig(RightCurlyCheck.class);
+        checkConfig = createCheckConfig(RightCurlyCheck.class);
     }
 
     @Test
@@ -52,12 +52,12 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
             "93:27: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}"),
             "97:54: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}"),
         };
-        verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
+        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
     @Test
     public void testSame() throws Exception
     {
-        mCheckConfig.addAttribute("option", RightCurlyOption.SAME.toString());
+        checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
         final String[] expected = {
             "25:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}"),
             "28:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}"),
@@ -68,67 +68,67 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
             "93:27: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}"),
             "97:54: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}"),
         };
-        verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
+        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
     @Test
     public void testAlone() throws Exception
     {
-        mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         final String[] expected = {
             "93:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
             "93:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "}"),
         };
-        verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
+        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
     @Test
     public void testNewLine() throws Exception
     {
-        mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
-        mCheckConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF");
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF");
         final String[] expected = {
             "111:10: " + getCheckMessage(MSG_KEY_LINE_NEW, "}"),
             "122:10: " + getCheckMessage(MSG_KEY_LINE_NEW, "}"),
             "136:10: " + getCheckMessage(MSG_KEY_LINE_NEW, "}"),
         };
-        verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
+        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
     @Test
     public void testShouldStartLine() throws Exception
     {
-        mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
-        mCheckConfig.addAttribute("shouldStartLine", "false");
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        checkConfig.addAttribute("shouldStartLine", "false");
         final String[] expected = {
             "93:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
         };
-        verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
+        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
     @Test
     public void testMethodCtorNamedClassClosingBrace() throws Exception
     {
-        mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
-        mCheckConfig.addAttribute("shouldStartLine", "false");
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        checkConfig.addAttribute("shouldStartLine", "false");
         final String[] expected = {
             "93:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
         };
-        verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
+        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
     @Test
     public void testForceLineBreakBefore() throws Exception
     {
-        mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
-        mCheckConfig.addAttribute("tokens", "LITERAL_FOR,"
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        checkConfig.addAttribute("tokens", "LITERAL_FOR,"
                 + "LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT");
         final String[] expected = {
             "35:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
             "41:71: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
             "47:25: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
         };
-        verify(mCheckConfig, getPath("InputRightCurlyLineBreakBefore.java"), expected);
+        verify(checkConfig, getPath("InputRightCurlyLineBreakBefore.java"), expected);
     }
 
     @Test
@@ -140,16 +140,16 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
             "32:63: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}"),
             "52:56: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}"),
         };
-        verify(mCheckConfig, getPath("InputRightCurlyLineBreakBefore.java"), expected);
+        verify(checkConfig, getPath("InputRightCurlyLineBreakBefore.java"), expected);
     }
 
     @Test
     public void testNPE() throws Exception
     {
-        mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
-        mCheckConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT");
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT");
         final String[] expected = {
         };
-        verify(mCheckConfig, getPath("InputRightCurlyEmptyAbstractMethod.java"), expected);
+        verify(checkConfig, getPath("InputRightCurlyEmptyAbstractMethod.java"), expected);
     }
 }

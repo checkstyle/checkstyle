@@ -90,7 +90,7 @@ public class AvoidNestedBlocksCheck extends Check
      * Whether nested blocks are allowed if they are the
      * only child of a switch case.
      */
-    private boolean mAllowInSwitchCase;
+    private boolean allowInSwitchCase;
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -105,27 +105,27 @@ public class AvoidNestedBlocksCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final DetailAST parent = aAST.getParent();
+        final DetailAST parent = ast.getParent();
         if (parent.getType() == TokenTypes.SLIST) {
-            if (mAllowInSwitchCase
+            if (allowInSwitchCase
                     && (parent.getParent().getType() == TokenTypes.CASE_GROUP)
                     && (parent.getNumberOfChildren() == 1))
             {
                 return;
             }
-            log(aAST.getLineNo(), aAST.getColumnNo(), MSG_KEY_BLOCK_NESTED);
+            log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY_BLOCK_NESTED);
         }
     }
 
     /**
      * Setter for allowInSwitchCase property.
-     * @param aAllowInSwitchCase whether nested blocks are allowed
+     * @param allowInSwitchCase whether nested blocks are allowed
      *                 if they are the only child of a switch case.
      */
-    public void setAllowInSwitchCase(boolean aAllowInSwitchCase)
+    public void setAllowInSwitchCase(boolean allowInSwitchCase)
     {
-        mAllowInSwitchCase = aAllowInSwitchCase;
+        this.allowInSwitchCase = allowInSwitchCase;
     }
 }

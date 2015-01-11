@@ -67,7 +67,7 @@ public class NeedBracesCheck extends Check
     /**
      * Check's option for skipping single-line if-statements.
      */
-    private boolean mAllowSingleLineIf;
+    private boolean allowSingleLineIf;
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -77,11 +77,11 @@ public class NeedBracesCheck extends Check
 
     /**
      * Setter.
-     * @param aAllowSingleLineIf Check's option for skipping single-line if-statements
+     * @param allowSingleLineIf Check's option for skipping single-line if-statements
      */
-    public void setAllowSingleLineIf(boolean aAllowSingleLineIf)
+    public void setAllowSingleLineIf(boolean allowSingleLineIf)
     {
-        this.mAllowSingleLineIf = aAllowSingleLineIf;
+        this.allowSingleLineIf = allowSingleLineIf;
     }
 
     @Override
@@ -97,32 +97,32 @@ public class NeedBracesCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final DetailAST slistAST = aAST.findFirstToken(TokenTypes.SLIST);
+        final DetailAST slistAST = ast.findFirstToken(TokenTypes.SLIST);
         boolean isElseIf = false;
-        if ((aAST.getType() == TokenTypes.LITERAL_ELSE)
-            && (aAST.findFirstToken(TokenTypes.LITERAL_IF) != null))
+        if ((ast.getType() == TokenTypes.LITERAL_ELSE)
+            && (ast.findFirstToken(TokenTypes.LITERAL_IF) != null))
         {
             isElseIf = true;
         }
         boolean skipStatement = false;
-        if (aAST.getType() == TokenTypes.LITERAL_IF) {
-            skipStatement = isSkipIfBlock(aAST);
+        if (ast.getType() == TokenTypes.LITERAL_IF) {
+            skipStatement = isSkipIfBlock(ast);
         }
         if ((slistAST == null) && !isElseIf && !skipStatement) {
-            log(aAST.getLineNo(), MSG_KEY_NEED_BRACES, aAST.getText());
+            log(ast.getLineNo(), MSG_KEY_NEED_BRACES, ast.getText());
         }
     }
 
     /**
      * Checks if current if-block can be skipped by "need braces" warning.
-     * @param aLiteralIf {@link TokenTypes#LITERAL_IF LITERAL_IF}
+     * @param literalIf {@link TokenTypes#LITERAL_IF LITERAL_IF}
      * @return true if current if block can be skipped by Check
      */
-    private boolean isSkipIfBlock(DetailAST aLiteralIf)
+    private boolean isSkipIfBlock(DetailAST literalIf)
     {
-        return mAllowSingleLineIf && isSingleLineIf(aLiteralIf);
+        return allowSingleLineIf && isSingleLineIf(literalIf);
     }
 
     /**
@@ -132,17 +132,17 @@ public class NeedBracesCheck extends Check
      * if (obj.isValid()) return true;
      * </code>
      * </p>
-     * @param aLiteralIf {@link TokenTypes#LITERAL_IF LITERAL_IF}
+     * @param literalIf {@link TokenTypes#LITERAL_IF LITERAL_IF}
      * @return true if current if-statement is single-line statement
      */
-    private static boolean isSingleLineIf(DetailAST aLiteralIf)
+    private static boolean isSingleLineIf(DetailAST literalIf)
     {
         boolean result = false;
-        final DetailAST ifBlock = aLiteralIf.getLastChild();
+        final DetailAST ifBlock = literalIf.getLastChild();
         final DetailAST lastElementInIfBlock = ifBlock.getLastChild();
         if (lastElementInIfBlock != null
             && lastElementInIfBlock.getFirstChild() == null
-            && aLiteralIf.getLineNo() == lastElementInIfBlock.getLineNo())
+            && literalIf.getLineNo() == lastElementInIfBlock.getLineNo())
         {
             result = true;
         }
