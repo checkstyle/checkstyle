@@ -59,11 +59,11 @@ public class ParseTreeInfoPanel extends JPanel
 {
     /** For Serialisation that will never happen. */
     private static final long serialVersionUID = -4243405131202059043L;
-    private final JTreeTable mTreeTable;
-    private final ParseTreeModel mParseTreeModel;
-    private final JTextArea mJTextArea;
-    private File mLastDirectory = null;
-    private File mCurrentFile = null;
+    private final JTreeTable treeTable;
+    private final ParseTreeModel parseTreeModel;
+    private final JTextArea jTextArea;
+    private File lastDirectory = null;
+    private File currentFile = null;
     private final Action reloadAction;
     private final List<Integer>   lines2position  = new ArrayList<Integer>();
 
@@ -85,9 +85,9 @@ public class ParseTreeInfoPanel extends JPanel
         }
     }
 
-    public void openAst(DetailAST parseTree, final Component aParent)
+    public void openAst(DetailAST parseTree, final Component parent)
     {
-        mParseTreeModel.setParseTree(parseTree);
+        parseTreeModel.setParseTree(parseTree);
         reloadAction.setEnabled(true);
 
         // clear for each new file
@@ -97,12 +97,12 @@ public class ParseTreeInfoPanel extends JPanel
         // insert the contents of the file to the text area
 
         // clean the text area before inserting the lines of the new file
-        if (mJTextArea.getText().length() != 0) {
-            mJTextArea.replaceRange("", 0, mJTextArea.getText().length());
+        if (jTextArea.getText().length() != 0) {
+            jTextArea.replaceRange("", 0, jTextArea.getText().length());
         }
 
         // move back to the top of the file
-        mJTextArea.moveCaretPosition(0);
+        jTextArea.moveCaretPosition(0);
     }
 
     private class FileSelectionAction extends AbstractAction
@@ -121,7 +121,7 @@ public class ParseTreeInfoPanel extends JPanel
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            final JFileChooser fc = new JFileChooser( mLastDirectory );
+            final JFileChooser fc = new JFileChooser( lastDirectory );
             final FileFilter filter = new JavaFileFilter();
             fc.setFileFilter(filter);
             final Component parent =
@@ -151,7 +151,7 @@ public class ParseTreeInfoPanel extends JPanel
         {
             final Component parent =
                 SwingUtilities.getRoot(ParseTreeInfoPanel.this);
-            openFile(mCurrentFile, parent);
+            openFile(currentFile, parent);
         }
     }
 
@@ -177,17 +177,17 @@ public class ParseTreeInfoPanel extends JPanel
     }
 
 
-    public void openFile(File aFile, final Component aParent)
+    public void openFile(File file, final Component parent)
     {
-        if (aFile != null) {
+        if (file != null) {
             try {
-                Main.frame.setTitle("Checkstyle : " + aFile.getName());
-                final FileText text = new FileText(aFile.getAbsoluteFile(),
+                Main.frame.setTitle("Checkstyle : " + file.getName());
+                final FileText text = new FileText(file.getAbsoluteFile(),
                                                    getEncoding());
                 final DetailAST parseTree = parseFile(text);
-                mParseTreeModel.setParseTree(parseTree);
-                mCurrentFile = aFile;
-                mLastDirectory = aFile.getParentFile();
+                parseTreeModel.setParseTree(parseTree);
+                currentFile = file;
+                lastDirectory = file.getParentFile();
                 reloadAction.setEnabled(true);
 
                 final String[] sourceLines = text.toLinesArray();
@@ -199,62 +199,62 @@ public class ParseTreeInfoPanel extends JPanel
                  // insert the contents of the file to the text area
                  for (String element : sourceLines)
                  {
-                   getLines2position().add(mJTextArea.getText().length());
-                   mJTextArea.append(element + "\n");
+                   getLines2position().add(jTextArea.getText().length());
+                   jTextArea.append(element + "\n");
                  }
 
                 //clean the text area before inserting the lines of the new file
-                if (mJTextArea.getText().length() != 0) {
-                    mJTextArea.replaceRange("", 0, mJTextArea.getText()
+                if (jTextArea.getText().length() != 0) {
+                    jTextArea.replaceRange("", 0, jTextArea.getText()
                             .length());
                 }
 
                 // insert the contents of the file to the text area
                 for (final String element : sourceLines) {
-                    mJTextArea.append(element + "\n");
+                    jTextArea.append(element + "\n");
                 }
 
                 // move back to the top of the file
-                mJTextArea.moveCaretPosition(0);
+                jTextArea.moveCaretPosition(0);
             }
             catch (final IOException ex) {
                 showErrorDialog(
-                        aParent,
-                        "Could not open " + aFile + ": " + ex.getMessage());
+                        parent,
+                        "Could not open " + file + ": " + ex.getMessage());
             }
             catch (final ANTLRException ex) {
                 showErrorDialog(
-                        aParent,
-                        "Could not parse " + aFile + ": " + ex.getMessage());
+                        parent,
+                        "Could not parse " + file + ": " + ex.getMessage());
             }
         }
     }
 
     /**
      * Parses a file and returns the parse tree.
-     * @param aFileName the file to parse
+     * @param fileName the file to parse
      * @return the root node of the parse tree
      * @throws IOException if the file cannot be opened
      * @throws ANTLRException if the file is not a Java source
      * @deprecated Use {@link #parseFile(FileText)} instead
      */
     @Deprecated
-    public static DetailAST parseFile(String aFileName)
+    public static DetailAST parseFile(String fileName)
         throws IOException, ANTLRException
     {
-        return parseFile(new FileText(new File(aFileName), getEncoding()));
+        return parseFile(new FileText(new File(fileName), getEncoding()));
     }
 
     /**
      * Parses a file and returns the parse tree.
-     * @param aText the file to parse
+     * @param text the file to parse
      * @return the root node of the parse tree
      * @throws ANTLRException if the file is not a Java source
      */
-    public static DetailAST parseFile(FileText aText)
+    public static DetailAST parseFile(FileText text)
         throws ANTLRException
     {
-        final FileContents contents = new FileContents(aText);
+        final FileContents contents = new FileContents(text);
         return TreeWalker.parse(contents);
     }
 
@@ -277,9 +277,9 @@ public class ParseTreeInfoPanel extends JPanel
         setLayout(new BorderLayout());
 
         final DetailAST treeRoot = null;
-        mParseTreeModel = new ParseTreeModel(treeRoot);
-        mTreeTable = new JTreeTable(mParseTreeModel);
-        final JScrollPane sp = new JScrollPane(mTreeTable);
+        parseTreeModel = new ParseTreeModel(treeRoot);
+        treeTable = new JTreeTable(parseTreeModel);
+        final JScrollPane sp = new JScrollPane(treeTable);
         this.add(sp, BorderLayout.NORTH);
 
         final JButton fileSelectionButton =
@@ -289,12 +289,12 @@ public class ParseTreeInfoPanel extends JPanel
         reloadAction.setEnabled(false);
         final JButton reloadButton = new JButton(reloadAction);
 
-        mJTextArea = new JTextArea(20, 15);
-        mJTextArea.setEditable(false);
-        mTreeTable.setEditor(mJTextArea);
-        mTreeTable.setLinePositionMap(lines2position);
+        jTextArea = new JTextArea(20, 15);
+        jTextArea.setEditable(false);
+        treeTable.setEditor(jTextArea);
+        treeTable.setLinePositionMap(lines2position);
 
-        final JScrollPane sp2 = new JScrollPane(mJTextArea);
+        final JScrollPane sp2 = new JScrollPane(jTextArea);
         this.add(sp2, BorderLayout.CENTER);
 
         final JPanel p = new JPanel(new GridLayout(1,2));

@@ -74,12 +74,12 @@ import javax.swing.tree.TreePath;
  */
 public abstract class AbstractTreeTableModel implements TreeTableModel
 {
-    private final Object mRoot;
-    private final EventListenerList mListenerList = new EventListenerList();
+    private final Object root;
+    private final EventListenerList listenerList = new EventListenerList();
 
     public AbstractTreeTableModel(Object root)
     {
-        mRoot = root;
+        this.root = root;
     }
 
     //
@@ -89,7 +89,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
     @Override
     public Object getRoot()
     {
-        return mRoot;
+        return root;
     }
 
     @Override
@@ -118,13 +118,13 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
     @Override
     public void addTreeModelListener(TreeModelListener l)
     {
-        mListenerList.add(TreeModelListener.class, l);
+        listenerList.add(TreeModelListener.class, l);
     }
 
     @Override
     public void removeTreeModelListener(TreeModelListener l)
     {
-        mListenerList.remove(TreeModelListener.class, l);
+        listenerList.remove(TreeModelListener.class, l);
     }
 
     /*
@@ -139,7 +139,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
             Object[] children)
     {
         // Guaranteed to return a non-null array
-        final Object[] listeners = mListenerList.getListenerList();
+        final Object[] listeners = listenerList.getListenerList();
         TreeModelEvent e = null;
         // Process the listeners last to first, notifying
         // those that are interested in this event
@@ -167,7 +167,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
             Object[] children)
     {
         // Guaranteed to return a non-null array
-        final Object[] listeners = mListenerList.getListenerList();
+        final Object[] listeners = listenerList.getListenerList();
         TreeModelEvent e = null;
         // Process the listeners last to first, notifying
         // those that are interested in this event
@@ -195,7 +195,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
             Object[] children)
     {
         // Guaranteed to return a non-null array
-        final Object[] listeners = mListenerList.getListenerList();
+        final Object[] listeners = listenerList.getListenerList();
         TreeModelEvent e = null;
         // Process the listeners last to first, notifying
         // those that are interested in this event
@@ -223,7 +223,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
             Object[] children)
     {
         // Guaranteed to return a non-null array
-        final Object[] listeners = mListenerList.getListenerList();
+        final Object[] listeners = listenerList.getListenerList();
         TreeModelEvent e = null;
         // Process the listeners last to first, notifying
         // those that are interested in this event
@@ -260,7 +260,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
     }
 
     @Override
-    public void setValueAt(Object aValue, Object node, int column)
+    public void setValueAt(Object value, Object node, int column)
     {
     }
 

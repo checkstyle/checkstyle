@@ -77,7 +77,7 @@ import javax.swing.event.EventListenerList;
  */
 public class AbstractCellEditor implements CellEditor
 {
-    private final EventListenerList mListenerList = new EventListenerList();
+    private final EventListenerList listenerList = new EventListenerList();
 
     /** @see CellEditor */
     @Override
@@ -117,14 +117,14 @@ public class AbstractCellEditor implements CellEditor
     @Override
     public void addCellEditorListener(CellEditorListener l)
     {
-        mListenerList.add(CellEditorListener.class, l);
+        listenerList.add(CellEditorListener.class, l);
     }
 
     /** @see CellEditor */
     @Override
     public void removeCellEditorListener(CellEditorListener l)
     {
-        mListenerList.remove(CellEditorListener.class, l);
+        listenerList.remove(CellEditorListener.class, l);
     }
 
     /*
@@ -135,7 +135,7 @@ public class AbstractCellEditor implements CellEditor
     protected void fireEditingStopped()
     {
         // Guaranteed to return a non-null array
-        final Object[] listeners = mListenerList.getListenerList();
+        final Object[] listeners = listenerList.getListenerList();
         // Process the listeners last to first, notifying
         // those that are interested in this event
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
@@ -153,7 +153,7 @@ public class AbstractCellEditor implements CellEditor
     protected void fireEditingCanceled()
     {
         // Guaranteed to return a non-null array
-        final Object[] listeners = mListenerList.getListenerList();
+        final Object[] listeners = listenerList.getListenerList();
         // Process the listeners last to first, notifying
         // those that are interested in this event
         for (int i = listeners.length - 2; i >= 0; i -= 2) {

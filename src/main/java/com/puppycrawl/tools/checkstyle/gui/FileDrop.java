@@ -253,18 +253,18 @@ class FileDrop
 
     private class FileDropTargetListener implements DropTargetListener
     {
-        private final Component mC;
-        private final Border mDragBorder;
-        private final Listener mListener;
+        private final Component component;
+        private final Border dragBorder;
+        private final Listener listener;
 
         @Override
         public void dragEnter(DropTargetDragEvent evt)
         {
             if (isDragOk(evt)) {
-                if (mC instanceof JComponent) {
-                    final JComponent jc = (JComponent) mC;
+                if (component instanceof JComponent) {
+                    final JComponent jc = (JComponent) component;
                     normalBorder = jc.getBorder();
-                    jc.setBorder(mDragBorder);
+                    jc.setBorder(dragBorder);
                 }
                 evt.acceptDrag(DnDConstants.ACTION_COPY);
             }
@@ -288,8 +288,8 @@ class FileDrop
                     final File[] files = new File[fileList.size()];
                     fileList.toArray(files);
 
-                    if (mListener != null) {
-                        mListener.filesDropped(files);
+                    if (listener != null) {
+                        listener.filesDropped(files);
                     }
 
                     evt.getDropTargetContext().dropComplete(true);
@@ -305,8 +305,8 @@ class FileDrop
                 evt.rejectDrop();
             }
             finally {
-                if (mC instanceof JComponent) {
-                    final JComponent jc = (JComponent) mC;
+                if (component instanceof JComponent) {
+                    final JComponent jc = (JComponent) component;
                     jc.setBorder(normalBorder);
                 }
             }
@@ -315,8 +315,8 @@ class FileDrop
         @Override
         public void dragExit(DropTargetEvent evt)
         {
-            if (mC instanceof JComponent) {
-                final JComponent jc = (JComponent) mC;
+            if (component instanceof JComponent) {
+                final JComponent jc = (JComponent) component;
                 jc.setBorder(normalBorder);
             }
         }
@@ -337,11 +337,11 @@ class FileDrop
         {
         }
 
-        public FileDropTargetListener(Component aC, Border aDragBorder, Listener aListener)
+        public FileDropTargetListener(Component component, Border dragBorder, Listener listener)
         {
-            mC = aC;
-            mDragBorder = aDragBorder;
-            mListener = aListener;
+            this.component = component;
+            this.dragBorder = dragBorder;
+            this.listener = listener;
         }
     }
 
