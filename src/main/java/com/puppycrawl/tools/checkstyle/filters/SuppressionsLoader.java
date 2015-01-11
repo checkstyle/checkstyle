@@ -63,7 +63,7 @@ public final class SuppressionsLoader
      * the filter chain to return in getAFilterChain(),
      * configured during parsing
      */
-    private final FilterSet mFilterChain = new FilterSet();
+    private final FilterSet filterChain = new FilterSet();
 
     /**
      * Creates a new <code>SuppressionsLoader</code> instance.
@@ -82,24 +82,24 @@ public final class SuppressionsLoader
      */
     public FilterSet getFilterChain()
     {
-        return mFilterChain;
+        return filterChain;
     }
 
     @Override
-    public void startElement(String aNamespaceURI,
-                             String aLocalName,
-                             String aQName,
-                             Attributes aAtts)
+    public void startElement(String namespaceURI,
+                             String locqName,
+                             String qName,
+                             Attributes atts)
         throws SAXException
     {
-        if ("suppress".equals(aQName)) {
+        if ("suppress".equals(qName)) {
             //add SuppressElement filter to the filter chain
-            final String files = aAtts.getValue("files");
+            final String files = atts.getValue("files");
             if (files == null) {
                 throw new SAXException("missing files attribute");
             }
-            final String checks = aAtts.getValue("checks");
-            final String modId = aAtts.getValue("id");
+            final String checks = atts.getValue("checks");
+            final String modId = atts.getValue("id");
             if ((checks == null) && (modId == null)) {
                 throw new SAXException("missing checks and id attribute");
             }
@@ -116,32 +116,32 @@ public final class SuppressionsLoader
             catch (final PatternSyntaxException e) {
                 throw new SAXException("invalid files or checks format");
             }
-            final String lines = aAtts.getValue("lines");
+            final String lines = atts.getValue("lines");
             if (lines != null) {
                 suppress.setLines(lines);
             }
-            final String columns = aAtts.getValue("columns");
+            final String columns = atts.getValue("columns");
             if (columns != null) {
                 suppress.setColumns(columns);
             }
-            mFilterChain.addFilter(suppress);
+            filterChain.addFilter(suppress);
         }
     }
 
     /**
      * Returns the suppression filters in a specified file.
-     * @param aFilename name of the suppresssions file.
+     * @param filename name of the suppresssions file.
      * @return the filter chain of suppression elements specified in the file.
      * @throws CheckstyleException if an error occurs.
      */
-    public static FilterSet loadSuppressions(String aFilename)
+    public static FilterSet loadSuppressions(String filename)
         throws CheckstyleException
     {
         try {
             // figure out if this is a File or a URL
             URI uri;
             try {
-                final URL url = new URL(aFilename);
+                final URL url = new URL(filename);
                 uri = url.toURI();
             }
             catch (final MalformedURLException ex) {
@@ -152,7 +152,7 @@ public final class SuppressionsLoader
                 uri = null;
             }
             if (uri == null) {
-                final File file = new File(aFilename);
+                final File file = new File(filename);
                 if (file.exists()) {
                     uri = file.toURI();
                 }
@@ -160,58 +160,58 @@ public final class SuppressionsLoader
                     // check to see if the file is in the classpath
                     try {
                         final URL configUrl = SuppressionsLoader.class
-                                .getResource(aFilename);
+                                .getResource(filename);
                         if (configUrl == null) {
-                            throw new FileNotFoundException(aFilename);
+                            throw new FileNotFoundException(filename);
                         }
                         uri = configUrl.toURI();
                     }
                     catch (final URISyntaxException e) {
-                        throw new FileNotFoundException(aFilename);
+                        throw new FileNotFoundException(filename);
                     }
                 }
             }
             final InputSource source = new InputSource(uri.toString());
-            return loadSuppressions(source, aFilename);
+            return loadSuppressions(source, filename);
         }
         catch (final FileNotFoundException e) {
-            throw new CheckstyleException("unable to find " + aFilename, e);
+            throw new CheckstyleException("unable to find " + filename, e);
         }
     }
 
     /**
      * Returns the suppression filters in a specified source.
-     * @param aSource the source for the suppressions.
-     * @param aSourceName the name of the source.
-     * @return the filter chain of suppression elements in aSource.
+     * @param source the source for the suppressions.
+     * @param sourceName the name of the source.
+     * @return the filter chain of suppression elements in source.
      * @throws CheckstyleException if an error occurs.
      */
     private static FilterSet loadSuppressions(
-            InputSource aSource, String aSourceName)
+            InputSource source, String sourceName)
         throws CheckstyleException
     {
         try {
             final SuppressionsLoader suppressionsLoader =
                 new SuppressionsLoader();
-            suppressionsLoader.parseInputSource(aSource);
+            suppressionsLoader.parseInputSource(source);
             return suppressionsLoader.getFilterChain();
         }
         catch (final FileNotFoundException e) {
-            throw new CheckstyleException("unable to find " + aSourceName, e);
+            throw new CheckstyleException("unable to find " + sourceName, e);
         }
         catch (final ParserConfigurationException e) {
-            throw new CheckstyleException("unable to parse " + aSourceName, e);
+            throw new CheckstyleException("unable to parse " + sourceName, e);
         }
         catch (final SAXException e) {
             throw new CheckstyleException("unable to parse "
-                    + aSourceName + " - " + e.getMessage(), e);
+                    + sourceName + " - " + e.getMessage(), e);
         }
         catch (final IOException e) {
-            throw new CheckstyleException("unable to read " + aSourceName, e);
+            throw new CheckstyleException("unable to read " + sourceName, e);
         }
         catch (final NumberFormatException e) {
             throw new CheckstyleException("number format exception "
-                + aSourceName + " - " + e.getMessage(), e);
+                + sourceName + " - " + e.getMessage(), e);
         }
     }
 

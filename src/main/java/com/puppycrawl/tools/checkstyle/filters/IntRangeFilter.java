@@ -28,44 +28,44 @@ class IntRangeFilter implements IntFilter
     private static final int HASH_MULT = 29;
 
     /** lower bound of the range */
-    private final Integer mLowerBound;
+    private final Integer lowerBound;
 
     /** upper bound of the range */
-    private final Integer mUpperBound;
+    private final Integer upperBound;
 
     /**
      * Constructs a <code>IntRangeFilter</code> with a
      * lower bound and an upper bound for the range.
-     * @param aLowerBound the lower bound of the range.
-     * @param aUpperBound the upper bound of the range.
+     * @param lowerBound the lower bound of the range.
+     * @param upperBound the upper bound of the range.
      */
-    public IntRangeFilter(int aLowerBound, int aUpperBound)
+    public IntRangeFilter(int lowerBound, int upperBound)
     {
-        mLowerBound = aLowerBound;
-        mUpperBound = aUpperBound;
+        this.lowerBound = lowerBound;
+        this.upperBound = upperBound;
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean accept(int aInt)
+    public boolean accept(int intValue)
     {
-        return ((mLowerBound.compareTo(aInt) <= 0)
-            && (mUpperBound.compareTo(aInt) >= 0));
+        return ((lowerBound.compareTo(intValue) <= 0)
+            && (upperBound.compareTo(intValue) >= 0));
     }
 
     @Override
     public int hashCode()
     {
-        return HASH_MULT * mLowerBound.intValue() + mUpperBound.intValue();
+        return HASH_MULT * lowerBound.intValue() + upperBound.intValue();
     }
 
     @Override
-    public boolean equals(Object aObject)
+    public boolean equals(Object object)
     {
-        if (aObject instanceof IntRangeFilter) {
-            final IntRangeFilter other = (IntRangeFilter) aObject;
-            return (this.mLowerBound.equals(other.mLowerBound)
-                && this.mUpperBound.equals(other.mUpperBound));
+        if (object instanceof IntRangeFilter) {
+            final IntRangeFilter other = (IntRangeFilter) object;
+            return (this.lowerBound.equals(other.lowerBound)
+                && this.upperBound.equals(other.upperBound));
         }
         return false;
     }
@@ -73,7 +73,7 @@ class IntRangeFilter implements IntFilter
     @Override
     public String toString()
     {
-        return "IntRangeFilter[" + mLowerBound + "," + mUpperBound + "]";
+        return "IntRangeFilter[" + lowerBound + "," + upperBound + "]";
     }
 
 }

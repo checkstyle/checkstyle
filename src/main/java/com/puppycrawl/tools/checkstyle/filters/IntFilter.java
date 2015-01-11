@@ -27,8 +27,8 @@ interface IntFilter
 {
     /**
      * Determines whether or not a filtered Integer is accepted.
-     * @param aInt the Integer to filter.
-     * @return true if the aInt is accepted.
+     * @param int the Integer to filter.
+     * @return true if the int is accepted.
      */
-    boolean accept(int aInt);
+    boolean accept(int intValue);
 }

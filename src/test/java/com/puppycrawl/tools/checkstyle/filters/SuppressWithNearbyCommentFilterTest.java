@@ -179,22 +179,22 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
 
-    public static DefaultConfiguration createFilterConfig(Class<?> aClass)
+    public static DefaultConfiguration createFilterConfig(Class<?> classObj)
     {
-        return new DefaultConfiguration(aClass.getName());
+        return new DefaultConfiguration(classObj.getName());
     }
 
-    protected void verifySuppressed(Configuration aFilterConfig,
-                                    String[] aSuppressed)
+    protected void verifySuppressed(Configuration filterConfig,
+                                    String[] suppressed)
         throws Exception
     {
-        verify(createChecker(aFilterConfig),
+        verify(createChecker(filterConfig),
                getPath("filters/InputSuppressWithNearbyCommentFilter.java"),
-               removeSuppressed(sAllMessages, aSuppressed));
+               removeSuppressed(sAllMessages, suppressed));
     }
 
     @Override
-    protected Checker createChecker(Configuration aFilterConfig)
+    protected Checker createChecker(Configuration filterConfig)
         throws CheckstyleException
     {
         final DefaultConfiguration checkerConfig =
@@ -205,8 +205,8 @@ public class SuppressWithNearbyCommentFilterTest
         checksConfig.addChild(createCheckConfig(ConstantNameCheck.class));
         checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
         checkerConfig.addChild(checksConfig);
-        if (aFilterConfig != null) {
-            checkerConfig.addChild(aFilterConfig);
+        if (filterConfig != null) {
+            checkerConfig.addChild(filterConfig);
         }
         final Checker checker = new Checker();
         final Locale locale = Locale.ENGLISH;
@@ -214,15 +214,15 @@ public class SuppressWithNearbyCommentFilterTest
         checker.setLocaleLanguage(locale.getLanguage());
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
-        checker.addListener(new BriefLogger(mStream));
+        checker.addListener(new BriefLogger(stream));
         return checker;
     }
 
-    private String[] removeSuppressed(String[] aFrom, String[] aRemove)
+    private String[] removeSuppressed(String[] from, String[] remove)
     {
         final Collection<String> coll =
-            Lists.newArrayList(Arrays.asList(aFrom));
-        coll.removeAll(Arrays.asList(aRemove));
+            Lists.newArrayList(Arrays.asList(from));
+        coll.removeAll(Arrays.asList(remove));
         return coll.toArray(new String[coll.size()]);
     }
 }

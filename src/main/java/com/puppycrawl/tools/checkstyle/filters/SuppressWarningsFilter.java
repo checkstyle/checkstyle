@@ -34,9 +34,9 @@ public class SuppressWarningsFilter
 {
     /** {@inheritDoc} */
     @Override
-    public boolean accept(AuditEvent aEvent)
+    public boolean accept(AuditEvent event)
     {
-        return !SuppressWarningsHolder.isSuppressed(aEvent.getSourceName(),
-            aEvent.getLine(), aEvent.getColumn());
+        return !SuppressWarningsHolder.isSuppressed(event.getSourceName(),
+            event.getLine(), event.getColumn());
     }
 }

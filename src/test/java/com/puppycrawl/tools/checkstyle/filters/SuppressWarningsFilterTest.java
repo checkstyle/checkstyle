@@ -77,9 +77,9 @@ public class SuppressWarningsFilterTest
         verifySuppressed(filterConfig, suppressed);
     }
 
-    public static DefaultConfiguration createFilterConfig(Class<?> aClass)
+    public static DefaultConfiguration createFilterConfig(Class<?> classObj)
     {
-        return new DefaultConfiguration(aClass.getName());
+        return new DefaultConfiguration(classObj.getName());
     }
 
     protected void verifySuppressed(Configuration aFilterConfig,
@@ -91,7 +91,7 @@ public class SuppressWarningsFilterTest
     }
 
     @Override
-    protected Checker createChecker(Configuration aFilterConfig)
+    protected Checker createChecker(Configuration filterConfig)
         throws Exception
     {
         final DefaultConfiguration checkerConfig =
@@ -109,8 +109,8 @@ public class SuppressWarningsFilterTest
         checksConfig.addChild(createCheckConfig(ParameterNumberCheck.class));
         checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
         checkerConfig.addChild(checksConfig);
-        if (aFilterConfig != null) {
-            checkerConfig.addChild(aFilterConfig);
+        if (filterConfig != null) {
+            checkerConfig.addChild(filterConfig);
         }
         final Checker checker = new Checker();
         final Locale locale = Locale.ENGLISH;
@@ -119,15 +119,15 @@ public class SuppressWarningsFilterTest
         checker.setModuleClassLoader(Thread.currentThread()
             .getContextClassLoader());
         checker.configure(checkerConfig);
-        checker.addListener(new BriefLogger(mStream));
+        checker.addListener(new BriefLogger(stream));
         return checker;
     }
 
-    private String[] removeSuppressed(String[] aFrom, String[] aRemove)
+    private String[] removeSuppressed(String[] from, String[] remove)
     {
         final Collection<String> coll =
-            Lists.newArrayList(Arrays.asList(aFrom));
-        coll.removeAll(Arrays.asList(aRemove));
+            Lists.newArrayList(Arrays.asList(from));
+        coll.removeAll(Arrays.asList(remove));
         return coll.toArray(new String[coll.size()]);
     }
 }

@@ -220,15 +220,15 @@ public class SuppressionCommentFilterTest
         checker.setLocaleLanguage(locale.getLanguage());
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
-        checker.addListener(new BriefLogger(mStream));
+        checker.addListener(new BriefLogger(stream));
         return checker;
     }
 
-    private String[] removeSuppressed(String[] aFrom, String[] aRemove)
+    private String[] removeSuppressed(String[] from, String[] remove)
     {
         final Collection<String> coll =
-            Lists.newArrayList(Arrays.asList(aFrom));
-        coll.removeAll(Arrays.asList(aRemove));
+            Lists.newArrayList(Arrays.asList(from));
+        coll.removeAll(Arrays.asList(remove));
         return coll.toArray(new String[coll.size()]);
     }
 }

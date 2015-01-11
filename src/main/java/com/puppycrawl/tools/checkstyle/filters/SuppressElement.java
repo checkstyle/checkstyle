@@ -44,122 +44,122 @@ public class SuppressElement
     private static final int HASH_MULT = 29;
 
     /** the regexp to match file names against */
-    private final Pattern mFileRegexp;
+    private final Pattern fileRegexp;
 
     /** the pattern for file names*/
-    private final String mFilePattern;
+    private final String filePattern;
 
     /** the regexp to match check names against */
-    private Pattern mCheckRegexp;
+    private Pattern checkRegexp;
 
     /** the pattern for check class names*/
-    private String mCheckPattern;
+    private String checkPattern;
 
     /** module id filter. */
-    private String mModuleId;
+    private String moduleId;
 
     /** line number filter */
-    private CSVFilter mLineFilter;
+    private CSVFilter lineFilter;
 
     /** CSV for line number filter */
-    private String mLinesCSV;
+    private String linesCSV;
 
     /** column number filter */
-    private CSVFilter mColumnFilter;
+    private CSVFilter columnFilter;
 
     /** CSV for column number filter */
-    private String mColumnsCSV;
+    private String columnsCSV;
 
     /**
      * Constructs a <code>SuppressElement</code> for a
      * file name pattern. Must either call {@link #setColumns(String)} or
      * {@link #setModuleId(String)} before using this object.
-     * @param aFiles regular expression for names of filtered files.
+     * @param files regular expression for names of filtered files.
      * @throws PatternSyntaxException if there is an error.
      */
-    public SuppressElement(String aFiles)
+    public SuppressElement(String files)
         throws PatternSyntaxException
     {
-        mFilePattern = aFiles;
-        mFileRegexp = Utils.getPattern(aFiles);
+        filePattern = files;
+        fileRegexp = Utils.getPattern(files);
     }
 
     /**
      * Set the check class pattern.
-     * @param aChecks regular expression for filtered check classes.
+     * @param checks regular expression for filtered check classes.
      */
-    public void setChecks(final String aChecks)
+    public void setChecks(final String checks)
     {
-        mCheckPattern = aChecks;
-        mCheckRegexp = Utils.getPattern(aChecks);
+        checkPattern = checks;
+        checkRegexp = Utils.getPattern(checks);
     }
 
     /**
      * Set the module id for filtering. Cannot be null.
-     * @param aModuleId the id
+     * @param moduleId the id
      */
-    public void setModuleId(final String aModuleId)
+    public void setModuleId(final String moduleId)
     {
-        mModuleId = aModuleId;
+        this.moduleId = moduleId;
     }
     /**
      * Sets the CSV values and ranges for line number filtering.
      * E.g. "1,7-15,18".
-     * @param aLines CSV values and ranges for line number filtering.
+     * @param lines CSV values and ranges for line number filtering.
      */
-    public void setLines(String aLines)
+    public void setLines(String lines)
     {
-        mLinesCSV = aLines;
-        if (aLines != null) {
-            mLineFilter = new CSVFilter(aLines);
+        linesCSV = lines;
+        if (lines != null) {
+            lineFilter = new CSVFilter(lines);
         }
         else {
-            mLineFilter = null;
+            lineFilter = null;
         }
     }
 
     /**
      * Sets the CSV values and ranges for column number filtering.
      *  E.g. "1,7-15,18".
-     * @param aColumns CSV values and ranges for column number filtering.
+     * @param columns CSV values and ranges for column number filtering.
      */
-    public void setColumns(String aColumns)
+    public void setColumns(String columns)
     {
-        mColumnsCSV = aColumns;
-        if (aColumns != null) {
-            mColumnFilter = new CSVFilter(aColumns);
+        columnsCSV = columns;
+        if (columns != null) {
+            columnFilter = new CSVFilter(columns);
         }
         else {
-            mColumnFilter = null;
+            columnFilter = null;
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean accept(AuditEvent aEvent)
+    public boolean accept(AuditEvent event)
     {
         // file and check match?
-        if ((aEvent.getFileName() == null)
-                || !mFileRegexp.matcher(aEvent.getFileName()).find()
-                || (aEvent.getLocalizedMessage() == null)
-                || ((mModuleId != null) && !mModuleId.equals(aEvent
+        if ((event.getFileName() == null)
+                || !fileRegexp.matcher(event.getFileName()).find()
+                || (event.getLocalizedMessage() == null)
+                || ((moduleId != null) && !moduleId.equals(event
                         .getModuleId()))
-                || ((mCheckRegexp != null) && !mCheckRegexp.matcher(
-                        aEvent.getSourceName()).find()))
+                || ((checkRegexp != null) && !checkRegexp.matcher(
+                        event.getSourceName()).find()))
         {
             return true;
         }
 
         // reject if no line/column matching
-        if ((mLineFilter == null) && (mColumnFilter == null)) {
+        if ((lineFilter == null) && (columnFilter == null)) {
             return false;
         }
 
-        if (mLineFilter != null && mLineFilter.accept(aEvent.getLine())) {
+        if (lineFilter != null && lineFilter.accept(event.getLine())) {
             return false;
         }
 
-        if (mColumnFilter != null && mColumnFilter.accept(aEvent.getColumn())) {
+        if (columnFilter != null && columnFilter.accept(event.getColumn())) {
             return false;
         }
         return true;
@@ -168,78 +168,78 @@ public class SuppressElement
     @Override
     public String toString()
     {
-        return "SuppressElement[files=" + mFilePattern + ",checks="
-            + mCheckPattern + ",lines=" + mLinesCSV + ",columns="
-            + mColumnsCSV + "]";
+        return "SuppressElement[files=" + filePattern + ",checks="
+            + checkPattern + ",lines=" + linesCSV + ",columns="
+            + columnsCSV + "]";
     }
 
     @Override
     public int hashCode()
     {
-        int result = HASH_MULT * mFilePattern.hashCode();
-        if (mCheckPattern != null) {
-            result = HASH_MULT * result + mCheckPattern.hashCode();
+        int result = HASH_MULT * filePattern.hashCode();
+        if (checkPattern != null) {
+            result = HASH_MULT * result + checkPattern.hashCode();
         }
-        if (mModuleId != null) {
-            result = HASH_MULT * result + mModuleId.hashCode();
+        if (moduleId != null) {
+            result = HASH_MULT * result + moduleId.hashCode();
         }
-        if (mLinesCSV != null) {
-            result = HASH_MULT * result + mLinesCSV.hashCode();
+        if (linesCSV != null) {
+            result = HASH_MULT * result + linesCSV.hashCode();
         }
-        if (mColumnsCSV != null) {
-            result = HASH_MULT * result + mColumnsCSV.hashCode();
+        if (columnsCSV != null) {
+            result = HASH_MULT * result + columnsCSV.hashCode();
         }
         return result;
     }
 
     @Override
-    public boolean equals(Object aObject)
+    public boolean equals(Object object)
     {
-        if (aObject instanceof SuppressElement) {
-            final SuppressElement other = (SuppressElement) aObject;
+        if (object instanceof SuppressElement) {
+            final SuppressElement other = (SuppressElement) object;
 
             // same file pattern?
-            if (!this.mFilePattern.equals(other.mFilePattern)) {
+            if (!this.filePattern.equals(other.filePattern)) {
                 return false;
             }
 
             // same check pattern?
-            if (mCheckPattern != null) {
-                if (!mCheckPattern.equals(other.mCheckPattern)) {
+            if (checkPattern != null) {
+                if (!checkPattern.equals(other.checkPattern)) {
                     return false;
                 }
             }
-            else if (other.mCheckPattern != null) {
+            else if (other.checkPattern != null) {
                 return false;
             }
 
             // same module id?
-            if (mModuleId != null) {
-                if (!mModuleId.equals(other.mModuleId)) {
+            if (moduleId != null) {
+                if (!moduleId.equals(other.moduleId)) {
                     return false;
                 }
             }
-            else if (other.mModuleId != null) {
+            else if (other.moduleId != null) {
                 return false;
             }
 
             // same line number filter?
-            if (mLineFilter != null) {
-                if (!mLineFilter.equals(other.mLineFilter)) {
+            if (lineFilter != null) {
+                if (!lineFilter.equals(other.lineFilter)) {
                     return false;
                 }
             }
-            else if (other.mLineFilter != null) {
+            else if (other.lineFilter != null) {
                 return false;
             }
 
             // same column number filter?
-            if (mColumnFilter != null) {
-                if (!mColumnFilter.equals(other.mColumnFilter)) {
+            if (columnFilter != null) {
+                if (!columnFilter.equals(other.columnFilter)) {
                     return false;
                 }
             }
-            else if (other.mColumnFilter != null) {
+            else if (other.columnFilter != null) {
                 return false;
             }
 
