@@ -63,9 +63,9 @@ public class SimplifyBooleanExpressionCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final DetailAST parent = aAST.getParent();
+        final DetailAST parent = ast.getParent();
         switch (parent.getType()) {
         case TokenTypes.NOT_EQUAL:
         case TokenTypes.EQUAL:

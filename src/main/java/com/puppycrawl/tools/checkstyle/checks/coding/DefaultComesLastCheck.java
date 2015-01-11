@@ -63,9 +63,9 @@ public class DefaultComesLastCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final DetailAST defaultGroupAST = aAST.getParent();
+        final DetailAST defaultGroupAST = ast.getParent();
         //default keywords used in annotations too - not what we're
         //interested in
         if (defaultGroupAST.getType() != TokenTypes.ANNOTATION_FIELD_DEF
@@ -79,7 +79,7 @@ public class DefaultComesLastCheck extends Check
                 || (defaultGroupAST.getColumnNo()
                     != lastGroupAST.getColumnNo()))
             {
-                log(aAST, "default.comes.last");
+                log(ast, "default.comes.last");
             }
         }
     }

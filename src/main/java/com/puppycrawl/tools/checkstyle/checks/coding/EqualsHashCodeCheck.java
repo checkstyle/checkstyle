@@ -53,10 +53,10 @@ public class EqualsHashCodeCheck
     // keep track of definitions in different inner classes
 
     /** maps OBJ_BLOCK to the method definition of equals() */
-    private final Map<DetailAST, DetailAST> mObjBlockEquals = Maps.newHashMap();
+    private final Map<DetailAST, DetailAST> objBlockEquals = Maps.newHashMap();
 
     /** the set of OBJ_BLOCKs that contain a definition of hashCode() */
-    private final Set<DetailAST> mObjBlockWithHashCode = Sets.newHashSet();
+    private final Set<DetailAST> objBlockWithHashCode = Sets.newHashSet();
 
     @Override
     public int[] getDefaultTokens()
@@ -65,19 +65,19 @@ public class EqualsHashCodeCheck
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
-        mObjBlockEquals.clear();
-        mObjBlockWithHashCode.clear();
+        objBlockEquals.clear();
+        objBlockWithHashCode.clear();
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final DetailAST modifiers = aAST.getFirstChild();
-        final AST type = aAST.findFirstToken(TokenTypes.TYPE);
-        final AST methodName = aAST.findFirstToken(TokenTypes.IDENT);
-        final DetailAST parameters = aAST.findFirstToken(TokenTypes.PARAMETERS);
+        final DetailAST modifiers = ast.getFirstChild();
+        final AST type = ast.findFirstToken(TokenTypes.TYPE);
+        final AST methodName = ast.findFirstToken(TokenTypes.IDENT);
+        final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
 
         if ((type.getFirstChild().getType() == TokenTypes.LITERAL_BOOLEAN)
                 && "equals".equals(methodName.getText())
@@ -86,25 +86,25 @@ public class EqualsHashCodeCheck
                 && isObjectParam(parameters.getFirstChild())
             )
         {
-            mObjBlockEquals.put(aAST.getParent(), aAST);
+            objBlockEquals.put(ast.getParent(), ast);
         }
         else if ((type.getFirstChild().getType() == TokenTypes.LITERAL_INT)
                 && "hashCode".equals(methodName.getText())
                 && modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
                 && (parameters.getFirstChild() == null)) // no params
         {
-            mObjBlockWithHashCode.add(aAST.getParent());
+            objBlockWithHashCode.add(ast.getParent());
         }
     }
 
     /**
      * Determines if an AST is a formal param of type Object (or subclass).
-     * @param aFirstChild the AST to check
-     * @return true iff aFirstChild is a parameter of an Object type.
+     * @param firstChild the AST to check
+     * @return true iff firstChild is a parameter of an Object type.
      */
-    private boolean isObjectParam(AST aFirstChild)
+    private boolean isObjectParam(AST firstChild)
     {
-        final AST modifiers = aFirstChild.getFirstChild();
+        final AST modifiers = firstChild.getFirstChild();
         final AST type = modifiers.getNextSibling();
         switch (type.getFirstChild().getType()) {
         case TokenTypes.LITERAL_BOOLEAN:
@@ -122,18 +122,18 @@ public class EqualsHashCodeCheck
     }
 
     @Override
-    public void finishTree(DetailAST aRootAST)
+    public void finishTree(DetailAST rootAST)
     {
-        final Set<DetailAST> equalsDefs = mObjBlockEquals.keySet();
+        final Set<DetailAST> equalsDefs = objBlockEquals.keySet();
         for (DetailAST objBlock : equalsDefs) {
-            if (!mObjBlockWithHashCode.contains(objBlock)) {
-                final DetailAST equalsAST = mObjBlockEquals.get(objBlock);
+            if (!objBlockWithHashCode.contains(objBlock)) {
+                final DetailAST equalsAST = objBlockEquals.get(objBlock);
                 log(equalsAST.getLineNo(), equalsAST.getColumnNo(),
                         "equals.noHashCode");
             }
         }
 
-        mObjBlockEquals.clear();
-        mObjBlockWithHashCode.clear();
+        objBlockEquals.clear();
+        objBlockWithHashCode.clear();
     }
 }

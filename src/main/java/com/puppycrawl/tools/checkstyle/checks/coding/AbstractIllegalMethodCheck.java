@@ -30,19 +30,19 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public abstract class AbstractIllegalMethodCheck extends Check
 {
     /** Name of method to disallow. */
-    private final String mMethodName;
+    private final String methodName;
     /** The error key to report with. */
-    private final String mErrorKey;
+    private final String errorKey;
 
     /**
      * Creates an instance.
-     * @param aMethodName name of the method to disallow.
-     * @param aErrorKey the error key to report with.
+     * @param methodName name of the method to disallow.
+     * @param errorKey the error key to report with.
      */
-    public AbstractIllegalMethodCheck(String aMethodName, String aErrorKey)
+    public AbstractIllegalMethodCheck(String methodName, String errorKey)
     {
-        mMethodName = aMethodName;
-        mErrorKey = aErrorKey;
+        this.methodName = methodName;
+        this.errorKey = errorKey;
     }
 
     @Override
@@ -55,16 +55,16 @@ public abstract class AbstractIllegalMethodCheck extends Check
     public void visitToken(DetailAST aAST)
     {
         final DetailAST mid = aAST.findFirstToken(TokenTypes.IDENT);
-        final String methodName = mid.getText();
+        final String name = mid.getText();
 
-        if (mMethodName.equals(methodName)) {
+        if (methodName.equals(name)) {
 
             final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
             final boolean hasEmptyParamList =
                 !params.branchContains(TokenTypes.PARAMETER_DEF);
 
             if (hasEmptyParamList) {
-                log(aAST.getLineNo(), mErrorKey);
+                log(aAST.getLineNo(), errorKey);
             }
         }
     }

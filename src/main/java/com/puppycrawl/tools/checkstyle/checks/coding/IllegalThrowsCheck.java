@@ -55,10 +55,10 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
     };
 
     /** property for ignoring overriden methods. */
-    private boolean mIgnoreOverridenMethods = true;
+    private boolean ignoreOverridenMethods = true;
 
     /** methods which should be ignored. */
-    private final Set<String> mIgnoredMethodNames = Sets.newHashSet();
+    private final Set<String> ignoredMethodNames = Sets.newHashSet();
 
     /** Creates new instance of the check. */
     public IllegalThrowsCheck()
@@ -85,10 +85,10 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
     }
 
     @Override
-    public void visitToken(DetailAST aDetailAST)
+    public void visitToken(DetailAST detailAST)
     {
-        final DetailAST methodDef = aDetailAST.getParent();
-        DetailAST token = aDetailAST.getFirstChild();
+        final DetailAST methodDef = detailAST.getParent();
+        DetailAST token = detailAST.getFirstChild();
         // Check if the method with the given name should be ignored.
         if (!isIgnorableMethod(methodDef)) {
             while (token != null) {
@@ -105,45 +105,45 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
 
     /**
      * Checks if current method is ignorable due to Check's properties.
-     * @param aMethodDef {@link TokenTypes#METHOD_DEF METHOD_DEF}
+     * @param methodDef {@link TokenTypes#METHOD_DEF METHOD_DEF}
      * @return true if method is ignorable.
      */
-    private boolean isIgnorableMethod(DetailAST aMethodDef)
+    private boolean isIgnorableMethod(DetailAST methodDef)
     {
-        return shouldIgnoreMethod(aMethodDef.findFirstToken(TokenTypes.IDENT).getText())
-            || mIgnoreOverridenMethods
-               && (AnnotationUtility.containsAnnotation(aMethodDef, "Override")
-                  || AnnotationUtility.containsAnnotation(aMethodDef, "java.lang.Override"));
+        return shouldIgnoreMethod(methodDef.findFirstToken(TokenTypes.IDENT).getText())
+            || ignoreOverridenMethods
+               && (AnnotationUtility.containsAnnotation(methodDef, "Override")
+                  || AnnotationUtility.containsAnnotation(methodDef, "java.lang.Override"));
     }
 
     /**
      * Check if the method is specified in the ignore method list
-     * @param aName the name to check
+     * @param name the name to check
      * @return whether the method with the passed name should be ignored
      */
-    private boolean shouldIgnoreMethod(String aName)
+    private boolean shouldIgnoreMethod(String name)
     {
-        return mIgnoredMethodNames.contains(aName);
+        return ignoredMethodNames.contains(name);
     }
 
     /**
      * Set the list of ignore method names.
-     * @param aMethodNames array of ignored method names
+     * @param methodNames array of ignored method names
      */
-    public void setIgnoredMethodNames(String[] aMethodNames)
+    public void setIgnoredMethodNames(String[] methodNames)
     {
-        mIgnoredMethodNames.clear();
-        for (String element : aMethodNames) {
-            mIgnoredMethodNames.add(element);
+        ignoredMethodNames.clear();
+        for (String element : methodNames) {
+            ignoredMethodNames.add(element);
         }
     }
 
     /**
      * Sets <b>ignoreOverridenMethods</b> property value.
-     * @param aIgnoreOverridenMethods Check's property.
+     * @param ignoreOverridenMethods Check's property.
      */
-    public void setIgnoreOverridenMethods(boolean aIgnoreOverridenMethods)
+    public void setIgnoreOverridenMethods(boolean ignoreOverridenMethods)
     {
-        this.mIgnoreOverridenMethods = aIgnoreOverridenMethods;
+        this.ignoreOverridenMethods = ignoreOverridenMethods;
     }
 }

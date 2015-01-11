@@ -44,7 +44,7 @@ import java.util.Map;
 public class FinalLocalVariableCheck extends Check
 {
     /** Scope Stack */
-    private final FastStack<Map<String, DetailAST>> mScopeStack =
+    private final FastStack<Map<String, DetailAST>> scopeStack =
         FastStack.newInstance();
 
     @Override
@@ -88,9 +88,9 @@ public class FinalLocalVariableCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
+        switch (ast.getType()) {
         case TokenTypes.OBJBLOCK:
         case TokenTypes.SLIST:
         case TokenTypes.LITERAL_FOR:
@@ -98,25 +98,25 @@ public class FinalLocalVariableCheck extends Check
         case TokenTypes.CTOR_DEF:
         case TokenTypes.STATIC_INIT:
         case TokenTypes.INSTANCE_INIT:
-            mScopeStack.push(new HashMap<String, DetailAST>());
+            scopeStack.push(new HashMap<String, DetailAST>());
             break;
 
         case TokenTypes.PARAMETER_DEF:
-            if (ScopeUtils.inInterfaceBlock(aAST)
-                || inAbstractOrNativeMethod(aAST))
+            if (ScopeUtils.inInterfaceBlock(ast)
+                || inAbstractOrNativeMethod(ast))
             {
                 break;
             }
         case TokenTypes.VARIABLE_DEF:
-            if ((aAST.getParent().getType() != TokenTypes.OBJBLOCK)
-                && (aAST.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE))
+            if ((ast.getParent().getType() != TokenTypes.OBJBLOCK)
+                && (ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE))
             {
-                insertVariable(aAST);
+                insertVariable(ast);
             }
             break;
 
         case TokenTypes.IDENT:
-            final int parentType = aAST.getParent().getType();
+            final int parentType = ast.getParent().getType();
             if ((TokenTypes.POST_DEC        == parentType)
                 || (TokenTypes.DEC          == parentType)
                 || (TokenTypes.POST_INC     == parentType)
@@ -134,10 +134,10 @@ public class FinalLocalVariableCheck extends Check
                 || (TokenTypes.BOR_ASSIGN   == parentType)
                 || (TokenTypes.BAND_ASSIGN  == parentType))
             {
-                // TODO: is there better way to check is aAST
+                // TODO: is there better way to check is ast
                 // in left part of assignment?
-                if (aAST.getParent().getFirstChild() == aAST) {
-                    removeVariable(aAST);
+                if (ast.getParent().getFirstChild() == ast) {
+                    removeVariable(ast);
                 }
             }
             break;
@@ -148,12 +148,12 @@ public class FinalLocalVariableCheck extends Check
 
     /**
      * Determines whether an AST is a descendant of an abstract or native method.
-     * @param aAST the AST to check.
-     * @return true if aAST is a descendant of an abstract or native method.
+     * @param ast the AST to check.
+     * @return true if ast is a descendant of an abstract or native method.
      */
-    private static boolean inAbstractOrNativeMethod(DetailAST aAST)
+    private static boolean inAbstractOrNativeMethod(DetailAST ast)
     {
-        DetailAST parent = aAST.getParent();
+        DetailAST parent = ast.getParent();
         while (parent != null) {
             if (parent.getType() == TokenTypes.METHOD_DEF) {
                 final DetailAST modifiers =
@@ -168,26 +168,26 @@ public class FinalLocalVariableCheck extends Check
 
     /**
      * Inserts a variable at the topmost scope stack
-     * @param aAST the variable to insert
+     * @param ast the variable to insert
      */
-    private void insertVariable(DetailAST aAST)
+    private void insertVariable(DetailAST ast)
     {
-        if (!aAST.branchContains(TokenTypes.FINAL)) {
-            final Map<String, DetailAST> state = mScopeStack.peek();
-            final DetailAST ast = aAST.findFirstToken(TokenTypes.IDENT);
-            state.put(ast.getText(), ast);
+        if (!ast.branchContains(TokenTypes.FINAL)) {
+            final Map<String, DetailAST> state = scopeStack.peek();
+            final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
+            state.put(astNode.getText(), astNode);
         }
     }
 
     /**
      * Removes the variable from the Stacks
-     * @param aAST Variable to remove
+     * @param ast Variable to remove
      */
-    private void removeVariable(DetailAST aAST)
+    private void removeVariable(DetailAST ast)
     {
-        for (int i = mScopeStack.size() - 1; i >= 0; i--) {
-            final Map<String, DetailAST> state = mScopeStack.peek(i);
-            final Object obj = state.remove(aAST.getText());
+        for (int i = scopeStack.size() - 1; i >= 0; i--) {
+            final Map<String, DetailAST> state = scopeStack.peek(i);
+            final Object obj = state.remove(ast.getText());
             if (obj != null) {
                 break;
             }
@@ -195,11 +195,11 @@ public class FinalLocalVariableCheck extends Check
     }
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
-        super.leaveToken(aAST);
+        super.leaveToken(ast);
 
-        switch (aAST.getType()) {
+        switch (ast.getType()) {
         case TokenTypes.OBJBLOCK:
         case TokenTypes.SLIST:
         case TokenTypes.LITERAL_FOR:
@@ -207,7 +207,7 @@ public class FinalLocalVariableCheck extends Check
         case TokenTypes.STATIC_INIT:
         case TokenTypes.INSTANCE_INIT:
         case TokenTypes.METHOD_DEF:
-            final Map<String, DetailAST> state = mScopeStack.pop();
+            final Map<String, DetailAST> state = scopeStack.pop();
             for (DetailAST var : state.values()) {
                 log(var.getLineNo(), var.getColumnNo(), "final.variable", var
                         .getText());

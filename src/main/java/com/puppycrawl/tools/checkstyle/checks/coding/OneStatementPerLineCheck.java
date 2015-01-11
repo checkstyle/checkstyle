@@ -30,14 +30,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class OneStatementPerLineCheck extends Check
 {
     /** hold the line-number where the last statement ended. */
-    private int mLastStatementEnd = -1;
+    private int lastStatementEnd = -1;
     /** tracks the depth of EXPR tokens. */
-    private int mExprDepth;
+    private int exprDepth;
 
     /**
      * The for-header usually has 3 statements on one line, but THIS IS OK.
      */
-    private boolean mInForHeader;
+    private boolean inForHeader;
 
     @Override
     public int[] getDefaultTokens()
@@ -49,25 +49,25 @@ public final class OneStatementPerLineCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
-        mExprDepth = 0;
-        mInForHeader = false;
-        mLastStatementEnd = -1;
+        exprDepth = 0;
+        inForHeader = false;
+        lastStatementEnd = -1;
     }
 
     @Override
-    public void visitToken(DetailAST aAst)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAst.getType()) {
+        switch (ast.getType()) {
         case TokenTypes.EXPR:
-            visitExpr(aAst);
+            visitExpr(ast);
             break;
         case TokenTypes.SEMI:
-            visitSemi(aAst);
+            visitSemi(ast);
             break;
         case TokenTypes.FOR_INIT:
-            mInForHeader = true;
+            inForHeader = true;
             break;
         default:
             break;
@@ -75,14 +75,14 @@ public final class OneStatementPerLineCheck extends Check
     }
 
     @Override
-    public void leaveToken(DetailAST aAst)
+    public void leaveToken(DetailAST ast)
     {
-        switch (aAst.getType()) {
+        switch (ast.getType()) {
         case TokenTypes.FOR_ITERATOR:
-            mInForHeader = false;
+            inForHeader = false;
             break;
         case TokenTypes.EXPR:
-            mExprDepth--;
+            exprDepth--;
             break;
         default:
             break;
@@ -94,28 +94,28 @@ public final class OneStatementPerLineCheck extends Check
      * first line of the last statement. If the first line of the new
      * statement is the same as the last line of the last statement and we are
      * not within a for-statement, then the rule is violated.
-     * @param aAst token for the {@link TokenTypes#EXPR}.
+     * @param ast token for the {@link TokenTypes#EXPR}.
      */
-    private void visitExpr(DetailAST aAst)
+    private void visitExpr(DetailAST ast)
     {
-        mExprDepth++;
-        if (mExprDepth == 1
-                && !mInForHeader
-                && (mLastStatementEnd == aAst.getLineNo()))
+        exprDepth++;
+        if (exprDepth == 1
+                && !inForHeader
+                && (lastStatementEnd == ast.getLineNo()))
         {
-            log(aAst, "multiple.statements.line");
+            log(ast, "multiple.statements.line");
         }
     }
 
     /**
      * Mark the state-change for the statement (leaving) and remember the last
      * line of the last statement.
-     * @param aAst for the {@link TokenTypes#SEMI}.
+     * @param ast for the {@link TokenTypes#SEMI}.
      */
-    private void visitSemi(DetailAST aAst)
+    private void visitSemi(DetailAST ast)
     {
-        if (mExprDepth == 0) {
-            mLastStatementEnd = aAst.getLineNo();
+        if (exprDepth == 0) {
+            lastStatementEnd = ast.getLineNo();
         }
     }
 }

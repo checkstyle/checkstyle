@@ -52,8 +52,8 @@ public class EmptyStatementCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        log(aAST.getLineNo(), aAST.getColumnNo(), "empty.statement");
+        log(ast.getLineNo(), ast.getColumnNo(), "empty.statement");
     }
 }

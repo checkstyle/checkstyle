@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class PackageDeclarationCheck extends Check
 {
     /** is package defined. */
-    private boolean mDefined;
+    private boolean defined;
 
     @Override
     public int[] getDefaultTokens()
@@ -48,22 +48,22 @@ public final class PackageDeclarationCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST aAST)
+    public void beginTree(DetailAST ast)
     {
-        mDefined = false;
+        defined = false;
     }
 
     @Override
-    public void finishTree(DetailAST aAST)
+    public void finishTree(DetailAST ast)
     {
-        if (!mDefined) {
-            log(aAST.getLineNo(), "missing.package.declaration");
+        if (!defined) {
+            log(ast.getLineNo(), "missing.package.declaration");
         }
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        mDefined = true;
+        defined = true;
     }
 }

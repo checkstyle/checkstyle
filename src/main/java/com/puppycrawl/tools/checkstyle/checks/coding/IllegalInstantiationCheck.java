@@ -63,19 +63,19 @@ public class IllegalInstantiationCheck
     extends Check
 {
     /** Set of fully qualified classnames. E.g. "java.lang.Boolean" */
-    private final Set<String> mIllegalClasses = Sets.newHashSet();
+    private final Set<String> illegalClasses = Sets.newHashSet();
 
     /** name of the package */
-    private String mPkgName;
+    private String pkgName;
 
     /** the imports for the file */
-    private final Set<FullIdent> mImports = Sets.newHashSet();
+    private final Set<FullIdent> imports = Sets.newHashSet();
 
     /** the class names defined in the file */
-    private final Set<String> mClassNames = Sets.newHashSet();
+    private final Set<String> classNames = Sets.newHashSet();
 
     /** the instantiations in the file */
-    private final Set<DetailAST> mInstantiations = Sets.newHashSet();
+    private final Set<DetailAST> instantiations = Sets.newHashSet();
 
     @Override
     public int[] getDefaultTokens()
@@ -106,40 +106,40 @@ public class IllegalInstantiationCheck
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
-        super.beginTree(aRootAST);
-        mPkgName = null;
-        mImports.clear();
-        mInstantiations.clear();
-        mClassNames.clear();
+        super.beginTree(rootAST);
+        pkgName = null;
+        imports.clear();
+        instantiations.clear();
+        classNames.clear();
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
+        switch (ast.getType()) {
         case TokenTypes.LITERAL_NEW:
-            processLiteralNew(aAST);
+            processLiteralNew(ast);
             break;
         case TokenTypes.PACKAGE_DEF:
-            processPackageDef(aAST);
+            processPackageDef(ast);
             break;
         case TokenTypes.IMPORT:
-            processImport(aAST);
+            processImport(ast);
             break;
         case TokenTypes.CLASS_DEF:
-            processClassDef(aAST);
+            processClassDef(ast);
             break;
         default:
-            throw new IllegalArgumentException("Unknown type " + aAST);
+            throw new IllegalArgumentException("Unknown type " + ast);
         }
     }
 
     @Override
-    public void finishTree(DetailAST aRootAST)
+    public void finishTree(DetailAST rootAST)
     {
-        for (DetailAST literalNewAST : mInstantiations) {
+        for (DetailAST literalNewAST : instantiations) {
             postprocessLiteralNew(literalNewAST);
         }
     }
@@ -148,74 +148,74 @@ public class IllegalInstantiationCheck
      * Collects classes defined in the source file. Required
      * to avoid false alarms for local vs. java.lang classes.
      *
-     * @param aAST the classdef token.
+     * @param ast the classdef token.
      */
-    private void processClassDef(DetailAST aAST)
+    private void processClassDef(DetailAST ast)
     {
-        final DetailAST identToken = aAST.findFirstToken(TokenTypes.IDENT);
+        final DetailAST identToken = ast.findFirstToken(TokenTypes.IDENT);
         final String className = identToken.getText();
-        mClassNames.add(className);
+        classNames.add(className);
     }
 
     /**
      * Perform processing for an import token
-     * @param aAST the import token
+     * @param ast the import token
      */
-    private void processImport(DetailAST aAST)
+    private void processImport(DetailAST ast)
     {
-        final FullIdent name = FullIdent.createFullIdentBelow(aAST);
+        final FullIdent name = FullIdent.createFullIdentBelow(ast);
         if (name != null) {
             // Note: different from UnusedImportsCheck.processImport(),
             // '.*' imports are also added here
-            mImports.add(name);
+            imports.add(name);
         }
     }
 
     /**
      * Perform processing for an package token
-     * @param aAST the package token
+     * @param ast the package token
      */
-    private void processPackageDef(DetailAST aAST)
+    private void processPackageDef(DetailAST ast)
     {
-        final DetailAST packageNameAST = aAST.getLastChild()
+        final DetailAST packageNameAST = ast.getLastChild()
                 .getPreviousSibling();
         final FullIdent packageIdent =
                 FullIdent.createFullIdent(packageNameAST);
-        mPkgName = packageIdent.getText();
+        pkgName = packageIdent.getText();
     }
 
     /**
      * Collects a "new" token.
-     * @param aAST the "new" token
+     * @param ast the "new" token
      */
-    private void processLiteralNew(DetailAST aAST)
+    private void processLiteralNew(DetailAST ast)
     {
-        if (aAST.getParent().getType() == TokenTypes.METHOD_REF) {
+        if (ast.getParent().getType() == TokenTypes.METHOD_REF) {
             return;
         }
-        mInstantiations.add(aAST);
+        instantiations.add(ast);
     }
 
     /**
      * Processes one of the collected "new" tokens when treewalking
      * has finished.
-     * @param aAST the "new" token.
+     * @param ast the "new" token.
      */
-    private void postprocessLiteralNew(DetailAST aAST)
+    private void postprocessLiteralNew(DetailAST ast)
     {
-        final DetailAST typeNameAST = aAST.getFirstChild();
+        final DetailAST typeNameAST = ast.getFirstChild();
         final AST nameSibling = typeNameAST.getNextSibling();
         if ((nameSibling != null)
                 && (nameSibling.getType() == TokenTypes.ARRAY_DECLARATOR))
         {
-            // aAST == "new Boolean[]"
+            // ast == "new Boolean[]"
             return;
         }
 
         final FullIdent typeIdent = FullIdent.createFullIdent(typeNameAST);
         final String typeName = typeIdent.getText();
-        final int lineNo = aAST.getLineNo();
-        final int colNo = aAST.getColumnNo();
+        final int lineNo = ast.getLineNo();
+        final int colNo = ast.getColumnNo();
         final String fqClassName = getIllegalInstantiation(typeName);
         if (fqClassName != null) {
             log(lineNo, colNo, "instantiation.avoid", fqClassName);
@@ -224,28 +224,28 @@ public class IllegalInstantiationCheck
 
     /**
      * Checks illegal instantiations.
-     * @param aClassName instantiated class, may or may not be qualified
-     * @return the fully qualified class name of aClassName
-     * or null if instantiation of aClassName is OK
+     * @param className instantiated class, may or may not be qualified
+     * @return the fully qualified class name of className
+     * or null if instantiation of className is OK
      */
-    private String getIllegalInstantiation(String aClassName)
+    private String getIllegalInstantiation(String className)
     {
-        final String javaLang = "java.lang.";
+        final String javlang = "java.lang.";
 
-        if (mIllegalClasses.contains(aClassName)) {
-            return aClassName;
+        if (illegalClasses.contains(className)) {
+            return className;
         }
 
-        final int clsNameLen = aClassName.length();
-        final int pkgNameLen = (mPkgName == null) ? 0 : mPkgName.length();
+        final int clsNameLen = className.length();
+        final int pkgNameLen = (pkgName == null) ? 0 : pkgName.length();
 
-        for (String illegal : mIllegalClasses) {
+        for (String illegal : illegalClasses) {
             final int illegalLen = illegal.length();
 
             // class from java.lang
-            if (((illegalLen - javaLang.length()) == clsNameLen)
-                && illegal.endsWith(aClassName)
-                && illegal.startsWith(javaLang))
+            if (((illegalLen - javlang.length()) == clsNameLen)
+                && illegal.endsWith(className)
+                && illegal.startsWith(javlang))
             {
                 // java.lang needs no import, but a class without import might
                 // also come from the same file or be in the same package.
@@ -253,13 +253,13 @@ public class IllegalInstantiationCheck
                 // the expression "new Boolean()" refers to that class,
                 // not to java.lang.Boolean
 
-                final boolean isSameFile = mClassNames.contains(aClassName);
+                final boolean isSameFile = classNames.contains(className);
 
                 boolean isSamePackage = false;
                 try {
                     final ClassLoader classLoader = getClassLoader();
                     if (classLoader != null) {
-                        final String fqName = mPkgName + "." + aClassName;
+                        final String fqName = pkgName + "." + className;
                         classLoader.loadClass(fqName);
                         // no ClassNotFoundException, fqName is a known class
                         isSamePackage = true;
@@ -277,35 +277,35 @@ public class IllegalInstantiationCheck
 
             // class from same package
 
-            // the toplevel package (mPkgName == null) is covered by the
-            // "illegalInsts.contains(aClassName)" check above
+            // the toplevel package (pkgName == null) is covered by the
+            // "illegalInsts.contains(className)" check above
 
             // the test is the "no garbage" version of
-            // illegal.equals(mPkgName + "." + aClassName)
-            if ((mPkgName != null)
+            // illegal.equals(pkgName + "." + className)
+            if ((pkgName != null)
                 && (clsNameLen == illegalLen - pkgNameLen - 1)
                 && (illegal.charAt(pkgNameLen) == '.')
-                && illegal.endsWith(aClassName)
-                && illegal.startsWith(mPkgName))
+                && illegal.endsWith(className)
+                && illegal.startsWith(pkgName))
             {
                 return illegal;
             }
             // import statements
-            for (FullIdent importLineText : mImports) {
+            for (FullIdent importLineText : imports) {
                 final String importArg = importLineText.getText();
                 if (importArg.endsWith(".*")) {
                     final String fqClass =
                         importArg.substring(0, importArg.length() - 1)
-                        + aClassName;
+                        + className;
                     // assume that illegalInsts only contain existing classes
                     // or else we might create a false alarm here
-                    if (mIllegalClasses.contains(fqClass)) {
+                    if (illegalClasses.contains(fqClass)) {
                         return fqClass;
                     }
                 }
                 else {
-                    if (Utils.baseClassname(importArg).equals(aClassName)
-                        && mIllegalClasses.contains(importArg))
+                    if (Utils.baseClassname(importArg).equals(className)
+                        && illegalClasses.contains(importArg))
                     {
                         return importArg;
                     }
@@ -317,14 +317,14 @@ public class IllegalInstantiationCheck
 
     /**
      * Sets the classes that are illegal to instantiate.
-     * @param aClassNames a comma seperate list of class names
+     * @param classNames a comma seperate list of class names
      */
-    public void setClasses(String aClassNames)
+    public void setClasses(String classNames)
     {
-        mIllegalClasses.clear();
-        final StringTokenizer tok = new StringTokenizer(aClassNames, ",");
+        illegalClasses.clear();
+        final StringTokenizer tok = new StringTokenizer(classNames, ",");
         while (tok.hasMoreTokens()) {
-            mIllegalClasses.add(tok.nextToken());
+            illegalClasses.add(tok.nextToken());
         }
     }
 }

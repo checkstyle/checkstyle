@@ -44,7 +44,7 @@ import java.util.Set;
 public class CovariantEqualsCheck extends Check
 {
     /** Set of equals method definitions */
-    private final Set<DetailAST> mEqualsMethods = Sets.newHashSet();
+    private final Set<DetailAST> equalsMethods = Sets.newHashSet();
 
     @Override
     public int[] getDefaultTokens()
@@ -59,13 +59,13 @@ public class CovariantEqualsCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        mEqualsMethods.clear();
+        equalsMethods.clear();
         boolean hasEqualsObject = false;
 
         // examine method definitions for equals methods
-        final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
+        final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
         if (objBlock != null) {
             DetailAST child = objBlock.getFirstChild();
             while (child != null) {
@@ -76,7 +76,7 @@ public class CovariantEqualsCheck extends Check
                         hasEqualsObject = true;
                     }
                     else {
-                        mEqualsMethods.add(child);
+                        equalsMethods.add(child);
                     }
                 }
                 child = child.getNextSibling();
@@ -84,7 +84,7 @@ public class CovariantEqualsCheck extends Check
 
             // report equals method definitions
             if (!hasEqualsObject) {
-                for (DetailAST equalsAST : mEqualsMethods) {
+                for (DetailAST equalsAST : equalsMethods) {
                     final DetailAST nameNode = equalsAST
                             .findFirstToken(TokenTypes.IDENT);
                     log(nameNode.getLineNo(), nameNode.getColumnNo(),
@@ -97,14 +97,14 @@ public class CovariantEqualsCheck extends Check
     /**
      * Tests whether a method definition AST has exactly one
      * parameter of type Object.
-     * @param aAST the method definition AST to test.
-     * Precondition: aAST is a TokenTypes.METHOD_DEF node.
-     * @return true if aAST has exactly one parameter of type Object.
+     * @param ast the method definition AST to test.
+     * Precondition: ast is a TokenTypes.METHOD_DEF node.
+     * @return true if ast has exactly one parameter of type Object.
      */
-    private boolean hasObjectParameter(DetailAST aAST)
+    private boolean hasObjectParameter(DetailAST ast)
     {
         // one parameter?
-        final DetailAST paramsNode = aAST.findFirstToken(TokenTypes.PARAMETERS);
+        final DetailAST paramsNode = ast.findFirstToken(TokenTypes.PARAMETERS);
         if (paramsNode.getChildCount() != 1) {
             return false;
         }

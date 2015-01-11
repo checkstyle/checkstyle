@@ -83,13 +83,13 @@ public class IllegalTokenCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         log(
-            aAST.getLineNo(),
-            aAST.getColumnNo(),
+            ast.getLineNo(),
+            ast.getColumnNo(),
             "illegal.token",
-            aAST.getText());
+            ast.getText());
     }
 
 }

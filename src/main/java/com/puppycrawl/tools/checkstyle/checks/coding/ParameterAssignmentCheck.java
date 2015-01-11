@@ -42,10 +42,10 @@ import java.util.Set;
 public final class ParameterAssignmentCheck extends Check
 {
     /** Stack of methods' parameters. */
-    private final FastStack<Set<String>> mParameterNamesStack =
+    private final FastStack<Set<String>> parameterNamesStack =
         FastStack.newInstance();
     /** Current set of perameters. */
-    private Set<String> mParameterNames;
+    private Set<String> parameterNames;
 
     @Override
     public int[] getDefaultTokens()
@@ -79,20 +79,20 @@ public final class ParameterAssignmentCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
         // clear data
-        mParameterNamesStack.clear();
-        mParameterNames = null;
+        parameterNamesStack.clear();
+        parameterNames = null;
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
+        switch (ast.getType()) {
         case TokenTypes.CTOR_DEF:
         case TokenTypes.METHOD_DEF:
-            visitMethodDef(aAST);
+            visitMethodDef(ast);
             break;
         case TokenTypes.ASSIGN:
         case TokenTypes.PLUS_ASSIGN:
@@ -106,23 +106,23 @@ public final class ParameterAssignmentCheck extends Check
         case TokenTypes.BAND_ASSIGN:
         case TokenTypes.BXOR_ASSIGN:
         case TokenTypes.BOR_ASSIGN:
-            visitAssign(aAST);
+            visitAssign(ast);
             break;
         case TokenTypes.INC:
         case TokenTypes.POST_INC:
         case TokenTypes.DEC:
         case TokenTypes.POST_DEC:
-            visitIncDec(aAST);
+            visitIncDec(ast);
             break;
         default:
-            throw new IllegalStateException(aAST.toString());
+            throw new IllegalStateException(ast.toString());
         }
     }
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
+        switch (ast.getType()) {
         case TokenTypes.CTOR_DEF:
         case TokenTypes.METHOD_DEF:
             leaveMethodDef();
@@ -146,42 +146,42 @@ public final class ParameterAssignmentCheck extends Check
             // Do nothing
             break;
         default:
-            throw new IllegalStateException(aAST.toString());
+            throw new IllegalStateException(ast.toString());
         }
     }
 
     /**
      * Ckecks if this is assignments of parameter.
-     * @param aAST assignment to check.
+     * @param ast assignment to check.
      */
-    private void visitAssign(DetailAST aAST)
+    private void visitAssign(DetailAST ast)
     {
-        checkIdent(aAST);
+        checkIdent(ast);
     }
 
     /**
      * Checks if this is increment/decrement of parameter.
-     * @param aAST dec/inc to check.
+     * @param ast dec/inc to check.
      */
-    private void visitIncDec(DetailAST aAST)
+    private void visitIncDec(DetailAST ast)
     {
-        checkIdent(aAST);
+        checkIdent(ast);
     }
 
     /**
      * Check if ident is parameter.
-     * @param aAST ident to check.
+     * @param ast ident to check.
      */
-    private void checkIdent(DetailAST aAST)
+    private void checkIdent(DetailAST ast)
     {
-        if ((mParameterNames != null) && !mParameterNames.isEmpty()) {
-            final DetailAST identAST = aAST.getFirstChild();
+        if ((parameterNames != null) && !parameterNames.isEmpty()) {
+            final DetailAST identAST = ast.getFirstChild();
 
             if ((identAST != null)
                 && (identAST.getType() == TokenTypes.IDENT)
-                && mParameterNames.contains(identAST.getText()))
+                && parameterNames.contains(identAST.getText()))
             {
-                log(aAST.getLineNo(), aAST.getColumnNo(),
+                log(ast.getLineNo(), ast.getColumnNo(),
                     "parameter.assignment", identAST.getText());
             }
         }
@@ -189,30 +189,30 @@ public final class ParameterAssignmentCheck extends Check
 
     /**
      * Creates new set of parameters and store old one in stack.
-     * @param aAST a method to process.
+     * @param ast a method to process.
      */
-    private void visitMethodDef(DetailAST aAST)
+    private void visitMethodDef(DetailAST ast)
     {
-        mParameterNamesStack.push(mParameterNames);
-        mParameterNames = Sets.newHashSet();
+        parameterNamesStack.push(parameterNames);
+        parameterNames = Sets.newHashSet();
 
-        visitMethodParameters(aAST.findFirstToken(TokenTypes.PARAMETERS));
+        visitMethodParameters(ast.findFirstToken(TokenTypes.PARAMETERS));
     }
 
     /** Restores old set of parameters. */
     private void leaveMethodDef()
     {
-        mParameterNames = mParameterNamesStack.pop();
+        parameterNames = parameterNamesStack.pop();
     }
 
     /**
      * Creates new parameter set for given method.
-     * @param aAST a method for process.
+     * @param ast a method for process.
      */
-    private void visitMethodParameters(DetailAST aAST)
+    private void visitMethodParameters(DetailAST ast)
     {
         DetailAST parameterDefAST =
-            aAST.findFirstToken(TokenTypes.PARAMETER_DEF);
+            ast.findFirstToken(TokenTypes.PARAMETER_DEF);
 
         for (; parameterDefAST != null;
              parameterDefAST = parameterDefAST.getNextSibling())
@@ -220,7 +220,7 @@ public final class ParameterAssignmentCheck extends Check
             if (parameterDefAST.getType() == TokenTypes.PARAMETER_DEF) {
                 final DetailAST param =
                     parameterDefAST.findFirstToken(TokenTypes.IDENT);
-                mParameterNames.add(param.getText());
+                parameterNames.add(param.getText());
             }
         }
     }

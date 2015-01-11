@@ -63,23 +63,23 @@ public class ExplicitInitializationCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         // do not check local variables and
         // fields declared in interface/annotations
-        if (ScopeUtils.isLocalVariableDef(aAST)
-            || ScopeUtils.inInterfaceOrAnnotationBlock(aAST))
+        if (ScopeUtils.isLocalVariableDef(ast)
+            || ScopeUtils.inInterfaceOrAnnotationBlock(ast))
         {
             return;
         }
 
-        final DetailAST assign = aAST.findFirstToken(TokenTypes.ASSIGN);
+        final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
         if (assign == null) {
             // no assign - no check
             return;
         }
 
-        final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         if ((modifiers != null)
             && modifiers.branchContains(TokenTypes.FINAL))
         {
@@ -87,8 +87,8 @@ public class ExplicitInitializationCheck extends Check
             return;
         }
 
-        final DetailAST type = aAST.findFirstToken(TokenTypes.TYPE);
-        final DetailAST ident = aAST.findFirstToken(TokenTypes.IDENT);
+        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+        final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
         final DetailAST exprStart =
             assign.getFirstChild().getFirstChild();
         if (isObjectType(type)
@@ -117,45 +117,45 @@ public class ExplicitInitializationCheck extends Check
 
     /**
      * Determines if a giiven type is an object type.
-     * @param aType type to check.
+     * @param type type to check.
      * @return true if it is an object type.
      */
-    private boolean isObjectType(DetailAST aType)
+    private boolean isObjectType(DetailAST type)
     {
-        final int type = aType.getFirstChild().getType();
-        return ((type == TokenTypes.IDENT) || (type == TokenTypes.DOT)
-                || (type == TokenTypes.ARRAY_DECLARATOR));
+        final int objectType = type.getFirstChild().getType();
+        return ((objectType == TokenTypes.IDENT) || (objectType == TokenTypes.DOT)
+                || (objectType == TokenTypes.ARRAY_DECLARATOR));
     }
 
     /**
      * Determine if a given type is a numeric type.
-     * @param aType code of the type for check.
+     * @param type code of the type for check.
      * @return true if it's a numeric type.
      * @see TokenTypes
      */
-    private boolean isNumericType(int aType)
+    private boolean isNumericType(int type)
     {
-        return ((aType == TokenTypes.LITERAL_BYTE)
-                || (aType == TokenTypes.LITERAL_SHORT)
-                || (aType == TokenTypes.LITERAL_INT)
-                || (aType == TokenTypes.LITERAL_FLOAT)
-                || (aType == TokenTypes.LITERAL_LONG)
-                || (aType == TokenTypes.LITERAL_DOUBLE));
+        return ((type == TokenTypes.LITERAL_BYTE)
+                || (type == TokenTypes.LITERAL_SHORT)
+                || (type == TokenTypes.LITERAL_INT)
+                || (type == TokenTypes.LITERAL_FLOAT)
+                || (type == TokenTypes.LITERAL_LONG)
+                || (type == TokenTypes.LITERAL_DOUBLE));
     }
 
     /**
-     * @param aExpr node to check.
+     * @param expr node to check.
      * @return true if given node contains numeric constant for zero.
      */
-    private boolean isZero(DetailAST aExpr)
+    private boolean isZero(DetailAST expr)
     {
-        final int type = aExpr.getType();
+        final int type = expr.getType();
         switch (type) {
         case TokenTypes.NUM_FLOAT:
         case TokenTypes.NUM_DOUBLE:
         case TokenTypes.NUM_INT:
         case TokenTypes.NUM_LONG:
-            final String text = aExpr.getText();
+            final String text = expr.getText();
             return (0 == CheckUtils.parseFloat(text, type));
         default:
             return false;

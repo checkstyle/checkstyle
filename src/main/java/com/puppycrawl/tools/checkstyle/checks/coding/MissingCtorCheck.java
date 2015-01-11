@@ -63,9 +63,9 @@ public class MissingCtorCheck extends DescendantTokenCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         if ((modifiers != null)
             && modifiers.branchContains(TokenTypes.ABSTRACT))
         {
@@ -73,6 +73,6 @@ public class MissingCtorCheck extends DescendantTokenCheck
             return;
         }
 
-        super.visitToken(aAST);
+        super.visitToken(ast);
     }
 }

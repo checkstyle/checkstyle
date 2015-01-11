@@ -44,17 +44,17 @@ public class StringLiteralEqualityCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         // no need to check for nulls here, == and != always have two children
-        final AST firstChild = aAST.getFirstChild();
+        final AST firstChild = ast.getFirstChild();
         final AST secondChild = firstChild.getNextSibling();
 
         if ((firstChild.getType() == TokenTypes.STRING_LITERAL)
                 || (secondChild.getType() == TokenTypes.STRING_LITERAL))
         {
-            log(aAST.getLineNo(), aAST.getColumnNo(),
-                    "string.literal.equality", aAST.getText());
+            log(ast.getLineNo(), ast.getColumnNo(),
+                    "string.literal.equality", ast.getText());
         }
     }
 }

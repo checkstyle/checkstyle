@@ -90,9 +90,9 @@ public class UnnecessaryParenthesesCheck extends Check
      * Used to test if logging a warning in a parent node may be skipped
      * because a warning was already logged on an immediate child node.
      */
-    private DetailAST mParentToSkip;
+    private DetailAST parentToSkip;
     /** Depth of nested assignments.  Normally this will be 0 or 1. */
-    private int mAssignDepth;
+    private int assignDepth;
 
     @Override
     public int[] getDefaultTokens()
@@ -124,11 +124,11 @@ public class UnnecessaryParenthesesCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final int type = aAST.getType();
-        final boolean surrounded = isSurrounded(aAST);
-        final DetailAST parent = aAST.getParent();
+        final int type = ast.getType();
+        final boolean surrounded = isSurrounded(ast);
+        final DetailAST parent = ast.getParent();
 
         if ((type == TokenTypes.ASSIGN)
             && (parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR))
@@ -139,39 +139,39 @@ public class UnnecessaryParenthesesCheck extends Check
 
         // An identifier surrounded by parentheses.
         if (surrounded && (type == TokenTypes.IDENT)) {
-            mParentToSkip = aAST.getParent();
-            log(aAST, "unnecessary.paren.ident", aAST.getText());
+            parentToSkip = ast.getParent();
+            log(ast, "unnecessary.paren.ident", ast.getText());
             return;
         }
 
         // A literal (numeric or string) surrounded by parentheses.
         if (surrounded && inTokenList(type, LITERALS)) {
-            mParentToSkip = aAST.getParent();
+            parentToSkip = ast.getParent();
             if (type == TokenTypes.STRING_LITERAL) {
-                log(aAST, "unnecessary.paren.string",
-                    chopString(aAST.getText()));
+                log(ast, "unnecessary.paren.string",
+                    chopString(ast.getText()));
             }
             else {
-                log(aAST, "unnecessary.paren.literal", aAST.getText());
+                log(ast, "unnecessary.paren.literal", ast.getText());
             }
             return;
         }
 
         // The rhs of an assignment surrounded by parentheses.
         if (inTokenList(type, ASSIGNMENTS)) {
-            mAssignDepth++;
-            final DetailAST last = aAST.getLastChild();
+            assignDepth++;
+            final DetailAST last = ast.getLastChild();
             if (last.getType() == TokenTypes.RPAREN) {
-                log(aAST, "unnecessary.paren.assign");
+                log(ast, "unnecessary.paren.assign");
             }
         }
     }
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
-        final int type = aAST.getType();
-        final DetailAST parent = aAST.getParent();
+        final int type = ast.getType();
+        final DetailAST parent = ast.getParent();
 
         if ((type == TokenTypes.ASSIGN)
             && (parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR))
@@ -183,47 +183,47 @@ public class UnnecessaryParenthesesCheck extends Check
         // An expression is surrounded by parentheses.
         if (type == TokenTypes.EXPR) {
 
-            // If 'mParentToSkip' == 'aAST', then we've already logged a
+            // If 'parentToSkip' == 'ast', then we've already logged a
             // warning about an immediate child node in visitToken, so we don't
             // need to log another one here.
 
-            if ((mParentToSkip != aAST) && exprSurrounded(aAST)) {
-                if (mAssignDepth >= 1) {
-                    log(aAST, "unnecessary.paren.assign");
+            if ((parentToSkip != ast) && exprSurrounded(ast)) {
+                if (assignDepth >= 1) {
+                    log(ast, "unnecessary.paren.assign");
                 }
-                else if (aAST.getParent().getType()
+                else if (ast.getParent().getType()
                     == TokenTypes.LITERAL_RETURN)
                 {
-                    log(aAST, "unnecessary.paren.return");
+                    log(ast, "unnecessary.paren.return");
                 }
                 else {
-                    log(aAST, "unnecessary.paren.expr");
+                    log(ast, "unnecessary.paren.expr");
                 }
             }
 
-            mParentToSkip = null;
+            parentToSkip = null;
         }
         else if (inTokenList(type, ASSIGNMENTS)) {
-            mAssignDepth--;
+            assignDepth--;
         }
 
-        super.leaveToken(aAST);
+        super.leaveToken(ast);
     }
 
     /**
      * Tests if the given <code>DetailAST</code> is surrounded by parentheses.
-     * In short, does <code>aAST</code> have a previous sibling whose type is
+     * In short, does <code>ast</code> have a previous sibling whose type is
      * <code>TokenTypes.LPAREN</code> and a next sibling whose type is <code>
      * TokenTypes.RPAREN</code>.
-     * @param aAST the <code>DetailAST</code> to check if it is surrounded by
+     * @param ast the <code>DetailAST</code> to check if it is surrounded by
      *        parentheses.
-     * @return <code>true</code> if <code>aAST</code> is surrounded by
+     * @return <code>true</code> if <code>ast</code> is surrounded by
      *         parentheses.
      */
-    private boolean isSurrounded(DetailAST aAST)
+    private boolean isSurrounded(DetailAST ast)
     {
-        final DetailAST prev = aAST.getPreviousSibling();
-        final DetailAST next = aAST.getNextSibling();
+        final DetailAST prev = ast.getPreviousSibling();
+        final DetailAST next = ast.getNextSibling();
 
         return (prev != null) && (prev.getType() == TokenTypes.LPAREN)
             && (next != null) && (next.getType() == TokenTypes.RPAREN);
@@ -231,22 +231,22 @@ public class UnnecessaryParenthesesCheck extends Check
 
     /**
      * Tests if the given expression node is surrounded by parentheses.
-     * @param aAST a <code>DetailAST</code> whose type is
+     * @param ast a <code>DetailAST</code> whose type is
      *        <code>TokenTypes.EXPR</code>.
      * @return <code>true</code> if the expression is surrounded by
      *         parentheses.
-     * @throws IllegalArgumentException if <code>aAST.getType()</code> is not
+     * @throws IllegalArgumentException if <code>ast.getType()</code> is not
      *         equal to <code>TokenTypes.EXPR</code>.
      */
-    private boolean exprSurrounded(DetailAST aAST)
+    private boolean exprSurrounded(DetailAST ast)
     {
-        if (aAST.getType() != TokenTypes.EXPR) {
+        if (ast.getType() != TokenTypes.EXPR) {
             throw new IllegalArgumentException("Not an expression node.");
         }
         boolean surrounded = false;
-        if (aAST.getChildCount() >= MIN_CHILDREN_FOR_MATCH) {
-            final AST n1 = aAST.getFirstChild();
-            final AST nn = aAST.getLastChild();
+        if (ast.getChildCount() >= MIN_CHILDREN_FOR_MATCH) {
+            final AST n1 = ast.getFirstChild();
+            final AST nn = ast.getLastChild();
 
             surrounded = (n1.getType() == TokenTypes.LPAREN)
                 && (nn.getType() == TokenTypes.RPAREN);
@@ -256,20 +256,20 @@ public class UnnecessaryParenthesesCheck extends Check
 
     /**
      * Check if the given token type can be found in an array of token types.
-     * @param aType the token type.
-     * @param aTokens an array of token types to search.
-     * @return <code>true</code> if <code>aType</code> was found in <code>
-     *         aTokens</code>.
+     * @param type the token type.
+     * @param tokens an array of token types to search.
+     * @return <code>true</code> if <code>type</code> was found in <code>
+     *         tokens</code>.
      */
-    private boolean inTokenList(int aType, int[] aTokens)
+    private boolean inTokenList(int type, int[] tokens)
     {
         // NOTE: Given the small size of the two arrays searched, I'm not sure
         //       it's worth bothering with doing a binary search or using a
         //       HashMap to do the searches.
 
         boolean found = false;
-        for (int i = 0; (i < aTokens.length) && !found; i++) {
-            found = aTokens[i] == aType;
+        for (int i = 0; (i < tokens.length) && !found; i++) {
+            found = tokens[i] == type;
         }
         return found;
     }
@@ -278,15 +278,15 @@ public class UnnecessaryParenthesesCheck extends Check
      * Returns the specified string chopped to <code>MAX_QUOTED_LENGTH</code>
      * plus an ellipsis (...) if the length of the string exceeds <code>
      * MAX_QUOTED_LENGTH</code>.
-     * @param aString the string to potentially chop.
-     * @return the chopped string if <code>aString</code> is longer than
-     *         <code>MAX_QUOTED_LENGTH</code>; otherwise <code>aString</code>.
+     * @param string the string to potentially chop.
+     * @return the chopped string if <code>string</code> is longer than
+     *         <code>MAX_QUOTED_LENGTH</code>; otherwise <code>string</code>.
      */
-    private String chopString(String aString)
+    private String chopString(String string)
     {
-        if (aString.length() > MAX_QUOTED_LENGTH) {
-            return aString.substring(0, MAX_QUOTED_LENGTH) + "...\"";
+        if (string.length() > MAX_QUOTED_LENGTH) {
+            return string.substring(0, MAX_QUOTED_LENGTH) + "...\"";
         }
-        return aString;
+        return string;
     }
 }

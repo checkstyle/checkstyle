@@ -54,7 +54,7 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
-    public void testLambdaExpression() throws Exception
+    public void testLambdexpression() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(InnerAssignmentCheck.class);

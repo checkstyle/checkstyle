@@ -66,13 +66,13 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 public class FallThroughCheck extends Check
 {
     /** Do we need to check last case group. */
-    private boolean mCheckLastGroup;
+    private boolean checkLastGroup;
 
     /** Relief pattern to allow fall throught to the next case branch. */
-    private String mReliefPattern = "fallthru|falls? ?through";
+    private String reliefPattern = "fallthru|falls? ?through";
 
     /** Relief regexp. */
-    private Pattern mRegExp;
+    private Pattern regExp;
 
     /** Creates new instance of the check. */
     public FallThroughCheck()
@@ -95,52 +95,52 @@ public class FallThroughCheck extends Check
     /**
      * Set the relief pattern.
      *
-     * @param aPattern
+     * @param pattern
      *            The regular expression pattern.
      */
-    public void setReliefPattern(String aPattern)
+    public void setReliefPattern(String pattern)
     {
-        mReliefPattern = aPattern;
+        reliefPattern = pattern;
     }
 
     /**
      * Configures whether we need to check last case group or not.
-     * @param aValue new value of the property.
+     * @param value new value of the property.
      */
-    public void setCheckLastCaseGroup(boolean aValue)
+    public void setCheckLastCaseGroup(boolean value)
     {
-        mCheckLastGroup = aValue;
+        checkLastGroup = value;
     }
 
     @Override
     public void init()
     {
         super.init();
-        mRegExp = Utils.getPattern(mReliefPattern);
+        regExp = Utils.getPattern(reliefPattern);
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final DetailAST nextGroup = aAST.getNextSibling();
+        final DetailAST nextGroup = ast.getNextSibling();
         final boolean isLastGroup =
             ((nextGroup == null)
              || (nextGroup.getType() != TokenTypes.CASE_GROUP));
-        if (isLastGroup && !mCheckLastGroup) {
+        if (isLastGroup && !checkLastGroup) {
             // we do not need to check last group
             return;
         }
 
-        final DetailAST slist = aAST.findFirstToken(TokenTypes.SLIST);
+        final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
         if (slist != null && !isTerminated(slist, true, true)
-            && !hasFallTruComment(aAST, nextGroup))
+            && !hasFallTruComment(ast, nextGroup))
         {
             if (!isLastGroup) {
                 log(nextGroup, "fall.through");
             }
             else {
-                log(aAST, "fall.through.last");
+                log(ast, "fall.through.last");
             }
         }
     }
@@ -148,34 +148,34 @@ public class FallThroughCheck extends Check
     /**
      * Checks if a given subtree terminated by return, throw or,
      * if allowed break, continue.
-     * @param aAST root of given subtree
-     * @param aUseBreak should we consider break as terminator.
-     * @param aUseContinue should we consider continue as terminator.
+     * @param ast root of given subtree
+     * @param useBreak should we consider break as terminator.
+     * @param useContinue should we consider continue as terminator.
      * @return true if the subtree is terminated.
      */
-    private boolean isTerminated(final DetailAST aAST, boolean aUseBreak,
-                                 boolean aUseContinue)
+    private boolean isTerminated(final DetailAST ast, boolean useBreak,
+                                 boolean useContinue)
     {
-        switch (aAST.getType()) {
+        switch (ast.getType()) {
         case TokenTypes.LITERAL_RETURN:
         case TokenTypes.LITERAL_THROW:
             return true;
         case TokenTypes.LITERAL_BREAK:
-            return aUseBreak;
+            return useBreak;
         case TokenTypes.LITERAL_CONTINUE:
-            return aUseContinue;
+            return useContinue;
         case TokenTypes.SLIST:
-            return checkSlist(aAST, aUseBreak, aUseContinue);
+            return checkSlist(ast, useBreak, useContinue);
         case TokenTypes.LITERAL_IF:
-            return checkIf(aAST, aUseBreak, aUseContinue);
+            return checkIf(ast, useBreak, useContinue);
         case TokenTypes.LITERAL_FOR:
         case TokenTypes.LITERAL_WHILE:
         case TokenTypes.LITERAL_DO:
-            return checkLoop(aAST);
+            return checkLoop(ast);
         case TokenTypes.LITERAL_TRY:
-            return checkTry(aAST, aUseBreak, aUseContinue);
+            return checkTry(ast, useBreak, useContinue);
         case TokenTypes.LITERAL_SWITCH:
-            return checkSwitch(aAST, aUseContinue);
+            return checkSwitch(ast, useContinue);
         default:
             return false;
         }
@@ -184,15 +184,15 @@ public class FallThroughCheck extends Check
     /**
      * Checks if a given SLIST terminated by return, throw or,
      * if allowed break, continue.
-     * @param aAST SLIST to check
-     * @param aUseBreak should we consider break as terminator.
-     * @param aUseContinue should we consider continue as terminator.
+     * @param ast SLIST to check
+     * @param useBreak should we consider break as terminator.
+     * @param useContinue should we consider continue as terminator.
      * @return true if SLIST is terminated.
      */
-    private boolean checkSlist(final DetailAST aAST, boolean aUseBreak,
-                               boolean aUseContinue)
+    private boolean checkSlist(final DetailAST ast, boolean useBreak,
+                               boolean useContinue)
     {
-        DetailAST lastStmt = aAST.getLastChild();
+        DetailAST lastStmt = ast.getLastChild();
         if (lastStmt == null) {
             // if last case in switch is empty then slist is empty
             // since this is a last case it is not a fall-through
@@ -204,28 +204,28 @@ public class FallThroughCheck extends Check
         }
 
         return (lastStmt != null)
-            && isTerminated(lastStmt, aUseBreak, aUseContinue);
+            && isTerminated(lastStmt, useBreak, useContinue);
     }
 
     /**
      * Checks if a given IF terminated by return, throw or,
      * if allowed break, continue.
-     * @param aAST IF to check
-     * @param aUseBreak should we consider break as terminator.
-     * @param aUseContinue should we consider continue as terminator.
+     * @param ast IF to check
+     * @param useBreak should we consider break as terminator.
+     * @param useContinue should we consider continue as terminator.
      * @return true if IF is terminated.
      */
-    private boolean checkIf(final DetailAST aAST, boolean aUseBreak,
-                            boolean aUseContinue)
+    private boolean checkIf(final DetailAST ast, boolean useBreak,
+                            boolean useContinue)
     {
-        final DetailAST thenStmt = aAST.findFirstToken(TokenTypes.RPAREN)
+        final DetailAST thenStmt = ast.findFirstToken(TokenTypes.RPAREN)
                 .getNextSibling();
         final DetailAST elseStmt = thenStmt.getNextSibling();
-        boolean isTerminated = isTerminated(thenStmt, aUseBreak, aUseContinue);
+        boolean isTerminated = isTerminated(thenStmt, useBreak, useContinue);
 
         if (isTerminated && (elseStmt != null)) {
             isTerminated = isTerminated(elseStmt.getFirstChild(),
-                                        aUseBreak, aUseContinue);
+                                        useBreak, useContinue);
         }
         return isTerminated;
     }
@@ -233,18 +233,18 @@ public class FallThroughCheck extends Check
     /**
      * Checks if a given loop terminated by return, throw or,
      * if allowed break, continue.
-     * @param aAST loop to check
+     * @param ast loop to check
      * @return true if loop is terminated.
      */
-    private boolean checkLoop(final DetailAST aAST)
+    private boolean checkLoop(final DetailAST ast)
     {
         DetailAST loopBody = null;
-        if (aAST.getType() == TokenTypes.LITERAL_DO) {
-            final DetailAST lparen = aAST.findFirstToken(TokenTypes.DO_WHILE);
+        if (ast.getType() == TokenTypes.LITERAL_DO) {
+            final DetailAST lparen = ast.findFirstToken(TokenTypes.DO_WHILE);
             loopBody = lparen.getPreviousSibling();
         }
         else {
-            final DetailAST rparen = aAST.findFirstToken(TokenTypes.RPAREN);
+            final DetailAST rparen = ast.findFirstToken(TokenTypes.RPAREN);
             loopBody = rparen.getNextSibling();
         }
         return isTerminated(loopBody, false, false);
@@ -253,28 +253,28 @@ public class FallThroughCheck extends Check
     /**
      * Checks if a given try/catch/finally block terminated by return, throw or,
      * if allowed break, continue.
-     * @param aAST loop to check
-     * @param aUseBreak should we consider break as terminator.
-     * @param aUseContinue should we consider continue as terminator.
+     * @param ast loop to check
+     * @param useBreak should we consider break as terminator.
+     * @param useContinue should we consider continue as terminator.
      * @return true if try/cath/finally block is terminated.
      */
-    private boolean checkTry(final DetailAST aAST, boolean aUseBreak,
-                             boolean aUseContinue)
+    private boolean checkTry(final DetailAST ast, boolean useBreak,
+                             boolean useContinue)
     {
-        final DetailAST finalStmt = aAST.getLastChild();
+        final DetailAST finalStmt = ast.getLastChild();
         if (finalStmt.getType() == TokenTypes.LITERAL_FINALLY) {
             return isTerminated(finalStmt.findFirstToken(TokenTypes.SLIST),
-                                aUseBreak, aUseContinue);
+                                useBreak, useContinue);
         }
 
-        boolean isTerminated = isTerminated(aAST.getFirstChild(),
-                                            aUseBreak, aUseContinue);
+        boolean isTerminated = isTerminated(ast.getFirstChild(),
+                                            useBreak, useContinue);
 
-        DetailAST catchStmt = aAST.findFirstToken(TokenTypes.LITERAL_CATCH);
+        DetailAST catchStmt = ast.findFirstToken(TokenTypes.LITERAL_CATCH);
         while ((catchStmt != null) && isTerminated) {
             final DetailAST catchBody =
                 catchStmt.findFirstToken(TokenTypes.SLIST);
-            isTerminated &= isTerminated(catchBody, aUseBreak, aUseContinue);
+            isTerminated &= isTerminated(catchBody, useBreak, useContinue);
             catchStmt = catchStmt.getNextSibling();
         }
         return isTerminated;
@@ -283,40 +283,40 @@ public class FallThroughCheck extends Check
     /**
      * Checks if a given switch terminated by return, throw or,
      * if allowed break, continue.
-     * @param aAST loop to check
-     * @param aUseContinue should we consider continue as terminator.
+     * @param ast loop to check
+     * @param useContinue should we consider continue as terminator.
      * @return true if switch is terminated.
      */
-    private boolean checkSwitch(final DetailAST aAST, boolean aUseContinue)
+    private boolean checkSwitch(final DetailAST ast, boolean useContinue)
     {
-        DetailAST caseGroup = aAST.findFirstToken(TokenTypes.CASE_GROUP);
+        DetailAST caseGroup = ast.findFirstToken(TokenTypes.CASE_GROUP);
         boolean isTerminated = (caseGroup != null);
         while (isTerminated && (caseGroup != null)
                && (caseGroup.getType() != TokenTypes.RCURLY))
         {
             final DetailAST caseBody =
                 caseGroup.findFirstToken(TokenTypes.SLIST);
-            isTerminated &= isTerminated(caseBody, false, aUseContinue);
+            isTerminated &= isTerminated(caseBody, false, useContinue);
             caseGroup = caseGroup.getNextSibling();
         }
         return isTerminated;
     }
 
     /**
-     * Determines if the fall through case between <code>aCurrentCase</code> and
-     * <code>aNextCase</code> is reliefed by a appropriate comment.
+     * Determines if the fall through case between <code>currentCase</code> and
+     * <code>nextCase</code> is reliefed by a appropriate comment.
      *
-     * @param aCurrentCase AST of the case that falls through to the next case.
-     * @param aNextCase AST of the next case.
+     * @param currentCase AST of the case that falls through to the next case.
+     * @param nextCase AST of the next case.
      * @return True if a relief comment was found
      */
-    private boolean hasFallTruComment(DetailAST aCurrentCase,
-            DetailAST aNextCase)
+    private boolean hasFallTruComment(DetailAST currentCase,
+            DetailAST nextCase)
     {
 
-        final int startLineNo = aCurrentCase.getLineNo();
-        final int endLineNo = aNextCase.getLineNo();
-        final int endColNo = aNextCase.getColumnNo();
+        final int startLineNo = currentCase.getLineNo();
+        final int endLineNo = nextCase.getLineNo();
+        final int endColNo = nextCase.getColumnNo();
 
         /*
          * Remember: The lines number returned from the AST is 1-based, but
@@ -336,7 +336,7 @@ public class FallThroughCheck extends Check
          *    /+ FALLTHRU +/}
          */
         final String linepart = lines[endLineNo - 1].substring(0, endColNo);
-        if (commentMatch(mRegExp, linepart, endLineNo)) {
+        if (commentMatch(regExp, linepart, endLineNo)) {
             return true;
         }
 
@@ -355,7 +355,7 @@ public class FallThroughCheck extends Check
          */
         for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
             if (lines[i].trim().length() != 0) {
-                return commentMatch(mRegExp, lines[i], i + 1);
+                return commentMatch(regExp, lines[i], i + 1);
             }
         }
 
@@ -366,15 +366,15 @@ public class FallThroughCheck extends Check
     /**
      * Does a regular expression match on the given line and checks that a
      * possible match is within a comment.
-     * @param aPattern The regular expression pattern to use.
-     * @param aLine The line of test to do the match on.
-     * @param aLineNo The line number in the file.
+     * @param pattern The regular expression pattern to use.
+     * @param line The line of test to do the match on.
+     * @param lineNo The line number in the file.
      * @return True if a match was found inside a comment.
      */
-    private boolean commentMatch(Pattern aPattern, String aLine, int aLineNo
+    private boolean commentMatch(Pattern pattern, String line, int lineNo
     )
     {
-        final Matcher matcher = aPattern.matcher(aLine);
+        final Matcher matcher = pattern.matcher(line);
 
         final boolean hit = matcher.find();
 
@@ -382,8 +382,8 @@ public class FallThroughCheck extends Check
             final int startMatch = matcher.start();
             // -1 because it returns the char position beyond the match
             final int endMatch = matcher.end() - 1;
-            return getFileContents().hasIntersectionWithComment(aLineNo,
-                    startMatch, aLineNo, endMatch);
+            return getFileContents().hasIntersectionWithComment(lineNo,
+                    startMatch, lineNo, endMatch);
         }
         return false;
     }

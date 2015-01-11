@@ -40,7 +40,7 @@ public class NestedIfDepthCheckTest extends BaseCheckTestSupport
     //        checkConfig.addAttribute("max", "2");
 
     @Test
-    public void testCustomNestingDepth() throws Exception
+    public void testCustonestingDepth() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NestedIfDepthCheck.class);

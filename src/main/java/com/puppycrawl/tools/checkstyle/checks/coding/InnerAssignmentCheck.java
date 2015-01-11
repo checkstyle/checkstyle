@@ -118,25 +118,25 @@ public class InnerAssignmentCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (isInContext(aAST, ALLOWED_ASSIGMENT_CONTEXT)) {
+        if (isInContext(ast, ALLOWED_ASSIGMENT_CONTEXT)) {
             return;
         }
 
-        if (isInNoBraceControlStatement(aAST)) {
+        if (isInNoBraceControlStatement(ast)) {
             return;
         }
 
-        if (isInWhileIdiom(aAST)) {
+        if (isInWhileIdiom(ast)) {
             return;
         }
 
-        log(aAST.getLineNo(), aAST.getColumnNo(), "assignment.inner.avoid");
+        log(ast.getLineNo(), ast.getColumnNo(), "assignment.inner.avoid");
     }
 
     /**
-     * Determines if aAST is in the body of a flow control statement without
+     * Determines if ast is in the body of a flow control statement without
      * braces. An example of such a statement would be
      * <p>
      * <pre>
@@ -158,18 +158,18 @@ public class InnerAssignmentCheck
      * </pre>
      * </p>
      * <p>
-     * We need to ensure that aAST is in the body and not in the test.
+     * We need to ensure that ast is in the body and not in the test.
      * </p>
      *
-     * @param aAST an assignment operator AST
-     * @return whether aAST is in the body of a flow control statement
+     * @param ast an assignment operator AST
+     * @return whether ast is in the body of a flow control statement
      */
-    private static boolean isInNoBraceControlStatement(DetailAST aAST)
+    private static boolean isInNoBraceControlStatement(DetailAST ast)
     {
-        if (!isInContext(aAST, CONTROL_CONTEXT)) {
+        if (!isInContext(ast, CONTROL_CONTEXT)) {
             return false;
         }
-        final DetailAST expr = aAST.getParent();
+        final DetailAST expr = ast.getParent();
         final AST exprNext = expr.getNextSibling();
         return (exprNext != null) && (exprNext.getType() == TokenTypes.SEMI);
     }
@@ -185,26 +185,26 @@ public class InnerAssignmentCheck
      * </pre>
      * </p>
      *
-     * @param aAST assignment AST
+     * @param ast assignment AST
      * @return whether the context of the assignemt AST indicates the idiom
      */
-    private boolean isInWhileIdiom(DetailAST aAST)
+    private boolean isInWhileIdiom(DetailAST ast)
     {
-        if (!isComparison(aAST.getParent())) {
+        if (!isComparison(ast.getParent())) {
             return false;
         }
         return isInContext(
-                aAST.getParent(), ALLOWED_ASSIGMENT_IN_COMPARISON_CONTEXT);
+                ast.getParent(), ALLOWED_ASSIGMENT_IN_COMPARISON_CONTEXT);
     }
 
     /**
      * Checks if an AST is a comparison operator.
-     * @param aAST the AST to check
-     * @return true iff aAST is a comparison operator.
+     * @param ast the AST to check
+     * @return true iff ast is a comparison operator.
      */
-    private static boolean isComparison(DetailAST aAST)
+    private static boolean isComparison(DetailAST ast)
     {
-        final int astType = aAST.getType();
+        final int astType = ast.getType();
         return (Arrays.binarySearch(COMPARISON_TYPES, astType) >= 0);
     }
 
@@ -212,16 +212,16 @@ public class InnerAssignmentCheck
      * Tests whether the provided AST is in
      * one of the given contexts.
      *
-     * @param aAST the AST from which to start walking towards root
-     * @param aContextSet the contexts to test against.
+     * @param ast the AST from which to start walking towards root
+     * @param contextSet the contexts to test against.
      *
-     * @return whether the parents nodes of aAST match
+     * @return whether the parents nodes of ast match
      * one of the allowed type paths
      */
-    private static boolean isInContext(DetailAST aAST, int[][] aContextSet)
+    private static boolean isInContext(DetailAST ast, int[][] contextSet)
     {
-        for (int[] element : aContextSet) {
-            DetailAST current = aAST;
+        for (int[] element : contextSet) {
+            DetailAST current = ast;
             final int len = element.length;
             for (int j = 0; j < len; j++) {
                 current = current.getParent();

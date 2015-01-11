@@ -26,12 +26,12 @@ import org.junit.Test;
 
 public class IllegalTypeCheckTest extends BaseCheckTestSupport
 {
-    private DefaultConfiguration mCheckConfig;
+    private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp()
     {
-        mCheckConfig = createCheckConfig(IllegalTypeCheck.class);
+        checkConfig = createCheckConfig(IllegalTypeCheck.class);
     }
 
     @Test
@@ -46,13 +46,13 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
             "17:13: Declaring variables, return values or parameters of type 'Hashtable' is not allowed.",
         };
 
-        verify(mCheckConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
+        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
     }
 
     @Test
     public void testIgnoreMethodNames() throws Exception
     {
-        mCheckConfig.addAttribute("ignoredMethodNames", "table2");
+        checkConfig.addAttribute("ignoredMethodNames", "table2");
 
         String[] expected = {
             "6:13: Declaring variables, return values or parameters of type 'AbstractClass' is not allowed.",
@@ -62,26 +62,26 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
             "16:13: Declaring variables, return values or parameters of type 'java.util.Hashtable' is not allowed.",
         };
 
-        verify(mCheckConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
+        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
     }
 
     @Test
     public void testFormat() throws Exception
     {
-        mCheckConfig.addAttribute("format", "^$");
+        checkConfig.addAttribute("format", "^$");
 
         String[] expected = {
             "16:13: Declaring variables, return values or parameters of type 'java.util.Hashtable' is not allowed.",
             "17:13: Declaring variables, return values or parameters of type 'Hashtable' is not allowed.",
         };
 
-        verify(mCheckConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
+        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
     }
 
     @Test
     public void testLegalAbstractClassNames() throws Exception
     {
-        mCheckConfig.addAttribute("legalAbstractClassNames", "AbstractClass");
+        checkConfig.addAttribute("legalAbstractClassNames", "AbstractClass");
 
         String[] expected = {
             "9:13: Declaring variables, return values or parameters of type "
@@ -91,13 +91,13 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
             "17:13: Declaring variables, return values or parameters of type 'Hashtable' is not allowed.",
         };
 
-        verify(mCheckConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
+        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
     }
 
     @Test
     public void testSameFileNameFalsePositive() throws Exception
     {
-        mCheckConfig.addAttribute("illegalClassNames", "java.util.GregorianCalendar, SubCalendar, "
+        checkConfig.addAttribute("illegalClassNames", "java.util.GregorianCalendar, SubCalendar, "
                 + "java.util.List");
 
         String[] expected = {
@@ -105,14 +105,14 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
             "27:5: Declaring variables, return values or parameters of type 'java.util.List' is not allowed.",
         };
 
-        verify(mCheckConfig, getPath("coding" + File.separator
+        verify(checkConfig, getPath("coding" + File.separator
                 + "InputIllegalTypeSameFileName.java"), expected);
     }
 
     @Test
     public void testSameFileNameGeneral() throws Exception
     {
-        mCheckConfig.addAttribute("illegalClassNames", "List, GregorianCalendar, java.io.File, ArrayList");
+        checkConfig.addAttribute("illegalClassNames", "List, GregorianCalendar, java.io.File, ArrayList");
         String[] expected = {
             "10:5: Declaring variables, return values or parameters of type 'GregorianCalendar' is not allowed.",
             "16:23: Declaring variables, return values or parameters of type 'GregorianCalendar' is not allowed.",
@@ -121,35 +121,35 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
             "27:5: Declaring variables, return values or parameters of type 'java.util.List' is not allowed.",
             "28:13: Declaring variables, return values or parameters of type 'ArrayList' is not allowed.",
         };
-        verify(mCheckConfig, getPath("coding" + File.separator
+        verify(checkConfig, getPath("coding" + File.separator
                 + "InputIllegalTypeSameFileName.java"), expected);
     }
 
     @Test
     public void testStarImports() throws Exception
     {
-        mCheckConfig.addAttribute("illegalClassNames", "List");
+        checkConfig.addAttribute("illegalClassNames", "List");
 
         String[] expected = {
             "10:5: Declaring variables, return values or parameters of type 'List' is not allowed.",
         };
 
-        verify(mCheckConfig, getPath("coding" + File.separator
+        verify(checkConfig, getPath("coding" + File.separator
                 + "InputIllegalTypeStarImports.java"), expected);
     }
 
     @Test
     public void testStaticImports() throws Exception
     {
-        mCheckConfig.addAttribute("illegalClassNames", "SomeStaticClass");
-        mCheckConfig.addAttribute("ignoredMethodNames", "foo1");
+        checkConfig.addAttribute("illegalClassNames", "SomeStaticClass");
+        checkConfig.addAttribute("ignoredMethodNames", "foo1");
 
         String[] expected = {
             "13:6: Declaring variables, return values or parameters of type 'SomeStaticClass' is not allowed.",
             "15:31: Declaring variables, return values or parameters of type 'SomeStaticClass' is not allowed.",
         };
 
-        verify(mCheckConfig, getPath("coding" + File.separator
+        verify(checkConfig, getPath("coding" + File.separator
                 + "InputIllegalTypeStaticImports.java"), expected);
     }
 }

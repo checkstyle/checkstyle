@@ -56,40 +56,40 @@ import com.puppycrawl.tools.checkstyle.checks.DeclarationCollector;
 public class RequireThisCheck extends DeclarationCollector
 {
     /** whether we should check fields usage. */
-    private boolean mCheckFields = true;
+    private boolean checkFields = true;
     /** whether we should check methods usage. */
-    private boolean mCheckMethods = true;
+    private boolean checkMethods = true;
 
     /**
      * Setter for checkFields property.
-     * @param aCheckFields should we check fields usage or not.
+     * @param checkFields should we check fields usage or not.
      */
-    public void setCheckFields(boolean aCheckFields)
+    public void setCheckFields(boolean checkFields)
     {
-        mCheckFields = aCheckFields;
+        this.checkFields = checkFields;
     }
     /**
      * @return true if we should check fields usage false otherwise.
      */
     public boolean getCheckFields()
     {
-        return mCheckFields;
+        return checkFields;
     }
 
     /**
      * Setter for checkMethods property.
-     * @param aCheckMethods should we check methods usage or not.
+     * @param checkMethods should we check methods usage or not.
      */
-    public void setCheckMethods(boolean aCheckMethods)
+    public void setCheckMethods(boolean checkMethods)
     {
-        mCheckMethods = aCheckMethods;
+        this.checkMethods = checkMethods;
     }
     /**
      * @return true if we should check methods usage false otherwise.
      */
     public boolean getCheckMethods()
     {
-        return mCheckMethods;
+        return checkMethods;
     }
 
     /** Creates new instance of the check. */
@@ -120,11 +120,11 @@ public class RequireThisCheck extends DeclarationCollector
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        super.visitToken(aAST);
-        if (aAST.getType() == TokenTypes.IDENT) {
-            processIDENT(aAST);
+        super.visitToken(ast);
+        if (ast.getType() == TokenTypes.IDENT) {
+            processIDENT(ast);
         }
     } // end visitToken
 
@@ -132,11 +132,11 @@ public class RequireThisCheck extends DeclarationCollector
      * Checks if a given IDENT is method call or field name which
      * require explicit <code>this</code> qualifier.
      *
-     * @param aAST IDENT to check.
+     * @param ast IDENT to check.
      */
-    private void processIDENT(DetailAST aAST)
+    private void processIDENT(DetailAST ast)
     {
-        final int parentType = aAST.getParent().getType();
+        final int parentType = ast.getParent().getType();
 
         if (parentType == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR
             || parentType == TokenTypes.ANNOTATION
@@ -148,19 +148,19 @@ public class RequireThisCheck extends DeclarationCollector
 
         // let's check method calls
         if (parentType == TokenTypes.METHOD_CALL) {
-            if (mCheckMethods && isClassMethod(aAST.getText())) {
-                log(aAST, "require.this.method", aAST.getText());
+            if (checkMethods && isClassMethod(ast.getText())) {
+                log(ast, "require.this.method", ast.getText());
             }
             return;
         }
 
         // let's check fields
-        if (!mCheckFields) {
+        if (!checkFields) {
             // we shouldn't check fields
             return;
         }
 
-        if (ScopeUtils.getSurroundingScope(aAST) == null) {
+        if (ScopeUtils.getSurroundingScope(ast) == null) {
             // it is not a class or interface it's
             // either import or package
             // we shouldn't checks this
@@ -168,7 +168,7 @@ public class RequireThisCheck extends DeclarationCollector
         }
 
         if ((parentType == TokenTypes.DOT)
-            && (aAST.getPreviousSibling() != null))
+            && (ast.getPreviousSibling() != null))
         {
             // it's the method name in a method call; no problem
             return;
@@ -192,9 +192,9 @@ public class RequireThisCheck extends DeclarationCollector
             return;
         }
 
-        final String name = aAST.getText();
+        final String name = ast.getText();
         if (isClassField(name)) {
-            log(aAST, "require.this.variable", name);
+            log(ast, "require.this.variable", name);
         }
     }
 } // end class RequireThis
