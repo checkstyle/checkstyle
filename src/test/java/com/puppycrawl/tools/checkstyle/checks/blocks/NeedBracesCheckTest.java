@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck.MSG_KEY_NEED_BRACES;
+
 public class NeedBracesCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -30,23 +32,23 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(NeedBracesCheck.class);
         final String[] expected = {
-            "29: 'do' construct must use '{}'s." ,
-            "41: 'while' construct must use '{}'s." ,
-            "42: 'while' construct must use '{}'s." ,
-            "44: 'while' construct must use '{}'s." ,
-            "45: 'if' construct must use '{}'s." ,
-            "58: 'for' construct must use '{}'s." ,
-            "59: 'for' construct must use '{}'s." ,
-            "61: 'for' construct must use '{}'s." ,
-            "63: 'if' construct must use '{}'s." ,
-            "82: 'if' construct must use '{}'s." ,
-            "83: 'if' construct must use '{}'s." ,
-            "85: 'if' construct must use '{}'s." ,
-            "87: 'else' construct must use '{}'s." ,
-            "89: 'if' construct must use '{}'s." ,
-            "97: 'else' construct must use '{}'s." ,
-            "99: 'if' construct must use '{}'s." ,
-            "100: 'if' construct must use '{}'s." ,
+            "29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
+            "41: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "42: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "44: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "45: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "58: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "59: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "61: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "63: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "82: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "83: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "85: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "87: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
+            "89: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "97: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
+            "99: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "100: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
         };
         verify(checkConfig, getPath("InputBraces.java"), expected);
     }
@@ -58,8 +60,8 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport
             createCheckConfig(NeedBracesCheck.class);
         checkConfig.addAttribute("allowSingleLineIf", "true");
         final String[] expected = {
-            "23: 'if' construct must use '{}'s." ,
-            "29: 'if' construct must use '{}'s." ,
+            "23: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
         };
         verify(checkConfig, getPath("InputBracesSingleLineIfBlock.java"), expected);
     }

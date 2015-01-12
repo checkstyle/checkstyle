@@ -76,6 +76,30 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
     private boolean mShouldStartLine = true;
 
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_LINE_BREAK_BEFORE = "line.break.before";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_LINE_ALONE = "line.alone";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_LINE_SAME = "line.same";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_LINE_NEW = "line.new";
+
+    /**
      * Sets the right curly option to same.
      */
     public RightCurlyCheck()
@@ -209,24 +233,24 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
         }
 
         if (getAbstractOption() == RightCurlyOption.SAME && !hasLineBreakBefore(rcurly)) {
-            log(rcurly, "line.break.before");
+            log(rcurly, MSG_KEY_LINE_BREAK_BEFORE);
         }
 
         if (shouldCheckLastRcurly) {
             if (rcurly.getLineNo() == nextToken.getLineNo()) {
-                log(rcurly, "line.alone", "}");
+                log(rcurly, MSG_KEY_LINE_ALONE, "}");
             }
         }
         else if ((getAbstractOption() == RightCurlyOption.SAME)
                 && (rcurly.getLineNo() != nextToken.getLineNo()))
         {
-            log(rcurly, "line.same", "}");
+            log(rcurly, MSG_KEY_LINE_SAME, "}");
         }
         else if ((getAbstractOption() == RightCurlyOption.ALONE)
                 && (rcurly.getLineNo() == nextToken.getLineNo())
                 && !isEmptyBody(lcurly))
         {
-            log(rcurly, "line.alone", "}");
+            log(rcurly, MSG_KEY_LINE_ALONE, "}");
         }
 
         if (!mShouldStartLine) {
@@ -237,7 +261,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
                         getLines()[rcurly.getLineNo() - 1]);
 
         if (!startsLine && (lcurly.getLineNo() != rcurly.getLineNo())) {
-            log(rcurly, "line.new", "}");
+            log(rcurly, MSG_KEY_LINE_NEW, "}");
         }
     }
 

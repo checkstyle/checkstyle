@@ -23,6 +23,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck.MSG_KEY_BLOCK_EMPTY;
+import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck.MSG_KEY_BLOCK_NO_STMT;
+
 public class EmptyBlockCheckTest
     extends BaseCheckTestSupport
 {
@@ -33,16 +36,16 @@ public class EmptyBlockCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(EmptyBlockCheck.class);
         final String[] expected = {
-            "52:65: Must have at least one statement.",
-            "54:41: Must have at least one statement.",
-            "71:38: Must have at least one statement.",
-            "72:52: Must have at least one statement.",
-            "73:45: Must have at least one statement.",
-            "75:13: Must have at least one statement.",
-            "77:17: Must have at least one statement.",
-            "79:13: Must have at least one statement.",
-            "82:17: Must have at least one statement.",
-            "178:5: Must have at least one statement.",
+            "52:65: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "54:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "71:38: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "72:52: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "73:45: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "75:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "77:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "79:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "82:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "178:5: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -55,12 +58,12 @@ public class EmptyBlockCheckTest
             createCheckConfig(EmptyBlockCheck.class);
         checkConfig.addAttribute("option", BlockOption.TEXT.toString());
         final String[] expected = {
-            "52:65: Empty catch block.",
-            "72:52: Empty catch block.",
-            "73:45: Empty catch block.",
-            "75:13: Empty try block.",
-            "77:17: Empty finally block.",
-            "178:5: Empty INSTANCE_INIT block.",
+            "52:65: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "catch"),
+            "72:52: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "catch"),
+            "73:45: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "catch"),
+            "75:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "try"),
+            "77:17: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "finally"),
+            "178:5: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "INSTANCE_INIT"),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -73,16 +76,16 @@ public class EmptyBlockCheckTest
             createCheckConfig(EmptyBlockCheck.class);
         checkConfig.addAttribute("option", BlockOption.STMT.toString());
         final String[] expected = {
-            "52:65: Must have at least one statement.",
-            "54:41: Must have at least one statement.",
-            "71:38: Must have at least one statement.",
-            "72:52: Must have at least one statement.",
-            "73:45: Must have at least one statement.",
-            "75:13: Must have at least one statement.",
-            "77:17: Must have at least one statement.",
-            "79:13: Must have at least one statement.",
-            "82:17: Must have at least one statement.",
-            "178:5: Must have at least one statement.",
+            "52:65: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "54:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "71:38: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "72:52: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "73:45: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "75:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "77:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "79:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "82:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "178:5: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -97,10 +100,10 @@ public class EmptyBlockCheckTest
                 + "LITERAL_FINALLY, LITERAL_DO, LITERAL_IF,"
                 + "LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH");
         final String[] expected = {
-            "16:29: Must have at least one statement.",
-            "19:42: Must have at least one statement.",
-            "22:29: Must have at least one statement.",
-            "23:28: Must have at least one statement.",
+            "16:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "19:42: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "22:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "23:28: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
         };
         verify(checkConfig, getPath("InputSemantic2.java"), expected);
     }
@@ -115,10 +118,10 @@ public class EmptyBlockCheckTest
                 + "LITERAL_FINALLY, LITERAL_DO, LITERAL_IF,"
                 + "LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH");
         final String[] expected = {
-            "16:29: Empty if block.",
-            "19:42: Empty if block.",
-            "22:29: Empty if block.",
-            "23:28: Empty switch block.",
+            "16:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "19:42: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "22:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "23:28: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "switch"),
         };
         verify(checkConfig, getPath("InputSemantic2.java"), expected);
     }

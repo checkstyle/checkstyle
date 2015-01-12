@@ -79,6 +79,24 @@ public class LeftCurlyCheck
     /** default maximum line length */
     private static final int DEFAULT_MAX_LINE_LENGTH = 80;
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_LINE_NEW = "line.new";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_LINE_PREVIOUS = "line.previous";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_LINE_BREAK_AFTER = "line.break.after";
+
     /** TODO: replace this ugly hack **/
     private int mMaxLineLength = DEFAULT_MAX_LINE_LENGTH;
 
@@ -271,7 +289,7 @@ public class LeftCurlyCheck
         else if (getAbstractOption() == LeftCurlyOption.NL) {
             if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
                 log(aBrace.getLineNo(), aBrace.getColumnNo(),
-                    "line.new", "{");
+                        MSG_KEY_LINE_NEW, "{");
             }
         }
         else if (getAbstractOption() == LeftCurlyOption.EOL) {
@@ -279,10 +297,10 @@ public class LeftCurlyCheck
                 && ((prevLineLen + 2) <= mMaxLineLength))
             {
                 log(aBrace.getLineNo(), aBrace.getColumnNo(),
-                    "line.previous", "{");
+                        MSG_KEY_LINE_PREVIOUS, "{");
             }
             if (!hasLineBreakAfter(aBrace)) {
-                log(aBrace.getLineNo(), aBrace.getColumnNo(), "line.break.after");
+                log(aBrace.getLineNo(), aBrace.getColumnNo(), MSG_KEY_LINE_BREAK_AFTER);
             }
         }
         else if (getAbstractOption() == LeftCurlyOption.NLOW) {
@@ -292,16 +310,16 @@ public class LeftCurlyCheck
             else if ((aStartToken.getLineNo() + 1) == aBrace.getLineNo()) {
                 if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
                     log(aBrace.getLineNo(), aBrace.getColumnNo(),
-                        "line.new", "{");
+                        MSG_KEY_LINE_NEW, "{");
                 }
                 else if ((prevLineLen + 2) <= mMaxLineLength) {
                     log(aBrace.getLineNo(), aBrace.getColumnNo(),
-                        "line.previous", "{");
+                        MSG_KEY_LINE_PREVIOUS, "{");
                 }
             }
             else if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
                 log(aBrace.getLineNo(), aBrace.getColumnNo(),
-                    "line.new", "{");
+                    MSG_KEY_LINE_NEW, "{");
             }
         }
     }

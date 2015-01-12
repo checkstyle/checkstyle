@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED;
+
 public class AvoidNestedBlocksCheckTest
         extends BaseCheckTestSupport
 {
@@ -32,10 +34,10 @@ public class AvoidNestedBlocksCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidNestedBlocksCheck.class);
         final String[] expected = {
-            "22:9: Avoid nested blocks.",
-            "44:17: Avoid nested blocks.",
-            "50:17: Avoid nested blocks.",
-            "58:17: Avoid nested blocks.",
+            "22:9: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
+            "44:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
+            "50:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
+            "58:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
         };
         verify(checkConfig, getPath("InputNestedBlocks.java"), expected);
     }
@@ -49,9 +51,9 @@ public class AvoidNestedBlocksCheckTest
         checkConfig.addAttribute("allowInSwitchCase", Boolean.TRUE.toString());
 
         final String[] expected = {
-            "22:9: Avoid nested blocks.",
-            "44:17: Avoid nested blocks.",
-            "58:17: Avoid nested blocks.",
+            "22:9: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
+            "44:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
+            "58:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
         };
         verify(checkConfig, getPath("InputNestedBlocks.java"), expected);
     }

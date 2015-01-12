@@ -24,6 +24,11 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_ALONE;
+import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_BREAK_BEFORE;
+import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_NEW;
+import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_SAME;
+
 public class RightCurlyCheckTest extends BaseCheckTestSupport
 {
     private DefaultConfiguration mCheckConfig;
@@ -38,14 +43,14 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
     public void testDefault() throws Exception
     {
         final String[] expected = {
-            "25:17: '}' should be on the same line.",
-            "28:17: '}' should be on the same line.",
-            "40:13: '}' should be on the same line.",
-            "44:13: '}' should be on the same line.",
-            "93:27: '}' should be alone on a line.",
-            "93:27: '}' should be on a new line.",
-            "93:27: '}' should have line break before.",
-            "97:54: '}' should have line break before.",
+            "25:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}"),
+            "28:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}"),
+            "40:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}"),
+            "44:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}"),
+            "93:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
+            "93:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "}"),
+            "93:27: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}"),
+            "97:54: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}"),
         };
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
@@ -54,14 +59,14 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
     {
         mCheckConfig.addAttribute("option", RightCurlyOption.SAME.toString());
         final String[] expected = {
-            "25:17: '}' should be on the same line.",
-            "28:17: '}' should be on the same line.",
-            "40:13: '}' should be on the same line.",
-            "44:13: '}' should be on the same line.",
-            "93:27: '}' should be alone on a line.",
-            "93:27: '}' should be on a new line.",
-            "93:27: '}' should have line break before.",
-            "97:54: '}' should have line break before.",
+            "25:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}"),
+            "28:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}"),
+            "40:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}"),
+            "44:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}"),
+            "93:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
+            "93:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "}"),
+            "93:27: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}"),
+            "97:54: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}"),
         };
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
@@ -71,8 +76,8 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
     {
         mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         final String[] expected = {
-            "93:27: '}' should be alone on a line.",
-            "93:27: '}' should be on a new line.",
+            "93:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
+            "93:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "}"),
         };
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
@@ -83,9 +88,9 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
         mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         mCheckConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF");
         final String[] expected = {
-            "111:10: '}' should be on a new line.",
-            "122:10: '}' should be on a new line.",
-            "136:10: '}' should be on a new line.",
+            "111:10: " + getCheckMessage(MSG_KEY_LINE_NEW, "}"),
+            "122:10: " + getCheckMessage(MSG_KEY_LINE_NEW, "}"),
+            "136:10: " + getCheckMessage(MSG_KEY_LINE_NEW, "}"),
         };
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
@@ -96,7 +101,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
         mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         mCheckConfig.addAttribute("shouldStartLine", "false");
         final String[] expected = {
-            "93:27: '}' should be alone on a line.",
+            "93:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
         };
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
@@ -107,7 +112,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
         mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         mCheckConfig.addAttribute("shouldStartLine", "false");
         final String[] expected = {
-            "93:27: '}' should be alone on a line.",
+            "93:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
         };
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
@@ -119,9 +124,9 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
         mCheckConfig.addAttribute("tokens", "LITERAL_FOR,"
                 + "LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT");
         final String[] expected = {
-            "35:43: '}' should be alone on a line.",
-            "41:71: '}' should be alone on a line.",
-            "47:25: '}' should be alone on a line.",
+            "35:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
+            "41:71: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
+            "47:25: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
         };
         verify(mCheckConfig, getPath("InputRightCurlyLineBreakBefore.java"), expected);
     }
@@ -130,10 +135,10 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
     public void testForceLineBreakBefore2() throws Exception
     {
         final String[] expected = {
-            "24:33: '}' should have line break before.",
-            "32:44: '}' should have line break before.",
-            "32:63: '}' should have line break before.",
-            "52:56: '}' should have line break before.",
+            "24:33: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}"),
+            "32:44: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}"),
+            "32:63: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}"),
+            "52:56: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}"),
         };
         verify(mCheckConfig, getPath("InputRightCurlyLineBreakBefore.java"), expected);
     }
