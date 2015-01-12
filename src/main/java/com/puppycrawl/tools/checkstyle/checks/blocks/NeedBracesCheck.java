@@ -70,6 +70,12 @@ public class NeedBracesCheck extends Check
     private boolean mAllowSingleLineIf;
 
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_NEED_BRACES = "needBraces";
+
+    /**
      * Setter.
      * @param aAllowSingleLineIf Check's option for skipping single-line if-statements
      */
@@ -105,7 +111,7 @@ public class NeedBracesCheck extends Check
             skipStatement = isSkipIfBlock(aAST);
         }
         if ((slistAST == null) && !isElseIf && !skipStatement) {
-            log(aAST.getLineNo(), "needBraces", aAST.getText());
+            log(aAST.getLineNo(), MSG_KEY_NEED_BRACES, aAST.getText());
         }
     }
 

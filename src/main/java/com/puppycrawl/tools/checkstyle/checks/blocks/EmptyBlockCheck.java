@@ -62,6 +62,18 @@ public class EmptyBlockCheck
     extends AbstractOptionCheck<BlockOption>
 {
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_BLOCK_NO_STMT = "block.noStmt";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_BLOCK_EMPTY = "block.empty";
+
+    /**
      * Creates a new <code>EmptyBlockCheck</code> instance.
      */
     public EmptyBlockCheck()
@@ -106,7 +118,7 @@ public class EmptyBlockCheck
                 if (emptyBlock) {
                     log(leftCurly.getLineNo(),
                         leftCurly.getColumnNo(),
-                        "block.noStmt",
+                            MSG_KEY_BLOCK_NO_STMT,
                         aAST.getText());
                 }
             }
@@ -115,7 +127,7 @@ public class EmptyBlockCheck
             {
                 log(leftCurly.getLineNo(),
                     leftCurly.getColumnNo(),
-                    "block.empty",
+                        MSG_KEY_BLOCK_EMPTY,
                     aAST.getText());
             }
         }

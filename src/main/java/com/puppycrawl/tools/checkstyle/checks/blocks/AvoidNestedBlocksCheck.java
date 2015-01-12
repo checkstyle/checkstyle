@@ -92,6 +92,12 @@ public class AvoidNestedBlocksCheck extends Check
      */
     private boolean mAllowInSwitchCase;
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_BLOCK_NESTED = "block.nested";
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -109,7 +115,7 @@ public class AvoidNestedBlocksCheck extends Check
             {
                 return;
             }
-            log(aAST.getLineNo(), aAST.getColumnNo(), "block.nested");
+            log(aAST.getLineNo(), aAST.getColumnNo(), MSG_KEY_BLOCK_NESTED);
         }
     }
 
