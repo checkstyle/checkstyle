@@ -108,6 +108,13 @@
         feature of <a href="http://github.com/">Github</a>.<br/>
         Please provide wide description of update with detailed explanation of problem
         and how you propose to resolve it.
+	<b>ATTENTION:</b> Please recheck that in your Pull Request there is ONLY your changes and all of them are rebased from most recent HEAD of our master branch.
+      </p>
+
+      <p>
+	<b>ATTENTION:</b> Please provide meaningfull message for commit with reference to github issue or Pull Request for more details.<br/>
+	Ideal format for message is "Brief message ..... , issue(or pull request) #NUMBER".
+	<a href="https://github.com/checkstyle/checkstyle/commit/9303fd9d971eb55cdfd62686ba2f5698edb2c83e">Good example</a>
       </p>
 
       <p>
