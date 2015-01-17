@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import antlr.collections.AST;
 import com.google.common.collect.Sets;
+import com.puppycrawl.tools.checkstyle.api.AnnotationUtility;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
@@ -45,6 +46,16 @@ import org.apache.commons.beanutils.ConversionException;
 public class VisibilityModifierCheck
     extends Check
 {
+    /** whether annotated members are ignored */
+    private boolean mIgnoreAnnotated;
+
+    /** pattern for annotations to ignore if ignoreAnnotated is true */
+    private String mIgnoredAnnotationFormat =
+        "^((org.junit.)?Rule|(com.google.common.annotations.)?VisibleForTesting)$";
+
+    /** regex for annotations to ignore if ignoreAnnotated is true */
+    private Pattern mIgnoredAnnotationPattern;
+
     /** whether protected members are allowed */
     private boolean mProtectedAllowed;
 
@@ -67,6 +78,43 @@ public class VisibilityModifierCheck
     public VisibilityModifierCheck()
     {
         setPublicMemberPattern(mPublicMemberFormat);
+        setIgnoredAnnotationPattern(mIgnoredAnnotationFormat);
+    }
+
+    /** @return whether annotated members are ignored */
+    public boolean isIgnoreAnnotated()
+    {
+        return false;
+    }
+
+    /**
+     * Set whether annotated members are ignored.
+     * @param aIgnoreAnnotated whether annotated members are ignored
+     */
+    public void setIgnoreAnnotated(boolean aIgnoreAnnotated)
+    {
+        mIgnoreAnnotated = aIgnoreAnnotated;
+    }
+
+    /** @return the pattern of annotations to ignore, if enabled */
+    public Pattern getIgnoredAnnotationPatternRegex()
+    {
+        return mIgnoredAnnotationPattern;
+    }
+
+    /**
+     * Set the pattern of annotations to ignore, if enabled.
+     * @param aPattern the pattern of annotations to ignore, if enabled
+     */
+    public void setIgnoredAnnotationPattern(String aPattern)
+    {
+        try {
+            mIgnoredAnnotationPattern = Utils.getPattern(aPattern);
+            mIgnoredAnnotationFormat = aPattern;
+        }
+        catch (final PatternSyntaxException e) {
+            throw new ConversionException("unable to parse " + aPattern, e);
+        }
     }
 
     /** @return whether protected members are allowed */
@@ -145,8 +193,13 @@ public class VisibilityModifierCheck
         final String declaredScope = getVisibilityScope(mods);
         final String variableScope =
              inInterfaceOrAnnotationBlock ? "public" : declaredScope;
+        final DetailAST firstIgnoredAnnotation =
+            AnnotationUtility.containsMatchingAnnotation(aAST, getIgnoredAnnotationPatternRegex());
+        final boolean hasIgnoredAnnotation = mIgnoreAnnotated
+            && firstIgnoredAnnotation != null;
 
-        if (!("private".equals(variableScope)
+        if (!hasIgnoredAnnotation
+            && !("private".equals(variableScope)
                 || inInterfaceOrAnnotationBlock // implicitly static and final
                 || (mods.contains("static") && mods.contains("final"))
                 || ("package".equals(variableScope) && isPackageAllowed())
