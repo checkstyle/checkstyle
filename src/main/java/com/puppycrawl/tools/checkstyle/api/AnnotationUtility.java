@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.regex.Pattern;
 
 /**
  * Contains utility methods designed to work with annotations.
@@ -157,6 +158,61 @@ public final class AnnotationUtility
                 final String aName =
                     FullIdent.createFullIdent(at.getNextSibling()).getText();
                 if (aAnnotation.equals(aName)) {
+                    return child;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Checks whether the AST is annotated with
+     * an annotation containing the passed in regular
+     * expression and return the AST representing that
+     * annotation.
+     *
+     * <p>
+     * This method will not look for imports or package
+     * statements to detect the passed in annotation.
+     * </p>
+     *
+     * <p>
+     * To check if an AST contains a passed in annotation
+     * taking into account fully-qualified names
+     * (ex: java.lang.Override, Override)
+     * this method will need to be called twice. Once for each
+     * name given.
+     * </p>
+     *
+     * @param aAST the current node
+     * @param aAnnotationPattern the annotation pattern to check for
+     * @return the AST representing the first such annotation or null if
+     *         no such annotation was found
+     * @throws NullPointerException if the aAST or
+     * aAnnotationPattern is null
+     */
+    public static DetailAST containsMatchingAnnotation(final DetailAST aAST,
+        Pattern aAnnotationPattern)
+    {
+        if (aAST == null) {
+            throw new NullPointerException("the aAST is null");
+        }
+
+        if (aAnnotationPattern == null) {
+            throw new NullPointerException("the aAnnotationPattern is null");
+        }
+
+        final DetailAST holder = AnnotationUtility.getAnnotationHolder(aAST);
+
+        for (DetailAST child = holder.getFirstChild();
+            child != null; child = child.getNextSibling())
+        {
+            if (child.getType() == TokenTypes.ANNOTATION) {
+                final DetailAST at = child.getFirstChild();
+                final String aName =
+                    FullIdent.createFullIdent(at.getNextSibling()).getText();
+                if (aAnnotationPattern.matcher(aName).matches()) {
                     return child;
                 }
             }

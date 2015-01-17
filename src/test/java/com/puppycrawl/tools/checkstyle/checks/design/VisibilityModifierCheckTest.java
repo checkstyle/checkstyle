@@ -22,6 +22,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
+import java.io.File;
 
 public class VisibilityModifierCheckTest
     extends BaseCheckTestSupport
@@ -88,5 +89,82 @@ public class VisibilityModifierCheckTest
             "46:16: Variable 'aFreddo' must be private and have accessor methods.",
         };
         verify(getChecker(), getPath("InputPublicOnly.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreAnnotationPatternsFalse() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("ignoreAnnotated", "false");
+        final String[] expected = {
+            "15:28: Variable 'publicJUnitRule' must be private and have accessor methods.",
+            "18:28: Variable 'fqPublicJUnitRule' must be private and have accessor methods.",
+
+            "21:19: Variable 'googleCommonsAnnotatedPublic' must be private and have accessor methods.",
+            "24:12: Variable 'googleCommonsAnnotatedPackage' must be private and have accessor methods.",
+            "27:22: Variable 'googleCommonsAnnotatedProtected' must be private and have accessor methods.",
+            "30:19: Variable 'fqGoogleCommonsAnnotatedPublic' must be private and have accessor methods.",
+            "33:12: Variable 'fqGoogleCommonsAnnotatedPackage' must be private and have accessor methods.",
+            "36:22: Variable 'fqGoogleCommonsAnnotatedProtected' must be private and have accessor methods.",
+
+            "39:19: Variable 'customAnnotatedPublic' must be private and have accessor methods.",
+            "42:12: Variable 'customAnnotatedPackage' must be private and have accessor methods.",
+            "45:22: Variable 'customAnnotatedProtected' must be private and have accessor methods.",
+
+            "47:19: Variable 'unannotatedPublic' must be private and have accessor methods.",
+            "48:12: Variable 'unannotatedPackage' must be private and have accessor methods.",
+            "49:22: Variable 'unannotatedProtected' must be private and have accessor methods.",
+        };
+        verify(checkConfig,
+               getPath("design" + File.separator + "AnnotatedVisibility.java"),
+               expected);
+    }
+
+    @Test
+    public void testDefaultAnnotationPatterns() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("ignoreAnnotated", "true");
+        final String[] expected = {
+            "39:19: Variable 'customAnnotatedPublic' must be private and have accessor methods.",
+            "42:12: Variable 'customAnnotatedPackage' must be private and have accessor methods.",
+            "45:22: Variable 'customAnnotatedProtected' must be private and have accessor methods.",
+
+            "47:19: Variable 'unannotatedPublic' must be private and have accessor methods.",
+            "48:12: Variable 'unannotatedPackage' must be private and have accessor methods.",
+            "49:22: Variable 'unannotatedProtected' must be private and have accessor methods.",
+        };
+        verify(checkConfig,
+               getPath("design" + File.separator + "AnnotatedVisibility.java"),
+               expected);
+    }
+
+    @Test
+    public void testCustomAnnotationPatterns() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("ignoreAnnotated", "true");
+        checkConfig.addAttribute("ignoredAnnotationPattern", "^CustomAnnotation$");
+        final String[] expected = {
+            "15:28: Variable 'publicJUnitRule' must be private and have accessor methods.",
+            "18:28: Variable 'fqPublicJUnitRule' must be private and have accessor methods.",
+
+            "21:19: Variable 'googleCommonsAnnotatedPublic' must be private and have accessor methods.",
+            "24:12: Variable 'googleCommonsAnnotatedPackage' must be private and have accessor methods.",
+            "27:22: Variable 'googleCommonsAnnotatedProtected' must be private and have accessor methods.",
+            "30:19: Variable 'fqGoogleCommonsAnnotatedPublic' must be private and have accessor methods.",
+            "33:12: Variable 'fqGoogleCommonsAnnotatedPackage' must be private and have accessor methods.",
+            "36:22: Variable 'fqGoogleCommonsAnnotatedProtected' must be private and have accessor methods.",
+
+            "47:19: Variable 'unannotatedPublic' must be private and have accessor methods.",
+            "48:12: Variable 'unannotatedPackage' must be private and have accessor methods.",
+            "49:22: Variable 'unannotatedProtected' must be private and have accessor methods.",
+        };
+        verify(checkConfig,
+               getPath("design" + File.separator + "AnnotatedVisibility.java"),
+               expected);
     }
 }
