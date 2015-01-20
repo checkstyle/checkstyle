@@ -108,8 +108,7 @@ public class FinalLocalVariableCheck extends Check
                 break;
             }
         case TokenTypes.VARIABLE_DEF:
-            if ((aAST.getParent().getType() != TokenTypes.OBJBLOCK)
-                && (aAST.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE))
+            if (aAST.getParent().getType() != TokenTypes.OBJBLOCK)
             {
                 insertVariable(aAST);
             }
