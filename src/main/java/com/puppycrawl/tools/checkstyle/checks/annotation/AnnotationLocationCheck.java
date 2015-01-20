@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  *
  * <li>
- * allowSamelineParametrizedAnnotation - to allow parameterized annotation
+ * allowSamelineParameterizedAnnotation - to allow parameterized annotation
  * to be located on the same line as target element. Default value is false.
  * </li>
  * </ul>
@@ -70,7 +70,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
  *    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
  *    value=&quot;true&quot;/&gt;
- *    &lt;property name=&quot;allowSamelineParametrizedAnnotation&quot; value=&quot;false&quot;/&gt;
+ *    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;
+ *    /&gt;
  * &lt;/module&gt;
  * </pre>
  * <br/>
@@ -87,7 +88,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
  *    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
  *    value=&quot;true&quot;/&gt;
- *    &lt;property name=&quot;allowSamelineParametrizedAnnotation&quot; value=&quot;true&quot;/&gt;
+ *    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;
+ *    /&gt;
  * &lt;/module&gt;
  * </pre>
  * <br/>
@@ -104,7 +106,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
  *    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
  *    value=&quot;true&quot;/&gt;
- *    &lt;property name=&quot;allowSamelineParametrizedAnnotation&quot; value=&quot;false&quot;/&gt;
+ *    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;
+ *    /&gt;
  * &lt;/module&gt;
  * </pre>
  *
@@ -132,7 +135,7 @@ public class AnnotationLocationCheck extends Check
     /**
      * Some javadoc.
      */
-    private boolean allowSamelineParametrizedAnnotation;
+    private boolean allowSamelineParameterizedAnnotation;
 
     /**
      * Some javadoc.
@@ -154,7 +157,7 @@ public class AnnotationLocationCheck extends Check
      */
     public final void setAllowSamelineParametrizedAnnotation(boolean allow)
     {
-        allowSamelineParametrizedAnnotation = allow;
+        allowSamelineParameterizedAnnotation = allow;
     }
 
     /**
@@ -221,7 +224,7 @@ public class AnnotationLocationCheck extends Check
      */
     private boolean isCorrectLocation(DetailAST annotation, boolean hasParams)
     {
-        final boolean allowingCondition = hasParams ? allowSamelineParametrizedAnnotation
+        final boolean allowingCondition = hasParams ? allowSamelineParameterizedAnnotation
             : allowSamelineSingleParameterlessAnnotation;
         return allowingCondition && !hasNodeBefore(annotation)
             || !allowingCondition && !hasNodeBeside(annotation)
