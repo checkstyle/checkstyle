@@ -18,6 +18,7 @@
   <allow pkg="org.apache.commons.beanutils"/>
   <allow pkg="org.apache.commons.logging"/>
   <allow pkg="org.xml.sax"/>
+  <allow pkg="com.puppycrawl.tools.checkstyle"/>
 
   <!-- The local ones -->
   <allow class="java.security.MessageDigest" local-only="true"/>
@@ -33,6 +34,8 @@
     <allow class="com.puppycrawl.tools.checkstyle.grammars.CommentListener"
            local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes"
+           local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.Utils"
            local-only="true"/>
   </subpackage>
 

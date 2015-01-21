@@ -48,6 +48,8 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.StringTokenizer;
 
+import static com.puppycrawl.tools.checkstyle.Utils.fileExtensionMatches;
+
 /**
  * This class provides the functionality to check a set of files.
  * @author Oliver Burn
@@ -89,6 +91,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher
 
     /** The audit event filters */
     private final FilterSet filters = new FilterSet();
+
+    /** the file extensions that are accepted */
+    private String[] fileExtensions = {};
 
     /**
      * The severity level of any violations found by submodules.
@@ -253,6 +258,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher
 
         // Process each file
         for (final File f : files) {
+            if (!fileExtensionMatches(f, fileExtensions)) {
+                continue;
+            }
             final String fileName = f.getAbsolutePath();
             fireFileStarted(fileName);
             final SortedSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
@@ -521,6 +529,31 @@ public class Checker extends AutomaticBean implements MessageDispatcher
                 for (final AuditListener listener : listeners) {
                     listener.addError(evt);
                 }
+            }
+        }
+    }
+
+    /**
+     * Sets the file extensions that identify the files that pass the
+     * filter of this FileSetCheck.
+     * @param extensions the set of file extensions. A missing
+     * initial '.' character of an extension is automatically added.
+     */
+    public final void setFileExtensions(String[] extensions)
+    {
+        if (extensions == null) {
+            fileExtensions = null;
+            return;
+        }
+
+        fileExtensions = new String[extensions.length];
+        for (int i = 0; i < extensions.length; i++) {
+            final String extension = extensions[i];
+            if (extension.startsWith(".")) {
+                fileExtensions[i] = extension;
+            }
+            else {
+                fileExtensions[i] = "." + extension;
             }
         }
     }

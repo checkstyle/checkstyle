@@ -16,6 +16,8 @@
 
   <property name="severity" value="error"/>
 
+  <property name="fileExtensions" value="java, properties, xml"/>
+
   <module name="SuppressionFilter">
     <property name="file" value="${checkstyle.suppressions.file}"/>
   </module>

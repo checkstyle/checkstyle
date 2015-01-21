@@ -55,6 +55,8 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
 
+import static com.puppycrawl.tools.checkstyle.Utils.fileExtensionMatches;
+
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
  * checks at each each node.
@@ -116,6 +118,9 @@ public final class TreeWalker
     /** logger for debug purpose */
     private static final Log LOG =
         LogFactory.getLog("com.puppycrawl.tools.checkstyle.TreeWalker");
+
+    /** the file extensions that are accepted */
+    private String[] fileExtensions;
 
     /**
      * Creates a new <code>TreeWalker</code> instance.
@@ -193,7 +198,9 @@ public final class TreeWalker
         // check if already checked and passed the file
         final String fileName = file.getPath();
         final long timestamp = file.lastModified();
-        if (cache.alreadyChecked(fileName, timestamp)) {
+        if (cache.alreadyChecked(fileName, timestamp)
+                 || !fileExtensionMatches(file, fileExtensions))
+        {
             return;
         }
 
@@ -757,4 +764,5 @@ public final class TreeWalker
         }
         return new SimpleEntry<Integer, Integer>(lines, columns);
     }
+
 }

@@ -22,6 +22,8 @@ import java.io.File;
 import java.util.List;
 import java.util.TreeSet;
 
+import com.puppycrawl.tools.checkstyle.Utils;
+
 /**
  * Provides common functionality for many FileSetChecks.
  *
@@ -73,7 +75,7 @@ public abstract class AbstractFileSetCheck
     {
         getMessageCollector().reset();
         // Process only what interested in
-        if (fileExtensionMatches(file)) {
+        if (Utils.fileExtensionMatches(file, fileExtensions)) {
             processFiltered(file, lines);
         }
         return getMessageCollector().getMessages();
@@ -174,39 +176,5 @@ public abstract class AbstractFileSetCheck
                 .getMessages();
         getMessageCollector().reset();
         getMessageDispatcher().fireErrors(fileName, errors);
-    }
-
-    /**
-     * Returns whether the file extension matches what we are meant to
-     * process.
-     * @param file the file to be checked.
-     * @return whether there is a match.
-     */
-    private boolean fileExtensionMatches(File file)
-    {
-        if ((null == fileExtensions) || (fileExtensions.length == 0)) {
-            return true;
-        }
-
-        // normalize extensions so all of them have a leading dot
-        final String[] withDotExtensions = new String[fileExtensions.length];
-        for (int i = 0; i < fileExtensions.length; i++) {
-            final String extension = fileExtensions[i];
-            if (extension.startsWith(".")) {
-                withDotExtensions[i] = extension;
-            }
-            else {
-                withDotExtensions[i] = "." + extension;
-            }
-        }
-
-        final String fileName = file.getName();
-        for (final String fileExtension : withDotExtensions) {
-            if (fileName.endsWith(fileExtension)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }

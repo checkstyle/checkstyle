@@ -26,6 +26,8 @@ import static org.junit.Assert.assertTrue;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeSet;
 import org.junit.Test;
 
@@ -244,5 +246,20 @@ public class CheckerTest
         assertTrue("Checker.fireErrors() doesn't call filter", f2.wasCalled());
         assertFalse("Checker.fireErrors() does call removed filter", f.wasCalled());
 
+    }
+
+    @Test
+    public void testFileExtensions() throws Exception
+    {
+        final Checker c = new Checker();
+        final List<File> files = new ArrayList<>();
+        File f = new File("file.pdf");
+        files.add(f);
+        f = new File("file.java");
+        files.add(f);
+        final String[] fileExtensions = {"java", "xml", "properties"};
+        c.setFileExtensions(fileExtensions);
+        final int counter = c.process(files);
+        assertEquals(counter, 1); // comparing to 1 as there is only one legal file in input
     }
 }
