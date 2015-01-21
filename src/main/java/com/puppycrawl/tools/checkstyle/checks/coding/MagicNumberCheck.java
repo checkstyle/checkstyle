@@ -67,7 +67,7 @@ public class MagicNumberCheck extends Check
     }
 
     /** the numbers to ignore in the check, sorted */
-    private double[] mIgnoreNumbers = {-1, 0, 1, 2};
+    private double[] ignoreNumbers = {-1, 0, 1, 2};
     /** Whether to ignore magic numbers in a hash code method. */
     private boolean ignoreHashCodeMethod;
     /** Whether to ignore magic numbers in annotation. */
@@ -240,7 +240,7 @@ public class MagicNumberCheck extends Check
         if (parent.getType() == TokenTypes.UNARY_MINUS) {
             value = -1 * value;
         }
-        return (Arrays.binarySearch(mIgnoreNumbers, value) >= 0);
+        return (Arrays.binarySearch(ignoreNumbers, value) >= 0);
     }
 
     /**
@@ -251,12 +251,12 @@ public class MagicNumberCheck extends Check
     public void setIgnoreNumbers(double[] list)
     {
         if ((list == null) || (list.length == 0)) {
-            mIgnoreNumbers = new double[0];
+            ignoreNumbers = new double[0];
         }
         else {
-            mIgnoreNumbers = new double[list.length];
-            System.arraycopy(list, 0, mIgnoreNumbers, 0, list.length);
-            Arrays.sort(mIgnoreNumbers);
+            ignoreNumbers = new double[list.length];
+            System.arraycopy(list, 0, ignoreNumbers, 0, list.length);
+            Arrays.sort(ignoreNumbers);
         }
     }
 

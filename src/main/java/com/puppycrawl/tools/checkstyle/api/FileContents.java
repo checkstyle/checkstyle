@@ -58,14 +58,14 @@ public final class FileContents implements CommentListener
      */
     private final Map<Integer, TextBlock> javadocComments = Maps.newHashMap();
     /** map of the C++ comments indexed on the first line of the comment. */
-    private final Map<Integer, TextBlock> cPlusPlusComments =
+    private final Map<Integer, TextBlock> cppComments =
         Maps.newHashMap();
 
     /**
      * map of the C comments indexed on the first line of the comment to a list
      * of comments on that line
      */
-    private final Map<Integer, List<TextBlock>> cComments = Maps.newHashMap();
+    private final Map<Integer, List<TextBlock>> clangComments = Maps.newHashMap();
 
     /**
      * Creates a new <code>FileContents</code> instance.
@@ -119,7 +119,7 @@ public final class FileContents implements CommentListener
         final String[] txt = new String[] {line.substring(startColNo)};
         final Comment comment = new Comment(txt, startColNo, startLineNo,
                 line.length() - 1);
-        cPlusPlusComments.put(startLineNo, comment);
+        cppComments.put(startLineNo, comment);
     }
 
     /**
@@ -129,7 +129,7 @@ public final class FileContents implements CommentListener
      */
     public ImmutableMap<Integer, TextBlock> getCppComments()
     {
-        return ImmutableMap.copyOf(cPlusPlusComments);
+        return ImmutableMap.copyOf(cppComments);
     }
 
     /**
@@ -148,14 +148,14 @@ public final class FileContents implements CommentListener
                 endColNo);
 
         // save the comment
-        if (cComments.containsKey(startLineNo)) {
-            final List<TextBlock> entries = cComments.get(startLineNo);
+        if (clangComments.containsKey(startLineNo)) {
+            final List<TextBlock> entries = clangComments.get(startLineNo);
             entries.add(comment);
         }
         else {
             final List<TextBlock> entries = Lists.newArrayList();
             entries.add(comment);
-            cComments.put(startLineNo, entries);
+            clangComments.put(startLineNo, entries);
         }
 
         // Remember if possible Javadoc comment
@@ -172,7 +172,7 @@ public final class FileContents implements CommentListener
      */
     public ImmutableMap<Integer, List<TextBlock>> getCComments()
     {
-        return ImmutableMap.copyOf(cComments);
+        return ImmutableMap.copyOf(clangComments);
     }
 
     /**
@@ -301,7 +301,7 @@ public final class FileContents implements CommentListener
             int startColNo, int endLineNo, int endColNo)
     {
         // Check C comments (all comments should be checked)
-        final Collection<List<TextBlock>> values = cComments.values();
+        final Collection<List<TextBlock>> values = clangComments.values();
         for (final List<TextBlock> row : values) {
             for (final TextBlock comment : row) {
                 if (comment.intersects(startLineNo, startColNo, endLineNo,
@@ -316,7 +316,7 @@ public final class FileContents implements CommentListener
         for (int lineNumber = startLineNo; lineNumber <= endLineNo;
              lineNumber++)
         {
-            final TextBlock comment = cPlusPlusComments.get(lineNumber);
+            final TextBlock comment = cppComments.get(lineNumber);
             if ((comment != null)
                     && comment.intersects(startLineNo, startColNo,
                             endLineNo, endColNo))
