@@ -22,7 +22,7 @@ public class GeneratedJava14LexerTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         final String[] expected = {
-            "8:9: Name 'é' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "7:9: Name 'ÃЯ' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
         verify(checkConfig, getPath("grammars/InputGrammar.java"), expected);
     }
