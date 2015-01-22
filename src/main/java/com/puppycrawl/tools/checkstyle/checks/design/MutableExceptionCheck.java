@@ -79,14 +79,14 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.CLASS_DEF:
-            visitClassDef(ast);
-            break;
-        case TokenTypes.VARIABLE_DEF:
-            visitVariableDef(ast);
-            break;
-        default:
-            throw new IllegalStateException(ast.toString());
+            case TokenTypes.CLASS_DEF:
+                visitClassDef(ast);
+                break;
+            case TokenTypes.VARIABLE_DEF:
+                visitVariableDef(ast);
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
@@ -94,11 +94,11 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     public void leaveToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.CLASS_DEF:
-            leaveClassDef();
-            break;
-        default:
-            // Do nothing
+            case TokenTypes.CLASS_DEF:
+                leaveClassDef();
+                break;
+            default:
+                // Do nothing
         }
     }
 

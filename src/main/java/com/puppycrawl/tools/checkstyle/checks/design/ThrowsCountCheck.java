@@ -90,11 +90,11 @@ public final class ThrowsCountCheck extends Check
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.LITERAL_THROWS:
-            visitLiteralThrows(ast);
-            break;
-        default:
-            throw new IllegalStateException(ast.toString());
+            case TokenTypes.LITERAL_THROWS:
+                visitLiteralThrows(ast);
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
