@@ -164,27 +164,27 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
             if (warning.getType() == TokenTypes.EXPR) {
                 final DetailAST fChild = warning.getFirstChild();
                 switch (fChild.getType()) {
-                //typical case
-                case TokenTypes.STRING_LITERAL:
-                    final String warningText =
-                        this.removeQuotes(warning.getFirstChild().getText());
-                    this.logMatch(warning.getLineNo(),
-                        warning.getColumnNo(), warningText);
-                    break;
-                //conditional case
-                //ex: @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
-                case TokenTypes.QUESTION:
-                    this.walkConditional(fChild);
-                    break;
-                //param in constant case
-                //ex: public static final String UNCHECKED = "unchecked";
-                //@SuppressWarnings(UNCHECKED) or @SuppressWarnings(SomeClass.UNCHECKED)
-                case TokenTypes.IDENT:
-                case TokenTypes.DOT:
-                    break;
-                default:
-                    throw new IllegalStateException("Should never get here, type: "
-                        + fChild.getType() + " text: " + fChild.getText());
+                    //typical case
+                    case TokenTypes.STRING_LITERAL:
+                        final String warningText =
+                            this.removeQuotes(warning.getFirstChild().getText());
+                        this.logMatch(warning.getLineNo(),
+                                warning.getColumnNo(), warningText);
+                        break;
+                        //conditional case
+                        //ex: @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
+                    case TokenTypes.QUESTION:
+                        this.walkConditional(fChild);
+                        break;
+                        //param in constant case
+                        //ex: public static final String UNCHECKED = "unchecked";
+                        //@SuppressWarnings(UNCHECKED) or @SuppressWarnings(SomeClass.UNCHECKED)
+                    case TokenTypes.IDENT:
+                    case TokenTypes.DOT:
+                        break;
+                    default:
+                        throw new IllegalStateException("Should never get here, type: "
+                                + fChild.getType() + " text: " + fChild.getText());
                 }
             }
             warning = warning.getNextSibling();
