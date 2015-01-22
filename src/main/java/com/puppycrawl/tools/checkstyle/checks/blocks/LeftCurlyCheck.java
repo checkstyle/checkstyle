@@ -154,53 +154,53 @@ public class LeftCurlyCheck
         final DetailAST brace;
 
         switch (ast.getType()) {
-        case TokenTypes.CTOR_DEF :
-        case TokenTypes.METHOD_DEF :
-            startToken = skipAnnotationOnlyLines(ast);
-            brace = ast.findFirstToken(TokenTypes.SLIST);
-            break;
+            case TokenTypes.CTOR_DEF :
+            case TokenTypes.METHOD_DEF :
+                startToken = skipAnnotationOnlyLines(ast);
+                brace = ast.findFirstToken(TokenTypes.SLIST);
+                break;
 
-        case TokenTypes.INTERFACE_DEF :
-        case TokenTypes.CLASS_DEF :
-        case TokenTypes.ANNOTATION_DEF :
-        case TokenTypes.ENUM_DEF :
-        case TokenTypes.ENUM_CONSTANT_DEF :
-            startToken = skipAnnotationOnlyLines(ast);
-            final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
-            brace = (objBlock == null)
-                ? null
-                : objBlock.getFirstChild();
-            break;
+            case TokenTypes.INTERFACE_DEF :
+            case TokenTypes.CLASS_DEF :
+            case TokenTypes.ANNOTATION_DEF :
+            case TokenTypes.ENUM_DEF :
+            case TokenTypes.ENUM_CONSTANT_DEF :
+                startToken = skipAnnotationOnlyLines(ast);
+                final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
+                brace = (objBlock == null)
+                    ? null
+                    : objBlock.getFirstChild();
+                break;
 
-        case TokenTypes.LITERAL_WHILE:
-        case TokenTypes.LITERAL_CATCH:
-        case TokenTypes.LITERAL_SYNCHRONIZED:
-        case TokenTypes.LITERAL_FOR:
-        case TokenTypes.LITERAL_TRY:
-        case TokenTypes.LITERAL_FINALLY:
-        case TokenTypes.LITERAL_DO:
-        case TokenTypes.LITERAL_IF :
-            startToken = ast;
-            brace = ast.findFirstToken(TokenTypes.SLIST);
-            break;
+            case TokenTypes.LITERAL_WHILE:
+            case TokenTypes.LITERAL_CATCH:
+            case TokenTypes.LITERAL_SYNCHRONIZED:
+            case TokenTypes.LITERAL_FOR:
+            case TokenTypes.LITERAL_TRY:
+            case TokenTypes.LITERAL_FINALLY:
+            case TokenTypes.LITERAL_DO:
+            case TokenTypes.LITERAL_IF :
+                startToken = ast;
+                brace = ast.findFirstToken(TokenTypes.SLIST);
+                break;
 
-        case TokenTypes.LITERAL_ELSE :
-            startToken = ast;
-            final DetailAST candidate = ast.getFirstChild();
-            brace =
-                (candidate.getType() == TokenTypes.SLIST)
-                ? candidate
-                : null; // silently ignore
-            break;
+            case TokenTypes.LITERAL_ELSE :
+                startToken = ast;
+                final DetailAST candidate = ast.getFirstChild();
+                brace =
+                    (candidate.getType() == TokenTypes.SLIST)
+                    ? candidate
+                    : null; // silently ignore
+                break;
 
-        case TokenTypes.LITERAL_SWITCH :
-            startToken = ast;
-            brace = ast.findFirstToken(TokenTypes.LCURLY);
-            break;
+            case TokenTypes.LITERAL_SWITCH :
+                startToken = ast;
+                brace = ast.findFirstToken(TokenTypes.LCURLY);
+                break;
 
-        default :
-            startToken = null;
-            brace = null;
+            default :
+                startToken = null;
+                brace = null;
         }
 
         if ((brace != null) && (startToken != null)) {
