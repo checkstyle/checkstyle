@@ -124,26 +124,26 @@ public abstract class AbstractClassCouplingCheck extends Check
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.PACKAGE_DEF:
-            visitPackageDef(ast);
-            break;
-        case TokenTypes.CLASS_DEF:
-        case TokenTypes.INTERFACE_DEF:
-        case TokenTypes.ANNOTATION_DEF:
-        case TokenTypes.ENUM_DEF:
-            visitClassDef(ast);
-            break;
-        case TokenTypes.TYPE:
-            context.visitType(ast);
-            break;
-        case TokenTypes.LITERAL_NEW:
-            context.visitLiteralNew(ast);
-            break;
-        case TokenTypes.LITERAL_THROWS:
-            context.visitLiteralThrows(ast);
-            break;
-        default:
-            throw new IllegalStateException(ast.toString());
+            case TokenTypes.PACKAGE_DEF:
+                visitPackageDef(ast);
+                break;
+            case TokenTypes.CLASS_DEF:
+            case TokenTypes.INTERFACE_DEF:
+            case TokenTypes.ANNOTATION_DEF:
+            case TokenTypes.ENUM_DEF:
+                visitClassDef(ast);
+                break;
+            case TokenTypes.TYPE:
+                context.visitType(ast);
+                break;
+            case TokenTypes.LITERAL_NEW:
+                context.visitLiteralNew(ast);
+                break;
+            case TokenTypes.LITERAL_THROWS:
+                context.visitLiteralThrows(ast);
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
@@ -151,14 +151,14 @@ public abstract class AbstractClassCouplingCheck extends Check
     public void leaveToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.CLASS_DEF:
-        case TokenTypes.INTERFACE_DEF:
-        case TokenTypes.ANNOTATION_DEF:
-        case TokenTypes.ENUM_DEF:
-            leaveClassDef();
-            break;
-        default:
-            // Do nothing
+            case TokenTypes.CLASS_DEF:
+            case TokenTypes.INTERFACE_DEF:
+            case TokenTypes.ANNOTATION_DEF:
+            case TokenTypes.ENUM_DEF:
+                leaveClassDef();
+                break;
+            default:
+                // Do nothing
         }
     }
 

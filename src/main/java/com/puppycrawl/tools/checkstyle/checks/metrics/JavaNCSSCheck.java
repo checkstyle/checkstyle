@@ -306,21 +306,21 @@ public class JavaNCSSCheck extends Check
         //or direct child of label,if,else,do,while,for
         final int parentType = ast.getParent().getType();
         switch (parentType) {
-        case TokenTypes.SLIST :
-        case TokenTypes.LABELED_STAT :
-        case TokenTypes.LITERAL_FOR :
-        case TokenTypes.LITERAL_DO :
-        case TokenTypes.LITERAL_WHILE :
-        case TokenTypes.LITERAL_IF :
-        case TokenTypes.LITERAL_ELSE :
-            //don't count if or loop conditions
-            final DetailAST prevSibling = ast.getPreviousSibling();
-            countable = (prevSibling == null)
-                || (TokenTypes.LPAREN != prevSibling.getType());
-            break;
-        default :
-            countable = false;
-            break;
+            case TokenTypes.SLIST :
+            case TokenTypes.LABELED_STAT :
+            case TokenTypes.LITERAL_FOR :
+            case TokenTypes.LITERAL_DO :
+            case TokenTypes.LITERAL_WHILE :
+            case TokenTypes.LITERAL_IF :
+            case TokenTypes.LITERAL_ELSE :
+                //don't count if or loop conditions
+                final DetailAST prevSibling = ast.getPreviousSibling();
+                countable = (prevSibling == null)
+                    || (TokenTypes.LPAREN != prevSibling.getType());
+                break;
+            default :
+                countable = false;
+                break;
         }
         return countable;
     }

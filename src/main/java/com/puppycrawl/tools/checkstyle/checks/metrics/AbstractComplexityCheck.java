@@ -110,14 +110,14 @@ public abstract class AbstractComplexityCheck
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.CTOR_DEF:
-        case TokenTypes.METHOD_DEF:
-        case TokenTypes.INSTANCE_INIT:
-        case TokenTypes.STATIC_INIT:
-            visitMethodDef();
-            break;
-        default:
-            visitTokenHook(ast);
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+            case TokenTypes.INSTANCE_INIT:
+            case TokenTypes.STATIC_INIT:
+                visitMethodDef();
+                break;
+            default:
+                visitTokenHook(ast);
         }
     }
 
@@ -125,14 +125,14 @@ public abstract class AbstractComplexityCheck
     public void leaveToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.CTOR_DEF:
-        case TokenTypes.METHOD_DEF:
-        case TokenTypes.INSTANCE_INIT:
-        case TokenTypes.STATIC_INIT:
-            leaveMethodDef(ast);
-            break;
-        default:
-            leaveTokenHook(ast);
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+            case TokenTypes.INSTANCE_INIT:
+            case TokenTypes.STATIC_INIT:
+                leaveMethodDef(ast);
+                break;
+            default:
+                leaveTokenHook(ast);
         }
     }
 

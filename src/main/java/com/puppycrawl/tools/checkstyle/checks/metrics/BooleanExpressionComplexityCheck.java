@@ -96,22 +96,22 @@ public final class BooleanExpressionComplexityCheck extends Check
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.CTOR_DEF:
-        case TokenTypes.METHOD_DEF:
-            visitMethodDef(ast);
-            break;
-        case TokenTypes.EXPR:
-            visitExpr();
-            break;
-        case TokenTypes.LAND:
-        case TokenTypes.BAND:
-        case TokenTypes.LOR:
-        case TokenTypes.BOR:
-        case TokenTypes.BXOR:
-            context.visitBooleanOperator();
-            break;
-        default:
-            throw new IllegalStateException(ast.toString());
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+                visitMethodDef(ast);
+                break;
+            case TokenTypes.EXPR:
+                visitExpr();
+                break;
+            case TokenTypes.LAND:
+            case TokenTypes.BAND:
+            case TokenTypes.LOR:
+            case TokenTypes.BOR:
+            case TokenTypes.BXOR:
+                context.visitBooleanOperator();
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
@@ -119,15 +119,15 @@ public final class BooleanExpressionComplexityCheck extends Check
     public void leaveToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.CTOR_DEF:
-        case TokenTypes.METHOD_DEF:
-            leaveMethodDef();
-            break;
-        case TokenTypes.EXPR:
-            leaveExpr(ast);
-            break;
-        default:
-            // Do nothing
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+                leaveMethodDef();
+                break;
+            case TokenTypes.EXPR:
+                leaveExpr(ast);
+                break;
+            default:
+                // Do nothing
         }
     }
 
