@@ -230,37 +230,37 @@ public class ImportOrderCheck
         }
 
         switch (getAbstractOption()) {
-        case TOP:
-            if (!isStatic && lastImportStatic) {
-                lastGroup = Integer.MIN_VALUE;
-                lastImport = "";
-            }
-            // no break;
+            case TOP:
+                if (!isStatic && lastImportStatic) {
+                    lastGroup = Integer.MIN_VALUE;
+                    lastImport = "";
+                }
+                // no break;
 
-        case ABOVE:
-            // previous non-static but current is static
-            doVisitToken(ident, isStatic, (!lastImportStatic && isStatic));
-            break;
+            case ABOVE:
+                // previous non-static but current is static
+                doVisitToken(ident, isStatic, (!lastImportStatic && isStatic));
+                break;
 
-        case INFLOW:
-            // previous argument is useless here
-            doVisitToken(ident, isStatic, true);
-            break;
+            case INFLOW:
+                // previous argument is useless here
+                doVisitToken(ident, isStatic, true);
+                break;
 
-        case BOTTOM:
-            if (isStatic && !lastImportStatic) {
-                lastGroup = Integer.MIN_VALUE;
-                lastImport = "";
-            }
-            // no break;
+            case BOTTOM:
+                if (isStatic && !lastImportStatic) {
+                    lastGroup = Integer.MIN_VALUE;
+                    lastImport = "";
+                }
+                // no break;
 
-        case UNDER:
-            // previous static but current is non-static
-            doVisitToken(ident, isStatic, (lastImportStatic && !isStatic));
-            break;
+            case UNDER:
+                // previous static but current is non-static
+                doVisitToken(ident, isStatic, (lastImportStatic && !isStatic));
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
 
         lastImportLine = ast.findFirstToken(TokenTypes.SEMI).getLineNo();
