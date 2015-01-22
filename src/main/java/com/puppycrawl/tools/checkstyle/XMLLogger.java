@@ -174,32 +174,32 @@ public class XMLLogger
         for (int i = 0; i < value.length(); i++) {
             final char c = value.charAt(i);
             switch (c) {
-            case '<':
-                sb.append("&lt;");
-                break;
-            case '>':
-                sb.append("&gt;");
-                break;
-            case '\'':
-                sb.append("&apos;");
-                break;
-            case '\"':
-                sb.append("&quot;");
-                break;
-            case '&':
-                final int nextSemi = value.indexOf(";", i);
-                if ((nextSemi < 0)
-                    || !isReference(value.substring(i, nextSemi + 1)))
-                {
-                    sb.append("&amp;");
-                }
-                else {
-                    sb.append('&');
-                }
-                break;
-            default:
-                sb.append(c);
-                break;
+                case '<':
+                    sb.append("&lt;");
+                    break;
+                case '>':
+                    sb.append("&gt;");
+                    break;
+                case '\'':
+                    sb.append("&apos;");
+                    break;
+                case '\"':
+                    sb.append("&quot;");
+                    break;
+                case '&':
+                    final int nextSemi = value.indexOf(";", i);
+                    if ((nextSemi < 0)
+                        || !isReference(value.substring(i, nextSemi + 1)))
+                    {
+                        sb.append("&amp;");
+                    }
+                    else {
+                        sb.append('&');
+                    }
+                    break;
+                default:
+                    sb.append(c);
+                    break;
             }
         }
         return sb.toString();
