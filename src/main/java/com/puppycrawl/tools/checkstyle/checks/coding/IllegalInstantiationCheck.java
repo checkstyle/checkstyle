@@ -119,20 +119,20 @@ public class IllegalInstantiationCheck
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.LITERAL_NEW:
-            processLiteralNew(ast);
-            break;
-        case TokenTypes.PACKAGE_DEF:
-            processPackageDef(ast);
-            break;
-        case TokenTypes.IMPORT:
-            processImport(ast);
-            break;
-        case TokenTypes.CLASS_DEF:
-            processClassDef(ast);
-            break;
-        default:
-            throw new IllegalArgumentException("Unknown type " + ast);
+            case TokenTypes.LITERAL_NEW:
+                processLiteralNew(ast);
+                break;
+            case TokenTypes.PACKAGE_DEF:
+                processPackageDef(ast);
+                break;
+            case TokenTypes.IMPORT:
+                processImport(ast);
+                break;
+            case TokenTypes.CLASS_DEF:
+                processClassDef(ast);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown type " + ast);
         }
     }
 

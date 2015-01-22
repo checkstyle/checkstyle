@@ -91,58 +91,58 @@ public class FinalLocalVariableCheck extends Check
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.OBJBLOCK:
-        case TokenTypes.SLIST:
-        case TokenTypes.LITERAL_FOR:
-        case TokenTypes.METHOD_DEF:
-        case TokenTypes.CTOR_DEF:
-        case TokenTypes.STATIC_INIT:
-        case TokenTypes.INSTANCE_INIT:
-            scopeStack.push(new HashMap<String, DetailAST>());
-            break;
-
-        case TokenTypes.PARAMETER_DEF:
-            if (ScopeUtils.inInterfaceBlock(ast)
-                || inAbstractOrNativeMethod(ast))
-            {
+            case TokenTypes.OBJBLOCK:
+            case TokenTypes.SLIST:
+            case TokenTypes.LITERAL_FOR:
+            case TokenTypes.METHOD_DEF:
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.STATIC_INIT:
+            case TokenTypes.INSTANCE_INIT:
+                scopeStack.push(new HashMap<String, DetailAST>());
                 break;
-            }
-        case TokenTypes.VARIABLE_DEF:
-            if ((ast.getParent().getType() != TokenTypes.OBJBLOCK)
-                && (ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE))
-            {
-                insertVariable(ast);
-            }
-            break;
 
-        case TokenTypes.IDENT:
-            final int parentType = ast.getParent().getType();
-            if ((TokenTypes.POST_DEC        == parentType)
-                || (TokenTypes.DEC          == parentType)
-                || (TokenTypes.POST_INC     == parentType)
-                || (TokenTypes.INC          == parentType)
-                || (TokenTypes.ASSIGN       == parentType)
-                || (TokenTypes.PLUS_ASSIGN  == parentType)
-                || (TokenTypes.MINUS_ASSIGN == parentType)
-                || (TokenTypes.DIV_ASSIGN   == parentType)
-                || (TokenTypes.STAR_ASSIGN  == parentType)
-                || (TokenTypes.MOD_ASSIGN   == parentType)
-                || (TokenTypes.SR_ASSIGN    == parentType)
-                || (TokenTypes.BSR_ASSIGN   == parentType)
-                || (TokenTypes.SL_ASSIGN    == parentType)
-                || (TokenTypes.BXOR_ASSIGN  == parentType)
-                || (TokenTypes.BOR_ASSIGN   == parentType)
-                || (TokenTypes.BAND_ASSIGN  == parentType))
-            {
-                // TODO: is there better way to check is ast
-                // in left part of assignment?
-                if (ast.getParent().getFirstChild() == ast) {
-                    removeVariable(ast);
+            case TokenTypes.PARAMETER_DEF:
+                if (ScopeUtils.inInterfaceBlock(ast)
+                    || inAbstractOrNativeMethod(ast))
+                {
+                    break;
                 }
-            }
-            break;
+            case TokenTypes.VARIABLE_DEF:
+                if ((ast.getParent().getType() != TokenTypes.OBJBLOCK)
+                    && (ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE))
+                {
+                    insertVariable(ast);
+                }
+                break;
 
-        default:
+            case TokenTypes.IDENT:
+                final int parentType = ast.getParent().getType();
+                if ((TokenTypes.POST_DEC        == parentType)
+                    || (TokenTypes.DEC          == parentType)
+                    || (TokenTypes.POST_INC     == parentType)
+                    || (TokenTypes.INC          == parentType)
+                    || (TokenTypes.ASSIGN       == parentType)
+                    || (TokenTypes.PLUS_ASSIGN  == parentType)
+                    || (TokenTypes.MINUS_ASSIGN == parentType)
+                    || (TokenTypes.DIV_ASSIGN   == parentType)
+                    || (TokenTypes.STAR_ASSIGN  == parentType)
+                    || (TokenTypes.MOD_ASSIGN   == parentType)
+                    || (TokenTypes.SR_ASSIGN    == parentType)
+                    || (TokenTypes.BSR_ASSIGN   == parentType)
+                    || (TokenTypes.SL_ASSIGN    == parentType)
+                    || (TokenTypes.BXOR_ASSIGN  == parentType)
+                    || (TokenTypes.BOR_ASSIGN   == parentType)
+                    || (TokenTypes.BAND_ASSIGN  == parentType))
+                {
+                    // TODO: is there better way to check is ast
+                    // in left part of assignment?
+                    if (ast.getParent().getFirstChild() == ast) {
+                        removeVariable(ast);
+                    }
+                }
+                break;
+
+            default:
         }
     }
 
@@ -200,21 +200,21 @@ public class FinalLocalVariableCheck extends Check
         super.leaveToken(ast);
 
         switch (ast.getType()) {
-        case TokenTypes.OBJBLOCK:
-        case TokenTypes.SLIST:
-        case TokenTypes.LITERAL_FOR:
-        case TokenTypes.CTOR_DEF:
-        case TokenTypes.STATIC_INIT:
-        case TokenTypes.INSTANCE_INIT:
-        case TokenTypes.METHOD_DEF:
-            final Map<String, DetailAST> state = scopeStack.pop();
-            for (DetailAST var : state.values()) {
-                log(var.getLineNo(), var.getColumnNo(), "final.variable", var
+            case TokenTypes.OBJBLOCK:
+            case TokenTypes.SLIST:
+            case TokenTypes.LITERAL_FOR:
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.STATIC_INIT:
+            case TokenTypes.INSTANCE_INIT:
+            case TokenTypes.METHOD_DEF:
+                final Map<String, DetailAST> state = scopeStack.pop();
+                for (DetailAST var : state.values()) {
+                    log(var.getLineNo(), var.getColumnNo(), "final.variable", var
                         .getText());
-            }
-            break;
+                }
+                break;
 
-        default:
+            default:
         }
     }
 }

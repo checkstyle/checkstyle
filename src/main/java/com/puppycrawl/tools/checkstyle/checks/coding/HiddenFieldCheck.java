@@ -226,14 +226,14 @@ public class HiddenFieldCheck
         DetailAST parent = ast.getParent();
         while (parent != null) {
             switch (parent.getType()) {
-            case TokenTypes.STATIC_INIT:
-                return true;
-            case TokenTypes.METHOD_DEF:
-                final DetailAST mods =
-                    parent.findFirstToken(TokenTypes.MODIFIERS);
-                return mods.branchContains(TokenTypes.LITERAL_STATIC);
-            default:
-                parent = parent.getParent();
+                case TokenTypes.STATIC_INIT:
+                    return true;
+                case TokenTypes.METHOD_DEF:
+                    final DetailAST mods =
+                        parent.findFirstToken(TokenTypes.MODIFIERS);
+                    return mods.branchContains(TokenTypes.LITERAL_STATIC);
+                default:
+                    parent = parent.getParent();
             }
         }
         return false;

@@ -336,44 +336,44 @@ public class VariableDeclarationUsageDistanceCheck extends Check
 
             switch (currentSiblingAst.getType()) {
 
-            case TokenTypes.EXPR:
-                final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
+                case TokenTypes.EXPR:
+                    final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
 
-                if (methodCallAst != null
+                    if (methodCallAst != null
                         && methodCallAst.getType() == TokenTypes.METHOD_CALL)
-                {
-                    final String instanceName =
+                    {
+                        final String instanceName =
                             getInstanceName(methodCallAst);
-                    // method is called without instance
-                    if (instanceName.isEmpty()) {
-                        result = false;
-                    }
-                    // differs from previous instance
-                    else if (!instanceName.equals(initInstanceName)) {
-                        if (!initInstanceName.isEmpty()) {
+                        // method is called without instance
+                        if (instanceName.isEmpty()) {
                             result = false;
                         }
-                        else {
-                            initInstanceName = instanceName;
+                        // differs from previous instance
+                        else if (!instanceName.equals(initInstanceName)) {
+                            if (!initInstanceName.isEmpty()) {
+                                result = false;
+                            }
+                            else {
+                                initInstanceName = instanceName;
+                            }
                         }
                     }
-                }
-                else { // is not method call
-                    result = false;
-                }
-                break;
+                    else { // is not method call
+                        result = false;
+                    }
+                    break;
 
-            case TokenTypes.VARIABLE_DEF:
-                final String currentVariableName = currentSiblingAst.
+                case TokenTypes.VARIABLE_DEF:
+                    final String currentVariableName = currentSiblingAst.
                         findFirstToken(TokenTypes.IDENT).getText();
-                isUsedVariableDeclarationFound = variableName.equals(currentVariableName);
-                break;
+                    isUsedVariableDeclarationFound = variableName.equals(currentVariableName);
+                    break;
 
-            case TokenTypes.SEMI:
-                break;
+                case TokenTypes.SEMI:
+                    break;
 
-            default:
-                result = false;
+                default:
+                    result = false;
             }
 
             currentSiblingAst = currentSiblingAst.getPreviousSibling();
@@ -408,32 +408,32 @@ public class VariableDeclarationUsageDistanceCheck extends Check
                 if (isChild(currentAst, variableIdentAst)) {
 
                     switch (currentAst.getType()) {
-                    case TokenTypes.VARIABLE_DEF:
-                        dist++;
-                        break;
-                    case TokenTypes.SLIST:
-                        dist = 0;
-                        break;
-                    case TokenTypes.LITERAL_FOR:
-                    case TokenTypes.LITERAL_WHILE:
-                    case TokenTypes.LITERAL_DO:
-                    case TokenTypes.LITERAL_IF:
-                    case TokenTypes.LITERAL_SWITCH:
-                        if (isVariableInOperatorExpr(currentAst, variableIdentAst)) {
+                        case TokenTypes.VARIABLE_DEF:
                             dist++;
-                        }
-                        else { // variable usage is in inner scope
-                            // reset counters, because we can't determine distance
+                            break;
+                        case TokenTypes.SLIST:
                             dist = 0;
-                        }
-                        break;
-                    default:
-                        if (currentAst.branchContains(TokenTypes.SLIST)) {
-                            dist = 0;
-                        }
-                        else {
-                            dist++;
-                        }
+                            break;
+                        case TokenTypes.LITERAL_FOR:
+                        case TokenTypes.LITERAL_WHILE:
+                        case TokenTypes.LITERAL_DO:
+                        case TokenTypes.LITERAL_IF:
+                        case TokenTypes.LITERAL_SWITCH:
+                            if (isVariableInOperatorExpr(currentAst, variableIdentAst)) {
+                                dist++;
+                            }
+                            else { // variable usage is in inner scope
+                                // reset counters, because we can't determine distance
+                                dist = 0;
+                            }
+                            break;
+                        default:
+                            if (currentAst.branchContains(TokenTypes.SLIST)) {
+                                dist = 0;
+                            }
+                            else {
+                                dist++;
+                            }
                     }
                     variableUsageAst = currentAst;
                     firstUsageFound = true;
@@ -497,30 +497,31 @@ public class VariableDeclarationUsageDistanceCheck extends Check
                         .get(0);
                 DetailAST exprWithVariableUsage = null;
                 switch (blockWithVariableUsage.getType()) {
-                case TokenTypes.VARIABLE_DEF:
-                case TokenTypes.EXPR:
-                    dist++;
-                    break;
-                case TokenTypes.LITERAL_FOR:
-                case TokenTypes.LITERAL_WHILE:
-                case TokenTypes.LITERAL_DO:
-                    exprWithVariableUsage = getFirstNodeInsideForWhileDoWhileBlocks(
+                    case TokenTypes.VARIABLE_DEF:
+                    case TokenTypes.EXPR:
+                        dist++;
+                        break;
+                    case TokenTypes.LITERAL_FOR:
+                    case TokenTypes.LITERAL_WHILE:
+                    case TokenTypes.LITERAL_DO:
+                        exprWithVariableUsage = getFirstNodeInsideForWhileDoWhileBlocks(
                             blockWithVariableUsage, variable);
-                    break;
-                case TokenTypes.LITERAL_IF:
-                    exprWithVariableUsage = getFirstNodeInsideIfBlock(
+                        break;
+                    case TokenTypes.LITERAL_IF:
+                        exprWithVariableUsage = getFirstNodeInsideIfBlock(
                             blockWithVariableUsage, variable);
-                    break;
-                case TokenTypes.LITERAL_SWITCH:
-                    exprWithVariableUsage = getFirstNodeInsideSwitchBlock(
+                        break;
+                    case TokenTypes.LITERAL_SWITCH:
+                        exprWithVariableUsage = getFirstNodeInsideSwitchBlock(
                             blockWithVariableUsage, variable);
-                    break;
-                case TokenTypes.LITERAL_TRY:
-                    exprWithVariableUsage =
-                        getFirstNodeInsideTryCatchFinallyBlocks(blockWithVariableUsage, variable);
-                    break;
-                default:
-                    exprWithVariableUsage = blockWithVariableUsage.getFirstChild();
+                        break;
+                    case TokenTypes.LITERAL_TRY:
+                        exprWithVariableUsage =
+                            getFirstNodeInsideTryCatchFinallyBlocks(blockWithVariableUsage,
+                                variable);
+                        break;
+                    default:
+                        exprWithVariableUsage = blockWithVariableUsage.getFirstChild();
                 }
                 currentScopeAst = exprWithVariableUsage;
                 if (exprWithVariableUsage != null) {
@@ -808,48 +809,48 @@ public class VariableDeclarationUsageDistanceCheck extends Check
             // So, check variable usage in these declarations.
             if (!isVarInOperatorDeclr) {
                 switch (operator.getType()) {
-                case TokenTypes.LITERAL_IF:
-                    final DetailAST elseBlock = operator.getLastChild();
+                    case TokenTypes.LITERAL_IF:
+                        final DetailAST elseBlock = operator.getLastChild();
 
-                    if (elseBlock.getType() == TokenTypes.LITERAL_ELSE) {
-                        // Get IF followed by ELSE
-                        final DetailAST firstNodeInsideElseBlock = elseBlock
+                        if (elseBlock.getType() == TokenTypes.LITERAL_ELSE) {
+                            // Get IF followed by ELSE
+                            final DetailAST firstNodeInsideElseBlock = elseBlock
                                 .getFirstChild();
 
-                        if (firstNodeInsideElseBlock.getType()
+                            if (firstNodeInsideElseBlock.getType()
                                 == TokenTypes.LITERAL_IF)
-                        {
-                            isVarInOperatorDeclr |=
+                            {
+                                isVarInOperatorDeclr |=
                                     isVariableInOperatorExpr(
-                                            firstNodeInsideElseBlock,
+                                        firstNodeInsideElseBlock,
                                             variable);
+                            }
                         }
-                    }
-                    break;
+                        break;
 
-                case TokenTypes.LITERAL_SWITCH:
-                    DetailAST currentCaseBlock = operator
+                    case TokenTypes.LITERAL_SWITCH:
+                        DetailAST currentCaseBlock = operator
                             .findFirstToken(TokenTypes.CASE_GROUP);
 
-                    while (currentCaseBlock != null
+                        while (currentCaseBlock != null
                             && currentCaseBlock.getType()
                             == TokenTypes.CASE_GROUP)
-                    {
-                        final DetailAST firstNodeInsideCaseBlock =
+                        {
+                            final DetailAST firstNodeInsideCaseBlock =
                                 currentCaseBlock.getFirstChild();
 
-                        if (isChild(firstNodeInsideCaseBlock,
+                            if (isChild(firstNodeInsideCaseBlock,
                                 variable))
-                        {
-                            isVarInOperatorDeclr = true;
-                            break;
+                            {
+                                isVarInOperatorDeclr = true;
+                                break;
+                            }
+                            currentCaseBlock = currentCaseBlock.getNextSibling();
                         }
-                        currentCaseBlock = currentCaseBlock.getNextSibling();
-                    }
-                    break;
+                        break;
 
-                default:
-                    ;// no code
+                    default:
+                        ;// no code
                 }
             }
         }

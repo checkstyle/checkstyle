@@ -111,85 +111,85 @@ public class DeclarationOrderCheck extends Check
         ScopeState state;
 
         switch (ast.getType()) {
-        case TokenTypes.OBJBLOCK:
-            scopeStates.push(new ScopeState());
-            break;
+            case TokenTypes.OBJBLOCK:
+                scopeStates.push(new ScopeState());
+                break;
 
-        case TokenTypes.CTOR_DEF:
-            if (parentType != TokenTypes.OBJBLOCK) {
-                return;
-            }
-
-            state = scopeStates.peek();
-            if (state.scopeState > STATE_CTOR_DEF) {
-                if (!ignoreConstructors) {
-                    log(ast, "declaration.order.constructor");
+            case TokenTypes.CTOR_DEF:
+                if (parentType != TokenTypes.OBJBLOCK) {
+                    return;
                 }
-            }
-            else {
-                state.scopeState = STATE_CTOR_DEF;
-            }
-            break;
 
-        case TokenTypes.METHOD_DEF:
-            state = scopeStates.peek();
-            if (parentType != TokenTypes.OBJBLOCK) {
-                return;
-            }
-
-            if (state.scopeState > STATE_METHOD_DEF) {
-                if (!ignoreMethods) {
-                    log(ast, "declaration.order.method");
-                }
-            }
-            else {
-                state.scopeState = STATE_METHOD_DEF;
-            }
-            break;
-
-        case TokenTypes.MODIFIERS:
-            if ((parentType != TokenTypes.VARIABLE_DEF)
-                || (ast.getParent().getParent().getType()
-                    != TokenTypes.OBJBLOCK))
-            {
-                return;
-            }
-
-            state = scopeStates.peek();
-            if (ast.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
-                if (state.scopeState > STATE_STATIC_VARIABLE_DEF) {
-                    if (!ignoreModifiers
-                        || state.scopeState > STATE_INSTANCE_VARIABLE_DEF)
-                    {
-                        log(ast, "declaration.order.static");
+                state = scopeStates.peek();
+                if (state.scopeState > STATE_CTOR_DEF) {
+                    if (!ignoreConstructors) {
+                        log(ast, "declaration.order.constructor");
                     }
                 }
                 else {
-                    state.scopeState = STATE_STATIC_VARIABLE_DEF;
+                    state.scopeState = STATE_CTOR_DEF;
                 }
-            }
-            else {
-                if (state.scopeState > STATE_INSTANCE_VARIABLE_DEF) {
-                    log(ast, "declaration.order.instance");
-                }
-                else if (state.scopeState == STATE_STATIC_VARIABLE_DEF) {
-                    state.declarationAccess = Scope.PUBLIC;
-                    state.scopeState = STATE_INSTANCE_VARIABLE_DEF;
-                }
-            }
+                break;
 
-            final Scope access = ScopeUtils.getScopeFromMods(ast);
-            if (state.declarationAccess.compareTo(access) > 0) {
-                if (!ignoreModifiers) {
-                    log(ast, "declaration.order.access");
+            case TokenTypes.METHOD_DEF:
+                state = scopeStates.peek();
+                if (parentType != TokenTypes.OBJBLOCK) {
+                    return;
                 }
-            }
-            else {
-                state.declarationAccess = access;
-            }
-            break;
 
-        default:
+                if (state.scopeState > STATE_METHOD_DEF) {
+                    if (!ignoreMethods) {
+                        log(ast, "declaration.order.method");
+                    }
+                }
+                else {
+                    state.scopeState = STATE_METHOD_DEF;
+                }
+                break;
+
+            case TokenTypes.MODIFIERS:
+                if ((parentType != TokenTypes.VARIABLE_DEF)
+                    || (ast.getParent().getParent().getType()
+                        != TokenTypes.OBJBLOCK))
+                {
+                    return;
+                }
+
+                state = scopeStates.peek();
+                if (ast.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
+                    if (state.scopeState > STATE_STATIC_VARIABLE_DEF) {
+                        if (!ignoreModifiers
+                            || state.scopeState > STATE_INSTANCE_VARIABLE_DEF)
+                        {
+                            log(ast, "declaration.order.static");
+                        }
+                    }
+                    else {
+                        state.scopeState = STATE_STATIC_VARIABLE_DEF;
+                    }
+                }
+                else {
+                    if (state.scopeState > STATE_INSTANCE_VARIABLE_DEF) {
+                        log(ast, "declaration.order.instance");
+                    }
+                    else if (state.scopeState == STATE_STATIC_VARIABLE_DEF) {
+                        state.declarationAccess = Scope.PUBLIC;
+                        state.scopeState = STATE_INSTANCE_VARIABLE_DEF;
+                    }
+                }
+
+                final Scope access = ScopeUtils.getScopeFromMods(ast);
+                if (state.declarationAccess.compareTo(access) > 0) {
+                    if (!ignoreModifiers) {
+                        log(ast, "declaration.order.access");
+                    }
+                }
+                else {
+                    state.declarationAccess = access;
+                }
+                break;
+
+            default:
         }
     }
 
@@ -197,11 +197,11 @@ public class DeclarationOrderCheck extends Check
     public void leaveToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.OBJBLOCK:
-            scopeStates.pop();
-            break;
+            case TokenTypes.OBJBLOCK:
+                scopeStates.pop();
+                break;
 
-        default:
+            default:
         }
     }
 

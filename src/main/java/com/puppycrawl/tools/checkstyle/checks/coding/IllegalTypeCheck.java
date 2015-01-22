@@ -141,20 +141,20 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.METHOD_DEF:
-            visitMethodDef(ast);
-            break;
-        case TokenTypes.VARIABLE_DEF:
-            visitVariableDef(ast);
-            break;
-        case TokenTypes.PARAMETER_DEF:
-            visitParameterDef(ast);
-            break;
-        case TokenTypes.IMPORT:
-            visitImport(ast);
-            break;
-        default:
-            throw new IllegalStateException(ast.toString());
+            case TokenTypes.METHOD_DEF:
+                visitMethodDef(ast);
+                break;
+            case TokenTypes.VARIABLE_DEF:
+                visitVariableDef(ast);
+                break;
+            case TokenTypes.PARAMETER_DEF:
+                visitParameterDef(ast);
+                break;
+            case TokenTypes.IMPORT:
+                visitImport(ast);
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 

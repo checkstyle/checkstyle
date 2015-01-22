@@ -103,15 +103,15 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.CTOR_DEF:
-        case TokenTypes.METHOD_DEF:
-            visitMethodDef(ast);
-            break;
-        case TokenTypes.LITERAL_RETURN:
-            context.visitLiteralReturn();
-            break;
-        default:
-            throw new IllegalStateException(ast.toString());
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+                visitMethodDef(ast);
+                break;
+            case TokenTypes.LITERAL_RETURN:
+                context.visitLiteralReturn();
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
@@ -119,15 +119,15 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     public void leaveToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.CTOR_DEF:
-        case TokenTypes.METHOD_DEF:
-            leaveMethodDef(ast);
-            break;
-        case TokenTypes.LITERAL_RETURN:
-            // Do nothing
-            break;
-        default:
-            throw new IllegalStateException(ast.toString());
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+                leaveMethodDef(ast);
+                break;
+            case TokenTypes.LITERAL_RETURN:
+                // Do nothing
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 

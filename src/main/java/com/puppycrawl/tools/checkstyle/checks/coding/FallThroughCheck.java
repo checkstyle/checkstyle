@@ -157,27 +157,27 @@ public class FallThroughCheck extends Check
                                  boolean useContinue)
     {
         switch (ast.getType()) {
-        case TokenTypes.LITERAL_RETURN:
-        case TokenTypes.LITERAL_THROW:
-            return true;
-        case TokenTypes.LITERAL_BREAK:
-            return useBreak;
-        case TokenTypes.LITERAL_CONTINUE:
-            return useContinue;
-        case TokenTypes.SLIST:
-            return checkSlist(ast, useBreak, useContinue);
-        case TokenTypes.LITERAL_IF:
-            return checkIf(ast, useBreak, useContinue);
-        case TokenTypes.LITERAL_FOR:
-        case TokenTypes.LITERAL_WHILE:
-        case TokenTypes.LITERAL_DO:
-            return checkLoop(ast);
-        case TokenTypes.LITERAL_TRY:
-            return checkTry(ast, useBreak, useContinue);
-        case TokenTypes.LITERAL_SWITCH:
-            return checkSwitch(ast, useContinue);
-        default:
-            return false;
+            case TokenTypes.LITERAL_RETURN:
+            case TokenTypes.LITERAL_THROW:
+                return true;
+            case TokenTypes.LITERAL_BREAK:
+                return useBreak;
+            case TokenTypes.LITERAL_CONTINUE:
+                return useContinue;
+            case TokenTypes.SLIST:
+                return checkSlist(ast, useBreak, useContinue);
+            case TokenTypes.LITERAL_IF:
+                return checkIf(ast, useBreak, useContinue);
+            case TokenTypes.LITERAL_FOR:
+            case TokenTypes.LITERAL_WHILE:
+            case TokenTypes.LITERAL_DO:
+                return checkLoop(ast);
+            case TokenTypes.LITERAL_TRY:
+                return checkTry(ast, useBreak, useContinue);
+            case TokenTypes.LITERAL_SWITCH:
+                return checkSwitch(ast, useContinue);
+            default:
+                return false;
         }
     }
 

@@ -60,17 +60,17 @@ public final class OneStatementPerLineCheck extends Check
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.EXPR:
-            visitExpr(ast);
-            break;
-        case TokenTypes.SEMI:
-            visitSemi(ast);
-            break;
-        case TokenTypes.FOR_INIT:
-            inForHeader = true;
-            break;
-        default:
-            break;
+            case TokenTypes.EXPR:
+                visitExpr(ast);
+                break;
+            case TokenTypes.SEMI:
+                visitSemi(ast);
+                break;
+            case TokenTypes.FOR_INIT:
+                inForHeader = true;
+                break;
+            default:
+                break;
         }
     }
 
@@ -78,14 +78,14 @@ public final class OneStatementPerLineCheck extends Check
     public void leaveToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.FOR_ITERATOR:
-            inForHeader = false;
-            break;
-        case TokenTypes.EXPR:
-            exprDepth--;
-            break;
-        default:
-            break;
+            case TokenTypes.FOR_ITERATOR:
+                inForHeader = false;
+                break;
+            case TokenTypes.EXPR:
+                exprDepth--;
+                break;
+            default:
+                break;
         }
     }
 

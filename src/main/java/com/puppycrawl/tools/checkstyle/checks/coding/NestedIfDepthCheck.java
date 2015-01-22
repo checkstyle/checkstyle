@@ -48,11 +48,11 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.LITERAL_IF:
-            visitLiteralIf(ast);
-            break;
-        default:
-            throw new IllegalStateException(ast.toString());
+            case TokenTypes.LITERAL_IF:
+                visitLiteralIf(ast);
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
@@ -60,11 +60,11 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
     public void leaveToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.LITERAL_IF:
-            leaveLiteralIf(ast);
-            break;
-        default:
-            throw new IllegalStateException(ast.toString());
+            case TokenTypes.LITERAL_IF:
+                leaveLiteralIf(ast);
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 

@@ -107,17 +107,17 @@ public class EqualsHashCodeCheck
         final AST modifiers = firstChild.getFirstChild();
         final AST type = modifiers.getNextSibling();
         switch (type.getFirstChild().getType()) {
-        case TokenTypes.LITERAL_BOOLEAN:
-        case TokenTypes.LITERAL_BYTE:
-        case TokenTypes.LITERAL_CHAR:
-        case TokenTypes.LITERAL_DOUBLE:
-        case TokenTypes.LITERAL_FLOAT:
-        case TokenTypes.LITERAL_INT:
-        case TokenTypes.LITERAL_LONG:
-        case TokenTypes.LITERAL_SHORT:
-            return false;
-        default:
-            return true;
+            case TokenTypes.LITERAL_BOOLEAN:
+            case TokenTypes.LITERAL_BYTE:
+            case TokenTypes.LITERAL_CHAR:
+            case TokenTypes.LITERAL_DOUBLE:
+            case TokenTypes.LITERAL_FLOAT:
+            case TokenTypes.LITERAL_INT:
+            case TokenTypes.LITERAL_LONG:
+            case TokenTypes.LITERAL_SHORT:
+                return false;
+            default:
+                return true;
         }
     }
 
