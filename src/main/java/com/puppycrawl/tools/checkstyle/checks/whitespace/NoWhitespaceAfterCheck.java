@@ -132,14 +132,14 @@ public class NoWhitespaceAfterCheck extends Check
     {
         DetailAST preceded = arrayOrTypeCast;
         switch (arrayOrTypeCast.getType()) {
-        case TokenTypes.TYPECAST:
-            preceded = arrayOrTypeCast.findFirstToken(TokenTypes.RPAREN);
-            break;
-        case TokenTypes.ARRAY_DECLARATOR:
-            preceded = getArrayTypeOrIdentifier(arrayOrTypeCast);
-            break;
-        default:
-            throw new IllegalStateException(arrayOrTypeCast.toString());
+            case TokenTypes.TYPECAST:
+                preceded = arrayOrTypeCast.findFirstToken(TokenTypes.RPAREN);
+                break;
+            case TokenTypes.ARRAY_DECLARATOR:
+                preceded = getArrayTypeOrIdentifier(arrayOrTypeCast);
+                break;
+            default:
+                throw new IllegalStateException(arrayOrTypeCast.toString());
         }
         return preceded;
     }

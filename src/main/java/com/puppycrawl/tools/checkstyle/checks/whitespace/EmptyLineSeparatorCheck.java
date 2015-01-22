@@ -149,34 +149,36 @@ public class EmptyLineSeparatorCheck extends Check
         if (nextToken != null && nextToken.getType() != TokenTypes.RCURLY) {
             final int astType = ast.getType();
             switch (astType) {
-            case TokenTypes.VARIABLE_DEF:
-                if (isTypeField(ast) && !hasEmptyLineAfter(ast)) {
-                    if (allowNoEmptyLineBetweenFields
+                case TokenTypes.VARIABLE_DEF:
+                    if (isTypeField(ast) && !hasEmptyLineAfter(ast)) {
+                        if (allowNoEmptyLineBetweenFields
                             && nextToken.getType() != TokenTypes.VARIABLE_DEF)
+                        {
+                            log(nextToken.getLineNo(), "empty.line.separator",
+                                 nextToken.getText());
+                        }
+                        else if (!allowNoEmptyLineBetweenFields) {
+                            log(nextToken.getLineNo(), "empty.line.separator",
+                                 nextToken.getText());
+                        }
+                    }
+                    break;
+                case TokenTypes.IMPORT:
+                    if (astType != nextToken.getType() && !hasEmptyLineAfter(ast)
+                        || (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)
+                            && ast.getPreviousSibling() == null))
                     {
                         log(nextToken.getLineNo(), "empty.line.separator", nextToken.getText());
                     }
-                    else if (!allowNoEmptyLineBetweenFields) {
+                    break;
+                case TokenTypes.PACKAGE_DEF:
+                    if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
+                        log(ast.getLineNo(), "empty.line.separator", ast.getText());
+                    }
+                default:
+                    if (!hasEmptyLineAfter(ast)) {
                         log(nextToken.getLineNo(), "empty.line.separator", nextToken.getText());
                     }
-                }
-                break;
-            case TokenTypes.IMPORT:
-                if (astType != nextToken.getType() && !hasEmptyLineAfter(ast)
-                    || (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)
-                            && ast.getPreviousSibling() == null))
-                {
-                    log(nextToken.getLineNo(), "empty.line.separator", nextToken.getText());
-                }
-                break;
-            case TokenTypes.PACKAGE_DEF:
-                if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
-                    log(ast.getLineNo(), "empty.line.separator", ast.getText());
-                }
-            default:
-                if (!hasEmptyLineAfter(ast)) {
-                    log(nextToken.getLineNo(), "empty.line.separator", nextToken.getText());
-                }
             }
         }
     }
