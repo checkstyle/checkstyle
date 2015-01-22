@@ -114,17 +114,17 @@ public class UncommentedMainCheck
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.PACKAGE_DEF:
-            visitPackageDef(ast);
-            break;
-        case TokenTypes.CLASS_DEF:
-            visitClassDef(ast);
-            break;
-        case TokenTypes.METHOD_DEF:
-            visitMethodDef(ast);
-            break;
-        default:
-            throw new IllegalStateException(ast.toString());
+            case TokenTypes.PACKAGE_DEF:
+                visitPackageDef(ast);
+                break;
+            case TokenTypes.CLASS_DEF:
+                visitClassDef(ast);
+                break;
+            case TokenTypes.METHOD_DEF:
+                visitMethodDef(ast);
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 

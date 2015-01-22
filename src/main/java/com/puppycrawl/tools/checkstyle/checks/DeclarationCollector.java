@@ -76,17 +76,17 @@ public abstract class DeclarationCollector extends Check
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.CLASS_DEF :
-        case TokenTypes.INTERFACE_DEF :
-        case TokenTypes.ENUM_DEF :
-        case TokenTypes.ANNOTATION_DEF :
-        case TokenTypes.SLIST :
-        case TokenTypes.METHOD_DEF :
-        case TokenTypes.CTOR_DEF :
-            this.current = this.frames.get(ast);
-            break;
-        default :
-            // do nothing
+            case TokenTypes.CLASS_DEF :
+            case TokenTypes.INTERFACE_DEF :
+            case TokenTypes.ENUM_DEF :
+            case TokenTypes.ANNOTATION_DEF :
+            case TokenTypes.SLIST :
+            case TokenTypes.METHOD_DEF :
+            case TokenTypes.CTOR_DEF :
+                this.current = this.frames.get(ast);
+                break;
+            default :
+                // do nothing
         }
     } // end visitToken
 
@@ -101,61 +101,61 @@ public abstract class DeclarationCollector extends Check
     {
         final LexicalFrame frame = frameStack.peek();
         switch (ast.getType()) {
-        case TokenTypes.VARIABLE_DEF :  {
-            final String name =
-                    ast.findFirstToken(TokenTypes.IDENT).getText();
-            if (frame instanceof ClassFrame) {
-                final DetailAST mods =
-                    ast.findFirstToken(TokenTypes.MODIFIERS);
-                if (ScopeUtils.inInterfaceBlock(ast)
-                        || mods.branchContains(TokenTypes.LITERAL_STATIC))
-                {
-                    ((ClassFrame) frame).addStaticMember(name);
+            case TokenTypes.VARIABLE_DEF :  {
+                final String name =
+                        ast.findFirstToken(TokenTypes.IDENT).getText();
+                if (frame instanceof ClassFrame) {
+                    final DetailAST mods =
+                            ast.findFirstToken(TokenTypes.MODIFIERS);
+                    if (ScopeUtils.inInterfaceBlock(ast)
+                            || mods.branchContains(TokenTypes.LITERAL_STATIC))
+                    {
+                        ((ClassFrame) frame).addStaticMember(name);
+                    }
+                    else {
+                        ((ClassFrame) frame).addInstanceMember(name);
+                    }
                 }
                 else {
-                    ((ClassFrame) frame).addInstanceMember(name);
+                    frame.addName(name);
+                }
+                break;
+            }
+            case TokenTypes.PARAMETER_DEF : {
+                final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
+                frame.addName(nameAST.getText());
+                break;
+            }
+            case TokenTypes.CLASS_DEF :
+            case TokenTypes.INTERFACE_DEF :
+            case TokenTypes.ENUM_DEF :
+            case TokenTypes.ANNOTATION_DEF : {
+                final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
+                frame.addName(nameAST.getText());
+                frameStack.addFirst(new ClassFrame(frame));
+                break;
+            }
+            case TokenTypes.SLIST :
+                frameStack.addFirst(new BlockFrame(frame));
+                break;
+            case TokenTypes.METHOD_DEF : {
+                final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
+                if (frame instanceof ClassFrame) {
+                    final DetailAST mods =
+                            ast.findFirstToken(TokenTypes.MODIFIERS);
+                    if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
+                        ((ClassFrame) frame).addStaticMethod(name);
+                    }
+                    else {
+                        ((ClassFrame) frame).addInstanceMethod(name);
+                    }
                 }
             }
-            else {
-                frame.addName(name);
-            }
-            break;
-        }
-        case TokenTypes.PARAMETER_DEF : {
-            final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
-            frame.addName(nameAST.getText());
-            break;
-        }
-        case TokenTypes.CLASS_DEF :
-        case TokenTypes.INTERFACE_DEF :
-        case TokenTypes.ENUM_DEF :
-        case TokenTypes.ANNOTATION_DEF : {
-            final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
-            frame.addName(nameAST.getText());
-            frameStack.addFirst(new ClassFrame(frame));
-            break;
-        }
-        case TokenTypes.SLIST :
-            frameStack.addFirst(new BlockFrame(frame));
-            break;
-        case TokenTypes.METHOD_DEF : {
-            final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
-            if (frame instanceof ClassFrame) {
-                final DetailAST mods =
-                    ast.findFirstToken(TokenTypes.MODIFIERS);
-                if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
-                    ((ClassFrame) frame).addStaticMethod(name);
-                }
-                else {
-                    ((ClassFrame) frame).addInstanceMethod(name);
-                }
-            }
-        }
-        case TokenTypes.CTOR_DEF :
-            frameStack.addFirst(new MethodFrame(frame));
-            break;
-        default:
-            // do nothing
+            case TokenTypes.CTOR_DEF :
+                frameStack.addFirst(new MethodFrame(frame));
+                break;
+            default:
+                // do nothing
         }
     }
 
@@ -170,17 +170,17 @@ public abstract class DeclarationCollector extends Check
         DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.CLASS_DEF :
-        case TokenTypes.INTERFACE_DEF :
-        case TokenTypes.ENUM_DEF :
-        case TokenTypes.ANNOTATION_DEF :
-        case TokenTypes.SLIST :
-        case TokenTypes.METHOD_DEF :
-        case TokenTypes.CTOR_DEF :
-            this.frames.put(ast, frameStack.poll());
-            break;
-        default :
-            // do nothing
+            case TokenTypes.CLASS_DEF :
+            case TokenTypes.INTERFACE_DEF :
+            case TokenTypes.ENUM_DEF :
+            case TokenTypes.ANNOTATION_DEF :
+            case TokenTypes.SLIST :
+            case TokenTypes.METHOD_DEF :
+            case TokenTypes.CTOR_DEF :
+                this.frames.put(ast, frameStack.poll());
+                break;
+            default :
+                // do nothing
         }
     }
 

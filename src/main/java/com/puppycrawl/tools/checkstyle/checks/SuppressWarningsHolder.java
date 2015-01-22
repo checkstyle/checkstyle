@@ -256,23 +256,23 @@ public class SuppressWarningsHolder
                 if (nextAST != null) {
                     final int nextType = nextAST.getType();
                     switch (nextType) {
-                    case TokenTypes.EXPR:
-                    case TokenTypes.ANNOTATION_ARRAY_INIT:
-                        values = getAnnotationValues(nextAST);
-                        break;
+                        case TokenTypes.EXPR:
+                        case TokenTypes.ANNOTATION_ARRAY_INIT:
+                            values = getAnnotationValues(nextAST);
+                            break;
 
-                    case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
-                        // expected children: IDENT ASSIGN ( EXPR |
-                        // ANNOTATION_ARRAY_INIT )
-                        values = getAnnotationValues(getNthChild(nextAST, 2));
-                        break;
+                        case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
+                            // expected children: IDENT ASSIGN ( EXPR |
+                            // ANNOTATION_ARRAY_INIT )
+                            values = getAnnotationValues(getNthChild(nextAST, 2));
+                            break;
 
-                    case TokenTypes.RPAREN:
-                        // no value present (not valid Java)
-                        break;
+                        case TokenTypes.RPAREN:
+                            // no value present (not valid Java)
+                            break;
 
-                    default:
-                        // unknown annotation value type (new syntax?)
+                        default:
+                            // unknown annotation value type (new syntax?)
                     }
                 }
             }
@@ -286,32 +286,32 @@ public class SuppressWarningsHolder
             DetailAST parentAST = ast.getParent();
             if (parentAST != null) {
                 switch (parentAST.getType()) {
-                case TokenTypes.MODIFIERS:
-                case TokenTypes.ANNOTATIONS:
-                    parentAST = parentAST.getParent();
-                    if (parentAST != null) {
-                        switch (parentAST.getType()) {
-                        case TokenTypes.ANNOTATION_DEF:
-                        case TokenTypes.PACKAGE_DEF:
-                        case TokenTypes.CLASS_DEF:
-                        case TokenTypes.INTERFACE_DEF:
-                        case TokenTypes.ENUM_DEF:
-                        case TokenTypes.ENUM_CONSTANT_DEF:
-                        case TokenTypes.CTOR_DEF:
-                        case TokenTypes.METHOD_DEF:
-                        case TokenTypes.PARAMETER_DEF:
-                        case TokenTypes.VARIABLE_DEF:
-                            targetAST = parentAST;
-                            break;
+                    case TokenTypes.MODIFIERS:
+                    case TokenTypes.ANNOTATIONS:
+                        parentAST = parentAST.getParent();
+                        if (parentAST != null) {
+                            switch (parentAST.getType()) {
+                                case TokenTypes.ANNOTATION_DEF:
+                                case TokenTypes.PACKAGE_DEF:
+                                case TokenTypes.CLASS_DEF:
+                                case TokenTypes.INTERFACE_DEF:
+                                case TokenTypes.ENUM_DEF:
+                                case TokenTypes.ENUM_CONSTANT_DEF:
+                                case TokenTypes.CTOR_DEF:
+                                case TokenTypes.METHOD_DEF:
+                                case TokenTypes.PARAMETER_DEF:
+                                case TokenTypes.VARIABLE_DEF:
+                                    targetAST = parentAST;
+                                    break;
 
-                        default:
-                            // unexpected target type
+                                default:
+                                    // unexpected target type
+                            }
                         }
-                    }
-                    break;
+                        break;
 
-                default:
-                    // unexpected container type
+                    default:
+                        // unexpected container type
                 }
             }
             if (targetAST == null) {
@@ -396,15 +396,15 @@ public class SuppressWarningsHolder
         if (ast != null && ast.getType() == TokenTypes.EXPR) {
             final DetailAST firstChild = ast.getFirstChild();
             switch (firstChild.getType()) {
-            case TokenTypes.STRING_LITERAL:
-                // NOTE: escaped characters are not unescaped
-                final String quotedText = firstChild.getText();
-                return quotedText.substring(1, quotedText.length() - 1);
-            case TokenTypes.IDENT:
-                return firstChild.getText();
-            default:
-                throw new IllegalArgumentException("String literal AST expected: "
-                        + firstChild);
+                case TokenTypes.STRING_LITERAL:
+                    // NOTE: escaped characters are not unescaped
+                    final String quotedText = firstChild.getText();
+                    return quotedText.substring(1, quotedText.length() - 1);
+                case TokenTypes.IDENT:
+                    return firstChild.getText();
+                default:
+                    throw new IllegalArgumentException("String literal AST expected: "
+                            + firstChild);
             }
         }
         throw new IllegalArgumentException("Expression AST expected: " + ast);
@@ -420,21 +420,21 @@ public class SuppressWarningsHolder
     private static List<String> getAnnotationValues(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.EXPR:
-            return ImmutableList.of(getStringExpr(ast));
+            case TokenTypes.EXPR:
+                return ImmutableList.of(getStringExpr(ast));
 
-        case TokenTypes.ANNOTATION_ARRAY_INIT:
-            final List<String> valueList = Lists.newLinkedList();
-            DetailAST childAST = ast.getFirstChild();
-            while (childAST != null) {
-                if (childAST.getType() == TokenTypes.EXPR) {
-                    valueList.add(getStringExpr(childAST));
+            case TokenTypes.ANNOTATION_ARRAY_INIT:
+                final List<String> valueList = Lists.newLinkedList();
+                DetailAST childAST = ast.getFirstChild();
+                while (childAST != null) {
+                    if (childAST.getType() == TokenTypes.EXPR) {
+                        valueList.add(getStringExpr(childAST));
+                    }
+                    childAST = childAST.getNextSibling();
                 }
-                childAST = childAST.getNextSibling();
-            }
-            return valueList;
+                return valueList;
 
-        default:
+            default:
         }
         throw new IllegalArgumentException(
             "Expression or annotation array initializer AST expected: " + ast);

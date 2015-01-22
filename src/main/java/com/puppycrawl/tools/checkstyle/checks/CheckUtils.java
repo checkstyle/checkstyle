@@ -154,35 +154,35 @@ public final class CheckUtils
         String txt = text.replaceAll("_", "");
         double result = 0;
         switch (type) {
-        case TokenTypes.NUM_FLOAT:
-        case TokenTypes.NUM_DOUBLE:
-            result = Double.parseDouble(txt);
-            break;
-        case TokenTypes.NUM_INT:
-        case TokenTypes.NUM_LONG:
-            int radix = BASE_10;
-            if (txt.startsWith("0x") || txt.startsWith("0X")) {
-                radix = BASE_16;
-                txt = txt.substring(2);
-            }
-            else if (txt.charAt(0) == '0') {
-                radix = BASE_8;
-                txt = txt.substring(1);
-            }
-            if ((txt.endsWith("L")) || (txt.endsWith("l"))) {
-                txt = txt.substring(0, txt.length() - 1);
-            }
-            if (txt.length() > 0) {
-                if (type == TokenTypes.NUM_INT) {
-                    result = parseInt(txt, radix);
+            case TokenTypes.NUM_FLOAT:
+            case TokenTypes.NUM_DOUBLE:
+                result = Double.parseDouble(txt);
+                break;
+            case TokenTypes.NUM_INT:
+            case TokenTypes.NUM_LONG:
+                int radix = BASE_10;
+                if (txt.startsWith("0x") || txt.startsWith("0X")) {
+                    radix = BASE_16;
+                    txt = txt.substring(2);
                 }
-                else {
-                    result = parseLong(txt, radix);
+                else if (txt.charAt(0) == '0') {
+                    radix = BASE_8;
+                    txt = txt.substring(1);
                 }
-            }
-            break;
-        default:
-            break;
+                if ((txt.endsWith("L")) || (txt.endsWith("l"))) {
+                    txt = txt.substring(0, txt.length() - 1);
+                }
+                if (txt.length() > 0) {
+                    if (type == TokenTypes.NUM_INT) {
+                        result = parseInt(txt, radix);
+                    }
+                    else {
+                        result = parseLong(txt, radix);
+                    }
+                }
+                break;
+            default:
+                break;
         }
         return result;
     }
