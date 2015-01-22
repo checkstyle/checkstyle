@@ -96,17 +96,17 @@ public final class ExecutableStatementCountCheck
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.CTOR_DEF:
-        case TokenTypes.METHOD_DEF:
-        case TokenTypes.INSTANCE_INIT:
-        case TokenTypes.STATIC_INIT:
-            visitMemberDef(ast);
-            break;
-        case TokenTypes.SLIST:
-            visitSlist(ast);
-            break;
-        default:
-            throw new IllegalStateException(ast.toString());
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+            case TokenTypes.INSTANCE_INIT:
+            case TokenTypes.STATIC_INIT:
+                visitMemberDef(ast);
+                break;
+            case TokenTypes.SLIST:
+                visitSlist(ast);
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
@@ -114,17 +114,17 @@ public final class ExecutableStatementCountCheck
     public void leaveToken(DetailAST ast)
     {
         switch (ast.getType()) {
-        case TokenTypes.CTOR_DEF:
-        case TokenTypes.METHOD_DEF:
-        case TokenTypes.INSTANCE_INIT:
-        case TokenTypes.STATIC_INIT:
-            leaveMemberDef(ast);
-            break;
-        case TokenTypes.SLIST:
-            // Do nothing
-            break;
-        default:
-            throw new IllegalStateException(ast.toString());
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+            case TokenTypes.INSTANCE_INIT:
+            case TokenTypes.STATIC_INIT:
+                leaveMemberDef(ast);
+                break;
+            case TokenTypes.SLIST:
+                // Do nothing
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
