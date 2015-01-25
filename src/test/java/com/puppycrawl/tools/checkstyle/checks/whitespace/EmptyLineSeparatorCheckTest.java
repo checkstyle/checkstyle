@@ -66,4 +66,19 @@ public class EmptyLineSeparatorCheckTest
         };
         verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorCheckHeader.java"), expected);
     }
+
+    @Test
+    public void testMultipleEmptyLinesBetweenClassMembers() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        final String[] expected = {
+            "21: 'package' has more than 1 empty lines before.",
+            "24: 'import' has more than 1 empty lines before.",
+            "33: 'VARIABLE_DEF' has more than 1 empty lines before.",
+            "38: 'VARIABLE_DEF' has more than 1 empty lines before.",
+            "43: 'METHOD_DEF' has more than 1 empty lines before.",
+        };
+        verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorCheckMultipleEmptyLines.java"), expected);
+    }
 }
