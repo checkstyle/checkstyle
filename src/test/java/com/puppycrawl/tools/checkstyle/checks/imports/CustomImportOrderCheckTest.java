@@ -267,4 +267,38 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                 + "checkstyle/imports/InputDefaultPackage.java").getCanonicalPath(), expected);
     }
+
+    @Test
+    public void testWithoutThirdPartyPackage() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
+        checkConfig.addAttribute("separateLineBetweenGroups", "true");
+        checkConfig.addAttribute("customImportOrderRules",
+                "SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE###STATIC");
+        final String[] expected = {
+
+        };
+
+        verify(checkConfig, getPath("imports" + File.separator
+                + "InputCustomImportOrderThirdPartyPackage.java"), expected);
+    }
+
+    @Test
+    public void testThirdPartyAndSpecialImports() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("specialImportsRegExp", "antlr.*");
+        checkConfig.addAttribute("customImportOrderRules",
+                "SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STATIC###"
+                + "SPECIAL_IMPORTS");
+        final String[] expected = {
+            "11: Import statement is in the wrong order. Should be in the 'THIRD_PARTY_PACKAGE' group.",
+        };
+
+        verify(checkConfig, getPath("imports" + File.separator
+                + "InputCustomImportOrderThirdPartyAndSpecial.java"), expected);
+    }
 }

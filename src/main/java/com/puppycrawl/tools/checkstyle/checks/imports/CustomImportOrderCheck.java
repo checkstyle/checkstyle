@@ -48,6 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * </pre>
  *
  * <pre>
+ * <code>
  * package java.util.concurrent;
  *
  * import java.util.regex.Pattern;
@@ -62,12 +63,13 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * Same package imports are java.util.*, java.util.concurrent.*,
  * java.util.concurrent.AbstractExecutorService,
  * java.util.List and java.util.StringTokenizer
+ * </code>
  * </pre>
  *
  * <pre>
  * THIRD_PARTY_PACKAGE group. This group sets ordering of third party imports.
  * Third party imports are all imports except STATIC,
- * SAME_PACKAGE(n) and STANDARD_JAVA_PACKAGE.
+ * SAME_PACKAGE(n), STANDARD_JAVA_PACKAGE and SPECIAL_IMPORTS.
  * </pre>
  *
  * <pre>
@@ -95,12 +97,14 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * </pre>
  *
  * <pre>
+ * <code>
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
  *    &lt;property name=&quot;customImportOrderRules&quot;
  *    value=&quot;STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE&quot;/&gt;
  *    &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;com|org&quot;/&gt;
  *    &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;java|javax&quot;/&gt;
  * &lt;/module&gt;
+ * </code>
  * </pre>
  * <p>
  * Also, this check can be configured to force empty line separator between
@@ -108,20 +112,56 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * </p>
  *
  * <pre>
+ * <code>
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
  *    &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </code>
  * </pre>
  * <p>
  * By the option it is possible to force alphabetically sorting.
  * </p>
  *
  * <pre>
+ * <code>
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
  *    &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </code>
  * </pre>
+ *
+ * <p>
+ * To force checking imports sequence such as:
+ * </p>
+ *
+ * <pre>
+ * <code>
+ * package com.puppycrawl.tools.checkstyle.imports;
+ *
+ * import com.google.common.annotations.GwtCompatible;
+ * import com.google.common.annotations.Beta;
+ * import com.google.common.annotations.VisibleForTesting;
+ *
+ * import org.abego.treelayout.Configuration;
+ *
+ * import static sun.tools.util.ModifierFilter.ALL_ACCESS;
+ *
+ * import com.google.common.annotations.GwtCompatible; // violation here - should be in the
+ *                                                     // THIRD_PARTY_PACKAGE group
+ * import android.*;</code>
+ * </pre>
+ * configure as follows:
+ * <pre>
+ * <code>
+ * &lt;module name=&quot;CustomImportOrder&quot;&gt;
+ *    &lt;property name=&quot;customImportOrderRules&quot;
+ *    value=&quot;SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STATIC###SPECIAL_IMPORTS&quot;/&gt;
+ *    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;android.*&quot;/&gt;
+ * &lt;/module&gt;</code>
+ * </pre>
+ *
  * @author maxvetrenko
+ * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 public class CustomImportOrderCheck extends Check
 {
@@ -151,7 +191,7 @@ public class CustomImportOrderCheck extends Check
     private Pattern standardPackageRegExp = Utils.getPattern("java|javax");
 
     /** RegExp for THIRDPARTY_PACKAGE group imports */
-    private Pattern thirdPartyPackageRegExp = Utils.getPattern("^$");
+    private Pattern thirdPartyPackageRegExp = Utils.getPattern(".*");
 
     /** RegExp for SPECIAL_IMPORTS group imports */
     private Pattern specialImportsRegExp = Utils.getPattern("^$");
@@ -425,7 +465,7 @@ public class CustomImportOrderCheck extends Check
                 || matchesSamePackageImportGroup(isStatic, importPath, currentGroup)
                 || matchesSpecialImportsGroup(isStatic, importPath, currentGroup)
                 || matchesStandartImportGroup(isStatic, importPath, currentGroup)
-                || matcheasthirdPartyImportGroup(isStatic, importPath, currentGroup);
+                || matchesThirdPartyImportGroup(isStatic, importPath, currentGroup);
     }
 
     /**
@@ -449,7 +489,7 @@ public class CustomImportOrderCheck extends Check
      *        import full path.
      * @param currentGroup
      *        current group.
-     * @return true, if the import is placed in the static group.
+     * @return true, if the import is placed in the same package group.
      */
     private boolean matchesSamePackageImportGroup(boolean isStatic,
         String importFullPath, String currentGroup)
@@ -467,7 +507,7 @@ public class CustomImportOrderCheck extends Check
      *        import full path.
      * @param currentGroup
      *        current group.
-     * @return true, if the import is placed in the static group.
+     * @return true, if the import is placed in the standard group.
      */
     private boolean matchesStandartImportGroup(boolean isStatic,
         String currentImport, String currentGroup)
@@ -484,7 +524,7 @@ public class CustomImportOrderCheck extends Check
      *        import full path.
      * @param currentGroup
      *        current group.
-     * @return true, if the import is placed in the static group.
+     * @return true, if the import is placed in the special group.
      */
     private boolean matchesSpecialImportsGroup(boolean isStatic,
         String currentImport, String currentGroup)
@@ -501,14 +541,15 @@ public class CustomImportOrderCheck extends Check
      *        import full path.
      * @param currentGroup
      *        current group.
-     * @return true, if the import is placed in the static group.
+     * @return true, if the import is placed in the third party group.
      */
-    private boolean matcheasthirdPartyImportGroup(boolean isStatic,
+    private boolean matchesThirdPartyImportGroup(boolean isStatic,
         String currentImport, String currentGroup)
     {
         return !isStatic && THIRD_PARTY_PACKAGE_RULE_GROUP.equals(currentGroup)
                 && thirdPartyPackageRegExp.matcher(currentImport).find()
-                && !standardPackageRegExp.matcher(currentImport).find();
+                && !standardPackageRegExp.matcher(currentImport).find()
+                && !specialImportsRegExp.matcher(currentImport).find();
     }
 
     /**
