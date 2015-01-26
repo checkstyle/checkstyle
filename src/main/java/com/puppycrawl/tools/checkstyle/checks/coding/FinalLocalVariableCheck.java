@@ -109,7 +109,8 @@ public class FinalLocalVariableCheck extends Check
                 }
             case TokenTypes.VARIABLE_DEF:
                 if ((ast.getParent().getType() != TokenTypes.OBJBLOCK)
-                    && (ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE))
+                    && (ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE)
+                    && isFirstVariableInForInit(ast))
                 {
                     insertVariable(ast);
                 }
@@ -144,6 +145,25 @@ public class FinalLocalVariableCheck extends Check
 
             default:
         }
+    }
+
+    /**
+     * Checks if current variable is defined first in
+     *  {@link TokenTypes#FOR_INIT for-loop init}, e.g.:
+     * <p>
+     * <code>
+     * for (int i = 0, j = 0; i < j; i++) { . . . }
+     * </code>
+     * </p>
+     * <code>i</code> is first variable in {@link TokenTypes#FOR_INIT for-loop init}
+     * @param variableDef variable definition node.
+     * @return true if variableDef is first variable in {@link TokenTypes#FOR_INIT for-loop init}
+     */
+    private static boolean isFirstVariableInForInit(DetailAST variableDef)
+    {
+        return variableDef.getParent().getType() != TokenTypes.FOR_INIT
+                 || variableDef.getPreviousSibling() == null
+                 || variableDef.getPreviousSibling().getType() != TokenTypes.COMMA;
     }
 
     /**
