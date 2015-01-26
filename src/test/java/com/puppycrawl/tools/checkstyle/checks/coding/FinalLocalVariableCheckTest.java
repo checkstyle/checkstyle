@@ -82,4 +82,17 @@ public class FinalLocalVariableCheckTest
         };
         verify(checkConfig, getPath("coding/InputFinalLocalVariableNativeMethods.java"), expected);
     }
+
+    @Test
+    public void testFalsePositive() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(FinalLocalVariableCheck.class);
+        checkConfig.addAttribute("tokens", "VARIABLE_DEF, PARAMETER_DEF");
+
+        final String[] expected = {
+
+        };
+        verify(checkConfig, getPath("coding/InputFinalLocalVariableCheckFalsePositive.java"), expected);
+    }
 }
