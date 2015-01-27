@@ -328,7 +328,7 @@ public class CustomImportOrderCheck extends Check
                     && previousImport != null
                     && matchesImportGroup(importObject.isStatic(),
                             fullImportIdent, currentGroup)
-                    && !(compare(fullImportIdent, previousImport) >= 0))
+                    && !(compareImports(fullImportIdent, previousImport) >= 0))
             {
                 log(importObject.getLineNumber(), "custom.import.order.lex", fullImportIdent);
             }
@@ -513,58 +513,31 @@ public class CustomImportOrderCheck extends Check
 
     /**
      * Checks compare two import paths.
-     * @param currentImport
+     * @param import1
      *        current import.
-     * @param previousImport
+     * @param import2
      *        previous import.
      * @return a negative integer, zero, or a positive integer as the
      *        specified String is greater than, equal to, or less
      *        than this String, ignoring case considerations.
      */
-    private int compare(String currentImport, String previousImport)
+    private static int compareImports(String import1, String import2)
     {
-        int indexOfPreviousDotCurrent = 0;
-        int indexOfNextDotCurrent = 0;
-        String tokenCurrent = "";
-        int indexOfPreviousDotPrevious = 0;
-        int indexOfNextDotPrevious = 0;
-        String tokenPrevious = "";
-        final int currentImportDomainCount = countDomains(currentImport);
-        final int previousImportDomainCount = countDomains(previousImport);
         int result = 0;
-
-        while (currentImport.lastIndexOf(".") != indexOfPreviousDotCurrent - 1
-                && previousImport.lastIndexOf(".") != indexOfPreviousDotPrevious - 1)
-        {
-            indexOfNextDotCurrent = currentImport.indexOf(".", indexOfPreviousDotCurrent + 1);
-            indexOfNextDotPrevious = previousImport.indexOf(".", indexOfPreviousDotPrevious + 1);
-            tokenCurrent = currentImport.substring(indexOfPreviousDotCurrent,
-                    indexOfNextDotCurrent);
-            tokenPrevious = previousImport.substring(indexOfPreviousDotPrevious,
-                    indexOfNextDotPrevious);
-            result = tokenCurrent.compareToIgnoreCase(tokenPrevious);
+        final String[] import1Tokens = import1.split("\\.");
+        final String[] import2Tokens = import2.split("\\.");
+        for (int i = 0; i < import1Tokens.length; i++) {
+            if (i == import2Tokens.length) {
+                break;
+            }
+            final String import1Token = import1Tokens[i];
+            final String import2Token = import2Tokens[i];
+            result = import1Token.compareToIgnoreCase(import2Token);
             if (result != 0) {
-                return result;
-            }
-            indexOfPreviousDotCurrent = indexOfNextDotCurrent + 1;
-            indexOfPreviousDotPrevious = indexOfNextDotPrevious + 1;
-        }
-
-        if (result == 0 && (currentImport.lastIndexOf(".") == indexOfPreviousDotCurrent - 1
-                || previousImport.lastIndexOf(".") == indexOfPreviousDotPrevious - 1))
-        {
-            if (currentImportDomainCount != previousImportDomainCount) {
-                getClassName(indexOfNextDotPrevious, previousImport);
-                return currentImportDomainCount - previousImportDomainCount;
-            }
-            else {
-                getClassName(indexOfNextDotPrevious, previousImport);
-                return getClassName(indexOfNextDotCurrent,
-                        currentImport).compareToIgnoreCase(getClassName(indexOfNextDotPrevious,
-                                previousImport));
+                break;
             }
         }
-        return 0;
+        return result;
     }
 
     /**
@@ -579,27 +552,6 @@ public class CustomImportOrderCheck extends Check
         className = className.substring(startFrom, className.length());
         final StringTokenizer token = new StringTokenizer(className, ".\r");
         return token.nextToken();
-    }
-
-    /**
-     * Count number of domains.
-     * @param importPath current import.
-     * @return number of domains.
-     */
-    private static int countDomains(String importPath)
-    {
-        final StringTokenizer tokens = new StringTokenizer(importPath, ".");
-        int count = 0;
-
-        while (tokens.hasMoreTokens()) {
-            if (!Character.isUpperCase(tokens.nextToken().toString().charAt(0))) {
-                count++;
-            }
-            else {
-                break;
-            }
-        }
-        return count - 1;
     }
 
     /**
