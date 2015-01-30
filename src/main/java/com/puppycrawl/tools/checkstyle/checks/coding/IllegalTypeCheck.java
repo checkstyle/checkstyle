@@ -24,6 +24,9 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -66,7 +69,22 @@ import java.util.Set;
  * will be ok.
  * </p>
  * <p>
- * <b>ignoredMethodNames</b> - Methods that should not be checked..
+ * <b>ignoredMethodNames</b> - Methods that should not be checked.
+ * </p>
+ * <p>
+ * <b>memberModifiers</b> - To check only methods and fields with only specified modifiers.
+ * </p>
+ * <p>
+ * In most cases it's justified to put following classes to <b>illegalClassNames</b>:
+ * <ul>
+ * <li>GregorianCalendar</li>
+ * <li>Hashtable</li>
+ * <li>ArrayList</li>
+ * <li>LinkedList</li>
+ * <li>Vector</li>
+ * </ul>
+ * as methods that are differ from interface methods are rear used, so in most cases user will
+ *  benefit from checking for them.
  * </p>
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
@@ -80,28 +98,18 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     private static final String[] DEFAULT_LEGAL_ABSTRACT_NAMES = {};
     /** Types illegal by default. */
     private static final String[] DEFAULT_ILLEGAL_TYPES = {
-        "GregorianCalendar",
-        "Hashtable",
         "HashSet",
         "HashMap",
-        "ArrayList",
-        "LinkedList",
         "LinkedHashMap",
         "LinkedHashSet",
         "TreeSet",
         "TreeMap",
-        "Vector",
-        "java.util.GregorianCalendar",
-        "java.util.Hashtable",
         "java.util.HashSet",
         "java.util.HashMap",
-        "java.util.ArrayList",
-        "java.util.LinkedList",
         "java.util.LinkedHashMap",
         "java.util.LinkedHashSet",
         "java.util.TreeSet",
         "java.util.TreeMap",
-        "java.util.Vector",
     };
 
     /** Default ignored method names. */
@@ -116,6 +124,8 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     private final Set<String> legalAbstractClassNames = Sets.newHashSet();
     /** methods which should be ignored. */
     private final Set<String> ignoredMethodNames = Sets.newHashSet();
+    /** check methods and fields with only corresponding modifiers. */
+    private List<Integer> memberModifiers;
 
     /** Creates new instance of the check. */
     public IllegalTypeCheck()
@@ -142,10 +152,14 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     {
         switch (ast.getType()) {
             case TokenTypes.METHOD_DEF:
-                visitMethodDef(ast);
+                if (isVerifiable(ast)) {
+                    visitMethodDef(ast);
+                }
                 break;
             case TokenTypes.VARIABLE_DEF:
-                visitVariableDef(ast);
+                if (isVerifiable(ast)) {
+                    visitVariableDef(ast);
+                }
                 break;
             case TokenTypes.PARAMETER_DEF:
                 visitParameterDef(ast);
@@ -156,6 +170,32 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
             default:
                 throw new IllegalStateException(ast.toString());
         }
+    }
+
+    /**
+     * Checks if current method's return type or variable's type is verifiable
+     * according to <b>memberModifiers</b> option.
+     * @param methodOrVariableDef METHOD_DEF or VARIABLE_DEF ast node.
+     * @return true if member is verifiable according to <b>memberModifiers</b> option.
+     */
+    private boolean isVerifiable(DetailAST methodOrVariableDef)
+    {
+        boolean result = true;
+        if (memberModifiers != null) {
+            result = false;
+            final DetailAST modifiersAst = methodOrVariableDef.
+                    findFirstToken(TokenTypes.MODIFIERS);
+            if (modifiersAst.getFirstChild() != null) {
+                for (DetailAST modifier = modifiersAst.getFirstChild(); modifier != null;
+                         modifier = modifier.getNextSibling())
+                {
+                    if (memberModifiers.contains(modifier.getType())) {
+                        result = true;
+                    }
+                }
+            }
+        }
+        return result;
     }
 
     /**
@@ -403,5 +443,18 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     {
         return legalAbstractClassNames.toArray(
             new String[legalAbstractClassNames.size()]);
+    }
+
+    /**
+     * Set the list of member modifiers (of methods and fields) which should be checked.
+     * @param modifiers String contains modifiers.
+     */
+    public void setMemberModifiers(String modifiers)
+    {
+        final List<Integer> modifiersList = new ArrayList<Integer>(modifiers.length());
+        for (String modifier : modifiers.split(", ")) {
+            modifiersList.add(TokenTypes.getTokenId(modifier));
+        }
+        this.memberModifiers = modifiersList;
     }
 }

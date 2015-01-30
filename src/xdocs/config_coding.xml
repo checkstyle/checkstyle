@@ -1750,11 +1750,9 @@ if (&quot;something&quot;.equals(x))
             <td>Classes that should not be used as types in variable
             declarations, return values or parameters</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>&quot;java.util.GregorianCalendar, java.util.Hashtable,
-            java.util.HashSet, java.util.HashMap, java.util.ArrayList,
-            java.util.LinkedList, java.util.LinkedHashMap,
+            <td>&quot;java.util.HashSet, java.util.HashMap, java.util.LinkedHashMap,
             java.util.LinkedHashSet, java.util.TreeSet,
-            java.util.TreeMap, java.util.Vector&quot;</td>
+            java.util.TreeMap&quot;</td>
           </tr>
           <tr>
           <td>legalAbstractClassNames</td>
@@ -1774,6 +1772,12 @@ if (&quot;something&quot;.equals(x))
             <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^(.*[\\.])?Abstract.*$</code></td>
           </tr>
+          <tr>
+            <td>memberModifiers</td>
+            <td>Check methods and fields with only corresponding modifiers.</td>
+            <td><a href="property_types.html#intSet">List of integers</a></td>
+            <td><code>null</code></td>
+          </tr>
         </table>
       </subsection>
 
@@ -1784,6 +1788,16 @@ if (&quot;something&quot;.equals(x))
         <source>
 &lt;module name=&quot;IllegalType&quot;&gt;
     &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;getInstance&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the Check so that it verifies only public, protected and static
+           methods and fields:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalType&quot;&gt;
+    &lt;property name=&quot;memberModifiers&quot; value=&quot;LITERAL_PUBLIC,
+     LITERAL_PROTECTED, LITERAL_STATIC&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
