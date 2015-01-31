@@ -14,33 +14,33 @@
       <p>New:</p>
       <ul>
         <li>
-          HiddenField module can now accept setterCanReturnItsClass attribute. Author: Dmitri Priimak <a href="https://github.com/checkstyle/checkstyle/issues/589">#589</a>
+          New option to HiddenField, to skip builder methods - setterCanReturnItsClass. Author: Dmitri Priimak <a href="https://github.com/checkstyle/checkstyle/issues/589">#589</a>
         </li>
         <li>
-          Added file extensions property to Checker and TreeWalker. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/25">#25</a>
+          New option to Checker and TreeWalker to specify file extensions. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/25">#25</a>
         </li>
         <li>
-          Empty Line Separator Check, added option for managing empty lines between class members. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/530">#530</a>
+          New option to Empty Line Separator Check, for managing empty lines between class members. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/530">#530</a>
         </li>
         <li>
-          Added option to avoid C style. Author: Max Vetrenko <a href="https://github.com/checkstyle/checkstyle/issues/354">#354</a>
+          New option to Indentation to avoid C style. Author: Max Vetrenko <a href="https://github.com/checkstyle/checkstyle/issues/354">#354</a>
         </li>
         <li>
-          Added option to Illegal Throws Check due to twitter custom checks. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
+          New option to Illegal Throws Check due to twitter custom checks. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
         </li>
         <li>
-          Added option to Javadoc Method Name Check - ignore method name regex. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
+          New option to Javadoc Method Name Check - ignore method name regex. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
         </li>
         <li>
-          Extended Method Name Check to ignore overriden methods. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
-        </li>
-        <li>
-          Illegal Type Check, updated default illegal types, added memberModifiers option. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/567">#567</a>
+          New option to Illegal Type Check to control valiadtion baseon modifiers - memberModifiers, updated default illegal types. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/567">#567</a>
         </li>
       </ul>
 
       <p>Bug fixes:</p>
       <ul>
+        <li>
+          Extended Method Name Check to ignore overriden methods. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
+        </li>
         <li>
           Allow basedir property of Checker module to be set to NULL. Author: Lars Ködderitzsch <a href="https://github.com/checkstyle/checkstyle/issues/570">#570</a>
         </li>
