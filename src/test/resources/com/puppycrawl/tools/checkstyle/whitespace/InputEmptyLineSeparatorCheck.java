@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.Collections;
-import com.google.common.base.CharMatcher;
+
 import com.google.common.io.CharSource;
 
 import javax.swing.AbstractAction;
@@ -34,29 +34,29 @@ import org.apache.commons.beanutils.locale.converters.ByteLocaleConverter;
 import org.apache.commons.beanutils.BasicDynaBean;
 class InputEmptyLineSeparatorCheck
 {
-	public static final double FOO_PI = 3.1415;
-	private boolean flag = true; 
-	static {
+    public static final double FOO_PI = 3.1415;
+    private boolean flag = true; 
+    static {
         //empty static initializer
-	}
-	//separator blank line
-	{
-		//empty instance initializer
-	}
-	//separator blank line
-	/**
-	 * 
-	 * 
-	 * 
-	 */
-	private InputEmptyLineSeparatorCheck()
-	{
-		//empty
-	}
-	//separator blank line
+    }
+    //separator blank line
+    {
+        //empty instance initializer
+    }
+    //separator blank line
+    /**
+     * 
+     * 
+     * 
+     */
+    private InputEmptyLineSeparatorCheck()
+    {
+        //empty
+    }
+    //separator blank line
     public int compareTo(Object aObject)
     {
-    	int number = 0;
+        int number = 0;
         return 0;
     }
     /**
@@ -78,18 +78,34 @@ class InputEmptyLineSeparatorCheck
     }
     //separator blank line
     class InnerClass {
-    	
-    	public static final double FOO_PI_INNER = 3.1415;
-    	//separator blank line
-    	private boolean flagInner = true; 
-    	//separator blank line
-    	{
-    		//empty instance initializer
-    	}
-    	//separator blank line
-    	private InnerClass()
-    	{
-    		//empty
-    	}
+        
+        public static final double FOO_PI_INNER = 3.1415;
+        //separator blank line
+        private boolean flagInner = true; 
+        //separator blank line
+        {
+            //empty instance initializer
+        }
+        //separator blank line
+        private InnerClass()
+        {
+            //empty
+        }
     }
+}
+
+class Class2{
+    public int compareTo(InputEmptyLineSeparatorCheck aObject) //ok
+    {
+        int number = 0;
+        return 0;
+    }
+    
+    Class2 anon = new Class2(){
+        public int compareTo(InputEmptyLineSeparatorCheck aObject) //ok
+        {
+            int number = 0;
+            return 0;
+        }
+    };
 }
