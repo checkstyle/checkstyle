@@ -1351,12 +1351,6 @@ import com.puppycrawl.tools.checkstyle.api.Check;
             <th><a href="property_types.html#boolean">boolean</a></th>
             <th>false</th>
           </tr>
-          <tr>
-            <th>allowMultipleEmptyLines</th>
-            <th>Allow multiple empty lines between class members</th>
-            <th><a href="property_types.html#boolean">boolean</a></th>
-            <th><code>true</code></th>
-          </tr>
         </table>
       </subsection>
 
@@ -1417,46 +1411,6 @@ class Foo
       <source>
 &lt;module name="EmptyLineSeparator"&gt;
     &lt;property name="allowNoEmptyLineBetweenFields" value="true"/&gt;
-&lt;/module&gt;
-      </source>
-      <p>
-        Example of declarations with multiple empty lines between class members
-         (allowed by default):
-      </p>
-      <source>
-///////////////////////////////////////////////////
-//HEADER
-///////////////////////////////////////////////////
-
-
-
-package com.puppycrawl.tools.checkstyle.whitespace;
-
-
-
-import java.io.Serializable;
-
-
-
-class Foo
-{
-
-
-    public static final int FOO_CONST = 1;
-
-
-
-
-    public void foo() {} //should be separated from previous statement.
-}
-      </source>
-
-      <p>
-        An example how to disallow multiple empty lines between class members:
-      </p>
-      <source>
-&lt;module name=&quot;EmptyLineSeparator&quot;&gt;
-    &lt;property name=&quot;allowMultipleEmptyLines&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
       </source>
       </subsection>
