@@ -19,9 +19,9 @@
         <li>
           New option to Checker and TreeWalker to specify file extensions. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/25">#25</a>
         </li>
-<!--        <li>
+        <li>
           New option to Empty Line Separator Check, for managing empty lines between class members. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/530">#530</a>
-        </li> -->
+        </li>
         <li>
           New option to Indentation to avoid C style. Author: Max Vetrenko <a href="https://github.com/checkstyle/checkstyle/issues/354">#354</a>
         </li>
