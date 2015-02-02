@@ -514,6 +514,13 @@
         <configuration>
           <excludedPages>
             <excludedPage>dependencies.html</excludedPage>
+            <excludedPage>cobertura/**</excludedPage>
+            <excludedPage>dsm/**</excludedPage>
+            <excludedPage>xref/**</excludedPage>
+            <excludedPage>xref-test/**</excludedPage>
+            <excludedPage>pmd.html</excludedPage>
+            <excludedPage>findbugs.html</excludedPage>
+            <excludedPage>surefire-report.html</excludedPage>
           </excludedPages>
           <excludedLinks>
             <excludedLink>reports/google-style/guava</excludedLink>
@@ -652,6 +659,13 @@
         <configuration>
           <excludedPages>
             <excludedPage>dependencies.html</excludedPage>
+            <excludedPage>cobertura/**</excludedPage>
+            <excludedPage>dsm/**</excludedPage>
+            <excludedPage>xref/**</excludedPage>
+            <excludedPage>xref-test/**</excludedPage>
+            <excludedPage>pmd.html</excludedPage>
+            <excludedPage>findbugs.html</excludedPage>
+            <excludedPage>surefire-report.html</excludedPage>
           </excludedPages>
           <excludedLinks>
             <excludedLink>reports/google-style/guava</excludedLink>
