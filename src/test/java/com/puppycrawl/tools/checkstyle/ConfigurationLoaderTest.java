@@ -55,10 +55,18 @@ public class ConfigurationLoaderTest
     @Test
     public void testResourceLoadConfiguration() throws Exception
     {
+        final Properties props = new Properties();
+        props.put("checkstyle.basedir", "basedir");
+
         // load config that's only found in the classpath
         final DefaultConfiguration config = (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-            "/checkstyle/checkstyle_checks.xml", new PropertiesExpander(new Properties()));
-        verifyConfigNode(config, "Checker", 3, new Properties());
+            "src/test/resources/com/puppycrawl/tools/checkstyle/configs/checkstyle_checks.xml", new PropertiesExpander(props));
+
+        //verify the root, and property substitution
+        final Properties atts = new Properties();
+        atts.put("tabWidth", "4");
+        atts.put("basedir", "basedir");
+        verifyConfigNode(config, "Checker", 3, atts);
     }
 
     @Test

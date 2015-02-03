@@ -23,7 +23,7 @@
     <delete file="${target.dir}/cachefile" />
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
-    <property name="check.config" location="checkstyle_checks.xml"/>
+    <property name="check.config" location="config/checkstyle_checks.xml"/>
     <checkstyle config="${check.config}"
                 failOnViolation="false"
                 failureProperty="checkstyle.failure.property"
@@ -35,10 +35,10 @@
       <formatter type="xml" toFile="${target.dir}/cs_errors.xml"/>
       <classpath refid="run.classpath"/>
       <property key="checkstyle.cache.file" file="${target.dir}/cachefile"/>
-      <property key="checkstyle.header.file" file="java.header"/>
-      <property key="checkstyle.importcontrol.file" file="import-control.xml"/>
+      <property key="checkstyle.header.file" file="config/java.header"/>
+      <property key="checkstyle.importcontrol.file" file="config/import-control.xml"/>
       <property key="checkstyle.suppressions.file"
-                file="suppressions.xml"/>
+                file="config/suppressions.xml"/>
     </checkstyle>
 
     <fail if="checkstyle.failure.property"
@@ -57,7 +57,7 @@
 
   <target name="validate.xml"
           description="Validates checkstyle XML file">
-    <xmlvalidate file="checkstyle_checks.xml">
+    <xmlvalidate file="config/checkstyle_checks.xml">
       <xmlcatalog>
         <dtd
           publicId="-//Puppy Crawl//DTD Check Configuration 1.1//EN"

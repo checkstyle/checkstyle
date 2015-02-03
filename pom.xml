@@ -427,7 +427,7 @@
                 <property name="mvn.project.build.outputDirectory" value="${project.build.outputDirectory}" />
                 <property name="mvn.project.version" value="${project.version}" />
                 <property name="mvn.compile_classpath" refid="maven.compile.classpath" />
-                <ant antfile="ant-phase-compile.xml" />
+                <ant antfile="config/ant-phase-compile.xml" />
               </target>
             </configuration>
           </execution>
@@ -442,7 +442,7 @@
                 <property name="mvn.project.build.directory" value="${project.build.directory}" />
                 <property name="mvn.project.version" value="${project.version}" />
                 <property name="mvn.runtime_classpath" refid="maven.runtime.classpath" />
-                <ant antfile="ant-phase-verify.xml" />
+                <ant antfile="config/ant-phase-verify.xml" />
               </target>
             </configuration>
           </execution>
