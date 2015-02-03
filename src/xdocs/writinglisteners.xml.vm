@@ -249,7 +249,7 @@ Audit finished. Total errors: 1
 
       <p>
         The source code for <code>CommonsLoggingListener</code> is in distribution
-        directory <code>contrib/examples/listeners</code>.  Notice that
+        directory <code>https://github.com/checkstyle/contribution/examples/listeners</code>.  Notice that
         each <code>AuditListener</code> method that
         receives an <code> AuditEvent</code> calls a method
         for the Commons Logging log level corresponding to the
@@ -320,7 +320,7 @@ INFO  com.puppycrawl...Checker  - Audit finished.
 
       <p>
         The source code for <code>CommonsLoggingListener</code> is in distribution
-        directory <code>contrib/examples/listeners</code>.  This
+        directory <code>https://github.com/checkstyle/contribution/examples/listeners</code>.  This
         implementation uses the <a
         href="http://java.sun.com/products/javamail">JavaMail API</a> as
         the mail system, and you must include appropriate jar files in
