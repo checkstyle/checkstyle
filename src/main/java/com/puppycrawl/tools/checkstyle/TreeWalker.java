@@ -314,11 +314,16 @@ public final class TreeWalker
                     if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
                         registerCheck(token, check);
                     }
-                    // TODO: else log warning
+                    else {
+                        throw new IllegalArgumentException("Token \""
+                            + token + "\" was not found in Acceptable tokens list"
+                                    + " in check " + check);
+                    }
                 }
                 catch (final IllegalArgumentException ex) {
-                    throw new CheckstyleException("illegal token \""
-                        + token + "\" in check " + check, ex);
+                    throw new CheckstyleException("Token \""
+                        + token + "\" was not found in Acceptable tokens list"
+                                + " in check " + check, ex);
                 }
             }
         }

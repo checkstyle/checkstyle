@@ -23,8 +23,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.Writer;
 
+import org.junit.Assert;
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 
 public class TreeWalkerTest extends BaseCheckTestSupport
@@ -61,5 +64,30 @@ public class TreeWalkerTest extends BaseCheckTestSupport
         };
         verify(checkConfig, file.getCanonicalPath(), expected);
         file.delete();
+    }
+
+
+    @Test
+    public void testAcceptableTokens()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HiddenFieldCheck.class);
+        checkConfig.addAttribute("tokens", "VARIABLE_DEF, ENUM_DEF, CLASS_DEF, METHOD_DEF,"
+                + "IMPORT");
+        final String[] expected = {
+
+        };
+        try {
+            verify(checkConfig, getPath("InputHiddenField.java"), expected);
+            Assert.fail();
+        }
+        catch (CheckstyleException e) {
+            String errorMsg = e.getMessage();
+            Assert.assertTrue(errorMsg.contains("cannot initialize module"
+                    + " com.puppycrawl.tools.checkstyle.TreeWalker - Token \"IMPORT\""
+                    + " was not found in Acceptable tokens list in check"
+                    + " com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"));
+        }
     }
 }
