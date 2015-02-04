@@ -74,6 +74,16 @@ public final class ReturnCountCheck extends AbstractFormatCheck
         };
     }
 
+    @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.LITERAL_RETURN,
+        };
+    }
+
     /**
      * Getter for max property.
      * @return maximum allowed number of return statements.

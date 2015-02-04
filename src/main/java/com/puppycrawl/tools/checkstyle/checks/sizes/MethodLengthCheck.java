@@ -71,6 +71,12 @@ public class MethodLengthCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final DetailAST openingBrace = ast.findFirstToken(TokenTypes.SLIST);

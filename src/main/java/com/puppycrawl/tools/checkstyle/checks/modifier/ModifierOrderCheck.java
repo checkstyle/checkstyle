@@ -82,6 +82,12 @@ public class ModifierOrderCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.MODIFIERS};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final List<DetailAST> mods = Lists.newArrayList();

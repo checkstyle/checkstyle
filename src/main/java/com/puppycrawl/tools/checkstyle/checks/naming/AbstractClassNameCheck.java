@@ -86,11 +86,15 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[]{TokenTypes.CLASS_DEF};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
-        if (TokenTypes.CLASS_DEF == ast.getType()) {
-            visitClassDef(ast);
-        }
+        visitClassDef(ast);
     }
 
     /**

@@ -58,6 +58,12 @@ public final class IllegalCatchCheck extends AbstractIllegalCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.LITERAL_CATCH};
+    }
+
+    @Override
     public void visitToken(DetailAST detailAST)
     {
         final DetailAST paradef =

@@ -62,6 +62,13 @@ public class ImportControlCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT,
+                          TokenTypes.STATIC_IMPORT, };
+    }
+
+    @Override
     public void beginTree(final DetailAST rootAST)
     {
         currentLeaf = null;

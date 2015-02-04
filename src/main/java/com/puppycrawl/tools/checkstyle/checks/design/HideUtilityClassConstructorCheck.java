@@ -41,6 +41,12 @@ public class HideUtilityClassConstructorCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.CLASS_DEF};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         if (isAbstract(ast)) {

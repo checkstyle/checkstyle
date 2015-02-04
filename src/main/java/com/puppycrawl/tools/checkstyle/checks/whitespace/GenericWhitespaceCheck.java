@@ -76,6 +76,12 @@ public class GenericWhitespaceCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.GENERIC_START, TokenTypes.GENERIC_END};
+    }
+
+    @Override
     public void beginTree(DetailAST rootAST)
     {
         // Reset for each tree, just incase there are errors in preceeding

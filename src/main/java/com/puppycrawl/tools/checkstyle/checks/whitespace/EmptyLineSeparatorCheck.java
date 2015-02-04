@@ -203,6 +203,23 @@ public class EmptyLineSeparatorCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.VARIABLE_DEF,
+        };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final DetailAST nextToken = ast.getNextSibling();

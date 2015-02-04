@@ -42,6 +42,12 @@ public class ArrayTypeStyleCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.ARRAY_DECLARATOR};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final DetailAST typeAST = ast.getParent();

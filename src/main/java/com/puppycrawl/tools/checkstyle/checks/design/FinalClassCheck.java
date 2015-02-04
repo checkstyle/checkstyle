@@ -50,6 +50,12 @@ public class FinalClassCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[]{TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);

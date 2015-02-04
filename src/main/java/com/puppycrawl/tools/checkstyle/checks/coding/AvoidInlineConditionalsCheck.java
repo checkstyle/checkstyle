@@ -51,6 +51,12 @@ public class AvoidInlineConditionalsCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[]{TokenTypes.QUESTION};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         // the only place a QUESTION token can occur is in inline conditionals

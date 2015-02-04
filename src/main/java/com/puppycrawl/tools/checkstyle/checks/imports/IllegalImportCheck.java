@@ -88,6 +88,12 @@ public class IllegalImportCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final FullIdent imp;

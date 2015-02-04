@@ -66,6 +66,13 @@ public class EmptyForInitializerPadCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.FOR_INIT,
+        };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         if (ast.getChildCount() == 0) {

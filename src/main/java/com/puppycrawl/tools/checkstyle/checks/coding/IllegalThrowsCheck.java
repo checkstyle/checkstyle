@@ -85,6 +85,12 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.LITERAL_THROWS};
+    }
+
+    @Override
     public void visitToken(DetailAST detailAST)
     {
         final DetailAST methodDef = detailAST.getParent();

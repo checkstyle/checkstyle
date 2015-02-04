@@ -66,6 +66,13 @@ public class EmptyForIteratorPadCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.FOR_ITERATOR,
+        };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         if (ast.getChildCount() == 0) {

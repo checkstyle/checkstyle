@@ -59,6 +59,12 @@ public final class InterfaceIsTypeCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.INTERFACE_DEF};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final DetailAST objBlock =

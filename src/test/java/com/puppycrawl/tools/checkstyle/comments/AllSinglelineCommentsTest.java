@@ -51,6 +51,12 @@ public class AllSinglelineCommentsTest extends BaseCheckTestSupport
         }
 
         @Override
+        public int[] getAcceptableTokens()
+        {
+            return new int[] {TokenTypes.SINGLE_LINE_COMMENT};
+        }
+
+        @Override
         public void init()
         {
             allComments.addAll(Arrays.asList("0\n", "1\n", "2\n", "3\n", "4\n", "5\n", "6\n",

@@ -18,9 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import org.junit.Test;
 
 public class HiddenFieldCheckTest
     extends BaseCheckTestSupport
@@ -348,4 +349,5 @@ public class HiddenFieldCheckTest
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
+
 }

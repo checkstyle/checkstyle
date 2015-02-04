@@ -253,6 +253,12 @@ public class VariableDeclarationUsageDistanceCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.VARIABLE_DEF};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final int parentType = ast.getParent().getType();

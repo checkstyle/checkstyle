@@ -56,6 +56,12 @@ public class UpperEllCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.NUM_LONG};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         if (ast.getText().endsWith("l")) {

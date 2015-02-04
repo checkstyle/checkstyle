@@ -48,6 +48,12 @@ public final class PackageDeclarationCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.PACKAGE_DEF};
+    }
+
+    @Override
     public void beginTree(DetailAST ast)
     {
         defined = false;

@@ -76,6 +76,17 @@ public class ParenPadCheck extends AbstractParenPadCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.RPAREN,
+                          TokenTypes.LPAREN,
+                          TokenTypes.CTOR_CALL,
+                          TokenTypes.SUPER_CTOR_CALL,
+                          TokenTypes.METHOD_CALL,
+        };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         DetailAST theAst = ast;

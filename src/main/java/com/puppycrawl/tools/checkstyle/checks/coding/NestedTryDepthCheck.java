@@ -43,6 +43,12 @@ public final class NestedTryDepthCheck extends AbstractNestedDepthCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.LITERAL_TRY};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {

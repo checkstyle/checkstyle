@@ -204,6 +204,12 @@ public class ImportOrderCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+    }
+
+    @Override
     public void beginTree(DetailAST rootAST)
     {
         lastGroup = Integer.MIN_VALUE;

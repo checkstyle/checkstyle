@@ -45,6 +45,12 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.LITERAL_IF};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {

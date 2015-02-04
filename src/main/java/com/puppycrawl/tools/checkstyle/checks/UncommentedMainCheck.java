@@ -86,6 +86,16 @@ public class UncommentedMainCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.PACKAGE_DEF,
+        };
+    }
+
+    @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();

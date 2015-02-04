@@ -79,6 +79,15 @@ public class RedundantImportCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[]
+        {TokenTypes.IMPORT,
+         TokenTypes.STATIC_IMPORT,
+         TokenTypes.PACKAGE_DEF, };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         if (ast.getType() == TokenTypes.PACKAGE_DEF) {

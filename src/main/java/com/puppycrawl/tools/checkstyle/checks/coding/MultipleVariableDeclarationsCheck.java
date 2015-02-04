@@ -56,6 +56,12 @@ public class MultipleVariableDeclarationsCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.VARIABLE_DEF};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         DetailAST nextNode = ast.getNextSibling();
