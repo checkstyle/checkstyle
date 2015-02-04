@@ -101,6 +101,15 @@ public abstract class AbstractSuperCheck
         };
     }
 
+    @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.METHOD_DEF,
+            TokenTypes.LITERAL_SUPER,
+        };
+    }
+
     /**
      * Returns the name of the overriding method.
      * @return the name of the overriding method.

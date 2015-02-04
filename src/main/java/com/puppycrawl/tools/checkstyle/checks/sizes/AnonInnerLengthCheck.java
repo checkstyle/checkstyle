@@ -70,6 +70,12 @@ public class AnonInnerLengthCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.LITERAL_NEW};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final DetailAST openingBrace = ast.findFirstToken(TokenTypes.OBJBLOCK);

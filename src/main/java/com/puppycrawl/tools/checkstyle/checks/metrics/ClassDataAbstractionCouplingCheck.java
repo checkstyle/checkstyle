@@ -53,6 +53,18 @@ public final class ClassDataAbstractionCouplingCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.LITERAL_NEW,
+        };
+    }
+
+    @Override
     protected String getLogMessageId()
     {
         return "classDataAbstractionCoupling";

@@ -81,6 +81,12 @@ public class PackageNameCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.PACKAGE_DEF};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final DetailAST nameAST = ast.getLastChild().getPreviousSibling();

@@ -48,6 +48,12 @@ public class SimplifyBooleanReturnCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.LITERAL_IF};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         // LITERAL_IF has the following four or five children:

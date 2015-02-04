@@ -43,6 +43,13 @@ public class OuterTypeNumberCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF, TokenTypes.ANNOTATION_DEF, };
+    }
+
+    @Override
     public void beginTree(DetailAST ast)
     {
         currentDepth = 0;

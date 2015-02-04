@@ -49,6 +49,15 @@ public final class OneStatementPerLineCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.EXPR, TokenTypes.SEMI, TokenTypes.FOR_INIT,
+            TokenTypes.FOR_ITERATOR,
+        };
+    }
+
+    @Override
     public void beginTree(DetailAST rootAST)
     {
         exprDepth = 0;

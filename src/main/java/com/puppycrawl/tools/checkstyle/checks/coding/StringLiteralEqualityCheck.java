@@ -44,6 +44,12 @@ public class StringLiteralEqualityCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.EQUAL, TokenTypes.NOT_EQUAL};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         // no need to check for nulls here, == and != always have two children

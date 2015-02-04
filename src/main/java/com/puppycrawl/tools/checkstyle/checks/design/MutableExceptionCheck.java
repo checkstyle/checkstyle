@@ -76,6 +76,12 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         switch (ast.getType()) {

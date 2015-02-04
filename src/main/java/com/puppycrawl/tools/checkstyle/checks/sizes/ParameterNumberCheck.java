@@ -107,6 +107,12 @@ public class ParameterNumberCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);

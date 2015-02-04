@@ -297,6 +297,16 @@ public class CustomImportOrderCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
+            TokenTypes.PACKAGE_DEF,
+        };
+    }
+
+    @Override
     public void beginTree(DetailAST rootAST)
     {
         importToGroupList.clear();

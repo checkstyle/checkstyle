@@ -68,6 +68,14 @@ public final class ThrowsCountCheck extends Check
         return getDefaultTokens();
     }
 
+    @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.LITERAL_THROWS,
+        };
+    }
+
     /**
      * Getter for max property.
      * @return maximum allowed throws statements.

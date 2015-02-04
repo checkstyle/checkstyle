@@ -65,6 +65,12 @@ public class ParameterNameCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.PARAMETER_DEF};
+    }
+
+    @Override
     protected boolean mustCheckName(DetailAST ast)
     {
         return !(

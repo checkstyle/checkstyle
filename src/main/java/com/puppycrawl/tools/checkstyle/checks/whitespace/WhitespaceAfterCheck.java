@@ -66,6 +66,16 @@ public class WhitespaceAfterCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.COMMA,
+            TokenTypes.SEMI,
+            TokenTypes.TYPECAST,
+        };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final Object[] message;

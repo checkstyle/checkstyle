@@ -86,6 +86,12 @@ public class TodoCommentCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.COMMENT_CONTENT };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final String[] lines = ast.getText().split("\n");

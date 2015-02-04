@@ -80,6 +80,12 @@ public class AvoidStarImportCheck
         return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
+    @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+    }
+
     /**
      * Sets the list of packages or classes to be exempt from the check.
      * The excludes can contain a .* or not.

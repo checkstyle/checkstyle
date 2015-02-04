@@ -52,6 +52,12 @@ public abstract class AbstractIllegalMethodCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.METHOD_DEF};
+    }
+
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final DetailAST mid = aAST.findFirstToken(TokenTypes.IDENT);

@@ -101,6 +101,15 @@ public class JavadocVariableCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+        };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         if (shouldCheck(ast)) {

@@ -52,6 +52,17 @@ public class RedundantModifierCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.METHOD_DEF,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.INTERFACE_DEF,
+        };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         if (TokenTypes.INTERFACE_DEF == ast.getType()) {

@@ -67,6 +67,18 @@ public final class ExecutableStatementCountCheck
         return new int[] {TokenTypes.SLIST};
     }
 
+    @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.SLIST,
+        };
+    }
+
     /**
      * Gets the maximum threshold.
      * @return the maximum threshold.

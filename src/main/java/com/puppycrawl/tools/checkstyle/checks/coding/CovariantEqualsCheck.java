@@ -59,6 +59,12 @@ public class CovariantEqualsCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.LITERAL_NEW, };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         equalsMethods.clear();

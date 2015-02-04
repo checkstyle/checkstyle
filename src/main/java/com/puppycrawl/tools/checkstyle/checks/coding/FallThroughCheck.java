@@ -92,6 +92,12 @@ public class FallThroughCheck extends Check
         return getDefaultTokens();
     }
 
+    @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[]{TokenTypes.CASE_GROUP};
+    }
+
     /**
      * Set the relief pattern.
      *

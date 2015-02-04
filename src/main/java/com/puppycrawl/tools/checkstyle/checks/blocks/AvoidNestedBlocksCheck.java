@@ -105,6 +105,12 @@ public class AvoidNestedBlocksCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.SLIST};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final DetailAST parent = ast.getParent();

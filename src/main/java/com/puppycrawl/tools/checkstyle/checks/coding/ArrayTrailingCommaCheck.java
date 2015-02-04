@@ -47,6 +47,12 @@ public class ArrayTrailingCommaCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.ARRAY_INIT};
+    }
+
+    @Override
     public void visitToken(DetailAST arrayInit)
     {
         final DetailAST rcurly = arrayInit.findFirstToken(TokenTypes.RCURLY);
