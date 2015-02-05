@@ -540,7 +540,7 @@ class FooBar {
 
         <p>
           For an example import control file, look at the file called <a
-          href="https://github.com/checkstyle/checkstyle/blob/master/import-control.xml">import-control.xml</a>
+          href="https://github.com/checkstyle/checkstyle/blob/master/config/import-control.xml">import-control.xml</a>
           which is part of the Checkstyle distribution.
         </p>
       </subsection>
