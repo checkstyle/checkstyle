@@ -483,6 +483,24 @@
                                 <img
                                     src="images/ok_green.png"
                                     alt="" />
+                                <a href="config_blocks.html#EmptyBlock">EmptyCatchBlock</a>
+                            </td>
+                            <td>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L59">config</a><br/>
+                                <a
+                                    href="https://github.com/checkstyle/google-style-config-test/blob/master/src/test/java/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks/EmptyCatchBlockTest.java">test</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a
+                                    href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s4.1.3-braces-empty-blocks">4.1.3 Empty blocks: may be concise </a>
+                            </td>
+                            <td>
+                                <img
+                                    src="images/ok_green.png"
+                                    alt="" />
                                 <a
                                     href="config_misc.html#Indentation">Indentation</a>
                             </td>

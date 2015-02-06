@@ -29,7 +29,6 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * <p> By default the check will check the following blocks:
  *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE},
  *  {@link TokenTypes#LITERAL_TRY LITERAL_TRY},
- *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},
  *  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY},
  *  {@link TokenTypes#LITERAL_DO LITERAL_DO},
  *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
@@ -46,12 +45,12 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * </pre>
  *
  * <p> An example of how to configure the check for the {@link
- * BlockOption#TEXT} policy and only catch blocks is:
+ * BlockOption#TEXT} policy and only try blocks is:
  * </p>
  *
  * <pre>
  * &lt;module name="EmptyBlock"&gt;
- *    &lt;property name="tokens" value="LITERAL_CATCH"/&gt;
+ *    &lt;property name="tokens" value="LITERAL_TRY"/&gt;
  *    &lt;property name="option" value="text"/&gt;
  * &lt;/module&gt;
  * </pre>
@@ -83,6 +82,24 @@ public class EmptyBlockCheck
 
     @Override
     public int[] getDefaultTokens()
+    {
+        return new int[] {
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_FINALLY,
+            TokenTypes.LITERAL_DO,
+            TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_ELSE,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.LITERAL_SWITCH,
+            //TODO: does this handle TokenTypes.LITERAL_SYNCHRONIZED?
+        };
+    }
+
+    @Override
+    public int[] getAcceptableTokens()
     {
         return new int[] {
             TokenTypes.LITERAL_WHILE,
