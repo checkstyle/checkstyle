@@ -48,78 +48,78 @@ public final class FileContents implements CommentListener
             .compile(MATCH_SINGLELINE_COMMENT_PAT);
 
     /** the file name */
-    private final String mFilename;
+    private final String filename;
 
     /** the text */
-    private final FileText mText;
+    private final FileText text;
 
     /** map of the Javadoc comments indexed on the last line of the comment.
      * The hack is it assumes that there is only one Javadoc comment per line.
      */
-    private final Map<Integer, TextBlock> mJavadocComments = Maps.newHashMap();
+    private final Map<Integer, TextBlock> javadocComments = Maps.newHashMap();
     /** map of the C++ comments indexed on the first line of the comment. */
-    private final Map<Integer, TextBlock> mCPlusPlusComments =
+    private final Map<Integer, TextBlock> cppComments =
         Maps.newHashMap();
 
     /**
      * map of the C comments indexed on the first line of the comment to a list
      * of comments on that line
      */
-    private final Map<Integer, List<TextBlock>> mCComments = Maps.newHashMap();
+    private final Map<Integer, List<TextBlock>> clangComments = Maps.newHashMap();
 
     /**
      * Creates a new <code>FileContents</code> instance.
      *
-     * @param aFilename name of the file
-     * @param aLines the contents of the file
+     * @param filename name of the file
+     * @param lines the contents of the file
      * @deprecated Use {@link #FileContents(FileText)} instead
      *   in order to preserve the original line breaks where possible.
      */
-    @Deprecated public FileContents(String aFilename, String[] aLines)
+    @Deprecated public FileContents(String filename, String[] lines)
     {
-        mFilename = aFilename;
-        mText = FileText.fromLines(new File(aFilename), Arrays.asList(aLines));
+        this.filename = filename;
+        text = FileText.fromLines(new File(filename), Arrays.asList(lines));
     }
 
     /**
      * Creates a new <code>FileContents</code> instance.
      *
-     * @param aText the contents of the file
+     * @param text the contents of the file
      */
-    public FileContents(FileText aText)
+    public FileContents(FileText text)
     {
-        mFilename = aText.getFile().toString();
-        mText = aText;
+        filename = text.getFile().toString();
+        this.text = text;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void reportSingleLineComment(String aType, int aStartLineNo,
-            int aStartColNo)
+    public void reportSingleLineComment(String type, int startLineNo,
+            int startColNo)
     {
-        reportCppComment(aStartLineNo, aStartColNo);
+        reportCppComment(startLineNo, startColNo);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void reportBlockComment(String aType, int aStartLineNo,
-            int aStartColNo, int aEndLineNo, int aEndColNo)
+    public void reportBlockComment(String type, int startLineNo,
+            int startColNo, int endLineNo, int endColNo)
     {
-        reportCComment(aStartLineNo, aStartColNo, aEndLineNo, aEndColNo);
+        reportCComment(startLineNo, startColNo, endLineNo, endColNo);
     }
 
     /**
      * Report the location of a C++ style comment.
-     * @param aStartLineNo the starting line number
-     * @param aStartColNo the starting column number
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
      **/
-    public void reportCppComment(int aStartLineNo, int aStartColNo)
+    public void reportCppComment(int startLineNo, int startColNo)
     {
-        final String line = line(aStartLineNo - 1);
-        final String[] txt = new String[] {line.substring(aStartColNo)};
-        final Comment comment = new Comment(txt, aStartColNo, aStartLineNo,
+        final String line = line(startLineNo - 1);
+        final String[] txt = new String[] {line.substring(startColNo)};
+        final Comment comment = new Comment(txt, startColNo, startLineNo,
                 line.length() - 1);
-        mCPlusPlusComments.put(aStartLineNo, comment);
+        cppComments.put(startLineNo, comment);
     }
 
     /**
@@ -129,38 +129,38 @@ public final class FileContents implements CommentListener
      */
     public ImmutableMap<Integer, TextBlock> getCppComments()
     {
-        return ImmutableMap.copyOf(mCPlusPlusComments);
+        return ImmutableMap.copyOf(cppComments);
     }
 
     /**
      * Report the location of a C-style comment.
-     * @param aStartLineNo the starting line number
-     * @param aStartColNo the starting column number
-     * @param aEndLineNo the ending line number
-     * @param aEndColNo the ending column number
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
+     * @param endLineNo the ending line number
+     * @param endColNo the ending column number
      **/
-    public void reportCComment(int aStartLineNo, int aStartColNo,
-            int aEndLineNo, int aEndColNo)
+    public void reportCComment(int startLineNo, int startColNo,
+            int endLineNo, int endColNo)
     {
-        final String[] cc = extractCComment(aStartLineNo, aStartColNo,
-                aEndLineNo, aEndColNo);
-        final Comment comment = new Comment(cc, aStartColNo, aEndLineNo,
-                aEndColNo);
+        final String[] cc = extractCComment(startLineNo, startColNo,
+                endLineNo, endColNo);
+        final Comment comment = new Comment(cc, startColNo, endLineNo,
+                endColNo);
 
         // save the comment
-        if (mCComments.containsKey(aStartLineNo)) {
-            final List<TextBlock> entries = mCComments.get(aStartLineNo);
+        if (clangComments.containsKey(startLineNo)) {
+            final List<TextBlock> entries = clangComments.get(startLineNo);
             entries.add(comment);
         }
         else {
             final List<TextBlock> entries = Lists.newArrayList();
             entries.add(comment);
-            mCComments.put(aStartLineNo, entries);
+            clangComments.put(startLineNo, entries);
         }
 
         // Remember if possible Javadoc comment
-        if (line(aStartLineNo - 1).indexOf("/**", aStartColNo) != -1) {
-            mJavadocComments.put(aEndLineNo - 1, comment);
+        if (line(startLineNo - 1).indexOf("/**", startColNo) != -1) {
+            javadocComments.put(endLineNo - 1, comment);
         }
     }
 
@@ -172,34 +172,34 @@ public final class FileContents implements CommentListener
      */
     public ImmutableMap<Integer, List<TextBlock>> getCComments()
     {
-        return ImmutableMap.copyOf(mCComments);
+        return ImmutableMap.copyOf(clangComments);
     }
 
     /**
      * Returns the specified C comment as a String array.
      * @return C comment as a array
-     * @param aStartLineNo the starting line number
-     * @param aStartColNo the starting column number
-     * @param aEndLineNo the ending line number
-     * @param aEndColNo the ending column number
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
+     * @param endLineNo the ending line number
+     * @param endColNo the ending column number
      **/
-    private String[] extractCComment(int aStartLineNo, int aStartColNo,
-            int aEndLineNo, int aEndColNo)
+    private String[] extractCComment(int startLineNo, int startColNo,
+            int endLineNo, int endColNo)
     {
         String[] retVal;
-        if (aStartLineNo == aEndLineNo) {
+        if (startLineNo == endLineNo) {
             retVal = new String[1];
-            retVal[0] = line(aStartLineNo - 1).substring(aStartColNo,
-                    aEndColNo + 1);
+            retVal[0] = line(startLineNo - 1).substring(startColNo,
+                    endColNo + 1);
         }
         else {
-            retVal = new String[aEndLineNo - aStartLineNo + 1];
-            retVal[0] = line(aStartLineNo - 1).substring(aStartColNo);
-            for (int i = aStartLineNo; i < aEndLineNo; i++) {
-                retVal[i - aStartLineNo + 1] = line(i);
+            retVal = new String[endLineNo - startLineNo + 1];
+            retVal[0] = line(startLineNo - 1).substring(startColNo);
+            for (int i = startLineNo; i < endLineNo; i++) {
+                retVal[i - startLineNo + 1] = line(i);
             }
-            retVal[retVal.length - 1] = line(aEndLineNo - 1).substring(0,
-                    aEndColNo + 1);
+            retVal[retVal.length - 1] = line(endLineNo - 1).substring(0,
+                    endColNo + 1);
         }
         return retVal;
     }
@@ -208,32 +208,32 @@ public final class FileContents implements CommentListener
      * Returns the Javadoc comment before the specified line.
      * A return value of <code>null</code> means there is no such comment.
      * @return the Javadoc comment, or <code>null</code> if none
-     * @param aLineNo the line number to check before
+     * @param lineNoBefore the line number to check before
      **/
-    public TextBlock getJavadocBefore(int aLineNo)
+    public TextBlock getJavadocBefore(int lineNoBefore)
     {
         // Lines start at 1 to the callers perspective, so need to take off 2
-        int lineNo = aLineNo - 2;
+        int lineNo = lineNoBefore - 2;
 
         // skip blank lines
         while ((lineNo > 0) && (lineIsBlank(lineNo) || lineIsComment(lineNo))) {
             lineNo--;
         }
 
-        return mJavadocComments.get(lineNo);
+        return javadocComments.get(lineNo);
     }
 
     /**
      * Get a single line.
      * For internal use only, as getText().get(lineNo) is just as
      * suitable for external use and avoids method duplication.
-     * @param aLineNo the number of the line to get
+     * @param lineNo the number of the line to get
      * @return the corresponding line, without terminator
      * @throws IndexOutOfBoundsException if lineNo is invalid
      */
-    private String line(int aLineNo)
+    private String line(int lineNo)
     {
-        return mText.get(aLineNo);
+        return text.get(lineNo);
     }
 
     /**
@@ -242,70 +242,70 @@ public final class FileContents implements CommentListener
      */
     public FileText getText()
     {
-        return mText;
+        return text;
     }
 
     /** @return the lines in the file */
     public String[] getLines()
     {
-        return mText.toLinesArray();
+        return text.toLinesArray();
     }
 
     /**
      * Get the line from text of the file.
-     * @param aIndex index of the line
+     * @param index index of the line
      * @return line from text of the file
      */
-    public String getLine(int aIndex)
+    public String getLine(int index)
     {
-        return mText.get(aIndex);
+        return text.get(index);
     }
 
     /** @return the name of the file */
     public String getFilename()
     {
-        return mFilename;
+        return filename;
     }
 
     /**
      * Checks if the specified line is blank.
-     * @param aLineNo the line number to check
+     * @param lineNo the line number to check
      * @return if the specified line consists only of tabs and spaces.
      **/
-    public boolean lineIsBlank(int aLineNo)
+    public boolean lineIsBlank(int lineNo)
     {
         // possible improvement: avoid garbage creation in trim()
-        return "".equals(line(aLineNo).trim());
+        return "".equals(line(lineNo).trim());
     }
 
     /**
      * Checks if the specified line is a single-line comment without code.
-     * @param aLineNo  the line number to check
+     * @param lineNo  the line number to check
      * @return if the specified line consists of only a single line comment
      *         without code.
      **/
-    public boolean lineIsComment(int aLineNo)
+    public boolean lineIsComment(int lineNo)
     {
-        return MATCH_SINGLELINE_COMMENT.matcher(line(aLineNo)).matches();
+        return MATCH_SINGLELINE_COMMENT.matcher(line(lineNo)).matches();
     }
 
     /**
      * Checks if the specified position intersects with a comment.
-     * @param aStartLineNo the starting line number
-     * @param aStartColNo the starting column number
-     * @param aEndLineNo the ending line number
-     * @param aEndColNo the ending column number
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
+     * @param endLineNo the ending line number
+     * @param endColNo the ending column number
      * @return true if the positions intersects with a comment.
      **/
-    public boolean hasIntersectionWithComment(int aStartLineNo,
-            int aStartColNo, int aEndLineNo, int aEndColNo)
+    public boolean hasIntersectionWithComment(int startLineNo,
+            int startColNo, int endLineNo, int endColNo)
     {
         // Check C comments (all comments should be checked)
-        final Collection<List<TextBlock>> values = mCComments.values();
+        final Collection<List<TextBlock>> values = clangComments.values();
         for (final List<TextBlock> row : values) {
             for (final TextBlock comment : row) {
-                if (comment.intersects(aStartLineNo, aStartColNo, aEndLineNo,
-                        aEndColNo))
+                if (comment.intersects(startLineNo, startColNo, endLineNo,
+                        endColNo))
                 {
                     return true;
                 }
@@ -313,13 +313,13 @@ public final class FileContents implements CommentListener
         }
 
         // Check CPP comments (line searching is possible)
-        for (int lineNumber = aStartLineNo; lineNumber <= aEndLineNo;
+        for (int lineNumber = startLineNo; lineNumber <= endLineNo;
              lineNumber++)
         {
-            final TextBlock comment = mCPlusPlusComments.get(lineNumber);
+            final TextBlock comment = cppComments.get(lineNumber);
             if ((comment != null)
-                    && comment.intersects(aStartLineNo, aStartColNo,
-                            aEndLineNo, aEndColNo))
+                    && comment.intersects(startLineNo, startColNo,
+                            endLineNo, endColNo))
             {
                 return true;
             }

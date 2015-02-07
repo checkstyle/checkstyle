@@ -33,15 +33,15 @@ import java.util.StringTokenizer;
 class CSVFilter implements IntFilter
 {
     /** filter set */
-    private final Set<IntFilter> mFilters = Sets.newHashSet();
+    private final Set<IntFilter> filters = Sets.newHashSet();
 
     /**
      * Adds a IntFilter to the set.
-     * @param aFilter the IntFilter to add.
+     * @param filter the IntFilter to add.
      */
-    public void addFilter(IntFilter aFilter)
+    public void addFilter(IntFilter filter)
     {
-        mFilters.add(aFilter);
+        filters.add(filter);
     }
 
     /**
@@ -50,7 +50,7 @@ class CSVFilter implements IntFilter
      */
     protected Set<IntFilter> getFilters()
     {
-        return mFilters;
+        return filters;
     }
 
     /**
@@ -58,14 +58,14 @@ class CSVFilter implements IntFilter
      * string. Each value is an integer, or a range of integers. A range of
      * integers is of the form integer-integer, such as 1-10.
      * Note: integers must be non-negative.
-     * @param aPattern the CSV string.
+     * @param pattern the CSV string.
      * @throws NumberFormatException if a component substring does not
      * contain a parsable integer.
      */
-    public CSVFilter(String aPattern)
+    public CSVFilter(String pattern)
         throws NumberFormatException
     {
-        final StringTokenizer tokenizer = new StringTokenizer(aPattern, ",");
+        final StringTokenizer tokenizer = new StringTokenizer(pattern, ",");
         while (tokenizer.hasMoreTokens()) {
             final String token = tokenizer.nextToken().trim();
             final int index = token.indexOf("-");
@@ -85,14 +85,14 @@ class CSVFilter implements IntFilter
 
     /**
      * Determines whether an Integer matches a CSV integer value.
-     * @param aInt the Integer to check.
-     * @return true if aInt is an Integer that matches a CSV value.
+     * @param intValue the Integer to check.
+     * @return true if intValue is an Integer that matches a CSV value.
      */
     @Override
-    public boolean accept(int aInt)
+    public boolean accept(int intValue)
     {
         for (IntFilter filter : getFilters()) {
-            if (filter.accept(aInt)) {
+            if (filter.accept(intValue)) {
                 return true;
             }
         }
@@ -102,21 +102,21 @@ class CSVFilter implements IntFilter
     @Override
     public String toString()
     {
-        return mFilters.toString();
+        return filters.toString();
     }
 
     @Override
     public int hashCode()
     {
-        return mFilters.hashCode();
+        return filters.hashCode();
     }
 
     @Override
-    public boolean equals(Object aObject)
+    public boolean equals(Object object)
     {
-        if (aObject instanceof CSVFilter) {
-            final CSVFilter other = (CSVFilter) aObject;
-            return this.mFilters.equals(other.mFilters);
+        if (object instanceof CSVFilter) {
+            final CSVFilter other = (CSVFilter) object;
+            return this.filters.equals(other.filters);
         }
         return false;
     }

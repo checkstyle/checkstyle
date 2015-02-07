@@ -26,12 +26,12 @@ import org.junit.Test;
 public class MissingSwitchDefaultCheckTest
     extends BaseCheckTestSupport
 {
-    private DefaultConfiguration mCheckConfig;
+    private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp()
     {
-        mCheckConfig = createCheckConfig(MissingSwitchDefaultCheck.class);
+        checkConfig = createCheckConfig(MissingSwitchDefaultCheck.class);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class MissingSwitchDefaultCheckTest
             "17:9: switch without \"default\" clause.",
         };
         verify(
-            mCheckConfig,
+            checkConfig,
             getPath("InputMissingSwitchDefault.java"),
             expected);
     }

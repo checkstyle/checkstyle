@@ -32,23 +32,23 @@ public class IfHandler extends BlockParentHandler
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
-     * @param aIndentCheck   the indentation check
-     * @param aAst           the abstract syntax tree
-     * @param aParent        the parent handler
+     * @param indentCheck   the indentation check
+     * @param ast           the abstract syntax tree
+     * @param parent        the parent handler
      */
-    public IfHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent)
+    public IfHandler(IndentationCheck indentCheck,
+        DetailAST ast, ExpressionHandler parent)
     {
-        super(aIndentCheck, "if", aAst, aParent);
+        super(indentCheck, "if", ast, parent);
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
+    public IndentLevel suggestedChildLevel(ExpressionHandler child)
     {
-        if (aChild instanceof ElseHandler) {
+        if (child instanceof ElseHandler) {
             return getLevel();
         }
-        return super.suggestedChildLevel(aChild);
+        return super.suggestedChildLevel(child);
     }
 
     @Override
@@ -104,9 +104,9 @@ public class IfHandler extends BlockParentHandler
         final LineWrappingHandler lineWrap =
             new LineWrappingHandler(getIndentCheck(), getMainAst()) {
                 @Override
-                public DetailAST findLastNode(DetailAST aFirstNode)
+                public DetailAST findLastNode(DetailAST firstNode)
                 {
-                    return aFirstNode.findFirstToken(TokenTypes.RPAREN);
+                    return firstNode.findFirstToken(TokenTypes.RPAREN);
                 }
             };
         lineWrap.checkIndentation();

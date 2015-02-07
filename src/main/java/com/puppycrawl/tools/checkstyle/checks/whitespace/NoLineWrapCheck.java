@@ -87,10 +87,10 @@ public class NoLineWrapCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (aAST.getLineNo() != aAST.getLastChild().getLineNo()) {
-            log(aAST.getLineNo(), "no.line.wrap", aAST.getText());
+        if (ast.getLineNo() != ast.getLastChild().getLineNo()) {
+            log(ast.getLineNo(), "no.line.wrap", ast.getText());
         }
     }
 }

@@ -71,15 +71,15 @@ public class PackageAnnotationCheck extends Check
 
     /** {@inheritDoc} */
     @Override
-    public void visitToken(final DetailAST aAST)
+    public void visitToken(final DetailAST ast)
     {
         final boolean containsAnnotation =
-            AnnotationUtility.containsAnnotation(aAST);
+            AnnotationUtility.containsAnnotation(ast);
         final boolean inPackageInfo =
             this.getFileContents().inPackageInfo();
 
         if (containsAnnotation && !inPackageInfo) {
-            this.log(aAST.getLine(), "annotation.package.location");
+            this.log(ast.getLine(), "annotation.package.location");
         }
     }
 }

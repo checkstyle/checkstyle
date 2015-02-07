@@ -24,7 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 
 /**
  * Checks that a JavaDoc block which can fit on a single line and doesn't
- * contain at-clauses. Javadoc comment that contains at leat one at-clause
+ * contain at-clauses. Javadoc comment that contains at least one at-clause
  * should be formatted in few lines.
  *
  * Default configuration:
@@ -48,12 +48,12 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck
     }
 
     @Override
-    public void visitJavadocToken(DetailNode aAst)
+    public void visitJavadocToken(DetailNode ast)
     {
         if (isSingleLineJavadoc()
-                && (hasJavadocTags(aAst) || hasJavadocInlineTags(aAst)))
+                && (hasJavadocTags(ast) || hasJavadocInlineTags(ast)))
         {
-            log(aAst.getLineNumber(), "singleline.javadoc");
+            log(ast.getLineNumber(), "singleline.javadoc");
         }
     }
 
@@ -73,24 +73,24 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck
     /**
      * Checks if comment has javadoc tags.
      *
-     * @param aJavadocRoot javadoc root node.
+     * @param javadocRoot javadoc root node.
      * @return true, if comment has javadoc tags.
      */
-    private boolean hasJavadocTags(DetailNode aJavadocRoot)
+    private boolean hasJavadocTags(DetailNode javadocRoot)
     {
         final DetailNode javadocTagSection =
-                JavadocUtils.findFirstToken(aJavadocRoot, JavadocTokenTypes.JAVADOC_TAG);
+                JavadocUtils.findFirstToken(javadocRoot, JavadocTokenTypes.JAVADOC_TAG);
         return javadocTagSection != null;
     }
 
     /**
      * Checks if comment has in-line tags tags.
      *
-     * @param aJavadocRoot javadoc root node.
+     * @param javadocRoot javadoc root node.
      * @return true, if comment has in-line tags tags.
      */
-    private boolean hasJavadocInlineTags(DetailNode aJavadocRoot)
+    private boolean hasJavadocInlineTags(DetailNode javadocRoot)
     {
-        return JavadocUtils.branchContains(aJavadocRoot, JavadocTokenTypes.JAVADOC_INLINE_TAG);
+        return JavadocUtils.branchContains(javadocRoot, JavadocTokenTypes.JAVADOC_INLINE_TAG);
     }
 }

@@ -28,30 +28,30 @@ import java.util.regex.Matcher;
 class SinglelineDetector
 {
     /** The detection options to use. */
-    private final DetectorOptions mOptions;
+    private final DetectorOptions options;
     /** Tracks the number of matches. */
-    private int mCurrentMatches;
+    private int currentMatches;
 
     /**
      * Creates an instance.
-     * @param aOptions the options to use.
+     * @param options the options to use.
      */
-    public SinglelineDetector(DetectorOptions aOptions)
+    public SinglelineDetector(DetectorOptions options)
     {
-        mOptions = aOptions;
+        this.options = options;
     }
 
     /**
      * Processes a set of lines looking for matches.
-     * @param aLines the lines to process.
+     * @param lines the lines to process.
      */
-    public void processLines(List<String> aLines)
+    public void processLines(List<String> lines)
     {
         resetState();
         int lineno = 0;
-        for (String line : aLines) {
+        for (String line : lines) {
             lineno++;
-            checkLine(lineno, line, mOptions.getPattern().matcher(line), 0);
+            checkLine(lineno, line, options.getPattern().matcher(line), 0);
         }
         finish();
     }
@@ -59,13 +59,13 @@ class SinglelineDetector
     /** Perform processing at the end of a set of lines. */
     private void finish()
     {
-        if (mCurrentMatches < mOptions.getMinimum()) {
-            if ("".equals(mOptions.getMessage())) {
-                mOptions.getReporter().log(0, "regexp.minimum",
-                        mOptions.getMinimum(), mOptions.getFormat());
+        if (currentMatches < options.getMinimum()) {
+            if ("".equals(options.getMessage())) {
+                options.getReporter().log(0, "regexp.minimum",
+                        options.getMinimum(), options.getFormat());
             }
             else {
-                mOptions.getReporter().log(0, mOptions.getMessage());
+                options.getReporter().log(0, options.getMessage());
             }
         }
     }
@@ -75,49 +75,49 @@ class SinglelineDetector
      */
     private void resetState()
     {
-        mCurrentMatches = 0;
+        currentMatches = 0;
     }
 
     /**
      * Check a line for matches.
-     * @param aLineno the line number of the line to check
-     * @param aLine the line to check
-     * @param aMatcher the matcher to use
-     * @param aStartPosition the position to start searching from.
+     * @param lineno the line number of the line to check
+     * @param line the line to check
+     * @param matcher the matcher to use
+     * @param startPosition the position to start searching from.
      */
-    private void checkLine(int aLineno, String aLine, Matcher aMatcher,
-            int aStartPosition)
+    private void checkLine(int lineno, String line, Matcher matcher,
+            int startPosition)
     {
-        final boolean foundMatch = aMatcher.find(aStartPosition);
+        final boolean foundMatch = matcher.find(startPosition);
         if (!foundMatch) {
             return;
         }
 
         // match is found, check for intersection with comment
-        final int startCol = aMatcher.start(0);
-        final int endCol = aMatcher.end(0);
+        final int startCol = matcher.start(0);
+        final int endCol = matcher.end(0);
         // Note that Matcher.end(int) returns the offset AFTER the
         // last matched character, but shouldSuppress()
         // needs column number of the last character.
         // So we need to use (endCol - 1) here.
-        if (mOptions.getSuppressor()
-                .shouldSuppress(aLineno, startCol, aLineno, endCol - 1))
+        if (options.getSuppressor()
+                .shouldSuppress(lineno, startCol, lineno, endCol - 1))
         {
-            if (endCol < aLine.length()) {
+            if (endCol < line.length()) {
                 // check if the expression is on the rest of the line
-                checkLine(aLineno, aLine, aMatcher, endCol);
+                checkLine(lineno, line, matcher, endCol);
             }
             return; // end processing here
         }
 
-        mCurrentMatches++;
-        if (mCurrentMatches > mOptions.getMaximum()) {
-            if ("".equals(mOptions.getMessage())) {
-                mOptions.getReporter().log(aLineno, "regexp.exceeded",
-                        aMatcher.pattern().toString());
+        currentMatches++;
+        if (currentMatches > options.getMaximum()) {
+            if ("".equals(options.getMessage())) {
+                options.getReporter().log(lineno, "regexp.exceeded",
+                        matcher.pattern().toString());
             }
             else {
-                mOptions.getReporter().log(aLineno, mOptions.getMessage());
+                options.getReporter().log(lineno, options.getMessage());
             }
         }
     }

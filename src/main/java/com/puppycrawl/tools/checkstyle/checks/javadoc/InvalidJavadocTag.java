@@ -25,37 +25,37 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 public final class InvalidJavadocTag
 {
     /** The line in which the invalid tag occurs. */
-    private final int mLine;
+    private final int line;
     /** The column in which the invalid tag occurs. */
-    private final int mCol;
+    private final int col;
     /** The name of the invalid tag. */
-    private final String mName;
+    private final String name;
 
     /**
      * Creates an instance.
-     * @param aLine the line of the tag
-     * @param aCol the column of the tag
-     * @param aName the name of the invalid tag
+     * @param line the line of the tag
+     * @param col the column of the tag
+     * @param name the name of the invalid tag
      */
-    public InvalidJavadocTag(int aLine, int aCol, String aName)
+    public InvalidJavadocTag(int line, int col, String name)
     {
-        mLine = aLine;
-        mCol = aCol;
-        mName = aName;
+        this.line = line;
+        this.col = col;
+        this.name = name;
     }
 
     public int getLine()
     {
-        return mLine;
+        return line;
     }
 
     public int getCol()
     {
-        return mCol;
+        return col;
     }
 
     public String getName()
     {
-        return mName;
+        return name;
     }
 }

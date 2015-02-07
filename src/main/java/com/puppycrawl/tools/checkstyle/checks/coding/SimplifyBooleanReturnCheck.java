@@ -48,7 +48,7 @@ public class SimplifyBooleanReturnCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         // LITERAL_IF has the following four or five children:
         // '('
@@ -59,7 +59,7 @@ public class SimplifyBooleanReturnCheck
 
         // don't bother if this is not if then else
         final AST elseLiteral =
-            aAST.findFirstToken(TokenTypes.LITERAL_ELSE);
+            ast.findFirstToken(TokenTypes.LITERAL_ELSE);
         if (elseLiteral == null) {
             return;
         }
@@ -67,13 +67,13 @@ public class SimplifyBooleanReturnCheck
 
         // skip '(' and ')'
         // TODO: Introduce helpers in DetailAST
-        final AST condition = aAST.getFirstChild().getNextSibling();
+        final AST condition = ast.getFirstChild().getNextSibling();
         final AST thenStatement = condition.getNextSibling().getNextSibling();
 
         if (returnsOnlyBooleanLiteral(thenStatement)
             && returnsOnlyBooleanLiteral(elseStatement))
         {
-            log(aAST.getLineNo(), aAST.getColumnNo(), "simplify.boolreturn");
+            log(ast.getLineNo(), ast.getColumnNo(), "simplify.boolreturn");
         }
     }
 
@@ -81,7 +81,7 @@ public class SimplifyBooleanReturnCheck
      * Returns if an AST is a return statment with a boolean literal
      * or a compound statement that contains only such a return statement.
      *
-     * Returns <code>true</code> iff aAST represents
+     * Returns <code>true</code> iff ast represents
      * <br/>
      * <pre>
      * return true/false;
@@ -94,38 +94,38 @@ public class SimplifyBooleanReturnCheck
      * }
      * </pre>
      *
-     * @param aAST the sytax tree to check
-     * @return if aAST is a return statment with a boolean literal.
+     * @param ast the sytax tree to check
+     * @return if ast is a return statment with a boolean literal.
      */
-    private static boolean returnsOnlyBooleanLiteral(AST aAST)
+    private static boolean returnsOnlyBooleanLiteral(AST ast)
     {
-        if (isBooleanLiteralReturnStatement(aAST)) {
+        if (isBooleanLiteralReturnStatement(ast)) {
             return true;
         }
 
-        final AST firstStmnt = aAST.getFirstChild();
+        final AST firstStmnt = ast.getFirstChild();
         return isBooleanLiteralReturnStatement(firstStmnt);
     }
 
     /**
      * Returns if an AST is a return statment with a boolean literal.
      *
-     * Returns <code>true</code> iff aAST represents
+     * Returns <code>true</code> iff ast represents
      * <br/>
      * <pre>
      * return true/false;
      * </pre>
      *
-     * @param aAST the sytax tree to check
-     * @return if aAST is a return statment with a boolean literal.
+     * @param ast the sytax tree to check
+     * @return if ast is a return statment with a boolean literal.
      */
-    private static boolean isBooleanLiteralReturnStatement(AST aAST)
+    private static boolean isBooleanLiteralReturnStatement(AST ast)
     {
-        if ((aAST == null) || (aAST.getType() != TokenTypes.LITERAL_RETURN)) {
+        if ((ast == null) || (ast.getType() != TokenTypes.LITERAL_RETURN)) {
             return false;
         }
 
-        final AST expr = aAST.getFirstChild();
+        final AST expr = ast.getFirstChild();
 
         if ((expr == null) || (expr.getType() == TokenTypes.SEMI)) {
             return false;
@@ -137,13 +137,13 @@ public class SimplifyBooleanReturnCheck
 
     /**
      * Checks if a token type is a literal true or false.
-     * @param aTokenType the TokenType
-     * @return true iff aTokenType is LITERAL_TRUE or LITERAL_FALSE
+     * @param tokenType the TokenType
+     * @return true iff tokenType is LITERAL_TRUE or LITERAL_FALSE
      */
-    private static boolean isBooleanLiteralType(final int aTokenType)
+    private static boolean isBooleanLiteralType(final int tokenType)
     {
-        final boolean isTrue = (aTokenType == TokenTypes.LITERAL_TRUE);
-        final boolean isFalse = (aTokenType == TokenTypes.LITERAL_FALSE);
-        return isTrue || isFalse;
+        final boolean iastrue = (tokenType == TokenTypes.LITERAL_TRUE);
+        final boolean isFalse = (tokenType == TokenTypes.LITERAL_FALSE);
+        return iastrue || isFalse;
     }
 }

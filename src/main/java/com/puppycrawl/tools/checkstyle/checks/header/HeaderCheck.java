@@ -33,55 +33,55 @@ public class HeaderCheck extends AbstractHeaderCheck
     private static final int[] EMPTY_INT_ARRAY = new int[0];
 
     /** the header lines to ignore in the check, sorted. */
-    private int[] mIgnoreLines = EMPTY_INT_ARRAY;
+    private int[] ignoreLines = EMPTY_INT_ARRAY;
 
     /**
-     * @param aLineNo a line number
-     * @return if <code>aLineNo</code> is one of the ignored header lines.
+     * @param lineNo a line number
+     * @return if <code>lineNo</code> is one of the ignored header lines.
      */
-    private boolean isIgnoreLine(int aLineNo)
+    private boolean isIgnoreLine(int lineNo)
     {
-        return (Arrays.binarySearch(mIgnoreLines, aLineNo) >= 0);
+        return (Arrays.binarySearch(ignoreLines, lineNo) >= 0);
     }
 
     /**
      * Checks if a code line matches the required header line.
-     * @param aLineNumber the line number to check against the header
-     * @param aLine the line contents
+     * @param lineNumber the line number to check against the header
+     * @param line the line contents
      * @return true if and only if the line matches the required header line
      */
-    protected boolean isMatch(int aLineNumber, String aLine)
+    protected boolean isMatch(int lineNumber, String line)
     {
         // skip lines we are meant to ignore
-        return isIgnoreLine(aLineNumber + 1)
-            || getHeaderLines().get(aLineNumber).equals(aLine);
+        return isIgnoreLine(lineNumber + 1)
+            || getHeaderLines().get(lineNumber).equals(line);
     }
 
     /**
      * Set the lines numbers to ignore in the header check.
-     * @param aList comma separated list of line numbers to ignore in header.
+     * @param list comma separated list of line numbers to ignore in header.
      */
-    public void setIgnoreLines(int[] aList)
+    public void setIgnoreLines(int[] list)
     {
-        if ((aList == null) || (aList.length == 0)) {
-            mIgnoreLines = EMPTY_INT_ARRAY;
+        if ((list == null) || (list.length == 0)) {
+            ignoreLines = EMPTY_INT_ARRAY;
             return;
         }
 
-        mIgnoreLines = new int[aList.length];
-        System.arraycopy(aList, 0, mIgnoreLines, 0, aList.length);
-        Arrays.sort(mIgnoreLines);
+        ignoreLines = new int[list.length];
+        System.arraycopy(list, 0, ignoreLines, 0, list.length);
+        Arrays.sort(ignoreLines);
     }
 
     @Override
-    protected void processFiltered(File aFile, List<String> aLines)
+    protected void processFiltered(File file, List<String> lines)
     {
-        if (getHeaderLines().size() > aLines.size()) {
+        if (getHeaderLines().size() > lines.size()) {
             log(1, "header.missing");
         }
         else {
             for (int i = 0; i < getHeaderLines().size(); i++) {
-                if (!isMatch(i, aLines.get(i))) {
+                if (!isMatch(i, lines.get(i))) {
                     log(i + 1, "header.mismatch", getHeaderLines().get(i));
                     break; // stop checking
                 }

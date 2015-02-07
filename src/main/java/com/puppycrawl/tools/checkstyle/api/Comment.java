@@ -26,85 +26,85 @@ package com.puppycrawl.tools.checkstyle.api;
 public class Comment implements TextBlock
 {
     /** text of the comment. */
-    private final String[] mText;
+    private final String[] text;
 
     /** number of first line of the comment. */
-    private final int mFirstLine;
+    private final int firstLine;
 
     /** number of last line of the comment. */
-    private final int mLastLine;
+    private final int lastLine;
 
     /** number of first column of the comment. */
-    private final int mFirstCol;
+    private final int firstCol;
 
     /** number of last column of the comment. */
-    private final int mLastCol;
+    private final int lastCol;
 
     /**
      * Creates new instance.
-     * @param aText the lines that make up the comment.
-     * @param aFirstCol number of the first column of the comment.
-     * @param aLastLine number of the last line of the comment.
-     * @param aLastCol number of the last column of the comment.
+     * @param text the lines that make up the comment.
+     * @param firstCol number of the first column of the comment.
+     * @param lastLine number of the last line of the comment.
+     * @param lastCol number of the last column of the comment.
      */
-    public Comment(final String[] aText, final int aFirstCol,
-            final int aLastLine, final int aLastCol)
+    public Comment(final String[] text, final int firstCol,
+            final int lastLine, final int lastCol)
     {
-        mText = new String[aText.length];
-        System.arraycopy(aText, 0, mText, 0, mText.length);
-        mFirstLine = aLastLine - mText.length + 1;
-        mLastLine = aLastLine;
-        mFirstCol = aFirstCol;
-        mLastCol = aLastCol;
+        this.text = new String[text.length];
+        System.arraycopy(text, 0, this.text, 0, this.text.length);
+        firstLine = lastLine - this.text.length + 1;
+        this.lastLine = lastLine;
+        this.firstCol = firstCol;
+        this.lastCol = lastCol;
     }
 
     /** {@inheritDoc} */
     @Override
     public final String[] getText()
     {
-        return mText.clone();
+        return text.clone();
     }
 
     /** {@inheritDoc} */
     @Override
     public final int getStartLineNo()
     {
-        return mFirstLine;
+        return firstLine;
     }
 
     /** {@inheritDoc} */
     @Override
     public final int getEndLineNo()
     {
-        return mLastLine;
+        return lastLine;
     }
 
     /** {@inheritDoc} */
     @Override
     public int getStartColNo()
     {
-        return mFirstCol;
+        return firstCol;
     }
 
     /** {@inheritDoc} */
     @Override
     public int getEndColNo()
     {
-        return mLastCol;
+        return lastCol;
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean intersects(int aStartLineNo, int aStartColNo,
-                              int aEndLineNo, int aEndColNo)
+    public boolean intersects(int startLineNo, int startColNo,
+                              int endLineNo, int endColNo)
     {
         // compute a single number for start and end
         // to simplify conditional logic
         final long multiplier = Integer.MAX_VALUE;
-        final long thisStart = mFirstLine * multiplier + mFirstCol;
-        final long thisEnd = mLastLine * multiplier + mLastCol;
-        final long inStart = aStartLineNo * multiplier + aStartColNo;
-        final long inEnd = aEndLineNo * multiplier + aEndColNo;
+        final long thisStart = firstLine * multiplier + firstCol;
+        final long thisEnd = lastLine * multiplier + lastCol;
+        final long inStart = startLineNo * multiplier + startColNo;
+        final long inEnd = endLineNo * multiplier + endColNo;
 
         return !((thisEnd < inStart) || (inEnd < thisStart));
     }
@@ -112,7 +112,7 @@ public class Comment implements TextBlock
     @Override
     public String toString()
     {
-        return "Comment[" + mFirstLine + ":" + mFirstCol + "-"
-            + mLastLine + ":" + mLastCol + "]";
+        return "Comment[" + firstLine + ":" + firstCol + "-"
+            + lastLine + ":" + lastCol + "]";
     }
 }

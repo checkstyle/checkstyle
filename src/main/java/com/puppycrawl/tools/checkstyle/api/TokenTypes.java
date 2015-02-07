@@ -2904,7 +2904,7 @@ public final class TokenTypes
 
     /**
      * An enum constant declaration. Its notable children are annotations,
-     * arguments and object block akin to an annonymous
+     * arguments and object block akin to an anonymous
      * inner class' body.
      *
      * <p>For example:</p>
@@ -3542,76 +3542,76 @@ public final class TokenTypes
 
     /**
      * Returns the name of a token for a given ID.
-     * @param aID the ID of the token name to get
+     * @param iD the ID of the token name to get
      * @return a token name
      */
-    public static String getTokenName(int aID)
+    public static String getTokenName(int iD)
     {
-        if (aID > TOKEN_VALUE_TO_NAME.length - 1) {
-            throw new IllegalArgumentException("given id " + aID);
+        if (iD > TOKEN_VALUE_TO_NAME.length - 1) {
+            throw new IllegalArgumentException("given id " + iD);
         }
-        final String name = TOKEN_VALUE_TO_NAME[aID];
+        final String name = TOKEN_VALUE_TO_NAME[iD];
         if (name == null) {
-            throw new IllegalArgumentException("given id " + aID);
+            throw new IllegalArgumentException("given id " + iD);
         }
         return name;
     }
 
     /**
      * Returns the ID of a token for a given name.
-     * @param aName the name of the token ID to get
+     * @param name the name of the token ID to get
      * @return a token ID
      */
-    public static int getTokenId(String aName)
+    public static int getTokenId(String name)
     {
-        final Integer id = TOKEN_NAME_TO_VALUE.get(aName);
+        final Integer id = TOKEN_NAME_TO_VALUE.get(name);
         if (id == null) {
-            throw new IllegalArgumentException("given name " + aName);
+            throw new IllegalArgumentException("given name " + name);
         }
         return id.intValue();
     }
 
     /**
      * Returns the short description of a token for a given name.
-     * @param aName the name of the token ID to get
+     * @param name the name of the token ID to get
      * @return a short description
      */
-    public static String getShortDescription(String aName)
+    public static String getShortDescription(String name)
     {
-        if (!TOKEN_NAME_TO_VALUE.containsKey(aName)) {
-            throw new IllegalArgumentException("given name " + aName);
+        if (!TOKEN_NAME_TO_VALUE.containsKey(name)) {
+            throw new IllegalArgumentException("given name " + name);
         }
 
         final String tokentypes =
             "com.puppycrawl.tools.checkstyle.api.tokentypes";
         final ResourceBundle bundle = ResourceBundle.getBundle(tokentypes);
-        return bundle.getString(aName);
+        return bundle.getString(name);
     }
 
     /**
      * Is argument comment-related type (SINGLE_LINE_COMMENT,
      * BLOCK_COMMENT_BEGIN, BLOCK_COMMENT_END, COMMENT_CONTENT).
-     * @param aType
+     * @param type
      *        token type.
-     * @return true if aType is comment-related type.
+     * @return true if type is comment-related type.
      */
-    public static boolean isCommentType(int aType)
+    public static boolean isCommentType(int type)
     {
-        return aType == TokenTypes.SINGLE_LINE_COMMENT
-                || aType == TokenTypes.BLOCK_COMMENT_BEGIN
-                || aType == TokenTypes.BLOCK_COMMENT_END
-                || aType == TokenTypes.COMMENT_CONTENT;
+        return type == TokenTypes.SINGLE_LINE_COMMENT
+                || type == TokenTypes.BLOCK_COMMENT_BEGIN
+                || type == TokenTypes.BLOCK_COMMENT_END
+                || type == TokenTypes.COMMENT_CONTENT;
     }
 
     /**
      * Is argument comment-related type name (SINGLE_LINE_COMMENT,
      * BLOCK_COMMENT_BEGIN, BLOCK_COMMENT_END, COMMENT_CONTENT).
-     * @param aType
+     * @param type
      *        token type name.
-     * @return true if aType is comment-related type name.
+     * @return true if type is comment-related type name.
      */
-    public static boolean isCommentType(String aType)
+    public static boolean isCommentType(String type)
     {
-        return isCommentType(getTokenId(aType));
+        return isCommentType(getTokenId(type));
     }
 }

@@ -10,22 +10,22 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
 
 class DebugFilter implements Filter
 {
-    private boolean mCalled;
+    private boolean called;
 
     @Override
-    public boolean accept(AuditEvent aEvent)
+    public boolean accept(AuditEvent event)
     {
-        mCalled = true;
+        called = true;
         return true;
     }
 
     public boolean wasCalled()
     {
-        return mCalled;
+        return called;
     }
 
     public void resetFilter()
     {
-        mCalled = false;
+        called = false;
     }
 }

@@ -55,7 +55,7 @@ final class ImportControlLoader extends AbstractLoader
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_1.dtd";
 
     /** Used to hold the {@link PkgControl} objects. */
-    private final FastStack<PkgControl> mStack = FastStack.newInstance();
+    private final FastStack<PkgControl> stack = FastStack.newInstance();
 
     /** the map to lookup the resource name by the id */
     private static final Map<String, String> DTD_RESOURCE_BY_ID =
@@ -78,104 +78,104 @@ final class ImportControlLoader extends AbstractLoader
     }
 
     @Override
-    public void startElement(final String aNamespaceURI,
-                             final String aLocalName,
-                             final String aQName,
-                             final Attributes aAtts)
+    public void startElement(final String namespaceURI,
+                             final String locqName,
+                             final String qName,
+                             final Attributes atts)
         throws SAXException
     {
-        if ("import-control".equals(aQName)) {
-            final String pkg = safeGet(aAtts, "pkg");
-            mStack.push(new PkgControl(pkg));
+        if ("import-control".equals(qName)) {
+            final String pkg = safeGet(atts, "pkg");
+            stack.push(new PkgControl(pkg));
         }
-        else if ("subpackage".equals(aQName)) {
-            assert !mStack.isEmpty();
-            final String name = safeGet(aAtts, "name");
-            mStack.push(new PkgControl(mStack.peek(), name));
+        else if ("subpackage".equals(qName)) {
+            assert !stack.isEmpty();
+            final String name = safeGet(atts, "name");
+            stack.push(new PkgControl(stack.peek(), name));
         }
-        else if ("allow".equals(aQName) || "disallow".equals(aQName)) {
-            assert !mStack.isEmpty();
+        else if ("allow".equals(qName) || "disallow".equals(qName)) {
+            assert !stack.isEmpty();
             // Need to handle either "pkg" or "class" attribute.
             // May have "exact-match" for "pkg"
             // May have "local-only"
-            final boolean isAllow = "allow".equals(aQName);
-            final boolean isLocalOnly = (aAtts.getValue("local-only") != null);
-            final String pkg = aAtts.getValue("pkg");
-            final boolean regex = (aAtts.getValue("regex") != null);
+            final boolean isAllow = "allow".equals(qName);
+            final boolean isLocalOnly = (atts.getValue("local-only") != null);
+            final String pkg = atts.getValue("pkg");
+            final boolean regex = (atts.getValue("regex") != null);
             final Guard g;
             if (pkg != null) {
                 final boolean exactMatch =
-                    (aAtts.getValue("exact-match") != null);
+                    (atts.getValue("exact-match") != null);
                 g = new Guard(isAllow, isLocalOnly, pkg, exactMatch, regex);
             }
             else {
                 // handle class names which can be normal class names or regular
                 // expressions
-                final String clazz = safeGet(aAtts, "class");
+                final String clazz = safeGet(atts, "class");
                 g = new Guard(isAllow, isLocalOnly, clazz, regex);
             }
 
-            final PkgControl pc = mStack.peek();
+            final PkgControl pc = stack.peek();
             pc.addGuard(g);
         }
     }
 
     @Override
-    public void endElement(final String aNamespaceURI, final String aLocalName,
-        final String aQName)
+    public void endElement(final String namespaceURI, final String localName,
+        final String qName)
     {
-        if ("subpackage".equals(aQName)) {
-            assert mStack.size() > 1;
-            mStack.pop();
+        if ("subpackage".equals(qName)) {
+            assert stack.size() > 1;
+            stack.pop();
         }
     }
 
     /**
      * Loads the import control file from a file.
-     * @param aUri the uri of the file to load.
+     * @param uri the uri of the file to load.
      * @return the root {@link PkgControl} object.
      * @throws CheckstyleException if an error occurs.
      */
-    static PkgControl load(final URI aUri) throws CheckstyleException
+    static PkgControl load(final URI uri) throws CheckstyleException
     {
         InputStream is = null;
         try {
-            is = aUri.toURL().openStream();
+            is = uri.toURL().openStream();
         }
         catch (final MalformedURLException e) {
-            throw new CheckstyleException("syntax error in url " + aUri, e);
+            throw new CheckstyleException("syntax error in url " + uri, e);
         }
         catch (final IOException e) {
-            throw new CheckstyleException("unable to find " + aUri, e);
+            throw new CheckstyleException("unable to find " + uri, e);
         }
         final InputSource source = new InputSource(is);
-        return load(source, aUri);
+        return load(source, uri);
     }
 
     /**
      * Loads the import control file from a {@link InputSource}.
-     * @param aSource the source to load from.
-     * @param aUri uri of the source being loaded.
+     * @param source the source to load from.
+     * @param uri uri of the source being loaded.
      * @return the root {@link PkgControl} object.
      * @throws CheckstyleException if an error occurs.
      */
-    private static PkgControl load(final InputSource aSource,
-        final URI aUri) throws CheckstyleException
+    private static PkgControl load(final InputSource source,
+        final URI uri) throws CheckstyleException
     {
         try {
             final ImportControlLoader loader = new ImportControlLoader();
-            loader.parseInputSource(aSource);
+            loader.parseInputSource(source);
             return loader.getRoot();
         }
         catch (final ParserConfigurationException e) {
-            throw new CheckstyleException("unable to parse " + aUri, e);
+            throw new CheckstyleException("unable to parse " + uri, e);
         }
         catch (final SAXException e) {
-            throw new CheckstyleException("unable to parse " + aUri
+            throw new CheckstyleException("unable to parse " + uri
                     + " - " + e.getMessage(), e);
         }
         catch (final IOException e) {
-            throw new CheckstyleException("unable to read " + aUri, e);
+            throw new CheckstyleException("unable to read " + uri, e);
         }
     }
 
@@ -184,24 +184,24 @@ final class ImportControlLoader extends AbstractLoader
      */
     private PkgControl getRoot()
     {
-        assert mStack.size() == 1;
-        return mStack.peek();
+        assert stack.size() == 1;
+        return stack.peek();
     }
 
     /**
      * Utility to safely get an attribute. If it does not exist an exception
      * is thrown.
-     * @param aAtts collect to get attribute from.
-     * @param aName name of the attribute to get.
+     * @param atts collect to get attribute from.
+     * @param name name of the attribute to get.
      * @return the value of the attribute.
      * @throws SAXException if the attribute does not exist.
      */
-    private String safeGet(final Attributes aAtts, final String aName)
+    private String safeGet(final Attributes atts, final String name)
         throws SAXException
     {
-        final String retVal = aAtts.getValue(aName);
+        final String retVal = atts.getValue(name);
         if (retVal == null) {
-            throw new SAXException("missing attribute " + aName);
+            throw new SAXException("missing attribute " + name);
         }
         return retVal;
     }

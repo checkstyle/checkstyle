@@ -299,6 +299,12 @@
           <td><a href="property_types.html#string">String</a></td>
           <td>System property &quot;file.encoding&quot;</td>
         </tr>
+        <tr>
+          <td>fileExtensions</td>
+          <td>file extensions that are accepted</td>
+          <td><a href="property_types.html#string">String</a> array</td>
+          <td><code>null</code></td>
+        </tr>
       </table>
 
       <p>
@@ -327,6 +333,37 @@
       <source>
 &lt;module name=&quot;Checker&quot;&gt;
     &lt;property name=&quot;charset&quot; value=&quot;UTF-8&quot;/&gt;
+    ...
+&lt;/module&gt;
+      </source>
+
+      <p>
+        To configure a <code>Checker</code> so that it
+        handles files with the <code>java, xml, properties</code> extensions:
+      </p>
+
+      <source>
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, properties&quot;/&gt;
+    ...
+&lt;/module&gt;
+      </source>
+
+      <p>
+        To configure a <code>Checker</code> so that it
+        handles files with any extension:
+      </p>
+
+      <source>
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;null&quot;/&gt;
+    ...
+&lt;/module&gt;
+
+OR
+
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
     ...
 &lt;/module&gt;
       </source>
@@ -403,6 +440,38 @@
         &lt;property name=&quot;fileExtensions&quot; value=&quot;java,ejb,jpf&quot;/&gt;
         ...
       </source>
+
+      <p>
+        To configure <code>TreeWalker</code> so that it
+        handles files with the <code>java</code> extension:
+      </p>
+
+      <source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+    ...
+&lt;/module&gt;
+      </source>
+
+      <p>
+        To configure <code>TreeWalker</code> so that it
+        handles files with any extension:
+      </p>
+
+      <source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;null&quot;/&gt;
+    ...
+&lt;/module&gt;
+
+OR
+
+&lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
+    ...
+&lt;/module&gt;
+      </source>
+
     </section>
 
     <section name="TreeWalker Checks">

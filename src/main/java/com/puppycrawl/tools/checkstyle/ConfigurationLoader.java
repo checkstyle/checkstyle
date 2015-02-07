@@ -120,39 +120,39 @@ public final class ConfigurationLoader
         }
 
         @Override
-        public void startElement(String aNamespaceURI,
-                                 String aLocalName,
-                                 String aQName,
-                                 Attributes aAtts)
+        public void startElement(String namespaceURI,
+                                 String localName,
+                                 String qName,
+                                 Attributes atts)
             throws SAXException
         {
             // TODO: debug logging for support purposes
-            if (aQName.equals(MODULE)) {
+            if (qName.equals(MODULE)) {
                 //create configuration
-                final String name = aAtts.getValue(NAME);
+                final String name = atts.getValue(NAME);
                 final DefaultConfiguration conf =
                     new DefaultConfiguration(name);
 
-                if (mConfiguration == null) {
-                    mConfiguration = conf;
+                if (configuration == null) {
+                    configuration = conf;
                 }
 
                 //add configuration to it's parent
-                if (!mConfigStack.isEmpty()) {
+                if (!configStack.isEmpty()) {
                     final DefaultConfiguration top =
-                        mConfigStack.peek();
+                        configStack.peek();
                     top.addChild(conf);
                 }
 
-                mConfigStack.push(conf);
+                configStack.push(conf);
             }
-            else if (aQName.equals(PROPERTY)) {
+            else if (qName.equals(PROPERTY)) {
                 //extract name and value
-                final String name = aAtts.getValue(NAME);
+                final String name = atts.getValue(NAME);
                 final String value;
                 try {
-                    value = replaceProperties(aAtts.getValue(VALUE),
-                        mOverridePropsResolver, aAtts.getValue(DEFAULT));
+                    value = replaceProperties(atts.getValue(VALUE),
+                        overridePropsResolver, atts.getValue(DEFAULT));
                 }
                 catch (final CheckstyleException ex) {
                     throw new SAXException(ex.getMessage());
@@ -160,30 +160,30 @@ public final class ConfigurationLoader
 
                 //add to attributes of configuration
                 final DefaultConfiguration top =
-                    mConfigStack.peek();
+                    configStack.peek();
                 top.addAttribute(name, value);
             }
-            else if (aQName.equals(MESSAGE)) {
+            else if (qName.equals(MESSAGE)) {
                 //extract key and value
-                final String key = aAtts.getValue(KEY);
-                final String value = aAtts.getValue(VALUE);
+                final String key = atts.getValue(KEY);
+                final String value = atts.getValue(VALUE);
 
                 //add to messages of configuration
-                final DefaultConfiguration top = mConfigStack.peek();
+                final DefaultConfiguration top = configStack.peek();
                 top.addMessage(key, value);
             }
         }
 
         @Override
-        public void endElement(String aNamespaceURI,
-                               String aLocalName,
-                               String aQName)
+        public void endElement(String namespaceURI,
+                               String localName,
+                               String qName)
             throws SAXException
         {
-            if (aQName.equals(MODULE)) {
+            if (qName.equals(MODULE)) {
 
                 final Configuration recentModule =
-                    mConfigStack.pop();
+                    configStack.pop();
 
                 // remove modules with severity ignore if these modules should
                 // be omitted
@@ -199,12 +199,12 @@ public final class ConfigurationLoader
 
                 // omit this module if these should be omitted and the module
                 // has the severity 'ignore'
-                final boolean omitModule = mOmitIgnoredModules
+                final boolean omitModule = omitIgnoredModules
                     && SeverityLevel.IGNORE.equals(level);
 
-                if (omitModule && !mConfigStack.isEmpty()) {
+                if (omitModule && !configStack.isEmpty()) {
                     final DefaultConfiguration parentModule =
-                        mConfigStack.peek();
+                        configStack.peek();
                     parentModule.removeChild(recentModule);
                 }
             }
@@ -213,18 +213,18 @@ public final class ConfigurationLoader
     }
 
     /** the SAX document handler */
-    private final InternalLoader mSaxHandler;
+    private final InternalLoader saxHandler;
 
     /** property resolver **/
-    private final PropertyResolver mOverridePropsResolver;
+    private final PropertyResolver overridePropsResolver;
     /** the loaded configurations **/
-    private final FastStack<DefaultConfiguration> mConfigStack =
+    private final FastStack<DefaultConfiguration> configStack =
         FastStack.newInstance();
     /** the Configuration that is being built */
-    private Configuration mConfiguration;
+    private Configuration configuration;
 
     /** flags if modules with the severity 'ignore' should be omitted. */
-    private final boolean mOmitIgnoredModules;
+    private final boolean omitIgnoredModules;
 
     /**
      * Creates mapping between local resources and dtd ids.
@@ -242,19 +242,19 @@ public final class ConfigurationLoader
 
     /**
      * Creates a new <code>ConfigurationLoader</code> instance.
-     * @param aOverrideProps resolver for overriding properties
-     * @param aOmitIgnoredModules <code>true</code> if ignored modules should be
+     * @param overrideProps resolver for overriding properties
+     * @param omitIgnoredModules <code>true</code> if ignored modules should be
      *         omitted
      * @throws ParserConfigurationException if an error occurs
      * @throws SAXException if an error occurs
      */
-    private ConfigurationLoader(final PropertyResolver aOverrideProps,
-                                final boolean aOmitIgnoredModules)
+    private ConfigurationLoader(final PropertyResolver overrideProps,
+                                final boolean omitIgnoredModules)
         throws ParserConfigurationException, SAXException
     {
-        mSaxHandler = new InternalLoader();
-        mOverridePropsResolver = aOverrideProps;
-        mOmitIgnoredModules = aOmitIgnoredModules;
+        saxHandler = new InternalLoader();
+        overridePropsResolver = overrideProps;
+        this.omitIgnoredModules = omitIgnoredModules;
     }
 
     /**
@@ -263,48 +263,48 @@ public final class ConfigurationLoader
      * explicitely closed after parsing, it is the responsibility of
      * the caller to close the stream.
      *
-     * @param aSource the source that contains the configuration data
+     * @param source the source that contains the configuration data
      * @throws IOException if an error occurs
      * @throws SAXException if an error occurs
      */
-    private void parseInputSource(InputSource aSource)
+    private void parseInputSource(InputSource source)
         throws IOException, SAXException
     {
-        mSaxHandler.parseInputSource(aSource);
+        saxHandler.parseInputSource(source);
     }
 
     /**
      * Returns the module configurations in a specified file.
-     * @param aConfig location of config file, can be either a URL or a filename
-     * @param aOverridePropsResolver overriding properties
+     * @param config location of config file, can be either a URL or a filename
+     * @param overridePropsResolver overriding properties
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      */
-    public static Configuration loadConfiguration(String aConfig,
-            PropertyResolver aOverridePropsResolver) throws CheckstyleException
+    public static Configuration loadConfiguration(String config,
+            PropertyResolver overridePropsResolver) throws CheckstyleException
     {
-        return loadConfiguration(aConfig, aOverridePropsResolver, false);
+        return loadConfiguration(config, overridePropsResolver, false);
     }
 
     /**
      * Returns the module configurations in a specified file.
      *
-     * @param aConfig location of config file, can be either a URL or a filename
-     * @param aOverridePropsResolver overriding properties
-     * @param aOmitIgnoredModules <code>true</code> if modules with severity
+     * @param config location of config file, can be either a URL or a filename
+     * @param overridePropsResolver overriding properties
+     * @param omitIgnoredModules <code>true</code> if modules with severity
      *            'ignore' should be omitted, <code>false</code> otherwise
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      */
-    public static Configuration loadConfiguration(String aConfig,
-        PropertyResolver aOverridePropsResolver, boolean aOmitIgnoredModules)
+    public static Configuration loadConfiguration(String config,
+        PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
         throws CheckstyleException
     {
         try {
             // figure out if this is a File or a URL
             URI uri;
             try {
-                final URL url = new URL(aConfig);
+                final URL url = new URL(config);
                 uri = url.toURI();
             }
             catch (final MalformedURLException ex) {
@@ -315,7 +315,7 @@ public final class ConfigurationLoader
                 uri = null;
             }
             if (uri == null) {
-                final File file = new File(aConfig);
+                final File file = new File(config);
                 if (file.exists()) {
                     uri = file.toURI();
                 }
@@ -323,27 +323,27 @@ public final class ConfigurationLoader
                     // check to see if the file is in the classpath
                     try {
                         final URL configUrl = ConfigurationLoader.class
-                                .getResource(aConfig);
+                                .getResource(config);
                         if (configUrl == null) {
-                            throw new FileNotFoundException(aConfig);
+                            throw new FileNotFoundException(config);
                         }
                         uri = configUrl.toURI();
                     }
                     catch (final URISyntaxException e) {
-                        throw new FileNotFoundException(aConfig);
+                        throw new FileNotFoundException(config);
                     }
                 }
             }
             final InputSource source = new InputSource(uri.toString());
-            return loadConfiguration(source, aOverridePropsResolver,
-                    aOmitIgnoredModules);
+            return loadConfiguration(source, overridePropsResolver,
+                    omitIgnoredModules);
         }
         catch (final FileNotFoundException e) {
-            throw new CheckstyleException("unable to find " + aConfig, e);
+            throw new CheckstyleException("unable to find " + config, e);
         }
         catch (final CheckstyleException e) {
                 //wrap again to add file name info
-            throw new CheckstyleException("unable to read " + aConfig + " - "
+            throw new CheckstyleException("unable to read " + config + " - "
                     + e.getMessage(), e);
         }
     }
@@ -352,9 +352,9 @@ public final class ConfigurationLoader
      * Returns the module configurations from a specified input stream.
      * Note that clients are required to close the given stream by themselves
      *
-     * @param aConfigStream the input stream to the Checkstyle configuration
-     * @param aOverridePropsResolver overriding properties
-     * @param aOmitIgnoredModules <code>true</code> if modules with severity
+     * @param configStream the input stream to the Checkstyle configuration
+     * @param overridePropsResolver overriding properties
+     * @param omitIgnoredModules <code>true</code> if modules with severity
      *            'ignore' should be omitted, <code>false</code> otherwise
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
@@ -366,12 +366,12 @@ public final class ConfigurationLoader
      *   should be used instead
      */
     @Deprecated
-    public static Configuration loadConfiguration(InputStream aConfigStream,
-        PropertyResolver aOverridePropsResolver, boolean aOmitIgnoredModules)
+    public static Configuration loadConfiguration(InputStream configStream,
+        PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
         throws CheckstyleException
     {
-        return loadConfiguration(new InputSource(aConfigStream),
-                                 aOverridePropsResolver, aOmitIgnoredModules);
+        return loadConfiguration(new InputSource(configStream),
+                                 overridePropsResolver, omitIgnoredModules);
     }
 
     /**
@@ -379,22 +379,22 @@ public final class ConfigurationLoader
      * Note that if the source does wrap an open byte or character
      * stream, clients are required to close that stream by themselves
      *
-     * @param aConfigSource the input stream to the Checkstyle configuration
-     * @param aOverridePropsResolver overriding properties
-     * @param aOmitIgnoredModules <code>true</code> if modules with severity
+     * @param configSource the input stream to the Checkstyle configuration
+     * @param overridePropsResolver overriding properties
+     * @param omitIgnoredModules <code>true</code> if modules with severity
      *            'ignore' should be omitted, <code>false</code> otherwise
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      */
-    public static Configuration loadConfiguration(InputSource aConfigSource,
-        PropertyResolver aOverridePropsResolver, boolean aOmitIgnoredModules)
+    public static Configuration loadConfiguration(InputSource configSource,
+        PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
         throws CheckstyleException
     {
         try {
             final ConfigurationLoader loader =
-                new ConfigurationLoader(aOverridePropsResolver,
-                                        aOmitIgnoredModules);
-            loader.parseInputSource(aConfigSource);
+                new ConfigurationLoader(overridePropsResolver,
+                                        omitIgnoredModules);
+            loader.parseInputSource(configSource);
             return loader.getConfiguration();
         }
         catch (final ParserConfigurationException e) {
@@ -421,7 +421,7 @@ public final class ConfigurationLoader
      */
     private Configuration getConfiguration()
     {
-        return mConfiguration;
+        return configuration;
     }
 
     /**
@@ -430,13 +430,13 @@ public final class ConfigurationLoader
      *
      * The method is package visible to facilitate testing.
      *
-     * @param aValue The string to be scanned for property references.
+     * @param value The string to be scanned for property references.
      *              May be <code>null</code>, in which case this
      *              method returns immediately with no effect.
-     * @param aProps  Mapping (String to String) of property names to their
+     * @param props  Mapping (String to String) of property names to their
      *              values. Must not be <code>null</code>.
-     * @param aDefaultValue default to use if one of the properties in aValue
-     *              cannot be resolved from aProps.
+     * @param defaultValue default to use if one of the properties in value
+     *              cannot be resolved from props.
      *
      * @throws CheckstyleException if the string contains an opening
      *                           <code>${</code> without a closing
@@ -449,16 +449,16 @@ public final class ConfigurationLoader
      */
     // Package visible for testing purposes
     static String replaceProperties(
-            String aValue, PropertyResolver aProps, String aDefaultValue)
+            String value, PropertyResolver props, String defaultValue)
         throws CheckstyleException
     {
-        if (aValue == null) {
+        if (value == null) {
             return null;
         }
 
         final List<String> fragments = Lists.newArrayList();
         final List<String> propertyRefs = Lists.newArrayList();
-        parsePropertyString(aValue, fragments, propertyRefs);
+        parsePropertyString(value, fragments, propertyRefs);
 
         final StringBuffer sb = new StringBuffer();
         final Iterator<String> i = fragments.iterator();
@@ -467,10 +467,10 @@ public final class ConfigurationLoader
             String fragment = i.next();
             if (fragment == null) {
                 final String propertyName = j.next();
-                fragment = aProps.resolve(propertyName);
+                fragment = props.resolve(propertyName);
                 if (fragment == null) {
-                    if (aDefaultValue != null) {
-                        return aDefaultValue;
+                    if (defaultValue != null) {
+                        return defaultValue;
                     }
                     throw new CheckstyleException(
                         "Property ${" + propertyName + "} has not been set");
@@ -489,10 +489,10 @@ public final class ConfigurationLoader
      * <code>null</code> entries in the first list indicate a property
      * reference from the second list.
      *
-     * @param aValue     Text to parse. Must not be <code>null</code>.
-     * @param aFragments List to add text fragments to.
+     * @param value     Text to parse. Must not be <code>null</code>.
+     * @param fragments List to add text fragments to.
      *                  Must not be <code>null</code>.
-     * @param aPropertyRefs List to add property names to.
+     * @param propertyRefs List to add property names to.
      *                     Must not be <code>null</code>.
      *
      * @throws CheckstyleException if the string contains an opening
@@ -501,65 +501,65 @@ public final class ConfigurationLoader
      * Code copied from ant -
      * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
      */
-    private static void parsePropertyString(String aValue,
-                                           List<String> aFragments,
-                                           List<String> aPropertyRefs)
+    private static void parsePropertyString(String value,
+                                           List<String> fragments,
+                                           List<String> propertyRefs)
         throws CheckstyleException
     {
         int prev = 0;
         int pos;
         //search for the next instance of $ from the 'prev' position
-        while ((pos = aValue.indexOf("$", prev)) >= 0) {
+        while ((pos = value.indexOf("$", prev)) >= 0) {
 
             //if there was any text before this, add it as a fragment
             //TODO, this check could be modified to go if pos>prev;
             //seems like this current version could stick empty strings
             //into the list
             if (pos > 0) {
-                aFragments.add(aValue.substring(prev, pos));
+                fragments.add(value.substring(prev, pos));
             }
             //if we are at the end of the string, we tack on a $
             //then move past it
-            if (pos == (aValue.length() - 1)) {
-                aFragments.add("$");
+            if (pos == (value.length() - 1)) {
+                fragments.add("$");
                 prev = pos + 1;
             }
-            else if (aValue.charAt(pos + 1) != '{') {
+            else if (value.charAt(pos + 1) != '{') {
                 //peek ahead to see if the next char is a property or not
                 //not a property: insert the char as a literal
                 /*
                 fragments.addElement(value.substring(pos + 1, pos + 2));
                 prev = pos + 2;
                 */
-                if (aValue.charAt(pos + 1) == '$') {
+                if (value.charAt(pos + 1) == '$') {
                     //backwards compatibility two $ map to one mode
-                    aFragments.add("$");
+                    fragments.add("$");
                     prev = pos + 2;
                 }
                 else {
                     //new behaviour: $X maps to $X for all values of X!='$'
-                    aFragments.add(aValue.substring(pos, pos + 2));
+                    fragments.add(value.substring(pos, pos + 2));
                     prev = pos + 2;
                 }
 
             }
             else {
                 //property found, extract its name or bail on a typo
-                final int endName = aValue.indexOf('}', pos);
+                final int endName = value.indexOf('}', pos);
                 if (endName < 0) {
                     throw new CheckstyleException("Syntax error in property: "
-                                                    + aValue);
+                                                    + value);
                 }
-                final String propertyName = aValue.substring(pos + 2, endName);
-                aFragments.add(null);
-                aPropertyRefs.add(propertyName);
+                final String propertyName = value.substring(pos + 2, endName);
+                fragments.add(null);
+                propertyRefs.add(propertyName);
                 prev = endName + 1;
             }
         }
         //no more $ signs found
         //if there is any tail to the file, append it
-        if (prev < aValue.length()) {
-            aFragments.add(aValue.substring(prev));
+        if (prev < value.length()) {
+            fragments.add(value.substring(prev));
         }
     }
 }

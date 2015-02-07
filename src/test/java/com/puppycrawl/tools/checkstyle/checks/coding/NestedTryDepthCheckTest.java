@@ -40,7 +40,7 @@ public class NestedTryDepthCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testCustomNestingDepth() throws Exception
+    public void testCustonestingDepth() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NestedTryDepthCheck.class);

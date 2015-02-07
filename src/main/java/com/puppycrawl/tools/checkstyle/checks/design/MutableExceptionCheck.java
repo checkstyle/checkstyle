@@ -41,11 +41,11 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     /** Default value for format and extendedClassNameFormat properties. */
     private static final String DEFAULT_FORMAT = "^.*Exception$|^.*Error$|^.*Throwable$";
     /** Pattern for class name that is being extended */
-    private String mExtendedClassNameFormat;
+    private String extendedClassNameFormat;
     /** Stack of checking information for classes. */
-    private final FastStack<Boolean> mCheckingStack = FastStack.newInstance();
+    private final FastStack<Boolean> checkingStack = FastStack.newInstance();
     /** Should we check current class or not. */
-    private boolean mChecking;
+    private boolean checking;
 
     /** Creates new instance of the check. */
     public MutableExceptionCheck()
@@ -56,11 +56,11 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
 
     /**
      * Sets the format of extended class name to the specified regular expression.
-     * @param aExtendedClassNameFormat a <code>String</code> value
+     * @param extendedClassNameFormat a <code>String</code> value
      */
-    public void setExtendedClassNameFormat(String aExtendedClassNameFormat)
+    public void setExtendedClassNameFormat(String extendedClassNameFormat)
     {
-        mExtendedClassNameFormat = aExtendedClassNameFormat;
+        this.extendedClassNameFormat = extendedClassNameFormat;
     }
 
     @Override
@@ -76,87 +76,87 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.CLASS_DEF:
-            visitClassDef(aAST);
-            break;
-        case TokenTypes.VARIABLE_DEF:
-            visitVariableDef(aAST);
-            break;
-        default:
-            throw new IllegalStateException(aAST.toString());
+        switch (ast.getType()) {
+            case TokenTypes.CLASS_DEF:
+                visitClassDef(ast);
+                break;
+            case TokenTypes.VARIABLE_DEF:
+                visitVariableDef(ast);
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.CLASS_DEF:
-            leaveClassDef();
-            break;
-        default:
-            // Do nothing
+        switch (ast.getType()) {
+            case TokenTypes.CLASS_DEF:
+                leaveClassDef();
+                break;
+            default:
+                // Do nothing
         }
     }
 
     /**
      * Called when we start processing class definition.
-     * @param aAST class definition node
+     * @param ast class definition node
      */
-    private void visitClassDef(DetailAST aAST)
+    private void visitClassDef(DetailAST ast)
     {
-        mCheckingStack.push(mChecking ? Boolean.TRUE : Boolean.FALSE);
-        mChecking = isNamedAsException(aAST) && isExtendedClassNamedAsException(aAST);
+        checkingStack.push(checking ? Boolean.TRUE : Boolean.FALSE);
+        checking = isNamedAsException(ast) && isExtendedClassNamedAsException(ast);
     }
 
     /** Called when we leave class definition. */
     private void leaveClassDef()
     {
-        mChecking = mCheckingStack.pop();
+        checking = checkingStack.pop();
     }
 
     /**
      * Checks variable definition.
-     * @param aAST variable def node for check
+     * @param ast variable def node for check
      */
-    private void visitVariableDef(DetailAST aAST)
+    private void visitVariableDef(DetailAST ast)
     {
-        if (mChecking && (aAST.getParent().getType() == TokenTypes.OBJBLOCK)) {
+        if (checking && (ast.getParent().getType() == TokenTypes.OBJBLOCK)) {
             final DetailAST modifiersAST =
-                aAST.findFirstToken(TokenTypes.MODIFIERS);
+                ast.findFirstToken(TokenTypes.MODIFIERS);
 
             if (modifiersAST.findFirstToken(TokenTypes.FINAL) == null) {
-                log(aAST.getLineNo(),  aAST.getColumnNo(), "mutable.exception",
-                        aAST.findFirstToken(TokenTypes.IDENT).getText());
+                log(ast.getLineNo(),  ast.getColumnNo(), "mutable.exception",
+                        ast.findFirstToken(TokenTypes.IDENT).getText());
             }
         }
     }
 
     /**
-     * @param aAST class definition node
+     * @param ast class definition node
      * @return true if a class name conforms to specified format
      */
-    private boolean isNamedAsException(DetailAST aAST)
+    private boolean isNamedAsException(DetailAST ast)
     {
-        final String className = aAST.findFirstToken(TokenTypes.IDENT).getText();
+        final String className = ast.findFirstToken(TokenTypes.IDENT).getText();
         return getRegexp().matcher(className).find();
     }
 
     /**
-     * @param aAST class definition node
+     * @param ast class definition node
      * @return true if extended class name conforms to specified format
      */
-    private boolean isExtendedClassNamedAsException(DetailAST aAST)
+    private boolean isExtendedClassNamedAsException(DetailAST ast)
     {
-        final DetailAST extendsClause = aAST.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
+        final DetailAST extendsClause = ast.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
         if (extendsClause != null) {
             final DetailAST extendedClass = extendsClause.findFirstToken(TokenTypes.IDENT);
             if (extendedClass != null) {
                 final String extendedClassName = extendedClass.getText();
-                return extendedClassName.matches(mExtendedClassNameFormat);
+                return extendedClassName.matches(extendedClassNameFormat);
             }
         }
         return false;

@@ -34,8 +34,8 @@ public final class NeverSuppress implements MatchSuppressor
     }
 
     /** {@inheritDoc} */
-    public boolean shouldSuppress(int aStartLineNo, int aStartColNo,
-            int aEndLineNo, int aEndColNo)
+    public boolean shouldSuppress(int startLineNo, int startColNo,
+            int endLineNo, int endColNo)
     {
         return false;
     }

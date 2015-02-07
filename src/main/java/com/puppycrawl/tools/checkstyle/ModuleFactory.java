@@ -38,9 +38,9 @@ public interface ModuleFactory
      * is returned. If the name is not a class name the ModuleFactory uses
      * heuristics to find the corresponding class.
      *
-     * @param aName the name of the module, might be a shortname
+     * @param name the name of the module, might be a shortname
      * @return the created module
-     * @throws CheckstyleException if no module can be instantiated from aName
+     * @throws CheckstyleException if no module can be instantiated from name
      */
-    Object createModule(String aName) throws CheckstyleException;
+    Object createModule(String name) throws CheckstyleException;
 }

@@ -36,34 +36,34 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
     extends Check
 {
     /** Since I cannot get this by going <tt>T.class</tt>. */
-    private final Class<T> mOptionClass;
+    private final Class<T> optionClass;
     /** the policy to enforce */
-    private T mOption;
+    private T option;
 
     /**
      * Creates a new <code>AbstractOptionCheck</code> instance.
-     * @param aDefault the default option.
-     * @param aOptionClass the class for the option. Required due to a quirk
+     * @param literalDefault the default option.
+     * @param optionClass the class for the option. Required due to a quirk
      *        in the Java language.
      */
-    public AbstractOptionCheck(T aDefault, Class<T> aOptionClass)
+    public AbstractOptionCheck(T literalDefault, Class<T> optionClass)
     {
-        mOption = aDefault;
-        mOptionClass = aOptionClass;
+        option = literalDefault;
+        this.optionClass = optionClass;
     }
 
     /**
      * Set the option to enforce.
-     * @param aOption string to decode option from
+     * @param optionStr string to decode option from
      * @throws ConversionException if unable to decode
      */
-    public void setOption(String aOption) throws ConversionException
+    public void setOption(String optionStr) throws ConversionException
     {
         try {
-            mOption = Enum.valueOf(mOptionClass, aOption.trim().toUpperCase());
+            option = Enum.valueOf(optionClass, optionStr.trim().toUpperCase());
         }
         catch (IllegalArgumentException iae) {
-            throw new ConversionException("unable to parse " + aOption, iae);
+            throw new ConversionException("unable to parse " + option, iae);
         }
     }
 
@@ -74,6 +74,6 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
     {
         // WARNING!! Do not rename this method to getOption(). It breaks
         // BeanUtils, which will silently not call setOption. Very annoying!
-        return mOption;
+        return option;
     }
 }

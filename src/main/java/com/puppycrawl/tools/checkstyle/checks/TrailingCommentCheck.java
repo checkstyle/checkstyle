@@ -103,21 +103,21 @@ public class TrailingCommentCheck extends AbstractFormatCheck
     private static final String DEFAULT_FORMAT = "^[\\s\\}\\);]*$";
 
     /** pattern for legal trailing comment. */
-    private Pattern mLegalComment;
+    private Pattern legalComment;
 
     /**
      * Sets patter for legal trailing comments.
-     * @param aFormat format to set.
+     * @param format format to set.
      * @throws ConversionException unable to parse a given format.
      */
-    public void setLegalComment(final String aFormat)
+    public void setLegalComment(final String format)
         throws ConversionException
     {
         try {
-            mLegalComment = Utils.getPattern(aFormat);
+            legalComment = Utils.getPattern(format);
         }
         catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + aFormat, e);
+            throw new ConversionException("unable to parse " + format, e);
         }
     }
     /**
@@ -136,13 +136,13 @@ public class TrailingCommentCheck extends AbstractFormatCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         throw new IllegalStateException("visitToken() shouldn't be called.");
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
         final Pattern blankLinePattern = getRegexp();
         final Map<Integer, TextBlock> cppComments = getFileContents()
@@ -186,19 +186,19 @@ public class TrailingCommentCheck extends AbstractFormatCheck
     /**
      * Checks if given comment is legal (single-line and matches to the
      * pattern).
-     * @param aComment comment to check.
+     * @param comment comment to check.
      * @return true if the comment if legal.
      */
-    private boolean isLegalComment(final TextBlock aComment)
+    private boolean isLegalComment(final TextBlock comment)
     {
-        if (mLegalComment == null) {
+        if (legalComment == null) {
             return false;
         }
         // multi-line comment can not be legal
-        if (aComment.getStartLineNo() != aComment.getEndLineNo()) {
+        if (comment.getStartLineNo() != comment.getEndLineNo()) {
             return false;
         }
-        String commentText = aComment.getText()[0];
+        String commentText = comment.getText()[0];
         // remove chars which start comment
         commentText = commentText.substring(2);
         // if this is a C-style comment we need to remove its end
@@ -206,6 +206,6 @@ public class TrailingCommentCheck extends AbstractFormatCheck
             commentText = commentText.substring(0, commentText.length() - 2);
         }
         commentText = commentText.trim();
-        return mLegalComment.matcher(commentText).find();
+        return legalComment.matcher(commentText).find();
     }
 }

@@ -33,29 +33,29 @@ import java.util.Map;
 public final class DefaultContext implements Context
 {
     /** stores the context entries */
-    private final Map<String, Object> mEntries = Maps.newHashMap();
+    private final Map<String, Object> entries = Maps.newHashMap();
 
     /** {@inheritDoc} */
     @Override
-    public Object get(String aKey)
+    public Object get(String key)
     {
-        return mEntries.get(aKey);
+        return entries.get(key);
     }
 
     /** {@inheritDoc} */
     @Override
     public ImmutableCollection<String> getAttributeNames()
     {
-        return ImmutableList.copyOf(mEntries.keySet());
+        return ImmutableList.copyOf(entries.keySet());
     }
 
     /**
      * Adds a context entry.
-     * @param aKey the context key
-     * @param aValue the value for aKey
+     * @param key the context key
+     * @param value the value for key
      */
-    public void add(String aKey, Object aValue)
+    public void add(String key, Object value)
     {
-        mEntries.put(aKey, aValue);
+        entries.put(key, value);
     }
 }

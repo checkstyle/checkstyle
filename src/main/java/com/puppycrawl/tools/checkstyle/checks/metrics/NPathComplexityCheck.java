@@ -68,48 +68,48 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.LITERAL_WHILE:
-        case TokenTypes.LITERAL_DO:
-        case TokenTypes.LITERAL_FOR:
-        case TokenTypes.LITERAL_IF:
-        case TokenTypes.QUESTION:
-        case TokenTypes.LITERAL_TRY:
-        case TokenTypes.LITERAL_SWITCH:
-            visitMultiplyingConditional();
-            break;
-        case TokenTypes.LITERAL_ELSE:
-        case TokenTypes.LITERAL_CATCH:
-        case TokenTypes.LITERAL_CASE:
-            visitAddingConditional();
-            break;
-        default:
-            super.visitToken(aAST);
+        switch (ast.getType()) {
+            case TokenTypes.LITERAL_WHILE:
+            case TokenTypes.LITERAL_DO:
+            case TokenTypes.LITERAL_FOR:
+            case TokenTypes.LITERAL_IF:
+            case TokenTypes.QUESTION:
+            case TokenTypes.LITERAL_TRY:
+            case TokenTypes.LITERAL_SWITCH:
+                visitMultiplyingConditional();
+                break;
+            case TokenTypes.LITERAL_ELSE:
+            case TokenTypes.LITERAL_CATCH:
+            case TokenTypes.LITERAL_CASE:
+                visitAddingConditional();
+                break;
+            default:
+                super.visitToken(ast);
         }
     }
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.LITERAL_WHILE:
-        case TokenTypes.LITERAL_DO:
-        case TokenTypes.LITERAL_FOR:
-        case TokenTypes.LITERAL_IF:
-        case TokenTypes.QUESTION:
-        case TokenTypes.LITERAL_TRY:
-        case TokenTypes.LITERAL_SWITCH:
-            leaveMultiplyingConditional();
-            break;
-        case TokenTypes.LITERAL_ELSE:
-        case TokenTypes.LITERAL_CATCH:
-        case TokenTypes.LITERAL_CASE:
-            leaveAddingConditional();
-            break;
-        default:
-            super.leaveToken(aAST);
+        switch (ast.getType()) {
+            case TokenTypes.LITERAL_WHILE:
+            case TokenTypes.LITERAL_DO:
+            case TokenTypes.LITERAL_FOR:
+            case TokenTypes.LITERAL_IF:
+            case TokenTypes.QUESTION:
+            case TokenTypes.LITERAL_TRY:
+            case TokenTypes.LITERAL_SWITCH:
+                leaveMultiplyingConditional();
+                break;
+            case TokenTypes.LITERAL_ELSE:
+            case TokenTypes.LITERAL_CATCH:
+            case TokenTypes.LITERAL_CASE:
+                leaveAddingConditional();
+                break;
+            default:
+                super.leaveToken(ast);
         }
     }
 

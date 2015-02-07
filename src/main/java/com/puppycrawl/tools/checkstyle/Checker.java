@@ -48,6 +48,8 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.StringTokenizer;
 
+import static com.puppycrawl.tools.checkstyle.Utils.fileExtensionMatches;
+
 /**
  * This class provides the functionality to check a set of files.
  * @author Oliver Burn
@@ -57,38 +59,41 @@ import java.util.StringTokenizer;
 public class Checker extends AutomaticBean implements MessageDispatcher
 {
     /** maintains error count */
-    private final SeverityLevelCounter mCounter = new SeverityLevelCounter(
+    private final SeverityLevelCounter counter = new SeverityLevelCounter(
             SeverityLevel.ERROR);
 
     /** vector of listeners */
-    private final List<AuditListener> mListeners = Lists.newArrayList();
+    private final List<AuditListener> listeners = Lists.newArrayList();
 
     /** vector of fileset checks */
-    private final List<FileSetCheck> mFileSetChecks = Lists.newArrayList();
+    private final List<FileSetCheck> fileSetChecks = Lists.newArrayList();
 
     /** class loader to resolve classes with. **/
-    private ClassLoader mLoader = Thread.currentThread()
+    private ClassLoader loader = Thread.currentThread()
             .getContextClassLoader();
 
     /** the basedir to strip off in filenames */
-    private String mBasedir;
+    private String basedir;
 
     /** locale country to report messages  **/
-    private String mLocaleCountry = Locale.getDefault().getCountry();
+    private String localeCountry = Locale.getDefault().getCountry();
     /** locale language to report messages  **/
-    private String mLocaleLanguage = Locale.getDefault().getLanguage();
+    private String localeLanguage = Locale.getDefault().getLanguage();
 
     /** The factory for instantiating submodules */
-    private ModuleFactory mModuleFactory;
+    private ModuleFactory moduleFactory;
 
     /** The classloader used for loading Checkstyle module classes. */
-    private ClassLoader mModuleClassLoader;
+    private ClassLoader moduleClassLoader;
 
     /** the context of all child components */
-    private Context mChildContext;
+    private Context childContext;
 
     /** The audit event filters */
-    private final FilterSet mFilters = new FilterSet();
+    private final FilterSet filters = new FilterSet();
+
+    /** the file extensions that are accepted */
+    private String[] fileExtensions = {};
 
     /**
      * The severity level of any violations found by submodules.
@@ -100,10 +105,10 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * here. Consequently Checker does not extend AbstractViolationReporter,
      * leading to a bit of duplicated code for severity level setting.
      */
-    private SeverityLevel mSeverityLevel = SeverityLevel.ERROR;
+    private SeverityLevel severityLevel = SeverityLevel.ERROR;
 
     /** Name of a charset */
-    private String mCharset = System.getProperty("file.encoding", "UTF-8");
+    private String charset = System.getProperty("file.encoding", "UTF-8");
 
     /**
      * Creates a new <code>Checker</code> instance.
@@ -113,49 +118,49 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      */
     public Checker() throws CheckstyleException
     {
-        addListener(mCounter);
+        addListener(counter);
     }
 
     @Override
     public void finishLocalSetup() throws CheckstyleException
     {
-        final Locale locale = new Locale(mLocaleLanguage, mLocaleCountry);
+        final Locale locale = new Locale(localeLanguage, localeCountry);
         LocalizedMessage.setLocale(locale);
 
-        if (mModuleFactory == null) {
+        if (moduleFactory == null) {
 
-            if (mModuleClassLoader == null) {
+            if (moduleClassLoader == null) {
                 throw new CheckstyleException(
                         "if no custom moduleFactory is set, "
                                 + "moduleClassLoader must be specified");
             }
 
             final Set<String> packageNames = PackageNamesLoader
-                    .getPackageNames(mModuleClassLoader);
-            mModuleFactory = new PackageObjectFactory(packageNames,
-                    mModuleClassLoader);
+                    .getPackageNames(moduleClassLoader);
+            moduleFactory = new PackageObjectFactory(packageNames,
+                    moduleClassLoader);
         }
 
         final DefaultContext context = new DefaultContext();
-        context.add("charset", mCharset);
-        context.add("classLoader", mLoader);
-        context.add("moduleFactory", mModuleFactory);
-        context.add("severity", mSeverityLevel.getName());
-        context.add("basedir", mBasedir);
-        mChildContext = context;
+        context.add("charset", charset);
+        context.add("classLoader", loader);
+        context.add("moduleFactory", moduleFactory);
+        context.add("severity", severityLevel.getName());
+        context.add("basedir", basedir);
+        childContext = context;
     }
 
     @Override
-    protected void setupChild(Configuration aChildConf)
+    protected void setupChild(Configuration childConf)
         throws CheckstyleException
     {
-        final String name = aChildConf.getName();
+        final String name = childConf.getName();
         try {
-            final Object child = mModuleFactory.createModule(name);
+            final Object child = moduleFactory.createModule(name);
             if (child instanceof AutomaticBean) {
                 final AutomaticBean bean = (AutomaticBean) child;
-                bean.contextualize(mChildContext);
-                bean.configure(aChildConf);
+                bean.contextualize(childContext);
+                bean.configure(childConf);
             }
             if (child instanceof FileSetCheck) {
                 final FileSetCheck fsc = (FileSetCheck) child;
@@ -184,82 +189,85 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     /**
      * Adds a FileSetCheck to the list of FileSetChecks
      * that is executed in process().
-     * @param aFileSetCheck the additional FileSetCheck
+     * @param fileSetCheck the additional FileSetCheck
      */
-    public void addFileSetCheck(FileSetCheck aFileSetCheck)
+    public void addFileSetCheck(FileSetCheck fileSetCheck)
     {
-        aFileSetCheck.setMessageDispatcher(this);
-        mFileSetChecks.add(aFileSetCheck);
+        fileSetCheck.setMessageDispatcher(this);
+        fileSetChecks.add(fileSetCheck);
     }
 
     /**
      * Adds a filter to the end of the audit event filter chain.
-     * @param aFilter the additional filter
+     * @param filter the additional filter
      */
-    public void addFilter(Filter aFilter)
+    public void addFilter(Filter filter)
     {
-        mFilters.addFilter(aFilter);
+        filters.addFilter(filter);
     }
 
     /**
      * Removes filter.
-     * @param aFilter filter to remove.
+     * @param filter filter to remove.
      */
-    public void removeFilter(Filter aFilter)
+    public void removeFilter(Filter filter)
     {
-        mFilters.removeFilter(aFilter);
+        filters.removeFilter(filter);
     }
 
     /** Cleans up the object. **/
     public void destroy()
     {
-        mListeners.clear();
-        mFilters.clear();
+        listeners.clear();
+        filters.clear();
     }
 
     /**
      * Add the listener that will be used to receive events from the audit.
-     * @param aListener the nosy thing
+     * @param listener the nosy thing
      */
-    public final void addListener(AuditListener aListener)
+    public final void addListener(AuditListener listener)
     {
-        mListeners.add(aListener);
+        listeners.add(listener);
     }
 
     /**
      * Removes a given listener.
-     * @param aListener a listener to remove
+     * @param listener a listener to remove
      */
-    public void removeListener(AuditListener aListener)
+    public void removeListener(AuditListener listener)
     {
-        mListeners.remove(aListener);
+        listeners.remove(listener);
     }
 
     /**
      * Processes a set of files with all FileSetChecks.
      * Once this is done, it is highly recommended to call for
      * the destroy method to close and remove the listeners.
-     * @param aFiles the list of files to be audited.
+     * @param files the list of files to be audited.
      * @return the total number of errors found
      * @see #destroy()
      */
-    public int process(List<File> aFiles)
+    public int process(List<File> files)
     {
         // Prepare to start
         fireAuditStarted();
-        for (final FileSetCheck fsc : mFileSetChecks) {
-            fsc.beginProcessing(mCharset);
+        for (final FileSetCheck fsc : fileSetChecks) {
+            fsc.beginProcessing(charset);
         }
 
         // Process each file
-        for (final File f : aFiles) {
+        for (final File f : files) {
+            if (!fileExtensionMatches(f, fileExtensions)) {
+                continue;
+            }
             final String fileName = f.getAbsolutePath();
             fireFileStarted(fileName);
             final SortedSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
             try {
                 final FileText theText = new FileText(f.getAbsoluteFile(),
-                        mCharset);
-                for (final FileSetCheck fsc : mFileSetChecks) {
+                        charset);
+                for (final FileSetCheck fsc : fileSetChecks) {
                     fileMessages.addAll(fsc.process(f, theText));
                 }
             }
@@ -282,34 +290,34 @@ public class Checker extends AutomaticBean implements MessageDispatcher
         }
 
         // Finish up
-        for (final FileSetCheck fsc : mFileSetChecks) {
+        for (final FileSetCheck fsc : fileSetChecks) {
             // They may also log!!!
             fsc.finishProcessing();
             fsc.destroy();
         }
 
-        final int errorCount = mCounter.getCount();
+        final int errorCount = counter.getCount();
         fireAuditFinished();
         return errorCount;
     }
 
     /**
      * Create a stripped down version of a filename.
-     * @param aFileName the original filename
+     * @param fileName the original filename
      * @return the filename where an initial prefix of basedir is stripped
      */
-    private String getStrippedFileName(final String aFileName)
+    private String getStrippedFileName(final String fileName)
     {
-        return Utils.getStrippedFileName(mBasedir, aFileName);
+        return Utils.getStrippedFileName(basedir, fileName);
     }
 
-    /** @param aBasedir the base directory to strip off in filenames */
-    public void setBasedir(String aBasedir)
+    /** @param basedir the base directory to strip off in filenames */
+    public void setBasedir(String basedir)
     {
         // we use getAbsolutePath() instead of getCanonicalPath()
         // because normalize() removes all . and .. so path
         // will be canonical by default.
-        mBasedir = normalize(aBasedir);
+        this.basedir = normalize(basedir);
     }
 
     /**
@@ -325,23 +333,23 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * </ul>
      * <p>
      *
-     * @param aPath a path for &quot;normalizing&quot;
+     * @param normalizingPath a path for &quot;normalizing&quot;
      * @return &quot;normalized&quot; file name
      * @throws java.lang.NullPointerException if the file path is
      * equal to null.
      */
-    public String normalize(String aPath)
+    public String normalize(String normalizingPath)
     {
 
-        if (aPath == null) {
-            return aPath;
+        if (normalizingPath == null) {
+            return normalizingPath;
         }
 
         final String osName = System.getProperty("os.name").toLowerCase(
                 Locale.US);
         final boolean onNetWare = (osName.indexOf("netware") > -1);
 
-        String path = aPath.replace('/', File.separatorChar).replace('\\',
+        String path = normalizingPath.replace('/', File.separatorChar).replace('\\',
             File.separatorChar);
 
         // make sure we are dealing with an absolute path
@@ -422,7 +430,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
             else if ("..".equals(thisToken)) {
                 if (s.size() < 2) {
                     throw new IllegalArgumentException("Cannot resolve path "
-                            + aPath);
+                            + path);
                 }
                 s.pop();
             }
@@ -451,14 +459,14 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     /** @return the base directory property used in unit-test. */
     public final String getBasedir()
     {
-        return mBasedir;
+        return basedir;
     }
 
     /** notify all listeners about the audit start */
     protected void fireAuditStarted()
     {
         final AuditEvent evt = new AuditEvent(this);
-        for (final AuditListener listener : mListeners) {
+        for (final AuditListener listener : listeners) {
             listener.auditStarted(evt);
         }
     }
@@ -467,7 +475,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     protected void fireAuditFinished()
     {
         final AuditEvent evt = new AuditEvent(this);
-        for (final AuditListener listener : mListeners) {
+        for (final AuditListener listener : listeners) {
             listener.auditFinished(evt);
         }
     }
@@ -475,15 +483,15 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     /**
      * Notify all listeners about the beginning of a file audit.
      *
-     * @param aFileName
+     * @param fileName
      *            the file to be audited
      */
     @Override
-    public void fireFileStarted(String aFileName)
+    public void fireFileStarted(String fileName)
     {
-        final String stripped = getStrippedFileName(aFileName);
+        final String stripped = getStrippedFileName(fileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
-        for (final AuditListener listener : mListeners) {
+        for (final AuditListener listener : listeners) {
             listener.fileStarted(evt);
         }
     }
@@ -491,15 +499,15 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     /**
      * Notify all listeners about the end of a file audit.
      *
-     * @param aFileName
+     * @param fileName
      *            the audited file
      */
     @Override
-    public void fireFileFinished(String aFileName)
+    public void fireFileFinished(String fileName)
     {
-        final String stripped = getStrippedFileName(aFileName);
+        final String stripped = getStrippedFileName(fileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
-        for (final AuditListener listener : mListeners) {
+        for (final AuditListener listener : listeners) {
             listener.fileFinished(evt);
         }
     }
@@ -507,18 +515,18 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     /**
      * notify all listeners about the errors in a file.
      *
-     * @param aFileName the audited file
-     * @param aErrors the audit errors from the file
+     * @param fileName the audited file
+     * @param errors the audit errors from the file
      */
     @Override
-    public void fireErrors(String aFileName,
-        SortedSet<LocalizedMessage> aErrors)
+    public void fireErrors(String fileName,
+        SortedSet<LocalizedMessage> errors)
     {
-        final String stripped = getStrippedFileName(aFileName);
-        for (final LocalizedMessage element : aErrors) {
+        final String stripped = getStrippedFileName(fileName);
+        for (final LocalizedMessage element : errors) {
             final AuditEvent evt = new AuditEvent(this, stripped, element);
-            if (mFilters.accept(evt)) {
-                for (final AuditListener listener : mListeners) {
+            if (filters.accept(evt)) {
+                for (final AuditListener listener : listeners) {
                     listener.addError(evt);
                 }
             }
@@ -526,37 +534,62 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     }
 
     /**
+     * Sets the file extensions that identify the files that pass the
+     * filter of this FileSetCheck.
+     * @param extensions the set of file extensions. A missing
+     * initial '.' character of an extension is automatically added.
+     */
+    public final void setFileExtensions(String[] extensions)
+    {
+        if (extensions == null) {
+            fileExtensions = null;
+            return;
+        }
+
+        fileExtensions = new String[extensions.length];
+        for (int i = 0; i < extensions.length; i++) {
+            final String extension = extensions[i];
+            if (extension.startsWith(".")) {
+                fileExtensions[i] = extension;
+            }
+            else {
+                fileExtensions[i] = "." + extension;
+            }
+        }
+    }
+
+    /**
      * Sets the factory for creating submodules.
      *
-     * @param aModuleFactory the factory for creating FileSetChecks
+     * @param moduleFactory the factory for creating FileSetChecks
      */
-    public void setModuleFactory(ModuleFactory aModuleFactory)
+    public void setModuleFactory(ModuleFactory moduleFactory)
     {
-        mModuleFactory = aModuleFactory;
+        this.moduleFactory = moduleFactory;
     }
 
-    /** @param aLocaleCountry the country to report messages  **/
-    public void setLocaleCountry(String aLocaleCountry)
+    /** @param localeCountry the country to report messages  **/
+    public void setLocaleCountry(String localeCountry)
     {
-        mLocaleCountry = aLocaleCountry;
+        this.localeCountry = localeCountry;
     }
 
-    /** @param aLocaleLanguage the language to report messages  **/
-    public void setLocaleLanguage(String aLocaleLanguage)
+    /** @param localeLanguage the language to report messages  **/
+    public void setLocaleLanguage(String localeLanguage)
     {
-        mLocaleLanguage = aLocaleLanguage;
+        this.localeLanguage = localeLanguage;
     }
 
     /**
      * Sets the severity level.  The string should be one of the names
      * defined in the <code>SeverityLevel</code> class.
      *
-     * @param aSeverity  The new severity level
+     * @param severity  The new severity level
      * @see SeverityLevel
      */
-    public final void setSeverity(String aSeverity)
+    public final void setSeverity(String severity)
     {
-        mSeverityLevel = SeverityLevel.getInstance(aSeverity);
+        severityLevel = SeverityLevel.getInstance(severity);
     }
 
     /**
@@ -564,11 +597,11 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * Some Check implementations will use that classloader to improve the
      * quality of their reports, e.g. to load a class and then analyze it via
      * reflection.
-     * @param aLoader the new classloader
+     * @param loader the new classloader
      */
-    public final void setClassloader(ClassLoader aLoader)
+    public final void setClassloader(ClassLoader loader)
     {
-        mLoader = aLoader;
+        this.loader = loader;
     }
 
     /**
@@ -576,25 +609,25 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * classes when the module tree is being built up.
      * If no custom ModuleFactory is being set for the Checker module then
      * this module classloader must be specified.
-     * @param aModuleClassLoader the classloader used to load module classes
+     * @param moduleClassLoader the classloader used to load module classes
      */
-    public final void setModuleClassLoader(ClassLoader aModuleClassLoader)
+    public final void setModuleClassLoader(ClassLoader moduleClassLoader)
     {
-        mModuleClassLoader = aModuleClassLoader;
+        this.moduleClassLoader = moduleClassLoader;
     }
 
     /**
      * Sets a named charset.
-     * @param aCharset the name of a charset
-     * @throws UnsupportedEncodingException if aCharset is unsupported.
+     * @param charset the name of a charset
+     * @throws UnsupportedEncodingException if charset is unsupported.
      */
-    public void setCharset(String aCharset)
+    public void setCharset(String charset)
         throws UnsupportedEncodingException
     {
-        if (!Charset.isSupported(aCharset)) {
-            final String message = "unsupported charset: '" + aCharset + "'";
+        if (!Charset.isSupported(charset)) {
+            final String message = "unsupported charset: '" + charset + "'";
             throw new UnsupportedEncodingException(message);
         }
-        mCharset = aCharset;
+        this.charset = charset;
     }
 }

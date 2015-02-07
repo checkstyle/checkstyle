@@ -28,23 +28,23 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 class CommentSuppressor implements MatchSuppressor
 {
     /** File contents to check for comments. */
-    private FileContents mCurrentContents;
+    private FileContents currentContents;
 
     /** {@inheritDoc} */
-    public boolean shouldSuppress(int aStartLineNo, int aStartColNo,
-            int aEndLineNo, int aEndColNo)
+    public boolean shouldSuppress(int startLineNo, int startColNo,
+            int endLineNo, int endColNo)
     {
-        return (null != mCurrentContents)
-                && mCurrentContents.hasIntersectionWithComment(aStartLineNo,
-                        aStartColNo, aEndLineNo, aEndColNo);
+        return (null != currentContents)
+                && currentContents.hasIntersectionWithComment(startLineNo,
+                        startColNo, endLineNo, endColNo);
     }
 
     /**
      * Set the current file contents.
-     * @param aCurrentContents the new contents.
+     * @param currentContents the new contents.
      */
-    public void setCurrentContents(FileContents aCurrentContents)
+    public void setCurrentContents(FileContents currentContents)
     {
-        mCurrentContents = aCurrentContents;
+        this.currentContents = currentContents;
     }
 }

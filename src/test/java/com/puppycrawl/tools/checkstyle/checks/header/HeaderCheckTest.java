@@ -36,7 +36,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("java.header"));
+        checkConfig.addAttribute("headerFile", getPath("configs/java.header"));
         checkConfig.addAttribute("ignoreLines", "");
         final String[] expected = {
             "1: Missing a header - not enough lines in file.",
@@ -216,7 +216,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("java.header"));
+        checkConfig.addAttribute("headerFile", getPath("config/java.header"));
         checkConfig.addAttribute("charset", "XSO-8859-1");
         try {
             createChecker(checkConfig);

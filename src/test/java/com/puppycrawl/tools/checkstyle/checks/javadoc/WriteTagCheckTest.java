@@ -38,12 +38,12 @@ import org.junit.Test;
  */
 public class WriteTagCheckTest extends BaseCheckTestSupport
 {
-    private DefaultConfiguration mCheckConfig;
+    private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp()
     {
-        mCheckConfig = createCheckConfig(WriteTagCheck.class);
+        checkConfig = createCheckConfig(WriteTagCheck.class);
     }
 
     @Test
@@ -52,151 +52,151 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
         final String[] expected =
         {
         };
-        verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
+        verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
     public void testTag() throws Exception
     {
-        mCheckConfig.addAttribute("tag", "@author");
-        mCheckConfig.addAttribute("tagFormat", "\\S");
+        checkConfig.addAttribute("tag", "@author");
+        checkConfig.addAttribute("tagFormat", "\\S");
         final String[] expected =
         {
             "10: @author=Daniel Grenner",
         };
-        verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
+        verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
     public void testMissingFormat() throws Exception
     {
-        mCheckConfig.addAttribute("tag", "@author");
+        checkConfig.addAttribute("tag", "@author");
         final String[] expected =
         {
             "10: @author=Daniel Grenner",
         };
-        verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
+        verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
     public void testTagSeverity() throws Exception
     {
-        mCheckConfig.addAttribute("tag", "@incomplete");
-        mCheckConfig.addAttribute("tagFormat", "\\S");
-        mCheckConfig.addAttribute("tagSeverity", "warning");
+        checkConfig.addAttribute("tag", "@incomplete");
+        checkConfig.addAttribute("tagFormat", "\\S");
+        checkConfig.addAttribute("tagSeverity", "warning");
         final String[] expected =
         {
             "11: warning: @incomplete=This class needs more code...",
         };
-        verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
+        verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
     public void testDoubleTag() throws Exception
     {
-        mCheckConfig.addAttribute("tag", "@doubletag");
-        mCheckConfig.addAttribute("tagFormat", "\\S");
+        checkConfig.addAttribute("tag", "@doubletag");
+        checkConfig.addAttribute("tagFormat", "\\S");
         final String[] expected = {
             "12: @doubletag=first text",
             "13: @doubletag=second text",
         };
-        verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
+        verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
     public void testEmptyTag() throws Exception
     {
-        mCheckConfig.addAttribute("tag", "@emptytag");
-        mCheckConfig.addAttribute("tagFormat", "");
+        checkConfig.addAttribute("tag", "@emptytag");
+        checkConfig.addAttribute("tagFormat", "");
         final String[] expected = {
             "14: @emptytag=",
         };
-        verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
+        verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
 
     @Test
     public void testMissingTag() throws Exception
     {
-        mCheckConfig.addAttribute("tag", "@missingtag");
+        checkConfig.addAttribute("tag", "@missingtag");
         final String[] expected =
         {
             "16: Type Javadoc comment is missing an @missingtag tag.",
         };
-        verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
+        verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
     public void testMethod() throws Exception
     {
-        mCheckConfig.addAttribute("tag", "@todo");
-        mCheckConfig.addAttribute("tagFormat", "\\S");
-        mCheckConfig.addAttribute("tokens",
+        checkConfig.addAttribute("tag", "@todo");
+        checkConfig.addAttribute("tagFormat", "\\S");
+        checkConfig.addAttribute("tokens",
             "INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF");
-        mCheckConfig.addAttribute("severity", "ignore");
+        checkConfig.addAttribute("severity", "ignore");
         final String[] expected = {
             "19: @todo=Add a constructor comment",
             "30: @todo=Add a comment",
         };
-        verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
+        verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
     public void testSeverity() throws Exception
     {
-        mCheckConfig.addAttribute("tag", "@author");
-        mCheckConfig.addAttribute("tagFormat", "\\S");
-        mCheckConfig.addAttribute("severity", "ignore");
+        checkConfig.addAttribute("tag", "@author");
+        checkConfig.addAttribute("tagFormat", "\\S");
+        checkConfig.addAttribute("severity", "ignore");
         final String[] expected =
         {
             "10: @author=Daniel Grenner",
         };
-        verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
+        verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
     public void testIgnoreMissing() throws Exception
     {
-        mCheckConfig.addAttribute("tag", "@todo2");
-        mCheckConfig.addAttribute("tagFormat", "\\S");
-        mCheckConfig.addAttribute("severity", "ignore");
+        checkConfig.addAttribute("tag", "@todo2");
+        checkConfig.addAttribute("tagFormat", "\\S");
+        checkConfig.addAttribute("severity", "ignore");
         final String[] expected =
         {
         };
-        verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
+        verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
     public void testRegularEx()
         throws Exception
     {
-        mCheckConfig.addAttribute("tag", "@author");
-        mCheckConfig.addAttribute("tagFormat", "0*");
+        checkConfig.addAttribute("tag", "@author");
+        checkConfig.addAttribute("tagFormat", "0*");
         final String[] expected = {
         };
-        verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
+        verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
     public void testRegularExError()
         throws Exception
     {
-        mCheckConfig.addAttribute("tag", "@author");
-        mCheckConfig.addAttribute("tagFormat", "ABC");
+        checkConfig.addAttribute("tag", "@author");
+        checkConfig.addAttribute("tagFormat", "ABC");
         final String[] expected = {
             "10: Type Javadoc tag @author must match pattern 'ABC'.",
         };
-        verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
+        verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
     public void testEnumsAndAnnotations() throws Exception
     {
-        mCheckConfig.addAttribute("tag", "@incomplete");
-        mCheckConfig.addAttribute("tagFormat", ".*");
-        mCheckConfig.addAttribute("severity", "ignore");
-        mCheckConfig.addAttribute("tagSeverity", "error");
-        mCheckConfig.addAttribute("tokens",
+        checkConfig.addAttribute("tag", "@incomplete");
+        checkConfig.addAttribute("tagFormat", ".*");
+        checkConfig.addAttribute("severity", "ignore");
+        checkConfig.addAttribute("tagSeverity", "error");
+        checkConfig.addAttribute("tokens",
             "ANNOTATION_DEF, ENUM_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF");
         final String[] expected =
         {
@@ -205,36 +205,36 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
             "19: @incomplete=This annotation needs more code...",
             "23: @incomplete=This annotation field needs more code...",
         };
-        verify(mCheckConfig, getPath("InputWriteTag2.java"), expected);
+        verify(checkConfig, getPath("InputWriteTag2.java"), expected);
     }
 
     @Override
-    protected void verify(Checker aC,
-                          File[] aProcessedFiles,
-                          String aMessageFileName,
-                          String[] aExpected)
+    protected void verify(Checker c,
+                          File[] processedFiles,
+                          String messageFileName,
+                          String[] expected)
         throws Exception
     {
-        mStream.flush();
+        stream.flush();
         final List<File> theFiles = Lists.newArrayList();
-        Collections.addAll(theFiles, aProcessedFiles);
-        final int errs = aC.process(theFiles);
+        Collections.addAll(theFiles, processedFiles);
+        final int errs = c.process(theFiles);
 
         // process each of the lines
         final ByteArrayInputStream bais =
-            new ByteArrayInputStream(mBAOS.toByteArray());
+            new ByteArrayInputStream(BAOS.toByteArray());
         final LineNumberReader lnr =
             new LineNumberReader(new InputStreamReader(bais));
 
-        for (int i = 0; i < aExpected.length; i++) {
-            final String expected = aMessageFileName + ":" + aExpected[i];
+        for (int i = 0; i < expected.length; i++) {
+            final String expectedResult = messageFileName + ":" + expected[i];
             final String actual = lnr.readLine();
-            assertEquals("error message " + i, expected, actual);
+            assertEquals("error message " + i, expectedResult, actual);
         }
 
         assertTrue("unexpected output: " + lnr.readLine(),
-                   aExpected.length >= errs);
+                   expected.length >= errs);
 
-        aC.destroy();
+        c.destroy();
     }
 }

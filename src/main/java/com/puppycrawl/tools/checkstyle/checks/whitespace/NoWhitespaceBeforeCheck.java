@@ -62,7 +62,7 @@ public class NoWhitespaceBeforeCheck
     extends Check
 {
     /** Whether whitespace is allowed if the AST is at a linebreak */
-    private boolean mAllowLineBreaks;
+    private boolean allowLineBreaks;
 
     @Override
     public int[] getDefaultTokens()
@@ -86,16 +86,16 @@ public class NoWhitespaceBeforeCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final String line = getLine(aAST.getLineNo() - 1);
-        final int before = aAST.getColumnNo() - 1;
+        final String line = getLine(ast.getLineNo() - 1);
+        final int before = ast.getColumnNo() - 1;
 
         if ((before < 0) || Character.isWhitespace(line.charAt(before))) {
 
             // empty FOR initializer?
-            if (aAST.getType() == TokenTypes.SEMI) {
-                final DetailAST sibling = aAST.getPreviousSibling();
+            if (ast.getType() == TokenTypes.SEMI) {
+                final DetailAST sibling = ast.getPreviousSibling();
                 if ((sibling != null)
                         && (sibling.getType() == TokenTypes.FOR_INIT)
                         && (sibling.getChildCount() == 0))
@@ -104,7 +104,7 @@ public class NoWhitespaceBeforeCheck
                 }
             }
 
-            boolean flag = !mAllowLineBreaks;
+            boolean flag = !allowLineBreaks;
             // verify all characters before '.' are whitespace
             for (int i = 0; !flag && (i < before); i++) {
                 if (!Character.isWhitespace(line.charAt(i))) {
@@ -112,18 +112,18 @@ public class NoWhitespaceBeforeCheck
                 }
             }
             if (flag) {
-                log(aAST.getLineNo(), before, "ws.preceded", aAST.getText());
+                log(ast.getLineNo(), before, "ws.preceded", ast.getText());
             }
         }
     }
 
     /**
      * Control whether whitespace is flagged at linebreaks.
-     * @param aAllowLineBreaks whether whitespace should be
+     * @param allowLineBreaks whether whitespace should be
      * flagged at linebreaks.
      */
-    public void setAllowLineBreaks(boolean aAllowLineBreaks)
+    public void setAllowLineBreaks(boolean allowLineBreaks)
     {
-        mAllowLineBreaks = aAllowLineBreaks;
+        this.allowLineBreaks = allowLineBreaks;
     }
 }

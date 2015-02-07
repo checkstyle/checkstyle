@@ -49,7 +49,7 @@ public class FileContentsHolder
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
         FILE_CONTENTS.set(getFileContents());
     }

@@ -61,24 +61,24 @@ public abstract class AbstractClassCouplingCheck extends Check
                 .add("Map", "HashMap", "SortedMap", "TreeMap")
                 .build();
     /** User-configured class names to ignore. */
-    private Set<String> mExcludedClasses = DEFAULT_EXCLUDED_CLASSES;
+    private Set<String> excludedClasses = DEFAULT_EXCLUDED_CLASSES;
     /** Allowed complexity. */
-    private int mMax;
+    private int max;
     /** package of the file we check. */
-    private String mPackageName;
+    private String packageName;
 
     /** Stack of contexts. */
-    private final FastStack<Context> mContextStack = FastStack.newInstance();
+    private final FastStack<Context> contextStack = FastStack.newInstance();
     /** Current context. */
-    private Context mContext;
+    private Context context;
 
     /**
      * Creates new instance of the check.
-     * @param aDefaultMax default value for allowed complexity.
+     * @param defaultMax default value for allowed complexity.
      */
-    protected AbstractClassCouplingCheck(int aDefaultMax)
+    protected AbstractClassCouplingCheck(int defaultMax)
     {
-        setMax(aDefaultMax);
+        setMax(defaultMax);
     }
 
     @Override
@@ -90,108 +90,108 @@ public abstract class AbstractClassCouplingCheck extends Check
     /** @return allowed complexity. */
     public final int getMax()
     {
-        return mMax;
+        return max;
     }
 
     /**
      * Sets maximum allowed complexity.
-     * @param aMax allowed complexity.
+     * @param max allowed complexity.
      */
-    public final void setMax(int aMax)
+    public final void setMax(int max)
     {
-        mMax = aMax;
+        this.max = max;
     }
 
     /**
      * Sets user-excluded classes to ignore.
-     * @param aExcludedClasses the list of classes to ignore.
+     * @param excludedClasses the list of classes to ignore.
      */
-    public final void setExcludedClasses(String[] aExcludedClasses)
+    public final void setExcludedClasses(String[] excludedClasses)
     {
-        mExcludedClasses = ImmutableSet.copyOf(aExcludedClasses);
+        this.excludedClasses = ImmutableSet.copyOf(excludedClasses);
     }
 
     @Override
-    public final void beginTree(DetailAST aAST)
+    public final void beginTree(DetailAST ast)
     {
-        mPackageName = "";
+        packageName = "";
     }
 
     /** @return message key we use for log violations. */
     protected abstract String getLogMessageId();
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.PACKAGE_DEF:
-            visitPackageDef(aAST);
-            break;
-        case TokenTypes.CLASS_DEF:
-        case TokenTypes.INTERFACE_DEF:
-        case TokenTypes.ANNOTATION_DEF:
-        case TokenTypes.ENUM_DEF:
-            visitClassDef(aAST);
-            break;
-        case TokenTypes.TYPE:
-            mContext.visitType(aAST);
-            break;
-        case TokenTypes.LITERAL_NEW:
-            mContext.visitLiteralNew(aAST);
-            break;
-        case TokenTypes.LITERAL_THROWS:
-            mContext.visitLiteralThrows(aAST);
-            break;
-        default:
-            throw new IllegalStateException(aAST.toString());
+        switch (ast.getType()) {
+            case TokenTypes.PACKAGE_DEF:
+                visitPackageDef(ast);
+                break;
+            case TokenTypes.CLASS_DEF:
+            case TokenTypes.INTERFACE_DEF:
+            case TokenTypes.ANNOTATION_DEF:
+            case TokenTypes.ENUM_DEF:
+                visitClassDef(ast);
+                break;
+            case TokenTypes.TYPE:
+                context.visitType(ast);
+                break;
+            case TokenTypes.LITERAL_NEW:
+                context.visitLiteralNew(ast);
+                break;
+            case TokenTypes.LITERAL_THROWS:
+                context.visitLiteralThrows(ast);
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.CLASS_DEF:
-        case TokenTypes.INTERFACE_DEF:
-        case TokenTypes.ANNOTATION_DEF:
-        case TokenTypes.ENUM_DEF:
-            leaveClassDef();
-            break;
-        default:
-            // Do nothing
+        switch (ast.getType()) {
+            case TokenTypes.CLASS_DEF:
+            case TokenTypes.INTERFACE_DEF:
+            case TokenTypes.ANNOTATION_DEF:
+            case TokenTypes.ENUM_DEF:
+                leaveClassDef();
+                break;
+            default:
+                // Do nothing
         }
     }
 
     /**
      * Stores package of current class we check.
-     * @param aPkg package definition.
+     * @param pkg package definition.
      */
-    private void visitPackageDef(DetailAST aPkg)
+    private void visitPackageDef(DetailAST pkg)
     {
-        final FullIdent ident = FullIdent.createFullIdent(aPkg.getLastChild()
+        final FullIdent ident = FullIdent.createFullIdent(pkg.getLastChild()
                 .getPreviousSibling());
-        mPackageName = ident.getText();
+        packageName = ident.getText();
     }
 
     /**
      * Creates new context for a given class.
-     * @param aClassDef class definition node.
+     * @param classDef class definition node.
      */
-    private void visitClassDef(DetailAST aClassDef)
+    private void visitClassDef(DetailAST classDef)
     {
-        mContextStack.push(mContext);
+        contextStack.push(context);
         final String className =
-            aClassDef.findFirstToken(TokenTypes.IDENT).getText();
-        mContext = new Context(className,
-                               aClassDef.getLineNo(),
-                               aClassDef.getColumnNo());
+            classDef.findFirstToken(TokenTypes.IDENT).getText();
+        context = new Context(className,
+                               classDef.getLineNo(),
+                               classDef.getColumnNo());
     }
 
     /** Restores previous context. */
     private void leaveClassDef()
     {
-        mContext.checkCoupling();
-        mContext = mContextStack.pop();
+        context.checkCoupling();
+        context = contextStack.pop();
     }
 
     /**
@@ -206,35 +206,35 @@ public abstract class AbstractClassCouplingCheck extends Check
          * Set of referenced classes.
          * Sorted by name for predictable error messages in unit tests.
          */
-        private final Set<String> mReferencedClassNames = Sets.newTreeSet();
+        private final Set<String> referencedClassNames = Sets.newTreeSet();
         /** Own class name. */
-        private final String mClassName;
+        private final String className;
         /* Location of own class. (Used to log violations) */
         /** Line number of class definition. */
-        private final int mLineNo;
+        private final int lineNo;
         /** Column number of class definition. */
-        private final int mColumnNo;
+        private final int columnNo;
 
         /**
          * Create new context associated with given class.
-         * @param aClassName name of the given class.
-         * @param aLineNo line of class definition.
-         * @param aColumnNo column of class definition.
+         * @param className name of the given class.
+         * @param lineNo line of class definition.
+         * @param columnNo column of class definition.
          */
-        public Context(String aClassName, int aLineNo, int aColumnNo)
+        public Context(String className, int lineNo, int columnNo)
         {
-            mClassName = aClassName;
-            mLineNo = aLineNo;
-            mColumnNo = aColumnNo;
+            this.className = className;
+            this.lineNo = lineNo;
+            this.columnNo = columnNo;
         }
 
         /**
          * Visits throws clause and collects all exceptions we throw.
-         * @param aThrows throws to process.
+         * @param literalThrows throws to process.
          */
-        public void visitLiteralThrows(DetailAST aThrows)
+        public void visitLiteralThrows(DetailAST literalThrows)
         {
-            for (DetailAST childAST = aThrows.getFirstChild();
+            for (DetailAST childAST = literalThrows.getFirstChild();
                  childAST != null;
                  childAST = childAST.getNextSibling())
             {
@@ -246,67 +246,67 @@ public abstract class AbstractClassCouplingCheck extends Check
 
         /**
          * Visits type.
-         * @param aAST type to process.
+         * @param ast type to process.
          */
-        public void visitType(DetailAST aAST)
+        public void visitType(DetailAST ast)
         {
-            final String className = CheckUtils.createFullType(aAST).getText();
-            mContext.addReferencedClassName(className);
+            final String className = CheckUtils.createFullType(ast).getText();
+            context.addReferencedClassName(className);
         }
 
         /**
          * Visits NEW.
-         * @param aAST NEW to process.
+         * @param ast NEW to process.
          */
-        public void visitLiteralNew(DetailAST aAST)
+        public void visitLiteralNew(DetailAST ast)
         {
-            mContext.addReferencedClassName(aAST.getFirstChild());
+            context.addReferencedClassName(ast.getFirstChild());
         }
 
         /**
          * Adds new referenced class.
-         * @param aAST a node which represents referenced class.
+         * @param ast a node which represents referenced class.
          */
-        private void addReferencedClassName(DetailAST aAST)
+        private void addReferencedClassName(DetailAST ast)
         {
-            final String className = FullIdent.createFullIdent(aAST).getText();
+            final String className = FullIdent.createFullIdent(ast).getText();
             addReferencedClassName(className);
         }
 
         /**
          * Adds new referenced class.
-         * @param aClassName class name of the referenced class.
+         * @param className class name of the referenced class.
          */
-        private void addReferencedClassName(String aClassName)
+        private void addReferencedClassName(String className)
         {
-            if (isSignificant(aClassName)) {
-                mReferencedClassNames.add(aClassName);
+            if (isSignificant(className)) {
+                referencedClassNames.add(className);
             }
         }
 
         /** Checks if coupling less than allowed or not. */
         public void checkCoupling()
         {
-            mReferencedClassNames.remove(mClassName);
-            mReferencedClassNames.remove(mPackageName + "." + mClassName);
+            referencedClassNames.remove(className);
+            referencedClassNames.remove(packageName + "." + className);
 
-            if (mReferencedClassNames.size() > mMax) {
-                log(mLineNo, mColumnNo, getLogMessageId(),
-                        mReferencedClassNames.size(), getMax(),
-                        mReferencedClassNames.toString());
+            if (referencedClassNames.size() > max) {
+                log(lineNo, columnNo, getLogMessageId(),
+                        referencedClassNames.size(), getMax(),
+                        referencedClassNames.toString());
             }
         }
 
         /**
          * Checks if given class shouldn't be ignored and not from java.lang.
-         * @param aClassName class to check.
+         * @param className class to check.
          * @return true if we should count this class.
          */
-        private boolean isSignificant(String aClassName)
+        private boolean isSignificant(String className)
         {
-            return (aClassName.length() > 0)
-                    && !mExcludedClasses.contains(aClassName)
-                    && !aClassName.startsWith("java.lang.");
+            return (className.length() > 0)
+                    && !excludedClasses.contains(className)
+                    && !className.startsWith("java.lang.");
         }
     }
 }

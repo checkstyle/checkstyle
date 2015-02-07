@@ -35,13 +35,13 @@ public final class ExecutableStatementCountCheck
     private static final int DEFAULT_MAX = 30;
 
     /** threshold to report error for */
-    private int mMax;
+    private int max;
 
     /** Stack of method contexts. */
-    private final FastStack<Context> mContextStack = FastStack.newInstance();
+    private final FastStack<Context> contextStack = FastStack.newInstance();
 
     /** Current method context. */
-    private Context mContext;
+    private Context context;
 
     /** Constructs a <code>ExecutableStatementCountCheck</code>. */
     public ExecutableStatementCountCheck()
@@ -73,97 +73,97 @@ public final class ExecutableStatementCountCheck
      */
     public int getMax()
     {
-        return mMax;
+        return max;
     }
 
     /**
      * Sets the maximum threshold.
-     * @param aMax the maximum threshold.
+     * @param max the maximum threshold.
      */
-    public void setMax(int aMax)
+    public void setMax(int max)
     {
-        mMax = aMax;
+        this.max = max;
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
-        mContext = null;
-        mContextStack.clear();
+        context = null;
+        contextStack.clear();
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.CTOR_DEF:
-        case TokenTypes.METHOD_DEF:
-        case TokenTypes.INSTANCE_INIT:
-        case TokenTypes.STATIC_INIT:
-            visitMemberDef(aAST);
-            break;
-        case TokenTypes.SLIST:
-            visitSlist(aAST);
-            break;
-        default:
-            throw new IllegalStateException(aAST.toString());
+        switch (ast.getType()) {
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+            case TokenTypes.INSTANCE_INIT:
+            case TokenTypes.STATIC_INIT:
+                visitMemberDef(ast);
+                break;
+            case TokenTypes.SLIST:
+                visitSlist(ast);
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.CTOR_DEF:
-        case TokenTypes.METHOD_DEF:
-        case TokenTypes.INSTANCE_INIT:
-        case TokenTypes.STATIC_INIT:
-            leaveMemberDef(aAST);
-            break;
-        case TokenTypes.SLIST:
-            // Do nothing
-            break;
-        default:
-            throw new IllegalStateException(aAST.toString());
+        switch (ast.getType()) {
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+            case TokenTypes.INSTANCE_INIT:
+            case TokenTypes.STATIC_INIT:
+                leaveMemberDef(ast);
+                break;
+            case TokenTypes.SLIST:
+                // Do nothing
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
     /**
      * Process the start of the member definition.
-     * @param aAST the token representing the member definition.
+     * @param ast the token representing the member definition.
      */
-    private void visitMemberDef(DetailAST aAST)
+    private void visitMemberDef(DetailAST ast)
     {
-        mContextStack.push(mContext);
-        mContext = new Context(aAST);
+        contextStack.push(context);
+        context = new Context(ast);
     }
 
     /**
      * Process the end of a member definition.
      *
-     * @param aAST the token representing the member definition.
+     * @param ast the token representing the member definition.
      */
-    private void leaveMemberDef(DetailAST aAST)
+    private void leaveMemberDef(DetailAST ast)
     {
-        final int count = mContext.getCount();
+        final int count = context.getCount();
         if (count > getMax()) {
-            log(aAST.getLineNo(), aAST.getColumnNo(),
+            log(ast.getLineNo(), ast.getColumnNo(),
                     "executableStatementCount", count, getMax());
         }
-        mContext = mContextStack.pop();
+        context = contextStack.pop();
     }
 
     /**
      * Process the end of a statement list.
      *
-     * @param aAST the token representing the statement list.
+     * @param ast the token representing the statement list.
      */
-    private void visitSlist(DetailAST aAST)
+    private void visitSlist(DetailAST ast)
     {
-        if (mContext != null) {
+        if (context != null) {
             // find member AST for the statement list
-            final DetailAST contextAST = mContext.getAST();
-            DetailAST parent = aAST.getParent();
+            final DetailAST contextAST = context.getAST();
+            DetailAST parent = ast.getParent();
             while (parent != null) {
                 final int type = parent.getType();
                 if ((type == TokenTypes.CTOR_DEF)
@@ -172,7 +172,7 @@ public final class ExecutableStatementCountCheck
                     || (type == TokenTypes.STATIC_INIT))
                 {
                     if (parent == contextAST) {
-                        mContext.addCount(aAST.getChildCount() / 2);
+                        context.addCount(ast.getChildCount() / 2);
                     }
                     break;
                 }
@@ -188,28 +188,28 @@ public final class ExecutableStatementCountCheck
     private static class Context
     {
         /** Member AST node. */
-        private final DetailAST mAST;
+        private final DetailAST ast;
 
         /** Counter for context elements. */
-        private int mCount;
+        private int count;
 
         /**
          * Creates new member context.
-         * @param aAST member AST node.
+         * @param ast member AST node.
          */
-        public Context(DetailAST aAST)
+        public Context(DetailAST ast)
         {
-            mAST = aAST;
-            mCount = 0;
+            this.ast = ast;
+            count = 0;
         }
 
         /**
          * Increase count.
-         * @param aCount the count increment.
+         * @param count the count increment.
          */
-        public void addCount(int aCount)
+        public void addCount(int count)
         {
-            mCount += aCount;
+            this.count += count;
         }
 
         /**
@@ -218,7 +218,7 @@ public final class ExecutableStatementCountCheck
          */
         public DetailAST getAST()
         {
-            return mAST;
+            return ast;
         }
 
         /**
@@ -227,7 +227,7 @@ public final class ExecutableStatementCountCheck
          */
         public int getCount()
         {
-            return mCount;
+            return count;
         }
     }
 }

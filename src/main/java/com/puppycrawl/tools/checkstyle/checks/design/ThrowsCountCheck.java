@@ -46,7 +46,7 @@ public final class ThrowsCountCheck extends Check
     private static final int DEFAULT_MAX = 1;
 
     /** maximum allowed throws statements */
-    private int mMax;
+    private int max;
 
     /** Creates new instance of the check. */
     public ThrowsCountCheck()
@@ -74,40 +74,40 @@ public final class ThrowsCountCheck extends Check
      */
     public int getMax()
     {
-        return mMax;
+        return max;
     }
 
     /**
      * Setter for max property.
-     * @param aMax maximum allowed throws statements.
+     * @param max maximum allowed throws statements.
      */
-    public void setMax(int aMax)
+    public void setMax(int max)
     {
-        mMax = aMax;
+        this.max = max;
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.LITERAL_THROWS:
-            visitLiteralThrows(aAST);
-            break;
-        default:
-            throw new IllegalStateException(aAST.toString());
+        switch (ast.getType()) {
+            case TokenTypes.LITERAL_THROWS:
+                visitLiteralThrows(ast);
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
     /**
      * Checks number of throws statements.
-     * @param aAST throws for check.
+     * @param ast throws for check.
      */
-    private void visitLiteralThrows(DetailAST aAST)
+    private void visitLiteralThrows(DetailAST ast)
     {
         // Account for all the commas!
-        final int count = (aAST.getChildCount() + 1) / 2;
+        final int count = (ast.getChildCount() + 1) / 2;
         if (count > getMax()) {
-            log(aAST.getLineNo(),  aAST.getColumnNo(), "throws.count",
+            log(ast.getLineNo(),  ast.getColumnNo(), "throws.count",
                 count, getMax());
         }
     }

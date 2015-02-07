@@ -45,32 +45,32 @@ public class UncommentedMainCheck
     extends Check
 {
     /** the pattern to exclude classes from the check */
-    private String mExcludedClasses = "^$";
+    private String excludedClasses = "^$";
     /** compiled regexp to exclude classes from check */
-    private Pattern mExcludedClassesPattern =
-        Utils.createPattern(mExcludedClasses);
+    private Pattern excludedClassesPattern =
+        Utils.createPattern(excludedClasses);
     /** current class name */
-    private String mCurrentClass;
+    private String currentClass;
     /** current package */
-    private FullIdent mPackage;
+    private FullIdent packageName;
     /** class definition depth */
-    private int mClassDepth;
+    private int classDepth;
 
     /**
      * Set the excluded classes pattern.
-     * @param aExcludedClasses a <code>String</code> value
-     * @throws ConversionException unable to parse aExcludedClasses
+     * @param excludedClasses a <code>String</code> value
+     * @throws ConversionException unable to parse excludedClasses
      */
-    public void setExcludedClasses(String aExcludedClasses)
+    public void setExcludedClasses(String excludedClasses)
         throws ConversionException
     {
         try {
-            mExcludedClasses = aExcludedClasses;
-            mExcludedClassesPattern = Utils.getPattern(mExcludedClasses);
+            this.excludedClasses = excludedClasses;
+            excludedClassesPattern = Utils.getPattern(excludedClasses);
         }
         catch (final PatternSyntaxException e) {
             throw new ConversionException("unable to parse "
-                                          + mExcludedClasses,
+                                          + excludedClasses,
                                           e);
         }
     }
@@ -92,86 +92,86 @@ public class UncommentedMainCheck
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
-        mPackage = FullIdent.createFullIdent(null);
-        mCurrentClass = null;
-        mClassDepth = 0;
+        packageName = FullIdent.createFullIdent(null);
+        currentClass = null;
+        classDepth = 0;
     }
 
     @Override
-    public void leaveToken(DetailAST aAst)
+    public void leaveToken(DetailAST ast)
     {
-        if (aAst.getType() == TokenTypes.CLASS_DEF) {
-            if (mClassDepth == 1) {
-                mCurrentClass = null;
+        if (ast.getType() == TokenTypes.CLASS_DEF) {
+            if (classDepth == 1) {
+                currentClass = null;
             }
-            mClassDepth--;
+            classDepth--;
         }
     }
 
     @Override
-    public void visitToken(DetailAST aAst)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAst.getType()) {
-        case TokenTypes.PACKAGE_DEF:
-            visitPackageDef(aAst);
-            break;
-        case TokenTypes.CLASS_DEF:
-            visitClassDef(aAst);
-            break;
-        case TokenTypes.METHOD_DEF:
-            visitMethodDef(aAst);
-            break;
-        default:
-            throw new IllegalStateException(aAst.toString());
+        switch (ast.getType()) {
+            case TokenTypes.PACKAGE_DEF:
+                visitPackageDef(ast);
+                break;
+            case TokenTypes.CLASS_DEF:
+                visitClassDef(ast);
+                break;
+            case TokenTypes.METHOD_DEF:
+                visitMethodDef(ast);
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
     /**
      * Sets current package.
-     * @param aPackage node for package definition
+     * @param packageDef node for package definition
      */
-    private void visitPackageDef(DetailAST aPackage)
+    private void visitPackageDef(DetailAST packageDef)
     {
-        mPackage = FullIdent.createFullIdent(aPackage.getLastChild()
+        packageName = FullIdent.createFullIdent(packageDef.getLastChild()
                 .getPreviousSibling());
     }
 
     /**
      * If not inner class then change current class name.
-     * @param aClass node for class definition
+     * @param classDef node for class definition
      */
-    private void visitClassDef(DetailAST aClass)
+    private void visitClassDef(DetailAST classDef)
     {
         // we are not use inner classes because they can not
         // have static methods
-        if (mClassDepth == 0) {
-            final DetailAST ident = aClass.findFirstToken(TokenTypes.IDENT);
-            mCurrentClass = mPackage.getText() + "." + ident.getText();
-            mClassDepth++;
+        if (classDepth == 0) {
+            final DetailAST ident = classDef.findFirstToken(TokenTypes.IDENT);
+            currentClass = packageName.getText() + "." + ident.getText();
+            classDepth++;
         }
     }
 
     /**
      * Checks method definition if this is
      * <code>public static void main(String[])</code>.
-     * @param aMethod method definition node
+     * @param method method definition node
      */
-    private void visitMethodDef(DetailAST aMethod)
+    private void visitMethodDef(DetailAST method)
     {
-        if (mClassDepth != 1) {
+        if (classDepth != 1) {
             // method in inner class or in interface definition
             return;
         }
 
         if (checkClassName()
-            && checkName(aMethod)
-            && checkModifiers(aMethod)
-            && checkType(aMethod)
-            && checkParams(aMethod))
+            && checkName(method)
+            && checkModifiers(method)
+            && checkType(method)
+            && checkParams(method))
         {
-            log(aMethod.getLineNo(), "uncommented.main");
+            log(method.getLineNo(), "uncommented.main");
         }
     }
 
@@ -181,29 +181,29 @@ public class UncommentedMainCheck
      */
     private boolean checkClassName()
     {
-        return !mExcludedClassesPattern.matcher(mCurrentClass).find();
+        return !excludedClassesPattern.matcher(currentClass).find();
     }
 
     /**
      * Checks that method name is @quot;main@quot;.
-     * @param aMethod the METHOD_DEF node
+     * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
-    private boolean checkName(DetailAST aMethod)
+    private boolean checkName(DetailAST method)
     {
-        final DetailAST ident = aMethod.findFirstToken(TokenTypes.IDENT);
+        final DetailAST ident = method.findFirstToken(TokenTypes.IDENT);
         return "main".equals(ident.getText());
     }
 
     /**
      * Checks that method has final and static modifiers.
-     * @param aMethod the METHOD_DEF node
+     * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
-    private boolean checkModifiers(DetailAST aMethod)
+    private boolean checkModifiers(DetailAST method)
     {
         final DetailAST modifiers =
-            aMethod.findFirstToken(TokenTypes.MODIFIERS);
+            method.findFirstToken(TokenTypes.MODIFIERS);
 
         return modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
             && modifiers.branchContains(TokenTypes.LITERAL_STATIC);
@@ -211,31 +211,31 @@ public class UncommentedMainCheck
 
     /**
      * Checks that return type is <code>void</code>.
-     * @param aMethod the METHOD_DEF node
+     * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
-    private boolean checkType(DetailAST aMethod)
+    private boolean checkType(DetailAST method)
     {
         final DetailAST type =
-            aMethod.findFirstToken(TokenTypes.TYPE).getFirstChild();
+            method.findFirstToken(TokenTypes.TYPE).getFirstChild();
         return type.getType() == TokenTypes.LITERAL_VOID;
     }
 
     /**
      * Checks that method has only <code>String[]</code> param
-     * @param aMethod the METHOD_DEF node
+     * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
-    private boolean checkParams(DetailAST aMethod)
+    private boolean checkParams(DetailAST method)
     {
-        final DetailAST params = aMethod.findFirstToken(TokenTypes.PARAMETERS);
+        final DetailAST params = method.findFirstToken(TokenTypes.PARAMETERS);
         if (params.getChildCount() != 1) {
             return false;
         }
-        final DetailAST paramType = (params.getFirstChild())
+        final DetailAST paratype = (params.getFirstChild())
             .findFirstToken(TokenTypes.TYPE);
         final DetailAST arrayDecl =
-            paramType.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
+            paratype.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
         if (arrayDecl == null) {
             return false;
         }

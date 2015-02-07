@@ -29,28 +29,28 @@ import java.util.BitSet;
 public class IndentLevel
 {
     /** set of acceptable indentation levels. */
-    private final BitSet mLevels = new BitSet();
+    private final BitSet levels = new BitSet();
 
     /**
      * Creates new instance with one accaptable indentation level.
-     * @param aIndent accaptable indentation level.
+     * @param indent accaptable indentation level.
      */
-    public IndentLevel(int aIndent)
+    public IndentLevel(int indent)
     {
-        mLevels.set(aIndent);
+        levels.set(indent);
     }
 
     /**
      * Creates new instance for nested structure.
-     * @param aBase parent's level
-     * @param aOffsets offsets from parent's level.
+     * @param base parent's level
+     * @param offsets offsets from parent's level.
      */
-    public IndentLevel(IndentLevel aBase, int... aOffsets)
+    public IndentLevel(IndentLevel base, int... offsets)
     {
-        final BitSet src = aBase.mLevels;
+        final BitSet src = base.levels;
         for (int i = src.nextSetBit(0); i >= 0; i = src.nextSetBit(i + 1)) {
-            for (int offset : aOffsets) {
-                mLevels.set(i + offset);
+            for (int offset : offsets) {
+                levels.set(i + offset);
             }
         }
     }
@@ -61,46 +61,46 @@ public class IndentLevel
      */
     public final boolean isMultiLevel()
     {
-        return mLevels.cardinality() > 1;
+        return levels.cardinality() > 1;
     }
 
     /**
      * Checks if given indentation is acceptable.
-     * @param aIndent indentation to check.
+     * @param indent indentation to check.
      * @return true if given indentation is acceptable,
      *         false otherwise.
      */
-    public boolean accept(int aIndent)
+    public boolean accept(int indent)
     {
-        return mLevels.get(aIndent);
+        return levels.get(indent);
     }
 
     /**
-     * @param aIndent indentation to check.
-     * @return true if <code>aIndent</code> less then minimal of
+     * @param indent indentation to check.
+     * @return true if <code>indent</code> less then minimal of
      *         acceptable indentation levels, false otherwise.
      */
-    public boolean gt(int aIndent)
+    public boolean gt(int indent)
     {
-        return mLevels.nextSetBit(0) > aIndent;
+        return levels.nextSetBit(0) > indent;
     }
 
     /**
      * Adds one more acceptable indentation level.
-     * @param aIndent new acceptable indentation.
+     * @param indent new acceptable indentation.
      */
-    public void addAcceptedIndent(int aIndent)
+    public void addAcceptedIndent(int indent)
     {
-        mLevels.set(aIndent);
+        levels.set(indent);
     }
 
     /**
      * Adds one more acceptable indentation level.
-     * @param aIndent new acceptable indentation.
+     * @param indent new acceptable indentation.
      */
-    public void addAcceptedIndent(IndentLevel aIndent)
+    public void addAcceptedIndent(IndentLevel indent)
     {
-        mLevels.or(aIndent.mLevels);
+        levels.or(indent.levels);
     }
 
     /**
@@ -109,7 +109,7 @@ public class IndentLevel
      */
     public int getFirstIndentLevel()
     {
-        return mLevels.nextSetBit(0);
+        return levels.nextSetBit(0);
     }
 
     /**
@@ -118,18 +118,18 @@ public class IndentLevel
      */
     public int getLastIndentLevel()
     {
-        return mLevels.length() - 1;
+        return levels.length() - 1;
     }
 
     @Override
     public String toString()
     {
-        if (mLevels.cardinality() == 1) {
-            return String.valueOf(mLevels.nextSetBit(0));
+        if (levels.cardinality() == 1) {
+            return String.valueOf(levels.nextSetBit(0));
         }
         final StringBuilder sb = new StringBuilder();
-        for (int i = mLevels.nextSetBit(0); i >= 0;
-            i = mLevels.nextSetBit(i + 1))
+        for (int i = levels.nextSetBit(0); i >= 0;
+            i = levels.nextSetBit(i + 1))
         {
             if (sb.length() > 0) {
                 sb.append(", ");

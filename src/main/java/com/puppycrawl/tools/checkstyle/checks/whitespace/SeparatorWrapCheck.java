@@ -114,13 +114,13 @@ public class SeparatorWrapCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         // TODO: It is a copy/paste from OperatorWrapCheck.
         //It should be fixed in another issue
-        final String text = aAST.getText();
-        final int colNo = aAST.getColumnNo();
-        final int lineNo = aAST.getLineNo();
+        final String text = ast.getText();
+        final int colNo = ast.getColumnNo();
+        final int lineNo = ast.getLineNo();
         final String currentLine = getLines()[lineNo - 1];
         final String substringAfterToken =
                 currentLine.substring(colNo + text.length()).trim();

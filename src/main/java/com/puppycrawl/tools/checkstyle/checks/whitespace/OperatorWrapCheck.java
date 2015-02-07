@@ -172,10 +172,10 @@ public class OperatorWrapCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (aAST.getType() == TokenTypes.COLON) {
-            final DetailAST parent = aAST.getParent();
+        if (ast.getType() == TokenTypes.COLON) {
+            final DetailAST parent = ast.getParent();
             if ((parent.getType() == TokenTypes.LITERAL_DEFAULT)
                 || (parent.getType() == TokenTypes.LITERAL_CASE))
             {
@@ -185,9 +185,9 @@ public class OperatorWrapCheck
         }
         final WrapOption wOp = getAbstractOption();
 
-        final String text = aAST.getText();
-        final int colNo = aAST.getColumnNo();
-        final int lineNo = aAST.getLineNo();
+        final String text = ast.getText();
+        final int colNo = ast.getColumnNo();
+        final int lineNo = ast.getLineNo();
         final String currentLine = getLine(lineNo - 1);
 
         // TODO: Handle comments before and after operator

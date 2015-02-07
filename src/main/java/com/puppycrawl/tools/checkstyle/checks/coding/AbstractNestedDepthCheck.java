@@ -29,17 +29,17 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public abstract class AbstractNestedDepthCheck extends Check
 {
     /** maximum allowed nesting depth */
-    private int mMax;
+    private int max;
     /** current nesting depth */
-    private int mDepth;
+    private int depth;
 
     /**
      * Creates new instance of checks.
-     * @param aMax default allowed nesting depth.
+     * @param max default allowed nesting depth.
      */
-    public AbstractNestedDepthCheck(int aMax)
+    public AbstractNestedDepthCheck(int max)
     {
-        setMax(aMax);
+        setMax(max);
     }
 
     @Override
@@ -49,9 +49,9 @@ public abstract class AbstractNestedDepthCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
-        mDepth = 0;
+        depth = 0;
     }
 
     /**
@@ -60,34 +60,34 @@ public abstract class AbstractNestedDepthCheck extends Check
      */
     public final int getMax()
     {
-        return mMax;
+        return max;
     }
 
     /**
      * Setter for maximum allowed nesting depth.
-     * @param aMax maximum allowed nesting depth.
+     * @param max maximum allowed nesting depth.
      */
-    public final void setMax(int aMax)
+    public final void setMax(int max)
     {
-        mMax = aMax;
+        this.max = max;
     }
 
     /**
      * Increasing current nesting depth.
-     * @param aAST note which increases nesting.
-     * @param aMessageId message id for logging error.
+     * @param ast note which increases nesting.
+     * @param messageId message id for logging error.
      */
-    protected final void nestIn(DetailAST aAST, String aMessageId)
+    protected final void nestIn(DetailAST ast, String messageId)
     {
-        if (mDepth > mMax) {
-            log(aAST, aMessageId, mDepth, mMax);
+        if (depth > max) {
+            log(ast, messageId, depth, max);
         }
-        ++mDepth;
+        ++depth;
     }
 
     /** Decreasing current nesting depth */
     protected final void nestOut()
     {
-        --mDepth;
+        --depth;
     }
 }

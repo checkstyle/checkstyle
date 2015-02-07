@@ -35,7 +35,7 @@ import org.junit.Test;
 public class PackageObjectFactoryTest
 {
 
-    private final PackageObjectFactory mFactory = new PackageObjectFactory(
+    private final PackageObjectFactory factory = new PackageObjectFactory(
             new HashSet<String>(), Thread.currentThread().getContextClassLoader());
 
     @Test
@@ -43,7 +43,7 @@ public class PackageObjectFactoryTest
         throws CheckstyleException
     {
         final Checker checker =
-            (Checker) mFactory.createModule(
+            (Checker) factory.createModule(
                         "com.puppycrawl.tools.checkstyle.Checker");
         assertNotNull(checker);
     }
@@ -53,7 +53,7 @@ public class PackageObjectFactoryTest
         throws CheckstyleException
     {
         final ConstantNameCheck check =
-                (ConstantNameCheck) mFactory.createModule(
+                (ConstantNameCheck) factory.createModule(
                         "com.puppycrawl.tools.checkstyle.checks.naming.ConstantName");
         assertNotNull(check);
     }
@@ -62,9 +62,9 @@ public class PackageObjectFactoryTest
     public void testMakeObectFromList()
         throws CheckstyleException
     {
-        mFactory.addPackage("com.");
+        factory.addPackage("com.");
         final Checker checker =
-                (Checker) mFactory.createModule(
+                (Checker) factory.createModule(
                         "puppycrawl.tools.checkstyle.Checker");
         assertNotNull(checker);
     }
@@ -73,7 +73,7 @@ public class PackageObjectFactoryTest
     public void testMakeObectNoClass()
     {
         try {
-            mFactory.createModule("NoClass");
+            factory.createModule("NoClass");
             fail("Instantiated non-existant class");
         }
         catch (CheckstyleException ex) {

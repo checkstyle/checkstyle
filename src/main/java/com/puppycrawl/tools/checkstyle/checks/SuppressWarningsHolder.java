@@ -70,56 +70,56 @@ public class SuppressWarningsHolder
     private static class Entry
     {
         /** the source name of the suppressed check */
-        private final String mCheckName;
+        private final String checkName;
         /** the suppression region for the check */
-        private final int mFirstLine, mFirstColumn, mLastLine, mLastColumn;
+        private final int firstLine, firstColumn, lastLine, lastColumn;
 
         /**
          * Constructs a new suppression region entry.
-         * @param aCheckName the source name of the suppressed check
-         * @param aFirstLine the first line of the suppression region
-         * @param aFirstColumn the first column of the suppression region
-         * @param aLastLine the last line of the suppression region
-         * @param aLastColumn the last column of the suppression region
+         * @param checkName the source name of the suppressed check
+         * @param firstLine the first line of the suppression region
+         * @param firstColumn the first column of the suppression region
+         * @param lastLine the last line of the suppression region
+         * @param lastColumn the last column of the suppression region
          */
-        public Entry(String aCheckName, int aFirstLine, int aFirstColumn,
-            int aLastLine, int aLastColumn)
+        public Entry(String checkName, int firstLine, int firstColumn,
+            int lastLine, int lastColumn)
         {
-            mCheckName = aCheckName;
-            mFirstLine = aFirstLine;
-            mFirstColumn = aFirstColumn;
-            mLastLine = aLastLine;
-            mLastColumn = aLastColumn;
+            this.checkName = checkName;
+            this.firstLine = firstLine;
+            this.firstColumn = firstColumn;
+            this.lastLine = lastLine;
+            this.lastColumn = lastColumn;
         }
 
         /** @return the source name of the suppressed check */
         public String getCheckName()
         {
-            return mCheckName;
+            return checkName;
         }
 
         /** @return the first line of the suppression region */
         public int getFirstLine()
         {
-            return mFirstLine;
+            return firstLine;
         }
 
         /** @return the first column of the suppression region */
         public int getFirstColumn()
         {
-            return mFirstColumn;
+            return firstColumn;
         }
 
         /** @return the last line of the suppression region */
         public int getLastLine()
         {
-            return mLastLine;
+            return lastLine;
         }
 
         /** @return the last column of the suppression region */
         public int getLastColumn()
         {
-            return mLastColumn;
+            return lastColumn;
         }
     }
 
@@ -127,46 +127,46 @@ public class SuppressWarningsHolder
      * Returns the default alias for the source name of a check, which is the
      * source name in lower case with any dotted prefix or "Check" suffix
      * removed.
-     * @param aSourceName the source name of the check (generally the class
+     * @param sourceName the source name of the check (generally the class
      *        name)
      * @return the default alias for the given check
      */
-    public static String getDefaultAlias(String aSourceName)
+    public static String getDefaultAlias(String sourceName)
     {
-        final int startIndex = aSourceName.lastIndexOf('.') + 1;
-        int endIndex = aSourceName.length();
-        if (aSourceName.endsWith(CHECK_SUFFIX)) {
+        final int startIndex = sourceName.lastIndexOf('.') + 1;
+        int endIndex = sourceName.length();
+        if (sourceName.endsWith(CHECK_SUFFIX)) {
             endIndex -= CHECK_SUFFIX.length();
         }
-        return aSourceName.substring(startIndex, endIndex).toLowerCase();
+        return sourceName.substring(startIndex, endIndex).toLowerCase();
     }
 
     /**
      * Returns the alias for the source name of a check. If an alias has been
      * explicitly registered via {@link #registerAlias(String, String)}, that
      * alias is returned; otherwise, the default alias is used.
-     * @param aSourceName the source name of the check (generally the class
+     * @param sourceName the source name of the check (generally the class
      *        name)
      * @return the current alias for the given check
      */
-    public static String getAlias(String aSourceName)
+    public static String getAlias(String sourceName)
     {
-        String checkAlias = CHECK_ALIAS_MAP.get(aSourceName);
+        String checkAlias = CHECK_ALIAS_MAP.get(sourceName);
         if (checkAlias == null) {
-            checkAlias = getDefaultAlias(aSourceName);
+            checkAlias = getDefaultAlias(sourceName);
         }
         return checkAlias;
     }
 
     /**
      * Registers an alias for the source name of a check.
-     * @param aSourceName the source name of the check (generally the class
+     * @param sourceName the source name of the check (generally the class
      *        name)
-     * @param aCheckAlias the alias used in {@link SuppressWarnings} annotations
+     * @param checkAlias the alias used in {@link SuppressWarnings} annotations
      */
-    public static void registerAlias(String aSourceName, String aCheckAlias)
+    public static void registerAlias(String sourceName, String checkAlias)
     {
-        CHECK_ALIAS_MAP.put(aSourceName, aCheckAlias);
+        CHECK_ALIAS_MAP.put(sourceName, checkAlias);
     }
 
     /**
@@ -174,11 +174,11 @@ public class SuppressWarningsHolder
      * of {@code source=alias} items, such as {@code
      * com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=
      * paramnum}.
-     * @param aAliasList the list of comma-separated alias assigments
+     * @param aliasList the list of comma-separated alias assigments
      */
-    public void setAliasList(String aAliasList)
+    public void setAliasList(String aliasList)
     {
-        for (String sourceAlias : aAliasList.split(",")) {
+        for (String sourceAlias : aliasList.split(",")) {
             final int index = sourceAlias.indexOf("=");
             if (index > 0) {
                 registerAlias(sourceAlias.substring(0, index), sourceAlias
@@ -194,27 +194,27 @@ public class SuppressWarningsHolder
     /**
      * Checks for a suppression of a check with the given source name and
      * location in the last file processed.
-     * @param aSourceName the source name of the check
-     * @param aLine the line number of the check
-     * @param aColumn the column number of the check
+     * @param sourceName the source name of the check
+     * @param line the line number of the check
+     * @param column the column number of the check
      * @return whether the check with the given name is suppressed at the given
      *         source location
      */
-    public static boolean isSuppressed(String aSourceName, int aLine,
-        int aColumn)
+    public static boolean isSuppressed(String sourceName, int line,
+        int column)
     {
         final List<Entry> entries = ENTRIES.get();
-        final String checkAlias = getAlias(aSourceName);
+        final String checkAlias = getAlias(sourceName);
         if (entries != null && checkAlias != null) {
             for (Entry entry : entries) {
                 final boolean afterStart =
-                    entry.getFirstLine() < aLine
-                        || (entry.getFirstLine() == aLine && entry
-                            .getFirstColumn() <= aColumn);
+                    entry.getFirstLine() < line
+                        || (entry.getFirstLine() == line && entry
+                            .getFirstColumn() <= column);
                 final boolean beforeEnd =
-                    entry.getLastLine() > aLine
-                        || (entry.getLastLine() == aLine && entry
-                            .getLastColumn() >= aColumn);
+                    entry.getLastLine() > line
+                        || (entry.getLastLine() == line && entry
+                            .getLastColumn() >= column);
                 final boolean nameMatches =
                     entry.getCheckName().equals(checkAlias);
                 if (afterStart && beforeEnd && nameMatches) {
@@ -232,17 +232,17 @@ public class SuppressWarningsHolder
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
         ENTRIES.set(new LinkedList<Entry>());
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         // check whether annotation is SuppressWarnings
         // expected children: AT ( IDENT | DOT ) LPAREN <values> RPAREN
-        String identifier = getIdentifier(getNthChild(aAST, 1));
+        String identifier = getIdentifier(getNthChild(ast, 1));
         if (identifier.startsWith(JAVA_LANG_PREFIX)) {
             identifier = identifier.substring(JAVA_LANG_PREFIX.length());
         }
@@ -250,72 +250,72 @@ public class SuppressWarningsHolder
 
             // get values of annotation
             List<String> values = null;
-            final DetailAST lparenAST = aAST.findFirstToken(TokenTypes.LPAREN);
+            final DetailAST lparenAST = ast.findFirstToken(TokenTypes.LPAREN);
             if (lparenAST != null) {
                 final DetailAST nextAST = lparenAST.getNextSibling();
                 if (nextAST != null) {
                     final int nextType = nextAST.getType();
                     switch (nextType) {
-                    case TokenTypes.EXPR:
-                    case TokenTypes.ANNOTATION_ARRAY_INIT:
-                        values = getAnnotationValues(nextAST);
-                        break;
+                        case TokenTypes.EXPR:
+                        case TokenTypes.ANNOTATION_ARRAY_INIT:
+                            values = getAnnotationValues(nextAST);
+                            break;
 
-                    case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
-                        // expected children: IDENT ASSIGN ( EXPR |
-                        // ANNOTATION_ARRAY_INIT )
-                        values = getAnnotationValues(getNthChild(nextAST, 2));
-                        break;
+                        case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
+                            // expected children: IDENT ASSIGN ( EXPR |
+                            // ANNOTATION_ARRAY_INIT )
+                            values = getAnnotationValues(getNthChild(nextAST, 2));
+                            break;
 
-                    case TokenTypes.RPAREN:
-                        // no value present (not valid Java)
-                        break;
+                        case TokenTypes.RPAREN:
+                            // no value present (not valid Java)
+                            break;
 
-                    default:
-                        // unknown annotation value type (new syntax?)
+                        default:
+                            // unknown annotation value type (new syntax?)
                     }
                 }
             }
             if (values == null) {
-                log(aAST, "suppress.warnings.missing.value");
+                log(ast, "suppress.warnings.missing.value");
                 return;
             }
 
             // get target of annotation
             DetailAST targetAST = null;
-            DetailAST parentAST = aAST.getParent();
+            DetailAST parentAST = ast.getParent();
             if (parentAST != null) {
                 switch (parentAST.getType()) {
-                case TokenTypes.MODIFIERS:
-                case TokenTypes.ANNOTATIONS:
-                    parentAST = parentAST.getParent();
-                    if (parentAST != null) {
-                        switch (parentAST.getType()) {
-                        case TokenTypes.ANNOTATION_DEF:
-                        case TokenTypes.PACKAGE_DEF:
-                        case TokenTypes.CLASS_DEF:
-                        case TokenTypes.INTERFACE_DEF:
-                        case TokenTypes.ENUM_DEF:
-                        case TokenTypes.ENUM_CONSTANT_DEF:
-                        case TokenTypes.CTOR_DEF:
-                        case TokenTypes.METHOD_DEF:
-                        case TokenTypes.PARAMETER_DEF:
-                        case TokenTypes.VARIABLE_DEF:
-                            targetAST = parentAST;
-                            break;
+                    case TokenTypes.MODIFIERS:
+                    case TokenTypes.ANNOTATIONS:
+                        parentAST = parentAST.getParent();
+                        if (parentAST != null) {
+                            switch (parentAST.getType()) {
+                                case TokenTypes.ANNOTATION_DEF:
+                                case TokenTypes.PACKAGE_DEF:
+                                case TokenTypes.CLASS_DEF:
+                                case TokenTypes.INTERFACE_DEF:
+                                case TokenTypes.ENUM_DEF:
+                                case TokenTypes.ENUM_CONSTANT_DEF:
+                                case TokenTypes.CTOR_DEF:
+                                case TokenTypes.METHOD_DEF:
+                                case TokenTypes.PARAMETER_DEF:
+                                case TokenTypes.VARIABLE_DEF:
+                                    targetAST = parentAST;
+                                    break;
 
-                        default:
-                            // unexpected target type
+                                default:
+                                    // unexpected target type
+                            }
                         }
-                    }
-                    break;
+                        break;
 
-                default:
-                    // unexpected container type
+                    default:
+                        // unexpected container type
                 }
             }
             if (targetAST == null) {
-                log(aAST, "suppress.warnings.invalid.target");
+                log(ast, "suppress.warnings.invalid.target");
                 return;
             }
 
@@ -350,15 +350,15 @@ public class SuppressWarningsHolder
 
     /**
      * Returns the n'th child of an AST node.
-     * @param aAST the AST node to get the child of
-     * @param aIndex the index of the child to get
+     * @param ast the AST node to get the child of
+     * @param index the index of the child to get
      * @return the n'th child of the given AST node, or {@code null} if none
      */
-    private static DetailAST getNthChild(DetailAST aAST, int aIndex)
+    private static DetailAST getNthChild(DetailAST ast, int index)
     {
-        DetailAST child = aAST.getFirstChild();
+        DetailAST child = ast.getFirstChild();
         if (child != null) {
-            for (int i = 0; i < aIndex && child != null; ++i) {
+            for (int i = 0; i < index && child != null; ++i) {
                 child = child.getNextSibling();
             }
         }
@@ -367,76 +367,76 @@ public class SuppressWarningsHolder
 
     /**
      * Returns the Java identifier represented by an AST.
-     * @param aAST an AST node for an IDENT or DOT
+     * @param ast an AST node for an IDENT or DOT
      * @return the Java identifier represented by the given AST subtree
      * @throws IllegalArgumentException if the AST is invalid
      */
-    private static String getIdentifier(DetailAST aAST)
+    private static String getIdentifier(DetailAST ast)
     {
-        if (aAST != null) {
-            if (aAST.getType() == TokenTypes.IDENT) {
-                return aAST.getText();
+        if (ast != null) {
+            if (ast.getType() == TokenTypes.IDENT) {
+                return ast.getText();
             }
-            else if (aAST.getType() == TokenTypes.DOT) {
-                return getIdentifier(aAST.getFirstChild()) + "."
-                    + getIdentifier(aAST.getLastChild());
+            else if (ast.getType() == TokenTypes.DOT) {
+                return getIdentifier(ast.getFirstChild()) + "."
+                    + getIdentifier(ast.getLastChild());
             }
         }
-        throw new IllegalArgumentException("Identifier AST expected: " + aAST);
+        throw new IllegalArgumentException("Identifier AST expected: " + ast);
     }
 
     /**
      * Returns the literal string expression represented by an AST.
-     * @param aAST an AST node for an EXPR
+     * @param ast an AST node for an EXPR
      * @return the Java string represented by the given AST expression
      * @throws IllegalArgumentException if the AST is invalid
      */
-    private static String getStringExpr(DetailAST aAST)
+    private static String getStringExpr(DetailAST ast)
     {
-        if (aAST != null && aAST.getType() == TokenTypes.EXPR) {
-            final DetailAST firstChild = aAST.getFirstChild();
+        if (ast != null && ast.getType() == TokenTypes.EXPR) {
+            final DetailAST firstChild = ast.getFirstChild();
             switch (firstChild.getType()) {
-            case TokenTypes.STRING_LITERAL:
-                // NOTE: escaped characters are not unescaped
-                final String quotedText = firstChild.getText();
-                return quotedText.substring(1, quotedText.length() - 1);
-            case TokenTypes.IDENT:
-                return firstChild.getText();
-            default:
-                throw new IllegalArgumentException("String literal AST expected: "
-                        + firstChild);
+                case TokenTypes.STRING_LITERAL:
+                    // NOTE: escaped characters are not unescaped
+                    final String quotedText = firstChild.getText();
+                    return quotedText.substring(1, quotedText.length() - 1);
+                case TokenTypes.IDENT:
+                    return firstChild.getText();
+                default:
+                    throw new IllegalArgumentException("String literal AST expected: "
+                            + firstChild);
             }
         }
-        throw new IllegalArgumentException("Expression AST expected: " + aAST);
+        throw new IllegalArgumentException("Expression AST expected: " + ast);
     }
 
     /**
      * Returns the annotation values represented by an AST.
-     * @param aAST an AST node for an EXPR or ANNOTATION_ARRAY_INIT
+     * @param ast an AST node for an EXPR or ANNOTATION_ARRAY_INIT
      * @return the list of Java string represented by the given AST for an
      *         expression or annotation array initializer
      * @throws IllegalArgumentException if the AST is invalid
      */
-    private static List<String> getAnnotationValues(DetailAST aAST)
+    private static List<String> getAnnotationValues(DetailAST ast)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.EXPR:
-            return ImmutableList.of(getStringExpr(aAST));
+        switch (ast.getType()) {
+            case TokenTypes.EXPR:
+                return ImmutableList.of(getStringExpr(ast));
 
-        case TokenTypes.ANNOTATION_ARRAY_INIT:
-            final List<String> valueList = Lists.newLinkedList();
-            DetailAST childAST = aAST.getFirstChild();
-            while (childAST != null) {
-                if (childAST.getType() == TokenTypes.EXPR) {
-                    valueList.add(getStringExpr(childAST));
+            case TokenTypes.ANNOTATION_ARRAY_INIT:
+                final List<String> valueList = Lists.newLinkedList();
+                DetailAST childAST = ast.getFirstChild();
+                while (childAST != null) {
+                    if (childAST.getType() == TokenTypes.EXPR) {
+                        valueList.add(getStringExpr(childAST));
+                    }
+                    childAST = childAST.getNextSibling();
                 }
-                childAST = childAST.getNextSibling();
-            }
-            return valueList;
+                return valueList;
 
-        default:
+            default:
         }
         throw new IllegalArgumentException(
-            "Expression or annotation array initializer AST expected: " + aAST);
+            "Expression or annotation array initializer AST expected: " + ast);
     }
 }

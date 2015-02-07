@@ -47,14 +47,14 @@ public class ArrayTrailingCommaCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aArrayInit)
+    public void visitToken(DetailAST arrayInit)
     {
-        final DetailAST rcurly = aArrayInit.findFirstToken(TokenTypes.RCURLY);
+        final DetailAST rcurly = arrayInit.findFirstToken(TokenTypes.RCURLY);
 
         // if curlys are on the same line
         // or array is empty then check nothing
-        if ((aArrayInit.getLineNo() == rcurly.getLineNo())
-            || (aArrayInit.getChildCount() == 1))
+        if ((arrayInit.getLineNo() == rcurly.getLineNo())
+            || (arrayInit.getChildCount() == 1))
         {
             return;
         }

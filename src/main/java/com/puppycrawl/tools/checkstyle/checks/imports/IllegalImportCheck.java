@@ -62,7 +62,7 @@ public class IllegalImportCheck
     extends Check
 {
     /** list of illegal packages */
-    private String[] mIllegalPkgs;
+    private String[] illegalPkgs;
 
     /**
      * Creates a new <code>IllegalImportCheck</code> instance.
@@ -74,11 +74,11 @@ public class IllegalImportCheck
 
     /**
      * Set the list of illegal packages.
-     * @param aFrom array of illegal packages
+     * @param from array of illegal packages
      */
-    public void setIllegalPkgs(String[] aFrom)
+    public void setIllegalPkgs(String[] from)
     {
-        mIllegalPkgs = aFrom.clone();
+        illegalPkgs = from.clone();
     }
 
     @Override
@@ -88,19 +88,19 @@ public class IllegalImportCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         final FullIdent imp;
-        if (aAST.getType() == TokenTypes.IMPORT) {
-            imp = FullIdent.createFullIdentBelow(aAST);
+        if (ast.getType() == TokenTypes.IMPORT) {
+            imp = FullIdent.createFullIdentBelow(ast);
         }
         else {
             imp = FullIdent.createFullIdent(
-                aAST.getFirstChild().getNextSibling());
+                ast.getFirstChild().getNextSibling());
         }
         if (isIllegalImport(imp.getText())) {
-            log(aAST.getLineNo(),
-                aAST.getColumnNo(),
+            log(ast.getLineNo(),
+                ast.getColumnNo(),
                 "import.illegal",
                 imp.getText());
         }
@@ -108,13 +108,13 @@ public class IllegalImportCheck
 
     /**
      * Checks if an import is from a package that must not be used.
-     * @param aImportText the argument of the import keyword
-     * @return if <code>aImportText</code> contains an illegal package prefix
+     * @param importText the argument of the import keyword
+     * @return if <code>importText</code> contains an illegal package prefix
      */
-    private boolean isIllegalImport(String aImportText)
+    private boolean isIllegalImport(String importText)
     {
-        for (String element : mIllegalPkgs) {
-            if (aImportText.startsWith(element + ".")) {
+        for (String element : illegalPkgs) {
+            if (importText.startsWith(element + ".")) {
                 return true;
             }
         }

@@ -66,60 +66,60 @@ public final class LocalizedMessage
         Collections.synchronizedMap(new HashMap<String, ResourceBundle>());
 
     /** the line number **/
-    private final int mLineNo;
+    private final int lineNo;
     /** the column number **/
-    private final int mColNo;
+    private final int colNo;
 
     /** the severity level **/
-    private final SeverityLevel mSeverityLevel;
+    private final SeverityLevel severityLevel;
 
     /** the id of the module generating the message. */
-    private final String mModuleId;
+    private final String moduleId;
 
     /** the default severity level if one is not specified */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
 
     /** key for the message format **/
-    private final String mKey;
+    private final String key;
 
     /** arguments for MessageFormat **/
-    private final Object[] mArgs;
+    private final Object[] args;
 
     /** name of the resource bundle to get messages from **/
-    private final String mBundle;
+    private final String bundle;
 
     /** class of the source for this LocalizedMessage */
-    private final Class<?> mSourceClass;
+    private final Class<?> sourceClass;
 
     /** a custom message overriding the default message from the bundle. */
-    private final String mCustomMessage;
+    private final String customMessage;
 
     @Override
-    public boolean equals(Object aObject)
+    public boolean equals(Object object)
     {
-        if (this == aObject) {
+        if (this == object) {
             return true;
         }
-        if (!(aObject instanceof LocalizedMessage)) {
+        if (!(object instanceof LocalizedMessage)) {
             return false;
         }
 
-        final LocalizedMessage localizedMessage = (LocalizedMessage) aObject;
+        final LocalizedMessage localizedMessage = (LocalizedMessage) object;
 
-        if (mColNo != localizedMessage.mColNo) {
+        if (colNo != localizedMessage.colNo) {
             return false;
         }
-        if (mLineNo != localizedMessage.mLineNo) {
+        if (lineNo != localizedMessage.lineNo) {
             return false;
         }
-        if (!mKey.equals(localizedMessage.mKey)) {
+        if (!key.equals(localizedMessage.key)) {
             return false;
         }
 
-        if (!Arrays.equals(mArgs, localizedMessage.mArgs)) {
+        if (!Arrays.equals(args, localizedMessage.args)) {
             return false;
         }
-        // ignoring mBundle for perf reasons.
+        // ignoring bundle for perf reasons.
 
         // we currently never load the same error from different bundles.
 
@@ -130,10 +130,10 @@ public final class LocalizedMessage
     public int hashCode()
     {
         int result;
-        result = mLineNo;
-        result = HASH_MULT * result + mColNo;
-        result = HASH_MULT * result + mKey.hashCode();
-        for (final Object element : mArgs) {
+        result = lineNo;
+        result = HASH_MULT * result + colNo;
+        result = HASH_MULT * result + key.hashCode();
+        for (final Object element : args) {
             result = HASH_MULT * result + element.hashCode();
         }
         return result;
@@ -142,117 +142,117 @@ public final class LocalizedMessage
     /**
      * Creates a new <code>LocalizedMessage</code> instance.
      *
-     * @param aLineNo line number associated with the message
-     * @param aColNo column number associated with the message
-     * @param aBundle resource bundle name
-     * @param aKey the key to locate the translation
-     * @param aArgs arguments for the translation
-     * @param aSeverityLevel severity level for the message
-     * @param aModuleId the id of the module the message is associated with
-     * @param aSourceClass the Class that is the source of the message
-     * @param aCustomMessage optional custom message overriding the default
+     * @param lineNo line number associated with the message
+     * @param colNo column number associated with the message
+     * @param bundle resource bundle name
+     * @param key the key to locate the translation
+     * @param args arguments for the translation
+     * @param severityLevel severity level for the message
+     * @param moduleId the id of the module the message is associated with
+     * @param sourceClass the Class that is the source of the message
+     * @param customMessage optional custom message overriding the default
      */
-    public LocalizedMessage(int aLineNo,
-                            int aColNo,
-                            String aBundle,
-                            String aKey,
-                            Object[] aArgs,
-                            SeverityLevel aSeverityLevel,
-                            String aModuleId,
-                            Class<?> aSourceClass,
-                            String aCustomMessage)
+    public LocalizedMessage(int lineNo,
+                            int colNo,
+                            String bundle,
+                            String key,
+                            Object[] args,
+                            SeverityLevel severityLevel,
+                            String moduleId,
+                            Class<?> sourceClass,
+                            String customMessage)
     {
-        mLineNo = aLineNo;
-        mColNo = aColNo;
-        mKey = aKey;
-        mArgs = (null == aArgs) ? null : aArgs.clone();
-        mBundle = aBundle;
-        mSeverityLevel = aSeverityLevel;
-        mModuleId = aModuleId;
-        mSourceClass = aSourceClass;
-        mCustomMessage = aCustomMessage;
+        this.lineNo = lineNo;
+        this.colNo = colNo;
+        this.key = key;
+        this.args = (null == args) ? null : args.clone();
+        this.bundle = bundle;
+        this.severityLevel = severityLevel;
+        this.moduleId = moduleId;
+        this.sourceClass = sourceClass;
+        this.customMessage = customMessage;
     }
 
     /**
      * Creates a new <code>LocalizedMessage</code> instance.
      *
-     * @param aLineNo line number associated with the message
-     * @param aColNo column number associated with the message
-     * @param aBundle resource bundle name
-     * @param aKey the key to locate the translation
-     * @param aArgs arguments for the translation
-     * @param aModuleId the id of the module the message is associated with
-     * @param aSourceClass the Class that is the source of the message
-     * @param aCustomMessage optional custom message overriding the default
+     * @param lineNo line number associated with the message
+     * @param colNo column number associated with the message
+     * @param bundle resource bundle name
+     * @param key the key to locate the translation
+     * @param args arguments for the translation
+     * @param moduleId the id of the module the message is associated with
+     * @param sourceClass the Class that is the source of the message
+     * @param customMessage optional custom message overriding the default
      */
-    public LocalizedMessage(int aLineNo,
-                            int aColNo,
-                            String aBundle,
-                            String aKey,
-                            Object[] aArgs,
-                            String aModuleId,
-                            Class<?> aSourceClass,
-                            String aCustomMessage)
+    public LocalizedMessage(int lineNo,
+                            int colNo,
+                            String bundle,
+                            String key,
+                            Object[] args,
+                            String moduleId,
+                            Class<?> sourceClass,
+                            String customMessage)
     {
-        this(aLineNo,
-             aColNo,
-             aBundle,
-             aKey,
-             aArgs,
+        this(lineNo,
+             colNo,
+             bundle,
+             key,
+             args,
              DEFAULT_SEVERITY,
-             aModuleId,
-             aSourceClass,
-             aCustomMessage);
+             moduleId,
+             sourceClass,
+             customMessage);
     }
 
     /**
      * Creates a new <code>LocalizedMessage</code> instance.
      *
-     * @param aLineNo line number associated with the message
-     * @param aBundle resource bundle name
-     * @param aKey the key to locate the translation
-     * @param aArgs arguments for the translation
-     * @param aSeverityLevel severity level for the message
-     * @param aModuleId the id of the module the message is associated with
-     * @param aSourceClass the source class for the message
-     * @param aCustomMessage optional custom message overriding the default
+     * @param lineNo line number associated with the message
+     * @param bundle resource bundle name
+     * @param key the key to locate the translation
+     * @param args arguments for the translation
+     * @param severityLevel severity level for the message
+     * @param moduleId the id of the module the message is associated with
+     * @param sourceClass the source class for the message
+     * @param customMessage optional custom message overriding the default
      */
-    public LocalizedMessage(int aLineNo,
-                            String aBundle,
-                            String aKey,
-                            Object[] aArgs,
-                            SeverityLevel aSeverityLevel,
-                            String aModuleId,
-                            Class<?> aSourceClass,
-                            String aCustomMessage)
+    public LocalizedMessage(int lineNo,
+                            String bundle,
+                            String key,
+                            Object[] args,
+                            SeverityLevel severityLevel,
+                            String moduleId,
+                            Class<?> sourceClass,
+                            String customMessage)
     {
-        this(aLineNo, 0, aBundle, aKey, aArgs, aSeverityLevel, aModuleId,
-                aSourceClass, aCustomMessage);
+        this(lineNo, 0, bundle, key, args, severityLevel, moduleId,
+                sourceClass, customMessage);
     }
 
     /**
      * Creates a new <code>LocalizedMessage</code> instance. The column number
      * defaults to 0.
      *
-     * @param aLineNo line number associated with the message
-     * @param aBundle name of a resource bundle that contains error messages
-     * @param aKey the key to locate the translation
-     * @param aArgs arguments for the translation
-     * @param aModuleId the id of the module the message is associated with
-     * @param aSourceClass the name of the source for the message
-     * @param aCustomMessage optional custom message overriding the default
+     * @param lineNo line number associated with the message
+     * @param bundle name of a resource bundle that contains error messages
+     * @param key the key to locate the translation
+     * @param args arguments for the translation
+     * @param moduleId the id of the module the message is associated with
+     * @param sourceClass the name of the source for the message
+     * @param customMessage optional custom message overriding the default
      */
     public LocalizedMessage(
-        int aLineNo,
-        String aBundle,
-        String aKey,
-        Object[] aArgs,
-        String aModuleId,
-        Class<?> aSourceClass,
-        String aCustomMessage)
+        int lineNo,
+        String bundle,
+        String key,
+        Object[] args,
+        String moduleId,
+        Class<?> sourceClass,
+        String customMessage)
     {
-        this(aLineNo, 0, aBundle, aKey, aArgs, DEFAULT_SEVERITY, aModuleId,
-                aSourceClass, aCustomMessage);
+        this(lineNo, 0, bundle, key, args, DEFAULT_SEVERITY, moduleId,
+                sourceClass, customMessage);
     }
 
     /** Clears the cache. */
@@ -277,15 +277,15 @@ public final class LocalizedMessage
             // the GlobalProperties object. This is because the class loader in
             // the GlobalProperties is specified by the user for resolving
             // custom classes.
-            final ResourceBundle bundle = getBundle(mBundle);
-            final String pattern = bundle.getString(mKey);
-            return MessageFormat.format(pattern, mArgs);
+            final ResourceBundle bundle = getBundle(this.bundle);
+            final String pattern = bundle.getString(key);
+            return MessageFormat.format(pattern, args);
         }
         catch (final MissingResourceException ex) {
             // If the Check author didn't provide i18n resource bundles
             // and logs error messages directly, this will return
             // the author's original message
-            return MessageFormat.format(mKey, mArgs);
+            return MessageFormat.format(key, args);
         }
     }
 
@@ -297,29 +297,29 @@ public final class LocalizedMessage
     private String getCustomMessage()
     {
 
-        if (mCustomMessage == null) {
+        if (customMessage == null) {
             return null;
         }
 
-        return MessageFormat.format(mCustomMessage, mArgs);
+        return MessageFormat.format(customMessage, args);
     }
 
     /**
      * Find a ResourceBundle for a given bundle name. Uses the classloader
      * of the class emitting this message, to be sure to get the correct
      * bundle.
-     * @param aBundleName the bundle name
+     * @param bundleName the bundle name
      * @return a ResourceBundle
      */
-    private ResourceBundle getBundle(String aBundleName)
+    private ResourceBundle getBundle(String bundleName)
     {
         synchronized (BUNDLE_CACHE) {
             ResourceBundle bundle = BUNDLE_CACHE
-                    .get(aBundleName);
+                    .get(bundleName);
             if (bundle == null) {
-                bundle = ResourceBundle.getBundle(aBundleName, sLocale,
-                        mSourceClass.getClassLoader(), new UTF8Control());
-                BUNDLE_CACHE.put(aBundleName, bundle);
+                bundle = ResourceBundle.getBundle(bundleName, sLocale,
+                        sourceClass.getClassLoader(), new UTF8Control());
+                BUNDLE_CACHE.put(bundleName, bundle);
             }
             return bundle;
         }
@@ -328,25 +328,25 @@ public final class LocalizedMessage
     /** @return the line number **/
     public int getLineNo()
     {
-        return mLineNo;
+        return lineNo;
     }
 
     /** @return the column number **/
     public int getColumnNo()
     {
-        return mColNo;
+        return colNo;
     }
 
     /** @return the severity level **/
     public SeverityLevel getSeverityLevel()
     {
-        return mSeverityLevel;
+        return severityLevel;
     }
 
     /** @return the module identifier. */
     public String getModuleId()
     {
-        return mModuleId;
+        return moduleId;
     }
 
     /**
@@ -357,19 +357,19 @@ public final class LocalizedMessage
      */
     public String getKey()
     {
-        return mKey;
+        return key;
     }
 
     /** @return the name of the source for this LocalizedMessage */
     public String getSourceName()
     {
-        return mSourceClass.getName();
+        return sourceClass.getName();
     }
 
-    /** @param aLocale the locale to use for localization **/
-    public static void setLocale(Locale aLocale)
+    /** @param locale the locale to use for localization **/
+    public static void setLocale(Locale locale)
     {
-        sLocale = aLocale;
+        sLocale = locale;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -378,16 +378,16 @@ public final class LocalizedMessage
 
     /** {@inheritDoc} */
     @Override
-    public int compareTo(LocalizedMessage aOther)
+    public int compareTo(LocalizedMessage other)
     {
-        if (getLineNo() == aOther.getLineNo()) {
-            if (getColumnNo() == aOther.getColumnNo()) {
-                return getMessage().compareTo(aOther.getMessage());
+        if (getLineNo() == other.getLineNo()) {
+            if (getColumnNo() == other.getColumnNo()) {
+                return getMessage().compareTo(other.getMessage());
             }
-            return (getColumnNo() < aOther.getColumnNo()) ? -1 : 1;
+            return (getColumnNo() < other.getColumnNo()) ? -1 : 1;
         }
 
-        return (getLineNo() < aOther.getLineNo()) ? -1 : 1;
+        return (getLineNo() < other.getLineNo()) ? -1 : 1;
     }
 
     /**

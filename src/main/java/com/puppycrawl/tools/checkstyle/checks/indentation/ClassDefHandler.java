@@ -32,19 +32,19 @@ public class ClassDefHandler extends BlockParentHandler
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
-     * @param aIndentCheck   the indentation check
-     * @param aAst           the abstract syntax tree
-     * @param aParent        the parent handler
+     * @param indentCheck   the indentation check
+     * @param ast           the abstract syntax tree
+     * @param parent        the parent handler
      */
-    public ClassDefHandler(IndentationCheck aIndentCheck,
-                           DetailAST aAst,
-                           ExpressionHandler aParent)
+    public ClassDefHandler(IndentationCheck indentCheck,
+                           DetailAST ast,
+                           ExpressionHandler parent)
     {
-        super(aIndentCheck,
-              (aAst.getType() == TokenTypes.CLASS_DEF)
-              ? "class def" : ((aAst.getType() == TokenTypes.ENUM_DEF)
+        super(indentCheck,
+              (ast.getType() == TokenTypes.CLASS_DEF)
+              ? "class def" : ((ast.getType() == TokenTypes.ENUM_DEF)
                   ? "enum def" : "interface def"),
-              aAst, aParent);
+              ast, parent);
     }
 
     @Override
@@ -93,9 +93,9 @@ public class ClassDefHandler extends BlockParentHandler
         final LineWrappingHandler lineWrap =
             new LineWrappingHandler(getIndentCheck(), getMainAst()) {
                 @Override
-                public DetailAST findLastNode(DetailAST aFirstNode)
+                public DetailAST findLastNode(DetailAST firstNode)
                 {
-                    return aFirstNode.getLastChild();
+                    return firstNode.getLastChild();
                 }
             };
         lineWrap.checkIndentation();

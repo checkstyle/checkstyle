@@ -455,8 +455,8 @@ public String getNameIfPresent() { ... }
             <td><code>true</code></td>
           </tr>
           <tr>
-            <td>allowSamelineParametrizedAnnotation</td>
-            <td>To allow parametrized annotation to be located on the same line as target element.</td>
+            <td>allowSamelineParameterizedAnnotation</td>
+            <td>To allow parameterized annotation to be located on the same line as target element.</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><code>false</code></td>
           </tr>
@@ -477,11 +477,11 @@ public String getNameIfPresent() { ... }
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
     &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
     &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;allowSamelineParametrizedAnnotation&quot; value=&quot;false&quot;/&gt;
+    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
-          Example to allow multiple parametrized annotations on the same line
+          Example to allow multiple parameterized annotations on the same line
         </p>
         <source>
 @SuppressWarnings("deprecation") @Mock DataLoader loader;
@@ -493,7 +493,7 @@ public String getNameIfPresent() { ... }
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
     &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
     &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;allowSamelineParametrizedAnnotation&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -509,7 +509,7 @@ public String getNameIfPresent() { ... }
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
     &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
     &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;allowSamelineParametrizedAnnotation&quot; value=&quot;false&quot;/&gt;
+    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

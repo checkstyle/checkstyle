@@ -42,69 +42,69 @@ public final class MethodCountCheck extends Check
     private static class MethodCounter
     {
         /** Maintains the counts. */
-        private final EnumMap<Scope, Integer> mCounts =
+        private final EnumMap<Scope, Integer> counts =
             new EnumMap<Scope, Integer>(Scope.class);
         /** indicated is an interface, in which case all methods are public */
-        private final boolean mInInterface;
+        private final boolean inInterface;
         /** tracks the total. */
-        private int mTotal;
+        private int total;
 
         /**
          * Creates an interface.
-         * @param aInInterface indicated if counter for an interface. In which
+         * @param inInterface indicated if counter for an interface. In which
          *        case, add all counts as public methods.
          */
-        MethodCounter(boolean aInInterface)
+        MethodCounter(boolean inInterface)
         {
-            mInInterface = aInInterface;
+            this.inInterface = inInterface;
         }
 
         /**
          * Increments to counter by one for the supplied scope.
-         * @param aScope the scope counter to increment.
+         * @param scope the scope counter to increment.
          */
-        void increment(Scope aScope)
+        void increment(Scope scope)
         {
-            mTotal++;
-            if (mInInterface) {
-                mCounts.put(Scope.PUBLIC, 1 + value(Scope.PUBLIC));
+            total++;
+            if (inInterface) {
+                counts.put(Scope.PUBLIC, 1 + value(Scope.PUBLIC));
             }
             else {
-                mCounts.put(aScope, 1 + value(aScope));
+                counts.put(scope, 1 + value(scope));
             }
         }
 
         /**
          * @return the value of a scope counter
-         * @param aScope the scope counter to get the value of
+         * @param scope the scope counter to get the value of
          */
-        int value(Scope aScope)
+        int value(Scope scope)
         {
-            final Integer value = mCounts.get(aScope);
+            final Integer value = counts.get(scope);
             return (null == value) ? 0 : value;
         }
 
         /** @return the total number of methods. */
         int getTotal()
         {
-            return mTotal;
+            return total;
         }
     };
 
     /** default maximum number of methods */
     private static final int DEFAULT_MAX_METHODS = 100;
     /** Maximum private methods. */
-    private int mMaxPrivate = DEFAULT_MAX_METHODS;
+    private int maxPrivate = DEFAULT_MAX_METHODS;
     /** Maximum package methods. */
-    private int mMaxPackage = DEFAULT_MAX_METHODS;
+    private int maxPackage = DEFAULT_MAX_METHODS;
     /** Maximum protected methods. */
-    private int mMaxProtected = DEFAULT_MAX_METHODS;
+    private int maxProtected = DEFAULT_MAX_METHODS;
     /** Maximum public methods. */
-    private int mMaxPublic = DEFAULT_MAX_METHODS;
+    private int maxPublic = DEFAULT_MAX_METHODS;
     /** Maximum total number of methods. */
-    private int mMaxTotal = DEFAULT_MAX_METHODS;
+    private int maxTotal = DEFAULT_MAX_METHODS;
     /** Maintains stack of counters, to support inner types. */
-    private final FastStack<MethodCounter> mCounters =
+    private final FastStack<MethodCounter> counters =
         new FastStack<MethodCounter>();
 
     @Override
@@ -120,121 +120,121 @@ public final class MethodCountCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if ((TokenTypes.CLASS_DEF == aAST.getType())
-            || (TokenTypes.INTERFACE_DEF == aAST.getType())
-            || (TokenTypes.ENUM_CONSTANT_DEF == aAST.getType())
-            || (TokenTypes.ENUM_DEF == aAST.getType()))
+        if ((TokenTypes.CLASS_DEF == ast.getType())
+            || (TokenTypes.INTERFACE_DEF == ast.getType())
+            || (TokenTypes.ENUM_CONSTANT_DEF == ast.getType())
+            || (TokenTypes.ENUM_DEF == ast.getType()))
         {
-            mCounters.push(new MethodCounter(
-                TokenTypes.INTERFACE_DEF == aAST.getType()));
+            counters.push(new MethodCounter(
+                TokenTypes.INTERFACE_DEF == ast.getType()));
         }
-        else if (TokenTypes.METHOD_DEF == aAST.getType()) {
-            raiseCounter(aAST);
+        else if (TokenTypes.METHOD_DEF == ast.getType()) {
+            raiseCounter(ast);
         }
     }
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
-        if ((TokenTypes.CLASS_DEF == aAST.getType())
-            || (TokenTypes.INTERFACE_DEF == aAST.getType())
-            || (TokenTypes.ENUM_CONSTANT_DEF == aAST.getType())
-            || (TokenTypes.ENUM_DEF == aAST.getType()))
+        if ((TokenTypes.CLASS_DEF == ast.getType())
+            || (TokenTypes.INTERFACE_DEF == ast.getType())
+            || (TokenTypes.ENUM_CONSTANT_DEF == ast.getType())
+            || (TokenTypes.ENUM_DEF == ast.getType()))
         {
-            final MethodCounter counter = mCounters.pop();
-            checkCounters(counter, aAST);
+            final MethodCounter counter = counters.pop();
+            checkCounters(counter, ast);
         }
     }
 
     /**
      * Determine the visibility modifier and raise the corresponding counter.
-     * @param aMethod
+     * @param method
      *            The method-subtree from the AbstractSyntaxTree.
      */
-    private void raiseCounter(DetailAST aMethod)
+    private void raiseCounter(DetailAST method)
     {
-        final MethodCounter actualCounter = mCounters.peek();
-        final DetailAST temp = aMethod.findFirstToken(TokenTypes.MODIFIERS);
+        final MethodCounter actualCounter = counters.peek();
+        final DetailAST temp = method.findFirstToken(TokenTypes.MODIFIERS);
         final Scope scope = ScopeUtils.getScopeFromMods(temp);
         actualCounter.increment(scope);
     }
 
     /**
      * Check the counters and report violations.
-     * @param aCounter the method counters to check
-     * @param aAst to report errors against.
+     * @param counter the method counters to check
+     * @param ast to report errors against.
      */
-    private void checkCounters(MethodCounter aCounter, DetailAST aAst)
+    private void checkCounters(MethodCounter counter, DetailAST ast)
     {
-        checkMax(mMaxPrivate, aCounter.value(Scope.PRIVATE),
-                 "too.many.privateMethods", aAst);
-        checkMax(mMaxPackage, aCounter.value(Scope.PACKAGE),
-                 "too.many.packageMethods", aAst);
-        checkMax(mMaxProtected, aCounter.value(Scope.PROTECTED),
-                 "too.many.protectedMethods", aAst);
-        checkMax(mMaxPublic, aCounter.value(Scope.PUBLIC),
-                 "too.many.publicMethods", aAst);
-        checkMax(mMaxTotal, aCounter.getTotal(), "too.many.methods", aAst);
+        checkMax(maxPrivate, counter.value(Scope.PRIVATE),
+                 "too.many.privateMethods", ast);
+        checkMax(maxPackage, counter.value(Scope.PACKAGE),
+                 "too.many.packageMethods", ast);
+        checkMax(maxProtected, counter.value(Scope.PROTECTED),
+                 "too.many.protectedMethods", ast);
+        checkMax(maxPublic, counter.value(Scope.PUBLIC),
+                 "too.many.publicMethods", ast);
+        checkMax(maxTotal, counter.getTotal(), "too.many.methods", ast);
     }
 
     /**
      * Utility for reporting if a maximum has been exceeded.
-     * @param aMax the maximum allowed value
-     * @param aValue the actual value
-     * @param aMsg the message to log. Takes two arguments of value and maximum.
-     * @param aAst the AST to associate with the message.
+     * @param max the maximum allowed value
+     * @param value the actual value
+     * @param msg the message to log. Takes two arguments of value and maximum.
+     * @param ast the AST to associate with the message.
      */
-    private void checkMax(int aMax, int aValue, String aMsg, DetailAST aAst)
+    private void checkMax(int max, int value, String msg, DetailAST ast)
     {
-        if (aMax < aValue) {
-            log(aAst.getLineNo(), aMsg, aValue, aMax);
+        if (max < value) {
+            log(ast.getLineNo(), msg, value, max);
         }
     }
 
     /**
      * Sets the maximum allowed <code>private</code> methods per type.
-     * @param aValue the maximum allowed.
+     * @param value the maximum allowed.
      */
-    public void setMaxPrivate(int aValue)
+    public void setMaxPrivate(int value)
     {
-        mMaxPrivate = aValue;
+        maxPrivate = value;
     }
 
     /**
      * Sets the maximum allowed <code>package</code> methods per type.
-     * @param aValue the maximum allowed.
+     * @param value the maximum allowed.
      */
-    public void setMaxPackage(int aValue)
+    public void setMaxPackage(int value)
     {
-        mMaxPackage = aValue;
+        maxPackage = value;
     }
 
     /**
      * Sets the maximum allowed <code>protected</code> methods per type.
-     * @param aValue the maximum allowed.
+     * @param value the maximum allowed.
      */
-    public void setMaxProtected(int aValue)
+    public void setMaxProtected(int value)
     {
-        mMaxProtected = aValue;
+        maxProtected = value;
     }
 
     /**
      * Sets the maximum allowed <code>public</code> methods per type.
-     * @param aValue the maximum allowed.
+     * @param value the maximum allowed.
      */
-    public void setMaxPublic(int aValue)
+    public void setMaxPublic(int value)
     {
-        mMaxPublic = aValue;
+        maxPublic = value;
     }
 
     /**
      * Sets the maximum total methods per type.
-     * @param aValue the maximum allowed.
+     * @param value the maximum allowed.
      */
-    public void setMaxTotal(int aValue)
+    public void setMaxTotal(int value)
     {
-        mMaxTotal = aValue;
+        maxTotal = value;
     }
 }

@@ -31,9 +31,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class ModifiedControlVariableCheck extends Check
 {
     /** Current set of parameters. */
-    private FastStack<String> mCurrentVariables = FastStack.newInstance();
+    private FastStack<String> currentVariables = FastStack.newInstance();
     /** Stack of block parameters. */
-    private final FastStack<FastStack<String>> mVariableStack =
+    private final FastStack<FastStack<String>> variableStack =
         FastStack.newInstance();
 
     @Override
@@ -70,84 +70,84 @@ public final class ModifiedControlVariableCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
         // clear data
-        mCurrentVariables.clear();
-        mVariableStack.clear();
+        currentVariables.clear();
+        variableStack.clear();
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.OBJBLOCK:
-            enterBlock();
-            break;
-        case TokenTypes.LITERAL_FOR:
-        case TokenTypes.FOR_ITERATOR:
-        case TokenTypes.FOR_EACH_CLAUSE:
-            break;
-        case TokenTypes.ASSIGN:
-        case TokenTypes.PLUS_ASSIGN:
-        case TokenTypes.MINUS_ASSIGN:
-        case TokenTypes.STAR_ASSIGN:
-        case TokenTypes.DIV_ASSIGN:
-        case TokenTypes.MOD_ASSIGN:
-        case TokenTypes.SR_ASSIGN:
-        case TokenTypes.BSR_ASSIGN:
-        case TokenTypes.SL_ASSIGN:
-        case TokenTypes.BAND_ASSIGN:
-        case TokenTypes.BXOR_ASSIGN:
-        case TokenTypes.BOR_ASSIGN:
-        case TokenTypes.INC:
-        case TokenTypes.POST_INC:
-        case TokenTypes.DEC:
-        case TokenTypes.POST_DEC:
-            checkIdent(aAST);
-            break;
-        default:
-            throw new IllegalStateException(aAST.toString());
+        switch (ast.getType()) {
+            case TokenTypes.OBJBLOCK:
+                enterBlock();
+                break;
+            case TokenTypes.LITERAL_FOR:
+            case TokenTypes.FOR_ITERATOR:
+            case TokenTypes.FOR_EACH_CLAUSE:
+                break;
+            case TokenTypes.ASSIGN:
+            case TokenTypes.PLUS_ASSIGN:
+            case TokenTypes.MINUS_ASSIGN:
+            case TokenTypes.STAR_ASSIGN:
+            case TokenTypes.DIV_ASSIGN:
+            case TokenTypes.MOD_ASSIGN:
+            case TokenTypes.SR_ASSIGN:
+            case TokenTypes.BSR_ASSIGN:
+            case TokenTypes.SL_ASSIGN:
+            case TokenTypes.BAND_ASSIGN:
+            case TokenTypes.BXOR_ASSIGN:
+            case TokenTypes.BOR_ASSIGN:
+            case TokenTypes.INC:
+            case TokenTypes.POST_INC:
+            case TokenTypes.DEC:
+            case TokenTypes.POST_DEC:
+                checkIdent(ast);
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.FOR_ITERATOR:
-            leaveForIter(aAST.getParent());
-            break;
-        case TokenTypes.FOR_EACH_CLAUSE:
-            leaveForEach(aAST);
-            break;
-        case TokenTypes.LITERAL_FOR:
-            leaveForDef(aAST);
-            break;
-        case TokenTypes.OBJBLOCK:
-            exitBlock();
-            break;
-        case TokenTypes.ASSIGN:
-        case TokenTypes.PLUS_ASSIGN:
-        case TokenTypes.MINUS_ASSIGN:
-        case TokenTypes.STAR_ASSIGN:
-        case TokenTypes.DIV_ASSIGN:
-        case TokenTypes.MOD_ASSIGN:
-        case TokenTypes.SR_ASSIGN:
-        case TokenTypes.BSR_ASSIGN:
-        case TokenTypes.SL_ASSIGN:
-        case TokenTypes.BAND_ASSIGN:
-        case TokenTypes.BXOR_ASSIGN:
-        case TokenTypes.BOR_ASSIGN:
-        case TokenTypes.INC:
-        case TokenTypes.POST_INC:
-        case TokenTypes.DEC:
-        case TokenTypes.POST_DEC:
-            // Do nothing
-            break;
-        default:
-            throw new IllegalStateException(aAST.toString());
+        switch (ast.getType()) {
+            case TokenTypes.FOR_ITERATOR:
+                leaveForIter(ast.getParent());
+                break;
+            case TokenTypes.FOR_EACH_CLAUSE:
+                leaveForEach(ast);
+                break;
+            case TokenTypes.LITERAL_FOR:
+                leaveForDef(ast);
+                break;
+            case TokenTypes.OBJBLOCK:
+                exitBlock();
+                break;
+            case TokenTypes.ASSIGN:
+            case TokenTypes.PLUS_ASSIGN:
+            case TokenTypes.MINUS_ASSIGN:
+            case TokenTypes.STAR_ASSIGN:
+            case TokenTypes.DIV_ASSIGN:
+            case TokenTypes.MOD_ASSIGN:
+            case TokenTypes.SR_ASSIGN:
+            case TokenTypes.BSR_ASSIGN:
+            case TokenTypes.SL_ASSIGN:
+            case TokenTypes.BAND_ASSIGN:
+            case TokenTypes.BXOR_ASSIGN:
+            case TokenTypes.BOR_ASSIGN:
+            case TokenTypes.INC:
+            case TokenTypes.POST_INC:
+            case TokenTypes.DEC:
+            case TokenTypes.POST_DEC:
+                // Do nothing
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
@@ -156,8 +156,8 @@ public final class ModifiedControlVariableCheck extends Check
      */
     private void enterBlock()
     {
-        mVariableStack.push(mCurrentVariables);
-        mCurrentVariables = FastStack.newInstance();
+        variableStack.push(currentVariables);
+        currentVariables = FastStack.newInstance();
 
     }
     /**
@@ -165,23 +165,23 @@ public final class ModifiedControlVariableCheck extends Check
      */
     private void exitBlock()
     {
-        mCurrentVariables = mVariableStack.pop();
+        currentVariables = variableStack.pop();
     }
 
     /**
      * Check if ident is parameter.
-     * @param aAST ident to check.
+     * @param ast ident to check.
      */
-    private void checkIdent(DetailAST aAST)
+    private void checkIdent(DetailAST ast)
     {
-        if ((mCurrentVariables != null) && !mCurrentVariables.isEmpty()) {
-            final DetailAST identAST = aAST.getFirstChild();
+        if ((currentVariables != null) && !currentVariables.isEmpty()) {
+            final DetailAST identAST = ast.getFirstChild();
 
             if ((identAST != null)
                 && (identAST.getType() == TokenTypes.IDENT)
-                && mCurrentVariables.contains(identAST.getText()))
+                && currentVariables.contains(identAST.getText()))
             {
-                log(aAST.getLineNo(), aAST.getColumnNo(),
+                log(ast.getLineNo(), ast.getColumnNo(),
                     "modified.control.variable", identAST.getText());
             }
         }
@@ -189,11 +189,11 @@ public final class ModifiedControlVariableCheck extends Check
 
     /**
      * Push current variables to the stack.
-     * @param aAST a for definition.
+     * @param ast a for definition.
      */
-    private void leaveForIter(DetailAST aAST)
+    private void leaveForIter(DetailAST ast)
     {
-        final DetailAST forInitAST = aAST.findFirstToken(TokenTypes.FOR_INIT);
+        final DetailAST forInitAST = ast.findFirstToken(TokenTypes.FOR_INIT);
         DetailAST parameterDefAST =
             forInitAST.findFirstToken(TokenTypes.VARIABLE_DEF);
 
@@ -203,30 +203,30 @@ public final class ModifiedControlVariableCheck extends Check
             if (parameterDefAST.getType() == TokenTypes.VARIABLE_DEF) {
                 final DetailAST param =
                     parameterDefAST.findFirstToken(TokenTypes.IDENT);
-                mCurrentVariables.push(param.getText());
+                currentVariables.push(param.getText());
             }
         }
     }
 
     /**
      * Push current variables to the stack.
-     * @param aForEach a for-each clause
+     * @param forEach a for-each clause
      */
-    private void leaveForEach(DetailAST aForEach)
+    private void leaveForEach(DetailAST forEach)
     {
         final DetailAST paramDef =
-            aForEach.findFirstToken(TokenTypes.VARIABLE_DEF);
+            forEach.findFirstToken(TokenTypes.VARIABLE_DEF);
         final DetailAST paramName = paramDef.findFirstToken(TokenTypes.IDENT);
-        mCurrentVariables.push(paramName.getText());
+        currentVariables.push(paramName.getText());
     }
 
     /**
      * Pops the variables from the stack.
-     * @param aAST a for definition.
+     * @param ast a for definition.
      */
-    private void leaveForDef(DetailAST aAST)
+    private void leaveForDef(DetailAST ast)
     {
-        final DetailAST forInitAST = aAST.findFirstToken(TokenTypes.FOR_INIT);
+        final DetailAST forInitAST = ast.findFirstToken(TokenTypes.FOR_INIT);
         if (forInitAST != null) {
             DetailAST parameterDefAST =
                 forInitAST.findFirstToken(TokenTypes.VARIABLE_DEF);
@@ -235,13 +235,13 @@ public final class ModifiedControlVariableCheck extends Check
                  parameterDefAST = parameterDefAST.getNextSibling())
             {
                 if (parameterDefAST.getType() == TokenTypes.VARIABLE_DEF) {
-                    mCurrentVariables.pop();
+                    currentVariables.pop();
                 }
             }
         }
         else {
             // this is for-each loop, just pop veriables
-            mCurrentVariables.pop();
+            currentVariables.pop();
         }
     }
 }

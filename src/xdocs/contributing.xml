@@ -36,6 +36,8 @@
         As soon as one of admins of our project approved your idea you are good to start
         implementation and you will be welcome with final code contribution.
         Please do not expect that we will accept any code that you send to us.
+        Example of ideal <a href="https://github.com/checkstyle/checkstyle/issues/258">issue description</a>,
+        and how it is commented on fix <a href="https://github.com/checkstyle/checkstyle/pull/601">Pull Request</a>.
       </p>
       <p>
         <b>ATTENTION:</b> any new Check that you are going to introduce you need to contribute to our

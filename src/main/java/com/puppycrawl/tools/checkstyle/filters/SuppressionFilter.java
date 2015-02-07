@@ -36,44 +36,44 @@ public class SuppressionFilter
     implements Filter
 {
     /** set of individual suppresses */
-    private FilterSet mFilters = new FilterSet();
+    private FilterSet filters = new FilterSet();
 
     /**
      * Loads the suppressions for a file.
-     * @param aFileName name of the suppressions file.
+     * @param fileName name of the suppressions file.
      * @throws CheckstyleException if there is an error.
      */
-    public void setFile(String aFileName)
+    public void setFile(String fileName)
         throws CheckstyleException
     {
-        mFilters = SuppressionsLoader.loadSuppressions(aFileName);
+        filters = SuppressionsLoader.loadSuppressions(fileName);
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean accept(AuditEvent aEvent)
+    public boolean accept(AuditEvent event)
     {
-        return mFilters.accept(aEvent);
+        return filters.accept(event);
     }
 
     @Override
     public String toString()
     {
-        return mFilters.toString();
+        return filters.toString();
     }
 
     @Override
     public int hashCode()
     {
-        return mFilters.hashCode();
+        return filters.hashCode();
     }
 
     @Override
-    public boolean equals(Object aObject)
+    public boolean equals(Object object)
     {
-        if (aObject instanceof SuppressionFilter) {
-            final SuppressionFilter other = (SuppressionFilter) aObject;
-            return this.mFilters.equals(other.mFilters);
+        if (object instanceof SuppressionFilter) {
+            final SuppressionFilter other = (SuppressionFilter) object;
+            return this.filters.equals(other.filters);
         }
         return false;
     }

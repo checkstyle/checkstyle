@@ -58,28 +58,28 @@ public class OverloadMethodsDeclarationOrderCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final int parentType = aAST.getParent().getType();
+        final int parentType = ast.getParent().getType();
         if (parentType == TokenTypes.CLASS_DEF
                 || parentType == TokenTypes.ENUM_DEF
                 || parentType == TokenTypes.INTERFACE_DEF
                 || parentType == TokenTypes.LITERAL_NEW)
         {
-            checkOverloadMethodsGrouping(aAST);
+            checkOverloadMethodsGrouping(ast);
         }
     }
 
     /**
      * Checks that if overload methods are grouped together they should not be
      * separated from each other.
-     * @param aObjectBlock
+     * @param objectBlock
      *        is a class, interface or enum object block.
      */
-    private void checkOverloadMethodsGrouping(DetailAST aObjectBlock)
+    private void checkOverloadMethodsGrouping(DetailAST objectBlock)
     {
         final int allowedDistance = 1;
-        DetailAST currentToken = aObjectBlock.getFirstChild();
+        DetailAST currentToken = objectBlock.getFirstChild();
         final Map<String, Integer> methodIndexMap = new HashMap<String, Integer>();
         final Map<String, Integer> methodLineNumberMap = new HashMap<String, Integer>();
         int currentIndex = 0;

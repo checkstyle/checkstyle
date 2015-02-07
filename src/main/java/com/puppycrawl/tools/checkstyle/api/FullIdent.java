@@ -36,11 +36,11 @@ package com.puppycrawl.tools.checkstyle.api;
 public final class FullIdent
 {
     /** the string **/
-    private final StringBuffer mBuffer = new StringBuffer();
+    private final StringBuffer buffer = new StringBuffer();
     /** the line number **/
-    private int mLineNo;
+    private int lineNo;
     /** the column number **/
-    private int mColNo;
+    private int colNo;
 
     /** hide default constructor */
     private FullIdent()
@@ -50,95 +50,95 @@ public final class FullIdent
     /** @return the text **/
     public String getText()
     {
-        return mBuffer.toString();
+        return buffer.toString();
     }
 
     /** @return the line number **/
     public int getLineNo()
     {
-        return mLineNo;
+        return lineNo;
     }
 
     /** @return the column number **/
     public int getColumnNo()
     {
-        return mColNo;
+        return colNo;
     }
 
     /**
      * Append the specified text.
-     * @param aText the text to append
+     * @param text the text to append
      */
-    private void append(String aText)
+    private void append(String text)
     {
-        mBuffer.append(aText);
+        buffer.append(text);
     }
 
     /**
      * Append the specified token and also recalibrate the first line and
      * column.
-     * @param aAST the token to append
+     * @param ast the token to append
      */
-    private void append(DetailAST aAST)
+    private void append(DetailAST ast)
     {
-        mBuffer.append(aAST.getText());
-        if (mLineNo == 0) {
-            mLineNo = aAST.getLineNo();
+        buffer.append(ast.getText());
+        if (lineNo == 0) {
+            lineNo = ast.getLineNo();
         }
-        else if (aAST.getLineNo() > 0) {
-            mLineNo = Math.min(mLineNo, aAST.getLineNo());
+        else if (ast.getLineNo() > 0) {
+            lineNo = Math.min(lineNo, ast.getLineNo());
         }
         // TODO: make a function
-        if (mColNo == 0) {
-            mColNo = aAST.getColumnNo();
+        if (colNo == 0) {
+            colNo = ast.getColumnNo();
         }
-        else if (aAST.getColumnNo() > 0) {
-            mColNo = Math.min(mColNo, aAST.getColumnNo());
+        else if (ast.getColumnNo() > 0) {
+            colNo = Math.min(colNo, ast.getColumnNo());
         }
     }
 
     /**
      * Creates a new FullIdent starting from the specified node.
-     * @param aAST the node to start from
+     * @param ast the node to start from
      * @return a <code>FullIdent</code> value
      */
-    public static FullIdent createFullIdent(DetailAST aAST)
+    public static FullIdent createFullIdent(DetailAST ast)
     {
         final FullIdent fi = new FullIdent();
-        extractFullIdent(fi, aAST);
+        extractFullIdent(fi, ast);
         return fi;
     }
 
     /**
      * Creates a new FullIdent starting from the child of the specified node.
-     * @param aAST the parent node from where to start from
+     * @param ast the parent node from where to start from
      * @return a <code>FullIdent</code> value
      */
-    public static FullIdent createFullIdentBelow(DetailAST aAST)
+    public static FullIdent createFullIdentBelow(DetailAST ast)
     {
-        return createFullIdent(aAST.getFirstChild());
+        return createFullIdent(ast.getFirstChild());
     }
 
     /**
      * Recursively extract a FullIdent.
      *
-     * @param aFull the FullIdent to add to
-     * @param aAST the node to recurse from
+     * @param full the FullIdent to add to
+     * @param ast the node to recurse from
      */
-    private static void extractFullIdent(FullIdent aFull, DetailAST aAST)
+    private static void extractFullIdent(FullIdent full, DetailAST ast)
     {
-        if (aAST == null) {
+        if (ast == null) {
             return;
         }
 
-        if (aAST.getType() == TokenTypes.DOT) {
-            extractFullIdent(aFull, aAST.getFirstChild());
-            aFull.append(".");
+        if (ast.getType() == TokenTypes.DOT) {
+            extractFullIdent(full, ast.getFirstChild());
+            full.append(".");
             extractFullIdent(
-                aFull, aAST.getFirstChild().getNextSibling());
+                full, ast.getFirstChild().getNextSibling());
         }
         else {
-            aFull.append(aAST);
+            full.append(ast);
         }
     }
 

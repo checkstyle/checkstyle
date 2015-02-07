@@ -62,7 +62,7 @@ public class MultipleStringLiteralsCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testItIgnoreEmptyAndComaSpace() throws Exception
+    public void testItIgnoreEmptyAndComspace() throws Exception
     {
         DefaultConfiguration checkConfig =
             createCheckConfig(MultipleStringLiteralsCheck.class);

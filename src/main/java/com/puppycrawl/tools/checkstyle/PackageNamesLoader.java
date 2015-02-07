@@ -58,10 +58,10 @@ public final class PackageNamesLoader
         "checkstyle_packages.xml";
 
     /** The temporary stack of package name parts */
-    private final FastStack<String> mPackageStack = FastStack.newInstance();
+    private final FastStack<String> packageStack = FastStack.newInstance();
 
     /** The fully qualified package names. */
-    private final Set<String> mPackageNames = Sets.newLinkedHashSet();
+    private final Set<String> packageNames = Sets.newLinkedHashSet();
 
     /**
      * Creates a new <code>PackageNamesLoader</code> instance.
@@ -81,23 +81,23 @@ public final class PackageNamesLoader
      */
     private Set<String> getPackageNames()
     {
-        return mPackageNames;
+        return packageNames;
     }
 
     @Override
-    public void startElement(String aNamespaceURI,
-                             String aLocalName,
-                             String aQName,
-                             Attributes aAtts)
+    public void startElement(String namespaceURI,
+                             String localName,
+                             String qName,
+                             Attributes atts)
         throws SAXException
     {
-        if ("package".equals(aQName)) {
+        if ("package".equals(qName)) {
             //push package name
-            final String name = aAtts.getValue("name");
+            final String name = atts.getValue("name");
             if (name == null) {
                 throw new SAXException("missing package name");
             }
-            mPackageStack.push(name);
+            packageStack.push(name);
         }
     }
 
@@ -108,7 +108,7 @@ public final class PackageNamesLoader
     private String getPackageName()
     {
         final StringBuffer buf = new StringBuffer();
-        for (String subPackage : mPackageStack) {
+        for (String subPackage : packageStack) {
             buf.append(subPackage);
             if (!subPackage.endsWith(".")) {
                 buf.append(".");
@@ -118,14 +118,14 @@ public final class PackageNamesLoader
     }
 
     @Override
-    public void endElement(String aNamespaceURI,
-                           String aLocalName,
-                           String aQName)
+    public void endElement(String namespaceURI,
+                           String localName,
+                           String qName)
     {
-        if ("package".equals(aQName)) {
+        if ("package".equals(qName)) {
 
-            mPackageNames.add(getPackageName());
-            mPackageStack.pop();
+            packageNames.add(getPackageName());
+            packageStack.pop();
         }
     }
 
@@ -133,18 +133,18 @@ public final class PackageNamesLoader
      * Returns the set of package names, compiled from all
      * checkstyle_packages.xml files found on the given classloaders
      * classpath.
-     * @param aClassLoader the class loader for loading the
+     * @param classLoader the class loader for loading the
      *          checkstyle_packages.xml files.
      * @return the set of package names.
      * @throws CheckstyleException if an error occurs.
      */
-    public static Set<String> getPackageNames(ClassLoader aClassLoader)
+    public static Set<String> getPackageNames(ClassLoader classLoader)
         throws CheckstyleException
     {
 
         Enumeration<URL> packageFiles = null;
         try {
-            packageFiles = aClassLoader.getResources(CHECKSTYLE_PACKAGES);
+            packageFiles = classLoader.getResources(CHECKSTYLE_PACKAGES);
         }
         catch (IOException e) {
             throw new CheckstyleException(
@@ -156,18 +156,18 @@ public final class PackageNamesLoader
         final PackageNamesLoader namesLoader = newPackageNamesLoader();
 
         while ((null != packageFiles) && packageFiles.hasMoreElements()) {
-            final URL aPackageFile = packageFiles.nextElement();
+            final URL packageFile = packageFiles.nextElement();
             InputStream stream = null;
 
             try {
-                stream = new BufferedInputStream(aPackageFile.openStream());
+                stream = new BufferedInputStream(packageFile.openStream());
                 final InputSource source = new InputSource(stream);
                 loadPackageNamesSource(source, "default package names",
                     namesLoader);
             }
             catch (IOException e) {
                 throw new CheckstyleException(
-                        "unable to open " + aPackageFile, e);
+                        "unable to open " + packageFile, e);
             }
             finally {
                 Utils.closeQuietly(stream);
@@ -200,25 +200,25 @@ public final class PackageNamesLoader
 
     /**
      * Returns the list of package names in a specified source.
-     * @param aSource the source for the list.
-     * @param aSourceName the name of the source.
-     * @param aNameLoader the PackageNamesLoader instance
+     * @param source the source for the list.
+     * @param sourceName the name of the source.
+     * @param nameLoader the PackageNamesLoader instance
      * @throws CheckstyleException if an error occurs.
      */
     private static void loadPackageNamesSource(
-            InputSource aSource, String aSourceName,
-            PackageNamesLoader aNameLoader)
+            InputSource source, String sourceName,
+            PackageNamesLoader nameLoader)
         throws CheckstyleException
     {
         try {
-            aNameLoader.parseInputSource(aSource);
+            nameLoader.parseInputSource(source);
         }
         catch (final SAXException e) {
             throw new CheckstyleException("unable to parse "
-                    + aSourceName + " - " + e.getMessage(), e);
+                    + sourceName + " - " + e.getMessage(), e);
         }
         catch (final IOException e) {
-            throw new CheckstyleException("unable to read " + aSourceName, e);
+            throw new CheckstyleException("unable to read " + sourceName, e);
         }
     }
 }

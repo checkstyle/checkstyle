@@ -30,37 +30,37 @@ import java.util.Set;
 class PackageObjectFactory implements ModuleFactory
 {
     /** a list of package names to prepend to class names */
-    private final Set<String> mPackages;
+    private final Set<String> packages;
 
     /** the class loader used to load Checkstyle core and custom modules. */
-    private final ClassLoader mModuleClassLoader;
+    private final ClassLoader moduleClassLoader;
 
     /**
      * Creates a new <code>PackageObjectFactory</code> instance.
-     * @param aPackageNames the list of package names to use
-     * @param aModuleClassLoader class loader used to load Checkstyle
+     * @param packageNames the list of package names to use
+     * @param moduleClassLoader class loader used to load Checkstyle
      *          core and custom modules
      */
-    public PackageObjectFactory(Set<String> aPackageNames,
-            ClassLoader aModuleClassLoader)
+    public PackageObjectFactory(Set<String> packageNames,
+            ClassLoader moduleClassLoader)
     {
-        if (aModuleClassLoader == null) {
+        if (moduleClassLoader == null) {
             throw new IllegalArgumentException(
-                    "aModuleClassLoader must not be null");
+                    "moduleClassLoader must not be null");
         }
 
         //create a copy of the given set, but retain ordering
-        mPackages = Sets.newLinkedHashSet(aPackageNames);
-        mModuleClassLoader = aModuleClassLoader;
+        packages = Sets.newLinkedHashSet(packageNames);
+        this.moduleClassLoader = moduleClassLoader;
     }
 
     /**
      * Registers a package name to use for shortName resolution.
-     * @param aPackageName the package name
+     * @param packageName the package name
      */
-    void addPackage(String aPackageName)
+    void addPackage(String packageName)
     {
-        mPackages.add(aPackageName);
+        packages.add(packageName);
     }
 
     /**
@@ -68,25 +68,25 @@ class PackageObjectFactory implements ModuleFactory
      * a classname, creates an instance of the named class. Otherwise, creates
      * an instance of a classname obtained by concatenating the given
      * to a package name from a given list of package names.
-     * @param aName the name of a class.
+     * @param name the name of a class.
      * @return the <code>Object</code>
      * @throws CheckstyleException if an error occurs.
      */
-    private Object doMakeObject(String aName)
+    private Object doMakeObject(String name)
         throws CheckstyleException
     {
-        //try aName first
+        //try name first
         try {
-            return createObject(aName);
+            return createObject(name);
         }
         catch (final CheckstyleException ex) {
             ; // keep looking
         }
 
         //now try packages
-        for (String packageName : mPackages) {
+        for (String packageName : packages) {
 
-            final String className = packageName + aName;
+            final String className = packageName + name;
             try {
                 return createObject(className);
             }
@@ -95,37 +95,37 @@ class PackageObjectFactory implements ModuleFactory
             }
         }
 
-        throw new CheckstyleException("Unable to instantiate " + aName);
+        throw new CheckstyleException("Unable to instantiate " + name);
     }
 
     /**
      * Creates a new instance of a named class.
-     * @param aClassName the name of the class to instantiate.
-     * @return the <code>Object</code> created by mLoader.
+     * @param className the name of the class to instantiate.
+     * @return the <code>Object</code> created by loader.
      * @throws CheckstyleException if an error occurs.
      */
-    private Object createObject(String aClassName)
+    private Object createObject(String className)
         throws CheckstyleException
     {
         try {
-            final Class<?> clazz = Class.forName(aClassName, true,
-                    mModuleClassLoader);
+            final Class<?> clazz = Class.forName(className, true,
+                    moduleClassLoader);
             return clazz.newInstance();
         }
         catch (final ClassNotFoundException e) {
             throw new CheckstyleException(
-                "Unable to find class for " + aClassName, e);
+                "Unable to find class for " + className, e);
         }
         catch (final InstantiationException e) {
             ///CLOVER:OFF
             throw new CheckstyleException(
-                "Unable to instantiate " + aClassName, e);
+                "Unable to instantiate " + className, e);
             ///CLOVER:ON
         }
         catch (final IllegalAccessException e) {
             ///CLOVER:OFF
             throw new CheckstyleException(
-                "Unable to instantiate " + aClassName, e);
+                "Unable to instantiate " + className, e);
             ///CLOVER:ON
         }
     }
@@ -136,25 +136,25 @@ class PackageObjectFactory implements ModuleFactory
      * a classname, creates an instance of the named class. Otherwise, creates
      * an instance of a classname obtained by concatenating the given name
      * to a package name from a given list of package names.
-     * @param aName the name of a class.
-     * @return the <code>Object</code> created by aLoader.
+     * @param name the name of a class.
+     * @return the <code>Object</code> created by loader.
      * @throws CheckstyleException if an error occurs.
      */
     @Override
-    public Object createModule(String aName)
+    public Object createModule(String name)
         throws CheckstyleException
     {
         try {
-            return doMakeObject(aName);
+            return doMakeObject(name);
         }
         catch (final CheckstyleException ex) {
             //try again with suffix "Check"
             try {
-                return doMakeObject(aName + "Check");
+                return doMakeObject(name + "Check");
             }
             catch (final CheckstyleException ex2) {
                 throw new CheckstyleException(
-                    "Unable to instantiate " + aName, ex2);
+                    "Unable to instantiate " + name, ex2);
             }
         }
     }

@@ -89,7 +89,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class EqualsAvoidNullCheck extends Check
 {
     /** Whether to process equalsIgnoreCase() invocations. */
-    private boolean mIgnoreEqualsIgnoreCase;
+    private boolean ignoreEqualsIgnoreCase;
 
     @Override
     public int[] getDefaultTokens()
@@ -98,9 +98,9 @@ public class EqualsAvoidNullCheck extends Check
     }
 
     @Override
-    public void visitToken(final DetailAST aMethodCall)
+    public void visitToken(final DetailAST methodCall)
     {
-        final DetailAST dot = aMethodCall.getFirstChild();
+        final DetailAST dot = methodCall.getFirstChild();
         if (dot.getType() != TokenTypes.DOT) {
             return;
         }
@@ -125,15 +125,15 @@ public class EqualsAvoidNullCheck extends Check
         if ("equals".equals(method.getText())
             && containsOneArg(expr) && containsAllSafeTokens(expr))
         {
-            log(aMethodCall.getLineNo(), aMethodCall.getColumnNo(),
+            log(methodCall.getLineNo(), methodCall.getColumnNo(),
                 "equals.avoid.null");
         }
 
-        if (!mIgnoreEqualsIgnoreCase
+        if (!ignoreEqualsIgnoreCase
             && "equalsIgnoreCase".equals(method.getText())
             && containsOneArg(expr) && containsAllSafeTokens(expr))
         {
-            log(aMethodCall.getLineNo(), aMethodCall.getColumnNo(),
+            log(methodCall.getLineNo(), methodCall.getColumnNo(),
                 "equalsIgnoreCase.avoid.null");
         }
     }
@@ -142,24 +142,24 @@ public class EqualsAvoidNullCheck extends Check
      * Checks if a method contains no arguments
      * starting at with the argument expression.
      *
-     * @param aExpr the argument expression
+     * @param expr the argument expression
      * @return true if the method contains no args, false if not
      */
-    private boolean containsNoArgs(final AST aExpr)
+    private boolean containsNoArgs(final AST expr)
     {
-        return (aExpr == null);
+        return (expr == null);
     }
 
     /**
      * Checks if a method contains multiple arguments
      * starting at with the argument expression.
      *
-     * @param aExpr the argument expression
+     * @param expr the argument expression
      * @return true if the method contains multiple args, false if not
      */
-    private boolean containsMultiArgs(final AST aExpr)
+    private boolean containsMultiArgs(final AST expr)
     {
-        final AST comma = aExpr.getNextSibling();
+        final AST comma = expr.getNextSibling();
         return (comma != null) && (comma.getType() == TokenTypes.COMMA);
     }
 
@@ -167,12 +167,12 @@ public class EqualsAvoidNullCheck extends Check
      * Checks if a method contains a single argument
      * starting at with the argument expression.
      *
-     * @param aExpr the argument expression
+     * @param expr the argument expression
      * @return true if the method contains a single arg, false if not
      */
-    private boolean containsOneArg(final AST aExpr)
+    private boolean containsOneArg(final AST expr)
     {
-        return !containsNoArgs(aExpr) && !containsMultiArgs(aExpr);
+        return !containsNoArgs(expr) && !containsMultiArgs(expr);
     }
 
     /**
@@ -186,12 +186,12 @@ public class EqualsAvoidNullCheck extends Check
      * on this method implementation.
      * </p>
      *
-     * @param aExpr the argument expression
+     * @param expr the argument expression
      * @return - true if any child matches the set of tokens, false if not
      */
-    private boolean containsAllSafeTokens(final DetailAST aExpr)
+    private boolean containsAllSafeTokens(final DetailAST expr)
     {
-        DetailAST arg = aExpr.getFirstChild();
+        DetailAST arg = expr.getFirstChild();
 
         if (arg.branchContains(TokenTypes.METHOD_CALL)) {
             return false;
@@ -219,26 +219,26 @@ public class EqualsAvoidNullCheck extends Check
 
     /**
      * Skips over an inner assign portion of an argument expression.
-     * @param aCurrentAST current token in the argument expression
+     * @param currentAST current token in the argument expression
      * @return the next relevant token
      */
-    private DetailAST skipVariableAssign(final DetailAST aCurrentAST)
+    private DetailAST skipVariableAssign(final DetailAST currentAST)
     {
-        if ((aCurrentAST.getType() == TokenTypes.ASSIGN)
-                && (aCurrentAST.getFirstChild().getType() == TokenTypes.IDENT))
+        if ((currentAST.getType() == TokenTypes.ASSIGN)
+                && (currentAST.getFirstChild().getType() == TokenTypes.IDENT))
         {
-            return aCurrentAST.getFirstChild().getNextSibling();
+            return currentAST.getFirstChild().getNextSibling();
         }
-        return aCurrentAST;
+        return currentAST;
     }
 
     /**
      * Whether to ignore checking {@code String.equalsIgnoreCase(String)}.
-     * @param aNewValue whether to ignore checking
+     * @param newValue whether to ignore checking
      *    {@code String.equalsIgnoreCase(String)}.
      */
-    public void setIgnoreEqualsIgnoreCase(boolean aNewValue)
+    public void setIgnoreEqualsIgnoreCase(boolean newValue)
     {
-        mIgnoreEqualsIgnoreCase = aNewValue;
+        ignoreEqualsIgnoreCase = newValue;
     }
 }

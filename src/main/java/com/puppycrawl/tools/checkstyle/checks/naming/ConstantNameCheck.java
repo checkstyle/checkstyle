@@ -70,25 +70,25 @@ public class ConstantNameCheck
     }
 
     @Override
-    protected final boolean mustCheckName(DetailAST aAST)
+    protected final boolean mustCheckName(DetailAST ast)
     {
         boolean retVal = false;
 
         final DetailAST modifiersAST =
-            aAST.findFirstToken(TokenTypes.MODIFIERS);
+            ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isStatic = (modifiersAST != null)
             && modifiersAST.branchContains(TokenTypes.LITERAL_STATIC);
         final boolean isFinal = (modifiersAST != null)
             && modifiersAST.branchContains(TokenTypes.FINAL);
 
         if ((isStatic  && isFinal && shouldCheckInScope(modifiersAST))
-                || ScopeUtils.inAnnotationBlock(aAST)
-                || (ScopeUtils.inInterfaceOrAnnotationBlock(aAST)
-                        && !ScopeUtils.inCodeBlock(aAST)))
+                || ScopeUtils.inAnnotationBlock(ast)
+                || (ScopeUtils.inInterfaceOrAnnotationBlock(ast)
+                        && !ScopeUtils.inCodeBlock(ast)))
         {
             // Handle the serialVersionUID and serialPersistentFields  constants
             // which are used for Serialization. Cannot enforce rules on it. :-)
-            final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
+            final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             if ((nameAST != null)
                 && !("serialVersionUID".equals(nameAST.getText()))
                 && !("serialPersistentFields".equals(nameAST.getText())))

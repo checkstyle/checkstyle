@@ -51,11 +51,11 @@ public class AvoidInlineConditionalsCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         // the only place a QUESTION token can occur is in inline conditionals
         // so no need to do any further tricks here - pretty trivial Check!
 
-        log(aAST.getLineNo(), aAST.getColumnNo(), "inline.conditional.avoid");
+        log(ast.getLineNo(), ast.getColumnNo(), "inline.conditional.avoid");
     }
 }

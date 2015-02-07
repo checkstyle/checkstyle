@@ -66,7 +66,7 @@ public class AvoidStaticImportCheck
     extends Check
 {
     /** the classes/static members to exempt from this check. */
-    private String[] mExcludes = new String[0];
+    private String[] excludes = new String[0];
 
     @Override
     public int[] getDefaultTokens()
@@ -76,19 +76,19 @@ public class AvoidStaticImportCheck
 
     /**
      * Sets the list of classes or static members to be exempt from the check.
-     * @param aExcludes a list of fully-qualified class names/specific
+     * @param excludes a list of fully-qualified class names/specific
      * static members where static imports are ok
      */
-    public void setExcludes(String[] aExcludes)
+    public void setExcludes(String[] excludes)
     {
-        mExcludes = aExcludes.clone();
+        this.excludes = excludes.clone();
     }
 
     @Override
-    public void visitToken(final DetailAST aAST)
+    public void visitToken(final DetailAST ast)
     {
         final DetailAST startingDot =
-            aAST.getFirstChild().getNextSibling();
+            ast.getFirstChild().getNextSibling();
         final FullIdent name = FullIdent.createFullIdent(startingDot);
 
         if ((null != name) && !isExempt(name.getText())) {
@@ -99,14 +99,14 @@ public class AvoidStaticImportCheck
     /**
      * Checks if a class or static member is exempt from known excludes.
      *
-     * @param aClassOrStaticMember
+     * @param classOrStaticMember
      *                the class or static member
      * @return true if except false if not
      */
-    private boolean isExempt(String aClassOrStaticMember)
+    private boolean isExempt(String classOrStaticMember)
     {
-        for (String exclude : mExcludes) {
-            if (aClassOrStaticMember.equals(exclude)) {
+        for (String exclude : excludes) {
+            if (classOrStaticMember.equals(exclude)) {
                 return true;
             }
             else if (exclude.endsWith(".*")) {
@@ -115,9 +115,9 @@ public class AvoidStaticImportCheck
                 //a starred import
                 final String excludeMinusDotStar =
                     exclude.substring(0, exclude.length() - 2);
-                if (aClassOrStaticMember.startsWith(excludeMinusDotStar)) {
+                if (classOrStaticMember.startsWith(excludeMinusDotStar)) {
                     final String member =
-                        aClassOrStaticMember.substring(
+                        classOrStaticMember.substring(
                             excludeMinusDotStar.length() + 1);
                     //if it contains a dot then it is not a member but a package
                     if (member.indexOf('.') == -1) {

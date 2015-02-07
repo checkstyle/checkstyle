@@ -66,13 +66,13 @@ public class AvoidStarImportCheck
     extends Check
 {
     /** the packages/classes to exempt from this check. */
-    private final List<String> mExcludes = Lists.newArrayList();
+    private final List<String> excludes = Lists.newArrayList();
 
     /** whether to allow all class imports */
-    private boolean mAllowClassImports;
+    private boolean allowClassImports;
 
     /** whether to allow all static member imports */
-    private boolean mAllowStaticMemberImports;
+    private boolean allowStaticMemberImports;
 
     @Override
     public int[] getDefaultTokens()
@@ -83,47 +83,47 @@ public class AvoidStarImportCheck
     /**
      * Sets the list of packages or classes to be exempt from the check.
      * The excludes can contain a .* or not.
-     * @param aExcludes a list of package names/fully-qualifies class names
+     * @param excludesParam a list of package names/fully-qualifies class names
      * where star imports are ok
      */
-    public void setExcludes(String[] aExcludes)
+    public void setExcludes(String[] excludesParam)
     {
-        mExcludes.clear();
-        for (final String exclude : aExcludes) {
-            mExcludes.add(exclude.endsWith(".*") ? exclude : exclude + ".*");
+        excludes.clear();
+        for (final String exclude : excludesParam) {
+            excludes.add(exclude.endsWith(".*") ? exclude : exclude + ".*");
         }
     }
 
     /**
      * Sets whether or not to allow all non-static class imports.
-     * @param aAllow true to allow false to disallow
+     * @param allow true to allow false to disallow
      */
-    public void setAllowClassImports(boolean aAllow)
+    public void setAllowClassImports(boolean allow)
     {
-        mAllowClassImports = aAllow;
+        allowClassImports = allow;
     }
 
     /**
      * Sets whether or not to allow all static member imports.
-     * @param aAllow true to allow false to disallow
+     * @param allow true to allow false to disallow
      */
-    public void setAllowStaticMemberImports(boolean aAllow)
+    public void setAllowStaticMemberImports(boolean allow)
     {
-        mAllowStaticMemberImports = aAllow;
+        allowStaticMemberImports = allow;
     }
 
     @Override
-    public void visitToken(final DetailAST aAST)
+    public void visitToken(final DetailAST ast)
     {
-        if (!mAllowClassImports && (TokenTypes.IMPORT == aAST.getType())) {
-            final DetailAST startingDot = aAST.getFirstChild();
+        if (!allowClassImports && (TokenTypes.IMPORT == ast.getType())) {
+            final DetailAST startingDot = ast.getFirstChild();
             logsStarredImportViolation(startingDot);
         }
-        else if (!mAllowStaticMemberImports
-            && (TokenTypes.STATIC_IMPORT == aAST.getType()))
+        else if (!allowStaticMemberImports
+            && (TokenTypes.STATIC_IMPORT == ast.getType()))
         {
             // must navigate past the static keyword
-            final DetailAST startingDot = aAST.getFirstChild().getNextSibling();
+            final DetailAST startingDot = ast.getFirstChild().getNextSibling();
             logsStarredImportViolation(startingDot);
         }
     }
@@ -131,23 +131,23 @@ public class AvoidStarImportCheck
     /**
      * Gets the full import identifier.  If the import is a starred import and
      * it's not excluded then a violation is logged.
-     * @param aStartingDot the starting dot for the import statement
+     * @param startingDot the starting dot for the import statement
      */
-    private void logsStarredImportViolation(DetailAST aStartingDot)
+    private void logsStarredImportViolation(DetailAST startingDot)
     {
-        final FullIdent name = FullIdent.createFullIdent(aStartingDot);
-        if (isStaredImport(name) && !mExcludes.contains(name.getText())) {
-            log(aStartingDot.getLineNo(), "import.avoidStar", name.getText());
+        final FullIdent name = FullIdent.createFullIdent(startingDot);
+        if (isStaredImport(name) && !excludes.contains(name.getText())) {
+            log(startingDot.getLineNo(), "import.avoidStar", name.getText());
         }
     }
 
     /**
      * Checks is an import is a stared import.
-     * @param aImportIdent the full import identifier
+     * @param importIdent the full import identifier
      * @return true if a start import false if not
      */
-    private boolean isStaredImport(FullIdent aImportIdent)
+    private boolean isStaredImport(FullIdent importIdent)
     {
-        return (null != aImportIdent) && aImportIdent.getText().endsWith(".*");
+        return (null != importIdent) && importIdent.getText().endsWith(".*");
     }
 }

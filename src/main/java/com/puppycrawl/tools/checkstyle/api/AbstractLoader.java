@@ -49,63 +49,63 @@ public abstract class AbstractLoader
     extends DefaultHandler
 {
     /** maps public id to resolve to esource name for the DTD */
-    private final Map<String, String> mPublicIdToResourceNameMap;
+    private final Map<String, String> publicIdToResourceNameMap;
     /** parser to read XML files **/
-    private final XMLReader mParser;
+    private final XMLReader parser;
 
     /**
      * Creates a new instance.
-     * @param aPublicId the public ID for the DTD to resolve
-     * @param aDtdResourceName the resource for the DTD
+     * @param publicId the public ID for the DTD to resolve
+     * @param dtdResourceName the resource for the DTD
      * @throws SAXException if an error occurs
      * @throws ParserConfigurationException if an error occurs
      */
-    protected AbstractLoader(String aPublicId, String aDtdResourceName)
+    protected AbstractLoader(String publicId, String dtdResourceName)
         throws SAXException, ParserConfigurationException
     {
         this(new HashMap<String, String>(1));
-        mPublicIdToResourceNameMap.put(aPublicId, aDtdResourceName);
+        publicIdToResourceNameMap.put(publicId, dtdResourceName);
     }
 
     /**
      * Creates a new instance.
-     * @param aPublicIdToResourceNameMap maps public IDs to DTD resource names
+     * @param publicIdToResourceNameMap maps public IDs to DTD resource names
      * @throws SAXException if an error occurs
      * @throws ParserConfigurationException if an error occurs
      */
-    protected AbstractLoader(Map<String, String> aPublicIdToResourceNameMap)
+    protected AbstractLoader(Map<String, String> publicIdToResourceNameMap)
         throws SAXException, ParserConfigurationException
     {
-        mPublicIdToResourceNameMap =
-            Maps.newHashMap(aPublicIdToResourceNameMap);
+        this.publicIdToResourceNameMap =
+            Maps.newHashMap(publicIdToResourceNameMap);
         final SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setValidating(true);
         factory.setNamespaceAware(true);
-        mParser = factory.newSAXParser().getXMLReader();
-        mParser.setContentHandler(this);
-        mParser.setEntityResolver(this);
-        mParser.setErrorHandler(this);
+        parser = factory.newSAXParser().getXMLReader();
+        parser.setContentHandler(this);
+        parser.setEntityResolver(this);
+        parser.setErrorHandler(this);
     }
 
     /**
      * Parses the specified input source.
-     * @param aInputSource the input source to parse.
+     * @param inputSource the input source to parse.
      * @throws IOException if an error occurs
      * @throws SAXException in an error occurs
      */
-    public void parseInputSource(InputSource aInputSource)
+    public void parseInputSource(InputSource inputSource)
         throws IOException, SAXException
     {
-        mParser.parse(aInputSource);
+        parser.parse(inputSource);
     }
 
     @Override
-    public InputSource resolveEntity(String aPublicId, String aSystemId)
+    public InputSource resolveEntity(String publicId, String systemId)
         throws SAXException, IOException
     {
-        if (mPublicIdToResourceNameMap.keySet().contains(aPublicId)) {
+        if (publicIdToResourceNameMap.keySet().contains(publicId)) {
             final String dtdResourceName =
-                    mPublicIdToResourceNameMap.get(aPublicId);
+                    publicIdToResourceNameMap.get(publicId);
             final ClassLoader loader =
                 this.getClass().getClassLoader();
             final InputStream dtdIS =
@@ -116,24 +116,24 @@ public abstract class AbstractLoader
             }
             return new InputSource(dtdIS);
         }
-        return super.resolveEntity(aPublicId, aSystemId);
+        return super.resolveEntity(publicId, systemId);
     }
 
     @Override
-    public void warning(SAXParseException aEx) throws SAXException
+    public void warning(SAXParseException ex) throws SAXException
     {
-        throw aEx;
+        throw ex;
     }
 
     @Override
-    public void error(SAXParseException aEx) throws SAXException
+    public void error(SAXParseException ex) throws SAXException
     {
-        throw aEx;
+        throw ex;
     }
 
     @Override
-    public void fatalError(SAXParseException aEx) throws SAXException
+    public void fatalError(SAXParseException ex) throws SAXException
     {
-        throw aEx;
+        throw ex;
     }
 }

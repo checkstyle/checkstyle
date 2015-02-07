@@ -42,7 +42,7 @@ public class PackageNamesLoaderTest
         validatePackageNames(packageNames);
     }
 
-    private void validatePackageNames(Set<String> aPkgNames)
+    private void validatePackageNames(Set<String> pkgNames)
     {
         final String[] checkstylePackages = {
             "com.puppycrawl.tools.checkstyle.",
@@ -66,9 +66,9 @@ public class PackageNamesLoaderTest
         };
 
         assertEquals("pkgNames.length.", checkstylePackages.length,
-            aPkgNames.size());
+            pkgNames.size());
         final Set<String> checkstylePackagesSet =
             Sets.newHashSet(Arrays.asList(checkstylePackages));
-        assertEquals("names set.", checkstylePackagesSet, aPkgNames);
+        assertEquals("names set.", checkstylePackagesSet, pkgNames);
     }
 }

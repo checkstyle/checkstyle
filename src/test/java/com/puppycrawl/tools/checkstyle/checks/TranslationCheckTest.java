@@ -29,10 +29,10 @@ public class TranslationCheckTest
 {
     @Override
     protected DefaultConfiguration createCheckerConfig(
-        Configuration aCheckConfig)
+        Configuration checkConfig)
     {
         final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(aCheckConfig);
+        dc.addChild(checkConfig);
         return dc;
     }
 

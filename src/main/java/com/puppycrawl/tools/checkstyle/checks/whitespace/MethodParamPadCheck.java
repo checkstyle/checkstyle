@@ -75,7 +75,7 @@ public class MethodParamPadCheck
 
     /** Whether whitespace is allowed if the method identifier is at a
      * linebreak */
-    private boolean mAllowLineBreaks;
+    private boolean allowLineBreaks;
 
     @Override
     public int[] getDefaultTokens()
@@ -90,14 +90,14 @@ public class MethodParamPadCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         final DetailAST parenAST;
-        if ((aAST.getType() == TokenTypes.METHOD_CALL)) {
-            parenAST = aAST;
+        if ((ast.getType() == TokenTypes.METHOD_CALL)) {
+            parenAST = ast;
         }
         else {
-            parenAST = aAST.findFirstToken(TokenTypes.LPAREN);
+            parenAST = ast.findFirstToken(TokenTypes.LPAREN);
             // array construction => parenAST == null
             if (parenAST == null) {
                 return;
@@ -106,7 +106,7 @@ public class MethodParamPadCheck
 
         final String line = getLines()[parenAST.getLineNo() - 1];
         if (Utils.whitespaceBefore(parenAST.getColumnNo(), line)) {
-            if (!mAllowLineBreaks) {
+            if (!allowLineBreaks) {
                 log(parenAST, "line.previous", parenAST.getText());
             }
         }
@@ -127,11 +127,11 @@ public class MethodParamPadCheck
 
     /**
      * Control whether whitespace is flagged at linebreaks.
-     * @param aAllowLineBreaks whether whitespace should be
+     * @param allowLineBreaks whether whitespace should be
      * flagged at linebreaks.
      */
-    public void setAllowLineBreaks(boolean aAllowLineBreaks)
+    public void setAllowLineBreaks(boolean allowLineBreaks)
     {
-        mAllowLineBreaks = aAllowLineBreaks;
+        this.allowLineBreaks = allowLineBreaks;
     }
 }

@@ -58,13 +58,13 @@ public enum SeverityLevel
     /**
      * SeverityLevel factory method.
      *
-     * @param aSecurityLevelName level name, such as "ignore", "info", etc.
+     * @param securityLevelName level name, such as "ignore", "info", etc.
      * @return the <code>SeverityLevel</code>
-     * associated with <code>aSecurityLevelName</code>
+     * associated with <code>securityLevelName</code>
      */
-    public static SeverityLevel getInstance(String aSecurityLevelName)
+    public static SeverityLevel getInstance(String securityLevelName)
     {
-        return valueOf(SeverityLevel.class, aSecurityLevelName.trim()
+        return valueOf(SeverityLevel.class, securityLevelName.trim()
                 .toUpperCase());
     }
 }

@@ -83,15 +83,15 @@ public class TreeTableModelAdapter extends AbstractTableModel
 {
     /** For Serialisation that will never happen. */
     private static final long serialVersionUID = 8269213416115369275L;
-    private final JTree mTree;
-    private final TreeTableModel mTreeTableModel;
+    private final JTree tree;
+    private final TreeTableModel treeTableModel;
 
-    public TreeTableModelAdapter(TreeTableModel aTreeTableModel, JTree aTree)
+    public TreeTableModelAdapter(TreeTableModel treeTableModel, JTree tree)
     {
-        this.mTree = aTree;
-        this.mTreeTableModel = aTreeTableModel;
+        this.tree = tree;
+        this.treeTableModel = treeTableModel;
 
-        aTree.addTreeExpansionListener(new TreeExpansionListener()
+        tree.addTreeExpansionListener(new TreeExpansionListener()
         {
             // Don't use fireTableRowsInserted() here; the selection model
             // would get updated twice.
@@ -112,7 +112,7 @@ public class TreeTableModelAdapter extends AbstractTableModel
         // mTree changes. We use delayedFireTableDataChanged as we can
         // not be guaranteed the mTree will have finished processing
         // the event before us.
-        aTreeTableModel.addTreeModelListener(new TreeModelListener()
+        treeTableModel.addTreeModelListener(new TreeModelListener()
         {
             @Override
             public void treeNodesChanged(TreeModelEvent e)
@@ -145,7 +145,7 @@ public class TreeTableModelAdapter extends AbstractTableModel
     @Override
     public int getColumnCount()
     {
-        return mTreeTableModel.getColumnCount();
+        return treeTableModel.getColumnCount();
     }
 
     /**
@@ -154,7 +154,7 @@ public class TreeTableModelAdapter extends AbstractTableModel
     @Override
     public String getColumnName(int column)
     {
-        return mTreeTableModel.getColumnName(column);
+        return treeTableModel.getColumnName(column);
     }
 
     /**
@@ -163,25 +163,25 @@ public class TreeTableModelAdapter extends AbstractTableModel
     @Override
     public Class<?> getColumnClass(int column)
     {
-        return mTreeTableModel.getColumnClass(column);
+        return treeTableModel.getColumnClass(column);
     }
 
     @Override
     public int getRowCount()
     {
-        return mTree.getRowCount();
+        return tree.getRowCount();
     }
 
     protected Object nodeForRow(int row)
     {
-        final TreePath treePath = mTree.getPathForRow(row);
+        final TreePath treePath = tree.getPathForRow(row);
         return treePath.getLastPathComponent();
     }
 
     @Override
     public Object getValueAt(int row, int column)
     {
-        return mTreeTableModel.getValueAt(nodeForRow(row), column);
+        return treeTableModel.getValueAt(nodeForRow(row), column);
     }
 
     /**
@@ -190,7 +190,7 @@ public class TreeTableModelAdapter extends AbstractTableModel
     @Override
     public boolean isCellEditable(int row, int column)
     {
-        return mTreeTableModel.isCellEditable(nodeForRow(row), column);
+        return treeTableModel.isCellEditable(nodeForRow(row), column);
     }
 
     /**
@@ -199,7 +199,7 @@ public class TreeTableModelAdapter extends AbstractTableModel
     @Override
     public void setValueAt(Object value, int row, int column)
     {
-        mTreeTableModel.setValueAt(value, nodeForRow(row), column);
+        treeTableModel.setValueAt(value, nodeForRow(row), column);
     }
 
     /**

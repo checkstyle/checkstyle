@@ -32,113 +32,113 @@ public class JavadocNodeImpl implements DetailNode
     /**
      * Node index among parent's children
      */
-    private int mIndex;
+    private int index;
 
     /**
      * Node type
      */
-    private int mType;
+    private int type;
 
     /**
      * Node's text content
      */
-    private String mText;
+    private String text;
 
     /**
      * Line number
      */
-    private int mLineNumber;
+    private int lineNumber;
 
     /**
      * Column number
      */
-    private int mColumnNumber;
+    private int columnNumber;
 
     /**
      * Array of child nodes
      */
-    private DetailNode[] mChildren;
+    private DetailNode[] children;
 
     /**
      * Parent node
      */
-    private DetailNode mParent;
+    private DetailNode parent;
 
     @Override
     public int getType()
     {
-        return mType;
+        return type;
     }
 
     @Override
     public String getText()
     {
-        return mText;
+        return text;
     }
 
     @Override
     public int getLineNumber()
     {
-        return mLineNumber;
+        return lineNumber;
     }
 
     @Override
     public int getColumnNumber()
     {
-        return mColumnNumber;
+        return columnNumber;
     }
 
     @Override
     public DetailNode[] getChildren()
     {
-        return mChildren;
+        return children;
     }
 
     @Override
     public DetailNode getParent()
     {
-        return mParent;
+        return parent;
     }
 
     @Override
     public int getIndex()
     {
-        return mIndex;
+        return index;
     }
 
-    public void setType(int aType)
+    public void setType(int type)
     {
-        this.mType = aType;
+        this.type = type;
     }
 
-    public void setText(String aText)
+    public void setText(String text)
     {
-        this.mText = aText;
+        this.text = text;
     }
 
-    public void setLineNumber(int aLineNumber)
+    public void setLineNumber(int lineNumber)
     {
-        this.mLineNumber = aLineNumber;
+        this.lineNumber = lineNumber;
     }
 
-    public void setColumnNumber(int aColumnNumber)
+    public void setColumnNumber(int columnNumber)
     {
-        this.mColumnNumber = aColumnNumber;
+        this.columnNumber = columnNumber;
     }
 
-    public void setChildren(DetailNode[] aChildren)
+    public void setChildren(DetailNode[] children)
     {
-        this.mChildren = aChildren;
+        this.children = children;
     }
 
-    public void setParent(DetailNode aParent)
+    public void setParent(DetailNode parent)
     {
-        this.mParent = aParent;
+        this.parent = parent;
     }
 
-    public void setIndex(int aIndex)
+    public void setIndex(int index)
     {
-        this.mIndex = aIndex;
+        this.index = index;
     }
 
     @Override

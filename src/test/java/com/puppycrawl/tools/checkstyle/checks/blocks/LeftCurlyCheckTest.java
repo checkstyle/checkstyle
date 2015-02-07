@@ -29,12 +29,12 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_K
 
 public class LeftCurlyCheckTest extends BaseCheckTestSupport
 {
-    private DefaultConfiguration mCheckConfig;
+    private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp()
     {
-        mCheckConfig = createCheckConfig(LeftCurlyCheck.class);
+        checkConfig = createCheckConfig(LeftCurlyCheck.class);
     }
 
     @Test
@@ -47,13 +47,13 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "30:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
             "39:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
         };
-        verify(mCheckConfig, getPath("InputScopeInnerInterfaces.java"), expected);
+        verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
 
     @Test
     public void testNL() throws Exception
     {
-        mCheckConfig.addAttribute("option", LeftCurlyOption.NL.toString());
+        checkConfig.addAttribute("option", LeftCurlyOption.NL.toString());
         final String[] expected = {
             "49:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
             "53:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
@@ -62,13 +62,13 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "67:12: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
             "72:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
         };
-        verify(mCheckConfig, getPath("InputScopeInnerInterfaces.java"), expected);
+        verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
 
     @Test
     public void testNLOW() throws Exception
     {
-        mCheckConfig.addAttribute("option", LeftCurlyOption.NLOW.toString());
+        checkConfig.addAttribute("option", LeftCurlyOption.NLOW.toString());
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
             "12:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
@@ -82,7 +82,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "67:12: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
             "72:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
         };
-        verify(mCheckConfig, getPath("InputScopeInnerInterfaces.java"), expected);
+        verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
 
     @Test
@@ -101,13 +101,13 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "77:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
             "84:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
         };
-        verify(mCheckConfig, getPath("InputLeftCurlyMethod.java"), expected);
+        verify(checkConfig, getPath("InputLeftCurlyMethod.java"), expected);
     }
 
     @Test
     public void testNL2() throws Exception
     {
-        mCheckConfig.addAttribute("option", LeftCurlyOption.NL.toString());
+        checkConfig.addAttribute("option", LeftCurlyOption.NL.toString());
         final String[] expected = {
             "14:39: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
             "21:20: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
@@ -118,7 +118,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "74:20: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
             "87:31: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
         };
-        verify(mCheckConfig, getPath("InputLeftCurlyMethod.java"), expected);
+        verify(checkConfig, getPath("InputLeftCurlyMethod.java"), expected);
     }
     @Test
     public void testDefault3() throws Exception
@@ -148,20 +148,20 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "133:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
             "148:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
         };
-        verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
+        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
     @Test
     public void testNL3() throws Exception
     {
-        mCheckConfig.addAttribute("option", LeftCurlyOption.NL.toString());
+        checkConfig.addAttribute("option", LeftCurlyOption.NL.toString());
         final String[] expected = {
             "26:33: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
             "91:19: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
             "97:19: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
             "142:37: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
         };
-        verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
+        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
     @Test
@@ -176,7 +176,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "69:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
             "105:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
         };
-        verify(mCheckConfig, getPath("InputBraces.java"), expected);
+        verify(checkConfig, getPath("InputBraces.java"), expected);
     }
 
     @Test
@@ -187,27 +187,27 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "14:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
             "21:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
         };
-        verify(mCheckConfig, getPath("InputLeftCurlyAnnotations.java"), expected);
+        verify(checkConfig, getPath("InputLeftCurlyAnnotations.java"), expected);
     }
 
     @Test
     public void testNLWithAnnotations() throws Exception
     {
-        mCheckConfig.addAttribute("option", LeftCurlyOption.NL.toString());
+        checkConfig.addAttribute("option", LeftCurlyOption.NL.toString());
         final String[] expected = {
             "35:34: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
             "38:41: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
             "44:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
             "58:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
         };
-        verify(mCheckConfig, getPath("InputLeftCurlyAnnotations.java"), expected);
+        verify(checkConfig, getPath("InputLeftCurlyAnnotations.java"), expected);
     }
 
     @Test
     public void testLineBreakAfter() throws Exception
     {
-        mCheckConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
-        mCheckConfig.addAttribute("maxLineLength", "100");
+        checkConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
+        checkConfig.addAttribute("maxLineLength", "100");
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
             "12:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
@@ -225,6 +225,6 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "56:27: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{"),
             "66:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
         };
-        verify(mCheckConfig, getPath("InputLeftCurlyLineBreakAfter.java"), expected);
+        verify(checkConfig, getPath("InputLeftCurlyLineBreakAfter.java"), expected);
     }
 }

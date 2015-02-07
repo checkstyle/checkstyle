@@ -36,15 +36,15 @@ public abstract class AbstractTypeParameterNameCheck
     extends AbstractNameCheck
 {
     /** the location of the type parameter **/
-    private int mLocation;
+    private int location;
 
     /**
      * Creates a new <code>AbstractTypeParameterNameCheck</code> instance.
-     * @param aFormat format to check with
+     * @param format format to check with
      */
-    public AbstractTypeParameterNameCheck(String aFormat)
+    public AbstractTypeParameterNameCheck(String format)
     {
-        super(aFormat);
+        super(format);
     }
 
     @Override
@@ -58,24 +58,24 @@ public abstract class AbstractTypeParameterNameCheck
     @Override
     public final void init()
     {
-        this.mLocation = getLocation();
+        this.location = getLocation();
 
-        assert (this.mLocation == TokenTypes.CLASS_DEF)
-            || (this.mLocation == TokenTypes.METHOD_DEF)
-            || (this.mLocation == TokenTypes.INTERFACE_DEF);
+        assert (this.location == TokenTypes.CLASS_DEF)
+            || (this.location == TokenTypes.METHOD_DEF)
+            || (this.location == TokenTypes.INTERFACE_DEF);
     }
 
     @Override
-    protected final boolean mustCheckName(DetailAST aAST)
+    protected final boolean mustCheckName(DetailAST ast)
     {
         DetailAST location =
-            aAST.getParent().getParent();
+            ast.getParent().getParent();
 
         if (location.getType() == TokenTypes.MODIFIERS) {
             location = location.getParent();
         }
 
-        return location.getType() == this.mLocation;
+        return location.getType() == this.location;
     }
 
     /**

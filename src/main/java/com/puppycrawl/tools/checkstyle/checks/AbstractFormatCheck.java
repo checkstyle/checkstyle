@@ -39,84 +39,84 @@ public abstract class AbstractFormatCheck
     extends Check
 {
     /** the flags to create the regular expression with */
-    private int mCompileFlags;
+    private int compileFlags;
     /** the regexp to match against */
-    private Pattern mRegexp;
+    private Pattern regexp;
     /** the format string of the regexp */
-    private String mFormat;
+    private String format;
 
     /**
      * Creates a new <code>AbstractFormatCheck</code> instance. Defaults the
      * compile flag to 0 (the default).
-     * @param aDefaultFormat default format
-     * @throws ConversionException unable to parse aDefaultFormat
+     * @param defaultFormat default format
+     * @throws ConversionException unable to parse defaultFormat
      */
-    public AbstractFormatCheck(String aDefaultFormat)
+    public AbstractFormatCheck(String defaultFormat)
         throws ConversionException
     {
-        this(aDefaultFormat, 0);
+        this(defaultFormat, 0);
     }
 
     /**
      * Creates a new <code>AbstractFormatCheck</code> instance.
-     * @param aDefaultFormat default format
-     * @param aCompileFlags the Pattern flags to compile the regexp with.
+     * @param defaultFormat default format
+     * @param compileFlags the Pattern flags to compile the regexp with.
      * See {@link Pattern#compile(java.lang.String, int)}
-     * @throws ConversionException unable to parse aDefaultFormat
+     * @throws ConversionException unable to parse defaultFormat
      */
-    public AbstractFormatCheck(String aDefaultFormat, int aCompileFlags)
+    public AbstractFormatCheck(String defaultFormat, int compileFlags)
         throws ConversionException
     {
-        updateRegexp(aDefaultFormat, aCompileFlags);
+        updateRegexp(defaultFormat, compileFlags);
     }
 
     /**
      * Set the format to the specified regular expression.
-     * @param aFormat a <code>String</code> value
-     * @throws ConversionException unable to parse aFormat
+     * @param format a <code>String</code> value
+     * @throws ConversionException unable to parse format
      */
-    public final void setFormat(String aFormat)
+    public final void setFormat(String format)
         throws ConversionException
     {
-        updateRegexp(aFormat, mCompileFlags);
+        updateRegexp(format, compileFlags);
     }
 
     /**
      * Set the compile flags for the regular expression.
-     * @param aCompileFlags the compile flags to use.
+     * @param compileFlags the compile flags to use.
      */
-    public final void setCompileFlags(int aCompileFlags)
+    public final void setCompileFlags(int compileFlags)
     {
-        updateRegexp(mFormat, aCompileFlags);
+        updateRegexp(format, compileFlags);
     }
 
     /** @return the regexp to match against */
     public final Pattern getRegexp()
     {
-        return mRegexp;
+        return regexp;
     }
 
     /** @return the regexp format */
     public final String getFormat()
     {
-        return mFormat;
+        return format;
     }
 
     /**
      * Updates the regular expression using the supplied format and compiler
      * flags. Will also update the member variables.
-     * @param aFormat the format of the regular expression.
-     * @param aCompileFlags the compiler flags to use.
+     * @param format the format of the regular expression.
+     * @param compileFlagsParam the compiler flags to use.
      */
-    private void updateRegexp(String aFormat, int aCompileFlags)
+    private void updateRegexp(String format, int compileFlagsParam)
     {
         try {
-            mRegexp = Utils.getPattern(aFormat, aCompileFlags);
-            mFormat = aFormat;
-            mCompileFlags |= aCompileFlags;
+            regexp = Utils.getPattern(format, compileFlagsParam);
+            this.format = format;
+            compileFlags |= compileFlagsParam;
         }
         catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + aFormat, e);
+            throw new ConversionException("unable to parse " + format, e);
         }
     }
 }

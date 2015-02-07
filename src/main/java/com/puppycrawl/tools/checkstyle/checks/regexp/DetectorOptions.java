@@ -32,97 +32,97 @@ class DetectorOptions
      * Flags to compile a regular expression with.
      * See {@link Pattern#flags()}.
      */
-    private final int mCompileFlags;
+    private final int compileFlags;
     /** Used for reporting violations. */
-    private final AbstractViolationReporter mReporter;
+    private final AbstractViolationReporter reporter;
     /** Format of the regular expression to check for. */
-    private String mFormat;
+    private String format;
     /** The message to report on detection. If blank, then use the format. */
-    private String mMessage = "";
+    private String message = "";
     /** Minimum number of times regular expression should occur in a file. */
-    private int mMinimum;
+    private int minimum;
     /** Maximum number of times regular expression should occur in a file. */
-    private int mMaximum;
+    private int maximum;
     /** Whether to ignore case when matching. */
-    private boolean mIgnoreCase;
+    private boolean ignoreCase;
     /** Used to determine whether to suppress a detected match. */
-    private MatchSuppressor mSuppressor = NeverSuppress.INSTANCE;
+    private MatchSuppressor suppressor = NeverSuppress.INSTANCE;
 
     /**
      * Creates an instance.
-     * @param aCompileFlags the flags to create the regular expression with.
-     * @param aReporter used to report violations.
+     * @param compileFlags the flags to create the regular expression with.
+     * @param reporter used to report violations.
      */
-    public DetectorOptions(int aCompileFlags,
-            AbstractViolationReporter aReporter)
+    public DetectorOptions(int compileFlags,
+            AbstractViolationReporter reporter)
     {
-        mCompileFlags = aCompileFlags;
-        mReporter = aReporter;
+        this.compileFlags = compileFlags;
+        this.reporter = reporter;
     }
 
     /**
      * The format to use when matching lines.
-     * @param aFormat the format to use when matching lines.
+     * @param format the format to use when matching lines.
      * @return current instance
      */
-    public DetectorOptions setFormat(String aFormat)
+    public DetectorOptions setFormat(String format)
     {
-        mFormat = aFormat;
+        this.format = format;
         return this;
     }
 
     /**
      * Message to use when reporting a match.
-     * @param aMessage message to use when reporting a match.
+     * @param message message to use when reporting a match.
      * @return current instance.
      */
-    public DetectorOptions setMessage(String aMessage)
+    public DetectorOptions setMessage(String message)
     {
-        mMessage = aMessage;
+        this.message = message;
         return this;
     }
 
     /**
      * Set the minimum allowed number of detections.
-     * @param aMinimum the minimum allowed number of detections.
+     * @param minimum the minimum allowed number of detections.
      * @return current instance
      */
-    public DetectorOptions setMinimum(int aMinimum)
+    public DetectorOptions setMinimum(int minimum)
     {
-        mMinimum = aMinimum;
+        this.minimum = minimum;
         return this;
     }
 
     /**
      * Set the maximum allowed number of detections.
-     * @param aMaximum the maximum allowed number of detections.
+     * @param maximum the maximum allowed number of detections.
      * @return current instance
      */
-    public DetectorOptions setMaximum(int aMaximum)
+    public DetectorOptions setMaximum(int maximum)
     {
-        mMaximum = aMaximum;
+        this.maximum = maximum;
         return this;
     }
 
     /**
      * Set the suppressor to use.
-     * @param aSup the suppressor to use.
+     * @param sup the suppressor to use.
      * @return current instance
      */
-    public DetectorOptions setSuppressor(MatchSuppressor aSup)
+    public DetectorOptions setSuppressor(MatchSuppressor sup)
     {
-        mSuppressor = aSup;
+        suppressor = sup;
         return this;
     }
 
     /**
      * Set whether to ignore case when matching.
-     * @param aIgnore whether to ignore case when matching.
+     * @param ignore whether to ignore case when matching.
      * @return current instance
      */
-    public DetectorOptions setIgnoreCase(boolean aIgnore)
+    public DetectorOptions setIgnoreCase(boolean ignore)
     {
-        mIgnoreCase = aIgnore;
+        ignoreCase = ignore;
         return this;
     }
 
@@ -132,7 +132,7 @@ class DetectorOptions
      */
     public String getFormat()
     {
-        return mFormat;
+        return format;
     }
 
     /**
@@ -141,7 +141,7 @@ class DetectorOptions
      */
     public AbstractViolationReporter getReporter()
     {
-        return mReporter;
+        return reporter;
     }
 
     /**
@@ -150,7 +150,7 @@ class DetectorOptions
      */
     public String getMessage()
     {
-        return mMessage;
+        return message;
     }
 
     /**
@@ -159,7 +159,7 @@ class DetectorOptions
      */
     public int getMinimum()
     {
-        return mMinimum;
+        return minimum;
     }
 
     /**
@@ -168,7 +168,7 @@ class DetectorOptions
      */
     public int getMaximum()
     {
-        return mMaximum;
+        return maximum;
     }
 
     /**
@@ -177,7 +177,7 @@ class DetectorOptions
      */
     public MatchSuppressor getSuppressor()
     {
-        return mSuppressor;
+        return suppressor;
     }
 
     /**
@@ -186,7 +186,7 @@ class DetectorOptions
      */
     public boolean isIgnoreCase()
     {
-        return mIgnoreCase;
+        return ignoreCase;
     }
 
     /**
@@ -195,8 +195,8 @@ class DetectorOptions
      */
     public Pattern getPattern()
     {
-        final int options = (mIgnoreCase) ? mCompileFlags
-                | Pattern.CASE_INSENSITIVE : mCompileFlags;
-        return Utils.getPattern(mFormat, options);
+        final int options = (ignoreCase) ? compileFlags
+                | Pattern.CASE_INSENSITIVE : compileFlags;
+        return Utils.getPattern(format, options);
     }
 }

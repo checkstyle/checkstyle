@@ -61,7 +61,7 @@ public class AnonInnerLengthCheck extends Check
     private static final int DEFAULT_MAX = 20;
 
     /** maximum number of lines */
-    private int mMax = DEFAULT_MAX;
+    private int max = DEFAULT_MAX;
 
     @Override
     public int[] getDefaultTokens()
@@ -70,27 +70,27 @@ public class AnonInnerLengthCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final DetailAST openingBrace = aAST.findFirstToken(TokenTypes.OBJBLOCK);
+        final DetailAST openingBrace = ast.findFirstToken(TokenTypes.OBJBLOCK);
         if (openingBrace != null) {
             final DetailAST closingBrace =
                 openingBrace.findFirstToken(TokenTypes.RCURLY);
             final int length =
                 closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
-            if (length > mMax) {
-                log(aAST.getLineNo(), aAST.getColumnNo(), "maxLen.anonInner",
-                        length, mMax);
+            if (length > max) {
+                log(ast.getLineNo(), ast.getColumnNo(), "maxLen.anonInner",
+                        length, max);
             }
         }
     }
 
 
     /**
-     * @param aLength the maximum length of an anonymous inner class.
+     * @param length the maximum length of an anonymous inner class.
      */
-    public void setMax(int aLength)
+    public void setMax(int length)
     {
-        mMax = aLength;
+        max = length;
     }
 }

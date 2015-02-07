@@ -66,11 +66,11 @@ public class EmptyForInitializerPadCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (aAST.getChildCount() == 0) {
+        if (ast.getChildCount() == 0) {
             //empty for initializer. test pad before semi.
-            final DetailAST semi = aAST.getNextSibling();
+            final DetailAST semi = ast.getNextSibling();
             final int semiLineIdx = semi.getLineNo() - 1;
             final String line = getLines()[semiLineIdx];
             final int before = semi.getColumnNo() - 1;

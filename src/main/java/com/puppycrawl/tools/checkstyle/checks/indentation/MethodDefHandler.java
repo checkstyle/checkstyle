@@ -33,15 +33,15 @@ public class MethodDefHandler extends BlockParentHandler
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
-     * @param aIndentCheck   the indentation check
-     * @param aAst           the abstract syntax tree
-     * @param aParent        the parent handler
+     * @param indentCheck   the indentation check
+     * @param ast           the abstract syntax tree
+     * @param parent        the parent handler
      */
-    public MethodDefHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent)
+    public MethodDefHandler(IndentationCheck indentCheck,
+        DetailAST ast, ExpressionHandler parent)
     {
-        super(aIndentCheck, (aAst.getType() == TokenTypes.CTOR_DEF)
-            ? "ctor def" : "method def", aAst, aParent);
+        super(indentCheck, (ast.getType() == TokenTypes.CTOR_DEF)
+            ? "ctor def" : "method def", ast, parent);
     }
 
     @Override
@@ -70,9 +70,9 @@ public class MethodDefHandler extends BlockParentHandler
         final LineWrappingHandler lineWrap =
             new LineWrappingHandler(getIndentCheck(), getMainAst()) {
                 @Override
-                public DetailAST findLastNode(DetailAST aFirstNode)
+                public DetailAST findLastNode(DetailAST firstNode)
                 {
-                    return aFirstNode.getLastChild().getPreviousSibling();
+                    return firstNode.getLastChild().getPreviousSibling();
                 }
             };
         lineWrap.checkIndentation();

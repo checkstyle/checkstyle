@@ -25,20 +25,20 @@ public class AutomaticBeanTest
 {
     private static class TestBean extends AutomaticBean
     {
-        public void setName(String aName)
+        public void setName(String name)
         {
         }
     }
 
-    private final DefaultConfiguration mConf = new DefaultConfiguration(
+    private final DefaultConfiguration conf = new DefaultConfiguration(
             "testConf");
 
-    private final TestBean mTestBean = new TestBean();
+    private final TestBean testBean = new TestBean();
 
     @Test(expected = CheckstyleException.class)
     public void testNoSuchAttribute() throws CheckstyleException
     {
-        mConf.addAttribute("NonExisting", "doesn't matter");
-        mTestBean.configure(mConf);
+        conf.addAttribute("NonExisting", "doesn't matter");
+        testBean.configure(conf);
     }
 }

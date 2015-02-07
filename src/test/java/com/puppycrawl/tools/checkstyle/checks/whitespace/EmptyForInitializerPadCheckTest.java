@@ -26,12 +26,12 @@ import org.junit.Test;
 public class EmptyForInitializerPadCheckTest
     extends BaseCheckTestSupport
 {
-    private DefaultConfiguration mCheckConfig;
+    private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp()
     {
-        mCheckConfig = createCheckConfig(EmptyForInitializerPadCheck.class);
+        checkConfig = createCheckConfig(EmptyForInitializerPadCheck.class);
     }
 
     @Test
@@ -40,16 +40,16 @@ public class EmptyForInitializerPadCheckTest
         final String[] expected = {
             "48:14: ';' is preceded with whitespace.",
         };
-        verify(mCheckConfig, getPath("InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
     }
 
     @Test
     public void testSpaceOption() throws Exception
     {
-        mCheckConfig.addAttribute("option", PadOption.SPACE.toString());
+        checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = {
             "51:13: ';' is not preceded with whitespace.",
         };
-        verify(mCheckConfig, getPath("InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
     }
 }

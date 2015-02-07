@@ -45,41 +45,41 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
     private static final int[] EMPTY_INT_ARRAY = new int[0];
 
     /** the compiled regular expressions */
-    private final List<Pattern> mHeaderRegexps = Lists.newArrayList();
+    private final List<Pattern> headerRegexps = Lists.newArrayList();
 
     /** the header lines to repeat (0 or more) in the check, sorted. */
-    private int[] mMultiLines = EMPTY_INT_ARRAY;
+    private int[] multiLines = EMPTY_INT_ARRAY;
 
     /**
      * Set the lines numbers to repeat in the header check.
-     * @param aList comma separated list of line numbers to repeat in header.
+     * @param list comma separated list of line numbers to repeat in header.
      */
-    public void setMultiLines(int[] aList)
+    public void setMultiLines(int[] list)
     {
-        if ((aList == null) || (aList.length == 0)) {
-            mMultiLines = EMPTY_INT_ARRAY;
+        if ((list == null) || (list.length == 0)) {
+            multiLines = EMPTY_INT_ARRAY;
             return;
         }
 
-        mMultiLines = new int[aList.length];
-        System.arraycopy(aList, 0, mMultiLines, 0, aList.length);
-        Arrays.sort(mMultiLines);
+        multiLines = new int[list.length];
+        System.arraycopy(list, 0, multiLines, 0, list.length);
+        Arrays.sort(multiLines);
     }
 
     @Override
-    protected void processFiltered(File aFile, List<String> aLines)
+    protected void processFiltered(File file, List<String> lines)
     {
         final int headerSize = getHeaderLines().size();
-        final int fileSize = aLines.size();
+        final int fileSize = lines.size();
 
-        if (headerSize - mMultiLines.length > fileSize) {
+        if (headerSize - multiLines.length > fileSize) {
             log(1, "header.missing");
         }
         else {
             int headerLineNo = 0;
             int i;
             for (i = 0; (headerLineNo < headerSize) && (i < fileSize); i++) {
-                final String line = aLines.get(i);
+                final String line = lines.get(i);
                 boolean isMatch = isMatch(line, headerLineNo);
                 while (!isMatch && isMultiLine(headerLineNo)) {
                     headerLineNo++;
@@ -110,37 +110,37 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
 
     /**
      * Checks if a code line matches the required header line.
-     * @param aLine the code line
-     * @param aHeaderLineNo the header line number.
+     * @param line the code line
+     * @param headerLineNo the header line number.
      * @return true if and only if the line matches the required header line.
      */
-    private boolean isMatch(String aLine, int aHeaderLineNo)
+    private boolean isMatch(String line, int headerLineNo)
     {
-        return mHeaderRegexps.get(aHeaderLineNo).matcher(aLine).find();
+        return headerRegexps.get(headerLineNo).matcher(line).find();
     }
 
     /**
-     * @param aLineNo a line number
-     * @return if <code>aLineNo</code> is one of the repeat header lines.
+     * @param lineNo a line number
+     * @return if <code>lineNo</code> is one of the repeat header lines.
      */
-    private boolean isMultiLine(int aLineNo)
+    private boolean isMultiLine(int lineNo)
     {
-        return (Arrays.binarySearch(mMultiLines, aLineNo + 1) >= 0);
+        return (Arrays.binarySearch(multiLines, lineNo + 1) >= 0);
     }
 
     @Override
     protected void postprocessHeaderLines()
     {
         final List<String> headerLines = getHeaderLines();
-        mHeaderRegexps.clear();
+        headerRegexps.clear();
         for (String line : headerLines) {
             try {
                 // TODO: Not sure if cache in Utils is still necessary
-                mHeaderRegexps.add(Utils.getPattern(line));
+                headerRegexps.add(Utils.getPattern(line));
             }
             catch (final PatternSyntaxException ex) {
                 throw new ConversionException("line "
-                        + (mHeaderRegexps.size() + 1)
+                        + (headerRegexps.size() + 1)
                         + " in header specification"
                         + " is not a regular expression");
             }

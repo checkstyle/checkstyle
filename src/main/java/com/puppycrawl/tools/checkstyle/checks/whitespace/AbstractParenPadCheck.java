@@ -43,47 +43,47 @@ abstract class AbstractParenPadCheck
 
     /**
      * Process a token representing a left parentheses.
-     * @param aAST the token representing a left parentheses
+     * @param ast the token representing a left parentheses
      */
-    protected void processLeft(DetailAST aAST)
+    protected void processLeft(DetailAST ast)
     {
-        final String line = getLines()[aAST.getLineNo() - 1];
-        final int after = aAST.getColumnNo() + 1;
+        final String line = getLines()[ast.getLineNo() - 1];
+        final int after = ast.getColumnNo() + 1;
         if (after < line.length()) {
             if ((PadOption.NOSPACE == getAbstractOption())
                 && (Character.isWhitespace(line.charAt(after))))
             {
-                log(aAST.getLineNo(), after, "ws.followed", "(");
+                log(ast.getLineNo(), after, "ws.followed", "(");
             }
             else if ((PadOption.SPACE == getAbstractOption())
                      && !Character.isWhitespace(line.charAt(after))
                      && (line.charAt(after) != ')'))
             {
-                log(aAST.getLineNo(), after, "ws.notFollowed", "(");
+                log(ast.getLineNo(), after, "ws.notFollowed", "(");
             }
         }
     }
 
     /**
      * Process a token representing a right parentheses.
-     * @param aAST the token representing a right parentheses
+     * @param ast the token representing a right parentheses
      */
-    protected void processRight(DetailAST aAST)
+    protected void processRight(DetailAST ast)
     {
-        final String line = getLines()[aAST.getLineNo() - 1];
-        final int before = aAST.getColumnNo() - 1;
+        final String line = getLines()[ast.getLineNo() - 1];
+        final int before = ast.getColumnNo() - 1;
         if (before >= 0) {
             if ((PadOption.NOSPACE == getAbstractOption())
                 && Character.isWhitespace(line.charAt(before))
                 && !Utils.whitespaceBefore(before, line))
             {
-                log(aAST.getLineNo(), before, "ws.preceded", ")");
+                log(ast.getLineNo(), before, "ws.preceded", ")");
             }
             else if ((PadOption.SPACE == getAbstractOption())
                 && !Character.isWhitespace(line.charAt(before))
                 && (line.charAt(before) != '('))
             {
-                log(aAST.getLineNo(), aAST.getColumnNo(),
+                log(ast.getLineNo(), ast.getColumnNo(),
                     "ws.notPreceded", ")");
             }
         }

@@ -38,47 +38,47 @@ public class JavadocVariableCheck
     extends Check
 {
     /** the scope to check */
-    private Scope mScope = Scope.PRIVATE;
+    private Scope scope = Scope.PRIVATE;
 
     /** the visibility scope where Javadoc comments shouldn't be checked **/
-    private Scope mExcludeScope;
+    private Scope excludeScope;
 
     /** the regular expression to ignore variable name */
-    private String mIgnoreNameRegexp;
+    private String ignoreNameRegexp;
 
     /** the pattern to ignore variable name */
-    private Pattern mIgnoreNamePattern;
+    private Pattern ignoreNamePattern;
 
     /**
      * Sets the scope to check.
-     * @param aFrom string to get the scope from
+     * @param from string to get the scope from
      */
-    public void setScope(String aFrom)
+    public void setScope(String from)
     {
-        mScope = Scope.getInstance(aFrom);
+        scope = Scope.getInstance(from);
     }
 
     /**
      * Set the excludeScope.
-     * @param aScope a <code>String</code> value
+     * @param scope a <code>String</code> value
      */
-    public void setExcludeScope(String aScope)
+    public void setExcludeScope(String scope)
     {
-        mExcludeScope = Scope.getInstance(aScope);
+        excludeScope = Scope.getInstance(scope);
     }
 
     /**
      * Sets the variable names to ignore in the check.
-     * @param aRegexp regexp to define variable names to ignore.
+     * @param regexp regexp to define variable names to ignore.
      */
-    public void setIgnoreNamePattern(String aRegexp)
+    public void setIgnoreNamePattern(String regexp)
     {
-        mIgnoreNameRegexp = aRegexp;
-        if (!(aRegexp == null || aRegexp.length() == 0)) {
-            mIgnoreNamePattern = Pattern.compile(aRegexp);
+        ignoreNameRegexp = regexp;
+        if (!(regexp == null || regexp.length() == 0)) {
+            ignoreNamePattern = Pattern.compile(regexp);
         }
         else {
-            mIgnoreNamePattern = null;
+            ignoreNamePattern = null;
         }
     }
 
@@ -88,7 +88,7 @@ public class JavadocVariableCheck
      */
     public String getIgnoreNamePattern()
     {
-        return mIgnoreNameRegexp;
+        return ignoreNameRegexp;
     }
 
     @Override
@@ -101,59 +101,59 @@ public class JavadocVariableCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (shouldCheck(aAST)) {
+        if (shouldCheck(ast)) {
             final FileContents contents = getFileContents();
             final TextBlock cmt =
-                contents.getJavadocBefore(aAST.getLineNo());
+                contents.getJavadocBefore(ast.getLineNo());
 
             if (cmt == null) {
-                log(aAST, "javadoc.missing");
+                log(ast, "javadoc.missing");
             }
         }
     }
 
     /**
      * Decides whether the variable name of an AST is in the ignore list.
-     * @param aAST the AST to check
-     * @return true if the variable name of aAST is in the ignore list.
+     * @param ast the AST to check
+     * @return true if the variable name of ast is in the ignore list.
      */
-    private boolean isIgnored(DetailAST aAST)
+    private boolean isIgnored(DetailAST ast)
     {
-        final String name = aAST.findFirstToken(TokenTypes.IDENT).getText();
-        return mIgnoreNamePattern != null
-                && mIgnoreNamePattern.matcher(name).matches();
+        final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
+        return ignoreNamePattern != null
+                && ignoreNamePattern.matcher(name).matches();
     }
 
     /**
      * Whether we should check this node.
-     * @param aAST a given node.
+     * @param ast a given node.
      * @return whether we should check a given node.
      */
-    private boolean shouldCheck(final DetailAST aAST)
+    private boolean shouldCheck(final DetailAST ast)
     {
-        if (ScopeUtils.inCodeBlock(aAST) || isIgnored(aAST)) {
+        if (ScopeUtils.inCodeBlock(ast) || isIgnored(ast)) {
             return false;
         }
 
         final Scope scope;
-        if (aAST.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+        if (ast.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
             scope = Scope.PUBLIC;
         }
         else {
-            final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
+            final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
             final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
             scope =
-                ScopeUtils.inInterfaceOrAnnotationBlock(aAST)
+                ScopeUtils.inInterfaceOrAnnotationBlock(ast)
                     ? Scope.PUBLIC : declaredScope;
         }
 
-        final Scope surroundingScope = ScopeUtils.getSurroundingScope(aAST);
+        final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
 
-        return scope.isIn(mScope) && surroundingScope.isIn(mScope)
-            && ((mExcludeScope == null)
-                || !scope.isIn(mExcludeScope)
-                || !surroundingScope.isIn(mExcludeScope));
+        return scope.isIn(this.scope) && surroundingScope.isIn(this.scope)
+            && ((excludeScope == null)
+                || !scope.isIn(excludeScope)
+                || !surroundingScope.isIn(excludeScope));
     }
 }

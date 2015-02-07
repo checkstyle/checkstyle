@@ -56,7 +56,7 @@ public class IllegalTokenTextCheck
      * Custom message for report if illegal regexp found
      * ignored if empty.
      */
-    private String mMessage = "";
+    private String message = "";
 
     /**
      * Instantiates a new instance.
@@ -67,7 +67,7 @@ public class IllegalTokenTextCheck
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
     }
 
@@ -92,17 +92,17 @@ public class IllegalTokenTextCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final String text = aAST.getText();
+        final String text = ast.getText();
         if (getRegexp().matcher(text).find()) {
             String message = getMessage();
             if ("".equals(message)) {
                 message = "illegal.token.text";
             }
             log(
-                aAST.getLineNo(),
-                aAST.getColumnNo(),
+                ast.getLineNo(),
+                ast.getColumnNo(),
                 message,
                 getFormat());
         }
@@ -110,12 +110,12 @@ public class IllegalTokenTextCheck
 
     /**
      * Setter for message property.
-     * @param aMessage custom message which should be used
+     * @param message custom message which should be used
      *                 to report about violations.
      */
-    public void setMessage(String aMessage)
+    public void setMessage(String message)
     {
-        mMessage = (null == aMessage) ? "" : aMessage;
+        this.message = (null == message) ? "" : message;
     }
 
     /**
@@ -125,16 +125,16 @@ public class IllegalTokenTextCheck
      */
     public String getMessage()
     {
-        return mMessage;
+        return message;
     }
 
     /**
      * Set whether or not the match is case sensitive.
-     * @param aCaseInsensitive true if the match is case insensitive.
+     * @param caseInsensitive true if the match is case insensitive.
      */
-    public void setIgnoreCase(boolean aCaseInsensitive)
+    public void setIgnoreCase(boolean caseInsensitive)
     {
-        if (aCaseInsensitive) {
+        if (caseInsensitive) {
             setCompileFlags(Pattern.CASE_INSENSITIVE);
         }
     }

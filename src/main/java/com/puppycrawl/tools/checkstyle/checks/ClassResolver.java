@@ -31,25 +31,25 @@ import java.util.Set;
 public class ClassResolver
 {
     /** name of the package to check if the class belongs to **/
-    private final String mPkg;
+    private final String pkg;
     /** set of imports to check against **/
-    private final Set<String> mImports;
+    private final Set<String> imports;
     /** use to load classes **/
-    private final ClassLoader mLoader;
+    private final ClassLoader loader;
 
     /**
      * Creates a new <code>ClassResolver</code> instance.
      *
-     * @param aLoader the ClassLoader to load classes with.
-     * @param aPkg the name of the package the class may belong to
-     * @param aImports set of imports to check if the class belongs to
+     * @param loader the ClassLoader to load classes with.
+     * @param pkg the name of the package the class may belong to
+     * @param imports set of imports to check if the class belongs to
      */
-    public ClassResolver(ClassLoader aLoader, String aPkg, Set<String> aImports)
+    public ClassResolver(ClassLoader loader, String pkg, Set<String> imports)
     {
-        mLoader = aLoader;
-        mPkg = aPkg;
-        mImports = aImports;
-        mImports.add("java.lang.*");
+        this.loader = loader;
+        this.pkg = pkg;
+        this.imports = imports;
+        imports.add("java.lang.*");
     }
 
     /**
@@ -59,27 +59,27 @@ public class ClassResolver
      * - explicit imports
      * - enclosing package
      * - star imports
-     * @param aName name of the class to resolve
-     * @param aCurrentClass name of current class (for inner classes).
+     * @param name name of the class to resolve
+     * @param currentClass name of current class (for inner classes).
      * @return the resolved class
      * @throws ClassNotFoundException if unable to resolve the class
      */
-    public Class<?> resolve(String aName, String aCurrentClass)
+    public Class<?> resolve(String name, String currentClass)
         throws ClassNotFoundException
     {
         // See if the class is full qualified
-        Class<?> clazz = resolveQualifiedName(aName);
+        Class<?> clazz = resolveQualifiedName(name);
         if (clazz != null) {
             return clazz;
         }
 
         // try matching explicit imports
-        for (String imp : mImports) {
+        for (String imp : imports) {
             // Very important to add the "." in the check below. Otherwise you
             // when checking for "DataException", it will match on
             // "SecurityDataException". This has been the cause of a very
             // difficult bug to resolve!
-            if (imp.endsWith("." + aName)) {
+            if (imp.endsWith("." + name)) {
                 clazz = resolveQualifiedName(imp);
                 if (clazz != null) {
                     return clazz;
@@ -89,27 +89,27 @@ public class ClassResolver
         }
 
         // See if in the package
-        if (!"".equals(mPkg)) {
-            clazz = resolveQualifiedName(mPkg + "." + aName);
+        if (!"".equals(pkg)) {
+            clazz = resolveQualifiedName(pkg + "." + name);
             if (clazz != null) {
                 return clazz;
             }
         }
 
         //inner class of this class???
-        if (!"".equals(aCurrentClass)) {
-            final String innerClass = (!"".equals(mPkg) ? (mPkg + ".") : "")
-                + aCurrentClass + "$" + aName;
+        if (!"".equals(currentClass)) {
+            final String innerClass = (!"".equals(pkg) ? (pkg + ".") : "")
+                + currentClass + "$" + name;
             if (isLoadable(innerClass)) {
                 return safeLoad(innerClass);
             }
         }
 
         // try star imports
-        for (String imp : mImports) {
+        for (String imp : imports) {
             if (imp.endsWith(".*")) {
                 final String fqn = imp.substring(0, imp.lastIndexOf('.') + 1)
-                    + aName;
+                    + name;
                 clazz = resolveQualifiedName(fqn);
                 if (clazz != null) {
                     return clazz;
@@ -119,17 +119,17 @@ public class ClassResolver
 
         // Giving up, the type is unknown, so load the class to generate an
         // exception
-        return safeLoad(aName);
+        return safeLoad(name);
     }
 
     /**
      * @return whether a specified class is loadable with safeLoad().
-     * @param aName name of the class to check
+     * @param name name of the class to check
      */
-    public boolean isLoadable(String aName)
+    public boolean isLoadable(String name)
     {
         try {
-            safeLoad(aName);
+            safeLoad(name);
             return true;
         }
         catch (final ClassNotFoundException e) {
@@ -140,35 +140,35 @@ public class ClassResolver
     /**
      * Will load a specified class is such a way that it will NOT be
      * initialised.
-     * @param aName name of the class to load
+     * @param name name of the class to load
      * @return the <code>Class</code> for the specified class
      * @throws ClassNotFoundException if an error occurs
      */
-    public Class<?> safeLoad(String aName)
+    public Class<?> safeLoad(String name)
         throws ClassNotFoundException
     {
         // The next line will load the class using the specified class
         // loader. The magic is having the "false" parameter. This means the
         // class will not be initialised. Very, very important.
-        return Class.forName(aName, false, mLoader);
+        return Class.forName(name, false, loader);
     }
 
     /**
      * Tries to resolve a class for fully-specified name.
-     * @param aName a given name of class.
+     * @param name a given name of class.
      * @return Class object for the given name or null.
      */
-    private Class<?> resolveQualifiedName(final String aName)
+    private Class<?> resolveQualifiedName(final String name)
     {
         try {
-            if (isLoadable(aName)) {
-                return safeLoad(aName);
+            if (isLoadable(name)) {
+                return safeLoad(name);
             }
             //Perhaps it's fully-qualified inner class
-            final int dot = aName.lastIndexOf(".");
+            final int dot = name.lastIndexOf(".");
             if (dot != -1) {
                 final String innerName =
-                    aName.substring(0, dot) + "$" + aName.substring(dot + 1);
+                    name.substring(0, dot) + "$" + name.substring(dot + 1);
                 if (isLoadable(innerName)) {
                     return safeLoad(innerName);
                 }

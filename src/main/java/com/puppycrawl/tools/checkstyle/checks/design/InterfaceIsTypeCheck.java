@@ -44,7 +44,7 @@ public final class InterfaceIsTypeCheck
         extends Check
 {
     /** flag to control whether marker interfaces are allowed. */
-    private boolean mAllowMarkerInterfaces = true;
+    private boolean allowMarkerInterfaces = true;
 
     @Override
     public int[] getDefaultTokens()
@@ -59,29 +59,29 @@ public final class InterfaceIsTypeCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         final DetailAST objBlock =
-                aAST.findFirstToken(TokenTypes.OBJBLOCK);
+                ast.findFirstToken(TokenTypes.OBJBLOCK);
         final DetailAST methodDef =
                 objBlock.findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST variableDef =
                 objBlock.findFirstToken(TokenTypes.VARIABLE_DEF);
         final boolean methodRequired =
-                !mAllowMarkerInterfaces || (variableDef != null);
+                !allowMarkerInterfaces || (variableDef != null);
 
         if ((methodDef == null) && methodRequired) {
-            log(aAST.getLineNo(), "interface.type");
+            log(ast.getLineNo(), "interface.type");
         }
 
     }
 
     /**
      * Controls whether marker interfaces like Serializable are allowed.
-     * @param aFlag whether to allow marker interfaces or not
+     * @param flag whether to allow marker interfaces or not
      */
-    public void setAllowMarkerInterfaces(boolean aFlag)
+    public void setAllowMarkerInterfaces(boolean flag)
     {
-        mAllowMarkerInterfaces = aFlag;
+        allowMarkerInterfaces = flag;
     }
 }

@@ -98,10 +98,10 @@ public class LeftCurlyCheck
     public static final String MSG_KEY_LINE_BREAK_AFTER = "line.break.after";
 
     /** TODO: replace this ugly hack **/
-    private int mMaxLineLength = DEFAULT_MAX_LINE_LENGTH;
+    private int maxLineLength = DEFAULT_MAX_LINE_LENGTH;
 
     /** If true, Check will ignore enums*/
-    private boolean mIgnoreEnums = true;
+    private boolean ignoreEnums = true;
 
     /**
      * Creates a default instance and sets the policy to EOL.
@@ -114,11 +114,11 @@ public class LeftCurlyCheck
     /**
      * Sets the maximum line length used in calculating the placement of the
      * left curly brace.
-     * @param aMaxLineLength the max allowed line length
+     * @param maxLineLength the max allowed line length
      */
-    public void setMaxLineLength(int aMaxLineLength)
+    public void setMaxLineLength(int maxLineLength)
     {
-        mMaxLineLength = aMaxLineLength;
+        this.maxLineLength = maxLineLength;
     }
 
     @Override
@@ -148,59 +148,59 @@ public class LeftCurlyCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         final DetailAST startToken;
         final DetailAST brace;
 
-        switch (aAST.getType()) {
-        case TokenTypes.CTOR_DEF :
-        case TokenTypes.METHOD_DEF :
-            startToken = skipAnnotationOnlyLines(aAST);
-            brace = aAST.findFirstToken(TokenTypes.SLIST);
-            break;
+        switch (ast.getType()) {
+            case TokenTypes.CTOR_DEF :
+            case TokenTypes.METHOD_DEF :
+                startToken = skipAnnotationOnlyLines(ast);
+                brace = ast.findFirstToken(TokenTypes.SLIST);
+                break;
 
-        case TokenTypes.INTERFACE_DEF :
-        case TokenTypes.CLASS_DEF :
-        case TokenTypes.ANNOTATION_DEF :
-        case TokenTypes.ENUM_DEF :
-        case TokenTypes.ENUM_CONSTANT_DEF :
-            startToken = skipAnnotationOnlyLines(aAST);
-            final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
-            brace = (objBlock == null)
-                ? null
-                : objBlock.getFirstChild();
-            break;
+            case TokenTypes.INTERFACE_DEF :
+            case TokenTypes.CLASS_DEF :
+            case TokenTypes.ANNOTATION_DEF :
+            case TokenTypes.ENUM_DEF :
+            case TokenTypes.ENUM_CONSTANT_DEF :
+                startToken = skipAnnotationOnlyLines(ast);
+                final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
+                brace = (objBlock == null)
+                    ? null
+                    : objBlock.getFirstChild();
+                break;
 
-        case TokenTypes.LITERAL_WHILE:
-        case TokenTypes.LITERAL_CATCH:
-        case TokenTypes.LITERAL_SYNCHRONIZED:
-        case TokenTypes.LITERAL_FOR:
-        case TokenTypes.LITERAL_TRY:
-        case TokenTypes.LITERAL_FINALLY:
-        case TokenTypes.LITERAL_DO:
-        case TokenTypes.LITERAL_IF :
-            startToken = aAST;
-            brace = aAST.findFirstToken(TokenTypes.SLIST);
-            break;
+            case TokenTypes.LITERAL_WHILE:
+            case TokenTypes.LITERAL_CATCH:
+            case TokenTypes.LITERAL_SYNCHRONIZED:
+            case TokenTypes.LITERAL_FOR:
+            case TokenTypes.LITERAL_TRY:
+            case TokenTypes.LITERAL_FINALLY:
+            case TokenTypes.LITERAL_DO:
+            case TokenTypes.LITERAL_IF :
+                startToken = ast;
+                brace = ast.findFirstToken(TokenTypes.SLIST);
+                break;
 
-        case TokenTypes.LITERAL_ELSE :
-            startToken = aAST;
-            final DetailAST candidate = aAST.getFirstChild();
-            brace =
-                (candidate.getType() == TokenTypes.SLIST)
-                ? candidate
-                : null; // silently ignore
-            break;
+            case TokenTypes.LITERAL_ELSE :
+                startToken = ast;
+                final DetailAST candidate = ast.getFirstChild();
+                brace =
+                    (candidate.getType() == TokenTypes.SLIST)
+                    ? candidate
+                    : null; // silently ignore
+                break;
 
-        case TokenTypes.LITERAL_SWITCH :
-            startToken = aAST;
-            brace = aAST.findFirstToken(TokenTypes.LCURLY);
-            break;
+            case TokenTypes.LITERAL_SWITCH :
+                startToken = ast;
+                brace = ast.findFirstToken(TokenTypes.LCURLY);
+                break;
 
-        default :
-            startToken = null;
-            brace = null;
+            default :
+                startToken = null;
+                brace = null;
         }
 
         if ((brace != null) && (startToken != null)) {
@@ -215,19 +215,19 @@ public class LeftCurlyCheck
      * of the first token afer all annotations is return. This might be
      * an annotation.
      * Otherwise, the received <code>DetailAST</code> is returned.
-     * @param aAST <code>DetailAST</code>.
+     * @param ast <code>DetailAST</code>.
      * @return <code>DetailAST</code>.
      */
-    private DetailAST skipAnnotationOnlyLines(DetailAST aAST)
+    private DetailAST skipAnnotationOnlyLines(DetailAST ast)
     {
-        final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         if (modifiers == null) {
-            return aAST;
+            return ast;
         }
         DetailAST lastAnnot = findLastAnnotation(modifiers);
         if (lastAnnot == null) {
             // There are no annotations.
-            return aAST;
+            return ast;
         }
         final DetailAST tokenAfterLast = lastAnnot.getNextSibling() != null
                                        ? lastAnnot.getNextSibling()
@@ -248,77 +248,77 @@ public class LeftCurlyCheck
     /**
      * Find the last token of type <code>TokenTypes.ANNOTATION</code>
      * under the given set of modifiers.
-     * @param aModifiers <code>DetailAST</code>.
+     * @param modifiers <code>DetailAST</code>.
      * @return <code>DetailAST</code> or null if there are no annotations.
      */
-    private DetailAST findLastAnnotation(DetailAST aModifiers)
+    private DetailAST findLastAnnotation(DetailAST modifiers)
     {
-        DetailAST aAnnot = aModifiers.findFirstToken(TokenTypes.ANNOTATION);
-        while (aAnnot != null && aAnnot.getNextSibling() != null
-               && aAnnot.getNextSibling().getType() == TokenTypes.ANNOTATION)
+        DetailAST annot = modifiers.findFirstToken(TokenTypes.ANNOTATION);
+        while (annot != null && annot.getNextSibling() != null
+               && annot.getNextSibling().getType() == TokenTypes.ANNOTATION)
         {
-            aAnnot = aAnnot.getNextSibling();
+            annot = annot.getNextSibling();
         }
-        return aAnnot;
+        return annot;
     }
 
     /**
      * Verifies that a specified left curly brace is placed correctly
      * according to policy.
-     * @param aBrace token for left curly brace
-     * @param aStartToken token for start of expression
+     * @param brace token for left curly brace
+     * @param startToken token for start of expression
      */
-    private void verifyBrace(final DetailAST aBrace,
-                             final DetailAST aStartToken)
+    private void verifyBrace(final DetailAST brace,
+                             final DetailAST startToken)
     {
-        final String braceLine = getLine(aBrace.getLineNo() - 1);
+        final String braceLine = getLine(brace.getLineNo() - 1);
 
         // calculate the previous line length without trailing whitespace. Need
         // to handle the case where there is no previous line, cause the line
         // being check is the first line in the file.
-        final int prevLineLen = (aBrace.getLineNo() == 1)
-            ? mMaxLineLength
-            : Utils.lengthMinusTrailingWhitespace(getLine(aBrace.getLineNo() - 2));
+        final int prevLineLen = (brace.getLineNo() == 1)
+            ? maxLineLength
+            : Utils.lengthMinusTrailingWhitespace(getLine(brace.getLineNo() - 2));
 
         // Check for being told to ignore, or have '{}' which is a special case
-        if ((braceLine.length() > (aBrace.getColumnNo() + 1))
-            && (braceLine.charAt(aBrace.getColumnNo() + 1) == '}'))
+        if ((braceLine.length() > (brace.getColumnNo() + 1))
+            && (braceLine.charAt(brace.getColumnNo() + 1) == '}'))
         {
             ; // ignore
         }
         else if (getAbstractOption() == LeftCurlyOption.NL) {
-            if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                log(aBrace.getLineNo(), aBrace.getColumnNo(),
-                        MSG_KEY_LINE_NEW, "{");
+            if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
+                log(brace.getLineNo(), brace.getColumnNo(),
+                    MSG_KEY_LINE_NEW, "{");
             }
         }
         else if (getAbstractOption() == LeftCurlyOption.EOL) {
-            if (Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)
-                && ((prevLineLen + 2) <= mMaxLineLength))
+            if (Utils.whitespaceBefore(brace.getColumnNo(), braceLine)
+                && ((prevLineLen + 2) <= maxLineLength))
             {
-                log(aBrace.getLineNo(), aBrace.getColumnNo(),
-                        MSG_KEY_LINE_PREVIOUS, "{");
+                log(brace.getLineNo(), brace.getColumnNo(),
+                    MSG_KEY_LINE_PREVIOUS, "{");
             }
-            if (!hasLineBreakAfter(aBrace)) {
-                log(aBrace.getLineNo(), aBrace.getColumnNo(), MSG_KEY_LINE_BREAK_AFTER);
+            if (!hasLineBreakAfter(brace)) {
+                log(brace.getLineNo(), brace.getColumnNo(), MSG_KEY_LINE_BREAK_AFTER);
             }
         }
         else if (getAbstractOption() == LeftCurlyOption.NLOW) {
-            if (aStartToken.getLineNo() == aBrace.getLineNo()) {
+            if (startToken.getLineNo() == brace.getLineNo()) {
                 ; // all ok as on the same line
             }
-            else if ((aStartToken.getLineNo() + 1) == aBrace.getLineNo()) {
-                if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                    log(aBrace.getLineNo(), aBrace.getColumnNo(),
+            else if ((startToken.getLineNo() + 1) == brace.getLineNo()) {
+                if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
+                    log(brace.getLineNo(), brace.getColumnNo(),
                         MSG_KEY_LINE_NEW, "{");
                 }
-                else if ((prevLineLen + 2) <= mMaxLineLength) {
-                    log(aBrace.getLineNo(), aBrace.getColumnNo(),
+                else if ((prevLineLen + 2) <= maxLineLength) {
+                    log(brace.getLineNo(), brace.getColumnNo(),
                         MSG_KEY_LINE_PREVIOUS, "{");
                 }
             }
-            else if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                log(aBrace.getLineNo(), aBrace.getColumnNo(),
+            else if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
+                log(brace.getLineNo(), brace.getColumnNo(),
                     MSG_KEY_LINE_NEW, "{");
             }
         }
@@ -326,27 +326,27 @@ public class LeftCurlyCheck
 
     /**
      * Checks if left curly has line break after.
-     * @param aLeftCurly
+     * @param leftCurly
      *        Left curly token.
      * @return
      *        True, left curly has line break after.
      */
-    private boolean hasLineBreakAfter(DetailAST aLeftCurly)
+    private boolean hasLineBreakAfter(DetailAST leftCurly)
     {
         DetailAST nextToken = null;
-        if (aLeftCurly.getType() == TokenTypes.SLIST) {
-            nextToken = aLeftCurly.getFirstChild();
+        if (leftCurly.getType() == TokenTypes.SLIST) {
+            nextToken = leftCurly.getFirstChild();
         }
         else {
-            if (aLeftCurly.getParent().getParent().getType() == TokenTypes.ENUM_DEF)
+            if (leftCurly.getParent().getParent().getType() == TokenTypes.ENUM_DEF)
             {
-                if (!mIgnoreEnums) {
-                    nextToken = aLeftCurly.getNextSibling();
+                if (!ignoreEnums) {
+                    nextToken = leftCurly.getNextSibling();
                 }
             }
         }
         if (nextToken != null && nextToken.getType() != TokenTypes.RCURLY) {
-            if (aLeftCurly.getLineNo() == nextToken.getLineNo()) {
+            if (leftCurly.getLineNo() == nextToken.getLineNo()) {
                 return false;
             }
         }

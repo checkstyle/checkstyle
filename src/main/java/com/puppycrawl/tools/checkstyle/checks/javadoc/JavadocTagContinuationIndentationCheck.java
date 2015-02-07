@@ -49,15 +49,15 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     /**
      * How many spaces to use for new indentation level.
      */
-    private int mOffset = DEFAULT_INDENTATION;
+    private int offset = DEFAULT_INDENTATION;
 
     /**
      * Sets custom indentation level.
-     * @param aOffset custom value.
+     * @param offset custom value.
      */
-    public void setOffset(int aOffset)
+    public void setOffset(int offset)
     {
-        mOffset = aOffset;
+        this.offset = offset;
     }
 
     @Override
@@ -67,10 +67,10 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     }
 
     @Override
-    public void visitJavadocToken(DetailNode aAst)
+    public void visitJavadocToken(DetailNode ast)
     {
-        final List<DetailNode> textNodes = getAllNewlineNodes(aAst);
-        if (isInlineDescription(aAst)) {
+        final List<DetailNode> textNodes = getAllNewlineNodes(ast);
+        if (isInlineDescription(ast)) {
             return;
         }
         for (DetailNode newlineNode : textNodes) {
@@ -81,9 +81,9 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
             {
                 final DetailNode whitespace = JavadocUtils.getFirstChild(textNode);
                 if (whitespace.getType() == JavadocTokenTypes.WS
-                        && whitespace.getText().length() - 1 < mOffset)
+                        && whitespace.getText().length() - 1 < offset)
                 {
-                    log(textNode.getLineNumber(), "tag.continuation.indent", mOffset);
+                    log(textNode.getLineNumber(), "tag.continuation.indent", offset);
                 }
             }
         }
@@ -91,13 +91,13 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
 
     /**
      * Finds and collects all NEWLINE nodes inside DESCRIPTION node.
-     * @param aDescriptionNode DESCRIPTION node.
+     * @param descriptionNode DESCRIPTION node.
      * @return List with NEWLINE nodes.
      */
-    private List<DetailNode> getAllNewlineNodes(DetailNode aDescriptionNode)
+    private List<DetailNode> getAllNewlineNodes(DetailNode descriptionNode)
     {
         final List<DetailNode> textNodes = new ArrayList<DetailNode>();
-        DetailNode node = JavadocUtils.getFirstChild(aDescriptionNode);
+        DetailNode node = JavadocUtils.getFirstChild(descriptionNode);
         while (JavadocUtils.getNextSibling(node) != null) {
             if (node.getType() == JavadocTokenTypes.NEWLINE) {
                 textNodes.add(node);
@@ -109,12 +109,12 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
 
     /**
      * Checks, if description node is a description of in-line tag.
-     * @param aDescription DESCRIPTION node.
+     * @param description DESCRIPTION node.
      * @return true, if description node is a description of in-line tag.
      */
-    private boolean isInlineDescription(DetailNode aDescription)
+    private boolean isInlineDescription(DetailNode description)
     {
-        DetailNode inlineTag = aDescription.getParent();
+        DetailNode inlineTag = description.getParent();
         while (inlineTag != null) {
             if (inlineTag.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
                 return true;

@@ -58,17 +58,17 @@ public final class NestedForDepthCheck extends AbstractNestedDepthCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (TokenTypes.LITERAL_FOR == aAST.getType()) {
-            nestIn(aAST, "nested.for.depth");
+        if (TokenTypes.LITERAL_FOR == ast.getType()) {
+            nestIn(ast, "nested.for.depth");
         }
     }
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
-        if (TokenTypes.LITERAL_FOR == aAST.getType()) {
+        if (TokenTypes.LITERAL_FOR == ast.getType()) {
             nestOut();
         }
     }

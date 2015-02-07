@@ -30,16 +30,16 @@ public class ArrayInitHandler extends BlockParentHandler
 {
     /**
      * Construct an instance of this handler with the given indentation check,
-     * abstract syntax tree, and parent handler.
+     * astract syntax tree, and parent handler.
      *
-     * @param aIndentCheck   the indentation check
-     * @param aAst           the abstract syntax tree
-     * @param aParent        the parent handler
+     * @param indentCheck   the indentation check
+     * @param ast           the astract syntax tree
+     * @param parent        the parent handler
      */
-    public ArrayInitHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent)
+    public ArrayInitHandler(IndentationCheck indentCheck,
+        DetailAST ast, ExpressionHandler parent)
     {
-        super(aIndentCheck, "array initialization", aAst, aParent);
+        super(indentCheck, "array initialization", ast, parent);
     }
 
     @Override
@@ -124,25 +124,25 @@ public class ArrayInitHandler extends BlockParentHandler
     }
 
     /**
-     * @param aLineNo   number of line on which we search
-     * @param aColumnNo number of column after which we search
+     * @param lineNo   number of line on which we search
+     * @param columnNo number of column after which we search
      *
      * @return column number of first non-blank char after
      *         specified column on specified line or -1 if
      *         such char doesn't exist.
      */
-    private int getNextFirstNonblankOnLineAfter(int aLineNo, int aColumnNo)
+    private int getNextFirstNonblankOnLineAfter(int lineNo, int columnNo)
     {
-        int columnNo = aColumnNo + 1;
-        final String line = getIndentCheck().getLines()[aLineNo - 1];
+        int realColumnNo = columnNo + 1;
+        final String line = getIndentCheck().getLines()[lineNo - 1];
         final int lineLength = line.length();
-        while ((columnNo < lineLength)
-               && Character.isWhitespace(line.charAt(columnNo)))
+        while ((realColumnNo < lineLength)
+               && Character.isWhitespace(line.charAt(realColumnNo)))
         {
-            columnNo++;
+            realColumnNo++;
         }
 
-        return (columnNo == lineLength) ? -1 : columnNo;
+        return (realColumnNo == lineLength) ? -1 : realColumnNo;
     }
 
     /**

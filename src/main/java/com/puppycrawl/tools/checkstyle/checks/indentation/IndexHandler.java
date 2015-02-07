@@ -32,15 +32,15 @@ public class IndexHandler extends ExpressionHandler
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
-     * @param aIndentCheck   the indentation check
-     * @param aAST           the abstract syntax tree
-     * @param aParent        the parent handler
+     * @param indentCheck   the indentation check
+     * @param ast           the abstract syntax tree
+     * @param parent        the parent handler
      */
-    public IndexHandler(IndentationCheck aIndentCheck,
-                      DetailAST aAST,
-                      ExpressionHandler aParent)
+    public IndexHandler(IndentationCheck indentCheck,
+                      DetailAST ast,
+                      ExpressionHandler parent)
     {
-        super(aIndentCheck, "index op", aAST, aParent);
+        super(indentCheck, "index op", ast, parent);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class IndexHandler extends ExpressionHandler
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
+    public IndentLevel suggestedChildLevel(ExpressionHandler child)
     {
         return getLevel();
     }

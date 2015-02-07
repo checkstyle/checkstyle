@@ -29,17 +29,17 @@ import java.util.List;
 public class FileTabCharacterCheck extends AbstractFileSetCheck
 {
     /** Indicates whether to report once per file, or for each line. */
-    private boolean mEachLine;
+    private boolean eachLine;
 
     @Override
-    protected void processFiltered(File aFile, List<String> aLines)
+    protected void processFiltered(File file, List<String> lines)
     {
         int lineNum = 0;
-        for (final String line : aLines) {
+        for (final String line : lines) {
             lineNum++;
             final int tabPosition = line.indexOf('\t');
             if (tabPosition != -1) {
-                if (mEachLine) {
+                if (eachLine) {
                     log(lineNum, tabPosition + 1, "containsTab");
                 }
                 else {
@@ -52,10 +52,10 @@ public class FileTabCharacterCheck extends AbstractFileSetCheck
 
     /**
      * Whether report on each line containing a tab.
-     * @param aEachLine Whether report on each line containing a tab.
+     * @param eachLine Whether report on each line containing a tab.
      */
-    public void setEachLine(boolean aEachLine)
+    public void setEachLine(boolean eachLine)
     {
-        mEachLine = aEachLine;
+        this.eachLine = eachLine;
     }
 }

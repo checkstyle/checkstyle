@@ -23,7 +23,7 @@
                 </p>
                 <p>
                     <a
-                        href="https://github.com/checkstyle/checkstyle/blob/master/sun_checks.xml">
+                        href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml">
                     incomplete Checkstyle configuration for 'Sun's Java Style'</a>
                 </p>
          </subsection>

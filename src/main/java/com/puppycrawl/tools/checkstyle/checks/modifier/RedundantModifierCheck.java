@@ -52,11 +52,11 @@ public class RedundantModifierCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (TokenTypes.INTERFACE_DEF == aAST.getType()) {
+        if (TokenTypes.INTERFACE_DEF == ast.getType()) {
             final DetailAST modifiers =
-                aAST.findFirstToken(TokenTypes.MODIFIERS);
+                ast.findFirstToken(TokenTypes.MODIFIERS);
             if (null != modifiers) {
                 for (final int tokenType : new int[] {
                     TokenTypes.LITERAL_STATIC,
@@ -71,8 +71,8 @@ public class RedundantModifierCheck
                 }
             }
         }
-        else if (isInterfaceOrAnnotationMember(aAST)) {
-            final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        else if (isInterfaceOrAnnotationMember(ast)) {
+            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             DetailAST modifier = modifiers.getFirstChild();
             while (modifier != null) {
 
@@ -83,7 +83,7 @@ public class RedundantModifierCheck
                 final int type = modifier.getType();
                 if ((type == TokenTypes.LITERAL_PUBLIC)
                     || ((type == TokenTypes.LITERAL_STATIC)
-                            && aAST.getType() != TokenTypes.METHOD_DEF)
+                            && ast.getType() != TokenTypes.METHOD_DEF)
                     || (type == TokenTypes.ABSTRACT)
                     || (type == TokenTypes.FINAL))
                 {
@@ -95,14 +95,14 @@ public class RedundantModifierCheck
                 modifier = modifier.getNextSibling();
             }
         }
-        else if (aAST.getType() == TokenTypes.METHOD_DEF) {
+        else if (ast.getType() == TokenTypes.METHOD_DEF) {
             final DetailAST modifiers =
-                            aAST.findFirstToken(TokenTypes.MODIFIERS);
+                            ast.findFirstToken(TokenTypes.MODIFIERS);
             // private method?
             boolean checkFinal =
                 modifiers.branchContains(TokenTypes.LITERAL_PRIVATE);
             // declared in a final class?
-            DetailAST parent = aAST.getParent();
+            DetailAST parent = ast.getParent();
             while (parent != null) {
                 if (parent.getType() == TokenTypes.CLASS_DEF) {
                     final DetailAST classModifiers =
@@ -113,7 +113,7 @@ public class RedundantModifierCheck
                 }
                 parent = parent.getParent();
             }
-            if (checkFinal && !isAnnotatedWithSafeVarargs(aAST)) {
+            if (checkFinal && !isAnnotatedWithSafeVarargs(ast)) {
                 DetailAST modifier = modifiers.getFirstChild();
                 while (modifier != null) {
                     final int type = modifier.getType();
@@ -130,12 +130,12 @@ public class RedundantModifierCheck
 
     /**
      * Checks if current AST node is member of Interface or Annotation, not of their subnodes.
-     * @param aAST AST node
+     * @param ast AST node
      * @return true or false
      */
-    private static boolean isInterfaceOrAnnotationMember(DetailAST aAST)
+    private static boolean isInterfaceOrAnnotationMember(DetailAST ast)
     {
-        final DetailAST parentTypeDef = aAST.getParent().getParent();
+        final DetailAST parentTypeDef = ast.getParent().getParent();
         return parentTypeDef.getType() == TokenTypes.INTERFACE_DEF
                || parentTypeDef.getType() == TokenTypes.ANNOTATION_DEF;
     }
@@ -144,13 +144,13 @@ public class RedundantModifierCheck
      * Checks if method definition is annotated with
      * <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/SafeVarargs.html">
      * SafeVarargs</a> annotation
-     * @param aMethodDef method definition node
+     * @param methodDef method definition node
      * @return true or false
      */
-    private static boolean isAnnotatedWithSafeVarargs(DetailAST aMethodDef)
+    private static boolean isAnnotatedWithSafeVarargs(DetailAST methodDef)
     {
         boolean result = false;
-        final List<DetailAST> methodAnnotationsList = getMethodAnnotationsList(aMethodDef);
+        final List<DetailAST> methodAnnotationsList = getMethodAnnotationsList(methodDef);
         for (DetailAST annotationNode : methodAnnotationsList) {
             if ("SafeVarargs".equals(annotationNode.getLastChild().getText())) {
                 result = true;
@@ -162,13 +162,13 @@ public class RedundantModifierCheck
 
     /**
      * Gets the list of annotations on method definition
-     * @param aMethodDef method definition node
+     * @param methodDef method definition node
      * @return List of annotations
      */
-    private static List<DetailAST> getMethodAnnotationsList(DetailAST aMethodDef)
+    private static List<DetailAST> getMethodAnnotationsList(DetailAST methodDef)
     {
         final List<DetailAST> annotationsList = new ArrayList<>();
-        final DetailAST modifiers = aMethodDef.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modifiers = methodDef.findFirstToken(TokenTypes.MODIFIERS);
         DetailAST modifier = modifiers.getFirstChild();
         while (modifier != null) {
             if (modifier.getType() == TokenTypes.ANNOTATION) {

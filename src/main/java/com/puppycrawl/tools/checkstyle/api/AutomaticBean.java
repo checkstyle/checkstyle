@@ -49,7 +49,7 @@ public class AutomaticBean
     implements Configurable, Contextualizable
 {
     /** the configuration of this bean */
-    private Configuration mConfiguration;
+    private Configuration configuration;
 
 
     /**
@@ -113,25 +113,25 @@ public class AutomaticBean
      * is called to allow completion of the bean's local setup,
      * after that the method {@link #setupChild setupChild}
      * is called for each {@link Configuration#getChildren child Configuration}
-     * of <code>aConfiguration</code>.
+     * of <code>configuration</code>.
      *
-     * @param aConfiguration {@inheritDoc}
+     * @param configuration {@inheritDoc}
      * @throws CheckstyleException {@inheritDoc}
      * @see Configurable
      */
     @Override
-    public final void configure(Configuration aConfiguration)
+    public final void configure(Configuration configuration)
         throws CheckstyleException
     {
-        mConfiguration = aConfiguration;
+        this.configuration = configuration;
 
         final BeanUtilsBean beanUtils = createBeanUtilsBean();
 
         // TODO: debug log messages
-        final String[] attributes = aConfiguration.getAttributeNames();
+        final String[] attributes = configuration.getAttributeNames();
 
         for (final String key : attributes) {
-            final String value = aConfiguration.getAttribute(key);
+            final String value = configuration.getAttribute(key);
 
             try {
                 // BeanUtilsBean.copyProperties silently ignores missing setters
@@ -142,7 +142,7 @@ public class AutomaticBean
                 if ((pd == null) || (pd.getWriteMethod() == null)) {
                     throw new CheckstyleException(
                         "Property '" + key + "' in module "
-                        + aConfiguration.getName()
+                        + configuration.getName()
                         + " does not exist, please check the documentation");
                 }
 
@@ -152,7 +152,7 @@ public class AutomaticBean
             catch (final InvocationTargetException e) {
                 throw new CheckstyleException(
                     "Cannot set property '" + key + "' in module "
-                    + aConfiguration.getName() + " to '" + value
+                    + configuration.getName() + " to '" + value
                     + "': " + e.getTargetException().getMessage(), e);
             }
             catch (final IllegalAccessException e) {
@@ -168,19 +168,19 @@ public class AutomaticBean
             catch (final IllegalArgumentException e) {
                 throw new CheckstyleException(
                     "illegal value '" + value + "' for property '" + key
-                    + "' of module " + aConfiguration.getName(), e);
+                    + "' of module " + configuration.getName(), e);
             }
             catch (final ConversionException e) {
                 throw new CheckstyleException(
                     "illegal value '" + value + "' for property '" + key
-                    + "' of module " + aConfiguration.getName(), e);
+                    + "' of module " + configuration.getName(), e);
             }
 
         }
 
         finishLocalSetup();
 
-        final Configuration[] childConfigs = aConfiguration.getChildren();
+        final Configuration[] childConfigs = configuration.getChildren();
         for (final Configuration childConfig : childConfigs) {
             setupChild(childConfig);
         }
@@ -188,21 +188,21 @@ public class AutomaticBean
 
     /**
      * Implements the Contextualizable interface using bean introspection.
-     * @param aContext {@inheritDoc}
+     * @param context {@inheritDoc}
      * @throws CheckstyleException {@inheritDoc}
      * @see Contextualizable
      */
     @Override
-    public final void contextualize(Context aContext)
+    public final void contextualize(Context context)
         throws CheckstyleException
     {
         final BeanUtilsBean beanUtils = createBeanUtilsBean();
 
         // TODO: debug log messages
-        final Collection<String> attributes = aContext.getAttributeNames();
+        final Collection<String> attributes = context.getAttributeNames();
 
         for (final String key : attributes) {
-            final Object value = aContext.get(key);
+            final Object value = context.get(key);
 
             try {
                 beanUtils.copyProperty(this, key, value);
@@ -238,7 +238,7 @@ public class AutomaticBean
      */
     protected final Configuration getConfiguration()
     {
-        return mConfiguration;
+        return configuration;
     }
 
     /**
@@ -258,11 +258,11 @@ public class AutomaticBean
      * <p>
      * The default implementation does nothing.
      * </p>
-     * @param aChildConf a child of this component's Configuration
+     * @param childConf a child of this component's Configuration
      * @throws CheckstyleException if there is a configuration error.
      * @see Configuration#getChildren
      */
-    protected void setupChild(Configuration aChildConf)
+    protected void setupChild(Configuration childConf)
         throws CheckstyleException
     {
     }
@@ -276,16 +276,16 @@ public class AutomaticBean
     {
         /** {@inheritDoc} */
         @Override
-        public Object convert(@SuppressWarnings("rawtypes") Class aType,
-            Object aValue)
+        public Object convert(@SuppressWarnings("rawtypes") Class type,
+            Object value)
         {
-            if (null == aType) {
+            if (null == type) {
                 throw new ConversionException("Cannot convert from null.");
             }
 
             // Convert to a String and trim it for the tokenizer.
             final StringTokenizer st = new StringTokenizer(
-                aValue.toString().trim(), ",");
+                value.toString().trim(), ",");
             final List<String> result = Lists.newArrayList();
 
             while (st.hasMoreTokens()) {

@@ -26,12 +26,12 @@ import org.junit.Test;
 public class EmptyForIteratorPadCheckTest
     extends BaseCheckTestSupport
 {
-    private DefaultConfiguration mCheckConfig;
+    private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp()
     {
-        mCheckConfig = createCheckConfig(EmptyForIteratorPadCheck.class);
+        checkConfig = createCheckConfig(EmptyForIteratorPadCheck.class);
     }
 
     @Test
@@ -41,16 +41,16 @@ public class EmptyForIteratorPadCheckTest
             "27:31: ';' is followed by whitespace.",
             "43:32: ';' is followed by whitespace.",
         };
-        verify(mCheckConfig, getPath("InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
     }
 
     @Test
     public void testSpaceOption() throws Exception
     {
-        mCheckConfig.addAttribute("option", PadOption.SPACE.toString());
+        checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = {
             "23:31: ';' is not followed by whitespace.",
         };
-        verify(mCheckConfig, getPath("InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
     }
 }

@@ -73,7 +73,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
 {
     /** Do we need to check if rculry starts line. */
-    private boolean mShouldStartLine = true;
+    private boolean shouldStartLine = true;
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -109,11 +109,11 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
 
     /**
      * Does the check need to check if rcurly starts line.
-     * @param aFlag new value of this property.
+     * @param flag new value of this property.
      */
-    public void setShouldStartLine(boolean aFlag)
+    public void setShouldStartLine(boolean flag)
     {
-        mShouldStartLine = aFlag;
+        shouldStartLine = flag;
     }
 
     @Override
@@ -149,7 +149,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         // Attempt to locate the tokens to do the check
         DetailAST rcurly;
@@ -157,74 +157,74 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
         DetailAST nextToken;
         boolean shouldCheckLastRcurly = false;
 
-        switch (aAST.getType()) {
-        case TokenTypes.LITERAL_TRY:
-            lcurly = aAST.getFirstChild();
-            nextToken = lcurly.getNextSibling();
-            rcurly = lcurly.getLastChild();
-            break;
-        case TokenTypes.LITERAL_CATCH:
-            nextToken = aAST.getNextSibling();
-            lcurly = aAST.getLastChild();
-            rcurly = lcurly.getLastChild();
-            if (nextToken == null) {
-                shouldCheckLastRcurly = true;
-                nextToken = getNextToken(aAST);
-            }
-            break;
-        case TokenTypes.LITERAL_IF:
-            nextToken = aAST.findFirstToken(TokenTypes.LITERAL_ELSE);
-            if (nextToken != null) {
-                lcurly = nextToken.getPreviousSibling();
+        switch (ast.getType()) {
+            case TokenTypes.LITERAL_TRY:
+                lcurly = ast.getFirstChild();
+                nextToken = lcurly.getNextSibling();
                 rcurly = lcurly.getLastChild();
-            }
-            else {
-                shouldCheckLastRcurly = true;
-                nextToken = getNextToken(aAST);
-                lcurly = aAST.getLastChild();
+                break;
+            case TokenTypes.LITERAL_CATCH:
+                nextToken = ast.getNextSibling();
+                lcurly = ast.getLastChild();
                 rcurly = lcurly.getLastChild();
-            }
-            break;
-        case TokenTypes.LITERAL_ELSE:
-            shouldCheckLastRcurly = true;
-            nextToken = getNextToken(aAST);
-            lcurly = aAST.getFirstChild();
-            rcurly = lcurly.getLastChild();
-            break;
-        case TokenTypes.LITERAL_FINALLY:
-            shouldCheckLastRcurly = true;
-            nextToken = getNextToken(aAST);
-            lcurly = aAST.getFirstChild();
-            rcurly = lcurly.getLastChild();
-            break;
-        case TokenTypes.CLASS_DEF:
-            final DetailAST child = aAST.getLastChild();
-            lcurly = child.getFirstChild();
-            rcurly = child.getLastChild();
-            nextToken = aAST;
-            break;
-        case TokenTypes.CTOR_DEF:
-        case TokenTypes.STATIC_INIT:
-        case TokenTypes.INSTANCE_INIT:
-            lcurly = aAST.findFirstToken(TokenTypes.SLIST);
-            rcurly = lcurly.getLastChild();
-            nextToken = aAST;
-            break;
-        case TokenTypes.METHOD_DEF:
-        case TokenTypes.LITERAL_FOR:
-        case TokenTypes.LITERAL_WHILE:
-        case TokenTypes.LITERAL_DO:
-            lcurly = aAST.findFirstToken(TokenTypes.SLIST);
-            //SLIST could be absent if method is abstract, and code like "while(true);"
-            if (lcurly == null) {
-                return;
-            }
-            rcurly = lcurly.getLastChild();
-            nextToken = aAST;
-            break;
-        default:
-            throw new RuntimeException("Unexpected token type ("
-                    + TokenTypes.getTokenName(aAST.getType()) + ")");
+                if (nextToken == null) {
+                    shouldCheckLastRcurly = true;
+                    nextToken = getNextToken(ast);
+                }
+                break;
+            case TokenTypes.LITERAL_IF:
+                nextToken = ast.findFirstToken(TokenTypes.LITERAL_ELSE);
+                if (nextToken != null) {
+                    lcurly = nextToken.getPreviousSibling();
+                    rcurly = lcurly.getLastChild();
+                }
+                else {
+                    shouldCheckLastRcurly = true;
+                    nextToken = getNextToken(ast);
+                    lcurly = ast.getLastChild();
+                    rcurly = lcurly.getLastChild();
+                }
+                break;
+            case TokenTypes.LITERAL_ELSE:
+                shouldCheckLastRcurly = true;
+                nextToken = getNextToken(ast);
+                lcurly = ast.getFirstChild();
+                rcurly = lcurly.getLastChild();
+                break;
+            case TokenTypes.LITERAL_FINALLY:
+                shouldCheckLastRcurly = true;
+                nextToken = getNextToken(ast);
+                lcurly = ast.getFirstChild();
+                rcurly = lcurly.getLastChild();
+                break;
+            case TokenTypes.CLASS_DEF:
+                final DetailAST child = ast.getLastChild();
+                lcurly = child.getFirstChild();
+                rcurly = child.getLastChild();
+                nextToken = ast;
+                break;
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.STATIC_INIT:
+            case TokenTypes.INSTANCE_INIT:
+                lcurly = ast.findFirstToken(TokenTypes.SLIST);
+                rcurly = lcurly.getLastChild();
+                nextToken = ast;
+                break;
+            case TokenTypes.METHOD_DEF:
+            case TokenTypes.LITERAL_FOR:
+            case TokenTypes.LITERAL_WHILE:
+            case TokenTypes.LITERAL_DO:
+                lcurly = ast.findFirstToken(TokenTypes.SLIST);
+                //SLIST could be absent if method is abstract, and code like "while(true);"
+                if (lcurly == null) {
+                    return;
+                }
+                rcurly = lcurly.getLastChild();
+                nextToken = ast;
+                break;
+            default:
+                throw new RuntimeException("Unexpected token type ("
+                    + TokenTypes.getTokenName(ast.getType()) + ")");
         }
 
         if ((rcurly == null) || (rcurly.getType() != TokenTypes.RCURLY)) {
@@ -253,7 +253,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
             log(rcurly, MSG_KEY_LINE_ALONE, "}");
         }
 
-        if (!mShouldStartLine) {
+        if (!shouldStartLine) {
             return;
         }
         final boolean startsLine =
@@ -267,18 +267,18 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
 
     /**
      * Checks if definition body is empty.
-     * @param aLcurly left curly.
+     * @param lcurly left curly.
      * @return true if definition body is empty.
      */
-    private boolean isEmptyBody(DetailAST aLcurly)
+    private boolean isEmptyBody(DetailAST lcurly)
     {
         boolean result = false;
-        if (aLcurly.getParent().getType() == TokenTypes.OBJBLOCK) {
-            if (aLcurly.getNextSibling().getType() == TokenTypes.RCURLY) {
+        if (lcurly.getParent().getType() == TokenTypes.OBJBLOCK) {
+            if (lcurly.getNextSibling().getType() == TokenTypes.RCURLY) {
                 result = true;
             }
         }
-        else if (aLcurly.getFirstChild().getType() == TokenTypes.RCURLY) {
+        else if (lcurly.getFirstChild().getType() == TokenTypes.RCURLY) {
             result = true;
         }
         return result;
@@ -286,13 +286,13 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
 
     /**
      * Finds next token after the given one.
-     * @param aAST the given node.
+     * @param ast the given node.
      * @return the token which represents next lexical item.
      */
-    private DetailAST getNextToken(DetailAST aAST)
+    private DetailAST getNextToken(DetailAST ast)
     {
         DetailAST next = null;
-        DetailAST parent = aAST;
+        DetailAST parent = ast;
         while ((parent != null) && (next == null)) {
             next = parent.getNextSibling();
             parent = parent.getParent();
@@ -302,16 +302,16 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
 
     /**
      * Checks if right curly has line break before.
-     * @param aRightCurly
+     * @param rightCurly
      *        Right curly token.
      * @return
      *        True, if right curly has line break before.
      */
-    private boolean hasLineBreakBefore(DetailAST aRightCurly)
+    private boolean hasLineBreakBefore(DetailAST rightCurly)
     {
-        if (aRightCurly != null) {
-            final DetailAST previousToken = aRightCurly.getPreviousSibling();
-            if (previousToken != null && aRightCurly.getLineNo() == previousToken.getLineNo()) {
+        if (rightCurly != null) {
+            final DetailAST previousToken = rightCurly.getPreviousSibling();
+            if (previousToken != null && rightCurly.getLineNo() == previousToken.getLineNo()) {
                 return false;
             }
         }

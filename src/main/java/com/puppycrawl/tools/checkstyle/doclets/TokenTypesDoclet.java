@@ -48,19 +48,19 @@ public final class TokenTypesDoclet
 
     /**
      * The doclet's starter method.
-     * @param aRoot <code>RootDoc</code> given to the doclet
+     * @param root <code>RootDoc</code> given to the doclet
      * @exception FileNotFoundException will be thrown if the doclet
      *            will be unable to write to the specified file.
      * @return true if the given <code>RootDoc</code> is processed.
      */
-    public static boolean start(RootDoc aRoot) throws FileNotFoundException
+    public static boolean start(RootDoc root) throws FileNotFoundException
     {
-        final String fileName = getDestFileName(aRoot.options());
+        final String fileName = getDestFileName(root.options());
         final FileOutputStream fos = new FileOutputStream(fileName);
         PrintStream ps = null;
         try {
             ps = new PrintStream(fos);
-            final ClassDoc[] classes = aRoot.classes();
+            final ClassDoc[] classes = root.classes();
             if ((classes.length != 1)
                 || !"TokenTypes".equals(classes[0].name()))
             {
@@ -94,12 +94,12 @@ public final class TokenTypesDoclet
 
     /**
      * Returns option length (how many parts are in option).
-     * @param aOption option name to process
+     * @param option option name to process
      * @return option length (how many parts are in option).
      */
-    public static int optionLength(String aOption)
+    public static int optionLength(String option)
     {
-        if (DEST_FILE_OPT.equals(aOption)) {
+        if (DEST_FILE_OPT.equals(option)) {
             return 2;
         }
         return 0;
@@ -107,18 +107,18 @@ public final class TokenTypesDoclet
 
     /**
      * Checks that only valid options was specified.
-     * @param aOptions all parsed options
-     * @param aReporter the reporter to report errors.
+     * @param options all parsed options
+     * @param reporter the reporter to report errors.
      * @return true if only valid options was specified
      */
-    public static boolean validOptions(String[][] aOptions,
-                                       DocErrorReporter aReporter)
+    public static boolean validOptions(String[][] options,
+                                       DocErrorReporter reporter)
     {
         boolean foundDestFileOption = false;
-        for (final String[] opt : aOptions) {
+        for (final String[] opt : options) {
             if (DEST_FILE_OPT.equals(opt[0])) {
                 if (foundDestFileOption) {
-                    aReporter.printError("Only one -destfile option allowed.");
+                    reporter.printError("Only one -destfile option allowed.");
                     return false;
                 }
                 foundDestFileOption = true;
@@ -127,20 +127,20 @@ public final class TokenTypesDoclet
         if (!foundDestFileOption) {
             final String message =
                 "Usage: javadoc -destfile file -doclet TokenTypesDoclet ...";
-            aReporter.printError(message);
+            reporter.printError(message);
         }
         return foundDestFileOption;
     }
 
     /**
      * Reads destination file name.
-     * @param aOptions all specified options.
+     * @param options all specified options.
      * @return destination file name
      */
-    private static String getDestFileName(String[][] aOptions)
+    private static String getDestFileName(String[][] options)
     {
         String fileName = null;
-        for (final String[] opt : aOptions) {
+        for (final String[] opt : options) {
             if (DEST_FILE_OPT.equals(opt[0])) {
                 fileName = opt[1];
             }

@@ -25,12 +25,12 @@ import org.junit.Test;
 
 public class TrailingCommentCheckTest extends BaseCheckTestSupport
 {
-    private DefaultConfiguration mCheckConfig;
+    private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp()
     {
-        mCheckConfig = createCheckConfig(TrailingCommentCheck.class);
+        checkConfig = createCheckConfig(TrailingCommentCheck.class);
     }
 
     @Test
@@ -44,13 +44,13 @@ public class TrailingCommentCheckTest extends BaseCheckTestSupport
             "19: Don't use trailing comments.",
             "29: Don't use trailing comments.",
         };
-        verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
     @Test
     public void testLegalComment() throws Exception
     {
-        mCheckConfig.addAttribute("legalComment", "^NOI18N$");
+        checkConfig.addAttribute("legalComment", "^NOI18N$");
         final String[] expected = {
             "4: Don't use trailing comments.",
             "7: Don't use trailing comments.",
@@ -58,6 +58,6 @@ public class TrailingCommentCheckTest extends BaseCheckTestSupport
             "18: Don't use trailing comments.",
             "19: Don't use trailing comments.",
         };
-        verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 }

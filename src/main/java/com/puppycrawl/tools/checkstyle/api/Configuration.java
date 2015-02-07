@@ -39,11 +39,11 @@ public interface Configuration extends Serializable
 
     /**
      * The attribute value for an attribute name.
-     * @param aName the attribute name
-     * @return the value that is associated with aName
-     * @throws CheckstyleException if aName is not a valid attribute name
+     * @param name the attribute name
+     * @return the value that is associated with name
+     * @throws CheckstyleException if name is not a valid attribute name
      */
-    String getAttribute(String aName) throws CheckstyleException;
+    String getAttribute(String name) throws CheckstyleException;
 
     /**
      * The set of child configurations.

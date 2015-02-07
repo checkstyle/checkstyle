@@ -540,7 +540,7 @@ class FooBar {
 
         <p>
           For an example import control file, look at the file called <a
-          href="https://github.com/checkstyle/checkstyle/blob/master/import-control.xml">import-control.xml</a>
+          href="https://github.com/checkstyle/checkstyle/blob/master/config/import-control.xml">import-control.xml</a>
           which is part of the Checkstyle distribution.
         </p>
       </subsection>
@@ -598,7 +598,7 @@ class FooBar {
         <p>
           3) THIRD_PARTY_PACKAGE group. This group sets ordering of third party imports.
           Third party imports are all imports except STATIC,
-          SAME_PACKAGE(n) and STANDARD_JAVA_PACKAGE.
+          SAME_PACKAGE(n), STANDARD_JAVA_PACKAGE and SPECIAL_IMPORTS.
         </p>
         <p>
           4) STANDARD_JAVA_PACKAGE group. This group sets ordering of standard java (java|javax) imports.
@@ -639,7 +639,7 @@ class FooBar {
             <td>thirdPartyPackageRegExp</td>
             <td>RegExp for THIRDPARTY_PACKAGE group imports.</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^$</code></td>
+            <td><code>.*</code></td>
           </tr>
           <tr>
             <td>specialImportsRegExp</td>
@@ -696,6 +696,34 @@ class FooBar {
        <source>
 &lt;module name=&quot;CustomImportOrder&quot;&gt;
     &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+       </source>
+       <p>
+         To force checking imports sequence such as:
+       </p>
+       <source>
+package com.puppycrawl.tools.checkstyle.imports;
+
+import com.google.common.annotations.GwtCompatible;
+import com.google.common.annotations.Beta;
+import com.google.common.annotations.VisibleForTesting;
+
+import org.abego.treelayout.Configuration;
+
+import static sun.tools.util.ModifierFilter.ALL_ACCESS;
+
+import com.google.common.annotations.GwtCompatible; // violation here - should be in the
+                                                    // THIRD_PARTY_PACKAGE group
+import android.*;
+       </source>
+       <p>
+         configure as follows:
+       </p>
+       <source>
+&lt;module name=&quot;CustomImportOrder&quot;&gt;
+    &lt;property name=&quot;customImportOrderRules&quot;
+    value=&quot;SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STATIC###SPECIAL_IMPORTS&quot;/&gt;
+    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;android.*&quot;/&gt;
 &lt;/module&gt;
        </source>
       </subsection>

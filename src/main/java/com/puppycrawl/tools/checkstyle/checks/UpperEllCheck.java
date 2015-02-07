@@ -56,11 +56,11 @@ public class UpperEllCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (aAST.getText().endsWith("l")) {
-            log(aAST.getLineNo(),
-                aAST.getColumnNo() + aAST.getText().length() - 1,
+        if (ast.getText().endsWith("l")) {
+            log(ast.getLineNo(),
+                ast.getColumnNo() + ast.getText().length() - 1,
                 "upperEll");
         }
     }

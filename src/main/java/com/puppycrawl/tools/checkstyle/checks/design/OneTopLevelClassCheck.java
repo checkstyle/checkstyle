@@ -84,10 +84,10 @@ public class OneTopLevelClassCheck extends Check
      * True if a java source file contains a type
      * with a public access level modifier.
      */
-    private boolean mPublicTypeFound;
+    private boolean publicTypeFound;
 
     /** Mapping between type names and line numbers of the type declarations.*/
-    private TreeMap<Integer, String> mLineNumberTypeMap =
+    private TreeMap<Integer, String> lineNumberTypeMap =
             new TreeMap<Integer, String>();
 
     @Override
@@ -97,22 +97,22 @@ public class OneTopLevelClassCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
-        DetailAST currentNode = aRootAST;
+        DetailAST currentNode = rootAST;
         while (currentNode != null) {
             if (currentNode.getType() == TokenTypes.CLASS_DEF
                     || currentNode.getType() == TokenTypes.ENUM_DEF
                     || currentNode.getType() == TokenTypes.INTERFACE_DEF)
             {
                 if (isPublic(currentNode)) {
-                    mPublicTypeFound = true;
+                    publicTypeFound = true;
                 }
 
                 else {
                     final String typeName = currentNode.
                             findFirstToken(TokenTypes.IDENT).getText();
-                    mLineNumberTypeMap.put(currentNode.getLineNo(), typeName);
+                    lineNumberTypeMap.put(currentNode.getLineNo(), typeName);
                 }
             }
             currentNode = currentNode.getNextSibling();
@@ -120,32 +120,32 @@ public class OneTopLevelClassCheck extends Check
     }
 
     @Override
-    public void finishTree(DetailAST aRootAST)
+    public void finishTree(DetailAST rootAST)
     {
-        if (!mPublicTypeFound && !mLineNumberTypeMap.isEmpty()) {
+        if (!publicTypeFound && !lineNumberTypeMap.isEmpty()) {
             // skip first top-level type.
-            mLineNumberTypeMap.remove(mLineNumberTypeMap.firstKey());
+            lineNumberTypeMap.remove(lineNumberTypeMap.firstKey());
         }
 
         for (Map.Entry<Integer, String> entry
-                : mLineNumberTypeMap.entrySet())
+                : lineNumberTypeMap.entrySet())
         {
             log(entry.getKey(), "one.top.level.class", entry.getValue());
         }
 
-        mLineNumberTypeMap.clear();
-        mPublicTypeFound = false;
+        lineNumberTypeMap.clear();
+        publicTypeFound = false;
     }
 
     /**
      * Checks if a type is public.
-     * @param aTypeDef type definition node.
+     * @param typeDef type definition node.
      * @return true if a type has a public access level modifier.
      */
-    private boolean isPublic(DetailAST aTypeDef)
+    private boolean isPublic(DetailAST typeDef)
     {
         final DetailAST modifiers =
-                aTypeDef.findFirstToken(TokenTypes.MODIFIERS);
+                typeDef.findFirstToken(TokenTypes.MODIFIERS);
         return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null;
     }
 }

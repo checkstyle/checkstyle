@@ -100,7 +100,7 @@ public final class MissingOverrideCheck extends Check
         "annotation.missing.override";
 
     /** @see #setJavaFiveCompatibility(boolean) */
-    private boolean mJavaFiveCompatibility;
+    private boolean javaFiveCompatibility;
 
     /**
      * Sets Java 5 compatibility mode.
@@ -116,11 +116,11 @@ public final class MissingOverrideCheck extends Check
      * false to turn off Java 5 compatibility mode.
      * </p>
      *
-     * @param aCompatibility compatibility or not
+     * @param compatibility compatibility or not
      */
-    public void setJavaFiveCompatibility(final boolean aCompatibility)
+    public void setJavaFiveCompatibility(final boolean compatibility)
     {
-        this.mJavaFiveCompatibility = aCompatibility;
+        this.javaFiveCompatibility = compatibility;
     }
 
     /** {@inheritDoc} */
@@ -147,21 +147,21 @@ public final class MissingOverrideCheck extends Check
 
     /** {@inheritDoc} */
     @Override
-    public void visitToken(final DetailAST aAST)
+    public void visitToken(final DetailAST ast)
     {
         final TextBlock javadoc =
-            this.getFileContents().getJavadocBefore(aAST.getLineNo());
+            this.getFileContents().getJavadocBefore(ast.getLineNo());
 
 
-        final boolean containsTag = this.containsJavadocTag(javadoc);
-        if (containsTag && !JavadocTagInfo.INHERIT_DOC.isValidOn(aAST)) {
-            this.log(aAST.getLineNo(), MSG_KEY_TAG_NOT_VALID_ON,
+        final boolean containastag = this.containsJavadocTag(javadoc);
+        if (containastag && !JavadocTagInfo.INHERIT_DOC.isValidOn(ast)) {
+            this.log(ast.getLineNo(), MSG_KEY_TAG_NOT_VALID_ON,
                 JavadocTagInfo.INHERIT_DOC.getText());
             return;
         }
 
-        if (this.mJavaFiveCompatibility) {
-            final DetailAST defOrNew = aAST.getParent().getParent();
+        if (this.javaFiveCompatibility) {
+            final DetailAST defOrNew = ast.getParent().getParent();
 
             if (defOrNew.branchContains(TokenTypes.EXTENDS_CLAUSE)
                 || defOrNew.branchContains(TokenTypes.IMPLEMENTS_CLAUSE)
@@ -171,27 +171,27 @@ public final class MissingOverrideCheck extends Check
             }
         }
 
-        if (containsTag
-            && (!AnnotationUtility.containsAnnotation(aAST, OVERRIDE)
-            && !AnnotationUtility.containsAnnotation(aAST, FQ_OVERRIDE)))
+        if (containastag
+            && (!AnnotationUtility.containsAnnotation(ast, OVERRIDE)
+            && !AnnotationUtility.containsAnnotation(ast, FQ_OVERRIDE)))
         {
-            this.log(aAST.getLineNo(), MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
+            this.log(ast.getLineNo(), MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
         }
     }
 
     /**
      * Checks to see if the text block contains a inheritDoc tag.
      *
-     * @param aJavadoc the javadoc of the AST
+     * @param javadoc the javadoc of the AST
      * @return true if contains the tag
      */
-    private boolean containsJavadocTag(final TextBlock aJavadoc)
+    private boolean containsJavadocTag(final TextBlock javadoc)
     {
-        if (aJavadoc == null) {
+        if (javadoc == null) {
             return false;
         }
 
-        final String[] lines = aJavadoc.getText();
+        final String[] lines = javadoc.getText();
 
         for (final String line : lines) {
             final Matcher matchInheritDoc =

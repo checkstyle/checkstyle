@@ -5,7 +5,7 @@ jdk:
   - oraclejdk7  
   - oraclejdk8
 
-install: mvn clean verify site
+install: mvn clean verify site -Dlinkcheck.skip=true
 
 after_success:
   - mvn -Ptravis surefire-report:report jacoco:report coveralls:jacoco

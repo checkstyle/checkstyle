@@ -36,22 +36,22 @@ public abstract class Check extends AbstractViolationReporter
     private static final int DEFAULT_TAB_WIDTH = 8;
 
     /** the current file contents */
-    private FileContents mFileContents;
+    private FileContents fileContents;
 
     /** the tokens the check is interested in */
-    private final Set<String> mTokens = Sets.newHashSet();
+    private final Set<String> tokens = Sets.newHashSet();
 
     /** the object for collecting messages. */
-    private LocalizedMessages mMessages;
+    private LocalizedMessages messages;
 
     /** the tab width for column reporting */
-    private int mTabWidth = DEFAULT_TAB_WIDTH; // meaningful default
+    private int tabWidth = DEFAULT_TAB_WIDTH; // meaningful default
 
     /**
      * The class loader to load external classes. Not initialised as this must
      * be set by my creator.
      */
-    private ClassLoader mLoader;
+    private ClassLoader loader;
 
     public boolean isCommentNodesRequired()
     {
@@ -94,12 +94,12 @@ public abstract class Check extends AbstractViolationReporter
 
     /**
      * Adds a set of tokens the check is interested in.
-     * @param aStrRep the string representation of the tokens interested in
+     * @param strRep the string representation of the tokens interested in
      */
-    public final void setTokens(String[] aStrRep)
+    public final void setTokens(String[] strRep)
     {
-        for (final String s : aStrRep) {
-            mTokens.add(s);
+        for (final String s : strRep) {
+            tokens.add(s);
         }
     }
 
@@ -109,16 +109,16 @@ public abstract class Check extends AbstractViolationReporter
      */
     public final Set<String> getTokenNames()
     {
-        return mTokens;
+        return tokens;
     }
 
     /**
      * Set the global object used to collect messages.
-     * @param aMessages the messages to log with
+     * @param messages the messages to log with
      */
-    public final void setMessages(LocalizedMessages aMessages)
+    public final void setMessages(LocalizedMessages messages)
     {
-        mMessages = aMessages;
+        this.messages = messages;
     }
 
     /**
@@ -139,34 +139,34 @@ public abstract class Check extends AbstractViolationReporter
     /**
      * Called before the starting to process a tree. Ideal place to initialise
      * information that is to be collected whilst processing a tree.
-     * @param aRootAST the root of the tree
+     * @param rootAST the root of the tree
      */
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
     }
 
     /**
      * Called after finished processing a tree. Ideal place to report on
      * information collected whilst processing a tree.
-     * @param aRootAST the root of the tree
+     * @param rootAST the root of the tree
      */
-    public void finishTree(DetailAST aRootAST)
+    public void finishTree(DetailAST rootAST)
     {
     }
 
     /**
      * Called to process a token.
-     * @param aAST the token to process
+     * @param ast the token to process
      */
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
     }
 
     /**
      * Called after all the child nodes have been process.
-     * @param aAST the token leaving
+     * @param ast the token leaving
      */
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
     }
 
@@ -181,21 +181,21 @@ public abstract class Check extends AbstractViolationReporter
 
     /**
      * Returns the line associated with the tree.
-     * @param aIndex index of the line
+     * @param index index of the line
      * @return the line from the file contents
      */
-    public final String getLine(int aIndex)
+    public final String getLine(int index)
     {
-        return getFileContents().getLine(aIndex);
+        return getFileContents().getLine(index);
     }
 
     /**
      * Set the file contents associated with the tree.
-     * @param aContents the manager
+     * @param contents the manager
      */
-    public final void setFileContents(FileContents aContents)
+    public final void setFileContents(FileContents contents)
     {
-        mFileContents = aContents;
+        fileContents = contents;
     }
 
     /**
@@ -204,16 +204,16 @@ public abstract class Check extends AbstractViolationReporter
      */
     public final FileContents getFileContents()
     {
-        return mFileContents;
+        return fileContents;
     }
 
     /**
      * Set the class loader associated with the tree.
-     * @param aLoader the class loader
+     * @param loader the class loader
      */
-    public final void setClassLoader(ClassLoader aLoader)
+    public final void setClassLoader(ClassLoader loader)
     {
-        mLoader = aLoader;
+        this.loader = loader;
     }
 
     /**
@@ -222,56 +222,56 @@ public abstract class Check extends AbstractViolationReporter
      */
     public final ClassLoader getClassLoader()
     {
-        return mLoader;
+        return loader;
     }
 
     /** @return the tab width to report errors with */
     protected final int getTabWidth()
     {
-        return mTabWidth;
+        return tabWidth;
     }
 
     /**
      * Set the tab width to report errors with.
-     * @param aTabWidth an <code>int</code> value
+     * @param tabWidth an <code>int</code> value
      */
-    public final void setTabWidth(int aTabWidth)
+    public final void setTabWidth(int tabWidth)
     {
-        mTabWidth = aTabWidth;
+        this.tabWidth = tabWidth;
     }
 
     @Override
-    public final void log(int aLine, String aKey, Object... aArgs)
+    public final void log(int line, String key, Object... args)
     {
-        mMessages.add(
+        messages.add(
             new LocalizedMessage(
-                aLine,
+                line,
                 getMessageBundle(),
-                aKey,
-                aArgs,
+                key,
+                args,
                 getSeverityLevel(),
                 getId(),
                 this.getClass(),
-                this.getCustomMessages().get(aKey)));
+                this.getCustomMessages().get(key)));
     }
 
 
     @Override
-    public final void log(int aLineNo, int aColNo, String aKey,
-            Object... aArgs)
+    public final void log(int lineNo, int colNo, String key,
+            Object... args)
     {
         final int col = 1 + Utils.lengthExpandedTabs(
-            getLines()[aLineNo - 1], aColNo, getTabWidth());
-        mMessages.add(
+            getLines()[lineNo - 1], colNo, getTabWidth());
+        messages.add(
             new LocalizedMessage(
-                aLineNo,
+                lineNo,
                 col,
                 getMessageBundle(),
-                aKey,
-                aArgs,
+                key,
+                args,
                 getSeverityLevel(),
                 getId(),
                 this.getClass(),
-                this.getCustomMessages().get(aKey)));
+                this.getCustomMessages().get(key)));
     }
 }

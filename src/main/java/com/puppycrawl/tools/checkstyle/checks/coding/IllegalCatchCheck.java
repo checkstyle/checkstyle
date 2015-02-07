@@ -58,19 +58,19 @@ public final class IllegalCatchCheck extends AbstractIllegalCheck
     }
 
     @Override
-    public void visitToken(DetailAST aDetailAST)
+    public void visitToken(DetailAST detailAST)
     {
-        final DetailAST paramDef =
-            aDetailAST.findFirstToken(TokenTypes.PARAMETER_DEF);
+        final DetailAST paradef =
+            detailAST.findFirstToken(TokenTypes.PARAMETER_DEF);
         final DetailAST excTypeParent =
-                paramDef.findFirstToken(TokenTypes.TYPE);
+                paradef.findFirstToken(TokenTypes.TYPE);
         final List<DetailAST> excTypes = getAllExceptionTypes(excTypeParent);
 
         for (DetailAST excType : excTypes) {
             final FullIdent ident = FullIdent.createFullIdent(excType);
 
             if (isIllegalClassName(ident.getText())) {
-                log(aDetailAST, "illegal.catch", ident.getText());
+                log(detailAST, "illegal.catch", ident.getText());
             }
         }
     }
@@ -78,12 +78,12 @@ public final class IllegalCatchCheck extends AbstractIllegalCheck
     /**
      * Finds all exception types in current catch.
      * We need it till we can have few different exception types into one catch.
-     * @param aParentToken - parent node for types (TYPE or BOR)
+     * @param parentToken - parent node for types (TYPE or BOR)
      * @return list, that contains all exception types in current catch
      */
-    public List<DetailAST> getAllExceptionTypes(DetailAST aParentToken)
+    public List<DetailAST> getAllExceptionTypes(DetailAST parentToken)
     {
-        DetailAST currentNode = aParentToken.getFirstChild();
+        DetailAST currentNode = parentToken.getFirstChild();
         final List<DetailAST> exceptionTypes = new LinkedList<DetailAST>();
         if (currentNode.getType() == TokenTypes.BOR) {
             exceptionTypes.addAll(getAllExceptionTypes(currentNode));

@@ -97,24 +97,24 @@ public class ImportOrderCheck
     private static final String WILDCARD_GROUP_NAME = "*";
 
     /** List of import groups specified by the user. */
-    private Pattern[] mGroups = new Pattern[0];
+    private Pattern[] groups = new Pattern[0];
     /** Require imports in group be separated. */
-    private boolean mSeparated;
+    private boolean separated;
     /** Require imports in group. */
-    private boolean mOrdered = true;
+    private boolean ordered = true;
     /** Should comparison be case sensitive. */
-    private boolean mCaseSensitive = true;
+    private boolean caseSensitive = true;
 
     /** Last imported group. */
-    private int mLastGroup;
+    private int lastGroup;
     /** Line number of last import. */
-    private int mLastImportLine;
+    private int lastImportLine;
     /** Name of last import. */
-    private String mLastImport;
+    private String lastImport;
     /** If last import was static. */
-    private boolean mLastImportStatic;
+    private boolean lastImportStatic;
     /** Whether there was any imports. */
-    private boolean mBeforeFirstImport;
+    private boolean beforeFirstImport;
 
     /**
      * Groups static imports under each group.
@@ -128,14 +128,14 @@ public class ImportOrderCheck
      * Sets the list of package groups and the order they should occur in the
      * file.
      *
-     * @param aGroups a comma-separated list of package names/prefixes.
+     * @param packageGroups a comma-separated list of package names/prefixes.
      */
-    public void setGroups(String[] aGroups)
+    public void setGroups(String[] packageGroups)
     {
-        mGroups = new Pattern[aGroups.length];
+        groups = new Pattern[packageGroups.length];
 
-        for (int i = 0; i < aGroups.length; i++) {
-            String pkg = aGroups[i];
+        for (int i = 0; i < packageGroups.length; i++) {
+            String pkg = packageGroups[i];
             Pattern grp;
 
             // if the pkg name is the wildcard, make it match zero chars
@@ -157,7 +157,7 @@ public class ImportOrderCheck
                 grp = Pattern.compile("^" + Pattern.quote(pkg));
             }
 
-            mGroups[i] = grp;
+            groups[i] = grp;
         }
     }
 
@@ -165,36 +165,36 @@ public class ImportOrderCheck
      * Sets whether or not imports should be ordered within any one group of
      * imports.
      *
-     * @param aOrdered
+     * @param ordered
      *            whether lexicographic ordering of imports within a group
      *            required or not.
      */
-    public void setOrdered(boolean aOrdered)
+    public void setOrdered(boolean ordered)
     {
-        mOrdered = aOrdered;
+        this.ordered = ordered;
     }
 
     /**
      * Sets whether or not groups of imports must be separated from one another
      * by at least one blank line.
      *
-     * @param aSeparated
+     * @param separated
      *            whether groups should be separated by oen blank line.
      */
-    public void setSeparated(boolean aSeparated)
+    public void setSeparated(boolean separated)
     {
-        mSeparated = aSeparated;
+        this.separated = separated;
     }
 
     /**
      * Sets whether string comparison should be case sensitive or not.
      *
-     * @param aCaseSensitive
+     * @param caseSensitive
      *            whether string comparison should be case sensitive.
      */
-    public void setCaseSensitive(boolean aCaseSensitive)
+    public void setCaseSensitive(boolean caseSensitive)
     {
-        mCaseSensitive = aCaseSensitive;
+        this.caseSensitive = caseSensitive;
     }
 
     @Override
@@ -204,145 +204,145 @@ public class ImportOrderCheck
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
-        mLastGroup = Integer.MIN_VALUE;
-        mLastImportLine = Integer.MIN_VALUE;
-        mLastImport = "";
-        mLastImportStatic = false;
-        mBeforeFirstImport = true;
+        lastGroup = Integer.MIN_VALUE;
+        lastImportLine = Integer.MIN_VALUE;
+        lastImport = "";
+        lastImportStatic = false;
+        beforeFirstImport = true;
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         final FullIdent ident;
         final boolean isStatic;
 
-        if (aAST.getType() == TokenTypes.IMPORT) {
-            ident = FullIdent.createFullIdentBelow(aAST);
+        if (ast.getType() == TokenTypes.IMPORT) {
+            ident = FullIdent.createFullIdentBelow(ast);
             isStatic = false;
         }
         else {
-            ident = FullIdent.createFullIdent(aAST.getFirstChild()
+            ident = FullIdent.createFullIdent(ast.getFirstChild()
                     .getNextSibling());
             isStatic = true;
         }
 
         switch (getAbstractOption()) {
-        case TOP:
-            if (!isStatic && mLastImportStatic) {
-                mLastGroup = Integer.MIN_VALUE;
-                mLastImport = "";
-            }
-            // no break;
+            case TOP:
+                if (!isStatic && lastImportStatic) {
+                    lastGroup = Integer.MIN_VALUE;
+                    lastImport = "";
+                }
+                // no break;
 
-        case ABOVE:
-            // previous non-static but current is static
-            doVisitToken(ident, isStatic, (!mLastImportStatic && isStatic));
-            break;
+            case ABOVE:
+                // previous non-static but current is static
+                doVisitToken(ident, isStatic, (!lastImportStatic && isStatic));
+                break;
 
-        case INFLOW:
-            // previous argument is useless here
-            doVisitToken(ident, isStatic, true);
-            break;
+            case INFLOW:
+                // previous argument is useless here
+                doVisitToken(ident, isStatic, true);
+                break;
 
-        case BOTTOM:
-            if (isStatic && !mLastImportStatic) {
-                mLastGroup = Integer.MIN_VALUE;
-                mLastImport = "";
-            }
-            // no break;
+            case BOTTOM:
+                if (isStatic && !lastImportStatic) {
+                    lastGroup = Integer.MIN_VALUE;
+                    lastImport = "";
+                }
+                // no break;
 
-        case UNDER:
-            // previous static but current is non-static
-            doVisitToken(ident, isStatic, (mLastImportStatic && !isStatic));
-            break;
+            case UNDER:
+                // previous static but current is non-static
+                doVisitToken(ident, isStatic, (lastImportStatic && !isStatic));
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
 
-        mLastImportLine = aAST.findFirstToken(TokenTypes.SEMI).getLineNo();
-        mLastImportStatic = isStatic;
-        mBeforeFirstImport = false;
+        lastImportLine = ast.findFirstToken(TokenTypes.SEMI).getLineNo();
+        lastImportStatic = isStatic;
+        beforeFirstImport = false;
     }
 
     /**
      * Shares processing...
      *
-     * @param aIdent the import to process.
-     * @param aIsStatic whether the token is static or not.
-     * @param aPrevious previous non-static but current is static (above), or
+     * @param ident the import to process.
+     * @param isStatic whether the token is static or not.
+     * @param previous previous non-static but current is static (above), or
      *                  previous static but current is non-static (under).
      */
-    private void doVisitToken(FullIdent aIdent, boolean aIsStatic,
-            boolean aPrevious)
+    private void doVisitToken(FullIdent ident, boolean isStatic,
+            boolean previous)
     {
-        if (aIdent != null) {
-            final String name = aIdent.getText();
+        if (ident != null) {
+            final String name = ident.getText();
             final int groupIdx = getGroupNumber(name);
-            final int line = aIdent.getLineNo();
+            final int line = ident.getLineNo();
 
-            if (groupIdx > mLastGroup) {
-                if (!mBeforeFirstImport && mSeparated) {
+            if (groupIdx > lastGroup) {
+                if (!beforeFirstImport && separated) {
                     // This check should be made more robust to handle
                     // comments and imports that span more than one line.
-                    if ((line - mLastImportLine) < 2) {
+                    if ((line - lastImportLine) < 2) {
                         log(line, "import.separation", name);
                     }
                 }
             }
-            else if (groupIdx == mLastGroup) {
-                doVisitTokenInSameGroup(aIsStatic, aPrevious, name, line);
+            else if (groupIdx == lastGroup) {
+                doVisitTokenInSameGroup(isStatic, previous, name, line);
             }
             else {
                 log(line, "import.ordering", name);
             }
 
-            mLastGroup = groupIdx;
-            mLastImport = name;
+            lastGroup = groupIdx;
+            lastImport = name;
         }
     }
 
     /**
      * Shares processing...
      *
-     * @param aIsStatic whether the token is static or not.
-     * @param aPrevious previous non-static but current is static (above), or
+     * @param isStatic whether the token is static or not.
+     * @param previous previous non-static but current is static (above), or
      *    previous static but current is non-static (under).
-     * @param aName the name of the current import.
-     * @param aLine the line of the current import.
+     * @param name the name of the current import.
+     * @param line the line of the current import.
      */
-    private void doVisitTokenInSameGroup(boolean aIsStatic,
-            boolean aPrevious, String aName, int aLine)
+    private void doVisitTokenInSameGroup(boolean isStatic,
+            boolean previous, String name, int line)
     {
-        if (!mOrdered) {
+        if (!ordered) {
             return;
         }
 
         if (getAbstractOption().equals(ImportOrderOption.INFLOW)) {
             // out of lexicographic order
-            if (compare(mLastImport, aName, mCaseSensitive) > 0) {
-                log(aLine, "import.ordering", aName);
+            if (compare(lastImport, name, caseSensitive) > 0) {
+                log(line, "import.ordering", name);
             }
         }
         else {
             final boolean shouldFireError =
                 // current and previous static or current and
                 // previous non-static
-                (!(mLastImportStatic ^ aIsStatic)
+                (!(lastImportStatic ^ isStatic)
                 &&
                 // and out of lexicographic order
-                (compare(mLastImport, aName, mCaseSensitive) > 0))
+                (compare(lastImport, name, caseSensitive) > 0))
                 ||
                 // previous non-static but current is static (above)
                 // or
                 // previous static but current is non-static (under)
-                aPrevious;
+                previous;
 
             if (shouldFireError) {
-                log(aLine, "import.ordering", aName);
+                log(line, "import.ordering", name);
             }
         }
     }
@@ -350,19 +350,19 @@ public class ImportOrderCheck
     /**
      * Finds out what group the specified import belongs to.
      *
-     * @param aName the import name to find.
+     * @param name the import name to find.
      * @return group number for given import name.
      */
-    private int getGroupNumber(String aName)
+    private int getGroupNumber(String name)
     {
-        int bestIndex = mGroups.length;
+        int bestIndex = groups.length;
         int bestLength = -1;
         int bestPos = 0;
 
         // find out what group this belongs in
-        // loop over mGroups and get index
-        for (int i = 0; i < mGroups.length; i++) {
-            final Matcher matcher = mGroups[i].matcher(aName);
+        // loop over groups and get index
+        for (int i = 0; i < groups.length; i++) {
+            final Matcher matcher = groups[i].matcher(name);
             while (matcher.find()) {
                 final int length = matcher.end() - matcher.start();
                 if ((length > bestLength)
@@ -381,24 +381,24 @@ public class ImportOrderCheck
     /**
      * Compares two strings.
      *
-     * @param aString1
+     * @param string1
      *            the first string.
-     * @param aString2
+     * @param string2
      *            the second string.
-     * @param aCaseSensitive
+     * @param caseSensitive
      *            whether the comparison is case sensitive.
      * @return the value <code>0</code> if string1 is equal to string2; a value
      *         less than <code>0</code> if string1 is lexicographically less
      *         than the string2; and a value greater than <code>0</code> if
      *         string1 is lexicographically greater than string2.
      */
-    private int compare(String aString1, String aString2,
-            boolean aCaseSensitive)
+    private int compare(String string1, String string2,
+            boolean caseSensitive)
     {
-        if (aCaseSensitive) {
-            return aString1.compareTo(aString2);
+        if (caseSensitive) {
+            return string1.compareTo(string2);
         }
 
-        return aString1.compareToIgnoreCase(aString2);
+        return string1.compareToIgnoreCase(string2);
     }
 }

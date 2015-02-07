@@ -32,18 +32,18 @@ public class SlistHandler extends BlockParentHandler
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
-     * @param aIndentCheck   the indentation check
-     * @param aAst           the abstract syntax tree
-     * @param aParent        the parent handler
+     * @param indentCheck   the indentation check
+     * @param ast           the abstract syntax tree
+     * @param parent        the parent handler
      */
-    public SlistHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent)
+    public SlistHandler(IndentationCheck indentCheck,
+        DetailAST ast, ExpressionHandler parent)
     {
-        super(aIndentCheck, "block", aAst, aParent);
+        super(indentCheck, "block", ast, parent);
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
+    public IndentLevel suggestedChildLevel(ExpressionHandler child)
     {
         // this is:
         //  switch (var) {
@@ -58,11 +58,11 @@ public class SlistHandler extends BlockParentHandler
         if (((getParent() instanceof BlockParentHandler)
                 && !(getParent() instanceof SlistHandler))
             || ((getParent() instanceof CaseHandler)
-                && (aChild instanceof SlistHandler)))
+                && (child instanceof SlistHandler)))
         {
-            return getParent().suggestedChildLevel(aChild);
+            return getParent().suggestedChildLevel(child);
         }
-        return super.suggestedChildLevel(aChild);
+        return super.suggestedChildLevel(child);
     }
 
     @Override

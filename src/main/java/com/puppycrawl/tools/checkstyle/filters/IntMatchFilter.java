@@ -25,42 +25,42 @@ package com.puppycrawl.tools.checkstyle.filters;
 class IntMatchFilter implements IntFilter
 {
     /** the matching Integer */
-    private final int mMatchValue;
+    private final int matchValue;
 
     /**
      * Constructs a MatchFilter for an int.
-     * @param aMatchValue the matching int.
+     * @param matchValue the matching int.
      */
-    public IntMatchFilter(int aMatchValue)
+    public IntMatchFilter(int matchValue)
     {
-        mMatchValue = aMatchValue;
+        this.matchValue = matchValue;
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean accept(int aInt)
+    public boolean accept(int intValue)
     {
-        return mMatchValue == aInt;
+        return matchValue == intValue;
     }
 
     @Override
     public String toString()
     {
-        return "IntMatchFilter[" + mMatchValue + "]";
+        return "IntMatchFilter[" + matchValue + "]";
     }
 
     @Override
     public int hashCode()
     {
-        return Integer.valueOf(mMatchValue).hashCode();
+        return Integer.valueOf(matchValue).hashCode();
     }
 
     @Override
-    public boolean equals(Object aObject)
+    public boolean equals(Object object)
     {
-        if (aObject instanceof IntMatchFilter) {
-            final IntMatchFilter other = (IntMatchFilter) aObject;
-            return this.mMatchValue == other.mMatchValue;
+        if (object instanceof IntMatchFilter) {
+            final IntMatchFilter other = (IntMatchFilter) object;
+            return this.matchValue == other.matchValue;
         }
         return false;
     }

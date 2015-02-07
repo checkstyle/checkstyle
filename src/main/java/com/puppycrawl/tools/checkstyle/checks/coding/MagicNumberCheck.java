@@ -67,11 +67,11 @@ public class MagicNumberCheck extends Check
     }
 
     /** the numbers to ignore in the check, sorted */
-    private double[] mIgnoreNumbers = {-1, 0, 1, 2};
+    private double[] ignoreNumbers = {-1, 0, 1, 2};
     /** Whether to ignore magic numbers in a hash code method. */
-    private boolean mIgnoreHashCodeMethod;
+    private boolean ignoreHashCodeMethod;
     /** Whether to ignore magic numbers in annotation. */
-    private boolean mIgnoreAnnotation;
+    private boolean ignoreAnnotation;
 
     @Override
     public int[] getDefaultTokens()
@@ -85,46 +85,46 @@ public class MagicNumberCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (mIgnoreAnnotation && isInAnnotation(aAST)) {
+        if (ignoreAnnotation && isInAnnotation(ast)) {
             return;
         }
 
-        if (inIgnoreList(aAST)
-            || (mIgnoreHashCodeMethod && isInHashCodeMethod(aAST)))
+        if (inIgnoreList(ast)
+            || (ignoreHashCodeMethod && isInHashCodeMethod(ast)))
         {
             return;
         }
 
-        final DetailAST constantDefAST = findContainingConstantDef(aAST);
+        final DetailAST constantDefAST = findContainingConstantDef(ast);
 
         if (constantDefAST == null) {
-            reportMagicNumber(aAST);
+            reportMagicNumber(ast);
         }
         else {
-            DetailAST ast = aAST.getParent();
-            while (ast != constantDefAST) {
-                final int type = ast.getType();
+            DetailAST astNode = ast.getParent();
+            while (astNode != constantDefAST) {
+                final int type = astNode.getType();
                 if (Arrays.binarySearch(ALLOWED_PATH_TOKENTYPES, type) < 0) {
-                    reportMagicNumber(aAST);
+                    reportMagicNumber(ast);
                     break;
                 }
 
-                ast = ast.getParent();
+                astNode = astNode.getParent();
             }
         }
     }
 
     /**
      * Finds the constant definition that contains aAST.
-     * @param aAST the AST
-     * @return the constant def or null if aAST is not
+     * @param ast the AST
+     * @return the constant def or null if ast is not
      * contained in a constant definition
      */
-    private DetailAST findContainingConstantDef(DetailAST aAST)
+    private DetailAST findContainingConstantDef(DetailAST ast)
     {
-        DetailAST varDefAST = aAST;
+        DetailAST varDefAST = ast;
         while ((varDefAST != null)
                 && (varDefAST.getType() != TokenTypes.VARIABLE_DEF)
                 && (varDefAST.getType() != TokenTypes.ENUM_CONSTANT_DEF))
@@ -156,13 +156,13 @@ public class MagicNumberCheck extends Check
 
     /**
      * Reports aAST as a magic number, includes unary operators as needed.
-     * @param aAST the AST node that contains the number to report
+     * @param ast the AST node that contains the number to report
      */
-    private void reportMagicNumber(DetailAST aAST)
+    private void reportMagicNumber(DetailAST ast)
     {
-        String text = aAST.getText();
-        final DetailAST parent = aAST.getParent();
-        DetailAST reportAST = aAST;
+        String text = ast.getText();
+        final DetailAST parent = ast.getParent();
+        DetailAST reportAST = ast;
         if (parent.getType() == TokenTypes.UNARY_MINUS) {
             reportAST = parent;
             text = "-" + text;
@@ -182,21 +182,21 @@ public class MagicNumberCheck extends Check
      * A valid hash code method is considered to be a method of the signature
      * {@code public int hashCode()}.
      *
-     * @param aAST the AST from which to search for an enclosing hash code
+     * @param ast the AST from which to search for an enclosing hash code
      * method definition
      *
-     * @return {@code true} if {@code aAST} is in the scope of a valid hash
+     * @return {@code true} if {@code ast} is in the scope of a valid hash
      * code method
      */
-    private boolean isInHashCodeMethod(DetailAST aAST)
+    private boolean isInHashCodeMethod(DetailAST ast)
     {
         // if not in a code block, can't be in hashCode()
-        if (!ScopeUtils.inCodeBlock(aAST)) {
+        if (!ScopeUtils.inCodeBlock(ast)) {
             return false;
         }
 
         // find the method definition AST
-        DetailAST methodDefAST = aAST.getParent();
+        DetailAST methodDefAST = ast.getParent();
         while ((null != methodDefAST)
                 && (TokenTypes.METHOD_DEF != methodDefAST.getType()))
         {
@@ -229,74 +229,74 @@ public class MagicNumberCheck extends Check
     /**
      * Decides whether the number of an AST is in the ignore list of this
      * check.
-     * @param aAST the AST to check
-     * @return true if the number of aAST is in the ignore list of this
+     * @param ast the AST to check
+     * @return true if the number of ast is in the ignore list of this
      * check.
      */
-    private boolean inIgnoreList(DetailAST aAST)
+    private boolean inIgnoreList(DetailAST ast)
     {
-        double value = CheckUtils.parseDouble(aAST.getText(), aAST.getType());
-        final DetailAST parent = aAST.getParent();
+        double value = CheckUtils.parseDouble(ast.getText(), ast.getType());
+        final DetailAST parent = ast.getParent();
         if (parent.getType() == TokenTypes.UNARY_MINUS) {
             value = -1 * value;
         }
-        return (Arrays.binarySearch(mIgnoreNumbers, value) >= 0);
+        return (Arrays.binarySearch(ignoreNumbers, value) >= 0);
     }
 
     /**
      * Sets the numbers to ignore in the check.
      * BeanUtils converts numeric token list to double array automatically.
-     * @param aList list of numbers to ignore.
+     * @param list list of numbers to ignore.
      */
-    public void setIgnoreNumbers(double[] aList)
+    public void setIgnoreNumbers(double[] list)
     {
-        if ((aList == null) || (aList.length == 0)) {
-            mIgnoreNumbers = new double[0];
+        if ((list == null) || (list.length == 0)) {
+            ignoreNumbers = new double[0];
         }
         else {
-            mIgnoreNumbers = new double[aList.length];
-            System.arraycopy(aList, 0, mIgnoreNumbers, 0, aList.length);
-            Arrays.sort(mIgnoreNumbers);
+            ignoreNumbers = new double[list.length];
+            System.arraycopy(list, 0, ignoreNumbers, 0, list.length);
+            Arrays.sort(ignoreNumbers);
         }
     }
 
     /**
      * Set whether to ignore hashCode methods.
-     * @param aIgnoreHashCodeMethod decide whether to ignore
+     * @param ignoreHashCodeMethod decide whether to ignore
      * hash code methods
      */
-    public void setIgnoreHashCodeMethod(boolean aIgnoreHashCodeMethod)
+    public void setIgnoreHashCodeMethod(boolean ignoreHashCodeMethod)
     {
-        mIgnoreHashCodeMethod = aIgnoreHashCodeMethod;
+        this.ignoreHashCodeMethod = ignoreHashCodeMethod;
     }
 
     /**
      * Set whether to ignore Annotations.
-     * @param aIgnoreAnnotation decide whether to ignore annotations
+     * @param ignoreAnnotation decide whether to ignore annotations
      */
-    public void setIgnoreAnnotation(boolean aIgnoreAnnotation)
+    public void setIgnoreAnnotation(boolean ignoreAnnotation)
     {
-        mIgnoreAnnotation = aIgnoreAnnotation;
+        this.ignoreAnnotation = ignoreAnnotation;
     }
 
     /**
      * Determines if the column displays a token type of annotation or
      * annotation member
      *
-     * @param aAST the AST from which to search for annotations
+     * @param ast the AST from which to search for annotations
      *
      * @return {@code true} if the token type for this node is a annotation
      */
-    private boolean isInAnnotation(DetailAST aAST)
+    private boolean isInAnnotation(DetailAST ast)
     {
-        if ((null == aAST.getParent())
-                || (null == aAST.getParent().getParent()))
+        if ((null == ast.getParent())
+                || (null == ast.getParent().getParent()))
         {
             return false;
         }
 
-        return (TokenTypes.ANNOTATION == aAST.getParent().getParent().getType())
+        return (TokenTypes.ANNOTATION == ast.getParent().getParent().getType())
                 || (TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR
-                        == aAST.getParent().getParent().getType());
+                        == ast.getParent().getParent().getType());
     }
 }

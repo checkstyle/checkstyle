@@ -33,18 +33,18 @@ import java.util.TreeSet;
 public final class LocalizedMessages
 {
     /** contains the messages logged **/
-    private final TreeSet<LocalizedMessage> mMessages = Sets.newTreeSet();
+    private final TreeSet<LocalizedMessage> messages = Sets.newTreeSet();
 
     /** @return the logged messages **/
     public TreeSet<LocalizedMessage> getMessages()
     {
-        return Sets.newTreeSet(mMessages);
+        return Sets.newTreeSet(messages);
     }
 
     /** Reset the object. **/
     public void reset()
     {
-        mMessages.clear();
+        messages.clear();
     }
 
     /**
@@ -53,12 +53,12 @@ public final class LocalizedMessages
      **/
     public void add(LocalizedMessage aMsg)
     {
-        mMessages.add(aMsg);
+        messages.add(aMsg);
     }
 
     /** @return the number of messages */
     public int size()
     {
-        return mMessages.size();
+        return messages.size();
     }
 }

@@ -1,5 +1,5 @@
 package com.puppycrawl.tools.checkstyle.coding;
-
+import java.util.TreeSet;
 import java.util.Hashtable;
 //configuration: default
 public class InputIllegalType {
@@ -13,8 +13,8 @@ public class InputIllegalType {
 
     private class NotAnAbstractClass {}
 
-    private java.util.Hashtable table1() { return null; } //WARNING
-    private Hashtable table2() { return null; } //WARNING
+    private java.util.TreeSet table1() { return null; } //WARNING
+    private TreeSet table2() { return null; } //WARNING
     static class SomeStaticClass {
         
     }

@@ -34,39 +34,39 @@ public class SeverityMatchFilter
     implements Filter
 {
     /** the severity level to accept */
-    private SeverityLevel mSeverityLevel = SeverityLevel.ERROR;
+    private SeverityLevel severityLevel = SeverityLevel.ERROR;
 
     /** whether to accept or reject on severity matches */
-    private boolean mAcceptOnMatch = true;
+    private boolean acceptOnMatch = true;
 
     /**
      * Sets the severity level.  The string should be one of the names
      * defined in the <code>SeverityLevel</code> class.
      *
-     * @param aSeverity  The new severity level
+     * @param severity  The new severity level
      * @see SeverityLevel
      */
-    public final void setSeverity(String aSeverity)
+    public final void setSeverity(String severity)
     {
-        mSeverityLevel = SeverityLevel.getInstance(aSeverity);
+        severityLevel = SeverityLevel.getInstance(severity);
     }
 
     /**
      * Sets whether to accept or reject on matching severity level.
-     * @param aAcceptOnMatch if true, accept on matches; if
+     * @param acceptOnMatch if true, accept on matches; if
      * false, reject on matches.
      */
-    public final void setAcceptOnMatch(boolean aAcceptOnMatch)
+    public final void setAcceptOnMatch(boolean acceptOnMatch)
     {
-        mAcceptOnMatch = aAcceptOnMatch;
+        this.acceptOnMatch = acceptOnMatch;
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean accept(AuditEvent aEvent)
+    public boolean accept(AuditEvent event)
     {
-        final boolean result = mSeverityLevel.equals(aEvent.getSeverityLevel());
-        if (mAcceptOnMatch) {
+        final boolean result = severityLevel.equals(event.getSeverityLevel());
+        if (acceptOnMatch) {
             return result;
         }
         return !result;

@@ -68,32 +68,32 @@ public class JavadocStyleCheck
             "thead", "tr", "tt", "u", "ul");
 
     /** The scope to check. */
-    private Scope mScope = Scope.PRIVATE;
+    private Scope scope = Scope.PRIVATE;
 
     /** the visibility scope where Javadoc comments shouldn't be checked **/
-    private Scope mExcludeScope;
+    private Scope excludeScope;
 
     /** Format for matching the end of a sentence. */
-    private String mEndOfSentenceFormat = "([.?!][ \t\n\r\f<])|([.?!]$)";
+    private String endOfSentenceFormat = "([.?!][ \t\n\r\f<])|([.?!]$)";
 
     /** Regular expression for matching the end of a sentence. */
-    private Pattern mEndOfSentencePattern;
+    private Pattern endOfSentencePattern;
 
     /**
      * Indicates if the first sentence should be checked for proper end of
      * sentence punctuation.
      */
-    private boolean mCheckFirstSentence = true;
+    private boolean checkFirstSentence = true;
 
     /**
      * Indicates if the HTML within the comment should be checked.
      */
-    private boolean mCheckHtml = true;
+    private boolean checkHtml = true;
 
     /**
      * Indicates if empty javadoc statements should be checked.
      */
-    private boolean mCheckEmptyJavadoc;
+    private boolean checkEmptyJavadoc;
 
     @Override
     public int[] getDefaultTokens()
@@ -113,89 +113,89 @@ public class JavadocStyleCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (shouldCheck(aAST)) {
+        if (shouldCheck(ast)) {
             final FileContents contents = getFileContents();
             // Need to start searching for the comment before the annotations
             // that may exist. Even if annotations are not defined on the
             // package, the ANNOTATIONS AST is defined.
             final TextBlock cmt =
-                contents.getJavadocBefore(aAST.getFirstChild().getLineNo());
+                contents.getJavadocBefore(ast.getFirstChild().getLineNo());
 
-            checkComment(aAST, cmt);
+            checkComment(ast, cmt);
         }
     }
 
     /**
      * Whether we should check this node.
-     * @param aAST a given node.
+     * @param ast a given node.
      * @return whether we should check a given node.
      */
-    private boolean shouldCheck(final DetailAST aAST)
+    private boolean shouldCheck(final DetailAST ast)
     {
-        if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
+        if (ast.getType() == TokenTypes.PACKAGE_DEF) {
             return getFileContents().inPackageInfo();
         }
 
-        if (ScopeUtils.inCodeBlock(aAST)) {
+        if (ScopeUtils.inCodeBlock(ast)) {
             return false;
         }
 
         final Scope declaredScope;
-        if (aAST.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+        if (ast.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
             declaredScope = Scope.PUBLIC;
         }
         else {
             declaredScope = ScopeUtils.getScopeFromMods(
-                aAST.findFirstToken(TokenTypes.MODIFIERS));
+                ast.findFirstToken(TokenTypes.MODIFIERS));
         }
 
         final Scope scope =
-            ScopeUtils.inInterfaceOrAnnotationBlock(aAST)
+            ScopeUtils.inInterfaceOrAnnotationBlock(ast)
             ? Scope.PUBLIC : declaredScope;
-        final Scope surroundingScope = ScopeUtils.getSurroundingScope(aAST);
+        final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
 
-        return scope.isIn(mScope)
-            && ((surroundingScope == null) || surroundingScope.isIn(mScope))
-            && ((mExcludeScope == null)
-                || !scope.isIn(mExcludeScope)
+        return scope.isIn(this.scope)
+            && ((surroundingScope == null) || surroundingScope.isIn(this.scope))
+            && ((excludeScope == null)
+                || !scope.isIn(excludeScope)
                 || ((surroundingScope != null)
-                && !surroundingScope.isIn(mExcludeScope)));
+                && !surroundingScope.isIn(excludeScope)));
     }
 
     /**
      * Performs the various checks agains the Javadoc comment.
      *
-     * @param aAST the AST of the element being documented
-     * @param aComment the source lines that make up the Javadoc comment.
+     * @param ast the AST of the element being documented
+     * @param comment the source lines that make up the Javadoc comment.
      *
      * @see #checkFirstSentence(DetailAST, TextBlock)
      * @see #checkHtml(DetailAST, TextBlock)
      */
-    private void checkComment(final DetailAST aAST, final TextBlock aComment)
+    private void checkComment(final DetailAST ast, final TextBlock comment)
     {
-        if (aComment == null) {
+        if (comment == null) {
             /*checking for missing docs in JavadocStyleCheck is not consistent
             with the rest of CheckStyle...  Even though, I didn't think it
             made sense to make another csheck just to ensure that the
             package-info.java file actually contains package Javadocs.*/
             if (getFileContents().inPackageInfo()) {
-                log(aAST.getLineNo(), "javadoc.missing");
+                log(ast.getLineNo(), "javadoc.missing");
             }
             return;
         }
 
-        if (mCheckFirstSentence) {
-            checkFirstSentence(aAST, aComment);
+        if (checkFirstSentence) {
+            checkFirstSentence(ast, comment);
         }
 
-        if (mCheckHtml) {
-            checkHtml(aAST, aComment);
+        if (checkHtml) {
+            checkHtml(ast, comment);
         }
 
-        if (mCheckEmptyJavadoc) {
-            checkEmptyJavadoc(aComment);
+        if (checkEmptyJavadoc) {
+            checkEmptyJavadoc(comment);
         }
     }
 
@@ -206,45 +206,45 @@ public class JavadocStyleCheck
      * HTML element, or the end of string. This method ignores {_AT_inheritDoc}
      * comments for TokenTypes that are valid for {_AT_inheritDoc}.
      *
-     * @param aAST the current node
-     * @param aComment the source lines that make up the Javadoc comment.
+     * @param ast the current node
+     * @param comment the source lines that make up the Javadoc comment.
      */
-    private void checkFirstSentence(final DetailAST aAST, TextBlock aComment)
+    private void checkFirstSentence(final DetailAST ast, TextBlock comment)
     {
-        final String commentText = getCommentText(aComment.getText());
+        final String commentText = getCommentText(comment.getText());
 
         if ((commentText.length() != 0)
             && !getEndOfSentencePattern().matcher(commentText).find()
             && !("{@inheritDoc}".equals(commentText)
-            && JavadocTagInfo.INHERIT_DOC.isValidOn(aAST)))
+            && JavadocTagInfo.INHERIT_DOC.isValidOn(ast)))
         {
-            log(aComment.getStartLineNo(), "javadoc.noperiod");
+            log(comment.getStartLineNo(), "javadoc.noperiod");
         }
     }
 
     /**
      * Checks that the Javadoc is not empty.
      *
-     * @param aComment the source lines that make up the Javadoc comment.
+     * @param comment the source lines that make up the Javadoc comment.
      */
-    private void checkEmptyJavadoc(TextBlock aComment)
+    private void checkEmptyJavadoc(TextBlock comment)
     {
-        final String commentText = getCommentText(aComment.getText());
+        final String commentText = getCommentText(comment.getText());
 
         if (commentText.length() == 0) {
-            log(aComment.getStartLineNo(), "javadoc.empty");
+            log(comment.getStartLineNo(), "javadoc.empty");
         }
     }
 
     /**
      * Returns the comment text from the Javadoc.
-     * @param aComments the lines of Javadoc.
+     * @param comments the lines of Javadoc.
      * @return a comment text String.
      */
-    private String getCommentText(String[] aComments)
+    private String getCommentText(String[] comments)
     {
         final StringBuffer buffer = new StringBuffer();
-        for (final String line : aComments) {
+        for (final String line : comments) {
             final int textStart = findTextStart(line);
 
             if (textStart != -1) {
@@ -265,22 +265,22 @@ public class JavadocStyleCheck
      * Finds the index of the first non-whitespace character ignoring the
      * Javadoc comment start and end strings (&#47** and *&#47) as well as any
      * leading asterisk.
-     * @param aLine the Javadoc comment line of text to scan.
+     * @param line the Javadoc comment line of text to scan.
      * @return the int index relative to 0 for the start of text
      *         or -1 if not found.
      */
-    private int findTextStart(String aLine)
+    private int findTextStart(String line)
     {
         int textStart = -1;
-        for (int i = 0; i < aLine.length(); i++) {
-            if (!Character.isWhitespace(aLine.charAt(i))) {
-                if (aLine.regionMatches(i, "/**", 0, "/**".length())) {
+        for (int i = 0; i < line.length(); i++) {
+            if (!Character.isWhitespace(line.charAt(i))) {
+                if (line.regionMatches(i, "/**", 0, "/**".length())) {
                     i += 2;
                 }
-                else if (aLine.regionMatches(i, "*/", 0, 2)) {
+                else if (line.regionMatches(i, "*/", 0, 2)) {
                     i++;
                 }
-                else if (aLine.charAt(i) != '*') {
+                else if (line.charAt(i) != '*') {
                     textStart = i;
                     break;
                 }
@@ -291,23 +291,23 @@ public class JavadocStyleCheck
 
     /**
      * Trims any trailing whitespace or the end of Javadoc comment string.
-     * @param aBuffer the StringBuffer to trim.
+     * @param buffer the StringBuffer to trim.
      */
-    private void trimTail(StringBuffer aBuffer)
+    private void trimTail(StringBuffer buffer)
     {
-        for (int i = aBuffer.length() - 1; i >= 0; i--) {
-            if (Character.isWhitespace(aBuffer.charAt(i))) {
-                aBuffer.deleteCharAt(i);
+        for (int i = buffer.length() - 1; i >= 0; i--) {
+            if (Character.isWhitespace(buffer.charAt(i))) {
+                buffer.deleteCharAt(i);
             }
             else if ((i > 0)
-                     && (aBuffer.charAt(i - 1) == '*')
-                     && (aBuffer.charAt(i) == '/'))
+                     && (buffer.charAt(i - 1) == '*')
+                     && (buffer.charAt(i) == '/'))
             {
-                aBuffer.deleteCharAt(i);
-                aBuffer.deleteCharAt(i - 1);
+                buffer.deleteCharAt(i);
+                buffer.deleteCharAt(i - 1);
                 i--;
-                while (aBuffer.charAt(i - 1) == '*') {
-                    aBuffer.deleteCharAt(i - 1);
+                while (buffer.charAt(i - 1) == '*') {
+                    buffer.deleteCharAt(i - 1);
                     i--;
                 }
             }
@@ -322,17 +322,17 @@ public class JavadocStyleCheck
      * tag or a close tag that has no previous open tag.  This code was
      * primarily copied from the DocCheck checkHtml method.
      *
-     * @param aAST the node with the Javadoc
-     * @param aComment the <code>TextBlock</code> which represents
+     * @param ast the node with the Javadoc
+     * @param comment the <code>TextBlock</code> which represents
      *                 the Javadoc comment.
      */
-    private void checkHtml(final DetailAST aAST, final TextBlock aComment)
+    private void checkHtml(final DetailAST ast, final TextBlock comment)
     {
-        final int lineno = aComment.getStartLineNo();
+        final int lineno = comment.getStartLineNo();
         final FastStack<HtmlTag> htmlStack = FastStack.newInstance();
-        final String[] text = aComment.getText();
+        final String[] text = comment.getText();
         final List<String> typeParameters =
-            CheckUtils.getTypeParameterNames(aAST);
+            CheckUtils.getTypeParameterNames(ast);
 
         TagParser parser = null;
         parser = new TagParser(text, lineno);
@@ -391,22 +391,22 @@ public class JavadocStyleCheck
      * tag on the stack.  Any tags, except single tags, that were opened
      * (pushed on the stack) after the token are missing a close.
      *
-     * @param aHtmlStack the stack of opened HTML tags.
-     * @param aToken the current HTML tag name that has been closed.
+     * @param htmlStack the stack of opened HTML tags.
+     * @param token the current HTML tag name that has been closed.
      */
-    private void checkUnclosedTags(FastStack<HtmlTag> aHtmlStack, String aToken)
+    private void checkUnclosedTags(FastStack<HtmlTag> htmlStack, String token)
     {
         final FastStack<HtmlTag> unclosedTags = FastStack.newInstance();
-        HtmlTag lastOpenTag = aHtmlStack.pop();
-        while (!aToken.equalsIgnoreCase(lastOpenTag.getId())) {
+        HtmlTag lastOpenTag = htmlStack.pop();
+        while (!token.equalsIgnoreCase(lastOpenTag.getId())) {
             // Find unclosed elements. Put them on a stack so the
             // output order won't be back-to-front.
             if (isSingleTag(lastOpenTag)) {
-                lastOpenTag = aHtmlStack.pop();
+                lastOpenTag = htmlStack.pop();
             }
             else {
                 unclosedTags.push(lastOpenTag);
-                lastOpenTag = aHtmlStack.pop();
+                lastOpenTag = htmlStack.pop();
             }
         }
 
@@ -428,47 +428,47 @@ public class JavadocStyleCheck
     /**
      * Determines if the HtmlTag is one which does not require a close tag.
      *
-     * @param aTag the HtmlTag to check.
+     * @param tag the HtmlTag to check.
      * @return <code>true</code> if the HtmlTag is a single tag.
      */
-    private boolean isSingleTag(HtmlTag aTag)
+    private boolean isSingleTag(HtmlTag tag)
     {
         // If its a singleton tag (<p>, <br>, etc.), ignore it
         // Can't simply not put them on the stack, since singletons
         // like <dt> and <dd> (unhappily) may either be terminated
         // or not terminated. Both options are legal.
-        return SINGLE_TAGS.contains(aTag.getId().toLowerCase());
+        return SINGLE_TAGS.contains(tag.getId().toLowerCase());
     }
 
     /**
      * Determines if the HtmlTag is one which is allowed in a javadoc.
      *
-     * @param aTag the HtmlTag to check.
+     * @param tag the HtmlTag to check.
      * @return <code>true</code> if the HtmlTag is an allowed html tag.
      */
-    private boolean isAllowedTag(HtmlTag aTag)
+    private boolean isAllowedTag(HtmlTag tag)
     {
-        return ALLOWED_TAGS.contains(aTag.getId().toLowerCase());
+        return ALLOWED_TAGS.contains(tag.getId().toLowerCase());
     }
 
     /**
      * Determines if the given token is an extra HTML tag. This indicates that
      * a close tag was found that does not have a corresponding open tag.
      *
-     * @param aToken an HTML tag id for which a close was found.
-     * @param aHtmlStack a Stack of previous open HTML tags.
+     * @param token an HTML tag id for which a close was found.
+     * @param htmlStack a Stack of previous open HTML tags.
      * @return <code>false</code> if a previous open tag was found
      *         for the token.
      */
-    private boolean isExtraHtml(String aToken, FastStack<HtmlTag> aHtmlStack)
+    private boolean isExtraHtml(String token, FastStack<HtmlTag> htmlStack)
     {
         boolean isExtra = true;
-        for (final HtmlTag td : aHtmlStack) {
+        for (final HtmlTag td : htmlStack) {
             // Loop, looking for tags that are closed.
             // The loop is needed in case there are unclosed
             // tags on the stack. In that case, the stack would
             // not be empty, but this tag would still be extra.
-            if (aToken.equalsIgnoreCase(td.getId())) {
+            if (token.equalsIgnoreCase(td.getId())) {
                 isExtra = false;
                 break;
             }
@@ -479,29 +479,29 @@ public class JavadocStyleCheck
 
     /**
      * Sets the scope to check.
-     * @param aFrom string to get the scope from
+     * @param from string to get the scope from
      */
-    public void setScope(String aFrom)
+    public void setScope(String from)
     {
-        mScope = Scope.getInstance(aFrom);
+        scope = Scope.getInstance(from);
     }
 
     /**
      * Set the excludeScope.
-     * @param aScope a <code>String</code> value
+     * @param scope a <code>String</code> value
      */
-    public void setExcludeScope(String aScope)
+    public void setExcludeScope(String scope)
     {
-        mExcludeScope = Scope.getInstance(aScope);
+        excludeScope = Scope.getInstance(scope);
     }
 
     /**
      * Set the format for matching the end of a sentence.
-     * @param aFormat format for matching the end of a sentence.
+     * @param format format for matching the end of a sentence.
      */
-    public void setEndOfSentenceFormat(String aFormat)
+    public void setEndOfSentenceFormat(String format)
     {
-        mEndOfSentenceFormat = aFormat;
+        endOfSentenceFormat = format;
     }
 
     /**
@@ -511,37 +511,37 @@ public class JavadocStyleCheck
      */
     private Pattern getEndOfSentencePattern()
     {
-        if (mEndOfSentencePattern == null) {
-            mEndOfSentencePattern = Pattern.compile(mEndOfSentenceFormat);
+        if (endOfSentencePattern == null) {
+            endOfSentencePattern = Pattern.compile(endOfSentenceFormat);
         }
-        return mEndOfSentencePattern;
+        return endOfSentencePattern;
     }
 
     /**
      * Sets the flag that determines if the first sentence is checked for
      * proper end of sentence punctuation.
-     * @param aFlag <code>true</code> if the first sentence is to be checked
+     * @param flag <code>true</code> if the first sentence is to be checked
      */
-    public void setCheckFirstSentence(boolean aFlag)
+    public void setCheckFirstSentence(boolean flag)
     {
-        mCheckFirstSentence = aFlag;
+        checkFirstSentence = flag;
     }
 
     /**
      * Sets the flag that determines if HTML checking is to be performed.
-     * @param aFlag <code>true</code> if HTML checking is to be performed.
+     * @param flag <code>true</code> if HTML checking is to be performed.
      */
-    public void setCheckHtml(boolean aFlag)
+    public void setCheckHtml(boolean flag)
     {
-        mCheckHtml = aFlag;
+        checkHtml = flag;
     }
 
     /**
-     * Sets the flag that determines if empty JavaDoc checking should be done.
-     * @param aFlag <code>true</code> if empty JavaDoc checking should be done.
+     * Sets the flag that determines if empty Javadoc checking should be done.
+     * @param flag <code>true</code> if empty Javadoc checking should be done.
      */
-    public void setCheckEmptyJavadoc(boolean aFlag)
+    public void setCheckEmptyJavadoc(boolean flag)
     {
-        mCheckEmptyJavadoc = aFlag;
+        checkEmptyJavadoc = flag;
     }
 }

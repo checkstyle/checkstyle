@@ -62,29 +62,29 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
     /**
      * Regular expression for forbidden summary fragments.
      */
-    private Pattern mForbiddenSummaryFragments = Utils.createPattern("^$");
+    private Pattern forbiddenSummaryFragments = Utils.createPattern("^$");
 
     /**
      * Period symbol at the end of first javadoc sentence.
      */
-    private String mPeriod = ".";
+    private String period = ".";
 
     /**
      * Sets custom value of regular expression for forbidden summary fragments.
-     * @param aPattern user's value.
+     * @param pattern user's value.
      */
-    public void setForbiddenSummaryFragments(String aPattern)
+    public void setForbiddenSummaryFragments(String pattern)
     {
-        mForbiddenSummaryFragments = Utils.createPattern(aPattern);
+        forbiddenSummaryFragments = Utils.createPattern(pattern);
     }
 
     /**
      * Sets value of period symbol at the end of first javadoc sentence.
-     * @param aPeriod period's value.
+     * @param period period's value.
      */
-    public void setPeriod(String aPeriod)
+    public void setPeriod(String period)
     {
-        mPeriod = aPeriod;
+        this.period = period;
     }
 
     @Override
@@ -96,30 +96,30 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
     }
 
     @Override
-    public void visitJavadocToken(DetailNode aAst)
+    public void visitJavadocToken(DetailNode ast)
     {
-        String firstSentence = getFirstSentence(aAst);
-        final int endOfSentence = firstSentence.lastIndexOf(mPeriod);
+        String firstSentence = getFirstSentence(ast);
+        final int endOfSentence = firstSentence.lastIndexOf(period);
         if (endOfSentence == -1) {
-            log(aAst.getLineNumber(), "summary.first.sentence");
+            log(ast.getLineNumber(), "summary.first.sentence");
         }
         else {
             firstSentence = firstSentence.substring(0, endOfSentence);
             if (containsForbiddenFragment(firstSentence)) {
-                log(aAst.getLineNumber(), "summary.javaDoc");
+                log(ast.getLineNumber(), "summary.javaDoc");
             }
         }
     }
 
     /**
      * Finds and returns first sentence.
-     * @param aAst Javadoc root node.
+     * @param ast Javadoc root node.
      * @return first sentence.
      */
-    private String getFirstSentence(DetailNode aAst)
+    private String getFirstSentence(DetailNode ast)
     {
         final StringBuilder result = new StringBuilder();
-        for (DetailNode child : aAst.getChildren()) {
+        for (DetailNode child : ast.getChildren()) {
             if (child.getType() != JavadocTokenTypes.JAVADOC_INLINE_TAG
                 && child.getText().contains(". "))
             {
@@ -135,13 +135,13 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
 
     /**
      * Finds and returns chars till first dot.
-     * @param aTextNode node with javadoc text.
+     * @param textNode node with javadoc text.
      * @return String with chars till first dot.
      */
-    private String getCharsTillDot(DetailNode aTextNode)
+    private String getCharsTillDot(DetailNode textNode)
     {
         final StringBuilder result = new StringBuilder();
-        for (DetailNode child : aTextNode.getChildren()) {
+        for (DetailNode child : textNode.getChildren()) {
             result.append(child.getText());
             if (".".equals(child.getText())
                 && JavadocUtils.getNextSibling(child).getType() == JavadocTokenTypes.WS)
@@ -154,14 +154,14 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
 
     /**
      * Tests if first sentence contains forbidden summary fragment.
-     * @param aFirstSentence String with first sentence.
+     * @param firstSentence String with first sentence.
      * @return true, if first sentence contains forbidden summary fragment.
      */
-    private boolean containsForbiddenFragment(String aFirstSentence)
+    private boolean containsForbiddenFragment(String firstSentence)
     {
-        // This regexp is used to convert multiline javadoc to single line without stars.
-        String javadocText = aFirstSentence.replaceAll("\n[ ]+(\\*)|^[ ]+(\\*)", " ");
+        // This regexp is used to convert multiline javdoc to single line without stars.
+        String javadocText = firstSentence.replaceAll("\n[ ]+(\\*)|^[ ]+(\\*)", " ");
         javadocText = CharMatcher.WHITESPACE.trimAndCollapseFrom(javadocText, ' ');
-        return mForbiddenSummaryFragments.matcher(javadocText).find();
+        return forbiddenSummaryFragments.matcher(javadocText).find();
     }
 }

@@ -29,47 +29,47 @@ import java.util.Set;
 public abstract class AbstractIllegalCheck extends Check
 {
     /** Illegal class names */
-    private final Set<String> mIllegalClassNames = Sets.newHashSet();
+    private final Set<String> illegalClassNames = Sets.newHashSet();
 
     /**
      * Constructs an object.
-     * @param aInitialNames the initial class names to treat as illegal
+     * @param initialNames the initial class names to treat as illegal
      */
-    protected AbstractIllegalCheck(final String[] aInitialNames)
+    protected AbstractIllegalCheck(final String[] initialNames)
     {
-        assert aInitialNames != null;
-        setIllegalClassNames(aInitialNames);
+        assert initialNames != null;
+        setIllegalClassNames(initialNames);
     }
 
     /**
      * Checks if given class is illegal.
      *
-     * @param aIdent
+     * @param ident
      *            ident to check.
      * @return true if given ident is illegal.
      */
-    protected final boolean isIllegalClassName(final String aIdent)
+    protected final boolean isIllegalClassName(final String ident)
     {
-        return mIllegalClassNames.contains(aIdent);
+        return illegalClassNames.contains(ident);
     }
 
     /**
      * Set the list of illegal classes.
      *
-     * @param aClassNames
+     * @param classNames
      *            array of illegal exception classes
      */
-    public final void setIllegalClassNames(final String[] aClassNames)
+    public final void setIllegalClassNames(final String[] classNames)
     {
-        assert aClassNames != null;
-        mIllegalClassNames.clear();
-        for (final String name : aClassNames) {
-            mIllegalClassNames.add(name);
+        assert classNames != null;
+        illegalClassNames.clear();
+        for (final String name : classNames) {
+            illegalClassNames.add(name);
             final int lastDot = name.lastIndexOf(".");
             if ((lastDot > 0) && (lastDot < (name.length() - 1))) {
                 final String shortName = name
                         .substring(name.lastIndexOf(".") + 1);
-                mIllegalClassNames.add(shortName);
+                illegalClassNames.add(shortName);
             }
         }
     }

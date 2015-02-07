@@ -43,32 +43,32 @@ public class MultipleStringLiteralsCheck extends Check
      * {@code <String, ArrayList>}, with the ArrayList containing StringInfo
      * objects.
      */
-    private final Map<String, List<StringInfo>> mStringMap = Maps.newHashMap();
+    private final Map<String, List<StringInfo>> stringMap = Maps.newHashMap();
 
     /**
      * Marks the TokenTypes where duplicate strings should be ignored.
      */
-    private final BitSet mIgnoreOccurrenceContext = new BitSet();
+    private final BitSet ignoreOccurrenceContext = new BitSet();
 
     /**
      * The allowed number of string duplicates in a file before an error is
      * generated.
      */
-    private int mAllowedDuplicates = 1;
+    private int allowedDuplicates = 1;
 
     /**
      * Sets the maximum allowed duplicates of a string.
-     * @param aAllowedDuplicates The maximum number of duplicates.
+     * @param allowedDuplicates The maximum number of duplicates.
      */
-    public void setAllowedDuplicates(int aAllowedDuplicates)
+    public void setAllowedDuplicates(int allowedDuplicates)
     {
-        mAllowedDuplicates = aAllowedDuplicates;
+        this.allowedDuplicates = allowedDuplicates;
     }
 
     /**
      * Pattern for matching ignored strings.
      */
-    private Pattern mPattern;
+    private Pattern pattern;
 
     /**
      * Construct an instance with default values.
@@ -76,35 +76,35 @@ public class MultipleStringLiteralsCheck extends Check
     public MultipleStringLiteralsCheck()
     {
         setIgnoreStringsRegexp("^\"\"$");
-        mIgnoreOccurrenceContext.set(TokenTypes.ANNOTATION);
+        ignoreOccurrenceContext.set(TokenTypes.ANNOTATION);
     }
 
     /**
      * Sets regexp pattern for ignored strings.
-     * @param aIgnoreStringsRegexp regexp pattern for ignored strings
+     * @param ignoreStringsRegexp regexp pattern for ignored strings
      */
-    public void setIgnoreStringsRegexp(String aIgnoreStringsRegexp)
+    public void setIgnoreStringsRegexp(String ignoreStringsRegexp)
     {
-        if ((aIgnoreStringsRegexp != null)
-            && (aIgnoreStringsRegexp.length() > 0))
+        if ((ignoreStringsRegexp != null)
+            && (ignoreStringsRegexp.length() > 0))
         {
-            mPattern = Utils.getPattern(aIgnoreStringsRegexp);
+            pattern = Utils.getPattern(ignoreStringsRegexp);
         }
         else {
-            mPattern = null;
+            pattern = null;
         }
     }
 
     /**
      * Adds a set of tokens the check is interested in.
-     * @param aStrRep the string representation of the tokens interested in
+     * @param strRep the string representation of the tokens interested in
      */
-    public final void setIgnoreOccurrenceContext(String[] aStrRep)
+    public final void setIgnoreOccurrenceContext(String[] strRep)
     {
-        mIgnoreOccurrenceContext.clear();
-        for (final String s : aStrRep) {
+        ignoreOccurrenceContext.clear();
+        for (final String s : strRep) {
             final int type = TokenTypes.getTokenId(s);
-            mIgnoreOccurrenceContext.set(type);
+            ignoreOccurrenceContext.set(type);
         }
     }
 
@@ -115,40 +115,40 @@ public class MultipleStringLiteralsCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        if (isInIgnoreOccurrenceContext(aAST)) {
+        if (isInIgnoreOccurrenceContext(ast)) {
             return;
         }
-        final String currentString = aAST.getText();
-        if ((mPattern == null) || !mPattern.matcher(currentString).find()) {
-            List<StringInfo> hitList = mStringMap.get(currentString);
+        final String currentString = ast.getText();
+        if ((pattern == null) || !pattern.matcher(currentString).find()) {
+            List<StringInfo> hitList = stringMap.get(currentString);
             if (hitList == null) {
                 hitList = Lists.newArrayList();
-                mStringMap.put(currentString, hitList);
+                stringMap.put(currentString, hitList);
             }
-            final int line = aAST.getLineNo();
-            final int col = aAST.getColumnNo();
+            final int line = ast.getLineNo();
+            final int col = ast.getColumnNo();
             hitList.add(new StringInfo(line, col));
         }
     }
 
     /**
      * Analyses the path from the AST root to a given AST for occurrences
-     * of the token types in {@link #mIgnoreOccurrenceContext}.
+     * of the token types in {@link #ignoreOccurrenceContext}.
      *
-     * @param aAST the node from where to start searching towards the root node
-     * @return whether the path from the root node to aAST contains one of the
-     * token type in {@link #mIgnoreOccurrenceContext}.
+     * @param ast the node from where to start searching towards the root node
+     * @return whether the path from the root node to ast contains one of the
+     * token type in {@link #ignoreOccurrenceContext}.
      */
-    private boolean isInIgnoreOccurrenceContext(DetailAST aAST)
+    private boolean isInIgnoreOccurrenceContext(DetailAST ast)
     {
-        for (DetailAST token = aAST;
+        for (DetailAST token = ast;
              token.getParent() != null;
              token = token.getParent())
         {
             final int type = token.getType();
-            if (mIgnoreOccurrenceContext.get(type)) {
+            if (ignoreOccurrenceContext.get(type)) {
                 return true;
             }
         }
@@ -156,19 +156,19 @@ public class MultipleStringLiteralsCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
-        super.beginTree(aRootAST);
-        mStringMap.clear();
+        super.beginTree(rootAST);
+        stringMap.clear();
     }
 
     @Override
-    public void finishTree(DetailAST aRootAST)
+    public void finishTree(DetailAST rootAST)
     {
-        final Set<String> keys = mStringMap.keySet();
+        final Set<String> keys = stringMap.keySet();
         for (String key : keys) {
-            final List<StringInfo> hits = mStringMap.get(key);
-            if (hits.size() > mAllowedDuplicates) {
+            final List<StringInfo> hits = stringMap.get(key);
+            if (hits.size() > allowedDuplicates) {
                 final StringInfo firstFinding = hits.get(0);
                 final int line = firstFinding.getLine();
                 final int col = firstFinding.getCol();
@@ -185,20 +185,20 @@ public class MultipleStringLiteralsCheck extends Check
         /**
          * Line of finding
          */
-        private final int mLine;
+        private final int line;
         /**
          * Column of finding
          */
-        private final int mCol;
+        private final int col;
         /**
          * Creates information about a string position.
-         * @param aLine int
-         * @param aCol int
+         * @param line int
+         * @param col int
          */
-        private StringInfo(int aLine, int aCol)
+        private StringInfo(int line, int col)
         {
-            mLine = aLine;
-            mCol = aCol;
+            this.line = line;
+            this.col = col;
         }
 
         /**
@@ -207,7 +207,7 @@ public class MultipleStringLiteralsCheck extends Check
          */
         private int getLine()
         {
-            return mLine;
+            return line;
         }
 
         /**
@@ -216,7 +216,7 @@ public class MultipleStringLiteralsCheck extends Check
          */
         private int getCol()
         {
-            return mCol;
+            return col;
         }
     }
 

@@ -11,57 +11,57 @@ import com.puppycrawl.tools.checkstyle.api.AuditListener;
 class DebugAuditAdapter implements AuditListener
 {
     /** keeps track of the number of errors */
-    private boolean mCalled;
+    private boolean called;
 
     public boolean wasCalled()
     {
-        return mCalled;
+        return called;
     }
 
     public void resetListener()
     {
-        mCalled = false;
+        called = false;
     }
 
     /** @see AuditListener */
     @Override
-    public void addError(AuditEvent aEvt)
+    public void addError(AuditEvent evt)
     {
-        mCalled = true;
+        called = true;
     }
 
     /** @see AuditListener */
     @Override
-    public void addException(AuditEvent aEvt, Throwable aThrowable)
+    public void addException(AuditEvent evt, Throwable throwable)
     {
-        mCalled = true;
+        called = true;
     }
 
     /** @see AuditListener */
     @Override
-    public void auditStarted(AuditEvent aEvt)
+    public void auditStarted(AuditEvent evt)
     {
-        mCalled = true;
+        called = true;
     }
 
     /** @see AuditListener */
     @Override
-    public void fileStarted(AuditEvent aEvt)
+    public void fileStarted(AuditEvent evt)
     {
-        mCalled = true;
+        called = true;
     }
 
     /** @see AuditListener */
     @Override
-    public void auditFinished(AuditEvent aEvt)
+    public void auditFinished(AuditEvent evt)
     {
-        mCalled = true;
+        called = true;
     }
 
     /** @see AuditListener */
     @Override
-    public void fileFinished(AuditEvent aEvt)
+    public void fileFinished(AuditEvent evt)
     {
-        mCalled = true;
+        called = true;
     }
 }

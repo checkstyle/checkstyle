@@ -24,6 +24,9 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -66,7 +69,22 @@ import java.util.Set;
  * will be ok.
  * </p>
  * <p>
- * <b>ignoredMethodNames</b> - Methods that should not be checked..
+ * <b>ignoredMethodNames</b> - Methods that should not be checked.
+ * </p>
+ * <p>
+ * <b>memberModifiers</b> - To check only methods and fields with only specified modifiers.
+ * </p>
+ * <p>
+ * In most cases it's justified to put following classes to <b>illegalClassNames</b>:
+ * <ul>
+ * <li>GregorianCalendar</li>
+ * <li>Hashtable</li>
+ * <li>ArrayList</li>
+ * <li>LinkedList</li>
+ * <li>Vector</li>
+ * </ul>
+ * as methods that are differ from interface methods are rear used, so in most cases user will
+ *  benefit from checking for them.
  * </p>
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
@@ -80,28 +98,18 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     private static final String[] DEFAULT_LEGAL_ABSTRACT_NAMES = {};
     /** Types illegal by default. */
     private static final String[] DEFAULT_ILLEGAL_TYPES = {
-        "GregorianCalendar",
-        "Hashtable",
         "HashSet",
         "HashMap",
-        "ArrayList",
-        "LinkedList",
         "LinkedHashMap",
         "LinkedHashSet",
         "TreeSet",
         "TreeMap",
-        "Vector",
-        "java.util.GregorianCalendar",
-        "java.util.Hashtable",
         "java.util.HashSet",
         "java.util.HashMap",
-        "java.util.ArrayList",
-        "java.util.LinkedList",
         "java.util.LinkedHashMap",
         "java.util.LinkedHashSet",
         "java.util.TreeSet",
         "java.util.TreeMap",
-        "java.util.Vector",
     };
 
     /** Default ignored method names. */
@@ -111,11 +119,13 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     };
 
     /** illegal classes. */
-    private final Set<String> mIllegalClassNames = Sets.newHashSet();
+    private final Set<String> illegalClassNames = Sets.newHashSet();
     /** legal abstract classes. */
-    private final Set<String> mLegalAbstractClassNames = Sets.newHashSet();
+    private final Set<String> legalAbstractClassNames = Sets.newHashSet();
     /** methods which should be ignored. */
-    private final Set<String> mIgnoredMethodNames = Sets.newHashSet();
+    private final Set<String> ignoredMethodNames = Sets.newHashSet();
+    /** check methods and fields with only corresponding modifiers. */
+    private List<Integer> memberModifiers;
 
     /** Creates new instance of the check. */
     public IllegalTypeCheck()
@@ -138,71 +148,101 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.METHOD_DEF:
-            visitMethodDef(aAST);
-            break;
-        case TokenTypes.VARIABLE_DEF:
-            visitVariableDef(aAST);
-            break;
-        case TokenTypes.PARAMETER_DEF:
-            visitParameterDef(aAST);
-            break;
-        case TokenTypes.IMPORT:
-            visitImport(aAST);
-            break;
-        default:
-            throw new IllegalStateException(aAST.toString());
+        switch (ast.getType()) {
+            case TokenTypes.METHOD_DEF:
+                if (isVerifiable(ast)) {
+                    visitMethodDef(ast);
+                }
+                break;
+            case TokenTypes.VARIABLE_DEF:
+                if (isVerifiable(ast)) {
+                    visitVariableDef(ast);
+                }
+                break;
+            case TokenTypes.PARAMETER_DEF:
+                visitParameterDef(ast);
+                break;
+            case TokenTypes.IMPORT:
+                visitImport(ast);
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
     /**
-     * Checks return type of a given method.
-     * @param aMethodDef method for check.
+     * Checks if current method's return type or variable's type is verifiable
+     * according to <b>memberModifiers</b> option.
+     * @param methodOrVariableDef METHOD_DEF or VARIABLE_DEF ast node.
+     * @return true if member is verifiable according to <b>memberModifiers</b> option.
      */
-    private void visitMethodDef(DetailAST aMethodDef)
+    private boolean isVerifiable(DetailAST methodOrVariableDef)
     {
-        if (isCheckedMethod(aMethodDef)) {
-            checkClassName(aMethodDef);
+        boolean result = true;
+        if (memberModifiers != null) {
+            result = false;
+            final DetailAST modifiersAst = methodOrVariableDef.
+                    findFirstToken(TokenTypes.MODIFIERS);
+            if (modifiersAst.getFirstChild() != null) {
+                for (DetailAST modifier = modifiersAst.getFirstChild(); modifier != null;
+                         modifier = modifier.getNextSibling())
+                {
+                    if (memberModifiers.contains(modifier.getType())) {
+                        result = true;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks return type of a given method.
+     * @param methodDef method for check.
+     */
+    private void visitMethodDef(DetailAST methodDef)
+    {
+        if (isCheckedMethod(methodDef)) {
+            checkClassName(methodDef);
         }
     }
 
     /**
      * Checks type of parameters.
-     * @param aParamDef parameter list for check.
+     * @param paradef parameter list for check.
      */
-    private void visitParameterDef(DetailAST aParamDef)
+    private void visitParameterDef(DetailAST paradef)
     {
-        final DetailAST grandParentAST = aParamDef.getParent().getParent();
+        final DetailAST grandParentAST = paradef.getParent().getParent();
 
         if ((grandParentAST.getType() == TokenTypes.METHOD_DEF)
             && isCheckedMethod(grandParentAST))
         {
-            checkClassName(aParamDef);
+            checkClassName(paradef);
         }
     }
 
     /**
      * Checks type of given variable.
-     * @param aVariableDef variable to check.
+     * @param variableDef variable to check.
      */
-    private void visitVariableDef(DetailAST aVariableDef)
+    private void visitVariableDef(DetailAST variableDef)
     {
-        checkClassName(aVariableDef);
+        checkClassName(variableDef);
     }
 
     /**
      * Checks imported type (as static and star imports are not supported by Check,
      *  only type is in the consideration).<br>
      * If this type is illegal due to Check's options - puts violation on it.
-     * @param aImport {@link TokenTypes#IMPORT Import}
+     * @param importAst {@link TokenTypes#IMPORT Import}
      */
-    private void visitImport(DetailAST aImport)
+    private void visitImport(DetailAST importAst)
     {
-        if (!isStarImport(aImport)) {
-            final String canonicalName = getCanonicalName(aImport);
+        if (!isStarImport(importAst)) {
+            final String canonicalName = getCanonicalName(importAst);
             extendIllegalClassNamesWithShortName(canonicalName);
         }
     }
@@ -214,15 +254,15 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      * import java.util.*;
      * </code>
      * </p>
-     * @param aImport {@link TokenTypes#IMPORT Import}
+     * @param importAst {@link TokenTypes#IMPORT Import}
      * @return true if it is star import
      */
-    private static boolean isStarImport(DetailAST aImport)
+    private static boolean isStarImport(DetailAST importAst)
     {
         boolean result = false;
-        DetailAST toVisit = aImport;
+        DetailAST toVisit = importAst;
         while (toVisit != null) {
-            toVisit = getNextSubTreeNode(toVisit, aImport);
+            toVisit = getNextSubTreeNode(toVisit, importAst);
             if (toVisit != null && toVisit.getType() == TokenTypes.STAR) {
                 result = true;
                 break;
@@ -233,11 +273,11 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
 
     /**
      * Checks type of given method, parameter or variable.
-     * @param aAST node to check.
+     * @param ast node to check.
      */
-    private void checkClassName(DetailAST aAST)
+    private void checkClassName(DetailAST ast)
     {
-        final DetailAST type = aAST.findFirstToken(TokenTypes.TYPE);
+        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
         final FullIdent ident = CheckUtils.createFullType(type);
 
         if (isMatchingClassName(ident.getText())) {
@@ -247,31 +287,31 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     }
 
     /**
-     * @param aClassName class name to check.
+     * @param className class name to check.
      * @return true if given class name is one of illegal classes
      *         or if it matches to abstract class names pattern.
      */
-    private boolean isMatchingClassName(String aClassName)
+    private boolean isMatchingClassName(String className)
     {
-        final String shortName = aClassName.substring(aClassName.lastIndexOf(".") + 1);
-        return (mIllegalClassNames.contains(aClassName)
-                || mIllegalClassNames.contains(shortName))
-            || (!mLegalAbstractClassNames.contains(aClassName)
-                && getRegexp().matcher(aClassName).find());
+        final String shortName = className.substring(className.lastIndexOf(".") + 1);
+        return (illegalClassNames.contains(className)
+                || illegalClassNames.contains(shortName))
+            || (!legalAbstractClassNames.contains(className)
+                && getRegexp().matcher(className).find());
     }
 
     /**
      * Extends illegal class names set via imported short type name.
-     * @param aCanonicalName
+     * @param canonicalName
      *  <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.7">
      *  Canonical</a> name of imported type.
      */
-    private void extendIllegalClassNamesWithShortName(String aCanonicalName)
+    private void extendIllegalClassNamesWithShortName(String canonicalName)
     {
-        if (mIllegalClassNames.contains(aCanonicalName)) {
-            final String shortName = aCanonicalName.
-                substring(aCanonicalName.lastIndexOf(".") + 1);
-            mIllegalClassNames.add(shortName);
+        if (illegalClassNames.contains(canonicalName)) {
+            final String shortName = canonicalName.
+                substring(canonicalName.lastIndexOf(".") + 1);
+            illegalClassNames.add(shortName);
         }
     }
 
@@ -279,21 +319,21 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      * Gets imported type's
      * <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.7">
      *  canonical name</a>.
-     * @param aImport {@link TokenTypes#IMPORT Import}
+     * @param importAst {@link TokenTypes#IMPORT Import}
      * @return Imported canonical type's name.
      */
-    private static String getCanonicalName(DetailAST aImport)
+    private static String getCanonicalName(DetailAST importAst)
     {
         final StringBuilder canonicalNameBuilder = new StringBuilder();
-        DetailAST toVisit = aImport;
+        DetailAST toVisit = importAst;
         while (toVisit != null) {
-            toVisit = getNextSubTreeNode(toVisit, aImport);
+            toVisit = getNextSubTreeNode(toVisit, importAst);
             if (toVisit != null
                    && (toVisit.getType() == TokenTypes.IDENT
                       || toVisit.getType() == TokenTypes.STAR))
             {
                 canonicalNameBuilder.append(toVisit.getText());
-                final DetailAST nextSubTreeNode = getNextSubTreeNode(toVisit, aImport);
+                final DetailAST nextSubTreeNode = getNextSubTreeNode(toVisit, importAst);
                 if (nextSubTreeNode.getType() != TokenTypes.SEMI) {
                     canonicalNameBuilder.append('.');
                 }
@@ -305,20 +345,20 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     /**
      * Gets the next node of a syntactical tree (child of a current node or
      * sibling of a current node, or sibling of a parent of a current node)
-     * @param aCurrentNodeAst Current node in considering
-     * @param aSubTreeRootAst SubTree root
+     * @param currentNodeAst Current node in considering
+     * @param subTreeRootAst SubTree root
      * @return Current node after bypassing, if current node reached the root of a subtree
      *        method returns null
      */
     private static DetailAST
-        getNextSubTreeNode(DetailAST aCurrentNodeAst, DetailAST aSubTreeRootAst)
+        getNextSubTreeNode(DetailAST currentNodeAst, DetailAST subTreeRootAst)
     {
-        DetailAST currentNode = aCurrentNodeAst;
+        DetailAST currentNode = currentNodeAst;
         DetailAST toVisitAst = currentNode.getFirstChild();
         while (toVisitAst == null) {
             toVisitAst = currentNode.getNextSibling();
             if (toVisitAst == null) {
-                if (currentNode.getParent().equals(aSubTreeRootAst)) {
+                if (currentNode.getParent().equals(subTreeRootAst)) {
                     break;
                 }
                 currentNode = currentNode.getParent();
@@ -329,25 +369,25 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     }
 
     /**
-     * @param aAST method def to check.
+     * @param ast method def to check.
      * @return true if we should check this method.
      */
-    private boolean isCheckedMethod(DetailAST aAST)
+    private boolean isCheckedMethod(DetailAST ast)
     {
         final String methodName =
-            aAST.findFirstToken(TokenTypes.IDENT).getText();
-        return !mIgnoredMethodNames.contains(methodName);
+            ast.findFirstToken(TokenTypes.IDENT).getText();
+        return !ignoredMethodNames.contains(methodName);
     }
 
     /**
      * Set the list of illegal variable types.
-     * @param aClassNames array of illegal variable types
+     * @param classNames array of illegal variable types
      */
-    public void setIllegalClassNames(String[] aClassNames)
+    public void setIllegalClassNames(String[] classNames)
     {
-        mIllegalClassNames.clear();
-        for (String name : aClassNames) {
-            mIllegalClassNames.add(name);
+        illegalClassNames.clear();
+        for (String name : classNames) {
+            illegalClassNames.add(name);
         }
     }
 
@@ -357,19 +397,19 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      */
     public String[] getIllegalClassNames()
     {
-        return mIllegalClassNames.toArray(
-            new String[mIllegalClassNames.size()]);
+        return illegalClassNames.toArray(
+            new String[illegalClassNames.size()]);
     }
 
     /**
      * Set the list of ignore method names.
-     * @param aMethodNames array of ignored method names
+     * @param methodNames array of ignored method names
      */
-    public void setIgnoredMethodNames(String[] aMethodNames)
+    public void setIgnoredMethodNames(String[] methodNames)
     {
-        mIgnoredMethodNames.clear();
-        for (String element : aMethodNames) {
-            mIgnoredMethodNames.add(element);
+        ignoredMethodNames.clear();
+        for (String element : methodNames) {
+            ignoredMethodNames.add(element);
         }
     }
 
@@ -379,19 +419,19 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      */
     public String[] getIgnoredMethodNames()
     {
-        return mIgnoredMethodNames.toArray(
-            new String[mIgnoredMethodNames.size()]);
+        return ignoredMethodNames.toArray(
+            new String[ignoredMethodNames.size()]);
     }
 
     /**
      * Set the list of legal abstract class names.
-     * @param aClassNames array of legal abstract class names
+     * @param classNames array of legal abstract class names
      */
-    public void setLegalAbstractClassNames(String[] aClassNames)
+    public void setLegalAbstractClassNames(String[] classNames)
     {
-        mLegalAbstractClassNames.clear();
-        for (String element : aClassNames) {
-            mLegalAbstractClassNames.add(element);
+        legalAbstractClassNames.clear();
+        for (String element : classNames) {
+            legalAbstractClassNames.add(element);
         }
     }
 
@@ -401,7 +441,20 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      */
     public String[] getLegalAbstractClassNames()
     {
-        return mLegalAbstractClassNames.toArray(
-            new String[mLegalAbstractClassNames.size()]);
+        return legalAbstractClassNames.toArray(
+            new String[legalAbstractClassNames.size()]);
+    }
+
+    /**
+     * Set the list of member modifiers (of methods and fields) which should be checked.
+     * @param modifiers String contains modifiers.
+     */
+    public void setMemberModifiers(String modifiers)
+    {
+        final List<Integer> modifiersList = new ArrayList<Integer>(modifiers.length());
+        for (String modifier : modifiers.split(", ")) {
+            modifiersList.add(TokenTypes.getTokenId(modifier));
+        }
+        this.memberModifiers = modifiersList;
     }
 }

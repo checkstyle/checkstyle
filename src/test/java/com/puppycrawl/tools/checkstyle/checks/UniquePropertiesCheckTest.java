@@ -44,12 +44,12 @@ import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_K
 public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport
 {
 
-    private DefaultConfiguration mCheckConfig;
+    private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp()
     {
-        mCheckConfig = createCheckConfig(UniquePropertiesCheck.class);
+        checkConfig = createCheckConfig(UniquePropertiesCheck.class);
     }
 
     /**
@@ -69,7 +69,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport
             "28: " + getCheckMessage(MSG_KEY, "Support Link ", 2),
             "34: " + getCheckMessage(MSG_KEY, "failed", 2),
         };
-        verify(mCheckConfig, getPath("InputUniquePropertiesCheck.properties"),
+        verify(checkConfig, getPath("InputUniquePropertiesCheck.properties"),
                 expected);
     }
 
@@ -102,7 +102,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport
     public void testIOException() throws Exception
     {
         final UniquePropertiesCheck check = new UniquePropertiesCheck();
-        check.configure(mCheckConfig);
+        check.configure(checkConfig);
         final String fileName =
                 getPath("InputUniquePropertiesCheckNotExisting.properties");
         final File file = new File(fileName);

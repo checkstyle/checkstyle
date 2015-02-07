@@ -29,65 +29,65 @@ import java.util.List;
 public class RegexpSinglelineCheck extends AbstractFileSetCheck
 {
     /** The detection options to use. */
-    private DetectorOptions mOptions = new DetectorOptions(0, this);
+    private DetectorOptions options = new DetectorOptions(0, this);
     /** The detector to use. */
-    private SinglelineDetector mDetector;
+    private SinglelineDetector detector;
 
     @Override
-    public void beginProcessing(String aCharset)
+    public void beginProcessing(String charset)
     {
-        super.beginProcessing(aCharset);
-        mDetector = new SinglelineDetector(mOptions);
+        super.beginProcessing(charset);
+        detector = new SinglelineDetector(options);
     }
 
     @Override
-    protected void processFiltered(File aFile, List<String> aLines)
+    protected void processFiltered(File file, List<String> lines)
     {
-        mDetector.processLines(aLines);
+        detector.processLines(lines);
     }
 
     /**
      * Set the format of the regular expression to match.
-     * @param aFormat the format of the regular expression to match.
+     * @param format the format of the regular expression to match.
      */
-    public void setFormat(String aFormat)
+    public void setFormat(String format)
     {
-        mOptions.setFormat(aFormat);
+        options.setFormat(format);
     }
 
     /**
      * Set the message to report for a match.
-     * @param aMessage the message to report for a match.
+     * @param message the message to report for a match.
      */
-    public void setMessage(String aMessage)
+    public void setMessage(String message)
     {
-        mOptions.setMessage(aMessage);
+        options.setMessage(message);
     }
 
     /**
      * Set the minimum number of matches required per file.
-     * @param aMinimum the minimum number of matches required per file.
+     * @param minimum the minimum number of matches required per file.
      */
-    public void setMinimum(int aMinimum)
+    public void setMinimum(int minimum)
     {
-        mOptions.setMinimum(aMinimum);
+        options.setMinimum(minimum);
     }
 
     /**
      * Set the maximum number of matches required per file.
-     * @param aMaximum the maximum number of matches required per file.
+     * @param maximum the maximum number of matches required per file.
      */
-    public void setMaximum(int aMaximum)
+    public void setMaximum(int maximum)
     {
-        mOptions.setMaximum(aMaximum);
+        options.setMaximum(maximum);
     }
 
     /**
      * Set whether to ignore case when matching.
-     * @param aIgnore whether to ignore case when matching.
+     * @param ignore whether to ignore case when matching.
      */
-    public void setIgnoreCase(boolean aIgnore)
+    public void setIgnoreCase(boolean ignore)
     {
-        mOptions.setIgnoreCase(aIgnore);
+        options.setIgnoreCase(ignore);
     }
 }

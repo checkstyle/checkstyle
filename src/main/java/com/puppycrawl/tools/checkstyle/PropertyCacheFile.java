@@ -56,43 +56,43 @@ final class PropertyCacheFile
     private static final String CONFIG_HASH_KEY = "configuration*?";
 
     /** name of file to store details **/
-    private final String mDetailsFile;
+    private final String detailsFile;
     /** the details on files **/
-    private final Properties mDetails = new Properties();
+    private final Properties details = new Properties();
 
     /**
      * Creates a new <code>PropertyCacheFile</code> instance.
      *
-     * @param aCurrentConfig the current configuration, not null
-     * @param aFileName the cache file
+     * @param currentConfig the current configuration, not null
+     * @param fileName the cache file
      */
-    PropertyCacheFile(Configuration aCurrentConfig, String aFileName)
+    PropertyCacheFile(Configuration currentConfig, String fileName)
     {
         boolean setInActive = true;
-        if (aFileName != null) {
+        if (fileName != null) {
             FileInputStream inStream = null;
             // get the current config so if the file isn't found
             // the first time the hash will be added to output file
-            final String currentConfigHash = getConfigHashCode(aCurrentConfig);
+            final String currentConfigHash = getConfigHashCode(currentConfig);
             try {
-                inStream = new FileInputStream(aFileName);
-                mDetails.load(inStream);
+                inStream = new FileInputStream(fileName);
+                details.load(inStream);
                 final String cachedConfigHash =
-                    mDetails.getProperty(CONFIG_HASH_KEY);
+                    details.getProperty(CONFIG_HASH_KEY);
                 setInActive = false;
                 if ((cachedConfigHash == null)
                     || !cachedConfigHash.equals(currentConfigHash))
                 {
                     // Detected configuration change - clear cache
-                    mDetails.clear();
-                    mDetails.put(CONFIG_HASH_KEY, currentConfigHash);
+                    details.clear();
+                    details.put(CONFIG_HASH_KEY, currentConfigHash);
                 }
             }
             catch (final FileNotFoundException e) {
                 // Ignore, the cache does not exist
                 setInActive = false;
                 // put the hash in the file if the file is going to be created
-                mDetails.put(CONFIG_HASH_KEY, currentConfigHash);
+                details.put(CONFIG_HASH_KEY, currentConfigHash);
             }
             catch (final IOException e) {
                 Utils.getExceptionLogger()
@@ -102,17 +102,17 @@ final class PropertyCacheFile
                 Utils.closeQuietly(inStream);
             }
         }
-        mDetailsFile = (setInActive) ? null : aFileName;
+        detailsFile = (setInActive) ? null : fileName;
     }
 
     /** Cleans up the object and updates the cache file. **/
     void destroy()
     {
-        if (mDetailsFile != null) {
+        if (detailsFile != null) {
             FileOutputStream out = null;
             try {
-                out = new FileOutputStream(mDetailsFile);
-                mDetails.store(out, null);
+                out = new FileOutputStream(detailsFile);
+                details.store(out, null);
             }
             catch (final IOException e) {
                 Utils.getExceptionLogger()
@@ -126,53 +126,53 @@ final class PropertyCacheFile
 
     /**
      * Flushes and closes output stream.
-     * @param aStream the output stream
+     * @param stream the output stream
      */
-    private void flushAndCloseOutStream(OutputStream aStream)
+    private void flushAndCloseOutStream(OutputStream stream)
     {
-        if (aStream != null) {
+        if (stream != null) {
             try {
-                aStream.flush();
+                stream.flush();
             }
             catch (final IOException ex) {
                 Utils.getExceptionLogger()
                     .debug("Unable to flush output stream.", ex);
             }
             finally {
-                Utils.closeQuietly(aStream);
+                Utils.closeQuietly(stream);
             }
         }
     }
 
     /**
      * @return whether the specified file has already been checked ok
-     * @param aFileName the file to check
-     * @param aTimestamp the timestamp of the file to check
+     * @param fileName the file to check
+     * @param timestamp the timestamp of the file to check
      */
-    boolean alreadyChecked(String aFileName, long aTimestamp)
+    boolean alreadyChecked(String fileName, long timestamp)
     {
-        final String lastChecked = mDetails.getProperty(aFileName);
+        final String lastChecked = details.getProperty(fileName);
         return (lastChecked != null)
-            && (lastChecked.equals(Long.toString(aTimestamp)));
+            && (lastChecked.equals(Long.toString(timestamp)));
     }
 
     /**
      * Records that a file checked ok.
-     * @param aFileName name of the file that checked ok
-     * @param aTimestamp the timestamp of the file
+     * @param fileName name of the file that checked ok
+     * @param timestamp the timestamp of the file
      */
-    void checkedOk(String aFileName, long aTimestamp)
+    void checkedOk(String fileName, long timestamp)
     {
-        mDetails.put(aFileName, Long.toString(aTimestamp));
+        details.put(fileName, Long.toString(timestamp));
     }
 
     /**
      * Calculates the hashcode for a GlobalProperties.
      *
-     * @param aConfiguration the GlobalProperties
-     * @return the hashcode for <code>aConfiguration</code>
+     * @param configuration the GlobalProperties
+     * @return the hashcode for <code>configuration</code>
      */
-    private String getConfigHashCode(Serializable aConfiguration)
+    private String getConfigHashCode(Serializable configuration)
     {
         try {
             // im-memory serialization of Configuration
@@ -181,7 +181,7 @@ final class PropertyCacheFile
             ObjectOutputStream oos = null;
             try {
                 oos = new ObjectOutputStream(baos);
-                oos.writeObject(aConfiguration);
+                oos.writeObject(configuration);
             }
             finally {
                 this.flushAndCloseOutStream(oos);
@@ -217,13 +217,13 @@ final class PropertyCacheFile
 
     /**
      * Hex-encodes a byte array.
-     * @param aByteArray the byte array
-     * @return hex encoding of <code>aByteArray</code>
+     * @param byteArray the byte array
+     * @return hex encoding of <code>byteArray</code>
      */
-    private static String hexEncode(byte[] aByteArray)
+    private static String hexEncode(byte[] byteArray)
     {
-        final StringBuffer buf = new StringBuffer(2 * aByteArray.length);
-        for (final byte b : aByteArray) {
+        final StringBuffer buf = new StringBuffer(2 * byteArray.length);
+        for (final byte b : byteArray) {
             final int low = b & MASK_0X0F;
             final int high = (b >> SHIFT_4) & MASK_0X0F;
             buf.append(HEX_CHARS[high]);

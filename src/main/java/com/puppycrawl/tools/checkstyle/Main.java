@@ -66,15 +66,15 @@ public final class Main
     /**
      * Loops over the files specified checking them for errors. The exit code
      * is the number of errors found in all the files.
-     * @param aArgs the command line arguments
+     * @param args the command line arguments
      **/
-    public static void main(String[] aArgs)
+    public static void main(String[] args)
     {
         // parse the parameters
         final CommandLineParser clp = new PosixParser();
         CommandLine line = null;
         try {
-            line = clp.parse(OPTS, aArgs);
+            line = clp.parse(OPTS, args);
         }
         catch (final ParseException e) {
             e.printStackTrace();
@@ -133,12 +133,12 @@ public final class Main
     /**
      * Creates the Checker object.
      *
-     * @param aConfig the configuration to use
-     * @param aNosy the sticky beak to track what happens
+     * @param config the configuration to use
+     * @param nosy the sticky beak to track what happens
      * @return a nice new fresh Checker
      */
-    private static Checker createChecker(Configuration aConfig,
-                                         AuditListener aNosy)
+    private static Checker createChecker(Configuration config,
+                                         AuditListener nosy)
     {
         Checker c = null;
         try {
@@ -147,8 +147,8 @@ public final class Main
             final ClassLoader moduleClassLoader =
                 Checker.class.getClassLoader();
             c.setModuleClassLoader(moduleClassLoader);
-            c.configure(aConfig);
-            c.addListener(aNosy);
+            c.configure(config);
+            c.addListener(nosy);
         }
         catch (final Exception e) {
             System.out.println("Unable to create Checker: "
@@ -162,13 +162,13 @@ public final class Main
     /**
      * Determines the files to process.
      *
-     * @param aLine the command line options specifying what files to process
+     * @param line the command line options specifying what files to process
      * @return list of files to process
      */
-    private static List<File> getFilesToProcess(CommandLine aLine)
+    private static List<File> getFilesToProcess(CommandLine line)
     {
         final List<File> files = Lists.newLinkedList();
-        final String[] remainingArgs = aLine.getArgs();
+        final String[] remainingArgs = line.getArgs();
         for (String element : remainingArgs) {
             traverse(new File(element), files);
         }
@@ -183,24 +183,24 @@ public final class Main
     /**
      * Create the audit listener
      *
-     * @param aLine command line options supplied
-     * @param aOut the stream to log to
-     * @param aCloseOut whether the stream should be closed
+     * @param line command line options supplied
+     * @param out the stream to log to
+     * @param closeOut whether the stream should be closed
      * @return a fresh new <code>AuditListener</code>
      */
-    private static AuditListener createListener(CommandLine aLine,
-                                                OutputStream aOut,
-                                                boolean aCloseOut)
+    private static AuditListener createListener(CommandLine line,
+                                                OutputStream out,
+                                                boolean closeOut)
     {
         final String format =
-            aLine.hasOption("f") ? aLine.getOptionValue("f") : "plain";
+            line.hasOption("f") ? line.getOptionValue("f") : "plain";
 
         AuditListener listener = null;
         if ("xml".equals(format)) {
-            listener = new XMLLogger(aOut, aCloseOut);
+            listener = new XMLLogger(out, closeOut);
         }
         else if ("plain".equals(format)) {
-            listener = new DefaultLogger(aOut, aCloseOut);
+            listener = new DefaultLogger(out, closeOut);
         }
         else {
             System.out.println("Invalid format: (" + format
@@ -213,16 +213,16 @@ public final class Main
     /**
      * Loads the configuration file. Will exit if unable to load.
      *
-     * @param aLine specifies the location of the configuration
-     * @param aProps the properties to resolve with the configuration
+     * @param line specifies the location of the configuration
+     * @param props the properties to resolve with the configuration
      * @return a fresh new configuration
      */
-    private static Configuration loadConfig(CommandLine aLine,
-                                            Properties aProps)
+    private static Configuration loadConfig(CommandLine line,
+                                            Properties props)
     {
         try {
             return ConfigurationLoader.loadConfiguration(
-                    aLine.getOptionValue("c"), new PropertiesExpander(aProps));
+                    line.getOptionValue("c"), new PropertiesExpander(props));
         }
         catch (final CheckstyleException e) {
             System.out.println("Error loading configuration file");
@@ -249,40 +249,40 @@ public final class Main
      * files are added to a specified list. Subdirectories are also
      * traversed.
      *
-     * @param aNode the node to process
-     * @param aFiles list to add found files to
+     * @param node the node to process
+     * @param files list to add found files to
      */
-    private static void traverse(File aNode, List<File> aFiles)
+    private static void traverse(File node, List<File> files)
     {
-        if (aNode.canRead()) {
-            if (aNode.isDirectory()) {
-                final File[] nodes = aNode.listFiles();
+        if (node.canRead()) {
+            if (node.isDirectory()) {
+                final File[] nodes = node.listFiles();
                 for (File element : nodes) {
-                    traverse(element, aFiles);
+                    traverse(element, files);
                 }
             }
-            else if (aNode.isFile()) {
-                aFiles.add(aNode);
+            else if (node.isFile()) {
+                files.add(node);
             }
         }
     }
 
     /**
      * Loads properties from a File.
-     * @param aFile the properties file
-     * @return the properties in aFile
+     * @param file the properties file
+     * @return the properties in file
      */
-    private static Properties loadProperties(File aFile)
+    private static Properties loadProperties(File file)
     {
         final Properties properties = new Properties();
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream(aFile);
+            fis = new FileInputStream(file);
             properties.load(fis);
         }
         catch (final IOException ex) {
             System.out.println("Unable to load properties from file: "
-                + aFile.getAbsolutePath());
+                + file.getAbsolutePath());
             ex.printStackTrace(System.out);
             System.exit(1);
         }

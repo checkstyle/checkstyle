@@ -72,7 +72,7 @@ public class DeclarationOrderCheck extends Check
      * List of Declaration States. This is necessary due to
      * inner classes that have their own state
      */
-    private final FastStack<ScopeState> mScopeStates = FastStack.newInstance();
+    private final FastStack<ScopeState> scopeStates = FastStack.newInstance();
 
     /**
      * private class to encapsulate the state
@@ -80,18 +80,18 @@ public class DeclarationOrderCheck extends Check
     private static class ScopeState
     {
         /** The state the check is in */
-        private int mScopeState = STATE_STATIC_VARIABLE_DEF;
+        private int scopeState = STATE_STATIC_VARIABLE_DEF;
 
         /** The sub-state the check is in */
-        private Scope mDeclarationAccess = Scope.PUBLIC;
+        private Scope declarationAccess = Scope.PUBLIC;
     }
 
     /** If true, ignores the check to constructors. */
-    private boolean mIgnoreConstructors;
+    private boolean ignoreConstructors;
     /** If true, ignore the check to methods. */
-    private boolean mIgnoreMethods;
+    private boolean ignoreMethods;
     /** If true, ignore the check to modifiers (fields, ...). */
-    private boolean mIgnoreModifiers;
+    private boolean ignoreModifiers;
 
     @Override
     public int[] getDefaultTokens()
@@ -105,130 +105,130 @@ public class DeclarationOrderCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final int parentType = aAST.getParent().getType();
+        final int parentType = ast.getParent().getType();
         ScopeState state;
 
-        switch (aAST.getType()) {
-        case TokenTypes.OBJBLOCK:
-            mScopeStates.push(new ScopeState());
-            break;
+        switch (ast.getType()) {
+            case TokenTypes.OBJBLOCK:
+                scopeStates.push(new ScopeState());
+                break;
 
-        case TokenTypes.CTOR_DEF:
-            if (parentType != TokenTypes.OBJBLOCK) {
-                return;
-            }
-
-            state = mScopeStates.peek();
-            if (state.mScopeState > STATE_CTOR_DEF) {
-                if (!mIgnoreConstructors) {
-                    log(aAST, "declaration.order.constructor");
+            case TokenTypes.CTOR_DEF:
+                if (parentType != TokenTypes.OBJBLOCK) {
+                    return;
                 }
-            }
-            else {
-                state.mScopeState = STATE_CTOR_DEF;
-            }
-            break;
 
-        case TokenTypes.METHOD_DEF:
-            state = mScopeStates.peek();
-            if (parentType != TokenTypes.OBJBLOCK) {
-                return;
-            }
-
-            if (state.mScopeState > STATE_METHOD_DEF) {
-                if (!mIgnoreMethods) {
-                    log(aAST, "declaration.order.method");
-                }
-            }
-            else {
-                state.mScopeState = STATE_METHOD_DEF;
-            }
-            break;
-
-        case TokenTypes.MODIFIERS:
-            if ((parentType != TokenTypes.VARIABLE_DEF)
-                || (aAST.getParent().getParent().getType()
-                    != TokenTypes.OBJBLOCK))
-            {
-                return;
-            }
-
-            state = mScopeStates.peek();
-            if (aAST.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
-                if (state.mScopeState > STATE_STATIC_VARIABLE_DEF) {
-                    if (!mIgnoreModifiers
-                        || state.mScopeState > STATE_INSTANCE_VARIABLE_DEF)
-                    {
-                        log(aAST, "declaration.order.static");
+                state = scopeStates.peek();
+                if (state.scopeState > STATE_CTOR_DEF) {
+                    if (!ignoreConstructors) {
+                        log(ast, "declaration.order.constructor");
                     }
                 }
                 else {
-                    state.mScopeState = STATE_STATIC_VARIABLE_DEF;
+                    state.scopeState = STATE_CTOR_DEF;
                 }
-            }
-            else {
-                if (state.mScopeState > STATE_INSTANCE_VARIABLE_DEF) {
-                    log(aAST, "declaration.order.instance");
-                }
-                else if (state.mScopeState == STATE_STATIC_VARIABLE_DEF) {
-                    state.mDeclarationAccess = Scope.PUBLIC;
-                    state.mScopeState = STATE_INSTANCE_VARIABLE_DEF;
-                }
-            }
+                break;
 
-            final Scope access = ScopeUtils.getScopeFromMods(aAST);
-            if (state.mDeclarationAccess.compareTo(access) > 0) {
-                if (!mIgnoreModifiers) {
-                    log(aAST, "declaration.order.access");
+            case TokenTypes.METHOD_DEF:
+                state = scopeStates.peek();
+                if (parentType != TokenTypes.OBJBLOCK) {
+                    return;
                 }
-            }
-            else {
-                state.mDeclarationAccess = access;
-            }
-            break;
 
-        default:
+                if (state.scopeState > STATE_METHOD_DEF) {
+                    if (!ignoreMethods) {
+                        log(ast, "declaration.order.method");
+                    }
+                }
+                else {
+                    state.scopeState = STATE_METHOD_DEF;
+                }
+                break;
+
+            case TokenTypes.MODIFIERS:
+                if ((parentType != TokenTypes.VARIABLE_DEF)
+                    || (ast.getParent().getParent().getType()
+                        != TokenTypes.OBJBLOCK))
+                {
+                    return;
+                }
+
+                state = scopeStates.peek();
+                if (ast.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
+                    if (state.scopeState > STATE_STATIC_VARIABLE_DEF) {
+                        if (!ignoreModifiers
+                            || state.scopeState > STATE_INSTANCE_VARIABLE_DEF)
+                        {
+                            log(ast, "declaration.order.static");
+                        }
+                    }
+                    else {
+                        state.scopeState = STATE_STATIC_VARIABLE_DEF;
+                    }
+                }
+                else {
+                    if (state.scopeState > STATE_INSTANCE_VARIABLE_DEF) {
+                        log(ast, "declaration.order.instance");
+                    }
+                    else if (state.scopeState == STATE_STATIC_VARIABLE_DEF) {
+                        state.declarationAccess = Scope.PUBLIC;
+                        state.scopeState = STATE_INSTANCE_VARIABLE_DEF;
+                    }
+                }
+
+                final Scope access = ScopeUtils.getScopeFromMods(ast);
+                if (state.declarationAccess.compareTo(access) > 0) {
+                    if (!ignoreModifiers) {
+                        log(ast, "declaration.order.access");
+                    }
+                }
+                else {
+                    state.declarationAccess = access;
+                }
+                break;
+
+            default:
         }
     }
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.OBJBLOCK:
-            mScopeStates.pop();
-            break;
+        switch (ast.getType()) {
+            case TokenTypes.OBJBLOCK:
+                scopeStates.pop();
+                break;
 
-        default:
+            default:
         }
     }
 
     /**
      * Sets whether to ignore constructors.
-     * @param aIgnoreConstructors whether to ignore constructors.
+     * @param ignoreConstructors whether to ignore constructors.
      */
-    public void setIgnoreConstructors(boolean aIgnoreConstructors)
+    public void setIgnoreConstructors(boolean ignoreConstructors)
     {
-        mIgnoreConstructors = aIgnoreConstructors;
+        this.ignoreConstructors = ignoreConstructors;
     }
 
     /**
      * Sets whether to ignore methods.
-     * @param aIgnoreMethods whether to ignore methods.
+     * @param ignoreMethods whether to ignore methods.
      */
-    public void setIgnoreMethods(boolean aIgnoreMethods)
+    public void setIgnoreMethods(boolean ignoreMethods)
     {
-        mIgnoreMethods = aIgnoreMethods;
+        this.ignoreMethods = ignoreMethods;
     }
 
     /**
      * Sets whether to ignore modifiers.
-     * @param aIgnoreModifiers whether to ignore modifiers.
+     * @param ignoreModifiers whether to ignore modifiers.
      */
-    public void setIgnoreModifiers(boolean aIgnoreModifiers)
+    public void setIgnoreModifiers(boolean ignoreModifiers)
     {
-        mIgnoreModifiers = aIgnoreModifiers;
+        this.ignoreModifiers = ignoreModifiers;
     }
 }

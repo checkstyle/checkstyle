@@ -19,11 +19,18 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import com.puppycrawl.tools.checkstyle.api.Utils;
+
+import java.io.File;
 import java.util.regex.Pattern;
+
 import org.apache.commons.beanutils.ConversionException;
 import org.junit.Test;
+
+import static com.puppycrawl.tools.checkstyle.Utils.fileExtensionMatches;
 
 public class UtilsTest
 {
@@ -60,5 +67,16 @@ public class UtilsTest
     public void testBadRegex()
     {
         Utils.createPattern("[");
+    }
+
+    @Test
+    public void testFileExtensions()
+    {
+        final String[] fileExtensions = {"java"};
+        File file = new File("file.pdf");
+        assertFalse(fileExtensionMatches(file, fileExtensions));
+        assertTrue(fileExtensionMatches(file, null));
+        file = new File("file.java");
+        assertTrue(fileExtensionMatches(file, fileExtensions));
     }
 }

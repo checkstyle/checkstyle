@@ -32,22 +32,22 @@ public class CheckstyleException extends Exception
     /**
      * Creates a new <code>CheckstyleException</code> instance.
      *
-     * @param aMessage a <code>String</code> value
+     * @param message a <code>String</code> value
      */
-    public CheckstyleException(String aMessage)
+    public CheckstyleException(String message)
     {
-        super(aMessage);
+        super(message);
     }
 
     /**
      * Creates a new <code>CheckstyleException</code> instance
      * that was caused by another exception.
      *
-     * @param aMessage a message that explains this exception
-     * @param aCause the Exception that is wrapped by this exception
+     * @param message a message that explains this exception
+     * @param cause the Exception that is wrapped by this exception
      */
-    public CheckstyleException(String aMessage, Throwable aCause)
+    public CheckstyleException(String message, Throwable cause)
     {
-        super(aMessage, aCause);
+        super(message, cause);
     }
 }

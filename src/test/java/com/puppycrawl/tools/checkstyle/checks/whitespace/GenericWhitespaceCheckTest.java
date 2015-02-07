@@ -31,12 +31,12 @@ import org.junit.Test;
 public class GenericWhitespaceCheckTest
     extends BaseCheckTestSupport
 {
-    private DefaultConfiguration mCheckConfig;
+    private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp()
     {
-        mCheckConfig = createCheckConfig(GenericWhitespaceCheck.class);
+        checkConfig = createCheckConfig(GenericWhitespaceCheck.class);
         Map<Class<?>, Integer> x = Maps.newHashMap();
         for (final Map.Entry<Class<?>, Integer> entry : x.entrySet()) {
             entry.getValue();
@@ -75,7 +75,7 @@ public class GenericWhitespaceCheckTest
             "60:60: '&' is not preceded with whitespace.",
             "63:60: '>' is followed by whitespace.",
         };
-        verify(mCheckConfig,
+        verify(checkConfig,
                 getPath("whitespace/InputGenericWhitespaceCheck.java"),
                 expected);
     }
@@ -84,7 +84,7 @@ public class GenericWhitespaceCheckTest
     public void testGh47() throws Exception
     {
         final String[] expected = {};
-        verify(mCheckConfig, getPath("whitespace/Gh47.java"), expected);
+        verify(checkConfig, getPath("whitespace/Gh47.java"), expected);
     }
 
     @Test
@@ -93,7 +93,7 @@ public class GenericWhitespaceCheckTest
         final String[] expected = {
 
         };
-        verify(mCheckConfig, getPath("whitespace/"
+        verify(checkConfig, getPath("whitespace/"
                 + "InputGenericWhitespaceInnerClassCheck.java"), expected);
     }
 
@@ -101,7 +101,7 @@ public class GenericWhitespaceCheckTest
     public void testMethodReferences() throws Exception
     {
         final String[] expected = {};
-        verify(mCheckConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                 + "checkstyle/grammars/java8/"
                 + "InputMethodReferencesTest3.java").getCanonicalPath(), expected);
     }

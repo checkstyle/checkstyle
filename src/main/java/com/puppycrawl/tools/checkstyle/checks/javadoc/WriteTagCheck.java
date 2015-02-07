@@ -68,48 +68,48 @@ public class WriteTagCheck
     extends Check
 {
     /** compiled regexp to match tag **/
-    private Pattern mTagRE;
+    private Pattern tagRE;
     /** compiled regexp to match tag content **/
-    private Pattern mTagFormatRE;
+    private Pattern tagFormatRE;
 
     /** regexp to match tag */
-    private String mTag;
+    private String tag;
     /** regexp to match tag content */
-    private String mTagFormat;
+    private String tagFormat;
     /** the severity level of found tag reports */
-    private SeverityLevel mTagSeverityLevel = SeverityLevel.INFO;
+    private SeverityLevel tagSeverityLevel = SeverityLevel.INFO;
 
     /**
      * Sets the tag to check.
-     * @param aTag tag to check
+     * @param tag tag to check
      * @throws ConversionException If the tag is not a valid regular exception.
      */
-    public void setTag(String aTag)
+    public void setTag(String tag)
         throws ConversionException
     {
         try {
-            mTag = aTag;
-            mTagRE = Utils.getPattern(aTag + "\\s*(.*$)");
+            this.tag = tag;
+            tagRE = Utils.getPattern(tag + "\\s*(.*$)");
         }
         catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + aTag, e);
+            throw new ConversionException("unable to parse " + tag, e);
         }
     }
 
     /**
      * Set the tag format.
-     * @param aFormat a <code>String</code> value
-     * @throws ConversionException unable to parse aFormat
+     * @param format a <code>String</code> value
+     * @throws ConversionException unable to parse format
      */
-    public void setTagFormat(String aFormat)
+    public void setTagFormat(String format)
         throws ConversionException
     {
         try {
-            mTagFormat = aFormat;
-            mTagFormatRE = Utils.getPattern(aFormat);
+            tagFormat = format;
+            tagFormatRE = Utils.getPattern(format);
         }
         catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + aFormat, e);
+            throw new ConversionException("unable to parse " + format, e);
         }
     }
 
@@ -117,12 +117,12 @@ public class WriteTagCheck
      * Sets the tag severity level.  The string should be one of the names
      * defined in the <code>SeverityLevel</code> class.
      *
-     * @param aSeverity  The new severity level
+     * @param severity  The new severity level
      * @see SeverityLevel
      */
-    public final void setTagSeverity(String aSeverity)
+    public final void setTagSeverity(String severity)
     {
-        mTagSeverityLevel = SeverityLevel.getInstance(aSeverity);
+        tagSeverityLevel = SeverityLevel.getInstance(severity);
     }
 
     @Override
@@ -150,62 +150,62 @@ public class WriteTagCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
         final FileContents contents = getFileContents();
-        final int lineNo = aAST.getLineNo();
+        final int lineNo = ast.getLineNo();
         final TextBlock cmt =
             contents.getJavadocBefore(lineNo);
         if (cmt == null) {
-            log(lineNo, "type.missingTag", mTag);
+            log(lineNo, "type.missingTag", tag);
         }
         else {
-            checkTag(lineNo, cmt.getText(), mTag, mTagRE, mTagFormatRE,
-                mTagFormat);
+            checkTag(lineNo, cmt.getText(), tag, tagRE, tagFormatRE,
+                tagFormat);
         }
     }
 
     /**
      * Verifies that a type definition has a required tag.
-     * @param aLineNo the line number for the type definition.
-     * @param aComment the Javadoc comment for the type definition.
-     * @param aTag the required tag name.
-     * @param aTagRE regexp for the full tag.
-     * @param aFormatRE regexp for the tag value.
-     * @param aFormat pattern for the tag value.
+     * @param lineNo the line number for the type definition.
+     * @param comment the Javadoc comment for the type definition.
+     * @param tag the required tag name.
+     * @param tagRE regexp for the full tag.
+     * @param formatRE regexp for the tag value.
+     * @param format pattern for the tag value.
      */
     private void checkTag(
-            int aLineNo,
-            String[] aComment,
-            String aTag,
-            Pattern aTagRE,
-            Pattern aFormatRE,
-            String aFormat)
+            int lineNo,
+            String[] comment,
+            String tag,
+            Pattern tagRE,
+            Pattern formatRE,
+            String format)
     {
-        if (aTagRE == null) {
+        if (tagRE == null) {
             return;
         }
 
         int tagCount = 0;
-        for (int i = 0; i < aComment.length; i++) {
-            final String s = aComment[i];
-            final Matcher matcher = aTagRE.matcher(s);
+        for (int i = 0; i < comment.length; i++) {
+            final String s = comment[i];
+            final Matcher matcher = tagRE.matcher(s);
             if (matcher.find()) {
                 tagCount += 1;
                 final int contentStart = matcher.start(1);
                 final String content = s.substring(contentStart);
-                if ((aFormatRE != null) && !aFormatRE.matcher(content).find()) {
-                    log(aLineNo + i - aComment.length, "type.tagFormat", aTag,
-                        aFormat);
+                if ((formatRE != null) && !formatRE.matcher(content).find()) {
+                    log(lineNo + i - comment.length, "type.tagFormat", tag,
+                        format);
                 }
                 else {
-                    logTag(aLineNo + i - aComment.length, aTag, content);
+                    logTag(lineNo + i - comment.length, tag, content);
                 }
 
             }
         }
         if (tagCount == 0) {
-            log(aLineNo, "type.missingTag", aTag);
+            log(lineNo, "type.missingTag", tag);
         }
 
     }
@@ -214,18 +214,18 @@ public class WriteTagCheck
     /**
      * Log a message.
      *
-     * @param aLine the line number where the error was found
-     * @param aTag the javdoc tag to be logged
-     * @param aTagValue the contents of the tag
+     * @param line the line number where the error was found
+     * @param tag the javadoc tag to be logged
+     * @param tagValue the contents of the tag
      *
      * @see java.text.MessageFormat
      */
-    protected final void logTag(int aLine, String aTag, String aTagValue)
+    protected final void logTag(int line, String tag, String tagValue)
     {
         final String originalSeverity = getSeverity();
-        setSeverity(mTagSeverityLevel.getName());
+        setSeverity(tagSeverityLevel.getName());
 
-        log(aLine, "javadoc.writeTag", aTag, aTagValue);
+        log(line, "javadoc.writeTag", tag, tagValue);
 
         setSeverity(originalSeverity);
     }

@@ -101,11 +101,11 @@ public class EmptyBlockCheck
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        final DetailAST slistToken = aAST.findFirstToken(TokenTypes.SLIST);
+        final DetailAST slistToken = ast.findFirstToken(TokenTypes.SLIST);
         final DetailAST leftCurly = slistToken != null
-                ? slistToken : aAST.findFirstToken(TokenTypes.LCURLY);
+                ? slistToken : ast.findFirstToken(TokenTypes.LCURLY);
         if (leftCurly != null) {
             if (getAbstractOption() == BlockOption.STMT) {
                 boolean emptyBlock;
@@ -118,8 +118,8 @@ public class EmptyBlockCheck
                 if (emptyBlock) {
                     log(leftCurly.getLineNo(),
                         leftCurly.getColumnNo(),
-                            MSG_KEY_BLOCK_NO_STMT,
-                        aAST.getText());
+                        MSG_KEY_BLOCK_NO_STMT,
+                        ast.getText());
                 }
             }
             else if (getAbstractOption() == BlockOption.TEXT
@@ -127,26 +127,26 @@ public class EmptyBlockCheck
             {
                 log(leftCurly.getLineNo(),
                     leftCurly.getColumnNo(),
-                        MSG_KEY_BLOCK_EMPTY,
-                    aAST.getText());
+                    MSG_KEY_BLOCK_EMPTY,
+                    ast.getText());
             }
         }
     }
 
     /**
-     * @param aSlistAST a <code>DetailAST</code> value
+     * @param slistAST a <code>DetailAST</code> value
      * @return whether the SLIST token contains any text.
      */
-    protected boolean hasText(final DetailAST aSlistAST)
+    protected boolean hasText(final DetailAST slistAST)
     {
         boolean retVal = false;
 
-        final DetailAST rightCurly = aSlistAST.findFirstToken(TokenTypes.RCURLY);
+        final DetailAST rightCurly = slistAST.findFirstToken(TokenTypes.RCURLY);
         final DetailAST rcurlyAST = rightCurly != null
-                ? rightCurly : aSlistAST.getParent().findFirstToken(TokenTypes.RCURLY);
+                ? rightCurly : slistAST.getParent().findFirstToken(TokenTypes.RCURLY);
         if (rcurlyAST != null) {
-            final int slistLineNo = aSlistAST.getLineNo();
-            final int slistColNo = aSlistAST.getColumnNo();
+            final int slistLineNo = slistAST.getLineNo();
+            final int slistColNo = slistAST.getColumnNo();
             final int rcurlyLineNo = rcurlyAST.getLineNo();
             final int rcurlyColNo = rcurlyAST.getColumnNo();
             final String[] lines = getLines();

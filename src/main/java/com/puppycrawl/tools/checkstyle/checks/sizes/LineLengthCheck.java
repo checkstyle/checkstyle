@@ -80,10 +80,10 @@ public class LineLengthCheck extends Check
     private static final int DEFAULT_MAX_COLUMNS = 80;
 
     /** the maximum number of columns in a line */
-    private int mMax = DEFAULT_MAX_COLUMNS;
+    private int max = DEFAULT_MAX_COLUMNS;
 
     /** the regexp when long lines are ignored */
-    private Pattern mIgnorePattern;
+    private Pattern ignorePattern;
 
     /**
      * Creates a new <code>LineLengthCheck</code> instance.
@@ -100,7 +100,7 @@ public class LineLengthCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
         final String[] lines = getLines();
         for (int i = 0; i < lines.length; i++) {
@@ -110,35 +110,35 @@ public class LineLengthCheck extends Check
                 line, line.length(), getTabWidth());
 
 
-            if ((realLength > mMax)
-                && !mIgnorePattern.matcher(line).find())
+            if ((realLength > max)
+                && !ignorePattern.matcher(line).find())
             {
-                log(i + 1, "maxLineLen", mMax, realLength);
+                log(i + 1, "maxLineLen", max, realLength);
             }
         }
     }
 
     /**
-     * @param aLength the maximum length of a line
+     * @param length the maximum length of a line
      */
-    public void setMax(int aLength)
+    public void setMax(int length)
     {
-        mMax = aLength;
+        max = length;
     }
 
     /**
      * Set the ignore pattern.
-     * @param aFormat a <code>String</code> value
-     * @throws ConversionException unable to parse aFormat
+     * @param format a <code>String</code> value
+     * @throws ConversionException unable to parse format
      */
-    public void setIgnorePattern(String aFormat)
+    public void setIgnorePattern(String format)
         throws ConversionException
     {
         try {
-            mIgnorePattern = Utils.getPattern(aFormat);
+            ignorePattern = Utils.getPattern(format);
         }
         catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + aFormat, e);
+            throw new ConversionException("unable to parse " + format, e);
         }
     }
 }

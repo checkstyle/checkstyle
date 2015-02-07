@@ -31,15 +31,15 @@ import java.util.List;
 public class FastStack<E> implements Iterable<E>
 {
     /** Hold the entries in the stack. */
-    private final List<E> mEntries = Lists.newArrayList();
+    private final List<E> entries = Lists.newArrayList();
 
     /**
      * Pushes the supplied element onto the stack.
-     * @param aElement the element to push onto the stack.
+     * @param element the element to push onto the stack.
      */
-    public void push(E aElement)
+    public void push(E element)
     {
-        mEntries.add(aElement);
+        entries.add(element);
     }
 
     /**
@@ -48,7 +48,7 @@ public class FastStack<E> implements Iterable<E>
      */
     public boolean isEmpty()
     {
-        return mEntries.isEmpty();
+        return entries.isEmpty();
     }
 
     /**
@@ -57,7 +57,7 @@ public class FastStack<E> implements Iterable<E>
      */
     public int size()
     {
-        return mEntries.size();
+        return entries.size();
     }
 
     /**
@@ -67,10 +67,10 @@ public class FastStack<E> implements Iterable<E>
      */
     public E peek()
     {
-        if (mEntries.isEmpty()) {
+        if (entries.isEmpty()) {
             throw new IllegalStateException("FastStack is empty");
         }
-        return mEntries.get(mEntries.size() - 1);
+        return entries.get(entries.size() - 1);
     }
 
     /**
@@ -80,35 +80,35 @@ public class FastStack<E> implements Iterable<E>
      */
     public E pop()
     {
-        if (mEntries.isEmpty()) {
+        if (entries.isEmpty()) {
             throw new IllegalStateException("FastStack is empty");
         }
-        return mEntries.remove(mEntries.size() - 1);
+        return entries.remove(entries.size() - 1);
     }
 
     /**
      * Return the element at the specified index. It does not remove the
      * element from the stack.
-     * @param aIndex the index to return
+     * @param index the index to return
      * @return the element at the index
      * @throws IllegalArgumentException if index out of range
      */
-    public E peek(int aIndex)
+    public E peek(int index)
     {
-        if ((aIndex < 0) || (aIndex >= mEntries.size())) {
+        if ((index < 0) || (index >= entries.size())) {
             throw new IllegalArgumentException("index out of range.");
         }
-        return mEntries.get(aIndex);
+        return entries.get(index);
     }
 
     /**
      * Returns if the stack contains the specified element.
-     * @param aElement the element to find
+     * @param element the element to find
      * @return whether the stack contains the entry
      */
-    public boolean contains(E aElement)
+    public boolean contains(E element)
     {
-        return mEntries.contains(aElement);
+        return entries.contains(element);
     }
 
     /**
@@ -116,7 +116,7 @@ public class FastStack<E> implements Iterable<E>
      */
     public void clear()
     {
-        mEntries.clear();
+        entries.clear();
     }
 
     /**
@@ -126,7 +126,7 @@ public class FastStack<E> implements Iterable<E>
     @Override
     public Iterator<E> iterator()
     {
-        return mEntries.iterator();
+        return entries.iterator();
     }
 
     /**

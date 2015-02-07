@@ -28,29 +28,29 @@ import java.util.List;
 public final class JavadocTags
 {
     /** Valid validTags. */
-    private final List<JavadocTag> mValidTags;
+    private final List<JavadocTag> validTags;
     /** Invalid validTags. */
-    private final List<InvalidJavadocTag> mInvalidTags;
+    private final List<InvalidJavadocTag> invalidTags;
 
     /**
      * Creates an instance.
-     * @param aTags the list of valid tags
-     * @param aInvalidTags the list of invalid tags
+     * @param tags the list of valid tags
+     * @param invalidTags the list of invalid tags
      */
-    public JavadocTags(List<JavadocTag> aTags,
-            List<InvalidJavadocTag> aInvalidTags)
+    public JavadocTags(List<JavadocTag> tags,
+            List<InvalidJavadocTag> invalidTags)
     {
-        mValidTags = aTags;
-        mInvalidTags = aInvalidTags;
+        validTags = tags;
+        this.invalidTags = invalidTags;
     }
 
     public List<JavadocTag> getValidTags()
     {
-        return mValidTags;
+        return validTags;
     }
 
     public List<InvalidJavadocTag> getInvalidTags()
     {
-        return mInvalidTags;
+        return invalidTags;
     }
 }

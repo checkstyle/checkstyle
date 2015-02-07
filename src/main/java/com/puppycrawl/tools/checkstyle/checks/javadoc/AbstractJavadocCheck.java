@@ -74,14 +74,14 @@ public abstract class AbstractJavadocCheck extends Check
     /**
      * Custom error listener.
      */
-    private final DescriptiveErrorListener mErrorListener =
+    private final DescriptiveErrorListener errorListener =
             new DescriptiveErrorListener();
 
     /**
      * DetailAST node of considered Javadoc comment that is just a block comment
      * in Java language syntax tree.
      */
-    private DetailAST mBlockCommentAst;
+    private DetailAST blockCommentAst;
 
     /**
      * Returns the default token types a check is interested in.
@@ -92,37 +92,37 @@ public abstract class AbstractJavadocCheck extends Check
 
     /**
      * Called before the starting to process a tree.
-     * @param aRootAst
+     * @param rootAst
      *        the root of the tree
      */
-    public void beginJavadocTree(DetailNode aRootAst)
+    public void beginJavadocTree(DetailNode rootAst)
     {
     }
 
     /**
      * Called after finished processing a tree.
-     * @param aRootAst
+     * @param rootAst
      *        the root of the tree
      */
-    public void finishJavadocTree(DetailNode aRootAst)
+    public void finishJavadocTree(DetailNode rootAst)
     {
     }
 
     /**
      * Called to process a Javadoc token.
-     * @param aAst
+     * @param ast
      *        the token to process
      */
-    public void visitJavadocToken(DetailNode aAst)
+    public void visitJavadocToken(DetailNode ast)
     {
     }
 
     /**
      * Called after all the child nodes have been process.
-     * @param aAst
+     * @param ast
      *        the token leaving
      */
-    public void leaveJavadocToken(DetailNode aAst)
+    public void leaveJavadocToken(DetailNode ast)
     {
     }
 
@@ -167,30 +167,30 @@ public abstract class AbstractJavadocCheck extends Check
     }
 
     @Override
-    public final void beginTree(DetailAST aRootAST)
+    public final void beginTree(DetailAST rootAST)
     {
         TREE_CACHE.clear();
     }
 
     @Override
-    public final void finishTree(DetailAST aRootAST)
+    public final void finishTree(DetailAST rootAST)
     {
         TREE_CACHE.clear();
     }
 
     @Override
-    public final void leaveToken(DetailAST aAST)
+    public final void leaveToken(DetailAST ast)
     {
     }
 
     @Override
-    public final void visitToken(DetailAST aBlockCommentAst)
+    public final void visitToken(DetailAST blockCommentAst)
     {
-        if (JavadocUtils.isJavadocComment(aBlockCommentAst)) {
-            mBlockCommentAst = aBlockCommentAst;
+        if (JavadocUtils.isJavadocComment(blockCommentAst)) {
+            this.blockCommentAst = blockCommentAst;
 
-            final String treeCacheKey = aBlockCommentAst.getLineNo() + ":"
-                    + aBlockCommentAst.getColumnNo();
+            final String treeCacheKey = blockCommentAst.getLineNo() + ":"
+                    + blockCommentAst.getColumnNo();
 
             ParseStatus ps;
 
@@ -198,7 +198,7 @@ public abstract class AbstractJavadocCheck extends Check
                 ps = TREE_CACHE.get(treeCacheKey);
             }
             else {
-                ps = parseJavadocAsDetailNode(aBlockCommentAst);
+                ps = parseJavadocAsDetailNode(blockCommentAst);
                 TREE_CACHE.put(treeCacheKey, ps);
             }
 
@@ -217,23 +217,23 @@ public abstract class AbstractJavadocCheck extends Check
 
     protected DetailAST getBlockCommentAst()
     {
-        return mBlockCommentAst;
+        return blockCommentAst;
     }
 
     /**
      * Parses Javadoc comment as DetailNode tree.
-     * @param aJavadocCommentAst
+     * @param javadocCommentAst
      *        DetailAST of Javadoc comment
      * @return DetailNode tree of Javadoc comment
      */
-    private ParseStatus parseJavadocAsDetailNode(DetailAST aJavadocCommentAst)
+    private ParseStatus parseJavadocAsDetailNode(DetailAST javadocCommentAst)
     {
-        final String javadocComment = JavadocUtils.getJavadocCommentContent(aJavadocCommentAst);
+        final String javadocComment = JavadocUtils.getJavadocCommentContent(javadocCommentAst);
 
         // Log messages should have line number in scope of file,
         // not in scope of Javadoc comment.
         // Offset is line number of beginning of Javadoc comment.
-        mErrorListener.setOffset(aJavadocCommentAst.getLineNo() - 1);
+        errorListener.setOffset(javadocCommentAst.getLineNo() - 1);
 
         final ParseStatus result = new ParseStatus();
         ParseTree parseTree = null;
@@ -244,21 +244,21 @@ public abstract class AbstractJavadocCheck extends Check
         }
         catch (IOException e) {
             // Antlr can not initiate its ANTLRInputStream
-            parseErrorMessage = new ParseErrorMessage(aJavadocCommentAst.getLineNo(),
+            parseErrorMessage = new ParseErrorMessage(javadocCommentAst.getLineNo(),
                     PARSE_ERROR_MESSAGE_KEY,
-                    aJavadocCommentAst.getColumnNo(), e.getMessage());
+                    javadocCommentAst.getColumnNo(), e.getMessage());
         }
         catch (ParseCancellationException e) {
             // If syntax error occurs then message is printed by error listener
             // and parser throws this runtime exception to stop parsing.
             // Just stop processing current Javadoc comment.
-            parseErrorMessage = mErrorListener.getErrorMessage();
+            parseErrorMessage = errorListener.getErrorMessage();
 
             // There are cases when antlr error listener does not handle syntax error
             if (parseErrorMessage == null) {
-                parseErrorMessage = new ParseErrorMessage(aJavadocCommentAst.getLineNo(),
+                parseErrorMessage = new ParseErrorMessage(javadocCommentAst.getLineNo(),
                         UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY,
-                        aJavadocCommentAst.getColumnNo(), e.getMessage());
+                        javadocCommentAst.getColumnNo(), e.getMessage());
             }
         }
 
@@ -276,12 +276,12 @@ public abstract class AbstractJavadocCheck extends Check
     /**
      * Converts ParseTree (that is generated by ANTLRv4) to DetailNode tree.
      *
-     * @param aRootParseTree root node of ParseTree
+     * @param rootParseTree root node of ParseTree
      * @return root of DetailNode tree
      */
-    private DetailNode convertParseTree2DetailNode(ParseTree aRootParseTree)
+    private DetailNode convertParseTree2DetailNode(ParseTree rootParseTree)
     {
-        final ParseTree currentParseTreeNode = aRootParseTree;
+        final ParseTree currentParseTreeNode = rootParseTree;
         final JavadocNodeImpl rootJavadocNode = createJavadocNode(currentParseTreeNode, null, -1);
 
         int childCount = currentParseTreeNode.getChildCount();
@@ -354,41 +354,41 @@ public abstract class AbstractJavadocCheck extends Check
     /**
      * Creates JavadocNodeImpl node on base of ParseTree node.
      *
-     * @param aParseTree ParseTree node
-     * @param aParent DetailNode that will be parent of new node
-     * @param aIndex child index that has new node
+     * @param parseTree ParseTree node
+     * @param parent DetailNode that will be parent of new node
+     * @param index child index that has new node
      * @return JavadocNodeImpl node on base of ParseTree node.
      */
-    private JavadocNodeImpl createJavadocNode(ParseTree aParseTree, DetailNode aParent, int aIndex)
+    private JavadocNodeImpl createJavadocNode(ParseTree parseTree, DetailNode parent, int index)
     {
         final JavadocNodeImpl node = new JavadocNodeImpl();
-        node.setText(aParseTree.getText());
-        node.setColumnNumber(getColumn(aParseTree));
-        node.setLineNumber(getLine(aParseTree) + mBlockCommentAst.getLineNo());
-        node.setIndex(aIndex);
-        node.setType(getTokenType(aParseTree));
-        node.setParent(aParent);
-        node.setChildren(new JavadocNodeImpl[aParseTree.getChildCount()]);
+        node.setText(parseTree.getText());
+        node.setColumnNumber(getColumn(parseTree));
+        node.setLineNumber(getLine(parseTree) + blockCommentAst.getLineNo());
+        node.setIndex(index);
+        node.setType(getTokenType(parseTree));
+        node.setParent(parent);
+        node.setChildren(new JavadocNodeImpl[parseTree.getChildCount()]);
         return node;
     }
 
     /**
      * Gets next sibling of ParseTree node.
-     * @param aNode ParseTree node
+     * @param node ParseTree node
      * @return next sibling of ParseTree node.
      */
-    private static ParseTree getNextSibling(ParseTree aNode)
+    private static ParseTree getNextSibling(ParseTree node)
     {
-        if (aNode.getParent() == null) {
+        if (node.getParent() == null) {
             return null;
         }
 
-        final ParseTree parent = aNode.getParent();
+        final ParseTree parent = node.getParent();
         final int childCount = parent.getChildCount();
 
         for (int i = 0; i < childCount; i++) {
             final ParseTree currentNode = parent.getChild(i);
-            if (currentNode.equals(aNode)) {
+            if (currentNode.equals(node)) {
                 if (i == childCount - 1) {
                     return null;
                 }
@@ -400,18 +400,18 @@ public abstract class AbstractJavadocCheck extends Check
 
     /**
      * Gets token type of ParseTree node from JavadocTokenTypes class.
-     * @param aNode ParseTree node.
+     * @param node ParseTree node.
      * @return token type from JavadocTokenTypes
      */
-    private static int getTokenType(ParseTree aNode)
+    private static int getTokenType(ParseTree node)
     {
         int tokenType = Integer.MIN_VALUE;
 
-        if (aNode.getChildCount() == 0) {
-            tokenType = ((TerminalNode) aNode).getSymbol().getType();
+        if (node.getChildCount() == 0) {
+            tokenType = ((TerminalNode) node).getSymbol().getType();
         }
         else {
-            final String className = getNodeClassNameWithoutContext(aNode);
+            final String className = getNodeClassNameWithoutContext(node);
             final String typeName =
                     CaseFormat.UPPER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, className);
             tokenType = JavadocUtils.getTokenId(typeName);
@@ -423,13 +423,13 @@ public abstract class AbstractJavadocCheck extends Check
     /**
      * Gets class name of ParseTree node and removes 'Context' postfix at the
      * end.
-     * @param aNode
+     * @param node
      *        ParseTree node.
      * @return class name without 'Context'
      */
-    private static String getNodeClassNameWithoutContext(ParseTree aNode)
+    private static String getNodeClassNameWithoutContext(ParseTree node)
     {
-        final String className = aNode.getClass().getSimpleName();
+        final String className = node.getClass().getSimpleName();
         // remove 'Context' at the end
         final int contextLength = 7;
         return className.substring(0, className.length() - contextLength);
@@ -437,51 +437,51 @@ public abstract class AbstractJavadocCheck extends Check
 
     /**
      * Gets line number from ParseTree node.
-     * @param aTree
+     * @param tree
      *        ParseTree node
      * @return line number
      */
-    private static int getLine(ParseTree aTree)
+    private static int getLine(ParseTree tree)
     {
-        if (aTree instanceof TerminalNode) {
-            return ((TerminalNode) aTree).getSymbol().getLine() - 1;
+        if (tree instanceof TerminalNode) {
+            return ((TerminalNode) tree).getSymbol().getLine() - 1;
         }
         else {
-            final ParserRuleContext rule = (ParserRuleContext) aTree;
+            final ParserRuleContext rule = (ParserRuleContext) tree;
             return rule.start.getLine() - 1;
         }
     }
 
     /**
      * Gets column number from ParseTree node.
-     * @param aTree
+     * @param tree
      *        ParseTree node
      * @return column number
      */
-    private static int getColumn(ParseTree aTree)
+    private static int getColumn(ParseTree tree)
     {
-        if (aTree instanceof TerminalNode) {
-            return ((TerminalNode) aTree).getSymbol().getCharPositionInLine();
+        if (tree instanceof TerminalNode) {
+            return ((TerminalNode) tree).getSymbol().getCharPositionInLine();
         }
         else {
-            final ParserRuleContext rule = (ParserRuleContext) aTree;
+            final ParserRuleContext rule = (ParserRuleContext) tree;
             return rule.start.getCharPositionInLine();
         }
     }
 
     /**
      * Parses block comment content as javadoc comment.
-     * @param aBlockComment
+     * @param blockComment
      *        block comment content.
      * @return parse tree
      * @throws IOException
      *         errors in ANTLRInputStream
      */
-    private ParseTree parseJavadocAsParseTree(String aBlockComment)
+    private ParseTree parseJavadocAsParseTree(String blockComment)
         throws IOException
     {
         final Charset utf8Charset = Charset.forName("UTF-8");
-        final InputStream in = new ByteArrayInputStream(aBlockComment.getBytes(utf8Charset));
+        final InputStream in = new ByteArrayInputStream(blockComment.getBytes(utf8Charset));
 
         final ANTLRInputStream input = new ANTLRInputStream(in);
 
@@ -491,7 +491,7 @@ public abstract class AbstractJavadocCheck extends Check
         lexer.removeErrorListeners();
 
         // add custom error listener that logs parsing errors
-        lexer.addErrorListener(mErrorListener);
+        lexer.addErrorListener(errorListener);
 
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
 
@@ -501,7 +501,7 @@ public abstract class AbstractJavadocCheck extends Check
         parser.removeErrorListeners();
 
         // add custom error listener that logs syntax errors
-        parser.addErrorListener(mErrorListener);
+        parser.addErrorListener(errorListener);
 
         // This strategy stops parsing when parser error occurs.
         // By default it uses Error Recover Strategy which is slow and useless.
@@ -512,22 +512,22 @@ public abstract class AbstractJavadocCheck extends Check
 
     /**
      * Processes JavadocAST tree notifying Check.
-     * @param aRoot
+     * @param root
      *        root of JavadocAST tree.
      */
-    private void processTree(DetailNode aRoot)
+    private void processTree(DetailNode root)
     {
-        beginJavadocTree(aRoot);
-        walk(aRoot);
-        finishJavadocTree(aRoot);
+        beginJavadocTree(root);
+        walk(root);
+        finishJavadocTree(root);
     }
 
     /**
      * Processes a node calling Check at interested nodes.
-     * @param aRoot
+     * @param root
      *        the root of tree for process
      */
-    private void walk(DetailNode aRoot)
+    private void walk(DetailNode root)
     {
         final int[] defaultTokenTypes = getDefaultJavadocTokens();
 
@@ -535,7 +535,7 @@ public abstract class AbstractJavadocCheck extends Check
             return;
         }
 
-        DetailNode curNode = aRoot;
+        DetailNode curNode = root;
         while (curNode != null) {
             final boolean waitsFor = Ints.contains(defaultTokenTypes, curNode.getType());
 
@@ -593,28 +593,28 @@ public abstract class AbstractJavadocCheck extends Check
          * messages should have line number in scope of file, not in scope of
          * Javadoc comment.
          */
-        private int mOffset;
+        private int offset;
 
         /**
          * Error message that appeared while parsing.
          */
-        private ParseErrorMessage mErrorMessage;
+        private ParseErrorMessage errorMessage;
 
         public ParseErrorMessage getErrorMessage()
         {
-            return mErrorMessage;
+            return errorMessage;
         }
 
         /**
          * Sets offset. Offset is line number of beginning of the Javadoc
          * comment. Log messages should have line number in scope of file, not
          * in scope of Javadoc comment.
-         * @param aOffset
+         * @param offset
          *        offset line number
          */
-        public void setOffset(int aOffset)
+        public void setOffset(int offset)
         {
-            mOffset = aOffset;
+            this.offset = offset;
         }
 
         /**
@@ -629,39 +629,39 @@ public abstract class AbstractJavadocCheck extends Check
          */
         @Override
         public void syntaxError(
-                Recognizer<?, ?> aRecognizer, Object aOffendingSymbol,
-                int aLine, int aCharPositionInLine,
-                String aMsg, RecognitionException aEx)
+                Recognizer<?, ?> recognizer, Object offendingSymbol,
+                int line, int charPositionInLine,
+                String msg, RecognitionException ex)
         {
-            final int lineNumber = mOffset + aLine;
-            final Token token = (Token) aOffendingSymbol;
+            final int lineNumber = offset + line;
+            final Token token = (Token) offendingSymbol;
 
-            if (JAVADOC_MISSED_HTML_CLOSE.equals(aMsg)) {
-                mErrorMessage = new ParseErrorMessage(lineNumber,
-                        JAVADOC_MISSED_HTML_CLOSE, aCharPositionInLine, token.getText());
+            if (JAVADOC_MISSED_HTML_CLOSE.equals(msg)) {
+                errorMessage = new ParseErrorMessage(lineNumber,
+                        JAVADOC_MISSED_HTML_CLOSE, charPositionInLine, token.getText());
 
                 throw new ParseCancellationException();
             }
-            else if (JAVADOC_WRONG_SINGLETON_TAG.equals(aMsg)) {
-                mErrorMessage = new ParseErrorMessage(lineNumber,
-                        JAVADOC_WRONG_SINGLETON_TAG, aCharPositionInLine, token.getText());
+            else if (JAVADOC_WRONG_SINGLETON_TAG.equals(msg)) {
+                errorMessage = new ParseErrorMessage(lineNumber,
+                        JAVADOC_WRONG_SINGLETON_TAG, charPositionInLine, token.getText());
 
                 throw new ParseCancellationException();
             }
             else {
-                final RuleContext ruleContext = aEx.getCtx();
+                final RuleContext ruleContext = ex.getCtx();
                 if (ruleContext != null) {
-                    final int ruleIndex = aEx.getCtx().getRuleIndex();
-                    final String ruleName = aRecognizer.getRuleNames()[ruleIndex];
+                    final int ruleIndex = ex.getCtx().getRuleIndex();
+                    final String ruleName = recognizer.getRuleNames()[ruleIndex];
                     final String upperCaseRuleName = CaseFormat.UPPER_CAMEL.to(
                             CaseFormat.UPPER_UNDERSCORE, ruleName);
 
-                    mErrorMessage = new ParseErrorMessage(lineNumber,
-                            JAVADOC_PARSE_RULE_ERROR, aCharPositionInLine, aMsg, upperCaseRuleName);
+                    errorMessage = new ParseErrorMessage(lineNumber,
+                            JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, upperCaseRuleName);
                 }
                 else {
-                    mErrorMessage = new ParseErrorMessage(lineNumber, JAVADOC_PARSE_TOKEN_ERROR,
-                            aCharPositionInLine, aMsg, aCharPositionInLine);
+                    errorMessage = new ParseErrorMessage(lineNumber, JAVADOC_PARSE_TOKEN_ERROR,
+                            charPositionInLine, msg, charPositionInLine);
                 }
             }
         }
@@ -676,31 +676,31 @@ public abstract class AbstractJavadocCheck extends Check
         /**
          * DetailNode tree (is null if parsing fails)
          */
-        private DetailNode mTree;
+        private DetailNode tree;
 
         /**
          * Parse error message (is null if parsing is successful)
          */
-        private ParseErrorMessage mParseErrorMessage;
+        private ParseErrorMessage parseErrorMessage;
 
         public DetailNode getTree()
         {
-            return mTree;
+            return tree;
         }
 
-        public void setTree(DetailNode aTree)
+        public void setTree(DetailNode tree)
         {
-            this.mTree = aTree;
+            this.tree = tree;
         }
 
         public ParseErrorMessage getParseErrorMessage()
         {
-            return mParseErrorMessage;
+            return parseErrorMessage;
         }
 
-        public void setParseErrorMessage(ParseErrorMessage aParseErrorMessage)
+        public void setParseErrorMessage(ParseErrorMessage parseErrorMessage)
         {
-            this.mParseErrorMessage = aParseErrorMessage;
+            this.parseErrorMessage = parseErrorMessage;
         }
 
     }
@@ -713,45 +713,45 @@ public abstract class AbstractJavadocCheck extends Check
         /**
          * Line number where parse error occurred.
          */
-        private int mLineNumber;
+        private int lineNumber;
 
         /**
          * Key for error message.
          */
-        private String mMessageKey;
+        private String messageKey;
 
         /**
          * Error message arguments.
          */
-        private Object[] mMessageArguments;
+        private Object[] messageArguments;
 
         /**
          * Initializes parse error message.
          *
-         * @param aLineNumber line number
-         * @param aMessageKey message key
-         * @param aMessageArguments message arguments
+         * @param lineNumber line number
+         * @param messageKey message key
+         * @param messageArguments message arguments
          */
-        public ParseErrorMessage(int aLineNumber, String aMessageKey, Object ... aMessageArguments)
+        public ParseErrorMessage(int lineNumber, String messageKey, Object ... messageArguments)
         {
-            mLineNumber = aLineNumber;
-            mMessageKey = aMessageKey;
-            mMessageArguments = aMessageArguments;
+            this.lineNumber = lineNumber;
+            this.messageKey = messageKey;
+            this.messageArguments = messageArguments;
         }
 
         public int getLineNumber()
         {
-            return mLineNumber;
+            return lineNumber;
         }
 
         public String getMessageKey()
         {
-            return mMessageKey;
+            return messageKey;
         }
 
         public Object[] getMessageArguments()
         {
-            return mMessageArguments;
+            return messageArguments;
         }
 
     }

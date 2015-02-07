@@ -42,11 +42,11 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     private static final int DEFAULT_MAX = 2;
 
     /** Stack of method contexts. */
-    private final FastStack<Context> mContextStack = FastStack.newInstance();
+    private final FastStack<Context> contextStack = FastStack.newInstance();
     /** Maximum allowed number of return stmts. */
-    private int mMax;
+    private int max;
     /** Current method context. */
-    private Context mContext;
+    private Context context;
 
     /** Creates new instance of the checks. */
     public ReturnCountCheck()
@@ -80,78 +80,78 @@ public final class ReturnCountCheck extends AbstractFormatCheck
      */
     public int getMax()
     {
-        return mMax;
+        return max;
     }
 
     /**
      * Setter for max property.
-     * @param aMax maximum allowed number of return statements.
+     * @param max maximum allowed number of return statements.
      */
-    public void setMax(int aMax)
+    public void setMax(int max)
     {
-        mMax = aMax;
+        this.max = max;
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    public void beginTree(DetailAST rootAST)
     {
-        mContext = null;
-        mContextStack.clear();
+        context = null;
+        contextStack.clear();
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.CTOR_DEF:
-        case TokenTypes.METHOD_DEF:
-            visitMethodDef(aAST);
-            break;
-        case TokenTypes.LITERAL_RETURN:
-            mContext.visitLiteralReturn();
-            break;
-        default:
-            throw new IllegalStateException(aAST.toString());
+        switch (ast.getType()) {
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+                visitMethodDef(ast);
+                break;
+            case TokenTypes.LITERAL_RETURN:
+                context.visitLiteralReturn();
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
     @Override
-    public void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST ast)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.CTOR_DEF:
-        case TokenTypes.METHOD_DEF:
-            leaveMethodDef(aAST);
-            break;
-        case TokenTypes.LITERAL_RETURN:
-            // Do nothing
-            break;
-        default:
-            throw new IllegalStateException(aAST.toString());
+        switch (ast.getType()) {
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+                leaveMethodDef(ast);
+                break;
+            case TokenTypes.LITERAL_RETURN:
+                // Do nothing
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 
     /**
      * Creates new method context and places old one on the stack.
-     * @param aAST method definition for check.
+     * @param ast method definition for check.
      */
-    private void visitMethodDef(DetailAST aAST)
+    private void visitMethodDef(DetailAST ast)
     {
-        mContextStack.push(mContext);
-        final DetailAST methodNameAST = aAST.findFirstToken(TokenTypes.IDENT);
-        mContext =
+        contextStack.push(context);
+        final DetailAST methodNameAST = ast.findFirstToken(TokenTypes.IDENT);
+        context =
             new Context(!getRegexp().matcher(methodNameAST.getText()).find());
     }
 
     /**
      * Checks number of return statements and restore
      * previous method context.
-     * @param aAST method def node.
+     * @param ast method def node.
      */
-    private void leaveMethodDef(DetailAST aAST)
+    private void leaveMethodDef(DetailAST ast)
     {
-        mContext.checkCount(aAST);
-        mContext = mContextStack.pop();
+        context.checkCount(ast);
+        context = contextStack.pop();
     }
 
     /**
@@ -161,36 +161,36 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     private class Context
     {
         /** Whether we should check this method or not. */
-        private final boolean mChecking;
+        private final boolean checking;
         /** Counter for return statements. */
-        private int mCount;
+        private int count;
 
         /**
          * Creates new method context.
-         * @param aChecking should we check this method or not.
+         * @param checking should we check this method or not.
          */
-        public Context(boolean aChecking)
+        public Context(boolean checking)
         {
-            mChecking = aChecking;
-            mCount = 0;
+            this.checking = checking;
+            count = 0;
         }
 
         /** Increase number of return statements. */
         public void visitLiteralReturn()
         {
-            ++mCount;
+            ++count;
         }
 
         /**
          * Checks if number of return statements in method more
          * than allowed.
-         * @param aAST method def associated with this context.
+         * @param ast method def associated with this context.
          */
-        public void checkCount(DetailAST aAST)
+        public void checkCount(DetailAST ast)
         {
-            if (mChecking && (mCount > getMax())) {
-                log(aAST.getLineNo(), aAST.getColumnNo(), "return.count",
-                    mCount, getMax());
+            if (checking && (count > getMax())) {
+                log(ast.getLineNo(), ast.getColumnNo(), "return.count",
+                    count, getMax());
             }
         }
     }

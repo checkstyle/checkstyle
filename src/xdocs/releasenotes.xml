@@ -10,6 +10,100 @@
   </properties>
 
   <body>
+    <section name="Release 6.3">
+      <p>New:</p>
+      <ul>
+        <li>
+          New option to HiddenField, to skip builder methods - setterCanReturnItsClass. Author: Dmitri Priimak <a href="https://github.com/checkstyle/checkstyle/issues/589">#589</a>
+        </li>
+        <li>
+          New option to Checker and TreeWalker to specify file extensions. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/25">#25</a>
+        </li>
+        <li>
+          New option to Empty Line Separator Check, for managing empty lines between class members. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/530">#530</a>
+        </li>
+        <li>
+          New option to Indentation to avoid C style. Author: Max Vetrenko <a href="https://github.com/checkstyle/checkstyle/issues/354">#354</a>
+        </li>
+        <li>
+          New option to Illegal Throws Check due to twitter custom checks. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
+        </li>
+        <li>
+          New option to Javadoc Method Name Check - ignore method name regex. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
+        </li>
+        <li>
+          New option to Illegal Type Check to control valiadtion baseon modifiers - memberModifiers, updated default illegal types. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/567">#567</a>
+        </li>
+      </ul>
+
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Extended Method Name Check to ignore overriden methods. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
+        </li>
+        <li>
+          Allow basedir property of Checker module to be set to NULL. Author: Lars Ködderitzsch <a href="https://github.com/checkstyle/checkstyle/issues/570">#570</a>
+        </li>
+        <li>
+          Custom Import Order Check, third-party package meaning is adjusted. Author: Alexey Kravin <a href="https://github.com/checkstyle/checkstyle/issues/515">#515</a>
+        </li>
+        <li>
+          Final Local Variable Check, fixed false-positive. Author: Alexey Kravin <a href="https://github.com/checkstyle/checkstyle/issues/258">#258</a>
+        </li>
+        <li>
+          Illegal Type Check, fixed false positives on same file names, added support of analyzing imports. Author: Alexey Kravin <a href="https://github.com/checkstyle/checkstyle/issues/78">#78</a>
+        </li>
+        <li>
+          Suppress Warnings Holder - fixed throwing exception if annotation uses constant value. Author: Alexey Kravin <a href="https://github.com/checkstyle/checkstyle/issues/539">#539</a>
+        </li>
+        <li>
+          No Whitespace After Check, fixed NPE, fixed false-positives at multidimensional arrays. Author: Alexey Kravin <a href="https://github.com/checkstyle/checkstyle/issues/542">#542</a>
+        </li>
+        <li>
+          message is extended according to google/guava/issues/1891. Author: Roman Ivanov
+        </li>
+      </ul>
+
+      <p>Breaking backward compatibility:</p>
+      <ul>
+        <li>
+          Annotation Location Check, fixed typo in property name. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/585">#585</a>
+        </li>
+      </ul>
+      <p>Notes:</p>
+      <ul>
+        <li>
+          Code examples of filters' usage. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/289">#289</a>
+        </li>
+        <li>
+          Changes to checkstyle's configuration for Checkstyle (Prefixes are removed, indentation for SWITCH block is changed). Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/512">#512</a>
+        </li>
+        <li>
+          Custom Import Order Check, rewrote compare method. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/234">#234</a>
+        </li>
+        <li>
+          Switched Checkstyle and all resources to UTF-8 encoding. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/489">#489</a>
+        </li>
+        <li>
+          Logging of exceptions to console. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/546">#546</a>
+        </li>
+        <li>
+          Got rid of javadoc warning. Resolved maven compilation warnings. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/548">#548</a>
+        </li>
+        <li>
+          Refactored tests from blocks package. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/537">#537</a>
+        </li>
+        <li>
+          Turn on -r recursive by default in CLI. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/3">#3</a>
+        </li>
+        <li>
+          Fixes for suppression examples. Author: Michał Kordas <a href="https://github.com/checkstyle/checkstyle/issues/537">#289</a>
+        </li>
+        <li>
+          Repair Sonarqube problems found in Checkstyle. Author: Michał Kordas <a href="https://github.com/checkstyle/checkstyle/issues/46">#46</a>
+        </li>
+      </ul>
+    </section>
 
     <section name="Release 6.2">
       <p>Bug fixes:</p>
@@ -76,9 +170,6 @@
         </li>
         <li>
           Summary Javadoc Check, added 'specify period' option. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/472">#472</a>
-        </li>
-        <li>
-          Suppress Warnings Check, annotation param in constant. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/268">#268</a>
         </li>
         <li>
           Suppress Warnings Check, annotation param in constant. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/268">#268</a>

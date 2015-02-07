@@ -56,9 +56,9 @@ public class MultipleVariableDeclarationsCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST ast)
     {
-        DetailAST nextNode = aAST.getNextSibling();
+        DetailAST nextNode = ast.getNextSibling();
         final boolean isCommaSeparated =
             ((nextNode != null) && (nextNode.getType() == TokenTypes.COMMA));
 
@@ -76,7 +76,7 @@ public class MultipleVariableDeclarationsCheck extends Check
         if ((nextNode != null)
             && (nextNode.getType() == TokenTypes.VARIABLE_DEF))
         {
-            final DetailAST firstNode = CheckUtils.getFirstNode(aAST);
+            final DetailAST firstNode = CheckUtils.getFirstNode(ast);
             if (isCommaSeparated) {
                 // Check if the multiple variable declarations are in a
                 // for loop initializer. If they are, then no warning
@@ -84,13 +84,13 @@ public class MultipleVariableDeclarationsCheck extends Check
                 // a for loop initializer is a good way to minimize
                 // variable scope. Refer Feature Request Id - 2895985
                 // for more details
-                if (aAST.getParent().getType() != TokenTypes.FOR_INIT) {
+                if (ast.getParent().getType() != TokenTypes.FOR_INIT) {
                     log(firstNode, "multiple.variable.declarations.comma");
                 }
                 return;
             }
 
-            final DetailAST lastNode = getLastNode(aAST);
+            final DetailAST lastNode = getLastNode(ast);
             final DetailAST firstNextNode = CheckUtils.getFirstNode(nextNode);
 
             if (firstNextNode.getLineNo() == lastNode.getLineNo()) {
@@ -102,13 +102,13 @@ public class MultipleVariableDeclarationsCheck extends Check
 
     /**
      * Finds sub-node for given node maximum (line, column) pair.
-     * @param aNode the root of tree for search.
+     * @param node the root of tree for search.
      * @return sub-node with maximum (line, column) pair.
      */
-    private static DetailAST getLastNode(final DetailAST aNode)
+    private static DetailAST getLastNode(final DetailAST node)
     {
-        DetailAST currentNode = aNode;
-        DetailAST child = aNode.getFirstChild();
+        DetailAST currentNode = node;
+        DetailAST child = node.getFirstChild();
         while (child != null) {
             final DetailAST newNode = getLastNode(child);
             if ((newNode.getLineNo() > currentNode.getLineNo())
