@@ -51,7 +51,6 @@ public class FinalLocalVariableCheckTest
             "96:17: Variable 'weird' should be declared final.",
             "97:17: Variable 'j' should be declared final.",
             "98:17: Variable 'k' should be declared final.",
-            "134:17: Variable 'a' should be declared final.",
         };
         verify(checkConfig, getPath("coding/InputFinalLocalVariable.java"), expected);
     }
