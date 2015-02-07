@@ -109,7 +109,6 @@ public class FinalLocalVariableCheck extends Check
                 }
             case TokenTypes.VARIABLE_DEF:
                 if ((ast.getParent().getType() != TokenTypes.OBJBLOCK)
-                    && (ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE)
                     && isFirstVariableInForInit(ast))
                 {
                     insertVariable(ast);
