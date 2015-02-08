@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.Collections;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
@@ -98,9 +99,7 @@ public abstract class Check extends AbstractViolationReporter
      */
     public final void setTokens(String[] strRep)
     {
-        for (final String s : strRep) {
-            tokens.add(s);
-        }
+        Collections.addAll(tokens, strRep);
     }
 
     /**
