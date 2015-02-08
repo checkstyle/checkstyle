@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -397,9 +398,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     public void setIllegalClassNames(String[] classNames)
     {
         illegalClassNames.clear();
-        for (String name : classNames) {
-            illegalClassNames.add(name);
-        }
+        Collections.addAll(illegalClassNames, classNames);
     }
 
     /**
@@ -419,9 +418,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     public void setIgnoredMethodNames(String[] methodNames)
     {
         ignoredMethodNames.clear();
-        for (String element : methodNames) {
-            ignoredMethodNames.add(element);
-        }
+        Collections.addAll(ignoredMethodNames, methodNames);
     }
 
     /**
@@ -441,9 +438,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     public void setLegalAbstractClassNames(String[] classNames)
     {
         legalAbstractClassNames.clear();
-        for (String element : classNames) {
-            legalAbstractClassNames.add(element);
-        }
+        Collections.addAll(legalAbstractClassNames, classNames);
     }
 
     /**
