@@ -323,7 +323,7 @@ public class StringUtils // not final to allow subclassing
           exception are final.  The user can still mutate an exception's instance
           (e.g. Throwable has a method called <code>setStackTrace</code>
           which changes the exception's stack trace).  But, at least, all information
-          provided by this exception type is unchangable.
+          provided by this exception type is unchangeable.
         </p>
 
         <p>
