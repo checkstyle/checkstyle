@@ -114,7 +114,7 @@
       </p>
 
       <p>
-        <b>ATTENTION:</b> Please provide meaningfull message for commit with reference to github issue or Pull Request for more details.<br/>
+        <b>ATTENTION:</b> Please provide meaningful message for commit with reference to github issue or Pull Request for more details.<br/>
         Ideal format for message is "Brief message ..... , issue(or pull request) #NUMBER".
         <a href="https://github.com/checkstyle/checkstyle/commit/9303fd9d971eb55cdfd62686ba2f5698edb2c83e">Good example</a>
       </p>

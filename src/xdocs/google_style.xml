@@ -1002,7 +1002,7 @@
                                     src="images/ok_blue.png"
                                     alt="" />
                                 <a href="config_naming.html">MethodName</a>
-                                <br/> No ability to distinguish verb at the beggining of name, no way distinguish Test method from others so "_" is allowed in names
+                                <br/> No ability to distinguish verb at the beginning of name, no way distinguish Test method from others so "_" is allowed in names
                             </td>
                             <td>
                                 <a

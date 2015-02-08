@@ -334,7 +334,7 @@
       <p>Bug fixes:</p>
       <ul>
         <li>
-          Enourmous update on Indentation Check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/294">#294</a>
+          Enormous update on Indentation Check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/294">#294</a>
         </li>
         <li>
           Fixed IllegalInstantiationCheck, so it won't recognize a constructor reference (Java8) as instantiation. Author: Ryszard Wisniewski.
