@@ -6,7 +6,7 @@ jdk:
   - oraclejdk8
 
 install: mvn clean verify -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true
-             -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true
+             -Dpmd.skip=true -Dfindbugs.skip=true
 
 after_success:
   - mvn -Ptravis surefire-report:report jacoco:report coveralls:jacoco
