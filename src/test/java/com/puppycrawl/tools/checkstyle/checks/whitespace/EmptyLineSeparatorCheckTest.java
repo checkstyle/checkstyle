@@ -81,4 +81,15 @@ public class EmptyLineSeparatorCheckTest
         };
         verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorCheckMultipleEmptyLines.java"), expected);
     }
+
+    @Test
+    public void testFormerArrayIndexOutOfBounds() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        final String[] expected = {
+
+        };
+        verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorFormerException.java"), expected);
+    }
 }
