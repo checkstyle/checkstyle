@@ -285,11 +285,15 @@ public class EmptyLineSeparatorCheck extends Check
      */
     private boolean isPrePreviousLineEmpty(DetailAST token)
     {
+        boolean result = false;
         final int lineNo = token.getLineNo();
         // 3 is the number of the pre-previous line because the numbering starts from zero.
         final int number = 3;
-        final String prePreviousLine = getLines()[lineNo - number];
-        return prePreviousLine.trim().isEmpty();
+        if (lineNo >= number) {
+            final String prePreviousLine = getLines()[lineNo - number];
+            result = prePreviousLine.trim().isEmpty();
+        }
+        return result;
     }
 
     /**
