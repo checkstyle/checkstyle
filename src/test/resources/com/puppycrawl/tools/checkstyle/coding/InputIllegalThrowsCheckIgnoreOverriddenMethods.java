@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.coding;
 
-public class InputIllegalThrowsCheckIgnoreOverridenMethods
+public class InputIllegalThrowsCheckIgnoreOverriddenMethods
              extends InputIllegalThrowsCheck
 {
     @Override

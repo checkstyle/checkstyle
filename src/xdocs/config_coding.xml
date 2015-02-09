@@ -1540,8 +1540,8 @@ if (&quot;something&quot;.equals(x))
             <td><code>finalize</code></td>
           </tr>
           <tr>
-            <td>ignoreOverridenMethods</td>
-            <td>ignore checking overriden methods (marked with Override or java.lang.Override
+            <td>ignoreOverriddenMethods</td>
+            <td>ignore checking overridden methods (marked with Override or java.lang.Override
              annotation).</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
@@ -1573,11 +1573,11 @@ if (&quot;something&quot;.equals(x))
 &lt;/module&gt;
         </source>
         <p>
-          To configure the check to warn on overriden methods:
+          To configure the check to warn on overridden methods:
         </p>
         <source>
 &lt;module name=&quot;IllegalThrows&quot;&gt;
-    &lt;property name=&quot;ignoreOverridenMethods&quot; value=&quot;false&quot;/&gt;
+    &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
