@@ -113,7 +113,7 @@ public class IllegalImportCheck
      */
     private boolean isIllegalImport(String importText)
     {
-        for (String element : illegalPkgs) {
+        for (final String element : illegalPkgs) {
             if (importText.startsWith(element + ".")) {
                 return true;
             }

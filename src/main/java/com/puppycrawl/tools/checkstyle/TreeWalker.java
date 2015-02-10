@@ -308,7 +308,7 @@ public final class TreeWalker
             //register configured tokens
             final int[] acceptableTokens = check.getAcceptableTokens();
             Arrays.sort(acceptableTokens);
-            for (String token : checkTokens) {
+            for (final String token : checkTokens) {
                 try {
                     final int tokenId = TokenTypes.getTokenId(token);
                     if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
@@ -325,7 +325,7 @@ public final class TreeWalker
         else {
             tokens = check.getDefaultTokens();
         }
-        for (int element : tokens) {
+        for (final int element : tokens) {
             registerCheck(element, check);
         }
         if (check.isCommentNodesRequired()) {
@@ -406,7 +406,7 @@ public final class TreeWalker
             checks = ordinaryChecks;
         }
 
-        for (Check ch : checks) {
+        for (final Check ch : checks) {
             ch.setFileContents(contents);
             ch.beginTree(rootAST);
         }
@@ -428,7 +428,7 @@ public final class TreeWalker
             checks = ordinaryChecks;
         }
 
-        for (Check ch : checks) {
+        for (final Check ch : checks) {
             ch.finishTree(rootAST);
         }
     }
@@ -456,7 +456,7 @@ public final class TreeWalker
             visitors = tokenToOrdinaryChecks.get(tokenType);
         }
 
-        for (Check c : visitors) {
+        for (final Check c : visitors) {
             c.visitToken(ast);
         }
     }
@@ -485,7 +485,7 @@ public final class TreeWalker
             visitors = tokenToOrdinaryChecks.get(tokenType);
         }
 
-        for (Check ch : visitors) {
+        for (final Check ch : visitors) {
             ch.leaveToken(ast);
         }
     }
@@ -530,10 +530,10 @@ public final class TreeWalker
     @Override
     public void destroy()
     {
-        for (Check c : ordinaryChecks) {
+        for (final Check c : ordinaryChecks) {
             c.destroy();
         }
-        for (Check c : commentChecks) {
+        for (final Check c : commentChecks) {
             c.destroy();
         }
         cache.destroy();
@@ -752,7 +752,7 @@ public final class TreeWalker
     {
         int lines = initialLinesCnt;
         int columns = initialColumnsCnt;
-        for (char c : text.toCharArray()) {
+        for (final char c : text.toCharArray()) {
             switch (c) {
                 case '\n':
                     lines++;

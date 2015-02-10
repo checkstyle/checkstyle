@@ -91,7 +91,7 @@ class CSVFilter implements IntFilter
     @Override
     public boolean accept(int intValue)
     {
-        for (IntFilter filter : getFilters()) {
+        for (final IntFilter filter : getFilters()) {
             if (filter.accept(intValue)) {
                 return true;
             }

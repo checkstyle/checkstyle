@@ -125,7 +125,7 @@ public class EqualsHashCodeCheck
     public void finishTree(DetailAST rootAST)
     {
         final Set<DetailAST> equalsDefs = objBlockEquals.keySet();
-        for (DetailAST objBlock : equalsDefs) {
+        for (final DetailAST objBlock : equalsDefs) {
             if (!objBlockWithHashCode.contains(objBlock)) {
                 final DetailAST equalsAST = objBlockEquals.get(objBlock);
                 log(equalsAST.getLineNo(), equalsAST.getColumnNo(),

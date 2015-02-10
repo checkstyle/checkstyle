@@ -105,7 +105,7 @@ public class AvoidStaticImportCheck
      */
     private boolean isExempt(String classOrStaticMember)
     {
-        for (String exclude : excludes) {
+        for (final String exclude : excludes) {
             if (classOrStaticMember.equals(exclude)) {
                 return true;
             }
