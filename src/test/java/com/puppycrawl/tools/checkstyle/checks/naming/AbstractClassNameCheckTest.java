@@ -34,10 +34,10 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("ignoreModifier", "true");
 
         final String[] expected = {
-            "3:1: Name 'InputAbstractClassName' must match pattern '^Abstract.*$|^.*Factory$'.",
-            "6:1: Name 'NonAbstractClassName' must match pattern '^Abstract.*$|^.*Factory$'.",
-            "9:1: Name 'FactoryWithBadName' must match pattern '^Abstract.*$|^.*Factory$'.",
-            "13:5: Name 'NonAbstractInnerClass' must match pattern '^Abstract.*$|^.*Factory$'.",
+            "3:1: Name 'InputAbstractClassName' must match pattern '^Abstract.+$|^.*Factory$'.",
+            "6:1: Name 'NonAbstractClassName' must match pattern '^Abstract.+$|^.*Factory$'.",
+            "9:1: Name 'FactoryWithBadName' must match pattern '^Abstract.+$|^.*Factory$'.",
+            "13:5: Name 'NonAbstractInnerClass' must match pattern '^Abstract.+$|^.*Factory$'.",
         };
 
         verify(checkConfig, getPath("naming" + File.separator + "InputAbstractClassName.java"), expected);
@@ -68,10 +68,10 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("ignoreModifier", "false");
 
         final String[] expected = {
-            "3:1: Name 'InputAbstractClassName' must match pattern '^Abstract.*$|^.*Factory$'.",
-            "6:1: Name 'NonAbstractClassName' must match pattern '^Abstract.*$|^.*Factory$'.",
-            "9:1: Name 'FactoryWithBadName' must match pattern '^Abstract.*$|^.*Factory$'.",
-            "13:5: Name 'NonAbstractInnerClass' must match pattern '^Abstract.*$|^.*Factory$'.",
+            "3:1: Name 'InputAbstractClassName' must match pattern '^Abstract.+$|^.*Factory$'.",
+            "6:1: Name 'NonAbstractClassName' must match pattern '^Abstract.+$|^.*Factory$'.",
+            "9:1: Name 'FactoryWithBadName' must match pattern '^Abstract.+$|^.*Factory$'.",
+            "13:5: Name 'NonAbstractInnerClass' must match pattern '^Abstract.+$|^.*Factory$'.",
             "26:1: Class 'AbstractClass' must be declared as 'abstract'.",
             "29:1: Class 'Class1Factory' must be declared as 'abstract'.",
             "33:5: Class 'AbstractInnerClass' must be declared as 'abstract'.",
@@ -79,5 +79,20 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport
         };
 
         verify(checkConfig, getPath("naming" + File.separator + "InputAbstractClassName.java"), expected);
+    }
+
+    @Test
+    public void testFalsePositive() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(AbstractClassNameCheck.class);
+//        checkConfig.addAttribute("ignoreName", "false");
+//        checkConfig.addAttribute("ignoreModifier", "false");
+
+        final String[] expected = {
+            "9:5: Class 'AbstractClass' must be declared as 'abstract'.",
+        };
+
+        verify(checkConfig, getPath("naming" + File.separator
+                 + "InputAbstractClassNameFormerFalsePositive.java"), expected);
     }
 }

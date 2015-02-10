@@ -46,7 +46,7 @@
         <tr>
           <td><code>AbstractClassName</code></td>
           <td><code>abstract</code> classes</td>
-          <td><code>^Abstract.*$|^.*Factory$</code></td>
+          <td><code>^Abstract.+$|^.*Factory$</code></td>
         </tr>
         <tr>
           <td><code>ClassTypeParameterName</code></td>
