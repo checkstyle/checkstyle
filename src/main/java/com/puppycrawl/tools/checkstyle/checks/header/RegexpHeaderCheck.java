@@ -133,7 +133,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
     {
         final List<String> headerLines = getHeaderLines();
         headerRegexps.clear();
-        for (String line : headerLines) {
+        for (final String line : headerLines) {
             try {
                 // TODO: Not sure if cache in Utils is still necessary
                 headerRegexps.add(Utils.getPattern(line));

@@ -172,7 +172,7 @@ public class MultipleStringLiteralsCheck extends Check
     public void finishTree(DetailAST rootAST)
     {
         final Set<String> keys = stringMap.keySet();
-        for (String key : keys) {
+        for (final String key : keys) {
             final List<StringInfo> hits = stringMap.get(key);
             if (hits.size() > allowedDuplicates) {
                 final StringInfo firstFinding = hits.get(0);

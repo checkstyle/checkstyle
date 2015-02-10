@@ -38,6 +38,10 @@
 
   <description>Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard</description>
 
+  <prerequisites>
+    <maven>3.0.1</maven>
+  </prerequisites>
+
   <licenses>
     <license>
       <name>GNU Lesser General Public License</name>
@@ -575,6 +579,7 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>cobertura-maven-plugin</artifactId>
+	    <version>2.6</version>
             <configuration>
               <formats>
                 <format>xml</format>
@@ -651,6 +656,8 @@
             <excludedPage>pmd.html</excludedPage>
             <excludedPage>findbugs.html</excludedPage>
             <excludedPage>surefire-report.html</excludedPage>
+            <!-- Excluded due to checkstyle's issue #549 until http://jira.codehaus.org/browse/MTAGLIST-69 will be fixed -->
+            <excludedPage>taglist.html</excludedPage>
           </excludedPages>
           <excludedLinks>
             <excludedLink>reports/google-style/guava</excludedLink>
@@ -659,6 +666,11 @@
             <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
             <excludedLink>http://search.maven.org/*</excludedLink>
             <excludedLink>hhttp://junit.org</excludedLink>
+            <!-- Excluded due to checkstyle's issue #549 until http://jira.codehaus.org/browse/MJAVADOC-425
+            and http://jira.codehaus.org/browse/DOXIA-525 and http://jira.codehaus.org/browse/MLINKCHECK-21 will be fixed -->
+            <excludedLink>**/com/puppycrawl/**</excludedLink>
+            <!-- Excluded due to checkstyle's issue #549 until http://jira.codehaus.org/browse/MJAVADOC-425 will be fixed -->
+            <excludedLink>http://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers.DefaultHandler.html?*</excludedLink>
           </excludedLinks>
           <excludedHttpStatusErrors>
             <excludedHttpStatusError>401</excludedHttpStatusError>

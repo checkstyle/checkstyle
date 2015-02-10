@@ -1127,6 +1127,47 @@ private String [] strArray;
 private int array1 []; // CHECKSTYLE_ON: ALMOST_ALL
       </source>
 
+      <p>
+        To configure a filter to suppress Check's violation message <b>which matches
+        specified message in messageFormat</b> (so suppression will be not only by
+        Check's name, but by message text additionally, as the same Check could report
+        different by message format violations) between a comment
+        containing <code>stop</code> and comment containing <code>resume</code>:
+      </p>
+
+      <source>
+&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+    &lt;property name=&quot;offCommentFormat&quot; value=&quot;stop&quot;/&gt;
+    &lt;property name=&quot;onCommentFormat&quot; value=&quot;resume&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot; value=&quot;IllegalTypeCheck&quot;/&gt;
+    &lt;property name=&quot;messageFormat&quot; value=&quot;^Declaring variables, return values or parameters of type 'GregorianCalendar' is not allowed.$&quot;/&gt;
+&lt;/module&gt;
+      </source>
+
+      <p>
+        Code before filter above is applied with Check's audit events:
+      </p>
+
+      <source>
+...
+GregorianCalendar calendar; // Warning here: Declaring variables, return values or parameters of type 'GregorianCalendar' is not allowed.
+HashSet hashSet; // Warning here: Declaring variables, return values or parameters of type 'HashSet' is not allowed.
+...
+      </source>
+
+      <p>
+        Code after filter is applied:
+      </p>
+
+      <source>
+...
+//stop
+GregorianCalendar calendar; // No warning here as it is suppressed by filter.
+HashSet hashSet; // Warning here: Declaring variables, return values or parameters of type 'HashSet' is not allowed.
+//resume
+...
+      </source>
+
       </subsection>
 
       <subsection name="SuppressWithNearbyCommentFilter">

@@ -119,7 +119,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
     private String getFirstSentence(DetailNode ast)
     {
         final StringBuilder result = new StringBuilder();
-        for (DetailNode child : ast.getChildren()) {
+        for (final DetailNode child : ast.getChildren()) {
             if (child.getType() != JavadocTokenTypes.JAVADOC_INLINE_TAG
                 && child.getText().contains(". "))
             {
@@ -141,7 +141,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
     private String getCharsTillDot(DetailNode textNode)
     {
         final StringBuilder result = new StringBuilder();
-        for (DetailNode child : textNode.getChildren()) {
+        for (final DetailNode child : textNode.getChildren()) {
             result.append(child.getText());
             if (".".equals(child.getText())
                 && JavadocUtils.getNextSibling(child).getType() == JavadocTokenTypes.WS)

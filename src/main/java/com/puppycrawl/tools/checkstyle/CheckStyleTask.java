@@ -172,7 +172,7 @@ public class CheckStyleTask extends Task
      */
     public void setClasspath(Path classpath)
     {
-        if (classpath == null) {
+        if (this.classpath == null) {
             this.classpath = classpath;
         }
         else {
@@ -375,7 +375,7 @@ public class CheckStyleTask extends Task
 
             // setup the listeners
             final AuditListener[] listeners = getListeners();
-            for (AuditListener element : listeners) {
+            for (final AuditListener element : listeners) {
                 c.addListener(element);
             }
         }
@@ -419,14 +419,14 @@ public class CheckStyleTask extends Task
 
         // override with Ant properties like ${basedir}
         final Hashtable<?, ?> antProps = this.getProject().getProperties();
-        for (Object name : antProps.keySet()) {
+        for (final Object name : antProps.keySet()) {
             final String key = (String) name;
             final String value = String.valueOf(antProps.get(key));
             retVal.put(key, value);
         }
 
         // override with properties specified in subelements
-        for (Property p : overrideProps) {
+        for (final Property p : overrideProps) {
             retVal.put(p.getKey(), p.getValue());
         }
 
@@ -486,7 +486,7 @@ public class CheckStyleTask extends Task
             log(i + ") Adding " + names.length + " files from directory "
                     + ds.getBasedir(), Project.MSG_VERBOSE);
 
-            for (String element : names) {
+            for (final String element : names) {
                 final String pathname = ds.getBasedir() + File.separator
                         + element;
                 list.add(new File(pathname));
