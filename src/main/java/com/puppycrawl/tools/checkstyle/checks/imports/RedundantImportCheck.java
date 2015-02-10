@@ -105,7 +105,7 @@ public class RedundantImportCheck
                     imp.getText());
             }
             // Check for a duplicate import
-            for (FullIdent full : imports) {
+            for (final FullIdent full : imports) {
                 if (imp.getText().equals(full.getText())) {
                     log(ast.getLineNo(), ast.getColumnNo(),
                             "import.duplicate", full.getLineNo(),
@@ -120,7 +120,7 @@ public class RedundantImportCheck
             final FullIdent imp =
                 FullIdent.createFullIdent(
                     ast.getLastChild().getPreviousSibling());
-            for (FullIdent full : staticImports) {
+            for (final FullIdent full : staticImports) {
                 if (imp.getText().equals(full.getText())) {
                     log(ast.getLineNo(), ast.getColumnNo(),
                         "import.duplicate", full.getLineNo(), imp.getText());

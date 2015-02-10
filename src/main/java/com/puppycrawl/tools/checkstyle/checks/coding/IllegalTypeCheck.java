@@ -398,6 +398,9 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     public void setIllegalClassNames(String[] classNames)
     {
         illegalClassNames.clear();
+        for (String name : classNames) {
+            illegalClassNames.add(name);
+        }
         Collections.addAll(illegalClassNames, classNames);
     }
 
@@ -418,6 +421,9 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     public void setIgnoredMethodNames(String[] methodNames)
     {
         ignoredMethodNames.clear();
+        for (String element : methodNames) {
+            ignoredMethodNames.add(element);
+        }
         Collections.addAll(ignoredMethodNames, methodNames);
     }
 
@@ -438,6 +444,9 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     public void setLegalAbstractClassNames(String[] classNames)
     {
         legalAbstractClassNames.clear();
+        for (String element : classNames) {
+            legalAbstractClassNames.add(element);
+        }
         Collections.addAll(legalAbstractClassNames, classNames);
     }
 
@@ -458,7 +467,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     public void setMemberModifiers(String modifiers)
     {
         final List<Integer> modifiersList = new ArrayList<Integer>(modifiers.length());
-        for (String modifier : modifiers.split(", ")) {
+        for (final String modifier : modifiers.split(", ")) {
             modifiersList.add(TokenTypes.getTokenId(modifier));
         }
         this.memberModifiers = modifiersList;

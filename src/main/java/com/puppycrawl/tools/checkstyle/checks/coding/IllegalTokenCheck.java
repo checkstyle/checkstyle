@@ -72,7 +72,7 @@ public class IllegalTokenCheck
         if (!tokenNames.isEmpty()) {
             tokensToCopy = new int[tokenNames.size()];
             int i = 0;
-            for (String name : tokenNames) {
+            for (final String name : tokenNames) {
                 tokensToCopy[i] = TokenTypes.getTokenId(name);
                 i++;
             }

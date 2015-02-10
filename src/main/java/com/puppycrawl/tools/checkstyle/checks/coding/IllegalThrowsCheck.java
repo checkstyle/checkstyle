@@ -141,6 +141,9 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
     public void setIgnoredMethodNames(String[] methodNames)
     {
         ignoredMethodNames.clear();
+        for (String element : methodNames) {
+            ignoredMethodNames.add(element);
+        }
         Collections.addAll(ignoredMethodNames, methodNames);
     }
 

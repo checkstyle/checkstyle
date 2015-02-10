@@ -49,7 +49,7 @@ public class IndentLevel
     {
         final BitSet src = base.levels;
         for (int i = src.nextSetBit(0); i >= 0; i = src.nextSetBit(i + 1)) {
-            for (int offset : offsets) {
+            for (final int offset : offsets) {
                 levels.set(i + offset);
             }
         }
