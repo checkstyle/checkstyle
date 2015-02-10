@@ -118,6 +118,25 @@ public class InnerAssignmentCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.ASSIGN,            // '='
+            TokenTypes.DIV_ASSIGN,        // "/="
+            TokenTypes.PLUS_ASSIGN,       // "+="
+            TokenTypes.MINUS_ASSIGN,      //"-="
+            TokenTypes.STAR_ASSIGN,       // "*="
+            TokenTypes.MOD_ASSIGN,        // "%="
+            TokenTypes.SR_ASSIGN,         // ">>="
+            TokenTypes.BSR_ASSIGN,        // ">>>="
+            TokenTypes.SL_ASSIGN,         // "<<="
+            TokenTypes.BXOR_ASSIGN,       // "^="
+            TokenTypes.BOR_ASSIGN,        // "|="
+            TokenTypes.BAND_ASSIGN,       // "&="
+        };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         if (isInContext(ast, ALLOWED_ASSIGMENT_CONTEXT)) {

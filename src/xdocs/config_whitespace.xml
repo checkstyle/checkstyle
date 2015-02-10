@@ -1346,10 +1346,10 @@ import com.puppycrawl.tools.checkstyle.api.Check;
             <td>All subset of tokens</td>
           </tr>
           <tr>
-            <th>allowNoEmptyLineBetweenFields</th>
-            <th>Allow no empty line between fields</th>
-            <th><a href="property_types.html#boolean">boolean</a></th>
-            <th>false</th>
+            <td>allowNoEmptyLineBetweenFields</td>
+            <td>Allow no empty line between fields</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td>false</td>
           </tr>
         </table>
       </subsection>

@@ -58,6 +58,14 @@ public class OverloadMethodsDeclarationOrderCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.OBJBLOCK,
+        };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final int parentType = ast.getParent().getType();

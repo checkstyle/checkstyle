@@ -98,6 +98,12 @@ public class EqualsAvoidNullCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.METHOD_CALL};
+    }
+
+    @Override
     public void visitToken(final DetailAST methodCall)
     {
         final DetailAST dot = methodCall.getFirstChild();

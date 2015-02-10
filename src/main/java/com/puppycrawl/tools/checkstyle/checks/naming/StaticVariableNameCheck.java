@@ -63,6 +63,12 @@ public class StaticVariableNameCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.VARIABLE_DEF};
+    }
+
+    @Override
     protected final boolean mustCheckName(DetailAST ast)
     {
         final DetailAST modifiersAST =

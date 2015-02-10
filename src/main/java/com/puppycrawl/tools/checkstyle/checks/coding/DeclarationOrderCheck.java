@@ -105,6 +105,17 @@ public class DeclarationOrderCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.MODIFIERS,
+            TokenTypes.OBJBLOCK,
+        };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final int parentType = ast.getParent().getType();

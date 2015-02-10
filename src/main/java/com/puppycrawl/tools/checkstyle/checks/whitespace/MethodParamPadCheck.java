@@ -90,6 +90,18 @@ public class MethodParamPadCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.CTOR_DEF,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.METHOD_CALL,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.SUPER_CTOR_CALL,
+        };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final DetailAST parenAST;

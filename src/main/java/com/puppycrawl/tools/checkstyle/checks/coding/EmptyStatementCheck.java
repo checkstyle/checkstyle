@@ -52,6 +52,12 @@ public class EmptyStatementCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.EMPTY_STAT};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         log(ast.getLineNo(), ast.getColumnNo(), "empty.statement");

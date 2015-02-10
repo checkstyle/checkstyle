@@ -51,6 +51,12 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport
         }
 
         @Override
+        public int[] getAcceptableTokens()
+        {
+            return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN};
+        }
+
+        @Override
         public void init()
         {
             allComments.addAll(Arrays.asList("0", "1", "2", "3", "4", "5", "6",

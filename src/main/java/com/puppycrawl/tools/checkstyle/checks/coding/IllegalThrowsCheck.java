@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.api.AnnotationUtility;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+import java.util.Collections;
 import java.util.Set;
 
 /**
@@ -38,7 +40,7 @@ import java.util.Set;
  * <b>ignoredMethodNames</b> - names of methods to ignore.
  * </p>
  * <p>
- * <b>ignoreOverridenMethods</b> - ignore checking overriden methods (marked with Override
+ * <b>ignoreOverriddenMethods</b> - ignore checking overridden methods (marked with Override
  *  or java.lang.Override annotation) default value is <b>true</b>.
  * </p>
  *
@@ -54,8 +56,8 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
         "finalize",
     };
 
-    /** property for ignoring overriden methods. */
-    private boolean ignoreOverridenMethods = true;
+    /** property for ignoring overridden methods. */
+    private boolean ignoreOverriddenMethods = true;
 
     /** methods which should be ignored. */
     private final Set<String> ignoredMethodNames = Sets.newHashSet();
@@ -85,6 +87,12 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.LITERAL_THROWS};
+    }
+
+    @Override
     public void visitToken(DetailAST detailAST)
     {
         final DetailAST methodDef = detailAST.getParent();
@@ -111,7 +119,7 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
     private boolean isIgnorableMethod(DetailAST methodDef)
     {
         return shouldIgnoreMethod(methodDef.findFirstToken(TokenTypes.IDENT).getText())
-            || ignoreOverridenMethods
+            || ignoreOverriddenMethods
                && (AnnotationUtility.containsAnnotation(methodDef, "Override")
                   || AnnotationUtility.containsAnnotation(methodDef, "java.lang.Override"));
     }
@@ -133,17 +141,18 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
     public void setIgnoredMethodNames(String[] methodNames)
     {
         ignoredMethodNames.clear();
-        for (final String element : methodNames) {
+        for (String element : methodNames) {
             ignoredMethodNames.add(element);
         }
+        Collections.addAll(ignoredMethodNames, methodNames);
     }
 
     /**
-     * Sets <b>ignoreOverridenMethods</b> property value.
-     * @param ignoreOverridenMethods Check's property.
+     * Sets <b>ignoreOverriddenMethods</b> property value.
+     * @param ignoreOverriddenMethods Check's property.
      */
-    public void setIgnoreOverridenMethods(boolean ignoreOverridenMethods)
+    public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods)
     {
-        this.ignoreOverridenMethods = ignoreOverridenMethods;
+        this.ignoreOverriddenMethods = ignoreOverriddenMethods;
     }
 }

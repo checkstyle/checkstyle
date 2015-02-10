@@ -115,6 +115,12 @@ public class MultipleStringLiteralsCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.STRING_LITERAL};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         if (isInIgnoreOccurrenceContext(ast)) {

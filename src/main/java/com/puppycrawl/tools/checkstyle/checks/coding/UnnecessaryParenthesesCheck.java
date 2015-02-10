@@ -124,6 +124,35 @@ public class UnnecessaryParenthesesCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.EXPR,
+            TokenTypes.IDENT,
+            TokenTypes.NUM_DOUBLE,
+            TokenTypes.NUM_FLOAT,
+            TokenTypes.NUM_INT,
+            TokenTypes.NUM_LONG,
+            TokenTypes.STRING_LITERAL,
+            TokenTypes.LITERAL_NULL,
+            TokenTypes.LITERAL_FALSE,
+            TokenTypes.LITERAL_TRUE,
+            TokenTypes.ASSIGN,
+            TokenTypes.BAND_ASSIGN,
+            TokenTypes.BOR_ASSIGN,
+            TokenTypes.BSR_ASSIGN,
+            TokenTypes.BXOR_ASSIGN,
+            TokenTypes.DIV_ASSIGN,
+            TokenTypes.MINUS_ASSIGN,
+            TokenTypes.MOD_ASSIGN,
+            TokenTypes.PLUS_ASSIGN,
+            TokenTypes.SL_ASSIGN,
+            TokenTypes.SR_ASSIGN,
+            TokenTypes.STAR_ASSIGN,
+        };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final int type = ast.getType();

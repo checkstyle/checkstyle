@@ -64,6 +64,12 @@ public class DesignForExtensionCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.METHOD_DEF};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         // nothing to do for Interfaces

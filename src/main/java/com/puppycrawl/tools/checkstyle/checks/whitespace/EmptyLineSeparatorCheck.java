@@ -203,6 +203,23 @@ public class EmptyLineSeparatorCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.VARIABLE_DEF,
+        };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final DetailAST nextToken = ast.getNextSibling();
@@ -268,11 +285,15 @@ public class EmptyLineSeparatorCheck extends Check
      */
     private boolean isPrePreviousLineEmpty(DetailAST token)
     {
+        boolean result = false;
         final int lineNo = token.getLineNo();
         // 3 is the number of the pre-previous line because the numbering starts from zero.
         final int number = 3;
-        final String prePreviousLine = getLines()[lineNo - number];
-        return prePreviousLine.trim().isEmpty();
+        if (lineNo >= number) {
+            final String prePreviousLine = getLines()[lineNo - number];
+            result = prePreviousLine.trim().isEmpty();
+        }
+        return result;
     }
 
     /**

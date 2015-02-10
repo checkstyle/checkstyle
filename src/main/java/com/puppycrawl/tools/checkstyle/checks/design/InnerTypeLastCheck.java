@@ -39,6 +39,12 @@ public class InnerTypeLastCheck extends Check
         return new int[] {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
     }
 
+    @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+    }
+
     /** Meet a root class. */
     private boolean rootClass = true;
 

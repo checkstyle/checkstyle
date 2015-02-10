@@ -120,6 +120,14 @@ public class RequireThisCheck extends DeclarationCollector
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.IDENT,
+        };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         super.visitToken(ast);

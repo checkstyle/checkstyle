@@ -74,6 +74,12 @@ public class AvoidStaticImportCheck
         return new int[] {TokenTypes.STATIC_IMPORT};
     }
 
+    @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.STATIC_IMPORT};
+    }
+
     /**
      * Sets the list of classes or static members to be exempt from the check.
      * @param excludes a list of fully-qualified class names/specific

@@ -97,6 +97,21 @@ public class NeedBracesCheck extends Check
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.LITERAL_DO,
+            TokenTypes.LITERAL_ELSE,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.LITERAL_CASE,
+            TokenTypes.LITERAL_DEFAULT,
+            TokenTypes.LAMBDA,
+        };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         final DetailAST slistAST = ast.findFirstToken(TokenTypes.SLIST);

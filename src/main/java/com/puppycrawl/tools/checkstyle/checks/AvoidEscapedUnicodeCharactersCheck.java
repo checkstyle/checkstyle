@@ -203,6 +203,12 @@ public class AvoidEscapedUnicodeCharactersCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
 

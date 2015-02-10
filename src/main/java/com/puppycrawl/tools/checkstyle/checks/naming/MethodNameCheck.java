@@ -101,6 +101,12 @@ public class MethodNameCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.METHOD_DEF, };
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         if (!AnnotationUtility.containsAnnotation(ast, OVERRIDE)

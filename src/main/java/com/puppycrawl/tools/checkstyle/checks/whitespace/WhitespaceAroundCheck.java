@@ -225,6 +225,63 @@ public class WhitespaceAroundCheck extends Check
         };
     }
 
+    @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.ASSIGN,
+            TokenTypes.BAND,
+            TokenTypes.BAND_ASSIGN,
+            TokenTypes.BOR,
+            TokenTypes.BOR_ASSIGN,
+            TokenTypes.BSR,
+            TokenTypes.BSR_ASSIGN,
+            TokenTypes.BXOR,
+            TokenTypes.BXOR_ASSIGN,
+            TokenTypes.COLON,
+            TokenTypes.DIV,
+            TokenTypes.DIV_ASSIGN,
+            TokenTypes.DO_WHILE,
+            TokenTypes.EQUAL,
+            TokenTypes.GE,
+            TokenTypes.GT,
+            TokenTypes.LAND,
+            TokenTypes.LCURLY,
+            TokenTypes.LE,
+            TokenTypes.LITERAL_CATCH,
+            TokenTypes.LITERAL_DO,
+            TokenTypes.LITERAL_ELSE,
+            TokenTypes.LITERAL_FINALLY,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_RETURN,
+            TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_SYNCHRONIZED,
+            TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.LOR,
+            TokenTypes.LT,
+            TokenTypes.MINUS,
+            TokenTypes.MINUS_ASSIGN,
+            TokenTypes.MOD,
+            TokenTypes.MOD_ASSIGN,
+            TokenTypes.NOT_EQUAL,
+            TokenTypes.PLUS,
+            TokenTypes.PLUS_ASSIGN,
+            TokenTypes.QUESTION,
+            TokenTypes.RCURLY,
+            TokenTypes.SL,
+            TokenTypes.SLIST,
+            TokenTypes.SL_ASSIGN,
+            TokenTypes.SR,
+            TokenTypes.SR_ASSIGN,
+            TokenTypes.STAR,
+            TokenTypes.STAR_ASSIGN,
+            TokenTypes.LITERAL_ASSERT,
+            TokenTypes.TYPE_EXTENSION_AND,
+        };
+    }
+
     /**
      * Sets whether or not empty method bodies are allowed.
      * @param allow <code>true</code> to allow empty method bodies.

@@ -63,6 +63,12 @@ public class ExplicitInitializationCheck extends Check
     }
 
     @Override
+    public final int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.VARIABLE_DEF};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         // do not check local variables and

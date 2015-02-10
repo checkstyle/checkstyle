@@ -36,11 +36,6 @@ public class EmptyBlockCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(EmptyBlockCheck.class);
         final String[] expected = {
-            "52:65: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
-            "54:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
-            "71:38: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
-            "72:52: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
-            "73:45: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
             "75:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
             "77:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
             "79:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
@@ -58,9 +53,6 @@ public class EmptyBlockCheckTest
             createCheckConfig(EmptyBlockCheck.class);
         checkConfig.addAttribute("option", BlockOption.TEXT.toString());
         final String[] expected = {
-            "52:65: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "catch"),
-            "72:52: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "catch"),
-            "73:45: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "catch"),
             "75:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "try"),
             "77:17: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "finally"),
             "178:5: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "INSTANCE_INIT"),
@@ -76,11 +68,6 @@ public class EmptyBlockCheckTest
             createCheckConfig(EmptyBlockCheck.class);
         checkConfig.addAttribute("option", BlockOption.STMT.toString());
         final String[] expected = {
-            "52:65: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
-            "54:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
-            "71:38: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
-            "72:52: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
-            "73:45: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
             "75:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
             "77:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
             "79:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),

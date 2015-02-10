@@ -63,6 +63,12 @@ public class TypecastParenPadCheck extends AbstractParenPadCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.RPAREN, TokenTypes.TYPECAST};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         // Strange logic in this method to guard against checking RPAREN tokens

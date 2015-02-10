@@ -129,6 +129,12 @@ public class VisibilityModifierCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.VARIABLE_DEF, TokenTypes.OBJBLOCK};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
         if ((ast.getType() != TokenTypes.VARIABLE_DEF)

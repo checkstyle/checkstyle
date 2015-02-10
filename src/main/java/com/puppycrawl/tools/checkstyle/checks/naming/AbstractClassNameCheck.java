@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 public final class AbstractClassNameCheck extends AbstractFormatCheck
 {
     /** Default format for abstract class names */
-    private static final String DEFAULT_FORMAT = "^Abstract.*$|^.*Factory$";
+    private static final String DEFAULT_FORMAT = "^Abstract.+$|^.*Factory$";
 
     /** whether to ignore checking the modifier */
     private boolean ignoreModifier;
@@ -86,11 +86,15 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[]{TokenTypes.CLASS_DEF};
+    }
+
+    @Override
     public void visitToken(DetailAST ast)
     {
-        if (TokenTypes.CLASS_DEF == ast.getType()) {
-            visitClassDef(ast);
-        }
+        visitClassDef(ast);
     }
 
     /**

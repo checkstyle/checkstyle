@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -138,6 +139,17 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
 
     @Override
     public int[] getDefaultTokens()
+    {
+        return new int[] {
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.PARAMETER_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.IMPORT,
+        };
+    }
+
+    @Override
+    public int[] getAcceptableTokens()
     {
         return new int[] {
             TokenTypes.VARIABLE_DEF,
@@ -386,9 +398,10 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     public void setIllegalClassNames(String[] classNames)
     {
         illegalClassNames.clear();
-        for (final String name : classNames) {
+        for (String name : classNames) {
             illegalClassNames.add(name);
         }
+        Collections.addAll(illegalClassNames, classNames);
     }
 
     /**
@@ -408,9 +421,10 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     public void setIgnoredMethodNames(String[] methodNames)
     {
         ignoredMethodNames.clear();
-        for (final String element : methodNames) {
+        for (String element : methodNames) {
             ignoredMethodNames.add(element);
         }
+        Collections.addAll(ignoredMethodNames, methodNames);
     }
 
     /**
@@ -430,9 +444,10 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     public void setLegalAbstractClassNames(String[] classNames)
     {
         legalAbstractClassNames.clear();
-        for (final String element : classNames) {
+        for (String element : classNames) {
             legalAbstractClassNames.add(element);
         }
+        Collections.addAll(legalAbstractClassNames, classNames);
     }
 
     /**

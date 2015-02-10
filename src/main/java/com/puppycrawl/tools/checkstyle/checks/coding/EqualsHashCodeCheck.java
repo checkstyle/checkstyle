@@ -65,6 +65,12 @@ public class EqualsHashCodeCheck
     }
 
     @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {TokenTypes.METHOD_DEF};
+    }
+
+    @Override
     public void beginTree(DetailAST rootAST)
     {
         objBlockEquals.clear();

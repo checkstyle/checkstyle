@@ -56,6 +56,14 @@ public abstract class AbstractTypeParameterNameCheck
     }
 
     @Override
+    public final int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.TYPE_PARAMETER,
+        };
+    }
+
+    @Override
     public final void init()
     {
         this.location = getLocation();
