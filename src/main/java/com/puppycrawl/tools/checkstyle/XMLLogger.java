@@ -233,7 +233,7 @@ public class XMLLogger
         }
 
         final String name = ent.substring(1, ent.length() - 1);
-        for (String element : ENTITIES) {
+        for (final String element : ENTITIES) {
             if (name.equals(element)) {
                 return true;
             }

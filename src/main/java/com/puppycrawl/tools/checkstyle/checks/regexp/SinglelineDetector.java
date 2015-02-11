@@ -49,7 +49,7 @@ class SinglelineDetector
     {
         resetState();
         int lineno = 0;
-        for (String line : lines) {
+        for (final String line : lines) {
             lineno++;
             checkLine(lineno, line, options.getPattern().matcher(line), 0);
         }

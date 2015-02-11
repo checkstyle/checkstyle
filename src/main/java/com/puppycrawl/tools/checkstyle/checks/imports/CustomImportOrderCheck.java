@@ -273,7 +273,7 @@ public class CustomImportOrderCheck extends Check
     {
         customImportOrderRules.clear();
         try {
-            for (String currentState : inputCustoimportOrder
+            for (final String currentState : inputCustoimportOrder
                     .split("\\s*###\\s*"))
             {
                 addRuleastoList(currentState);
@@ -347,7 +347,7 @@ public class CustomImportOrderCheck extends Check
         int groupNumber = customImportOrderRules.indexOf(currentGroup);
         String previousImport = null;
 
-        for (ImportDetails importObject : importToGroupList) {
+        for (final ImportDetails importObject : importToGroupList) {
             final String importGroup = importObject.getImportGroup();
             final String fullImportIdent = importObject.importFullPath;
 
@@ -433,7 +433,7 @@ public class CustomImportOrderCheck extends Check
      */
     private boolean hasAnyImportInCurrentGroup(String currentGroup)
     {
-        for (ImportDetails currentImport : importToGroupList) {
+        for (final ImportDetails currentImport : importToGroupList) {
             if (currentGroup.equals(currentImport.getImportGroup())) {
                 return true;
             }
@@ -451,7 +451,7 @@ public class CustomImportOrderCheck extends Check
      */
     private String getImportGroup(boolean isStatic, String importPath)
     {
-        for (String group : customImportOrderRules) {
+        for (final String group : customImportOrderRules) {
             if (matchesImportGroup(isStatic, importPath, group)) {
                 return group;
             }

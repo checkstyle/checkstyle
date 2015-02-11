@@ -139,7 +139,7 @@ public class IllegalInstantiationCheck
     @Override
     public void finishTree(DetailAST rootAST)
     {
-        for (DetailAST literalNewAST : instantiations) {
+        for (final DetailAST literalNewAST : instantiations) {
             postprocessLiteralNew(literalNewAST);
         }
     }
@@ -239,7 +239,7 @@ public class IllegalInstantiationCheck
         final int clsNameLen = className.length();
         final int pkgNameLen = (pkgName == null) ? 0 : pkgName.length();
 
-        for (String illegal : illegalClasses) {
+        for (final String illegal : illegalClasses) {
             final int illegalLen = illegal.length();
 
             // class from java.lang
@@ -291,7 +291,7 @@ public class IllegalInstantiationCheck
                 return illegal;
             }
             // import statements
-            for (FullIdent importLineText : imports) {
+            for (final FullIdent importLineText : imports) {
                 final String importArg = importLineText.getText();
                 if (importArg.endsWith(".*")) {
                     final String fqClass =
