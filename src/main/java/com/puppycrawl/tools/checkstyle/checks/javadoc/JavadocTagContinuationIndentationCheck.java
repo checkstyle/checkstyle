@@ -77,7 +77,8 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
             final DetailNode textNode = JavadocUtils.getNextSibling(JavadocUtils
                     .getNextSibling(newlineNode));
             if (textNode != null && textNode.getType() == JavadocTokenTypes.TEXT
-                    && textNode.getChildren().length > 1)
+                    && textNode.getChildren().length > 1
+                    && !"\r".equals(textNode.getChildren()[1].getText())) // Only for Windows
             {
                 final DetailNode whitespace = JavadocUtils.getFirstChild(textNode);
                 if (whitespace.getType() == JavadocTokenTypes.WS

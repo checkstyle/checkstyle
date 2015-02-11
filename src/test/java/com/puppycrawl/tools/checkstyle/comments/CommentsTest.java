@@ -47,6 +47,7 @@ import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_NULL;
 
 import java.io.File;
 
+import org.apache.commons.lang3.SystemUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -182,7 +183,12 @@ public class CommentsTest extends BaseCheckTestSupport
 
         DetailAST blockCommentContent = new DetailAST();
         blockCommentContent.setType(COMMENT_CONTENT);
-        blockCommentContent.setText("\n    i'mcomment567\n    ");
+        if (!SystemUtils.IS_OS_WINDOWS) {
+            blockCommentContent.setText("\n    i'mcomment567\n    ");
+        }
+        else {
+            blockCommentContent.setText("\r\n    i'mcomment567\r\n    ");
+        }
         blockCommentContent.setLineNo(2);
         blockCommentContent.setColumnNo(15);
 
@@ -218,7 +224,12 @@ public class CommentsTest extends BaseCheckTestSupport
 
         DetailAST slCommentContent = new DetailAST();
         slCommentContent.setType(COMMENT_CONTENT);
-        slCommentContent.setText(" comment to left curly brace\n");
+        if (!SystemUtils.IS_OS_WINDOWS) {
+            slCommentContent.setText(" comment to left curly brace\n");
+        }
+        else {
+            slCommentContent.setText(" comment to left curly brace\r\n");
+        }
         slCommentContent.setLineNo(6);
         slCommentContent.setColumnNo(4);
 
@@ -389,7 +400,12 @@ public class CommentsTest extends BaseCheckTestSupport
 
         DetailAST slCommentContent = new DetailAST();
         slCommentContent.setType(COMMENT_CONTENT);
-        slCommentContent.setText(" my class\n");
+        if (!SystemUtils.IS_OS_WINDOWS) {
+            slCommentContent.setText(" my class\n");
+        }
+        else {
+            slCommentContent.setText(" my class\r\n");
+        }
         slCommentContent.setLineNo(2);
         slCommentContent.setColumnNo(2);
 
@@ -552,11 +568,20 @@ public class CommentsTest extends BaseCheckTestSupport
 
         DetailAST blockCommentContent = new DetailAST();
         blockCommentContent.setType(COMMENT_CONTENT);
-        blockCommentContent.setText("*\n"
-                + "     * Lines <b>method</b>.\n"
-                + "     * \n"
-                + "     * @return string.\n"
-                + "     ");
+        if (!SystemUtils.IS_OS_WINDOWS) {
+            blockCommentContent.setText("*\n"
+                    + "     * Lines <b>method</b>.\n"
+                    + "     * \n"
+                    + "     * @return string.\n"
+                    + "     ");
+        }
+        else {
+            blockCommentContent.setText("*\r\n"
+                    + "     * Lines <b>method</b>.\r\n"
+                    + "     * \r\n"
+                    + "     * @return string.\r\n"
+                    + "     ");
+        }
         blockCommentContent.setLineNo(5);
         blockCommentContent.setColumnNo(6);
 
