@@ -55,6 +55,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 public class CommentsTest extends BaseCheckTestSupport
 {
+    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+
    /*
     * +--CLASS_DEF [1,0]
     *     |
@@ -182,7 +184,7 @@ public class CommentsTest extends BaseCheckTestSupport
 
         DetailAST blockCommentContent = new DetailAST();
         blockCommentContent.setType(COMMENT_CONTENT);
-        blockCommentContent.setText("\n    i'mcomment567\n    ");
+        blockCommentContent.setText(LINE_SEPARATOR + "    i'mcomment567" + LINE_SEPARATOR + "    ");
         blockCommentContent.setLineNo(2);
         blockCommentContent.setColumnNo(15);
 
@@ -218,7 +220,7 @@ public class CommentsTest extends BaseCheckTestSupport
 
         DetailAST slCommentContent = new DetailAST();
         slCommentContent.setType(COMMENT_CONTENT);
-        slCommentContent.setText(" comment to left curly brace\n");
+        slCommentContent.setText(" comment to left curly brace" + LINE_SEPARATOR);
         slCommentContent.setLineNo(6);
         slCommentContent.setColumnNo(4);
 
@@ -389,7 +391,7 @@ public class CommentsTest extends BaseCheckTestSupport
 
         DetailAST slCommentContent = new DetailAST();
         slCommentContent.setType(COMMENT_CONTENT);
-        slCommentContent.setText(" my class\n");
+        slCommentContent.setText(" my class" + LINE_SEPARATOR);
         slCommentContent.setLineNo(2);
         slCommentContent.setColumnNo(2);
 
@@ -552,10 +554,10 @@ public class CommentsTest extends BaseCheckTestSupport
 
         DetailAST blockCommentContent = new DetailAST();
         blockCommentContent.setType(COMMENT_CONTENT);
-        blockCommentContent.setText("*\n"
-                + "     * Lines <b>method</b>.\n"
-                + "     * \n"
-                + "     * @return string.\n"
+        blockCommentContent.setText("*" + LINE_SEPARATOR
+                + "     * Lines <b>method</b>." + LINE_SEPARATOR
+                + "     * " + LINE_SEPARATOR
+                + "     * @return string." + LINE_SEPARATOR
                 + "     ");
         blockCommentContent.setLineNo(5);
         blockCommentContent.setColumnNo(6);

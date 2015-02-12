@@ -1,13 +1,15 @@
 package com.puppycrawl.tools.checkstyle.grammars;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
-
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.lang3.SystemUtils;
+import org.junit.Assume;
 import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 
 /**
  * Tests GeneratedJava14Lexer.
@@ -19,6 +21,7 @@ public class GeneratedJava14LexerTest
     @Test
     public void testUnexpectedChar() throws IOException, Exception
     {
+        Assume.assumeFalse(SystemUtils.IS_OS_WINDOWS); // Encoding problems can occur in Windows
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         final String[] expected = {
