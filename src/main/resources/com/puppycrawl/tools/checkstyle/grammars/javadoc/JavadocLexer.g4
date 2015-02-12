@@ -61,7 +61,7 @@ OPEN: '<' {recognizeXmlTags && (Character.isLetter(_input.LA(1)) || _input.LA(1)
 //      {insidePreTag=false; recognizeXmlTags=true;}
 //      ;
 
-NEWLINE: '\n';
+NEWLINE: '\n' | '\r\n';
 
 AUTHOR_LITERAL : '@author' {isJavadocTagAvailable}?;
 DEPRECATED_LITERAL : '@deprecated' {isJavadocTagAvailable}?;

@@ -36,6 +36,8 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport
 {
     protected static final Set<String> allComments = Sets.newLinkedHashSet();
 
+    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+
     public static class BlockCommentListenerCheck extends Check
     {
         @Override
@@ -59,13 +61,15 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport
         @Override
         public void init()
         {
-            allComments.addAll(Arrays.asList("0", "1", "2", "3", "4", "5", "6",
-                    "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
-                    "17", "18", "19", "20", "\n21\n", "22", "23", "24", "25", "26",
-                    "27", "28", "29", "30", "31", "32", "33", "34", "35", "36",
-                    "37", "38", "  39  ", "40", "41", "42", "43", "44", "45", "46",
-                    "47", "48", "49", "50", "51", "52", "53", "54", "55", "56",
-                    "57", "58", "59", "60", "61"));
+            allComments.addAll(Arrays.asList("0", "1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10", "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    LINE_SEPARATOR + "21" + LINE_SEPARATOR,
+                    "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32",
+                    "33", "34", "35", "36", "37", "38", "  39  ", "40", "41",
+                    "42", "43", "44", "45", "46", "47", "48", "49", "50",
+                    "51", "52", "53", "54", "55", "56", "57", "58", "59",
+                    "60", "61"));
         }
 
         @Override
