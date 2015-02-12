@@ -74,7 +74,7 @@ public class ClassResolver
         }
 
         // try matching explicit imports
-        for (String imp : imports) {
+        for (final String imp : imports) {
             // Very important to add the "." in the check below. Otherwise you
             // when checking for "DataException", it will match on
             // "SecurityDataException". This has been the cause of a very
@@ -106,7 +106,7 @@ public class ClassResolver
         }
 
         // try star imports
-        for (String imp : imports) {
+        for (final String imp : imports) {
             if (imp.endsWith(".*")) {
                 final String fqn = imp.substring(0, imp.lastIndexOf('.') + 1)
                     + name;

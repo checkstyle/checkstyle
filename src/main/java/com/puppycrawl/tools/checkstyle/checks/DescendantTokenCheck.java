@@ -205,7 +205,7 @@ public class DescendantTokenCheck extends Check
 
         if (sumTokenCounts) {
             int total = 0;
-            for (int element : limitedTokens) {
+            for (final int element : limitedTokens) {
                 total += counts[element - 1];
             }
             if (total < minimumNumber) {
@@ -225,7 +225,7 @@ public class DescendantTokenCheck extends Check
             }
         }
         else {
-            for (int element : limitedTokens) {
+            for (final int element : limitedTokens) {
                 final int tokenCount = counts[element - 1];
                 if (tokenCount < minimumNumber) {
                     final String descendantName = TokenTypes
@@ -284,7 +284,7 @@ public class DescendantTokenCheck extends Check
         final Set<String> tokenNames = getTokenNames();
         final int[] result = new int[tokenNames.size()];
         int i = 0;
-        for (String name : tokenNames) {
+        for (final String name : tokenNames) {
             result[i++] = TokenTypes.getTokenId(name);
         }
         return result;

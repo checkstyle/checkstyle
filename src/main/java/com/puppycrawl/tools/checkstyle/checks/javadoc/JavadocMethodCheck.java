@@ -753,12 +753,12 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         // Now dump out all type parameters/parameters without tags :- unless
         // the user has chosen to suppress these problems
         if (!allowMissingParamTags && reportExpectedTags) {
-            for (DetailAST param : params) {
+            for (final DetailAST param : params) {
                 log(param, "javadoc.expectedTag",
                     JavadocTagInfo.PARAM.getText(), param.getText());
             }
 
-            for (DetailAST typeParam : typeParams) {
+            for (final DetailAST typeParam : typeParams) {
                 log(typeParam, "javadoc.expectedTag",
                     JavadocTagInfo.PARAM.getText(),
                     "<" + typeParam.findFirstToken(TokenTypes.IDENT).getText()
@@ -903,7 +903,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         // Now dump out all throws without tags :- unless
         // the user has chosen to suppress these problems
         if (!allowMissingThrowsTags && reportExpectedTags) {
-            for (ExceptionInfo ei : throwsList) {
+            for (final ExceptionInfo ei : throwsList) {
                 if (!ei.isFound()) {
                     final Token fi = ei.getName();
                     log(fi.getLineNo(), fi.getColumnNo(),
