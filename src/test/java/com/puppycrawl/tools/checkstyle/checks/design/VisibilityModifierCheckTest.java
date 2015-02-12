@@ -91,4 +91,92 @@ public class VisibilityModifierCheckTest
         };
         verify(getChecker(), getPath("InputPublicOnly.java"), expected);
     }
+
+    @Test
+    public void testAllowPublicFinalFieldsInImmutableClass() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(VisibilityModifierCheck.class);
+        final String[] expected = {
+            "12:39: " + getCheckMessage(MSG_KEY, "includes"),
+            "13:39: " + getCheckMessage(MSG_KEY, "excludes"),
+            "16:23: " + getCheckMessage(MSG_KEY, "list"),
+            "34:20: " + getCheckMessage(MSG_KEY, "value"),
+            "36:24: " + getCheckMessage(MSG_KEY, "bValue"),
+            "37:31: " + getCheckMessage(MSG_KEY, "longValue"),
+        };
+        verify(checkConfig, getPath("InputImmutable.java"), expected);
+    }
+
+    @Test
+    public void testUserSpecifiedImmutableClassesList() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("immutableClassNames", "java.util.List,"
+                + "com.google.common.collect.ImmutableSet");
+        final String[] expected = {
+            "14:35: " + getCheckMessage(MSG_KEY, "notes"),
+            "15:29: " + getCheckMessage(MSG_KEY, "value"),
+            "32:35: " + getCheckMessage(MSG_KEY, "uri"),
+            "33:35: " + getCheckMessage(MSG_KEY, "file"),
+            "34:20: " + getCheckMessage(MSG_KEY, "value"),
+            "35:35: " + getCheckMessage(MSG_KEY, "url"),
+            "36:24: " + getCheckMessage(MSG_KEY, "bValue"),
+            "37:31: " + getCheckMessage(MSG_KEY, "longValue"),
+        };
+        verify(checkConfig, getPath("InputImmutable.java"), expected);
+    }
+
+    @Test
+    public void testImmutableSpecifiedSameTypeName() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("immutableClassNames",
+                 "com.puppycrawl.tools.checkstyle.coding.GregorianCalendar,"
+                 + "com.puppycrawl.tools.checkstyle.InetSocketAddress");
+        final String[] expected = {
+            "7:46: " + getCheckMessage(MSG_KEY, "calendar"),
+            "11:45: " + getCheckMessage(MSG_KEY, "adr"),
+        };
+        verify(checkConfig, getPath("InputImmutableSameTypeName.java"), expected);
+    }
+
+    @Test
+    public void testImmutableDefaultValueSameTypeName() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(VisibilityModifierCheck.class);
+        final String[] expected = {
+            "7:46: " + getCheckMessage(MSG_KEY, "calendar"),
+            "8:36: " + getCheckMessage(MSG_KEY, "calendar2"),
+            "9:75: " + getCheckMessage(MSG_KEY, "calendar3"),
+            "10:36: " + getCheckMessage(MSG_KEY, "address"),
+        };
+        verify(checkConfig, getPath("InputImmutableSameTypeName.java"), expected);
+    }
+
+    @Test
+    public void testImmutableStarImportFalseNegative() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("immutableClassNames", "java.util.Arrays");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputImmutableStarImport.java"), expected);
+    }
+
+    @Test
+    public void testImmutableStarImportNoWarn() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("immutableClassNames", "com.google.common.collect.ImmutableSet");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputImmutableStarImport2.java"), expected);
+    }
+
 }
