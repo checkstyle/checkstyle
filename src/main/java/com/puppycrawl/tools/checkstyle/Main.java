@@ -70,64 +70,73 @@ public final class Main
      **/
     public static void main(String[] args)
     {
-        // parse the parameters
-        final CommandLineParser clp = new PosixParser();
-        CommandLine line = null;
         try {
-            line = clp.parse(OPTS, args);
-        }
-        catch (final ParseException e) {
-            e.printStackTrace();
-            usage();
-        }
-        assert line != null;
-
-        // show version and exit
-        if (line.hasOption("v")) {
-            System.out.println("Checkstyle version: "
-                    + Main.class.getPackage().getImplementationVersion());
-            System.exit(0);
-        }
-
-        // setup the properties
-        final Properties props =
-            line.hasOption("p")
-                ? loadProperties(new File(line.getOptionValue("p")))
-                : System.getProperties();
-
-        // ensure a config file is specified
-        if (!line.hasOption("c")) {
-            System.out.println("Must specify a config XML file.");
-            usage();
-        }
-
-        final Configuration config = loadConfig(line, props);
-
-        // setup the output stream
-        OutputStream out = null;
-        boolean closeOut = false;
-        if (line.hasOption("o")) {
-            final String fname = line.getOptionValue("o");
+            // parse the parameters
+            final CommandLineParser clp = new PosixParser();
+            CommandLine line = null;
             try {
-                out = new FileOutputStream(fname);
-                closeOut = true;
+                line = clp.parse(OPTS, args);
             }
-            catch (final FileNotFoundException e) {
-                System.out.println("Could not find file: '" + fname + "'");
+            catch (final ParseException e) {
+                e.printStackTrace();
+                usage();
                 System.exit(1);
             }
-        }
-        else {
-            out = System.out;
-            closeOut = false;
-        }
+            assert line != null;
 
-        final AuditListener listener = createListener(line, out, closeOut);
-        final List<File> files = getFilesToProcess(line);
-        final Checker c = createChecker(config, listener);
-        final int numErrs = c.process(files);
-        c.destroy();
-        System.exit(numErrs);
+            // show version and exit
+            if (line.hasOption("v")) {
+                System.out.println("Checkstyle version: "
+                        + Main.class.getPackage().getImplementationVersion());
+                System.exit(0);
+            }
+
+            // setup the properties
+            final Properties props =
+                line.hasOption("p")
+                    ? loadProperties(new File(line.getOptionValue("p")))
+                    : System.getProperties();
+
+            // ensure a config file is specified
+            if (!line.hasOption("c")) {
+                System.out.println("Must specify a config XML file.");
+                usage();
+                System.exit(1);
+            }
+
+            final Configuration config = loadConfig(line, props);
+
+            // setup the output stream
+            OutputStream out = null;
+            boolean closeOut = false;
+            if (line.hasOption("o")) {
+                final String fname = line.getOptionValue("o");
+                try {
+                    out = new FileOutputStream(fname);
+                    closeOut = true;
+                }
+                catch (final FileNotFoundException e) {
+                    System.out.println("Could not find file: '" + fname + "'");
+                    System.exit(1);
+                }
+            }
+            else {
+                out = System.out;
+                closeOut = false;
+            }
+
+            final AuditListener listener = createListener(line, out, closeOut);
+            final List<File> files = getFilesToProcess(line);
+            final Checker c = createChecker(config, listener);
+            final int numErrs = c.process(files);
+            c.destroy();
+            System.exit(numErrs);
+        }
+        catch (ApplicationExitException aee) {
+            //Catch ApplicationExitException to ensure exit points from this method only
+            //System.out.println("Exit from one place");
+            System.exit(1);
+        }
     }
 
     /**
@@ -136,9 +145,12 @@ public final class Main
      * @param config the configuration to use
      * @param nosy the sticky beak to track what happens
      * @return a nice new fresh Checker
+     * @throws ApplicationExitException Handled in main method only
+     * to Exit from single method
      */
     private static Checker createChecker(Configuration config,
                                          AuditListener nosy)
+                                         throws ApplicationExitException
     {
         Checker c = null;
         try {
@@ -154,7 +166,7 @@ public final class Main
             System.out.println("Unable to create Checker: "
                                + e.getMessage());
             e.printStackTrace(System.out);
-            System.exit(1);
+            throw new ApplicationExitException();
         }
         return c;
     }
@@ -164,8 +176,11 @@ public final class Main
      *
      * @param line the command line options specifying what files to process
      * @return list of files to process
+     * @throws ApplicationExitException
+     *         Handled in main method only to Exit from single method
      */
     private static List<File> getFilesToProcess(CommandLine line)
+            throws ApplicationExitException
     {
         final List<File> files = Lists.newLinkedList();
         final String[] remainingArgs = line.getArgs();
@@ -176,6 +191,7 @@ public final class Main
         if (files.isEmpty()) {
             System.out.println("Must specify files to process");
             usage();
+            throw new ApplicationExitException();
         }
         return files;
     }
@@ -187,10 +203,13 @@ public final class Main
      * @param out the stream to log to
      * @param closeOut whether the stream should be closed
      * @return a fresh new <code>AuditListener</code>
+     * @throws ApplicationExitException
+     *         Handled in main method only to Exit from single method
      */
     private static AuditListener createListener(CommandLine line,
                                                 OutputStream out,
                                                 boolean closeOut)
+                                                throws ApplicationExitException
     {
         final String format =
             line.hasOption("f") ? line.getOptionValue("f") : "plain";
@@ -206,6 +225,7 @@ public final class Main
             System.out.println("Invalid format: (" + format
                                + "). Must be 'plain' or 'xml'.");
             usage();
+            throw new ApplicationExitException();
         }
         return listener;
     }
@@ -216,9 +236,12 @@ public final class Main
      * @param line specifies the location of the configuration
      * @param props the properties to resolve with the configuration
      * @return a fresh new configuration
+     * @throws ApplicationExitException
+     *         Handled in main method only to Exit from single method
      */
     private static Configuration loadConfig(CommandLine line,
                                             Properties props)
+                                            throws ApplicationExitException
     {
         try {
             return ConfigurationLoader.loadConfiguration(
@@ -227,8 +250,7 @@ public final class Main
         catch (final CheckstyleException e) {
             System.out.println("Error loading configuration file");
             e.printStackTrace(System.out);
-            System.exit(1);
-            return null; // can never get here
+            throw new ApplicationExitException();
         }
     }
 
@@ -241,7 +263,6 @@ public final class Main
                 + Main.class.getName()
                 + " [options] -c <config.xml> file...",
             OPTS);
-        System.exit(1);
     }
 
     /**
@@ -269,10 +290,14 @@ public final class Main
 
     /**
      * Loads properties from a File.
+     *
      * @param file the properties file
      * @return the properties in file
+     * @throws ApplicationExitException
+     *         Handled in main method only to Exit from single method
      */
     private static Properties loadProperties(File file)
+            throws ApplicationExitException
     {
         final Properties properties = new Properties();
         FileInputStream fis = null;
@@ -284,7 +309,7 @@ public final class Main
             System.out.println("Unable to load properties from file: "
                 + file.getAbsolutePath());
             ex.printStackTrace(System.out);
-            System.exit(1);
+            throw new ApplicationExitException();
         }
         finally {
             Utils.closeQuietly(fis);
