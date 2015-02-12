@@ -134,7 +134,7 @@ public class LineWrappingHandler
         final int firstNodeIndent = getFirstNodeIndent(firstNode);
         final int currentIndent = firstNodeIndent + indentLevel;
 
-        for (final DetailAST node : firstNodesOnLines.values()) {
+        for (DetailAST node : firstNodesOnLines.values()) {
             final int currentType = node.getType();
 
             if (currentType == TokenTypes.RCURLY

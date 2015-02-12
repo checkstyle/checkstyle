@@ -239,7 +239,7 @@ public class InnerAssignmentCheck
      */
     private static boolean isInContext(DetailAST ast, int[][] contextSet)
     {
-        for (final int[] element : contextSet) {
+        for (int[] element : contextSet) {
             DetailAST current = ast;
             final int len = element.length;
             for (int j = 0; j < len; j++) {

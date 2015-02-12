@@ -169,7 +169,7 @@ public final class Main
     {
         final List<File> files = Lists.newLinkedList();
         final String[] remainingArgs = line.getArgs();
-        for (final String element : remainingArgs) {
+        for (String element : remainingArgs) {
             traverse(new File(element), files);
         }
 
@@ -257,7 +257,7 @@ public final class Main
         if (node.canRead()) {
             if (node.isDirectory()) {
                 final File[] nodes = node.listFiles();
-                for (final File element : nodes) {
+                for (File element : nodes) {
                     traverse(element, files);
                 }
             }

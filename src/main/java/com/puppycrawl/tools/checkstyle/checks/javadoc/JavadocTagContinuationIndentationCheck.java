@@ -73,7 +73,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         if (isInlineDescription(ast)) {
             return;
         }
-        for (final DetailNode newlineNode : textNodes) {
+        for (DetailNode newlineNode : textNodes) {
             final DetailNode textNode = JavadocUtils.getNextSibling(JavadocUtils
                     .getNextSibling(newlineNode));
             if (textNode != null && textNode.getType() == JavadocTokenTypes.TEXT

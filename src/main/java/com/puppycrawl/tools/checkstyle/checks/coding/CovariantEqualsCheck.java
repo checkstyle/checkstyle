@@ -90,7 +90,7 @@ public class CovariantEqualsCheck extends Check
 
             // report equals method definitions
             if (!hasEqualsObject) {
-                for (final DetailAST equalsAST : equalsMethods) {
+                for (DetailAST equalsAST : equalsMethods) {
                     final DetailAST nameNode = equalsAST
                             .findFirstToken(TokenTypes.IDENT);
                     log(nameNode.getLineNo(), nameNode.getColumnNo(),

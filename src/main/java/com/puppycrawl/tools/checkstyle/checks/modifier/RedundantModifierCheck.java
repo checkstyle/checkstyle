@@ -162,7 +162,7 @@ public class RedundantModifierCheck
     {
         boolean result = false;
         final List<DetailAST> methodAnnotationsList = getMethodAnnotationsList(methodDef);
-        for (final DetailAST annotationNode : methodAnnotationsList) {
+        for (DetailAST annotationNode : methodAnnotationsList) {
             if ("SafeVarargs".equals(annotationNode.getLastChild().getText())) {
                 result = true;
                 break;

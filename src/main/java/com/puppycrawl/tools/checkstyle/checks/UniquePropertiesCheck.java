@@ -72,7 +72,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck
                     e.getLocalizedMessage());
         }
 
-        for (final Entry<String> duplication : properties
+        for (Entry<String> duplication : properties
                 .getDuplicatedStrings().entrySet())
         {
             final String keyName = duplication.getElement();
@@ -100,7 +100,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck
         final Pattern keyPattern = Pattern.compile(keyPatternString);
         int lineNumber = 1;
         final Matcher matcher = keyPattern.matcher("");
-        for (final String line : lines) {
+        for (String line : lines) {
             matcher.reset(line);
             if (matcher.matches()) {
                 break;

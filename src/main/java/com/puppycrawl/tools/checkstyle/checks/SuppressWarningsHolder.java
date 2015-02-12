@@ -178,7 +178,7 @@ public class SuppressWarningsHolder
      */
     public void setAliasList(String aliasList)
     {
-        for (final String sourceAlias : aliasList.split(",")) {
+        for (String sourceAlias : aliasList.split(",")) {
             final int index = sourceAlias.indexOf("=");
             if (index > 0) {
                 registerAlias(sourceAlias.substring(0, index), sourceAlias
@@ -206,7 +206,7 @@ public class SuppressWarningsHolder
         final List<Entry> entries = ENTRIES.get();
         final String checkAlias = getAlias(sourceName);
         if (entries != null && checkAlias != null) {
-            for (final Entry entry : entries) {
+            for (Entry entry : entries) {
                 final boolean afterStart =
                     entry.getFirstLine() < line
                         || (entry.getFirstLine() == line && entry

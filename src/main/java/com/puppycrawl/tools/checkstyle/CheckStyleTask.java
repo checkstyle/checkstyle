@@ -375,7 +375,7 @@ public class CheckStyleTask extends Task
 
             // setup the listeners
             final AuditListener[] listeners = getListeners();
-            for (final AuditListener element : listeners) {
+            for (AuditListener element : listeners) {
                 c.addListener(element);
             }
         }
@@ -419,14 +419,14 @@ public class CheckStyleTask extends Task
 
         // override with Ant properties like ${basedir}
         final Hashtable<?, ?> antProps = this.getProject().getProperties();
-        for (final Object name : antProps.keySet()) {
+        for (Object name : antProps.keySet()) {
             final String key = (String) name;
             final String value = String.valueOf(antProps.get(key));
             retVal.put(key, value);
         }
 
         // override with properties specified in subelements
-        for (final Property p : overrideProps) {
+        for (Property p : overrideProps) {
             retVal.put(p.getKey(), p.getValue());
         }
 
@@ -486,7 +486,7 @@ public class CheckStyleTask extends Task
             log(i + ") Adding " + names.length + " files from directory "
                     + ds.getBasedir(), Project.MSG_VERBOSE);
 
-            for (final String element : names) {
+            for (String element : names) {
                 final String pathname = ds.getBasedir() + File.separator
                         + element;
                 list.add(new File(pathname));

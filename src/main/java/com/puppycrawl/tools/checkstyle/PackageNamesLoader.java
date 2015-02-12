@@ -108,7 +108,7 @@ public final class PackageNamesLoader
     private String getPackageName()
     {
         final StringBuffer buf = new StringBuffer();
-        for (final String subPackage : packageStack) {
+        for (String subPackage : packageStack) {
             buf.append(subPackage);
             if (!subPackage.endsWith(".")) {
                 buf.append(".");

@@ -127,7 +127,7 @@ public class OneTopLevelClassCheck extends Check
             lineNumberTypeMap.remove(lineNumberTypeMap.firstKey());
         }
 
-        for (final Map.Entry<Integer, String> entry
+        for (Map.Entry<Integer, String> entry
                 : lineNumberTypeMap.entrySet())
         {
             log(entry.getKey(), "one.top.level.class", entry.getValue());

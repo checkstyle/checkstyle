@@ -444,7 +444,7 @@ public class SuppressionCommentFilter
         Tag result = null;
         // TODO: try binary search if sequential search becomes a performance
         // problem.
-        for (final Tag tag : tags) {
+        for (Tag tag : tags) {
             if ((tag.getLine() > event.getLine())
                 || ((tag.getLine() == event.getLine())
                     && (tag.getColumn() > event.getColumn())))
@@ -472,7 +472,7 @@ public class SuppressionCommentFilter
         if (checkC) {
             final Collection<List<TextBlock>> cCoonts = contents
                     .getCComments().values();
-            for (final List<TextBlock> eleont : cCoonts) {
+            for (List<TextBlock> eleont : cCoonts) {
                 tagSuppressions(eleont);
             }
         }
@@ -486,7 +486,7 @@ public class SuppressionCommentFilter
      */
     private void tagSuppressions(Collection<TextBlock> comments)
     {
-        for (final TextBlock comment : comments) {
+        for (TextBlock comment : comments) {
             final int startLineNo = comment.getStartLineNo();
             final String[] text = comment.getText();
             tagCommentLine(text[0], startLineNo, comment.getStartColNo());

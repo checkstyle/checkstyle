@@ -109,6 +109,7 @@ public class FinalLocalVariableCheck extends Check
                 }
             case TokenTypes.VARIABLE_DEF:
                 if ((ast.getParent().getType() != TokenTypes.OBJBLOCK)
+                    && (ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE)
                     && isFirstVariableInForInit(ast))
                 {
                     insertVariable(ast);
@@ -227,7 +228,7 @@ public class FinalLocalVariableCheck extends Check
             case TokenTypes.INSTANCE_INIT:
             case TokenTypes.METHOD_DEF:
                 final Map<String, DetailAST> state = scopeStack.pop();
-                for (final DetailAST var : state.values()) {
+                for (DetailAST var : state.values()) {
                     log(var.getLineNo(), var.getColumnNo(), "final.variable", var
                         .getText());
                 }
