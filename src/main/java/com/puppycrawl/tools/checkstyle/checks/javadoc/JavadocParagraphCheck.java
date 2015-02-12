@@ -125,7 +125,8 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
             return false;
         }
         if (previousSibling.getType() == JavadocTokenTypes.TEXT
-                && previousSibling.getChildren().length == 1)
+                && (previousSibling.getChildren().length == 1
+                   || "\r".equals(previousSibling.getChildren()[1].getText()))) // Only for Windows
         {
             previousSibling = JavadocUtils.getPreviousSibling(previousSibling);
         }

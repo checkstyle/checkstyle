@@ -188,6 +188,11 @@
       <version>1.7.0</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.3.2</version>
+    </dependency>
 
     <!-- test scope stuff -->
     <dependency>
