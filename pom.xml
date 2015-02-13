@@ -660,6 +660,13 @@
             <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
             <excludedLink>http://search.maven.org/*</excludedLink>
             <excludedLink>hhttp://junit.org</excludedLink>
+            <!-- Excluded due to checkstyle's issue #549 until http://jira.codehaus.org/browse/MJAVADOC-425
+            and http://jira.codehaus.org/browse/DOXIA-525 will be fixed -->
+            <excludedLink>**/com/puppycrawl/**</excludedLink>
+            <!-- Excluded due to checkstyle's issue #549 until http://jira.codehaus.org/browse/MJAVADOC-425 will be fixed -->
+            <excludedLink>http://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers.DefaultHandler.html?*</excludedLink>
+            <!-- Excluded due to checkstyle's issue #549 until http://jira.codehaus.org/browse/MLINKCHECK-21 will be fixed -->
+            <excludedLink>**/xref**</excludedLink>
           </excludedLinks>
           <excludedHttpStatusErrors>
             <excludedHttpStatusError>401</excludedHttpStatusError>
