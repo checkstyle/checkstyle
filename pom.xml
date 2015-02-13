@@ -38,6 +38,10 @@
 
   <description>Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard</description>
 
+  <prerequisites>
+    <maven>3.0.1</maven>
+  </prerequisites>
+
   <licenses>
     <license>
       <name>GNU Lesser General Public License</name>
