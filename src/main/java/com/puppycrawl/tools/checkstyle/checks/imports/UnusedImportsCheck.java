@@ -282,7 +282,7 @@ public class UnusedImportsCheck extends Check
     {
         final Set<String> references = new HashSet<String>();
         final String identifier = tag.getArg1().trim();
-        for (Pattern pattern : new Pattern[]
+        for (final Pattern pattern : new Pattern[]
         {FIRST_CLASS_NAME, ARGUMENT_NAME})
         {
             references.addAll(matchPattern(identifier, pattern));

@@ -84,7 +84,7 @@ class PackageObjectFactory implements ModuleFactory
         }
 
         //now try packages
-        for (String packageName : packages) {
+        for (final String packageName : packages) {
 
             final String className = packageName + name;
             try {
