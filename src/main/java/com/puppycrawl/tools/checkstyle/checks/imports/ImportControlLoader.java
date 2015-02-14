@@ -58,8 +58,7 @@ final class ImportControlLoader extends AbstractLoader
     private final FastStack<PkgControl> stack = FastStack.newInstance();
 
     /** the map to lookup the resource name by the id */
-    private static final Map<String, String> DTD_RESOURCE_BY_ID =
-        new HashMap<String, String>();
+    private static final Map<String, String> DTD_RESOURCE_BY_ID = new HashMap<>();
 
     /** Initialise the map */
     static {

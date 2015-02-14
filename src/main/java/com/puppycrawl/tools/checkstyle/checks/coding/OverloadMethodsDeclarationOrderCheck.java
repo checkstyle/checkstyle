@@ -88,8 +88,8 @@ public class OverloadMethodsDeclarationOrderCheck extends Check
     {
         final int allowedDistance = 1;
         DetailAST currentToken = objectBlock.getFirstChild();
-        final Map<String, Integer> methodIndexMap = new HashMap<String, Integer>();
-        final Map<String, Integer> methodLineNumberMap = new HashMap<String, Integer>();
+        final Map<String, Integer> methodIndexMap = new HashMap<>();
+        final Map<String, Integer> methodLineNumberMap = new HashMap<>();
         int currentIndex = 0;
         while (currentToken != null) {
             if (currentToken.getType() == TokenTypes.METHOD_DEF) {

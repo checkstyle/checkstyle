@@ -186,7 +186,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      */
     public void setAllowedAnnotations(String userAnnotations)
     {
-        final List<String> annotations = new ArrayList<String>();
+        final List<String> annotations = new ArrayList<>();
         Collections.addAll(annotations, userAnnotations.split(", "));
         allowedAnnotations = annotations;
     }

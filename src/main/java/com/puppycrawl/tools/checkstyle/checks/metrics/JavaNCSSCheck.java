@@ -166,7 +166,7 @@ public class JavaNCSSCheck extends Check
     @Override
     public void beginTree(DetailAST rootAST)
     {
-        counters = new FastStack<Counter>();
+        counters = new FastStack<>();
 
         //add a counter for the file
         counters.push(new Counter());

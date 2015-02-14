@@ -760,7 +760,7 @@ public final class TreeWalker
                     columns++;
             }
         }
-        return new SimpleEntry<Integer, Integer>(lines, columns);
+        return new SimpleEntry<>(lines, columns);
     }
 
 }

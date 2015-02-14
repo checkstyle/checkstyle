@@ -42,8 +42,7 @@ public final class MethodCountCheck extends Check
     private static class MethodCounter
     {
         /** Maintains the counts. */
-        private final EnumMap<Scope, Integer> counts =
-            new EnumMap<Scope, Integer>(Scope.class);
+        private final EnumMap<Scope, Integer> counts = new EnumMap<>(Scope.class);
         /** indicated is an interface, in which case all methods are public */
         private final boolean inInterface;
         /** tracks the total. */
@@ -105,7 +104,7 @@ public final class MethodCountCheck extends Check
     private int maxTotal = DEFAULT_MAX_METHODS;
     /** Maintains stack of counters, to support inner types. */
     private final FastStack<MethodCounter> counters =
-        new FastStack<MethodCounter>();
+        new FastStack<>();
 
     @Override
     public int[] getDefaultTokens()

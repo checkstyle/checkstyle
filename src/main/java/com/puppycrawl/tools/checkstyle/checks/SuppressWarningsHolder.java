@@ -56,15 +56,13 @@ public class SuppressWarningsHolder
     private static final String CHECK_SUFFIX = "Check";
 
     /** a map from check source names to suppression aliases */
-    private static final Map<String, String> CHECK_ALIAS_MAP =
-        new HashMap<String, String>();
+    private static final Map<String, String> CHECK_ALIAS_MAP = new HashMap<>();
 
     /**
      * a thread-local holder for the list of suppression entries for the last
      * file parsed
      */
-    private static final ThreadLocal<List<Entry>> ENTRIES =
-        new ThreadLocal<List<Entry>>();
+    private static final ThreadLocal<List<Entry>> ENTRIES = new ThreadLocal<>();
 
     /** records a particular suppression for a region of a file */
     private static class Entry

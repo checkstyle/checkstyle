@@ -441,10 +441,10 @@ public enum JavadocTagInfo
     static
     {
         final ImmutableMap.Builder<String, JavadocTagInfo> textToTagBuilder =
-            new ImmutableMap.Builder<String, JavadocTagInfo>();
+            new ImmutableMap.Builder<>();
 
         final ImmutableMap.Builder<String, JavadocTagInfo> nameToTagBuilder =
-            new ImmutableMap.Builder<String, JavadocTagInfo>();
+            new ImmutableMap.Builder<>();
 
         for (final JavadocTagInfo tag : JavadocTagInfo.values()) {
             textToTagBuilder.put(tag.getText(), tag);

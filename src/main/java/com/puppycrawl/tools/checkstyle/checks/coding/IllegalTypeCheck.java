@@ -457,7 +457,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      */
     public void setMemberModifiers(String modifiers)
     {
-        final List<Integer> modifiersList = new ArrayList<Integer>(modifiers.length());
+        final List<Integer> modifiersList = new ArrayList<>(modifiers.length());
         for (String modifier : modifiers.split(", ")) {
             modifiersList.add(TokenTypes.getTokenId(modifier));
         }
