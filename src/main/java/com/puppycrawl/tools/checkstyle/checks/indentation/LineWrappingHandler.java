@@ -70,49 +70,40 @@ public class LineWrappingHandler
      * @param instance
      *            instance of IndentationCheck.
      * @param firstNode
-     *            root node for current expression..
+     *            root node for current expression.
+     * @param lastNode
+     *            last node for current expression.
      */
-    public LineWrappingHandler(IndentationCheck instance, DetailAST firstNode)
+    public LineWrappingHandler(IndentationCheck instance, DetailAST firstNode, DetailAST lastNode)
     {
         indentCheck = instance;
         this.firstNode = firstNode;
-        lastNode = findLastNode(firstNode);
+        this.lastNode = lastNode;
         indentLevel = indentCheck.getLineWrappingIndentation();
         forceStrictCondition = indentCheck.getForceStrictCondition();
     }
 
     /**
-     * Finds last node of AST subtree.
-     *
-     * @param firstNode the first node of expression or definition.
-     * @return last node.
-     */
-    public DetailAST findLastNode(DetailAST firstNode)
-    {
-        return firstNode.getLastChild().getPreviousSibling();
-    }
-
-    /**
      * @return correct indentation for current expression.
      */
-    public int getCurrentIndentation()
+    protected int getCurrentIndentation()
     {
         return firstNode.getColumnNo() + indentLevel;
     }
 
     // Getters for private fields.
 
-    public final DetailAST getFirstNode()
+    protected final DetailAST getFirstNode()
     {
         return firstNode;
     }
 
-    public final DetailAST getLastNode()
+    protected final DetailAST getLastNode()
     {
         return lastNode;
     }
 
-    public final int getIndentLevel()
+    protected final int getIndentLevel()
     {
         return indentLevel;
     }

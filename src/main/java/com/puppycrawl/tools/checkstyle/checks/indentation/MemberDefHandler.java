@@ -53,17 +53,8 @@ public class MemberDefHandler extends ExpressionHandler
             checkType();
         }
         final LineWrappingHandler lineWrap =
-            new LineWrappingHandler(getIndentCheck(), getMainAst()) {
-                @Override
-                public DetailAST findLastNode(DetailAST firstNode)
-                {
-                    DetailAST lastNode = getFirstNode().getLastChild();
-                    if (lastNode.getType() != TokenTypes.SEMI) {
-                        lastNode = getFirstNode().getNextSibling();
-                    }
-                    return lastNode;
-                }
-            };
+            new LineWrappingHandler(getIndentCheck(), getMainAst(),
+                getVarDefStatementSemicolon(getMainAst()));
         if (lineWrap.getLastNode() != null && !isArrayDeclaration(getMainAst())) {
             lineWrap.checkIndentation();
         }
@@ -108,5 +99,20 @@ public class MemberDefHandler extends ExpressionHandler
     {
         return variableDef.findFirstToken(TokenTypes.TYPE)
             .findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null;
+    }
+
+    /**
+     * Returns semicolon for variable definition statement.
+     * @param variableDef
+     *          ast node of type TokenTypes.VARIABLE_DEF
+     * @return ast node of type TokenTypes.SEMI
+     */
+    private static DetailAST getVarDefStatementSemicolon(DetailAST variableDef)
+    {
+        DetailAST lastNode = variableDef.getLastChild();
+        if (lastNode.getType() != TokenTypes.SEMI) {
+            lastNode = variableDef.getNextSibling();
+        }
+        return lastNode;
     }
 }

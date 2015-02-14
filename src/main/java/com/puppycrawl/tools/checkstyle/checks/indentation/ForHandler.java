@@ -76,7 +76,8 @@ public class ForHandler extends BlockParentHandler
         checkForParams();
         super.checkIndentation();
         final LineWrappingHandler lineWrap =
-            new LineWrappingHandler(getIndentCheck(), getMainAst());
+            new LineWrappingHandler(getIndentCheck(), getMainAst(),
+                getForLoopRightParen(getMainAst()));
         lineWrap.checkIndentation();
     }
 
@@ -87,5 +88,16 @@ public class ForHandler extends BlockParentHandler
             return getLevel();
         }
         return super.suggestedChildLevel(child);
+    }
+
+    /**
+     * Returns right parenthesis of for-loop statement.
+     * @param literalForAst
+     *          literal-for ast node(TokenTypes.LITERAL_FOR)
+     * @return right parenthesis of for-loop statement.
+     */
+    private static DetailAST getForLoopRightParen(DetailAST literalForAst)
+    {
+        return literalForAst.findFirstToken(TokenTypes.RPAREN);
     }
 }

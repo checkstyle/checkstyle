@@ -174,30 +174,8 @@ public class MethodCallHandler extends ExpressionHandler
 
         checkRParen(lparen, rparen);
         final LineWrappingHandler lineWrap =
-            new LineWrappingHandler(getIndentCheck(), getMainAst()) {
-                @Override
-                public DetailAST findLastNode(DetailAST firstNode)
-                {
-                    DetailAST lastNode;
-                    if (getFirstNode().getNextSibling() == null) {
-                        lastNode = getFirstNode().getLastChild();
-                    }
-                    else {
-                        lastNode = getFirstNode().getNextSibling();
-                    }
-                    return lastNode;
-                }
-
-                @Override
-                public int getCurrentIndentation()
-                {
-                    DetailAST curNode = getFirstNode();
-                    while (curNode.getType() != TokenTypes.IDENT) {
-                        curNode = curNode.getFirstChild();
-                    }
-                    return curNode.getColumnNo() + getIndentLevel();
-                }
-            };
+            new LineWrappingHandler(getIndentCheck(), getMainAst(),
+                    getMethodCallLastNode(getMainAst()));
         lineWrap.checkIndentation();
     }
 
@@ -205,5 +183,24 @@ public class MethodCallHandler extends ExpressionHandler
     protected boolean shouldIncreaseIndent()
     {
         return false;
+    }
+
+    /**
+     * Returns method call right paren.
+     * @param firstNode
+     *          method call ast(TokenTypes.METHOD_CALL)
+     * @return ast node containing right paren for specified method call. If
+     * method calls are chained returns right paren for last call.
+     */
+    private static DetailAST getMethodCallLastNode(DetailAST firstNode)
+    {
+        DetailAST lastNode;
+        if (firstNode.getNextSibling() == null) {
+            lastNode = firstNode.getLastChild();
+        }
+        else {
+            lastNode = firstNode.getNextSibling();
+        }
+        return lastNode;
     }
 }
