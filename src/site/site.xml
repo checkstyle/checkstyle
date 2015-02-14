@@ -29,9 +29,16 @@
           img="images/stackoverflow.jpeg"
           href="http://stackoverflow.com/questions/tagged/checkstyle"
           />
+    <logo name="Google Groups"
+          img="images/groups.png"
+          href="https://groups.google.com/forum/#!forum/checkstyle-devel"
+          />
   </poweredBy>
   
   <body>
+    <links>
+      <item name="" href="https://twitter.com/checkstyle_java" img="images/rss.png"/>
+    </links>
     <menu name="About">
       <item name="Checkstyle" href="index.html"/>
       <item name="Release Notes" href="releasenotes.html"/>
