@@ -72,7 +72,7 @@ public final class IllegalCatchCheck extends AbstractIllegalCheck
                 paradef.findFirstToken(TokenTypes.TYPE);
         final List<DetailAST> excTypes = getAllExceptionTypes(excTypeParent);
 
-        for (DetailAST excType : excTypes) {
+        for (final DetailAST excType : excTypes) {
             final FullIdent ident = FullIdent.createFullIdent(excType);
 
             if (isIllegalClassName(ident.getText())) {

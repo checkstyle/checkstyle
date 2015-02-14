@@ -237,7 +237,7 @@ public class TranslationCheck
     {
         final Set<Entry<File, Set<Object>>> fls = fileMap.entrySet();
 
-        for (Entry<File, Set<Object>> entry : fls) {
+        for (final Entry<File, Set<Object>> entry : fls) {
             final File currentFile = entry.getKey();
             final MessageDispatcher dispatcher = getMessageDispatcher();
             final String path = currentFile.getPath();
@@ -250,7 +250,7 @@ public class TranslationCheck
 
             // Remaining elements in the key set are missing in the current file
             if (!keysClone.isEmpty()) {
-                for (Object key : keysClone) {
+                for (final Object key : keysClone) {
                     log(0, "translation.missingKey", key);
                 }
             }
@@ -274,7 +274,7 @@ public class TranslationCheck
     {
         final Set<Entry<String, Set<File>>> entrySet = propFiles.entrySet();
 
-        for (Entry<String, Set<File>> entry : entrySet) {
+        for (final Entry<String, Set<File>> entry : entrySet) {
             final Set<File> files = entry.getValue();
 
             if (files.size() >= 2) {
@@ -282,7 +282,7 @@ public class TranslationCheck
                 final Set<Object> keys = Sets.newHashSet();
                 final Map<File, Set<Object>> fileMap = Maps.newHashMap();
 
-                for (File file : files) {
+                for (final File file : files) {
                     final Set<Object> fileKeys = loadKeys(file);
                     keys.addAll(fileKeys);
                     fileMap.put(file, fileKeys);

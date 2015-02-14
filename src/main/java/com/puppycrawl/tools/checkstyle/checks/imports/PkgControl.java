@@ -97,7 +97,7 @@ class PkgControl
         }
 
         // Check if any of the children match.
-        for (PkgControl pc : children) {
+        for (final PkgControl pc : children) {
             final PkgControl match = pc.locateFinest(forPkg);
             if (match != null) {
                 return match;
@@ -142,7 +142,7 @@ class PkgControl
     private AccessResult localCheckAccess(final String forImport,
         final String inPkg)
     {
-        for (Guard g : guards) {
+        for (final Guard g : guards) {
             // Check if a Guard is only meant to be applied locally.
             if (g.isLocalOnly() && !fullPackage.equals(inPkg)) {
                 continue;
