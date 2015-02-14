@@ -98,7 +98,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
      */
     public void setTarget(String target)
     {
-        final List<Integer> customTarget = new ArrayList<Integer>();
+        final List<Integer> customTarget = new ArrayList<>();
         for (String type : target.split(", ")) {
             customTarget.add(TokenTypes.getTokenId(type));
         }
@@ -111,7 +111,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
      */
     public void setTagOrder(String order)
     {
-        final List<String> customOrder = new ArrayList<String>();
+        final List<String> customOrder = new ArrayList<>();
         Collections.addAll(customOrder, order.split(", "));
         tagOrder = customOrder;
     }

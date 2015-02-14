@@ -87,8 +87,7 @@ public class OneTopLevelClassCheck extends Check
     private boolean publicTypeFound;
 
     /** Mapping between type names and line numbers of the type declarations.*/
-    private TreeMap<Integer, String> lineNumberTypeMap =
-            new TreeMap<Integer, String>();
+    private TreeMap<Integer, String> lineNumberTypeMap = new TreeMap<>();
 
     @Override
     public int[] getDefaultTokens()

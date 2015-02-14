@@ -101,7 +101,7 @@ public class AbbreviationAsWordInNameCheck extends Check
     /**
      * Set of allowed abbreviation to ignore in check.
      */
-    private Set<String> allowedAbbreviations = new HashSet<String>();
+    private Set<String> allowedAbbreviations = new HashSet<>();
 
     /** Allows to ignore variables with 'final' modifier. */
     private boolean ignoreFinal = true;
@@ -162,7 +162,7 @@ public class AbbreviationAsWordInNameCheck extends Check
     public void setAllowedAbbreviations(String allowedAbbreviations)
     {
         if (allowedAbbreviations != null) {
-            this.allowedAbbreviations = new HashSet<String>(
+            this.allowedAbbreviations = new HashSet<>(
                     Arrays.asList(allowedAbbreviations.split(",")));
         }
     }
@@ -353,7 +353,7 @@ public class AbbreviationAsWordInNameCheck extends Check
      */
     private static List<DetailAST> getChildren(final DetailAST node)
     {
-        final List<DetailAST> result = new LinkedList<DetailAST>();
+        final List<DetailAST> result = new LinkedList<>();
         DetailAST curNode = node.getFirstChild();
         while (curNode != null) {
             result.add(curNode);

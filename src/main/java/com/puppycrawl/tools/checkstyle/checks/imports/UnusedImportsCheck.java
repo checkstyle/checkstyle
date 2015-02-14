@@ -239,7 +239,7 @@ public class UnusedImportsCheck extends Check
      */
     private Set<String> processJavadoc(TextBlock cmt)
     {
-        final Set<String> references = new HashSet<String>();
+        final Set<String> references = new HashSet<>();
         // process all the @link type tags
         // INLINEs inside BLOCKs get hidden when using ALL
         for (final JavadocTag tag
@@ -280,7 +280,7 @@ public class UnusedImportsCheck extends Check
      */
     private Set<String> processJavadocTag(JavadocTag tag)
     {
-        final Set<String> references = new HashSet<String>();
+        final Set<String> references = new HashSet<>();
         final String identifier = tag.getArg1().trim();
         for (Pattern pattern : new Pattern[]
         {FIRST_CLASS_NAME, ARGUMENT_NAME})
@@ -299,7 +299,7 @@ public class UnusedImportsCheck extends Check
      */
     private Set<String> matchPattern(String identifier, Pattern pattern)
     {
-        final Set<String> references = new HashSet<String>();
+        final Set<String> references = new HashSet<>();
         final Matcher matcher = pattern.matcher(identifier);
         while (matcher.find()) {
             references.add(matcher.group(1));

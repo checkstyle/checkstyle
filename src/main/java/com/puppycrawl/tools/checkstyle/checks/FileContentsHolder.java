@@ -33,8 +33,7 @@ public class FileContentsHolder
     extends Check
 {
     /** The current file contents. */
-    private static final ThreadLocal<FileContents> FILE_CONTENTS =
-        new ThreadLocal<FileContents>();
+    private static final ThreadLocal<FileContents> FILE_CONTENTS = new ThreadLocal<>();
 
     /** @return the current file contents. */
     public static FileContents getContents()

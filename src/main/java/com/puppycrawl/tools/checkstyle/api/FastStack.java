@@ -136,6 +136,6 @@ public class FastStack<E> implements Iterable<E>
      */
     public static <T> FastStack<T> newInstance()
     {
-        return new FastStack<T>();
+        return new FastStack<>();
     }
 }

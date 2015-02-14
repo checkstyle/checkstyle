@@ -65,7 +65,7 @@ public class ParseTreeInfoPanel extends JPanel
     private File lastDirectory = null;
     private File currentFile = null;
     private final Action reloadAction;
-    private final List<Integer>   lines2position  = new ArrayList<Integer>();
+    private final List<Integer>   lines2position  = new ArrayList<>();
 
     private static class JavaFileFilter extends FileFilter
     {

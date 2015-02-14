@@ -69,7 +69,7 @@ public abstract class AbstractJavadocCheck extends Check
      * key is "line:column"
      * value is DetailNode tree
      */
-    private static final Map<String, ParseStatus> TREE_CACHE = new HashMap<String, ParseStatus>();
+    private static final Map<String, ParseStatus> TREE_CACHE = new HashMap<>();
 
     /**
      * Custom error listener.

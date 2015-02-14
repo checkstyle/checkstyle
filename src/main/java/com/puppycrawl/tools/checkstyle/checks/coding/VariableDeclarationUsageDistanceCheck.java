@@ -456,7 +456,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check
             dist = 0;
         }
 
-        return new SimpleEntry<DetailAST, Integer>(variableUsageAst, dist);
+        return new SimpleEntry<>(variableUsageAst, dist);
     }
 
     /**
@@ -476,7 +476,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check
         DetailAST currentScopeAst = ast;
         DetailAST variableUsageAst = null;
         while (currentScopeAst != null) {
-            final List<DetailAST> variableUsageExpressions = new ArrayList<DetailAST>();
+            final List<DetailAST> variableUsageExpressions = new ArrayList<>();
             DetailAST currentStatementAst = currentScopeAst;
             currentScopeAst = null;
             while (currentStatementAst != null
@@ -548,7 +548,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check
                 variableUsageAst = null;
             }
         }
-        return new SimpleEntry<DetailAST, Integer>(variableUsageAst, dist);
+        return new SimpleEntry<>(variableUsageAst, dist);
     }
 
     /**
@@ -623,7 +623,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check
         if (!isVariableInOperatorExpr(block, variable)) {
             DetailAST currentNode = block.getLastChild();
             final List<DetailAST> variableUsageExpressions =
-                    new ArrayList<DetailAST>();
+                    new ArrayList<>();
 
             while (currentNode != null
                     && currentNode.getType() == TokenTypes.LITERAL_ELSE)
@@ -688,7 +688,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check
             DetailAST currentNode = block
                     .findFirstToken(TokenTypes.CASE_GROUP);
             final List<DetailAST> variableUsageExpressions =
-                    new ArrayList<DetailAST>();
+                    new ArrayList<>();
 
             // Checking variable usage inside all CASE blocks.
             while (currentNode != null
@@ -731,7 +731,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check
     {
         DetailAST currentNode = block.getFirstChild();
         final List<DetailAST> variableUsageExpressions =
-                new ArrayList<DetailAST>();
+                new ArrayList<>();
 
         // Checking variable usage inside TRY block.
         if (isChild(currentNode, variable)) {

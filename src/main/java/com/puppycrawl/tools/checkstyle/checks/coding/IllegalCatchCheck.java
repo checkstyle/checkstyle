@@ -90,7 +90,7 @@ public final class IllegalCatchCheck extends AbstractIllegalCheck
     public List<DetailAST> getAllExceptionTypes(DetailAST parentToken)
     {
         DetailAST currentNode = parentToken.getFirstChild();
-        final List<DetailAST> exceptionTypes = new LinkedList<DetailAST>();
+        final List<DetailAST> exceptionTypes = new LinkedList<>();
         if (currentNode.getType() == TokenTypes.BOR) {
             exceptionTypes.addAll(getAllExceptionTypes(currentNode));
             currentNode = currentNode.getNextSibling();

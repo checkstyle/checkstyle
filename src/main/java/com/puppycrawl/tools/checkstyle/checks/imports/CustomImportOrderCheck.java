@@ -203,15 +203,13 @@ public class CustomImportOrderCheck extends Check
     private boolean sortImportsInGroupAlphabetically;
 
     /** List of order declaration customizing by user */
-    private final List<String> customImportOrderRules =
-            new ArrayList<String>();
+    private final List<String> customImportOrderRules = new ArrayList<>();
 
     /** Number of first domains for SAME_PACKAGE group. */
     private int samePackageMatchingDepth = 2;
 
     /** Contains objects with import attributes */
-    private List<ImportDetails> importToGroupList =
-            new ArrayList<CustomImportOrderCheck.ImportDetails>();
+    private List<ImportDetails> importToGroupList = new ArrayList<>();
 
     /**
      * Sets standardRegExp specified by user.

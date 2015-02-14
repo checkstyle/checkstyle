@@ -290,8 +290,7 @@ public class SuppressionCommentFilter
      * and FileContentsHolder are reassigned to the next FileContents,
      * at which time filtering for the current FileContents is finished.
      */
-    private WeakReference<FileContents> fileContentsReference =
-        new WeakReference<FileContents>(null);
+    private WeakReference<FileContents> fileContentsReference = new WeakReference<>(null);
 
     /**
      * Constructs a SuppressionCoontFilter.
@@ -349,7 +348,7 @@ public class SuppressionCommentFilter
      */
     public void setFileContents(FileContents fileContents)
     {
-        fileContentsReference = new WeakReference<FileContents>(fileContents);
+        fileContentsReference = new WeakReference<>(fileContents);
     }
 
     /**
