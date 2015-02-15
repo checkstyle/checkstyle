@@ -170,7 +170,7 @@ public class XMLLogger
      */
     public String encode(String value)
     {
-        final StringBuffer sb = new StringBuffer();
+        final StringBuilder sb = new StringBuilder();
         for (int i = 0; i < value.length(); i++) {
             final char c = value.charAt(i);
             switch (c) {

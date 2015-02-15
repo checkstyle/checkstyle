@@ -460,7 +460,7 @@ public final class ConfigurationLoader
         final List<String> propertyRefs = Lists.newArrayList();
         parsePropertyString(value, fragments, propertyRefs);
 
-        final StringBuffer sb = new StringBuffer();
+        final StringBuilder sb = new StringBuilder();
         final Iterator<String> i = fragments.iterator();
         final Iterator<String> j = propertyRefs.iterator();
         while (i.hasNext()) {

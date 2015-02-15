@@ -103,7 +103,7 @@ public class DefaultLogger
             // avoid StringBuffer.expandCapacity
             final int bufLen = fileName.length() + message.length()
                 + BUFFER_CUSHION;
-            final StringBuffer sb = new StringBuffer(bufLen);
+            final StringBuilder sb = new StringBuilder(bufLen);
 
             sb.append(fileName);
             sb.append(':').append(evt.getLine());

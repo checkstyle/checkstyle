@@ -222,7 +222,7 @@ final class PropertyCacheFile
      */
     private static String hexEncode(byte[] byteArray)
     {
-        final StringBuffer buf = new StringBuffer(2 * byteArray.length);
+        final StringBuilder buf = new StringBuilder(2 * byteArray.length);
         for (final byte b : byteArray) {
             final int low = b & MASK_0X0F;
             final int high = (b >> SHIFT_4) & MASK_0X0F;

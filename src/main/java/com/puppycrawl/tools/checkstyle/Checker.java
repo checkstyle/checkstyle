@@ -382,7 +382,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
             dosWithDrive = true;
 
             final char[] ca = path.replace('/', '\\').toCharArray();
-            final StringBuffer sbRoot = new StringBuffer();
+            final StringBuilder sbRoot = new StringBuilder();
             for (int i = 0; i < colon; i++) {
                 sbRoot.append(Character.toUpperCase(ca[i]));
             }
@@ -393,7 +393,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
             root = sbRoot.toString();
 
             // Eliminate consecutive slashes after the drive spec
-            final StringBuffer sbPath = new StringBuffer();
+            final StringBuilder sbPath = new StringBuilder();
             for (int i = colon + 1; i < ca.length; i++) {
                 if ((ca[i] != '\\') || ((ca[i] == '\\') && (ca[i - 1] != '\\')))
                 {
@@ -439,7 +439,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
             }
         }
 
-        final StringBuffer sb = new StringBuffer();
+        final StringBuilder sb = new StringBuilder();
         for (int i = 0; i < s.size(); i++) {
             if (i > 1) {
                 // not before the filesystem root and not after it, since root
