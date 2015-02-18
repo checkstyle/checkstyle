@@ -826,6 +826,15 @@
       <!-- To be used during development. Run the command-->
       <!-- mvn -Passembly package -->
       <id>assembly</id>
+      <properties>
+        <skipTests>true</skipTests>
+        <linkcheck.skip>true</linkcheck.skip>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <pmd.skip>true</pmd.skip>
+        <findbugs.skip>true</findbugs.skip>
+        <cobertura.skip>true</cobertura.skip>
+        <maven.site.skip>true</maven.site.skip>
+      </properties>
 
       <build>
         <plugins>
