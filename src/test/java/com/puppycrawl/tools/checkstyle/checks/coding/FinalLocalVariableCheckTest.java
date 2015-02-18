@@ -47,7 +47,6 @@ public class FinalLocalVariableCheckTest
             "66:16: Variable 'x' should be declared final.",
             "74:21: Variable 'w' should be declared final.",
             "75:26: Variable 'runnable' should be declared final.",
-            "88:18: Variable 'i' should be declared final.",
             "96:17: Variable 'weird' should be declared final.",
             "97:17: Variable 'j' should be declared final.",
             "98:17: Variable 'k' should be declared final.",
