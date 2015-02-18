@@ -75,6 +75,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
         verify(checkConfig, getPath("indentation/InputAndroidStyle.java"), expected);
     }
 
+    @Test
     public void testMethodCallLineWrap() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
