@@ -124,6 +124,11 @@ mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" \
  mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.gui.Main" \
                -Dexec.args="src/main/java/com/puppycrawl/tools/checkstyle/Checker.java"
         </source>
+        Build all jars, and launch CLI from new build:
+        <source>
+mvn clean package -Passembly
+java -jar target/checkstyle-${projectVersion}-all.jar -c /sun_checks.xml MyClass.java
+        </source>
       </p>
     </section>
 
