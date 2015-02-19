@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
 import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck.MSG_KEY;
@@ -95,5 +96,29 @@ public class FinalLocalVariableCheckTest
 
         };
         verify(checkConfig, getPath("coding/InputFinalLocalVariableCheckFalsePositive.java"), expected);
+    }
+    @Test
+    public void testEnhancedForLoopVariableTrue() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(FinalLocalVariableCheck.class);
+        checkConfig.addAttribute("tokens", "VARIABLE_DEF, PARAMETER_DEF");
+        checkConfig.addAttribute("validateEnhancedForLoopVariable", "true");
+        final String[] expected = {
+            "8:20: " + "Variable 'a' should be declared final.",
+            "15:13: " + "Variable 'x' should be declared final.",
+        };
+        verify(checkConfig, getPath("coding/InputFinalLocalVariableEnhancedForLoopVariable.java"), expected);
+    }
+    @Test
+    public void testEnhancedForLoopVariableFalse() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(FinalLocalVariableCheck.class);
+        checkConfig.addAttribute("tokens", "VARIABLE_DEF, PARAMETER_DEF");
+        final String[] expected = {
+            "15:13: " + "Variable 'x' should be declared final.",
+        };
+        verify(checkConfig, getPath("coding/InputFinalLocalVariableEnhancedForLoopVariable.java"), expected);
     }
 }

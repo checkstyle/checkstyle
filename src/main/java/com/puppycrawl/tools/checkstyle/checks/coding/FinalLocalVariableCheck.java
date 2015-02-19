@@ -39,6 +39,32 @@ import java.util.Map;
  *     &lt;property name="token" value="VARIABLE_DEF"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * By default, this Check skip final validation on
+ *  <a href = "http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
+ * Enhanced For-Loop</a>
+ * </p>
+ * <p>
+ * Option 'validateEnhancedForLoopVariable' could be used to make Check to validate even variable
+ *  from Enhanced For Loop.
+ * </p>
+ * <p>
+ * An example of how to configure the check so that it also validates enhanced For Loop Variable is:
+ * </p>
+ * <pre>
+ * &lt;module name="FinalLocalVariable"&gt;
+ *     &lt;property name="token" value="VARIABLE_DEF"/&gt;
+ *     &lt;property name="validateEnhancedForLoopVariable" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <p>
+ * <code>
+ * for (int number : myNumbers) { // violation
+ *    System.out.println(number);
+ * }
+ * </code>
+ * </p>
  * @author k_gibbs, r_auckenthaler
  */
 public class FinalLocalVariableCheck extends Check
@@ -53,6 +79,18 @@ public class FinalLocalVariableCheck extends Check
     /** Scope Stack */
     private final FastStack<Map<String, DetailAST>> scopeStack =
         FastStack.newInstance();
+
+    /** Controls whether to check enhanced for-loop variable. */
+    private boolean validateEnhancedForLoopVariable;
+
+    /**
+     * Whether to check enhanced for-loop variable or not.
+     * @param validateEnhancedForLoopVariable whether to check for-loop variable
+     */
+    public final void setValidateEnhancedForLoopVariable(boolean validateEnhancedForLoopVariable)
+    {
+        this.validateEnhancedForLoopVariable = validateEnhancedForLoopVariable;
+    }
 
     @Override
     public int[] getDefaultTokens()
@@ -116,7 +154,7 @@ public class FinalLocalVariableCheck extends Check
                 }
             case TokenTypes.VARIABLE_DEF:
                 if ((ast.getParent().getType() != TokenTypes.OBJBLOCK)
-                    && (ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE)
+                    && shouldCheckEnhancedForLoopVariable(ast)
                     && isVariableInForInit(ast))
                 {
                     insertVariable(ast);
@@ -152,6 +190,17 @@ public class FinalLocalVariableCheck extends Check
 
             default:
         }
+    }
+
+    /**
+     * Determines whether enhanced for-loop variable should be checked or not.
+     * @param ast The ast to compare.
+     * @return true if enhanced for-loop variable should be checked.
+     */
+    private boolean shouldCheckEnhancedForLoopVariable(DetailAST ast)
+    {
+        return validateEnhancedForLoopVariable
+                || ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE;
     }
 
     /**
