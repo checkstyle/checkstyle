@@ -24,6 +24,8 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY;
+
 public class TranslationCheckTest
     extends BaseCheckTestSupport
 {
@@ -41,7 +43,7 @@ public class TranslationCheckTest
     {
         final Configuration checkConfig = createCheckConfig(TranslationCheck.class);
         final String[] expected = {
-            "0: Key 'only.english' missing.",
+            "0: " + getCheckMessage(MSG_KEY, "only.english"),
         };
         final File[] propertyFiles = new File[] {
             new File(getPath("messages_test_de.properties")),
@@ -67,7 +69,7 @@ public class TranslationCheckTest
         final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
         checkConfig.addAttribute("basenameSeparator", "-");
         final String[] expected = {
-            "0: Key 'only.english' missing.",
+            "0: " + getCheckMessage(MSG_KEY, "only.english"),
         };
         final File[] propertyFiles = new File[] {
             new File(getPath("app-dev.properties")),

@@ -22,6 +22,10 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.RegexpCheck.MSG_ILLEGAL_REGEXP;
+import static com.puppycrawl.tools.checkstyle.checks.RegexpCheck.MSG_DUPLICATE_REGEXP;
+import static com.puppycrawl.tools.checkstyle.checks.RegexpCheck.MSG_REQUIRED_REGEXP;
+
 public class RegexpCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -44,7 +48,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
             createCheckConfig(RegexpCheck.class);
         checkConfig.addAttribute("format", required);
         final String[] expected = {
-            "0: Required pattern '" + required + "' missing in file.",
+            "0: " + getCheckMessage(MSG_REQUIRED_REGEXP, required),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -71,7 +75,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("format", required);
         checkConfig.addAttribute("duplicateLimit", "0");
         final String[] expected = {
-            "24: Found duplicate pattern '" + required + "'.",
+            "24: " + getCheckMessage(MSG_DUPLICATE_REGEXP, required),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -99,9 +103,9 @@ public class RegexpCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("errorLimit", "4");
         final String[] expected = {
-            "7: Line matches the illegal pattern '" + illegal + "'.",
-            "8: Line matches the illegal pattern '" + illegal + "'.",
-            "9: Line matches the illegal pattern '" + illegal + "'.",
+            "7: " + getCheckMessage(MSG_ILLEGAL_REGEXP, illegal),
+            "8: " + getCheckMessage(MSG_ILLEGAL_REGEXP, illegal),
+            "9: " + getCheckMessage(MSG_ILLEGAL_REGEXP, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -118,9 +122,9 @@ public class RegexpCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("errorLimit", "3");
         final String[] expected = {
-            "7: Line matches the illegal pattern '" + illegal + "'.",
-            "8: Line matches the illegal pattern '" + illegal + "'.",
-            "9: Line matches the illegal pattern '" + error + illegal + "'.",
+            "7: " + getCheckMessage(MSG_ILLEGAL_REGEXP, illegal),
+            "8: " + getCheckMessage(MSG_ILLEGAL_REGEXP, illegal),
+            "9: " + getCheckMessage(MSG_ILLEGAL_REGEXP, error + illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -137,7 +141,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("message", message);
         final String[] expected = {
-            "69: Line matches the illegal pattern '" + message + "'.",
+            "69: " + getCheckMessage(MSG_ILLEGAL_REGEXP, message),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -153,7 +157,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("message", null);
         final String[] expected = {
-            "69: Line matches the illegal pattern '" + illegal + "'.",
+            "69: " + getCheckMessage(MSG_ILLEGAL_REGEXP, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -167,7 +171,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
         final String[] expected = {
-            "69: Line matches the illegal pattern '" + illegal + "'.",
+            "69: " + getCheckMessage(MSG_ILLEGAL_REGEXP, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -181,7 +185,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
         checkConfigTrue.addAttribute("format", illegalTrue);
         checkConfigTrue.addAttribute("illegalPattern", "true");
         final String[] expectedTrue = {
-            "69: Line matches the illegal pattern '" + illegalTrue + "'.",
+            "69: " + getCheckMessage(MSG_ILLEGAL_REGEXP, illegalTrue),
         };
         verify(checkConfigTrue, getPath("InputSemantic.java"), expectedTrue);
 
@@ -220,7 +224,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "false");
         final String[] expected = {
-            "4: Line matches the illegal pattern '" + illegal + "'.",
+            "4: " + getCheckMessage(MSG_ILLEGAL_REGEXP, illegal),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -250,7 +254,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "false");
         final String[] expected = {
-            "19: Line matches the illegal pattern '" + illegal + "'.",
+            "19: " + getCheckMessage(MSG_ILLEGAL_REGEXP, illegal),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -308,7 +312,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
-            "22: Line matches the illegal pattern '" + illegal + "'.",
+            "22: " + getCheckMessage(MSG_ILLEGAL_REGEXP, illegal),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -323,7 +327,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
-            "23: Line matches the illegal pattern '" + illegal + "'.",
+            "23: " + getCheckMessage(MSG_ILLEGAL_REGEXP, illegal),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }

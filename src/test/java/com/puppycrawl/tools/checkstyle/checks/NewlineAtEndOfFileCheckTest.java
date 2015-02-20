@@ -24,6 +24,8 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
+
 public class NewlineAtEndOfFileCheckTest
     extends BaseCheckTestSupport
 {
@@ -56,7 +58,7 @@ public class NewlineAtEndOfFileCheckTest
             createCheckConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = {
-            "0: File does not end with a newline.",
+            "0: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
         verify(
             createChecker(checkConfig),
@@ -81,7 +83,7 @@ public class NewlineAtEndOfFileCheckTest
             createCheckConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = {
-            "0: File does not end with a newline.",
+            "0: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
         verify(
             createChecker(checkConfig),

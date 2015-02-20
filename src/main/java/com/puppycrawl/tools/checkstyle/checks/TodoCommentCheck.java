@@ -53,6 +53,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class TodoCommentCheck
         extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "todo.match";
+
     /**
      * Format of todo comment.
      */
@@ -98,7 +105,7 @@ public class TodoCommentCheck
 
         for (int i = 0; i < lines.length; i++) {
             if (regexp.matcher(lines[i]).find()) {
-                log(ast.getLineNo() + i, "todo.match", format);
+                log(ast.getLineNo() + i, MSG_KEY, format);
             }
         }
     }

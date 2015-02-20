@@ -70,6 +70,13 @@ import java.util.Map.Entry;
 public class TranslationCheck
     extends AbstractFileSetCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "translation.missingKey";
+
     /** The property files to process. */
     private final List<File> propertyFiles = Lists.newArrayList();
 
@@ -251,7 +258,7 @@ public class TranslationCheck
             // Remaining elements in the key set are missing in the current file
             if (!keysClone.isEmpty()) {
                 for (Object key : keysClone) {
-                    log(0, "translation.missingKey", key);
+                    log(0, MSG_KEY, key);
                 }
             }
             fireErrors(path);

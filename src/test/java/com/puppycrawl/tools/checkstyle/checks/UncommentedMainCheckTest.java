@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck.MSG_KEY;
+
 public class UncommentedMainCheckTest
     extends BaseCheckTestSupport
 {
@@ -32,9 +34,9 @@ public class UncommentedMainCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(UncommentedMainCheck.class);
         final String[] expected = {
-            "14: Uncommented main method found.",
-            "23: Uncommented main method found.",
-            "32: Uncommented main method found.",
+            "14: " + getCheckMessage(MSG_KEY),
+            "23: " + getCheckMessage(MSG_KEY),
+            "32: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputUncommentedMain.java"), expected);
     }
@@ -47,8 +49,8 @@ public class UncommentedMainCheckTest
             createCheckConfig(UncommentedMainCheck.class);
         checkConfig.addAttribute("excludedClasses", "\\.Main.*$");
         final String[] expected = {
-            "14: Uncommented main method found.",
-            "32: Uncommented main method found.",
+            "14: " + getCheckMessage(MSG_KEY),
+            "32: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputUncommentedMain.java"), expected);
     }

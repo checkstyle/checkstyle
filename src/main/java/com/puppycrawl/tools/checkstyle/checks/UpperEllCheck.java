@@ -49,6 +49,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class UpperEllCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "upperEll";
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -67,7 +74,7 @@ public class UpperEllCheck extends Check
         if (ast.getText().endsWith("l")) {
             log(ast.getLineNo(),
                 ast.getColumnNo() + ast.getText().length() - 1,
-                "upperEll");
+                MSG_KEY);
         }
     }
 }

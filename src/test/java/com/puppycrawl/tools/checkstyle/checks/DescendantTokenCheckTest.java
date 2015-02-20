@@ -18,10 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KEY_MAX;
+import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KEY_MIN;
+import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KEY_SUM_MAX;
+
+import java.io.File;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import java.io.File;
-import org.junit.Test;
 
 public class DescendantTokenCheckTest extends BaseCheckTestSupport
 {
@@ -45,7 +51,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("limitedTokens", "LITERAL_NATIVE");
         checkConfig.addAttribute("maximumNumber", "0");
         final String[] expected = {
-            "20:12: Count of 1 for 'LITERAL_NATIVE' descendant 'LITERAL_NATIVE' exceeds maximum count 0.",
+            "20:12: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_NATIVE", "LITERAL_NATIVE"),
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
@@ -76,7 +82,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("limitedTokens", "LITERAL_DEFAULT");
         checkConfig.addAttribute("minimumNumber", "2");
         final String[] expected = {
-            "11:9: Count of 1 for 'LITERAL_SWITCH' descendant 'LITERAL_DEFAULT' is less than minimum count 2.",
+            "11:9: " + getCheckMessage(MSG_KEY_MIN, 1, 2, "LITERAL_SWITCH", "LITERAL_DEFAULT"),
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
@@ -308,10 +314,10 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("sumTokenCounts", "true");
 
         String[] expected = {
-            "22:32: Total count of 2 exceeds maximum count 1 under 'EQUAL'.",
-            "22:50: Total count of 2 exceeds maximum count 1 under 'EQUAL'.",
-            "23:33: Total count of 2 exceeds maximum count 1 under 'NOT_EQUAL'.",
-            "23:51: Total count of 2 exceeds maximum count 1 under 'NOT_EQUAL'.",
+            "22:32: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "EQUAL"),
+            "22:50: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "EQUAL"),
+            "23:33: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "NOT_EQUAL"),
+            "23:51: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "NOT_EQUAL"),
         };
 
         verify(checkConfig,

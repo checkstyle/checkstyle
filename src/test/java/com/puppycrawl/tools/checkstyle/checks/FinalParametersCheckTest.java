@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck.MSG_KEY;
+
 public class FinalParametersCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -30,17 +32,17 @@ public class FinalParametersCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalParametersCheck.class);
         final String[] expected = {
-            "23:26: Parameter s should be final.",
-            "38:26: Parameter i should be final.",
-            "43:26: Parameter s should be final.",
-            "53:17: Parameter s should be final.",
-            "69:17: Parameter s should be final.",
-            "75:17: Parameter s should be final.",
-            "90:45: Parameter e should be final.",
-            "93:36: Parameter e should be final.",
-            "110:18: Parameter aParam should be final.",
-            "113:18: Parameter args should be final.",
-            "116:18: Parameter args should be final.",
+            "23:26: " + getCheckMessage(MSG_KEY, "s"),
+            "38:26: " + getCheckMessage(MSG_KEY, "i"),
+            "43:26: " + getCheckMessage(MSG_KEY, "s"),
+            "53:17: " + getCheckMessage(MSG_KEY, "s"),
+            "69:17: " + getCheckMessage(MSG_KEY, "s"),
+            "75:17: " + getCheckMessage(MSG_KEY, "s"),
+            "90:45: " + getCheckMessage(MSG_KEY, "e"),
+            "93:36: " + getCheckMessage(MSG_KEY, "e"),
+            "110:18: " + getCheckMessage(MSG_KEY, "aParam"),
+            "113:18: " + getCheckMessage(MSG_KEY, "args"),
+            "116:18: " + getCheckMessage(MSG_KEY, "args"),
         };
         verify(checkConfig, getPath("InputFinalParameters.java"), expected);
     }
@@ -52,9 +54,9 @@ public class FinalParametersCheckTest extends BaseCheckTestSupport
             createCheckConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "CTOR_DEF");
         final String[] expected = {
-            "23:26: Parameter s should be final.",
-            "38:26: Parameter i should be final.",
-            "43:26: Parameter s should be final.",
+            "23:26: " + getCheckMessage(MSG_KEY, "s"),
+            "38:26: " + getCheckMessage(MSG_KEY, "i"),
+            "43:26: " + getCheckMessage(MSG_KEY, "s"),
         };
         verify(checkConfig, getPath("InputFinalParameters.java"), expected);
     }
@@ -66,14 +68,14 @@ public class FinalParametersCheckTest extends BaseCheckTestSupport
             createCheckConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "METHOD_DEF");
         final String[] expected = {
-            "53:17: Parameter s should be final.",
-            "69:17: Parameter s should be final.",
-            "75:17: Parameter s should be final.",
-            "90:45: Parameter e should be final.",
-            "93:36: Parameter e should be final.",
-            "110:18: Parameter aParam should be final.",
-            "113:18: Parameter args should be final.",
-            "116:18: Parameter args should be final.",
+            "53:17: " + getCheckMessage(MSG_KEY, "s"),
+            "69:17: " + getCheckMessage(MSG_KEY, "s"),
+            "75:17: " + getCheckMessage(MSG_KEY, "s"),
+            "90:45: " + getCheckMessage(MSG_KEY, "e"),
+            "93:36: " + getCheckMessage(MSG_KEY, "e"),
+            "110:18: " + getCheckMessage(MSG_KEY, "aParam"),
+            "113:18: " + getCheckMessage(MSG_KEY, "args"),
+            "116:18: " + getCheckMessage(MSG_KEY, "args"),
         };
         verify(checkConfig, getPath("InputFinalParameters.java"), expected);
     }
@@ -85,9 +87,9 @@ public class FinalParametersCheckTest extends BaseCheckTestSupport
             createCheckConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_CATCH");
         final String[] expected = {
-            "125:16: Parameter npe should be final.",
-            "131:16: Parameter e should be final.",
-            "134:16: Parameter e should be final.",
+            "125:16: " + getCheckMessage(MSG_KEY, "npe"),
+            "131:16: " + getCheckMessage(MSG_KEY, "e"),
+            "134:16: " + getCheckMessage(MSG_KEY, "e"),
         };
         verify(checkConfig, getPath("InputFinalParameters.java"), expected);
     }
@@ -99,8 +101,8 @@ public class FinalParametersCheckTest extends BaseCheckTestSupport
             createCheckConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "FOR_EACH_CLAUSE");
         final String[] expected = {
-            "150:13: Parameter s should be final.",
-            "158:13: Parameter s should be final.",
+            "150:13: " + getCheckMessage(MSG_KEY, "s"),
+            "158:13: " + getCheckMessage(MSG_KEY, "s"),
         };
         verify(checkConfig, getPath("InputFinalParameters.java"), expected);
     }
@@ -112,13 +114,13 @@ public class FinalParametersCheckTest extends BaseCheckTestSupport
             createCheckConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("ignorePrimitiveTypes", "true");
         final String[] expected = {
-            "6:22: Parameter k should be final.",
-            "7:15: Parameter s should be final.",
-            "7:25: Parameter o should be final.",
-            "8:15: Parameter array should be final.",
-            "9:31: Parameter s should be final.",
-            "10:22: Parameter l should be final.",
-            "10:32: Parameter s should be final.",
+            "6:22: " + getCheckMessage(MSG_KEY, "k"),
+            "7:15: " + getCheckMessage(MSG_KEY, "s"),
+            "7:25: " + getCheckMessage(MSG_KEY, "o"),
+            "8:15: " + getCheckMessage(MSG_KEY, "array"),
+            "9:31: " + getCheckMessage(MSG_KEY, "s"),
+            "10:22: " + getCheckMessage(MSG_KEY, "l"),
+            "10:32: " + getCheckMessage(MSG_KEY, "s"),
         };
         verify(checkConfig, getPath("InputFinalParametersPrimitiveTypes.java"), expected);
     }

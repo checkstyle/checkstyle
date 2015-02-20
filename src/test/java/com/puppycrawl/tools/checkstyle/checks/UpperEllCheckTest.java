@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.UpperEllCheck.MSG_KEY;
+
 public class UpperEllCheckTest
     extends BaseCheckTestSupport
 {
@@ -32,7 +34,7 @@ public class UpperEllCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(UpperEllCheck.class);
         final String[] expected = {
-            "94:43: Should use uppercase 'L'.",
+            "94:43: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }

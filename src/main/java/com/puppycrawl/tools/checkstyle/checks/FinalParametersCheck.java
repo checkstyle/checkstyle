@@ -51,6 +51,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class FinalParametersCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "final.parameter";
+
     /**
      * Option to ignore primitive types as params.
      */
@@ -179,7 +186,7 @@ public class FinalParametersCheck extends Check
             final DetailAST paramName = param.findFirstToken(TokenTypes.IDENT);
             final DetailAST firstNode = CheckUtils.getFirstNode(param);
             log(firstNode.getLineNo(), firstNode.getColumnNo(),
-                "final.parameter", paramName.getText());
+                MSG_KEY, paramName.getText());
         }
     }
 

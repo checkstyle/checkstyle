@@ -58,6 +58,19 @@ import org.apache.commons.beanutils.ConversionException;
 public class NewlineAtEndOfFileCheck
     extends AbstractFileSetCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_UNABLE_OPEN = "unable.open";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_NO_NEWLINE_EOF = "noNewlineAtEOF";
+
     /** the line separator to check against. */
     private LineSeparatorOption lineSeparator = LineSeparatorOption.SYSTEM;
 
@@ -69,11 +82,11 @@ public class NewlineAtEndOfFileCheck
         try {
             randomAccessFile = new RandomAccessFile(file, "r");
             if (!endsWithNewline(randomAccessFile)) {
-                log(0, "noNewlineAtEOF", file.getPath());
+                log(0, MSG_KEY_NO_NEWLINE_EOF, file.getPath());
             }
         }
         catch (final IOException e) {
-            log(0, "unable.open", file.getPath());
+            log(0, MSG_KEY_UNABLE_OPEN, file.getPath());
         }
         finally {
             Utils.closeQuietly(randomAccessFile);

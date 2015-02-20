@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck.MSG_KEY;
+
 public class TrailingCommentCheckTest extends BaseCheckTestSupport
 {
     private DefaultConfiguration checkConfig;
@@ -37,12 +39,12 @@ public class TrailingCommentCheckTest extends BaseCheckTestSupport
     public void testDefaults() throws Exception
     {
         final String[] expected = {
-            "4: Don't use trailing comments.",
-            "7: Don't use trailing comments.",
-            "8: Don't use trailing comments.",
-            "18: Don't use trailing comments.",
-            "19: Don't use trailing comments.",
-            "29: Don't use trailing comments.",
+            "4: " + getCheckMessage(MSG_KEY),
+            "7: " + getCheckMessage(MSG_KEY),
+            "8: " + getCheckMessage(MSG_KEY),
+            "18: " + getCheckMessage(MSG_KEY),
+            "19: " + getCheckMessage(MSG_KEY),
+            "29: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -52,11 +54,11 @@ public class TrailingCommentCheckTest extends BaseCheckTestSupport
     {
         checkConfig.addAttribute("legalComment", "^NOI18N$");
         final String[] expected = {
-            "4: Don't use trailing comments.",
-            "7: Don't use trailing comments.",
-            "8: Don't use trailing comments.",
-            "18: Don't use trailing comments.",
-            "19: Don't use trailing comments.",
+            "4: " + getCheckMessage(MSG_KEY),
+            "7: " + getCheckMessage(MSG_KEY),
+            "8: " + getCheckMessage(MSG_KEY),
+            "18: " + getCheckMessage(MSG_KEY),
+            "19: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }

@@ -52,6 +52,25 @@ import java.util.regex.Pattern;
  */
 public class RegexpCheck extends AbstractFormatCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_ILLEGAL_REGEXP = "illegal.regexp";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_REQUIRED_REGEXP = "required.regexp";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_DUPLICATE_REGEXP = "duplicate.regexp";
+
     /** Default duplicate limit */
     private static final int DEFAULT_DUPLICATE_LIMIT = -1;
 
@@ -228,14 +247,14 @@ public class RegexpCheck extends AbstractFormatCheck
             msg = ERROR_LIMIT_EXCEEDED_MESSAGE + msg;
         }
         if (illegalPattern) {
-            log(lineNumber, "illegal.regexp", msg);
+            log(lineNumber, MSG_ILLEGAL_REGEXP, msg);
         }
         else {
             if (lineNumber > 0) {
-                log(lineNumber, "duplicate.regexp", msg);
+                log(lineNumber, MSG_DUPLICATE_REGEXP, msg);
             }
             else {
-                log(lineNumber, "required.regexp", msg);
+                log(lineNumber, MSG_REQUIRED_REGEXP, msg);
             }
         }
     }
