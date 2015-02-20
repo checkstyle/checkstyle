@@ -28,6 +28,19 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
  */
 class MultilineDetector
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String REGEXP_EXCEEDED = "regexp.exceeded";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String REGEXP_MINIMUM = "regexp.minimum";
+
     /** The detection options to use. */
     private final DetectorOptions options;
     /** Tracks the number of matches. */
@@ -77,7 +90,7 @@ class MultilineDetector
             if (currentMatches > options.getMaximum()) {
                 if ("".equals(options.getMessage())) {
                     options.getReporter().log(start.getLine(),
-                            "regexp.exceeded", matcher.pattern().toString());
+                            REGEXP_EXCEEDED, matcher.pattern().toString());
                 }
                 else {
                     options.getReporter()
@@ -92,7 +105,7 @@ class MultilineDetector
     {
         if (currentMatches < options.getMinimum()) {
             if ("".equals(options.getMessage())) {
-                options.getReporter().log(0, "regexp.minimum",
+                options.getReporter().log(0, REGEXP_MINIMUM,
                         options.getMinimum(), options.getFormat());
             }
             else {

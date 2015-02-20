@@ -24,6 +24,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
+
 public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
 {
     private DefaultConfiguration checkConfig;
@@ -40,7 +42,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         checkConfig.addAttribute("format", illegal);
         final String[] expected = {
-            "69: Line matches the illegal pattern '" + illegal + "'.",
+            "69: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -66,7 +68,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreCase", "true");
         final String[] expected = {
-            "69: Line matches the illegal pattern '" + illegal + "'.",
+            "69: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -87,9 +89,9 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
         final String illegal = "^import";
         checkConfig.addAttribute("format", illegal);
         final String[] expected = {
-            "7: Line matches the illegal pattern '" + illegal + "'.",
-            "8: Line matches the illegal pattern '" + illegal + "'.",
-            "9: Line matches the illegal pattern '" + illegal + "'.",
+            "7: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "8: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "9: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -101,10 +103,10 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
         final String illegal = "\\r";
         checkConfig.addAttribute("format", illegal);
         final String[] expected = {
-            "14: Line matches the illegal pattern '" + illegal + "'.",
-            "16: Line matches the illegal pattern '" + illegal + "'.",
-            "19: Line matches the illegal pattern '" + illegal + "'.",
-            "21: Line matches the illegal pattern '" + illegal + "'.",
+            "14: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "16: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "19: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "21: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputLineBreaks.java"), expected);
     }

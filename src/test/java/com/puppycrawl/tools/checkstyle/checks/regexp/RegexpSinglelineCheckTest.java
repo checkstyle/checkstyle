@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
+
 public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport
 {
     private DefaultConfiguration checkConfig;
@@ -39,7 +41,7 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         checkConfig.addAttribute("format", illegal);
         final String[] expected = {
-            "69: Line matches the illegal pattern '" + illegal + "'.",
+            "69: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -65,7 +67,7 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreCase", "true");
         final String[] expected = {
-            "69: Line matches the illegal pattern '" + illegal + "'.",
+            "69: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }

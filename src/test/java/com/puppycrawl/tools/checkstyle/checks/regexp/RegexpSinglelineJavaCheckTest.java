@@ -23,6 +23,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_MINIMUM;
+
 public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
 {
     private DefaultConfiguration checkConfig;
@@ -39,7 +42,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         checkConfig.addAttribute("format", illegal);
         final String[] expected = {
-            "69: Line matches the illegal pattern '" + illegal + "'.",
+            "69: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -65,7 +68,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreCase", "true");
         final String[] expected = {
-            "69: Line matches the illegal pattern '" + illegal + "'.",
+            "69: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -100,7 +103,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreComments", "false");
         final String[] expected = {
-            "4: Line matches the illegal pattern '" + illegal + "'.",
+            "4: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -124,7 +127,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreComments", "false");
         final String[] expected = {
-            "19: Line matches the illegal pattern '" + illegal + "'.",
+            "19: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -170,7 +173,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
-            "22: Line matches the illegal pattern '" + illegal + "'.",
+            "22: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -182,7 +185,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
-            "23: Line matches the illegal pattern '" + illegal + "'.",
+            "23: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -243,7 +246,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("minimum", "1");
         checkConfig.addAttribute("maximum", "1000");
         final String[] expected = {
-            "0: File does not contain at least 1 matches for pattern '" + required + "'.",
+            "0: " + getCheckMessage(REGEXP_MINIMUM, 1, required),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
