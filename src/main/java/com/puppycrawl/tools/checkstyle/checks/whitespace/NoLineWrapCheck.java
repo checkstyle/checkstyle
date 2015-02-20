@@ -66,6 +66,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class NoLineWrapCheck extends Check
 {
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "no.line.wrap";
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -90,7 +96,7 @@ public class NoLineWrapCheck extends Check
     public void visitToken(DetailAST ast)
     {
         if (ast.getLineNo() != ast.getLastChild().getLineNo()) {
-            log(ast.getLineNo(), "no.line.wrap", ast.getText());
+            log(ast.getLineNo(), MSG_KEY, ast.getText());
         }
     }
 }

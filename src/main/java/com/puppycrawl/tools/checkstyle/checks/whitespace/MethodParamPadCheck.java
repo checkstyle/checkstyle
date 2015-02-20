@@ -65,6 +65,25 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 public class MethodParamPadCheck
     extends AbstractOptionCheck<PadOption>
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String LINE_PREVIOUS = "line.previous";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String WS_PRECEDED = "ws.preceded";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String WS_NOT_PRECEDED = "ws.notPreceded";
+
     /**
      * Sets the pad option to nospace.
      */
@@ -119,7 +138,7 @@ public class MethodParamPadCheck
         final String line = getLines()[parenAST.getLineNo() - 1];
         if (Utils.whitespaceBefore(parenAST.getColumnNo(), line)) {
             if (!allowLineBreaks) {
-                log(parenAST, "line.previous", parenAST.getText());
+                log(parenAST, LINE_PREVIOUS, parenAST.getText());
             }
         }
         else {
@@ -127,12 +146,12 @@ public class MethodParamPadCheck
             if ((PadOption.NOSPACE == getAbstractOption())
                 && (Character.isWhitespace(line.charAt(before))))
             {
-                log(parenAST , "ws.preceded", parenAST.getText());
+                log(parenAST , WS_PRECEDED, parenAST.getText());
             }
             else if ((PadOption.SPACE == getAbstractOption())
                      && !Character.isWhitespace(line.charAt(before)))
             {
-                log(parenAST, "ws.notPreceded", parenAST.getText());
+                log(parenAST, WS_NOT_PRECEDED, parenAST.getText());
             }
         }
     }

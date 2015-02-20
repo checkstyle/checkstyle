@@ -22,6 +22,11 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck
+.MSG_MULTIPLE_LINES;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck
+.MSG_SHOULD_BE_SEPARATED;
+
 public class EmptyLineSeparatorCheckTest
     extends BaseCheckTestSupport
 {
@@ -32,11 +37,11 @@ public class EmptyLineSeparatorCheckTest
         DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
 
         final String[] expected = {
-            "21: 'import' should be separated from previous statement.",
-            "35: 'CLASS_DEF' should be separated from previous statement.",
-            "38: 'VARIABLE_DEF' should be separated from previous statement.",
-            "39: 'STATIC_INIT' should be separated from previous statement.",
-            "77: 'INTERFACE_DEF' should be separated from previous statement.",
+            "21: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
+            "35: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+            "38: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "39: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "STATIC_INIT"),
+            "77: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
         };
         verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorCheck.java"), expected);
     }
@@ -49,10 +54,10 @@ public class EmptyLineSeparatorCheckTest
         checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "true");
 
         final String[] expected = {
-            "21: 'import' should be separated from previous statement.",
-            "35: 'CLASS_DEF' should be separated from previous statement.",
-            "39: 'STATIC_INIT' should be separated from previous statement.",
-            "77: 'INTERFACE_DEF' should be separated from previous statement.",
+            "21: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
+            "35: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+            "39: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "STATIC_INIT"),
+            "77: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
         };
         verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorCheck.java"), expected);
     }
@@ -62,7 +67,7 @@ public class EmptyLineSeparatorCheckTest
     {
         DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         final String[] expected = {
-            "19: 'package' should be separated from previous statement.",
+            "19: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
         };
         verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorCheckHeader.java"), expected);
     }
@@ -73,11 +78,11 @@ public class EmptyLineSeparatorCheckTest
         DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowMultipleEmptyLines", "false");
         final String[] expected = {
-            "21: 'package' has more than 1 empty lines before.",
-            "24: 'import' has more than 1 empty lines before.",
-            "33: 'VARIABLE_DEF' has more than 1 empty lines before.",
-            "38: 'VARIABLE_DEF' has more than 1 empty lines before.",
-            "43: 'METHOD_DEF' has more than 1 empty lines before.",
+            "21: " + getCheckMessage(MSG_MULTIPLE_LINES, "package"),
+            "24: " + getCheckMessage(MSG_MULTIPLE_LINES, "import"),
+            "33: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+            "38: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+            "43: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
         };
         verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorCheckMultipleEmptyLines.java"), expected);
     }

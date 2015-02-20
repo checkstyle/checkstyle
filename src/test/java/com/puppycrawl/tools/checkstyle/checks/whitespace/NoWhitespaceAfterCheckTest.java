@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck.MSG_KEY;
+
 public class NoWhitespaceAfterCheckTest
     extends BaseCheckTestSupport
 {
@@ -39,17 +41,17 @@ public class NoWhitespaceAfterCheckTest
     {
         checkConfig.addAttribute("allowLineBreaks", "false");
         final String[] expected = {
-            "5:14: '.' is followed by whitespace.",
-            "6:12: '.' is followed by whitespace.",
-            "29:14: '-' is followed by whitespace.",
-            "29:21: '+' is followed by whitespace.",
-            "31:15: '++' is followed by whitespace.",
-            "31:22: '--' is followed by whitespace.",
-            "111:22: '!' is followed by whitespace.",
-            "112:23: '~' is followed by whitespace.",
-            "129:24: '.' is followed by whitespace.",
-            "132:11: '.' is followed by whitespace.",
-            "136:12: '.' is followed by whitespace.",
+            "5:14: " + getCheckMessage(MSG_KEY, "."),
+            "6:12: " + getCheckMessage(MSG_KEY, "."),
+            "29:14: " + getCheckMessage(MSG_KEY, "-"),
+            "29:21: " + getCheckMessage(MSG_KEY, "+"),
+            "31:15: " + getCheckMessage(MSG_KEY, "++"),
+            "31:22: " + getCheckMessage(MSG_KEY, "--"),
+            "111:22: " + getCheckMessage(MSG_KEY, "!"),
+            "112:23: " + getCheckMessage(MSG_KEY, "~"),
+            "129:24: " + getCheckMessage(MSG_KEY, "."),
+            "132:11: " + getCheckMessage(MSG_KEY, "."),
+            "136:12: " + getCheckMessage(MSG_KEY, "."),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
@@ -59,9 +61,9 @@ public class NoWhitespaceAfterCheckTest
     {
         checkConfig.addAttribute("tokens", "DOT");
         final String[] expected = {
-            "5:14: '.' is followed by whitespace.",
-            "129:24: '.' is followed by whitespace.",
-            "136:12: '.' is followed by whitespace.",
+            "5:14: " + getCheckMessage(MSG_KEY, "."),
+            "129:24: " + getCheckMessage(MSG_KEY, "."),
+            "136:12: " + getCheckMessage(MSG_KEY, "."),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
@@ -71,9 +73,9 @@ public class NoWhitespaceAfterCheckTest
     {
         checkConfig.addAttribute("tokens", "TYPECAST");
         final String[] expected = {
-            "87:28: ')' is followed by whitespace.",
-            "89:23: ')' is followed by whitespace.",
-            "241:22: ')' is followed by whitespace.",
+            "87:28: " + getCheckMessage(MSG_KEY, ")"),
+            "89:23: " + getCheckMessage(MSG_KEY, ")"),
+            "241:22: " + getCheckMessage(MSG_KEY, ")"),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
@@ -83,22 +85,22 @@ public class NoWhitespaceAfterCheckTest
     {
         checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
         final String[] expected = {
-            "6:11: 'Object' is followed by whitespace.",
-            "8:22: 'someStuff3' is followed by whitespace.",
-            "9:8: 'int' is followed by whitespace.",
-            "10:13: 's' is followed by whitespace.",
-            "11:13: 'd' is followed by whitespace.",
-            "16:14: 'get' is followed by whitespace.",
-            "18:8: 'int' is followed by whitespace.",
-            "19:34: 'get1' is followed by whitespace.",
-            "28:8: 'int' is followed by whitespace.",
-            "29:12: 'cba' is followed by whitespace.",
-            "31:26: 'String' is followed by whitespace.",
-            "32:27: 'String' is followed by whitespace.",
-            "39:11: 'ar' is followed by whitespace.",
-            "39:24: 'int' is followed by whitespace.",
-            "40:16: 'int' is followed by whitespace.",
-            "43:63: 'getLongMultArray' is followed by whitespace.",
+            "6:11: " + getCheckMessage(MSG_KEY, "Object"),
+            "8:22: " + getCheckMessage(MSG_KEY, "someStuff3"),
+            "9:8: " + getCheckMessage(MSG_KEY, "int"),
+            "10:13: " + getCheckMessage(MSG_KEY, "s"),
+            "11:13: " + getCheckMessage(MSG_KEY, "d"),
+            "16:14: " + getCheckMessage(MSG_KEY, "get"),
+            "18:8: " + getCheckMessage(MSG_KEY, "int"),
+            "19:34: " + getCheckMessage(MSG_KEY, "get1"),
+            "28:8: " + getCheckMessage(MSG_KEY, "int"),
+            "29:12: " + getCheckMessage(MSG_KEY, "cba"),
+            "31:26: " + getCheckMessage(MSG_KEY, "String"),
+            "32:27: " + getCheckMessage(MSG_KEY, "String"),
+            "39:11: " + getCheckMessage(MSG_KEY, "ar"),
+            "39:24: " + getCheckMessage(MSG_KEY, "int"),
+            "40:16: " + getCheckMessage(MSG_KEY, "int"),
+            "43:63: " + getCheckMessage(MSG_KEY, "getLongMultArray"),
         };
         verify(checkConfig, getPath("whitespace/InputNoWhitespaceAfterArrayDeclarations.java"), expected);
     }

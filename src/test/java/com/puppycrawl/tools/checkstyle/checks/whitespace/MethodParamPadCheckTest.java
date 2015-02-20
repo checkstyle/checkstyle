@@ -23,6 +23,11 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.LINE_PREVIOUS;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck
+.WS_NOT_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.WS_PRECEDED;
+
 public class MethodParamPadCheckTest
     extends BaseCheckTestSupport
 {
@@ -38,22 +43,22 @@ public class MethodParamPadCheckTest
     public void testDefault() throws Exception
     {
         final String[] expected = {
-            "11:32: '(' is preceded with whitespace.",
-            "13:15: '(' is preceded with whitespace.",
-            "17:9: '(' should be on the previous line.",
-            "20:13: '(' should be on the previous line.",
-            "27:24: '(' is preceded with whitespace.",
-            "32:9: '(' should be on the previous line.",
-            "36:39: '(' is preceded with whitespace.",
-            "38:13: '(' should be on the previous line.",
-            "42:16: '(' is preceded with whitespace.",
-            "44:13: '(' should be on the previous line.",
-            "50:21: '(' is preceded with whitespace.",
-            "52:13: '(' should be on the previous line.",
-            "56:18: '(' is preceded with whitespace.",
-            "58:13: '(' should be on the previous line.",
-            "61:36: '(' is preceded with whitespace.",
-            "63:13: '(' should be on the previous line.",
+            "11:32: " + getCheckMessage(WS_PRECEDED, "("),
+            "13:15: " + getCheckMessage(WS_PRECEDED, "("),
+            "17:9: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "20:13: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "27:24: " + getCheckMessage(WS_PRECEDED, "("),
+            "32:9: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "36:39: " + getCheckMessage(WS_PRECEDED, "("),
+            "38:13: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "42:16: " + getCheckMessage(WS_PRECEDED, "("),
+            "44:13: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "50:21: " + getCheckMessage(WS_PRECEDED, "("),
+            "52:13: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "56:18: " + getCheckMessage(WS_PRECEDED, "("),
+            "58:13: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "61:36: " + getCheckMessage(WS_PRECEDED, "("),
+            "63:13: " + getCheckMessage(LINE_PREVIOUS, "("),
         };
         verify(checkConfig, getPath("whitespace/InputMethodParamPad.java"), expected);
     }
@@ -63,14 +68,14 @@ public class MethodParamPadCheckTest
     {
         checkConfig.addAttribute("allowLineBreaks", "true");
         final String[] expected = {
-            "11:32: '(' is preceded with whitespace.",
-            "13:15: '(' is preceded with whitespace.",
-            "27:24: '(' is preceded with whitespace.",
-            "36:39: '(' is preceded with whitespace.",
-            "42:16: '(' is preceded with whitespace.",
-            "50:21: '(' is preceded with whitespace.",
-            "56:18: '(' is preceded with whitespace.",
-            "61:36: '(' is preceded with whitespace.",
+            "11:32: " + getCheckMessage(WS_PRECEDED, "("),
+            "13:15: " + getCheckMessage(WS_PRECEDED, "("),
+            "27:24: " + getCheckMessage(WS_PRECEDED, "("),
+            "36:39: " + getCheckMessage(WS_PRECEDED, "("),
+            "42:16: " + getCheckMessage(WS_PRECEDED, "("),
+            "50:21: " + getCheckMessage(WS_PRECEDED, "("),
+            "56:18: " + getCheckMessage(WS_PRECEDED, "("),
+            "61:36: " + getCheckMessage(WS_PRECEDED, "("),
         };
         verify(checkConfig, getPath("whitespace/InputMethodParamPad.java"), expected);
     }
@@ -80,27 +85,27 @@ public class MethodParamPadCheckTest
     {
         checkConfig.addAttribute("option", "space");
         final String[] expected = {
-            "6:31: '(' is not preceded with whitespace.",
-            "8:14: '(' is not preceded with whitespace.",
-            "17:9: '(' should be on the previous line.",
-            "20:13: '(' should be on the previous line.",
-            "23:23: '(' is not preceded with whitespace.",
-            "32:9: '(' should be on the previous line.",
-            "35:58: '(' is not preceded with whitespace.",
-            "38:13: '(' should be on the previous line.",
-            "41:15: '(' is not preceded with whitespace.",
-            "44:13: '(' should be on the previous line.",
-            "47:28: '(' is not preceded with whitespace.",
-            "49:20: '(' is not preceded with whitespace.",
-            "52:13: '(' should be on the previous line.",
-            "54:56: '(' is not preceded with whitespace.",
-            "55:17: '(' is not preceded with whitespace.",
-            "58:13: '(' should be on the previous line.",
-            "60:35: '(' is not preceded with whitespace.",
-            "63:13: '(' should be on the previous line.",
-            "66:25: '(' is not preceded with whitespace.",
-            "69:66: '(' is not preceded with whitespace.",
-            "70:57: '(' is not preceded with whitespace.",
+            "6:31: " + getCheckMessage(WS_NOT_PRECEDED, "("),
+            "8:14: " + getCheckMessage(WS_NOT_PRECEDED, "("),
+            "17:9: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "20:13: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "23:23: " + getCheckMessage(WS_NOT_PRECEDED, "("),
+            "32:9: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "35:58: " + getCheckMessage(WS_NOT_PRECEDED, "("),
+            "38:13: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "41:15: " + getCheckMessage(WS_NOT_PRECEDED, "("),
+            "44:13: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "47:28: " + getCheckMessage(WS_NOT_PRECEDED, "("),
+            "49:20: " + getCheckMessage(WS_NOT_PRECEDED, "("),
+            "52:13: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "54:56: " + getCheckMessage(WS_NOT_PRECEDED, "("),
+            "55:17: " + getCheckMessage(WS_NOT_PRECEDED, "("),
+            "58:13: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "60:35: " + getCheckMessage(WS_NOT_PRECEDED, "("),
+            "63:13: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "66:25: " + getCheckMessage(WS_NOT_PRECEDED, "("),
+            "69:66: " + getCheckMessage(WS_NOT_PRECEDED, "("),
+            "70:57: " + getCheckMessage(WS_NOT_PRECEDED, "("),
         };
         verify(checkConfig, getPath("whitespace/InputMethodParamPad.java"), expected);
     }

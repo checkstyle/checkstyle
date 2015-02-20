@@ -50,6 +50,19 @@ for (
 public class EmptyForInitializerPadCheck
     extends AbstractOptionCheck<PadOption>
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_PRECEDED = "ws.preceded";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_NOT_PRECEDED = "ws.notPreceded";
+
     /**
      * Sets the paren pad otion to nospace.
      */
@@ -87,12 +100,12 @@ public class EmptyForInitializerPadCheck
                 if ((PadOption.NOSPACE == option)
                     && (Character.isWhitespace(line.charAt(before))))
                 {
-                    log(semi.getLineNo(), before, "ws.preceded", ";");
+                    log(semi.getLineNo(), before, MSG_PRECEDED, ";");
                 }
                 else if ((PadOption.SPACE == option)
                          && !Character.isWhitespace(line.charAt(before)))
                 {
-                    log(semi.getLineNo(), before, "ws.notPreceded", ";");
+                    log(semi.getLineNo(), before, MSG_NOT_PRECEDED, ";");
                 }
             }
         }

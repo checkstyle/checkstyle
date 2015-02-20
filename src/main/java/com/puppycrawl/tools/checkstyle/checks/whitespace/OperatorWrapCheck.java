@@ -90,6 +90,19 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 public class OperatorWrapCheck
     extends AbstractOptionCheck<WrapOption>
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String LINE_NEW = "line.new";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String LINE_PREVIOUS = "line.previous";
+
     /**
      * Sets the operator wrap option to new line.
      */
@@ -199,12 +212,12 @@ public class OperatorWrapCheck
             && (currentLine.substring(colNo + text.length())
                 .trim().length() == 0))
         {
-            log(lineNo, colNo, "line.new", text);
+            log(lineNo, colNo, LINE_NEW, text);
         }
         else if ((wOp == WrapOption.EOL)
                   && Utils.whitespaceBefore(colNo - 1, currentLine))
         {
-            log(lineNo, colNo, "line.previous", text);
+            log(lineNo, colNo, LINE_PREVIOUS, text);
         }
     }
 }

@@ -55,6 +55,13 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class WhitespaceAfterCheck
     extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String WS_NOT_FOLLOWED = "ws.notFollowed";
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -115,7 +122,7 @@ public class WhitespaceAfterCheck
                 }
                 log(targetAST.getLineNo(),
                     targetAST.getColumnNo() + targetAST.getText().length(),
-                    "ws.notFollowed",
+                    WS_NOT_FOLLOWED,
                     message);
             }
         }

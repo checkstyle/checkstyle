@@ -28,6 +28,19 @@ import java.util.List;
  */
 public class FileTabCharacterCheck extends AbstractFileSetCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String CONTAINS_TAB = "containsTab";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String FILE_CONTAINS_TAB = "file.containsTab";
+
     /** Indicates whether to report once per file, or for each line. */
     private boolean eachLine;
 
@@ -40,10 +53,10 @@ public class FileTabCharacterCheck extends AbstractFileSetCheck
             final int tabPosition = line.indexOf('\t');
             if (tabPosition != -1) {
                 if (eachLine) {
-                    log(lineNum, tabPosition + 1, "containsTab");
+                    log(lineNum, tabPosition + 1, CONTAINS_TAB);
                 }
                 else {
-                    log(lineNum, tabPosition + 1, "file.containsTab");
+                    log(lineNum, tabPosition + 1, FILE_CONTAINS_TAB);
                     break;
                 }
             }

@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck.MSG_KEY;
+
 public class NoWhitespaceBeforeCheckTest
     extends BaseCheckTestSupport
 {
@@ -38,14 +40,14 @@ public class NoWhitespaceBeforeCheckTest
     public void testDefault() throws Exception
     {
         final String[] expected = {
-            "30:14: '++' is preceded with whitespace.",
-            "30:21: '--' is preceded with whitespace.",
-            "176:18: ';' is preceded with whitespace.",
-            "178:23: ';' is preceded with whitespace.",
-            "185:18: ';' is preceded with whitespace.",
-            "187:27: ';' is preceded with whitespace.",
-            "195:26: ';' is preceded with whitespace.",
-            "211:15: ';' is preceded with whitespace.",
+            "30:14: " + getCheckMessage(MSG_KEY, "++"),
+            "30:21: " + getCheckMessage(MSG_KEY, "--"),
+            "176:18: " + getCheckMessage(MSG_KEY, ";"),
+            "178:23: " + getCheckMessage(MSG_KEY, ";"),
+            "185:18: " + getCheckMessage(MSG_KEY, ";"),
+            "187:27: " + getCheckMessage(MSG_KEY, ";"),
+            "195:26: " + getCheckMessage(MSG_KEY, ";"),
+            "211:15: " + getCheckMessage(MSG_KEY, ";"),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
@@ -55,11 +57,11 @@ public class NoWhitespaceBeforeCheckTest
     {
         checkConfig.addAttribute("tokens", "DOT");
         final String[] expected = {
-            "5:12: '.' is preceded with whitespace.",
-            "6:4: '.' is preceded with whitespace.",
-            "129:17: '.' is preceded with whitespace.",
-            "135:12: '.' is preceded with whitespace.",
-            "136:10: '.' is preceded with whitespace.",
+            "5:12: " + getCheckMessage(MSG_KEY, "."),
+            "6:4: " + getCheckMessage(MSG_KEY, "."),
+            "129:17: " + getCheckMessage(MSG_KEY, "."),
+            "135:12: " + getCheckMessage(MSG_KEY, "."),
+            "136:10: " + getCheckMessage(MSG_KEY, "."),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
@@ -70,9 +72,9 @@ public class NoWhitespaceBeforeCheckTest
         checkConfig.addAttribute("tokens", "DOT");
         checkConfig.addAttribute("allowLineBreaks", "yes");
         final String[] expected = {
-            "5:12: '.' is preceded with whitespace.",
-            "129:17: '.' is preceded with whitespace.",
-            "136:10: '.' is preceded with whitespace.",
+            "5:12: " + getCheckMessage(MSG_KEY, "."),
+            "129:17: " + getCheckMessage(MSG_KEY, "."),
+            "136:10: " + getCheckMessage(MSG_KEY, "."),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }

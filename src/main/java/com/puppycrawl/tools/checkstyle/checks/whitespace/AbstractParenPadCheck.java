@@ -33,6 +33,31 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 abstract class AbstractParenPadCheck
     extends AbstractOptionCheck<PadOption>
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String WS_FOLLOWED = "ws.followed";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String WS_NOT_FOLLOWED = "ws.notFollowed";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String WS_PRECEDED = "ws.preceded";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String WS_NOT_PRECEDED = "ws.notPreceded";
+
     /**
      * Sets the paren pad option to nospace.
      */
@@ -53,13 +78,13 @@ abstract class AbstractParenPadCheck
             if ((PadOption.NOSPACE == getAbstractOption())
                 && (Character.isWhitespace(line.charAt(after))))
             {
-                log(ast.getLineNo(), after, "ws.followed", "(");
+                log(ast.getLineNo(), after, WS_FOLLOWED, "(");
             }
             else if ((PadOption.SPACE == getAbstractOption())
                      && !Character.isWhitespace(line.charAt(after))
                      && (line.charAt(after) != ')'))
             {
-                log(ast.getLineNo(), after, "ws.notFollowed", "(");
+                log(ast.getLineNo(), after, WS_NOT_FOLLOWED, "(");
             }
         }
     }
@@ -77,14 +102,14 @@ abstract class AbstractParenPadCheck
                 && Character.isWhitespace(line.charAt(before))
                 && !Utils.whitespaceBefore(before, line))
             {
-                log(ast.getLineNo(), before, "ws.preceded", ")");
+                log(ast.getLineNo(), before, WS_PRECEDED, ")");
             }
             else if ((PadOption.SPACE == getAbstractOption())
                 && !Character.isWhitespace(line.charAt(before))
                 && (line.charAt(before) != '('))
             {
                 log(ast.getLineNo(), ast.getColumnNo(),
-                    "ws.notPreceded", ")");
+                    WS_NOT_PRECEDED, ")");
             }
         }
     }

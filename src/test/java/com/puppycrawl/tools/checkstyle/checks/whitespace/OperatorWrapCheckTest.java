@@ -23,6 +23,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.LINE_NEW;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.LINE_PREVIOUS;
+
 public class OperatorWrapCheckTest
     extends BaseCheckTestSupport
 {
@@ -39,11 +42,11 @@ public class OperatorWrapCheckTest
         throws Exception
     {
         final String[] expected = {
-            "15:19: '+' should be on a new line.",
-            "16:15: '-' should be on a new line.",
-            "24:18: '&&' should be on a new line.",
-            "39:30: '&' should be on a new line.",
-            "52:29: '&' should be on a new line.",
+            "15:19: " + getCheckMessage(LINE_NEW, "+"),
+            "16:15: " + getCheckMessage(LINE_NEW, "-"),
+            "24:18: " + getCheckMessage(LINE_NEW, "&&"),
+            "39:30: " + getCheckMessage(LINE_NEW, "&"),
+            "52:29: " + getCheckMessage(LINE_NEW, "&"),
         };
         verify(checkConfig, getPath("InputOpWrap.java"), expected);
     }
@@ -54,9 +57,9 @@ public class OperatorWrapCheckTest
     {
         checkConfig.addAttribute("option", WrapOption.EOL.toString());
         final String[] expected = {
-            "18:13: '-' should be on the previous line.",
-            "22:13: '&&' should be on the previous line.",
-            "27:13: '&&' should be on the previous line.",
+            "18:13: " + getCheckMessage(LINE_PREVIOUS, "-"),
+            "22:13: " + getCheckMessage(LINE_PREVIOUS, "&&"),
+            "27:13: " + getCheckMessage(LINE_PREVIOUS, "&&"),
         };
         verify(checkConfig, getPath("InputOpWrap.java"), expected);
     }
@@ -68,7 +71,7 @@ public class OperatorWrapCheckTest
         checkConfig.addAttribute("tokens", "ASSIGN");
         checkConfig.addAttribute("option", WrapOption.EOL.toString());
         final String[] expected = {
-            "33:13: '=' should be on the previous line.",
+            "33:13: " + getCheckMessage(LINE_PREVIOUS, "="),
         };
         verify(checkConfig, getPath("InputOpWrap.java"), expected);
     }

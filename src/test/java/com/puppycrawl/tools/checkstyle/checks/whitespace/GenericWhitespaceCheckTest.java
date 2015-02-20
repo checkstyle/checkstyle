@@ -28,6 +28,13 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck
+.WS_ILLEGAL_FOLLOW;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck
+.WS_NOT_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_PRECEDED;
+
 public class GenericWhitespaceCheckTest
     extends BaseCheckTestSupport
 {
@@ -48,32 +55,32 @@ public class GenericWhitespaceCheckTest
     public void testDefault() throws Exception
     {
         final String[] expected = {
-            "16:13: '<' is preceded with whitespace.",
-            "16:15: '<' is followed by whitespace.",
-            "16:23: '>' is preceded with whitespace.",
-            "16:43: '<' is preceded with whitespace.",
-            "16:45: '<' is followed by whitespace.",
-            "16:53: '>' is preceded with whitespace.",
-            "17:13: '<' is preceded with whitespace.",
-            "17:15: '<' is followed by whitespace.",
-            "17:20: '<' is preceded with whitespace.",
-            "17:22: '<' is followed by whitespace.",
-            "17:30: '>' is preceded with whitespace.",
-            "17:32: '>' is followed by whitespace.",
-            "17:32: '>' is preceded with whitespace.",
-            "17:52: '<' is preceded with whitespace.",
-            "17:54: '<' is followed by whitespace.",
-            "17:59: '<' is preceded with whitespace.",
-            "17:61: '<' is followed by whitespace.",
-            "17:69: '>' is preceded with whitespace.",
-            "17:71: '>' is followed by whitespace.",
-            "17:71: '>' is preceded with whitespace.",
-            "30:17: '<' is not preceded with whitespace.",
-            "30:21: '>' is followed by an illegal character.",
-            "42:21: '<' is preceded with whitespace.",
-            "42:30: '>' is followed by whitespace.",
-            "60:60: '&' is not preceded with whitespace.",
-            "63:60: '>' is followed by whitespace.",
+            "16:13: " + getCheckMessage(WS_PRECEDED, "<"),
+            "16:15: " + getCheckMessage(WS_FOLLOWED, "<"),
+            "16:23: " + getCheckMessage(WS_PRECEDED, ">"),
+            "16:43: " + getCheckMessage(WS_PRECEDED, "<"),
+            "16:45: " + getCheckMessage(WS_FOLLOWED, "<"),
+            "16:53: " + getCheckMessage(WS_PRECEDED, ">"),
+            "17:13: " + getCheckMessage(WS_PRECEDED, "<"),
+            "17:15: " + getCheckMessage(WS_FOLLOWED, "<"),
+            "17:20: " + getCheckMessage(WS_PRECEDED, "<"),
+            "17:22: " + getCheckMessage(WS_FOLLOWED, "<"),
+            "17:30: " + getCheckMessage(WS_PRECEDED, ">"),
+            "17:32: " + getCheckMessage(WS_FOLLOWED, ">"),
+            "17:32: " + getCheckMessage(WS_PRECEDED, ">"),
+            "17:52: " + getCheckMessage(WS_PRECEDED, "<"),
+            "17:54: " + getCheckMessage(WS_FOLLOWED, "<"),
+            "17:59: " + getCheckMessage(WS_PRECEDED, "<"),
+            "17:61: " + getCheckMessage(WS_FOLLOWED, "<"),
+            "17:69: " + getCheckMessage(WS_PRECEDED, ">"),
+            "17:71: " + getCheckMessage(WS_FOLLOWED, ">"),
+            "17:71: " + getCheckMessage(WS_PRECEDED, ">"),
+            "30:17: " + getCheckMessage(WS_NOT_PRECEDED, "<"),
+            "30:21: " + getCheckMessage(WS_ILLEGAL_FOLLOW, ">"),
+            "42:21: " + getCheckMessage(WS_PRECEDED, "<"),
+            "42:30: " + getCheckMessage(WS_FOLLOWED, ">"),
+            "60:60: " + getCheckMessage(WS_NOT_PRECEDED, "&"),
+            "63:60: " + getCheckMessage(WS_FOLLOWED, ">"),
         };
         verify(checkConfig,
                 getPath("whitespace/InputGenericWhitespaceCheck.java"),

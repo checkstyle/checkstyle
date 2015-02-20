@@ -65,6 +65,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class NoWhitespaceAfterCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "ws.followed";
+
     /** Whether whitespace is allowed if the AST is at a linebreak */
     private boolean allowLineBreaks = true;
 
@@ -118,7 +125,7 @@ public class NoWhitespaceAfterCheck extends Check
                  && hasRedundantWhitespace(line, after))
         {
             log(astNode.getLineNo(), after,
-                "ws.followed", astNode.getText());
+                MSG_KEY, astNode.getText());
         }
     }
 

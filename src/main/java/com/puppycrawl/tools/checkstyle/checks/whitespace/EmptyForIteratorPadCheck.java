@@ -50,6 +50,19 @@ for (Iterator foo = very.long.line.iterator();
 public class EmptyForIteratorPadCheck
     extends AbstractOptionCheck<PadOption>
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String WS_FOLLOWED = "ws.followed";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String WS_NOT_FOLLOWED = "ws.notFollowed";
+
     /**
      * Sets the paren pad otion to nospace.
      */
@@ -85,12 +98,12 @@ public class EmptyForIteratorPadCheck
                 if ((PadOption.NOSPACE == getAbstractOption())
                     && (Character.isWhitespace(line.charAt(after))))
                 {
-                    log(semi.getLineNo(), after, "ws.followed", ";");
+                    log(semi.getLineNo(), after, WS_FOLLOWED, ";");
                 }
                 else if ((PadOption.SPACE == getAbstractOption())
                          && !Character.isWhitespace(line.charAt(after)))
                 {
-                    log(semi.getLineNo(), after, "ws.notFollowed", ";");
+                    log(semi.getLineNo(), after, WS_NOT_FOLLOWED, ";");
                 }
             }
         }
