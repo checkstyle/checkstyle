@@ -55,4 +55,16 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport
 
         verify(checkConfig, getPath("metrics" + File.separator + "BooleanExpressionComplexityCheckTestInput.java"), expected);
     }
+
+    @Test
+    public void testNPE() throws Exception
+    {
+        DefaultConfiguration checkConfig =
+            createCheckConfig(BooleanExpressionComplexityCheck.class);
+
+        String[] expected = {
+        };
+
+        verify(checkConfig, getPath("metrics" + File.separator + "InputBooleanExpressionComplexityNPE.java"), expected);
+    }
 }

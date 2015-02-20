@@ -125,16 +125,33 @@ public final class BooleanExpressionComplexityCheck extends Check
             case TokenTypes.EXPR:
                 visitExpr();
                 break;
+            case TokenTypes.BOR:
+                if (!isPipeOperator(ast)) {
+                    context.visitBooleanOperator();
+                }
+                break;
             case TokenTypes.LAND:
             case TokenTypes.BAND:
             case TokenTypes.LOR:
-            case TokenTypes.BOR:
             case TokenTypes.BXOR:
                 context.visitBooleanOperator();
                 break;
             default:
                 throw new IllegalStateException(ast.toString());
         }
+    }
+
+    /**
+     * Checks if {@link TokenTypes#BOR binary OR} is applied to exceptions
+     * in
+     * <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.20">
+     * multi-catch</a> (pipe-syntax).
+     * @param binaryOr {@link TokenTypes#BOR binary or}
+     * @return true if binary or is applied to exceptions in multi-catch.
+     */
+    private static boolean isPipeOperator(DetailAST binaryOr)
+    {
+        return binaryOr.getParent().getType() == TokenTypes.TYPE;
     }
 
     @Override
