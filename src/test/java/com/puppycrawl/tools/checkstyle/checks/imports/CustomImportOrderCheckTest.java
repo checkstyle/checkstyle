@@ -23,6 +23,11 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_LEX;
+import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_LINE_SEPARATOR;
+import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_NONGROUP_IMPORT;
+import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_ORDER;
+
 public class CustomImportOrderCheckTest extends BaseCheckTestSupport
 {
     /**
@@ -40,17 +45,17 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
                         "STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE");
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
-            "4: Wrong lexicographical order for 'java.awt.Button.ABORT' import.",
-            "7: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "8: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "9: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "10: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "11: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "12: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "13: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "14: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "15: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "16: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "4: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT"),
+            "7: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "8: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "9: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "10: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "11: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "12: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "13: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "14: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "15: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "16: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator
@@ -72,11 +77,11 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
                 "STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE");
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
-            "4: Wrong lexicographical order for 'java.awt.Button.ABORT' import.",
-            "9: Wrong lexicographical order for 'java.awt.Dialog' import.",
-            "13: Wrong lexicographical order for 'java.io.File' import.",
-            "15: Wrong lexicographical order for 'java.io.InputStream' import.",
-            "20: Wrong lexicographical order for 'com.google.common.*' import.",
+            "4: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT"),
+            "9: " + getCheckMessage(MSG_LEX, "java.awt.Dialog"),
+            "13: " + getCheckMessage(MSG_LEX, "java.io.File"),
+            "15: " + getCheckMessage(MSG_LEX, "java.io.InputStream"),
+            "20: " + getCheckMessage(MSG_LEX, "com.google.common.*"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator
@@ -98,13 +103,13 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
                         "STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE###SAME_PACKAGE(3)");
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
-            "4: Wrong lexicographical order for 'java.awt.Button.ABORT' import.",
-            "9: Wrong lexicographical order for 'java.awt.Dialog' import.",
-            "13: Wrong lexicographical order for 'java.io.File' import.",
-            "15: Wrong lexicographical order for 'java.io.InputStream' import.",
-            "18: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
-            "20: Imports without groups should be placed at the end of the import list.",
-            "21: 'org.junit.*'should be separated from previous import group.",
+            "4: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT"),
+            "9: " + getCheckMessage(MSG_LEX, "java.awt.Dialog"),
+            "13: " + getCheckMessage(MSG_LEX, "java.io.File"),
+            "15: " + getCheckMessage(MSG_LEX, "java.io.InputStream"),
+            "18: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "20: " + getCheckMessage(MSG_NONGROUP_IMPORT),
+            "21: " + getCheckMessage(MSG_LINE_SEPARATOR, "org.junit.*"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator
@@ -121,11 +126,11 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
                 "STANDARD_JAVA_PACKAGE");
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
-            "7: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "8: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "9: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "10: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "11: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
+            "7: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "8: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "9: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "10: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "11: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator
@@ -142,13 +147,13 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
                 "STATIC###SAME_PACKAGE(3)");
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
-            "4: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
-            "5: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
-            "6: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
-            "7: Import statement is in the wrong order. Should be in the 'STATIC' group.",
-            "8: Import statement is in the wrong order. Should be in the 'STATIC' group.",
-            "10: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
-            "11: Import statement is in the wrong order. Should be in the 'STATIC' group.",
+            "4: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "5: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "6: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "7: " + getCheckMessage(MSG_ORDER, "STATIC"),
+            "8: " + getCheckMessage(MSG_ORDER, "STATIC"),
+            "10: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "11: " + getCheckMessage(MSG_ORDER, "STATIC"),
         };
 
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
@@ -164,11 +169,11 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("customImportOrderRules", "SAME_PACKAGE(3)");
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
-            "4: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
-            "6: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
-            "7: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
-            "8: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
-            "9: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
+            "4: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "6: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "7: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "8: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "9: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
         };
 
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
@@ -187,13 +192,13 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
                 "STATIC###SAME_PACKAGE(3)");
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
-            "4: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
-            "5: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
-            "6: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
-            "7: Import statement is in the wrong order. Should be in the 'STATIC' group.",
-            "8: Import statement is in the wrong order. Should be in the 'STATIC' group.",
-            "10: Import statement is in the wrong order. Should be in the 'SAME_PACKAGE' group.",
-            "11: Import statement is in the wrong order. Should be in the 'STATIC' group.",
+            "4: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "5: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "6: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "7: " + getCheckMessage(MSG_ORDER, "STATIC"),
+            "8: " + getCheckMessage(MSG_ORDER, "STATIC"),
+            "10: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "11: " + getCheckMessage(MSG_ORDER, "STATIC"),
         };
 
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
@@ -228,7 +233,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("customImportOrderRules",
                 "STATIC###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE");
         final String[] expected = {
-            "5: Import statement is in the wrong order. Should be in the 'THIRD_PARTY_PACKAGE' group.",
+            "5: " + getCheckMessage(MSG_ORDER, "THIRD_PARTY_PACKAGE"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator
@@ -250,18 +255,18 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
 
         final String[] expected = {
-            "7: Wrong lexicographical order for 'java.awt.Button.ABORT' import.",
-            "10: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "11: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "12: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "13: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "14: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "15: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "16: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "17: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "18: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "19: Import statement is in the wrong order. Should be in the 'STANDARD_JAVA_PACKAGE' group.",
-            "23: Wrong lexicographical order for 'com.google.common.*' import.",
+            "7: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT"),
+            "10: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "11: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "12: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "13: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "14: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "15: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "16: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "17: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "18: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "19: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "23: " + getCheckMessage(MSG_LEX, "com.google.common.*"),
         };
 
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
@@ -295,7 +300,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
                 "SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STATIC###"
                 + "SPECIAL_IMPORTS");
         final String[] expected = {
-            "11: Import statement is in the wrong order. Should be in the 'THIRD_PARTY_PACKAGE' group.",
+            "11: " + getCheckMessage(MSG_ORDER, "THIRD_PARTY_PACKAGE"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator

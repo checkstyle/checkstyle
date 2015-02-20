@@ -65,6 +65,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class AvoidStarImportCheck
     extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "import.avoidStar";
+
     /** the packages/classes to exempt from this check. */
     private final List<String> excludes = Lists.newArrayList();
 
@@ -143,7 +150,7 @@ public class AvoidStarImportCheck
     {
         final FullIdent name = FullIdent.createFullIdent(startingDot);
         if (isStaredImport(name) && !excludes.contains(name.getText())) {
-            log(startingDot.getLineNo(), "import.avoidStar", name.getText());
+            log(startingDot.getLineNo(), MSG_KEY, name.getText());
         }
     }
 

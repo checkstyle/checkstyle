@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck.MSG_KEY;
+
 public class AvoidStarImportTest
     extends BaseCheckTestSupport
 {
@@ -33,12 +35,12 @@ public class AvoidStarImportTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStarImportCheck.class);
         final String[] expected = {
-            "7: Using the '.*' form of import should be avoided - com.puppycrawl.tools.checkstyle.imports.*.",
-            "9: Using the '.*' form of import should be avoided - java.io.*.",
-            "10: Using the '.*' form of import should be avoided - java.lang.*.",
-            "25: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
-            "26: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
-            "28: Using the '.*' form of import should be avoided - java.io.File.*.",
+            "7: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.imports.*"),
+            "9: " + getCheckMessage(MSG_KEY, "java.io.*"),
+            "10: " + getCheckMessage(MSG_KEY, "java.lang.*"),
+            "25: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "26: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "28: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputAvoidStarImportCheck.java"),
@@ -55,8 +57,8 @@ public class AvoidStarImportTest
             "java.io,java.lang,javax.swing.WindowConstants.*, javax.swing.WindowConstants");
         // allow the java.io/java.lang,javax.swing.WindowConstants star imports
         final String[] expected2 = new String[] {
-            "7: Using the '.*' form of import should be avoided - com.puppycrawl.tools.checkstyle.imports.*.",
-            "28: Using the '.*' form of import should be avoided - java.io.File.*.",
+            "7: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.imports.*"),
+            "28: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
         verify(checkConfig, getPath("imports" + File.separator + "InputAvoidStarImportCheck.java"),
                 expected2);
@@ -69,9 +71,9 @@ public class AvoidStarImportTest
         checkConfig.addAttribute("allowClassImports", "true");
         // allow all class star imports
         final String[] expected2 = new String[] {
-            "25: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
-            "26: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
-            "28: Using the '.*' form of import should be avoided - java.io.File.*.", };
+            "25: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "26: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "28: " + getCheckMessage(MSG_KEY, "java.io.File.*"), };
         verify(checkConfig, getPath("imports" + File.separator
             + "InputAvoidStarImportCheck.java"), expected2);
     }

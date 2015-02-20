@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_DISALLOWED;
+
 public class ImportControlCheckRegExTest extends BaseCheckTestSupport
 {
     @Test
@@ -31,7 +33,7 @@ public class ImportControlCheckRegExTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file",
                 "src/test/resources/com/puppycrawl/tools/checkstyle/import-control_one-re.xml");
-        final String[] expected = {"5:1: Disallowed import - java.io.File."};
+        final String[] expected = {"5:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File")};
 
         verify(checkConfig, getPath("imports" + File.separator
                 + "InputImportControl.java"), expected);
@@ -44,9 +46,9 @@ public class ImportControlCheckRegExTest extends BaseCheckTestSupport
         checkConfig.addAttribute("file",
                 "src/test/resources/com/puppycrawl/tools/checkstyle/import-control_two-re.xml");
         final String[] expected = {
-            "3:1: Disallowed import - java.awt.Image.",
-            "4:1: Disallowed import - javax.swing.border.*.",
-            "6:1: Disallowed import - java.awt.Button.ABORT.",
+            "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
+            "4:1: " + getCheckMessage(MSG_DISALLOWED, "javax.swing.border.*"),
+            "6:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Button.ABORT"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator

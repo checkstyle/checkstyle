@@ -23,6 +23,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_ORDERING;
+import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_SEPARATION;
+
 public class ImportOrderCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -31,10 +34,10 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(ImportOrderCheck.class);
         final String[] expected = {
-            "5: Wrong order for 'java.awt.Dialog' import.",
-            "9: Wrong order for 'javax.swing.JComponent' import.",
-            "11: Wrong order for 'java.io.File' import.",
-            "13: Wrong order for 'java.io.IOException' import.",
+            "5: " + getCheckMessage(MSG_ORDERING, "java.awt.Dialog"),
+            "9: " + getCheckMessage(MSG_ORDERING, "javax.swing.JComponent"),
+            "11: " + getCheckMessage(MSG_ORDERING, "java.io.File"),
+            "13: " + getCheckMessage(MSG_ORDERING, "java.io.IOException"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder.java"), expected);
@@ -48,9 +51,9 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("groups", "javax.swing");
         checkConfig.addAttribute("groups", "java.io");
         final String[] expected = {
-            "5: Wrong order for 'java.awt.Dialog' import.",
-            "13: Wrong order for 'java.io.IOException' import.",
-            "16: Wrong order for 'javax.swing.WindowConstants.*' import.",
+            "5: " + getCheckMessage(MSG_ORDERING, "java.awt.Dialog"),
+            "13: " + getCheckMessage(MSG_ORDERING, "java.io.IOException"),
+            "16: " + getCheckMessage(MSG_ORDERING, "javax.swing.WindowConstants.*"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder.java"), expected);
@@ -63,7 +66,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("groups", "java, /^javax?\\.(awt|swing)\\./");
         checkConfig.addAttribute("ordered", "false");
         final String[] expected = {
-            "11: Wrong order for 'java.io.File' import.",
+            "11: " + getCheckMessage(MSG_ORDERING, "java.io.File"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder.java"), expected);
@@ -77,9 +80,9 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("separated", "true");
         checkConfig.addAttribute("ordered", "false");
         final String[] expected = {
-            "9: 'javax.swing.JComponent' should be separated from previous imports.",
-            "11: 'java.io.File' should be separated from previous imports.",
-            "16: Wrong order for 'javax.swing.WindowConstants.*' import.",
+            "9: " + getCheckMessage(MSG_SEPARATION, "javax.swing.JComponent"),
+            "11: " + getCheckMessage(MSG_SEPARATION, "java.io.File"),
+            "16: " + getCheckMessage(MSG_ORDERING, "javax.swing.WindowConstants.*"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder.java"), expected);
@@ -103,8 +106,8 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
             createCheckConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("option", "top");
         final String[] expected = {
-            "4: Wrong order for 'java.awt.Button.ABORT' import.",
-            "18: Wrong order for 'java.io.File.*' import.",
+            "4: " + getCheckMessage(MSG_ORDERING, "java.awt.Button.ABORT"),
+            "18: " + getCheckMessage(MSG_ORDERING, "java.io.File.*"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_Top.java"), expected);
@@ -117,10 +120,10 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
             createCheckConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("option", "above");
         final String[] expected = {
-            "5: Wrong order for 'java.awt.Button.ABORT' import.",
-            "8: Wrong order for 'java.awt.Dialog' import.",
-            "13: Wrong order for 'java.io.File' import.",
-            "14: Wrong order for 'java.io.File.createTempFile' import.",
+            "5: " + getCheckMessage(MSG_ORDERING, "java.awt.Button.ABORT"),
+            "8: " + getCheckMessage(MSG_ORDERING, "java.awt.Dialog"),
+            "13: " + getCheckMessage(MSG_ORDERING, "java.io.File"),
+            "14: " + getCheckMessage(MSG_ORDERING, "java.io.File.createTempFile"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_Above.java"), expected);
@@ -133,12 +136,13 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
             createCheckConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("option", "inflow");
         final String[] expected = {
-            "6: Wrong order for 'java.awt.Dialog' import.",
-            "11: Wrong order for 'javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE' import.",
-            "12: Wrong order for 'javax.swing.WindowConstants.*' import.",
-            "13: Wrong order for 'javax.swing.JTable' import.",
-            "15: Wrong order for 'java.io.File.createTempFile' import.",
-            "16: Wrong order for 'java.io.File' import.",
+            "6: " + getCheckMessage(MSG_ORDERING, "java.awt.Dialog"),
+            "11: " + getCheckMessage(MSG_ORDERING,
+                     "javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE"),
+            "12: " + getCheckMessage(MSG_ORDERING, "javax.swing.WindowConstants.*"),
+            "13: " + getCheckMessage(MSG_ORDERING, "javax.swing.JTable"),
+            "15: " + getCheckMessage(MSG_ORDERING, "java.io.File.createTempFile"),
+            "16: " + getCheckMessage(MSG_ORDERING, "java.io.File"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_InFlow.java"), expected);
@@ -153,8 +157,8 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("option", "under");
         final String[] expected = {
             "5: Wrong order for 'java.awt.Dialog' import.",
-            "11: Wrong order for 'java.awt.Button.ABORT' import.",
-            "14: Wrong order for 'java.io.File' import.",
+            "11: " + getCheckMessage(MSG_ORDERING, "java.awt.Button.ABORT"),
+            "14: " + getCheckMessage(MSG_ORDERING, "java.io.File"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_Under.java"), expected);
@@ -167,9 +171,9 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
             createCheckConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("option", "bottom");
         final String[] expected = {
-            "15: Wrong order for 'java.io.File' import.",
-            "18: Wrong order for 'java.awt.Button.ABORT' import.",
-            "21: Wrong order for 'java.io.Reader' import.",
+            "15: " + getCheckMessage(MSG_ORDERING, "java.io.File"),
+            "18: " + getCheckMessage(MSG_ORDERING, "java.awt.Button.ABORT"),
+            "21: " + getCheckMessage(MSG_ORDERING, "java.io.Reader"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_Bottom.java"), expected);
@@ -182,7 +186,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
             createCheckConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("tokens", "IMPORT");
         final String[] expected = {
-            "6: Wrong order for 'java.awt.Button' import.",
+            "6: " + getCheckMessage(MSG_ORDERING, "java.awt.Button"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_HonorsTokensProperty.java"), expected);
@@ -194,7 +198,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("groups", "com,*,java");
         final String[] expected = {
-            "9: Wrong order for 'javax.crypto.Cipher' import.",
+            "9: " + getCheckMessage(MSG_ORDERING, "javax.crypto.Cipher"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_Wildcard.java"), expected);

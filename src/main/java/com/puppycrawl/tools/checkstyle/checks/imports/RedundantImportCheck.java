@@ -54,6 +54,25 @@ import java.util.Set;
 public class RedundantImportCheck
     extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_LANG = "import.lang";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_SAME = "import.same";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_DUPLICATE = "import.duplicate";
+
     /** name of package in file */
     private String pkgName;
     /** set of the imports */
@@ -97,18 +116,18 @@ public class RedundantImportCheck
         else if (ast.getType() == TokenTypes.IMPORT) {
             final FullIdent imp = FullIdent.createFullIdentBelow(ast);
             if (fromPackage(imp.getText(), "java.lang")) {
-                log(ast.getLineNo(), ast.getColumnNo(), "import.lang",
+                log(ast.getLineNo(), ast.getColumnNo(), MSG_LANG,
                     imp.getText());
             }
             else if (fromPackage(imp.getText(), pkgName)) {
-                log(ast.getLineNo(), ast.getColumnNo(), "import.same",
+                log(ast.getLineNo(), ast.getColumnNo(), MSG_SAME,
                     imp.getText());
             }
             // Check for a duplicate import
             for (FullIdent full : imports) {
                 if (imp.getText().equals(full.getText())) {
                     log(ast.getLineNo(), ast.getColumnNo(),
-                            "import.duplicate", full.getLineNo(),
+                            MSG_DUPLICATE, full.getLineNo(),
                             imp.getText());
                 }
             }
@@ -123,7 +142,7 @@ public class RedundantImportCheck
             for (FullIdent full : staticImports) {
                 if (imp.getText().equals(full.getText())) {
                     log(ast.getLineNo(), ast.getColumnNo(),
-                        "import.duplicate", full.getLineNo(), imp.getText());
+                        MSG_DUPLICATE, full.getLineNo(), imp.getText());
                 }
             }
 

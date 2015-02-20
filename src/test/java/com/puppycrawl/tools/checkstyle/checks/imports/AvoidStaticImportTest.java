@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck.MSG_KEY;
+
 public class AvoidStaticImportTest
     extends BaseCheckTestSupport
 {
@@ -33,11 +35,11 @@ public class AvoidStaticImportTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStaticImportCheck.class);
         final String[] expected = {
-            "23: Using a static member import should be avoided - java.io.File.listRoots.",
-            "25: Using a static member import should be avoided - javax.swing.WindowConstants.*.",
-            "26: Using a static member import should be avoided - javax.swing.WindowConstants.*.",
-            "27: Using a static member import should be avoided - java.io.File.createTempFile.",
-            "28: Using a static member import should be avoided - java.io.File.pathSeparator.",
+            "23: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
+            "25: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "26: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "27: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
+            "28: " + getCheckMessage(MSG_KEY, "java.io.File.pathSeparator"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputAvoidStaticImportCheck.java"), expected);
@@ -52,8 +54,8 @@ public class AvoidStaticImportTest
         checkConfig.addAttribute("excludes", "java.io.File.*,sun.net.ftpclient.FtpClient.*");
         // allow the java.io.File.*/sun.net.ftpclient.FtpClient.* star imports
         final String[] expected = {
-            "25: Using a static member import should be avoided - javax.swing.WindowConstants.*.",
-            "26: Using a static member import should be avoided - javax.swing.WindowConstants.*.",
+            "25: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "26: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
         };
         verify(checkConfig, getPath("imports" + File.separator + "InputAvoidStaticImportCheck.java"), expected);
     }
@@ -67,10 +69,10 @@ public class AvoidStaticImportTest
         checkConfig.addAttribute("excludes", "java.io.File.listRoots");
         // allow the java.io.File.listRoots member imports
         final String[] expected = {
-            "25: Using a static member import should be avoided - javax.swing.WindowConstants.*.",
-            "26: Using a static member import should be avoided - javax.swing.WindowConstants.*.",
-            "27: Using a static member import should be avoided - java.io.File.createTempFile.",
-            "28: Using a static member import should be avoided - java.io.File.pathSeparator.",
+            "25: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "26: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "27: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
+            "28: " + getCheckMessage(MSG_KEY, "java.io.File.pathSeparator"),
         };
         verify(checkConfig, getPath("imports" + File.separator + "InputAvoidStaticImportCheck.java"), expected);
     }
@@ -87,11 +89,11 @@ public class AvoidStaticImportTest
             + "sun.net.ftpclient.FtpClient.*FtpClient, sun.net.ftpclient.FtpClientjunk, java.io.File.listRootsmorejunk");
         // allow the java.io.File.listRoots member imports
         final String[] expected = {
-            "23: Using a static member import should be avoided - java.io.File.listRoots.",
-            "25: Using a static member import should be avoided - javax.swing.WindowConstants.*.",
-            "26: Using a static member import should be avoided - javax.swing.WindowConstants.*.",
-            "27: Using a static member import should be avoided - java.io.File.createTempFile.",
-            "28: Using a static member import should be avoided - java.io.File.pathSeparator.",
+            "23: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
+            "25: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "26: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "27: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
+            "28: " + getCheckMessage(MSG_KEY, "java.io.File.pathSeparator"),
         };
         verify(checkConfig, getPath("imports" + File.separator + "InputAvoidStaticImportCheck.java"), expected);
     }
