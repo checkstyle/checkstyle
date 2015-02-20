@@ -30,6 +30,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class ClassDataAbstractionCouplingCheck
     extends AbstractClassCouplingCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "classDataAbstractionCoupling";
+
     /** Default allowed complexity. */
     private static final int DEFAULT_MAX = 7;
 
@@ -67,6 +74,6 @@ public final class ClassDataAbstractionCouplingCheck
     @Override
     protected String getLogMessageId()
     {
-        return "classDataAbstractionCoupling";
+        return MSG_KEY;
     }
 }

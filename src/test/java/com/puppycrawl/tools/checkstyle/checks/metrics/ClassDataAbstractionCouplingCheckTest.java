@@ -23,6 +23,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck
+.MSG_KEY;
+
 public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -35,9 +38,9 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("excludedClasses", "InnerClass");
 
         String[] expected = {
-            "6:1: Class Data Abstraction Coupling is 4 (max allowed is 0) classes [AnotherInnerClass, HashMap, HashSet, int].",
-            "7:5: Class Data Abstraction Coupling is 1 (max allowed is 0) classes [ArrayList].",
-            "27:1: Class Data Abstraction Coupling is 2 (max allowed is 0) classes [HashMap, HashSet].",
+            "6:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
+            "7:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
+            "27:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
         };
 
         verify(checkConfig,

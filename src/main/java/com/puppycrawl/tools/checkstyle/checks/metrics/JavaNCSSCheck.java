@@ -37,6 +37,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class JavaNCSSCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_METHOD = "ncss.method";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_CLASS = "ncss.class";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_FILE = "ncss.file";
+
     /** default constant for max file ncss */
     private static final int FILE_MAX_NCSS = 2000;
 
@@ -210,7 +229,7 @@ public class JavaNCSSCheck extends Check
 
             final int count = counter.getCount();
             if (count > methodMax) {
-                log(ast.getLineNo(), ast.getColumnNo(), "ncss.method",
+                log(ast.getLineNo(), ast.getColumnNo(), MSG_METHOD,
                         count, methodMax);
             }
         }
@@ -220,7 +239,7 @@ public class JavaNCSSCheck extends Check
 
             final int count = counter.getCount();
             if (count > classMax) {
-                log(ast.getLineNo(), ast.getColumnNo(), "ncss.class",
+                log(ast.getLineNo(), ast.getColumnNo(), MSG_CLASS,
                         count, classMax);
             }
         }
@@ -234,7 +253,7 @@ public class JavaNCSSCheck extends Check
 
         final int count = counter.getCount();
         if (count > fileMax) {
-            log(rootAST.getLineNo(), rootAST.getColumnNo(), "ncss.file",
+            log(rootAST.getLineNo(), rootAST.getColumnNo(), MSG_FILE,
                     count, fileMax);
         }
     }

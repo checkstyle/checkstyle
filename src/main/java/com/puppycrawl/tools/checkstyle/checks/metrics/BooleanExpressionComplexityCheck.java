@@ -33,6 +33,13 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  */
 public final class BooleanExpressionComplexityCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "booleanExpressionComplexity";
+
     /** Default allowed complexity. */
     private static final int DEFAULT_MAX = 3;
 
@@ -230,7 +237,7 @@ public final class BooleanExpressionComplexityCheck extends Check
                 final DetailAST parentAST = ast.getParent();
 
                 log(parentAST.getLineNo(), parentAST.getColumnNo(),
-                    "booleanExpressionComplexity", count, getMax());
+                    MSG_KEY, count, getMax());
             }
         }
     }

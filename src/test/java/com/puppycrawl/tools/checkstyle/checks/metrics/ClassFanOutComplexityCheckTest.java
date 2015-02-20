@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck.MSG_KEY;
+
 public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -33,7 +35,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("max", "0");
 
         String[] expected = {
-            "6:1: Class Fan-Out Complexity is 3 (max allowed is 0).",
+            "6:1: " + getCheckMessage(MSG_KEY, 3, 0),
         };
 
         verify(checkConfig,

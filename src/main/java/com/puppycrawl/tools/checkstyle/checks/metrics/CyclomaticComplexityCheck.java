@@ -37,6 +37,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class CyclomaticComplexityCheck
     extends AbstractComplexityCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "cyclomaticComplexity";
+
     /** default allowed complexity */
     private static final int DEFAULT_VALUE = 10;
 
@@ -95,6 +102,6 @@ public class CyclomaticComplexityCheck
     @Override
     protected final String getMessageID()
     {
-        return "cyclomaticComplexity";
+        return MSG_KEY;
     }
 }

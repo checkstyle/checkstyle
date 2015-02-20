@@ -23,6 +23,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck
+.MSG_KEY;
+
 public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -32,8 +35,8 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport
             createCheckConfig(BooleanExpressionComplexityCheck.class);
 
         String[] expected = {
-            "13:9: Boolean expression complexity is 4 (max allowed is 3).",
-            "32:9: Boolean expression complexity is 6 (max allowed is 3).",
+            "13:9: " + getCheckMessage(MSG_KEY, 4, 3),
+            "32:9: " + getCheckMessage(MSG_KEY, 6, 3),
         };
 
         verify(checkConfig, getPath("metrics" + File.separator + "BooleanExpressionComplexityCheckTestInput.java"), expected);

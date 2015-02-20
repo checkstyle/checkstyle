@@ -30,6 +30,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "classFanOutComplexity";
+
     /** default value of max value. */
     private static final int DEFAULT_MAX = 20;
 
@@ -72,6 +79,6 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
     @Override
     protected String getLogMessageId()
     {
-        return "classFanOutComplexity";
+        return MSG_KEY;
     }
 }
