@@ -29,6 +29,19 @@ import java.util.List;
  */
 public class HeaderCheck extends AbstractHeaderCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_MISSING = "header.missing";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_MISMATCH = "header.mismatch";
+
     /** empty array to avoid instantiations. */
     private static final int[] EMPTY_INT_ARRAY = new int[0];
 
@@ -77,12 +90,12 @@ public class HeaderCheck extends AbstractHeaderCheck
     protected void processFiltered(File file, List<String> lines)
     {
         if (getHeaderLines().size() > lines.size()) {
-            log(1, "header.missing");
+            log(1, MSG_MISSING);
         }
         else {
             for (int i = 0; i < getHeaderLines().size(); i++) {
                 if (!isMatch(i, lines.get(i))) {
-                    log(i + 1, "header.mismatch", getHeaderLines().get(i));
+                    log(i + 1, MSG_MISMATCH, getHeaderLines().get(i));
                     break; // stop checking
                 }
             }

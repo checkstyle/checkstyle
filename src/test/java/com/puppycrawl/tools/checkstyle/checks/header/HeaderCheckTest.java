@@ -29,6 +29,9 @@ import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
+import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISMATCH;
+import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISSING;
+
 public class HeaderCheckTest extends BaseFileSetCheckTestSupport
 {
     @Test
@@ -39,7 +42,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
         checkConfig.addAttribute("headerFile", getPath("configs/java.header"));
         checkConfig.addAttribute("ignoreLines", "");
         final String[] expected = {
-            "1: Missing a header - not enough lines in file.",
+            "1: " + getCheckMessage(MSG_MISSING),
         };
         verify(checkConfig, getPath("inputHeader.java"), expected);
     }
@@ -51,7 +54,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
             createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header"));
         final String[] expected = {
-            "3: Line does not match expected header line of '// Created: 2002'.",
+            "3: " + getCheckMessage(MSG_MISMATCH, "// Created: 2002"),
         };
         verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
     }
@@ -64,7 +67,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
         URI uri = (new File(getPath("regexp.header"))).toURI();
         checkConfig.addAttribute("headerFile", uri.toString());
         final String[] expected = {
-            "3: Line does not match expected header line of '// Created: 2002'.",
+            "3: " + getCheckMessage(MSG_MISMATCH, "// Created: 2002"),
         };
         verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
     }
@@ -76,7 +79,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
             createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("header", "^/*$\\n// .*\\n// Created: 2002\\n^//.*\\n^//.*");
         final String[] expected = {
-            "3: Line does not match expected header line of '// Created: 2002'.",
+            "3: " + getCheckMessage(MSG_MISMATCH, "// Created: 2002"),
         };
         verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
     }
@@ -163,7 +166,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
         checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
         checkConfig.addAttribute("multiLines", "3");
         final String[] expected = {
-            "1: Missing a header - not enough lines in file.",
+            "1: " + getCheckMessage(MSG_MISSING),
         };
         verify(checkConfig, getPath("InputRegexpHeader4.java"), expected);
     }
