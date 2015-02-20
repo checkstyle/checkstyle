@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheck.MSG_KEY;
+
 public class InterfaceIsTypeCheckTest
     extends BaseCheckTestSupport
 {
@@ -32,7 +34,7 @@ public class InterfaceIsTypeCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(InterfaceIsTypeCheck.class);
         final String[] expected = {
-            "25: interfaces should describe a type and hence have methods.",
+            "25: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputInterfaceIsType.java"), expected);
     }
@@ -45,8 +47,8 @@ public class InterfaceIsTypeCheckTest
             createCheckConfig(InterfaceIsTypeCheck.class);
         checkConfig.addAttribute("allowMarkerInterfaces", "false");
         final String[] expected = {
-            "20: interfaces should describe a type and hence have methods.",
-            "25: interfaces should describe a type and hence have methods.",
+            "20: " + getCheckMessage(MSG_KEY),
+            "25: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputInterfaceIsType.java"), expected);
     }

@@ -24,6 +24,8 @@ import org.junit.Test;
 
 import java.io.File;
 
+import static com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck.MSG_KEY;
+
 public class MutableExceptionCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -32,8 +34,8 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport
         DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
 
         String[] expected = {
-            "6:9: The field 'errorCode' must be declared final.",
-            "23:9: The field 'errorCode' must be declared final.",
+            "6:9: " + getCheckMessage(MSG_KEY, "errorCode"),
+            "23:9: " + getCheckMessage(MSG_KEY, "errorCode"),
         };
 
         verify(checkConfig, getPath("design" + File.separator + "InputMutableException.java"), expected);
@@ -46,7 +48,7 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("format", "^.*Failure$");
         checkConfig.addAttribute("extendedClassNameFormat", "^.*ThreadDeath$");
         String[] expected = {
-            "34:13: The field 'errorCode' must be declared final.",
+            "34:13: " + getCheckMessage(MSG_KEY, "errorCode"),
         };
 
         verify(checkConfig, getPath("design" + File.separator + "InputMutableException.java"), expected);

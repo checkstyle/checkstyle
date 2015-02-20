@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck.MSG_KEY;
+
 public class ThrowsCountCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -31,9 +33,9 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport
         DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
 
         String[] expected = {
-            "14:20: Throws count is 2 (max allowed is 1).",
-            "18:20: Throws count is 2 (max allowed is 1).",
-            "22:20: Throws count is 3 (max allowed is 1).",
+            "14:20: " + getCheckMessage(MSG_KEY, 2, 1),
+            "18:20: " + getCheckMessage(MSG_KEY, 2, 1),
+            "22:20: " + getCheckMessage(MSG_KEY, 3, 1),
         };
 
         verify(checkConfig, getPath("design" + File.separator + "InputThrowsCount.java"), expected);
@@ -46,7 +48,7 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("max", "2");
 
         String[] expected = {
-            "22:20: Throws count is 3 (max allowed is 2).",
+            "22:20: " + getCheckMessage(MSG_KEY, 3, 2),
         };
 
         verify(checkConfig, getPath("design" + File.separator + "InputThrowsCount.java"), expected);

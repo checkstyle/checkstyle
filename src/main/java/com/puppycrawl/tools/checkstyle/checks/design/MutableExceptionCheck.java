@@ -38,6 +38,13 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  */
 public final class MutableExceptionCheck extends AbstractFormatCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "mutable.exception";
+
     /** Default value for format and extendedClassNameFormat properties. */
     private static final String DEFAULT_FORMAT = "^.*Exception$|^.*Error$|^.*Throwable$";
     /** Pattern for class name that is being extended */
@@ -135,7 +142,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
                 ast.findFirstToken(TokenTypes.MODIFIERS);
 
             if (modifiersAST.findFirstToken(TokenTypes.FINAL) == null) {
-                log(ast.getLineNo(),  ast.getColumnNo(), "mutable.exception",
+                log(ast.getLineNo(),  ast.getColumnNo(), MSG_KEY,
                         ast.findFirstToken(TokenTypes.IDENT).getText());
             }
         }

@@ -81,6 +81,12 @@ public class OneTopLevelClassCheck extends Check
 {
 
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "one.top.level.class";
+
+    /**
      * True if a java source file contains a type
      * with a public access level modifier.
      */
@@ -129,7 +135,7 @@ public class OneTopLevelClassCheck extends Check
         for (Map.Entry<Integer, String> entry
                 : lineNumberTypeMap.entrySet())
         {
-            log(entry.getKey(), "one.top.level.class", entry.getValue());
+            log(entry.getKey(), MSG_KEY, entry.getValue());
         }
 
         lineNumberTypeMap.clear();

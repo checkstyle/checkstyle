@@ -40,6 +40,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class FinalClassCheck
     extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "final.class";
+
     /** Keeps ClassDesc objects for stack of declared classes. */
     private final FastStack<ClassDesc> classes = FastStack.newInstance();
 
@@ -95,7 +102,7 @@ public class FinalClassCheck
         {
             final String className =
                 ast.findFirstToken(TokenTypes.IDENT).getText();
-            log(ast.getLineNo(), "final.class", className);
+            log(ast.getLineNo(), MSG_KEY, className);
         }
     }
 

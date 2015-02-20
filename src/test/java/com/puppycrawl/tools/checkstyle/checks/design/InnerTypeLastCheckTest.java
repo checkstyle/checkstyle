@@ -24,6 +24,8 @@ import org.junit.Test;
 
 import java.io.File;
 
+import static com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck.MSG_KEY;
+
 public class InnerTypeLastCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -32,11 +34,11 @@ public class InnerTypeLastCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(InnerTypeLastCheck.class);
         final String[] expected = {
-            "44:9: Fields and methods should be before inner classes.",
-            "65:9: Fields and methods should be before inner classes.",
-            "69:9: Fields and methods should be before inner classes.",
-            "78:5: Fields and methods should be before inner classes.",
-            "95:9: Fields and methods should be before inner classes.",
+            "44:9: " + getCheckMessage(MSG_KEY),
+            "65:9: " + getCheckMessage(MSG_KEY),
+            "69:9: " + getCheckMessage(MSG_KEY),
+            "78:5: " + getCheckMessage(MSG_KEY),
+            "95:9: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("design" + File.separator
                                     + "InputInnerClassCheck.java"), expected);

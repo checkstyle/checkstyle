@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck.MSG_KEY;
+
 public class VisibilityModifierCheckTest
     extends BaseCheckTestSupport
 {
@@ -39,12 +41,12 @@ public class VisibilityModifierCheckTest
         throws Exception
     {
         final String[] expected = {
-            "30:24: Variable 'rData' must be private and have accessor methods.",
-            "33:27: Variable 'protectedVariable' must be private and have accessor methods.",
-            "36:17: Variable 'packageVariable' must be private and have accessor methods.",
-            "41:29: Variable 'sWeird' must be private and have accessor methods.",
-            "43:19: Variable 'sWeird2' must be private and have accessor methods.",
-            "77:20: Variable 'someValue' must be private and have accessor methods.",
+            "30:24: " + getCheckMessage(MSG_KEY, "rData"),
+            "33:27: " + getCheckMessage(MSG_KEY, "protectedVariable"),
+            "36:17: " + getCheckMessage(MSG_KEY, "packageVariable"),
+            "41:29: " + getCheckMessage(MSG_KEY, "sWeird"),
+            "43:19: " + getCheckMessage(MSG_KEY, "sWeird2"),
+            "77:20: " + getCheckMessage(MSG_KEY, "someValue"),
         };
         verify(getChecker(), getPath("InputInner.java"), expected);
     }
@@ -59,8 +61,8 @@ public class VisibilityModifierCheckTest
         checkConfig.addAttribute("protectedAllowed", "true");
         checkConfig.addAttribute("packageAllowed", "true");
         final String[] expected = {
-            "17:20: Variable 'fData' must be private and have accessor methods.",
-            "77:20: Variable 'someValue' must be private and have accessor methods.",
+            "17:20: " + getCheckMessage(MSG_KEY, "fData"),
+            "77:20: " + getCheckMessage(MSG_KEY, "someValue"),
         };
         verify(checkConfig, getPath("InputInner.java"), expected);
     }
@@ -69,12 +71,12 @@ public class VisibilityModifierCheckTest
     public void testSimple() throws Exception
     {
         final String[] expected = {
-            "39:19: Variable 'mNumCreated2' must be private and have accessor methods.",
-            "49:23: Variable 'sTest1' must be private and have accessor methods.",
-            "51:26: Variable 'sTest3' must be private and have accessor methods.",
-            "53:16: Variable 'sTest2' must be private and have accessor methods.",
-            "56:9: Variable 'mTest1' must be private and have accessor methods.",
-            "58:16: Variable 'mTest2' must be private and have accessor methods.",
+            "39:19: " + getCheckMessage(MSG_KEY, "mNumCreated2"),
+            "49:23: " + getCheckMessage(MSG_KEY, "sTest1"),
+            "51:26: " + getCheckMessage(MSG_KEY, "sTest3"),
+            "53:16: " + getCheckMessage(MSG_KEY, "sTest2"),
+            "56:9: " + getCheckMessage(MSG_KEY, "mTest1"),
+            "58:16: " + getCheckMessage(MSG_KEY, "mTest2"),
         };
         verify(getChecker(), getPath("InputSimple.java"), expected);
     }
@@ -83,9 +85,9 @@ public class VisibilityModifierCheckTest
     public void testStrictJavadoc() throws Exception
     {
         final String[] expected = {
-            "44:9: Variable 'mLen' must be private and have accessor methods.",
-            "45:19: Variable 'mDeer' must be private and have accessor methods.",
-            "46:16: Variable 'aFreddo' must be private and have accessor methods.",
+            "44:9: " + getCheckMessage(MSG_KEY, "mLen"),
+            "45:19: " + getCheckMessage(MSG_KEY, "mDeer"),
+            "46:16: " + getCheckMessage(MSG_KEY, "aFreddo"),
         };
         verify(getChecker(), getPath("InputPublicOnly.java"), expected);
     }

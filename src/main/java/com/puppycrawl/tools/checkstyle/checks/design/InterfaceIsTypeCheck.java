@@ -43,6 +43,13 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public final class InterfaceIsTypeCheck
         extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "interface.type";
+
     /** flag to control whether marker interfaces are allowed. */
     private boolean allowMarkerInterfaces = true;
 
@@ -77,7 +84,7 @@ public final class InterfaceIsTypeCheck
                 !allowMarkerInterfaces || (variableDef != null);
 
         if ((methodDef == null) && methodRequired) {
-            log(ast.getLineNo(), "interface.type");
+            log(ast.getLineNo(), MSG_KEY);
         }
 
     }

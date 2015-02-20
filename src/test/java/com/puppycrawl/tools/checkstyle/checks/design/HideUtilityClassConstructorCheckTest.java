@@ -23,6 +23,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck
+.MSG_KEY;
+
 public class HideUtilityClassConstructorCheckTest
     extends BaseCheckTestSupport
 {
@@ -33,7 +36,7 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = {
-            "11:1: Utility classes should not have a public or default constructor.",
+            "11:1: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputArrayTypeStyle.java"), expected);
     }

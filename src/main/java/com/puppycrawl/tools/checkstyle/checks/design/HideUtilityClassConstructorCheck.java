@@ -34,6 +34,13 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  */
 public class HideUtilityClassConstructorCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "hide.utility.class";
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -112,7 +119,7 @@ public class HideUtilityClassConstructorCheck extends Check
             && !hasNonStaticMethodOrField && hasNonPrivateStaticMethodOrField;
 
         if (isUtilClass && (hasAccessibleCtor && !hasStaticModifier)) {
-            log(ast.getLineNo(), ast.getColumnNo(), "hide.utility.class");
+            log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
         }
     }
 

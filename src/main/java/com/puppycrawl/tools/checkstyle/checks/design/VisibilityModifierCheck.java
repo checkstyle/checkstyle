@@ -45,6 +45,13 @@ import org.apache.commons.beanutils.ConversionException;
 public class VisibilityModifierCheck
     extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "variable.notPrivate";
+
     /** whether protected members are allowed */
     private boolean protectedAllowed;
 
@@ -161,7 +168,7 @@ public class VisibilityModifierCheck
                    && getPublicMemberRegexp().matcher(varName).find())))
         {
             log(varNameAST.getLineNo(), varNameAST.getColumnNo(),
-                    "variable.notPrivate", varName);
+                    MSG_KEY, varName);
         }
     }
 

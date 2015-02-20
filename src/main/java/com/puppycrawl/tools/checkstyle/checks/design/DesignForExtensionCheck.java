@@ -57,6 +57,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class DesignForExtensionCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "design.forExtension";
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -138,7 +145,7 @@ public class DesignForExtensionCheck extends Check
         if (hasDefaultConstructor || hasExplNonPrivateCtor) {
             final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
             log(ast.getLineNo(), ast.getColumnNo(),
-                "design.forExtension", name);
+                MSG_KEY, name);
         }
 
 

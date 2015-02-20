@@ -33,6 +33,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class InnerTypeLastCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "arrangement.members.before.inner";
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -63,7 +70,7 @@ public class InnerTypeLastCheck extends Check
                         || nextSibling.getType() == TokenTypes.METHOD_DEF))
                 {
                     log(nextSibling.getLineNo(), nextSibling.getColumnNo(),
-                        "arrangement.members.before.inner");
+                        MSG_KEY);
                 }
                 nextSibling = nextSibling.getNextSibling();
             }
