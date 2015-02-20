@@ -34,6 +34,37 @@ import java.util.EnumMap;
  */
 public final class MethodCountCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_PRIVATE_METHODS = "too.many.privateMethods";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_PACKAGE_METHODS = "too.many.packageMethods";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_PROTECTED_METHODS = "too.many.protectedMethods";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_PUBLIC_METHODS = "too.many.publicMethods";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_MANY_METHODS = "too.many.methods";
+
     /**
      * Marker class used to collect data about the number of methods per
      * class. Objects of this class are used on the Stack to count the
@@ -180,14 +211,14 @@ public final class MethodCountCheck extends Check
     private void checkCounters(MethodCounter counter, DetailAST ast)
     {
         checkMax(maxPrivate, counter.value(Scope.PRIVATE),
-                 "too.many.privateMethods", ast);
+                 MSG_PRIVATE_METHODS, ast);
         checkMax(maxPackage, counter.value(Scope.PACKAGE),
-                 "too.many.packageMethods", ast);
+                 MSG_PACKAGE_METHODS, ast);
         checkMax(maxProtected, counter.value(Scope.PROTECTED),
-                 "too.many.protectedMethods", ast);
+                 MSG_PROTECTED_METHODS, ast);
         checkMax(maxPublic, counter.value(Scope.PUBLIC),
-                 "too.many.publicMethods", ast);
-        checkMax(maxTotal, counter.getTotal(), "too.many.methods", ast);
+                 MSG_PUBLIC_METHODS, ast);
+        checkMax(maxTotal, counter.getTotal(), MSG_MANY_METHODS, ast);
     }
 
     /**

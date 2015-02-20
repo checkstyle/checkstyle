@@ -76,6 +76,13 @@ import org.apache.commons.beanutils.ConversionException;
  */
 public class LineLengthCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "maxLineLen";
+
     /** default maximum number of columns in a line */
     private static final int DEFAULT_MAX_COLUMNS = 80;
 
@@ -113,7 +120,7 @@ public class LineLengthCheck extends Check
             if ((realLength > max)
                 && !ignorePattern.matcher(line).find())
             {
-                log(i + 1, "maxLineLen", max, realLength);
+                log(i + 1, MSG_KEY, max, realLength);
             }
         }
     }

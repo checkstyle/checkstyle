@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck.MSG_KEY;
+
 public class ParameterNumberCheckTest
     extends BaseCheckTestSupport
 {
@@ -32,7 +34,7 @@ public class ParameterNumberCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNumberCheck.class);
         final String[] expected = {
-            "194:10: More than 7 parameters (found 9).",
+            "194:10: " + getCheckMessage(MSG_KEY, 7, 9),
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
@@ -45,8 +47,8 @@ public class ParameterNumberCheckTest
             createCheckConfig(ParameterNumberCheck.class);
         checkConfig.addAttribute("max", "2");
         final String[] expected = {
-            "71:9: More than 2 parameters (found 3).",
-            "194:10: More than 2 parameters (found 9).",
+            "71:9: " + getCheckMessage(MSG_KEY, 2, 3),
+            "194:10: " + getCheckMessage(MSG_KEY, 2, 9),
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
@@ -72,8 +74,8 @@ public class ParameterNumberCheckTest
                 createCheckConfig(ParameterNumberCheck.class);
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
         final String[] expected = {
-            "6:10: More than 7 parameters (found 8).",
-            "11:10: More than 7 parameters (found 8).",
+            "6:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "11:10: " + getCheckMessage(MSG_KEY, 7, 8),
         };
         verify(checkConfig, getPath("InputParameterNumberCheck.java"), expected);
     }

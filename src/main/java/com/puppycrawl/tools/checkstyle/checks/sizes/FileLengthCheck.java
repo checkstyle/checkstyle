@@ -54,6 +54,13 @@ import java.util.List;
  */
 public class FileLengthCheck extends AbstractFileSetCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "maxLen.file";
+
     /** default maximum number of lines */
     private static final int DEFAULT_MAX_LINES = 2000;
 
@@ -64,7 +71,7 @@ public class FileLengthCheck extends AbstractFileSetCheck
     protected void processFiltered(File file, List<String> lines)
     {
         if (lines.size() > maxFileLength) {
-            log(1, "maxLen.file", lines.size(), maxFileLength);
+            log(1, MSG_KEY, lines.size(), maxFileLength);
         }
     }
 

@@ -28,6 +28,13 @@ import com.puppycrawl.tools.checkstyle.api.Check;
  */
 public class OuterTypeNumberCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "maxOuterTypes";
+
     /** The maximum allowed number of outer types. */
     private int max = 1;
     /** Tracks the current depth in types. */
@@ -60,7 +67,7 @@ public class OuterTypeNumberCheck extends Check
     public void finishTree(DetailAST ast)
     {
         if (max < outerNum) {
-            log(ast, "maxOuterTypes", outerNum, max);
+            log(ast, MSG_KEY, outerNum, max);
         }
     }
 

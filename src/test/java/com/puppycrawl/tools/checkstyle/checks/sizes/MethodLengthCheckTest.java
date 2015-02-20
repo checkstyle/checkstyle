@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck.MSG_KEY;
+
 public class MethodLengthCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -31,7 +33,7 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport
             createCheckConfig(MethodLengthCheck.class);
         checkConfig.addAttribute("max", "19");
         final String[] expected = {
-            "79:5: Method length is 20 lines (max allowed is 19).",
+            "79:5: " + getCheckMessage(MSG_KEY, 20, 19),
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }

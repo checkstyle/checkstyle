@@ -31,6 +31,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class ExecutableStatementCountCheck
     extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "executableStatementCount";
+
     /** default threshold */
     private static final int DEFAULT_MAX = 30;
 
@@ -160,7 +167,7 @@ public final class ExecutableStatementCountCheck
         final int count = context.getCount();
         if (count > getMax()) {
             log(ast.getLineNo(), ast.getColumnNo(),
-                    "executableStatementCount", count, getMax());
+                    MSG_KEY, count, getMax());
         }
         context = contextStack.pop();
     }

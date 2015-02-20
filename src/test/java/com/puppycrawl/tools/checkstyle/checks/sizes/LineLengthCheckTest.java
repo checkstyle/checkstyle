@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
+
 public class LineLengthCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -33,8 +35,8 @@ public class LineLengthCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("max", "80");
         checkConfig.addAttribute("ignorePattern",  "^.*is OK.*regexp.*$");
         final String[] expected = {
-            "18: Line is longer than 80 characters (found 81).",
-            "145: Line is longer than 80 characters (found 83).",
+            "18: " + getCheckMessage(MSG_KEY, 80, 81),
+            "145: " + getCheckMessage(MSG_KEY, 80, 83),
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }

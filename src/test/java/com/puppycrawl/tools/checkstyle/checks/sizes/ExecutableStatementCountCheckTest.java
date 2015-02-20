@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck.MSG_KEY;
+
 public class ExecutableStatementCountCheckTest
     extends BaseCheckTestSupport
 {
@@ -34,16 +36,16 @@ public class ExecutableStatementCountCheckTest
         checkConfig.addAttribute("max", "0");
 
         final String[] expected = {
-            "4:5: Executable statement count is 3 (max allowed is 0).",
-            "7:17: Executable statement count is 1 (max allowed is 0).",
-            "17:5: Executable statement count is 2 (max allowed is 0).",
-            "27:5: Executable statement count is 1 (max allowed is 0).",
-            "34:5: Executable statement count is 3 (max allowed is 0).",
-            "48:5: Executable statement count is 2 (max allowed is 0).",
-            "58:5: Executable statement count is 2 (max allowed is 0).",
-            "67:5: Executable statement count is 2 (max allowed is 0).",
-            "76:5: Executable statement count is 2 (max allowed is 0).",
-            "79:13: Executable statement count is 1 (max allowed is 0).",
+            "4:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "7:17: " + getCheckMessage(MSG_KEY, 1, 0),
+            "17:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "27:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "34:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "48:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "58:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "67:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "76:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "79:13: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
         verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
@@ -59,12 +61,12 @@ public class ExecutableStatementCountCheckTest
         checkConfig.addAttribute("tokens", "METHOD_DEF");
 
         final String[] expected = {
-            "4:5: Executable statement count is 3 (max allowed is 0).",
-            "7:17: Executable statement count is 1 (max allowed is 0).",
-            "17:5: Executable statement count is 2 (max allowed is 0).",
-            "27:5: Executable statement count is 1 (max allowed is 0).",
-            "34:5: Executable statement count is 3 (max allowed is 0).",
-            "79:13: Executable statement count is 1 (max allowed is 0).",
+            "4:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "7:17: " + getCheckMessage(MSG_KEY, 1, 0),
+            "17:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "27:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "34:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "79:13: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
         verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
@@ -80,8 +82,8 @@ public class ExecutableStatementCountCheckTest
         checkConfig.addAttribute("tokens", "CTOR_DEF");
 
         final String[] expected = {
-            "48:5: Executable statement count is 2 (max allowed is 0).",
-            "76:5: Executable statement count is 2 (max allowed is 0).",
+            "48:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "76:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
         verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
@@ -97,7 +99,7 @@ public class ExecutableStatementCountCheckTest
         checkConfig.addAttribute("tokens", "STATIC_INIT");
 
         final String[] expected = {
-            "58:5: Executable statement count is 2 (max allowed is 0).",
+            "58:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
         verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
@@ -113,7 +115,7 @@ public class ExecutableStatementCountCheckTest
         checkConfig.addAttribute("tokens", "INSTANCE_INIT");
 
         final String[] expected = {
-            "67:5: Executable statement count is 2 (max allowed is 0).",
+            "67:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
         verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
