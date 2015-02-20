@@ -64,6 +64,12 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
 {
 
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "at.clause.order";
+
+    /**
      * Default order of atclauses.
      */
     private static final String[] DEFAULT_ORDER = {
@@ -151,7 +157,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
                 if (tagOrder.contains(tagText)
                         && indexOrderOfCurrentTag < indexOrderOfPreviousTag)
                 {
-                    log(node.getLineNumber(), "at.clause.order", tagOrder.toString());
+                    log(node.getLineNumber(), MSG_KEY, tagOrder.toString());
                 }
                 indexOrderOfPreviousTag = indexOrderOfCurrentTag;
             }

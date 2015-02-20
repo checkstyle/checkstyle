@@ -23,8 +23,13 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_LINE_BEFORE;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_REDUNDANT_PARAGRAPH;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_TAG_AFTER;
+
 public class JavadocParagraphCheckTest extends BaseCheckTestSupport
 {
+
     private DefaultConfiguration checkConfig;
 
     @Before
@@ -45,23 +50,23 @@ public class JavadocParagraphCheckTest extends BaseCheckTestSupport
     public void testIncorrect() throws Exception
     {
         final String[] expected = {
-            "7: <p> tag should be precede with empty line.",
-            "8: <p> tag should be precede with empty line.",
-            "14: <p> tag should be precede with empty line.",
-            "23: <p> tag should be precede with empty line.",
-            "32: <p> tag should be precede with empty line.",
-            "32: Redundant <p> tag.",
-            "33: <p> tag should be precede with empty line.",
-            "34: <p> tag should be precede with empty line.",
-            "35: <p> tag should be precede with empty line.",
-            "39: <p> tag should be precede with empty line.",
-            "45: Redundant <p> tag.",
-            "50: <p> tag should be precede with empty line.",
-            "51: <p> tag should be precede with empty line.",
-            "61: Redundant <p> tag.",
-            "62: Empty line should be followed by <p> tag on the next line.",
-            "70: <p> tag should be precede with empty line.",
-            "75: <p> tag should be precede with empty line.",
+            "7: " + getCheckMessage(MSG_LINE_BEFORE),
+            "8: " + getCheckMessage(MSG_LINE_BEFORE),
+            "14: " + getCheckMessage(MSG_LINE_BEFORE),
+            "23: " + getCheckMessage(MSG_LINE_BEFORE),
+            "32: " + getCheckMessage(MSG_LINE_BEFORE),
+            "32: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "33: " + getCheckMessage(MSG_LINE_BEFORE),
+            "34: " + getCheckMessage(MSG_LINE_BEFORE),
+            "35: " + getCheckMessage(MSG_LINE_BEFORE),
+            "39: " + getCheckMessage(MSG_LINE_BEFORE),
+            "45: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "50: " + getCheckMessage(MSG_LINE_BEFORE),
+            "51: " + getCheckMessage(MSG_LINE_BEFORE),
+            "61: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "62: " + getCheckMessage(MSG_TAG_AFTER),
+            "70: " + getCheckMessage(MSG_LINE_BEFORE),
+            "75: " + getCheckMessage(MSG_LINE_BEFORE),
         };
         verify(checkConfig, getPath("javadoc/InputIncorrectJavaDocParagraphCheck.java"), expected);
     }

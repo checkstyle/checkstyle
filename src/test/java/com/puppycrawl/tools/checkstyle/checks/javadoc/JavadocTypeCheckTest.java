@@ -18,11 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.JAVADOC_MISSING;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MISSING_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.TAG_FORMAT;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.UNKNOWN_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.UNUSED_TAG;
+
+import java.io.File;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
-import java.io.File;
-import org.junit.Test;
 
 /**
  * @author Oliver.Burn
@@ -41,9 +49,9 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
             createCheckConfig(JavadocTypeCheck.class);
         final String[] expected =
         {
-            "8: Missing a Javadoc comment.",
-            "302: Missing a Javadoc comment.",
-            "327: Missing a Javadoc comment.",
+            "8: " + getCheckMessage(JAVADOC_MISSING),
+            "302: " + getCheckMessage(JAVADOC_MISSING),
+            "327: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig, getSrcPath("checks/javadoc/InputTags.java"), expected);
     }
@@ -55,9 +63,9 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
             createCheckConfig(JavadocTypeCheck.class);
         final String[] expected =
         {
-            "14: Missing a Javadoc comment.",
-            "21: Missing a Javadoc comment.",
-            "27: Missing a Javadoc comment.",
+            "14: " + getCheckMessage(JAVADOC_MISSING),
+            "21: " + getCheckMessage(JAVADOC_MISSING),
+            "27: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputInner.java"), expected);
     }
@@ -69,10 +77,10 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
             createCheckConfig(JavadocTypeCheck.class);
         final String[] expected =
         {
-            "7: Missing a Javadoc comment.",
-            "9: Missing a Javadoc comment.",
-            "14: Missing a Javadoc comment.",
-            "34: Missing a Javadoc comment.",
+            "7: " + getCheckMessage(JAVADOC_MISSING),
+            "9: " + getCheckMessage(JAVADOC_MISSING),
+            "14: " + getCheckMessage(JAVADOC_MISSING),
+            "34: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
@@ -85,7 +93,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected =
         {
-            "7: Missing a Javadoc comment.",
+            "7: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
@@ -98,8 +106,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
         final String[] expected =
         {
-            "7: Missing a Javadoc comment.",
-            "38: Missing a Javadoc comment.",
+            "7: " + getCheckMessage(JAVADOC_MISSING),
+            "38: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
@@ -112,10 +120,10 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected =
         {
-            "7: Missing a Javadoc comment.",
-            "29: Missing a Javadoc comment.",
-            "38: Missing a Javadoc comment.",
-            "65: Missing a Javadoc comment.",
+            "7: " + getCheckMessage(JAVADOC_MISSING),
+            "29: " + getCheckMessage(JAVADOC_MISSING),
+            "38: " + getCheckMessage(JAVADOC_MISSING),
+            "65: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
@@ -130,9 +138,9 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
             Scope.getInstance("package").getName());
         final String[] expected =
         {
-            "18: Missing a Javadoc comment.",
-            "20: Missing a Javadoc comment.",
-            "22: Missing a Javadoc comment.",
+            "18: " + getCheckMessage(JAVADOC_MISSING),
+            "20: " + getCheckMessage(JAVADOC_MISSING),
+            "22: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputScopeInnerClasses.java"), expected);
     }
@@ -147,7 +155,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
             Scope.getInstance("public").getName());
         final String[] expected =
         {
-            "18: Missing a Javadoc comment.",
+            "18: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputScopeInnerClasses.java"), expected);
     }
@@ -160,7 +168,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("authorFormat", "\\S");
         final String[] expected =
         {
-            "13: Type Javadoc comment is missing an @author tag.",
+            "13: " + getCheckMessage(MISSING_TAG, "@author"),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
@@ -173,9 +181,9 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "0*");
         final String[] expected = {
-            "22: Type Javadoc comment is missing an @author tag.",
-            "58: Type Javadoc comment is missing an @author tag.",
-            "94: Type Javadoc comment is missing an @author tag.",
+            "22: " + getCheckMessage(MISSING_TAG, "@author"),
+            "58: " + getCheckMessage(MISSING_TAG, "@author"),
+            "94: " + getCheckMessage(MISSING_TAG, "@author"),
         };
         verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
@@ -188,15 +196,15 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "ABC");
         final String[] expected = {
-            "13: Type Javadoc tag @author must match pattern 'ABC'.",
-            "22: Type Javadoc comment is missing an @author tag.",
-            "31: Type Javadoc tag @author must match pattern 'ABC'.",
-            "49: Type Javadoc tag @author must match pattern 'ABC'.",
-            "58: Type Javadoc comment is missing an @author tag.",
-            "67: Type Javadoc tag @author must match pattern 'ABC'.",
-            "85: Type Javadoc tag @author must match pattern 'ABC'.",
-            "94: Type Javadoc comment is missing an @author tag.",
-            "103: Type Javadoc tag @author must match pattern 'ABC'.",
+            "13: " + getCheckMessage(TAG_FORMAT, "@author", "ABC"),
+            "22: " + getCheckMessage(MISSING_TAG, "@author"),
+            "31: " + getCheckMessage(TAG_FORMAT, "@author", "ABC"),
+            "49: " + getCheckMessage(TAG_FORMAT, "@author", "ABC"),
+            "58: " + getCheckMessage(MISSING_TAG, "@author"),
+            "67: " + getCheckMessage(TAG_FORMAT, "@author", "ABC"),
+            "85: " + getCheckMessage(TAG_FORMAT, "@author", "ABC"),
+            "94: " + getCheckMessage(MISSING_TAG, "@author"),
+            "103: " + getCheckMessage(TAG_FORMAT, "@author", "ABC"),
         };
         verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
@@ -209,7 +217,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "\\S");
         final String[] expected = {
-            "13: Type Javadoc comment is missing an @version tag.",
+            "13: " + getCheckMessage(MISSING_TAG, "@version"),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
@@ -222,9 +230,9 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "^\\p{Digit}+\\.\\p{Digit}+$");
         final String[] expected = {
-            "22: Type Javadoc comment is missing an @version tag.",
-            "58: Type Javadoc comment is missing an @version tag.",
-            "94: Type Javadoc comment is missing an @version tag.",
+            "22: " + getCheckMessage(MISSING_TAG, "@version"),
+            "58: " + getCheckMessage(MISSING_TAG, "@version"),
+            "94: " + getCheckMessage(MISSING_TAG, "@version"),
         };
         verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
@@ -237,18 +245,18 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "\\$Revision.*\\$");
         final String[] expected = {
-            "13: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
-            "22: Type Javadoc comment is missing an @version tag.",
-            "31: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
-            "40: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
-            "49: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
-            "58: Type Javadoc comment is missing an @version tag.",
-            "67: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
-            "76: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
-            "85: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
-            "94: Type Javadoc comment is missing an @version tag.",
-            "103: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
-            "112: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
+            "13: " + getCheckMessage(TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "22: " + getCheckMessage(MISSING_TAG, "@version"),
+            "31: " + getCheckMessage(TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "40: " + getCheckMessage(TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "49: " + getCheckMessage(TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "58: " + getCheckMessage(MISSING_TAG, "@version"),
+            "67: " + getCheckMessage(TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "76: " + getCheckMessage(TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "85: " + getCheckMessage(TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "94: " + getCheckMessage(MISSING_TAG, "@version"),
+            "103: " + getCheckMessage(TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "112: " + getCheckMessage(TAG_FORMAT, "@version", "\\$Revision.*\\$"),
         };
         verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
@@ -259,16 +267,16 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "3: Missing a Javadoc comment.",
-            "15: Missing a Javadoc comment.",
-            "27: Missing a Javadoc comment.",
-            "39: Missing a Javadoc comment.",
-            "52: Missing a Javadoc comment.",
-            "63: Missing a Javadoc comment.",
-            "75: Missing a Javadoc comment.",
-            "87: Missing a Javadoc comment.",
-            "99: Missing a Javadoc comment.",
-            "111: Missing a Javadoc comment.",
+            "3: " + getCheckMessage(JAVADOC_MISSING),
+            "15: " + getCheckMessage(JAVADOC_MISSING),
+            "27: " + getCheckMessage(JAVADOC_MISSING),
+            "39: " + getCheckMessage(JAVADOC_MISSING),
+            "52: " + getCheckMessage(JAVADOC_MISSING),
+            "63: " + getCheckMessage(JAVADOC_MISSING),
+            "75: " + getCheckMessage(JAVADOC_MISSING),
+            "87: " + getCheckMessage(JAVADOC_MISSING),
+            "99: " + getCheckMessage(JAVADOC_MISSING),
+            "111: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig,
                getPath("javadoc" + File.separator + "InputNoJavadoc.java"),
@@ -282,8 +290,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = {
-            "3: Missing a Javadoc comment.",
-            "15: Missing a Javadoc comment.",
+            "3: " + getCheckMessage(JAVADOC_MISSING),
+            "15: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig,
                getPath("javadoc" + File.separator + "InputNoJavadoc.java"),
@@ -298,14 +306,14 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
         checkConfig.addAttribute("excludeScope", Scope.PROTECTED.getName());
         final String[] expected = {
-            "27: Missing a Javadoc comment.",
-            "39: Missing a Javadoc comment.",
-            "52: Missing a Javadoc comment.",
-            "63: Missing a Javadoc comment.",
-            "75: Missing a Javadoc comment.",
-            "87: Missing a Javadoc comment.",
-            "99: Missing a Javadoc comment.",
-            "111: Missing a Javadoc comment.",
+            "27: " + getCheckMessage(JAVADOC_MISSING),
+            "39: " + getCheckMessage(JAVADOC_MISSING),
+            "52: " + getCheckMessage(JAVADOC_MISSING),
+            "63: " + getCheckMessage(JAVADOC_MISSING),
+            "75: " + getCheckMessage(JAVADOC_MISSING),
+            "87: " + getCheckMessage(JAVADOC_MISSING),
+            "99: " + getCheckMessage(JAVADOC_MISSING),
+            "111: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig,
                getPath("javadoc" + File.separator + "InputNoJavadoc.java"),
@@ -318,8 +326,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "7:4: Unused @param tag for '<D123>'.",
-            "11: Type Javadoc comment is missing an @param <C456> tag.",
+            "7:4: " + getCheckMessage(UNUSED_TAG, "@param", "<D123>"),
+            "11: " + getCheckMessage(MISSING_TAG, "@param <C456>"),
         };
         verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
     }
@@ -330,7 +338,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("allowMissingParamTags", "true");
         final String[] expected = {
-            "7:4: Unused @param tag for '<D123>'.",
+            "7:4: " + getCheckMessage(UNUSED_TAG, "@param", "<D123>"),
         };
         verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
     }
@@ -341,7 +349,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "5:4: Unknown tag 'mytag'.",
+            "5:4: " + getCheckMessage(UNKNOWN_TAG, "mytag"),
         };
         verify(checkConfig,
                getPath("javadoc" + File.separator + "InputBadTag.java"),

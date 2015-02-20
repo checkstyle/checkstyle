@@ -37,6 +37,13 @@ import java.util.regex.Pattern;
 public class JavadocVariableCheck
     extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String JAVADOC_MISSING = "javadoc.missing";
+
     /** the scope to check */
     private Scope scope = Scope.PRIVATE;
 
@@ -118,7 +125,7 @@ public class JavadocVariableCheck
                 contents.getJavadocBefore(ast.getLineNo());
 
             if (cmt == null) {
-                log(ast, "javadoc.missing");
+                log(ast, JAVADOC_MISSING);
             }
         }
     }

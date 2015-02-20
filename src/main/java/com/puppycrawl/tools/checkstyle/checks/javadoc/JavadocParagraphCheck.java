@@ -43,6 +43,24 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 public class JavadocParagraphCheck extends AbstractJavadocCheck
 {
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_TAG_AFTER = "javadoc.paragraph.tag.after";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_LINE_BEFORE = "javadoc.paragraph.line.before";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_REDUNDANT_PARAGRAPH = "javadoc.paragraph.redundant.paragraph";
+
     @Override
     public int[] getDefaultJavadocTokens()
     {
@@ -76,7 +94,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
                 && nearestToken.getType() == JavadocTokenTypes.TEXT
                 && nearestToken.getChildren().length > 1)
         {
-            log(newline.getLineNumber(), "javadoc.paragraph.tag.after");
+            log(newline.getLineNumber(), MSG_TAG_AFTER);
         }
     }
 
@@ -88,10 +106,10 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
     {
         final DetailNode newLine = getNearestEmptyLine(tag);
         if (isFirstParagraph(tag)) {
-            log(tag.getLineNumber(), "javadoc.paragraph.redundant.paragraph");
+            log(tag.getLineNumber(), MSG_REDUNDANT_PARAGRAPH);
         }
         else if (newLine == null || tag.getLineNumber() - newLine.getLineNumber() != 1) {
-            log(tag.getLineNumber(), "javadoc.paragraph.line.before");
+            log(tag.getLineNumber(), MSG_LINE_BEFORE);
         }
     }
 

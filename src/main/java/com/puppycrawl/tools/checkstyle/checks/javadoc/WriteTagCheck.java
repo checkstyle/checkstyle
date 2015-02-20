@@ -67,6 +67,25 @@ import org.apache.commons.beanutils.ConversionException;
 public class WriteTagCheck
     extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MISSING_TAG = "type.missingTag";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String WRITE_TAG = "javadoc.writeTag";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String TAG_FORMAT = "type.tagFormat";
+
     /** compiled regexp to match tag **/
     private Pattern tagRE;
     /** compiled regexp to match tag content **/
@@ -157,7 +176,7 @@ public class WriteTagCheck
         final TextBlock cmt =
             contents.getJavadocBefore(lineNo);
         if (cmt == null) {
-            log(lineNo, "type.missingTag", tag);
+            log(lineNo, MISSING_TAG, tag);
         }
         else {
             checkTag(lineNo, cmt.getText(), tag, tagRE, tagFormatRE,
@@ -195,7 +214,7 @@ public class WriteTagCheck
                 final int contentStart = matcher.start(1);
                 final String content = s.substring(contentStart);
                 if ((formatRE != null) && !formatRE.matcher(content).find()) {
-                    log(lineNo + i - comment.length, "type.tagFormat", tag,
+                    log(lineNo + i - comment.length, TAG_FORMAT, tag,
                         format);
                 }
                 else {
@@ -205,7 +224,7 @@ public class WriteTagCheck
             }
         }
         if (tagCount == 0) {
-            log(lineNo, "type.missingTag", tag);
+            log(lineNo, MISSING_TAG, tag);
         }
 
     }
@@ -225,7 +244,7 @@ public class WriteTagCheck
         final String originalSeverity = getSeverity();
         setSeverity(tagSeverityLevel.getName());
 
-        log(line, "javadoc.writeTag", tag, tagValue);
+        log(line, WRITE_TAG, tag, tagValue);
 
         setSeverity(originalSeverity);
     }

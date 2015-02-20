@@ -23,6 +23,8 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.PARSE_ERROR_MESSAGE_KEY;
+
 public class AbstractJavadocCheckTest extends BaseCheckTestSupport
 {
     public static class TempCheck extends AbstractJavadocCheck
@@ -41,9 +43,9 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport
     {
         final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
         final String[] expected = {
-            "3: Javadoc comment at column 52 has parse error. Details: no viable "
+            "3: " + getCheckMessage(PARSE_ERROR_MESSAGE_KEY, 52, "no viable "
                 + "alternative at input '<ul><li>a' {@link EntityEntry} (by way of {@link #;' "
-                + "while parsing HTML_TAG",
+                + "while parsing HTML_TAG"),
         };
         verify(checkConfig, getPath("javadoc/InputTestNumberFomatException.java"), expected);
     }

@@ -57,12 +57,12 @@ public abstract class AbstractJavadocCheck extends Check
     /**
      * Error message key for common javadoc errors.
      */
-    private static final String PARSE_ERROR_MESSAGE_KEY = "javadoc.parse.error";
+    public static final String PARSE_ERROR_MESSAGE_KEY = "javadoc.parse.error";
 
     /**
-     * Unrecognized error from antlr parser
+     * Unrecognized error from antlr parser.
      */
-    private static final String UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY =
+    public static final String UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY =
             "javadoc.unrecognized.antlr.error";
 
     /**

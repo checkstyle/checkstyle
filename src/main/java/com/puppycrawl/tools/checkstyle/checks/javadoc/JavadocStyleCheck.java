@@ -44,11 +44,24 @@ import java.util.regex.Pattern;
 public class JavadocStyleCheck
     extends Check
 {
+
     /** Message property key for the Unclosed HTML message. */
-    private static final String UNCLOSED_HTML = "javadoc.unclosedhtml";
+    public static final String JAVADOC_MISSING = "javadoc.missing";
+
+    /** Message property key for the Unclosed HTML message. */
+    public static final String EMPTY = "javadoc.empty";
+
+    /** Message property key for the Unclosed HTML message. */
+    public static final String NO_PERIOD = "javadoc.noperiod";
+
+    /** Message property key for the Unclosed HTML message. */
+    public static final String INCOMPLETE_TAG = "javadoc.incompleteTag";
+
+    /** Message property key for the Unclosed HTML message. */
+    public static final String UNCLOSED_HTML = "javadoc.unclosedhtml";
 
     /** Message property key for the Extra HTML message. */
-    private static final String EXTRA_HTML = "javadoc.extrahtml";
+    public static final String EXTRA_HTML = "javadoc.extrahtml";
 
     /** HTML tags that do not require a close tag. */
     private static final Set<String> SINGLE_TAGS = ImmutableSortedSet.of(
@@ -198,7 +211,7 @@ public class JavadocStyleCheck
             made sense to make another csheck just to ensure that the
             package-info.java file actually contains package Javadocs.*/
             if (getFileContents().inPackageInfo()) {
-                log(ast.getLineNo(), "javadoc.missing");
+                log(ast.getLineNo(), JAVADOC_MISSING);
             }
             return;
         }
@@ -235,7 +248,7 @@ public class JavadocStyleCheck
             && !("{@inheritDoc}".equals(commentText)
             && JavadocTagInfo.INHERIT_DOC.isValidOn(ast)))
         {
-            log(comment.getStartLineNo(), "javadoc.noperiod");
+            log(comment.getStartLineNo(), NO_PERIOD);
         }
     }
 
@@ -249,7 +262,7 @@ public class JavadocStyleCheck
         final String commentText = getCommentText(comment.getText());
 
         if (commentText.length() == 0) {
-            log(comment.getStartLineNo(), "javadoc.empty");
+            log(comment.getStartLineNo(), EMPTY);
         }
     }
 
@@ -358,7 +371,7 @@ public class JavadocStyleCheck
             final HtmlTag tag = parser.nextTag();
 
             if (tag.isIncompleteTag()) {
-                log(tag.getLineno(), "javadoc.incompleteTag",
+                log(tag.getLineno(), INCOMPLETE_TAG,
                     text[tag.getLineno() - lineno]);
                 return;
             }

@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck.MSG_LEGACY_PACKAGE_HTML;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck.MSG_PACKAGE_INFO;
 
 public class JavadocPackageCheckTest
     extends BaseCheckTestSupport
@@ -41,7 +43,7 @@ public class JavadocPackageCheckTest
     {
         final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         final String[] expected = {
-            "0: Missing package-info.java file.",
+            "0: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
         verify(
             createChecker(checkConfig),
@@ -55,7 +57,7 @@ public class JavadocPackageCheckTest
     {
         final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         final String[] expected = {
-            "0: Legacy package.html file should be removed.",
+            "0: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
         };
         verify(createChecker(checkConfig),
             getPath("javadoc/bothfiles/Ignored.java"),

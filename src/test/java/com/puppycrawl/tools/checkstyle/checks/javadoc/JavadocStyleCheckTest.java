@@ -25,6 +25,12 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.EXTRA_HTML;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.UNCLOSED_HTML;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.INCOMPLETE_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.NO_PERIOD;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.EMPTY;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.JAVADOC_MISSING;
 
 public class JavadocStyleCheckTest
     extends BaseCheckTestSupport
@@ -37,23 +43,23 @@ public class JavadocStyleCheckTest
             createCheckConfig(JavadocStyleCheck.class);
         final String[] expected =
         {
-            "20: First sentence should end with a period.",
-            "53: First sentence should end with a period.",
-            "63:11: Unclosed HTML tag found: <b>This guy is missing end of bold tag",
-            "66:7: Extra HTML tag found: </td>Extra tag shouldn't be here",
-            "68:19: Unclosed HTML tag found: <code>dummy.",
-            "74: First sentence should end with a period.",
-            "75:23: Unclosed HTML tag found: <b>should fail",
-            "81: First sentence should end with a period.",
-            "82:31: Unclosed HTML tag found: <b>should fail",
-            "88: First sentence should end with a period.",
-            "89:31: Extra HTML tag found: </code>",
-            "90: Incomplete HTML tag found:     * should fail <",
-            "109:39: Extra HTML tag found: </img>",
-            "186:8: Unclosed HTML tag found: <blockquote>",
-            "193: First sentence should end with a period.",
-            "238: First sentence should end with a period.",
-            "335:33: Extra HTML tag found: </string>",
+            "20: " + getCheckMessage(NO_PERIOD),
+            "53: " + getCheckMessage(NO_PERIOD),
+            "63:11: " + getCheckMessage(UNCLOSED_HTML, "<b>This guy is missing end of bold tag"),
+            "66:7: " + getCheckMessage(EXTRA_HTML, "</td>Extra tag shouldn't be here"),
+            "68:19: " + getCheckMessage(UNCLOSED_HTML, "<code>dummy."),
+            "74: " + getCheckMessage(NO_PERIOD),
+            "75:23: " + getCheckMessage(UNCLOSED_HTML, "<b>should fail"),
+            "81: " + getCheckMessage(NO_PERIOD),
+            "82:31: " + getCheckMessage(UNCLOSED_HTML, "<b>should fail"),
+            "88: " + getCheckMessage(NO_PERIOD),
+            "89:31: " + getCheckMessage(EXTRA_HTML, "</code>"),
+            "90: " + getCheckMessage(INCOMPLETE_TAG, "    * should fail <"),
+            "109:39: " + getCheckMessage(EXTRA_HTML, "</img>"),
+            "186:8: " + getCheckMessage(UNCLOSED_HTML, "<blockquote>"),
+            "193: " + getCheckMessage(NO_PERIOD),
+            "238: " + getCheckMessage(NO_PERIOD),
+            "335:33: " + getCheckMessage(EXTRA_HTML, "</string>"),
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -68,13 +74,13 @@ public class JavadocStyleCheckTest
         checkConfig.addAttribute("checkHtml", "false");
         final String[] expected =
         {
-            "20: First sentence should end with a period.",
-            "53: First sentence should end with a period.",
-            "74: First sentence should end with a period.",
-            "81: First sentence should end with a period.",
-            "88: First sentence should end with a period.",
-            "193: First sentence should end with a period.",
-            "238: First sentence should end with a period.",
+            "20: " + getCheckMessage(NO_PERIOD),
+            "53: " + getCheckMessage(NO_PERIOD),
+            "74: " + getCheckMessage(NO_PERIOD),
+            "81: " + getCheckMessage(NO_PERIOD),
+            "88: " + getCheckMessage(NO_PERIOD),
+            "193: " + getCheckMessage(NO_PERIOD),
+            "238: " + getCheckMessage(NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -91,15 +97,15 @@ public class JavadocStyleCheckTest
                 "([.][ \t\n\r\f<])|([.]$)");
         final String[] expected =
         {
-            "20: First sentence should end with a period.",
-            "32: First sentence should end with a period.",
-            "39: First sentence should end with a period.",
-            "53: First sentence should end with a period.",
-            "74: First sentence should end with a period.",
-            "81: First sentence should end with a period.",
-            "88: First sentence should end with a period.",
-            "193: First sentence should end with a period.",
-            "238: First sentence should end with a period.",
+            "20: " + getCheckMessage(NO_PERIOD),
+            "32: " + getCheckMessage(NO_PERIOD),
+            "39: " + getCheckMessage(NO_PERIOD),
+            "53: " + getCheckMessage(NO_PERIOD),
+            "74: " + getCheckMessage(NO_PERIOD),
+            "81: " + getCheckMessage(NO_PERIOD),
+            "88: " + getCheckMessage(NO_PERIOD),
+            "193: " + getCheckMessage(NO_PERIOD),
+            "238: " + getCheckMessage(NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -113,16 +119,16 @@ public class JavadocStyleCheckTest
         checkConfig.addAttribute("checkHtml", "true");
         final String[] expected =
         {
-            "63:11: Unclosed HTML tag found: <b>This guy is missing end of bold tag",
-            "66:7: Extra HTML tag found: </td>Extra tag shouldn't be here",
-            "68:19: Unclosed HTML tag found: <code>dummy.",
-            "75:23: Unclosed HTML tag found: <b>should fail",
-            "82:31: Unclosed HTML tag found: <b>should fail",
-            "89:31: Extra HTML tag found: </code>",
-            "90: Incomplete HTML tag found:     * should fail <",
-            "109:39: Extra HTML tag found: </img>",
-            "186:8: Unclosed HTML tag found: <blockquote>",
-            "335:33: Extra HTML tag found: </string>",
+            "63:11: " + getCheckMessage(UNCLOSED_HTML, "<b>This guy is missing end of bold tag"),
+            "66:7: " + getCheckMessage(EXTRA_HTML, "</td>Extra tag shouldn't be here"),
+            "68:19: " + getCheckMessage(UNCLOSED_HTML, "<code>dummy."),
+            "75:23: " + getCheckMessage(UNCLOSED_HTML, "<b>should fail"),
+            "82:31: " + getCheckMessage(UNCLOSED_HTML, "<b>should fail"),
+            "89:31: " + getCheckMessage(EXTRA_HTML, "</code>"),
+            "90: " + getCheckMessage(INCOMPLETE_TAG, "    * should fail <"),
+            "109:39: " + getCheckMessage(EXTRA_HTML, "</img>"),
+            "186:8: " + getCheckMessage(UNCLOSED_HTML, "<blockquote>"),
+            "335:33: " + getCheckMessage(EXTRA_HTML, "</string>"),
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -153,13 +159,13 @@ public class JavadocStyleCheckTest
         checkConfig.addAttribute("scope", "public");
         final String[] expected =
         {
-            "88: First sentence should end with a period.",
-            "89:31: Extra HTML tag found: </code>",
-            "90: Incomplete HTML tag found:     * should fail <",
-            "205: Javadoc has empty description section.",
-            "230: Javadoc has empty description section.",
-            "238: First sentence should end with a period.",
-            "335:33: Extra HTML tag found: </string>",
+            "88: " + getCheckMessage(NO_PERIOD),
+            "89:31: " + getCheckMessage(EXTRA_HTML, "</code>"),
+            "90: " + getCheckMessage(INCOMPLETE_TAG, "    * should fail <"),
+            "205: " + getCheckMessage(EMPTY),
+            "230: " + getCheckMessage(EMPTY),
+            "238: " + getCheckMessage(NO_PERIOD),
+            "335:33: " + getCheckMessage(EXTRA_HTML, "</string>"),
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -177,16 +183,16 @@ public class JavadocStyleCheckTest
         checkConfig.addAttribute("scope", "protected");
         final String[] expected =
         {
-            "74: First sentence should end with a period.",
-            "75:23: Unclosed HTML tag found: <b>should fail",
-            "88: First sentence should end with a period.",
-            "89:31: Extra HTML tag found: </code>",
-            "90: Incomplete HTML tag found:     * should fail <",
-            "205: Javadoc has empty description section.",
-            "211: Javadoc has empty description section.",
-            "230: Javadoc has empty description section.",
-            "238: First sentence should end with a period.",
-            "335:33: Extra HTML tag found: </string>",
+            "74: " + getCheckMessage(NO_PERIOD),
+            "75:23: " + getCheckMessage(UNCLOSED_HTML, "<b>should fail"),
+            "88: " + getCheckMessage(NO_PERIOD),
+            "89:31: " + getCheckMessage(EXTRA_HTML, "</code>"),
+            "90: " + getCheckMessage(INCOMPLETE_TAG, "    * should fail <"),
+            "205: " + getCheckMessage(EMPTY),
+            "211: " + getCheckMessage(EMPTY),
+            "230: " + getCheckMessage(EMPTY),
+            "238: " + getCheckMessage(NO_PERIOD),
+            "335:33: " + getCheckMessage(EXTRA_HTML, "</string>"),
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -204,19 +210,19 @@ public class JavadocStyleCheckTest
         checkConfig.addAttribute("scope", "package");
         final String[] expected =
         {
-            "74: First sentence should end with a period.",
-            "75:23: Unclosed HTML tag found: <b>should fail",
-            "81: First sentence should end with a period.",
-            "82:31: Unclosed HTML tag found: <b>should fail",
-            "88: First sentence should end with a period.",
-            "89:31: Extra HTML tag found: </code>",
-            "90: Incomplete HTML tag found:     * should fail <",
-            "205: Javadoc has empty description section.",
-            "211: Javadoc has empty description section.",
-            "218: Javadoc has empty description section.",
-            "230: Javadoc has empty description section.",
-            "238: First sentence should end with a period.",
-            "335:33: Extra HTML tag found: </string>",
+            "74: " + getCheckMessage(NO_PERIOD),
+            "75:23: " + getCheckMessage(UNCLOSED_HTML, "<b>should fail"),
+            "81: " + getCheckMessage(NO_PERIOD),
+            "82:31: " + getCheckMessage(UNCLOSED_HTML, "<b>should fail"),
+            "88: " + getCheckMessage(NO_PERIOD),
+            "89:31: " + getCheckMessage(EXTRA_HTML, "</code>"),
+            "90: " + getCheckMessage(INCOMPLETE_TAG, "    * should fail <"),
+            "205: " + getCheckMessage(EMPTY),
+            "211: " + getCheckMessage(EMPTY),
+            "218: " + getCheckMessage(EMPTY),
+            "230: " + getCheckMessage(EMPTY),
+            "238: " + getCheckMessage(NO_PERIOD),
+            "335:33: " + getCheckMessage(EXTRA_HTML, "</string>"),
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -231,11 +237,11 @@ public class JavadocStyleCheckTest
         checkConfig.addAttribute("checkEmptyJavadoc", "true");
         final String[] expected =
         {
-            "205: Javadoc has empty description section.",
-            "211: Javadoc has empty description section.",
-            "218: Javadoc has empty description section.",
-            "225: Javadoc has empty description section.",
-            "230: Javadoc has empty description section.",
+            "205: " + getCheckMessage(EMPTY),
+            "211: " + getCheckMessage(EMPTY),
+            "218: " + getCheckMessage(EMPTY),
+            "225: " + getCheckMessage(EMPTY),
+            "230: " + getCheckMessage(EMPTY),
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -251,16 +257,16 @@ public class JavadocStyleCheckTest
         checkConfig.addAttribute("excludeScope", "protected");
         final String[] expected =
         {
-            "20: First sentence should end with a period.",
-            "53: First sentence should end with a period.",
-            "63:11: Unclosed HTML tag found: <b>This guy is missing end of bold tag",
-            "66:7: Extra HTML tag found: </td>Extra tag shouldn't be here",
-            "68:19: Unclosed HTML tag found: <code>dummy.",
-            "81: First sentence should end with a period.",
-            "82:31: Unclosed HTML tag found: <b>should fail",
-            "109:39: Extra HTML tag found: </img>",
-            "186:8: Unclosed HTML tag found: <blockquote>",
-            "193: First sentence should end with a period.",
+            "20: " + getCheckMessage(NO_PERIOD),
+            "53: " + getCheckMessage(NO_PERIOD),
+            "63:11: " + getCheckMessage(UNCLOSED_HTML, "<b>This guy is missing end of bold tag"),
+            "66:7: " + getCheckMessage(EXTRA_HTML, "</td>Extra tag shouldn't be here"),
+            "68:19: " + getCheckMessage(UNCLOSED_HTML, "<code>dummy."),
+            "81: " + getCheckMessage(NO_PERIOD),
+            "82:31: " + getCheckMessage(UNCLOSED_HTML, "<b>should fail"),
+            "109:39: " + getCheckMessage(EXTRA_HTML, "</img>"),
+            "186:8: " + getCheckMessage(UNCLOSED_HTML, "<blockquote>"),
+            "193: " + getCheckMessage(NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -273,7 +279,7 @@ public class JavadocStyleCheckTest
             createCheckConfig(JavadocStyleCheck.class);
         final String[] expected =
         {
-            "1: First sentence should end with a period.",
+            "1: " + getCheckMessage(NO_PERIOD),
         };
 
         String basePath = "javadoc" + File.separator
@@ -291,7 +297,7 @@ public class JavadocStyleCheckTest
             createCheckConfig(JavadocStyleCheck.class);
         final String[] expected =
         {
-            "1: First sentence should end with a period.",
+            "1: " + getCheckMessage(NO_PERIOD),
         };
 
         String basePath = "javadoc" + File.separator
@@ -325,7 +331,7 @@ public class JavadocStyleCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
         final String[] expected = {
-            "1: Missing a Javadoc comment.",
+            "1: " + getCheckMessage(JAVADOC_MISSING),
         };
 
         String basePath = "javadoc" + File.separator

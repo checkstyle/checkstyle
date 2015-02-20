@@ -43,6 +43,12 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
 {
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "tag.continuation.indent";
+
     /** Default tag continuation indentation */
     private static final int DEFAULT_INDENTATION = 4;
 
@@ -83,7 +89,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
                 if (whitespace.getType() == JavadocTokenTypes.WS
                         && whitespace.getText().length() - 1 < offset)
                 {
-                    log(textNode.getLineNumber(), "tag.continuation.indent", offset);
+                    log(textNode.getLineNumber(), MSG_KEY, offset);
                 }
             }
         }

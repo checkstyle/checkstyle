@@ -31,6 +31,19 @@ import java.util.Set;
  */
 public class JavadocPackageCheck extends AbstractFileSetCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_LEGACY_PACKAGE_HTML = "javadoc.legacyPackageHtml";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_PACKAGE_INFO = "javadoc.packageInfo";
+
     /** Indicates if allow legacy "package.html" file to be used. */
     private boolean allowLegacy;
     /** The directories checked. */
@@ -69,11 +82,11 @@ public class JavadocPackageCheck extends AbstractFileSetCheck
 
         if (packageInfo.exists()) {
             if (packageHtml.exists()) {
-                log(0, "javadoc.legacyPackageHtml");
+                log(0, MSG_LEGACY_PACKAGE_HTML);
             }
         }
         else if (!allowLegacy || !packageHtml.exists()) {
-            log(0, "javadoc.packageInfo");
+            log(0, MSG_PACKAGE_INFO);
         }
     }
 

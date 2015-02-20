@@ -39,6 +39,12 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 public class SingleLineJavadocCheck extends AbstractJavadocCheck
 {
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "singleline.javadoc";
+
     @Override
     public int[] getDefaultJavadocTokens()
     {

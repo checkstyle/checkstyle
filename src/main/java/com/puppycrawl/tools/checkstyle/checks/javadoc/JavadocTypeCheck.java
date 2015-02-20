@@ -43,6 +43,43 @@ import org.apache.commons.beanutils.ConversionException;
 public class JavadocTypeCheck
     extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String JAVADOC_MISSING = "javadoc.missing";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String UNKNOWN_TAG = "javadoc.unknownTag";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String TAG_FORMAT = "type.tagFormat";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MISSING_TAG = "type.missingTag";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String UNUSED_TAG = "javadoc.unusedTag";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String UNUSED_TAG_GENERAL = "javadoc.unusedTagGeneral";
+
     /** the scope to check for */
     private Scope scope = Scope.PRIVATE;
     /** the visibility scope where Javadoc comments shouldn't be checked **/
@@ -166,7 +203,7 @@ public class JavadocTypeCheck
             final int lineNo = ast.getLineNo();
             final TextBlock cmt = contents.getJavadocBefore(lineNo);
             if (cmt == null) {
-                log(lineNo, "javadoc.missing");
+                log(lineNo, JAVADOC_MISSING);
             }
             else if (ScopeUtils.isOuterMostType(ast)) {
                 // don't check author/version for inner classes
@@ -225,7 +262,7 @@ public class JavadocTypeCheck
             JavadocUtils.JavadocTagType.BLOCK);
         if (!allowUnknownTags) {
             for (final InvalidJavadocTag tag : tags.getInvalidTags()) {
-                log(tag.getLine(), tag.getCol(), "javadoc.unknownTag",
+                log(tag.getLine(), tag.getCol(), UNKNOWN_TAG,
                     tag.getName());
             }
         }
@@ -253,12 +290,12 @@ public class JavadocTypeCheck
             if (tag.getTagName().equals(tagName)) {
                 tagCount++;
                 if (!formatPattern.matcher(tag.getArg1()).find()) {
-                    log(lineNo, "type.tagFormat", "@" + tagName, format);
+                    log(lineNo, TAG_FORMAT, "@" + tagName, format);
                 }
             }
         }
         if (tagCount == 0) {
-            log(lineNo, "type.missingTag", "@" + tagName);
+            log(lineNo, MISSING_TAG, "@" + tagName);
         }
     }
 
@@ -283,7 +320,7 @@ public class JavadocTypeCheck
             }
         }
         if (!found) {
-            log(lineNo, "type.missingTag",
+            log(lineNo, MISSING_TAG,
                 JavadocTagInfo.PARAM.getText() + " <" + typeParamName + ">");
         }
     }
@@ -311,19 +348,19 @@ public class JavadocTypeCheck
                         typeParamName = matcher.group(1).trim();
                         if (!typeParamNames.contains(typeParamName)) {
                             log(tag.getLineNo(), tag.getColumnNo(),
-                                "javadoc.unusedTag",
+                                UNUSED_TAG,
                                 JavadocTagInfo.PARAM.getText(),
                                 "<" + typeParamName + ">");
                         }
                     }
                     else {
                         log(tag.getLineNo(), tag.getColumnNo(),
-                            "javadoc.unusedTagGeneral");
+                            UNUSED_TAG_GENERAL);
                     }
                 }
                 else {
                     log(tag.getLineNo(), tag.getColumnNo(),
-                        "javadoc.unusedTagGeneral");
+                        UNUSED_TAG_GENERAL);
                 }
             }
         }

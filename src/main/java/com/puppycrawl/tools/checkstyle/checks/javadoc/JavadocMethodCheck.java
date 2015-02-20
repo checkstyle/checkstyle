@@ -54,6 +54,55 @@ import java.util.regex.Pattern;
 @SuppressWarnings("deprecation")
 public class JavadocMethodCheck extends AbstractTypeAwareCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_CLASS_INFO = "javadoc.classInfo";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_UNUSED_TAG_GENERAL = "javadoc.unusedTagGeneral";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_INVALID_INHERIT_DOC = "javadoc.invalidInheritDoc";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_UNUSED_TAG = "javadoc.unusedTag";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_EXCPECTED_TAG = "javadoc.expectedTag";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_RETURN_EXPECTED = "javadoc.return.expected";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_DUPLICATE_TAG = "javadoc.duplicateTag";
+
     /** compiled regexp to match Javadoc tags that take an argument * */
     private static final Pattern MATCH_JAVADOC_ARG =
         Utils.createPattern("@(throws|exception|param)\\s+(\\S+)\\s+\\S*");
@@ -330,7 +379,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
             if (cmt == null) {
                 if (!isMissingJavadocAllowed(ast)) {
-                    log(ast, "javadoc.missing");
+                    log(ast, MSG_JAVADOC_MISSING);
                 }
             }
             else {
@@ -386,7 +435,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     protected final void logLoadError(Token ident)
     {
         logLoadErrorImpl(ident.getLineNo(), ident.getColumnNo(),
-            "javadoc.classInfo",
+            MSG_CLASS_INFO,
             JavadocTagInfo.THROWS.getText(), ident.getText());
     }
 
@@ -480,7 +529,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         while (it.hasNext()) {
             final JavadocTag jt = it.next();
             if (!jt.isSeeOrInheritDocTag()) {
-                log(jt.getLineNo(), "javadoc.unusedTagGeneral");
+                log(jt.getLineNo(), MSG_UNUSED_TAG_GENERAL);
             }
         }
     }
@@ -505,7 +554,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
         // Invalid if private, a constructor, or a static method
         if (!JavadocTagInfo.INHERIT_DOC.isValidOn(ast)) {
-            log(ast, "javadoc.invalidInheritDoc");
+            log(ast, MSG_INVALID_INHERIT_DOC);
         }
 
         return true;
@@ -745,7 +794,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
             // Handle extra JavadocTag
             if (!found) {
-                log(tag.getLineNo(), tag.getColumnNo(), "javadoc.unusedTag",
+                log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
                         "@param", tag.getArg1());
             }
         }
@@ -754,12 +803,12 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         // the user has chosen to suppress these problems
         if (!allowMissingParamTags && reportExpectedTags) {
             for (DetailAST param : params) {
-                log(param, "javadoc.expectedTag",
+                log(param, MSG_EXCPECTED_TAG,
                     JavadocTagInfo.PARAM.getText(), param.getText());
             }
 
             for (DetailAST typeParam : typeParams) {
-                log(typeParam, "javadoc.expectedTag",
+                log(typeParam, MSG_EXCPECTED_TAG,
                     JavadocTagInfo.PARAM.getText(),
                     "<" + typeParam.findFirstToken(TokenTypes.IDENT).getText()
                     + ">");
@@ -808,7 +857,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             if (jt.isReturnTag()) {
                 if (found) {
                     log(jt.getLineNo(), jt.getColumnNo(),
-                        "javadoc.duplicateTag",
+                        MSG_DUPLICATE_TAG,
                         JavadocTagInfo.RETURN.getText());
                 }
                 found = true;
@@ -819,7 +868,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         // Handle there being no @return tags :- unless
         // the user has chosen to suppress these problems
         if (!found && !allowMissingReturnTag && reportExpectedTags) {
-            log(lineNo, "javadoc.return.expected");
+            log(lineNo, MSG_RETURN_EXPECTED);
         }
     }
 
@@ -893,7 +942,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
                 if (reqd && validateThrows) {
                     log(tag.getLineNo(), tag.getColumnNo(),
-                        "javadoc.unusedTag",
+                        MSG_UNUSED_TAG,
                         JavadocTagInfo.THROWS.getText(), tag.getArg1());
 
                 }
@@ -907,7 +956,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                 if (!ei.isFound()) {
                     final Token fi = ei.getName();
                     log(fi.getLineNo(), fi.getColumnNo(),
-                        "javadoc.expectedTag",
+                        MSG_EXCPECTED_TAG,
                         JavadocTagInfo.THROWS.getText(), fi.getText());
                 }
             }
