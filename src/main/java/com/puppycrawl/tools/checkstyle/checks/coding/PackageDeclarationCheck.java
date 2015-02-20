@@ -32,6 +32,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class PackageDeclarationCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "missing.package.declaration";
+
     /** is package defined. */
     private boolean defined;
 
@@ -63,7 +70,7 @@ public final class PackageDeclarationCheck extends Check
     public void finishTree(DetailAST ast)
     {
         if (!defined) {
-            log(ast.getLineNo(), "missing.package.declaration");
+            log(ast.getLineNo(), MSG_KEY);
         }
     }
 

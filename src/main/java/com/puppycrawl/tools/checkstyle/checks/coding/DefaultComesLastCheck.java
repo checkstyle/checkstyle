@@ -42,6 +42,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class DefaultComesLastCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "default.comes.last";
+
     /** Creates new instance of the check. */
     public DefaultComesLastCheck()
     {
@@ -79,7 +86,7 @@ public class DefaultComesLastCheck extends Check
                 || (defaultGroupAST.getColumnNo()
                     != lastGroupAST.getColumnNo()))
             {
-                log(ast, "default.comes.last");
+                log(ast, MSG_KEY);
             }
         }
     }

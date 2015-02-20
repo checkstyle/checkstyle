@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.AvoidInlineConditionalsCheck.MSG_KEY;
+
 public class AvoidInlineConditionalsCheckTest
     extends BaseCheckTestSupport
 {
@@ -32,9 +34,9 @@ public class AvoidInlineConditionalsCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidInlineConditionalsCheck.class);
         final String[] expected = {
-            "97:29: Avoid inline conditionals.",
-            "98:20: Avoid inline conditionals.",
-            "150:34: Avoid inline conditionals.",
+            "97:29: " + getCheckMessage(MSG_KEY),
+            "98:20: " + getCheckMessage(MSG_KEY),
+            "150:34: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }

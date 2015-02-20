@@ -53,6 +53,13 @@ import java.util.Set;
 public class IllegalTokenCheck
     extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "illegal.token";
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -88,7 +95,7 @@ public class IllegalTokenCheck
         log(
             ast.getLineNo(),
             ast.getColumnNo(),
-            "illegal.token",
+            MSG_KEY,
             ast.getText());
     }
 

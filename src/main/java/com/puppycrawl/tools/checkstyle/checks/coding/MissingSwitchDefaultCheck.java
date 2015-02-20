@@ -44,6 +44,13 @@ import com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
  */
 public class MissingSwitchDefaultCheck extends DescendantTokenCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "missing.switch.default";
+
     /** Creates new instance of the check. */
     public MissingSwitchDefaultCheck()
     {
@@ -52,7 +59,7 @@ public class MissingSwitchDefaultCheck extends DescendantTokenCheck
         });
         setMinimumNumber(1);
         setMaximumDepth(2);
-        setMinimumMessage("missing.switch.default");
+        setMinimumMessage(MSG_KEY);
     }
 
     @Override

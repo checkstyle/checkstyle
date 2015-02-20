@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck.MSG_KEY;
+
 public class InnerAssignmentCheckTest
     extends BaseCheckTestSupport
 {
@@ -32,23 +34,23 @@ public class InnerAssignmentCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(InnerAssignmentCheck.class);
         final String[] expected = {
-            "16:15: Inner assignments should be avoided.",
-            "16:19: Inner assignments should be avoided.",
-            "18:39: Inner assignments should be avoided.",
-            "20:35: Inner assignments should be avoided.",
+            "16:15: " + getCheckMessage(MSG_KEY),
+            "16:19: " + getCheckMessage(MSG_KEY),
+            "18:39: " + getCheckMessage(MSG_KEY),
+            "20:35: " + getCheckMessage(MSG_KEY),
 
-            "38:16: Inner assignments should be avoided.",
-            "39:24: Inner assignments should be avoided.",
-            "40:19: Inner assignments should be avoided.",
-            "41:17: Inner assignments should be avoided.",
-            "42:29: Inner assignments should be avoided.",
-            "43:20: Inner assignments should be avoided.",
-            "44:17: Inner assignments should be avoided.",
-            "44:31: Inner assignments should be avoided.",
-            "44:41: Inner assignments should be avoided.",
-            "45:16: Inner assignments should be avoided.",
-            "45:27: Inner assignments should be avoided.",
-            "46:32: Inner assignments should be avoided.",
+            "38:16: " + getCheckMessage(MSG_KEY),
+            "39:24: " + getCheckMessage(MSG_KEY),
+            "40:19: " + getCheckMessage(MSG_KEY),
+            "41:17: " + getCheckMessage(MSG_KEY),
+            "42:29: " + getCheckMessage(MSG_KEY),
+            "43:20: " + getCheckMessage(MSG_KEY),
+            "44:17: " + getCheckMessage(MSG_KEY),
+            "44:31: " + getCheckMessage(MSG_KEY),
+            "44:41: " + getCheckMessage(MSG_KEY),
+            "45:16: " + getCheckMessage(MSG_KEY),
+            "45:27: " + getCheckMessage(MSG_KEY),
+            "46:32: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputInnerAssignment.java"), expected);
     }

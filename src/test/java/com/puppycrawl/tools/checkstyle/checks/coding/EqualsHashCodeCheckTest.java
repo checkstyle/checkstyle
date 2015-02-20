@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck.MSG_KEY;
+
 public class EqualsHashCodeCheckTest
     extends BaseCheckTestSupport
 {
@@ -31,9 +33,9 @@ public class EqualsHashCodeCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(EqualsHashCodeCheck.class);
         final String[] expected = {
-            "126:9: Definition of 'equals()' without corresponding definition of 'hashCode()'.",
-            "163:13: Definition of 'equals()' without corresponding definition of 'hashCode()'.",
-            "191:9: Definition of 'equals()' without corresponding definition of 'hashCode()'.",
+            "126:9: " + getCheckMessage(MSG_KEY),
+            "163:13: " + getCheckMessage(MSG_KEY),
+            "191:9: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }

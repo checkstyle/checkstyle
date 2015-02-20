@@ -101,6 +101,13 @@ import org.apache.commons.beanutils.ConversionException;
 public class HiddenFieldCheck
     extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "hidden.field";
+
     /** stack of sets of field names,
      * one for each class of a set of nested classes.
      */
@@ -264,7 +271,7 @@ public class HiddenFieldCheck
                 && !isIgnoredConstructorParam(ast)
                 && !isIgnoredParamOfAbstractMethod(ast))
             {
-                log(nameAST, "hidden.field", name);
+                log(nameAST, MSG_KEY, name);
             }
         }
     }

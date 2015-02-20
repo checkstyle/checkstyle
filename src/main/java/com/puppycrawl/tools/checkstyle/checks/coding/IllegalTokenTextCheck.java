@@ -52,6 +52,13 @@ import java.util.regex.Pattern;
 public class IllegalTokenTextCheck
     extends AbstractFormatCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "illegal.token.text";
+
     /**
      * Custom message for report if illegal regexp found
      * ignored if empty.
@@ -98,7 +105,7 @@ public class IllegalTokenTextCheck
         if (getRegexp().matcher(text).find()) {
             String message = getMessage();
             if ("".equals(message)) {
-                message = "illegal.token.text";
+                message = MSG_KEY;
             }
             log(
                 ast.getLineNo(),

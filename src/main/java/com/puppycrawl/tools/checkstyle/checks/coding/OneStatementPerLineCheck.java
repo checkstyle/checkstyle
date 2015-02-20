@@ -29,6 +29,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class OneStatementPerLineCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "multiple.statements.line";
+
     /** hold the line-number where the last statement ended. */
     private int lastStatementEnd = -1;
     /** tracks the depth of EXPR tokens. */
@@ -112,7 +119,7 @@ public final class OneStatementPerLineCheck extends Check
                 && !inForHeader
                 && (lastStatementEnd == ast.getLineNo()))
         {
-            log(ast, "multiple.statements.line");
+            log(ast, MSG_KEY);
         }
     }
 

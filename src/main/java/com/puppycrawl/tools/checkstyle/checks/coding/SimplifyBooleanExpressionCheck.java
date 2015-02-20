@@ -42,6 +42,13 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class SimplifyBooleanExpressionCheck
         extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "simplify.expression";
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -73,7 +80,7 @@ public class SimplifyBooleanExpressionCheck
             case TokenTypes.LOR:
             case TokenTypes.LAND:
                 log(parent.getLineNo(), parent.getColumnNo(),
-                    "simplify.expression");
+                    MSG_KEY);
                 break;
             default:
                 break;

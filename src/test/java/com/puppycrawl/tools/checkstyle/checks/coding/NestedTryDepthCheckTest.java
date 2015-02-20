@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck.MSG_KEY;
+
 public class NestedTryDepthCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -31,9 +33,9 @@ public class NestedTryDepthCheckTest extends BaseCheckTestSupport
             createCheckConfig(NestedTryDepthCheck.class);
 
         final String[] expected = {
-            "22:17: Nested try depth is 2 (max allowed is 1).",
-            "33:17: Nested try depth is 2 (max allowed is 1).",
-            "34:21: Nested try depth is 3 (max allowed is 1).",
+            "22:17: " + getCheckMessage(MSG_KEY, 2, 1),
+            "33:17: " + getCheckMessage(MSG_KEY, 2, 1),
+            "34:21: " + getCheckMessage(MSG_KEY, 3, 1),
         };
 
         verify(checkConfig, getPath("coding/InputNestedTryDepth.java"), expected);
@@ -47,7 +49,7 @@ public class NestedTryDepthCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("max", "2");
 
         final String[] expected = {
-            "34:21: Nested try depth is 3 (max allowed is 2).",
+            "34:21: " + getCheckMessage(MSG_KEY, 3, 2),
         };
 
         verify(checkConfig, getPath("coding/InputNestedTryDepth.java"), expected);

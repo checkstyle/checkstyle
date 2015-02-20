@@ -33,6 +33,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class IllegalCatchCheck extends AbstractIllegalCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "illegal.catch";
+
     /** Creates new instance of the check. */
     public IllegalCatchCheck()
     {
@@ -76,7 +83,7 @@ public final class IllegalCatchCheck extends AbstractIllegalCheck
             final FullIdent ident = FullIdent.createFullIdent(excType);
 
             if (isIllegalClassName(ident.getText())) {
-                log(detailAST, "illegal.catch", ident.getText());
+                log(detailAST, MSG_KEY, ident.getText());
             }
         }
     }

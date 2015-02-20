@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck.MSG_KEY;
+
 /**
  * NoFinalizerCheck test.
  *
@@ -37,7 +39,7 @@ public class NoFinalizerCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(NoFinalizerCheck.class);
         final String[] expected = {
-            "5: Avoid using finalizer method.",
+            "5: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("coding/InputHasFinalizer.java"), expected);
     }

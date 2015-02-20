@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck.MSG_KEY;
+
 public class MissingSwitchDefaultCheckTest
     extends BaseCheckTestSupport
 {
@@ -38,7 +40,7 @@ public class MissingSwitchDefaultCheckTest
     public void testMissingSwitchDefault() throws Exception
     {
         final String[] expected = {
-            "17:9: switch without \"default\" clause.",
+            "17:9: " + getCheckMessage(MSG_KEY, "default"),
         };
         verify(
             checkConfig,

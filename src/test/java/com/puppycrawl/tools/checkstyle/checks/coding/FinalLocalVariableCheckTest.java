@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck.MSG_KEY;
+
 public class FinalLocalVariableCheckTest
     extends BaseCheckTestSupport
 {
@@ -32,24 +34,24 @@ public class FinalLocalVariableCheckTest
             createCheckConfig(FinalLocalVariableCheck.class);
 
         final String[] expected = {
-            "9:13: Variable 'i' should be declared final.",
-            "9:16: Variable 'j' should be declared final.",
-            "10:18: Variable 'runnable' should be declared final.",
-            "20:13: Variable 'i' should be declared final.",
-            "24:13: Variable 'z' should be declared final.",
-            "26:16: Variable 'obj' should be declared final.",
-            "30:16: Variable 'x' should be declared final.",
-            "36:18: Variable 'runnable' should be declared final.",
-            "40:21: Variable 'q' should be declared final.",
-            "56:13: Variable 'i' should be declared final.",
-            "60:13: Variable 'z' should be declared final.",
-            "62:16: Variable 'obj' should be declared final.",
-            "66:16: Variable 'x' should be declared final.",
-            "74:21: Variable 'w' should be declared final.",
-            "75:26: Variable 'runnable' should be declared final.",
-            "96:17: Variable 'weird' should be declared final.",
-            "97:17: Variable 'j' should be declared final.",
-            "98:17: Variable 'k' should be declared final.",
+            "9:13: " + getCheckMessage(MSG_KEY, "i"),
+            "9:16: " + getCheckMessage(MSG_KEY, "j"),
+            "10:18: " + getCheckMessage(MSG_KEY, "runnable"),
+            "20:13: " + getCheckMessage(MSG_KEY, "i"),
+            "24:13: " + getCheckMessage(MSG_KEY, "z"),
+            "26:16: " + getCheckMessage(MSG_KEY, "obj"),
+            "30:16: " + getCheckMessage(MSG_KEY, "x"),
+            "36:18: " + getCheckMessage(MSG_KEY, "runnable"),
+            "40:21: " + getCheckMessage(MSG_KEY, "q"),
+            "56:13: " + getCheckMessage(MSG_KEY, "i"),
+            "60:13: " + getCheckMessage(MSG_KEY, "z"),
+            "62:16: " + getCheckMessage(MSG_KEY, "obj"),
+            "66:16: " + getCheckMessage(MSG_KEY, "x"),
+            "74:21: " + getCheckMessage(MSG_KEY, "w"),
+            "75:26: " + getCheckMessage(MSG_KEY, "runnable"),
+            "96:17: " + getCheckMessage(MSG_KEY, "weird"),
+            "97:17: " + getCheckMessage(MSG_KEY, "j"),
+            "98:17: " + getCheckMessage(MSG_KEY, "k"),
         };
         verify(checkConfig, getPath("coding/InputFinalLocalVariable.java"), expected);
     }
@@ -62,9 +64,9 @@ public class FinalLocalVariableCheckTest
         checkConfig.addAttribute("tokens", "PARAMETER_DEF");
 
         final String[] expected = {
-            "45:28: Variable 'aArg' should be declared final.",
-            "149:36: Variable '_o' should be declared final.",
-            "154:37: Variable '_o1' should be declared final.",
+            "45:28: " + getCheckMessage(MSG_KEY, "aArg"),
+            "149:36: " + getCheckMessage(MSG_KEY, "_o"),
+            "154:37: " + getCheckMessage(MSG_KEY, "_o1"),
         };
         verify(checkConfig, getPath("coding/InputFinalLocalVariable.java"), expected);
     }

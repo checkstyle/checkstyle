@@ -41,6 +41,13 @@ import java.util.Set;
  */
 public final class ParameterAssignmentCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "parameter.assignment";
+
     /** Stack of methods' parameters. */
     private final FastStack<Set<String>> parameterNamesStack =
         FastStack.newInstance();
@@ -207,7 +214,7 @@ public final class ParameterAssignmentCheck extends Check
                 && parameterNames.contains(identAST.getText()))
             {
                 log(ast.getLineNo(), ast.getColumnNo(),
-                    "parameter.assignment", identAST.getText());
+                    MSG_KEY, identAST.getText());
             }
         }
     }

@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck.MSG_KEY;
+
 public class SuperCloneCheckTest
     extends BaseCheckTestSupport
 {
@@ -31,9 +33,9 @@ public class SuperCloneCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(SuperCloneCheck.class);
         final String[] expected = {
-            "27:19: Method 'clone' should call 'super.clone'.",
-            "35:19: Method 'clone' should call 'super.clone'.",
-            "60:48: Method 'clone' should call 'super.clone'.",
+            "27:19: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
+            "35:19: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
+            "60:48: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
         };
         verify(checkConfig, getPath("coding/InputClone.java"), expected);
     }

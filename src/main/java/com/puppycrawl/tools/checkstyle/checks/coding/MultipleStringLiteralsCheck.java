@@ -38,6 +38,13 @@ import java.util.regex.Pattern;
  */
 public class MultipleStringLiteralsCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "multiple.string.literal";
+
     /**
      * The found strings and their positions.
      * {@code <String, ArrayList>}, with the ArrayList containing StringInfo
@@ -178,7 +185,7 @@ public class MultipleStringLiteralsCheck extends Check
                 final StringInfo firstFinding = hits.get(0);
                 final int line = firstFinding.getLine();
                 final int col = firstFinding.getCol();
-                log(line, col, "multiple.string.literal", key, hits.size());
+                log(line, col, MSG_KEY, key, hits.size());
             }
         }
     }

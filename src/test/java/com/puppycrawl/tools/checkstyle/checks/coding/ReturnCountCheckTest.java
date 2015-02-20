@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY;
+
 public class ReturnCountCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -31,8 +33,8 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(ReturnCountCheck.class);
         final String[] expected = {
-            "18:5: Return count is 7 (max allowed is 2).",
-            "35:17: Return count is 6 (max allowed is 2).",
+            "18:5: " + getCheckMessage(MSG_KEY, 7, 2),
+            "35:17: " + getCheckMessage(MSG_KEY, 6, 2),
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputReturnCount.java"), expected);
     }
@@ -44,9 +46,9 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport
             createCheckConfig(ReturnCountCheck.class);
         checkConfig.addAttribute("format", "^$");
         final String[] expected = {
-            "5:5: Return count is 7 (max allowed is 2).",
-            "18:5: Return count is 7 (max allowed is 2).",
-            "35:17: Return count is 6 (max allowed is 2).",
+            "5:5: " + getCheckMessage(MSG_KEY, 7, 2),
+            "18:5: " + getCheckMessage(MSG_KEY, 7, 2),
+            "35:17: " + getCheckMessage(MSG_KEY, 6, 2),
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputReturnCount.java"), expected);
     }

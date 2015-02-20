@@ -53,6 +53,43 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class UnnecessaryParenthesesCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_IDENT = "unnecessary.paren.ident";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_ASSIGN = "unnecessary.paren.assign";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_EXPR = "unnecessary.paren.expr";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_LITERAL = "unnecessary.paren.literal";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_STRING = "unnecessary.paren.string";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_RETURN = "unnecessary.paren.return";
+
     /** The minimum number of child nodes to consider for a match. */
     private static final int MIN_CHILDREN_FOR_MATCH = 3;
     /** The maximum string length before we chop the string. */
@@ -169,7 +206,7 @@ public class UnnecessaryParenthesesCheck extends Check
         // An identifier surrounded by parentheses.
         if (surrounded && (type == TokenTypes.IDENT)) {
             parentToSkip = ast.getParent();
-            log(ast, "unnecessary.paren.ident", ast.getText());
+            log(ast, MSG_IDENT, ast.getText());
             return;
         }
 
@@ -177,11 +214,11 @@ public class UnnecessaryParenthesesCheck extends Check
         if (surrounded && inTokenList(type, LITERALS)) {
             parentToSkip = ast.getParent();
             if (type == TokenTypes.STRING_LITERAL) {
-                log(ast, "unnecessary.paren.string",
+                log(ast, MSG_STRING,
                     chopString(ast.getText()));
             }
             else {
-                log(ast, "unnecessary.paren.literal", ast.getText());
+                log(ast, MSG_LITERAL, ast.getText());
             }
             return;
         }
@@ -191,7 +228,7 @@ public class UnnecessaryParenthesesCheck extends Check
             assignDepth++;
             final DetailAST last = ast.getLastChild();
             if (last.getType() == TokenTypes.RPAREN) {
-                log(ast, "unnecessary.paren.assign");
+                log(ast, MSG_ASSIGN);
             }
         }
     }
@@ -218,15 +255,15 @@ public class UnnecessaryParenthesesCheck extends Check
 
             if ((parentToSkip != ast) && exprSurrounded(ast)) {
                 if (assignDepth >= 1) {
-                    log(ast, "unnecessary.paren.assign");
+                    log(ast, MSG_ASSIGN);
                 }
                 else if (ast.getParent().getType()
                     == TokenTypes.LITERAL_RETURN)
                 {
-                    log(ast, "unnecessary.paren.return");
+                    log(ast, MSG_RETURN);
                 }
                 else {
-                    log(ast, "unnecessary.paren.expr");
+                    log(ast, MSG_EXPR);
                 }
             }
 

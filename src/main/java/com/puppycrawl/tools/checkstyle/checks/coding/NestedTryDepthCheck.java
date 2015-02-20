@@ -27,6 +27,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class NestedTryDepthCheck extends AbstractNestedDepthCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "nested.try.depth";
+
     /** default allowed nesting depth */
     private static final int DEFAULT_MAX = 1;
 
@@ -78,7 +85,7 @@ public final class NestedTryDepthCheck extends AbstractNestedDepthCheck
      */
     private void visitLiteralTry(DetailAST literalTry)
     {
-        nestIn(literalTry, "nested.try.depth");
+        nestIn(literalTry, MSG_KEY);
     }
 
     /** Decreases current nesting depth */

@@ -93,6 +93,13 @@ import java.util.Set;
  */
 public final class IllegalTypeCheck extends AbstractFormatCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "illegal.type";
+
     /** Default value of pattern for illegal class name. */
     private static final String DEFAULT_FORMAT = "^(.*[\\.])?Abstract.*$";
     /** Abstract classes legal by default. */
@@ -294,7 +301,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
 
         if (isMatchingClassName(ident.getText())) {
             log(ident.getLineNo(), ident.getColumnNo(),
-                "illegal.type", ident.getText());
+                MSG_KEY, ident.getText());
         }
     }
 

@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck.MSG_KEY;
+
 public class SimplifyBooleanReturnCheckTest
     extends BaseCheckTestSupport
 {
@@ -31,8 +33,8 @@ public class SimplifyBooleanReturnCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(SimplifyBooleanReturnCheck.class);
         final String[] expected = {
-            "20:9: Conditional logic can be removed.",
-            "33:9: Conditional logic can be removed.",
+            "20:9: " + getCheckMessage(MSG_KEY),
+            "33:9: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputSimplifyBoolean.java"), expected);
     }

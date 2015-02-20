@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck.MSG_KEY;
+
 public class IllegalTokenCheckTest
     extends BaseCheckTestSupport
 {
@@ -32,9 +34,9 @@ public class IllegalTokenCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(IllegalTokenCheck.class);
         final String[] expected = {
-            "11:9: Using 'switch' is not allowed.",
-            "14:18: Using '--' is not allowed.",
-            "15:18: Using '++' is not allowed.",
+            "11:9: " + getCheckMessage(MSG_KEY, "switch"),
+            "14:18: " + getCheckMessage(MSG_KEY, "--"),
+            "15:18: " + getCheckMessage(MSG_KEY, "++"),
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
@@ -46,7 +48,7 @@ public class IllegalTokenCheckTest
             createCheckConfig(IllegalTokenCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_NATIVE");
         final String[] expected = {
-            "20:12: Using 'native' is not allowed.",
+            "20:12: " + getCheckMessage(MSG_KEY, "native"),
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }

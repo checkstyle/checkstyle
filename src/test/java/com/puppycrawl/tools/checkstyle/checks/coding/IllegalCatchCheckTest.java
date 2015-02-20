@@ -25,6 +25,8 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck.MSG_KEY;
+
 public class IllegalCatchCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -33,12 +35,12 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport
         DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
 
         String[] expected = {
-            "6:11: Catching 'RuntimeException' is not allowed.",
-            "7:11: Catching 'Exception' is not allowed.",
-            "8:11: Catching 'Throwable' is not allowed.",
-            "14:11: Catching 'java.lang.RuntimeException' is not allowed.",
-            "15:11: Catching 'java.lang.Exception' is not allowed.",
-            "16:11: Catching 'java.lang.Throwable' is not allowed.",
+            "6:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "7:11: " + getCheckMessage(MSG_KEY, "Exception"),
+            "8:11: " + getCheckMessage(MSG_KEY, "Throwable"),
+            "14:11: " + getCheckMessage(MSG_KEY, "java.lang.RuntimeException"),
+            "15:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
+            "16:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
         };
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalCatchCheck.java"), expected);
@@ -52,10 +54,10 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport
                                  "java.lang.Error, java.lang.Exception, java.lang.Throwable");
 
         String[] expected = {
-            "7:11: Catching 'Exception' is not allowed.",
-            "8:11: Catching 'Throwable' is not allowed.",
-            "15:11: Catching 'java.lang.Exception' is not allowed.",
-            "16:11: Catching 'java.lang.Throwable' is not allowed.",
+            "7:11: " + getCheckMessage(MSG_KEY, "Exception"),
+            "8:11: " + getCheckMessage(MSG_KEY, "Throwable"),
+            "15:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
+            "16:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
         };
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalCatchCheck.java"), expected);
@@ -67,10 +69,10 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport
         DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
 
         String[] expected = {
-            "7:11: Catching 'RuntimeException' is not allowed.",
-            "10:11: Catching 'RuntimeException' is not allowed.",
-            "13:11: Catching 'RuntimeException' is not allowed.",
-            "16:11: Catching 'RuntimeException' is not allowed.",
+            "7:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "10:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "13:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "16:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalCatchCheck2.java"), expected);

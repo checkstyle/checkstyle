@@ -25,6 +25,8 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck.MSG_KEY;
+
 public class DefaultComesLastCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -33,7 +35,7 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(DefaultComesLastCheck.class);
         final String[] expected = {
-            "24:9: Default should be last label in the switch.",
+            "24:9: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig,
                getPath("coding" + File.separator + "InputDefaultComesLast.java"),

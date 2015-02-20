@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck.MSG_KEY;
+
 public class NestedIfDepthCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -31,8 +33,8 @@ public class NestedIfDepthCheckTest extends BaseCheckTestSupport
             createCheckConfig(NestedIfDepthCheck.class);
 
         final String[] expected = {
-            "18:17: Nested if-else depth is 2 (max allowed is 1).",
-            "44:17: Nested if-else depth is 2 (max allowed is 1).",
+            "18:17: " + getCheckMessage(MSG_KEY, 2, 1),
+            "44:17: " + getCheckMessage(MSG_KEY, 2, 1),
         };
 
         verify(checkConfig, getPath("coding/InputNestedIfDepth.java"), expected);

@@ -23,6 +23,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_METHOD;
+import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_VARIABLE;
+
 public class RequireThisCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -31,11 +34,11 @@ public class RequireThisCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(RequireThisCheck.class);
         final String[] expected = {
-            "11:9: Reference to instance variable 'i' needs \"this.\".",
-            "17:9: Method call to 'method1' needs \"this.\".",
-            "31:9: Reference to instance variable 'i' needs \"this.\".",
-            "49:13: Reference to instance variable 'z' needs \"this.\".",
-            "56:9: Reference to instance variable 'z' needs \"this.\".",
+            "11:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
+            "17:9: " + getCheckMessage(MSG_METHOD, "method1", "\"this\""),
+            "31:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
+            "49:13: " + getCheckMessage(MSG_VARIABLE, "z", "\"this\""),
+            "56:9: " + getCheckMessage(MSG_VARIABLE, "z", "\"this\""),
         };
         verify(checkConfig,
                getPath("coding" + File.separator + "InputRequireThis.java"),
@@ -49,7 +52,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport
             createCheckConfig(RequireThisCheck.class);
         checkConfig.addAttribute("checkFields", "false");
         final String[] expected = {
-            "17:9: Method call to 'method1' needs \"this.\".",
+            "17:9: " + getCheckMessage(MSG_METHOD, "method1", "\"this\""),
         };
         verify(checkConfig,
                getPath("coding" + File.separator + "InputRequireThis.java"),
@@ -63,10 +66,10 @@ public class RequireThisCheckTest extends BaseCheckTestSupport
             createCheckConfig(RequireThisCheck.class);
         checkConfig.addAttribute("checkMethods", "false");
         final String[] expected = {
-            "11:9: Reference to instance variable 'i' needs \"this.\".",
-            "31:9: Reference to instance variable 'i' needs \"this.\".",
-            "49:13: Reference to instance variable 'z' needs \"this.\".",
-            "56:9: Reference to instance variable 'z' needs \"this.\".",
+            "11:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
+            "31:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
+            "49:13: " + getCheckMessage(MSG_VARIABLE, "z", "\"this\""),
+            "56:9: " + getCheckMessage(MSG_VARIABLE, "z", "\"this\""),
         };
         verify(checkConfig,
                getPath("coding" + File.separator + "InputRequireThis.java"),
@@ -88,8 +91,8 @@ public class RequireThisCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RequireThisCheck.class);
         final String[] expected = {
-            "7:19: Reference to instance variable 'number' needs \"this.\".",
-            "8:16: Method call to 'other' needs \"this.\".",
+            "7:19: " + getCheckMessage(MSG_VARIABLE, "number", "\"this\""),
+            "8:16: " + getCheckMessage(MSG_METHOD, "other", "\"this\""),
         };
         verify(checkConfig,
                 getPath("coding" + File.separator + "InputRequireThis2.java"),

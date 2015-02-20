@@ -37,6 +37,13 @@ import antlr.collections.AST;
  */
 public class StringLiteralEqualityCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "string.literal.equality";
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -60,7 +67,7 @@ public class StringLiteralEqualityCheck extends Check
                 || (secondChild.getType() == TokenTypes.STRING_LITERAL))
         {
             log(ast.getLineNo(), ast.getColumnNo(),
-                    "string.literal.equality", ast.getText());
+                    MSG_KEY, ast.getText());
         }
     }
 }

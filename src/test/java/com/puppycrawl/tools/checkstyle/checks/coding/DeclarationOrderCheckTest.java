@@ -18,9 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_ACCESS;
+import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_CONSTRUCTOR;
+import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_INSTANCE;
+import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_STATIC;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import org.junit.Test;
 
 public class DeclarationOrderCheckTest
     extends BaseCheckTestSupport
@@ -32,32 +38,32 @@ public class DeclarationOrderCheckTest
             createCheckConfig(DeclarationOrderCheck.class);
 
         final String[] expected = {
-            "8:5: Variable access definition in wrong order.",
-            "13:5: Variable access definition in wrong order.",
-            "18:5: Variable access definition in wrong order.",
-            "21:5: Variable access definition in wrong order.",
-            "27:5: Static variable definition in wrong order.",
-            "27:5: Variable access definition in wrong order.",
-            "34:9: Variable access definition in wrong order.",
-            "45:9: Static variable definition in wrong order.",
-            "45:9: Variable access definition in wrong order.",
-            "54:5: Constructor definition in wrong order.",
-            "80:5: Instance variable definition in wrong order.",
+            "8:5: " + getCheckMessage(MSG_ACCESS),
+            "13:5: " + getCheckMessage(MSG_ACCESS),
+            "18:5: " + getCheckMessage(MSG_ACCESS),
+            "21:5: " + getCheckMessage(MSG_ACCESS),
+            "27:5: " + getCheckMessage(MSG_STATIC),
+            "27:5: " + getCheckMessage(MSG_ACCESS),
+            "34:9: " + getCheckMessage(MSG_ACCESS),
+            "45:9: " + getCheckMessage(MSG_STATIC),
+            "45:9: " + getCheckMessage(MSG_ACCESS),
+            "54:5: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "80:5: " + getCheckMessage(MSG_INSTANCE),
 
-            "92:9: Variable access definition in wrong order.",
-            "100:9: Static variable definition in wrong order.",
-            "100:9: Variable access definition in wrong order.",
-            "106:5: Variable access definition in wrong order.",
-            "111:5: Variable access definition in wrong order.",
-            "116:5: Variable access definition in wrong order.",
-            "119:5: Variable access definition in wrong order.",
-            "125:5: Static variable definition in wrong order.",
-            "125:5: Variable access definition in wrong order.",
-            "132:9: Variable access definition in wrong order.",
-            "143:9: Static variable definition in wrong order.",
-            "143:9: Variable access definition in wrong order.",
-            "152:5: Constructor definition in wrong order.",
-            "178:5: Instance variable definition in wrong order.",
+            "92:9: " + getCheckMessage(MSG_ACCESS),
+            "100:9: " + getCheckMessage(MSG_STATIC),
+            "100:9: " + getCheckMessage(MSG_ACCESS),
+            "106:5: " + getCheckMessage(MSG_ACCESS),
+            "111:5: " + getCheckMessage(MSG_ACCESS),
+            "116:5: " + getCheckMessage(MSG_ACCESS),
+            "119:5: " + getCheckMessage(MSG_ACCESS),
+            "125:5: " + getCheckMessage(MSG_STATIC),
+            "125:5: " + getCheckMessage(MSG_ACCESS),
+            "132:9: " + getCheckMessage(MSG_ACCESS),
+            "143:9: " + getCheckMessage(MSG_STATIC),
+            "143:9: " + getCheckMessage(MSG_ACCESS),
+            "152:5: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "178:5: " + getCheckMessage(MSG_INSTANCE),
         };
         verify(checkConfig, getPath("coding/InputDeclarationOrder.java"), expected);
     }
@@ -72,13 +78,13 @@ public class DeclarationOrderCheckTest
         checkConfig.addAttribute("ignoreModifiers", "true");
 
         final String[] expected = {
-            "45:9: Static variable definition in wrong order.",
-            "54:5: Constructor definition in wrong order.",
-            "80:5: Instance variable definition in wrong order.",
-            "100:9: Static variable definition in wrong order.",
-            "143:9: Static variable definition in wrong order.",
-            "152:5: Constructor definition in wrong order.",
-            "178:5: Instance variable definition in wrong order.",
+            "45:9: " + getCheckMessage(MSG_STATIC),
+            "54:5: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "80:5: " + getCheckMessage(MSG_INSTANCE),
+            "100:9: " + getCheckMessage(MSG_STATIC),
+            "143:9: " + getCheckMessage(MSG_STATIC),
+            "152:5: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "178:5: " + getCheckMessage(MSG_INSTANCE),
         };
         verify(checkConfig, getPath("coding/InputDeclarationOrder.java"), expected);
     }
@@ -93,30 +99,30 @@ public class DeclarationOrderCheckTest
         checkConfig.addAttribute("ignoreModifiers", "false");
 
         final String[] expected = {
-            "8:5: Variable access definition in wrong order.",
-            "13:5: Variable access definition in wrong order.",
-            "18:5: Variable access definition in wrong order.",
-            "21:5: Variable access definition in wrong order.",
-            "27:5: Static variable definition in wrong order.",
-            "27:5: Variable access definition in wrong order.",
-            "34:9: Variable access definition in wrong order.",
-            "45:9: Static variable definition in wrong order.",
-            "45:9: Variable access definition in wrong order.",
-            "80:5: Instance variable definition in wrong order.",
+            "8:5: " + getCheckMessage(MSG_ACCESS),
+            "13:5: " + getCheckMessage(MSG_ACCESS),
+            "18:5: " + getCheckMessage(MSG_ACCESS),
+            "21:5: " + getCheckMessage(MSG_ACCESS),
+            "27:5: " + getCheckMessage(MSG_STATIC),
+            "27:5: " + getCheckMessage(MSG_ACCESS),
+            "34:9: " + getCheckMessage(MSG_ACCESS),
+            "45:9: " + getCheckMessage(MSG_STATIC),
+            "45:9: " + getCheckMessage(MSG_ACCESS),
+            "80:5: " + getCheckMessage(MSG_INSTANCE),
 
-            "92:9: Variable access definition in wrong order.",
-            "100:9: Static variable definition in wrong order.",
-            "100:9: Variable access definition in wrong order.",
-            "106:5: Variable access definition in wrong order.",
-            "111:5: Variable access definition in wrong order.",
-            "116:5: Variable access definition in wrong order.",
-            "119:5: Variable access definition in wrong order.",
-            "125:5: Static variable definition in wrong order.",
-            "125:5: Variable access definition in wrong order.",
-            "132:9: Variable access definition in wrong order.",
-            "143:9: Static variable definition in wrong order.",
-            "143:9: Variable access definition in wrong order.",
-            "178:5: Instance variable definition in wrong order.",
+            "92:9: " + getCheckMessage(MSG_ACCESS),
+            "100:9: " + getCheckMessage(MSG_STATIC),
+            "100:9: " + getCheckMessage(MSG_ACCESS),
+            "106:5: " + getCheckMessage(MSG_ACCESS),
+            "111:5: " + getCheckMessage(MSG_ACCESS),
+            "116:5: " + getCheckMessage(MSG_ACCESS),
+            "119:5: " + getCheckMessage(MSG_ACCESS),
+            "125:5: " + getCheckMessage(MSG_STATIC),
+            "125:5: " + getCheckMessage(MSG_ACCESS),
+            "132:9: " + getCheckMessage(MSG_ACCESS),
+            "143:9: " + getCheckMessage(MSG_STATIC),
+            "143:9: " + getCheckMessage(MSG_ACCESS),
+            "178:5: " + getCheckMessage(MSG_INSTANCE),
         };
         verify(checkConfig, getPath("coding/InputDeclarationOrder.java"), expected);
     }

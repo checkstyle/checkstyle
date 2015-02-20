@@ -22,6 +22,9 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck
+.MSG_KEY;
+
 public class OverloadMethodsDeclarationOrderCheckTest
     extends BaseCheckTestSupport
 {
@@ -32,10 +35,10 @@ public class OverloadMethodsDeclarationOrderCheckTest
             createCheckConfig(OverloadMethodsDeclarationOrderCheck.class);
 
         final String[] expected = {
-            "28: Overload methods should not be split. Previous overloaded method located at line '17'.",
-            "56: Overload methods should not be split. Previous overloaded method located at line '45'.",
-            "68: Overload methods should not be split. Previous overloaded method located at line '66'.",
-            "111: Overload methods should not be split. Previous overloaded method located at line '100'.",
+            "28: " + getCheckMessage(MSG_KEY, 17),
+            "56: " + getCheckMessage(MSG_KEY, 45),
+            "68: " + getCheckMessage(MSG_KEY, 66),
+            "111: " + getCheckMessage(MSG_KEY, 100),
         };
         verify(checkConfig, getPath("coding/InputOverloadMethodsDeclarationOrder.java"), expected);
     }

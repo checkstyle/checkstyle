@@ -65,6 +65,19 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  */
 public class FallThroughCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_FALL_THROUGH = "fall.through";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_FALL_THROUGH_LAST = "fall.through.last";
+
     /** Do we need to check last case group. */
     private boolean checkLastGroup;
 
@@ -143,10 +156,10 @@ public class FallThroughCheck extends Check
             && !hasFallTruComment(ast, nextGroup))
         {
             if (!isLastGroup) {
-                log(nextGroup, "fall.through");
+                log(nextGroup, MSG_FALL_THROUGH);
             }
             else {
-                log(ast, "fall.through.last");
+                log(ast, MSG_FALL_THROUGH_LAST);
             }
         }
     }

@@ -44,6 +44,19 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  */
 public class MultipleVariableDeclarationsCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_MULTIPLE = "multiple.variable.declarations";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_MULTIPLE_COMMA = "multiple.variable.declarations.comma";
+
     /** Creates new instance of the check. */
     public MultipleVariableDeclarationsCheck()
     {

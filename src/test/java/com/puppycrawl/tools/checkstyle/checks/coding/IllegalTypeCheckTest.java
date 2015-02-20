@@ -24,6 +24,8 @@ import java.io.File;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck.MSG_KEY;
+
 public class IllegalTypeCheckTest extends BaseCheckTestSupport
 {
     private DefaultConfiguration checkConfig;
@@ -38,12 +40,10 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
     public void testDefaults() throws Exception
     {
         String[] expected = {
-            "6:13: Declaring variables, return values or parameters of type 'AbstractClass' is not allowed.",
-            "9:13: Declaring variables, return values or parameters of type "
-                + "'com.puppycrawl.tools.checkstyle.coding.InputIllegalType.AbstractClass'"
-                + " is not allowed.",
-            "16:13: Declaring variables, return values or parameters of type 'java.util.TreeSet' is not allowed.",
-            "17:13: Declaring variables, return values or parameters of type 'TreeSet' is not allowed.",
+            "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+            "9:13: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.coding.InputIllegalType.AbstractClass"),
+            "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
         };
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
@@ -55,11 +55,9 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("ignoredMethodNames", "table2");
 
         String[] expected = {
-            "6:13: Declaring variables, return values or parameters of type 'AbstractClass' is not allowed.",
-            "9:13: Declaring variables, return values or parameters of type "
-                + "'com.puppycrawl.tools.checkstyle.coding.InputIllegalType.AbstractClass'"
-                + " is not allowed.",
-            "16:13: Declaring variables, return values or parameters of type 'java.util.TreeSet' is not allowed.",
+            "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+            "9:13: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.coding.InputIllegalType.AbstractClass"),
+            "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
         };
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
@@ -71,8 +69,8 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("format", "^$");
 
         String[] expected = {
-            "16:13: Declaring variables, return values or parameters of type 'java.util.TreeSet' is not allowed.",
-            "17:13: Declaring variables, return values or parameters of type 'TreeSet' is not allowed.",
+            "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
         };
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
@@ -84,11 +82,9 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("legalAbstractClassNames", "AbstractClass");
 
         String[] expected = {
-            "9:13: Declaring variables, return values or parameters of type "
-                + "'com.puppycrawl.tools.checkstyle.coding.InputIllegalType.AbstractClass'"
-                + " is not allowed.",
-            "16:13: Declaring variables, return values or parameters of type 'java.util.TreeSet' is not allowed.",
-            "17:13: Declaring variables, return values or parameters of type 'TreeSet' is not allowed.",
+            "9:13: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.coding.InputIllegalType.AbstractClass"),
+            "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
         };
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
@@ -101,8 +97,8 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
                 + "java.util.List");
 
         String[] expected = {
-            "12:5: Declaring variables, return values or parameters of type 'SubCalendar' is not allowed.",
-            "27:5: Declaring variables, return values or parameters of type 'java.util.List' is not allowed.",
+            "12:5: " + getCheckMessage(MSG_KEY, "SubCalendar"),
+            "27:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
         };
 
         verify(checkConfig, getPath("coding" + File.separator
@@ -114,12 +110,12 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
     {
         checkConfig.addAttribute("illegalClassNames", "List, GregorianCalendar, java.io.File, ArrayList");
         String[] expected = {
-            "10:5: Declaring variables, return values or parameters of type 'GregorianCalendar' is not allowed.",
-            "16:23: Declaring variables, return values or parameters of type 'GregorianCalendar' is not allowed.",
-            "24:9: Declaring variables, return values or parameters of type 'List' is not allowed.",
-            "25:9: Declaring variables, return values or parameters of type 'java.io.File' is not allowed.",
-            "27:5: Declaring variables, return values or parameters of type 'java.util.List' is not allowed.",
-            "28:13: Declaring variables, return values or parameters of type 'ArrayList' is not allowed.",
+            "10:5: " + getCheckMessage(MSG_KEY, "GregorianCalendar"),
+            "16:23: " + getCheckMessage(MSG_KEY, "GregorianCalendar"),
+            "24:9: " + getCheckMessage(MSG_KEY, "List"),
+            "25:9: " + getCheckMessage(MSG_KEY, "java.io.File"),
+            "27:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "28:13: " + getCheckMessage(MSG_KEY, "ArrayList"),
         };
         verify(checkConfig, getPath("coding" + File.separator
                 + "InputIllegalTypeSameFileName.java"), expected);
@@ -131,7 +127,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("illegalClassNames", "List");
 
         String[] expected = {
-            "10:5: Declaring variables, return values or parameters of type 'List' is not allowed.",
+            "10:5: " + getCheckMessage(MSG_KEY, "List"),
         };
 
         verify(checkConfig, getPath("coding" + File.separator
@@ -145,8 +141,8 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("ignoredMethodNames", "foo1");
 
         String[] expected = {
-            "13:6: Declaring variables, return values or parameters of type 'SomeStaticClass' is not allowed.",
-            "15:31: Declaring variables, return values or parameters of type 'SomeStaticClass' is not allowed.",
+            "13:6: " + getCheckMessage(MSG_KEY, "SomeStaticClass"),
+            "15:31: " + getCheckMessage(MSG_KEY, "SomeStaticClass"),
         };
 
         verify(checkConfig, getPath("coding" + File.separator
@@ -159,17 +155,13 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("memberModifiers", "LITERAL_PRIVATE, LITERAL_PROTECTED,"
                 + " LITERAL_STATIC");
         String[] expected = {
-            "6:13: Declaring variables, return values or parameters of type 'AbstractClass' is not allowed.",
-            "9:13: Declaring variables, return values or parameters of type "
-                + "'com.puppycrawl.tools.checkstyle.coding.InputIllegalTypeMemberModifiers.AbstractClass'"
-                + " is not allowed.",
-            "16:13: Declaring variables, return values or parameters of type 'java.util.TreeSet' is not allowed.",
-            "17:13: Declaring variables, return values or parameters of type 'TreeSet' is not allowed.",
-            "23:15: Declaring variables, return values or parameters of type "
-                    + "'com.puppycrawl.tools.checkstyle.coding.InputIllegalTypeMemberModifiers.AbstractClass'"
-                    + " is not allowed.",
-            "25:25: Declaring variables, return values or parameters of type 'java.util.TreeSet' is not allowed.",
-            "33:15: Declaring variables, return values or parameters of type 'AbstractClass' is not allowed.",
+            "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+            "9:13: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.coding.InputIllegalTypeMemberModifiers.AbstractClass"),
+            "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "23:15: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.coding.InputIllegalTypeMemberModifiers.AbstractClass"),
+            "25:25: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "33:15: " + getCheckMessage(MSG_KEY, "AbstractClass"),
         };
 
         verify(checkConfig, getPath("coding" + File.separator

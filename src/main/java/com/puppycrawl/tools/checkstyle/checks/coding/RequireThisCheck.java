@@ -55,6 +55,19 @@ import com.puppycrawl.tools.checkstyle.checks.DeclarationCollector;
  */
 public class RequireThisCheck extends DeclarationCollector
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_METHOD = "require.this.method";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_VARIABLE = "require.this.variable";
+
     /** whether we should check fields usage. */
     private boolean checkFields = true;
     /** whether we should check methods usage. */

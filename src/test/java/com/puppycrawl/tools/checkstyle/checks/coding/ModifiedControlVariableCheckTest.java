@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck.MSG_KEY;
+
 public class ModifiedControlVariableCheckTest
     extends BaseCheckTestSupport
 {
@@ -31,12 +33,12 @@ public class ModifiedControlVariableCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(ModifiedControlVariableCheck.class);
         final String[] expected = {
-            "14:14: Control variable 'i' is modified.",
-            "17:15: Control variable 'i' is modified.",
-            "20:37: Control variable 'i' is modified.",
-            "21:17: Control variable 'i' is modified.",
-            "25:14: Control variable 'j' is modified.",
-            "49:15: Control variable 's' is modified.",
+            "14:14: " + getCheckMessage(MSG_KEY, "i"),
+            "17:15: " + getCheckMessage(MSG_KEY, "i"),
+            "20:37: " + getCheckMessage(MSG_KEY, "i"),
+            "21:17: " + getCheckMessage(MSG_KEY, "i"),
+            "25:14: " + getCheckMessage(MSG_KEY, "j"),
+            "49:15: " + getCheckMessage(MSG_KEY, "s"),
         };
         verify(checkConfig, getPath("coding/InputModifiedControl.java"), expected);
     }

@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck.MSG_KEY;
+
 public class CovariantEqualsCheckTest
     extends BaseCheckTestSupport
 {
@@ -32,10 +34,10 @@ public class CovariantEqualsCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(CovariantEqualsCheck.class);
         final String[] expected = {
-            "11:24: covariant equals without overriding equals(java.lang.Object).",
-            "30:20: covariant equals without overriding equals(java.lang.Object).",
-            "64:20: covariant equals without overriding equals(java.lang.Object).",
-            "78:28: covariant equals without overriding equals(java.lang.Object).",
+            "11:24: " + getCheckMessage(MSG_KEY),
+            "30:20: " + getCheckMessage(MSG_KEY),
+            "64:20: " + getCheckMessage(MSG_KEY),
+            "78:28: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputCovariant.java"), expected);
     }

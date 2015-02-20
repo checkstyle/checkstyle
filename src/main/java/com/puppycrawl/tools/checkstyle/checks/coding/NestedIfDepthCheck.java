@@ -29,6 +29,13 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  */
 public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "nested.if.depth";
+
     /** default allowed nesting depth. */
     private static final int DEFAULT_MAX = 1;
 
@@ -81,7 +88,7 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
     private void visitLiteralIf(DetailAST literalIf)
     {
         if (!CheckUtils.isElseIf(literalIf)) {
-            nestIn(literalIf, "nested.if.depth");
+            nestIn(literalIf, MSG_KEY);
         }
     }
 

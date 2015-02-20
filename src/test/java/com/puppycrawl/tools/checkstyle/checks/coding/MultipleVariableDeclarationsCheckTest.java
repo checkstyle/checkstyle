@@ -24,6 +24,11 @@ import org.junit.Test;
 
 import java.io.File;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck
+.MSG_MULTIPLE;
+import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck
+.MSG_MULTIPLE_COMMA;
+
 public class MultipleVariableDeclarationsCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -33,12 +38,12 @@ public class MultipleVariableDeclarationsCheckTest extends BaseCheckTestSupport
             createCheckConfig(MultipleVariableDeclarationsCheck.class);
 
         final String[] expected = {
-            "4:5: Each variable declaration must be in its own statement.",
-            "5:5: Only one variable definition per line allowed.",
-            "8:9: Each variable declaration must be in its own statement.",
-            "9:9: Only one variable definition per line allowed.",
-            "13:5: Only one variable definition per line allowed.",
-            "16:5: Only one variable definition per line allowed.",
+            "4:5: " + getCheckMessage(MSG_MULTIPLE_COMMA),
+            "5:5: " + getCheckMessage(MSG_MULTIPLE),
+            "8:9: " + getCheckMessage(MSG_MULTIPLE_COMMA),
+            "9:9: " + getCheckMessage(MSG_MULTIPLE),
+            "13:5: " + getCheckMessage(MSG_MULTIPLE),
+            "16:5: " + getCheckMessage(MSG_MULTIPLE),
         };
 
         verify(checkConfig,

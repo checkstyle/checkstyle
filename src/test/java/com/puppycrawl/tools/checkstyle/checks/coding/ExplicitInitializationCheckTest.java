@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck.MSG_KEY;
+
 public class ExplicitInitializationCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -31,25 +33,25 @@ public class ExplicitInitializationCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(ExplicitInitializationCheck.class);
         final String[] expected = {
-            "4:17: Variable 'x' explicitly initialized to '0' (default value for its type).",
-            "5:20: Variable 'bar' explicitly initialized to 'null' (default value for its type).",
-            "9:18: Variable 'y4' explicitly initialized to '0' (default value for its type).",
-            "10:21: Variable 'b1' explicitly initialized to 'false' (default value for its type).",
-            "14:22: Variable 'str1' explicitly initialized to 'null' (default value for its type).",
-            "14:35: Variable 'str3' explicitly initialized to 'null' (default value for its type).",
-            "15:9: Variable 'ar1' explicitly initialized to 'null' (default value for its type).",
-            "18:11: Variable 'f1' explicitly initialized to '0' (default value for its type).",
-            "19:12: Variable 'd1' explicitly initialized to '0' (default value for its type).",
-            "22:17: Variable 'ch1' explicitly initialized to '\\0' (default value for its type).",
-            "23:17: Variable 'ch2' explicitly initialized to '\\0' (default value for its type).",
-            "39:25: Variable 'bar' explicitly initialized to 'null' (default value for its type).",
-            "40:27: Variable 'barArray' explicitly initialized to 'null' (default value for its type).",
-            "47:21: Variable 'x' explicitly initialized to '0' (default value for its type).",
-            "48:29: Variable 'bar' explicitly initialized to 'null' (default value for its type).",
-            "49:31: Variable 'barArray' explicitly initialized to 'null' (default value for its type).",
-            "52:17: Variable 'x' explicitly initialized to '0' (default value for its type).",
-            "53:25: Variable 'bar' explicitly initialized to 'null' (default value for its type).",
-            "54:27: Variable 'barArray' explicitly initialized to 'null' (default value for its type).",
+            "4:17: " + getCheckMessage(MSG_KEY, "x", 0),
+            "5:20: " + getCheckMessage(MSG_KEY, "bar", "null"),
+            "9:18: " + getCheckMessage(MSG_KEY, "y4", 0),
+            "10:21: " + getCheckMessage(MSG_KEY, "b1", "false"),
+            "14:22: " + getCheckMessage(MSG_KEY, "str1", "null"),
+            "14:35: " + getCheckMessage(MSG_KEY, "str3", "null"),
+            "15:9: " + getCheckMessage(MSG_KEY, "ar1", "null"),
+            "18:11: " + getCheckMessage(MSG_KEY, "f1", 0),
+            "19:12: " + getCheckMessage(MSG_KEY, "d1", 0),
+            "22:17: " + getCheckMessage(MSG_KEY, "ch1", "\\0"),
+            "23:17: " + getCheckMessage(MSG_KEY, "ch2", "\\0"),
+            "39:25: " + getCheckMessage(MSG_KEY, "bar", "null"),
+            "40:27: " + getCheckMessage(MSG_KEY, "barArray", "null"),
+            "47:21: " + getCheckMessage(MSG_KEY, "x", 0),
+            "48:29: " + getCheckMessage(MSG_KEY, "bar", "null"),
+            "49:31: " + getCheckMessage(MSG_KEY, "barArray", "null"),
+            "52:17: " + getCheckMessage(MSG_KEY, "x", 0),
+            "53:25: " + getCheckMessage(MSG_KEY, "bar", "null"),
+            "54:27: " + getCheckMessage(MSG_KEY, "barArray", "null"),
         };
         verify(checkConfig,
                getPath("coding" + File.separator + "InputExplicitInit.java"),

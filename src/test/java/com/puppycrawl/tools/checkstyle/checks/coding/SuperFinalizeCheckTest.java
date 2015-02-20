@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck.MSG_KEY;
+
 public class SuperFinalizeCheckTest
     extends BaseCheckTestSupport
 {
@@ -31,8 +33,8 @@ public class SuperFinalizeCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(SuperFinalizeCheck.class);
         final String[] expected = {
-            "27:17: Method 'finalize' should call 'super.finalize'.",
-            "34:17: Method 'finalize' should call 'super.finalize'.",
+            "27:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
+            "34:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
         };
         verify(checkConfig, getPath("coding/InputFinalize.java"), expected);
     }

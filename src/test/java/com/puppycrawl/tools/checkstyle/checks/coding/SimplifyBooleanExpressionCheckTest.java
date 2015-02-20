@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck.MSG_KEY;
+
 public class SimplifyBooleanExpressionCheckTest
     extends BaseCheckTestSupport
 {
@@ -31,11 +33,11 @@ public class SimplifyBooleanExpressionCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(SimplifyBooleanExpressionCheck.class);
         final String[] expected = {
-            "20:18: Expression can be simplified.",
-            "41:36: Expression can be simplified.",
-            "42:36: Expression can be simplified.",
-            "43:16: Expression can be simplified.",
-            "43:32: Expression can be simplified.",
+            "20:18: " + getCheckMessage(MSG_KEY),
+            "41:36: " + getCheckMessage(MSG_KEY),
+            "42:36: " + getCheckMessage(MSG_KEY),
+            "43:16: " + getCheckMessage(MSG_KEY),
+            "43:32: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputSimplifyBoolean.java"), expected);
     }

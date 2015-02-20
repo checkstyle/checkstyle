@@ -43,6 +43,13 @@ import java.util.Set;
  */
 public class CovariantEqualsCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "covariant.equals";
+
     /** Set of equals method definitions */
     private final Set<DetailAST> equalsMethods = Sets.newHashSet();
 
@@ -94,7 +101,7 @@ public class CovariantEqualsCheck extends Check
                     final DetailAST nameNode = equalsAST
                             .findFirstToken(TokenTypes.IDENT);
                     log(nameNode.getLineNo(), nameNode.getColumnNo(),
-                            "covariant.equals");
+                            MSG_KEY);
                 }
             }
         }

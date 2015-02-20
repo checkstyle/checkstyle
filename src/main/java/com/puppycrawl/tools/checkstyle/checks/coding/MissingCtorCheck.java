@@ -39,6 +39,13 @@ import com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
  */
 public class MissingCtorCheck extends DescendantTokenCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "missing.ctor";
+
     /** Creates new instance of the check. */
     public MissingCtorCheck()
     {
@@ -47,7 +54,7 @@ public class MissingCtorCheck extends DescendantTokenCheck
         });
         setMinimumNumber(1);
         setMaximumDepth(2);
-        setMinimumMessage("missing.ctor");
+        setMinimumMessage(MSG_KEY);
     }
 
     @Override

@@ -24,6 +24,8 @@ import org.junit.Test;
 
 import java.io.File;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck.MSG_KEY;
+
 public class IllegalThrowsCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -32,9 +34,9 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport
         DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
 
         String[] expected = {
-            "9:51: Throwing 'RuntimeException' is not allowed.",
-            "14:45: Throwing 'java.lang.RuntimeException' is not allowed.",
-            "14:73: Throwing 'java.lang.Error' is not allowed.",
+            "9:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "14:45: " + getCheckMessage(MSG_KEY, "java.lang.RuntimeException"),
+            "14:73: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
         };
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalThrowsCheck.java"), expected);
@@ -48,8 +50,8 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport
                                  "java.lang.Error, java.lang.Exception, NullPointerException");
 
         String[] expected = {
-            "5:33: Throwing 'NullPointerException' is not allowed.",
-            "14:73: Throwing 'java.lang.Error' is not allowed.",
+            "5:33: " + getCheckMessage(MSG_KEY, "NullPointerException"),
+            "14:73: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
         };
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalThrowsCheck.java"), expected);
@@ -66,8 +68,8 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("ignoredMethodNames", "methodTwo");
 
         String[] expected = {
-            "9:51: Throwing 'RuntimeException' is not allowed.",
-            "18:35: Throwing 'Throwable' is not allowed.",
+            "9:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "18:35: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalThrowsCheck.java"), expected);
@@ -86,8 +88,8 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("ignoredMethodNames", "methodTwo");
 
         String[] expected = {
-            "5:33: Throwing 'NullPointerException' is not allowed.",
-            "18:35: Throwing 'Throwable' is not allowed.",
+            "5:33: " + getCheckMessage(MSG_KEY, "NullPointerException"),
+            "18:35: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalThrowsCheck.java"), expected);

@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck.MSG_KEY;
+
 public class MissingCtorCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -32,7 +34,7 @@ public class MissingCtorCheckTest extends BaseCheckTestSupport
             createCheckConfig(MissingCtorCheck.class);
 
         final String[] expected = {
-            "3:1: Class should define a constructor.",
+            "3:1: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig,

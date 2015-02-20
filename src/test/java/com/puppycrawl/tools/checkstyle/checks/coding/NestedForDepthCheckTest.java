@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck.MSG_KEY;
+
 /**
  * The unit-test for the <code>NestedForDepthCheck</code>-checkstyle enhancement.
  * @see com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck
@@ -45,8 +47,8 @@ public class NestedForDepthCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("max", "2");
 
         final String[] expected = {
-            "43:11: Nested for depth is 3 (max allowed is 2).",
-            "44:13: Nested for depth is 4 (max allowed is 2).",
+            "43:11: " + getCheckMessage(MSG_KEY, 3, 2),
+            "44:13: " + getCheckMessage(MSG_KEY, 4, 2),
         };
 
         verify(checkConfig, getPath("coding/InputNestedForDepth.java"),

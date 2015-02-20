@@ -38,6 +38,13 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  */
 public class AvoidInlineConditionalsCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "inline.conditional.avoid";
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -62,6 +69,6 @@ public class AvoidInlineConditionalsCheck extends Check
         // the only place a QUESTION token can occur is in inline conditionals
         // so no need to do any further tricks here - pretty trivial Check!
 
-        log(ast.getLineNo(), ast.getColumnNo(), "inline.conditional.avoid");
+        log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
     }
 }

@@ -23,6 +23,14 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_ASSIGN;
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_EXPR;
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_IDENT;
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.
+MSG_LITERAL;
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_RETURN;
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_STRING;
+
 /**
  * Test fixture for the UnnecessaryParenthesesCheck.
  *
@@ -40,50 +48,50 @@ public class UnnecessaryParenthesesCheckTest extends BaseCheckTestSupport
             createCheckConfig(UnnecessaryParenthesesCheck.class);
 
         final String[] expected = {
-            "5:22: Unnecessary parentheses around assignment right-hand side.",
-            "5:29: Unnecessary parentheses around expression.",
-            "5:31: Unnecessary parentheses around identifier 'i'.",
-            "5:46: Unnecessary parentheses around assignment right-hand side.",
-            "6:15: Unnecessary parentheses around assignment right-hand side.",
-            "7:14: Unnecessary parentheses around identifier 'x'.",
-            "7:17: Unnecessary parentheses around assignment right-hand side.",
-            "8:15: Unnecessary parentheses around assignment right-hand side.",
-            "9:14: Unnecessary parentheses around identifier 'x'.",
-            "9:17: Unnecessary parentheses around assignment right-hand side.",
-            "12:22: Unnecessary parentheses around assignment right-hand side.",
-            "12:30: Unnecessary parentheses around identifier 'i'.",
-            "12:46: Unnecessary parentheses around assignment right-hand side.",
-            "16:17: Unnecessary parentheses around literal '0'.",
-            "26:11: Unnecessary parentheses around assignment right-hand side.",
-            "30:11: Unnecessary parentheses around assignment right-hand side.",
-            "32:11: Unnecessary parentheses around assignment right-hand side.",
-            "34:11: Unnecessary parentheses around assignment right-hand side.",
-            "35:16: Unnecessary parentheses around identifier 'a'.",
-            "36:14: Unnecessary parentheses around identifier 'a'.",
-            "36:20: Unnecessary parentheses around identifier 'b'.",
-            "36:26: Unnecessary parentheses around literal '600'.",
-            "36:40: Unnecessary parentheses around literal '12.5f'.",
-            "36:56: Unnecessary parentheses around identifier 'arg2'.",
-            "37:14: Unnecessary parentheses around string \"this\".",
-            "37:25: Unnecessary parentheses around string \"that\".",
-            "38:11: Unnecessary parentheses around assignment right-hand side.",
-            "38:14: Unnecessary parentheses around string \"this is a really, really...\".",
-            "40:16: Unnecessary parentheses around return value.",
-            "44:21: Unnecessary parentheses around literal '1'.",
-            "44:26: Unnecessary parentheses around literal '13.5'.",
-            "45:22: Unnecessary parentheses around literal 'true'.",
-            "46:17: Unnecessary parentheses around identifier 'b'.",
-            "50:17: Unnecessary parentheses around assignment right-hand side.",
-            "52:11: Unnecessary parentheses around assignment right-hand side.",
-            "54:16: Unnecessary parentheses around return value.",
-            "64:13: Unnecessary parentheses around expression.",
-            "68:16: Unnecessary parentheses around expression.",
-            "73:19: Unnecessary parentheses around expression.",
-            "74:23: Unnecessary parentheses around literal '4000'.",
-            "79:19: Unnecessary parentheses around assignment right-hand side.",
-            "81:11: Unnecessary parentheses around assignment right-hand side.",
-            "81:16: Unnecessary parentheses around literal '3'.",
-            "82:27: Unnecessary parentheses around assignment right-hand side.",
+            "5:22: " + getCheckMessage(MSG_ASSIGN),
+            "5:29: " + getCheckMessage(MSG_EXPR),
+            "5:31: " + getCheckMessage(MSG_IDENT, "i"),
+            "5:46: " + getCheckMessage(MSG_ASSIGN),
+            "6:15: " + getCheckMessage(MSG_ASSIGN),
+            "7:14: " + getCheckMessage(MSG_IDENT, "x"),
+            "7:17: " + getCheckMessage(MSG_ASSIGN),
+            "8:15: " + getCheckMessage(MSG_ASSIGN),
+            "9:14: " + getCheckMessage(MSG_IDENT, "x"),
+            "9:17: " + getCheckMessage(MSG_ASSIGN),
+            "12:22: " + getCheckMessage(MSG_ASSIGN),
+            "12:30: " + getCheckMessage(MSG_IDENT, "i"),
+            "12:46: " + getCheckMessage(MSG_ASSIGN),
+            "16:17: " + getCheckMessage(MSG_LITERAL, "0"),
+            "26:11: " + getCheckMessage(MSG_ASSIGN),
+            "30:11: " + getCheckMessage(MSG_ASSIGN),
+            "32:11: " + getCheckMessage(MSG_ASSIGN),
+            "34:11: " + getCheckMessage(MSG_ASSIGN),
+            "35:16: " + getCheckMessage(MSG_IDENT, "a"),
+            "36:14: " + getCheckMessage(MSG_IDENT, "a"),
+            "36:20: " + getCheckMessage(MSG_IDENT, "b"),
+            "36:26: " + getCheckMessage(MSG_LITERAL, "600"),
+            "36:40: " + getCheckMessage(MSG_LITERAL, "12.5f"),
+            "36:56: " + getCheckMessage(MSG_IDENT, "arg2"),
+            "37:14: " + getCheckMessage(MSG_STRING, "\"this\""),
+            "37:25: " + getCheckMessage(MSG_STRING, "\"that\""),
+            "38:11: " + getCheckMessage(MSG_ASSIGN),
+            "38:14: " + getCheckMessage(MSG_STRING, "\"this is a really, really...\""),
+            "40:16: " + getCheckMessage(MSG_RETURN),
+            "44:21: " + getCheckMessage(MSG_LITERAL, "1"),
+            "44:26: " + getCheckMessage(MSG_LITERAL, "13.5"),
+            "45:22: " + getCheckMessage(MSG_LITERAL, "true"),
+            "46:17: " + getCheckMessage(MSG_IDENT, "b"),
+            "50:17: " + getCheckMessage(MSG_ASSIGN),
+            "52:11: " + getCheckMessage(MSG_ASSIGN),
+            "54:16: " + getCheckMessage(MSG_RETURN),
+            "64:13: " + getCheckMessage(MSG_EXPR),
+            "68:16: " + getCheckMessage(MSG_EXPR),
+            "73:19: " + getCheckMessage(MSG_EXPR),
+            "74:23: " + getCheckMessage(MSG_LITERAL, "4000"),
+            "79:19: " + getCheckMessage(MSG_ASSIGN),
+            "81:11: " + getCheckMessage(MSG_ASSIGN),
+            "81:16: " + getCheckMessage(MSG_LITERAL, "3"),
+            "82:27: " + getCheckMessage(MSG_ASSIGN),
         };
 
         verify(checkConfig, getPath(TEST_FILE), expected);

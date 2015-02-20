@@ -49,6 +49,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class OverloadMethodsDeclarationOrderCheck extends Check
 {
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "overload.methods.declaration";
+
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -101,7 +108,7 @@ public class OverloadMethodsDeclarationOrderCheck extends Check
                     if (currentIndex - priviousIndex > allowedDistance) {
                         final int previousLineWithOverloadMethod =
                                 methodLineNumberMap.get(methodName);
-                        log(currentToken.getLineNo(), "overload.methods.declaration",
+                        log(currentToken.getLineNo(), MSG_KEY,
                                 previousLineWithOverloadMethod);
                     }
                 }

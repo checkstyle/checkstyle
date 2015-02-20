@@ -128,11 +128,18 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  */
 public class NoCloneCheck extends  AbstractIllegalMethodCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "avoid.clone.method";
+
     /**
      * Creates an instance.
      */
     public NoCloneCheck()
     {
-        super("clone", "avoid.clone.method");
+        super("clone", MSG_KEY);
     }
 }

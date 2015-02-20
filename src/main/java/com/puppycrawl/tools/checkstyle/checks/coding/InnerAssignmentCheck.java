@@ -44,6 +44,13 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class InnerAssignmentCheck
         extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "assignment.inner.avoid";
+
     /**
      * list of allowed AST types from an assignement AST node
      * towards the root.
@@ -151,7 +158,7 @@ public class InnerAssignmentCheck
             return;
         }
 
-        log(ast.getLineNo(), ast.getColumnNo(), "assignment.inner.avoid");
+        log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
     }
 
     /**

@@ -43,6 +43,13 @@ import java.util.Map;
  */
 public class FinalLocalVariableCheck extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "final.variable";
+
     /** Scope Stack */
     private final FastStack<Map<String, DetailAST>> scopeStack =
         FastStack.newInstance();
@@ -227,7 +234,7 @@ public class FinalLocalVariableCheck extends Check
             case TokenTypes.METHOD_DEF:
                 final Map<String, DetailAST> state = scopeStack.pop();
                 for (DetailAST var : state.values()) {
-                    log(var.getLineNo(), var.getColumnNo(), "final.variable", var
+                    log(var.getLineNo(), var.getColumnNo(), MSG_KEY, var
                         .getText());
                 }
                 break;

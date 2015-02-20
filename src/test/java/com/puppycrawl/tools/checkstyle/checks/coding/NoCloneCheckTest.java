@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck.MSG_KEY;
+
 /**
  * NoCloneCheck test.
  */
@@ -36,12 +38,12 @@ public class NoCloneCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(NoCloneCheck.class);
         final String[] expected = {
-            "10: Avoid using clone method.",
-            "27: Avoid using clone method.",
-            "35: Avoid using clone method.",
-            "39: Avoid using clone method.",
-            "52: Avoid using clone method.",
-            "60: Avoid using clone method.",
+            "10: " + getCheckMessage(MSG_KEY),
+            "27: " + getCheckMessage(MSG_KEY),
+            "35: " + getCheckMessage(MSG_KEY),
+            "39: " + getCheckMessage(MSG_KEY),
+            "52: " + getCheckMessage(MSG_KEY),
+            "60: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputClone.java"), expected);
     }
