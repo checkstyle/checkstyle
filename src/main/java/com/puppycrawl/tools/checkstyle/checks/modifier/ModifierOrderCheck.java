@@ -65,6 +65,19 @@ import java.util.List;
 public class ModifierOrderCheck
     extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_ANNOTATION_ORDER = "annotation.order";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_MODIFIER_ORDER = "mod.order";
+
     /**
      * The order of modifiers as suggested in sections 8.1.1,
      * 8.3.1 and 8.4.3 of the JLS.
@@ -102,14 +115,14 @@ public class ModifierOrderCheck
             if (error != null) {
                 if (error.getType() == TokenTypes.ANNOTATION) {
                     log(error.getLineNo(), error.getColumnNo(),
-                            "annotation.order",
+                            MSG_ANNOTATION_ORDER,
                              error.getFirstChild().getText()
                              + error.getFirstChild().getNextSibling()
                                 .getText());
                 }
                 else {
                     log(error.getLineNo(), error.getColumnNo(),
-                            "mod.order", error.getText());
+                            MSG_MODIFIER_ORDER, error.getText());
                 }
             }
         }

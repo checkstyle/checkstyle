@@ -25,6 +25,8 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
+import static com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck.MSG_KEY;
+
 public class RedundantModifierTest
     extends BaseCheckTestSupport
 {
@@ -34,20 +36,20 @@ public class RedundantModifierTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = {
-            "54:12: Redundant 'static' modifier.",
-            "57:9: Redundant 'public' modifier.",
-            "63:9: Redundant 'abstract' modifier.",
-            "66:9: Redundant 'public' modifier.",
+            "54:12: " + getCheckMessage(MSG_KEY, "static"),
+            "57:9: " + getCheckMessage(MSG_KEY, "public"),
+            "63:9: " + getCheckMessage(MSG_KEY, "abstract"),
+            "66:9: " + getCheckMessage(MSG_KEY, "public"),
             //"69:9: Redundant 'abstract' modifier.",
-            "72:9: Redundant 'final' modifier.",
-            "79:13: Redundant 'final' modifier.",
-            "88:12: Redundant 'final' modifier.",
-            "99:1: Redundant 'abstract' modifier.",
-            "116:5: Redundant 'public' modifier.",
-            "117:5: Redundant 'final' modifier.",
-            "118:5: Redundant 'static' modifier.",
-            "120:5: Redundant 'public' modifier.",
-            "121:5: Redundant 'abstract' modifier.",
+            "72:9: " + getCheckMessage(MSG_KEY, "final"),
+            "79:13: " + getCheckMessage(MSG_KEY, "final"),
+            "88:12: " + getCheckMessage(MSG_KEY, "final"),
+            "99:1: " + getCheckMessage(MSG_KEY, "abstract"),
+            "116:5: " + getCheckMessage(MSG_KEY, "public"),
+            "117:5: " + getCheckMessage(MSG_KEY, "final"),
+            "118:5: " + getCheckMessage(MSG_KEY, "static"),
+            "120:5: " + getCheckMessage(MSG_KEY, "public"),
+            "121:5: " + getCheckMessage(MSG_KEY, "abstract"),
         };
         verify(checkConfig, getPath("InputModifier.java"), expected);
     }
@@ -73,7 +75,7 @@ public class RedundantModifierTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = {
-            "3:9: Redundant 'final' modifier.",
+            "3:9: " + getCheckMessage(MSG_KEY, "final"),
         };
         verify(checkConfig,
                 new File("src/test/resources-noncompilable/com/puppycrawl/tools/"

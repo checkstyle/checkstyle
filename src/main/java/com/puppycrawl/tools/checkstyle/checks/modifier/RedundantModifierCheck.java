@@ -34,6 +34,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class RedundantModifierCheck
     extends Check
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "redundantModifier";
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -77,7 +84,7 @@ public class RedundantModifierCheck
                             modifiers.findFirstToken(tokenType);
                     if (null != modifier) {
                         log(modifier.getLineNo(), modifier.getColumnNo(),
-                                "redundantModifier", modifier.getText());
+                                MSG_KEY, modifier.getText());
                     }
                 }
             }
@@ -99,7 +106,7 @@ public class RedundantModifierCheck
                     || (type == TokenTypes.FINAL))
                 {
                     log(modifier.getLineNo(), modifier.getColumnNo(),
-                            "redundantModifier", modifier.getText());
+                            MSG_KEY, modifier.getText());
                     break;
                 }
 
@@ -130,7 +137,7 @@ public class RedundantModifierCheck
                     final int type = modifier.getType();
                     if (type == TokenTypes.FINAL) {
                         log(modifier.getLineNo(), modifier.getColumnNo(),
-                                "redundantModifier", modifier.getText());
+                                MSG_KEY, modifier.getText());
                         break;
                     }
                     modifier = modifier.getNextSibling();
