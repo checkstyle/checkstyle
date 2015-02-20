@@ -73,6 +73,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class MethodNameCheck
     extends AbstractAccessControlNameCheck
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "method.name.equals.class.name";
+
     /**
      * for allowing method name to be the same as the class name.
      */
@@ -133,7 +140,7 @@ public class MethodNameCheck
                 && method.getText().equals(classIdent.getText()))
             {
                 log(method.getLineNo(), method.getColumnNo(),
-                    "method.name.equals.class.name", method.getText());
+                    MSG_KEY, method.getText());
             }
         }
     }

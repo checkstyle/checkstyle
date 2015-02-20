@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 public class MemberNameCheckTest
     extends BaseCheckTestSupport
 {
@@ -33,9 +35,12 @@ public class MemberNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         checkConfig.addAttribute("format", "^m[A-Z][a-zA-Z0-9]*$");
+
+        final String pattern = "^m[A-Z][a-zA-Z0-9]*$";
+
         final String[] expected = {
-            "35:17: Name 'badMember' must match pattern '^m[A-Z][a-zA-Z0-9]*$'.",
-            "224:17: Name 'someMember' must match pattern '^m[A-Z][a-zA-Z0-9]*$'.",
+            "35:17: " + getCheckMessage(MSG_INVALID_PATTERN, "badMember", pattern),
+            "224:17: " + getCheckMessage(MSG_INVALID_PATTERN, "someMember", pattern),
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
@@ -46,8 +51,11 @@ public class MemberNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
+
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
         final String[] expected = {
-            "56:25: Name 'ABC' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "56:25: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
         };
         verify(checkConfig, getPath("InputInner.java"), expected);
     }
@@ -57,11 +65,14 @@ public class MemberNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
+
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
         final String[] expected = {
-            "10:16: Name '_public' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "11:19: Name '_protected' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "12:9: Name '_package' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "13:17: Name '_private' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "10:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "11:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "12:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "13:17: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
         verify(checkConfig,
                getPath("naming" + File.separator + "InputMemberName.java"),
@@ -74,11 +85,14 @@ public class MemberNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         checkConfig.addAttribute("format", "^_[a-z]*$");
+
+        final String pattern = "^_[a-z]*$";
+
         final String[] expected = {
-            "5:16: Name 'mPublic' must match pattern '^_[a-z]*$'.",
-            "6:19: Name 'mProtected' must match pattern '^_[a-z]*$'.",
-            "7:9: Name 'mPackage' must match pattern '^_[a-z]*$'.",
-            "8:17: Name 'mPrivate' must match pattern '^_[a-z]*$'.",
+            "5:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "6:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "7:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "8:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
         };
         verify(checkConfig,
                getPath("naming" + File.separator + "InputMemberName.java"),
@@ -94,8 +108,11 @@ public class MemberNameCheckTest
         checkConfig.addAttribute("applyToProtected", "false");
         checkConfig.addAttribute("applyToPackage", "false");
         checkConfig.addAttribute("applyToPrivate", "false");
+
+        final String pattern = "^_[a-z]*$";
+
         final String[] expected = {
-            "5:16: Name 'mPublic' must match pattern '^_[a-z]*$'.",
+            "5:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
         };
         verify(checkConfig,
                getPath("naming" + File.separator + "InputMemberName.java"),
@@ -111,8 +128,11 @@ public class MemberNameCheckTest
         checkConfig.addAttribute("applyToPublic", "false");
         checkConfig.addAttribute("applyToPackage", "false");
         checkConfig.addAttribute("applyToPrivate", "false");
+
+        final String pattern = "^_[a-z]*$";
+
         final String[] expected = {
-            "6:19: Name 'mProtected' must match pattern '^_[a-z]*$'.",
+            "6:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
         };
         verify(checkConfig,
                getPath("naming" + File.separator + "InputMemberName.java"),
@@ -128,8 +148,11 @@ public class MemberNameCheckTest
         checkConfig.addAttribute("applyToPublic", "false");
         checkConfig.addAttribute("applyToProtected", "false");
         checkConfig.addAttribute("applyToPrivate", "false");
+
+        final String pattern = "^_[a-z]*$";
+
         final String[] expected = {
-            "7:9: Name 'mPackage' must match pattern '^_[a-z]*$'.",
+            "7:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
         };
         verify(checkConfig,
                getPath("naming" + File.separator + "InputMemberName.java"),
@@ -145,8 +168,11 @@ public class MemberNameCheckTest
         checkConfig.addAttribute("applyToPublic", "false");
         checkConfig.addAttribute("applyToProtected", "false");
         checkConfig.addAttribute("applyToPackage", "false");
+
+        final String pattern = "^_[a-z]*$";
+
         final String[] expected = {
-            "8:17: Name 'mPrivate' must match pattern '^_[a-z]*$'.",
+            "8:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
         };
         verify(checkConfig,
                getPath("naming" + File.separator + "InputMemberName.java"),
@@ -159,10 +185,13 @@ public class MemberNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         checkConfig.addAttribute("applyToPrivate", "false");
+
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
         final String[] expected = {
-            "10:16: Name '_public' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "11:19: Name '_protected' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "12:9: Name '_package' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "10:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "11:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "12:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
         };
         verify(checkConfig,
                getPath("naming" + File.separator + "InputMemberName.java"),
@@ -175,39 +204,42 @@ public class MemberNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         checkConfig.addAttribute("format", "^[a-z][a-z0-9][a-zA-Z0-9]*$");
+
+        final String pattern = "^[a-z][a-z0-9][a-zA-Z0-9]*$";
+
         final String[] expected = {
-            "8:16: Name 'mPublic' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "9:19: Name 'mProtected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "10:9: Name 'mPackage' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "11:17: Name 'mPrivate' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "13:16: Name '_public' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "14:19: Name '_protected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "15:9: Name '_package' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "16:17: Name '_private' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "19:20: Name 'mPublic' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "20:23: Name 'mProtected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "21:13: Name 'mPackage' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "22:21: Name 'mPrivate' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "24:20: Name '_public' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "25:23: Name '_protected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "26:13: Name '_package' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "27:21: Name '_private' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "31:20: Name 'mPublic' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "32:23: Name 'mProtected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "33:13: Name 'mPackage' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "34:21: Name 'mPrivate' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "36:20: Name '_public' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "37:23: Name '_protected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "38:13: Name '_package' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "39:21: Name '_private' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "63:16: Name 'mPublic' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "64:9: Name 'mProtected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "65:9: Name 'mPackage' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "66:9: Name 'mPrivate' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "68:16: Name '_public' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "69:9: Name '_protected' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "70:9: Name '_package' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
-            "71:9: Name '_private' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.",
+            "8:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "9:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "10:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "11:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "13:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "14:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "15:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "16:17: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
+            "19:20: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "20:23: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "21:13: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "22:21: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "24:20: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "25:23: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "26:13: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "27:21: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
+            "31:20: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "32:23: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "33:13: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "34:21: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "36:20: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "37:23: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "38:13: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "39:21: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
+            "63:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "64:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "65:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "66:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "68:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "69:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "70:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "71:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
         verify(checkConfig,
               getPath("naming" + File.separator + "InputMemberNameExtended.java"),

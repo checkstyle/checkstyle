@@ -23,6 +23,11 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck
+.ILLEGAL_ABSTRACT_CLASS_NAME;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck
+.NO_ABSTRACT_CLASS_MODIFIER;
+
 public class AbstractClassNameCheckTest extends BaseCheckTestSupport
 {
     @Test
@@ -33,11 +38,13 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("ignoreName", "false");
         checkConfig.addAttribute("ignoreModifier", "true");
 
+        final String pattern = "^Abstract.+$|^.*Factory$";
+
         final String[] expected = {
-            "3:1: Name 'InputAbstractClassName' must match pattern '^Abstract.+$|^.*Factory$'.",
-            "6:1: Name 'NonAbstractClassName' must match pattern '^Abstract.+$|^.*Factory$'.",
-            "9:1: Name 'FactoryWithBadName' must match pattern '^Abstract.+$|^.*Factory$'.",
-            "13:5: Name 'NonAbstractInnerClass' must match pattern '^Abstract.+$|^.*Factory$'.",
+            "3:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName", pattern),
+            "6:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassName", pattern),
+            "9:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "FactoryWithBadName", pattern),
+            "13:5: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass", pattern),
         };
 
         verify(checkConfig, getPath("naming" + File.separator + "InputAbstractClassName.java"), expected);
@@ -51,10 +58,10 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("ignoreModifier", "false");
 
         final String[] expected = {
-            "26:1: Class 'AbstractClass' must be declared as 'abstract'.",
-            "29:1: Class 'Class1Factory' must be declared as 'abstract'.",
-            "33:5: Class 'AbstractInnerClass' must be declared as 'abstract'.",
-            "38:5: Class 'WellNamedFactory' must be declared as 'abstract'.",
+            "26:1: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
+            "29:1: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "Class1Factory"),
+            "33:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
+            "38:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "WellNamedFactory"),
         };
 
         verify(checkConfig, getPath("naming" + File.separator + "InputAbstractClassName.java"), expected);
@@ -67,15 +74,17 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("ignoreName", "false");
         checkConfig.addAttribute("ignoreModifier", "false");
 
+        final String pattern = "^Abstract.+$|^.*Factory$";
+
         final String[] expected = {
-            "3:1: Name 'InputAbstractClassName' must match pattern '^Abstract.+$|^.*Factory$'.",
-            "6:1: Name 'NonAbstractClassName' must match pattern '^Abstract.+$|^.*Factory$'.",
-            "9:1: Name 'FactoryWithBadName' must match pattern '^Abstract.+$|^.*Factory$'.",
-            "13:5: Name 'NonAbstractInnerClass' must match pattern '^Abstract.+$|^.*Factory$'.",
-            "26:1: Class 'AbstractClass' must be declared as 'abstract'.",
-            "29:1: Class 'Class1Factory' must be declared as 'abstract'.",
-            "33:5: Class 'AbstractInnerClass' must be declared as 'abstract'.",
-            "38:5: Class 'WellNamedFactory' must be declared as 'abstract'.",
+            "3:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName", pattern),
+            "6:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassName", pattern),
+            "9:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "FactoryWithBadName", pattern),
+            "13:5: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass", pattern),
+            "26:1: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
+            "29:1: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "Class1Factory"),
+            "33:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
+            "38:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "WellNamedFactory"),
         };
 
         verify(checkConfig, getPath("naming" + File.separator + "InputAbstractClassName.java"), expected);
@@ -89,7 +98,7 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport
 //        checkConfig.addAttribute("ignoreModifier", "false");
 
         final String[] expected = {
-            "9:5: Class 'AbstractClass' must be declared as 'abstract'.",
+            "9:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
         };
 
         verify(checkConfig, getPath("naming" + File.separator

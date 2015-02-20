@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 public class ParameterNameCheckTest
     extends BaseCheckTestSupport
 {
@@ -44,10 +46,13 @@ public class ParameterNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNameCheck.class);
         checkConfig.addAttribute("format", "^a[A-Z][a-zA-Z0-9]*$");
+
+        final String pattern = "^a[A-Z][a-zA-Z0-9]*$";
+
         final String[] expected = {
-            "71:19: Name 'badFormat1' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
-            "71:34: Name 'badFormat2' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
-            "72:25: Name 'badFormat3' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
+            "71:19: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat1", pattern),
+            "71:34: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat2", pattern),
+            "72:25: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat3", pattern),
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }

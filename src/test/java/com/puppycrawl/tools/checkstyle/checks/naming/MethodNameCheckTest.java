@@ -22,6 +22,9 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck.MSG_KEY;
+
 public class MethodNameCheckTest
     extends BaseCheckTestSupport
 {
@@ -31,8 +34,11 @@ public class MethodNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodNameCheck.class);
+
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
         final String[] expected = {
-            "137:10: Name 'ALL_UPPERCASE_METHOD' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "137:10: " + getCheckMessage(MSG_INVALID_PATTERN, "ALL_UPPERCASE_METHOD", pattern),
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
@@ -43,19 +49,21 @@ public class MethodNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodNameCheck.class);
 
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
         final String[] expected = {
-            "12:16: Method Name 'InputMethNameEqualClsName' must not equal the enclosing class name.",
-            "12:16: Name 'InputMethNameEqualClsName' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "17:17: Name 'PRIVATEInputMethNameEqualClsName' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "23:20: Method Name 'Inner' must not equal the enclosing class name.",
-            "23:20: Name 'Inner' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "28:20: Name 'InputMethNameEqualClsName' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "37:24: Method Name 'InputMethNameEqualClsName' must not equal the enclosing class name.",
-            "37:24: Name 'InputMethNameEqualClsName' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "47:9: Method Name 'SweetInterface' must not equal the enclosing class name.",
-            "47:9: Name 'SweetInterface' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "53:17: Method Name 'Outter' must not equal the enclosing class name.",
-            "53:17: Name 'Outter' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "12:16: " + getCheckMessage(MSG_KEY, "InputMethNameEqualClsName"),
+            "12:16: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
+            "17:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethNameEqualClsName", pattern),
+            "23:20: " + getCheckMessage(MSG_KEY, "Inner"),
+            "23:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
+            "28:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
+            "37:24: " + getCheckMessage(MSG_KEY, "InputMethNameEqualClsName"),
+            "37:24: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
+            "47:9: " + getCheckMessage(MSG_KEY, "SweetInterface"),
+            "47:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
+            "53:17: " + getCheckMessage(MSG_KEY, "Outter"),
+            "53:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outter", pattern),
         };
 
         verify(checkConfig, getPath("InputMethNameEqualClsName.java"), expected);
@@ -68,14 +76,16 @@ public class MethodNameCheckTest
             createCheckConfig(MethodNameCheck.class);
         checkConfig.addAttribute("allowClassName", "true"); //allow method names and class names to equal
 
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
         final String[] expected = {
-            "12:16: Name 'InputMethNameEqualClsName' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "17:17: Name 'PRIVATEInputMethNameEqualClsName' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "23:20: Name 'Inner' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "28:20: Name 'InputMethNameEqualClsName' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "37:24: Name 'InputMethNameEqualClsName' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "47:9: Name 'SweetInterface' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "53:17: Name 'Outter' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "12:16: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
+            "17:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethNameEqualClsName", pattern),
+            "23:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
+            "28:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
+            "37:24: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
+            "47:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
+            "53:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outter", pattern),
         };
 
         verify(checkConfig, getPath("InputMethNameEqualClsName.java"), expected);
@@ -88,13 +98,16 @@ public class MethodNameCheckTest
             createCheckConfig(MethodNameCheck.class);
         checkConfig.addAttribute("allowClassName", "true"); //allow method names and class names to equal
         checkConfig.addAttribute("applyToPrivate", "false"); //allow method names and class names to equal
+
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
         final String[] expected = {
-            "12:16: Name 'InputMethNameEqualClsName' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "23:20: Name 'Inner' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "28:20: Name 'InputMethNameEqualClsName' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "37:24: Name 'InputMethNameEqualClsName' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "47:9: Name 'SweetInterface' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "53:17: Name 'Outter' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "12:16: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
+            "23:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
+            "28:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
+            "37:24: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
+            "47:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
+            "53:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outter", pattern),
         };
 
         verify(checkConfig, getPath("InputMethNameEqualClsName.java"), expected);
@@ -118,9 +131,11 @@ public class MethodNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodNameCheck.class);
 
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
         final String[] expected = {
-            "17:17: Name 'PUBLICfoo' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "20:20: Name 'PROTECTEDfoo' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "17:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PUBLICfoo", pattern),
+            "20:20: " + getCheckMessage(MSG_INVALID_PATTERN, "PROTECTEDfoo", pattern),
         };
 
         verify(checkConfig, getPath("naming/InputMethodNameOverridenMethods.java"), expected);

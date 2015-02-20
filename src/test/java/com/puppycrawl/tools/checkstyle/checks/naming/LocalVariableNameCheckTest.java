@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 public class LocalVariableNameCheckTest
     extends BaseCheckTestSupport
 {
@@ -31,11 +33,14 @@ public class LocalVariableNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(LocalVariableNameCheck.class);
+
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
         final String[] expected = {
-            "119:13: Name 'ABC' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "130:18: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "132:20: Name 'InnerBlockVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "207:21: Name 'O' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "119:13: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
+            "130:18: " + getCheckMessage(MSG_INVALID_PATTERN, "I", pattern),
+            "132:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InnerBlockVariable", pattern),
+            "207:21: " + getCheckMessage(MSG_INVALID_PATTERN, "O", pattern),
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
@@ -58,8 +63,11 @@ public class LocalVariableNameCheckTest
             createCheckConfig(LocalVariableNameCheck.class);
         checkConfig.addAttribute("tokens", "PARAMETER_DEF");
         checkConfig.addAttribute("format", "^e$");
+
+        final String pattern = "^e$";
+
         final String[] expected = {
-            "74:24: Name 'ex' must match pattern '^e$'.",
+            "74:24: " + getCheckMessage(MSG_INVALID_PATTERN, "ex", pattern),
         };
         verify(checkConfig, getPath("InputEmptyStatement.java"), expected);
     }
@@ -72,9 +80,12 @@ public class LocalVariableNameCheckTest
             createCheckConfig(LocalVariableNameCheck.class);
         checkConfig.addAttribute("format", "^[a-z]{2,}[a-zA-Z0-9]*$");
         checkConfig.addAttribute("allowOneCharVarInForLoop", "true");
+
+        final String pattern = "^[a-z]{2,}[a-zA-Z0-9]*$";
+
         final String[] expected = {
-            "19:21: Name 'i' must match pattern '^[a-z]{2,}[a-zA-Z0-9]*$'.",
-            "25:17: Name 'Index' must match pattern '^[a-z]{2,}[a-zA-Z0-9]*$'.",
+            "19:21: " + getCheckMessage(MSG_INVALID_PATTERN, "i", pattern),
+            "25:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Index", pattern),
         };
         verify(checkConfig, getPath("InputOneCharInintVarName.java"), expected);
     }

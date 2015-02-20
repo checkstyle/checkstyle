@@ -20,7 +20,10 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
 import org.junit.Test;
+
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 
 public class PackageNameCheckTest
     extends BaseCheckTestSupport
@@ -32,8 +35,11 @@ public class PackageNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(PackageNameCheck.class);
         checkConfig.addAttribute("format", "[A-Z]+");
+
+        final String pattern = "[A-Z]+";
+
         final String[] expected = {
-            "6:9: Name 'com.puppycrawl.tools.checkstyle' must match pattern '[A-Z]+'.",
+            "6:9: " + getCheckMessage(MSG_INVALID_PATTERN, "com.puppycrawl.tools.checkstyle", pattern),
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }

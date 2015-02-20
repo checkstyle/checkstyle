@@ -25,6 +25,8 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import java.io.File;
 import org.junit.Test;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 public class ConstantNameCheckTest
     extends BaseCheckTestSupport
 {
@@ -50,9 +52,12 @@ public class ConstantNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ConstantNameCheck.class);
+
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
         final String[] expected = {
-            "25:29: Name 'badConstant' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "142:30: Name 'BAD__NAME' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "25:29: " + getCheckMessage(MSG_INVALID_PATTERN, "badConstant", pattern),
+            "142:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
@@ -66,8 +71,11 @@ public class ConstantNameCheckTest
         checkConfig.addAttribute("applyToPublic", "false");
         checkConfig.addAttribute("applyToProtected", "false");
         checkConfig.addAttribute("applyToPackage", "false");
+
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
         final String[] expected = {
-            "142:30: Name 'BAD__NAME' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "142:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
@@ -78,9 +86,12 @@ public class ConstantNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ConstantNameCheck.class);
+
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
         final String[] expected = {
-            "24:16: Name 'data' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "64:16: Name 'data' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "24:16: " + getCheckMessage(MSG_INVALID_PATTERN, "data", pattern),
+            "64:16: " + getCheckMessage(MSG_INVALID_PATTERN, "data", pattern),
         };
         verify(checkConfig, getPath("InputInner.java"), expected);
     }
@@ -101,15 +112,18 @@ public class ConstantNameCheckTest
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ConstantNameCheck.class);
+
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
         final String[] expected = {
-            "45:16: Name 'mPublic' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "46:9: Name 'mProtected' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "47:9: Name 'mPackage' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "48:9: Name 'mPrivate' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "50:16: Name '_public' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "51:9: Name '_protected' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "52:9: Name '_package' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "53:9: Name '_private' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "45:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "46:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "47:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "48:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "50:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "51:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "52:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "53:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
         verify(checkConfig, getPath("naming" + File.separator + "InputMemberNameExtended.java"), expected);
     }
