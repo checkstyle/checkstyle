@@ -30,6 +30,31 @@ import java.util.Arrays;
  */
 public abstract class ExpressionHandler
 {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_ERROR = "indentation.error";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_ERROR_MULTI = "indentation.error.multi";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_CHILD_ERROR = "indentation.child.error";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_CHILD_ERROR_MULTI = "indentation.child.error.multi";
+
     /**
      * The instance of <code>IndentationCheck</code> using this handler.
      */
@@ -131,9 +156,9 @@ public abstract class ExpressionHandler
     {
         final String typeStr =
             ("".equals(subtypeName) ? "" : (" " + subtypeName));
-        String messageKey = "indentation.error";
+        String messageKey = MSG_ERROR;
         if (expectedLevel.isMultiLevel()) {
-            messageKey = "indentation.error.multi";
+            messageKey = MSG_ERROR_MULTI;
         }
         indentCheck.indentationLog(ast.getLineNo(), messageKey,
             typeName + typeStr, actualLevel, expectedLevel);
@@ -150,9 +175,9 @@ public abstract class ExpressionHandler
                                int actualLevel,
                                IndentLevel expectedLevel)
     {
-        String messageKey = "indentation.child.error";
+        String messageKey = MSG_CHILD_ERROR;
         if (expectedLevel.isMultiLevel()) {
-            messageKey = "indentation.child.error.multi";
+            messageKey = MSG_CHILD_ERROR_MULTI;
         }
         indentCheck.indentationLog(line, messageKey,
             typeName, actualLevel, expectedLevel);
