@@ -155,7 +155,7 @@ public class AnnotationLocationCheck extends Check
      * Some javadoc.
      * @param allow Some javadoc.
      */
-    public final void setAllowSamelineParametrizedAnnotation(boolean allow)
+    public final void setAllowSamelineParameterizedAnnotation(boolean allow)
     {
         allowSamelineParameterizedAnnotation = allow;
     }
