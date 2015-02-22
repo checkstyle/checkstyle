@@ -1775,7 +1775,7 @@ if (&quot;something&quot;.equals(x))
           <tr>
             <td>memberModifiers</td>
             <td>Check methods and fields with only corresponding modifiers.</td>
-            <td><a href="property_types.html#intSet">List of integers</a></td>
+            <td><a href="property_types.html#stringSet">List of tokens</a></td>
             <td><code>null</code></td>
           </tr>
         </table>
