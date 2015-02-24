@@ -291,8 +291,12 @@ public class Checker extends AutomaticBean implements MessageDispatcher
 
         // Finish up
         for (final FileSetCheck fsc : fileSetChecks) {
-            // They may also log!!!
+            // It may also log!!!
             fsc.finishProcessing();
+        }
+
+        for (final FileSetCheck fsc : fileSetChecks) {
+            // It may also log!!!
             fsc.destroy();
         }
 

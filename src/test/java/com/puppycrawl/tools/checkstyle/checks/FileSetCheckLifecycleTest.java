@@ -20,11 +20,16 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static org.junit.Assert.assertTrue;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import java.io.File;
 import java.util.List;
+import java.util.Locale;
+
+import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
 import org.junit.Test;
 
 public class FileSetCheckLifecycleTest
@@ -42,6 +47,7 @@ public class FileSetCheckLifecycleTest
     public static class TestFileSetCheck extends AbstractFileSetCheck
     {
         private static boolean destroyed;
+        private static boolean fileContentAvailable;
 
         @Override
         public void destroy()
@@ -54,9 +60,20 @@ public class FileSetCheckLifecycleTest
             return destroyed;
         }
 
+        public static boolean isFileContentAvailable()
+        {
+            return fileContentAvailable;
+        }
+
         @Override
         protected void processFiltered(File file, List<String> lines)
         {
+        }
+
+        @Override
+        public void finishProcessing()
+        {
+            fileContentAvailable = FileContentsHolder.getContents() != null;
         }
     }
 
@@ -72,4 +89,34 @@ public class FileSetCheckLifecycleTest
         assertTrue("destroy() not called by Checker", TestFileSetCheck.isDestroyed());
     }
 
+    @Test
+    public void testProcessCallsFinishBeforeCallingDestroy() throws Exception
+    {
+
+        DefaultConfiguration dc = new DefaultConfiguration("configuration");
+        DefaultConfiguration twConf = createCheckConfig(TreeWalker.class);
+        dc.addAttribute("charset", "UTF-8");
+        dc.addChild(twConf);
+        twConf.addChild(new DefaultConfiguration(FileContentsHolder.class.getName()));
+        twConf.addChild(new DefaultConfiguration(AvoidStarImportCheck.class.getName()));
+
+        final Checker checker = new Checker();
+        final Locale locale = Locale.ENGLISH;
+        checker.setLocaleCountry(locale.getCountry());
+        checker.setLocaleLanguage(locale.getLanguage());
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(dc);
+        checker.addListener(new BriefLogger(stream));
+
+
+        checker.addFileSetCheck(new TestFileSetCheck());
+
+        final String[] expected = {
+        };
+
+        verify(checker, getPath("InputScopeAnonInner.java"), expected);
+
+        assertTrue("FileContent should be available during finishProcessing() call",
+                TestFileSetCheck.isFileContentAvailable());
+    }
 }
