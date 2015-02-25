@@ -1504,12 +1504,12 @@ public class PID extends StateMachine implements WebObject.Constants {
     <section name="UniqueProperties">
       <subsection name="Description">
         <p>
-          Checks properties file for a duplicated properties.
+          Checks properties files for duplicated properties.
         </p>
         <p>
-          Rationale: Multiple property keys usually appears after merge
-          or rebase of several branches. While there is no errors in
-          runtime, there can be a confusion on having different values
+          Rationale: Multiple property keys usually appear after merge
+          or rebase of several branches. While there are no errors in
+          runtime, there can be a confusion due to having different values
           for the duplicated properties.
         </p>
 
