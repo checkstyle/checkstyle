@@ -333,4 +333,44 @@ public class MagicNumberCheckTest
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
+
+    @Test
+    public void testIgnoreFieldDeclaration()
+            throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(MagicNumberCheck.class);
+        checkConfig.addAttribute("ignoreFieldDeclaration", "true");
+        final String[] expected = {
+            "41:26: " + getCheckMessage(MSG_KEY, "3_000"),
+            "42:32: " + getCheckMessage(MSG_KEY, "1.5_0"),
+            "43:27: " + getCheckMessage(MSG_KEY, "3"),
+            "43:31: " + getCheckMessage(MSG_KEY, "4"),
+            "45:29: " + getCheckMessage(MSG_KEY, "3"),
+            "47:23: " + getCheckMessage(MSG_KEY, "3"),
+            "48:26: " + getCheckMessage(MSG_KEY, "1.5"),
+            "50:22: " + getCheckMessage(MSG_KEY, "3"),
+            "50:29: " + getCheckMessage(MSG_KEY, "5"),
+            "50:37: " + getCheckMessage(MSG_KEY, "3"),
+            "54:26: " + getCheckMessage(MSG_KEY, "3"),
+            "55:39: " + getCheckMessage(MSG_KEY, "3"),
+            "60:25: " + getCheckMessage(MSG_KEY, "010"),
+            "61:25: " + getCheckMessage(MSG_KEY, "011"),
+            "63:30: " + getCheckMessage(MSG_KEY, "0_10L"),
+            "64:30: " + getCheckMessage(MSG_KEY, "011l"),
+            "68:24: " + getCheckMessage(MSG_KEY, "0x10"),
+            "69:24: " + getCheckMessage(MSG_KEY, "0X011"),
+            "71:29: " + getCheckMessage(MSG_KEY, "0x10L"),
+            "72:29: " + getCheckMessage(MSG_KEY, "0X11l"),
+            "131:20: " + getCheckMessage(MSG_KEY, "378"),
+            "160:16: " + getCheckMessage(MSG_KEY, "31"),
+            "165:16: " + getCheckMessage(MSG_KEY, "42"),
+            "170:16: " + getCheckMessage(MSG_KEY, "13"),
+            "174:15: " + getCheckMessage(MSG_KEY, "21"),
+            "178:15: " + getCheckMessage(MSG_KEY, "37"),
+            "182:15: " + getCheckMessage(MSG_KEY, "101"),
+            "185:26: " + getCheckMessage(MSG_KEY, "42"),
+        };
+        verify(checkConfig, getPath("InputMagicNumber.java"), expected);
+    }
 }
