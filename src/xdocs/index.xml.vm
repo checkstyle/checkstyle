@@ -61,15 +61,6 @@
         hosting for downloads.
       </p>
 
-      <p>
-        These changes are being made to breathe new life into the
-        development of Checkstyle. The following developers have been added
-        as committers of the Checkstyle project:
-      </p>
-      <ul>
-        <li><a href="https://github.com/romani">Roman Ivanov</a></li>
-        <li><a href="https://github.com/isopov">Ivan Sopov</a></li>
-      </ul>
     </section>
 
     <section name="Features">
