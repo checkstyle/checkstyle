@@ -10,6 +10,105 @@
   </properties>
 
   <body>
+    <section name="Release 6.4">
+      <p>New:</p>
+      <ul>
+        <li>
+          New Check: Empty Catch Block Check for Google Style Guide. Author: Alex Kravin<a href="https://github.com/checkstyle/checkstyle/issues/571">#571</a>
+        </li>
+      </ul>
+
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Added support of Windows line separator to Javadoc parser. Fixed UTs. Author: Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/612">#612</a>
+        </li>
+        <li>
+          Fix NPE when setting classpath field. Author: Aaron Sheldon
+        </li>
+        <li>
+          Illegal Type Check, updated memberModifiers option setting. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/663">#663</a>
+        </li>
+        <li>
+          Boolean Expression Complexity Check, fixed NPE. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/654">#654</a>
+        </li>
+        <li>
+          Final Local Variable Check, fixed false-positive. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/258">#258</a>
+        </li>
+        <li>
+          Abstract Class Name Check, updated default regex. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/595">#595</a>
+        </li>
+        <li>
+          Empty Line Separator Check, fixed Exception if file doesn't have header. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/621">#621</a>
+        </li>
+      </ul>
+
+      <p>Breaking backward compatibility:</p>
+      <ul>
+        <li>
+          Fixed typo in 'ignoreOverriden' property of IllegalThrowsCheck. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/623">#623</a>
+        </li>
+        <li>
+          Annotation Location Check, extended typo fixing. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/585">#585</a>
+        </li>
+      </ul>
+
+      <p>Notes:</p>
+      <ul>
+        <li>
+          Javadoc comments for JAVADOC_TAG and JAVADOC_INLINE_TAG related nodes. Author: Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/409">#409</a>
+        </li>
+        <li>
+          Linkcheck report, fixed errors. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/549">#549</a>
+        </li>
+        <li>
+          Refactored UTs. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/537">#537</a>
+        </li>
+        <li>
+          TreeWalker update, added logging warning if AcceptableTokens are broken. Acceptable tokens are specified for all checks. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/342">#342</a>
+        </li>
+        <li>
+          Suppression Comment Filter, extended docs for messageFormat option. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/132">#123</a>
+        </li>
+        <li>
+          Update some maven plugin in pom.xml. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/644">#644</a>
+        </li>
+        <li>
+          Reformat and fix example for AnnotationUseStyle. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/672">#672</a>
+        </li>
+        <li>
+          Require at least Maven 3.0.1 to build Checkstyle. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/620">#620</a>
+        </li>
+        <li>
+          Require at least Maven 3.0.1 to build Checkstyle. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/620">#620</a>
+        </li>
+        <li>
+          Replace `StringBuffer` with `StringBuilder` to improve performance. Author: Michal Kordas
+        </li>
+        <li>
+          Repair typos in UniqueProperties description. Author: Michal Kordas
+        </li>
+        <li>
+          Replace verbose type arguments with diamond type . Author: Michal Kordas
+        </li>
+        <li>
+          Fix for typos in documentation . Author: Michal Kordas
+        </li>
+        <li>
+          Use Collections.addAll() instead of adding elements individually . Author: Michal Kordas
+        </li>
+        <li>
+          Added missed @Test annotation on test-case 'IndentationCheckTest.testMethodCallLineWrap' . Author: Alexey Zuy
+        </li>
+        <li>
+          IndentationCheck. Refactoring: got rid of anonymous classes. Author: Alexey Zuy
+        </li>
+        <li>
+          Fix table display. Author: Glenn Hollingsworth
+        </li>
+      </ul>
+    </section>
+
     <section name="Release 6.3">
       <p>New:</p>
       <ul>
