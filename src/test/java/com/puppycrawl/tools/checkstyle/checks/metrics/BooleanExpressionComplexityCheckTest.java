@@ -37,6 +37,8 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport
         String[] expected = {
             "13:9: " + getCheckMessage(MSG_KEY, 4, 3),
             "32:9: " + getCheckMessage(MSG_KEY, 6, 3),
+            "38:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "40:34: " + getCheckMessage(MSG_KEY, 4, 3),
         };
 
         verify(checkConfig, getPath("metrics" + File.separator + "BooleanExpressionComplexityCheckTestInput.java"), expected);
