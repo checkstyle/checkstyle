@@ -1508,7 +1508,7 @@ foo(i
         <source>
 s.
     isEmpty();
-foo(i.
+foo(i,
     s);
         </source>
         <p>
