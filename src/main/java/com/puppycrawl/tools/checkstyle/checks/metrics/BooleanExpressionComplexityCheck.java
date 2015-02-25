@@ -27,6 +27,9 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 /**
  * Restricts nested boolean operators (&amp;&amp;, ||, &amp;, | and ^) to
  * a specified depth (default = 3).
+ * Note: &amp;, | and ^ are not checked if they are part of constructor or
+ * method call because they can be applied to non boolean variables and
+ * Checkstyle does not know types of methods from different classes.
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author o_sukhodolsky
@@ -126,19 +129,34 @@ public final class BooleanExpressionComplexityCheck extends Check
                 visitExpr();
                 break;
             case TokenTypes.BOR:
-                if (!isPipeOperator(ast)) {
+                if (!isPipeOperator(ast) && !isPassedInParameter(ast)) {
+                    context.visitBooleanOperator();
+                }
+                break;
+            case TokenTypes.BAND:
+            case TokenTypes.BXOR:
+                if (!isPassedInParameter(ast)) {
                     context.visitBooleanOperator();
                 }
                 break;
             case TokenTypes.LAND:
-            case TokenTypes.BAND:
             case TokenTypes.LOR:
-            case TokenTypes.BXOR:
                 context.visitBooleanOperator();
                 break;
             default:
                 throw new IllegalStateException(ast.toString());
         }
+    }
+
+    /**
+     * Checks if logical operator is part of constructor or method call.
+     * @param logicalOperator logical operator
+     * @return true if logical operator is part of constructor or method call
+     */
+    private boolean isPassedInParameter(DetailAST logicalOperator)
+    {
+        return logicalOperator.getParent().getType() == TokenTypes.EXPR
+            && logicalOperator.getParent().getParent().getType() == TokenTypes.ELIST;
     }
 
     /**
