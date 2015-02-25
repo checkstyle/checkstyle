@@ -80,25 +80,22 @@
           Require at least Maven 3.0.1 to build Checkstyle. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/620">#620</a>
         </li>
         <li>
-          Require at least Maven 3.0.1 to build Checkstyle. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/620">#620</a>
-        </li>
-        <li>
           Replace `StringBuffer` with `StringBuilder` to improve performance. Author: Michal Kordas
         </li>
         <li>
           Repair typos in UniqueProperties description. Author: Michal Kordas
         </li>
         <li>
-          Replace verbose type arguments with diamond type . Author: Michal Kordas
+          Replace verbose type arguments with diamond type. Author: Michal Kordas
         </li>
         <li>
-          Fix for typos in documentation . Author: Michal Kordas
+          Fix for typos in documentation. Author: Michal Kordas
         </li>
         <li>
-          Use Collections.addAll() instead of adding elements individually . Author: Michal Kordas
+          Use Collections.addAll() instead of adding elements individually. Author: Michal Kordas
         </li>
         <li>
-          Added missed @Test annotation on test-case 'IndentationCheckTest.testMethodCallLineWrap' . Author: Alexey Zuy
+          Added missed @Test annotation on test-case 'IndentationCheckTest.testMethodCallLineWrap'. Author: Alexey Zuy
         </li>
         <li>
           IndentationCheck. Refactoring: got rid of anonymous classes. Author: Alexey Zuy
