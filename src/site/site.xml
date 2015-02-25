@@ -65,12 +65,6 @@
         <item name="Whitespace"         href="config_whitespace.html"/>
       </item>
 
-      <item name="Extending Checkstyle" href="extending.html">
-        <item name="Writing checks" href="writingchecks.html"/>
-        <item name="Writing filters" href="writingfilters.html"/>
-        <item name="Writing listeners" href="writinglisteners.html"/>
-      </item>
-      
       <item name="Style Configurations" href="style_configs.html">
         <item name="Google's Style" href="google_style.html"/>
         <item name="Sun's Style" href="sun_style.html"/>
@@ -78,10 +72,13 @@
     </menu>
 
     <menu name="Developers">
-      <item name="Javadoc" href="apidocs/index.html"/>
-      <item name="Project Page"
-            href="http://sourceforge.net/projects/checkstyle"/>
+      <item name="Extending Checkstyle" href="extending.html">
+        <item name="Writing checks" href="writingchecks.html"/>
+        <item name="Writing filters" href="writingfilters.html"/>
+        <item name="Writing listeners" href="writinglisteners.html"/>
+      </item>
       <item name="Contributing" href="contributing.html"/>
+      <item name="Javadoc" href="apidocs/index.html"/>
     </menu>
 
     <menu ref="reports"/>
