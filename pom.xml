@@ -527,22 +527,6 @@
         </configuration>
       </plugin>
 	  
-          <!-- Generates the site, which is required for assembly -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <version>${maven.site.plugin.version}</version>
-            <executions>
-              <execution>
-                <id>gen-site</id>
-                <phase>prepare-package</phase>
-                <goals>
-                  <goal>site</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-      
       </plugins>
   </build>
 
@@ -839,6 +823,21 @@
 
       <build>
         <plugins>
+          <!-- Generates the site, which is required for assembly -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <version>${maven.site.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>gen-site</id>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>site</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
 
           <!-- Creates the all inclusive uber jar -->
           <plugin>
