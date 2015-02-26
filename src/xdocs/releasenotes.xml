@@ -41,6 +41,9 @@
         <li>
           Empty Line Separator Check, fixed Exception if file doesn't have header. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/621">#621</a>
         </li>
+        <li>
+          BooleanExpressionComplexity misidentifies integer expression as boolean expression. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/572">#572</a>
+        </li>
       </ul>
 
       <p>Breaking backward compatibility:</p>
@@ -71,6 +74,10 @@
           Suppression Comment Filter, extended docs for messageFormat option. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/132">#123</a>
         </li>
         <li>
+          Site: moved 'Extending Checkstyle' to Developers groups. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/606">#606</a>
+        </li>
+
+        <li>
           Update some maven plugin in pom.xml. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/644">#644</a>
         </li>
         <li>
@@ -78,6 +85,9 @@
         </li>
         <li>
           Require at least Maven 3.0.1 to build Checkstyle. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/620">#620</a>
+        </li>
+        <li>
+          Site: moved 'Extending Checkstyle' to Developers groups, issue #606. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/620">#620</a>
         </li>
         <li>
           Replace `StringBuffer` with `StringBuilder` to improve performance. Author: Michal Kordas
@@ -101,7 +111,7 @@
           IndentationCheck. Refactoring: got rid of anonymous classes. Author: Alexey Zuy
         </li>
         <li>
-          Fix table display. Author: Glenn Hollingsworth
+          Fix table display. In config_whitespace, a comma was incorrectly replaced with a period. Author: Glenn Hollingsworth
         </li>
       </ul>
     </section>
