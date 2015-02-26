@@ -16,6 +16,9 @@
         <li>
           New Check: Empty Catch Block Check for Google Style Guide. Author: Alex Kravin<a href="https://github.com/checkstyle/checkstyle/issues/571">#571</a>
         </li>
+        <li>
+          New option for Visibility Modifier Check, to allow public immutable fields. Author: Alex Kravin<a href="https://github.com/checkstyle/checkstyle/issues/61">#61</a>
+        </li>
       </ul>
 
       <p>Bug fixes:</p>
