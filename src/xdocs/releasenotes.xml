@@ -73,7 +73,7 @@
         <li>
           Site: feeds icons were added. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/617">#617</a>
         </li>
-	<li>
+        <li>
           TreeWalker update, added logging warning if AcceptableTokens are broken. Acceptable tokens are specified for all checks. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/342">#342</a>
         </li>
         <li>
