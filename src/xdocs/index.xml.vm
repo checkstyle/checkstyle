@@ -61,7 +61,11 @@
         hosting for downloads.
       </p>
 
-    </section>
+      <p>
+        <b>Releases will happen at the end of each month</b> if functional changes exists in <a href="https://github.com/checkstyle/checkstyle/commits/master">master branch of your repo</a>.
+      </p>
+
+      </section>
 
     <section name="Features">
       <p>
