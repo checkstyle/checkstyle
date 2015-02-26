@@ -29,6 +29,14 @@
           img="images/stackoverflow.jpeg"
           href="http://stackoverflow.com/questions/tagged/checkstyle"
           />
+    <logo name="GoogleGroups"
+          img="images/groups.png"
+          href="https://groups.google.com/forum/#!forum/checkstyle"
+          />
+    <logo name="Rss"
+          img="images/rss-long.png"
+          href="http://sourceforge.net/p/checkstyle/news/feed"
+          />
   </poweredBy>
   
   <body>
