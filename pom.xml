@@ -716,24 +716,6 @@
     <!-- Bring in tools.jar for platforms which provide it
     that is required for javadoc docklets that are in use -->
     <profile>
-      <id>tools.jar-sun</id>
-      <activation>
-        <property>
-          <name>java.vendor</name>
-          <value>Sun Microsystems Inc.</value>
-        </property>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>com.sun</groupId>
-          <artifactId>tools</artifactId>
-          <version>${tools.jar.version}</version>
-          <scope>system</scope>
-          <systemPath>${tools.jar.path}</systemPath>
-        </dependency>
-      </dependencies>
-    </profile>
-    <profile>
       <id>default-tools.jar-oracle</id>
       <activation>
         <property>
