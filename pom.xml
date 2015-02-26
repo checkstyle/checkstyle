@@ -57,9 +57,9 @@
 
   <distributionManagement>
     <site>
-      <id>sourceforge-snapshot-site</id>
-      <name>Snapshot Site</name>
-      <url>scp://shell.sourceforge.net/home/project-web/checkstyle/htdocs/snapshot</url>
+      <id>sourceforge-new-site</id>
+      <name>New Site</name>
+      <url>scp://shell.sourceforge.net/home/project-web/checkstyle/htdocs/new-site</url>
     </site>
   </distributionManagement>
 
