@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <properties>
+    <title>Consulting</title>
+    <author>Checkstyle Development Team</author>
+  </properties>
+
+  <body>
+
+    <section name="Consulting or Professional Support">
+
+      <p>
+        It is very sad that all materials on our web site, stackoverflow.com knowledge and mail-list do not help you.
+        If there is something that could be improved in Checkstyle's documentation to make Checkstyle the easiest tool to use - please let our team know.
+      </p>
+
+      <p>
+        If your company or organization requires:
+        <ul>
+          <li>personal consulting on how to introduce Checkstyle into your company process,</li>
+          <li>help in introducing Checkstyle to legacy projects,</li>
+          <li>help in developing company's personal code convention/style,</li>
+          <li>help in eliminating <a href="http://en.wikipedia.org/wiki/Job_security">Job security</a> by enforcing code standards/style and static code analysis,</li>
+          <li>prioritized handling of bugs/issues,</li>
+          <li>prioritized handling of enhancement requests,</li>
+          <li>....</li>
+        </ul>
+      </p>
+      <p>
+        Please do not hesitate to contact me (Roman Ivanov) by email, you can find my email in git commits.
+      </p>
+
+    </section>
+
+  </body>
+</document>

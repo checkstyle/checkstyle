@@ -35,6 +35,7 @@
     <menu name="About">
       <item name="Checkstyle" href="index.html"/>
       <item name="Release Notes" href="releasenotes.html"/>
+      <item name="Consulting" href="consulting.html"/>
     </menu>
 
     <menu name="Documentation">
