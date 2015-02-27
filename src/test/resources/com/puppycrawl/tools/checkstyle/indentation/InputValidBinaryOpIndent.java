@@ -4,13 +4,13 @@
  * Created on December 2, 2002, 10:24 PM
  */
 
-package com.puppycrawl.tools.checkstyle.indentation;
+package com.puppycrawl.tools.checkstyle.indentation; //indent:0 exp:0
 
 /**
  *
  * @author  jrichard
  */
-public class InputValidBinaryOpIndent {
+public class InputValidBinaryOpIndent { //indent:0 exp:0
     
     /** Creates a new instance of InputValidBinaryOpIndent */
     public InputValidBinaryOpIndent() {

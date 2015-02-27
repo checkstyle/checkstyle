@@ -1,151 +1,165 @@
-package com.puppycrawl.tools.checkstyle.indentation; // indent:0 ; exp:0; ok
+package com.puppycrawl.tools.checkstyle.indentation; //indent:0 exp:0
 
-class InputLabels { // indent:0 ; exp:0; ok
-  void foo() { // indent:2 ; exp:2; ok
-//    OUT: // indent:4 ; exp:4; ok
-    while (true) { // indent:4 ; exp:4; ok
-    } // indent:4 ; exp:4; ok
-  } // indent:2 ; exp:2; ok
-  
-  void foo2() { // indent:2 ; exp:2; ok
-    positions: while (true) { // indent:4 ; exp:4; ok
-    } // indent:4 ; exp:4; ok
-  } // indent:2 ; exp:2; ok
-  
-  void foo3() { // indent:2 ; exp:2; ok
-    OUT1: // indent:4 ; exp:4; warn
-    for (;;) { // indent:4 ; exp:4; ok
-      if (true){ // indent:6 ; exp:6; ok
-        break OUT1; // indent:8 ; exp:8; ok
-      } // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
-  } // indent:2 ; exp:2; ok
-  
-  void foo4() { // indent:2 ; exp:2; ok
-    OUT1: for (;;) { // indent:4 ; exp:4; ok
-      if (true){ // indent:6 ; exp:6; ok
-        break OUT1; // indent:8 ; exp:8; ok
-      } // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
-  } // indent:2 ; exp:2; ok
-  
-  void fooo() { // indent:2 ; exp:2; ok
-    IN: if (true) { // indent:4 ; exp:4; ok
-    } // indent:4 ; exp:4; ok
-  } // indent:2 ; exp:2; ok
-  
-  void fooo1() { // indent:2 ; exp:2; ok
-    IN: // indent:4 ; exp:4; ok
-    if (true) { // indent:4 ; exp:4; ok
-    } // indent:4 ; exp:4; ok
-  } // indent:2 ; exp:2; ok
-  
-  void foooo() { // indent:2 ; exp:2; ok
-    IN: do {} while (true); // indent:4 ; exp:4; ok
-  } // indent:2 ; exp:2; ok
-  
-  void foooo1() { // indent:2 ; exp:2; ok
-    IN: // indent:4 ; exp:4; ok
-    do {} while (true); // indent:4 ; exp:4; ok
-  } // indent:2 ; exp:2; ok
+/**                                                                           //indent:0 exp:0
+ * This test-input is intended to be checked using following configuration:   //indent:1 exp:1
+ *                                                                            //indent:1 exp:1
+ * arrayInitIndent = 4                                                        //indent:1 exp:1
+ * basicOffset = 2                                                            //indent:1 exp:1
+ * braceAdjustment = 0                                                        //indent:1 exp:1
+ * caseIndent = 4                                                             //indent:1 exp:1
+ * forceStrictCondition = false                                               //indent:1 exp:1
+ * lineWrappingIndentation = 4                                                //indent:1 exp:1
+ * tabWidth = 4                                                               //indent:1 exp:1
+ * throwsIndent = 4                                                           //indent:1 exp:1
+ *                                                                            //indent:1 exp:1
+ *                                                                            //indent:1 exp:1
+ */                                                                           //indent:1 exp:1
+class InputLabels { //indent:0 exp:0
+  void foo() { //indent:2 exp:2
+//    OUT: //indent:0 exp:0
+    while (true) { //indent:4 exp:4
+    } //indent:4 exp:4
+  } //indent:2 exp:2
 
-  class Inner { // indent:2 ; exp:2; ok
-    void foo() { // indent:4 ; exp:4; ok
-      OUT: while (true) { // indent:6 ; exp:6; ok
-      } // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
+  void foo2() { //indent:2 exp:2
+    positions: while (true) { //indent:4 exp:4
+    } //indent:4 exp:4
+  } //indent:2 exp:2
 
-    void foo2() { // indent:4 ; exp:4; ok
-      positions: // indent:6 ; exp:6; ok
-      while (true) { // indent:6 ; exp:6; ok
-      } // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
-    
-    void foo5() { // indent:4 ; exp:4; ok
-      OUT1: // indent:6 ; exp:6; ok
-      for (;;) { // indent:6 ; exp:6; ok
-        if (true){ // indent:8 ; exp:8; ok
-          break OUT1; // indent:10 ; exp:10; ok
-        } // indent:8 ; exp:8; ok
-      } // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
-    
-    void foo6() { // indent:4 ; exp:4; ok
-      OUT1: for (;;) { // indent:6 ; exp:6; ok
-        if (true){ // indent:8 ; exp:8; ok
-          break OUT1; // indent:10 ; exp:10; ok
-        } // indent:8 ; exp:8; ok
-      } // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
-    
-    void fooo11() { // indent:4 ; exp:4; ok
-      IN: if (true) { // indent:6 ; exp:6; ok
-      } // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
-    
-    void fooo12() { // indent:4 ; exp:4; ok
-      IN: // indent:6 ; exp:6; ok
-      if (true) { // indent:6 ; exp:6; ok
-      } // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
-    
-    void foooo3() { // indent:4 ; exp:4; ok
-      IN: do {} while (true); // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
-      
-    void foooo4() { // indent:4 ; exp:4; ok
-      IN: // indent:6 ; exp:6; ok
-      do {} while (true); // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
-  } // indent:2 ; exp:2; ok
-  
-  InputLabels anon = new InputLabels() { // indent:2 ; exp:2; ok
-    void foo() { // indent:4 ; exp:4; ok
-      OUT: while (true) { // indent:6 ; exp:6; ok
-      } // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
+  void foo3() { //indent:2 exp:2
+    OUT1: //indent:4 exp:4
+    for (;;) { //indent:4 exp:4
+      if (true){ //indent:6 exp:6
+        break OUT1; //indent:8 exp:8
+      } //indent:6 exp:6
+    } //indent:4 exp:4
+  } //indent:2 exp:2
 
-    void foo2() { // indent:4 ; exp:4; ok
-      positions:
-      while (true) { // indent:6 ; exp:6; ok
-      } // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
-    
-    void foo5() { // indent:4 ; exp:4; ok
-      OUT1: // indent:6 ; exp:6; ok
-      for (;;) { // indent:6 ; exp:6; ok
-        if (true){ // indent:8 ; exp:8; ok
-          break OUT1; // indent:10 ; exp:10; ok
-        } // indent:8 ; exp:8; ok
-      } // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
-      
-    void foo6() { // indent:4 ; exp:4; ok
-      OUT1: for (;;) { // indent:6 ; exp:6; ok
-        if (true){ // indent:8 ; exp:8; ok
-          break OUT1; // indent:10 ; exp:10; ok
-        } // indent:8 ; exp:8; ok
-      } // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
-      
-    void fooo11() { // indent:4 ; exp:4; ok
-      IN: if (true) { // indent:6 ; exp:6; ok
-      } // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
-      
-    void fooo12() { // indent:4 ; exp:4; ok
-      IN: // indent:6 ; exp:6; ok
-      if (true) { // indent:6 ; exp:6; ok
-      } // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
-    
-    void foooo3() { // indent:4 ; exp:4; ok
-      IN: do {} while (true); // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
-        
-    void foooo4() { // indent:4 ; exp:4; ok
-      IN: // indent:6 ; exp:6; ok
-      do {} while (true); // indent:6 ; exp:6; ok
-    } // indent:4 ; exp:4; ok
-  }; // indent:2 ; exp:2; ok
-} // indent:0 ; exp:0; ok
+  void foo4() { //indent:2 exp:2
+    OUT1: for (;;) { //indent:4 exp:4
+      if (true){ //indent:6 exp:6
+        break OUT1; //indent:8 exp:8
+      } //indent:6 exp:6
+    } //indent:4 exp:4
+  } //indent:2 exp:2
+
+  void fooo() { //indent:2 exp:2
+    IN: if (true) { //indent:4 exp:4
+    } //indent:4 exp:4
+  } //indent:2 exp:2
+
+  void fooo1() { //indent:2 exp:2
+    IN: //indent:4 exp:4
+    if (true) { //indent:4 exp:4
+    } //indent:4 exp:4
+  } //indent:2 exp:2
+
+  void foooo() { //indent:2 exp:2
+    IN: do {} while (true); //indent:4 exp:4
+  } //indent:2 exp:2
+
+  void foooo1() { //indent:2 exp:2
+    IN: //indent:4 exp:4
+    do {} while (true); //indent:4 exp:4
+  } //indent:2 exp:2
+
+  class Inner { //indent:2 exp:2
+    void foo() { //indent:4 exp:4
+      OUT: while (true) { //indent:6 exp:6
+      } //indent:6 exp:6
+    } //indent:4 exp:4
+
+    void foo2() { //indent:4 exp:4
+      positions: //indent:6 exp:6
+      while (true) { //indent:6 exp:6
+      } //indent:6 exp:6
+    } //indent:4 exp:4
+
+    void foo5() { //indent:4 exp:4
+      OUT1: //indent:6 exp:6
+      for (;;) { //indent:6 exp:6
+        if (true){ //indent:8 exp:8
+          break OUT1; //indent:10 exp:10
+        } //indent:8 exp:8
+      } //indent:6 exp:6
+    } //indent:4 exp:4
+
+    void foo6() { //indent:4 exp:4
+      OUT1: for (;;) { //indent:6 exp:6
+        if (true){ //indent:8 exp:8
+          break OUT1; //indent:10 exp:10
+        } //indent:8 exp:8
+      } //indent:6 exp:6
+    } //indent:4 exp:4
+
+    void fooo11() { //indent:4 exp:4
+      IN: if (true) { //indent:6 exp:6
+      } //indent:6 exp:6
+    } //indent:4 exp:4
+
+    void fooo12() { //indent:4 exp:4
+      IN: //indent:6 exp:6
+      if (true) { //indent:6 exp:6
+      } //indent:6 exp:6
+    } //indent:4 exp:4
+
+    void foooo3() { //indent:4 exp:4
+      IN: do {} while (true); //indent:6 exp:6
+    } //indent:4 exp:4
+
+    void foooo4() { //indent:4 exp:4
+      IN: //indent:6 exp:6
+      do {} while (true); //indent:6 exp:6
+    } //indent:4 exp:4
+  } //indent:2 exp:2
+
+  InputLabels anon = new InputLabels() { //indent:2 exp:2
+    void foo() { //indent:4 exp:4
+      OUT: while (true) { //indent:6 exp:6
+      } //indent:6 exp:6
+    } //indent:4 exp:4
+
+    void foo2() { //indent:4 exp:4
+      positions: //indent:6 exp:6
+      while (true) { //indent:6 exp:6
+      } //indent:6 exp:6
+    } //indent:4 exp:4
+
+    void foo5() { //indent:4 exp:4
+      OUT1: //indent:6 exp:6
+      for (;;) { //indent:6 exp:6
+        if (true){ //indent:8 exp:8
+          break OUT1; //indent:10 exp:10
+        } //indent:8 exp:8
+      } //indent:6 exp:6
+    } //indent:4 exp:4
+
+    void foo6() { //indent:4 exp:4
+      OUT1: for (;;) { //indent:6 exp:6
+        if (true){ //indent:8 exp:8
+          break OUT1; //indent:10 exp:10
+        } //indent:8 exp:8
+      } //indent:6 exp:6
+    } //indent:4 exp:4
+
+    void fooo11() { //indent:4 exp:4
+      IN: if (true) { //indent:6 exp:6
+      } //indent:6 exp:6
+    } //indent:4 exp:4
+
+    void fooo12() { //indent:4 exp:4
+      IN: //indent:6 exp:6
+      if (true) { //indent:6 exp:6
+      } //indent:6 exp:6
+    } //indent:4 exp:4
+
+    void foooo3() { //indent:4 exp:4
+      IN: do {} while (true); //indent:6 exp:6
+    } //indent:4 exp:4
+
+    void foooo4() { //indent:4 exp:4
+      IN: //indent:6 exp:6
+      do {} while (true); //indent:6 exp:6
+    } //indent:4 exp:4
+  }; //indent:2 exp:2
+} //indent:0 exp:0

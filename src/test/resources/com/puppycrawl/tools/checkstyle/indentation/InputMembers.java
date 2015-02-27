@@ -1,99 +1,111 @@
-package com.puppycrawl.tools.checkstyle.indentation;
-import java.util.HashMap;
-import java.util.Map;
-/**
- * Some Javadoc.
- */
-class FooFieldClass { // indent:0 ; exp:0; ok
-    
-  boolean flag // indent:2 ; exp:2; ok
-     = conditionFirst("Loooooooooooooooooong", new  // indent:5 ; exp:6; warn
-      SecondFieldClassWithVeryVeryVeryLongName("Loooooooooooooooooog"). // indent:6 ; exp:6; ok
-      getInteger(new FooFieldClass(), "Loooooooooooooooooog"), new InnerClassFoo()); // indent:6 ; exp:6; ok
-  
-  
-  String getString(int someInt, String someString) { // indent:2 ; exp:2; ok
-    return "String"; // indent:4 ; exp:4; ok
-  } // indent:2 ; exp:2; ok
+package com.puppycrawl.tools.checkstyle.indentation; //indent:0 exp:0
+import java.util.HashMap; //indent:0 exp:0
+import java.util.Map; //indent:0 exp:0
 
-  private boolean conditionFirst(String longString, int // indent:2 ; exp:2; ok
-      integer, InnerClassFoo someInstance) { // indent:6 ; exp:6; ok
-    return false; // indent:4 ; exp:4; ok
-  } // indent:2 ; exp:2; ok
-  
-  private boolean conditionSecond(double longLongLongDoubleValue, // indent:2 ; exp:2; ok
-      String longLongLongString, String secondLongLongString) { // indent:6 ; exp:6; ok
-    return false; // indent:4 ; exp:4; ok
-  } // indent:2 ; exp:2; ok
-  
-  class InnerClassFoo { // indent:2 ; exp:2; ok
-      
-    boolean flag // indent:4 ; exp:4; ok
-        = conditionFirst("Loooooooooooooooooong", new // indent:8 ; exp:8; ok
-        SecondFieldClassWithVeryVeryVeryLongName("Loooooooooooooooooog"). // indent:8 ; exp:8; ok
-            getInteger(new FooFieldClass(), "Loooooooooooooooooog"), // indent:12 ; exp:>8; ok
-             new InnerClassFoo()); // indent:13 ; exp:>8; ok
-          
-    FooFieldClass anonymousClass =
-        new FooFieldClass() { // indent:4 ; exp:4; ok
-          boolean secondFlag = conditionSecond(10000000000.0, new // indent:6 ; exp:6; ok
-              SecondFieldClassWithVeryVeryVeryLongName("Looooooooooooo" // indent:10 ; exp:10; ok
-                + "oooooooooooong").getString(new FooFieldClass(), // indent:12 ; exp:>10; ok
-                   new SecondFieldClassWithVeryVeryVeryLongName("loooooooooong"). // indent:15 ; exp:>10; ok
-                 getInteger(new FooFieldClass(), "loooooooooooooong")), "loooooooooooong"); // indent:13 ; exp:>10; ok
-        }; // indent:8 ; exp:8; ok
-   } // indent:3 ; exp:2; warn
-}
+/**                                                                           //indent:0 exp:0
+ * This test-input is intended to be checked using following configuration:   //indent:1 exp:1
+ *                                                                            //indent:1 exp:1
+ * arrayInitIndent = 4                                                        //indent:1 exp:1
+ * basicOffset = 2                                                            //indent:1 exp:1
+ * braceAdjustment = 0                                                        //indent:1 exp:1
+ * caseIndent = 4                                                             //indent:1 exp:1
+ * forceStrictCondition = false                                               //indent:1 exp:1
+ * lineWrappingIndentation = 4                                                //indent:1 exp:1
+ * tabWidth = 4                                                               //indent:1 exp:1
+ * throwsIndent = 4                                                           //indent:1 exp:1
+ *                                                                            //indent:1 exp:1
+ *                                                                            //indent:1 exp:1
+ */                                                                           //indent:1 exp:1
+class FooFieldClass { //indent:0 exp:0
 
-class SecondFieldClassWithVeryVeryVeryLongName { // indent:0 ; exp:0; ok
-    
-  public SecondFieldClassWithVeryVeryVeryLongName(String string) { // indconditionTenthent:2 ; exp:2; ok
-    
-  } // indent:2 ; exp:2; ok
-    
-  String getString(FooFieldClass instance, int integer) { // indent:2 ; exp:2; ok
-    return "String"; // indent:4 ; exp:4; ok  
-  } // indent:2 ; exp:2; ok
-  
-  int getInteger(FooFieldClass instance, String string) { // indent:2 ; exp:2; ok
-    return -1;   // indent:4 ; exp:4; ok
-  } // indent:2 ; exp:2; ok
-  
-  boolean getBoolean(FooFieldClass instance, boolean flag) { // indent:2 ; exp:2; ok
-    return false; // indent:4 ; exp:4; ok
-  } // indent:2 ; exp:2; ok
-  
-  SecondFieldClassWithVeryVeryVeryLongName getInstanse() { // indent:2 ; exp:2; ok
-    return new SecondFieldClassWithVeryVeryVeryLongName("VeryLoooooooooo" // indent:4 ; exp:4; ok
-        + "oongString"); // indent:8 ; exp:8; ok
-  } // indent:2 ; exp:2; ok
-} // indent:0 ; exp:0; ok
+  boolean flag //indent:2 exp:2
+     = conditionFirst("Loooooooooooooooooong", new  //indent:5 exp:6 warn
+      SecondFieldClassWithVeryVeryVeryLongName("Loooooooooooooooooog"). //indent:6 exp:6
+      getInteger(new FooFieldClass(), "Loooooooooooooooooog"), new InnerClassFoo()); //indent:6 exp:6
 
-abstract class WithAnnotations { // indent:0 ; exp:0; ok
-  @GwtIncompatible("Non-UTF-8" // indent:2 ; exp:2; ok
-       + "Charset") // indent:6 ; exp:6; ok
-  public static final int FOO_CONSTANT = 111; // indent:2 ; exp:2; ok
-  
-  private void foo34() {}
-  final Map<String, String> // indent:2 ; exp:2; ok
-      comeMapWithLongName = new HashMap // indent:6 ; exp:6; ok
-      <String, String>(); // indent:6 ; exp:6; ok
 
-  @MyAnnotation
-  byte[] getBytesInternal() {
-    return new byte[] {};
-  }
-  
-  @MyAnnotation public abstract <K, V> Map<K, V> rowMap();
-} // indent:0 ; exp:0; ok
+  String getString(int someInt, String someString) { //indent:2 exp:2
+    return "String"; //indent:4 exp:4
+  } //indent:2 exp:2
 
-@interface GwtIncompatible { // indent:0 ; exp:0; ok
-  String value(); // indent:2 ; exp:2; ok
-} // indent:0 ; exp:0; ok
+  private boolean conditionFirst(String longString, int //indent:2 exp:2
+      integer, InnerClassFoo someInstance) { //indent:6 exp:6
+    return false; //indent:4 exp:4
+  } //indent:2 exp:2
 
-@interface MyAnnotation {}
+  private boolean conditionSecond(double longLongLongDoubleValue, //indent:2 exp:2
+      String longLongLongString, String secondLongLongString) { //indent:6 exp:6
+    return false; //indent:4 exp:4
+  } //indent:2 exp:2
 
-@MyAnnotation
-enum MyEnum{
-	
-}
+  class InnerClassFoo { //indent:2 exp:2
+
+    boolean flag //indent:4 exp:4
+        = conditionFirst("Loooooooooooooooooong", new //indent:8 exp:8
+        SecondFieldClassWithVeryVeryVeryLongName("Loooooooooooooooooog"). //indent:8 exp:8
+            getInteger(new FooFieldClass(), "Loooooooooooooooooog"), //indent:12 exp:>=8
+             new InnerClassFoo()); //indent:13 exp:>=8
+
+    FooFieldClass anonymousClass = //indent:4 exp:4
+        new FooFieldClass() { //indent:8 exp:8
+          boolean secondFlag = conditionSecond(10000000000.0, new //indent:10 exp:10
+              SecondFieldClassWithVeryVeryVeryLongName("Looooooooooooo" //indent:14 exp:14
+                + "oooooooooooong").getString(new FooFieldClass(), //indent:16 exp:>=14
+                   new SecondFieldClassWithVeryVeryVeryLongName("loooooooooong"). //indent:19 exp:>=14
+                 getInteger(new FooFieldClass(), "loooooooooooooong")), "loooooooooooong"); //indent:17 exp:>=14
+        }; //indent:8 exp:8
+   } //indent:3 exp:2 warn
+} //indent:0 exp:0
+
+class SecondFieldClassWithVeryVeryVeryLongName { //indent:0 exp:0
+
+  public SecondFieldClassWithVeryVeryVeryLongName(String string) { //indent:2 exp:2
+
+  } //indent:2 exp:2
+
+  String getString(FooFieldClass instance, int integer) { //indent:2 exp:2
+    return "String"; //indent:4 exp:4
+  } //indent:2 exp:2
+
+  int getInteger(FooFieldClass instance, String string) { //indent:2 exp:2
+    return -1;   //indent:4 exp:4
+  } //indent:2 exp:2
+
+  boolean getBoolean(FooFieldClass instance, boolean flag) { //indent:2 exp:2
+    return false; //indent:4 exp:4
+  } //indent:2 exp:2
+
+  SecondFieldClassWithVeryVeryVeryLongName getInstanse() { //indent:2 exp:2
+    return new SecondFieldClassWithVeryVeryVeryLongName("VeryLoooooooooo" //indent:4 exp:4
+        + "oongString"); //indent:8 exp:8
+  } //indent:2 exp:2
+} //indent:0 exp:0
+
+abstract class WithAnnotations { //indent:0 exp:0
+  @GwtIncompatible("Non-UTF-8" //indent:2 exp:2
+       + "Charset") //indent:7 exp:7
+  public static final int FOO_CONSTANT = 111; //indent:2 exp:2
+
+  private void foo34() {} //indent:2 exp:2
+  final Map<String, String> //indent:2 exp:2
+      comeMapWithLongName = new HashMap //indent:6 exp:6
+      <String, String>(); //indent:6 exp:6
+
+  @MyAnnotation //indent:2 exp:2
+  byte[] getBytesInternal() { //indent:2 exp:2
+    return new byte[] {}; //indent:4 exp:4
+  } //indent:2 exp:2
+
+  @MyAnnotation public abstract <K, V> Map<K, V> rowMap(); //indent:2 exp:2
+} //indent:0 exp:0
+
+@interface GwtIncompatible { //indent:0 exp:0
+  String value(); //indent:2 exp:2
+} //indent:0 exp:0
+
+@interface MyAnnotation {} //indent:0 exp:0
+
+@MyAnnotation //indent:0 exp:0
+enum MyEnum{ //indent:0 exp:0
+
+} //indent:0 exp:0
