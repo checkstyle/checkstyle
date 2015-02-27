@@ -86,7 +86,7 @@
       <p>
         If you add new end user features (Check, Filter, ....), remember to document
         them in JavaDoc of java classes and xdoc files that used to generate that site.
-        Please recheck site and all bundles generation by <code>mvn -Pdistro package</code>
+        Please recheck site and all bundles generation by <code>mvn clean site</code>
       </p>
 
       <p>
