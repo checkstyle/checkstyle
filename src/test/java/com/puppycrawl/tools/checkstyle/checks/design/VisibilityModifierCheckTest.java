@@ -18,12 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import static com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck.MSG_KEY;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import org.junit.Test;
-
-import static com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck.MSG_KEY;
 
 public class VisibilityModifierCheckTest
     extends BaseCheckTestSupport
@@ -180,4 +181,78 @@ public class VisibilityModifierCheckTest
         verify(checkConfig, getPath("InputImmutableStarImport2.java"), expected);
     }
 
+    @Test
+    public void testDefaultAnnotationPatterns() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VisibilityModifierCheck.class);
+        final String[] expected = {
+            "39:19: " + getCheckMessage(MSG_KEY, "customAnnotatedPublic"),
+            "42:12: " + getCheckMessage(MSG_KEY, "customAnnotatedPackage"),
+            "45:22: " + getCheckMessage(MSG_KEY, "customAnnotatedProtected"),
+            "47:19: " + getCheckMessage(MSG_KEY, "unannotatedPublic"),
+            "48:12: " + getCheckMessage(MSG_KEY, "unannotatedPackage"),
+            "49:22: " + getCheckMessage(MSG_KEY, "unannotatedProtected"),
+        };
+        verify(checkConfig, getPath("AnnotatedVisibility.java"), expected);
+    }
+
+    @Test
+    public void testCustomAnnotationPatterns() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("ignoreAnnotationCanonicalNames",
+                "com.puppycrawl.tools.checkstyle.AnnotatedVisibility.CustomAnnotation");
+        final String[] expected = {
+            "15:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
+            "18:28: " + getCheckMessage(MSG_KEY, "fqPublicJUnitRule"),
+            "21:19: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedPublic"),
+            "24:12: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedPackage"),
+            "27:22: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedProtected"),
+            "30:19: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedPublic"),
+            "33:12: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedPackage"),
+            "36:22: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedProtected"),
+            "47:19: " + getCheckMessage(MSG_KEY, "unannotatedPublic"),
+            "48:12: " + getCheckMessage(MSG_KEY, "unannotatedPackage"),
+            "49:22: " + getCheckMessage(MSG_KEY, "unannotatedProtected"),
+        };
+        verify(checkConfig, getPath("AnnotatedVisibility.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreAnnotationNoPattern() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("ignoreAnnotationCanonicalNames", "");
+        final String[] expected = {
+            "15:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
+            "18:28: " + getCheckMessage(MSG_KEY, "fqPublicJUnitRule"),
+            "21:19: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedPublic"),
+            "24:12: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedPackage"),
+            "27:22: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedProtected"),
+            "30:19: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedPublic"),
+            "33:12: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedPackage"),
+            "36:22: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedProtected"),
+            "39:19: " + getCheckMessage(MSG_KEY, "customAnnotatedPublic"),
+            "42:12: " + getCheckMessage(MSG_KEY, "customAnnotatedPackage"),
+            "45:22: " + getCheckMessage(MSG_KEY, "customAnnotatedProtected"),
+            "47:19: " + getCheckMessage(MSG_KEY, "unannotatedPublic"),
+            "48:12: " + getCheckMessage(MSG_KEY, "unannotatedPackage"),
+            "49:22: " + getCheckMessage(MSG_KEY, "unannotatedProtected"),
+        };
+        verify(checkConfig, getPath("AnnotatedVisibility.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreAnnotationSameName() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VisibilityModifierCheck.class);
+        final String[] expected = {
+            "10:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
+        };
+        verify(checkConfig, getPath("AnnotatedVisibilitySameTypeName.java"), expected);
+    }
 }

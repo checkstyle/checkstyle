@@ -13,9 +13,9 @@
     <section name="VisibilityModifier">
       <subsection name="Description">
         <p>
-          Checks visibility of class members. Only static final or immutable members
-          may be public; other class members must be private unless the
-          property <code>protectedAllowed</code> or <code>packageAllowed</code> is set.
+          Checks visibility of class members. Only static final, immutable or annotated
+          by specified annotation members may be public; other class members must be private
+          unless the property <code>protectedAllowed</code> or <code>packageAllowed</code> is set.
         </p>
 
         <p>
@@ -33,7 +33,12 @@
           Rationale: Enforce encapsulation.
         </p>
         <p>
-          Check also has an option making it less strict:
+          Check also has options making it less strict:
+        </p>
+        <p>
+          <b>ignoreAnnotationCanonicalNames</b> - the list of annotations which ignore variables
+          in consideration. If user will provide short annotation name that type will match to any
+          named the same type without consideration of package
         </p>
         <p>
           <b>allowPublicImmutableFields</b> - which allows immutable fields be declared as
@@ -107,6 +112,12 @@
             java.lang.StackTraceElement, java.math.BigInteger, java.math.BigDecimal, java.io.File,
             java.util.Locale, java.util.UUID, java.net.URL, java.net.URI,
             java.net.Inet4Address, java.net.Inet6Address, java.net.InetSocketAddress,</td>
+          </tr>
+          <tr>
+            <td>ignoreAnnotationCanonicalNames</td>
+            <td>ignore annotations canonical names</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td>org.junit.Rule, com.google.common.annotations.VisibleForTesting</td>
           </tr>
         </table>
       </subsection>
@@ -194,6 +205,73 @@ public class ImmutableClass
         this.notes = notes;
         this.someValue = someValue;
     }
+}
+        </source>
+
+        <p>
+          To configure the Check passing fields annotated with @com.annotation.CustomAnnotation:
+        </p>
+        <source>
+&lt;module name=&quot;VisibilityModifier&quot;&gt;
+  &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot; value=
+  &quot;com.annotation.CustomAnnotation&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example of allowed field:
+        </p>
+        <source>
+class SomeClass
+{
+    @com.annotation.CustomAnnotation
+    String annotatedString; // no warning
+    @CustomAnnotation
+    String shortCustomAnnotated; // no warning
+}
+        </source>
+
+        <p>
+          To configure the Check passing fields annotated with @org.junit.Rule and
+          @com.google.common.annotations.VisibleForTesting annotations:
+        </p>
+        <source>
+&lt;module name=&quot;VisibilityModifier&quot;/&gt;
+        </source>
+        <p>
+          Example of allowed fields:
+        </p>
+        <source>
+class SomeClass
+{
+    @org.junit.Rule
+    public TemporaryFolder publicJUnitRule = new TemporaryFolder(); // no warning
+    @com.google.common.annotations.VisibleForTesting
+    public String testString = ""; // no warning
+}
+        </source>
+
+        <p>
+          To configure the Check passing fields annotated with short annotation name:
+        </p>
+        <source>
+&lt;module name=&quot;VisibilityModifier&quot;&gt;
+  &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot;
+  value=&quot;CustomAnnotation&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example of allowed fields:
+        </p>
+        <source>
+class SomeClass
+{
+    @CustomAnnotation
+    String customAnnotated; // no warning
+    @com.annotation.CustomAnnotation
+    String customAnnotated1; // no warning
+    @mypackage.annotation.CustomAnnotation
+    String customAnnotatedAnotherPackage; // another package but short name matches
+                                          // so no violation
 }
         </source>
       </subsection>
