@@ -119,6 +119,9 @@
         <li>
           Fix table display. In config_whitespace, a comma was incorrectly replaced with a period. Author: Glenn Hollingsworth
         </li>
+        <li>
+          Update config links in Google Style html page. Author: Glenn Hollingsworth <a href="https://github.com/checkstyle/checkstyle/issues/686">#686</a>
+        </li>
       </ul>
     </section>
 
