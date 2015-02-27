@@ -31,14 +31,17 @@ import org.apache.commons.beanutils.ConversionException;
 import antlr.collections.AST;
 
 import com.google.common.collect.ImmutableList;
+import com.puppycrawl.tools.checkstyle.api.AnnotationUtility;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
- * Checks visibility of class members. Only static final or immutable members may be public,
+ * Checks visibility of class members. Only static final, immutable or annotated
+ * by specified annotation members may be public,
  * other class members must be private unless allowProtected/Package is set.
  * <p>
  * Public members are not flagged if the name matches the public
@@ -47,7 +50,27 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * </p>
  * Rationale: Enforce encapsulation.
  * <p>
- * Check also has an option making it less strict:
+ * Check also has options making it less strict:
+ * </p>
+ * <p>
+ * <b>ignoreAnnotationCanonicalNames</b> - the list of annotations canonical names
+ * which ignore variables in consideration, if user will provide short annotation name
+ * that type will match to any named the same type without consideration of package,
+ * list by default:
+ * <ul>
+ * <li>org.junit.Rule</li>
+ * <li>com.google.common.annotations.VisibleForTesting</li>
+ * </ul>
+ * </p>
+ * <p>
+ * For example such public field will be skipped by default value of list above:
+ * </p>
+ * <p>
+ * <code>
+ * <pre> @org.junit.Rule
+ * public TemporaryFolder publicJUnitRule = new TemporaryFolder();
+ * </pre>
+ * </code>
  * </p>
  * <p>
  * <b>allowPublicImmutableFields</b> - which allows immutable fields be
@@ -159,6 +182,50 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * </code>
  * </pre>
  * </p>
+ * <p>
+ * To configure the Check passing fields annotated with
+ * <pre>@com.annotation.CustomAnnotation</pre>:
+ * </p>
+ * <p>
+ * &lt;module name=&quot;VisibilityModifier&quot;&gt;
+ *   &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot; value=&quot;
+ *   com.annotation.CustomAnnotation&quot;/&gt;
+ * &lt;/module&gt;
+ * </p>
+ * <p>
+ * <code>
+ * <pre> @com.annotation.CustomAnnotation
+ * String customAnnotated; // No warning
+ * </pre>
+ * <pre> @CustomAnnotation
+ * String shortCustomAnnotated; // No warning
+ * </pre>
+ * </code>
+ * </p>
+ * <p>
+ * To configure the Check passing fields annotated with short annotation name
+ * <pre>@CustomAnnotation</pre>:
+ * </p>
+ * <p>
+ * &lt;module name=&quot;VisibilityModifier&quot;&gt;
+ *   &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot;
+ *   value=&quot;CustomAnnotation&quot;/&gt;
+ * &lt;/module&gt;
+ * </p>
+ * <p>
+ * <code>
+ * <pre> @CustomAnnotation
+ * String customAnnotated; // No warning
+ * </pre>
+ * <pre> @com.annotation.CustomAnnotation
+ * String customAnnotated1; // No warning
+ * </pre>
+ * <pre> @mypackage.annotation.CustomAnnotation
+ * String customAnnotatedAnotherPackage; // another package but short name matches
+ *                                       // so no violation
+ * </pre>
+ * </code>
+ * </p>
  *
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
@@ -189,6 +256,14 @@ public class VisibilityModifierCheck
 
     /** regexp for public members that should be ignored */
     private Pattern publicMemberPattern = Pattern.compile(publicMemberFormat);
+
+    /** List of ignore annotations canonical names. */
+    private List<String> ignoreAnnotationCanonicalNames =
+            new ArrayList<>(DEFAULT_IGNORE_ANNOTATIONS);
+
+    /** List of ignore annotations short names. */
+    private List<String> ignoreAnnotationShortNames =
+            getClassShortNames(DEFAULT_IGNORE_ANNOTATIONS);
 
     /** Allows immutable fields to be declared as public. */
     private boolean allowPublicImmutableFields = true;
@@ -224,6 +299,12 @@ public class VisibilityModifierCheck
         "java.net.InetSocketAddress"
     );
 
+    /** Default ignore annotations canonical names. */
+    private static final List<String> DEFAULT_IGNORE_ANNOTATIONS = ImmutableList.of(
+        "org.junit.Rule",
+        "com.google.common.annotations.VisibleForTesting"
+    );
+
     /** contains explicit access modifiers. */
     private static final String[] EXPLICIT_MODS = {"public", "private", "protected"};
 
@@ -231,6 +312,15 @@ public class VisibilityModifierCheck
     public boolean isProtectedAllowed()
     {
         return protectedAllowed;
+    }
+
+    /**
+     * Set the list of ignore annotations.
+     * @param annotationNames array of ignore annotations canonical names.
+     */
+    public void setIgnoreAnnotationCanonicalNames(String[] annotationNames)
+    {
+        ignoreAnnotationCanonicalNames = Arrays.asList(annotationNames);
     }
 
     /**
@@ -291,7 +381,7 @@ public class VisibilityModifierCheck
 
     /**
      * Set the list of immutable classes types names.
-     * @param classNames array of immutable types short names.
+     * @param classNames array of immutable types canonical names.
      */
     public void setImmutableClassCanonicalNames(String[] classNames)
     {
@@ -321,8 +411,14 @@ public class VisibilityModifierCheck
     public void beginTree(DetailAST rootAst)
     {
         immutableClassShortNames.clear();
-        final List<String> shortNames = getClassShortNames(immutableClassCanonicalNames);
-        immutableClassShortNames.addAll(shortNames);
+        final List<String> classShortNames =
+                getClassShortNames(immutableClassCanonicalNames);
+        immutableClassShortNames.addAll(classShortNames);
+
+        ignoreAnnotationShortNames.clear();
+        final List<String> annotationShortNames =
+                getClassShortNames(ignoreAnnotationCanonicalNames);
+        ignoreAnnotationShortNames.addAll(annotationShortNames);
     }
 
     @Override
@@ -363,7 +459,7 @@ public class VisibilityModifierCheck
         final boolean inInterfaceOrAnnotationBlock =
                 ScopeUtils.inInterfaceOrAnnotationBlock(variableDef);
 
-        if (!inInterfaceOrAnnotationBlock) {
+        if (!inInterfaceOrAnnotationBlock && !hasIgnoreAnnotation(variableDef)) {
             final DetailAST varNameAST = getVarNameAST(variableDef);
             final String varName = varNameAST.getText();
             if (!hasProperAccessModifier(variableDef, varName)) {
@@ -371,6 +467,18 @@ public class VisibilityModifierCheck
                         MSG_KEY, varName);
             }
         }
+    }
+
+    /**
+     * Checks if variable def has ignore annotation.
+     * @param variableDef {@link TokenTypes#VARIABLE_DEF VARIABLE_DEF}
+     * @return true if variable def has ignore annotation.
+     */
+    private boolean hasIgnoreAnnotation(DetailAST variableDef)
+    {
+        final DetailAST firstIgnoreAnnotation =
+                 containsMatchingAnnotation(variableDef);
+        return firstIgnoreAnnotation != null;
     }
 
     /**
@@ -393,6 +501,11 @@ public class VisibilityModifierCheck
                      && immutableClassShortNames.contains(shortName))
             {
                 immutableClassShortNames.remove(shortName);
+            }
+            if (!ignoreAnnotationCanonicalNames.contains(canonicalName)
+                     && ignoreAnnotationShortNames.contains(shortName))
+            {
+                ignoreAnnotationShortNames.remove(shortName);
             }
         }
     }
@@ -651,4 +764,51 @@ public class VisibilityModifierCheck
         return shortClassName;
     }
 
+    /**
+     * Checks whether the AST is annotated with
+     * an annotation containing the passed in regular
+     * expression and return the AST representing that
+     * annotation.
+     *
+     * <p>
+     * This method will not look for imports or package
+     * statements to detect the passed in annotation.
+     * </p>
+     *
+     * <p>
+     * To check if an AST contains a passed in annotation
+     * taking into account fully-qualified names
+     * (ex: java.lang.Override, Override)
+     * this method will need to be called twice. Once for each
+     * name given.
+     * </p>
+     *
+     * @param variableDef {@link TokenTypes#VARIABLE_DEF variable def node}.
+     * @return the AST representing the first such annotation or null if
+     *         no such annotation was found
+     */
+    private DetailAST containsMatchingAnnotation(DetailAST variableDef)
+    {
+        DetailAST matchingAnnotation = null;
+
+        final DetailAST holder = AnnotationUtility.getAnnotationHolder(variableDef);
+
+        for (DetailAST child = holder.getFirstChild();
+            child != null; child = child.getNextSibling())
+        {
+            if (child.getType() == TokenTypes.ANNOTATION) {
+                final DetailAST at = child.getFirstChild();
+                final String name =
+                    FullIdent.createFullIdent(at.getNextSibling()).getText();
+                if (ignoreAnnotationCanonicalNames.contains(name)
+                         || ignoreAnnotationShortNames.contains(name))
+                {
+                    matchingAnnotation = child;
+                    break;
+                }
+            }
+        }
+
+        return matchingAnnotation;
+    }
 }
