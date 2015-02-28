@@ -44,6 +44,8 @@ class name&lt;T1, T2, ..., Tn&gt; {}                         // Generic type def
 OrderedPair&lt;String, Box&lt;Integer&gt;&gt; p;                   // Generic type reference
 boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);  // Generic preceded method name
 Pair&lt;Integer, String> p1 = new Pair&lt;&gt;(1, "apple");     // Diamond operator
+List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;          // Method reference
+sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
         </source>
       </subsection>
 
