@@ -61,6 +61,8 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * OrderedPair&lt;String, Box&lt;Integer&gt;&gt; p;              // Generic type reference
  * boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);   // Generic preceded method name
  * Pair&lt;Integer, String&gt; p1 = new Pair&lt;&gt;(1, "apple");// Diamond operator
+ * List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;     // Method reference
+ * sort(list, Comparable::&lt;String&gt;compareTo);              // Method reference
  * </pre>
  * @author Oliver Burn
  */
@@ -155,10 +157,11 @@ public class GenericWhitespaceCheck extends Check
                 //                        ^
                 //                        +--- whitespace not allowed
                 if ((ast.getParent().getType() == TokenTypes.TYPE_ARGUMENTS)
-                    && (ast.getParent().getParent().getType()
-                        == TokenTypes.DOT)
-                    && (ast.getParent().getParent().getParent().getType()
-                        == TokenTypes.METHOD_CALL))
+                        && ((ast.getParent().getParent().getType()
+                            == TokenTypes.DOT)
+                        && (ast.getParent().getParent().getParent().getType()
+                            == TokenTypes.METHOD_CALL))
+                    || isAfterMethodReference(ast))
                 {
                     if (Character.isWhitespace(charAfter)) {
                         log(ast.getLineNo(), after, WS_FOLLOWED, ">");
@@ -167,7 +170,8 @@ public class GenericWhitespaceCheck extends Check
                 else if (!Character.isWhitespace(charAfter)
                     && ('(' != charAfter) && (')' != charAfter)
                     && (',' != charAfter) && ('[' != charAfter)
-                    && ('.' != charAfter) && (':' != charAfter))
+                    && ('.' != charAfter) && (':' != charAfter)
+                    && !isAfterMethodReference(ast))
                 {
                     log(ast.getLineNo(), after, WS_ILLEGAL_FOLLOW, ">");
                 }
@@ -197,6 +201,17 @@ public class GenericWhitespaceCheck extends Check
                 }
             }
         }
+    }
+
+    /**
+     * Checks if current generic end ('>') is located after
+     * {@link TokenTypes#METHOD_REF method reference operator}.
+     * @param genericEnd {@link TokenTypes#GENERIC_END}
+     * @return true if '>' follows after method reference.
+     */
+    private static boolean isAfterMethodReference(DetailAST genericEnd)
+    {
+        return genericEnd.getParent().getParent().getType() == TokenTypes.METHOD_REF;
     }
 
     /**

@@ -112,4 +112,15 @@ public class GenericWhitespaceCheckTest
                 + "checkstyle/grammars/java8/"
                 + "InputMethodReferencesTest3.java").getCanonicalPath(), expected);
     }
+
+    @Test
+    public void testMethodReferences2() throws Exception
+    {
+        final String[] expected = {
+            "7:69: " + getCheckMessage(WS_FOLLOWED, ">"),
+        };
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/whitespace/"
+                + "InputGenericWhitespaceMethodRef.java").getCanonicalPath(), expected);
+    }
 }
