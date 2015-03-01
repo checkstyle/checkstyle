@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks for empty catch blocks. There are two options to make validation less strict:
+ * Checks for empty catch blocks. There are two options to make validation more precise:
  * </p>
  * <p>
  * <b>exceptionVariableName</b> - the name of variable associated with exception,

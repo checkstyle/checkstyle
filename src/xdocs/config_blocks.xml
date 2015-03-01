@@ -92,7 +92,7 @@
     <section name="EmptyCatchBlock">
       <subsection name="Description">
         <p>
-          Checks for empty catch blocks. There are two options to make validation less strict:
+          Checks for empty catch blocks. There are two options to make validation more precise:
         </p>
       </subsection>
 
