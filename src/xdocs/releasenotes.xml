@@ -93,7 +93,7 @@
           Require at least Maven 3.0.1 to build Checkstyle. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/620">#620</a>
         </li>
         <li>
-          Site: moved 'Extending Checkstyle' to Developers groups, issue #606. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/620">#620</a>
+          Site: moved 'Extending Checkstyle' to Developers groups. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/606">#606</a>
         </li>
         <li>
           Replace `StringBuffer` with `StringBuilder` to improve performance. Author: Michal Kordas
