@@ -928,7 +928,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         final String[] expected = {};
-        verify(checkConfig, getPath("Input15Extensions.java"), expected);
+        verify(checkConfig, getPath("indentation/Input15Extensions.java"), expected);
     }
 
     @Test
