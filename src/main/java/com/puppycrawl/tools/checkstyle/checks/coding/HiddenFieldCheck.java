@@ -96,6 +96,35 @@ import org.apache.commons.beanutils.ConversionException;
  *    &lt;property name="ignoreConstructorParameter" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * An example of how to configure the check so that it ignores variables and parameters
+ * named 'test':
+ * <pre>
+ * &lt;module name="HiddenField"&gt;
+ *    &lt;property name="ignoreFormat" value="^test$"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * <code>
+ * <pre>
+ * class SomeClass
+ * {
+ *     private List&lt;String&gt; test;
+ *
+ *     private void addTest(List&lt;String&gt; test) // no violation
+ *     {
+ *         this.test.addAll(test);
+ *     }
+ *
+ *     private void foo()
+ *     {
+ *         final List&lt;String&gt; test = new ArrayList&lt;&gt;(); // no violation
+ *         ...
+ *     }
+ * }
+ * </pre>
+ * </code>
+ * </p>
  * @author Dmitri Priimak
  */
 public class HiddenFieldCheck
@@ -113,10 +142,10 @@ public class HiddenFieldCheck
      */
     private FieldFrame currentFrame;
 
-    /** the regexp to match against */
+    /** pattern for names of variables and parameters to ignore. */
     private Pattern regexp;
 
-    /** controls whether to check the pnameter of a property setter method */
+    /** controls whether to check the parameter of a property setter method */
     private boolean ignoreSetter;
 
     /**
