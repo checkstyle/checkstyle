@@ -147,14 +147,15 @@
           New option to Javadoc Method Name Check - ignore method name regex. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
         </li>
         <li>
-          New option to Illegal Type Check to control valiadtion baseon modifiers - memberModifiers, updated default illegal types. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/567">#567</a>
+          New option to Illegal Type Check to control validation based on modifiers - memberModifiers, updated default illegal types. Author: Alex Kravin <a
+                href="https://github.com/checkstyle/checkstyle/issues/567">#567</a>
         </li>
       </ul>
 
       <p>Bug fixes:</p>
       <ul>
         <li>
-          Extended Method Name Check to ignore overriden methods. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
+          Extended Method Name Check to ignore overridden methods. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
         </li>
         <li>
           Allow basedir property of Checker module to be set to NULL. Author: Lars Ködderitzsch <a href="https://github.com/checkstyle/checkstyle/issues/570">#570</a>
@@ -371,7 +372,7 @@
           Fix for MultiMap empty collections garbage. Author: Vladimir Sitnikov, Ivan Sopov. <a href="https://github.com/checkstyle/checkstyle/pull/348">#348</a>
         </li>
         <li>
-          Preformance fix for RegexpCheck. Author: Vladimir Sitnikov, Ivan Sopov. <a href="https://github.com/checkstyle/checkstyle/pull/348">#348</a>
+          Performance fix for RegexpCheck. Author: Vladimir Sitnikov, Ivan Sopov. <a href="https://github.com/checkstyle/checkstyle/pull/348">#348</a>
         </li>
         <li>
           Removing unnecessary char[] copying to reduce GC-pressure. Author: Vladimir Sitnikov, Ivan Sopov. <a href="https://github.com/checkstyle/checkstyle/pull/347">#347</a>
@@ -389,7 +390,7 @@
       <p>Breaking backward compatibility:</p>
       <ul>
         <li>
-          AnnotationLocationCheck, package location was chaged, one option was renamed. Author: Roman Ivanov. <a href="https://github.com/checkstyle/checkstyle/pull/356">#356</a>
+          AnnotationLocationCheck, package location was changed, one option was renamed. Author: Roman Ivanov. <a href="https://github.com/checkstyle/checkstyle/pull/356">#356</a>
         </li>
       </ul>
     </section>
@@ -640,7 +641,7 @@
       <p>Notes:</p>
       <ul>
         <li>
-          dsm-maven-plugin is used to show <a href="dsm/index.html">dependency stucture of project</a> on site. Author: Ilja Dubinin.
+          dsm-maven-plugin is used to show <a href="dsm/index.html">dependency structure of project</a> on site. Author: Ilja Dubinin.
         </li>
         <li>
           Added and updated documentation/messages for number of Checks. Authors: Max Vetrenko, Thomas Jensen, ychulovskyy, Jarmo Isotalo
