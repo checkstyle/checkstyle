@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that the parts of a class or interface declaration
  * appear in the order suggested by the
  * <a
- * href="http://java.sun.com/docs/codeconv/html/CodeConventions.doc2.html#1852"
+ * href="http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852"
  * >Code Conventions for the Java Programming Language</a>.
  *
  *
