@@ -293,7 +293,7 @@ public class VisibilityModifierCheck
      * Set the list of immutable classes types names.
      * @param classNames array of immutable types short names.
      */
-    public void setImmutableClassNames(String[] classNames)
+    public void setImmutableClassCanonicalNames(String[] classNames)
     {
         immutableClassCanonicalNames = Arrays.asList(classNames);
     }
