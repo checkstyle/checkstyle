@@ -113,7 +113,7 @@ public class VisibilityModifierCheckTest
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(VisibilityModifierCheck.class);
-        checkConfig.addAttribute("immutableClassNames", "java.util.List,"
+        checkConfig.addAttribute("immutableClassCanonicalNames", "java.util.List,"
                 + "com.google.common.collect.ImmutableSet");
         final String[] expected = {
             "14:35: " + getCheckMessage(MSG_KEY, "notes"),
@@ -133,7 +133,7 @@ public class VisibilityModifierCheckTest
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(VisibilityModifierCheck.class);
-        checkConfig.addAttribute("immutableClassNames",
+        checkConfig.addAttribute("immutableClassCanonicalNames",
                  "com.puppycrawl.tools.checkstyle.coding.GregorianCalendar,"
                  + "com.puppycrawl.tools.checkstyle.InetSocketAddress");
         final String[] expected = {
@@ -162,7 +162,7 @@ public class VisibilityModifierCheckTest
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(VisibilityModifierCheck.class);
-        checkConfig.addAttribute("immutableClassNames", "java.util.Arrays");
+        checkConfig.addAttribute("immutableClassCanonicalNames", "java.util.Arrays");
         final String[] expected = {
         };
         verify(checkConfig, getPath("InputImmutableStarImport.java"), expected);
@@ -173,7 +173,8 @@ public class VisibilityModifierCheckTest
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(VisibilityModifierCheck.class);
-        checkConfig.addAttribute("immutableClassNames", "com.google.common.collect.ImmutableSet");
+        checkConfig.addAttribute("immutableClassCanonicalNames",
+                 "com.google.common.collect.ImmutableSet");
         final String[] expected = {
         };
         verify(checkConfig, getPath("InputImmutableStarImport2.java"), expected);
