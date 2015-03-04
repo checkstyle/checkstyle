@@ -37,7 +37,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <b>commentFormat</b> - the format of the first comment inside empty catch
  * block, if Check meets comment inside empty catch block matching specified format
  *  - empty block is suppressed. If it is multi-line comment - only its first line is analyzed.<br>
- * default value: &quot;.*&quot;
+ * default value: &quot;.*&quot;<br>
+ * So, by default Check allows empty catch block with any comment inside.
  * </p>
  * <p>
  * If both options are specified - they are applied by <b>any of them is matching</b>.
