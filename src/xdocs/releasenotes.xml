@@ -10,6 +10,35 @@
   </properties>
 
   <body>
+
+    <section name="Release 6.4.1">
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Visibility Modifier Check, updated option setter. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/710">#710</a>
+        </li>
+        <li>
+          Generic Whitespace Check, updated method references processing. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/667">#667</a>
+        </li>
+      </ul>
+
+      <p>Notes:</p>
+      <ul>
+        <li>
+          Hidden Field Check, updated docs for 'ignoreFormat' option. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/607">#607</a>
+        </li>
+        <li>
+          Clarified all Indentation Input files for certain expected values. Author: Alexey Zuy <a href="https://github.com/checkstyle/checkstyle/issues/675">#675</a>
+        </li>
+        <li>
+          Update of maven plugins. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/644">#644</a>
+        </li>
+        <li>
+          Fix incorrect author anf typos in release notes for issue. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/606">#606</a>
+        </li>
+      </ul>
+    </section>
+
     <section name="Release 6.4">
       <p>New:</p>
       <ul>
