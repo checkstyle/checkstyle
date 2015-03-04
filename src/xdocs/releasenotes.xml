@@ -18,7 +18,7 @@
           Visibility Modifier Check, updated option setter. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/710">#710</a>
         </li>
         <li>
-          Generic Whitespace Check, updated method references processing. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/667">#667</a>
+          Generic Whitespace Check, updated method references processing. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/677">#677</a>
         </li>
       </ul>
 
