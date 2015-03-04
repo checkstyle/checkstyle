@@ -34,7 +34,7 @@
           Update of maven plugins. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/644">#644</a>
         </li>
         <li>
-          Fix incorrect author anf typos in release notes for issue. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/606">#606</a>
+          Fix incorrect author and typos in release notes for Release 6.4. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/694">#694</a>
         </li>
       </ul>
     </section>
