@@ -413,7 +413,7 @@ public class MethodLimitCheck extends Check
 
       <source>
 java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar \
-     -c config.xml -r .
+     -c config.xml
       </source>
 
       <p>
