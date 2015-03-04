@@ -337,8 +337,8 @@ try {
             <td>all tokens</td>
           </tr>
           <tr>
-            <td>allowSingleLineIf</td>
-            <td>allow one line if statements</td>
+            <td>allowSingleLineStatement</td>
+            <td>allows single-line statements without braces</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td>false</td>
           </tr>
@@ -362,12 +362,45 @@ try {
         </source>
 
         <p>
-          To configure the check to allow one line <code>if</code> statements without braces:
+          To configure the check to allow single-line statements
+          (<code>if, while, do-while, for</code>) without braces:
         </p>
         <source>
 &lt;module name=&quot;NeedBraces&quot;&gt;
-    &lt;property name=&quot;allowSingleLineIf&quot; value=&quot;FALSE&quot;/&gt;
+    &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
+        </source>
+
+        <p>
+          Next statements won't be violated by Check:
+        </p>
+        <source>
+if (obj.isValid()) return true; // OK
+while (obj.isValid()) return true; // OK
+do this.notify(); while (o != null); // OK
+for (int i = 0; ; ) this.notify(); // OK
+        </source>
+
+        <p>
+          To configure the Check to allow <code>case, default</code> single-line statements
+          without braces:
+        </p>
+        <source>
+&lt;module name=&quot;NeedBraces&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CASE, LITERAL_DEFAULT&quot;/&gt;
+    &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          Next statements won't be violated by Check:
+        </p>
+        <source>
+switch (num) {
+    case 1: counter++; break; // OK
+    case 6: counter += 10; break; // OK
+    default: counter = 100; break; // OK
+}
         </source>
       </subsection>
 
