@@ -408,12 +408,24 @@ public class MethodLimitCheck extends Check
         To run the new Check on the command line compile your Check,
         create a jar that contains the classes and property files,
         e.g. <code>mycompanychecks.jar</code>. Then run
-        (with the path separator adjusted to your platform):
+        (with the path separator
+        <a href="http://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html">
+        system property ("path.separator")</a> adjusted to your platform:
+        Linux/Unix - ":", Windows - ";"):
       </p>
 
+      <p>For Linux/Unix OS:</p>
       <source>
 java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar \
-     -c config.xml
+     com.puppycrawl.tools.checkstyle.Main
+     -c config.xml myproject
+      </source>
+
+      <p>For Windows OS:</p>
+      <source>
+java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar \
+     com.puppycrawl.tools.checkstyle.Main
+     -c config.xml myproject
       </source>
 
       <p>
