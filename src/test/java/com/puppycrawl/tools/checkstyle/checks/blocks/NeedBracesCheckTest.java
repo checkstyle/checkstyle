@@ -18,8 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import java.io.File;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
 import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck.MSG_KEY_NEED_BRACES;
@@ -54,15 +57,47 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testSigleLineIfBlock() throws Exception
+    public void testSigleLineStatements() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NeedBracesCheck.class);
-        checkConfig.addAttribute("allowSingleLineIf", "true");
+        checkConfig.addAttribute("allowSingleLineStatement", "true");
         final String[] expected = {
             "23: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
             "29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "38: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "46: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "53: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
+            "59: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
         };
-        verify(checkConfig, getPath("InputBracesSingleLineIfBlock.java"), expected);
+        verify(checkConfig, getPath("InputBracesSingleLineStatements.java"), expected);
+    }
+
+    @Test
+    public void testSigleLineLambda() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(NeedBracesCheck.class);
+        checkConfig.addAttribute("tokens", "LAMBDA");
+        checkConfig.addAttribute("allowSingleLineStatement", "true");
+        final String[] expected = {
+        };
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
+                + "tools/checkstyle/blocks/InputSingleLineLambda.java").getCanonicalPath(),
+                expected);
+    }
+
+    @Test
+    public void testSigleLineCaseDefault() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(NeedBracesCheck.class);
+        checkConfig.addAttribute("tokens", "LITERAL_CASE, LITERAL_DEFAULT");
+        checkConfig.addAttribute("allowSingleLineStatement", "true");
+        final String[] expected = {
+            "69: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "72: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+        };
+        verify(checkConfig, getPath("InputBracesSingleLineStatements.java"), expected);
     }
 }
