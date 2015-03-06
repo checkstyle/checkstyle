@@ -38,7 +38,6 @@ import org.xml.sax.SAXException;
 /**
  * Loads a list of package names from a package name XML file.
  * @author Rick Giles
- * @version 4-Dec-2002
  */
 public final class PackageNamesLoader
     extends AbstractLoader
