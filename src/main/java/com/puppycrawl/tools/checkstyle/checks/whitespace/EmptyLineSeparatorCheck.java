@@ -243,8 +243,7 @@ public class EmptyLineSeparatorCheck extends Check
                                  nextToken.getText());
                         }
                     }
-                    if (!allowMultipleEmptyLines && isTypeField(ast)
-                             && isPrePreviousLineEmpty(ast))
+                    if (isTypeField(ast) && hasNotAllowedFewLinesBeforeEmpty(ast))
                     {
                         log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
                     }
@@ -256,7 +255,7 @@ public class EmptyLineSeparatorCheck extends Check
                     {
                         log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
                     }
-                    if (!allowMultipleEmptyLines && isTwoPreviousLineEmpty(ast)) {
+                    if (hasNotAllowedFewLinesBeforeEmpty(ast)) {
                         log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
                     }
                     break;
@@ -264,14 +263,14 @@ public class EmptyLineSeparatorCheck extends Check
                     if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
                         log(ast.getLineNo(), MSG_SHOULD_BE_SEPARATED, ast.getText());
                     }
-                    if (!allowMultipleEmptyLines && isPrePreviousLineEmpty(ast)) {
+                    if (hasNotAllowedFewLinesBeforeEmpty(ast)) {
                         log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
                     }
                 default:
                     if (nextToken.getType() != TokenTypes.RCURLY && !hasEmptyLineAfter(ast)) {
                         log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
                     }
-                    if (!allowMultipleEmptyLines && isPrePreviousLineEmpty(ast)) {
+                    if (hasNotAllowedFewLinesBeforeEmpty(ast)) {
                         log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
                     }
             }
@@ -279,13 +278,13 @@ public class EmptyLineSeparatorCheck extends Check
     }
 
     /**
-     * Checks if a token has empty two previous lines
+     * Checks if a token has empty two previous lines and there is not allowed multiple empty lines
      * @param token DetailAST token
-     * @return true, if token has empty two lines before
+     * @return true, if token has empty two lines before and allowMultipleEmptyLines is false
      */
-    private boolean isTwoPreviousLineEmpty(DetailAST token)
+    private boolean hasNotAllowedFewLinesBeforeEmpty(DetailAST token)
     {
-        return isPrePreviousLineEmpty(token) && hasEmptyLineBefore(token);
+        return !allowMultipleEmptyLines && isPrePreviousLineEmpty(token) && hasEmptyLineBefore(token);
     }
 
     /**
