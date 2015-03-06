@@ -236,7 +236,7 @@ public class EmptyLineSeparatorCheck extends Check
                             log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
                                  nextToken.getText());
                         }
-                        else if ((!allowNoEmptyLineBetweenFields || !allowMultipleEmptyLines)
+                        else if (!allowNoEmptyLineBetweenFields
                                  && nextToken.getType() != TokenTypes.RCURLY)
                         {
                             log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
