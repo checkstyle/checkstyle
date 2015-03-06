@@ -156,3 +156,10 @@ class test_1241722
         o_ = _o1;
     }
 }
+
+class class1
+{
+    public class1(final int x){
+
+    }
+}

@@ -658,7 +658,7 @@
           <regex><pattern>com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck</pattern><branchRate>75</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck</pattern><branchRate>90</branchRate><lineRate>90</lineRate></regex>
           <regex><pattern>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck</pattern><branchRate>90</branchRate><lineRate>95</lineRate></regex>
-          <regex><pattern>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</pattern><branchRate>78</branchRate><lineRate>97</lineRate></regex>
+          <regex><pattern>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</pattern><branchRate>79</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck</pattern><branchRate>96</branchRate><lineRate>97</lineRate></regex>
           <regex><pattern>com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck</pattern><branchRate>100</branchRate><lineRate>92</lineRate></regex>
           <regex><pattern>com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck</pattern><branchRate>77</branchRate><lineRate>94</lineRate></regex>
