@@ -59,7 +59,6 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * &lt;/module&gt;
  * </pre>
  * @author Rick Giles
- * @version 1.0
  */
 
 public class MethodParamPadCheck

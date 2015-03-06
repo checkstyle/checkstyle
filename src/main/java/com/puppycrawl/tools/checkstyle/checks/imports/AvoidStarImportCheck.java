@@ -60,7 +60,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Oliver Burn
  * @author <a href="bschneider@vecna.com">Bill Schneider</a>
  * @author Travis Schneeberger
- * @version 2.0
  */
 public class AvoidStarImportCheck
     extends Check

@@ -33,7 +33,6 @@ import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes;
  *
  * @author Oliver Burn
  * @author <a href="mailto:dobratzp@ele.uri.edu">Peter Dobratz</a>
- * @version 1.0
  */
 public final class TokenTypes
 {

@@ -56,7 +56,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * @author Rick Giles
  * @author lkuehne
- * @version 1.0
  */
 public class NoWhitespaceBeforeCheck
     extends Check

@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * or such spaces are forbidden.
  * </p>
  * @author Oliver Burn
- * @version 1.0
  */
 abstract class AbstractParenPadCheck
     extends AbstractOptionCheck<PadOption>

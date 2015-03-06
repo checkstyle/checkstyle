@@ -28,7 +28,6 @@ import java.util.TreeSet;
 /**
  * Collection of messages.
  * @author Oliver Burn
- * @version 1.0
  */
 public final class LocalizedMessages
 {

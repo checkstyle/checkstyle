@@ -41,7 +41,6 @@ import org.apache.commons.logging.LogFactory;
  * Contains utility methods.
  *
  * @author Oliver Burn
- * @version 1.0
  */
 public final class Utils
 {

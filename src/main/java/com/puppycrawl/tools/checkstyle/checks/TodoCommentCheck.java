@@ -48,7 +48,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * @author Oliver Burn
  * @author Baratali Izmailov
- * @version 1.0
  */
 public class TodoCommentCheck
         extends Check

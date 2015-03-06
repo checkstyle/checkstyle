@@ -33,7 +33,6 @@ import org.apache.commons.beanutils.ConversionException;
  * expression using the property name <code>format</code>.  </p>
  *
  * @author Oliver Burn
- * @version 1.0
  */
 public abstract class AbstractFormatCheck
     extends Check

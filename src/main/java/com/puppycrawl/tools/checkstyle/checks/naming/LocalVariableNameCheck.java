@@ -70,7 +70,6 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  *
  * @author Rick Giles
  * @author maxvetrenko
- * @version 1.0
  */
 public class LocalVariableNameCheck
     extends AbstractNameCheck

@@ -32,7 +32,6 @@ import java.util.regex.Pattern;
  * Checks that a variable has Javadoc comment.
  *
  * @author Oliver Burn
- * @version 1.0
  */
 public class JavadocVariableCheck
     extends Check

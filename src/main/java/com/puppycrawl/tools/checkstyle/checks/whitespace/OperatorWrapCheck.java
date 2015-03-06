@@ -85,7 +85,6 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * </pre>
  *
  * @author Rick Giles
- * @version 1.0
  */
 public class OperatorWrapCheck
     extends AbstractOptionCheck<WrapOption>

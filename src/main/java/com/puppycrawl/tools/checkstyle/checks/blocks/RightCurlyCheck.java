@@ -68,7 +68,6 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * @author lkuehne
  * @author o_sukhodolsky
  * @author maxvetrenko
- * @version 2.0
  */
 public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
 {

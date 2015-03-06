@@ -39,7 +39,6 @@ import java.util.Set;
  * &lt;module name="CovariantEquals"/&gt;
  * </pre>
  * @author Rick Giles
- * @version 1.0
  */
 public class CovariantEqualsCheck extends Check
 {

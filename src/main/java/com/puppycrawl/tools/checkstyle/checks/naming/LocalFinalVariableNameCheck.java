@@ -47,7 +47,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  *
  * @author Rick Giles
- * @version 1.0
  */
 public class LocalFinalVariableNameCheck
     extends AbstractNameCheck

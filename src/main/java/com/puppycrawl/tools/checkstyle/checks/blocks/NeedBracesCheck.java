@@ -60,7 +60,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Rick Giles
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
- * @version 1.0
  */
 public class NeedBracesCheck extends Check
 {

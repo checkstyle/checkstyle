@@ -45,7 +45,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  *
  * @author Oliver Burn
- * @version 1.0
  */
 public class UpperEllCheck extends Check
 {

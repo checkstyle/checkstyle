@@ -60,7 +60,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * java.lang.Math.PI
  * </p>
  * @author Travis Schneeberger
- * @version 1.0
  */
 public class AvoidStaticImportCheck
     extends Check

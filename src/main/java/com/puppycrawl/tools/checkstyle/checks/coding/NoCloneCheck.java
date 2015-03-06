@@ -121,7 +121,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  *
  *
  * @author Travis Schneeberger
- * @version 1.0
  * @see java.lang.Object#clone()
  * @see java.lang.Cloneable
  * @see java.lang.CloneNotSupportedException

@@ -30,7 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>This class extends {@link AbstractNameCheck}</p>
  *
  * @author Travis Schneeberger
- * @version 1.0
  */
 public abstract class AbstractTypeParameterNameCheck
     extends AbstractNameCheck

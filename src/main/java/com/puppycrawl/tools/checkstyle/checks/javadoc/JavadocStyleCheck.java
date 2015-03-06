@@ -39,7 +39,6 @@ import java.util.regex.Pattern;
  * @author Chris Stillwell
  * @author Daniel Grenner
  * @author Travis Schneeberger
- * @version 1.2
  */
 public class JavadocStyleCheck
     extends Check
