@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.api;
  * Represents an error condition within Checkstyle.
  *
  * @author Oliver Burn
- * @version 1.0
  */
 public class CheckstyleException extends Exception
 {

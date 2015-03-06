@@ -62,7 +62,6 @@ import org.apache.commons.beanutils.ConversionException;
  * </pre>
  *
  * @author Daniel Grenner
- * @version 1.0
  */
 public class WriteTagCheck
     extends Check

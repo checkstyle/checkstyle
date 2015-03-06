@@ -61,7 +61,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </code>
  * </pre>
  * @author Oliver Burn
- * @version 1.0
  */
 public class ParameterNumberCheck
     extends Check

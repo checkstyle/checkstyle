@@ -53,7 +53,6 @@ import org.apache.commons.beanutils.ConversionException;
  *
  * @author Christopher Lenz
  * @author lkuehne
- * @version 1.0
  */
 public class NewlineAtEndOfFileCheck
     extends AbstractFileSetCheck

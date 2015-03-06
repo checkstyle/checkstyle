@@ -45,7 +45,6 @@ for (Iterator foo = very.long.line.iterator();
  * </pre>
  *
  * @author Rick Giles
- * @version 1.0
  */
 public class EmptyForIteratorPadCheck
     extends AbstractOptionCheck<PadOption>

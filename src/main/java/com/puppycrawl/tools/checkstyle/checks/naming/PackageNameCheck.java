@@ -58,7 +58,6 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * </pre>
  *
  * @author Oliver Burn
- * @version 1.0
  */
 public class PackageNameCheck
     extends AbstractFormatCheck

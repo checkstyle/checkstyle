@@ -41,7 +41,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * &lt;module name="EmptyStatement"/&gt;
  * </pre>
  * @author Rick Giles
- * @version 1.0
  */
 public class EmptyStatementCheck extends Check
 {

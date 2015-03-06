@@ -44,7 +44,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  *
  * @author Travis Schneeberger
- * @version 1.0
  */
 public class MethodTypeParameterNameCheck
     extends AbstractTypeParameterNameCheck

@@ -34,7 +34,6 @@ import java.util.regex.Pattern;
  * Represents the contents of a file.
  *
  * @author Oliver Burn
- * @version 1.0
  */
 public final class FileContents implements CommentListener
 {

@@ -47,7 +47,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  * @author Rick Giles
- * @version 1.0
  */
 public class MemberNameCheck
     extends AbstractAccessControlNameCheck

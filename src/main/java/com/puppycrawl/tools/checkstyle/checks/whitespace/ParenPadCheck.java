@@ -60,7 +60,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  * @author Oliver Burn
- * @version 1.0
  */
 public class ParenPadCheck extends AbstractParenPadCheck
 {

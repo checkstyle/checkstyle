@@ -32,7 +32,6 @@ import antlr.collections.AST;
  * ASTs?</a>.
  * @author Oliver Burn
  * @author lkuehne
- * @version 1.0
  * @see <a href="http://www.antlr.org/">ANTLR Website</a>
  */
 public final class DetailAST extends CommonASTWithHiddenTokens

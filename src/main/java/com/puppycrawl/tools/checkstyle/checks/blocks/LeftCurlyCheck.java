@@ -71,7 +71,6 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * @author Oliver Burn
  * @author lkuehne
  * @author maxvetrenko
- * @version 1.0
  */
 public class LeftCurlyCheck
     extends AbstractOptionCheck<LeftCurlyOption>

@@ -26,7 +26,6 @@ import java.util.Set;
  * <p>Limitations: this does not handle inner classes very well.</p>
  *
  * @author Oliver Burn
- * @version 1.0
  */
 public class ClassResolver
 {

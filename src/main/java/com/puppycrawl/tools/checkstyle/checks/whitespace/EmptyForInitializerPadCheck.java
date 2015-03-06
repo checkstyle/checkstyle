@@ -45,7 +45,6 @@ for (
  * </pre>
  *
  * @author lkuehne
- * @version 1.0
  */
 public class EmptyForInitializerPadCheck
     extends AbstractOptionCheck<PadOption>

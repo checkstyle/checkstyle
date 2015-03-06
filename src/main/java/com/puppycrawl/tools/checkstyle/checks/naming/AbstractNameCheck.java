@@ -27,7 +27,6 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * Abstract class for checking that names conform to a specified format.
  *
  * @author Rick Giles
- * @version 1.0
  */
 public abstract class AbstractNameCheck
     extends AbstractFormatCheck

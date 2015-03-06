@@ -153,7 +153,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Oliver Burn
  * @author maxvetrenko
- * @version 1.0
  */
 public class WhitespaceAroundCheck extends Check
 {

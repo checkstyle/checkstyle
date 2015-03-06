@@ -27,7 +27,6 @@ import com.google.common.collect.Sets;
  * The base class for checks.
  *
  * @author Oliver Burn
- * @version 1.0
  * @see <a href="{@docRoot}/../writingchecks.html" target="_top">Writing
  * your own checks</a>
  */

@@ -36,7 +36,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * information functions.
  *
  * @author Oliver Burn
- * @version 1.0
  * @deprecated Checkstyle is not type aware tool and all Checks derived from this
  * class are potentially unstable.
  */

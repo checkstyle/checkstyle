@@ -68,7 +68,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Oliver Burn
  * @author Travis Schneeberger
  * @author Utkarsh Srivastava
- * @version 1.1
  */
 public class MethodNameCheck
     extends AbstractAccessControlNameCheck

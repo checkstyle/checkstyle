@@ -62,7 +62,6 @@ import static com.puppycrawl.tools.checkstyle.Utils.fileExtensionMatches;
  * checks at each each node.
  *
  * @author Oliver Burn
- * @version 1.0
  */
 public final class TreeWalker
     extends AbstractFileSetCheck

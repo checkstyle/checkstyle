@@ -49,7 +49,6 @@ import java.util.Set;
  * Compatible with Java 1.5 source.
  *
  * @author Oliver Burn
- * @version 1.0
  */
 public class RedundantImportCheck
     extends Check

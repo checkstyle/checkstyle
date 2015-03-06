@@ -50,7 +50,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </pre>
  * @author Oliver Burn
  * @author Rick Giles
- * @version 1.0
  */
 public class WhitespaceAfterCheck
     extends Check
