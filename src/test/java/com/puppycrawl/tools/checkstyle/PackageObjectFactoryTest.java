@@ -30,7 +30,6 @@ import org.junit.Test;
 /**
  * Enter a description of class PackageObjectFactoryTest.java.
  * @author Rick Giles
- * @version 8-Dec-2002
  */
 public class PackageObjectFactoryTest
 {

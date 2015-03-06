@@ -3,7 +3,6 @@ package com.puppycrawl.tools.checkstyle;
 /**
  * Describe class InputMagicNumber
  * @author Rick Giles
- * @version 6-May-2003
  */
 public class InputMagicNumber {
     public void magicMethod() {
