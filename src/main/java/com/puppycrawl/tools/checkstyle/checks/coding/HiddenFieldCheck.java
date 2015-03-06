@@ -538,7 +538,6 @@ public class HiddenFieldCheck
      * @author Rick Giles
      * Describe class FieldFrame
      * @author Rick Giles
-     * @version Oct 26, 2003
      */
     private static class FieldFrame
     {
