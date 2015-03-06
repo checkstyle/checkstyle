@@ -3,6 +3,7 @@ package com.puppycrawl.tools.checkstyle;
 /**
  * Input class for testing EmptyStatementCheck
  * @author Rick Giles
+ * @version 5-May-2003
  */
 public class InputEmptyStatement
 {
