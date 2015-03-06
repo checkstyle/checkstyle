@@ -39,7 +39,6 @@ import org.junit.Test;
 /**
  * Enter a description of class XMLLoggerTest.java.
  * @author Rick Giles
- * @version 11-Dec-2002
  */
 public class XMLLoggerTest
 {
