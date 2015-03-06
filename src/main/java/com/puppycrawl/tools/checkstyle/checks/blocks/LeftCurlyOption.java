@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
  * Represents the options for placing the left curly brace <code>'{'</code>.
  *
  * @author Oliver Burn
- * @version 1
  */
 public enum LeftCurlyOption
 {
