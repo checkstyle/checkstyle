@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
  * Represents the options for whitespace around parentheses.
  *
  * @author Oliver Burn
- * @version 1
  * @see EmptyForIteratorPadCheck
  * @see ParenPadCheck
  */
