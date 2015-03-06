@@ -237,6 +237,7 @@ public class EmptyLineSeparatorCheck extends Check
                                  nextToken.getText());
                         }
                         else if ((!allowNoEmptyLineBetweenFields || !allowMultipleEmptyLines)
+                                 && nextToken.getType() != TokenTypes.VARIABLE_DEF
                                  && nextToken.getType() != TokenTypes.RCURLY)
                         {
                             log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
@@ -256,7 +257,7 @@ public class EmptyLineSeparatorCheck extends Check
                     {
                         log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
                     }
-                    if (!allowMultipleEmptyLines && isPrePreviousLineEmpty(ast)) {
+                    if (!allowMultipleEmptyLines && isTwoPreviousLineEmpty(ast)) {
                         log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
                     }
                     break;
@@ -276,6 +277,16 @@ public class EmptyLineSeparatorCheck extends Check
                     }
             }
         }
+    }
+
+    /**
+     * Checks if a token has empty two previous lines
+     * @param token DetailAST token
+     * @return true, if token has empty two lines before
+     */
+    private boolean isTwoPreviousLineEmpty(DetailAST token)
+    {
+        return isPrePreviousLineEmpty(token) && hasEmptyLineBefore(token);
     }
 
     /**

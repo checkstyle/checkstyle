@@ -39,7 +39,6 @@ public class EmptyLineSeparatorCheckTest
         final String[] expected = {
             "21: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
             "35: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
-            "38: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
             "39: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "STATIC_INIT"),
             "77: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
         };
@@ -96,5 +95,27 @@ public class EmptyLineSeparatorCheckTest
 
         };
         verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorFormerException.java"), expected);
+    }
+
+    @Test
+    public void testAllowMultipleImportSeparatedFromPackage() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        final String[] expected = {
+
+        };
+        verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorMultipleImportEmptyClass.java"), expected);
+    }
+
+    @Test
+    public void testAllowMultipleFieldInClass() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        final String[] expected = {
+
+        };
+        verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorMultipleFieldsInClass.java"), expected);
     }
 }
