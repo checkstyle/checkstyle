@@ -108,4 +108,17 @@ public class EmptyLineSeparatorCheckTest
         };
         verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorMultipleImportEmptyClass.java"), expected);
     }
+
+    @Test
+    public void testAllowMultipleFieldInClass() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "true");
+        final String[] expected = {
+
+        };
+        verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorMultipleFieldsInClass.java"), expected);
+    }
+
 }
