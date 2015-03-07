@@ -93,7 +93,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * by using a JTree as a renderer (and editor) for the cells in a
  * particular column in the JTable.
  *
- * <a href="http://java.sun.com/products/jfc/tsc/articles/treetable1/index.html">Original&nbsp;Source&nbsp;Location</a>
+ * <a href="https://docs.oracle.com/cd/E48246_01/apirefs.1111/e13403/oracle/ide/controls/TreeTableModel.html">
+ * Original&nbsp;Source&nbsp;Location</a>
  *
  * @author Philip Milne
  * @author Scott Violet

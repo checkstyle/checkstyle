@@ -9,6 +9,7 @@ nb-configuration.xml
 
 #Maven build folder
 target
+bin
 
 #Idea project files
 checkstyle.iml

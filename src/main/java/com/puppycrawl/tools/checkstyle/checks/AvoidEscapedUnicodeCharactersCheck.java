@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.Utils;
 /**
  * <p>
  * Restrict using <a href =
- * "http://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.3">
+ * "http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.3">
  * Unicode escapes</a> (e.g. \u221e).
  * It is possible to allow using escapes for
  * <a href="http://en.wiktionary.org/wiki/Appendix:Control_characters">

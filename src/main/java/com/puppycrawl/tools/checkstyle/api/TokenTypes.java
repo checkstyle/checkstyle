@@ -74,8 +74,8 @@ public final class TokenTypes
      * children.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html">Java
-     * Language Specification, Chapter 8</a>
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html">Java
+     * Language Specification, &sect;8</a>
      * @see #LITERAL_PUBLIC
      * @see #LITERAL_PROTECTED
      * @see #LITERAL_PRIVATE
@@ -281,7 +281,7 @@ public final class TokenTypes
      * of the object block of the declaring type.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html#246032">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.6">Java
      * Language Specification&sect;8.6</a>
      * @see #SLIST
      * @see #OBJBLOCK
@@ -296,7 +296,7 @@ public final class TokenTypes
      * first and only child is a statement list.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html#39245">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.7">Java
      * Language Specification, &sect;8.7</a>
      * @see #SLIST
      * @see #OBJBLOCK
@@ -359,8 +359,8 @@ public final class TokenTypes
      * </pre>
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html">Java
-     * Language Specification, Chapter 8</a>
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html">Java
+     * Language Specification, &sect;8</a>
      * @see #MODIFIERS
      * @see #IDENT
      * @see #EXTENDS_CLAUSE
@@ -399,8 +399,8 @@ public final class TokenTypes
      * </pre>
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/interfaces.doc.html">Java
-     * Language Specification, Chapter 9</a>
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-9.html">Java
+     * Language Specification, &sect;9</a>
      * @see #MODIFIERS
      * @see #IDENT
      * @see #EXTENDS_CLAUSE
@@ -445,7 +445,7 @@ public final class TokenTypes
      * </pre>
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#26619">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.4">Java
      * Language Specification &sect;7.4</a>
      * @see #DOT
      * @see #IDENT
@@ -487,8 +487,8 @@ public final class TokenTypes
      * initialization block.</p>
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/arrays.doc.html">Java
-     * Language Specification Chapter 10</a>
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-10.htm">Java
+     * Language Specification &sect;10</a>
      * @see #TYPE
      * @see #ARRAY_INIT
      **/
@@ -619,7 +619,7 @@ public final class TokenTypes
      * </pre>
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/statements.doc.html#78993">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.7">Java
      * Language Specification, &sect;14.7</a>
      * @see #SLIST
      **/
@@ -651,7 +651,7 @@ public final class TokenTypes
      *         +--RPAREN ())
      * </pre>
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#238146">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.16">Java
      * Language Specification, &sect;15.16</a>
      * @see #EXPR
      * @see #TYPE
@@ -689,7 +689,7 @@ public final class TokenTypes
      * The <code>++</code> (postfix increment) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#39438">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.14.1">Java
      * Language Specification, &sect;15.14.1</a>
      * @see #EXPR
      * @see #INC
@@ -699,7 +699,7 @@ public final class TokenTypes
      * The <code>--</code> (postfix decrement) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#4987">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.14.2">Java
      * Language Specification, &sect;15.14.2</a>
      * @see #EXPR
      * @see #DEC
@@ -909,7 +909,7 @@ public final class TokenTypes
      * </pre>
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#70209">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.5">Java
      * Language Specification &sect;7.5</a>
      * @see #DOT
      * @see #IDENT
@@ -922,7 +922,7 @@ public final class TokenTypes
      * The <code>-</code> (unary minus) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#236345">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.4">Java
      * Language Specification, &sect;15.15.4</a>
      * @see #EXPR
      **/
@@ -931,7 +931,7 @@ public final class TokenTypes
      * The <code>+</code> (unary plus) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#24924">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.3">Java
      * Language Specification, &sect;15.15.3</a>
      * @see #EXPR
      **/
@@ -1040,7 +1040,7 @@ public final class TokenTypes
      * loop body.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/statements.doc.html#5970">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.6">Java
      * Language Specification, &sect;14.6</a>
      * @see #LITERAL_FOR
      * @see #LITERAL_WHILE
@@ -1228,10 +1228,10 @@ public final class TokenTypes
      * The <code>*</code> (multiplication or wildcard) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#26725">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.5.2">Java
      * Language Specification, &sect;7.5.2</a>
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5036">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.17.1">Java
      * Language Specification, &sect;15.17.1</a>
      * @see #EXPR
      * @see #IMPORT
@@ -1462,7 +1462,7 @@ public final class TokenTypes
      * The <code>=</code> (assignment) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5295">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.1">Java
      * Language Specification, &sect;15.26.1</a>
      * @see #EXPR
      **/
@@ -1472,7 +1472,7 @@ public final class TokenTypes
      * one or more identifiers separated by commas.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html#78323">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.4.4">Java
      * Language Specification, &sect;8.4.4</a>
      * @see #IDENT
      * @see #DOT
@@ -1885,7 +1885,7 @@ public final class TokenTypes
      * </pre>
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/statements.doc.html#35518">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.10">Java
      * Language Specification, &sect;14.10</a>
      * @see #LPAREN
      * @see #EXPR
@@ -1903,7 +1903,7 @@ public final class TokenTypes
      * expression that evaluates to a <code>Throwable</code> instance.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/statements.doc.html#237350">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.17">Java
      * Language Specification, &sect;14.17</a>
      * @see #SLIST
      * @see #EXPR
@@ -2013,7 +2013,7 @@ public final class TokenTypes
      * </pre>
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/statements.doc.html#79311">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.19">Java
      * Language Specification, &sect;14.19</a>
      * @see #SLIST
      * @see #LITERAL_CATCH
@@ -2126,7 +2126,7 @@ public final class TokenTypes
      * The <code>+=</code> (addition assignment) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
@@ -2135,7 +2135,7 @@ public final class TokenTypes
      * The <code>-=</code> (subtraction assignment) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
@@ -2146,7 +2146,7 @@ public final class TokenTypes
      * The <code>*=</code> (multiplication assignment) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
@@ -2155,7 +2155,7 @@ public final class TokenTypes
      * The <code>/=</code> (division assignment) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
@@ -2164,7 +2164,7 @@ public final class TokenTypes
      * The <code>%=</code> (remainder assignment) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
@@ -2174,7 +2174,7 @@ public final class TokenTypes
      * operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
@@ -2184,7 +2184,7 @@ public final class TokenTypes
      * operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
@@ -2193,7 +2193,7 @@ public final class TokenTypes
      * The <code>&lt;&lt;=</code> (left shift assignment) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
@@ -2202,7 +2202,7 @@ public final class TokenTypes
      * The <code>&amp;=</code> (bitwise AND assignment) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
@@ -2211,7 +2211,7 @@ public final class TokenTypes
      * The <code>^=</code> (bitwise exclusive OR assignment) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
@@ -2220,7 +2220,7 @@ public final class TokenTypes
      * The <code>|=</code> (bitwise OR assignment) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
@@ -2252,7 +2252,7 @@ public final class TokenTypes
      * </pre>
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#290293">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.25">Java
      * Language Specification, &sect;15.25</a>
      * @see #EXPR
      * @see #COLON
@@ -2262,7 +2262,7 @@ public final class TokenTypes
      * The <code>||</code> (conditional OR) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#54532">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.24">Java
      * Language Specification, &sect;15.24</a>
      * @see #EXPR
      **/
@@ -2271,7 +2271,7 @@ public final class TokenTypes
      * The <code>&amp;&amp;</code> (conditional AND) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5247">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.23">Java
      * Language Specification, &sect;15.23</a>
      * @see #EXPR
      **/
@@ -2280,7 +2280,7 @@ public final class TokenTypes
      * The <code>|</code> (bitwise OR) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5233">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.1">Java
      * Language Specification, &sect;15.22.1</a>
      * @see #EXPR
      **/
@@ -2289,7 +2289,7 @@ public final class TokenTypes
      * The <code>^</code> (bitwise exclusive OR) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5233">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.1">Java
      * Language Specification, &sect;15.22.1</a>
      * @see #EXPR
      **/
@@ -2298,7 +2298,7 @@ public final class TokenTypes
      * The <code>&amp;</code> (bitwise AND) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5233">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.1">Java
      * Language Specification, &sect;15.22.1</a>
      * @see #EXPR
      **/
@@ -2345,7 +2345,7 @@ public final class TokenTypes
      * reference.  The second child is a reference type.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#80289">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.20.2">Java
      * Language Specification, &sect;15.20.2</a>
      * @see #EXPR
      * @see #METHOD_CALL
@@ -2361,7 +2361,7 @@ public final class TokenTypes
      * The <code>&lt;&lt;</code> (shift left) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5121">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
      * Language Specification, &sect;15.19</a>
      * @see #EXPR
      **/
@@ -2370,7 +2370,7 @@ public final class TokenTypes
      * The <code>&gt;&gt;</code> (signed shift right) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5121">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
      * Language Specification, &sect;15.19</a>
      * @see #EXPR
      **/
@@ -2379,7 +2379,7 @@ public final class TokenTypes
      * The <code>&gt;&gt;&gt;</code> (unsigned shift right) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5121">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
      * Language Specification, &sect;15.19</a>
      * @see #EXPR
      **/
@@ -2388,7 +2388,7 @@ public final class TokenTypes
      * The <code>+</code> (addition) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#15746">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.18">Java
      * Language Specification, &sect;15.18</a>
      * @see #EXPR
      **/
@@ -2397,7 +2397,7 @@ public final class TokenTypes
      * The <code>-</code> (subtraction) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#15746">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.18">Java
      * Language Specification, &sect;15.18</a>
      * @see #EXPR
      **/
@@ -2406,7 +2406,7 @@ public final class TokenTypes
      * The <code>/</code> (division) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5047">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.17.2">Java
      * Language Specification, &sect;15.17.2</a>
      * @see #EXPR
      **/
@@ -2415,7 +2415,7 @@ public final class TokenTypes
      * The <code>%</code> (remainder) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#24956">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.17.3">Java
      * Language Specification, &sect;15.17.3</a>
      * @see #EXPR
      **/
@@ -2424,7 +2424,7 @@ public final class TokenTypes
      * The <code>++</code> (prefix increment) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#39547">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.1">Java
      * Language Specification, &sect;15.15.1</a>
      * @see #EXPR
      * @see #POST_INC
@@ -2434,7 +2434,7 @@ public final class TokenTypes
      * The <code>--</code> (prefix decrement) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#239136">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.2">Java
      * Language Specification, &sect;15.15.2</a>
      * @see #EXPR
      * @see #POST_DEC
@@ -2444,7 +2444,7 @@ public final class TokenTypes
      * The <code>~</code> (bitwise complement) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5017">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.5">Java
      * Language Specification, &sect;15.15.5</a>
      * @see #EXPR
      **/
@@ -2453,7 +2453,7 @@ public final class TokenTypes
      * The <code>&#33;</code> (logical complement) operator.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#13350">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.6">Java
      * Language Specification, &sect;15.15.6</a>
      * @see #EXPR
      **/
@@ -2462,7 +2462,7 @@ public final class TokenTypes
      * The <code>true</code> keyword.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#49652">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.3">Java
      * Language Specification, &sect;3.10.3</a>
      * @see #EXPR
      * @see #LITERAL_FALSE
@@ -2474,7 +2474,7 @@ public final class TokenTypes
      * The <code>false</code> keyword.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#49652">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.3">Java
      * Language Specification, &sect;3.10.3</a>
      * @see #EXPR
      * @see #LITERAL_TRUE
@@ -2486,7 +2486,7 @@ public final class TokenTypes
      * The <code>null</code> keyword.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#230717">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.7">Java
      * Language Specification, &sect;3.10.7</a>
      * @see #EXPR
      **/
@@ -2631,7 +2631,7 @@ public final class TokenTypes
      * hexadecimal, or octal form.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">Java
      * Language Specification, &sect;3.10.1</a>
      * @see #EXPR
      * @see #NUM_LONG
@@ -2642,7 +2642,7 @@ public final class TokenTypes
      * enclosed in single quotes.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#100960">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.4">Java
      * Language Specification, &sect;3.10.4</a>
      * @see #EXPR
      **/
@@ -2654,7 +2654,7 @@ public final class TokenTypes
      * characters enclosed in double quotes.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#101084">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.5">Java
      * Language Specification, &sect;3.10.5</a>
      * @see #EXPR
      **/
@@ -2666,7 +2666,7 @@ public final class TokenTypes
      * point number with an <code>F</code> or <code>f</code> suffix.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#230798">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.2">Java
      * Language Specification, &sect;3.10.2</a>
      * @see #EXPR
      * @see #NUM_DOUBLE
@@ -2678,7 +2678,7 @@ public final class TokenTypes
      * (ell) suffix.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">Java
      * Language Specification, &sect;3.10.1</a>
      * @see #EXPR
      * @see #NUM_INT
@@ -2690,7 +2690,7 @@ public final class TokenTypes
      * suffix.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#230798">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.2">Java
      * Language Specification, &sect;3.10.2</a>
      * @see #EXPR
      * @see #NUM_FLOAT
@@ -2700,7 +2700,7 @@ public final class TokenTypes
      * This token does not appear in the tree.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#95710">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.6">Java
      * Language Specification, &sect;3.6</a>
      * @see FileContents
      **/
@@ -2709,7 +2709,7 @@ public final class TokenTypes
      * This token does not appear in the tree.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48125">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.7">Java
      * Language Specification, &sect;3.7</a>
      * @see FileContents
      **/
@@ -2718,7 +2718,7 @@ public final class TokenTypes
      * This token does not appear in the tree.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48125">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.7">Java
      * Language Specification, &sect;3.7</a>
      * @see FileContents
      **/
@@ -2727,7 +2727,7 @@ public final class TokenTypes
      * This token does not appear in the tree.
      *
      * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#101089">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.6">Java
      * Language Specification, &sect;3.10.6</a>
      * @see #CHAR_LITERAL
      * @see #STRING_LITERAL

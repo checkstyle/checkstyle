@@ -93,8 +93,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * 3.4.1.
  *
  * See <a
- * href="http://java.sun.com/docs/books/jls/third_edition/html/j3TOC.html">
- * Java Language specification, sections 9.7</a>.
+ * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-9.html#jls-9.7">
+ * Java Language specification, &sect;9.7</a>.
  *
  *
  * <p>

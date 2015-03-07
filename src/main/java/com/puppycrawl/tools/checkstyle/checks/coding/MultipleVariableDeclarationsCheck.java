@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * </p>
  * <p>
  * Rationale: <a
- * href="http://java.sun.com/docs/codeconv/html/CodeConventions.doc5.html#2991">
+ * href="http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141270.html">
  * the SUN Code conventions chapter 6.1</a> recommends that
  * declarations should be one per line.
  * </p>
