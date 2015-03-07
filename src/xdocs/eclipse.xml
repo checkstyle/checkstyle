@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <properties>
+    <title>Importing and debugging in Eclipse IDE</title>
+    <author>Checkstyle Development Team</author>
+  </properties>
+
+  <body>
+    <section name="Import Checkstyle Project">
+      <p>
+        Select File > Import > Maven > Existing Maven Projects<br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_importing_eclipse.png"/>
+      </p>
+    </section>
+
+    <section name="Debug">
+      <p>
+        Open the Check's source file by double click on it in a source tree as is shown:<br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_select_check_eclipse.png"/>
+        <br/><br/>
+        Debug the Check by putting the breakpoint at controversial place (double-click)
+        on the left part of line number as it is shown:<br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_debug_eclipse.png"/>
+        <br/><br/>
+        Then right-click the corresponding Unit-test file or class definition > Debug As >
+        JUnit Test<br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_ut_select_eclipse.png"/>
+        <br/><br/>
+        Then manage you debug operations by F6 (Step Over), F5 (Step Into), F7 (Step Return)
+        and F8 (Resume)
+      </p>
+    </section>
+  </body>
+</document>

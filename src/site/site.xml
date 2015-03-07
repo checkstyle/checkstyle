@@ -87,6 +87,11 @@
         <item name="Writing listeners" href="writinglisteners.html"/>
       </item>
       <item name="Contributing" href="contributing.html"/>
+      <item name="Beginning Development" href="beginning_development.html">
+        <item name="Eclipse IDE" href="eclipse.html"/>
+        <item name="Netbeans IDE" href="netbeans.html"/>
+        <item name="IntellIJ IDE" href="idea.html"/>
+      </item>
       <item name="Javadoc" href="apidocs/index.html"/>
     </menu>
 

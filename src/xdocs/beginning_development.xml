@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <properties>
+    <title>Beginning Development</title>
+    <author>Checkstyle Development Team</author>
+  </properties>
+
+  <body>
+    <section name="Before development">
+      <p>
+        1. Ensure that Git, Java JDK >= 1.7 are installed.<br/>
+        You can find information about development environment preparation here:
+        <a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki/Prepare-Development-Environment-in-Ubuntu-12.04">
+        Prepare development environment in Ubuntu</a>.<br/>
+        2. Fork your copy from Checkstyle main project. As it is described
+        <a href="https://help.github.com/articles/fork-a-repo/"> here</a><br/>
+        3. Checkout the current source code from: https://github.com/you_user_name/checkstyle/<br/>
+        by running
+        <source>
+git clone git@github.com:you_user_name/checkstyle.git
+        </source>
+      </p>
+    </section>
+
+    <section name="Starting Development">
+      <p>
+        Here you can find instructions of importing and debugging the project for IDEs:<br/>
+        <a href="eclipse.html">Eclipse IDE</a><br/>
+        <a href="netbeans.html">Netbeans IDE</a><br/>
+        <a href="idea.html">IntellIJ Idea IDE</a><br/>
+      </p>
+
+      <p>
+        Follow these instructions of Git usage and creating a Pull Request:<br/>
+           1) Configure remotes:
+           <source>
+git remote add main https://github.com/checkstyle/checkstyle
+           </source>
+           2) Create a branch for a new check:
+           <source>
+git checkout -b my-new-check
+           </source>
+           3) Commit changes to my-new-check branch:
+           <source>
+git add .
+git commit -m "commit message"
+           </source>
+           4) Push branch to GitHub, to allow your mentor to review your code:
+           <source>
+git push origin my-new-check
+           </source>
+           5) Repeat steps 3-4 till development is complete<br/>
+           6) Update current branch and local master by pulling changes that were done<br/>
+           by other contributors:
+           <source>
+git pull --rebase main master
+           </source>
+           7) In the process of the rebase, it may discover conflicts.<br/>
+           In that case it will stop and allow you to fix the conflicts.<br/>
+           After fixing conflicts, use git add . to update the index with those contents,<br/>
+           and then just run:
+           <source>
+git rebase --continue
+           </source>
+           8) Push branch to GitHub (with all your final changes and actual code of Checkstyle):
+           <source>
+git push --force origin my-new-check
+           </source>
+           9) Only after all content is finished and testing is done - send a <a href="https://help.github.com/articles/using-pull-requests/">Pull Request</a>
+      </p>
+    </section>
+  </body>
+</document>

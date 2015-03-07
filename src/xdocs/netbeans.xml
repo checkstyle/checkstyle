@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <properties>
+    <title>Importing and debugging in Netbeans IDE</title>
+    <author>Checkstyle Development Team</author>
+  </properties>
+
+  <body>
+    <section name="Import Checkstyle Project">
+      <p>
+        Select File > New Project > Maven > Project with existing POM<br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_importing_netbeans.png"/>
+        <br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_importing_netbeans1.png"/>
+      </p>
+    </section>
+
+    <section name="Debug">
+      <p>
+        Open the Check's source file by double click on it in a source tree as is shown:<br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_select_check_netbeans.png"/>
+        <br/><br/>
+        Debug the Check by putting the breakpoint at controversial place (double-click)
+        on the left part of line number as it is shown:<br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_debug_netbeans.png"/>
+        <br/><br/>
+        Then right-click the corresponding Unit-test file or class definition > Debug Test File
+        <br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_ut_select_netbeans.png"/>
+        <br/><br/>
+        Then manage you debug operations by Ctrl+F7 (Step Out), F7 (Step Into),
+        Shift+F8 (Step Over Expression), Step Over (F8)
+      </p>
+    </section>
+  </body>
+</document>
