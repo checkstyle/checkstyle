@@ -31,6 +31,10 @@
         <a href="http://junit.org">JUnit</a>).
       </p>
       <p>
+        To start the development - visit our
+        <a href="beginning_development">Beginning Development</a> page.
+      </p>
+      <p>
         <b>ATTENTION:</b> if you have idea how to improve Checkstyle please create issue on
         our <a href="https://github.com/checkstyle/checkstyle/issues">tracking system</a>.
         As soon as one of admins of our project approved your idea you are good to start
