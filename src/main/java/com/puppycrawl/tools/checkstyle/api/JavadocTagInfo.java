@@ -26,12 +26,12 @@ import java.util.Map;
  *
  * <p>
  * This class was modeled after documentation located at
- * <a href="http://java.sun.com/j2se/1.5.0/docs/tooldocs/windows/javadoc.html">
+ * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html">
  * javadoc</a>
  *
  * and
  *
- * <a href="http://java.sun.com/j2se/javadoc/writingdoccomments/index.html">
+ * <a href="http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html">
  * how to write</a>.
  * </p>
  *

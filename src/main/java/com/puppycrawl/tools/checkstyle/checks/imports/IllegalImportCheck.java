@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks for imports from a set of illegal packages.
  * By default, the check rejects all <code>sun.*</code> packages
  * since programs that contain direct calls to the <code>sun.*</code> packages
- * are <a href="http://java.sun.com/products/jdk/faq/faq-sun-packages.html">
+ * are <a href="http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html">
  * not 100% Pure Java</a>.
  * </p>
  * <p>
