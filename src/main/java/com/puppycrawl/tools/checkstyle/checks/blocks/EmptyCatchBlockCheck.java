@@ -128,6 +128,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class EmptyCatchBlockCheck extends Check
 {
+    /** Platform independent line separator used in input files. */
+    private static final String LINE_SEPARATOR = "\n";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -231,7 +233,7 @@ public class EmptyCatchBlockCheck extends Check
         }
         else if (firstElementInBlock.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
             commentContent = firstElementInBlock.getFirstChild().getText();
-            final String[] lines = commentContent.split(System.getProperty("line.separator"));
+            final String[] lines = commentContent.split(LINE_SEPARATOR);
             for (int i = 0; i < lines.length; i++) {
                 if (!lines[i].isEmpty()) {
                     commentContent = lines[i];

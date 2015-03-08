@@ -36,7 +36,8 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport
 {
     protected static final Set<String> allComments = Sets.newLinkedHashSet();
 
-    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+    /** Platform independent line separator used in input files. */
+    private static final String LINE_SEPARATOR = "\n";
 
     public static class BlockCommentListenerCheck extends Check
     {

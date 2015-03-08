@@ -50,7 +50,8 @@ import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser.TrTagOpenC
 //@formatter:off
 public class ParseTreeBuilder
 {
-    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+    /** Platform independent line separator used in input files. */
+    private static final String LINE_SEPARATOR = "\n";
 
     public static ParseTree treeOneSimpleHtmlTag()
     {
@@ -95,6 +96,7 @@ public class ParseTreeBuilder
         Rohae.addChild(okEpH);
         return Rohae;
     }
+
     public static ParseTree treeTextBeforeJavadocTags()
     {
         JavadocContext gfEDH = new JavadocContext(null, 0);
@@ -234,6 +236,7 @@ public class ParseTreeBuilder
         gfEDH.addChild(cnrjp);
         return gfEDH;
     }
+
     public static ParseTree treeCustomJavadocTags()
     {
         JavadocContext vqeRv = new JavadocContext(null, 0);
@@ -307,6 +310,7 @@ public class ParseTreeBuilder
         vqeRv.addChild(QNmAS);
         return vqeRv;
     }
+
     public static ParseTree treeJavadocTagDescriptionWithInlineTags()
     {
         JavadocContext ckejg = new JavadocContext(null, 0);
@@ -420,6 +424,7 @@ public class ParseTreeBuilder
         ckejg.addChild(mDnxb);
         return ckejg;
     }
+
     public static ParseTree treeLeadingAsterisks()
     {
         JavadocContext ESHfJ = new JavadocContext(null, 0);
@@ -497,6 +502,7 @@ public class ParseTreeBuilder
         ESHfJ.addChild(CvXeG);
         return ESHfJ;
     }
+
     public static ParseTree treeAuthorWithMailto()
     {
         JavadocContext TGTbm = new JavadocContext(null, 0);
@@ -580,6 +586,7 @@ public class ParseTreeBuilder
         TGTbm.addChild(OPdHU);
         return TGTbm;
     }
+
     public static ParseTree treeHtmlTagsInParagraph()
     {
         JavadocContext GAVYr = new JavadocContext(null, 0);
@@ -783,6 +790,7 @@ public class ParseTreeBuilder
         GAVYr.addChild(ZdVEY);
         return GAVYr;
     }
+
     public static ParseTree treeLinkInlineTags()
     {
         JavadocContext qUDSi = new JavadocContext(null, 0);
@@ -856,6 +864,7 @@ public class ParseTreeBuilder
         qUDSi.addChild(NyyJM);
         return qUDSi;
     }
+
     public static ParseTree treeSeeReferenceWithFewNestedClasses()
     {
         JavadocContext CzKVl = new JavadocContext(null, 0);
@@ -955,6 +964,7 @@ public class ParseTreeBuilder
         CzKVl.addChild(gjaAk);
         return CzKVl;
     }
+
     public static ParseTree treeParamWithGeneric()
     {
         JavadocContext QPFRD = new JavadocContext(null, 0);
@@ -1008,6 +1018,7 @@ public class ParseTreeBuilder
         QPFRD.addChild(TBVcX);
         return QPFRD;
     }
+
     public static ParseTree treeSerial()
     {
         JavadocContext LvQLs = new JavadocContext(null, 0);
@@ -1293,6 +1304,7 @@ public class ParseTreeBuilder
         LvQLs.addChild(lJyJx);
         return LvQLs;
     }
+
     public static ParseTree treeSince()
     {
         JavadocContext KzwtL = new JavadocContext(null, 0);
@@ -1362,6 +1374,7 @@ public class ParseTreeBuilder
         KzwtL.addChild(lWOPi);
         return KzwtL;
     }
+
     public static ParseTree treeUnclosedAndClosedParagraphs()
     {
         JavadocContext YgctO = new JavadocContext(null, 0);
@@ -1475,6 +1488,7 @@ public class ParseTreeBuilder
         YgctO.addChild(bSvLk);
         return YgctO;
     }
+
     public static ParseTree treeListWithUnclosedItemInUnclosedParagraph()
     {
         JavadocContext cQkWm = new JavadocContext(null, 0);
@@ -1872,6 +1886,7 @@ public class ParseTreeBuilder
         XCFCp.addChild(zqHMX);
         return XCFCp;
     }
+
     public static ParseTree treeDocRootInheritDoc()
     {
         JavadocContext CAWJW = new JavadocContext(null, 0);
@@ -1997,6 +2012,7 @@ public class ParseTreeBuilder
         CAWJW.addChild(qNjgf);
         return CAWJW;
     }
+
     public static ParseTree treeFewWhiteSpacesAsSeparator()
     {
         JavadocContext zKyCD = new JavadocContext(null, 0);
@@ -2100,6 +2116,7 @@ public class ParseTreeBuilder
         zKyCD.addChild(JrVuu);
         return zKyCD;
     }
+
     public static ParseTree treeMixedCaseOfHtmlTags()
     {
         JavadocContext iWKZR = new JavadocContext(null, 0);
@@ -2269,6 +2286,7 @@ public class ParseTreeBuilder
         iWKZR.addChild(iclNb);
         return iWKZR;
     }
+
     public static ParseTree treeComments()
     {
         JavadocContext kbtaA = new JavadocContext(null, 0);
@@ -2470,5 +2488,4 @@ public class ParseTreeBuilder
         yCrNh.addChild(AcQbE);
         return yCrNh;
     }
-
 }

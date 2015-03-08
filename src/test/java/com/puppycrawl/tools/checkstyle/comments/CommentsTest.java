@@ -55,7 +55,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 public class CommentsTest extends BaseCheckTestSupport
 {
-    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+    /** Platform independent line separator used in input files. */
+    private static final String LINE_SEPARATOR = "\n";
 
    /*
     * +--CLASS_DEF [1,0]
