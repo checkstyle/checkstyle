@@ -35,8 +35,8 @@ public enum LineSeparatorOption
     /** Unix-style line separators. **/
     LF("\n"),
 
-    /** System default line separators. **/
-    SYSTEM(System.getProperty("line.separator"));
+    /** System default platform independent line separators. **/
+    SYSTEM("\n");
 
     /** the line separator representation */
     private final String lineSeparator;
