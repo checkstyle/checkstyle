@@ -134,7 +134,7 @@ public class LocalVariableNameCheck
     private boolean isForLoopVariable(DetailAST variableDef)
     {
         final int parentType = variableDef.getParent().getType();
-        return  parentType == TokenTypes.FOR_INIT
+        return parentType == TokenTypes.FOR_INIT
                 || parentType == TokenTypes.FOR_EACH_CLAUSE;
     }
 }

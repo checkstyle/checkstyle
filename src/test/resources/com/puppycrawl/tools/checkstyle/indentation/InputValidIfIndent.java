@@ -78,7 +78,7 @@ public class InputValidIfIndent { //indent:0 exp:0
     } //indent:4 exp:4
 
     /////  same as above, with statements //indent:4 exp:4
-    public void  populatedIfTest() //indent:4 exp:4
+    public void populatedIfTest() //indent:4 exp:4
     { //indent:4 exp:4
         boolean test = false; //indent:8 exp:8
         // no braces if //indent:8 exp:8
@@ -213,7 +213,7 @@ public class InputValidIfIndent { //indent:0 exp:0
 
     } //indent:4 exp:4
 
-    public void  parenIfTest() { //indent:4 exp:4
+    public void parenIfTest() { //indent:4 exp:4
         boolean test = true; //indent:8 exp:8
 
         if (test //indent:8 exp:8

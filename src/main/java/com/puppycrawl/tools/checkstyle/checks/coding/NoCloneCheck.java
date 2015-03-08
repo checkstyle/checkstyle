@@ -125,7 +125,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  * @see java.lang.Cloneable
  * @see java.lang.CloneNotSupportedException
  */
-public class NoCloneCheck extends  AbstractIllegalMethodCheck
+public class NoCloneCheck extends AbstractIllegalMethodCheck
 {
 
     /**

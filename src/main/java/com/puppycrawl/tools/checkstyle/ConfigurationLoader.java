@@ -432,7 +432,7 @@ public final class ConfigurationLoader
      * @param value The string to be scanned for property references.
      *              May be <code>null</code>, in which case this
      *              method returns immediately with no effect.
-     * @param props  Mapping (String to String) of property names to their
+     * @param props Mapping (String to String) of property names to their
      *              values. Must not be <code>null</code>.
      * @param defaultValue default to use if one of the properties in value
      *              cannot be resolved from props.

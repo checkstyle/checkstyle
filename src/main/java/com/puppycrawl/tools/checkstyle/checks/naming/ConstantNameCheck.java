@@ -91,7 +91,7 @@ public class ConstantNameCheck
                 || (ScopeUtils.inInterfaceOrAnnotationBlock(ast)
                         && !ScopeUtils.inCodeBlock(ast)))
         {
-            // Handle the serialVersionUID and serialPersistentFields  constants
+            // Handle the serialVersionUID and serialPersistentFields constants
             // which are used for Serialization. Cannot enforce rules on it. :-)
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             if ((nameAST != null)

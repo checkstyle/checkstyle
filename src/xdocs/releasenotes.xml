@@ -1775,7 +1775,7 @@
         </li>
         <li>
           FallThrough check can be configured to ignore fall-throughs
-          if there is a relief comment, thanks to  Ralf (aka rakus)
+          if there is a relief comment, thanks to Ralf (aka rakus)
           for a great patch (rfe 1345691, patch 1348873)
         </li>
       </ul>
@@ -1866,7 +1866,7 @@
         definition (bug 1284682)</li>
 
         <li>Fixed i18n problems in ArrayTypeStyle,
-        HideUtilityClassConstructor and  AvoidInlineConditionals(bug
+        HideUtilityClassConstructor and AvoidInlineConditionals(bug
         1262825)</li>
 
       </ul>
@@ -2066,7 +2066,7 @@
         <li>JavadocMethod check now can be configured to skip missed javadoc
         (rfe 1060634)</li>
 
-        <li>Some clarifications on  scope property of javadoc checks added
+        <li>Some clarifications on scope property of javadoc checks added
         (rfe 1009201)</li>
 
         <li>UnusedPrivateMethod check now can be configured to ignore

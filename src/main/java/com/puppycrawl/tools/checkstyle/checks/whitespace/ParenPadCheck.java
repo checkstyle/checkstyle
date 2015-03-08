@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>Checks the padding of parentheses; that is whether a space is required
  * after a left parenthesis and before a right parenthesis, or such spaces are
  * forbidden, with the exception that it does
- * not check for padding of the right parenthesis  at an empty for iterator.
+ * not check for padding of the right parenthesis at an empty for iterator.
  * Use Check {@link EmptyForIteratorPadCheck EmptyForIteratorPad} to validate
  * empty for iterators.
  * </p>

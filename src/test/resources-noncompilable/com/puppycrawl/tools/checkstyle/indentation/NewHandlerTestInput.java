@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle.indentation;
 
 /**
  *
- * @author  IljaDubinin
+ * @author IljaDubinin
  */
 public class NewHandlerTestInput 
 {

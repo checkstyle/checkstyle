@@ -103,7 +103,7 @@ class InputAvoidStarImportCheck
      * First is a class with a method with arguments {@link TestClass1#method1(TestClass2)}.
      * Next is a class with typed method {@link TestClass3#method2(TestClass4, TestClass5)}.
      *
-     * @param param1  with a link {@link TestClass6}
+     * @param param1 with a link {@link TestClass6}
      * @throws TestClass7 when broken
      * @deprecated in 1 for removal in 2. Use {@link TestClass8}
      */

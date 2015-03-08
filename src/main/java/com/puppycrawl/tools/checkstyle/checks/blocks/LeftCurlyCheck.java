@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * <p>
  * Checks the placement of left curly braces on types, methods and
  * other blocks:
- *  {@link  TokenTypes#LITERAL_CATCH LITERAL_CATCH},  {@link
+ *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},  {@link
  * TokenTypes#LITERAL_DO LITERAL_DO},  {@link TokenTypes#LITERAL_ELSE
  * LITERAL_ELSE},  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY},  {@link
  * TokenTypes#LITERAL_FOR LITERAL_FOR},  {@link TokenTypes#LITERAL_IF
