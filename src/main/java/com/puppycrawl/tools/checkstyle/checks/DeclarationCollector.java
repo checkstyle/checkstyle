@@ -249,7 +249,7 @@ public abstract class DeclarationCollector extends Check
         }
 
         /** add a name to the frame.
-         * @param nameToAdd  the name we're adding
+         * @param nameToAdd the name we're adding
          */
         void addName(String nameToAdd)
         {
@@ -257,7 +257,7 @@ public abstract class DeclarationCollector extends Check
         }
 
         /** check whether the frame contains a given name.
-         * @param nameToFind  the name we're looking for
+         * @param nameToFind the name we're looking for
          * @return whether it was found
          */
         boolean contains(String nameToFind)
@@ -266,7 +266,7 @@ public abstract class DeclarationCollector extends Check
         }
 
         /** check whether the frame contains a given name.
-         * @param nameToFind  the name we're looking for
+         * @param nameToFind the name we're looking for
          * @return whether it was found
          */
         LexicalFrame getIfContains(String nameToFind)

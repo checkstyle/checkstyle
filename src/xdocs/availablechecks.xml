@@ -579,7 +579,7 @@
         <td>Checks the padding of parentheses; that is whether a space is required
         after a left parenthesis and before a right parenthesis, or such spaces are
         forbidden, with the exception that it does
-        not check for padding of the right parenthesis  at an empty for iterator.</td>
+        not check for padding of the right parenthesis at an empty for iterator.</td>
       </tr>
       <tr>
         <td><a href="config_imports.html#RedundantImport">RedundantImport</a></td>

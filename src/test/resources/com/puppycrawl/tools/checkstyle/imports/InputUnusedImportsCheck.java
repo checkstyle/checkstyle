@@ -102,7 +102,7 @@ class InputUnusedImportsCheck
      * First is a class with a method with arguments {@link Checker#method1(CheckerTest)}.
      * Next is a class with typed method {@link BaseFileSetCheckTestSupport#method2(Defn, Input15Extensions)}.
      *
-     * @param param1  with a link {@link ConfigurationLoaderTest}
+     * @param param1 with a link {@link ConfigurationLoaderTest}
      * @throws CheckStyleTask when broken
      * @deprecated in 1 for removal in 2. Use {@link DefaultConfiguration}
      */

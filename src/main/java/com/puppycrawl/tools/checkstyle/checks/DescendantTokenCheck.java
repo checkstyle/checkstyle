@@ -189,7 +189,7 @@ public class DescendantTokenCheck extends Check
      */
     public static final String MSG_KEY_SUM_MAX = "descendant.token.sum.max";
 
-     /** minimum  depth */
+     /** minimum depth */
     private int minimumDepth;
     /** maximum depth */
     private int maximumDepth = Integer.MAX_VALUE;

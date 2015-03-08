@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   <LI>if curlys aren't present, then template method to get expressions
  *       is called</LI>
  *   <LI>now all the repetitous code which checks for BOL, if curlys are on
- *       same line, etc. can be collapsed into  the superclass</LI>
+ *       same line, etc. can be collapsed into the superclass</LI>
  * </UL>
  *
  *

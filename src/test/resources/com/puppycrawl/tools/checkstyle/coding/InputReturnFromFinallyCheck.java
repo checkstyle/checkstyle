@@ -1,4 +1,4 @@
-package  com.puppycrawl.tools.checkstyle.coding;
+package com.puppycrawl.tools.checkstyle.coding;
 
 public class InputReturnFromFinallyCheck {
     public void foo() {

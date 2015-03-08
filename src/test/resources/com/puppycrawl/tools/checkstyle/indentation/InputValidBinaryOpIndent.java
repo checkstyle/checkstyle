@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle.indentation; //indent:0 exp:0
 
 /**
  *
- * @author  jrichard
+ * @author jrichard
  */
 public class InputValidBinaryOpIndent { //indent:0 exp:0
     

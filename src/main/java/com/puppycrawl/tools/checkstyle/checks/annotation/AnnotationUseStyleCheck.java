@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * <p>
  * Using the COMPACT style is less verbose. This style can only
- * be used when there is an element called 'value' which is  either
+ * be used when there is an element called 'value' which is either
  * the sole element or all other elements have default valuess.
  *
  *
@@ -72,7 +72,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Annotations also allow you to specify arrays of elements in a standard
  * format.  As with normal arrays, a trailing comma is optional. To always
  * require a trailing comma use the {@link TrailingArrayComma#ALWAYS ALWAYS}
- * type. To never have a trailing  comma use the
+ * type. To never have a trailing comma use the
  * {@link TrailingArrayComma#NEVER NEVER} type. To not enforce a trailing
  * array comma preference a {@link TrailingArrayComma#IGNORE IGNORE} type
  * is provided.  Set this through the <code>trailingArrayComma</code> property.

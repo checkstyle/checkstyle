@@ -40,7 +40,7 @@ public class JavadocUtilsTest
     {
         final String[] text = {
             "/** @see elsewhere ",
-            " * {@link List }, {@link  List link text }",
+            " * {@link List }, {@link List link text }",
             "   {@link List#add(Object) link text}",
             " * {@link Class link text}",
         };
@@ -70,7 +70,7 @@ public class JavadocUtilsTest
     public void testInlineTagLinkText()
     {
         final String[] text = {
-            "/** {@link  List link text }",
+            "/** {@link List link text }",
         };
         final Comment comment = new Comment(text, 1, 1, text[0].length());
         final List<JavadocTag> tags = JavadocUtils.getJavadocTags(
@@ -82,7 +82,7 @@ public class JavadocUtilsTest
     public void testInlineTagMethodRef()
     {
         final String[] text = {
-            "/** {@link  List#add(Object)}",
+            "/** {@link List#add(Object)}",
         };
         final Comment comment = new Comment(text, 1, 1, text[0].length());
         final List<JavadocTag> tags = JavadocUtils.getJavadocTags(
