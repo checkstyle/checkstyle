@@ -496,7 +496,10 @@ number.equals(i + j);
               <pre>
                 class Foo {
                     int prop;
-                    Foo setProp(int prop) { this.prop = prop; }
+                    Foo setProp(int prop) {
+                        this.prop = prop;
+                        return this;
+                    }
                 }
               </pre>
             </td>
