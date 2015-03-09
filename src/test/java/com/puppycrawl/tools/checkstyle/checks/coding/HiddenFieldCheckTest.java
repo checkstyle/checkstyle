@@ -99,6 +99,7 @@ public class HiddenFieldCheckTest
             "253:40: " + getCheckMessage(MSG_KEY, "prop"),
             "267:29: " + getCheckMessage(MSG_KEY, "prop"),
             "278:41: " + getCheckMessage(MSG_KEY, "prop2"),
+            "290:19: " + getCheckMessage(MSG_KEY, "i"),
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
@@ -271,6 +272,7 @@ public class HiddenFieldCheckTest
             "253:40: " + getCheckMessage(MSG_KEY, "prop"),
             "267:29: " + getCheckMessage(MSG_KEY, "prop"),
             "278:41: " + getCheckMessage(MSG_KEY, "prop2"),
+            "290:19: " + getCheckMessage(MSG_KEY, "i"),
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
@@ -348,6 +350,7 @@ public class HiddenFieldCheckTest
             "253:40: " + getCheckMessage(MSG_KEY, "prop"),
             "267:29: " + getCheckMessage(MSG_KEY, "prop"),
             "278:41: " + getCheckMessage(MSG_KEY, "prop2"),
+            "290:19: " + getCheckMessage(MSG_KEY, "i"),
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }

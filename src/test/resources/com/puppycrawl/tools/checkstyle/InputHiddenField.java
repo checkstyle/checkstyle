@@ -281,3 +281,14 @@ enum PropertySetter4 {
         return this;
     }
 }
+
+/** Tests setter for one letter field (issue #730). */
+class OneLetterField
+{
+    int i;
+
+    void setI(int i)
+    {
+        this.i = i;
+    }
+}
