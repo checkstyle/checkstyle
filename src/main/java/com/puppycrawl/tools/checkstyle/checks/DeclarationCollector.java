@@ -88,7 +88,7 @@ public abstract class DeclarationCollector extends Check
             default :
                 // do nothing
         }
-    } // end visitToken
+    }
 
     /**
      * Parse the next AST for declarations

@@ -147,7 +147,7 @@ public class RequireThisCheck extends DeclarationCollector
         if (ast.getType() == TokenTypes.IDENT) {
             processIDENT(ast);
         }
-    } // end visitToken
+    }
 
     /**
      * Checks if a given IDENT is method call or field name which
@@ -218,4 +218,4 @@ public class RequireThisCheck extends DeclarationCollector
             log(ast, "require.this.variable", name);
         }
     }
-} // end class RequireThis
+}
