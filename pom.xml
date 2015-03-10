@@ -194,8 +194,7 @@
     <dependency>
       <groupId>org.apache.ant</groupId>
       <artifactId>ant</artifactId>
-      <!-- Do not upgrade as this is the earliest version of ANT supported -->
-      <version>1.7.0</version>
+      <version>1.9.4</version>
       <scope>provided</scope>
     </dependency>
 
