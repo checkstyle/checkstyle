@@ -131,7 +131,7 @@ public class XMLLogger
     @Override
     public void addError(AuditEvent evt)
     {
-        if (!SeverityLevel.IGNORE.equals(evt.getSeverityLevel())) {
+        if (SeverityLevel.IGNORE != evt.getSeverityLevel()) {
             writer.print("<error" + " line=\"" + evt.getLine() + "\"");
             if (evt.getColumn() > 0) {
                 writer.print(" column=\"" + evt.getColumn() + "\"");

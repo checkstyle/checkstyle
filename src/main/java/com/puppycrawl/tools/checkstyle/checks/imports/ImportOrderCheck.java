@@ -339,7 +339,7 @@ public class ImportOrderCheck
             return;
         }
 
-        if (getAbstractOption().equals(ImportOrderOption.INFLOW)) {
+        if (getAbstractOption() == ImportOrderOption.INFLOW) {
             // out of lexicographic order
             if (compare(lastImport, name, caseSensitive) > 0) {
                 log(line, MSG_ORDERING, name);
