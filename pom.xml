@@ -153,6 +153,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <projectVersion>${project.version}</projectVersion>
+    <antlr4.version>4.5</antlr4.version>
     <maven.site.plugin.version>3.4</maven.site.plugin.version>
     <tools.jar.version>1.7.0</tools.jar.version>
     <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
@@ -173,7 +174,7 @@
     <dependency>
       <groupId>org.antlr</groupId>
       <artifactId>antlr4-runtime</artifactId>
-      <version>4.3</version>
+      <version>${antlr4.version}</version>
     </dependency>
     <dependency>
       <groupId>commons-beanutils</groupId>
@@ -370,7 +371,7 @@
       <plugin>
         <groupId>org.antlr</groupId>
         <artifactId>antlr4-maven-plugin</artifactId>
-        <version>4.3</version>
+        <version>${antlr4.version}</version>
         <configuration>
           <visitor>true</visitor>
           <sourceDirectory>${basedir}/src/main/resources/com/puppycrawl/tools/checkstyle/grammars/javadoc</sourceDirectory>
