@@ -48,7 +48,7 @@ public final class SeverityLevelCounter implements AuditListener
     @Override
     public void addError(AuditEvent evt)
     {
-        if (level.equals(evt.getSeverityLevel())) {
+        if (level == evt.getSeverityLevel()) {
             count++;
         }
     }
@@ -57,7 +57,7 @@ public final class SeverityLevelCounter implements AuditListener
     @Override
     public void addException(AuditEvent evt, Throwable throwable)
     {
-        if (SeverityLevel.ERROR.equals(level)) {
+        if (SeverityLevel.ERROR == level) {
             count++;
         }
     }

@@ -122,7 +122,7 @@ public class ImportControlCheck extends Check
             }
             final AccessResult access = currentLeaf.checkAccess(imp.getText(),
                     inPkg);
-            if (!AccessResult.ALLOWED.equals(access)) {
+            if (AccessResult.ALLOWED != access) {
                 log(ast, MSG_DISALLOWED, imp.getText());
             }
         }

@@ -116,8 +116,8 @@ public final class JavadocUtils
         for (int i = 0; i < text.length; i++) {
             final String s = text[i];
             final Matcher blockTagMatcher = blockTagPattern.matcher(s);
-            if ((tagType.equals(JavadocTagType.ALL) || tagType
-                    .equals(JavadocTagType.BLOCK)) && blockTagMatcher.find())
+            if ((tagType == JavadocTagType.ALL || tagType == JavadocTagType.BLOCK)
+                    && blockTagMatcher.find())
             {
                 final String tagName = blockTagMatcher.group(1);
                 String content = s.substring(blockTagMatcher.end(1));
@@ -138,8 +138,7 @@ public final class JavadocUtils
                 }
             }
             // No block tag, so look for inline validTags
-            else if (tagType.equals(JavadocTagType.ALL)
-                    || tagType.equals(JavadocTagType.INLINE))
+            else if (tagType == JavadocTagType.ALL || tagType == JavadocTagType.INLINE)
             {
                 // Match Javadoc text after comment characters
                 final Pattern commentPattern =

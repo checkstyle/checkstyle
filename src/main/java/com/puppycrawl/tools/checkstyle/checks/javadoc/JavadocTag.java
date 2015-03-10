@@ -95,48 +95,48 @@ public class JavadocTag
     /** @return whether the tag is an 'author' tag **/
     public boolean isAuthorTag()
     {
-        return JavadocTagInfo.AUTHOR.equals(tagInfo);
+        return JavadocTagInfo.AUTHOR == tagInfo;
     }
 
     /** @return whether the tag is an 'return' tag **/
     public boolean isReturnTag()
     {
-        return JavadocTagInfo.RETURN.equals(tagInfo);
+        return JavadocTagInfo.RETURN == tagInfo;
     }
 
     /** @return whether the tag is an 'param' tag **/
     public boolean isParamTag()
     {
-        return JavadocTagInfo.PARAM.equals(tagInfo);
+        return JavadocTagInfo.PARAM == tagInfo;
     }
 
     /** @return whether the tag is an 'throws' or 'exception' tag **/
     public boolean isThrowsTag()
     {
-        return (JavadocTagInfo.THROWS.equals(tagInfo)
-            || JavadocTagInfo.EXCEPTION.equals(tagInfo));
+        return (JavadocTagInfo.THROWS == tagInfo
+            || JavadocTagInfo.EXCEPTION == tagInfo);
     }
 
     /** @return whether the tag is a 'see' or 'inheritDoc' tag **/
     public boolean isSeeOrInheritDocTag()
     {
-        return (JavadocTagInfo.SEE.equals(tagInfo) || isInheritDocTag());
+        return (JavadocTagInfo.SEE == tagInfo || isInheritDocTag());
     }
 
     /** @return whether the tag is a 'inheritDoc' tag **/
     public boolean isInheritDocTag()
     {
-        return JavadocTagInfo.INHERIT_DOC.equals(tagInfo);
+        return JavadocTagInfo.INHERIT_DOC == tagInfo;
     }
 
     /** @return whether the tag can contain references to imported classes **/
     public boolean canReferenceImports()
     {
-        return (JavadocTagInfo.SEE.equals(tagInfo)
-                || JavadocTagInfo.LINK.equals(tagInfo)
-                || JavadocTagInfo.LINKPLAIN.equals(tagInfo)
-                || JavadocTagInfo.THROWS.equals(tagInfo)
-                || JavadocTagInfo.EXCEPTION.equals(tagInfo));
+        return (JavadocTagInfo.SEE == tagInfo
+                || JavadocTagInfo.LINK == tagInfo
+                || JavadocTagInfo.LINKPLAIN == tagInfo
+                || JavadocTagInfo.THROWS == tagInfo
+                || JavadocTagInfo.EXCEPTION == tagInfo);
     }
 }
 

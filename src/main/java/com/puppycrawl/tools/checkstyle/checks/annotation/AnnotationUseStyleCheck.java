@@ -265,19 +265,19 @@ public final class AnnotationUseStyleCheck extends Check
      */
     private void checkStyleType(final DetailAST annotation)
     {
-        if (ElementStyle.IGNORE.equals(this.style)
+        if (ElementStyle.IGNORE == this.style
             || this.style == null)
         {
             return;
         }
 
-        if (ElementStyle.COMPACT_NO_ARRAY.equals(this.style)) {
+        if (ElementStyle.COMPACT_NO_ARRAY == this.style) {
             this.checkCompactNoArrayStyle(annotation);
         }
-        else if (ElementStyle.COMPACT.equals(this.style)) {
+        else if (ElementStyle.COMPACT == this.style) {
             this.checkCompactStyle(annotation);
         }
-        else if (ElementStyle.EXPANDED.equals(this.style)) {
+        else if (ElementStyle.EXPANDED == this.style) {
             this.checkExpandedStyle(annotation);
         }
     }
@@ -372,7 +372,7 @@ public final class AnnotationUseStyleCheck extends Check
      */
     private void checkTrailingComma(final DetailAST annotation)
     {
-        if (TrailingArrayComma.IGNORE.equals(this.comma)
+        if (TrailingArrayComma.IGNORE == this.comma
             || this.comma == null)
         {
             return;
@@ -413,13 +413,13 @@ public final class AnnotationUseStyleCheck extends Check
         //comma can be null if array is empty
         final DetailAST comma = rCurly.getPreviousSibling();
 
-        if (TrailingArrayComma.ALWAYS.equals(this.comma)
+        if (TrailingArrayComma.ALWAYS == this.comma
             && (comma == null || comma.getType() != TokenTypes.COMMA))
         {
             this.log(rCurly.getLineNo(),
                 rCurly.getColumnNo(), MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING);
         }
-        else if (TrailingArrayComma.NEVER.equals(this.comma)
+        else if (TrailingArrayComma.NEVER == this.comma
             && comma != null && comma.getType() == TokenTypes.COMMA)
         {
             this.log(comma.getLineNo(),
@@ -435,7 +435,7 @@ public final class AnnotationUseStyleCheck extends Check
      */
     private void checkCheckClosingParens(final DetailAST ast)
     {
-        if (ClosingParens.IGNORE.equals(this.parens)
+        if (ClosingParens.IGNORE == this.parens
             || this.parens == null)
         {
             return;
@@ -444,12 +444,12 @@ public final class AnnotationUseStyleCheck extends Check
         final DetailAST paren = ast.getLastChild();
         final boolean parenExists = paren.getType() == TokenTypes.RPAREN;
 
-        if (ClosingParens.ALWAYS.equals(this.parens)
+        if (ClosingParens.ALWAYS == this.parens
             && !parenExists)
         {
             this.log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_MISSING);
         }
-        else if (ClosingParens.NEVER.equals(this.parens)
+        else if (ClosingParens.NEVER == this.parens
             && !ast.branchContains(TokenTypes.EXPR)
             && !ast.branchContains(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
             && !ast.branchContains(TokenTypes.ANNOTATION_ARRAY_INIT)

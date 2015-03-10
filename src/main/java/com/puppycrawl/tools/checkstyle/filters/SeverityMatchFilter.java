@@ -65,7 +65,7 @@ public class SeverityMatchFilter
     @Override
     public boolean accept(AuditEvent event)
     {
-        final boolean result = severityLevel.equals(event.getSeverityLevel());
+        final boolean result = severityLevel == event.getSeverityLevel();
         if (acceptOnMatch) {
             return result;
         }
