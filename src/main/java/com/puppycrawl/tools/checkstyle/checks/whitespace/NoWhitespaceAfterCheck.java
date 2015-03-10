@@ -316,7 +316,7 @@ public class NoWhitespaceAfterCheck extends Check
     private boolean hasRedundantWhitespace(String line, int after)
     {
         boolean result = !allowLineBreaks;
-        for (int i = after + 1; !result && (i < line.length()); i++) {
+        for (int i = after + 1; !result && i < line.length(); i++) {
             if (!Character.isWhitespace(line.charAt(i))) {
                 result = true;
             }

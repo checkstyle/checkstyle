@@ -96,7 +96,7 @@ public class BlockParentHandler extends ExpressionHandler
     {
         final DetailAST toplevel = getToplevelAST();
 
-        if ((toplevel == null)
+        if (toplevel == null
             || getLevel().accept(expandedTabsColumnNo(toplevel)) || hasLabelBefore())
         {
             return;
@@ -135,7 +135,7 @@ public class BlockParentHandler extends ExpressionHandler
      */
     protected boolean hasCurlys()
     {
-        return (getLCurly() != null) && (getRCurly() != null);
+        return getLCurly() != null && getRCurly() != null;
     }
 
     /**
@@ -173,7 +173,7 @@ public class BlockParentHandler extends ExpressionHandler
         final DetailAST lcurly = getLCurly();
         final int lcurlyPos = expandedTabsColumnNo(lcurly);
 
-        if ((lcurly == null)
+        if (lcurly == null
             || curlyLevel().accept(lcurlyPos)
             || !startsLine(lcurly))
         {
@@ -224,9 +224,9 @@ public class BlockParentHandler extends ExpressionHandler
         final DetailAST rcurly = getRCurly();
         final int rcurlyPos = expandedTabsColumnNo(rcurly);
 
-        if ((rcurly == null)
+        if (rcurly == null
             || curlyLevel().accept(rcurlyPos)
-            || (!rcurlyMustStart() && !startsLine(rcurly))
+            || !rcurlyMustStart() && !startsLine(rcurly)
             || areOnSameLine(rcurly, lcurly))
         {
             return;

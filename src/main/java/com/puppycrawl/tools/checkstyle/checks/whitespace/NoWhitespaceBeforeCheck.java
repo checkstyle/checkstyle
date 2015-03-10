@@ -97,14 +97,14 @@ public class NoWhitespaceBeforeCheck
         final String line = getLine(ast.getLineNo() - 1);
         final int before = ast.getColumnNo() - 1;
 
-        if ((before < 0) || Character.isWhitespace(line.charAt(before))) {
+        if (before < 0 || Character.isWhitespace(line.charAt(before))) {
 
             // empty FOR initializer?
             if (ast.getType() == TokenTypes.SEMI) {
                 final DetailAST sibling = ast.getPreviousSibling();
-                if ((sibling != null)
-                        && (sibling.getType() == TokenTypes.FOR_INIT)
-                        && (sibling.getChildCount() == 0))
+                if (sibling != null
+                        && sibling.getType() == TokenTypes.FOR_INIT
+                        && sibling.getChildCount() == 0)
                 {
                     return;
                 }
@@ -112,7 +112,7 @@ public class NoWhitespaceBeforeCheck
 
             boolean flag = !allowLineBreaks;
             // verify all characters before '.' are whitespace
-            for (int i = 0; !flag && (i < before); i++) {
+            for (int i = 0; !flag && i < before; i++) {
                 if (!Character.isWhitespace(line.charAt(i))) {
                     flag = true;
                 }

@@ -70,8 +70,8 @@ public class IfHandler extends BlockParentHandler
     {
         // check if there is an 'else' and an 'if' on the same line
         final DetailAST parent = getMainAst().getParent();
-        return (parent.getType() == TokenTypes.LITERAL_ELSE)
-            && (parent.getLineNo() == getMainAst().getLineNo());
+        return parent.getType() == TokenTypes.LITERAL_ELSE
+            && parent.getLineNo() == getMainAst().getLineNo();
     }
 
     @Override

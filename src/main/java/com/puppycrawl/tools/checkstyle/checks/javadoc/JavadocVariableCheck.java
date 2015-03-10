@@ -167,7 +167,7 @@ public class JavadocVariableCheck
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
 
         return scope.isIn(this.scope) && surroundingScope.isIn(this.scope)
-            && ((excludeScope == null)
+            && (excludeScope == null
                 || !scope.isIn(excludeScope)
                 || !surroundingScope.isIn(excludeScope));
     }

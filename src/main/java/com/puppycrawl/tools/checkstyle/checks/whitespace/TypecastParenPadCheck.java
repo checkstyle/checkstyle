@@ -75,10 +75,10 @@ public class TypecastParenPadCheck extends AbstractParenPadCheck
         if (ast.getType() == TokenTypes.TYPECAST) {
             processLeft(ast);
         }
-        else if ((ast.getParent() != null)
-                 && (ast.getParent().getType() == TokenTypes.TYPECAST)
-                 && (ast.getParent().findFirstToken(TokenTypes.RPAREN)
-                     == ast))
+        else if (ast.getParent() != null
+                 && ast.getParent().getType() == TokenTypes.TYPECAST
+                 && ast.getParent().findFirstToken(TokenTypes.RPAREN)
+                     == ast)
         {
             processRight(ast);
         }

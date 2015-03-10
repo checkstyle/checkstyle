@@ -249,7 +249,7 @@ public class UncommentedMainCheck
         if (params.getChildCount() != 1) {
             return false;
         }
-        final DetailAST paratype = (params.getFirstChild())
+        final DetailAST paratype = params.getFirstChild()
             .findFirstToken(TokenTypes.TYPE);
         final DetailAST arrayDecl =
             paratype.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
@@ -259,12 +259,12 @@ public class UncommentedMainCheck
 
         final DetailAST arrayType = arrayDecl.getFirstChild();
 
-        if ((arrayType.getType() == TokenTypes.IDENT)
-            || (arrayType.getType() == TokenTypes.DOT))
+        if (arrayType.getType() == TokenTypes.IDENT
+            || arrayType.getType() == TokenTypes.DOT)
         {
             final FullIdent type = FullIdent.createFullIdent(arrayType);
-            return ("String".equals(type.getText())
-                    || "java.lang.String".equals(type.getText()));
+            return "String".equals(type.getText())
+                    || "java.lang.String".equals(type.getText());
         }
 
         return false;

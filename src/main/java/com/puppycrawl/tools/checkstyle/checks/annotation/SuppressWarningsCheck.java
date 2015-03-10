@@ -204,7 +204,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
         final DetailAST annotation = AnnotationUtility.getAnnotation(
             ast, SuppressWarningsCheck.SUPPRESS_WARNINGS);
 
-        return (annotation != null) ? annotation
+        return annotation != null ? annotation
             : AnnotationUtility.getAnnotation(
                 ast, SuppressWarningsCheck.FQ_SUPPRESS_WARNINGS);
     }

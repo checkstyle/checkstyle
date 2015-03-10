@@ -226,7 +226,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
                     + TokenTypes.getTokenName(ast.getType()) + ")");
         }
 
-        if ((rcurly == null) || (rcurly.getType() != TokenTypes.RCURLY)) {
+        if (rcurly == null || rcurly.getType() != TokenTypes.RCURLY) {
             // we need to have both tokens to perform the check
             return;
         }
@@ -240,13 +240,13 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
                 log(rcurly, MSG_KEY_LINE_ALONE, "}");
             }
         }
-        else if ((getAbstractOption() == RightCurlyOption.SAME)
-                && (rcurly.getLineNo() != nextToken.getLineNo()))
+        else if (getAbstractOption() == RightCurlyOption.SAME
+                && rcurly.getLineNo() != nextToken.getLineNo())
         {
             log(rcurly, MSG_KEY_LINE_SAME, "}");
         }
-        else if ((getAbstractOption() == RightCurlyOption.ALONE)
-                && (rcurly.getLineNo() == nextToken.getLineNo())
+        else if (getAbstractOption() == RightCurlyOption.ALONE
+                && rcurly.getLineNo() == nextToken.getLineNo()
                 && !isEmptyBody(lcurly))
         {
             log(rcurly, MSG_KEY_LINE_ALONE, "}");
@@ -259,7 +259,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
                 Utils.whitespaceBefore(rcurly.getColumnNo(),
                         getLines()[rcurly.getLineNo() - 1]);
 
-        if (!startsLine && (lcurly.getLineNo() != rcurly.getLineNo())) {
+        if (!startsLine && lcurly.getLineNo() != rcurly.getLineNo()) {
             log(rcurly, MSG_KEY_LINE_NEW, "}");
         }
     }
@@ -292,7 +292,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
     {
         DetailAST next = null;
         DetailAST parent = ast;
-        while ((parent != null) && (next == null)) {
+        while (parent != null && next == null) {
             next = parent.getNextSibling();
             parent = parent.getParent();
         }

@@ -142,7 +142,7 @@ public class SeparatorWrapCheck
         final WrapOption wSp = getAbstractOption();
 
         if (wSp == WrapOption.EOL
-                && (substringBeforeToken.length() == 0))
+                && substringBeforeToken.length() == 0)
         {
             log(lineNo, colNo, LINE_PREVIOUS, text);
         }

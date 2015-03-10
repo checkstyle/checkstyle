@@ -76,15 +76,15 @@ public final class ScopeUtils
              token = token.getParent())
         {
             final int type = token.getType();
-            if ((type == TokenTypes.CLASS_DEF)
-                || (type == TokenTypes.INTERFACE_DEF)
-                || (type == TokenTypes.ANNOTATION_DEF)
-                || (type == TokenTypes.ENUM_DEF))
+            if (type == TokenTypes.CLASS_DEF
+                || type == TokenTypes.INTERFACE_DEF
+                || type == TokenTypes.ANNOTATION_DEF
+                || type == TokenTypes.ENUM_DEF)
             {
                 final DetailAST mods =
                     token.findFirstToken(TokenTypes.MODIFIERS);
                 final Scope modScope = ScopeUtils.getScopeFromMods(mods);
-                if ((retVal == null) || (retVal.isIn(modScope))) {
+                if (retVal == null || retVal.isIn(modScope)) {
                     retVal = modScope;
                 }
             }
@@ -114,9 +114,9 @@ public final class ScopeUtils
              token = token.getParent())
         {
             final int type = token.getType();
-            if ((type == TokenTypes.CLASS_DEF)
-                || (type == TokenTypes.ENUM_DEF)
-                || (type == TokenTypes.ANNOTATION_DEF))
+            if (type == TokenTypes.CLASS_DEF
+                || type == TokenTypes.ENUM_DEF
+                || type == TokenTypes.ANNOTATION_DEF)
             {
                 break; // in a class, enum or annotation
             }
@@ -149,9 +149,9 @@ public final class ScopeUtils
              token = token.getParent())
         {
             final int type = token.getType();
-            if ((type == TokenTypes.CLASS_DEF)
-                || (type == TokenTypes.ENUM_DEF)
-                || (type == TokenTypes.INTERFACE_DEF))
+            if (type == TokenTypes.CLASS_DEF
+                || type == TokenTypes.ENUM_DEF
+                || type == TokenTypes.INTERFACE_DEF)
             {
                 break; // in a class, enum or interface
             }
@@ -197,9 +197,9 @@ public final class ScopeUtils
              token = token.getParent())
         {
             final int type = token.getType();
-            if ((type == TokenTypes.INTERFACE_DEF)
-                || (type == TokenTypes.ANNOTATION_DEF)
-                || (type == TokenTypes.CLASS_DEF))
+            if (type == TokenTypes.INTERFACE_DEF
+                || type == TokenTypes.ANNOTATION_DEF
+                || type == TokenTypes.CLASS_DEF)
             {
                 break; // in an interface, annotation or class
             }
@@ -232,10 +232,10 @@ public final class ScopeUtils
              token = token.getParent())
         {
             final int type = token.getType();
-            if ((type == TokenTypes.METHOD_DEF)
-                || (type == TokenTypes.CTOR_DEF)
-                || (type == TokenTypes.INSTANCE_INIT)
-                || (type == TokenTypes.STATIC_INIT))
+            if (type == TokenTypes.METHOD_DEF
+                || type == TokenTypes.CTOR_DEF
+                || type == TokenTypes.INSTANCE_INIT
+                || type == TokenTypes.STATIC_INIT)
             {
                 retVal = true;
                 break;
@@ -258,10 +258,10 @@ public final class ScopeUtils
              parent != null;
              parent = parent.getParent())
         {
-            if ((parent.getType() == TokenTypes.CLASS_DEF)
-                || (parent.getType() == TokenTypes.INTERFACE_DEF)
-                || (parent.getType() == TokenTypes.ANNOTATION_DEF)
-                || (parent.getType() == TokenTypes.ENUM_DEF))
+            if (parent.getType() == TokenTypes.CLASS_DEF
+                || parent.getType() == TokenTypes.INTERFACE_DEF
+                || parent.getType() == TokenTypes.ANNOTATION_DEF
+                || parent.getType() == TokenTypes.ENUM_DEF)
             {
                 retVal = false;
                 break;
@@ -285,16 +285,16 @@ public final class ScopeUtils
             final DetailAST parent = aAST.getParent();
             if (parent != null) {
                 final int type = parent.getType();
-                return (type == TokenTypes.SLIST)
-                    || (type == TokenTypes.FOR_INIT)
-                    || (type == TokenTypes.FOR_EACH_CLAUSE);
+                return type == TokenTypes.SLIST
+                    || type == TokenTypes.FOR_INIT
+                    || type == TokenTypes.FOR_EACH_CLAUSE;
             }
         }
         // catch parameter?
         else if (aAST.getType() == TokenTypes.PARAMETER_DEF) {
             final DetailAST parent = aAST.getParent();
             if (parent != null) {
-                return (parent.getType() == TokenTypes.LITERAL_CATCH);
+                return parent.getType() == TokenTypes.LITERAL_CATCH;
             }
         }
         return false;

@@ -98,10 +98,10 @@ public abstract class AbstractAccessControlNameCheck
                 .branchContains(TokenTypes.LITERAL_PRIVATE);
         final boolean isPackage = !(isPublic || isProtected || isPrivate);
 
-        return (applyToPublic && isPublic)
-                || (applyToProtected && isProtected)
-                || (applyToPackage && isPackage)
-                || (applyToPrivate && isPrivate);
+        return applyToPublic && isPublic
+                || applyToProtected && isProtected
+                || applyToPackage && isPackage
+                || applyToPrivate && isPrivate;
     }
 
     /**

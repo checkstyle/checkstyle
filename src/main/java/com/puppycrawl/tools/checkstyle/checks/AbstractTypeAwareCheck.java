@@ -139,9 +139,9 @@ public abstract class AbstractTypeAwareCheck extends Check
         else if (ast.getType() == TokenTypes.IMPORT) {
             processImport(ast);
         }
-        else if ((ast.getType() == TokenTypes.CLASS_DEF)
-                 || (ast.getType() == TokenTypes.INTERFACE_DEF)
-                 || (ast.getType() == TokenTypes.ENUM_DEF))
+        else if (ast.getType() == TokenTypes.CLASS_DEF
+                 || ast.getType() == TokenTypes.INTERFACE_DEF
+                 || ast.getType() == TokenTypes.ENUM_DEF)
         {
             processClass(ast);
         }
@@ -156,8 +156,8 @@ public abstract class AbstractTypeAwareCheck extends Check
     @Override
     public final void leaveToken(DetailAST ast)
     {
-        if ((ast.getType() == TokenTypes.CLASS_DEF)
-            || (ast.getType() == TokenTypes.ENUM_DEF))
+        if (ast.getType() == TokenTypes.CLASS_DEF
+            || ast.getType() == TokenTypes.ENUM_DEF)
         {
             // perhaps it was inner class
             int dotIdx = currentClass.lastIndexOf("$");
@@ -177,8 +177,8 @@ public abstract class AbstractTypeAwareCheck extends Check
         else if (ast.getType() == TokenTypes.METHOD_DEF) {
             typeParams.pop();
         }
-        else if ((ast.getType() != TokenTypes.PACKAGE_DEF)
-                 && (ast.getType() != TokenTypes.IMPORT))
+        else if (ast.getType() != TokenTypes.PACKAGE_DEF
+                 && ast.getType() != TokenTypes.IMPORT)
         {
             leaveAST(ast);
         }
@@ -220,7 +220,7 @@ public abstract class AbstractTypeAwareCheck extends Check
      */
     protected boolean isSubclass(Class<?> child, Class<?> parent)
     {
-        return (parent != null) && (child != null)
+        return parent != null && child != null
             &&  parent.isAssignableFrom(child);
     }
 
@@ -485,7 +485,7 @@ public abstract class AbstractTypeAwareCheck extends Check
         @Override
         public Class<?> getClazz()
         {
-            if (isLoadable() && (classObj == null)) {
+            if (isLoadable() && classObj == null) {
                 setClazz(check.tryLoadClass(getName(), surroundingClass));
             }
             return classObj;
@@ -498,7 +498,7 @@ public abstract class AbstractTypeAwareCheck extends Check
         private void setClazz(Class<?> classObj)
         {
             this.classObj = classObj;
-            isLoadable = (classObj != null);
+            isLoadable = classObj != null;
         }
 
         @Override

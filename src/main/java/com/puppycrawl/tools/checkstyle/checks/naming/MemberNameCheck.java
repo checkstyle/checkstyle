@@ -74,11 +74,11 @@ public class MemberNameCheck
     {
         final DetailAST modifiersAST =
             ast.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isStatic = (modifiersAST != null)
+        final boolean isStatic = modifiersAST != null
             && modifiersAST.branchContains(TokenTypes.LITERAL_STATIC);
 
-        return (!isStatic && !ScopeUtils.inInterfaceOrAnnotationBlock(ast)
-            && !ScopeUtils.isLocalVariableDef(ast))
-            && shouldCheckInScope(modifiersAST);
+        return !isStatic && !ScopeUtils.inInterfaceOrAnnotationBlock(ast)
+            && !ScopeUtils.isLocalVariableDef(ast)
+                && shouldCheckInScope(modifiersAST);
     }
 }

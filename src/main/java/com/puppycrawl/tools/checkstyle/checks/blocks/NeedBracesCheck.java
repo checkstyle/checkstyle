@@ -155,15 +155,15 @@ public class NeedBracesCheck extends Check
     {
         final DetailAST slistAST = ast.findFirstToken(TokenTypes.SLIST);
         boolean isElseIf = false;
-        if ((ast.getType() == TokenTypes.LITERAL_ELSE)
-            && (ast.findFirstToken(TokenTypes.LITERAL_IF) != null))
+        if (ast.getType() == TokenTypes.LITERAL_ELSE
+            && ast.findFirstToken(TokenTypes.LITERAL_IF) != null)
         {
             isElseIf = true;
         }
 
         final boolean skipStatement = isSkipStatement(ast);
 
-        if ((slistAST == null) && !isElseIf && !skipStatement) {
+        if (slistAST == null && !isElseIf && !skipStatement) {
             log(ast.getLineNo(), MSG_KEY_NEED_BRACES, ast.getText());
         }
     }
@@ -363,7 +363,7 @@ public class NeedBracesCheck extends Check
             final DetailAST caseBreak = slist.findFirstToken(TokenTypes.LITERAL_BREAK);
             final boolean atOneLine = literalCase.getLineNo() == block.getLineNo();
             if (caseBreak != null) {
-                result = atOneLine && (block.getLineNo() == caseBreak.getLineNo());
+                result = atOneLine && block.getLineNo() == caseBreak.getLineNo();
             }
         }
         return result;

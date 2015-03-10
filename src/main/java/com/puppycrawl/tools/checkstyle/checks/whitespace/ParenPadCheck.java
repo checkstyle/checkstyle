@@ -92,8 +92,8 @@ public class ParenPadCheck extends AbstractParenPadCheck
         // Strange logic in this method to guard against checking RPAREN tokens
         // that are associated with a TYPECAST token.
         if (theAst.getType() != TokenTypes.RPAREN) {
-            if ((theAst.getType() == TokenTypes.CTOR_CALL)
-                || (theAst.getType() == TokenTypes.SUPER_CTOR_CALL))
+            if (theAst.getType() == TokenTypes.CTOR_CALL
+                || theAst.getType() == TokenTypes.SUPER_CTOR_CALL)
             {
                 theAst = theAst.getFirstChild();
             }
@@ -101,10 +101,10 @@ public class ParenPadCheck extends AbstractParenPadCheck
                 processLeft(theAst);
             }
         }
-        else if (((theAst.getParent() == null)
-                 || (theAst.getParent().getType() != TokenTypes.TYPECAST)
-                 || (theAst.getParent().findFirstToken(TokenTypes.RPAREN)
-                     != theAst))
+        else if ((theAst.getParent() == null
+                 || theAst.getParent().getType() != TokenTypes.TYPECAST
+                 || theAst.getParent().findFirstToken(TokenTypes.RPAREN)
+                     != theAst)
                  && !isFollowsEmptyForIterator(theAst))
         {
             processRight(theAst);
@@ -120,14 +120,14 @@ public class ParenPadCheck extends AbstractParenPadCheck
         boolean followsEmptyForIterator = false;
         final DetailAST parent = ast.getParent();
         //Only traditional for statements are examined, not for-each statements
-        if ((parent != null)
-            && (parent.getType() == TokenTypes.LITERAL_FOR)
-            && (parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null))
+        if (parent != null
+            && parent.getType() == TokenTypes.LITERAL_FOR
+            && parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null)
         {
             final DetailAST forIterator =
                 parent.findFirstToken(TokenTypes.FOR_ITERATOR);
-            followsEmptyForIterator = (forIterator.getChildCount() == 0)
-                && (ast == forIterator.getNextSibling());
+            followsEmptyForIterator = forIterator.getChildCount() == 0
+                && ast == forIterator.getNextSibling();
         }
         return followsEmptyForIterator;
     }
@@ -141,14 +141,14 @@ public class ParenPadCheck extends AbstractParenPadCheck
         boolean preceedsEmptyForInintializer = false;
         final DetailAST parent = ast.getParent();
         //Only traditional for statements are examined, not for-each statements
-        if ((parent != null)
-            && (parent.getType() == TokenTypes.LITERAL_FOR)
-            && (parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null))
+        if (parent != null
+            && parent.getType() == TokenTypes.LITERAL_FOR
+            && parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null)
         {
             final DetailAST forIterator =
                     parent.findFirstToken(TokenTypes.FOR_INIT);
-            preceedsEmptyForInintializer = (forIterator.getChildCount() == 0)
-                    && (ast == forIterator.getPreviousSibling());
+            preceedsEmptyForInintializer = forIterator.getChildCount() == 0
+                    && ast == forIterator.getPreviousSibling();
         }
         return preceedsEmptyForInintializer;
     }

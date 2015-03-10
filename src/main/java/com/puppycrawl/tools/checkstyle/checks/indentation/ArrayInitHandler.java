@@ -47,7 +47,7 @@ public class ArrayInitHandler extends BlockParentHandler
     {
         final DetailAST parentAST = getMainAst().getParent();
         final int type = parentAST.getType();
-        if ((type == TokenTypes.LITERAL_NEW) || (type == TokenTypes.ASSIGN)) {
+        if (type == TokenTypes.LITERAL_NEW || type == TokenTypes.ASSIGN) {
             // note: assumes new or assignment is line to align with
             return new IndentLevel(getLineStart(parentAST));
         }
@@ -111,7 +111,7 @@ public class ArrayInitHandler extends BlockParentHandler
                     getIndentCheck().getLineWrappingIndentation());
 
         final int firstLine = getFirstLine(Integer.MAX_VALUE, getListChild());
-        if (hasCurlys() && (firstLine == getLCurly().getLineNo())) {
+        if (hasCurlys() && firstLine == getLCurly().getLineNo()) {
             final int lcurlyPos = expandedTabsColumnNo(getLCurly());
             final int firstChildPos =
                 getNextFirstNonblankOnLineAfter(firstLine, lcurlyPos);
@@ -136,13 +136,13 @@ public class ArrayInitHandler extends BlockParentHandler
         int realColumnNo = columnNo + 1;
         final String line = getIndentCheck().getLines()[lineNo - 1];
         final int lineLength = line.length();
-        while ((realColumnNo < lineLength)
+        while (realColumnNo < lineLength
                && Character.isWhitespace(line.charAt(realColumnNo)))
         {
             realColumnNo++;
         }
 
-        return (realColumnNo == lineLength) ? -1 : realColumnNo;
+        return realColumnNo == lineLength ? -1 : realColumnNo;
     }
 
     /**

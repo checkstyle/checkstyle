@@ -66,8 +66,8 @@ public class ArrayTrailingCommaCheck extends Check
 
         // if curlys are on the same line
         // or array is empty then check nothing
-        if ((arrayInit.getLineNo() == rcurly.getLineNo())
-            || (arrayInit.getChildCount() == 1))
+        if (arrayInit.getLineNo() == rcurly.getLineNo()
+            || arrayInit.getChildCount() == 1)
         {
             return;
         }

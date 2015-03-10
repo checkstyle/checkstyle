@@ -54,7 +54,7 @@ public class HeaderCheck extends AbstractHeaderCheck
      */
     private boolean isIgnoreLine(int lineNo)
     {
-        return (Arrays.binarySearch(ignoreLines, lineNo) >= 0);
+        return Arrays.binarySearch(ignoreLines, lineNo) >= 0;
     }
 
     /**
@@ -76,7 +76,7 @@ public class HeaderCheck extends AbstractHeaderCheck
      */
     public void setIgnoreLines(int[] list)
     {
-        if ((list == null) || (list.length == 0)) {
+        if (list == null || list.length == 0) {
             ignoreLines = EMPTY_INT_ARRAY;
             return;
         }

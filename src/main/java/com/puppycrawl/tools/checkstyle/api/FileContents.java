@@ -215,7 +215,7 @@ public final class FileContents implements CommentListener
         int lineNo = lineNoBefore - 2;
 
         // skip blank lines
-        while ((lineNo > 0) && (lineIsBlank(lineNo) || lineIsComment(lineNo))) {
+        while (lineNo > 0 && (lineIsBlank(lineNo) || lineIsComment(lineNo))) {
             lineNo--;
         }
 
@@ -316,7 +316,7 @@ public final class FileContents implements CommentListener
              lineNumber++)
         {
             final TextBlock comment = cppComments.get(lineNumber);
-            if ((comment != null)
+            if (comment != null
                     && comment.intersects(startLineNo, startColNo,
                             endLineNo, endColNo))
             {

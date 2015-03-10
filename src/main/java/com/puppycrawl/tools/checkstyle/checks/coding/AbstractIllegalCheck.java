@@ -66,7 +66,7 @@ public abstract class AbstractIllegalCheck extends Check
         for (final String name : classNames) {
             illegalClassNames.add(name);
             final int lastDot = name.lastIndexOf(".");
-            if ((lastDot > 0) && (lastDot < (name.length() - 1))) {
+            if (lastDot > 0 && lastDot < name.length() - 1) {
                 final String shortName = name
                         .substring(name.lastIndexOf(".") + 1);
                 illegalClassNames.add(shortName);

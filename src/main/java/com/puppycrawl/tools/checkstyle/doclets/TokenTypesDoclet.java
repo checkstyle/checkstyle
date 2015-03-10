@@ -61,7 +61,7 @@ public final class TokenTypesDoclet
         try {
             ps = new PrintStream(fos);
             final ClassDoc[] classes = root.classes();
-            if ((classes.length != 1)
+            if (classes.length != 1
                 || !"TokenTypes".equals(classes[0].name()))
             {
                 final String message =
@@ -72,7 +72,7 @@ public final class TokenTypesDoclet
             final FieldDoc[] fields = classes[0].fields();
             for (final FieldDoc field : fields) {
                 if (field.isStatic() && field.isPublic() && field.isFinal()
-                    && "int".equals((field.type().qualifiedTypeName())))
+                    && "int".equals(field.type().qualifiedTypeName()))
                 {
                     if (field.firstSentenceTags().length != 1) {
                         final String message = "Should be only one tag.";

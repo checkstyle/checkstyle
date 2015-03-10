@@ -117,7 +117,7 @@ public class LineLengthCheck extends Check
                 line, line.length(), getTabWidth());
 
 
-            if ((realLength > max)
+            if (realLength > max
                 && !ignorePattern.matcher(line).find())
             {
                 log(i + 1, MSG_KEY, max, realLength);

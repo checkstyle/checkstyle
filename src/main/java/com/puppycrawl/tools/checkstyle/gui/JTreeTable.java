@@ -197,7 +197,7 @@ public class JTreeTable extends JTable
     public int getEditingRow()
     {
         final Class<?> editingClass = getColumnClass(editingColumn);
-        return (editingClass == TreeTableModel.class) ? -1 : editingRow;
+        return editingClass == TreeTableModel.class ? -1 : editingRow;
     }
 
     /**
@@ -207,7 +207,7 @@ public class JTreeTable extends JTable
     public void setRowHeight(int newRowHeight)
     {
         super.setRowHeight(newRowHeight);
-        if ((tree != null) && (tree.getRowHeight() != newRowHeight)) {
+        if (tree != null && tree.getRowHeight() != newRowHeight) {
             tree.setRowHeight(getRowHeight());
         }
     }
@@ -251,7 +251,7 @@ public class JTreeTable extends JTable
             // colors.
             final TreeCellRenderer tcr = getCellRenderer();
             if (tcr instanceof DefaultTreeCellRenderer) {
-                final DefaultTreeCellRenderer dtcr = ((DefaultTreeCellRenderer) tcr);
+                final DefaultTreeCellRenderer dtcr = (DefaultTreeCellRenderer) tcr;
                 // For 1.1 uncomment this, 1.2 has a bug that will cause an
                 // exception to be thrown if the border selection color is
                 // null.
@@ -272,8 +272,8 @@ public class JTreeTable extends JTable
         {
             if (newRowHeight > 0) {
                 super.setRowHeight(newRowHeight);
-                if ((JTreeTable.this != null) &&
-                    (JTreeTable.this.getRowHeight() != newRowHeight))
+                if (JTreeTable.this != null &&
+                        JTreeTable.this.getRowHeight() != newRowHeight)
                 {
                     JTreeTable.this.setRowHeight(getRowHeight());
                 }
@@ -464,7 +464,7 @@ public class JTreeTable extends JTable
                     final int max = listSelectionModel.getMaxSelectionIndex();
 
                     clearSelection();
-                    if ((min != -1) && (max != -1)) {
+                    if (min != -1 && max != -1) {
                         for (int counter = min; counter <= max; counter++) {
                             if (listSelectionModel.isSelectedIndex(counter)) {
                                 final TreePath selPath = tree.getPathForRow

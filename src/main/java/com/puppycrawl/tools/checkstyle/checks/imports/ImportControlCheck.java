@@ -137,7 +137,7 @@ public class ImportControlCheck extends Check
     public void setUrl(final String url)
     {
         // Handle empty param
-        if ((url == null) || (url.trim().length() == 0)) {
+        if (url == null || url.trim().length() == 0) {
             return;
         }
         final URI uri;
@@ -164,7 +164,7 @@ public class ImportControlCheck extends Check
     public void setFile(final String name)
     {
         // Handle empty param
-        if ((name == null) || (name.trim().length() == 0)) {
+        if (name == null || name.trim().length() == 0) {
             return;
         }
 

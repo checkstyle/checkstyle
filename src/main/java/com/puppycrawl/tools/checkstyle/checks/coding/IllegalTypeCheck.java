@@ -236,7 +236,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     {
         final DetailAST grandParentAST = paradef.getParent().getParent();
 
-        if ((grandParentAST.getType() == TokenTypes.METHOD_DEF)
+        if (grandParentAST.getType() == TokenTypes.METHOD_DEF
             && isCheckedMethod(grandParentAST))
         {
             checkClassName(paradef);
@@ -313,10 +313,10 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     private boolean isMatchingClassName(String className)
     {
         final String shortName = className.substring(className.lastIndexOf(".") + 1);
-        return (illegalClassNames.contains(className)
-                || illegalClassNames.contains(shortName))
-            || (!legalAbstractClassNames.contains(className)
-                && getRegexp().matcher(className).find());
+        return illegalClassNames.contains(className)
+                || illegalClassNames.contains(shortName)
+                || !legalAbstractClassNames.contains(className)
+                    && getRegexp().matcher(className).find();
     }
 
     /**

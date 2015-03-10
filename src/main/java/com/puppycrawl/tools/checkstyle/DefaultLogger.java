@@ -80,7 +80,7 @@ public class DefaultLogger
         closeInfo = closeInfoAfterUse;
         closeError = closeErrorAfterUse;
         infoWriter = new PrintWriter(infoStream);
-        errorWriter = (infoStream == errorStream)
+        errorWriter = infoStream == errorStream
             ? infoWriter
             : new PrintWriter(errorStream);
     }

@@ -155,19 +155,19 @@ public abstract class AbstractSuperCheck
         }
         // dot operator?
         DetailAST parent = ast.getParent();
-        if ((parent == null) || (parent.getType() != TokenTypes.DOT)) {
+        if (parent == null || parent.getType() != TokenTypes.DOT) {
             return false;
         }
 
         // same name of method
         AST sibling = ast.getNextSibling();
         // ignore type parameters
-        if ((sibling != null)
-            && (sibling.getType() == TokenTypes.TYPE_ARGUMENTS))
+        if (sibling != null
+            && sibling.getType() == TokenTypes.TYPE_ARGUMENTS)
         {
             sibling = sibling.getNextSibling();
         }
-        if ((sibling == null) || (sibling.getType() != TokenTypes.IDENT)) {
+        if (sibling == null || sibling.getType() != TokenTypes.IDENT) {
             return false;
         }
         final String name = sibling.getText();
@@ -177,7 +177,7 @@ public abstract class AbstractSuperCheck
 
         // 0 parameters?
         final DetailAST args = parent.getNextSibling();
-        if ((args == null) || (args.getType() != TokenTypes.ELIST)) {
+        if (args == null || args.getType() != TokenTypes.ELIST) {
             return false;
         }
         if (args.getChildCount() != 0) {
@@ -189,8 +189,8 @@ public abstract class AbstractSuperCheck
             if (parent.getType() == TokenTypes.METHOD_DEF) {
                 return isOverridingMethod(parent);
             }
-            else if ((parent.getType() == TokenTypes.CTOR_DEF)
-                || (parent.getType() == TokenTypes.INSTANCE_INIT))
+            else if (parent.getType() == TokenTypes.CTOR_DEF
+                || parent.getType() == TokenTypes.INSTANCE_INIT)
             {
                 return false;
             }
@@ -223,7 +223,7 @@ public abstract class AbstractSuperCheck
      */
     private boolean isOverridingMethod(DetailAST ast)
     {
-        if ((ast.getType() != TokenTypes.METHOD_DEF)
+        if (ast.getType() != TokenTypes.METHOD_DEF
             || ScopeUtils.inInterfaceOrAnnotationBlock(ast))
         {
             return false;
@@ -234,6 +234,6 @@ public abstract class AbstractSuperCheck
             return false;
         }
         final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-        return (params.getChildCount() == 0);
+        return params.getChildCount() == 0;
     }
 }

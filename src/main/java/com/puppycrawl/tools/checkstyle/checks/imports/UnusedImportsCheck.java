@@ -189,10 +189,10 @@ public class UnusedImportsCheck extends Check
     {
         final DetailAST parent = ast.getParent();
         final int parentType = parent.getType();
-        if (((parentType != TokenTypes.DOT)
-            && (parentType != TokenTypes.METHOD_DEF))
-            || ((parentType == TokenTypes.DOT)
-                && (ast.getNextSibling() != null)))
+        if (parentType != TokenTypes.DOT
+            && parentType != TokenTypes.METHOD_DEF
+            || parentType == TokenTypes.DOT
+                && ast.getNextSibling() != null)
         {
             referenced.add(ast.getText());
         }
@@ -205,7 +205,7 @@ public class UnusedImportsCheck extends Check
     private void processImport(DetailAST ast)
     {
         final FullIdent name = FullIdent.createFullIdentBelow(ast);
-        if ((name != null) && !name.getText().endsWith(".*")) {
+        if (name != null && !name.getText().endsWith(".*")) {
             imports.add(name);
         }
     }
@@ -219,7 +219,7 @@ public class UnusedImportsCheck extends Check
         final FullIdent name =
             FullIdent.createFullIdent(
                 ast.getFirstChild().getNextSibling());
-        if ((name != null) && !name.getText().endsWith(".*")) {
+        if (name != null && !name.getText().endsWith(".*")) {
             imports.add(name);
         }
     }

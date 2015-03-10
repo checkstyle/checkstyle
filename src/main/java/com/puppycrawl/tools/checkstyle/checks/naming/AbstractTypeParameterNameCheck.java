@@ -67,9 +67,9 @@ public abstract class AbstractTypeParameterNameCheck
     {
         this.location = getLocation();
 
-        assert (this.location == TokenTypes.CLASS_DEF)
-            || (this.location == TokenTypes.METHOD_DEF)
-            || (this.location == TokenTypes.INTERFACE_DEF);
+        assert this.location == TokenTypes.CLASS_DEF
+            || this.location == TokenTypes.METHOD_DEF
+            || this.location == TokenTypes.INTERFACE_DEF;
     }
 
     @Override

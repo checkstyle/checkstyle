@@ -81,9 +81,9 @@ public final class InterfaceIsTypeCheck
         final DetailAST variableDef =
                 objBlock.findFirstToken(TokenTypes.VARIABLE_DEF);
         final boolean methodRequired =
-                !allowMarkerInterfaces || (variableDef != null);
+                !allowMarkerInterfaces || variableDef != null;
 
-        if ((methodDef == null) && methodRequired) {
+        if (methodDef == null && methodRequired) {
             log(ast.getLineNo(), MSG_KEY);
         }
 

@@ -186,11 +186,11 @@ public class JavadocStyleCheck
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
 
         return scope.isIn(this.scope)
-            && ((surroundingScope == null) || surroundingScope.isIn(this.scope))
-            && ((excludeScope == null)
+            && (surroundingScope == null || surroundingScope.isIn(this.scope))
+            && (excludeScope == null
                 || !scope.isIn(excludeScope)
-                || ((surroundingScope != null)
-                && !surroundingScope.isIn(excludeScope)));
+                || surroundingScope != null
+                && !surroundingScope.isIn(excludeScope));
     }
 
     /**
@@ -242,7 +242,7 @@ public class JavadocStyleCheck
     {
         final String commentText = getCommentText(comment.getText());
 
-        if ((commentText.length() != 0)
+        if (commentText.length() != 0
             && !getEndOfSentencePattern().matcher(commentText).find()
             && !("{@inheritDoc}".equals(commentText)
             && JavadocTagInfo.INHERIT_DOC.isValidOn(ast)))
@@ -328,9 +328,9 @@ public class JavadocStyleCheck
             if (Character.isWhitespace(buffer.charAt(i))) {
                 buffer.deleteCharAt(i);
             }
-            else if ((i > 0)
-                     && (buffer.charAt(i - 1) == '*')
-                     && (buffer.charAt(i) == '/'))
+            else if (i > 0
+                     && buffer.charAt(i - 1) == '*'
+                     && buffer.charAt(i) == '/')
             {
                 buffer.deleteCharAt(i);
                 buffer.deleteCharAt(i - 1);

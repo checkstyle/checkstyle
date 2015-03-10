@@ -122,7 +122,7 @@ public class IllegalTokenTextCheck
      */
     public void setMessage(String message)
     {
-        this.message = (null == message) ? "" : message;
+        this.message = null == message ? "" : message;
     }
 
     /**

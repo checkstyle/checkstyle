@@ -123,7 +123,7 @@ public class RegexpCheck extends AbstractFormatCheck
      */
     public void setMessage(String message)
     {
-        this.message = (message == null) ? "" : message;
+        this.message = message == null ? "" : message;
     }
 
     /**
@@ -173,7 +173,7 @@ public class RegexpCheck extends AbstractFormatCheck
     public void setDuplicateLimit(int duplicateLimit)
     {
         this.duplicateLimit = duplicateLimit;
-        checkForDuplicates = (duplicateLimit > DEFAULT_DUPLICATE_LIMIT);
+        checkForDuplicates = duplicateLimit > DEFAULT_DUPLICATE_LIMIT;
     }
 
     @Override
@@ -203,7 +203,7 @@ public class RegexpCheck extends AbstractFormatCheck
         boolean ignore = false;
 
         foundMatch = matcher.find();
-        if (!foundMatch && !illegalPattern && (matchCount == 0)) {
+        if (!foundMatch && !illegalPattern && matchCount == 0) {
             logMessage(0);
         }
         else if (foundMatch) {
@@ -221,14 +221,14 @@ public class RegexpCheck extends AbstractFormatCheck
             }
             if (!ignore) {
                 matchCount++;
-                if (illegalPattern || (checkForDuplicates
-                        && ((matchCount - 1) > duplicateLimit)))
+                if (illegalPattern || checkForDuplicates
+                        && matchCount - 1 > duplicateLimit)
                 {
                     errorCount++;
                     logMessage(startLine);
                 }
             }
-            if ((errorCount < errorLimit)
+            if (errorCount < errorLimit
                     && (ignore || illegalPattern || checkForDuplicates))
             {
                 findMatch();

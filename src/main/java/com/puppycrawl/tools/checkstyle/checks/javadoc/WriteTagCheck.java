@@ -212,7 +212,7 @@ public class WriteTagCheck
                 tagCount += 1;
                 final int contentStart = matcher.start(1);
                 final String content = s.substring(contentStart);
-                if ((formatRE != null) && !formatRE.matcher(content).find()) {
+                if (formatRE != null && !formatRE.matcher(content).find()) {
                     log(lineNo + i - comment.length, TAG_FORMAT, tag,
                         format);
                 }

@@ -146,16 +146,16 @@ public class IndentationCheckTest extends BaseCheckTestSupport
         if (match.matches()) {
             final int expectedLevel = Integer.parseInt(match.group(1));
 
-            return (expectedLevel == indentInComment) && !isWarnComment
-                    || (expectedLevel != indentInComment) && isWarnComment;
+            return expectedLevel == indentInComment && !isWarnComment
+                    || expectedLevel != indentInComment && isWarnComment;
         }
 
         match = NONSTRICT_LEVEL_COMMENT_REGEX.matcher(comment);
         if (match.matches()) {
             final int expectedMinimalIndent = Integer.parseInt(match.group(1));
 
-            return (indentInComment >= expectedMinimalIndent) && !isWarnComment
-                    || (indentInComment < expectedMinimalIndent) && isWarnComment;
+            return indentInComment >= expectedMinimalIndent && !isWarnComment
+                    || indentInComment < expectedMinimalIndent && isWarnComment;
         }
 
         throw new IllegalArgumentException();

@@ -96,12 +96,12 @@ public class EmptyForInitializerPadCheck
             //don't check if semi at beginning of line
             if (!Utils.whitespaceBefore(before, line)) {
                 final PadOption option = getAbstractOption();
-                if ((PadOption.NOSPACE == option)
-                    && (Character.isWhitespace(line.charAt(before))))
+                if (PadOption.NOSPACE == option
+                    && Character.isWhitespace(line.charAt(before)))
                 {
                     log(semi.getLineNo(), before, MSG_PRECEDED, ";");
                 }
-                else if ((PadOption.SPACE == option)
+                else if (PadOption.SPACE == option
                          && !Character.isWhitespace(line.charAt(before)))
                 {
                     log(semi.getLineNo(), before, MSG_NOT_PRECEDED, ";");

@@ -74,7 +74,7 @@ public class ParameterNameCheck
     protected boolean mustCheckName(DetailAST ast)
     {
         return !(
-            (ast.getParent() != null)
-                && (ast.getParent().getType() == TokenTypes.LITERAL_CATCH));
+            ast.getParent() != null
+                && ast.getParent().getType() == TokenTypes.LITERAL_CATCH);
     }
 }

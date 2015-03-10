@@ -80,8 +80,8 @@ public class LocalFinalVariableNameCheck
     {
         final DetailAST modifiersAST =
             ast.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isFinal = (modifiersAST != null)
+        final boolean isFinal = modifiersAST != null
             && modifiersAST.branchContains(TokenTypes.FINAL);
-        return (isFinal && ScopeUtils.isLocalVariableDef(ast));
+        return isFinal && ScopeUtils.isLocalVariableDef(ast);
     }
 }

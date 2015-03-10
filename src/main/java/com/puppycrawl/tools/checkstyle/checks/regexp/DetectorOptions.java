@@ -195,7 +195,7 @@ class DetectorOptions
      */
     public Pattern getPattern()
     {
-        final int options = (ignoreCase) ? compileFlags
+        final int options = ignoreCase ? compileFlags
                 | Pattern.CASE_INSENSITIVE : compileFlags;
         return Utils.getPattern(format, options);
     }

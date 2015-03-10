@@ -103,7 +103,7 @@ public class AvoidStaticImportCheck
             ast.getFirstChild().getNextSibling();
         final FullIdent name = FullIdent.createFullIdent(startingDot);
 
-        if ((null != name) && !isExempt(name.getText())) {
+        if (null != name && !isExempt(name.getText())) {
             log(startingDot.getLineNo(), MSG_KEY, name.getText());
         }
     }

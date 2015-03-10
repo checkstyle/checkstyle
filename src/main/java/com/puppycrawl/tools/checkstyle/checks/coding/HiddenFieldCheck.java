@@ -230,12 +230,12 @@ public class HiddenFieldCheck
         //check.
         final DetailAST typeMods = ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isStaticInnerType =
-                (typeMods != null)
+                typeMods != null
                         && typeMods.branchContains(TokenTypes.LITERAL_STATIC);
 
         final FieldFrame frame =
             new FieldFrame(currentFrame, isStaticInnerType, type,
-                (type == TokenTypes.CLASS_DEF || type == TokenTypes.ENUM_DEF)
+                type == TokenTypes.CLASS_DEF || type == TokenTypes.ENUM_DEF
                     ? ast.findFirstToken(TokenTypes.IDENT).getText()
                     : null
             );
@@ -268,9 +268,9 @@ public class HiddenFieldCheck
     @Override
     public void leaveToken(DetailAST ast)
     {
-        if ((ast.getType() == TokenTypes.CLASS_DEF)
-            || (ast.getType() == TokenTypes.ENUM_DEF)
-            || (ast.getType() == TokenTypes.ENUM_CONSTANT_DEF))
+        if (ast.getType() == TokenTypes.CLASS_DEF
+            || ast.getType() == TokenTypes.ENUM_DEF
+            || ast.getType() == TokenTypes.ENUM_CONSTANT_DEF)
         {
             //pop
             currentFrame = currentFrame.getParent();
@@ -287,15 +287,15 @@ public class HiddenFieldCheck
     {
         if (!ScopeUtils.inInterfaceOrAnnotationBlock(ast)
             && (ScopeUtils.isLocalVariableDef(ast)
-                || (ast.getType() == TokenTypes.PARAMETER_DEF)))
+                || ast.getType() == TokenTypes.PARAMETER_DEF))
         {
             // local variable or parameter. Does it shadow a field?
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();
 
             if ((currentFrame.containsStaticField(name)
-                || (!inStatic(ast) && currentFrame.containsInstanceField(name)))
-                && ((regexp == null) || (!getRegexp().matcher(name).find()))
+                || !inStatic(ast) && currentFrame.containsInstanceField(name))
+                && (regexp == null || !getRegexp().matcher(name).find())
                 && !isIgnoredSetterParam(ast, name)
                 && !isIgnoredConstructorParam(ast)
                 && !isIgnoredParamOfAbstractMethod(ast))
@@ -380,7 +380,7 @@ public class HiddenFieldCheck
             final DetailAST typeAST = aMethodAST.findFirstToken(TokenTypes.TYPE);
             final String returnType = typeAST.getFirstChild().getText();
             if (typeAST.branchContains(TokenTypes.LITERAL_VOID)
-                || (setterCanReturnItsClass && currentFrame.embeddedIn(returnType)))
+                || setterCanReturnItsClass && currentFrame.embeddedIn(returnType))
             {
                 // this method has signature
                 //
@@ -413,7 +413,7 @@ public class HiddenFieldCheck
         // one is a capital one, since according to JavBeans spec
         // setXYzz() is a setter for XYzz property, not for xYzz one.
         if (name != null && (name.length() == 1
-                || (name.length() > 1 && !Character.isUpperCase(name.charAt(1)))))
+                || name.length() > 1 && !Character.isUpperCase(name.charAt(1))))
         {
             setterName = name.substring(0, 1).toUpperCase() + name.substring(1);
         }
@@ -430,12 +430,12 @@ public class HiddenFieldCheck
     private boolean isIgnoredConstructorParam(DetailAST ast)
     {
         boolean result = false;
-        if ((ast.getType() == TokenTypes.PARAMETER_DEF)
+        if (ast.getType() == TokenTypes.PARAMETER_DEF
             && ignoreConstructorParameter)
         {
             final DetailAST parametersAST = ast.getParent();
             final DetailAST constructorAST = parametersAST.getParent();
-            result = (constructorAST.getType() == TokenTypes.CTOR_DEF);
+            result = constructorAST.getType() == TokenTypes.CTOR_DEF;
         }
         return result;
     }
@@ -451,13 +451,13 @@ public class HiddenFieldCheck
     private boolean isIgnoredParamOfAbstractMethod(DetailAST ast)
     {
         boolean result = false;
-        if ((ast.getType() == TokenTypes.PARAMETER_DEF)
+        if (ast.getType() == TokenTypes.PARAMETER_DEF
             && ignoreAbstractMethods)
         {
             final DetailAST method = ast.getParent().getParent();
             if (method.getType() == TokenTypes.METHOD_DEF) {
                 final DetailAST mods = method.findFirstToken(TokenTypes.MODIFIERS);
-                result = ((mods != null) && mods.branchContains(TokenTypes.ABSTRACT));
+                result = mods != null && mods.branchContains(TokenTypes.ABSTRACT);
             }
         }
         return result;
@@ -612,7 +612,7 @@ public class HiddenFieldCheck
         {
             return instanceFields.contains(field)
                     || !isStaticType()
-                    && (parent != null)
+                    && parent != null
                     && parent.containsInstanceField(field);
 
         }
@@ -625,7 +625,7 @@ public class HiddenFieldCheck
         public boolean containsStaticField(String field)
         {
             return staticFields.contains(field)
-                    || (parent != null)
+                    || parent != null
                     && parent.containsStaticField(field);
 
         }

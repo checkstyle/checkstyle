@@ -367,7 +367,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     protected final void processAST(DetailAST ast)
     {
         if ((ast.getType() == TokenTypes.METHOD_DEF || ast.getType() == TokenTypes.CTOR_DEF)
-            && (getMethodsNumberOfLine(ast) <= minLineCount)
+            && getMethodsNumberOfLine(ast) <= minLineCount
             || hasAllowedAnnotations(ast))
         {
             return;
@@ -453,8 +453,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     protected boolean isMissingJavadocAllowed(final DetailAST ast)
     {
         return allowMissingJavadoc
-            || (allowMissingPropertyJavadoc
-                && (isSetterMethod(ast) || isGetterMethod(ast)))
+            || allowMissingPropertyJavadoc
+                && (isSetterMethod(ast) || isGetterMethod(ast))
             || matchesSkipRegex(ast);
     }
 
@@ -491,7 +491,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
         return scope.isIn(this.scope)
                 && surroundingScope.isIn(this.scope)
-                && ((excludeScope == null) || !scope.isIn(excludeScope)
+                && (excludeScope == null || !scope.isIn(excludeScope)
                     || !surroundingScope.isIn(excludeScope));
     }
 
@@ -514,7 +514,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             // Check for inheritDoc
             boolean hasInheritDocTag = false;
             while (it.hasNext() && !hasInheritDocTag) {
-                hasInheritDocTag |= (it.next()).isInheritDocTag();
+                hasInheritDocTag |= it.next().isInheritDocTag();
             }
 
             checkParamTags(tags, ast, !hasInheritDocTag);
@@ -546,8 +546,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             final List<JavadocTag> tags)
     {
         // Check if it contains {@inheritDoc} tag
-        if ((tags.size() != 1)
-                || !(tags.get(0)).isInheritDocTag())
+        if (tags.size() != 1
+                || !tags.get(0).isInheritDocTag())
         {
             return false;
         }
@@ -721,8 +721,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         if (throwsAST != null) {
             DetailAST child = throwsAST.getFirstChild();
             while (child != null) {
-                if ((child.getType() == TokenTypes.IDENT)
-                        || (child.getType() == TokenTypes.DOT))
+                if (child.getType() == TokenTypes.IDENT
+                        || child.getType() == TokenTypes.DOT)
                 {
                     final FullIdent fi = FullIdent.createFullIdent(child);
                     final ExceptionInfo ei = new ExceptionInfo(new Token(fi),
@@ -827,8 +827,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         boolean retVal = false;
         if (ast.getType() == TokenTypes.METHOD_DEF) {
             final DetailAST typeAST = ast.findFirstToken(TokenTypes.TYPE);
-            if ((typeAST != null)
-                && (typeAST.findFirstToken(TokenTypes.LITERAL_VOID) == null))
+            if (typeAST != null
+                && typeAST.findFirstToken(TokenTypes.LITERAL_VOID) == null)
             {
                 retVal = true;
             }
@@ -973,8 +973,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         // Check have a method with exactly 7 children which are all that
         // is allowed in a proper setter method which does not throw any
         // exceptions.
-        if ((ast.getType() != TokenTypes.METHOD_DEF)
-                || (ast.getChildCount() != MAX_CHILDREN))
+        if (ast.getType() != TokenTypes.METHOD_DEF
+                || ast.getChildCount() != MAX_CHILDREN)
         {
             return false;
         }
@@ -995,8 +995,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
         // Check that is had only one parameter
         final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-        if ((params == null)
-                || (params.getChildCount(TokenTypes.PARAMETER_DEF) != 1))
+        if (params == null
+                || params.getChildCount(TokenTypes.PARAMETER_DEF) != 1)
         {
             return false;
         }
@@ -1006,13 +1006,13 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         // SEMI
         // RCURLY
         final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
-        if ((slist == null) || (slist.getChildCount() != BODY_SIZE)) {
+        if (slist == null || slist.getChildCount() != BODY_SIZE) {
             return false;
         }
 
         final AST expr = slist.getFirstChild();
-        if ((expr.getType() != TokenTypes.EXPR)
-                || (expr.getFirstChild().getType() != TokenTypes.ASSIGN))
+        if (expr.getType() != TokenTypes.EXPR
+                || expr.getFirstChild().getType() != TokenTypes.ASSIGN)
         {
             return false;
         }
@@ -1030,8 +1030,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         // Check have a method with exactly 7 children which are all that
         // is allowed in a proper getter method which does not throw any
         // exceptions.
-        if ((ast.getType() != TokenTypes.METHOD_DEF)
-                || (ast.getChildCount() != MAX_CHILDREN))
+        if (ast.getType() != TokenTypes.METHOD_DEF
+                || ast.getChildCount() != MAX_CHILDREN)
         {
             return false;
         }
@@ -1051,8 +1051,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
         // Check that is had only one parameter
         final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-        if ((params == null)
-                || (params.getChildCount(TokenTypes.PARAMETER_DEF) > 0))
+        if (params == null
+                || params.getChildCount(TokenTypes.PARAMETER_DEF) > 0)
         {
             return false;
         }
@@ -1061,13 +1061,13 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         // SLIST -> RETURN
         // RCURLY
         final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
-        if ((slist == null) || (slist.getChildCount() != 2)) {
+        if (slist == null || slist.getChildCount() != 2) {
             return false;
         }
 
         final AST expr = slist.getFirstChild();
-        if ((expr.getType() != TokenTypes.LITERAL_RETURN)
-                || (expr.getFirstChild().getType() != TokenTypes.EXPR))
+        if (expr.getType() != TokenTypes.LITERAL_RETURN
+                || expr.getFirstChild().getType() != TokenTypes.EXPR)
         {
             return false;
         }

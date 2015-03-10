@@ -62,7 +62,7 @@ public enum Scope
      */
     public boolean isIn(Scope scope)
     {
-        return (compareTo(scope) <= 0);
+        return compareTo(scope) <= 0;
     }
 
     /**

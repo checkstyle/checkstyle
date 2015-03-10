@@ -543,7 +543,7 @@ public abstract class AbstractJavadocCheck extends Check
                 visitJavadocToken(curNode);
             }
             DetailNode toVisit = JavadocUtils.getFirstChild(curNode);
-            while ((curNode != null) && (toVisit == null)) {
+            while (curNode != null && toVisit == null) {
 
                 if (waitsFor) {
                     leaveJavadocToken(curNode);

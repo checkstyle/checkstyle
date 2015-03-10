@@ -55,8 +55,8 @@ public class NewHandler extends ExpressionHandler
         final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
         checkLParen(lparen);
 
-        if ((rparen == null) || (lparen == null)
-            || (rparen.getLineNo() == lparen.getLineNo()))
+        if (rparen == null || lparen == null
+            || rparen.getLineNo() == lparen.getLineNo())
         {
             return;
         }

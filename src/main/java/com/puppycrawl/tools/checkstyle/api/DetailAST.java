@@ -95,7 +95,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens
     public void setNextSibling(AST ast)
     {
         super.setNextSibling(ast);
-        if ((ast != null) && (parent != null)) {
+        if (ast != null && parent != null) {
             ((DetailAST) ast).setParent(parent);
         }
         if (ast != null) {
@@ -163,7 +163,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens
         super.addChild(ast);
         if (ast != null) {
             ((DetailAST) ast).setParent(this);
-            (getFirstChild()).setParent(this);
+            getFirstChild().setParent(this);
         }
     }
 
@@ -300,7 +300,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens
     public DetailAST getLastChild()
     {
         DetailAST ast = getFirstChild();
-        while ((ast != null) && (ast.getNextSibling() != null)) {
+        while (ast != null && ast.getNextSibling() != null) {
             ast = ast.getNextSibling();
         }
         return ast;

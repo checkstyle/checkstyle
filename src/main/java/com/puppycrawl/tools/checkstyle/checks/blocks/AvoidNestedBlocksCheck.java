@@ -116,8 +116,8 @@ public class AvoidNestedBlocksCheck extends Check
         final DetailAST parent = ast.getParent();
         if (parent.getType() == TokenTypes.SLIST) {
             if (allowInSwitchCase
-                    && (parent.getParent().getType() == TokenTypes.CASE_GROUP)
-                    && (parent.getNumberOfChildren() == 1))
+                    && parent.getParent().getType() == TokenTypes.CASE_GROUP
+                    && parent.getNumberOfChildren() == 1)
             {
                 return;
             }

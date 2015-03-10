@@ -89,7 +89,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     public void setHeaderFile(String fileName)
     {
         // Handle empty param
-        if ((fileName == null) || (fileName.trim().length() == 0)) {
+        if (fileName == null || fileName.trim().length() == 0) {
             return;
         }
 
@@ -183,7 +183,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      */
     public void setHeader(String header)
     {
-        if ((header == null) || (header.trim().length() == 0)) {
+        if (header == null || header.trim().length() == 0) {
             return;
         }
 

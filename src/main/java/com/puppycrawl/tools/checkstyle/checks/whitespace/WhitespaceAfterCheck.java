@@ -102,8 +102,8 @@ public class WhitespaceAfterCheck
         if (after < line.length()) {
 
             final char charAfter = line.charAt(after);
-            if ((targetAST.getType() == TokenTypes.SEMI)
-                && ((charAfter == ';') || (charAfter == ')')))
+            if (targetAST.getType() == TokenTypes.SEMI
+                && (charAfter == ';' || charAfter == ')'))
             {
                 return;
             }
@@ -112,9 +112,9 @@ public class WhitespaceAfterCheck
                 if (targetAST.getType() == TokenTypes.SEMI) {
                     final DetailAST sibling =
                         targetAST.getNextSibling();
-                    if ((sibling != null)
-                        && (sibling.getType() == TokenTypes.FOR_ITERATOR)
-                        && (sibling.getChildCount() == 0))
+                    if (sibling != null
+                        && sibling.getType() == TokenTypes.FOR_ITERATOR
+                        && sibling.getChildCount() == 0)
                     {
                         return;
                     }

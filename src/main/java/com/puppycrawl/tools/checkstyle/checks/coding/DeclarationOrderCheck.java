@@ -190,9 +190,9 @@ public class DeclarationOrderCheck extends Check
                 break;
 
             case TokenTypes.MODIFIERS:
-                if ((parentType != TokenTypes.VARIABLE_DEF)
-                    || (ast.getParent().getParent().getType()
-                        != TokenTypes.OBJBLOCK))
+                if (parentType != TokenTypes.VARIABLE_DEF
+                    || ast.getParent().getParent().getType()
+                        != TokenTypes.OBJBLOCK)
                 {
                     return;
                 }

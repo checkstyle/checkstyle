@@ -43,7 +43,7 @@ public final class Utils
     public static boolean fileExtensionMatches(File file, String[] fileExtensions)
     {
         boolean result = false;
-        if ((fileExtensions == null) || (fileExtensions.length == 0)) {
+        if (fileExtensions == null || fileExtensions.length == 0) {
             result = true;
         }
         else {

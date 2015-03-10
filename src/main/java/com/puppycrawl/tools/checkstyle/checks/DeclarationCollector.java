@@ -192,7 +192,7 @@ public abstract class DeclarationCollector extends Check
     protected final boolean isClassField(String name)
     {
         final LexicalFrame frame = findFrame(name);
-        return (frame instanceof ClassFrame)
+        return frame instanceof ClassFrame
                 && ((ClassFrame) frame).hasInstanceMember(name);
     }
 
@@ -204,7 +204,7 @@ public abstract class DeclarationCollector extends Check
     protected final boolean isClassMethod(String name)
     {
         final LexicalFrame frame = findFrame(name);
-        return (frame instanceof ClassFrame)
+        return frame instanceof ClassFrame
                 && ((ClassFrame) frame).hasInstanceMethod(name);
     }
 

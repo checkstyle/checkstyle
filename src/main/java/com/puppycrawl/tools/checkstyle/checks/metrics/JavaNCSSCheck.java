@@ -196,11 +196,11 @@ public class JavaNCSSCheck extends Check
     {
         final int tokenType = ast.getType();
 
-        if ((TokenTypes.CLASS_DEF == tokenType)
-            || (TokenTypes.METHOD_DEF == tokenType)
-            || (TokenTypes.CTOR_DEF == tokenType)
-            || (TokenTypes.STATIC_INIT == tokenType)
-            || (TokenTypes.INSTANCE_INIT == tokenType))
+        if (TokenTypes.CLASS_DEF == tokenType
+            || TokenTypes.METHOD_DEF == tokenType
+            || TokenTypes.CTOR_DEF == tokenType
+            || TokenTypes.STATIC_INIT == tokenType
+            || TokenTypes.INSTANCE_INIT == tokenType)
         {
             //add a counter for this class/method
             counters.push(new Counter());
@@ -219,10 +219,10 @@ public class JavaNCSSCheck extends Check
     public void leaveToken(DetailAST ast)
     {
         final int tokenType = ast.getType();
-        if ((TokenTypes.METHOD_DEF == tokenType)
-            || (TokenTypes.CTOR_DEF == tokenType)
-            || (TokenTypes.STATIC_INIT == tokenType)
-            || (TokenTypes.INSTANCE_INIT == tokenType))
+        if (TokenTypes.METHOD_DEF == tokenType
+            || TokenTypes.CTOR_DEF == tokenType
+            || TokenTypes.STATIC_INIT == tokenType
+            || TokenTypes.INSTANCE_INIT == tokenType)
         {
             //pop counter from the stack
             final Counter counter = counters.pop();
@@ -329,8 +329,8 @@ public class JavaNCSSCheck extends Check
         // object block
         final int parentType = ast.getParent().getType();
 
-        if ((TokenTypes.SLIST == parentType)
-            || (TokenTypes.OBJBLOCK == parentType))
+        if (TokenTypes.SLIST == parentType
+            || TokenTypes.OBJBLOCK == parentType)
         {
             final DetailAST prevSibling = ast.getPreviousSibling();
 
@@ -338,8 +338,8 @@ public class JavaNCSSCheck extends Check
             //the sibling is no COMMA.
             //This is done because multiple assignment on one line are countes
             // as 1
-            countable = (prevSibling == null)
-                    || (TokenTypes.COMMA != prevSibling.getType());
+            countable = prevSibling == null
+                    || TokenTypes.COMMA != prevSibling.getType();
         }
 
         return countable;
@@ -369,8 +369,8 @@ public class JavaNCSSCheck extends Check
             case TokenTypes.LITERAL_ELSE :
                 //don't count if or loop conditions
                 final DetailAST prevSibling = ast.getPreviousSibling();
-                countable = (prevSibling == null)
-                    || (TokenTypes.LPAREN != prevSibling.getType());
+                countable = prevSibling == null
+                    || TokenTypes.LPAREN != prevSibling.getType();
                 break;
             default :
                 countable = false;

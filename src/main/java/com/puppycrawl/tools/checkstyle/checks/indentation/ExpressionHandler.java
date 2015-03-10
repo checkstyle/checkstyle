@@ -155,7 +155,7 @@ public abstract class ExpressionHandler
                                   int actualLevel, IndentLevel expectedLevel)
     {
         final String typeStr =
-            ("".equals(subtypeName) ? "" : (" " + subtypeName));
+                "".equals(subtypeName) ? "" : " " + subtypeName;
         String messageKey = MSG_ERROR;
         if (expectedLevel.isMultiLevel()) {
             messageKey = MSG_ERROR_MULTI;
@@ -205,8 +205,8 @@ public abstract class ExpressionHandler
      */
     static boolean areOnSameLine(DetailAST ast1, DetailAST ast2)
     {
-        return (ast1 != null) && (ast2 != null)
-            && (ast1.getLineNo() == ast2.getLineNo());
+        return ast1 != null && ast2 != null
+            && ast1.getLineNo() == ast2.getLineNo();
     }
 
     /**
@@ -222,9 +222,9 @@ public abstract class ExpressionHandler
 
         while (child != null) {
             final DetailAST toTest = getFirstToken(child);
-            if ((toTest.getLineNo() < first.getLineNo())
-                || ((toTest.getLineNo() == first.getLineNo())
-                    && (toTest.getColumnNo() < first.getColumnNo())))
+            if (toTest.getLineNo() < first.getLineNo()
+                || toTest.getLineNo() == first.getLineNo()
+                    && toTest.getColumnNo() < first.getColumnNo())
             {
                 first = toTest;
             }
@@ -317,7 +317,7 @@ public abstract class ExpressionHandler
 
         IndentLevel theLevel = indentLevel;
         if (firstLineMatches
-            || ((firstLine > mainAst.getLineNo()) && shouldIncreaseIndent()))
+            || firstLine > mainAst.getLineNo() && shouldIncreaseIndent())
         {
             theLevel = new IndentLevel(indentLevel, getBasicOffset());
         }
@@ -369,7 +369,7 @@ public abstract class ExpressionHandler
         // error if this statement starts the line and it is less than
         // the correct indentation level
         if (mustMatch ? !indentLevel.accept(start)
-            : (colNum == start) && indentLevel.gt(start))
+            : colNum == start && indentLevel.gt(start))
         {
             logChildError(lineNum, start, indentLevel);
         }
@@ -504,7 +504,7 @@ public abstract class ExpressionHandler
         boolean allowNesting)
     {
         if (getIndentCheck().getHandlerFactory().isHandledType(tree.getType())
-            || (tree.getLineNo() < 0))
+            || tree.getLineNo() < 0)
         {
             return;
         }
@@ -513,7 +513,7 @@ public abstract class ExpressionHandler
         final Integer colNum = lines.getStartColumn(lineNum);
 
         final int thisLineColumn = expandedTabsColumnNo(tree);
-        if ((colNum == null) || (thisLineColumn < colNum.intValue())) {
+        if (colNum == null || thisLineColumn < colNum.intValue()) {
             lines.addLineAndCol(lineNum, thisLineColumn);
         }
 
@@ -621,7 +621,7 @@ public abstract class ExpressionHandler
 
         // or has <lparen level> + 1 indentation
         final int lparenLevel = expandedTabsColumnNo(lparen);
-        if (rparenLevel == (lparenLevel + 1)) {
+        if (rparenLevel == lparenLevel + 1) {
             return;
         }
 
@@ -636,7 +636,7 @@ public abstract class ExpressionHandler
     {
         // the rcurly can either be at the correct indentation, or on the
         // same line as the lcurly
-        if ((lparen == null)
+        if (lparen == null
             || getLevel().accept(expandedTabsColumnNo(lparen))
             || !startsLine(lparen))
         {

@@ -113,14 +113,14 @@ public class JavadocTag
     /** @return whether the tag is an 'throws' or 'exception' tag **/
     public boolean isThrowsTag()
     {
-        return (JavadocTagInfo.THROWS == tagInfo
-            || JavadocTagInfo.EXCEPTION == tagInfo);
+        return JavadocTagInfo.THROWS == tagInfo
+            || JavadocTagInfo.EXCEPTION == tagInfo;
     }
 
     /** @return whether the tag is a 'see' or 'inheritDoc' tag **/
     public boolean isSeeOrInheritDocTag()
     {
-        return (JavadocTagInfo.SEE == tagInfo || isInheritDocTag());
+        return JavadocTagInfo.SEE == tagInfo || isInheritDocTag();
     }
 
     /** @return whether the tag is a 'inheritDoc' tag **/
@@ -132,11 +132,11 @@ public class JavadocTag
     /** @return whether the tag can contain references to imported classes **/
     public boolean canReferenceImports()
     {
-        return (JavadocTagInfo.SEE == tagInfo
+        return JavadocTagInfo.SEE == tagInfo
                 || JavadocTagInfo.LINK == tagInfo
                 || JavadocTagInfo.LINKPLAIN == tagInfo
                 || JavadocTagInfo.THROWS == tagInfo
-                || JavadocTagInfo.EXCEPTION == tagInfo);
+                || JavadocTagInfo.EXCEPTION == tagInfo;
     }
 }
 

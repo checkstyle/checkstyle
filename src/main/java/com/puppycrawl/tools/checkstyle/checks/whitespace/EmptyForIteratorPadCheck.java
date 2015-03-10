@@ -94,12 +94,12 @@ public class EmptyForIteratorPadCheck
             final int after = semi.getColumnNo() + 1;
             //don't check if at end of line
             if (after < line.length()) {
-                if ((PadOption.NOSPACE == getAbstractOption())
-                    && (Character.isWhitespace(line.charAt(after))))
+                if (PadOption.NOSPACE == getAbstractOption()
+                    && Character.isWhitespace(line.charAt(after)))
                 {
                     log(semi.getLineNo(), after, WS_FOLLOWED, ";");
                 }
-                else if ((PadOption.SPACE == getAbstractOption())
+                else if (PadOption.SPACE == getAbstractOption()
                          && !Character.isWhitespace(line.charAt(after)))
                 {
                     log(semi.getLineNo(), after, WS_NOT_FOLLOWED, ";");

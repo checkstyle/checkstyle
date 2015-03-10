@@ -221,7 +221,7 @@ public class LineWrappingHandler
         DetailAST nodeToVisit = curNode.getFirstChild();
         DetailAST currentNode = curNode;
 
-        while ((currentNode != null) && (nodeToVisit == null)) {
+        while (currentNode != null && nodeToVisit == null) {
             nodeToVisit = currentNode.getNextSibling();
             if (nodeToVisit == null) {
                 currentNode = currentNode.getParent();

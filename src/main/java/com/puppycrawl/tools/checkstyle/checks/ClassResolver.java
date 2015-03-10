@@ -97,7 +97,7 @@ public class ClassResolver
 
         //inner class of this class???
         if (!"".equals(currentClass)) {
-            final String innerClass = (!"".equals(pkg) ? (pkg + ".") : "")
+            final String innerClass = (!"".equals(pkg) ? pkg + "." : "")
                 + currentClass + "$" + name;
             if (isLoadable(innerClass)) {
                 return safeLoad(innerClass);

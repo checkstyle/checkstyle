@@ -104,8 +104,8 @@ public class DesignForExtensionCheck extends Check
         // Note: native methods don't have impl in java code, so
         // implementation can be null even if method not abstract
         final DetailAST implementation = ast.findFirstToken(TokenTypes.SLIST);
-        if ((implementation != null)
-            && (implementation.getFirstChild().getType() == TokenTypes.RCURLY))
+        if (implementation != null
+            && implementation.getFirstChild().getType() == TokenTypes.RCURLY)
         {
             return;
         }
@@ -114,7 +114,7 @@ public class DesignForExtensionCheck extends Check
         final DetailAST classDef = findContainingClass(ast);
         final DetailAST classMods =
             classDef.findFirstToken(TokenTypes.MODIFIERS);
-        if ((classDef.getType() == TokenTypes.ENUM_DEF)
+        if (classDef.getType() == TokenTypes.ENUM_DEF
             || classMods.branchContains(TokenTypes.FINAL))
         {
             return;
@@ -160,8 +160,8 @@ public class DesignForExtensionCheck extends Check
     private DetailAST findContainingClass(DetailAST ast)
     {
         DetailAST searchAST = ast;
-        while ((searchAST.getType() != TokenTypes.CLASS_DEF)
-               && (searchAST.getType() != TokenTypes.ENUM_DEF))
+        while (searchAST.getType() != TokenTypes.CLASS_DEF
+               && searchAST.getType() != TokenTypes.ENUM_DEF)
         {
             searchAST = searchAST.getParent();
         }

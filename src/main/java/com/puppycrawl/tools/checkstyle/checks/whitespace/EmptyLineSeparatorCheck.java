@@ -250,8 +250,8 @@ public class EmptyLineSeparatorCheck extends Check
                     break;
                 case TokenTypes.IMPORT:
                     if (astType != nextToken.getType() && !hasEmptyLineAfter(ast)
-                        || (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)
-                            && ast.getPreviousSibling() == null))
+                        || ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)
+                            && ast.getPreviousSibling() == null)
                     {
                         log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
                     }

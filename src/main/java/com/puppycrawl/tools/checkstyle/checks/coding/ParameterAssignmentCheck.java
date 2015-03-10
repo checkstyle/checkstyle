@@ -206,11 +206,11 @@ public final class ParameterAssignmentCheck extends Check
      */
     private void checkIdent(DetailAST ast)
     {
-        if ((parameterNames != null) && !parameterNames.isEmpty()) {
+        if (parameterNames != null && !parameterNames.isEmpty()) {
             final DetailAST identAST = ast.getFirstChild();
 
-            if ((identAST != null)
-                && (identAST.getType() == TokenTypes.IDENT)
+            if (identAST != null
+                && identAST.getType() == TokenTypes.IDENT
                 && parameterNames.contains(identAST.getText()))
             {
                 log(ast.getLineNo(), ast.getColumnNo(),

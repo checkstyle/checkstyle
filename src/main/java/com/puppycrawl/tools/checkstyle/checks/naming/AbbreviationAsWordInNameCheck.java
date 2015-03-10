@@ -233,10 +233,10 @@ public class AbbreviationAsWordInNameCheck extends Check
                 result = true;
             }
             else {
-                result = (ignoreFinal
-                          && modifiers.branchContains(TokenTypes.FINAL))
-                    || (ignoreStatic
-                        && modifiers.branchContains(TokenTypes.LITERAL_STATIC));
+                result = ignoreFinal
+                          && modifiers.branchContains(TokenTypes.FINAL)
+                    || ignoreStatic
+                        && modifiers.branchContains(TokenTypes.LITERAL_STATIC);
             }
         }
         else if (ast.getType() == TokenTypes.METHOD_DEF) {

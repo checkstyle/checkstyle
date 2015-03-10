@@ -139,19 +139,19 @@ public class SuppressElement
     public boolean accept(AuditEvent event)
     {
         // file and check match?
-        if ((event.getFileName() == null)
+        if (event.getFileName() == null
                 || !fileRegexp.matcher(event.getFileName()).find()
-                || (event.getLocalizedMessage() == null)
-                || ((moduleId != null) && !moduleId.equals(event
-                        .getModuleId()))
-                || ((checkRegexp != null) && !checkRegexp.matcher(
-                        event.getSourceName()).find()))
+                || event.getLocalizedMessage() == null
+                || moduleId != null && !moduleId.equals(event
+                        .getModuleId())
+                || checkRegexp != null && !checkRegexp.matcher(
+                        event.getSourceName()).find())
         {
             return true;
         }
 
         // reject if no line/column matching
-        if ((lineFilter == null) && (columnFilter == null)) {
+        if (lineFilter == null && columnFilter == null) {
             return false;
         }
 

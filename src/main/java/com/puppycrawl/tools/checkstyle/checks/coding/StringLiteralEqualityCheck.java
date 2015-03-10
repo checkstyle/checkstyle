@@ -63,8 +63,8 @@ public class StringLiteralEqualityCheck extends Check
         final AST firstChild = ast.getFirstChild();
         final AST secondChild = firstChild.getNextSibling();
 
-        if ((firstChild.getType() == TokenTypes.STRING_LITERAL)
-                || (secondChild.getType() == TokenTypes.STRING_LITERAL))
+        if (firstChild.getType() == TokenTypes.STRING_LITERAL
+                || secondChild.getType() == TokenTypes.STRING_LITERAL)
         {
             log(ast.getLineNo(), ast.getColumnNo(),
                     MSG_KEY, ast.getText());

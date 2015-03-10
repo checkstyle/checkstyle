@@ -94,8 +94,8 @@ public enum JavadocTagInfo
                 || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.METHOD_DEF
                 || type == TokenTypes.CTOR_DEF
-                || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(ast));
+                || type == TokenTypes.VARIABLE_DEF
+                && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
 
@@ -115,8 +115,8 @@ public enum JavadocTagInfo
                 || type == TokenTypes.ENUM_DEF
                 || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.METHOD_DEF || type == TokenTypes.CTOR_DEF
-                || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(ast));
+                || type == TokenTypes.VARIABLE_DEF
+                && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
 
@@ -138,8 +138,8 @@ public enum JavadocTagInfo
                 || type == TokenTypes.CTOR_DEF
                 || type == TokenTypes.ENUM_CONSTANT_DEF
                 || type == TokenTypes.ANNOTATION_FIELD_DEF
-                || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(ast));
+                || type == TokenTypes.VARIABLE_DEF
+                && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
 
@@ -191,8 +191,8 @@ public enum JavadocTagInfo
                 || type == TokenTypes.ENUM_DEF
                 || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.METHOD_DEF || type == TokenTypes.CTOR_DEF
-                || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(ast));
+                || type == TokenTypes.VARIABLE_DEF
+                && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
 
@@ -212,8 +212,8 @@ public enum JavadocTagInfo
                 || type == TokenTypes.ENUM_DEF
                 || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.METHOD_DEF || type == TokenTypes.CTOR_DEF
-                || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(ast));
+                || type == TokenTypes.VARIABLE_DEF
+                && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
 
@@ -233,8 +233,8 @@ public enum JavadocTagInfo
                 || type == TokenTypes.ENUM_DEF
                 || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.METHOD_DEF || type == TokenTypes.CTOR_DEF
-                || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(ast));
+                || type == TokenTypes.VARIABLE_DEF
+                && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
 
@@ -291,8 +291,8 @@ public enum JavadocTagInfo
                 || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.METHOD_DEF
                 || type == TokenTypes.CTOR_DEF
-                || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(ast));
+                || type == TokenTypes.VARIABLE_DEF
+                && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
 
@@ -373,8 +373,8 @@ public enum JavadocTagInfo
                 || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.METHOD_DEF
                 || type == TokenTypes.CTOR_DEF
-                || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(ast));
+                || type == TokenTypes.VARIABLE_DEF
+                && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
 
@@ -410,8 +410,8 @@ public enum JavadocTagInfo
                 || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.METHOD_DEF
                 || type == TokenTypes.CTOR_DEF
-                || (type == TokenTypes.VARIABLE_DEF
-                && !ScopeUtils.isLocalVariableDef(ast));
+                || type == TokenTypes.VARIABLE_DEF
+                && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
 

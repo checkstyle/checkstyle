@@ -132,7 +132,7 @@ public class TranslationCheck
         final int underscoreIdx = filePath.indexOf(basenameSeparator,
             baseNameStart);
         final int dotIdx = filePath.indexOf('.', baseNameStart);
-        final int cutoffIdx = (underscoreIdx != -1) ? underscoreIdx : dotIdx;
+        final int cutoffIdx = underscoreIdx != -1 ? underscoreIdx : dotIdx;
         return filePath.substring(0, cutoffIdx);
     }
 

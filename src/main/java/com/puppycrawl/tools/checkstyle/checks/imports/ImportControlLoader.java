@@ -98,13 +98,13 @@ final class ImportControlLoader extends AbstractLoader
             // May have "exact-match" for "pkg"
             // May have "local-only"
             final boolean isAllow = "allow".equals(qName);
-            final boolean isLocalOnly = (atts.getValue("local-only") != null);
+            final boolean isLocalOnly = atts.getValue("local-only") != null;
             final String pkg = atts.getValue("pkg");
-            final boolean regex = (atts.getValue("regex") != null);
+            final boolean regex = atts.getValue("regex") != null;
             final Guard g;
             if (pkg != null) {
                 final boolean exactMatch =
-                    (atts.getValue("exact-match") != null);
+                        atts.getValue("exact-match") != null;
                 g = new Guard(isAllow, isLocalOnly, pkg, exactMatch, regex);
             }
             else {

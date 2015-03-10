@@ -123,7 +123,7 @@ public class MethodParamPadCheck
     public void visitToken(DetailAST ast)
     {
         final DetailAST parenAST;
-        if ((ast.getType() == TokenTypes.METHOD_CALL)) {
+        if (ast.getType() == TokenTypes.METHOD_CALL) {
             parenAST = ast;
         }
         else {
@@ -142,12 +142,12 @@ public class MethodParamPadCheck
         }
         else {
             final int before = parenAST.getColumnNo() - 1;
-            if ((PadOption.NOSPACE == getAbstractOption())
-                && (Character.isWhitespace(line.charAt(before))))
+            if (PadOption.NOSPACE == getAbstractOption()
+                && Character.isWhitespace(line.charAt(before)))
             {
                 log(parenAST , WS_PRECEDED, parenAST.getText());
             }
-            else if ((PadOption.SPACE == getAbstractOption())
+            else if (PadOption.SPACE == getAbstractOption()
                      && !Character.isWhitespace(line.charAt(before)))
             {
                 log(parenAST, WS_NOT_PRECEDED, parenAST.getText());

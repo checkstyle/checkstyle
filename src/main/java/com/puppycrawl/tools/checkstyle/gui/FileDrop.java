@@ -161,7 +161,7 @@ class FileDrop
             new DropTarget(c, dropListener);
         }
 
-        if (recursive && (c instanceof Container)) {
+        if (recursive && c instanceof Container) {
             final Container cont = (Container) c;
             final Component[] comps = cont.getComponents();
             for (Component element : comps)
@@ -178,7 +178,7 @@ class FileDrop
 
         // See if any of the flavors are a file list
         int i = 0;
-        while (!ok && (i < flavors.length)) {   // Is the flavor a file list?
+        while (!ok && i < flavors.length) {   // Is the flavor a file list?
             if (flavors[i].equals(DataFlavor.javaFileListFlavor))
                 ok = true;
             i++;
@@ -216,7 +216,7 @@ class FileDrop
     static void remove(Component c, boolean recursive)
     {
         c.setDropTarget(null);
-        if (recursive && (c instanceof Container)) {
+        if (recursive && c instanceof Container) {
             final Component[] comps = ((Container) c).getComponents();
             for (Component element : comps) {
                 remove(element, recursive);

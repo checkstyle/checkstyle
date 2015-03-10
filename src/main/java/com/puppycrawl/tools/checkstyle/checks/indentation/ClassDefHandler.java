@@ -41,9 +41,9 @@ public class ClassDefHandler extends BlockParentHandler
                            ExpressionHandler parent)
     {
         super(indentCheck,
-              (ast.getType() == TokenTypes.CLASS_DEF)
-              ? "class def" : ((ast.getType() == TokenTypes.ENUM_DEF)
-                  ? "enum def" : "interface def"),
+              ast.getType() == TokenTypes.CLASS_DEF
+              ? "class def" : ast.getType() == TokenTypes.ENUM_DEF
+                  ? "enum def" : "interface def",
               ast, parent);
     }
 

@@ -131,9 +131,9 @@ public class EqualsAvoidNullCheck extends Check
         //Also, checks if calling using strange inner class
         //syntax outter.inner.equals(otherObj) by looking
         //for the dot operator which cannot be improved
-        if ((objCalledOn.getType() == TokenTypes.STRING_LITERAL)
-                || (objCalledOn.getType() == TokenTypes.LITERAL_NEW)
-                || (objCalledOn.getType() == TokenTypes.DOT))
+        if (objCalledOn.getType() == TokenTypes.STRING_LITERAL
+                || objCalledOn.getType() == TokenTypes.LITERAL_NEW
+                || objCalledOn.getType() == TokenTypes.DOT)
         {
             return;
         }
@@ -166,7 +166,7 @@ public class EqualsAvoidNullCheck extends Check
      */
     private boolean containsNoArgs(final AST expr)
     {
-        return (expr == null);
+        return expr == null;
     }
 
     /**
@@ -179,7 +179,7 @@ public class EqualsAvoidNullCheck extends Check
     private boolean containsMultiArgs(final AST expr)
     {
         final AST comma = expr.getNextSibling();
-        return (comma != null) && (comma.getType() == TokenTypes.COMMA);
+        return comma != null && comma.getType() == TokenTypes.COMMA;
     }
 
     /**
@@ -226,8 +226,8 @@ public class EqualsAvoidNullCheck extends Check
         //(s += "SweetString").equals(s); //true
         //arg = skipVariablePlusAssign(arg);
 
-        if ((arg).branchContains(TokenTypes.PLUS_ASSIGN)
-                || (arg).branchContains(TokenTypes.IDENT))
+        if (arg.branchContains(TokenTypes.PLUS_ASSIGN)
+                || arg.branchContains(TokenTypes.IDENT))
         {
             return false;
         }
@@ -243,8 +243,8 @@ public class EqualsAvoidNullCheck extends Check
      */
     private DetailAST skipVariableAssign(final DetailAST currentAST)
     {
-        if ((currentAST.getType() == TokenTypes.ASSIGN)
-                && (currentAST.getFirstChild().getType() == TokenTypes.IDENT))
+        if (currentAST.getType() == TokenTypes.ASSIGN
+                && currentAST.getFirstChild().getType() == TokenTypes.IDENT)
         {
             return currentAST.getFirstChild().getNextSibling();
         }

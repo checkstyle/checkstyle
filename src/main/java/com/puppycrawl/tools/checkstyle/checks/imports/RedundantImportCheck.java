@@ -160,7 +160,7 @@ public class RedundantImportCheck
         boolean retVal = false;
         if (pkg == null) {
             // If not package, then check for no package in the import.
-            retVal = (importName.indexOf('.') == -1);
+            retVal = importName.indexOf('.') == -1;
         }
         else {
             final int index = importName.lastIndexOf('.');

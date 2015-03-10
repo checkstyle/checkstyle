@@ -40,7 +40,7 @@ public class MethodDefHandler extends BlockParentHandler
     public MethodDefHandler(IndentationCheck indentCheck,
         DetailAST ast, ExpressionHandler parent)
     {
-        super(indentCheck, (ast.getType() == TokenTypes.CTOR_DEF)
+        super(indentCheck, ast.getType() == TokenTypes.CTOR_DEF
             ? "ctor def" : "method def", ast, parent);
     }
 

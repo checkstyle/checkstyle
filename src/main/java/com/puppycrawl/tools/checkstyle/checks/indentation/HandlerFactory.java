@@ -206,10 +206,10 @@ public class HandlerFactory
     {
         ExpressionHandler theParent = parent;
         DetailAST astNode = ast.getFirstChild();
-        while ((astNode != null) && (astNode.getType() == TokenTypes.DOT)) {
+        while (astNode != null && astNode.getType() == TokenTypes.DOT) {
             astNode = astNode.getFirstChild();
         }
-        if ((astNode != null) && isHandledType(astNode.getType())) {
+        if (astNode != null && isHandledType(astNode.getType())) {
             theParent = getHandler(indentCheck, astNode, theParent);
             createdHandlers.put(astNode, theParent);
         }

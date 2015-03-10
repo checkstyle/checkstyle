@@ -247,7 +247,7 @@ public final class Utils
     public static String baseClassname(String type)
     {
         final int i = type.lastIndexOf(".");
-        return (i == -1) ? type : type.substring(i + 1);
+        return i == -1 ? type : type.substring(i + 1);
     }
 
     /**
@@ -260,7 +260,7 @@ public final class Utils
             final String basedir, final String fileName)
     {
         final String stripped;
-        if ((basedir == null) || !fileName.startsWith(basedir)) {
+        if (basedir == null || !fileName.startsWith(basedir)) {
             stripped = fileName;
         }
         else {

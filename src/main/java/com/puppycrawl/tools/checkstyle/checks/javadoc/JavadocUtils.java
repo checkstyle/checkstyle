@@ -162,7 +162,7 @@ public final class JavadocUtils
                         final String tagName = tagMatcher.group(1);
                         final String tagValue = tagMatcher.group(2).trim();
                         final int line = cmt.getStartLineNo() + i;
-                        int col = commentOffset + (tagMatcher.start(1) - 1);
+                        int col = commentOffset + tagMatcher.start(1) - 1;
                         if (i == 0) {
                             col += cmt.getStartColNo();
                         }
@@ -302,7 +302,7 @@ public final class JavadocUtils
             }
 
             DetailNode toVisit = getFirstChild(curNode);
-            while ((curNode != null) && (toVisit == null)) {
+            while (curNode != null && toVisit == null) {
                 toVisit = getNextSibling(curNode);
                 if (toVisit == null) {
                     curNode = curNode.getParent();

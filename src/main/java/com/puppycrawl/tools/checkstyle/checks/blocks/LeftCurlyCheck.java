@@ -190,7 +190,7 @@ public class LeftCurlyCheck
             case TokenTypes.ENUM_CONSTANT_DEF :
                 startToken = skipAnnotationOnlyLines(ast);
                 final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
-                brace = (objBlock == null)
+                brace = objBlock == null
                     ? null
                     : objBlock.getFirstChild();
                 break;
@@ -211,7 +211,7 @@ public class LeftCurlyCheck
                 startToken = ast;
                 final DetailAST candidate = ast.getFirstChild();
                 brace =
-                    (candidate.getType() == TokenTypes.SLIST)
+                    candidate.getType() == TokenTypes.SLIST
                     ? candidate
                     : null; // silently ignore
                 break;
@@ -226,7 +226,7 @@ public class LeftCurlyCheck
                 brace = null;
         }
 
-        if ((brace != null) && (startToken != null)) {
+        if (brace != null && startToken != null) {
             verifyBrace(brace, startToken);
         }
     }
@@ -260,8 +260,8 @@ public class LeftCurlyCheck
         }
         final int lastAnnotLineNumber = lastAnnot.getLineNo();
         while (lastAnnot.getPreviousSibling() != null
-               && (lastAnnot.getPreviousSibling().getLineNo()
-                    == lastAnnotLineNumber))
+               && lastAnnot.getPreviousSibling().getLineNo()
+                    == lastAnnotLineNumber)
         {
             lastAnnot = lastAnnot.getPreviousSibling();
         }
@@ -299,13 +299,13 @@ public class LeftCurlyCheck
         // calculate the previous line length without trailing whitespace. Need
         // to handle the case where there is no previous line, cause the line
         // being check is the first line in the file.
-        final int prevLineLen = (brace.getLineNo() == 1)
+        final int prevLineLen = brace.getLineNo() == 1
             ? maxLineLength
             : Utils.lengthMinusTrailingWhitespace(getLine(brace.getLineNo() - 2));
 
         // Check for being told to ignore, or have '{}' which is a special case
-        if ((braceLine.length() > (brace.getColumnNo() + 1))
-            && (braceLine.charAt(brace.getColumnNo() + 1) == '}'))
+        if (braceLine.length() > brace.getColumnNo() + 1
+            && braceLine.charAt(brace.getColumnNo() + 1) == '}')
         {
             ; // ignore
         }
@@ -317,7 +317,7 @@ public class LeftCurlyCheck
         }
         else if (getAbstractOption() == LeftCurlyOption.EOL) {
             if (Utils.whitespaceBefore(brace.getColumnNo(), braceLine)
-                && ((prevLineLen + 2) <= maxLineLength))
+                && prevLineLen + 2 <= maxLineLength)
             {
                 log(brace.getLineNo(), brace.getColumnNo(),
                     MSG_KEY_LINE_PREVIOUS, "{");
@@ -330,12 +330,12 @@ public class LeftCurlyCheck
             if (startToken.getLineNo() == brace.getLineNo()) {
                 ; // all ok as on the same line
             }
-            else if ((startToken.getLineNo() + 1) == brace.getLineNo()) {
+            else if (startToken.getLineNo() + 1 == brace.getLineNo()) {
                 if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
                     log(brace.getLineNo(), brace.getColumnNo(),
                         MSG_KEY_LINE_NEW, "{");
                 }
-                else if ((prevLineLen + 2) <= maxLineLength) {
+                else if (prevLineLen + 2 <= maxLineLength) {
                     log(brace.getLineNo(), brace.getColumnNo(),
                         MSG_KEY_LINE_PREVIOUS, "{");
                 }

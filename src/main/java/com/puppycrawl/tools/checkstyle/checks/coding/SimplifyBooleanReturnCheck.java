@@ -134,13 +134,13 @@ public class SimplifyBooleanReturnCheck
      */
     private static boolean isBooleanLiteralReturnStatement(AST ast)
     {
-        if ((ast == null) || (ast.getType() != TokenTypes.LITERAL_RETURN)) {
+        if (ast == null || ast.getType() != TokenTypes.LITERAL_RETURN) {
             return false;
         }
 
         final AST expr = ast.getFirstChild();
 
-        if ((expr == null) || (expr.getType() == TokenTypes.SEMI)) {
+        if (expr == null || expr.getType() == TokenTypes.SEMI) {
             return false;
         }
 
@@ -155,8 +155,8 @@ public class SimplifyBooleanReturnCheck
      */
     private static boolean isBooleanLiteralType(final int tokenType)
     {
-        final boolean iastrue = (tokenType == TokenTypes.LITERAL_TRUE);
-        final boolean isFalse = (tokenType == TokenTypes.LITERAL_FALSE);
+        final boolean iastrue = tokenType == TokenTypes.LITERAL_TRUE;
+        final boolean isFalse = tokenType == TokenTypes.LITERAL_FALSE;
         return iastrue || isFalse;
     }
 }

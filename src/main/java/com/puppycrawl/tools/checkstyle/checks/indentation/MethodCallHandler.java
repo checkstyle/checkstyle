@@ -53,7 +53,7 @@ public class MethodCallHandler extends ExpressionHandler
         // an expression, so get the previous line's start
         if (getParent() instanceof MethodCallHandler) {
             final MethodCallHandler container =
-                ((MethodCallHandler) getParent());
+                    (MethodCallHandler) getParent();
             if (container != null) {
                 if (areOnSameLine(container.getMainAst(), getMainAst())) {
                     return container.getLevel();
@@ -65,14 +65,14 @@ public class MethodCallHandler extends ExpressionHandler
                 final DetailAST dot = main.getFirstChild();
                 final DetailAST target = dot.getFirstChild();
 
-                if ((dot.getType() == TokenTypes.DOT)
-                    && (target.getType() == TokenTypes.METHOD_CALL))
+                if (dot.getType() == TokenTypes.DOT
+                    && target.getType() == TokenTypes.METHOD_CALL)
                 {
                     final DetailAST dot1 = target.getFirstChild();
                     final DetailAST target1 = dot1.getFirstChild();
 
-                    if ((dot1.getType() == TokenTypes.DOT)
-                        && (target1.getType() == TokenTypes.METHOD_CALL))
+                    if (dot1.getType() == TokenTypes.DOT
+                        && target1.getType() == TokenTypes.METHOD_CALL)
                     {
                         return container.getLevel();
                     }
@@ -117,7 +117,7 @@ public class MethodCallHandler extends ExpressionHandler
         // call name
 
         DetailAST astNode = ast.getFirstChild();
-        while ((astNode != null) && (astNode.getType() == TokenTypes.DOT)) {
+        while (astNode != null && astNode.getType() == TokenTypes.DOT) {
             astNode = astNode.getFirstChild();
         }
 

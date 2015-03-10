@@ -64,8 +64,8 @@ public class ArrayTypeStyleCheck extends Check
         final DetailAST variableAST = typeAST.getNextSibling();
         if (variableAST != null) {
             final boolean isJavaStyle =
-                (variableAST.getLineNo() > ast.getLineNo())
-                || (variableAST.getColumnNo() > ast.getColumnNo());
+                variableAST.getLineNo() > ast.getLineNo()
+                || variableAST.getColumnNo() > ast.getColumnNo();
 
             if (isJavaStyle != javaStyle) {
                 log(ast.getLineNo(), ast.getColumnNo(), "array.type.style");

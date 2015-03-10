@@ -154,7 +154,7 @@ public final class PackageNamesLoader
         //being created anew for each file
         final PackageNamesLoader namesLoader = newPackageNamesLoader();
 
-        while ((null != packageFiles) && packageFiles.hasMoreElements()) {
+        while (null != packageFiles && packageFiles.hasMoreElements()) {
             final URL packageFile = packageFiles.nextElement();
             InputStream stream = null;
 

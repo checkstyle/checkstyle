@@ -347,7 +347,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
 
         final String osName = System.getProperty("os.name").toLowerCase(
                 Locale.US);
-        final boolean onNetWare = (osName.indexOf("netware") > -1);
+        final boolean onNetWare = osName.indexOf("netware") > -1;
 
         String path = normalizingPath.replace('/', File.separatorChar).replace('\\',
             File.separatorChar);
@@ -357,15 +357,15 @@ public class Checker extends AutomaticBean implements MessageDispatcher
 
         if (!onNetWare) {
             if (!path.startsWith(File.separator)
-                && !((path.length() >= 2)
-                     && Character.isLetter(path.charAt(0)) && (colon == 1)))
+                && !(path.length() >= 2
+                     && Character.isLetter(path.charAt(0)) && colon == 1))
             {
                 final String msg = path + " is not an absolute path";
                 throw new IllegalArgumentException(msg);
             }
         }
         else {
-            if (!path.startsWith(File.separator) && (colon == -1)) {
+            if (!path.startsWith(File.separator) && colon == -1) {
                 final String msg = path + " is not an absolute path";
                 throw new IllegalArgumentException(msg);
             }
@@ -374,9 +374,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher
         boolean dosWithDrive = false;
         String root = null;
         // Eliminate consecutive slashes after the drive spec
-        if ((!onNetWare && (path.length() >= 2)
-             && Character.isLetter(path.charAt(0)) && (path.charAt(1) == ':'))
-            || (onNetWare && (colon > -1)))
+        if (!onNetWare && path.length() >= 2
+             && Character.isLetter(path.charAt(0)) && path.charAt(1) == ':'
+            || onNetWare && colon > -1)
         {
 
             dosWithDrive = true;
@@ -395,8 +395,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
             // Eliminate consecutive slashes after the drive spec
             final StringBuilder sbPath = new StringBuilder();
             for (int i = colon + 1; i < ca.length; i++) {
-                if ((ca[i] != '\\') || ((ca[i] == '\\') && (ca[i - 1] != '\\')))
-                {
+                if (ca[i] != '\\' || ca[i] == '\\' && ca[i - 1] != '\\') {
                     sbPath.append(ca[i]);
                 }
             }

@@ -117,7 +117,7 @@ public final class OneStatementPerLineCheck extends Check
         exprDepth++;
         if (exprDepth == 1
                 && !inForHeader
-                && (lastStatementEnd == ast.getLineNo()))
+                && lastStatementEnd == ast.getLineNo())
         {
             log(ast, MSG_KEY);
         }

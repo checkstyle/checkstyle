@@ -73,7 +73,7 @@ public class MissingCtorCheck extends DescendantTokenCheck
     public void visitToken(DetailAST ast)
     {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if ((modifiers != null)
+        if (modifiers != null
             && modifiers.branchContains(TokenTypes.ABSTRACT))
         {
             // should apply the check to abstract class

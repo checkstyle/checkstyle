@@ -347,29 +347,29 @@ public class WhitespaceAroundCheck extends Check
         final int parentType = ast.getParent().getType();
 
         // Check for CURLY in array initializer
-        if (((currentType == TokenTypes.RCURLY)
-                || (currentType == TokenTypes.LCURLY))
-            && ((parentType == TokenTypes.ARRAY_INIT)
-                || (parentType == TokenTypes.ANNOTATION_ARRAY_INIT)))
+        if ((currentType == TokenTypes.RCURLY
+                || currentType == TokenTypes.LCURLY)
+            && (parentType == TokenTypes.ARRAY_INIT
+                || parentType == TokenTypes.ANNOTATION_ARRAY_INIT))
         {
             return;
         }
 
         // Check for import pkg.name.*;
-        if ((currentType == TokenTypes.STAR)
-            && (parentType == TokenTypes.DOT))
+        if (currentType == TokenTypes.STAR
+            && parentType == TokenTypes.DOT)
         {
             return;
         }
 
         // Check for an SLIST that has a parent CASE_GROUP. It is not a '{'.
-        if ((currentType == TokenTypes.SLIST)
-            && (parentType == TokenTypes.CASE_GROUP))
+        if (currentType == TokenTypes.SLIST
+            && parentType == TokenTypes.CASE_GROUP)
         {
             return;
         }
 
-        if ((currentType == TokenTypes.COLON)) {
+        if (currentType == TokenTypes.COLON) {
             //we do not want to check colon for cases and defaults
             if (parentType == TokenTypes.LITERAL_DEFAULT
                 || parentType == TokenTypes.LITERAL_CASE)
@@ -392,7 +392,7 @@ public class WhitespaceAroundCheck extends Check
         }
 
         // Checks if empty classes, interfaces or enums are allowed
-        if (allowEmptyTypes && (isEmptyType(ast, parentType))) {
+        if (allowEmptyTypes && isEmptyType(ast, parentType)) {
             return;
         }
 
@@ -400,7 +400,7 @@ public class WhitespaceAroundCheck extends Check
         final int before = ast.getColumnNo() - 1;
         final int after = ast.getColumnNo() + ast.getText().length();
 
-        if ((before >= 0) && !Character.isWhitespace(line.charAt(before))) {
+        if (before >= 0 && !Character.isWhitespace(line.charAt(before))) {
             log(ast.getLineNo(), ast.getColumnNo(),
                     WS_NOT_PRECEDED, ast.getText());
         }
@@ -412,14 +412,14 @@ public class WhitespaceAroundCheck extends Check
         final char nextChar = line.charAt(after);
         if (!Character.isWhitespace(nextChar)
             // Check for "return;"
-            && !((currentType == TokenTypes.LITERAL_RETURN)
-                && (ast.getFirstChild().getType() == TokenTypes.SEMI))
+            && !(currentType == TokenTypes.LITERAL_RETURN
+                && ast.getFirstChild().getType() == TokenTypes.SEMI)
             // Check for "})" or "};" or "},". Happens with anon-inners
-            && !((currentType == TokenTypes.RCURLY)
-                && ((nextChar == ')')
-                    || (nextChar == ';')
-                    || (nextChar == ',')
-                    || (nextChar == '.'))))
+            && !(currentType == TokenTypes.RCURLY
+                && (nextChar == ')'
+                    || nextChar == ';'
+                    || nextChar == ','
+                    || nextChar == '.')))
         {
             log(ast.getLineNo(), ast.getColumnNo() + ast.getText().length(),
                     WS_NOT_FOLLOWED, ast.getText());
@@ -524,12 +524,12 @@ public class WhitespaceAroundCheck extends Check
         final int type = ast.getType();
         if (type == TokenTypes.RCURLY) {
             final DetailAST grandParent = ast.getParent().getParent();
-            return (parentType == TokenTypes.SLIST)
-                && (grandParent.getType() == match);
+            return parentType == TokenTypes.SLIST
+                && grandParent.getType() == match;
         }
 
-        return (type == TokenTypes.SLIST)
-            && (parentType == match)
-            && (ast.getFirstChild().getType() == TokenTypes.RCURLY);
+        return type == TokenTypes.SLIST
+            && parentType == match
+            && ast.getFirstChild().getType() == TokenTypes.RCURLY;
     }
 }

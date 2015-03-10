@@ -217,10 +217,10 @@ public class AvoidEscapedUnicodeCharactersCheck
         if (hasUnicodeChar(literal)) {
             if (!(allowByTailComment && haastrailComment(ast)
                     || isAllCharactersEscaped(literal)
-                    || (allowEscapesForControlCharacters
-                            && isOnlyUnicodeValidChars(literal, sUnicodeControl))
-                    || (allowNonPrintableEscapes
-                            && isOnlyUnicodeValidChars(literal, sNonPrintableChars))))
+                    || allowEscapesForControlCharacters
+                            && isOnlyUnicodeValidChars(literal, sUnicodeControl)
+                    || allowNonPrintableEscapes
+                            && isOnlyUnicodeValidChars(literal, sNonPrintableChars)))
             {
                 log(ast.getLineNo(), "forbid.escaped.unicode.char");
             }

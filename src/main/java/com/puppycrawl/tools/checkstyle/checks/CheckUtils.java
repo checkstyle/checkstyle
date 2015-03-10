@@ -69,7 +69,7 @@ public final class CheckUtils
 
         // one parameter?
         final DetailAST paramsNode = ast.findFirstToken(TokenTypes.PARAMETERS);
-        return (paramsNode.getChildCount() == 1);
+        return paramsNode.getChildCount() == 1;
     }
 
     /**
@@ -81,7 +81,7 @@ public final class CheckUtils
     {
         final DetailAST parentAST = ast.getParent();
 
-        return (ast.getType() == TokenTypes.LITERAL_IF)
+        return ast.getType() == TokenTypes.LITERAL_IF
             && (isElse(parentAST) || isElseWithCurlyBraces(parentAST));
     }
 
@@ -103,8 +103,8 @@ public final class CheckUtils
      */
     private static boolean isElseWithCurlyBraces(DetailAST ast)
     {
-        return (ast.getType() == TokenTypes.SLIST)
-            && (ast.getChildCount() == 2)
+        return ast.getType() == TokenTypes.SLIST
+            && ast.getChildCount() == 2
             && isElse(ast.getParent());
     }
 
@@ -169,7 +169,7 @@ public final class CheckUtils
                     radix = BASE_8;
                     txt = txt.substring(1);
                 }
-                if ((txt.endsWith("L")) || (txt.endsWith("l"))) {
+                if (txt.endsWith("L") || txt.endsWith("l")) {
                     txt = txt.substring(0, txt.length() - 1);
                 }
                 if (txt.length() > 0) {
@@ -257,9 +257,9 @@ public final class CheckUtils
         DetailAST child = node.getFirstChild();
         while (child != null) {
             final DetailAST newNode = getFirstNode(child);
-            if ((newNode.getLineNo() < currentNode.getLineNo())
-                || ((newNode.getLineNo() == currentNode.getLineNo())
-                    && (newNode.getColumnNo() < currentNode.getColumnNo())))
+            if (newNode.getLineNo() < currentNode.getLineNo()
+                || newNode.getLineNo() == currentNode.getLineNo()
+                    && newNode.getColumnNo() < currentNode.getColumnNo())
             {
                 currentNode = newNode;
             }

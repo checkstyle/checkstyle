@@ -244,11 +244,11 @@ public class JavadocTypeCheck
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
 
         return scope.isIn(this.scope)
-            && ((surroundingScope == null) || surroundingScope.isIn(this.scope))
-            && ((excludeScope == null)
+            && (surroundingScope == null || surroundingScope.isIn(this.scope))
+            && (excludeScope == null
                 || !scope.isIn(excludeScope)
-                || ((surroundingScope != null)
-                && !surroundingScope.isIn(excludeScope)));
+                || surroundingScope != null
+                && !surroundingScope.isIn(excludeScope));
     }
 
     /**
@@ -313,8 +313,8 @@ public class JavadocTypeCheck
         for (int i = tags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = tags.get(i);
             if (tag.isParamTag()
-                && (tag.getArg1() != null)
-                && (tag.getArg1().indexOf("<" + typeParamName + ">") == 0))
+                && tag.getArg1() != null
+                && tag.getArg1().indexOf("<" + typeParamName + ">") == 0)
             {
                 found = true;
             }

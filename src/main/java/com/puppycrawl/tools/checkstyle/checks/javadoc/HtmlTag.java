@@ -58,7 +58,7 @@ class HtmlTag
     HtmlTag(String id, int lineNo, int position, boolean closedTag,
             boolean incomplete, String text)
     {
-        this.id = (!"".equals(id) && (id.charAt(0) == '/'))
+        this.id = !"".equals(id) && id.charAt(0) == '/'
             ? id.substring(1) : id;
         this.lineNo = lineNo;
         this.position = position;
@@ -82,10 +82,10 @@ class HtmlTag
      */
     public boolean isCloseTag()
     {
-        if (position == (text.length() - 1)) {
+        if (position == text.length() - 1) {
             return false;
         }
-        return (text.charAt(position + 1) == '/');
+        return text.charAt(position + 1) == '/';
     }
 
     /**

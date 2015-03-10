@@ -172,8 +172,8 @@ public final class MissingOverrideCheck extends Check
         }
 
         if (containastag
-            && (!AnnotationUtility.containsAnnotation(ast, OVERRIDE)
-            && !AnnotationUtility.containsAnnotation(ast, FQ_OVERRIDE)))
+            && !AnnotationUtility.containsAnnotation(ast, OVERRIDE)
+            && !AnnotationUtility.containsAnnotation(ast, FQ_OVERRIDE))
         {
             this.log(ast.getLineNo(), MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
         }

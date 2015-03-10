@@ -190,7 +190,7 @@ public class SuppressionCommentFilter
                 return column - object.column;
             }
 
-            return (line - object.line);
+            return line - object.line;
         }
 
         /**
@@ -426,7 +426,7 @@ public class SuppressionCommentFilter
             tagSuppressions();
         }
         final Tag matchTag = findNearestMatch(event);
-        if ((matchTag != null) && !matchTag.isOn()) {
+        if (matchTag != null && !matchTag.isOn()) {
             return false;
         }
         return true;
@@ -444,9 +444,9 @@ public class SuppressionCommentFilter
         // TODO: try binary search if sequential search becomes a performance
         // problem.
         for (Tag tag : tags) {
-            if ((tag.getLine() > event.getLine())
-                || ((tag.getLine() == event.getLine())
-                    && (tag.getColumn() > event.getColumn())))
+            if (tag.getLine() > event.getLine()
+                || tag.getLine() == event.getLine()
+                    && tag.getColumn() > event.getColumn())
             {
                 break;
             }

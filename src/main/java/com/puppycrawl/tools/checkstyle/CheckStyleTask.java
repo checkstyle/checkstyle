@@ -284,7 +284,7 @@ public class CheckStyleTask extends Task
         log("compiled on " + compileTimestamp, Project.MSG_VERBOSE);
 
         // Check for no arguments
-        if ((fileName == null) && fileSets.isEmpty()) {
+        if (fileName == null && fileSets.isEmpty()) {
             throw new BuildException(
                     "Must specify at least one of 'file' or nested 'fileset'.",
                     getLocation());
@@ -320,8 +320,8 @@ public class CheckStyleTask extends Task
             log("To process the files took " + (endTime - startTime) + " ms.",
                 Project.MSG_VERBOSE);
             final int numWarnings = warningCounter.getCount();
-            final boolean ok = (numErrs <= maxErrors)
-                    && (numWarnings <= maxWarnings);
+            final boolean ok = numErrs <= maxErrors
+                    && numWarnings <= maxWarnings;
 
             // Handle the return status
             if (!ok) {
@@ -565,7 +565,7 @@ public class CheckStyleTask extends Task
          */
         public AuditListener createListener(Task task) throws IOException
         {
-            if ((formatterType != null)
+            if (formatterType != null
                     && E_XML.equals(formatterType.getValue()))
             {
                 return createXMLLogger(task);
@@ -581,7 +581,7 @@ public class CheckStyleTask extends Task
         private AuditListener createDefaultLogger(Task task)
             throws IOException
         {
-            if ((toFile == null) || !useFile) {
+            if (toFile == null || !useFile) {
                 return new DefaultLogger(
                     new LogOutputStream(task, Project.MSG_DEBUG),
                     true, new LogOutputStream(task, Project.MSG_ERR), true);
@@ -596,7 +596,7 @@ public class CheckStyleTask extends Task
          */
         private AuditListener createXMLLogger(Task task) throws IOException
         {
-            if ((toFile == null) || !useFile) {
+            if (toFile == null || !useFile) {
                 return new XMLLogger(new LogOutputStream(task,
                         Project.MSG_INFO), true);
             }

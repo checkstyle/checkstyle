@@ -113,8 +113,8 @@ class Guard
         else {
             pkgMatch = forImport.startsWith(pkgName + ".");
             if (pkgMatch && exactMatch) {
-                pkgMatch = (forImport.indexOf('.',
-                    (pkgName.length() + 1)) == -1);
+                pkgMatch = forImport.indexOf('.',
+                        pkgName.length() + 1) == -1;
             }
         }
         return calculateResult(pkgMatch);

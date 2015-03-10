@@ -44,8 +44,8 @@ public class TryHandler extends BlockParentHandler
     @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler child)
     {
-        if ((child instanceof CatchHandler)
-            || (child instanceof FinallyHandler))
+        if (child instanceof CatchHandler
+            || child instanceof FinallyHandler)
         {
             return getLevel();
         }

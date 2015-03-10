@@ -80,7 +80,7 @@ final class PropertyCacheFile
                 final String cachedConfigHash =
                     details.getProperty(CONFIG_HASH_KEY);
                 setInActive = false;
-                if ((cachedConfigHash == null)
+                if (cachedConfigHash == null
                     || !cachedConfigHash.equals(currentConfigHash))
                 {
                     // Detected configuration change - clear cache
@@ -102,7 +102,7 @@ final class PropertyCacheFile
                 Utils.closeQuietly(inStream);
             }
         }
-        detailsFile = (setInActive) ? null : fileName;
+        detailsFile = setInActive ? null : fileName;
     }
 
     /** Cleans up the object and updates the cache file. **/
@@ -152,8 +152,8 @@ final class PropertyCacheFile
     boolean alreadyChecked(String fileName, long timestamp)
     {
         final String lastChecked = details.getProperty(fileName);
-        return (lastChecked != null)
-            && (lastChecked.equals(Long.toString(timestamp)));
+        return lastChecked != null
+            && lastChecked.equals(Long.toString(timestamp));
     }
 
     /**
@@ -225,7 +225,7 @@ final class PropertyCacheFile
         final StringBuilder buf = new StringBuilder(2 * byteArray.length);
         for (final byte b : byteArray) {
             final int low = b & MASK_0X0F;
-            final int high = (b >> SHIFT_4) & MASK_0X0F;
+            final int high = b >> SHIFT_4 & MASK_0X0F;
             buf.append(HEX_CHARS[high]);
             buf.append(HEX_CHARS[low]);
         }

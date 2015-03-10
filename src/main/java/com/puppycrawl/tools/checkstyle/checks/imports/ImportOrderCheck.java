@@ -257,7 +257,7 @@ public class ImportOrderCheck
 
             case ABOVE:
                 // previous non-static but current is static
-                doVisitToken(ident, isStatic, (!lastImportStatic && isStatic));
+                doVisitToken(ident, isStatic, !lastImportStatic && isStatic);
                 break;
 
             case INFLOW:
@@ -274,7 +274,7 @@ public class ImportOrderCheck
 
             case UNDER:
                 // previous static but current is non-static
-                doVisitToken(ident, isStatic, (lastImportStatic && !isStatic));
+                doVisitToken(ident, isStatic, lastImportStatic && !isStatic);
                 break;
 
             default:
@@ -306,7 +306,7 @@ public class ImportOrderCheck
                 if (!beforeFirstImport && separated) {
                     // This check should be made more robust to handle
                     // comments and imports that span more than one line.
-                    if ((line - lastImportLine) < 2) {
+                    if (line - lastImportLine < 2) {
                         log(line, MSG_SEPARATION, name);
                     }
                 }
@@ -349,10 +349,10 @@ public class ImportOrderCheck
             final boolean shouldFireError =
                 // current and previous static or current and
                 // previous non-static
-                (!(lastImportStatic ^ isStatic)
+                !(lastImportStatic ^ isStatic)
                 &&
                 // and out of lexicographic order
-                (compare(lastImport, name, caseSensitive) > 0))
+                        compare(lastImport, name, caseSensitive) > 0
                 ||
                 // previous non-static but current is static (above)
                 // or
@@ -383,8 +383,8 @@ public class ImportOrderCheck
             final Matcher matcher = groups[i].matcher(name);
             while (matcher.find()) {
                 final int length = matcher.end() - matcher.start();
-                if ((length > bestLength)
-                    || ((length == bestLength) && (matcher.start() < bestPos)))
+                if (length > bestLength
+                    || length == bestLength && matcher.start() < bestPos)
                 {
                     bestIndex = i;
                     bestLength = length;

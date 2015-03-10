@@ -111,15 +111,15 @@ class TagParser
             else {
                 // find end of tag
                 final Point endTag = findChar(text, '>', position);
-                final boolean incompleteTag = (endTag.getLineNo() >= nLines);
+                final boolean incompleteTag = endTag.getLineNo() >= nLines;
                 // get tag id (one word)
                 final String tagId =
-                    (incompleteTag ? "" : getTagId(text, position));
+                        incompleteTag ? "" : getTagId(text, position);
                 // is this closed tag
                 final boolean closedTag =
-                    ((endTag.getLineNo() < nLines) && (endTag.getColumnNo() > 0)
-                     && (text[endTag.getLineNo()]
-                     .charAt(endTag.getColumnNo() - 1) == '/'));
+                        endTag.getLineNo() < nLines && endTag.getColumnNo() > 0
+                         && text[endTag.getLineNo()]
+                         .charAt(endTag.getColumnNo() - 1) == '/';
                 // add new tag
                 add(new HtmlTag(tagId,
                                 position.getLineNo() + lineNo,
@@ -146,11 +146,11 @@ class TagParser
 
         //Character.isJavidentifier... may not be a valid HTML
         //identifier but is valid for generics
-        return ((column < text.length())
+        return column < text.length()
                 && (Character.isJavaIdentifierStart(text.charAt(column))
                     || Character.isJavaIdentifierPart(text.charAt(column))
                     || text.charAt(column) == '/')
-                || (column >= text.length()));
+                || column >= text.length();
     }
 
     /**
@@ -208,7 +208,7 @@ class TagParser
     {
         Point to = from;
         to = findChar(text, '>', to);
-        while ((to.getLineNo() < text.length)
+        while (to.getLineNo() < text.length
                && !text[to.getLineNo()]
                .substring(0, to.getColumnNo() + 1).endsWith("-->"))
         {
@@ -227,8 +227,8 @@ class TagParser
     private Point findChar(String[] text, char character, Point from)
     {
         Point curr = new Point(from.getLineNo(), from.getColumnNo());
-        while ((curr.getLineNo() < text.length)
-               && (text[curr.getLineNo()].charAt(curr.getColumnNo()) != character))
+        while (curr.getLineNo() < text.length
+               && text[curr.getLineNo()].charAt(curr.getColumnNo()) != character)
         {
             curr = getNextCharPos(text, curr);
         }
@@ -247,21 +247,21 @@ class TagParser
     {
         int line = from.getLineNo();
         int column = from.getColumnNo() + 1;
-        while ((line < text.length) && (column >= text[line].length())) {
+        while (line < text.length && column >= text[line].length()) {
             // go to the next line
             line++;
             column = 0;
             if (line < text.length) {
                 //skip beginning spaces and stars
                 final String currentLine = text[line];
-                while ((column < currentLine.length())
+                while (column < currentLine.length()
                        && (Character.isWhitespace(currentLine.charAt(column))
-                           || (currentLine.charAt(column) == '*')))
+                           || currentLine.charAt(column) == '*'))
                 {
                     column++;
-                    if ((column < currentLine.length())
-                        && (currentLine.charAt(column - 1) == '*')
-                        && (currentLine.charAt(column) == '/'))
+                    if (column < currentLine.length()
+                        && currentLine.charAt(column - 1) == '*'
+                        && currentLine.charAt(column) == '/')
                     {
                         // this is end of comment
                         column = currentLine.length();

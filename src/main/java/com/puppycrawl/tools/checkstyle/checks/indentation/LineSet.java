@@ -53,7 +53,7 @@ public class LineSet
     public int firstLineCol()
     {
         final Object firstLineKey = lines.firstKey();
-        return (lines.get(firstLineKey)).intValue();
+        return lines.get(firstLineKey).intValue();
     }
 
     /**
@@ -63,7 +63,7 @@ public class LineSet
      */
     public int firstLine()
     {
-        return (lines.firstKey()).intValue();
+        return lines.firstKey().intValue();
     }
 
     /**
@@ -73,7 +73,7 @@ public class LineSet
      */
     public int lastLine()
     {
-        return (lines.lastKey()).intValue();
+        return lines.lastKey().intValue();
     }
 
     /**

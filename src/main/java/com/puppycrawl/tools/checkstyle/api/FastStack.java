@@ -95,7 +95,7 @@ public class FastStack<E> implements Iterable<E>
      */
     public E peek(int index)
     {
-        if ((index < 0) || (index >= entries.size())) {
+        if (index < 0 || index >= entries.size()) {
             throw new IllegalArgumentException("index out of range.");
         }
         return entries.get(index);

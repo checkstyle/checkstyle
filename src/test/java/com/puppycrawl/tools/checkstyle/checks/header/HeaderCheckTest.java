@@ -64,7 +64,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpHeaderCheck.class);
-        URI uri = (new File(getPath("regexp.header"))).toURI();
+        URI uri = new File(getPath("regexp.header")).toURI();
         checkConfig.addAttribute("headerFile", uri.toString());
         final String[] expected = {
             "3: " + getCheckMessage(MSG_MISMATCH, "// Created: 2002"),

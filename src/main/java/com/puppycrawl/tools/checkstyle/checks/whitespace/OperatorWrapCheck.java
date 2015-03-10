@@ -188,8 +188,8 @@ public class OperatorWrapCheck
     {
         if (ast.getType() == TokenTypes.COLON) {
             final DetailAST parent = ast.getParent();
-            if ((parent.getType() == TokenTypes.LITERAL_DEFAULT)
-                || (parent.getType() == TokenTypes.LITERAL_CASE))
+            if (parent.getType() == TokenTypes.LITERAL_DEFAULT
+                || parent.getType() == TokenTypes.LITERAL_CASE)
             {
                 //we do not want to check colon for cases and defaults
                 return;
@@ -206,14 +206,14 @@ public class OperatorWrapCheck
         // Check if rest of line is whitespace, and not just the operator
         // by itself. This last bit is to handle the operator on a line by
         // itself.
-        if ((wOp == WrapOption.NL)
+        if (wOp == WrapOption.NL
             && !text.equals(currentLine.trim())
-            && (currentLine.substring(colNo + text.length())
-                .trim().length() == 0))
+            && currentLine.substring(colNo + text.length())
+                .trim().length() == 0)
         {
             log(lineNo, colNo, LINE_NEW, text);
         }
-        else if ((wOp == WrapOption.EOL)
+        else if (wOp == WrapOption.EOL
                   && Utils.whitespaceBefore(colNo - 1, currentLine))
         {
             log(lineNo, colNo, LINE_PREVIOUS, text);

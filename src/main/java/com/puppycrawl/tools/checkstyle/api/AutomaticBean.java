@@ -139,7 +139,7 @@ public class AutomaticBean
                 // figure out if the bean property really exists.
                 final PropertyDescriptor pd =
                     PropertyUtils.getPropertyDescriptor(this, key);
-                if ((pd == null) || (pd.getWriteMethod() == null)) {
+                if (pd == null || pd.getWriteMethod() == null) {
                     throw new CheckstyleException(
                         "Property '" + key + "' in module "
                         + configuration.getName()

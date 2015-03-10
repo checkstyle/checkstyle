@@ -208,7 +208,7 @@ public final class BooleanExpressionComplexityCheck extends Check
     private void visitExpr()
     {
         contextStack.push(context);
-        context = new Context((context == null) || context.isChecking());
+        context = new Context(context == null || context.isChecking());
     }
 
     /**
@@ -268,7 +268,7 @@ public final class BooleanExpressionComplexityCheck extends Check
          */
         public void checkCount(DetailAST ast)
         {
-            if (checking && (count > getMax())) {
+            if (checking && count > getMax()) {
                 final DetailAST parentAST = ast.getParent();
 
                 log(parentAST.getLineNo(), parentAST.getColumnNo(),

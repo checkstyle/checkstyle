@@ -186,7 +186,7 @@ public class SuppressWithNearbyCommentFilter
                 return lastLine - other.lastLine;
             }
 
-            return (firstLine - other.firstLine);
+            return firstLine - other.firstLine;
         }
 
         /**

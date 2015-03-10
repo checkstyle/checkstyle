@@ -72,14 +72,14 @@ public class StaticVariableNameCheck
     {
         final DetailAST modifiersAST =
             ast.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isStatic = (modifiersAST != null)
+        final boolean isStatic = modifiersAST != null
             && modifiersAST.branchContains(TokenTypes.LITERAL_STATIC);
-        final boolean isFinal = (modifiersAST != null)
+        final boolean isFinal = modifiersAST != null
             && modifiersAST.branchContains(TokenTypes.FINAL);
 
-        return (isStatic
+        return isStatic
                 && !isFinal
                 && shouldCheckInScope(modifiersAST)
-                && !ScopeUtils.inInterfaceOrAnnotationBlock(ast));
+                && !ScopeUtils.inInterfaceOrAnnotationBlock(ast);
     }
 }

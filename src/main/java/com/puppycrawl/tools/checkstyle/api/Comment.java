@@ -106,7 +106,7 @@ public class Comment implements TextBlock
         final long inStart = startLineNo * multiplier + startColNo;
         final long inEnd = endLineNo * multiplier + endColNo;
 
-        return !((thisEnd < inStart) || (inEnd < thisStart));
+        return !(thisEnd < inStart || inEnd < thisStart);
     }
 
     @Override

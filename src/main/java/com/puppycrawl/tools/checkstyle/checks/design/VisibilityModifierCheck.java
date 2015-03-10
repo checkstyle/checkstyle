@@ -552,13 +552,13 @@ public class VisibilityModifierCheck
             final Set<String> classModifiers = getModifiers(classDef);
 
             result =
-                (mods.contains("static") && mods.contains("final"))
-                || (isPackageAllowed() && "package".equals(variableScope))
-                || (isProtectedAllowed() && "protected".equals(variableScope))
-                || ("public".equals(variableScope)
+                mods.contains("static") && mods.contains("final")
+                || isPackageAllowed() && "package".equals(variableScope)
+                || isProtectedAllowed() && "protected".equals(variableScope)
+                || "public".equals(variableScope)
                    && getPublicMemberRegexp().matcher(variableName).find()
-                   || (allowPublicImmutableFields
-                      && classModifiers.contains("final") && isImmutableField(variableDef)));
+                   || allowPublicImmutableFields
+                      && classModifiers.contains("final") && isImmutableField(variableDef);
         }
 
         return result;
@@ -641,9 +641,9 @@ public class VisibilityModifierCheck
             final boolean isCanonicalName = type.getFirstChild().getType() == TokenTypes.DOT;
             final String typeName = getTypeName(type, isCanonicalName);
 
-            result = (!isCanonicalName && isPrimitive(type))
+            result = !isCanonicalName && isPrimitive(type)
                      || immutableClassShortNames.contains(typeName)
-                     || (isCanonicalName && immutableClassCanonicalNames.contains(typeName));
+                     || isCanonicalName && immutableClassCanonicalNames.contains(typeName);
         }
         return result;
     }

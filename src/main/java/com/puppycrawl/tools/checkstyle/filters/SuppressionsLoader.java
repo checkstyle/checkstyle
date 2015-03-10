@@ -100,7 +100,7 @@ public final class SuppressionsLoader
             }
             final String checks = atts.getValue("checks");
             final String modId = atts.getValue("id");
-            if ((checks == null) && (modId == null)) {
+            if (checks == null && modId == null) {
                 throw new SAXException("missing checks and id attribute");
             }
             final SuppressElement suppress;

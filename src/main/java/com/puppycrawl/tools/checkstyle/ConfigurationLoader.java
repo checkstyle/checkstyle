@@ -519,7 +519,7 @@ public final class ConfigurationLoader
             }
             //if we are at the end of the string, we tack on a $
             //then move past it
-            if (pos == (value.length() - 1)) {
+            if (pos == value.length() - 1) {
                 fragments.add("$");
                 prev = pos + 1;
             }

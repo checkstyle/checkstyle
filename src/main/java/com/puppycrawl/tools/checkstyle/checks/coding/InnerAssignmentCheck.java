@@ -197,7 +197,7 @@ public class InnerAssignmentCheck
         }
         final DetailAST expr = ast.getParent();
         final AST exprNext = expr.getNextSibling();
-        return (exprNext != null) && (exprNext.getType() == TokenTypes.SEMI);
+        return exprNext != null && exprNext.getType() == TokenTypes.SEMI;
     }
 
     /**
@@ -231,7 +231,7 @@ public class InnerAssignmentCheck
     private static boolean isComparison(DetailAST ast)
     {
         final int astType = ast.getType();
-        return (Arrays.binarySearch(COMPARISON_TYPES, astType) >= 0);
+        return Arrays.binarySearch(COMPARISON_TYPES, astType) >= 0;
     }
 
     /**
@@ -252,7 +252,7 @@ public class InnerAssignmentCheck
             for (int j = 0; j < len; j++) {
                 current = current.getParent();
                 final int expectedType = element[j];
-                if ((current == null) || (current.getType() != expectedType)) {
+                if (current == null || current.getType() != expectedType) {
                     break;
                 }
                 if (j == len - 1) {

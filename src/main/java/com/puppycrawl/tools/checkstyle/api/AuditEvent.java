@@ -118,7 +118,7 @@ public final class AuditEvent
     /** @return the audit event severity level **/
     public SeverityLevel getSeverityLevel()
     {
-        return (message == null)
+        return message == null
             ? SeverityLevel.INFO
             : message.getSeverityLevel();
     }

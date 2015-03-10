@@ -79,21 +79,21 @@ public class MultipleVariableDeclarationsCheck extends Check
     {
         DetailAST nextNode = ast.getNextSibling();
         final boolean isCommaSeparated =
-            ((nextNode != null) && (nextNode.getType() == TokenTypes.COMMA));
+                nextNode != null && nextNode.getType() == TokenTypes.COMMA;
 
         if (nextNode == null) {
             // no next statement - no check
             return;
         }
 
-        if ((nextNode.getType() == TokenTypes.COMMA)
-            || (nextNode.getType() == TokenTypes.SEMI))
+        if (nextNode.getType() == TokenTypes.COMMA
+            || nextNode.getType() == TokenTypes.SEMI)
         {
             nextNode = nextNode.getNextSibling();
         }
 
-        if ((nextNode != null)
-            && (nextNode.getType() == TokenTypes.VARIABLE_DEF))
+        if (nextNode != null
+            && nextNode.getType() == TokenTypes.VARIABLE_DEF)
         {
             final DetailAST firstNode = CheckUtils.getFirstNode(ast);
             if (isCommaSeparated) {
@@ -130,9 +130,9 @@ public class MultipleVariableDeclarationsCheck extends Check
         DetailAST child = node.getFirstChild();
         while (child != null) {
             final DetailAST newNode = getLastNode(child);
-            if ((newNode.getLineNo() > currentNode.getLineNo())
-                || ((newNode.getLineNo() == currentNode.getLineNo())
-                    && (newNode.getColumnNo() > currentNode.getColumnNo())))
+            if (newNode.getLineNo() > currentNode.getLineNo()
+                || newNode.getLineNo() == currentNode.getLineNo()
+                    && newNode.getColumnNo() > currentNode.getColumnNo())
             {
                 currentNode = newNode;
             }

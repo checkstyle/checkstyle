@@ -56,7 +56,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
      */
     public void setMultiLines(int[] list)
     {
-        if ((list == null) || (list.length == 0)) {
+        if (list == null || list.length == 0) {
             multiLines = EMPTY_INT_ARRAY;
             return;
         }
@@ -78,12 +78,12 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
         else {
             int headerLineNo = 0;
             int i;
-            for (i = 0; (headerLineNo < headerSize) && (i < fileSize); i++) {
+            for (i = 0; headerLineNo < headerSize && i < fileSize; i++) {
                 final String line = lines.get(i);
                 boolean isMatch = isMatch(line, headerLineNo);
                 while (!isMatch && isMultiLine(headerLineNo)) {
                     headerLineNo++;
-                    isMatch = (headerLineNo == headerSize)
+                    isMatch = headerLineNo == headerSize
                             || isMatch(line, headerLineNo);
                 }
                 if (!isMatch) {
@@ -125,7 +125,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
      */
     private boolean isMultiLine(int lineNo)
     {
-        return (Arrays.binarySearch(multiLines, lineNo + 1) >= 0);
+        return Arrays.binarySearch(multiLines, lineNo + 1) >= 0;
     }
 
     @Override

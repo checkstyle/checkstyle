@@ -151,7 +151,7 @@ public class ModifierOrderCheck
         do {
             modifier = it.next();
         }
-        while (it.hasNext() && (modifier.getType() == TokenTypes.ANNOTATION));
+        while (it.hasNext() && modifier.getType() == TokenTypes.ANNOTATION);
 
         //All modifiers are annotations, no problem
         if (modifier.getType() == TokenTypes.ANNOTATION) {
@@ -164,7 +164,7 @@ public class ModifierOrderCheck
                 return modifier;
             }
 
-            while ((i < JLS_ORDER.length)
+            while (i < JLS_ORDER.length
                    && !JLS_ORDER[i].equals(modifier.getText()))
             {
                 i++;

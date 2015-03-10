@@ -205,7 +205,7 @@ public final class FileText extends AbstractList<String>
      */
     public static FileText fromLines(File file, List<String> lines)
     {
-        return (lines instanceof FileText)
+        return lines instanceof FileText
             ? (FileText) lines
             : new FileText(file, lines);
     }

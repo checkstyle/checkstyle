@@ -196,15 +196,15 @@ public class UnnecessaryParenthesesCheck extends Check
         final boolean surrounded = isSurrounded(ast);
         final DetailAST parent = ast.getParent();
 
-        if ((type == TokenTypes.ASSIGN)
-            && (parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR))
+        if (type == TokenTypes.ASSIGN
+            && parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
         {
             // shouldn't process assign in annotation pairs
             return;
         }
 
         // An identifier surrounded by parentheses.
-        if (surrounded && (type == TokenTypes.IDENT)) {
+        if (surrounded && type == TokenTypes.IDENT) {
             parentToSkip = ast.getParent();
             log(ast, MSG_IDENT, ast.getText());
             return;
@@ -239,8 +239,8 @@ public class UnnecessaryParenthesesCheck extends Check
         final int type = ast.getType();
         final DetailAST parent = ast.getParent();
 
-        if ((type == TokenTypes.ASSIGN)
-            && (parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR))
+        if (type == TokenTypes.ASSIGN
+            && parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
         {
             // shouldn't process assign in annotation pairs
             return;
@@ -253,7 +253,7 @@ public class UnnecessaryParenthesesCheck extends Check
             // warning about an immediate child node in visitToken, so we don't
             // need to log another one here.
 
-            if ((parentToSkip != ast) && exprSurrounded(ast)) {
+            if (parentToSkip != ast && exprSurrounded(ast)) {
                 if (assignDepth >= 1) {
                     log(ast, MSG_ASSIGN);
                 }
@@ -291,8 +291,8 @@ public class UnnecessaryParenthesesCheck extends Check
         final DetailAST prev = ast.getPreviousSibling();
         final DetailAST next = ast.getNextSibling();
 
-        return (prev != null) && (prev.getType() == TokenTypes.LPAREN)
-            && (next != null) && (next.getType() == TokenTypes.RPAREN);
+        return prev != null && prev.getType() == TokenTypes.LPAREN
+            && next != null && next.getType() == TokenTypes.RPAREN;
     }
 
     /**
@@ -314,8 +314,8 @@ public class UnnecessaryParenthesesCheck extends Check
             final AST n1 = ast.getFirstChild();
             final AST nn = ast.getLastChild();
 
-            surrounded = (n1.getType() == TokenTypes.LPAREN)
-                && (nn.getType() == TokenTypes.RPAREN);
+            surrounded = n1.getType() == TokenTypes.LPAREN
+                && nn.getType() == TokenTypes.RPAREN;
         }
         return surrounded;
     }
@@ -334,7 +334,7 @@ public class UnnecessaryParenthesesCheck extends Check
         //       HashMap to do the searches.
 
         boolean found = false;
-        for (int i = 0; (i < tokens.length) && !found; i++) {
+        for (int i = 0; i < tokens.length && !found; i++) {
             found = tokens[i] == type;
         }
         return found;

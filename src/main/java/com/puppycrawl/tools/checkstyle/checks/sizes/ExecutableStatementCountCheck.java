@@ -185,10 +185,10 @@ public final class ExecutableStatementCountCheck
             DetailAST parent = ast.getParent();
             while (parent != null) {
                 final int type = parent.getType();
-                if ((type == TokenTypes.CTOR_DEF)
-                    || (type == TokenTypes.METHOD_DEF)
-                    || (type == TokenTypes.INSTANCE_INIT)
-                    || (type == TokenTypes.STATIC_INIT))
+                if (type == TokenTypes.CTOR_DEF
+                    || type == TokenTypes.METHOD_DEF
+                    || type == TokenTypes.INSTANCE_INIT
+                    || type == TokenTypes.STATIC_INIT)
                 {
                     if (parent == contextAST) {
                         context.addCount(ast.getChildCount() / 2);

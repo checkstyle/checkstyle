@@ -135,7 +135,7 @@ public class MethodNameCheck
             // new Outclass.InnerInterface(x) { ... }
             // Such a rare case, will not have the logic to handle parsing
             // down the tree looking for the first ident.
-            if ((null != classIdent)
+            if (null != classIdent
                 && method.getText().equals(classIdent.getText()))
             {
                 log(method.getLineNo(), method.getColumnNo(),

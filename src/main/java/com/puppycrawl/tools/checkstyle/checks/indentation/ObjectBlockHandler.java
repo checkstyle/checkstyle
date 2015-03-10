@@ -110,7 +110,7 @@ public class ObjectBlockHandler extends BlockParentHandler
         final IndentLevel level = curlyLevel();
         level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndent());
 
-        if ((rcurly != null) && !level.accept(rcurlyPos)
+        if (rcurly != null && !level.accept(rcurlyPos)
             && (rcurlyMustStart() || startsLine(rcurly))
                 && !areOnSameLine(rcurly, lcurly))
         {

@@ -92,8 +92,8 @@ public class MultipleStringLiteralsCheck extends Check
      */
     public void setIgnoreStringsRegexp(String ignoreStringsRegexp)
     {
-        if ((ignoreStringsRegexp != null)
-            && (ignoreStringsRegexp.length() > 0))
+        if (ignoreStringsRegexp != null
+            && ignoreStringsRegexp.length() > 0)
         {
             pattern = Utils.getPattern(ignoreStringsRegexp);
         }
@@ -134,7 +134,7 @@ public class MultipleStringLiteralsCheck extends Check
             return;
         }
         final String currentString = ast.getText();
-        if ((pattern == null) || !pattern.matcher(currentString).find()) {
+        if (pattern == null || !pattern.matcher(currentString).find()) {
             List<StringInfo> hitList = stringMap.get(currentString);
             if (hitList == null) {
                 hitList = Lists.newArrayList();

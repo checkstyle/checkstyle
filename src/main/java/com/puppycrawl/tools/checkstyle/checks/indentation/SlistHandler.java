@@ -55,10 +55,10 @@ public class SlistHandler extends BlockParentHandler
         //  preceded by a switch
 
         // if our parent is a block handler we want to be transparent
-        if (((getParent() instanceof BlockParentHandler)
-                && !(getParent() instanceof SlistHandler))
-            || ((getParent() instanceof CaseHandler)
-                && (child instanceof SlistHandler)))
+        if (getParent() instanceof BlockParentHandler
+                && !(getParent() instanceof SlistHandler)
+            || getParent() instanceof CaseHandler
+                && child instanceof SlistHandler)
         {
             return getParent().suggestedChildLevel(child);
         }
@@ -107,17 +107,17 @@ public class SlistHandler extends BlockParentHandler
     private boolean hasBlockParent()
     {
         final int parentType = getMainAst().getParent().getType();
-        return (parentType == TokenTypes.LITERAL_IF)
-            || (parentType == TokenTypes.LITERAL_FOR)
-            || (parentType == TokenTypes.LITERAL_WHILE)
-            || (parentType == TokenTypes.LITERAL_DO)
-            || (parentType == TokenTypes.LITERAL_ELSE)
-            || (parentType == TokenTypes.LITERAL_TRY)
-            || (parentType == TokenTypes.LITERAL_CATCH)
-            || (parentType == TokenTypes.LITERAL_FINALLY)
-            || (parentType == TokenTypes.CTOR_DEF)
-            || (parentType == TokenTypes.METHOD_DEF)
-            || (parentType == TokenTypes.STATIC_INIT);
+        return parentType == TokenTypes.LITERAL_IF
+            || parentType == TokenTypes.LITERAL_FOR
+            || parentType == TokenTypes.LITERAL_WHILE
+            || parentType == TokenTypes.LITERAL_DO
+            || parentType == TokenTypes.LITERAL_ELSE
+            || parentType == TokenTypes.LITERAL_TRY
+            || parentType == TokenTypes.LITERAL_CATCH
+            || parentType == TokenTypes.LITERAL_FINALLY
+            || parentType == TokenTypes.CTOR_DEF
+            || parentType == TokenTypes.METHOD_DEF
+            || parentType == TokenTypes.STATIC_INIT;
     }
 
     @Override

@@ -110,7 +110,7 @@ public class MagicNumberCheck extends Check
         }
 
         if (inIgnoreList(ast)
-            || (ignoreHashCodeMethod && isInHashCodeMethod(ast)))
+            || ignoreHashCodeMethod && isInHashCodeMethod(ast))
         {
             return;
         }
@@ -143,9 +143,9 @@ public class MagicNumberCheck extends Check
     private DetailAST findContainingConstantDef(DetailAST ast)
     {
         DetailAST varDefAST = ast;
-        while ((varDefAST != null)
-                && (varDefAST.getType() != TokenTypes.VARIABLE_DEF)
-                && (varDefAST.getType() != TokenTypes.ENUM_CONSTANT_DEF))
+        while (varDefAST != null
+                && varDefAST.getType() != TokenTypes.VARIABLE_DEF
+                && varDefAST.getType() != TokenTypes.ENUM_CONSTANT_DEF)
         {
             varDefAST = varDefAST.getParent();
         }
@@ -157,7 +157,7 @@ public class MagicNumberCheck extends Check
 
         // implicit constant?
         if (ScopeUtils.inInterfaceOrAnnotationBlock(varDefAST)
-            || (varDefAST.getType() == TokenTypes.ENUM_CONSTANT_DEF))
+            || varDefAST.getType() == TokenTypes.ENUM_CONSTANT_DEF)
         {
             return varDefAST;
         }
@@ -215,8 +215,8 @@ public class MagicNumberCheck extends Check
 
         // find the method definition AST
         DetailAST methodDefAST = ast.getParent();
-        while ((null != methodDefAST)
-                && (TokenTypes.METHOD_DEF != methodDefAST.getType()))
+        while (null != methodDefAST
+                && TokenTypes.METHOD_DEF != methodDefAST.getType())
         {
             methodDefAST = methodDefAST.getParent();
         }
@@ -258,7 +258,7 @@ public class MagicNumberCheck extends Check
         if (parent.getType() == TokenTypes.UNARY_MINUS) {
             value = -1 * value;
         }
-        return (Arrays.binarySearch(ignoreNumbers, value) >= 0);
+        return Arrays.binarySearch(ignoreNumbers, value) >= 0;
     }
 
     /**
@@ -268,7 +268,7 @@ public class MagicNumberCheck extends Check
      */
     public void setIgnoreNumbers(double[] list)
     {
-        if ((list == null) || (list.length == 0)) {
+        if (list == null || list.length == 0) {
             ignoreNumbers = new double[0];
         }
         else {
@@ -307,14 +307,14 @@ public class MagicNumberCheck extends Check
      */
     private boolean isInAnnotation(DetailAST ast)
     {
-        if ((null == ast.getParent())
-                || (null == ast.getParent().getParent()))
+        if (null == ast.getParent()
+                || null == ast.getParent().getParent())
         {
             return false;
         }
 
-        return (TokenTypes.ANNOTATION == ast.getParent().getParent().getType())
-                || (TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR
-                        == ast.getParent().getParent().getType());
+        return TokenTypes.ANNOTATION == ast.getParent().getParent().getType()
+                || TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR
+                        == ast.getParent().getParent().getType();
     }
 }
