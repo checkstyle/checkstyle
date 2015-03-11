@@ -80,7 +80,7 @@ class PackageObjectFactory implements ModuleFactory
             return createObject(name);
         }
         catch (final CheckstyleException ex) {
-            ; // keep looking
+            // keep looking
         }
 
         //now try packages
@@ -91,7 +91,7 @@ class PackageObjectFactory implements ModuleFactory
                 return createObject(className);
             }
             catch (final CheckstyleException ex) {
-                ; // keep looking
+                // keep looking
             }
         }
 

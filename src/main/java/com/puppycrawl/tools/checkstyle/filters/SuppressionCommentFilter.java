@@ -453,7 +453,7 @@ public class SuppressionCommentFilter
             if (tag.isMatch(event)) {
                 result = tag;
             }
-        };
+        }
         return result;
     }
 

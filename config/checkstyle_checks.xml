@@ -57,7 +57,9 @@
 
     <module name="AvoidStarImport"/>
     <module name="ConstantName"/>
-    <module name="EmptyBlock"/>
+    <module name="EmptyBlock">
+      <property name="option" value="text"/>
+    </module>
     <module name="EmptyForIteratorPad"/>
     <module name="EqualsHashCode"/>
     <module name="OneStatementPerLine"/>

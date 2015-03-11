@@ -48,5 +48,5 @@ public enum RightCurlyOption
      * } finally {
      * </pre>
      **/
-    SAME;
+    SAME
 }

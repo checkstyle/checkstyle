@@ -639,6 +639,6 @@ public enum JavadocTagInfo
         BLOCK,
 
         /** inline type. **/
-        INLINE;
+        INLINE
     }
 }

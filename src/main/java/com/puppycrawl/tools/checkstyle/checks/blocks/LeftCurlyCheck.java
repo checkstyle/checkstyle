@@ -307,7 +307,7 @@ public class LeftCurlyCheck
         if (braceLine.length() > brace.getColumnNo() + 1
             && braceLine.charAt(brace.getColumnNo() + 1) == '}')
         {
-            ; // ignore
+            // ignore
         }
         else if (getAbstractOption() == LeftCurlyOption.NL) {
             if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
@@ -328,7 +328,7 @@ public class LeftCurlyCheck
         }
         else if (getAbstractOption() == LeftCurlyOption.NLOW) {
             if (startToken.getLineNo() == brace.getLineNo()) {
-                ; // all ok as on the same line
+                // all ok as on the same line
             }
             else if (startToken.getLineNo() + 1 == brace.getLineNo()) {
                 if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {

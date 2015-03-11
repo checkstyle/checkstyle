@@ -69,5 +69,5 @@ public enum LeftCurlyOption
      *     ...
      * </pre>
      */
-    NL;
+    NL
 }

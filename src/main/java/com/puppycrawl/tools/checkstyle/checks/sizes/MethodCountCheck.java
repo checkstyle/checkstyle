@@ -119,7 +119,7 @@ public final class MethodCountCheck extends Check
         {
             return total;
         }
-    };
+    }
 
     /** default maximum number of methods */
     private static final int DEFAULT_MAX_METHODS = 100;
