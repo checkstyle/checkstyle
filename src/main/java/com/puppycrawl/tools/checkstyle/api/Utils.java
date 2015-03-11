@@ -284,7 +284,7 @@ public final class Utils
                 shutting.close();
             }
             catch (IOException e) {
-                ; // ignore
+                // ignore
             }
         }
     }

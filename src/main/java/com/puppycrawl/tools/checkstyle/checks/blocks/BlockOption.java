@@ -46,5 +46,5 @@ public enum BlockOption
      * }
      * </pre>
      */
-    STMT;
+    STMT
 }

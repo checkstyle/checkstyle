@@ -195,7 +195,7 @@ public final class JavadocUtils
         /** inline type. */
         INLINE,
         /** all validTags. */
-        ALL;
+        ALL
     }
 
     /**

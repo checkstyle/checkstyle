@@ -193,7 +193,6 @@ public final class ConfigurationLoader
                 }
                 catch (final CheckstyleException e) {
                     //severity not set -> ignore
-                    ;
                 }
 
                 // omit this module if these should be omitted and the module

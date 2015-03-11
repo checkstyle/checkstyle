@@ -267,7 +267,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check
         if (ignoreFinal && modifiers.branchContains(TokenTypes.FINAL)
                 || parentType == TokenTypes.OBJBLOCK)
         {
-            ;// no code
+            // no code
         }
         else {
             final DetailAST variable = ast.findFirstToken(TokenTypes.IDENT);
@@ -593,7 +593,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check
                 else if (currentNodeType == TokenTypes.VARIABLE_DEF
                         || currentNodeType == TokenTypes.EXPR)
                 {
-                    ; // no code
+                    // no code
                 }
                 else {
                     firstNodeInsideBlock = currentNode;
@@ -856,7 +856,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check
                         break;
 
                     default:
-                        ;// no code
+                        // no code
                 }
             }
         }
