@@ -74,7 +74,7 @@
           Empty Line Separator Check, fixed Exception if file doesn't have header. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/621">#621</a>
         </li>
         <li>
-          BooleanExpressionComplexity misidentifies integer expression as boolean expression. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/572">#572</a>
+          BooleanExpressionComplexity misidentifies integer expression as boolean expression. Author: Yuriy Chulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/572">#572</a>
         </li>
       </ul>
 
@@ -236,10 +236,10 @@
           Got rid of javadoc warning. Resolved maven compilation warnings. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/548">#548</a>
         </li>
         <li>
-          Refactored tests from blocks package. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/537">#537</a>
+          Refactored tests from blocks package. Author: Yuriy Chulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/537">#537</a>
         </li>
         <li>
-          Turn on -r recursive by default in CLI. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/3">#3</a>
+          Turn on -r recursive by default in CLI. Author: Yuriy Chulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/3">#3</a>
         </li>
         <li>
           Fixes for suppression examples. Author: Michał Kordas <a href="https://github.com/checkstyle/checkstyle/issues/537">#289</a>
@@ -287,19 +287,19 @@
           Generic Whitespace Check, fixed bug - '>' is followed by an illegal character. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/350">#350</a>
         </li>
         <li>
-          InnerTypeLast within methods. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/6">#6</a>
+          InnerTypeLast within methods. Author: Yuriy Chulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/6">#6</a>
         </li>
         <li>
-          AnnotationUseStyle closingParens check failed. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/131">#131</a>
+          AnnotationUseStyle closingParens check failed. Author: Yuriy Chulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/131">#131</a>
         </li>
         <li>
-          RequireThis triggers when try-with-resources defines resource with same name as method. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/257">#257</a>
+          RequireThis triggers when try-with-resources defines resource with same name as method. Author: Yuriy Chulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/257">#257</a>
         </li>
         <li>
-          NullPointerException with SuppressWarningsHolder and enum fields. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/353">#353</a>
+          NullPointerException with SuppressWarningsHolder and enum fields. Author: Yuriy Chulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/353">#353</a>
         </li>
         <li>
-          ParameterNumber check option to ignore methods with an @Override. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/66">#66</a>
+          ParameterNumber check option to ignore methods with an @Override. Author: Yuriy Chulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/66">#66</a>
         </li>
         <li>
           MutableException check requires class to explicitly extend some other class. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/60">#60</a>
@@ -329,7 +329,7 @@
           Abstract Aware Type Check marked as deprecated, removed Redundant Throws Check. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/473">#473</a>
         </li>
         <li>
-          JUnitTestCaseCheck was removed from Checkstyle. Author: ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/457">#457</a>
+          JUnitTestCaseCheck was removed from Checkstyle. Author: Yuriy Chulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/457">#457</a>
         </li>
         <li>
           Remove StrictDuplicateCodeCheck and whole package. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/523">#523</a>
@@ -377,7 +377,7 @@
           Indentation check fails for switch statements. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/341">#341</a>
         </li>
         <li>
-          -v CLI flag for querying the installed Checkstyle version. Author: ychulovskyy. <a href="https://github.com/checkstyle/checkstyle/issues/9">#9</a>
+          -v CLI flag for querying the installed Checkstyle version. Author: Yuriy Chulovskyy. <a href="https://github.com/checkstyle/checkstyle/issues/9">#9</a>
         </li>
       </ul>
       <p>Notes:</p>
@@ -532,7 +532,7 @@
         <li> Enable array initialisation indentation settings. Author: Vaclav Chalupa. </li>
         <li> Enhance WhitespaceAroundCheck to ignore Annotation Array Initialization curlies as it does for Array Initialization outside of annotations. . Author: Jacob Tomaw </li>
         <li>
-          ignore option to the JavadocVariable check. Author: ychulovskyy. <a href="https://github.com/checkstyle/checkstyle/issues/98">#98</a>
+          ignore option to the JavadocVariable check. Author: Yuriy Chulovskyy. <a href="https://github.com/checkstyle/checkstyle/issues/98">#98</a>
         </li>
         <li>
           New: InterfaceTypeParameterName check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/202">#202</a>
@@ -603,11 +603,11 @@
           Fixed RightCurlyCheck for empty methods. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/213">#213</a>
         </li>
         <li>
-          Fixed WhitespaceAroundCheck. fix for anonymous inner class. Author: ychulovskyy. <a href="https://github.com/checkstyle/checkstyle/issues/213">#105</a>
+          Fixed WhitespaceAroundCheck. fix for anonymous inner class. Author: Yuriy Chulovskyy. <a href="https://github.com/checkstyle/checkstyle/issues/213">#105</a>
         </li>
         <li>
           Fixed RedundantModifier. Abstract Interface Should not be Allowed.
-          Author: ychulovskyy. <a href="https://github.com/checkstyle/checkstyle/issues/209">#209</a>
+          Author: Yuriy Chulovskyy. <a href="https://github.com/checkstyle/checkstyle/issues/209">#209</a>
         </li>
         <li>
           Fixed EmptyBlock. need to handle switch block.
@@ -631,7 +631,7 @@
         </li>
         <li>
           Exception thrown when parsing numeric constant "3.14_15F".
-          Author: ychulovskyy<a href="https://github.com/checkstyle/checkstyle/issues/134">#134</a>
+          Author: Yuriy Chulovskyy<a href="https://github.com/checkstyle/checkstyle/issues/134">#134</a>
         </li>
         <li>
           RequireThis triggers for static interface fields Fixed.
@@ -673,7 +673,7 @@
           dsm-maven-plugin is used to show <a href="dsm/index.html">dependency structure of project</a> on site. Author: Ilja Dubinin.
         </li>
         <li>
-          Added and updated documentation/messages for number of Checks. Authors: Max Vetrenko, Thomas Jensen, ychulovskyy, Jarmo Isotalo
+          Added and updated documentation/messages for number of Checks. Authors: Max Vetrenko, Thomas Jensen, Yuriy Chulovskyy, Jarmo Isotalo
           , Peter O, Ryszard Wisniewski, Ilja Gubins, Baratali Izmailov, Jan Schafer, Niklas Walter, Andrew Gaul.
         </li>
         <li>
