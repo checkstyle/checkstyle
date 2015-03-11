@@ -141,12 +141,14 @@
       <archive>https://groups.google.com/forum/#!forum/checkstyle</archive>
       <subscribe>mailto:checkstyle%2Bsubscribe@googlegroups.com</subscribe>
       <unsubscribe>mailto:checkstyle%2Bunsubscribe@googlegroups.com</unsubscribe>
+      <post>mailto:checkstyle@googlegroups.com</post>
     </mailingList>
     <mailingList>
       <name>checkstyle-devel</name>
       <archive>https://groups.google.com/forum/#!forum/checkstyle-devel</archive>
       <subscribe>mailto:checkstyle-devel%2Bsubscribe@googlegroups.com</subscribe>
       <unsubscribe>mailto:checkstyle-devel%2Bunsubscribe@googlegroups.com</unsubscribe>
+      <post>mailto:checkstyle-devel@googlegroups.com</post>
     </mailingList>
   </mailingLists>
 
