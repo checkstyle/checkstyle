@@ -112,7 +112,15 @@ public class FinalLocalVariableCheck extends Check
     public int[] getAcceptableTokens()
     {
         return new int[] {
+            TokenTypes.IDENT,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.SLIST,
+            TokenTypes.OBJBLOCK,
             TokenTypes.PARAMETER_DEF,
         };
     }
