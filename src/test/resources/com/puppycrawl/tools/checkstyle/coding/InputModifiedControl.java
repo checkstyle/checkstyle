@@ -48,5 +48,28 @@ class InputModifiedControl
         for(String s:sa) {
             s = "new string";
         }
+        for(int i=0;i < 10;) {
+            i++;
+        }
+        for (int i = 0, l = 0,m=0; l < 10; i++,m=m+2) {
+            l++;
+            m++;
+        }
+        for (int i = 0; i < 10; ) {
+            i = 11;
+        }
+        int w=0;
+        for (int i=0;i<10; java.sql.Date.valueOf(""),this.i++,w++) {
+            i++;
+            w++;
+        }
+        for (int i=0,k=0; i<10 && k < 10; ++i,++k) {
+            i = i + 3;
+            k = k + 4;
+        }
+        for (int i = 0,j = 0 ; i <10; i++) {
+            j++;
+        }
     }
+    private int i;
 }
