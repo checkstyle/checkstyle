@@ -135,6 +135,7 @@
       <archive>https://groups.google.com/forum/#!forum/checkstyle-announce</archive>
       <subscribe>mailto:checkstyle-announce%2Bsubscribe@googlegroups.com</subscribe>
       <unsubscribe>mailto:checkstyle-announce%2Bunsubscribe@googlegroups.com</unsubscribe>
+      <post>privilege of admins</post>
     </mailingList>
     <mailingList>
       <name>checkstyle</name>
