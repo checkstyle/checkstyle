@@ -156,7 +156,8 @@ public class FinalLocalVariableCheck extends Check
 
             case TokenTypes.PARAMETER_DEF:
                 if (ScopeUtils.inInterfaceBlock(ast)
-                    || inAbstractOrNativeMethod(ast))
+                    || inAbstractOrNativeMethod(ast)
+                    || inLambda(ast))
                 {
                     break;
                 }
@@ -245,6 +246,16 @@ public class FinalLocalVariableCheck extends Check
             parent = parent.getParent();
         }
         return false;
+    }
+
+    /**
+     * Check if current param is lamda's param.
+     * @param paramDef {@link TokenTypes#PARAMETER_DEF parameter def}.
+     * @return true if current param is lamda's param.
+     */
+    private static boolean inLambda(DetailAST paramDef)
+    {
+        return paramDef.getParent().getParent().getType() == TokenTypes.LAMBDA;
     }
 
     /**
