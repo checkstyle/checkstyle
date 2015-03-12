@@ -37,9 +37,12 @@ public class ModifiedControlVariableCheckTest
             "17:15: " + getCheckMessage(MSG_KEY, "i"),
             "20:37: " + getCheckMessage(MSG_KEY, "i"),
             "21:17: " + getCheckMessage(MSG_KEY, "i"),
-            "25:14: " + getCheckMessage(MSG_KEY, "j"),
             "49:15: " + getCheckMessage(MSG_KEY, "s"),
+            "56:14: " + getCheckMessage(MSG_KEY, "m"),
+            "67:15: " + getCheckMessage(MSG_KEY, "i"),
+            "68:15: " + getCheckMessage(MSG_KEY, "k"),
         };
         verify(checkConfig, getPath("coding/InputModifiedControl.java"), expected);
     }
+
 }

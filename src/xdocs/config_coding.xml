@@ -1040,21 +1040,26 @@ class SomeClass
     <section name="ModifiedControlVariable">
       <subsection name="Description">
         <p>
-          Check for ensuring that for loop control variables are not
-          modified inside the for block. An example is:
+            Check for ensuring that for loop control variables are not modified inside the for block. An example is:
         </p>
-
         <source>
-for (int i = 0; i &lt; 1; i++) {
-    i++;
-}
+           for (int i = 0; i &lt; 1; i++) {
+             i++;//violation
+           }
         </source>
-
+          <p>
+            Rationale: If the control variable is modified inside the loop
+            body, the program flow becomes more difficult to follow.<br/>
+            See http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14
+          </p>
         <p>
-          Rationale: If the control variable is modified inside the loop
-          body, the program flow becomes more difficult to follow. An option
-          is to replace the for loop with a while loop.
+            Such loop would be supressed:
         </p>
+        <source>
+            for (int i = 0; i &lt; 10;) {
+                i++;
+            }
+        </source>
       </subsection>
 
       <subsection name="Example">

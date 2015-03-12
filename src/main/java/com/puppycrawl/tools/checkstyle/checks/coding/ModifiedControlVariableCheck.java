@@ -18,17 +18,56 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
 
 /**
+ * <p>
  * Check for ensuring that for loop control variables are not modified
- * inside the for block.
+ * inside the for block. An example is:
+ * <p>
+ * <pre>
+ * <code>
+ * for (int i = 0; i &lt; 1; i++) {
+ *     i++;//violation
+ * }
+ * </code>
+ * </pre>
+ * </p>
+ * Rationale: If the control variable is modified inside the loop
+ * body, the program flow becomes more difficult to follow.<br/>
+ * {@link http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14}
+ * </p>
+ * Examples:
+ * <p>
+ * <pre>
+ * &lt;module name=&quot;ModifiedControlVariableCheck&quot;&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * </p>
+ * Such loop would be supressed:
+ * <p>
+ * <pre>
+ * <code>
+ * for(int i=0;i < 10;) {
+ *     i++;
+ * }
+ * </code>
+ * </pre>
+ * </p>
  *
  * @author Daniel Grenner
+ * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  */
 public final class ModifiedControlVariableCheck extends Check
 {
@@ -39,8 +78,16 @@ public final class ModifiedControlVariableCheck extends Check
      */
     public static final String MSG_KEY = "modified.control.variable";
 
-    /** Current set of parameters. */
-    private Deque<String> currentVariables = new ArrayDeque<>();
+    /**
+     * Message thrown with IllegalStateException
+     */
+    private static final String ILLEGAL_TYPE_OF_TOKEN = "Illegal type of token: ";
+
+    /** Operations which can change control variable in update part of the loop*/
+    private static final Set<Integer> MUTATION_OPERATIONS =
+            Sets.newHashSet(TokenTypes.POST_INC, TokenTypes.POST_DEC, TokenTypes.DEC,
+                    TokenTypes.INC, TokenTypes.ASSIGN);
+
     /** Stack of block parameters. */
     private final Deque<Deque<String>> variableStack = new ArrayDeque<>();
 
@@ -108,7 +155,6 @@ public final class ModifiedControlVariableCheck extends Check
     public void beginTree(DetailAST rootAST)
     {
         // clear data
-        currentVariables.clear();
         variableStack.clear();
     }
 
@@ -122,6 +168,7 @@ public final class ModifiedControlVariableCheck extends Check
             case TokenTypes.LITERAL_FOR:
             case TokenTypes.FOR_ITERATOR:
             case TokenTypes.FOR_EACH_CLAUSE:
+                //we need that Tokens only at leaveToken()
                 break;
             case TokenTypes.ASSIGN:
             case TokenTypes.PLUS_ASSIGN:
@@ -142,7 +189,7 @@ public final class ModifiedControlVariableCheck extends Check
                 checkIdent(ast);
                 break;
             default:
-                throw new IllegalStateException(ast.toString());
+                throw new IllegalStateException(ILLEGAL_TYPE_OF_TOKEN + ast.toString());
         }
     }
 
@@ -179,10 +226,10 @@ public final class ModifiedControlVariableCheck extends Check
             case TokenTypes.POST_INC:
             case TokenTypes.DEC:
             case TokenTypes.POST_DEC:
-                // Do nothing
+                //we need that Tokens only at visitToken()
                 break;
             default:
-                throw new IllegalStateException(ast.toString());
+                throw new IllegalStateException(ILLEGAL_TYPE_OF_TOKEN + ast.toString());
         }
     }
 
@@ -191,16 +238,23 @@ public final class ModifiedControlVariableCheck extends Check
      */
     private void enterBlock()
     {
-        variableStack.push(currentVariables);
-        currentVariables = new ArrayDeque<>();
-
+        variableStack.push(new ArrayDeque<String>());
     }
     /**
      * Leave an inner class, so restore variable set.
      */
     private void exitBlock()
     {
-        currentVariables = variableStack.pop();
+        variableStack.pop();
+    }
+
+    /**
+     * Get current variable stack
+     * @return current variable stack
+     */
+    private Deque<String> getCurrentVariables()
+    {
+        return variableStack.peek();
     }
 
     /**
@@ -209,12 +263,12 @@ public final class ModifiedControlVariableCheck extends Check
      */
     private void checkIdent(DetailAST ast)
     {
-        if (currentVariables != null && !currentVariables.isEmpty()) {
+        if (!getCurrentVariables().isEmpty()) {
             final DetailAST identAST = ast.getFirstChild();
 
             if (identAST != null
                 && identAST.getType() == TokenTypes.IDENT
-                && currentVariables.contains(identAST.getText()))
+                && getCurrentVariables().contains(identAST.getText()))
             {
                 log(ast.getLineNo(), ast.getColumnNo(),
                     MSG_KEY, identAST.getText());
@@ -228,19 +282,24 @@ public final class ModifiedControlVariableCheck extends Check
      */
     private void leaveForIter(DetailAST ast)
     {
-        final DetailAST forInitAST = ast.findFirstToken(TokenTypes.FOR_INIT);
-        DetailAST parameterDefAST =
-            forInitAST.findFirstToken(TokenTypes.VARIABLE_DEF);
-
-        for (; parameterDefAST != null;
-             parameterDefAST = parameterDefAST.getNextSibling())
-        {
-            if (parameterDefAST.getType() == TokenTypes.VARIABLE_DEF) {
-                final DetailAST param =
-                    parameterDefAST.findFirstToken(TokenTypes.IDENT);
-                currentVariables.push(param.getText());
-            }
+        final Set<String> variablesToPutInScope = getVariablesManagedByForLoop(ast);
+        for (String variableName : variablesToPutInScope) {
+            getCurrentVariables().push(variableName);
         }
+    }
+
+    /**
+     * Determines which variable are specific to for loop and should not be
+     * change by inner loop body.
+     * @param ast For Loop
+     * @return Set of Variable Name which are managed by for
+     */
+    private Set<String> getVariablesManagedByForLoop(DetailAST ast)
+    {
+        final Set<String> initializedVariables = getForInitVariables(ast);
+        final Set<String> iteratingVariables = getForIteratorVariables(ast);
+
+        return Sets.intersection(initializedVariables, iteratingVariables);
     }
 
     /**
@@ -252,7 +311,7 @@ public final class ModifiedControlVariableCheck extends Check
         final DetailAST paramDef =
             forEach.findFirstToken(TokenTypes.VARIABLE_DEF);
         final DetailAST paramName = paramDef.findFirstToken(TokenTypes.IDENT);
-        currentVariables.push(paramName.getText());
+        getCurrentVariables().push(paramName.getText());
     }
 
     /**
@@ -263,20 +322,94 @@ public final class ModifiedControlVariableCheck extends Check
     {
         final DetailAST forInitAST = ast.findFirstToken(TokenTypes.FOR_INIT);
         if (forInitAST != null) {
-            DetailAST parameterDefAST =
-                forInitAST.findFirstToken(TokenTypes.VARIABLE_DEF);
+            final Set<String> variablesManagedByForLoop = getVariablesManagedByForLoop(ast);
+            popCurrentVariables(variablesManagedByForLoop.size());
 
-            for (; parameterDefAST != null;
-                 parameterDefAST = parameterDefAST.getNextSibling())
-            {
-                if (parameterDefAST.getType() == TokenTypes.VARIABLE_DEF) {
-                    currentVariables.pop();
-                }
-            }
         }
         else {
             // this is for-each loop, just pop veriables
-            currentVariables.pop();
+            getCurrentVariables().pop();
         }
+    }
+
+    /**
+     * Pops given number of variables from currentVariables
+     * @param count Count of variables to be popped from currentVariables
+     */
+    private void popCurrentVariables(int count)
+    {
+        for (int i = 0; i < count; i++) {
+            getCurrentVariables().pop();
+        }
+    }
+
+    /**
+     * Get all variables initialized In init part of for loop.
+     * @param ast for loop iteral
+     * @return set of variables initialized in for loop
+     */
+    private static Set<String> getForInitVariables(DetailAST ast)
+    {
+        assert ast.getType() == TokenTypes.LITERAL_FOR;
+        final Set<String> initializedVariables = new HashSet<>();
+        final DetailAST forInitAST = ast.findFirstToken(TokenTypes.FOR_INIT);
+
+        for (DetailAST parameterDefAST = forInitAST.findFirstToken(TokenTypes.VARIABLE_DEF);
+             parameterDefAST != null;
+             parameterDefAST = parameterDefAST.getNextSibling())
+        {
+            if (parameterDefAST.getType() == TokenTypes.VARIABLE_DEF) {
+                final DetailAST param =
+                        parameterDefAST.findFirstToken(TokenTypes.IDENT);
+
+                initializedVariables.add(param.getText());
+            }
+        }
+        return initializedVariables;
+    }
+
+    /**
+     * Get all variables which for loop iterating part change in every loop.
+     * @param ast for loop literal(TokenTypes.LITERAL_FOR)
+     * @return names of variables change in iterating part of for
+     */
+    private static Set<String> getForIteratorVariables(DetailAST ast)
+    {
+        final Set<String> iteratorVariables = new HashSet<>();
+        final DetailAST forIteratorAST = ast.findFirstToken(TokenTypes.FOR_ITERATOR);
+        final DetailAST forUpdateListAST = forIteratorAST.findFirstToken(TokenTypes.ELIST);
+
+        for (DetailAST iteratingExpressionAST : findChildrenOfExpressionType(forUpdateListAST)) {
+
+            if (MUTATION_OPERATIONS.contains(iteratingExpressionAST.getType())) {
+                final DetailAST oneVariableOperatorChild = iteratingExpressionAST.getFirstChild();
+                if (oneVariableOperatorChild.getType() == TokenTypes.IDENT) {
+                    iteratorVariables.add(oneVariableOperatorChild.getText());
+                }
+            }
+        }
+
+        return iteratorVariables;
+    }
+
+    /**
+     * Find all child of given AST of type TokenType.EXPR
+     * @param ast parent of expressions to find
+     * @return all child of given ast
+     */
+    private static List<DetailAST> findChildrenOfExpressionType(DetailAST ast)
+    {
+        final List<DetailAST> foundExpressions = new LinkedList<>();
+        if (ast != null) {
+            for (DetailAST iteratingExpressionAST = ast.findFirstToken(TokenTypes.EXPR);
+                 iteratingExpressionAST != null;
+                 iteratingExpressionAST = iteratingExpressionAST.getNextSibling())
+            {
+                if (iteratingExpressionAST.getType() == TokenTypes.EXPR) {
+                    foundExpressions.add(iteratingExpressionAST.getFirstChild());
+                }
+            }
+        }
+        return foundExpressions;
     }
 }
