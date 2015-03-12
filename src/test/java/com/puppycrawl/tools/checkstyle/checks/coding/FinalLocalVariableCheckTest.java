@@ -18,12 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck.MSG_KEY;
+
+import java.io.File;
 
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck.MSG_KEY;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class FinalLocalVariableCheckTest
     extends BaseCheckTestSupport
@@ -120,5 +122,18 @@ public class FinalLocalVariableCheckTest
             "15:13: " + "Variable 'x' should be declared final.",
         };
         verify(checkConfig, getPath("coding/InputFinalLocalVariableEnhancedForLoopVariable.java"), expected);
+    }
+
+    @Test
+    public void testLambda()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(FinalLocalVariableCheck.class);
+        checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
+        final String[] expected = {};
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
+                + "tools/checkstyle/naming/InputFinalLocalVariableNameLambda.java").
+                getCanonicalPath(), expected);
     }
 }
