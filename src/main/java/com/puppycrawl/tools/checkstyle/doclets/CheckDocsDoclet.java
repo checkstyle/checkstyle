@@ -164,7 +164,7 @@ public final class CheckDocsDoclet
 
         final File destDir = new File(getDestDir(root.options()));
 
-        final File checksIndexFile = new File(destDir, "availablechecks.xml");
+        final File checksIndexFile = new File(destDir, "checks.xml");
         final PrintWriter fileWriter = new PrintWriter(
                 new FileWriter(checksIndexFile));
         writeXdocsHeader(fileWriter, "Available Checks");
