@@ -19,7 +19,7 @@
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
-import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.Utils;
 import java.util.regex.Pattern;
 
 /**

@@ -31,7 +31,6 @@ import java.security.MessageDigest;
 
 
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * This class maintains a persistent(on file-system) store of the files

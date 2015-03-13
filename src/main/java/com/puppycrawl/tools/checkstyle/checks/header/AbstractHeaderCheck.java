@@ -40,7 +40,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.Utils;
 
 /**
  * Abstract super class for header checks.

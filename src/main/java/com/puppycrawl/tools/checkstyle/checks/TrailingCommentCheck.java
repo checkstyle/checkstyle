@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
-import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.Utils;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;

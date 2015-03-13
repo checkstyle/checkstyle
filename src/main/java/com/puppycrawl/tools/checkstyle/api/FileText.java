@@ -39,6 +39,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.Utils;
+
 /**
  * Represents the text contents of a file of arbitrary plain text type.
  * <p>
