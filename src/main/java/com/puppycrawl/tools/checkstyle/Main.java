@@ -200,7 +200,7 @@ public final class Main
             listener = new XMLLogger(out, closeOut);
         }
         else if ("plain".equals(format)) {
-            listener = new DefaultLogger(out, closeOut);
+            listener = new DefaultLogger(out, closeOut, true);
         }
         else {
             System.out.println("Invalid format: (" + format
