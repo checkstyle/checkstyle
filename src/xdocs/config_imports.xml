@@ -429,6 +429,13 @@ class FooBar {
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
           </tr>
+          <tr>
+            <td>sortStaticImportsAlphabetically</td>
+            <td>whether static imports grouped by <b>top</b> or <b>bottom</b> option
+            are sorted alphabetically or not</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>false</td>
+          </tr>
         </table>
       </subsection>
 
@@ -449,6 +456,30 @@ class FooBar {
     &lt;property name=&quot;option&quot; value=&quot;above&quot;/>
 &lt;/module>
         </source>
+
+        <p>
+          To configure the Check allows static imports grouped to the <b>top</b>
+          being sorted alphabetically:
+        </p>
+
+        <source>
+&lt;module name=&quot;ImportOrder&quot;>
+    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/>
+    &lt;property name=&quot;option&quot; value=&quot;top&quot;/>
+&lt;/module>
+        </source>
+
+        <source>
+import static java.lang.Math.abs;
+import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphabetical order
+
+import org.abego.*;
+
+import java.util.Set;
+
+public class SomeClass { ... }
+        </source>
+
       </subsection>
 
       <subsection name="Package">
