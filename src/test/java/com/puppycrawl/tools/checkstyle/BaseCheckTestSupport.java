@@ -26,7 +26,11 @@ public abstract class BaseCheckTestSupport {
     protected static class BriefLogger
             extends DefaultLogger {
         public BriefLogger(OutputStream out) {
-            super(out, true);
+            super(out, true, false);
+        }
+
+        public BriefLogger(OutputStream out, boolean printSeverity) {
+            super(out, true, printSeverity);
         }
 
         @Override
@@ -67,6 +71,21 @@ public abstract class BaseCheckTestSupport {
         return c;
     }
 
+    protected Checker createChecker(Configuration checkConfig, boolean printSeverity)
+            throws Exception {
+        final DefaultConfiguration dc = createCheckerConfig(checkConfig);
+        final Checker c = new Checker();
+        // make sure the tests always run with english error messages
+        // so the tests don't fail in supported locales like german
+        final Locale locale = Locale.ENGLISH;
+        c.setLocaleCountry(locale.getCountry());
+        c.setLocaleLanguage(locale.getLanguage());
+        c.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        c.configure(dc);
+        c.addListener(new BriefLogger(stream, printSeverity));
+        return c;
+    }
+
     protected DefaultConfiguration createCheckerConfig(Configuration config) {
         final DefaultConfiguration dc =
                 new DefaultConfiguration("configuration");
@@ -86,6 +105,11 @@ public abstract class BaseCheckTestSupport {
     protected static String getSrcPath(String filename) throws IOException {
 
         return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + filename).getCanonicalPath();
+    }
+
+    protected void verify(Configuration aConfig, boolean printSeverity, String fileName,
+            String[] expected) throws Exception {
+        verify(createChecker(aConfig, printSeverity), fileName, fileName, expected);
     }
 
     protected void verify(Configuration aConfig, String fileName, String[] expected)
