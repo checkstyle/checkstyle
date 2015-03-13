@@ -82,9 +82,9 @@
 
     <menu name="Developers">
       <item name="Extending Checkstyle" href="extending.html">
-        <item name="Writing checks" href="writingchecks.html"/>
-        <item name="Writing filters" href="writingfilters.html"/>
-        <item name="Writing listeners" href="writinglisteners.html"/>
+        <item name="Writing Checks" href="writingchecks.html"/>
+        <item name="Writing Filters" href="writingfilters.html"/>
+        <item name="Writing Listeners" href="writinglisteners.html"/>
       </item>
       <item name="Contributing" href="contributing.html"/>
       <item name="Beginning Development" href="beginning_development.html">
