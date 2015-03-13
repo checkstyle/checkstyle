@@ -5,7 +5,7 @@
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
   <properties>
-    <title>Importing and debugging in IntellIJ IDE</title>
+    <title>Importing and debugging in IntelliJ IDE</title>
     <author>Checkstyle Development Team</author>
   </properties>
 
