@@ -543,7 +543,7 @@
           <regex><pattern>.*.Checker</pattern><branchRate>71</branchRate><lineRate>86</lineRate></regex>
           <regex><pattern>.*.CheckStyleTask</pattern><branchRate>100</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.ConfigurationLoader</pattern><branchRate>86</branchRate><lineRate>79</lineRate></regex>
-          <regex><pattern>.*.ConfigurationLoader\$.*</pattern><branchRate>65</branchRate><lineRate>85</lineRate></regex>
+          <regex><pattern>.*.ConfigurationLoader\$.*</pattern><branchRate>65</branchRate><lineRate>84</lineRate></regex>
 
           <regex><pattern>.*.DefaultConfiguration</pattern><branchRate>100</branchRate><lineRate>92</lineRate></regex>
           <regex><pattern>.*.DefaultContext</pattern><branchRate>100</branchRate><lineRate>100</lineRate></regex>
@@ -587,7 +587,7 @@
           <regex><pattern>.*.api.FilterSet</pattern><branchRate>83</branchRate><lineRate>80</lineRate></regex>
           <regex><pattern>.*.api.FullIdent</pattern><branchRate>83</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.api.JavadocTagInfo</pattern><branchRate>25</branchRate><lineRate>77</lineRate></regex>
-          <regex><pattern>.*.api.JavadocTagInfo\$.*</pattern><branchRate>0</branchRate><lineRate>20</lineRate></regex>
+          <regex><pattern>.*.api.JavadocTagInfo\$.*</pattern><branchRate>0</branchRate><lineRate>8</lineRate></regex>
           <regex><pattern>.*.api.JavadocTokenTypes</pattern><branchRate>100</branchRate><lineRate>0</lineRate></regex>
           <regex><pattern>.*.api.LineColumn</pattern><branchRate>0</branchRate><lineRate>60</lineRate></regex>
           <regex><pattern>.*.api.LocalizedMessage</pattern><branchRate>53</branchRate><lineRate>67</lineRate></regex>
@@ -774,7 +774,7 @@
           
           
           <regex><pattern>.*.checks.javadoc.AbstractJavadocCheck</pattern><branchRate>90</branchRate><lineRate>93</lineRate></regex>
-          <regex><pattern>.*.checks.javadoc.AbstractJavadocCheck\$.*</pattern><branchRate>50</branchRate><lineRate>76</lineRate></regex>
+          <regex><pattern>.*.checks.javadoc.AbstractJavadocCheck\$.*</pattern><branchRate>50</branchRate><lineRate>68</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.AtclauseOrderCheck</pattern><branchRate>88</branchRate><lineRate>88</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.HtmlTag</pattern><branchRate>75</branchRate><lineRate>90</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.InvalidJavadocTag</pattern><branchRate>100</branchRate><lineRate>100</lineRate></regex>
@@ -887,7 +887,7 @@
           <regex><pattern>.*.filters.SuppressionsLoader</pattern><branchRate>68</branchRate><lineRate>77</lineRate></regex>
           <regex><pattern>.*.filters.SuppressWarningsFilter</pattern><branchRate>100</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter</pattern><branchRate>80</branchRate><lineRate>87</lineRate></regex>
-          <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter\$.*</pattern><branchRate>81</branchRate><lineRate>77</lineRate></regex>
+          <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter\$.*</pattern><branchRate>81</branchRate><lineRate>75</lineRate></regex>
           
           
          </regexes>
