@@ -36,3 +36,20 @@ h4 {
   border-bottom: 1px solid #fff;
   background: url("../images/banner.jpg") repeat scroll 0 0 transparent;
 }
+
+.section {
+
+}
+
+a.dl-link {
+  position: relative;
+  float: right;
+}
+
+h2:hover .anchor {
+  display: inline-block;
+}
+
+.anchor {
+  display: none;
+}

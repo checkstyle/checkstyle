@@ -9,6 +9,12 @@
     <author>Oliver Burn</author>
   </properties>
 
+  <head>
+    <title>Property Types</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="js/anchors.js"></script>
+  </head>
+
   <body>
     <section name="Property Types">
     <p>
