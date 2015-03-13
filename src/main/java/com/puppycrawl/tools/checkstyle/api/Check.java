@@ -23,6 +23,8 @@ import java.util.Set;
 
 import com.google.common.collect.Sets;
 
+import com.puppycrawl.tools.checkstyle.Utils;
+
 /**
  * The base class for checks.
  *

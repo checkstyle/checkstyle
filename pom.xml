@@ -553,7 +553,7 @@
           <regex><pattern>.*.PropertiesExpander</pattern><branchRate>50</branchRate><lineRate>83</lineRate></regex>
           <regex><pattern>.*.PropertyCacheFile</pattern><branchRate>22</branchRate><lineRate>18</lineRate></regex>
           <regex><pattern>.*.TreeWalker</pattern><branchRate>90</branchRate><lineRate>83</lineRate></regex>
-          <regex><pattern>com.puppycrawl.tools.checkstyle.Utils</pattern><branchRate>100</branchRate><lineRate>87</lineRate></regex>
+          <regex><pattern>com.puppycrawl.tools.checkstyle.Utils</pattern><branchRate>69</branchRate><lineRate>63</lineRate></regex>
           <regex><pattern>.*.XMLLogger</pattern><branchRate>86</branchRate><lineRate>97</lineRate></regex>
           
           
@@ -581,7 +581,6 @@
           <regex><pattern>.*.api.ScopeUtils</pattern><branchRate>90</branchRate><lineRate>94</lineRate></regex>
           <regex><pattern>.*.api.SeverityLevelCounter</pattern><branchRate>50</branchRate><lineRate>76</lineRate></regex>
           <regex><pattern>.*.api.TokenTypes</pattern><branchRate>62</branchRate><lineRate>72</lineRate></regex>
-          <regex><pattern>com.puppycrawl.tools.checkstyle.api.Utils</pattern><branchRate>69</branchRate><lineRate>63</lineRate></regex>
           
           
           <regex><pattern>.*.checks.AbstractOptionCheck</pattern><branchRate>100</branchRate><lineRate>80</lineRate></regex>
