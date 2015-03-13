@@ -111,8 +111,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
     public void visitJavadocToken(DetailNode ast)
     {
         String firstSentence = getFirstSentence(ast);
-        final int endOfSentence = firstSentence.lastIndexOf(period);
-        if (endOfSentence == -1) {
+        final int endOfSentence = firstSentence.length() - 1;
+        if (firstSentence.length() < 5) {
             log(ast.getLineNumber(), SUMMARY_FIRST_SENTENCE);
         }
         else {
