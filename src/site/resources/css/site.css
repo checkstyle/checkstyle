@@ -23,3 +23,16 @@ div.tip {
   color:Black;
   border: ridge;
 }
+
+#bannerLeft img {
+  float:left;
+position: relative;
+top: 23px;
+left: 40px;
+
+}
+
+#banner {
+  border-bottom: 1px solid #fff;
+  background: url("../images/banner.jpg") repeat scroll 0% 0% transparent;
+}

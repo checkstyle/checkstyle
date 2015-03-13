@@ -5,7 +5,9 @@
     xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
   
   <bannerLeft>
-    <name>Checkstyle ${projectVersion}</name>
+    <alt>Checkstyle</alt>
+    <href>http://checkstyle.sourceforge.net</href>
+    <src>images/checkstyle_logo_small_64.png</src>
   </bannerLeft>
   <bannerRight>
     <alt>Checkstyle</alt>
@@ -13,6 +15,9 @@
     <src>images/logo.png</src>
   </bannerRight>
   
+  <publishDate position="right" />
+  <version position="right" />
+
   <poweredBy>
     <logo name="GitHub" href="https://github.com/checkstyle/checkstyle" 
     	img="images/github_logo_social_coding_outlined.png" 
