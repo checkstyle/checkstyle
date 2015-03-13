@@ -187,7 +187,7 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
       Instead, the TreeWalker initiates
       a recursive descend from the root of the AST to the leaf nodes and calls
       the Check methods. The traversal is done using a <a
-      href="http://mathworld.wolfram.com/Depth-FirstTraversal.html">depth-first</a>
+      href="http://en.wikipedia.org/wiki/Tree_traversal">tree traversal (depth-first)</a>
       algorithm.  </p>
 
       <p> Before any visitor method is called, the TreeWalker
