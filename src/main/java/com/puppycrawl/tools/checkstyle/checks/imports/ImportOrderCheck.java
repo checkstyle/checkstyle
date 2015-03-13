@@ -78,16 +78,42 @@ import java.util.regex.Pattern;
  * <li>ordered: true</li>
  * <li>case sensitive: true</li>
  * <li>static import: under</li>
+ * <li>sort static imports alphabetically: false</li>
  * </ul>
  *
  * <p>
- * Compatible with Java 1.5 source.
+ * Check also has on option making it more flexible:
+ * <b>sortStaticImportsAlphabetically</b> - sets whether static imports grouped by
+ * <b>top</b> or <b>bottom</b> option should be sorted alphabetically or
+ * not, default value is <b>false</b>. It is applied to static imports grouped
+ * with <b>top</b> or <b>bottom</b> options.<br>
+ * This option is helping in reconciling of this Check and other tools like
+ * Eclipse's Organize Imports feature.
+ * </p>
+ * <p>
+ * To configure the Check allows static imports grouped to the <b>top</b>
+ * being sorted alphabetically:
+ * </p>
+ * <p>
+ * <pre>
+ * <code>
+ * import static java.lang.Math.abs;
+ * import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphabetical order
+ *
+ * import org.abego.*;
+ *
+ * import java.util.Set;
+ *
+ * public class SomeClass { ... }
+ * </code>
+ * </pre>
  * </p>
  *
  * @author Bill Schneider
  * @author o_sukhodolsky
  * @author David DIDIER
  * @author Steve McKay
+ * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 public class ImportOrderCheck
     extends AbstractOptionCheck<ImportOrderOption>
@@ -127,6 +153,8 @@ public class ImportOrderCheck
     private boolean lastImportStatic;
     /** Whether there was any imports. */
     private boolean beforeFirstImport;
+    /** Whether static imports should be sorted alphabetically or not. */
+    private boolean sortStaticImportsAlphabetically;
 
     /**
      * Groups static imports under each group.
@@ -207,6 +235,16 @@ public class ImportOrderCheck
     public void setCaseSensitive(boolean caseSensitive)
     {
         this.caseSensitive = caseSensitive;
+    }
+
+    /**
+     * Sets whether static imports (when grouped using 'top' and 'bottom' option)
+     * are sorted alphabetically or according to the package groupings.
+     * @param sortAlphabetically true or false.
+     */
+    public void setSortStaticImportsAlphabetically(boolean sortAlphabetically)
+    {
+        this.sortStaticImportsAlphabetically = sortAlphabetically;
     }
 
     @Override
@@ -311,7 +349,9 @@ public class ImportOrderCheck
                     }
                 }
             }
-            else if (groupIdx == lastGroup) {
+            else if (groupIdx == lastGroup || (sortStaticImportsAlphabetically
+                     && isAlphabeticallySortableStaticImport(isStatic)))
+            {
                 doVisitTokenInSameGroup(isStatic, previous, name, line);
             }
             else {
@@ -321,6 +361,23 @@ public class ImportOrderCheck
             lastGroup = groupIdx;
             lastImport = name;
         }
+    }
+
+    /**
+     * Checks whether static imports grouped by <b>top<b/> or <b>bottom<b/> option
+     * are sorted alphabetically or not.
+     * @param isStatic if current import is static.
+     * @return true if static imports should be sorted alphabetically.
+     */
+    private boolean isAlphabeticallySortableStaticImport(boolean isStatic)
+    {
+        boolean result = false;
+        if (isStatic && (getAbstractOption() == ImportOrderOption.TOP
+                || getAbstractOption() == ImportOrderOption.BOTTOM))
+        {
+            result = true;
+        }
+        return result;
     }
 
     /**
@@ -410,13 +467,17 @@ public class ImportOrderCheck
      *         than the string2; and a value greater than <code>0</code> if
      *         string1 is lexicographically greater than string2.
      */
-    private int compare(String string1, String string2,
+    private static int compare(String string1, String string2,
             boolean caseSensitive)
     {
+        int result;
         if (caseSensitive) {
-            return string1.compareTo(string2);
+            result = string1.compareTo(string2);
+        }
+        else {
+            result = string1.compareToIgnoreCase(string2);
         }
 
-        return string1.compareToIgnoreCase(string2);
+        return result;
     }
 }

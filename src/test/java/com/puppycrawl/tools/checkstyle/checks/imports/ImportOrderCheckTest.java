@@ -227,4 +227,139 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
         final String[] expected = {};
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_NoFailureForRedundantImports.java"), expected);
     }
+
+    @Test
+    public void testStaticGroupsAlphabeticalOrder() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "top");
+        checkConfig.addAttribute("groups", "org, java");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        final String[] expected = {};
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrderStaticGroupOrder.java"), expected);
+    }
+
+    @Test
+    public void testStaticGroupsOrder() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "top");
+        checkConfig.addAttribute("groups", "org, java");
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_ORDERING, "org.abego.treelayout.Configuration.AlignmentInLevel"),
+        };
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrderStaticGroupOrder.java"), expected);
+    }
+
+    @Test
+    public void testStaticGroupsAlphabeticalOrderBottom() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "bottom");
+        checkConfig.addAttribute("groups", "org, java");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        final String[] expected = {};
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrderStaticGroupOrderBottom.java"), expected);
+    }
+
+    @Test
+    public void testStaticGroupsOrderBottom() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "bottom");
+        checkConfig.addAttribute("groups", "org, java");
+        final String[] expected = {
+            "8: " + getCheckMessage(MSG_ORDERING, "org.abego.treelayout.Configuration.AlignmentInLevel"),
+        };
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrderStaticGroupOrderBottom.java"), expected);
+    }
+
+    @Test
+    public void testStaticGroupsOrderAbove() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "above");
+        checkConfig.addAttribute("groups", "org, java");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        final String[] expected = {
+            "7: " + getCheckMessage(MSG_ORDERING, "java.lang.Math.PI"),
+            "8: " + getCheckMessage(MSG_ORDERING, "org.abego.treelayout.Configuration.AlignmentInLevel"),
+        };
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrderStaticGroupOrderBottom.java"), expected);
+    }
+
+    @Test
+    public void testStaticOnDemandGroupsOrder() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "top");
+        checkConfig.addAttribute("groups", "org, java");
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_ORDERING, "org.abego.treelayout.Configuration.*"),
+        };
+        verify(checkConfig, getPath("imports" + File.separator
+                 + "InputImportOrderStaticOnDemandGroupOrder.java"), expected);
+    }
+
+    @Test
+    public void testStaticOnDemandGroupsAlphabeticalOrder() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "top");
+        checkConfig.addAttribute("groups", "org, java");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        final String[] expected = {};
+        verify(checkConfig, getPath("imports" + File.separator
+                 + "InputImportOrderStaticOnDemandGroupOrder.java"), expected);
+    }
+
+    @Test
+    public void testStaticOnDemandGroupsOrderBottom() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "bottom");
+        checkConfig.addAttribute("groups", "org, java");
+        final String[] expected = {
+            "8: " + getCheckMessage(MSG_ORDERING, "org.abego.treelayout.Configuration.*"),
+        };
+        verify(checkConfig, getPath("imports" + File.separator
+                 + "InputImportOrderStaticOnDemandGroupOrderBottom.java"), expected);
+    }
+
+    @Test
+    public void testStaticOnDemandGroupsAlphabeticalOrderBottom() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "bottom");
+        checkConfig.addAttribute("groups", "org, java");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        final String[] expected = {};
+        verify(checkConfig, getPath("imports" + File.separator
+                 + "InputImportOrderStaticOnDemandGroupOrderBottom.java"), expected);
+    }
+
+    @Test
+    public void testStaticOnDemandGroupsOrderAbove() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "above");
+        checkConfig.addAttribute("groups", "org, java");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        final String[] expected = {
+            "7: " + getCheckMessage(MSG_ORDERING, "java.lang.Math.*"),
+            "8: " + getCheckMessage(MSG_ORDERING, "org.abego.treelayout.Configuration.*"),
+        };
+        verify(checkConfig, getPath("imports" + File.separator
+                 + "InputImportOrderStaticOnDemandGroupOrderBottom.java"), expected);
+    }
 }
