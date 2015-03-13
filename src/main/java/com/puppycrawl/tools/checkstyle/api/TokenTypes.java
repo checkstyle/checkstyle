@@ -3526,11 +3526,9 @@ public final class TokenTypes
                 tempTokenValueToName[tokenValue] = name;
             }
             catch (final IllegalArgumentException e) {
-                e.printStackTrace();
                 System.exit(1);
             }
             catch (final IllegalAccessException e) {
-                e.printStackTrace();
                 System.exit(1);
             }
         }

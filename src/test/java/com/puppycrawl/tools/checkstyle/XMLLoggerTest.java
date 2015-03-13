@@ -177,7 +177,7 @@ public class XMLLoggerTest
         final String[] expectedLines = {
             "&lt;exception&gt;",
             "&lt;![CDATA[",
-            "stackTrace]]&gt;",
+            "]]&gt;",
             "&lt;/exception&gt;",
             "",
         };

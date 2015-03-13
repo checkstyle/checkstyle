@@ -156,7 +156,6 @@ public class XMLLogger
         final PrintWriter pw = new PrintWriter(sw);
         pw.println("<exception>");
         pw.println("<![CDATA[");
-        throwable.printStackTrace(pw);
         pw.println("]]>");
         pw.println("</exception>");
         pw.flush();

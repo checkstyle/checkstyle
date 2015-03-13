@@ -77,7 +77,6 @@ public final class Main
             line = clp.parse(OPTS, args);
         }
         catch (final ParseException e) {
-            e.printStackTrace();
             usage();
         }
         assert line != null;
@@ -153,7 +152,6 @@ public final class Main
         catch (final Exception e) {
             System.out.println("Unable to create Checker: "
                                + e.getMessage());
-            e.printStackTrace(System.out);
             System.exit(1);
         }
         return c;
