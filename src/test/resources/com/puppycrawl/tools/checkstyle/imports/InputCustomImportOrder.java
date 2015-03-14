@@ -17,7 +17,7 @@ import java.io.Reader;
 
 import com.puppycrawl.tools.*;
 
-import com.google.common.*;
+import com.google.common.collect.*;
 import org.junit.*;
 
 public class InputCustomImportOrder {
