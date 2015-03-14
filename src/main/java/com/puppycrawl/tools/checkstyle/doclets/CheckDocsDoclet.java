@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
 import com.sun.javadoc.ClassDoc;
@@ -52,8 +53,11 @@ public final class CheckDocsDoclet
      * by their check name.
      */
     private static class ClassDocByCheckNameComparator implements
-        Comparator<ClassDoc>
+        Comparator<ClassDoc>, Serializable
     {
+        /** Serialization version. */
+        private static final long serialVersionUID = 1731995210294871881L;
+
         /** {@inheritDoc} */
         public int compare(ClassDoc object1, ClassDoc object2)
         {
