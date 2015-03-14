@@ -614,20 +614,6 @@ public class CustomImportOrderCheck extends Check
     }
 
     /**
-     * Return class name from import full path.
-     * @param startFrom number of start.
-     * @param importPath import full path.
-     * @return class name.
-     */
-    private String getClassName(int startFrom, String importPath)
-    {
-        String className = importPath;
-        className = className.substring(startFrom, className.length());
-        final StringTokenizer token = new StringTokenizer(className, ".\r");
-        return token.nextToken();
-    }
-
-    /**
      * Checks if a token has a empty line before.
      * @param lineNo
      *        Line number of current import.
