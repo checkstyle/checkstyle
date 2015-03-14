@@ -541,9 +541,6 @@ public class HiddenFieldCheck
      */
     private static class FieldFrame
     {
-        /** type of the frame, such as TokenTypes.CLASS_DEF or TokenTypes.ENUM_DEF */
-        private final Integer frameType;
-
         /** name of the frame, such name of the class or enum declaration */
         private final String frameName;
 
@@ -572,7 +569,6 @@ public class HiddenFieldCheck
         {
             this.parent = parent;
             this.staticType = staticType;
-            this.frameType = frameType;
             this.frameName = frameName;
         }
 
