@@ -273,9 +273,8 @@ public final class Main
     private static Properties loadProperties(File file)
     {
         final Properties properties = new Properties();
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream(file);
+
+        try (final FileInputStream fis = new FileInputStream(file)) {
             properties.load(fis);
         }
         catch (final IOException ex) {
@@ -283,9 +282,6 @@ public final class Main
                 + file.getAbsolutePath());
             ex.printStackTrace(System.out);
             System.exit(1);
-        }
-        finally {
-            Utils.closeQuietly(fis);
         }
 
         return properties;
