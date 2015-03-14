@@ -43,13 +43,13 @@
       </p>
       <ul>
         <li>
-          <a href="https://github.com/checkstyle/checkstyle">Source
+          <a href="https://github.com/checkstyle/checkstyle">GitHub Source
           code repository</a> - replacing the Mercurial repository on
           SourceForge.
         </li>
         <li>
           <a
-          href="https://github.com/checkstyle/checkstyle/issues">Issue
+          href="https://github.com/checkstyle/checkstyle/issues">GitHub Issue
           management</a> - replacing the Bugs/Feature/Patches on
           SourceForge. All new issues should be raised at GitHub, and
           pull requests are now the preferred way to submit patches.
