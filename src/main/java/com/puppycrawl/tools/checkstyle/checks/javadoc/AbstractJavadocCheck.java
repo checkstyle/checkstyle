@@ -561,7 +561,7 @@ public abstract class AbstractJavadocCheck extends Check
     /**
      * Custom error listener for JavadocParser that prints user readable errors.
      */
-    class DescriptiveErrorListener extends BaseErrorListener
+    static class DescriptiveErrorListener extends BaseErrorListener
     {
         /**
          * Parse error while token recognition.
