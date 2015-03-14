@@ -1012,6 +1012,15 @@
           </plugin>
 
           <plugin>
+            <groupId>org.codehaus.sonar-plugins</groupId>
+            <artifactId>maven-report</artifactId>
+            <version>0.1</version>
+            <configuration>
+              <sonarHostURL>http://nemo.sonarqube.org</sonarHostURL>
+            </configuration>
+          </plugin>
+
+          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-pmd-plugin</artifactId>
 	    <version>3.4</version>
