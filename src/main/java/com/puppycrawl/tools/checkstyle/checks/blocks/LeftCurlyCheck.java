@@ -361,17 +361,15 @@ public class LeftCurlyCheck
             nextToken = leftCurly.getFirstChild();
         }
         else {
-            if (leftCurly.getParent().getParent().getType() == TokenTypes.ENUM_DEF)
+            if (leftCurly.getParent().getParent().getType() == TokenTypes.ENUM_DEF && !ignoreEnums)
             {
-                if (!ignoreEnums) {
-                    nextToken = leftCurly.getNextSibling();
-                }
+                nextToken = leftCurly.getNextSibling();
             }
         }
-        if (nextToken != null && nextToken.getType() != TokenTypes.RCURLY) {
-            if (leftCurly.getLineNo() == nextToken.getLineNo()) {
-                return false;
-            }
+        if (nextToken != null && nextToken.getType() != TokenTypes.RCURLY
+                && leftCurly.getLineNo() == nextToken.getLineNo())
+        {
+            return false;
         }
         return true;
     }
