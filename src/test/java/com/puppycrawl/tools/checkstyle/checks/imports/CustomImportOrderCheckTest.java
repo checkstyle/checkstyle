@@ -81,7 +81,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
             "9: " + getCheckMessage(MSG_LEX, "java.awt.Dialog"),
             "13: " + getCheckMessage(MSG_LEX, "java.io.File"),
             "15: " + getCheckMessage(MSG_LEX, "java.io.InputStream"),
-            "20: " + getCheckMessage(MSG_LEX, "com.google.common.*"),
+            "20: " + getCheckMessage(MSG_LEX, "com.google.common.collect.*"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator
