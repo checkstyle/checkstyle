@@ -27,7 +27,9 @@ import java.util.List;
  * {@link java.util.Vector} which is <tt>synchronized</tt>.
  * @author oliverb
  * @param <E> The type to hold.
+ * @deprecated Use {@link java.util.ArrayDeque} instead
  */
+@Deprecated
 public class FastStack<E> implements Iterable<E>
 {
     /** Hold the entries in the stack. */
