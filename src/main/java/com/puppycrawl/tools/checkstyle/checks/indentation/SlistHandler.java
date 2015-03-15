@@ -117,7 +117,8 @@ public class SlistHandler extends BlockParentHandler
             || parentType == TokenTypes.LITERAL_FINALLY
             || parentType == TokenTypes.CTOR_DEF
             || parentType == TokenTypes.METHOD_DEF
-            || parentType == TokenTypes.STATIC_INIT;
+            || parentType == TokenTypes.STATIC_INIT
+            || parentType == TokenTypes.LITERAL_SYNCHRONIZED;
     }
 
     @Override
