@@ -21,8 +21,10 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.ArrayDeque;
+import java.util.Collections;
+import java.util.Deque;
 import java.util.Set;
 
 /**
@@ -49,8 +51,7 @@ public final class ParameterAssignmentCheck extends Check
     public static final String MSG_KEY = "parameter.assignment";
 
     /** Stack of methods' parameters. */
-    private final FastStack<Set<String>> parameterNamesStack =
-        FastStack.newInstance();
+    private final Deque<Set<String>> parameterNamesStack = new ArrayDeque<>();
     /** Current set of perameters. */
     private Set<String> parameterNames;
 
@@ -115,7 +116,7 @@ public final class ParameterAssignmentCheck extends Check
     {
         // clear data
         parameterNamesStack.clear();
-        parameterNames = null;
+        parameterNames = Collections.emptySet();
     }
 
     @Override

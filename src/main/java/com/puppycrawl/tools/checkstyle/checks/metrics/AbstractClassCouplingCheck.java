@@ -22,11 +22,11 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Set;
 
 /**
@@ -68,9 +68,9 @@ public abstract class AbstractClassCouplingCheck extends Check
     private String packageName;
 
     /** Stack of contexts. */
-    private final FastStack<Context> contextStack = FastStack.newInstance();
+    private final Deque<Context> contextStack = new ArrayDeque<>();
     /** Current context. */
-    private Context context;
+    private Context context = new Context("", 0, 0);
 
     /**
      * Creates new instance of the check.
