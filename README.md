@@ -1,6 +1,7 @@
 [![][travis img]][travis]
 [![][coverage img]][coverage]
 [![][mavenbadge img]][mavenbadge]
+[![][versioneye img]][versioneye]
 [![][sonar img]][sonar]
 
 ![](https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/images/logo.png)
@@ -61,3 +62,6 @@ directory.
 
 [mavenbadge]:http://search.maven.org/#search|gav|1|g%3A%22com.puppycrawl.tools%22%20AND%20a%3A%22checkstyle%22
 [mavenbadge img]:https://maven-badges.herokuapp.com/maven-central/com.puppycrawl.tools/checkstyle/badge.svg
+
+[versioneye]:https://www.versioneye.com/java/com.puppycrawl.tools:checkstyle/
+[versioneye img]:https://www.versioneye.com/java/com.puppycrawl.tools:checkstyle/badge.svg
