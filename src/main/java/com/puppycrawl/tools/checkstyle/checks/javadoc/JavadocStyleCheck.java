@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import com.google.common.collect.ImmutableSortedSet;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.api.Scope;
@@ -29,6 +28,8 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -358,7 +359,7 @@ public class JavadocStyleCheck
     private void checkHtml(final DetailAST ast, final TextBlock comment)
     {
         final int lineno = comment.getStartLineNo();
-        final FastStack<HtmlTag> htmlStack = FastStack.newInstance();
+        final Deque<HtmlTag> htmlStack = new ArrayDeque<>();
         final String[] text = comment.getText();
         final List<String> typeParameters =
             CheckUtils.getTypeParameterNames(ast);
@@ -423,9 +424,9 @@ public class JavadocStyleCheck
      * @param htmlStack the stack of opened HTML tags.
      * @param token the current HTML tag name that has been closed.
      */
-    private void checkUnclosedTags(FastStack<HtmlTag> htmlStack, String token)
+    private void checkUnclosedTags(Deque<HtmlTag> htmlStack, String token)
     {
-        final FastStack<HtmlTag> unclosedTags = FastStack.newInstance();
+        final Deque<HtmlTag> unclosedTags = new ArrayDeque<>();
         HtmlTag lastOpenTag = htmlStack.pop();
         while (!token.equalsIgnoreCase(lastOpenTag.getId())) {
             // Find unclosed elements. Put them on a stack so the
@@ -489,7 +490,7 @@ public class JavadocStyleCheck
      * @return <code>false</code> if a previous open tag was found
      *         for the token.
      */
-    private boolean isExtraHtml(String token, FastStack<HtmlTag> htmlStack)
+    private boolean isExtraHtml(String token, Deque<HtmlTag> htmlStack)
     {
         boolean isExtra = true;
         for (final HtmlTag td : htmlStack) {

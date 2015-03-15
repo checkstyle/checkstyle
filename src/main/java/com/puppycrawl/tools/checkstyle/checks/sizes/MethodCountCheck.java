@@ -20,10 +20,11 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.EnumMap;
 
 /**
@@ -134,8 +135,7 @@ public final class MethodCountCheck extends Check
     /** Maximum total number of methods. */
     private int maxTotal = DEFAULT_MAX_METHODS;
     /** Maintains stack of counters, to support inner types. */
-    private final FastStack<MethodCounter> counters =
-        new FastStack<>();
+    private final Deque<MethodCounter> counters = new ArrayDeque<>();
 
     @Override
     public int[] getDefaultTokens()
