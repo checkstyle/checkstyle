@@ -30,6 +30,8 @@ Bugs and Feature requests: https://github.com/checkstyle/checkstyle/issues
 Licensing
 =========
 
+[![][license img]][license]
+
 This software is licensed under the terms in the file named "LICENSE" in this
 directory.
 
@@ -58,6 +60,9 @@ directory.
 
 [coverage]:https://coveralls.io/r/checkstyle/checkstyle
 [coverage img]:https://coveralls.io/repos/checkstyle/checkstyle/badge.png
+
+[license]:LICENSE
+[license img]:https://img.shields.io/badge/license-GNU%20LGPL%20v2.1-blue.svg
 
 [mavenbadge]:http://search.maven.org/#search|gav|1|g%3A%22com.puppycrawl.tools%22%20AND%20a%3A%22checkstyle%22
 [mavenbadge img]:https://maven-badges.herokuapp.com/maven-central/com.puppycrawl.tools/checkstyle/badge.svg
