@@ -51,7 +51,6 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
 
@@ -275,7 +274,6 @@ public final class TreeWalker
         catch (final Throwable err) {
             final String exceptionMsg = String.format(msg, "Exception", fileName);
             Utils.getExceptionLogger().error(exceptionMsg);
-            err.printStackTrace();
             getMessageCollector().add(
                 new LocalizedMessage(
                     0,

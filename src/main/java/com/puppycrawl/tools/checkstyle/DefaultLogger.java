@@ -131,7 +131,6 @@ public class DefaultLogger
     {
         synchronized (errorWriter) {
             errorWriter.println("Error auditing " + evt.getFileName());
-            throwable.printStackTrace(errorWriter);
         }
     }
 

@@ -25,7 +25,6 @@ import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -177,7 +176,7 @@ public class XMLLoggerTest
         final String[] expectedLines = {
             "&lt;exception&gt;",
             "&lt;![CDATA[",
-            "stackTrace]]&gt;",
+            "]]&gt;",
             "&lt;/exception&gt;",
             "",
         };
