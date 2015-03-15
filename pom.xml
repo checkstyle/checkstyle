@@ -129,6 +129,12 @@
     </developer>
   </developers>
 
+  <contributors>
+    <contributor>
+      <url>https://github.com/checkstyle/checkstyle/graphs/contributors</url>
+    </contributor>
+  </contributors>
+
   <mailingLists>
     <mailingList>
       <name>checkstyle-announce</name>
