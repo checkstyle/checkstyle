@@ -1492,4 +1492,38 @@ public class IndentationCheckTest extends BaseCheckTestSupport
         verifyWarns(checkConfig, getPath("indentation/InputSwitchCustom.java"),
                expected);
     }
+
+    @Test
+    public void testSynchronizedStatement() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "8");
+        final String[] expected = {
+        };
+        verifyWarns(checkConfig, getPath("indentation/InputSynchronizedStatement.java"), expected);
+    }
+
+    @Test
+    public void testSynchronizedMethod() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "8");
+        final String[] expected = {
+        };
+        verifyWarns(checkConfig, getPath("indentation/InputSynchronizedMethod.java"), expected);
+    }
 }
