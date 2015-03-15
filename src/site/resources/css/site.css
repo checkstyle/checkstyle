@@ -34,5 +34,5 @@ div.tip {
 
 #banner {
   border-bottom: 1px solid #fff;
-  background: url("../images/banner.jpg") repeat scroll 0% 0% transparent;
+  background: url("../images/banner.jpg") repeat scroll 0 0 transparent;
 }
