@@ -23,12 +23,14 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.FastStack;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.Set;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.Attributes;
@@ -57,7 +59,7 @@ public final class PackageNamesLoader
         "checkstyle_packages.xml";
 
     /** The temporary stack of package name parts */
-    private final FastStack<String> packageStack = FastStack.newInstance();
+    private final Deque<String> packageStack = new ArrayDeque<>();
 
     /** The fully qualified package names. */
     private final Set<String> packageNames = Sets.newLinkedHashSet();
@@ -107,7 +109,9 @@ public final class PackageNamesLoader
     private String getPackageName()
     {
         final StringBuilder buf = new StringBuilder();
-        for (String subPackage : packageStack) {
+        final Iterator<String> iterator = packageStack.descendingIterator();
+        while (iterator.hasNext()) {
+            final String subPackage = iterator.next();
             buf.append(subPackage);
             if (!subPackage.endsWith(".")) {
                 buf.append(".");
