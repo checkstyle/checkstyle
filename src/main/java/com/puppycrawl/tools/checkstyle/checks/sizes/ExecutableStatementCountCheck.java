@@ -20,8 +20,9 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Restricts the number of executable statements to a specified limit
@@ -45,7 +46,7 @@ public final class ExecutableStatementCountCheck
     private int max;
 
     /** Stack of method contexts. */
-    private final FastStack<Context> contextStack = FastStack.newInstance();
+    private final Deque<Context> contextStack = new ArrayDeque<>();
 
     /** Current method context. */
     private Context context;
@@ -107,7 +108,7 @@ public final class ExecutableStatementCountCheck
     @Override
     public void beginTree(DetailAST rootAST)
     {
-        context = null;
+        context = new Context(null);
         contextStack.clear();
     }
 
@@ -179,7 +180,7 @@ public final class ExecutableStatementCountCheck
      */
     private void visitSlist(DetailAST ast)
     {
-        if (context != null) {
+        if (context.getAST() != null) {
             // find member AST for the statement list
             final DetailAST contextAST = context.getAST();
             DetailAST parent = ast.getParent();

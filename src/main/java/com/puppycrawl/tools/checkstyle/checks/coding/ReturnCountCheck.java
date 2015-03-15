@@ -19,9 +19,10 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * <p>
@@ -49,7 +50,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     private static final int DEFAULT_MAX = 2;
 
     /** Stack of method contexts. */
-    private final FastStack<Context> contextStack = FastStack.newInstance();
+    private final Deque<Context> contextStack = new ArrayDeque<>();
     /** Maximum allowed number of return stmts. */
     private int max;
     /** Current method context. */
@@ -112,7 +113,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     @Override
     public void beginTree(DetailAST rootAST)
     {
-        context = null;
+        context = new Context(false);
         contextStack.clear();
     }
 
