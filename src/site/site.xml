@@ -65,7 +65,7 @@
         <item name="Command Line" href="cmdline.html"/>
       </item>
 
-      <item name="Standard Checks" href="checks.html">
+      <item name="Checks" href="checks.html">
         <item name="Annotations"        href="config_annotation.html"/>
         <item name="Block Checks"       href="config_blocks.html"/>
         <item name="Class Design"       href="config_design.html"/>
