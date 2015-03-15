@@ -20,10 +20,11 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * <p>
@@ -103,7 +104,7 @@ public class DeclarationOrderCheck extends Check
      * List of Declaration States. This is necessary due to
      * inner classes that have their own state
      */
-    private final FastStack<ScopeState> scopeStates = FastStack.newInstance();
+    private final Deque<ScopeState> scopeStates = new ArrayDeque<>();
 
     /**
      * private class to encapsulate the state

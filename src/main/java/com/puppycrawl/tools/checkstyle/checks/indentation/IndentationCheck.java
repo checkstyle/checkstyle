@@ -20,7 +20,8 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FastStack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 // TODO: allow preset indentation styles (IE... GNU style, Sun style, etc...)?
 
@@ -135,8 +136,7 @@ public class IndentationCheck extends Check
     private boolean forceStrictCondition;
 
     /** handlers currently in use */
-    private final FastStack<ExpressionHandler> handlers =
-        FastStack.newInstance();
+    private final Deque<ExpressionHandler> handlers = new ArrayDeque<>();
 
     /** factory from which handlers are distributed */
     private final HandlerFactory handlerFactory = new HandlerFactory();

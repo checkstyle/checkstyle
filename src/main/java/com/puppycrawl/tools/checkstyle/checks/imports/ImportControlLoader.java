@@ -20,11 +20,12 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.FastStack;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 import javax.xml.parsers.ParserConfigurationException;
@@ -55,7 +56,7 @@ final class ImportControlLoader extends AbstractLoader
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_1.dtd";
 
     /** Used to hold the {@link PkgControl} objects. */
-    private final FastStack<PkgControl> stack = FastStack.newInstance();
+    private final Deque<PkgControl> stack = new ArrayDeque<>();
 
     /** the map to lookup the resource name by the id */
     private static final Map<String, String> DTD_RESOURCE_BY_ID = new HashMap<>();

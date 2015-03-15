@@ -19,9 +19,10 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * <p> Ensures that exceptions (classes with names conforming to some regular
@@ -50,7 +51,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     /** Pattern for class name that is being extended */
     private String extendedClassNameFormat;
     /** Stack of checking information for classes. */
-    private final FastStack<Boolean> checkingStack = FastStack.newInstance();
+    private final Deque<Boolean> checkingStack = new ArrayDeque<>();
     /** Should we check current class or not. */
     private boolean checking;
 
