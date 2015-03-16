@@ -33,7 +33,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class AllChecksPresentOnAvailableChecksPageTest
 {
     private static final File JAVA_SOURCES_DIRECTORY = new File("src/main/java");
-    private static final String AVAILABLE_CHECKS_PATH = "src/xdocs/availablechecks.xml";
+    private static final String AVAILABLE_CHECKS_PATH = "src/xdocs/checks.xml";
     private static final File AVAILABLE_CHECKS_FILE = new File(AVAILABLE_CHECKS_PATH);
     private static final String CHECK_FILE_NAME = ".+Check.java$";
     private static final String CHECK_SUFFIX = "Check.java";
