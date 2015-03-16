@@ -274,7 +274,6 @@ public final class TreeWalker
         catch (final Throwable err) {
             final String exceptionMsg = String.format(msg, "Exception", fileName);
             Utils.getExceptionLogger().error(exceptionMsg);
-            err.printStackTrace();
             getMessageCollector().add(
                 new LocalizedMessage(
                     0,
