@@ -12,6 +12,8 @@
         updates available.
   -->
 
+  <modelVersion>4.0.0</modelVersion>
+
   <!-- Used for making releases. -->
   <parent>
     <artifactId>oss-parent</artifactId>
@@ -19,49 +21,21 @@
     <version>9</version>
   </parent>
 
-  <modelVersion>4.0.0</modelVersion>
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
   <version>6.5-SNAPSHOT</version>
   <packaging>jar</packaging>
+
   <name>checkstyle</name>
-  <url>http://checkstyle.sourceforge.net/</url>
-  <issueManagement>
-    <system>GitHub Issues</system>
-    <url>https://github.com/checkstyle/checkstyle/issues</url>
-  </issueManagement>
-  <ciManagement>
-    <system>travis</system>
-    <url>https://travis-ci.org/checkstyle/checkstyle</url>
-  </ciManagement>
-  <inceptionYear>2001</inceptionYear>
-
   <description>Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard</description>
-
-  <prerequisites>
-    <maven>3.0.1</maven>
-  </prerequisites>
-
+  <url>http://checkstyle.sourceforge.net/</url>
+  <inceptionYear>2001</inceptionYear>
   <licenses>
     <license>
       <name>GNU Lesser General Public License</name>
       <url>http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt</url>
     </license>
   </licenses>
-
-  <scm>
-    <connection>scm:git:git@github.com:checkstyle/checkstyle.git</connection>
-    <developerConnection>scm:git:git@github.com:checkstyle/checkstyle.git</developerConnection>
-    <url>https://github.com/checkstyle/checkstyle</url>
-  </scm>
-
-  <distributionManagement>
-    <site>
-      <id>sourceforge-new-site</id>
-      <name>New Site</name>
-      <url>scp://shell.sourceforge.net/home/project-web/checkstyle/htdocs/new-site</url>
-    </site>
-  </distributionManagement>
 
   <developers>
     <developer>
@@ -128,7 +102,6 @@
       </roles>
     </developer>
   </developers>
-
   <contributors>
     <contributor>
       <url>https://github.com/checkstyle/checkstyle/graphs/contributors</url>
@@ -158,6 +131,31 @@
       <post>mailto:checkstyle-devel@googlegroups.com</post>
     </mailingList>
   </mailingLists>
+
+  <prerequisites>
+    <maven>3.0.1</maven>
+  </prerequisites>
+
+  <scm>
+    <connection>scm:git:git@github.com:checkstyle/checkstyle.git</connection>
+    <developerConnection>scm:git:git@github.com:checkstyle/checkstyle.git</developerConnection>
+    <url>https://github.com/checkstyle/checkstyle</url>
+  </scm>
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>https://github.com/checkstyle/checkstyle/issues</url>
+  </issueManagement>
+  <ciManagement>
+    <system>travis</system>
+    <url>https://travis-ci.org/checkstyle/checkstyle</url>
+  </ciManagement>
+  <distributionManagement>
+    <site>
+      <id>sourceforge-new-site</id>
+      <name>New Site</name>
+      <url>scp://shell.sourceforge.net/home/project-web/checkstyle/htdocs/new-site</url>
+    </site>
+  </distributionManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -289,7 +287,6 @@
         </plugin>
       </plugins>
     </pluginManagement>
-
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
