@@ -10,7 +10,7 @@ checking Java source code for adherence to a Code Standard or set of validation 
 
 The latest version can be found at [SourceForge downloads](https://sourceforge.net/projects/checkstyle/files/checkstyle/) or at [Maven repo](http://repo1.maven.org/maven2/com/puppycrawl/tools/checkstyle/).
 
-Documentation is available in HTML format, see http://checkstyle.sourceforge.net/availablechecks.html.
+Documentation is available in HTML format, see http://checkstyle.sourceforge.net/checks.html.
 
 Continuous integration and Quality reports
 ======================
