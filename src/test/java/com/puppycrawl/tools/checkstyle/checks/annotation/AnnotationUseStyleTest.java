@@ -209,4 +209,15 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
 
         verify(checkConfig, getPath("annotation" + File.separator + "DifferentUseStyles.java"), expected);
     }
+
+    @Test
+    public void testAnnotationsWithoutDefaultValues() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(AnnotationUseStyleCheck.class);
+        checkConfig.addAttribute("closingParens", "NEVER");
+        final String[] expected = {
+        };
+
+        verify(checkConfig, getPath("annotation" + File.separator + "AnnotationsUseStyleParams.java"), expected);
+    }
 }
