@@ -150,6 +150,10 @@
         </td>
       </tr>
       <tr>
+        <td><a href="config_lambda.html#DemandTypesInLambda">DemandTypesInLambda</a></td>
+        <td>Checks for types in lambda parameters</td>
+      </tr>
+      <tr>
         <td><a href="config_misc.html#DescendantToken">DescendantToken</a></td>
         <td>Checks for restricted tokens beneath other tokens.</td>
       </tr>
