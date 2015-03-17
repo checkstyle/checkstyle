@@ -719,8 +719,8 @@
           <regex><pattern>.*.checks.indentation.PackageDefHandler</pattern><branchRate>50</branchRate><lineRate>85</lineRate></regex>
           <regex><pattern>.*.checks.indentation.PrimordialHandler</pattern><branchRate>100</branchRate><lineRate>60</lineRate></regex>
           <regex><pattern>.*.checks.indentation.SlistHandler</pattern><branchRate>100</branchRate><lineRate>94</lineRate></regex>
-          
-          
+
+
           <regex><pattern>.*.checks.javadoc.AbstractJavadocCheck</pattern><branchRate>90</branchRate><lineRate>93</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.AbstractJavadocCheck\$.*</pattern><branchRate>50</branchRate><lineRate>68</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.AtclauseOrderCheck</pattern><branchRate>88</branchRate><lineRate>88</lineRate></regex>
@@ -738,9 +738,9 @@
           <regex><pattern>.*.checks.javadoc.SummaryJavadocCheck</pattern><branchRate>93</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.TagParser</pattern><branchRate>92</branchRate><lineRate>98</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.WriteTagCheck</pattern><branchRate>100</branchRate><lineRate>91</lineRate></regex>
-          
-          
-          <regex><pattern>.*.checks.metrics.AbstractClassCouplingCheck</pattern><branchRate>87</branchRate><lineRate>97</lineRate></regex>
+
+          <regex><pattern>.*.checks.lambda.DemandTypesInLambdaCheck</pattern><branchRate>85</branchRate><lineRate>100</lineRate></regex>
+
           <regex><pattern>.*.checks.metrics.AbstractClassCouplingCheck\$.*</pattern><branchRate>78</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.metrics.AbstractComplexityCheck</pattern><branchRate>83</branchRate><lineRate>92</lineRate></regex>
           <regex><pattern>.*.checks.metrics.BooleanExpressionComplexityCheck</pattern><branchRate>74</branchRate><lineRate>80</lineRate></regex>
