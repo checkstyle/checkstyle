@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <!--
       TIPS:
@@ -8,10 +9,9 @@
       - use "mvn versions:display-dependency-updates" to see what dependencies
         have updates available.
 
-      - use "mvn versions:display-plugin-updates" to see whan plugins have
+      - use "mvn versions:display-plugin-updates" to see what plugins have
         updates available.
   -->
-
   <modelVersion>4.0.0</modelVersion>
 
   <!-- Used for making releases. -->
@@ -530,8 +530,7 @@
           </execution>
         </executions>
       </plugin>
-      
-      	  
+
       <plugin>
        <groupId>org.codehaus.mojo</groupId>
        <artifactId>cobertura-maven-plugin</artifactId>
@@ -559,8 +558,8 @@
           <regex><pattern>.*.TreeWalker</pattern><branchRate>90</branchRate><lineRate>83</lineRate></regex>
           <regex><pattern>com.puppycrawl.tools.checkstyle.Utils</pattern><branchRate>69</branchRate><lineRate>63</lineRate></regex>
           <regex><pattern>.*.XMLLogger</pattern><branchRate>86</branchRate><lineRate>97</lineRate></regex>
-          
-          
+
+
           <regex><pattern>.*.api.AbstractFileSetCheck</pattern><branchRate>75</branchRate><lineRate>87</lineRate></regex>
           <regex><pattern>.*.api.AbstractLoader</pattern><branchRate>75</branchRate><lineRate>88</lineRate></regex>
           <regex><pattern>.*.api.AbstractViolationReporter</pattern><branchRate>100</branchRate><lineRate>90</lineRate></regex>
@@ -585,8 +584,8 @@
           <regex><pattern>.*.api.ScopeUtils</pattern><branchRate>90</branchRate><lineRate>94</lineRate></regex>
           <regex><pattern>.*.api.SeverityLevelCounter</pattern><branchRate>50</branchRate><lineRate>76</lineRate></regex>
           <regex><pattern>.*.api.TokenTypes</pattern><branchRate>62</branchRate><lineRate>72</lineRate></regex>
-          
-          
+
+
           <regex><pattern>.*.checks.AbstractOptionCheck</pattern><branchRate>100</branchRate><lineRate>80</lineRate></regex>
           <regex><pattern>.*.checks.AbstractTypeAwareCheck</pattern><branchRate>87</branchRate><lineRate>84</lineRate></regex>
           <regex><pattern>.*.checks.AbstractTypeAwareCheck\$.*</pattern><branchRate>50</branchRate><lineRate>80</lineRate></regex>
@@ -606,24 +605,24 @@
           <regex><pattern>.*.checks.UncommentedMainCheck</pattern><branchRate>83</branchRate><lineRate>88</lineRate></regex>
           <regex><pattern>.*.checks.UniquePropertiesCheck\$.*</pattern><branchRate>75</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.UpperEllCheck</pattern><branchRate>100</branchRate><lineRate>83</lineRate></regex>
-          
-          
+
+
           <regex><pattern>.*.checks.annotation.AnnotationLocationCheck</pattern><branchRate>75</branchRate><lineRate>78</lineRate></regex>
           <regex><pattern>.*.checks.annotation.AnnotationUseStyleCheck</pattern><branchRate>93</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.annotation.MissingDeprecatedCheck</pattern><branchRate>92</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.annotation.MissingOverrideCheck</pattern><branchRate>100</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.annotation.PackageAnnotationCheck</pattern><branchRate>50</branchRate><lineRate>77</lineRate></regex>
           <regex><pattern>.*.checks.annotation.SuppressWarningsCheck</pattern><branchRate>79</branchRate><lineRate>96</lineRate></regex>
-          
-          
+
+
           <regex><pattern>.*.checks.blocks.AvoidNestedBlocksCheck</pattern><branchRate>100</branchRate><lineRate>90</lineRate></regex>
           <regex><pattern>.*.checks.blocks.EmptyBlockCheck</pattern><branchRate>88</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.blocks.EmptyCatchBlockCheck</pattern><branchRate>96</branchRate><lineRate>98</lineRate></regex>
           <regex><pattern>.*.checks.blocks.LeftCurlyCheck</pattern><branchRate>87</branchRate><lineRate>94</lineRate></regex>
           <regex><pattern>.*.checks.blocks.NeedBracesCheck</pattern><branchRate>80</branchRate><lineRate>97</lineRate></regex>
           <regex><pattern>.*.checks.blocks.RightCurlyCheck</pattern><branchRate>88</branchRate><lineRate>95</lineRate></regex>
-          
-          
+
+
           <regex><pattern>.*.checks.coding.AbstractIllegalCheck</pattern><branchRate>64</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.coding.AbstractIllegalMethodCheck</pattern><branchRate>100</branchRate><lineRate>92</lineRate></regex>
           <regex><pattern>.*.checks.coding.AbstractNestedDepthCheck</pattern><branchRate>100</branchRate><lineRate>86</lineRate></regex>
@@ -668,8 +667,8 @@
           <regex><pattern>.*.checks.coding.StringLiteralEqualityCheck</pattern><branchRate>100</branchRate><lineRate>87</lineRate></regex>
           <regex><pattern>.*.checks.coding.UnnecessaryParenthesesCheck</pattern><branchRate>91</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.coding.VariableDeclarationUsageDistanceCheck</pattern><branchRate>90</branchRate><lineRate>97</lineRate></regex>
-          
-          
+
+
           <regex><pattern>.*.checks.design.DesignForExtensionCheck</pattern><branchRate>67</branchRate><lineRate>81</lineRate></regex>
           <regex><pattern>.*.checks.design.FinalClassCheck</pattern><branchRate>80</branchRate><lineRate>95</lineRate></regex>
           <regex><pattern>.*.checks.design.FinalClassCheck\$.*</pattern><branchRate>100</branchRate><lineRate>92</lineRate></regex>
@@ -680,13 +679,12 @@
           <regex><pattern>.*.checks.design.OneTopLevelClassCheck</pattern><branchRate>77</branchRate><lineRate>95</lineRate></regex>
           <regex><pattern>.*.checks.design.ThrowsCountCheck</pattern><branchRate>75</branchRate><lineRate>83</lineRate></regex>
           <regex><pattern>.*.checks.design.VisibilityModifierCheck</pattern><branchRate>95</branchRate><lineRate>95</lineRate></regex>
-          
 
           <regex><pattern>.*.checks.header.AbstractHeaderCheck</pattern><branchRate>79</branchRate><lineRate>85</lineRate></regex>
           <regex><pattern>.*.checks.header.HeaderCheck</pattern><branchRate>18</branchRate><lineRate>45</lineRate></regex>
           <regex><pattern>.*.checks.header.RegexpHeaderCheck</pattern><branchRate>87</branchRate><lineRate>93</lineRate></regex>
-          
-          
+
+
           <regex><pattern>.*.checks.imports.AvoidStarImportCheck</pattern><branchRate>90</branchRate><lineRate>88</lineRate></regex>
           <regex><pattern>.*.checks.imports.AvoidStaticImportCheck</pattern><branchRate>85</branchRate><lineRate>95</lineRate></regex>
           <regex><pattern>.*.checks.imports.CustomImportOrderCheck</pattern><branchRate>93</branchRate><lineRate>91</lineRate></regex>
@@ -698,8 +696,8 @@
           <regex><pattern>.*.checks.imports.PkgControl</pattern><branchRate>80</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.imports.RedundantImportCheck</pattern><branchRate>81</branchRate><lineRate>94</lineRate></regex>
           <regex><pattern>.*.checks.imports.UnusedImportsCheck</pattern><branchRate>90</branchRate><lineRate>97</lineRate></regex>
-          
-          
+
+
           <regex><pattern>.*.checks.indentation.ArrayInitHandler</pattern><branchRate>83</branchRate><lineRate>97</lineRate></regex>
           <regex><pattern>.*.checks.indentation.BlockParentHandler</pattern><branchRate>86</branchRate><lineRate>98</lineRate></regex>
           <regex><pattern>.*.checks.indentation.ElseHandler</pattern><branchRate>75</branchRate><lineRate>100</lineRate></regex>
@@ -719,8 +717,8 @@
           <regex><pattern>.*.checks.indentation.PackageDefHandler</pattern><branchRate>50</branchRate><lineRate>85</lineRate></regex>
           <regex><pattern>.*.checks.indentation.PrimordialHandler</pattern><branchRate>100</branchRate><lineRate>60</lineRate></regex>
           <regex><pattern>.*.checks.indentation.SlistHandler</pattern><branchRate>100</branchRate><lineRate>94</lineRate></regex>
-          
-          
+
+
           <regex><pattern>.*.checks.javadoc.AbstractJavadocCheck</pattern><branchRate>90</branchRate><lineRate>93</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.AbstractJavadocCheck\$.*</pattern><branchRate>50</branchRate><lineRate>68</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.AtclauseOrderCheck</pattern><branchRate>88</branchRate><lineRate>88</lineRate></regex>
@@ -738,8 +736,8 @@
           <regex><pattern>.*.checks.javadoc.SummaryJavadocCheck</pattern><branchRate>93</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.TagParser</pattern><branchRate>92</branchRate><lineRate>98</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.WriteTagCheck</pattern><branchRate>100</branchRate><lineRate>91</lineRate></regex>
-          
-          
+
+
           <regex><pattern>.*.checks.metrics.AbstractClassCouplingCheck</pattern><branchRate>87</branchRate><lineRate>97</lineRate></regex>
           <regex><pattern>.*.checks.metrics.AbstractClassCouplingCheck\$.*</pattern><branchRate>78</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.metrics.AbstractComplexityCheck</pattern><branchRate>83</branchRate><lineRate>92</lineRate></regex>
@@ -748,12 +746,12 @@
           <regex><pattern>.*.checks.metrics.CyclomaticComplexityCheck</pattern><branchRate>85</branchRate><lineRate>80</lineRate></regex>
           <regex><pattern>.*.checks.metrics.JavaNCSSCheck</pattern><branchRate>81</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.metrics.NPathComplexityCheck</pattern><branchRate>100</branchRate><lineRate>96</lineRate></regex>
-          
-          
+
+
           <regex><pattern>.*.checks.modifier.ModifierOrderCheck</pattern><branchRate>92</branchRate><lineRate>91</lineRate></regex>
           <regex><pattern>.*.checks.modifier.RedundantModifierCheck</pattern><branchRate>97</branchRate><lineRate>96</lineRate></regex>
-          
-          
+
+
           <regex><pattern>.*.checks.naming.AbbreviationAsWordInNameCheck</pattern><branchRate>93</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.naming.AbstractAccessControlNameCheck</pattern><branchRate>95</branchRate><lineRate>80</lineRate></regex>
           <regex><pattern>.*.checks.naming.AbstractClassNameCheck</pattern><branchRate>100</branchRate><lineRate>90</lineRate></regex>
@@ -767,15 +765,14 @@
           <regex><pattern>.*.checks.naming.PackageNameCheck</pattern><branchRate>100</branchRate><lineRate>88</lineRate></regex>
           <regex><pattern>.*.checks.naming.ParameterNameCheck</pattern><branchRate>75</branchRate><lineRate>80</lineRate></regex>
           <regex><pattern>.*.checks.naming.StaticVariableNameCheck</pattern><branchRate>81</branchRate><lineRate>87</lineRate></regex>
-          
-          
+
           <regex><pattern>.*.checks.regexp.CommentSuppressor</pattern><branchRate>75</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.regexp.DetectorOptions</pattern><branchRate>100</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.regexp.MultilineDetector</pattern><branchRate>58</branchRate><lineRate>87</lineRate></regex>
           <regex><pattern>.*.checks.regexp.RegexpMultilineCheck</pattern><branchRate>100</branchRate><lineRate>76</lineRate></regex>
           <regex><pattern>.*.checks.regexp.RegexpSinglelineCheck</pattern><branchRate>100</branchRate><lineRate>76</lineRate></regex>
           <regex><pattern>.*.checks.regexp.SinglelineDetector</pattern><branchRate>93</branchRate><lineRate>96</lineRate></regex>
-          
+
           <regex><pattern>.*.checks.sizes.AnonInnerLengthCheck</pattern><branchRate>100</branchRate><lineRate>92</lineRate></regex>
           <regex><pattern>.*.checks.sizes.ExecutableStatementCountCheck</pattern><branchRate>81</branchRate><lineRate>95</lineRate></regex>
           <regex><pattern>.*.checks.sizes.LineLengthCheck</pattern><branchRate>100</branchRate><lineRate>89</lineRate></regex>
@@ -783,8 +780,8 @@
           <regex><pattern>.*.checks.sizes.MethodLengthCheck</pattern><branchRate>100</branchRate><lineRate>95</lineRate></regex>
           <regex><pattern>.*.checks.sizes.OuterTypeNumberCheck</pattern><branchRate>75</branchRate><lineRate>94</lineRate></regex>
           <regex><pattern>.*.checks.sizes.ParameterNumberCheck</pattern><branchRate>100</branchRate><lineRate>93</lineRate></regex>
-          
-          
+
+
           <regex><pattern>.*.checks.whitespace.AbstractParenPadCheck</pattern><branchRate>88</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.whitespace.EmptyForInitializerPadCheck</pattern><branchRate>91</branchRate><lineRate>93</lineRate></regex>
           <regex><pattern>.*.checks.whitespace.EmptyForIteratorPadCheck</pattern><branchRate>100</branchRate><lineRate>92</lineRate></regex>
@@ -799,8 +796,8 @@
           <regex><pattern>.*.checks.whitespace.TypecastParenPadCheck</pattern><branchRate>87</branchRate><lineRate>88</lineRate></regex>
           <regex><pattern>.*.checks.whitespace.WhitespaceAfterCheck</pattern><branchRate>90</branchRate><lineRate>90</lineRate></regex>
           <regex><pattern>.*.checks.whitespace.WhitespaceAroundCheck</pattern><branchRate>96</branchRate><lineRate>98</lineRate></regex>
-          
-          
+
+
           <regex><pattern>.*.filters.CSVFilter</pattern><branchRate>100</branchRate><lineRate>93</lineRate></regex>
           <regex><pattern>.*.filters.IntMatchFilter</pattern><branchRate>100</branchRate><lineRate>90</lineRate></regex>
           <regex><pattern>.*.filters.IntRangeFilter</pattern><branchRate>100</branchRate><lineRate>90</lineRate></regex>
@@ -811,8 +808,7 @@
           <regex><pattern>.*.filters.SuppressionsLoader</pattern><branchRate>68</branchRate><lineRate>77</lineRate></regex>
           <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter</pattern><branchRate>80</branchRate><lineRate>87</lineRate></regex>
           <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter\$.*</pattern><branchRate>81</branchRate><lineRate>75</lineRate></regex>
-          
-          
+
          </regexes>
         </check>
         <instrumentation>
@@ -824,7 +820,7 @@
               <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
             </excludes>
         </instrumentation>
-       </configuration> 
+       </configuration>
        <executions>
           <execution>
             <goals>
@@ -843,8 +839,8 @@
           <downloadJavadocs>true</downloadJavadocs>
         </configuration>
       </plugin>
-	  
-      </plugins>
+
+    </plugins>
   </build>
 
   <reporting>
@@ -882,92 +878,92 @@
         </configuration>
       </plugin>
 
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-report-plugin</artifactId>
-            <version>2.18.1</version>
-          </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>2.18.1</version>
+      </plugin>
 
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>cobertura-maven-plugin</artifactId>
-	    <version>2.6</version>
-            <configuration>
-              <formats>
-                <format>xml</format>
-                <format>html</format>
-              </formats>
-            </configuration>
-          </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <formats>
+            <format>xml</format>
+            <format>html</format>
+          </formats>
+        </configuration>
+      </plugin>
 
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-jxr-plugin</artifactId>
-            <version>2.5</version>
-          </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>2.5</version>
+      </plugin>
 
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>jdepend-maven-plugin</artifactId>
-            <version>2.0</version>
-          </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jdepend-maven-plugin</artifactId>
+        <version>2.0</version>
+      </plugin>
 
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>taglist-maven-plugin</artifactId>
-            <version>2.4</version>
-            <configuration>
-              <tagListOptions>
-                <tagClasses>
-                  <tagClass>
-                    <displayName>Todo Work</displayName>
-                    <tags>
-                      <tag>
-                        <matchString>todo</matchString>
-                        <matchType>ignoreCase</matchType>
-                      </tag>
-                      <tag>
-                        <matchString>FIXME</matchString>
-                        <matchType>exact</matchType>
-                      </tag>
-                    </tags>
-                  </tagClass>
-                </tagClasses>
-              </tagListOptions>
-            </configuration>
-          </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>taglist-maven-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <tagListOptions>
+            <tagClasses>
+              <tagClass>
+                <displayName>Todo Work</displayName>
+                <tags>
+                  <tag>
+                    <matchString>todo</matchString>
+                    <matchType>ignoreCase</matchType>
+                  </tag>
+                  <tag>
+                    <matchString>FIXME</matchString>
+                    <matchType>exact</matchType>
+                  </tag>
+                </tags>
+              </tagClass>
+            </tagClasses>
+          </tagListOptions>
+        </configuration>
+      </plugin>
 
-          <plugin>
-            <groupId>org.codehaus.sonar-plugins</groupId>
-            <artifactId>maven-report</artifactId>
-            <version>0.1</version>
-            <configuration>
-              <sonarHostURL>http://nemo.sonarqube.org</sonarHostURL>
-            </configuration>
-          </plugin>
+      <plugin>
+        <groupId>org.codehaus.sonar-plugins</groupId>
+        <artifactId>maven-report</artifactId>
+        <version>0.1</version>
+        <configuration>
+          <sonarHostURL>http://nemo.sonarqube.org</sonarHostURL>
+        </configuration>
+      </plugin>
 
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-pmd-plugin</artifactId>
-	    <version>3.4</version>
-            <configuration>
-              <targetJdk>1.7</targetJdk>
-              <minimumTokens>20</minimumTokens>
-            </configuration>
-            <reportSets>
-              <reportSet>
-                <reports>
-                  <report>pmd</report>
-                </reports>
-              </reportSet>
-            </reportSets>
-          </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.4</version>
+        <configuration>
+          <targetJdk>1.7</targetJdk>
+          <minimumTokens>20</minimumTokens>
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>pmd</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
 
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>findbugs-maven-plugin</artifactId>
-            <version>3.0.0</version>
-          </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+        <version>3.0.0</version>
+      </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
