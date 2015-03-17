@@ -9,5 +9,4 @@ install: mvn clean verify site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true
              -Dpmd.skip=true -Dfindbugs.skip=true
 
 after_success:
-  - mvn -Ptravis surefire-report:report jacoco:report coveralls:jacoco
-
+  - mvn -Ptravis clean test jacoco:report coveralls:report
