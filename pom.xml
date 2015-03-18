@@ -161,7 +161,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.5</antlr4.version>
-    <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
     <maven.site.plugin.version>3.4</maven.site.plugin.version>
     <tools.jar.version>1.7.0</tools.jar.version>
     <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
@@ -528,7 +527,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>${maven.surefire.plugin.version}</version>
+        <version>2.18.1</version>
         <configuration>
           <argLine>-Duser.language=en -Duser.country=US -XX:-UseSplitVerifier</argLine>
           <additionalClasspathElements>
@@ -564,6 +563,7 @@
        <artifactId>cobertura-maven-plugin</artifactId>
        <version>2.6</version>
        <configuration>
+        <format>xml</format>
         <check>
          <haltOnFailure>true</haltOnFailure>
          <branchRate>100</branchRate>
@@ -859,6 +859,12 @@
       </plugin>
 
       <plugin>
+        <groupId>org.eluder.coveralls</groupId>
+        <artifactId>coveralls-maven-plugin</artifactId>
+        <version>3.0.1</version>
+      </plugin>
+
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-eclipse-plugin</artifactId>
         <version>2.9</version>
@@ -1093,61 +1099,6 @@
           <systemPath>${tools.jar.path}</systemPath>
         </dependency>
       </dependencies>
-    </profile>
-
-    <profile>
-      <!-- that profile is used only for coveralls.io banner that show coverage at ReadMe.md  -->
-      <id>travis</id>
-      <build>
-        <plugins>
-
-          <!-- Used to set custom properties by means of ${argLine}, that is required for jacoco -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>${maven.surefire.plugin.version}</version>
-            <configuration>
-              <argLine>${argLine} -Duser.language=en -Duser.country=US -XX:-UseSplitVerifier</argLine>
-            </configuration>
-          </plugin>
-
-          <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.7.4.201502262128</version>
-            <configuration>
-              <excludes>
-                <exclude>com/puppycrawl/tools/checkstyle/CheckStyleTask*.class</exclude>
-                <exclude>com/puppycrawl/tools/checkstyle/doclets/*.class</exclude>
-                <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
-                <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
-                <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
-              </excludes>
-            </configuration>
-            <executions>
-              <execution>
-                <id>prepare-agent</id>
-                <goals>
-                  <goal>prepare-agent</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>report</id>
-                <goals>
-                  <goal>report</goal>
-                </goals>
-                <phase>prepare-package</phase>
-              </execution>
-            </executions>
-          </plugin>
-
-          <plugin>
-            <groupId>org.eluder.coveralls</groupId>
-            <artifactId>coveralls-maven-plugin</artifactId>
-            <version>3.0.1</version>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
 
     <profile>
