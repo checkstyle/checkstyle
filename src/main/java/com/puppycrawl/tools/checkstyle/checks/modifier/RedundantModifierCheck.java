@@ -160,7 +160,7 @@ public class RedundantModifierCheck
 
     /**
      * Checks if method definition is annotated with
-     * <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/SafeVarargs.html">
+     * <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/SafeVarargs.html">
      * SafeVarargs</a> annotation
      * @param methodDef method definition node
      * @return true or false

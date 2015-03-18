@@ -26,9 +26,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>Checks that long constants are defined with an upper ell.
  * That is <span class="code">'L'</span> and not
  * <span class="code">'l'</span>. This is in accordance to the Java Language
- * Specification, <a href=
-"http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282"
- * >Section 3.10.1</a>.
+ * Specification, <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">
+ * Section 3.10.1</a>.
  * </p>
  * <p>
  * Rationale: The letter <span class="code">l</span> looks a lot
