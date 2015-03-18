@@ -53,19 +53,15 @@ public class DefaultLogger
     /** close error stream after use */
     private final boolean closeError;
 
-    /** print severity level. */
-    private boolean printSeverity = true;
-
     /**
      * Creates a new <code>DefaultLogger</code> instance.
      * @param os where to log infos and errors
      * @param closeStreamsAfterUse if oS should be closed in auditFinished()
-     * @param printSeverity if severity level should be printed
      */
-    public DefaultLogger(OutputStream os, boolean closeStreamsAfterUse, boolean printSeverity)
+    public DefaultLogger(OutputStream os, boolean closeStreamsAfterUse)
     {
         // no need to close oS twice
-        this(os, closeStreamsAfterUse, os, false, printSeverity);
+        this(os, closeStreamsAfterUse, os, false);
     }
 
     /**
@@ -75,13 +71,11 @@ public class DefaultLogger
      * @param closeInfoAfterUse auditFinished should close infoStream
      * @param errorStream the <code>OutputStream</code> for error messages
      * @param closeErrorAfterUse auditFinished should close errorStream
-     * @param printSeverity if severity level should be printed
      */
     public DefaultLogger(OutputStream infoStream,
                          boolean closeInfoAfterUse,
                          OutputStream errorStream,
-                         boolean closeErrorAfterUse,
-                         boolean printSeverity)
+                         boolean closeErrorAfterUse)
     {
         closeInfo = closeInfoAfterUse;
         closeError = closeErrorAfterUse;
@@ -89,7 +83,6 @@ public class DefaultLogger
         errorWriter = infoStream == errorStream
             ? infoWriter
             : new PrintWriter(errorStream);
-        this.printSeverity = printSeverity;
     }
 
     /**
@@ -117,8 +110,8 @@ public class DefaultLogger
             if (evt.getColumn() > 0) {
                 sb.append(':').append(evt.getColumn());
             }
-            if (printSeverity) {
-                sb.append(": ").append(severityLevel.getName());
+            if (SeverityLevel.WARNING == severityLevel) {
+                sb.append(": warning");
             }
             sb.append(": ").append(message);
             errorWriter.println(sb.toString());

@@ -85,7 +85,6 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
     @Test
     public void testTagSeverity() throws Exception
     {
-        final boolean printSeverity = true;
         checkConfig.addAttribute("tag", "@incomplete");
         checkConfig.addAttribute("tagFormat", "\\S");
         checkConfig.addAttribute("tagSeverity", "warning");
@@ -93,7 +92,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
         {
             "11: " + getCheckMessage(WRITE_TAG, "warning: @incomplete", "This class needs more code..."),
         };
-        verify(checkConfig, printSeverity, getPath("InputWriteTag.java"), expected);
+        verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
