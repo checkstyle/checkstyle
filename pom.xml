@@ -1013,10 +1013,12 @@
           <excludedLinks>
             <excludedLink>reports/google-style/guava</excludedLink>
             <excludedLink>reports/javadoc/openjdk8</excludedLink>
+            <excludedLink>https://travis-ci.org/</excludedLink>
             <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
             <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
             <excludedLink>http://search.maven.org/*</excludedLink>
-            <excludedLink>hhttp://junit.org</excludedLink>
+            <excludedLink>http://junit.org</excludedLink>
+            <excludedLink>http://sonar-plugins.codehaus.org/maven-report</excludedLink>
             <!-- Excluded due to checkstyle's issue #549 until http://jira.codehaus.org/browse/MJAVADOC-425
             and http://jira.codehaus.org/browse/DOXIA-525 and http://jira.codehaus.org/browse/MLINKCHECK-21 will be fixed -->
             <excludedLink>**/com/puppycrawl/**</excludedLink>
