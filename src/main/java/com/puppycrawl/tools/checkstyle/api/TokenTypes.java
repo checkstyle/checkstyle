@@ -487,7 +487,7 @@ public final class TokenTypes
      * initialization block.</p>
      *
      * @see <a
-     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-10.htm">Java
+     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-10.html">Java
      * Language Specification &sect;10</a>
      * @see #TYPE
      * @see #ARRAY_INIT
