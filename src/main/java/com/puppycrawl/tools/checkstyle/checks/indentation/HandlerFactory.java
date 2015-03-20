@@ -63,7 +63,6 @@ public class HandlerFactory
                     });
             typeHandlers.put(type, ctor);
         }
-        ///CLOVER:OFF
         catch (final NoSuchMethodException e) {
             throw new RuntimeException("couldn't find ctor for "
                                        + handlerClass);
@@ -73,7 +72,6 @@ public class HandlerFactory
             throw new RuntimeException("couldn't find ctor for "
                                        + handlerClass);
         }
-        ///CLOVER:ON
     }
 
     /** Creates a HandlerFactory. */
@@ -169,7 +167,6 @@ public class HandlerFactory
                         indentCheck, ast, parent);
             }
         }
-        ///CLOVER:OFF
         catch (final InstantiationException e) {
             LOG.debug("couldn't instantiate constructor for " + ast, e);
             throw new RuntimeException("couldn't instantiate constructor for "
@@ -188,7 +185,6 @@ public class HandlerFactory
         if (expHandler == null) {
             throw new RuntimeException("no handler for type " + ast.getType());
         }
-        ///CLOVER:ON
         return expHandler;
     }
 

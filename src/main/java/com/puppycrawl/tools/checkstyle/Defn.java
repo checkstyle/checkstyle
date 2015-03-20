@@ -24,14 +24,12 @@ package com.puppycrawl.tools.checkstyle;
  **/
 public final class Defn
 {
-    ///CLOVER:OFF
     /**
      * Do no allow <code>Defn</code> instances to be created.
      **/
     private Defn()
     {
     }
-    ///CLOVER:ON
 
     /** Name of resource bundle for Checkstyle. */
     public static final String CHECKSTYLE_BUNDLE =

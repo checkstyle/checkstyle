@@ -89,13 +89,11 @@ public final class JavadocUtils
         TOKEN_VALUE_TO_NAME = tempTokenValueToName;
     }
 
-    ///CLOVER:OFF
     /** prevent instantiation */
     private JavadocUtils()
     {
     }
 
-    ///CLOVER:ON
 
     /**
      * Gets validTags from a given piece of Javadoc.

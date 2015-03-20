@@ -108,25 +108,11 @@ class PackageObjectFactory implements ModuleFactory
         throws CheckstyleException
     {
         try {
-            final Class<?> clazz = Class.forName(className, true,
-                    moduleClassLoader);
+            final Class<?> clazz = Class.forName(className, true, moduleClassLoader);
             return clazz.newInstance();
         }
-        catch (final ClassNotFoundException e) {
-            throw new CheckstyleException(
-                "Unable to find class for " + className, e);
-        }
-        catch (final InstantiationException e) {
-            ///CLOVER:OFF
-            throw new CheckstyleException(
-                "Unable to instantiate " + className, e);
-            ///CLOVER:ON
-        }
-        catch (final IllegalAccessException e) {
-            ///CLOVER:OFF
-            throw new CheckstyleException(
-                "Unable to instantiate " + className, e);
-            ///CLOVER:ON
+        catch (final ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            throw new CheckstyleException("Unable to find class for " + className, e);
         }
     }
 

@@ -229,9 +229,7 @@ public class SuppressionCommentFilter
             final Matcher matcher = regexp.matcher(comment);
             // Match primarily for effect.
             if (!matcher.find()) {
-                ///CLOVER:OFF
                 return string;
-                ///CLOVER:ON
             }
             String result = string;
             for (int i = 0; i <= matcher.groupCount(); i++) {
