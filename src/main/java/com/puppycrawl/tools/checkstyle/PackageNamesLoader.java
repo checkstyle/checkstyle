@@ -188,11 +188,7 @@ public final class PackageNamesLoader
         try {
             return new PackageNamesLoader();
         }
-        catch (final ParserConfigurationException e) {
-            throw new CheckstyleException(
-                    "unable to create PackageNamesLoader ", e);
-        }
-        catch (final SAXException e) {
+        catch (final ParserConfigurationException | SAXException e) {
             throw new CheckstyleException(
                     "unable to create PackageNamesLoader - "
                     + e.getMessage(), e);
@@ -214,12 +210,9 @@ public final class PackageNamesLoader
         try {
             nameLoader.parseInputSource(source);
         }
-        catch (final SAXException e) {
-            throw new CheckstyleException("unable to parse "
+        catch (final SAXException | IOException e) {
+            throw new CheckstyleException("Unable to parse "
                     + sourceName + " - " + e.getMessage(), e);
-        }
-        catch (final IOException e) {
-            throw new CheckstyleException("unable to read " + sourceName, e);
         }
     }
 }

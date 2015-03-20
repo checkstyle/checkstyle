@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -401,10 +400,6 @@ public class CheckStyleTask extends Task
             try {
                 inStream = new FileInputStream(propertiesFile);
                 retVal.load(inStream);
-            }
-            catch (final FileNotFoundException e) {
-                throw new BuildException("Could not find Properties file '"
-                        + propertiesFile + "'", e, getLocation());
             }
             catch (final IOException e) {
                 throw new BuildException("Error loading Properties file '"

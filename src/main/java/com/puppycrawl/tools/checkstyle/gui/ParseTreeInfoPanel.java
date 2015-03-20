@@ -217,15 +217,10 @@ public class ParseTreeInfoPanel extends JPanel
                 // move back to the top of the file
                 jTextArea.moveCaretPosition(0);
             }
-            catch (final IOException ex) {
+            catch (final IOException | ANTLRException ex) {
                 showErrorDialog(
                         parent,
-                        "Could not open " + file + ": " + ex.getMessage());
-            }
-            catch (final ANTLRException ex) {
-                showErrorDialog(
-                        parent,
-                        "Could not parse " + file + ": " + ex.getMessage());
+                        "Could not parse" + file + ": " + ex.getMessage());
             }
         }
     }
