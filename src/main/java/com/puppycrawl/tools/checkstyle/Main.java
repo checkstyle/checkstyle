@@ -272,7 +272,7 @@ public final class Main
     {
         final Properties properties = new Properties();
 
-        try (final FileInputStream fis = new FileInputStream(file)) {
+        try (FileInputStream fis = new FileInputStream(file)) {
             properties.load(fis);
         }
         catch (final IOException ex) {
