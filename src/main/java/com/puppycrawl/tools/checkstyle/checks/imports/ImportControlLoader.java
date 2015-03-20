@@ -167,10 +167,7 @@ final class ImportControlLoader extends AbstractLoader
             loader.parseInputSource(source);
             return loader.getRoot();
         }
-        catch (final ParserConfigurationException e) {
-            throw new CheckstyleException("unable to parse " + uri, e);
-        }
-        catch (final SAXException e) {
+        catch (final ParserConfigurationException | SAXException e) {
             throw new CheckstyleException("unable to parse " + uri
                     + " - " + e.getMessage(), e);
         }
