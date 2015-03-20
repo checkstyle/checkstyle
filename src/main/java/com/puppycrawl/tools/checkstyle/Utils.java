@@ -206,7 +206,7 @@ public final class Utils
      * @return the lines in the file
      * @param fileName the name of the file to load
      * @throws IOException error occurred
-     * @deprecated consider using {@link FileText} instead
+     * @deprecated consider using {@link com.puppycrawl.tools.checkstyle.api.FileText} instead
      **/
     @Deprecated
     public static String[] getLines(String fileName)
@@ -224,7 +224,7 @@ public final class Utils
      * @param fileName the name of the file to load
      * @param charsetName the name of a supported charset
      * @throws IOException error occurred
-     * @deprecated consider using {@link FileText} instead
+     * @deprecated consider using {@link com.puppycrawl.tools.checkstyle.api.FileText} instead
      **/
     @Deprecated
     public static String[] getLines(String fileName, String charsetName)

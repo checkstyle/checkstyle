@@ -151,6 +151,7 @@ import com.puppycrawl.tools.checkstyle.Utils;
  * }
  * </code>
  * </pre>
+ * </p>
  * <p>
  * To configure the Check passing fields of type com.google.common.collect.ImmutableSet and
  * java.util.List:

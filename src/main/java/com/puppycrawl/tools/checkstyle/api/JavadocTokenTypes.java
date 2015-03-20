@@ -569,7 +569,7 @@ public final class JavadocTokenTypes
      * '@link' literal in {&#64;link} Javadoc inline tag.
      * <p>
      * Such Javadoc inline tag can have one argument - {@link #REFERENCE}
-     *
+     * </p>
      * <p>
      * <b>Example:</b>
      * <pre><code>{&#64;link org.apache.utils.Lists.Comparator#compare(Object)}</code></pre>

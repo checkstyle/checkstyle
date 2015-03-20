@@ -27,14 +27,14 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
  *
  * @author Baratali Izmailov
  * @see JavadocNodeImpl
- * @see AbstractJavdocCheck
+ * @see com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
  */
 public interface DetailNode
 {
     /**
      * Node type.
      * @return node type.
-     * @see JavadocTokenType
+     * @see JavadocTokenTypes
      */
     int getType();
 
