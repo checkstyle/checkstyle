@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     &#64;serialField, &#64;serialData, &#64;deprecated&quot;/&gt;
  *     &lt;property name=&quot;target&quot; value=&quot;CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
  *     METHOD_DEF, CTOR_DEF, VARIABLE_DEF&quot;/&gt;
- * &lt;/module>
+ * &lt;/module&gt;
  * </pre>
  *
  * @author max
