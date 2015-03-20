@@ -36,12 +36,10 @@ import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes;
  */
 public final class TokenTypes
 {
-    ///CLOVER:OFF
     /** prevent instantiation */
     private TokenTypes()
     {
     }
-    ///CLOVER:ON
 
     // The following three types are never part of an AST,
     // left here as a reminder so nobody will read them accidentally
