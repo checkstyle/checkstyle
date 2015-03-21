@@ -35,9 +35,8 @@ import org.apache.commons.logging.LogFactory;
  */
 public class HandlerFactory
 {
-    /** Logger for indentation check */
-    private static final Log LOG =
-        LogFactory.getLog("com.puppycrawl.tools.checkstyle.checks.indentation");
+    /** Logger for indentation check. */
+    private static final Log LOG = LogFactory.getLog(HandlerFactory.class);
 
     /**
      * Registered handlers.

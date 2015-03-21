@@ -155,27 +155,16 @@ public class AutomaticBean
                     + configuration.getName() + " to '" + value
                     + "': " + e.getTargetException().getMessage(), e);
             }
-            catch (final IllegalAccessException e) {
+            catch (final IllegalAccessException | NoSuchMethodException e) {
                 throw new CheckstyleException(
                     "cannot access " + key + " in "
                     + this.getClass().getName(), e);
             }
-            catch (final NoSuchMethodException e) {
-                throw new CheckstyleException(
-                    "cannot access " + key + " in "
-                    + this.getClass().getName(), e);
-            }
-            catch (final IllegalArgumentException e) {
+            catch (final IllegalArgumentException | ConversionException e) {
                 throw new CheckstyleException(
                     "illegal value '" + value + "' for property '" + key
                     + "' of module " + configuration.getName(), e);
             }
-            catch (final ConversionException e) {
-                throw new CheckstyleException(
-                    "illegal value '" + value + "' for property '" + key
-                    + "' of module " + configuration.getName(), e);
-            }
-
         }
 
         finishLocalSetup();
@@ -219,12 +208,7 @@ public class AutomaticBean
                     "cannot access " + key + " in "
                     + this.getClass().getName(), e);
             }
-            catch (final IllegalArgumentException e) {
-                throw new CheckstyleException(
-                    "illegal value '" + value + "' for property '" + key
-                    + "' of bean " + this.getClass().getName(), e);
-            }
-            catch (final ConversionException e) {
+            catch (final IllegalArgumentException | ConversionException e) {
                 throw new CheckstyleException(
                     "illegal value '" + value + "' for property '" + key
                     + "' of bean " + this.getClass().getName(), e);
