@@ -341,12 +341,10 @@ public class ImportOrderCheck
             final int line = ident.getLineNo();
 
             if (groupIdx > lastGroup) {
-                if (!beforeFirstImport && separated) {
-                    // This check should be made more robust to handle
-                    // comments and imports that span more than one line.
-                    if (line - lastImportLine < 2) {
-                        log(line, MSG_SEPARATION, name);
-                    }
+                // This check should be made more robust to handle
+                // comments and imports that span more than one line.
+                if (!beforeFirstImport && separated && line - lastImportLine < 2) {
+                    log(line, MSG_SEPARATION, name);
                 }
             }
             else if (groupIdx == lastGroup || (sortStaticImportsAlphabetically
