@@ -1007,6 +1007,7 @@
           <httpMethod>GET</httpMethod>
           <timeout>3000</timeout>
           <httpFollowRedirect>false</httpFollowRedirect>
+          <forceSite>false</forceSite>
           <excludedPages>
             <excludedPage>dependencies.html</excludedPage>
             <excludedPage>cobertura/**</excludedPage>
