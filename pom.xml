@@ -1004,6 +1004,9 @@
         <artifactId>maven-linkcheck-plugin</artifactId>
         <version>1.2</version>
         <configuration>
+          <httpMethod>GET</httpMethod>
+          <timeout>3000</timeout>
+          <httpFollowRedirect>false</httpFollowRedirect>
           <excludedPages>
             <excludedPage>dependencies.html</excludedPage>
             <excludedPage>cobertura/**</excludedPage>
@@ -1034,18 +1037,6 @@
           <excludedHttpStatusErrors>
             <excludedHttpStatusError>401</excludedHttpStatusError>
           </excludedHttpStatusErrors>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <!-- validate all @link via mvn linkcheck:linkcheck -->
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-linkcheck-plugin</artifactId>
-        <version>1.2</version>
-        <configuration>
-          <httpMethod>GET</httpMethod>
-          <timeout>3000</timeout>
-          <httpFollowRedirect>false</httpFollowRedirect>
         </configuration>
       </plugin>
 
