@@ -304,45 +304,44 @@ public class LeftCurlyCheck
             : Utils.lengthMinusTrailingWhitespace(getLine(brace.getLineNo() - 2));
 
         // Check for being told to ignore, or have '{}' which is a special case
-        if (braceLine.length() > brace.getColumnNo() + 1
-            && braceLine.charAt(brace.getColumnNo() + 1) == '}')
+        if (braceLine.length() <= brace.getColumnNo() + 1
+                || braceLine.charAt(brace.getColumnNo() + 1) != '}')
         {
-            // ignore
-        }
-        else if (getAbstractOption() == LeftCurlyOption.NL) {
-            if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
-                log(brace.getLineNo(), brace.getColumnNo(),
-                    MSG_KEY_LINE_NEW, "{");
-            }
-        }
-        else if (getAbstractOption() == LeftCurlyOption.EOL) {
-            if (Utils.whitespaceBefore(brace.getColumnNo(), braceLine)
-                && prevLineLen + 2 <= maxLineLength)
-            {
-                log(brace.getLineNo(), brace.getColumnNo(),
-                    MSG_KEY_LINE_PREVIOUS, "{");
-            }
-            if (!hasLineBreakAfter(brace)) {
-                log(brace.getLineNo(), brace.getColumnNo(), MSG_KEY_LINE_BREAK_AFTER);
-            }
-        }
-        else if (getAbstractOption() == LeftCurlyOption.NLOW) {
-            if (startToken.getLineNo() == brace.getLineNo()) {
-                // all ok as on the same line
-            }
-            else if (startToken.getLineNo() + 1 == brace.getLineNo()) {
+            if (getAbstractOption() == LeftCurlyOption.NL) {
                 if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
                     log(brace.getLineNo(), brace.getColumnNo(),
                         MSG_KEY_LINE_NEW, "{");
                 }
-                else if (prevLineLen + 2 <= maxLineLength) {
+            }
+            else if (getAbstractOption() == LeftCurlyOption.EOL) {
+                if (Utils.whitespaceBefore(brace.getColumnNo(), braceLine)
+                    && prevLineLen + 2 <= maxLineLength)
+                {
                     log(brace.getLineNo(), brace.getColumnNo(),
                         MSG_KEY_LINE_PREVIOUS, "{");
                 }
+                if (!hasLineBreakAfter(brace)) {
+                    log(brace.getLineNo(), brace.getColumnNo(), MSG_KEY_LINE_BREAK_AFTER);
+                }
             }
-            else if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
-                log(brace.getLineNo(), brace.getColumnNo(),
-                    MSG_KEY_LINE_NEW, "{");
+            else if (getAbstractOption() == LeftCurlyOption.NLOW
+                    && startToken.getLineNo() != brace.getLineNo())
+            {
+                // not on the same line
+                if (startToken.getLineNo() + 1 == brace.getLineNo()) {
+                    if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
+                        log(brace.getLineNo(), brace.getColumnNo(),
+                                MSG_KEY_LINE_NEW, "{");
+                    }
+                    else if (prevLineLen + 2 <= maxLineLength) {
+                        log(brace.getLineNo(), brace.getColumnNo(),
+                                MSG_KEY_LINE_PREVIOUS, "{");
+                    }
+                }
+                else if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
+                    log(brace.getLineNo(), brace.getColumnNo(),
+                            MSG_KEY_LINE_NEW, "{");
+                }
             }
         }
     }
