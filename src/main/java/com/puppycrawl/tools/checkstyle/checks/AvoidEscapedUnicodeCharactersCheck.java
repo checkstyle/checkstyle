@@ -214,7 +214,7 @@ public class AvoidEscapedUnicodeCharactersCheck
 
         final String literal = ast.getText();
 
-        if (hasUnicodeChar(literal) && !(allowByTailComment && haastrailComment(ast)
+        if (hasUnicodeChar(literal) && !(allowByTailComment && hasTrailComment(ast)
                 || isAllCharactersEscaped(literal)
                 || allowEscapesForControlCharacters
                         && isOnlyUnicodeValidChars(literal, sUnicodeControl)
@@ -255,7 +255,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @param ast current token.
      * @return true if trail comment is present after ast token.
      */
-    private boolean haastrailComment(DetailAST ast)
+    private boolean hasTrailComment(DetailAST ast)
     {
         boolean result = false;
         final DetailAST variableDef = getVariableDef(ast);
