@@ -168,9 +168,25 @@ public final class Utils
     }
 
     /**
-     * This is a factory method to return an Pattern object for the specified
-     * regular expression. It calls {@link #getPattern(String, int)} with the
-     * compile flags defaults to 0.
+     * Validates whether passed string is a valid pattern or not.
+     * @param pattern
+     *        string to validate
+     * @return true if the pattern is valid false otherwise
+     */
+    public static boolean isPatternValid(String pattern)
+    {
+        try {
+            Utils.getPattern(pattern);
+        }
+        catch (final PatternSyntaxException e) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * This is a factory method to return an Pattern object for the specified regular expression. It
+     * calls {@link #getPattern(String, int)} with the compile flags defaults to 0.
      * @return an Pattern object for the supplied pattern
      * @param pattern the regular expression pattern
      * @throws PatternSyntaxException an invalid pattern was supplied

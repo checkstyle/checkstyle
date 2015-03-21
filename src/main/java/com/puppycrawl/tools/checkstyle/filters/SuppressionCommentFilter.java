@@ -374,12 +374,8 @@ public class SuppressionCommentFilter
     public void setMessageFormat(String format)
         throws ConversionException
     {
-        // check that format parses
-        try {
-            Utils.getPattern(format);
-        }
-        catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + format, e);
+        if (!Utils.isPatternValid(format)) {
+            throw new ConversionException("Unable to parse format: " + format);
         }
         messageFormat = format;
     }
