@@ -196,7 +196,7 @@ public class HiddenFieldCheck
     @Override
     public void beginTree(DetailAST rootAST)
     {
-        currentFrame = new FieldFrame(null, true, null, null);
+        currentFrame = new FieldFrame(null, true, null);
     }
 
     @Override
@@ -234,8 +234,8 @@ public class HiddenFieldCheck
                         && typeMods.branchContains(TokenTypes.LITERAL_STATIC);
 
         final FieldFrame frame =
-            new FieldFrame(currentFrame, isStaticInnerType, type,
-                type == TokenTypes.CLASS_DEF || type == TokenTypes.ENUM_DEF
+            new FieldFrame(currentFrame, isStaticInnerType,
+                    type == TokenTypes.CLASS_DEF || type == TokenTypes.ENUM_DEF
                     ? ast.findFirstToken(TokenTypes.IDENT).getText()
                     : null
             );
@@ -558,14 +558,11 @@ public class HiddenFieldCheck
 
         /**
          * Creates new frame.
-         * @param staticType is this a static inner type (class or enum).
          * @param parent parent frame.
-         * @param frameType frameType derived from {@link TokenTypes}
+         * @param staticType is this a static inner type (class or enum).
          * @param frameName name associated with the frame, which can be a
-         * class or enum name or null if no relevan information is available.
          */
-        public FieldFrame(FieldFrame parent, boolean staticType,
-            Integer frameType, String frameName)
+        public FieldFrame(FieldFrame parent, boolean staticType, String frameName)
         {
             this.parent = parent;
             this.staticType = staticType;
