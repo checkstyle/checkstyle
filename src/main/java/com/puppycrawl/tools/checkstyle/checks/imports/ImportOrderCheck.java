@@ -347,8 +347,8 @@ public class ImportOrderCheck
                     log(line, MSG_SEPARATION, name);
                 }
             }
-            else if (groupIdx == lastGroup || (sortStaticImportsAlphabetically
-                     && isAlphabeticallySortableStaticImport(isStatic)))
+            else if (groupIdx == lastGroup || sortStaticImportsAlphabetically
+                     && isAlphabeticallySortableStaticImport(isStatic))
             {
                 doVisitTokenInSameGroup(isStatic, previous, name, line);
             }
