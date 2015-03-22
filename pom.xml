@@ -307,6 +307,10 @@
         <version>2.6.1</version>
       </plugin>
 
+<!-- It brakes linkcheck plugin report.
+     It works when linkcheck.forceSite=false, but
+     at this case linkcheck report is full of false-positives
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>tidy-maven-plugin</artifactId>
@@ -321,6 +325,7 @@
           </execution>
         </executions>
       </plugin>
+-->
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -1007,7 +1012,7 @@
           <httpMethod>GET</httpMethod>
           <timeout>3000</timeout>
           <httpFollowRedirect>false</httpFollowRedirect>
-          <forceSite>false</forceSite>
+          <forceSite>true</forceSite>
           <excludedPages>
             <excludedPage>dependencies.html</excludedPage>
             <excludedPage>cobertura/**</excludedPage>
