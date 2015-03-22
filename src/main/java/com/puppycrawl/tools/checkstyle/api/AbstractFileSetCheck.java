@@ -106,6 +106,15 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
+     * @return file extensions that identify the files that pass the
+     * filter of this FileSetCheck.
+     */
+    public String[] getFileExtensions()
+    {
+        return fileExtensions;
+    }
+
+    /**
      * Sets the file extensions that identify the files that pass the
      * filter of this FileSetCheck.
      * @param extensions the set of file extensions. A missing

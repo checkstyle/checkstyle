@@ -117,9 +117,6 @@ public final class TreeWalker
     private static final Log LOG =
         LogFactory.getLog("com.puppycrawl.tools.checkstyle.TreeWalker");
 
-    /** the file extensions that are accepted */
-    private String[] fileExtensions;
-
     /**
      * Creates a new <code>TreeWalker</code> instance.
      */
@@ -197,7 +194,7 @@ public final class TreeWalker
         final String fileName = file.getPath();
         final long timestamp = file.lastModified();
         if (cache.alreadyChecked(fileName, timestamp)
-                 || !fileExtensionMatches(file, fileExtensions))
+                 || !fileExtensionMatches(file, getFileExtensions()))
         {
             return;
         }
