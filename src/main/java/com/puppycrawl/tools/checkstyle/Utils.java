@@ -37,6 +37,8 @@ import org.apache.commons.logging.LogFactory;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+import static com.google.common.base.MoreObjects.firstNonNull;
+
 /**
  * Contains utility methods.
  *
@@ -211,8 +213,9 @@ public final class Utils
         final String key = pattern + ":flags-" + compileFlags;
         Pattern retVal = CREATED_RES.get(key);
         if (retVal == null) {
-            retVal = Pattern.compile(pattern, compileFlags);
-            CREATED_RES.putIfAbsent(key, retVal);
+            final Pattern compiledPattern = Pattern.compile(pattern, compileFlags);
+            retVal = CREATED_RES.putIfAbsent(key, compiledPattern);
+            retVal = firstNonNull(retVal, compiledPattern);
         }
         return retVal;
     }
