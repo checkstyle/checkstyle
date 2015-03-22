@@ -589,7 +589,7 @@
           <regex><pattern>.*.PropertiesExpander</pattern><branchRate>50</branchRate><lineRate>83</lineRate></regex>
           <regex><pattern>.*.PropertyCacheFile</pattern><branchRate>22</branchRate><lineRate>18</lineRate></regex>
           <regex><pattern>.*.TreeWalker</pattern><branchRate>90</branchRate><lineRate>83</lineRate></regex>
-          <regex><pattern>com.puppycrawl.tools.checkstyle.Utils</pattern><branchRate>69</branchRate><lineRate>69</lineRate></regex>
+          <regex><pattern>com.puppycrawl.tools.checkstyle.Utils</pattern><branchRate>78</branchRate><lineRate>71</lineRate></regex>
           <regex><pattern>.*.XMLLogger</pattern><branchRate>86</branchRate><lineRate>97</lineRate></regex>
 
 
@@ -616,7 +616,7 @@
           <regex><pattern>.*.api.LocalizedMessage\$.*</pattern><branchRate>41</branchRate><lineRate>66</lineRate></regex>
           <regex><pattern>.*.api.ScopeUtils</pattern><branchRate>90</branchRate><lineRate>94</lineRate></regex>
           <regex><pattern>.*.api.SeverityLevelCounter</pattern><branchRate>50</branchRate><lineRate>76</lineRate></regex>
-          <regex><pattern>.*.api.TokenTypes</pattern><branchRate>62</branchRate><lineRate>72</lineRate></regex>
+          <regex><pattern>.*.api.TokenTypes</pattern><branchRate>62</branchRate><lineRate>80</lineRate></regex>
 
 
           <regex><pattern>.*.checks.AbstractOptionCheck</pattern><branchRate>100</branchRate><lineRate>80</lineRate></regex>
@@ -764,7 +764,7 @@
           <regex><pattern>.*.checks.javadoc.JavadocTag</pattern><branchRate>92</branchRate><lineRate>85</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.JavadocTagContinuationIndentationCheck</pattern><branchRate>81</branchRate><lineRate>86</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.JavadocTypeCheck</pattern><branchRate>95</branchRate><lineRate>91</lineRate></regex>
-          <regex><pattern>.*.checks.javadoc.JavadocUtils</pattern><branchRate>83</branchRate><lineRate>89</lineRate></regex>
+          <regex><pattern>.*.checks.javadoc.JavadocUtils</pattern><branchRate>83</branchRate><lineRate>91</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.JavadocVariableCheck</pattern><branchRate>93</branchRate><lineRate>90</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.SummaryJavadocCheck</pattern><branchRate>93</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.TagParser</pattern><branchRate>92</branchRate><lineRate>98</lineRate></regex>

@@ -16,26 +16,28 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.api;
+package com.puppycrawl.tools.checkstyle;
 
-import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
-import static org.junit.Assert.assertEquals;
+import org.junit.Assert;
 
-import org.junit.Test;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
 
-public class TokenTypesTest
-{
-    @Test
-    public void testGetShortDescription()
-    {
-        assertEquals("short description for EQUAL",
-                "The <code>==</code> (equal) operator.", TokenTypes
-                        .getShortDescription("EQUAL"));
+public class TestUtils {
+
+    private TestUtils() {
     }
 
-    @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException
-    {
-        assertUtilsClassHasPrivateConstructor(TokenTypes.class);
+    /**
+     * Verifies that utils class has private constructor and invokes it to satisfy code coverage.
+     */
+    public static void assertUtilsClassHasPrivateConstructor(final Class<?> utilClass)
+            throws ReflectiveOperationException {
+        final Constructor<?> constructor = utilClass.getDeclaredConstructor();
+        if (!Modifier.isPrivate(constructor.getModifiers())) {
+            Assert.fail("Constructor is not private");
+        }
+        constructor.setAccessible(true);
+        constructor.newInstance();
     }
 }

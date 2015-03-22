@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -187,5 +188,11 @@ public class JavadocUtilsTest
         javadocCommentContent.setNextSibling(commentEnd);
 
         assertTrue(JavadocUtils.isJavadocComment(commentBegin));
+    }
+
+    @Test
+    public void testIsProperUtilsClass() throws ReflectiveOperationException
+    {
+        assertUtilsClassHasPrivateConstructor(JavadocUtils.class);
     }
 }
