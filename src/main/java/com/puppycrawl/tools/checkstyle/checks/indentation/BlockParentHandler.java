@@ -173,10 +173,7 @@ public class BlockParentHandler extends ExpressionHandler
         final DetailAST lcurly = getLCurly();
         final int lcurlyPos = expandedTabsColumnNo(lcurly);
 
-        if (lcurly == null
-            || curlyLevel().accept(lcurlyPos)
-            || !startsLine(lcurly))
-        {
+        if (curlyLevel().accept(lcurlyPos) || !startsLine(lcurly)) {
             return;
         }
 
@@ -224,8 +221,7 @@ public class BlockParentHandler extends ExpressionHandler
         final DetailAST rcurly = getRCurly();
         final int rcurlyPos = expandedTabsColumnNo(rcurly);
 
-        if (rcurly == null
-            || curlyLevel().accept(rcurlyPos)
+        if (curlyLevel().accept(rcurlyPos)
             || !rcurlyMustStart() && !startsLine(rcurly)
             || areOnSameLine(rcurly, lcurly))
         {
