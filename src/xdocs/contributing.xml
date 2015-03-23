@@ -75,7 +75,7 @@
         <a href="http://cobertura.sourceforge.net/">Cobertura</a>.
 
         This means it is not sufficient to pass all tests, but the tests
-        should ideally execute each line in the code. To generate the
+        should ideally execute each line in the code, code coverage should be 100%. To generate the
         Cobertura report, run the Maven command
 
         <code>mvn cobertura:cobertura</code>.
