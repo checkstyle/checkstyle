@@ -40,7 +40,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.google.common.io.Closeables;
-import com.puppycrawl.tools.checkstyle.Utils;
 
 /**
  * Represents the text contents of a file of arbitrary plain text type.
@@ -65,8 +64,7 @@ public final class FileText extends AbstractList<String>
     /**
      * Regular expression pattern matching all line terminators.
      */
-    private static final Pattern LINE_TERMINATOR =
-        Utils.getPattern("\\n|\\r\\n?");
+    private static final Pattern LINE_TERMINATOR = Pattern.compile("\\n|\\r\\n?");
 
     // For now, we always keep both full text and lines array.
     // In the long run, however, the one passed at initialization might be

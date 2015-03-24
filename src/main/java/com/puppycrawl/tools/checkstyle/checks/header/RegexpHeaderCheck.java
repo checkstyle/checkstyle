@@ -29,7 +29,6 @@ import java.util.regex.PatternSyntaxException;
 import org.apache.commons.beanutils.ConversionException;
 
 import com.google.common.collect.Lists;
-import com.puppycrawl.tools.checkstyle.Utils;
 
 /**
  * Checks the header of the source against a header file that contains a
@@ -135,8 +134,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
         headerRegexps.clear();
         for (String line : headerLines) {
             try {
-                // TODO: Not sure if cache in Utils is still necessary
-                headerRegexps.add(Utils.getPattern(line));
+                headerRegexps.add(Pattern.compile(line));
             }
             catch (final PatternSyntaxException ex) {
                 throw new ConversionException("line "

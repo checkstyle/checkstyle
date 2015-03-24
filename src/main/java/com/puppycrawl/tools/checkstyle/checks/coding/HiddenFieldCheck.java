@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.Utils;
 
 import java.util.Set;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 import org.apache.commons.beanutils.ConversionException;
 
 /**
@@ -466,17 +465,12 @@ public class HiddenFieldCheck
     /**
      * Set the ignore format to the specified regular expression.
      * @param format a <code>String</code> value
-     * @throws ConversionException unable to parse format
+     * @throws ConversionException if unable to create Pattern object
      */
     public void setIgnoreFormat(String format)
         throws ConversionException
     {
-        try {
-            regexp = Utils.getPattern(format);
-        }
-        catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + format, e);
-        }
+        regexp = Utils.createPattern(format);
     }
 
     /**

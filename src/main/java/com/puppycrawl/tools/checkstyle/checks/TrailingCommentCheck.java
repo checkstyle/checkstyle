@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
+
 import org.apache.commons.beanutils.ConversionException;
 
 /**
@@ -115,17 +115,12 @@ public class TrailingCommentCheck extends AbstractFormatCheck
     /**
      * Sets patter for legal trailing comments.
      * @param format format to set.
-     * @throws ConversionException unable to parse a given format.
+     * @throws ConversionException if unable to create Pattern object
      */
     public void setLegalComment(final String format)
         throws ConversionException
     {
-        try {
-            legalComment = Utils.getPattern(format);
-        }
-        catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + format, e);
-        }
+        legalComment = Utils.createPattern(format);
     }
     /**
      * Creates new instance of the check.

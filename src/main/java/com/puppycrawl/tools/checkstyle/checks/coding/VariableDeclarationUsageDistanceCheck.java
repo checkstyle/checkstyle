@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
 
 import antlr.collections.ASTEnumeration;
 
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -214,14 +215,15 @@ public class VariableDeclarationUsageDistanceCheck extends Check
     }
 
     /**
-     * Sets RegExp pattern to ignore distance calculation for variables listed
-     * in this pattern.
+     * Sets RegExp pattern to ignore distance calculation for variables listed in this pattern.
      * @param ignorePattern
      *        Pattern contains ignored variables.
+     * @throws org.apache.commons.beanutils.ConversionException
+     *         if unable to create Pattern object.
      */
     public void setIgnoreVariablePattern(String ignorePattern)
     {
-        this.ignoreVariablePattern = Pattern.compile(ignorePattern);
+        this.ignoreVariablePattern = Utils.createPattern(ignorePattern);
     }
 
     /**

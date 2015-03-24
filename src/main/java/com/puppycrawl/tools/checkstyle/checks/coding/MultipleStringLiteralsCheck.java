@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+
 /**
  * Checks for multiple occurrences of the same string literal within a
  * single file.
@@ -87,15 +88,18 @@ public class MultipleStringLiteralsCheck extends Check
     }
 
     /**
-     * Sets regexp pattern for ignored strings.
-     * @param ignoreStringsRegexp regexp pattern for ignored strings
+     * Sets regular expression pattern for ignored strings.
+     * @param ignoreStringsRegexp
+     *        regular expression pattern for ignored strings
+     * @throws org.apache.commons.beanutils.ConversionException
+     *         if unable to create Pattern object
      */
     public void setIgnoreStringsRegexp(String ignoreStringsRegexp)
     {
         if (ignoreStringsRegexp != null
             && ignoreStringsRegexp.length() > 0)
         {
-            pattern = Utils.getPattern(ignoreStringsRegexp);
+            pattern = Utils.createPattern(ignoreStringsRegexp);
         }
         else {
             pattern = null;

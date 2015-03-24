@@ -23,7 +23,6 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.Utils;
 
 /**
  * <p>
@@ -80,7 +79,7 @@ public class LocalVariableNameCheck
     private boolean allowOneCharVarInForLoop;
 
     /** Regexp for one-char loop variables. */
-    private static Pattern sSingleChar = Utils.getPattern("^[a-z]$");
+    private static Pattern sSingleChar = Pattern.compile("^[a-z]$");
 
     /** Creates a new <code>LocalVariableNameCheck</code> instance. */
     public LocalVariableNameCheck()

@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
-import com.puppycrawl.tools.checkstyle.Utils;
 
 /**
  * Contains utility methods for working with Javadoc.
@@ -109,8 +108,7 @@ public final class JavadocUtils
         final String[] text = cmt.getText();
         final List<JavadocTag> tags = Lists.newArrayList();
         final List<InvalidJavadocTag> invalidTags = Lists.newArrayList();
-        Pattern blockTagPattern =
-                Utils.getPattern("/\\*{2,}\\s*@(\\p{Alpha}+)\\s");
+        Pattern blockTagPattern = Pattern.compile("/\\*{2,}\\s*@(\\p{Alpha}+)\\s");
         for (int i = 0; i < text.length; i++) {
             final String s = text[i];
             final Matcher blockTagMatcher = blockTagPattern.matcher(s);
@@ -139,8 +137,7 @@ public final class JavadocUtils
             else if (tagType == JavadocTagType.ALL || tagType == JavadocTagType.INLINE)
             {
                 // Match Javadoc text after comment characters
-                final Pattern commentPattern =
-                        Utils.getPattern("^\\s*(?:/\\*{2,}|\\*+)\\s*(.*)");
+                final Pattern commentPattern = Pattern.compile("^\\s*(?:/\\*{2,}|\\*+)\\s*(.*)");
                 final Matcher commentMatcher = commentPattern.matcher(s);
                 final String commentContents;
                 final int commentOffset; // offset including comment characters
@@ -152,8 +149,7 @@ public final class JavadocUtils
                     commentContents = commentMatcher.group(1);
                     commentOffset = commentMatcher.start(1) - 1;
                 }
-                final Pattern tagPattern =
-                        Utils.getPattern(".*?\\{@(\\p{Alpha}+)\\s+(.*?)\\}");
+                final Pattern tagPattern = Pattern.compile(".*?\\{@(\\p{Alpha}+)\\s+(.*?)\\}");
                 final Matcher tagMatcher = tagPattern.matcher(commentContents);
                 while (tagMatcher.find()) {
                     if (tagMatcher.groupCount() == 2) {
@@ -177,8 +173,7 @@ public final class JavadocUtils
                     // tag!
                 }
             }
-            blockTagPattern =
-                    Utils.getPattern("^\\s*\\**\\s*@(\\p{Alpha}+)\\s");
+            blockTagPattern = Pattern.compile("^\\s*\\**\\s*@(\\p{Alpha}+)\\s");
         }
         return new JavadocTags(tags, invalidTags);
     }

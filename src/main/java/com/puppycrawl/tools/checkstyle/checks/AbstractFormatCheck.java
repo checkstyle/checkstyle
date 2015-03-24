@@ -19,7 +19,6 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.Utils;
 
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -110,7 +109,7 @@ public abstract class AbstractFormatCheck
     private void updateRegexp(String format, int compileFlagsParam)
     {
         try {
-            regexp = Utils.getPattern(format, compileFlagsParam);
+            regexp = Pattern.compile(format, compileFlagsParam);
             this.format = format;
             compileFlags |= compileFlagsParam;
         }

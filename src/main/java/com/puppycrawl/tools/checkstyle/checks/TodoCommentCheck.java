@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -77,12 +78,15 @@ public class TodoCommentCheck
 
     /**
      * Setter for todo comment format.
-     * @param format format of todo comment.
+     * @param format
+     *        format of todo comment.
+     * @throws org.apache.commons.beanutils.ConversionException
+     *         if unable to create Pattern object.
      */
     public void setFormat(String format)
     {
         this.format = format;
-        regexp = Pattern.compile(format);
+        regexp = Utils.createPattern(format);
     }
 
     @Override

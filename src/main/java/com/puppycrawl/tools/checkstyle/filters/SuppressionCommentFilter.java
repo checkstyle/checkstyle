@@ -305,33 +305,23 @@ public class SuppressionCommentFilter
     /**
      * Set the format for a comment that turns off reporting.
      * @param format a <code>String</code> value.
-     * @throws ConversionException unable to parse format.
+     * @throws ConversionException if unable to create Pattern object.
      */
     public void setOffCommentFormat(String format)
         throws ConversionException
     {
-        try {
-            offRegexp = Utils.getPattern(format);
-        }
-        catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + format, e);
-        }
+        offRegexp = Utils.createPattern(format);
     }
 
     /**
      * Set the format for a comment that turns on reporting.
      * @param format a <code>String</code> value
-     * @throws ConversionException unable to parse format
+     * @throws ConversionException if unable to create Pattern object.
      */
     public void setOnCommentFormat(String format)
         throws ConversionException
     {
-        try {
-            onRegexp = Utils.getPattern(format);
-        }
-        catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + format, e);
-        }
+        onRegexp = Utils.createPattern(format);
     }
 
     /** @return the FileContents for this filter. */
@@ -352,18 +342,14 @@ public class SuppressionCommentFilter
     /**
      * Set the format for a check.
      * @param format a <code>String</code> value
-     * @throws ConversionException unable to parse format
+     * @throws ConversionException if unable to create Pattern object
      */
     public void setCheckFormat(String format)
         throws ConversionException
     {
-        try {
-            checkRegexp = Utils.getPattern(format);
-            checkFormat = format;
-        }
-        catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + format, e);
-        }
+        checkRegexp = Utils.createPattern(format);
+        checkFormat = format;
+
     }
 
     /**

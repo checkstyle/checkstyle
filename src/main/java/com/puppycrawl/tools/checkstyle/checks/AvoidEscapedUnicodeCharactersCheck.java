@@ -24,7 +24,6 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.Utils;
 
 /**
  * <p>
@@ -107,27 +106,26 @@ import com.puppycrawl.tools.checkstyle.Utils;
 public class AvoidEscapedUnicodeCharactersCheck
     extends Check
 {
-     /** Regexp for Unicode chars */
-    private static Pattern sUnicodeRegexp =
-            Utils.getPattern("\\\\u[a-fA-F0-9]{4}");
+    /** Regular expression for Unicode chars */
+    private static Pattern sUnicodeRegexp = Pattern.compile("\\\\u[a-fA-F0-9]{4}");
 
-    /** Regexp Unicode control characters */
-    private static Pattern sUnicodeControl = Utils.getPattern("\\\\(u|U)"
+    /** Regular expression Unicode control characters */
+    private static Pattern sUnicodeControl = Pattern.compile("\\\\(u|U)"
             + "(00[0-1][0-1A-Fa-f]|00[8-9][0-9A-Fa-f]|034(f|F)|070(f|F)"
             + "|180(e|E)|200[b-fB-F]|202[b-eB-E]|206[0-4a-fA-F]"
             + "|[fF]{3}[9a-bA-B]|[fF][eE][fF]{2})");
 
-    /** Regexp for trail comment */
-    private static Pattern sCommentRegexp = Utils.getPattern(";[ ]*//+"
+    /** Regular expression for trail comment */
+    private static Pattern sCommentRegexp = Pattern.compile(";[ ]*//+"
             + "[a-zA-Z0-9 ]*|;[ ]*/[*]{1}+[a-zA-Z0-9 ]*");
 
-    /** Regexp for all escaped chars*/
+    /** Regular expression for all escaped chars */
     private static Pattern sAllEscapedChars =
-            Utils.getPattern("^((\\\\u)[a-fA-F0-9]{4}"
+            Pattern.compile("^((\\\\u)[a-fA-F0-9]{4}"
                     + "||\\\\b|\\\\t|\\\\n|\\\\f|\\\\r|\\\\|\\\"|\\\')+$");
 
-    /** Regexp for non-printable unicode chars*/
-    private static Pattern sNonPrintableChars = Utils.getPattern("\\\\u1680|\\\\u2028"
+    /** Regular expression for non-printable unicode chars */
+    private static Pattern sNonPrintableChars = Pattern.compile("\\\\u1680|\\\\u2028"
             + "|\\\\u2029|\\\\u205(f|F)|\\\\u3000|\\\\u2007|\\\\u2000|\\\\u200(a|A)"
             + "|\\\\u007(F|f)|\\\\u009(f|F)|\\\\u(f|F){4}|\\\\u007(F|f)|\\\\u00(a|A)(d|D)"
             + "|\\\\u0600|\\\\u061(c|C)|\\\\u06(d|D){2}|\\\\u070(f|F)|\\\\u1680|\\\\u180(e|E)"

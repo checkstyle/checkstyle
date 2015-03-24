@@ -25,7 +25,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.ConversionException;
 import org.junit.Test;
@@ -57,10 +56,6 @@ public class UtilsTest
         assertEquals(0, Utils.lengthMinusTrailingWhitespace(" \t "));
         assertEquals(3, Utils.lengthMinusTrailingWhitespace(" 23"));
         assertEquals(3, Utils.lengthMinusTrailingWhitespace(" 23 \t "));
-
-        final Pattern r1 = Utils.getPattern("a");
-        final Pattern r2 = Utils.getPattern("a");
-        assertEquals(r1, r2);
     }
 
     @Test(expected = ConversionException.class)

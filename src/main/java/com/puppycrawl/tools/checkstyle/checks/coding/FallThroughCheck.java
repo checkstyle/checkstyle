@@ -24,7 +24,6 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.Utils;
 
 /**
  * Checks for fall through in switch statements
@@ -135,7 +134,7 @@ public class FallThroughCheck extends Check
     public void init()
     {
         super.init();
-        regExp = Utils.getPattern(reliefPattern);
+        regExp = Pattern.compile(reliefPattern);
     }
 
     @Override

@@ -23,7 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.Utils;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
+
 import org.apache.commons.beanutils.ConversionException;
 
 /**
@@ -136,16 +136,11 @@ public class LineLengthCheck extends Check
     /**
      * Set the ignore pattern.
      * @param format a <code>String</code> value
-     * @throws ConversionException unable to parse format
+     * @throws ConversionException if unable to create Pattern object
      */
     public void setIgnorePattern(String format)
         throws ConversionException
     {
-        try {
-            ignorePattern = Utils.getPattern(format);
-        }
-        catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + format, e);
-        }
+        ignorePattern = Utils.createPattern(format);
     }
 }

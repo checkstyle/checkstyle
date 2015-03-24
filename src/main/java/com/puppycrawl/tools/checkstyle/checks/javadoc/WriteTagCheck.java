@@ -27,7 +27,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.Utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 import org.apache.commons.beanutils.ConversionException;
 
 /**
@@ -100,35 +99,25 @@ public class WriteTagCheck
     /**
      * Sets the tag to check.
      * @param tag tag to check
-     * @throws ConversionException If the tag is not a valid regular exception.
+     * @throws ConversionException if unable to create Pattern object.
      */
     public void setTag(String tag)
         throws ConversionException
     {
-        try {
-            this.tag = tag;
-            tagRE = Utils.getPattern(tag + "\\s*(.*$)");
-        }
-        catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + tag, e);
-        }
+        this.tag = tag;
+        tagRE = Utils.createPattern(tag + "\\s*(.*$)");
     }
 
     /**
      * Set the tag format.
      * @param format a <code>String</code> value
-     * @throws ConversionException unable to parse format
+     * @throws ConversionException if unable to create Pattern object
      */
     public void setTagFormat(String format)
         throws ConversionException
     {
-        try {
-            tagFormat = format;
-            tagFormatRE = Utils.getPattern(format);
-        }
-        catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + format, e);
-        }
+        tagFormat = format;
+        tagFormatRE = Utils.createPattern(format);
     }
 
     /**

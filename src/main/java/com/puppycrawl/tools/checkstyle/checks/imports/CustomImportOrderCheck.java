@@ -220,13 +220,13 @@ public class CustomImportOrderCheck extends Check
     private String samePackageDomainsRegExp = "";
 
     /** RegExp for STANDARD_JAVA_PACKAGE group imports */
-    private Pattern standardPackageRegExp = Utils.getPattern("java|javax");
+    private Pattern standardPackageRegExp = Pattern.compile("java|javax");
 
     /** RegExp for THIRDPARTY_PACKAGE group imports */
-    private Pattern thirdPartyPackageRegExp = Utils.getPattern(".*");
+    private Pattern thirdPartyPackageRegExp = Pattern.compile(".*");
 
     /** RegExp for SPECIAL_IMPORTS group imports */
-    private Pattern specialImportsRegExp = Utils.getPattern("^$");
+    private Pattern specialImportsRegExp = Pattern.compile("^$");
 
     /** Force empty line separator between import groups */
     private boolean separateLineBetweenGroups = true;
@@ -247,30 +247,36 @@ public class CustomImportOrderCheck extends Check
      * Sets standardRegExp specified by user.
      * @param regexp
      *        user value.
+     * @throws org.apache.commons.beanutils.ConversionException
+     *         if unable to create Pattern object.
      */
     public final void setStandardPackageRegExp(String regexp)
     {
-        standardPackageRegExp = Utils.getPattern(regexp);
+        standardPackageRegExp = Utils.createPattern(regexp);
     }
 
     /**
      * Sets thirdPartyRegExp specified by user.
      * @param regexp
      *        user value.
+     * @throws org.apache.commons.beanutils.ConversionException
+     *         if unable to create Pattern object.
      */
     public final void setThirdPartyPackageRegExp(String regexp)
     {
-        thirdPartyPackageRegExp = Utils.getPattern(regexp);
+        thirdPartyPackageRegExp = Utils.createPattern(regexp);
     }
 
     /**
      * Sets specialImportsRegExp specified by user.
      * @param regexp
      *        user value.
+     * @throws org.apache.commons.beanutils.ConversionException
+     *         if unable to create Pattern object.
      */
     public final void setSpecialImportsRegExp(String regexp)
     {
-        specialImportsRegExp = Utils.getPattern(regexp);
+        specialImportsRegExp = Utils.createPattern(regexp);
     }
 
     /**

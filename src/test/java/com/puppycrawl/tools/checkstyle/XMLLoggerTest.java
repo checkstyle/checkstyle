@@ -216,7 +216,7 @@ public class XMLLoggerTest
         assertEquals("first line.",
                      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
                      lines[0]);
-        Pattern checkstyleOpenTag = Utils.getPattern("^<checkstyle version=\".*\">$");
+        Pattern checkstyleOpenTag = Pattern.compile("^<checkstyle version=\".*\">$");
         assertTrue("second line.", checkstyleOpenTag.matcher(lines[1]).matches());
         for (int i = 0; i < expectedLines.length; i++) {
             assertEquals("line " + i + ".", expectedLines[i], lines[i + 2]);

@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -153,22 +154,28 @@ public class EmptyCatchBlockCheck extends Check
 
     /**
      * Setter for exception's variable name format.
-     * @param exceptionVariableName format of exception's variable name.
+     * @param exceptionVariableName
+     *        format of exception's variable name.
+     * @throws org.apache.commons.beanutils.ConversionException
+     *         if unable to create Pattern object.
      */
     public void setExceptionVariableName(String exceptionVariableName)
     {
         this.exceptionVariableName = exceptionVariableName;
-        variableNameRegexp = Pattern.compile(exceptionVariableName);
+        variableNameRegexp = Utils.createPattern(exceptionVariableName);
     }
 
     /**
      * Setter for comment format.
-     * @param commentFormat format of comment.
+     * @param commentFormat
+     *        format of comment.
+     * @throws org.apache.commons.beanutils.ConversionException
+     *         if unable to create Pattern object.
      */
     public void setCommentFormat(String commentFormat)
     {
         this.commentFormat = commentFormat;
-        commentRegexp = Pattern.compile(commentFormat);
+        commentRegexp = Utils.createPattern(commentFormat);
     }
 
     @Override

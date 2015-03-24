@@ -19,7 +19,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
-import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -27,9 +26,6 @@ import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.google.common.collect.Maps;
-
-import static com.google.common.base.MoreObjects.firstNonNull;
 
 /**
  * Contains utility methods.
@@ -38,10 +34,6 @@ import static com.google.common.base.MoreObjects.firstNonNull;
  */
 public final class Utils
 {
-
-    /** Map of all created regular expressions **/
-    private static final ConcurrentMap<String, Pattern> CREATED_RES =
-        Maps.newConcurrentMap();
     /** Shared instance of logger for exception logging. */
     private static final Log EXCEPTION_LOG =
         LogFactory.getLog("com.puppycrawl.tools.checkstyle.ExceptionLog");
@@ -170,46 +162,12 @@ public final class Utils
     public static boolean isPatternValid(String pattern)
     {
         try {
-            Utils.getPattern(pattern);
+            Pattern.compile(pattern);
         }
         catch (final PatternSyntaxException e) {
             return false;
         }
         return true;
-    }
-
-    /**
-     * This is a factory method to return an Pattern object for the specified regular expression. It
-     * calls {@link #getPattern(String, int)} with the compile flags defaults to 0.
-     * @return an Pattern object for the supplied pattern
-     * @param pattern the regular expression pattern
-     * @throws PatternSyntaxException an invalid pattern was supplied
-     **/
-    public static Pattern getPattern(String pattern)
-        throws PatternSyntaxException
-    {
-        return getPattern(pattern, 0);
-    }
-
-    /**
-     * This is a factory method to return an Pattern object for the specified
-     * regular expression and compile flags.
-     * @return an Pattern object for the supplied pattern
-     * @param pattern the regular expression pattern
-     * @param compileFlags the compilation flags
-     * @throws PatternSyntaxException an invalid pattern was supplied
-     **/
-    public static Pattern getPattern(String pattern, int compileFlags)
-        throws PatternSyntaxException
-    {
-        final String key = pattern + ":flags-" + compileFlags;
-        Pattern retVal = CREATED_RES.get(key);
-        if (retVal == null) {
-            final Pattern compiledPattern = Pattern.compile(pattern, compileFlags);
-            retVal = CREATED_RES.putIfAbsent(key, compiledPattern);
-            retVal = firstNonNull(retVal, compiledPattern);
-        }
-        return retVal;
     }
 
     /**
@@ -221,15 +179,13 @@ public final class Utils
     public static Pattern createPattern(String pattern)
         throws ConversionException
     {
-        Pattern retVal = null;
         try {
-            retVal = getPattern(pattern);
+            return Pattern.compile(pattern);
         }
         catch (final PatternSyntaxException e) {
             throw new ConversionException(
                 "Failed to initialise regexp expression " + pattern, e);
         }
-        return retVal;
     }
 
     /**

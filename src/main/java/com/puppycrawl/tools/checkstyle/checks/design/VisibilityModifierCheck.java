@@ -24,9 +24,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
-
-import org.apache.commons.beanutils.ConversionException;
 
 import antlr.collections.AST;
 
@@ -350,17 +347,15 @@ public class VisibilityModifierCheck
 
     /**
      * Set the pattern for public members to ignore.
-     * @param pattern pattern for public members to ignore.
+     * @param pattern
+     *        pattern for public members to ignore.
+     * @throws org.apache.commons.beanutils.ConversionException
+     *         if unable to create Pattern object
      */
     public void setPublicMemberPattern(String pattern)
     {
-        try {
-            publicMemberPattern = Utils.getPattern(pattern);
-            publicMemberFormat = pattern;
-        }
-        catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + pattern, e);
-        }
+        publicMemberPattern = Utils.createPattern(pattern);
+        publicMemberFormat = pattern;
     }
 
     /**
