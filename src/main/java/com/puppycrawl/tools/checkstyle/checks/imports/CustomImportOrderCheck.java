@@ -119,17 +119,25 @@ import com.puppycrawl.tools.checkstyle.Utils;
  * </code>
  * </pre>
  * <p>
- * By the option it is possible to force alphabetically sorting.
+ * It is possible to enforce <a href="http://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>
+ * of imports in groups using the following configuration:
  * </p>
- *
  * <pre>
- * <code>
- * &lt;module name=&quot;CustomImportOrder&quot;&gt;
+ * <code>&lt;module name=&quot;CustomImportOrder&quot;&gt;
  *    &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </code>
  * </pre>
- *
+ * <p>
+ * Example of ASCII order:
+ * </p>
+ * <pre>
+ * <code>import java.awt.Dialog;
+ * import java.awt.Window;
+ * import java.awt.color.ColorSpace;
+ * import java.awt.Frame; // violation here - in ASCII order 'F' should go before 'c',
+ *                        // as all uppercase come before lowercase letters</code>
+ * </pre>
  * <p>
  * To force checking imports sequence such as:
  * </p>
@@ -223,7 +231,7 @@ public class CustomImportOrderCheck extends Check
     /** Force empty line separator between import groups */
     private boolean separateLineBetweenGroups = true;
 
-    /** Force grouping alphabetically */
+    /** Force grouping alphabetically, in ASCII order */
     private boolean sortImportsInGroupAlphabetically;
 
     /** List of order declaration customizing by user */
@@ -605,7 +613,7 @@ public class CustomImportOrderCheck extends Check
             }
             final String import1Token = import1Tokens[i];
             final String import2Token = import2Tokens[i];
-            result = import1Token.compareToIgnoreCase(import2Token);
+            result = import1Token.compareTo(import2Token);
             if (result != 0) {
                 break;
             }

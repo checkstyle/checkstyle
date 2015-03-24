@@ -46,7 +46,6 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
             "4: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT"),
-            "7: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
             "8: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
             "9: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
             "10: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
@@ -56,6 +55,8 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
             "14: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
             "15: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
             "16: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "17: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
+            "18: " + getCheckMessage(MSG_ORDER, "STANDARD_JAVA_PACKAGE"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator
@@ -78,10 +79,9 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
             "4: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT"),
-            "9: " + getCheckMessage(MSG_LEX, "java.awt.Dialog"),
-            "13: " + getCheckMessage(MSG_LEX, "java.io.File"),
-            "15: " + getCheckMessage(MSG_LEX, "java.io.InputStream"),
-            "20: " + getCheckMessage(MSG_LEX, "com.google.common.collect.*"),
+            "10: " + getCheckMessage(MSG_LEX, "java.awt.Dialog"),
+            "15: " + getCheckMessage(MSG_LEX, "java.io.File"),
+            "22: " + getCheckMessage(MSG_LEX, "com.google.common.collect.*"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator
@@ -104,12 +104,11 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
             "4: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT"),
-            "9: " + getCheckMessage(MSG_LEX, "java.awt.Dialog"),
-            "13: " + getCheckMessage(MSG_LEX, "java.io.File"),
-            "15: " + getCheckMessage(MSG_LEX, "java.io.InputStream"),
-            "18: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
-            "20: " + getCheckMessage(MSG_NONGROUP_IMPORT),
-            "21: " + getCheckMessage(MSG_LINE_SEPARATOR, "org.junit.*"),
+            "10: " + getCheckMessage(MSG_LEX, "java.awt.Dialog"),
+            "15: " + getCheckMessage(MSG_LEX, "java.io.File"),
+            "20: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "22: " + getCheckMessage(MSG_NONGROUP_IMPORT),
+            "23: " + getCheckMessage(MSG_LINE_SEPARATOR, "org.junit.*"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator
