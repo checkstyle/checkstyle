@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.Defn;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
@@ -200,7 +201,7 @@ public class TranslationCheck
             logIOException(e, file);
         }
         finally {
-            Utils.closeQuietly(inStream);
+            Closeables.closeQuietly(inStream);
         }
         return keys;
     }

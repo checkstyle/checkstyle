@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.Utils;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -80,15 +80,19 @@ public class NewlineAtEndOfFileCheck
         RandomAccessFile randomAccessFile = null;
         try {
             randomAccessFile = new RandomAccessFile(file, "r");
-            if (!endsWithNewline(randomAccessFile)) {
-                log(0, MSG_KEY_NO_NEWLINE_EOF, file.getPath());
+            boolean threw = true;
+            try {
+                if (!endsWithNewline(randomAccessFile)) {
+                    log(0, MSG_KEY_NO_NEWLINE_EOF, file.getPath());
+                }
+                threw = false;
+            }
+            finally {
+                Closeables.close(randomAccessFile, threw);
             }
         }
         catch (final IOException e) {
             log(0, MSG_KEY_UNABLE_OPEN, file.getPath());
-        }
-        finally {
-            Utils.closeQuietly(randomAccessFile);
         }
     }
 

@@ -30,6 +30,8 @@ import java.util.Properties;
 import java.security.MessageDigest;
 
 
+import com.google.common.io.Closeables;
+import com.google.common.io.Flushables;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 /**
@@ -98,7 +100,7 @@ final class PropertyCacheFile
                     .debug("Unable to open cache file, ignoring.", e);
             }
             finally {
-                Utils.closeQuietly(inStream);
+                Closeables.closeQuietly(inStream);
             }
         }
         detailsFile = setInActive ? null : fileName;
@@ -129,17 +131,13 @@ final class PropertyCacheFile
      */
     private void flushAndCloseOutStream(OutputStream stream)
     {
-        if (stream != null) {
-            try {
-                stream.flush();
-            }
-            catch (final IOException ex) {
-                Utils.getExceptionLogger()
-                    .debug("Unable to flush output stream.", ex);
-            }
-            finally {
-                Utils.closeQuietly(stream);
-            }
+        try {
+            Flushables.flush(stream, false);
+            Closeables.close(stream, false);
+        }
+        catch (final IOException ex) {
+            Utils.getExceptionLogger()
+                    .debug("Unable to flush and close output stream.", ex);
         }
     }
 

@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -30,6 +29,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import com.google.common.io.Closeables;
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -270,7 +270,7 @@ public final class Utils
             }
         }
         finally {
-            Utils.closeQuietly(lnr);
+            Closeables.closeQuietly(lnr);
         }
         return lines.toArray(new String[lines.size()]);
     }
@@ -324,23 +324,5 @@ public final class Utils
             stripped = fileName.substring(basedir.length() + skipSep);
         }
         return stripped;
-    }
-
-    /**
-     * Closes the supplied {@link Closeable} object ignoring an
-     * {@link IOException} if it is thrown. Honestly, what are you going to
-     * do if you cannot close a file.
-     * @param shutting the object to be closed.
-     */
-    public static void closeQuietly(Closeable shutting)
-    {
-        if (null != shutting) {
-            try {
-                shutting.close();
-            }
-            catch (IOException e) {
-                // ignore
-            }
-        }
     }
 }

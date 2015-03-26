@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import com.google.common.collect.Sets;
+import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import java.io.BufferedInputStream;
@@ -171,7 +172,7 @@ public final class PackageNamesLoader
                         "unable to open " + packageFile, e);
             }
             finally {
-                Utils.closeQuietly(stream);
+                Closeables.closeQuietly(stream);
             }
         }
         return namesLoader.getPackageNames();

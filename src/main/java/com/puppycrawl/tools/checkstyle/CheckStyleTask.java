@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import com.google.common.collect.Lists;
+import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
@@ -406,7 +407,7 @@ public class CheckStyleTask extends Task
                         + propertiesFile + "'", e, getLocation());
             }
             finally {
-                Utils.closeQuietly(inStream);
+                Closeables.closeQuietly(inStream);
             }
         }
 

@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.Utils;
 
 /**
@@ -146,7 +147,7 @@ public final class FileText extends AbstractList<String>
             }
         }
         finally {
-            Utils.closeQuietly(reader);
+            Closeables.closeQuietly(reader);
         }
         // buf.trimToSize(); // could be used instead of toString().
         fullText = buf.toString();
@@ -267,7 +268,7 @@ public final class FileText extends AbstractList<String>
             return ByteBuffer.wrap(bytes, 0, fill).asReadOnlyBuffer();
         }
         finally {
-            Utils.closeQuietly(stream);
+            Closeables.closeQuietly(stream);
         }
     }
 

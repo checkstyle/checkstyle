@@ -587,9 +587,9 @@
           <regex><pattern>.*.PackageNamesLoader</pattern><branchRate>78</branchRate><lineRate>72</lineRate></regex>
           <regex><pattern>.*.PackageObjectFactory</pattern><branchRate>75</branchRate><lineRate>75</lineRate></regex>
           <regex><pattern>.*.PropertiesExpander</pattern><branchRate>50</branchRate><lineRate>83</lineRate></regex>
-          <regex><pattern>.*.PropertyCacheFile</pattern><branchRate>22</branchRate><lineRate>18</lineRate></regex>
+          <regex><pattern>.*.PropertyCacheFile</pattern><branchRate>22</branchRate><lineRate>19</lineRate></regex>
           <regex><pattern>.*.TreeWalker</pattern><branchRate>90</branchRate><lineRate>90</lineRate></regex>
-          <regex><pattern>com.puppycrawl.tools.checkstyle.Utils</pattern><branchRate>78</branchRate><lineRate>71</lineRate></regex>
+          <regex><pattern>com.puppycrawl.tools.checkstyle.Utils</pattern><branchRate>77</branchRate><lineRate>70</lineRate></regex>
           <regex><pattern>.*.XMLLogger</pattern><branchRate>86</branchRate><lineRate>97</lineRate></regex>
 
 
