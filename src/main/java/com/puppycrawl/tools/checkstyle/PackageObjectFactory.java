@@ -20,6 +20,9 @@ package com.puppycrawl.tools.checkstyle;
 
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.util.Set;
 
 /**
@@ -29,6 +32,9 @@ import java.util.Set;
  */
 class PackageObjectFactory implements ModuleFactory
 {
+    /** Logger for PackageObjectFactory. */
+    private static final Log LOG = LogFactory.getLog(PackageObjectFactory.class);
+
     /** a list of package names to prepend to class names */
     private final Set<String> packages;
 
@@ -80,7 +86,7 @@ class PackageObjectFactory implements ModuleFactory
             return createObject(name);
         }
         catch (final CheckstyleException ex) {
-            // keep looking
+            LOG.debug("Keep looking, ignoring exception", ex);
         }
 
         //now try packages
@@ -91,7 +97,7 @@ class PackageObjectFactory implements ModuleFactory
                 return createObject(className);
             }
             catch (final CheckstyleException ex) {
-                // keep looking
+                LOG.debug("Keep looking, ignoring exception", ex);
             }
         }
 

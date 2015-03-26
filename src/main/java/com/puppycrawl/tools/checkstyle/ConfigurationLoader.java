@@ -24,6 +24,8 @@ import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -51,6 +53,9 @@ import java.util.Map;
  */
 public final class ConfigurationLoader
 {
+    /** Logger for ConfigurationLoader. */
+    private static final Log LOG = LogFactory.getLog(ConfigurationLoader.class);
+
     /** the public ID for version 1_0 of the configuration dtd */
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Check Configuration 1.0//EN";
@@ -193,7 +198,7 @@ public final class ConfigurationLoader
                     level = SeverityLevel.getInstance(severity);
                 }
                 catch (final CheckstyleException e) {
-                    //severity not set -> ignore
+                    LOG.debug("Severity not set, ignoring exception", e);
                 }
 
                 // omit this module if these should be omitted and the module
