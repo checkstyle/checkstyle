@@ -19,22 +19,14 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
-import java.io.UnsupportedEncodingException;
-import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import com.google.common.io.Closeables;
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import static com.google.common.base.MoreObjects.firstNonNull;
@@ -218,61 +210,6 @@ public final class Utils
             retVal = firstNonNull(retVal, compiledPattern);
         }
         return retVal;
-    }
-
-    /**
-     * Loads the contents of a file in a String array.
-     * @return the lines in the file
-     * @param fileName the name of the file to load
-     * @throws IOException error occurred
-     * @deprecated consider using {@link com.puppycrawl.tools.checkstyle.api.FileText} instead
-     **/
-    @Deprecated
-    public static String[] getLines(String fileName)
-        throws IOException
-    {
-        return getLines(
-            fileName,
-            System.getProperty("file.encoding", "UTF-8"));
-    }
-
-    /**
-     * Loads the contents of a file in a String array using
-     * the named charset.
-     * @return the lines in the file
-     * @param fileName the name of the file to load
-     * @param charsetName the name of a supported charset
-     * @throws IOException error occurred
-     * @deprecated consider using {@link com.puppycrawl.tools.checkstyle.api.FileText} instead
-     **/
-    @Deprecated
-    public static String[] getLines(String fileName, String charsetName)
-        throws IOException
-    {
-        final List<String> lines = Lists.newArrayList();
-        final FileInputStream fr = new FileInputStream(fileName);
-        LineNumberReader lnr = null;
-        try {
-            lnr = new LineNumberReader(new InputStreamReader(fr, charsetName));
-        }
-        catch (final UnsupportedEncodingException ex) {
-            fr.close();
-            final String message = "unsupported charset: " + ex.getMessage();
-            throw new UnsupportedEncodingException(message);
-        }
-        try {
-            while (true) {
-                final String l = lnr.readLine();
-                if (l == null) {
-                    break;
-                }
-                lines.add(l);
-            }
-        }
-        finally {
-            Closeables.closeQuietly(lnr);
-        }
-        return lines.toArray(new String[lines.size()]);
     }
 
     /**
