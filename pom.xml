@@ -1052,45 +1052,6 @@
 
   <profiles>
 
-    <profile>
-      <id>release</id>
-      <distributionManagement>
-        <site>
-          <id>sourceforge-site</id>
-          <name>Default Site</name>
-          <url>scp://shell.sourceforge.net/home/project-web/checkstyle/htdocs</url>
-        </site>
-      </distributionManagement>
-    </profile>
-
-    <profile>
-      <id>release-sign-artifacts</id>
-      <activation>
-        <property>
-          <name>performRelease</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.6</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
     <!-- Bring in tools.jar for platforms which provide it
     that is required for javadoc docklets that are in use -->
     <profile>
