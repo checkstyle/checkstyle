@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
+import static com.puppycrawl.tools.checkstyle.Utils.baseClassname;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -77,6 +78,18 @@ public class UtilsTest
         assertTrue(fileExtensionMatches(file, null));
         file = new File("file.java");
         assertTrue(fileExtensionMatches(file, fileExtensions));
+    }
+
+    @Test
+    public void testBaseClassnameForCanonicalName()
+    {
+        assertEquals("List", baseClassname("java.util.List"));
+    }
+
+    @Test
+    public void testBaseClassnameForSimpleName()
+    {
+        assertEquals("Set", baseClassname("Set"));
     }
 
     @Test
