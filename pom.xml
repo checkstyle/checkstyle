@@ -988,6 +988,7 @@
         <configuration>
           <targetJdk>1.7</targetJdk>
           <minimumTokens>20</minimumTokens>
+	  <skipEmptyReport>false</skipEmptyReport>
         </configuration>
         <reportSets>
           <reportSet>
