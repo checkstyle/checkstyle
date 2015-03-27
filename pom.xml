@@ -573,9 +573,9 @@
          <branchRate>100</branchRate>
          <lineRate>100</lineRate>
          <totalBranchRate>83</totalBranchRate>
-         <totalLineRate>89</totalLineRate>
+         <totalLineRate>90</totalLineRate>
          <regexes>
-          <regex><pattern>.*.Checker</pattern><branchRate>71</branchRate><lineRate>86</lineRate></regex>
+          <regex><pattern>.*.Checker</pattern><branchRate>79</branchRate><lineRate>85</lineRate></regex>
           <regex><pattern>.*.ConfigurationLoader</pattern><branchRate>86</branchRate><lineRate>79</lineRate></regex>
           <regex><pattern>.*.ConfigurationLoader\$.*</pattern><branchRate>65</branchRate><lineRate>84</lineRate></regex>
 
@@ -588,7 +588,6 @@
           <regex><pattern>.*.PropertiesExpander</pattern><branchRate>50</branchRate><lineRate>83</lineRate></regex>
           <regex><pattern>.*.PropertyCacheFile</pattern><branchRate>22</branchRate><lineRate>19</lineRate></regex>
           <regex><pattern>.*.TreeWalker</pattern><branchRate>90</branchRate><lineRate>90</lineRate></regex>
-          <regex><pattern>com.puppycrawl.tools.checkstyle.Utils</pattern><branchRate>84</branchRate><lineRate>91</lineRate></regex>
           <regex><pattern>.*.XMLLogger</pattern><branchRate>86</branchRate><lineRate>97</lineRate></regex>
 
 

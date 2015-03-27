@@ -20,18 +20,24 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
 import static com.puppycrawl.tools.checkstyle.Utils.baseClassname;
+import static com.puppycrawl.tools.checkstyle.Utils.relativizeAndNormalizePath;
 import static com.puppycrawl.tools.checkstyle.Utils.fileExtensionMatches;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.beanutils.ConversionException;
 import org.junit.Test;
 
 public class UtilsTest
 {
+
+    /** After appending to path produces equivalent, but denormalized path */
+    private static final String PATH_DENORMALIZER = "/levelDown/.././";
+
     /**
      * Test Utils.countCharInString.
      */
@@ -84,6 +90,34 @@ public class UtilsTest
     public void testBaseClassnameForSimpleName()
     {
         assertEquals("Set", baseClassname("Set"));
+    }
+
+    @Test
+    public void testRelativeNormalizedPath()
+    {
+        final String relativePath = relativizeAndNormalizePath("/home", "/home/test");
+
+        assertEquals("test", relativePath);
+    }
+
+    @Test
+    public void testRelativeNormalizedPathWithNullBaseDirectory()
+    {
+        final String relativePath = relativizeAndNormalizePath(null, "/tmp");
+
+        assertEquals("/tmp", relativePath);
+    }
+
+    @Test
+    public void testRelativeNormalizedPathWithDenormalizedBaseDirectory() throws IOException
+    {
+        final String sampleAbsolutePath = new File("src/main/java").getCanonicalPath();
+        final String absoluteFilePath = sampleAbsolutePath + "/SampleFile.java";
+        final String basePath = sampleAbsolutePath + PATH_DENORMALIZER;
+
+        final String relativePath = relativizeAndNormalizePath(basePath, absoluteFilePath);
+
+        assertEquals("SampleFile.java", relativePath);
     }
 
     @Test

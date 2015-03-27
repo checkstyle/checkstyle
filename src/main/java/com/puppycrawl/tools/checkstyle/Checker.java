@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
-import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
@@ -45,7 +44,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
-import java.util.StringTokenizer;
 
 import static com.puppycrawl.tools.checkstyle.Utils.fileExtensionMatches;
 
@@ -304,164 +302,10 @@ public class Checker extends AutomaticBean implements MessageDispatcher
         return errorCount;
     }
 
-    /**
-     * Create a stripped down version of a filename.
-     * @param fileName the original filename
-     * @return the filename where an initial prefix of basedir is stripped
-     */
-    private String getStrippedFileName(final String fileName)
-    {
-        return Utils.getStrippedFileName(basedir, fileName);
-    }
-
     /** @param basedir the base directory to strip off in filenames */
     public void setBasedir(String basedir)
     {
-        // we use getAbsolutePath() instead of getCanonicalPath()
-        // because normalize() removes all . and .. so path
-        // will be canonical by default.
-        this.basedir = normalize(basedir);
-    }
-
-    /**
-     * &quot;normalize&quot; the given absolute path.
-     *
-     * <p>This includes:
-     * <ul>
-     *   <li>Uppercase the drive letter if there is one.</li>
-     *   <li>Remove redundant slashes after the drive spec.</li>
-     *   <li>resolve all ./, .\, ../ and ..\ sequences.</li>
-     *   <li>DOS style paths that start with a drive letter will have
-     *     \ as the separator.</li>
-     * </ul>
-     * <p>
-     *
-     * @param normalizingPath a path for &quot;normalizing&quot;
-     * @return &quot;normalized&quot; file name
-     * @throws java.lang.NullPointerException if the file path is
-     * equal to null.
-     */
-    public String normalize(String normalizingPath)
-    {
-
-        if (normalizingPath == null) {
-            return normalizingPath;
-        }
-
-        final String osName = System.getProperty("os.name").toLowerCase(
-                Locale.US);
-        final boolean onNetWare = osName.indexOf("netware") > -1;
-
-        String path = normalizingPath.replace('/', File.separatorChar).replace('\\',
-            File.separatorChar);
-
-        // make sure we are dealing with an absolute path
-        final int colon = path.indexOf(":");
-
-        if (!onNetWare) {
-            if (!path.startsWith(File.separator)
-                && !(path.length() >= 2
-                     && Character.isLetter(path.charAt(0)) && colon == 1))
-            {
-                final String msg = path + " is not an absolute path";
-                throw new IllegalArgumentException(msg);
-            }
-        }
-        else {
-            if (!path.startsWith(File.separator) && colon == -1) {
-                final String msg = path + " is not an absolute path";
-                throw new IllegalArgumentException(msg);
-            }
-        }
-
-        boolean dosWithDrive = false;
-        String root = null;
-        // Eliminate consecutive slashes after the drive spec
-        if (!onNetWare && path.length() >= 2
-             && Character.isLetter(path.charAt(0)) && path.charAt(1) == ':'
-            || onNetWare && colon > -1)
-        {
-
-            dosWithDrive = true;
-
-            final char[] ca = path.replace('/', '\\').toCharArray();
-            final StringBuilder sbRoot = new StringBuilder();
-            for (int i = 0; i < colon; i++) {
-                sbRoot.append(Character.toUpperCase(ca[i]));
-            }
-            sbRoot.append(':');
-            if (colon + 1 < path.length()) {
-                sbRoot.append(File.separatorChar);
-            }
-            root = sbRoot.toString();
-
-            // Eliminate consecutive slashes after the drive spec
-            final StringBuilder sbPath = new StringBuilder();
-            for (int i = colon + 1; i < ca.length; i++) {
-                if (ca[i] != '\\' || ca[i] == '\\' && ca[i - 1] != '\\') {
-                    sbPath.append(ca[i]);
-                }
-            }
-            path = sbPath.toString().replace('\\', File.separatorChar);
-
-        }
-        else {
-            if (path.length() == 1) {
-                root = File.separator;
-                path = "";
-            }
-            else if (path.charAt(1) == File.separatorChar) {
-                // UNC drive
-                root = File.separator + File.separator;
-                path = path.substring(2);
-            }
-            else {
-                root = File.separator;
-                path = path.substring(1);
-            }
-        }
-
-        final FastStack<String> s = FastStack.newInstance();
-        s.push(root);
-        final StringTokenizer tok = new StringTokenizer(path, File.separator);
-        while (tok.hasMoreTokens()) {
-            final String thisToken = tok.nextToken();
-            if (".".equals(thisToken)) {
-                continue;
-            }
-            else if ("..".equals(thisToken)) {
-                if (s.size() < 2) {
-                    throw new IllegalArgumentException("Cannot resolve path "
-                            + path);
-                }
-                s.pop();
-            }
-            else { // plain component
-                s.push(thisToken);
-            }
-        }
-
-        final StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < s.size(); i++) {
-            if (i > 1) {
-                // not before the filesystem root and not after it, since root
-                // already contains one
-                sb.append(File.separatorChar);
-            }
-            sb.append(s.peek(i));
-        }
-
-        path = sb.toString();
-        if (dosWithDrive) {
-            path = path.replace('/', '\\');
-        }
-        return path;
-    }
-
-    /** @return the base directory property used in unit-test. */
-    public final String getBasedir()
-    {
-        return basedir;
+        this.basedir = basedir;
     }
 
     /** notify all listeners about the audit start */
@@ -491,7 +335,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     @Override
     public void fireFileStarted(String fileName)
     {
-        final String stripped = getStrippedFileName(fileName);
+        final String stripped = Utils.relativizeAndNormalizePath(basedir, fileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
         for (final AuditListener listener : listeners) {
             listener.fileStarted(evt);
@@ -507,7 +351,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     @Override
     public void fireFileFinished(String fileName)
     {
-        final String stripped = getStrippedFileName(fileName);
+        final String stripped = Utils.relativizeAndNormalizePath(basedir, fileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
         for (final AuditListener listener : listeners) {
             listener.fileFinished(evt);
@@ -521,10 +365,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * @param errors the audit errors from the file
      */
     @Override
-    public void fireErrors(String fileName,
-        SortedSet<LocalizedMessage> errors)
+    public void fireErrors(String fileName, SortedSet<LocalizedMessage> errors)
     {
-        final String stripped = getStrippedFileName(fileName);
+        final String stripped = Utils.relativizeAndNormalizePath(basedir, fileName);
         for (final LocalizedMessage element : errors) {
             final AuditEvent evt = new AuditEvent(this, stripped, element);
             if (filters.accept(evt)) {
