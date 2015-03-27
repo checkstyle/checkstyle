@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
 import static com.puppycrawl.tools.checkstyle.Utils.baseClassname;
+import static com.puppycrawl.tools.checkstyle.Utils.fileExtensionMatches;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -28,8 +29,6 @@ import java.io.File;
 
 import org.apache.commons.beanutils.ConversionException;
 import org.junit.Test;
-
-import static com.puppycrawl.tools.checkstyle.Utils.fileExtensionMatches;
 
 public class UtilsTest
 {
@@ -93,4 +92,10 @@ public class UtilsTest
         assertUtilsClassHasPrivateConstructor(Utils.class);
     }
 
+    @Test
+    public void testInvalidPattern()
+    {
+        boolean result = Utils.isPatternValid("some[invalidPattern");
+        assertFalse(result);
+    }
 }
