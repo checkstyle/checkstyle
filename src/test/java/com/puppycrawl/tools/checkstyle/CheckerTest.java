@@ -20,7 +20,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import com.google.common.collect.Sets;
@@ -33,44 +32,6 @@ import org.junit.Test;
 
 public class CheckerTest
 {
-
-    @Test
-    public void testNullBasedir() throws Exception
-    {
-        final Checker c = new Checker();
-
-        c.setBasedir("c:/a\\b/./c\\..\\d");
-        c.setBasedir(null);
-        assertNull(c.getBasedir());
-    }
-
-    @Test
-    public void testDosBasedir() throws Exception
-    {
-        final Checker c = new Checker();
-
-        c.setBasedir("c:/a\\b/./c\\..\\d");
-        assertEquals("C:\\a\\b\\d", c.getBasedir());
-    }
-
-    @Test
-    public void testOsBasedir() throws Exception
-    {
-        final Checker c = new Checker();
-
-        // we need something to create absolute path
-        // let's take testinputs.dir
-        String testinputs_dir = new File("src/test/resources/com/puppycrawl/tools/checkstyle/").getCanonicalPath();
-
-        if (!testinputs_dir.endsWith(File.separator)) {
-            testinputs_dir += File.separator;
-        }
-
-        final String instr = testinputs_dir + "indentation/./..\\coding\\";
-        c.setBasedir(instr);
-        assertTrue((testinputs_dir + "coding").equalsIgnoreCase(c.getBasedir()));
-    }
-
     @Test
     public void testDestroy() throws Exception
     {

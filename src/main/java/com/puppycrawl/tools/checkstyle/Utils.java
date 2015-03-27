@@ -19,6 +19,8 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -199,23 +201,19 @@ public final class Utils
     }
 
     /**
-     * Create a stripped down version of a filename.
-     * @param basedir the prefix to strip off the original filename
-     * @param fileName the original filename
-     * @return the filename where an initial prefix of basedir is stripped
+     * Constructs a normalized relative path between base directory and a given path.
+     * @param baseDirectory the base path to which given path is relativized
+     * @param path the path to relativize against base directory
+     * @return the relative normalized path between base directory and path or path if base
+     * directory is null
      */
-    public static String getStrippedFileName(
-            final String basedir, final String fileName)
+    public static String relativizeAndNormalizePath(final String baseDirectory, final String path)
     {
-        final String stripped;
-        if (basedir == null || !fileName.startsWith(basedir)) {
-            stripped = fileName;
+        if (baseDirectory == null) {
+            return path;
         }
-        else {
-            // making the assumption that there is text after basedir
-            final int skipSep = basedir.endsWith(File.separator) ? 0 : 1;
-            stripped = fileName.substring(basedir.length() + skipSep);
-        }
-        return stripped;
+        final Path pathAbsolute = Paths.get(path).normalize();
+        final Path pathBase = Paths.get(baseDirectory).normalize();
+        return pathBase.relativize(pathAbsolute).toString();
     }
 }
