@@ -184,7 +184,7 @@ public final class Utils
         }
         catch (final PatternSyntaxException e) {
             throw new ConversionException(
-                "Failed to initialise regexp expression " + pattern, e);
+                "Failed to initialise regular expression " + pattern, e);
         }
     }
 
