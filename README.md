@@ -21,6 +21,7 @@ Quality reports: http://checkstyle.sourceforge.net/project-reports.html
 
 Feedback/Support
 ========
+[![][gitter img]][gitter]
 
 Please send any feedback to https://groups.google.com/forum/?hl=en#!forum/checkstyle
 
@@ -70,3 +71,6 @@ directory.
 
 [versioneye]:https://www.versioneye.com/user/projects/5504ca834a1064774400049a
 [versioneye img]:https://www.versioneye.com/user/projects/5504ca834a1064774400049a/badge.svg
+
+[gitter]:https://gitter.im/checkstyle
+[gitter img]:http://img.shields.io/badge/gitter-JOIN%20CHAT-blue.svg
