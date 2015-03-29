@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <Match>
+        <Package name="~com\.puppycrawl\.tools\.checkstyle\.grammars.*" />
+    </Match>
+</FindBugsFilter>
