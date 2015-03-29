@@ -570,10 +570,9 @@ public final class JavadocTokenTypes
      * <p>
      * Such Javadoc inline tag can have one argument - {@link #REFERENCE}
      * </p>
-     * <p>
-     * <b>Example:</b>
+     * <p><b>Example:</b></p>
      * <pre><code>{&#64;link org.apache.utils.Lists.Comparator#compare(Object)}</code></pre>
-     * <b>Tree:</b></p>
+     * <p><b>Tree:</b></p>
      * <code>
      * <pre>|--JAVADOC_INLINE_TAG[1x0] : [{&#64;link org.apache.utils.Lists.Comparator#compare(Object)}]
      *       |--JAVADOC_INLINE_TAG_START[1x0] : [{]
