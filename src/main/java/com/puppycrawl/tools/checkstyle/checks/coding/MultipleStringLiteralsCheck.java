@@ -27,7 +27,6 @@ import com.puppycrawl.tools.checkstyle.Utils;
 import java.util.BitSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 
@@ -182,14 +181,13 @@ public class MultipleStringLiteralsCheck extends Check
     @Override
     public void finishTree(DetailAST rootAST)
     {
-        final Set<String> keys = stringMap.keySet();
-        for (String key : keys) {
-            final List<StringInfo> hits = stringMap.get(key);
+        for (Map.Entry<String, List<StringInfo>> stringListEntry : stringMap.entrySet()) {
+            final List<StringInfo> hits = stringListEntry.getValue();
             if (hits.size() > allowedDuplicates) {
                 final StringInfo firstFinding = hits.get(0);
                 final int line = firstFinding.getLine();
                 final int col = firstFinding.getCol();
-                log(line, col, MSG_KEY, key, hits.size());
+                log(line, col, MSG_KEY, stringListEntry.getKey(), hits.size());
             }
         }
     }
