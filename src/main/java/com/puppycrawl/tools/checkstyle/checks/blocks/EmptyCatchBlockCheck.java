@@ -49,15 +49,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * To configure the Check to suppress empty catch block if exception's variable name is
  *  <b>expected</b> or <b>ignore</b>:
  * </p>
- * <p>
  * <pre>
  * &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
  *    &lt;property name=&quot;exceptionVariableName&quot; value=&quot;ignore|expected;/&gt;
  * &lt;/module&gt;
  * </pre>
- * </p>
- * Such empty blocks would be both suppressed:<br>
  * <p>
+ * Such empty blocks would be both suppressed:<br>
+ * </p>
  * <pre>
  * <code>
  * try {
@@ -72,20 +71,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </code>
  * </pre>
- * </p>
  * <p>
  * To configure the Check to suppress empty catch block if single-line comment inside
  *  is &quot;//This is expected&quot;:
  * </p>
- * <p>
  * <pre>
  * &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
  *    &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * </p>
- * Such empty block would be suppressed:<br>
  * <p>
+ * Such empty block would be suppressed:<br>
+ * </p>
  * <pre>
  * <code>
  * try {
@@ -95,19 +92,19 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </code>
  * </pre>
+ * <p>
  * To configure the Check to suppress empty catch block if single-line comment inside
  *  is &quot;//This is expected&quot; or exception's variable name is &quot;myException&quot;:
  * </p>
- * <p>
  * <pre>
  * &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
  *    &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
  *    &lt;property name=&quot;exceptionVariableName&quot; value=&quot;myException&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * </p>
- * Such empty blocks would be both suppressed:<br>
  * <p>
+ * Such empty blocks would be both suppressed:<br>
+ * </p>
  * <pre>
  * <code>
  * try {
@@ -124,7 +121,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </code>
  * </pre>
- * </p>
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 public class EmptyCatchBlockCheck extends Check
