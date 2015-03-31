@@ -73,7 +73,7 @@ directory.
 [versioneye img]:https://www.versioneye.com/user/projects/5504ca834a1064774400049a/badge.svg
 
 [gitter]:https://gitter.im/checkstyle
-[gitter img]:https://badges.gitter.im/Join%20Chat.svg
+[gitter img]:http://img.shields.io/badge/gitter-JOIN%20CHAT-blue.svg
 
 [stackoverflow]:http://stackoverflow.com/questions/tagged/checkstyle
 [stackoverflow img]:https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
