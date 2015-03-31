@@ -61,7 +61,7 @@ directory.
 [sonar img]:https://dev.eclipse.org/sonar/images/sonarqube-24x100.png
 
 [coverage]:https://coveralls.io/r/checkstyle/checkstyle
-[coverage img]:https://coveralls.io/repos/checkstyle/checkstyle/badge.png
+[coverage img]:https://coveralls.io/repos/checkstyle/checkstyle/badge.svg
 
 [license]:LICENSE
 [license img]:https://img.shields.io/badge/license-GNU%20LGPL%20v2.1-blue.svg
