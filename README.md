@@ -3,6 +3,7 @@
 [![][mavenbadge img]][mavenbadge]
 [![][versioneye img]][versioneye]
 [![][sonar img]][sonar]
+[![][gitter img]][gitter]
 
 ![](https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/images/logo.png)
 
@@ -21,7 +22,6 @@ Quality reports: http://checkstyle.sourceforge.net/project-reports.html
 
 Feedback/Support
 ========
-[![][gitter img]][gitter]
 
 Please send any feedback to https://groups.google.com/forum/?hl=en#!forum/checkstyle
 
