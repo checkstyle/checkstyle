@@ -25,7 +25,7 @@ Feedback/Support
 
 Please send any feedback to https://groups.google.com/forum/?hl=en#!forum/checkstyle
 
-Questions and Answers from community: http://stackoverflow.com/questions/tagged/checkstyle
+Questions and Answers from community: [![][stackoverflow img]][stackoverflow]
 
 Bugs and Feature requests: https://github.com/checkstyle/checkstyle/issues
 
@@ -74,3 +74,7 @@ directory.
 
 [gitter]:https://gitter.im/checkstyle
 [gitter img]:https://badges.gitter.im/Join%20Chat.svg
+
+[stackoverflow]:http://stackoverflow.com/questions/tagged/checkstyle
+[stackoverflow img]:https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
+
