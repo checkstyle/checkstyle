@@ -963,6 +963,12 @@ class SomeClass
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><span class="default">false</span></td>
           </tr>
+            <tr>
+                <td>ignoreFieldDeclaration</td>
+                <td>ignore magic numbers in field declarations.</td>
+                <td><a href="property_types.html#boolean">boolean</a></td>
+                <td><span class="default">false</span></td>
+            </tr>
         </table>
       </subsection>
 
@@ -982,6 +988,7 @@ class SomeClass
 &lt;module name=&quot;MagicNumber&quot;&gt;
     &lt;property name=&quot;tokens&quot; value=&quot;NUM_DOUBLE, NUM_FLOAT&quot;/&gt;
     &lt;property name=&quot;ignoreNumbers&quot; value=&quot;0, 0.5, 1&quot;/&gt;
+    &lt;property name=&quot;ignoreFieldDeclaration&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

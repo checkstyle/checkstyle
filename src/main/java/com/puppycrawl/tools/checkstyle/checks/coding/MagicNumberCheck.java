@@ -79,6 +79,8 @@ public class MagicNumberCheck extends Check
     private boolean ignoreHashCodeMethod;
     /** Whether to ignore magic numbers in annotation. */
     private boolean ignoreAnnotation;
+    /** Whether to ignore magic numbers in field declaration. */
+    private boolean ignoreFieldDeclaration;
 
     @Override
     public int[] getDefaultTokens()
@@ -118,7 +120,9 @@ public class MagicNumberCheck extends Check
         final DetailAST constantDefAST = findContainingConstantDef(ast);
 
         if (constantDefAST == null) {
-            reportMagicNumber(ast);
+            if (!(ignoreFieldDeclaration && isFieldDeclaration(ast))) {
+                reportMagicNumber(ast);
+            }
         }
         else {
             DetailAST astNode = ast.getParent();
@@ -262,6 +266,32 @@ public class MagicNumberCheck extends Check
     }
 
     /**
+     * Determines whether or not the given AST is field declaration
+     *
+     * @param ast AST from which to search for an enclosing field declaration
+     *
+     * @return {@code true} if {@code ast} is in the scope of field declaration
+     */
+    private boolean isFieldDeclaration(DetailAST ast)
+    {
+        DetailAST varDefAST = ast;
+        while ((varDefAST != null)
+                && (varDefAST.getType() != TokenTypes.VARIABLE_DEF))
+        {
+            varDefAST = varDefAST.getParent();
+        }
+
+        // contains variable declaration
+        // and it is directly inside class declaration
+        return varDefAST != null
+                && varDefAST.getParent() != null
+                && varDefAST.getParent().getParent() != null
+                && varDefAST.getParent().getParent().getType()
+                == TokenTypes.CLASS_DEF;
+    }
+
+
+    /**
      * Sets the numbers to ignore in the check.
      * BeanUtils converts numeric token list to double array automatically.
      * @param list list of numbers to ignore.
@@ -295,6 +325,16 @@ public class MagicNumberCheck extends Check
     public void setIgnoreAnnotation(boolean ignoreAnnotation)
     {
         this.ignoreAnnotation = ignoreAnnotation;
+    }
+
+    /**
+     * Set whether to ignore magic numbers in field declaration.
+     * @param ignoreFieldDeclaration decide whether to ignore magic numbers
+     * in field declaration
+     */
+    public void setIgnoreFieldDeclaration(boolean ignoreFieldDeclaration)
+    {
+        this.ignoreFieldDeclaration = ignoreFieldDeclaration;
     }
 
     /**
