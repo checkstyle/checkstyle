@@ -678,7 +678,6 @@
           <regex><pattern>.*.checks.coding.IllegalTokenTextCheck</pattern><branchRate>60</branchRate><lineRate>88</lineRate></regex>
           <regex><pattern>.*.checks.coding.IllegalTypeCheck</pattern><branchRate>93</branchRate><lineRate>93</lineRate></regex>
           <regex><pattern>.*.checks.coding.InnerAssignmentCheck</pattern><branchRate>88</branchRate><lineRate>97</lineRate></regex>
-          <regex><pattern>.*.checks.coding.MagicNumberCheck</pattern><branchRate>93</branchRate><lineRate>98</lineRate></regex>
           <regex><pattern>.*.checks.coding.MissingCtorCheck</pattern><branchRate>75</branchRate><lineRate>92</lineRate></regex>
           <regex><pattern>.*.checks.coding.MissingSwitchDefaultCheck</pattern><branchRate>100</branchRate><lineRate>87</lineRate></regex>
           <regex><pattern>.*.checks.coding.ModifiedControlVariableCheck</pattern><branchRate>83</branchRate><lineRate>93</lineRate></regex>

@@ -327,8 +327,8 @@ public class MagicNumberCheck extends Check
     private boolean isFieldDeclaration(DetailAST ast)
     {
         DetailAST varDefAST = ast;
-        while ((varDefAST != null)
-                && (varDefAST.getType() != TokenTypes.VARIABLE_DEF))
+        while (varDefAST != null
+                && varDefAST.getType() != TokenTypes.VARIABLE_DEF)
         {
             varDefAST = varDefAST.getParent();
         }
@@ -336,10 +336,8 @@ public class MagicNumberCheck extends Check
         // contains variable declaration
         // and it is directly inside class declaration
         return varDefAST != null
-                && varDefAST.getParent() != null
-                && varDefAST.getParent().getParent() != null
                 && varDefAST.getParent().getParent().getType()
-                == TokenTypes.CLASS_DEF;
+                    == TokenTypes.CLASS_DEF;
     }
 
 
@@ -350,7 +348,7 @@ public class MagicNumberCheck extends Check
      */
     public void setIgnoreNumbers(double[] list)
     {
-        if (list == null || list.length == 0) {
+        if (list.length == 0) {
             ignoreNumbers = new double[0];
         }
         else {
@@ -399,12 +397,6 @@ public class MagicNumberCheck extends Check
      */
     private boolean isInAnnotation(DetailAST ast)
     {
-        if (null == ast.getParent()
-                || null == ast.getParent().getParent())
-        {
-            return false;
-        }
-
         return TokenTypes.ANNOTATION == ast.getParent().getParent().getType()
                 || TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR
                         == ast.getParent().getParent().getType();
