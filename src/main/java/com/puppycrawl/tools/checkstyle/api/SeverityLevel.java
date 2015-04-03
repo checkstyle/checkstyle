@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.Locale;
+
 /**
  * <p>
  * Severity level for a check violation.
@@ -52,7 +54,7 @@ public enum SeverityLevel
      */
     public String getName()
     {
-        return name().toLowerCase();
+        return name().toLowerCase(Locale.ENGLISH);
     }
 
     /**
@@ -65,6 +67,6 @@ public enum SeverityLevel
     public static SeverityLevel getInstance(String securityLevelName)
     {
         return valueOf(SeverityLevel.class, securityLevelName.trim()
-                .toUpperCase());
+                .toUpperCase(Locale.ENGLISH));
     }
 }
