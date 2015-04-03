@@ -27,18 +27,67 @@ import java.util.Arrays;
 
 /**
  * <p>
- * Checks for magic numbers.
+ * Checks that there are no <a href="http://en.wikipedia.org/wiki/Magic_number_%28programming%29">
+ * &quot;magic numbers&quot;</a> where a magic
+ * number is a numeric literal that is not defined as a constant.
+ * By default, -1, 0, 1, and 2 are not considered to be magic numbers.
  * </p>
  * <p>
- * An example of how to configure the check to ignore
- * numbers 0, 1, 1.5, 2:
+ * Check have following options:
+ * ignoreHashCodeMethod - ignore magic numbers in hashCode methods;
+ * ignoreAnnotation - ignore magic numbers in annotation declarations;
+ * ignoreFieldDeclaration - ignore magic numbers in field declarations.
+ * <p>
+ * To configure the check with default configuration:
  * </p>
  * <pre>
- * &lt;module name="MagicNumber"&gt;
- *    &lt;property name="ignoreNumbers" value="0, 1, 1.5, 2"/&gt;
- *    &lt;property name="ignoreHashCodeMethod" value="true"/&gt;
- * &lt;/module&gt;
+ * &lt;module name=&quot;MagicNumber&quot;/&gt;
  * </pre>
+ * <p>
+ * results is following violations:
+ * </p>
+ * <pre>
+ * <code>
+ *   {@literal @}MyAnnotation(6) // violation
+ *   class MyClass {
+ *       private field = 7; // violation
+ *
+ *       void foo() {
+ *          int i = i + 1; // no violation
+ *          int j = j + 8; // violation
+ *       }
+ *   }
+ * </code>
+ * </pre>
+ * <p>
+ * To configure the check so that it checks floating-point numbers
+ * that are not 0, 0.5, or 1:
+ * </p>
+ * <pre>
+ *   &lt;module name=&quot;MagicNumber&quot;&gt;
+ *       &lt;property name=&quot;tokens&quot; value=&quot;NUM_DOUBLE, NUM_FLOAT&quot;/&gt;
+ *       &lt;property name=&quot;ignoreNumbers&quot; value=&quot;0, 0.5, 1&quot;/&gt;
+ *       &lt;property name=&quot;ignoreFieldDeclaration&quot; value=&quot;true&quot;/&gt;
+ *       &lt;property name=&quot;ignoreAnnotation&quot; value=&quot;true&quot;/&gt;
+ *   &lt;/module&gt;
+ * </pre>
+ * <p>
+ * results is following violations:
+ * </p>
+ * <pre>
+ * <code>
+ *   {@literal @}MyAnnotation(6) // no violation
+ *   class MyClass {
+ *       private field = 7; // no violation
+ *
+ *       void foo() {
+ *          int i = i + 1; // no violation
+ *          int j = j + 8; // violation
+ *       }
+ *   }
+ * </code>
+ * </pre>
+ *
  * @author Rick Giles
  * @author Lars Kühne
  * @author Daniel Solano Gómez
@@ -75,10 +124,13 @@ public class MagicNumberCheck extends Check
 
     /** the numbers to ignore in the check, sorted */
     private double[] ignoreNumbers = {-1, 0, 1, 2};
+
     /** Whether to ignore magic numbers in a hash code method. */
     private boolean ignoreHashCodeMethod;
+
     /** Whether to ignore magic numbers in annotation. */
     private boolean ignoreAnnotation;
+
     /** Whether to ignore magic numbers in field declaration. */
     private boolean ignoreFieldDeclaration;
 
