@@ -26,9 +26,11 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import com.puppycrawl.tools.checkstyle.Utils;
 import org.apache.commons.beanutils.ConversionException;
 
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Checks the header of the source against a header file that contains a
@@ -143,6 +145,24 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
                         + " is not a regular expression");
             }
         }
+    }
+
+    /**
+     * Validates the {@code header} by compiling it with
+     * {@link Pattern#compile(java.lang.String) } and throws
+     * {@link PatternSyntaxException} if {@code header} isn't a valid pattern.
+     * @param header the header value to validate and set (in that order)
+     */
+    @Override
+    public void setHeader(String header)
+    {
+        if (StringUtils.isBlank(header)) {
+            return;
+        }
+        if (!Utils.isPatternValid(header)) {
+            throw new ConversionException("Unable to parse format: " + header);
+        }
+        super.setHeader(header);
     }
 
 }
