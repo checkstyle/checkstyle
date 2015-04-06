@@ -23,9 +23,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.EnumMap;
+import java.util.Map;
 
 /**
  * Counts the methods of the type-definition and checks whether this
@@ -74,7 +76,7 @@ public final class MethodCountCheck extends Check
     private static class MethodCounter
     {
         /** Maintains the counts. */
-        private final EnumMap<Scope, Integer> counts = new EnumMap<>(Scope.class);
+        private final Map<Scope, Integer> counts = new EnumMap<>(Scope.class);
         /** indicated is an interface, in which case all methods are public */
         private final boolean inInterface;
         /** tracks the total. */

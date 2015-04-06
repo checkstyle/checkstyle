@@ -25,7 +25,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.TreeSet;
+import java.util.SortedSet;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -106,7 +106,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport
         final String fileName =
                 getPath("InputUniquePropertiesCheckNotExisting.properties");
         final File file = new File(fileName);
-        final TreeSet<LocalizedMessage> messages =
+        final SortedSet<LocalizedMessage> messages =
                 check.process(file, Collections.<String>emptyList());
         Assert.assertEquals("Wrong messages count: " + messages.size(),
                 messages.size(), 1);
