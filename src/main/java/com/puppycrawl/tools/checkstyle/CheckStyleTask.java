@@ -30,8 +30,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
-import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import org.apache.tools.ant.AntClassLoader;
@@ -412,11 +412,10 @@ public class CheckStyleTask extends Task
         }
 
         // override with Ant properties like ${basedir}
-        final Hashtable<?, ?> antProps = this.getProject().getProperties();
-        for (Object name : antProps.keySet()) {
-            final String key = (String) name;
-            final String value = String.valueOf(antProps.get(key));
-            retVal.put(key, value);
+        final Map<String, Object> antProps = this.getProject().getProperties();
+        for (Map.Entry<String, Object> entry : antProps.entrySet()) {
+            final String value = String.valueOf(entry.getValue());
+            retVal.put(entry.getKey(), value);
         }
 
         // override with properties specified in subelements
