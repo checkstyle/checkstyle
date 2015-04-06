@@ -164,8 +164,9 @@ class FileDrop
         if (recursive && c instanceof Container) {
             final Container cont = (Container) c;
             final Component[] comps = cont.getComponents();
-            for (Component element : comps)
+            for (Component element : comps) {
                 makeDropTarget(element, recursive);
+            }
         }
     }
 
@@ -179,8 +180,9 @@ class FileDrop
         // See if any of the flavors are a file list
         int i = 0;
         while (!ok && i < flavors.length) {   // Is the flavor a file list?
-            if (flavors[i].equals(DataFlavor.javaFileListFlavor))
+            if (flavors[i].equals(DataFlavor.javaFileListFlavor)) {
                 ok = true;
+            }
             i++;
         }
 

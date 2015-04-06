@@ -229,7 +229,7 @@
             <!--<includeTests>true</includeTests>-->
             <rulesets>
               <ruleset>rulesets/java/basic.xml</ruleset>
-              <!--<ruleset>rulesets/java/braces.xml</ruleset>-->
+              <ruleset>rulesets/java/braces.xml</ruleset>
               <ruleset>rulesets/java/clone.xml</ruleset>
               <!--<ruleset>rulesets/java/codesize.xml</ruleset>-->
               <!--<ruleset>rulesets/java/comments.xml</ruleset>-->
