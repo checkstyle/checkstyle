@@ -25,7 +25,8 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.LinkedList;
+
+import java.util.Deque;
 
 /**
  * <p>
@@ -97,7 +98,7 @@ public abstract class AbstractSuperCheck
     }
 
     /** stack of methods */
-    private final LinkedList<MethodNode> methodStack = Lists.newLinkedList();
+    private final Deque<MethodNode> methodStack = Lists.newLinkedList();
 
     @Override
     public int[] getDefaultTokens()

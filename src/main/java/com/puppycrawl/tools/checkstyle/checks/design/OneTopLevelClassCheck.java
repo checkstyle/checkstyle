@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.util.Map;
+import java.util.SortedMap;
 import java.util.TreeMap;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
@@ -93,7 +94,7 @@ public class OneTopLevelClassCheck extends Check
     private boolean publicTypeFound;
 
     /** Mapping between type names and line numbers of the type declarations.*/
-    private TreeMap<Integer, String> lineNumberTypeMap = new TreeMap<>();
+    private SortedMap<Integer, String> lineNumberTypeMap = new TreeMap<>();
 
     @Override
     public int[] getDefaultTokens()

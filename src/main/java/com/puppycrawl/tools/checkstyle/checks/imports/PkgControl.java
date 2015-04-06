@@ -19,7 +19,8 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import com.google.common.collect.Lists;
-import java.util.LinkedList;
+
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ import java.util.List;
 class PkgControl
 {
     /** List of {@link Guard} objects to check. */
-    private final LinkedList<Guard> guards = Lists.newLinkedList();
+    private final Deque<Guard> guards = Lists.newLinkedList();
     /** List of children {@link PkgControl} objects. */
     private final List<PkgControl> children = Lists.newArrayList();
     /** The parent. Null indicates we are the root node. */

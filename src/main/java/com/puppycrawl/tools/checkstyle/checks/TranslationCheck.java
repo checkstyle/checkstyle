@@ -37,7 +37,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import java.util.TreeSet;
+import java.util.SortedSet;
 import java.util.Map.Entry;
 
 /**
@@ -227,7 +227,7 @@ public class TranslationCheck
                 args,
                 getId(),
                 this.getClass(), null);
-        final TreeSet<LocalizedMessage> messages = Sets.newTreeSet();
+        final SortedSet<LocalizedMessage> messages = Sets.newTreeSet();
         messages.add(message);
         getMessageDispatcher().fireErrors(file.getPath(), messages);
         Utils.getExceptionLogger().debug("IOException occured.", ex);

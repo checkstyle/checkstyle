@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
-import java.util.TreeSet;
+import java.util.SortedSet;
 
 import com.puppycrawl.tools.checkstyle.Utils;
 
@@ -71,7 +71,7 @@ public abstract class AbstractFileSetCheck
 
     /** {@inheritDoc} */
     @Override
-    public final TreeSet<LocalizedMessage> process(File file,
+    public final SortedSet<LocalizedMessage> process(File file,
                                                    List<String> lines)
     {
         getMessageCollector().reset();
@@ -182,7 +182,7 @@ public abstract class AbstractFileSetCheck
      */
     protected final void fireErrors(String fileName)
     {
-        final TreeSet<LocalizedMessage> errors = getMessageCollector()
+        final SortedSet<LocalizedMessage> errors = getMessageCollector()
                 .getMessages();
         getMessageCollector().reset();
         getMessageDispatcher().fireErrors(fileName, errors);
