@@ -120,7 +120,9 @@ final class PropertyCacheFile
                     .debug("Unable to save cache file.", e);
             }
             finally {
-                this.flushAndCloseOutStream(out);
+                if (out != null) {
+                    this.flushAndCloseOutStream(out);
+                }
             }
         }
     }
