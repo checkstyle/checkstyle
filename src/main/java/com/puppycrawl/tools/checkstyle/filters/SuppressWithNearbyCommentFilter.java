@@ -258,9 +258,6 @@ public class SuppressWithNearbyCommentFilter
     /** Default regex for checks that should be suppressed. */
     private static final String DEFAULT_CHECK_FORMAT = ".*";
 
-    /** Default regex for messages that should be suppressed. */
-    private static final String DEFAULT_MESSAGE_FORMAT = null;
-
     /** Default regex for lines that should be suppressed. */
     private static final String DEFAULT_INFLUENCE_FORMAT = "0";
 
@@ -311,9 +308,6 @@ public class SuppressWithNearbyCommentFilter
         }
         if (DEFAULT_CHECK_FORMAT != null) {
             setCheckFormat(DEFAULT_CHECK_FORMAT);
-        }
-        if (DEFAULT_MESSAGE_FORMAT != null) {
-            setMessageFormat(DEFAULT_MESSAGE_FORMAT);
         }
         if (DEFAULT_INFLUENCE_FORMAT != null) {
             setInfluenceFormat(DEFAULT_INFLUENCE_FORMAT);
