@@ -138,7 +138,7 @@ public abstract class DeclarationCollector extends Check
             case TokenTypes.SLIST :
                 frameStack.addFirst(new BlockFrame(frame));
                 break;
-            case TokenTypes.METHOD_DEF : {
+            case TokenTypes.METHOD_DEF :
                 final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
                 if (frame instanceof ClassFrame) {
                     final DetailAST mods =
@@ -150,7 +150,8 @@ public abstract class DeclarationCollector extends Check
                         ((ClassFrame) frame).addInstanceMethod(name);
                     }
                 }
-            }
+                frameStack.addFirst(new MethodFrame(frame));
+                break;
             case TokenTypes.CTOR_DEF :
                 frameStack.addFirst(new MethodFrame(frame));
                 break;
