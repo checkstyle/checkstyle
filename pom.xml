@@ -1052,6 +1052,8 @@
         <artifactId>findbugs-maven-plugin</artifactId>
         <version>3.0.1</version>
         <configuration>
+          <!--<effort>Max</effort>
+          <threshold>Low</threshold> -->
           <excludeFilterFile>config/findbugs-exclude.xml</excludeFilterFile>
         </configuration>
       </plugin>
