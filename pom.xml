@@ -216,6 +216,49 @@
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <version>3.4</version>
+          <configuration>
+            <targetJdk>1.7</targetJdk>
+            <minimumTokens>20</minimumTokens>
+            <skipEmptyReport>false</skipEmptyReport>
+            <failOnViolation>true</failOnViolation>
+            <printFailingErrors>true</printFailingErrors>
+            <!--<includeTests>true</includeTests>-->
+            <rulesets>
+              <ruleset>rulesets/java/basic.xml</ruleset>
+              <!--<ruleset>rulesets/java/braces.xml</ruleset>-->
+              <ruleset>rulesets/java/clone.xml</ruleset>
+              <!--<ruleset>rulesets/java/codesize.xml</ruleset>-->
+              <!--<ruleset>rulesets/java/comments.xml</ruleset>-->
+              <!--<ruleset>rulesets/java/controversial.xml</ruleset>-->
+              <!--<ruleset>rulesets/java/coupling.xml</ruleset>-->
+              <!--<ruleset>rulesets/java/design.xml</ruleset>-->
+              <ruleset>rulesets/java/empty.xml</ruleset>
+              <ruleset>rulesets/java/finalizers.xml</ruleset>
+              <ruleset>rulesets/java/imports.xml</ruleset>
+              <!--<ruleset>rulesets/java/javabeans.xml</ruleset>-->
+              <!--<ruleset>rulesets/java/junit.xml</ruleset>-->
+              <!--<ruleset>rulesets/java/logging-jakarta-commons.xml</ruleset>-->
+              <!--<ruleset>rulesets/java/logging-java.xml</ruleset>-->
+              <!--<ruleset>rulesets/java/migrating.xml</ruleset>-->
+              <!--<ruleset>rulesets/java/naming.xml</ruleset>-->
+              <!--<ruleset>rulesets/java/optimizations.xml</ruleset>-->
+              <!--<ruleset>rulesets/java/strictexception.xml</ruleset>-->
+              <!--<ruleset>rulesets/java/strings.xml</ruleset>-->
+              <!--<ruleset>rulesets/java/sunsecure.xml</ruleset>-->
+              <!--<ruleset>rulesets/java/typeresolution.xml</ruleset>-->
+              <ruleset>rulesets/java/unnecessary.xml</ruleset>
+              <ruleset>rulesets/java/unusedcode.xml</ruleset>
+            </rulesets>
+            <excludeRoots>
+              <excludeRoot>target/generated-sources/antlr</excludeRoot>
+              <excludeRoot>target/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammars/javadoc</excludeRoot>
+            </excludeRoots>
+          </configuration>
+        </plugin>
         <!-- This plugin's configuration is used to store Eclipse
              m2e settings only. It has no influence on the Maven build itself.
         -->
@@ -880,44 +923,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
         <version>3.4</version>
-        <configuration>
-          <targetJdk>1.7</targetJdk>
-          <minimumTokens>20</minimumTokens>
-          <skipEmptyReport>false</skipEmptyReport>
-          <failOnViolation>true</failOnViolation>
-          <printFailingErrors>true</printFailingErrors>
-          <!--<includeTests>true</includeTests>-->
-          <rulesets>
-            <ruleset>rulesets/java/basic.xml</ruleset>
-            <!--<ruleset>rulesets/java/braces.xml</ruleset>-->
-            <ruleset>rulesets/java/clone.xml</ruleset>
-            <!--<ruleset>rulesets/java/codesize.xml</ruleset>-->
-            <!--<ruleset>rulesets/java/comments.xml</ruleset>-->
-            <!--<ruleset>rulesets/java/controversial.xml</ruleset>-->
-            <!--<ruleset>rulesets/java/coupling.xml</ruleset>-->
-            <!--<ruleset>rulesets/java/design.xml</ruleset>-->
-            <ruleset>rulesets/java/empty.xml</ruleset>
-            <ruleset>rulesets/java/finalizers.xml</ruleset>
-            <ruleset>rulesets/java/imports.xml</ruleset>
-            <!--<ruleset>rulesets/java/javabeans.xml</ruleset>-->
-            <!--<ruleset>rulesets/java/junit.xml</ruleset>-->
-            <!--<ruleset>rulesets/java/logging-jakarta-commons.xml</ruleset>-->
-            <!--<ruleset>rulesets/java/logging-java.xml</ruleset>-->
-            <!--<ruleset>rulesets/java/migrating.xml</ruleset>-->
-            <!--<ruleset>rulesets/java/naming.xml</ruleset>-->
-            <!--<ruleset>rulesets/java/optimizations.xml</ruleset>-->
-            <!--<ruleset>rulesets/java/strictexception.xml</ruleset>-->
-            <!--<ruleset>rulesets/java/strings.xml</ruleset>-->
-            <!--<ruleset>rulesets/java/sunsecure.xml</ruleset>-->
-            <!--<ruleset>rulesets/java/typeresolution.xml</ruleset>-->
-            <ruleset>rulesets/java/unnecessary.xml</ruleset>
-            <ruleset>rulesets/java/unusedcode.xml</ruleset>
-          </rulesets>
-          <excludeRoots>
-            <excludeRoot>target/generated-sources/antlr</excludeRoot>
-            <excludeRoot>target/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammars/javadoc</excludeRoot>
-          </excludeRoots>
-        </configuration>
         <executions>
           <execution>
             <goals>
@@ -1033,11 +1038,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
         <version>3.4</version>
-        <configuration>
-          <targetJdk>1.7</targetJdk>
-          <minimumTokens>20</minimumTokens>
-	  <skipEmptyReport>false</skipEmptyReport>
-        </configuration>
         <reportSets>
           <reportSet>
             <reports>
