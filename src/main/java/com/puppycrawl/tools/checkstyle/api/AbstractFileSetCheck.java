@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -111,7 +112,7 @@ public abstract class AbstractFileSetCheck
      */
     public String[] getFileExtensions()
     {
-        return fileExtensions;
+        return Arrays.copyOf(fileExtensions, fileExtensions.length);
     }
 
     /**
