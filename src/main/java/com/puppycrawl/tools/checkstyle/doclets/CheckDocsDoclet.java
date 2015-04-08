@@ -19,10 +19,12 @@
 package com.puppycrawl.tools.checkstyle.doclets;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.io.Writer;
 import java.util.Arrays;
 import java.util.Comparator;
 import com.sun.javadoc.ClassDoc;
@@ -165,8 +167,9 @@ public final class CheckDocsDoclet
         final File destDir = new File(getDestDir(root.options()));
 
         final File checksIndexFile = new File(destDir, "checks.xml");
-        final PrintWriter fileWriter = new PrintWriter(
-                new FileWriter(checksIndexFile));
+        final Writer writer =
+                new OutputStreamWriter(new FileOutputStream(checksIndexFile), "UTF-8");
+        final PrintWriter fileWriter = new PrintWriter(writer);
         writeXdocsHeader(fileWriter, "Available Checks");
 
         fileWriter.println("<p>Checkstyle provides many checks that you can"

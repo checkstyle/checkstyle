@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.doclets;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.DocErrorReporter;
@@ -51,15 +52,18 @@ public final class TokenTypesDoclet
      * @param root <code>RootDoc</code> given to the doclet
      * @exception FileNotFoundException will be thrown if the doclet
      *            will be unable to write to the specified file.
+     * @exception UnsupportedEncodingException will be thrown if the doclet
+     *            will be unable to use UTF-8 encoding.
      * @return true if the given <code>RootDoc</code> is processed.
      */
-    public static boolean start(RootDoc root) throws FileNotFoundException
+    public static boolean start(RootDoc root)
+            throws FileNotFoundException, UnsupportedEncodingException
     {
         final String fileName = getDestFileName(root.options());
         final FileOutputStream fos = new FileOutputStream(fileName);
         PrintStream ps = null;
         try {
-            ps = new PrintStream(fos);
+            ps = new PrintStream(fos, false, "UTF-8");
             final ClassDoc[] classes = root.classes();
             if (classes.length != 1
                 || !"TokenTypes".equals(classes[0].name()))
