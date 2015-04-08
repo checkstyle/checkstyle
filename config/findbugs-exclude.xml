@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FindBugsFilter>
     <Match>
-        <Package name="~com\.puppycrawl\.tools\.checkstyle\.grammars.*" />
+      <!-- That code is auto generated -->
+      <Package name="~com\.puppycrawl\.tools\.checkstyle\.grammars.*" />
+    </Match>
+    <Match>
+      <!-- We are not aware of encoding of files that user has, so using user encodin is ok -->
+      <Class name="com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption" />
+      <Bug pattern="DM_DEFAULT_ENCODING" />
     </Match>
 </FindBugsFilter>
