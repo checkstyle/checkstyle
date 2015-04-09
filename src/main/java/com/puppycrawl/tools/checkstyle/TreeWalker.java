@@ -114,8 +114,7 @@ public final class TreeWalker
     private ModuleFactory moduleFactory;
 
     /** logger for debug purpose */
-    private static final Log LOG =
-        LogFactory.getLog("com.puppycrawl.tools.checkstyle.TreeWalker");
+    private static final Log LOG = LogFactory.getLog(TreeWalker.class);
 
     /**
      * Creates a new <code>TreeWalker</code> instance.
@@ -217,7 +216,7 @@ public final class TreeWalker
         catch (final TokenStreamRecognitionException tre) {
             final String exceptionMsg = String.format(msg, "TokenStreamRecognitionException",
                      fileName);
-            Utils.getExceptionLogger().error(exceptionMsg);
+            LOG.error(exceptionMsg);
             final RecognitionException re = tre.recog;
             String message = "TokenStreamRecognitionException occured";
             if (re != null) {
@@ -228,7 +227,7 @@ public final class TreeWalker
         // RecognitionException and any other (need to check if needed)
         catch (Throwable ex) {
             final String exceptionMsg = String.format(msg, ex.getClass().getSimpleName(), fileName);
-            Utils.getExceptionLogger().error(exceptionMsg);
+            LOG.error(exceptionMsg);
             getMessageCollector().add(createLocalizedMessage(ex.getMessage()));
         }
 
@@ -317,12 +316,10 @@ public final class TreeWalker
             tokenToCommentChecks.put(token, check);
         }
         else if (TokenTypes.isCommentType(token)) {
-            LOG.warn("Check '"
-                    + check.getClass().getName()
-                    + "' waits for comment type token ('"
-                    + token
-                    + "') and should override 'isCommentNodesRequred()'"
-                    + " method to return 'true'");
+            final String message = String.format("Check '%s' waits for comment type "
+                    + "token ('%s') and should override 'isCommentNodesRequred()' "
+                    + "method to return 'true'", check.getClass().getName(), token);
+            LOG.warn(message);
         }
         else {
             tokenToOrdinaryChecks.put(token, check);
