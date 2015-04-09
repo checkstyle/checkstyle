@@ -9,4 +9,29 @@
       <Class name="com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption" />
       <Bug pattern="DM_DEFAULT_ENCODING" />
     </Match>
+    <Match>
+      <!-- till #911 -->
+      <Package name="~com\.puppycrawl\.tools\.checkstyle.*" />
+      <Bug pattern="EQ_COMPARETO_USE_OBJECT_EQUALS" />
+    </Match>
+    <Match>
+      <!-- till #910 -->
+      <Package name="~com\.puppycrawl\.tools\.checkstyle.*" />
+      <Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS" />
+    </Match>
+    <Match>
+      <!-- till #909 -->
+      <Class name="com.puppycrawl.tools.checkstyle.api.AuditEvent" />
+      <Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED" />
+    </Match>
+    <Match>
+      <!-- till #596 -->
+      <Class name="com.puppycrawl.tools.checkstyle.Main" />
+      <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE" />
+    </Match>
+    <Match>
+      <!-- till #766 -->
+      <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler" />
+      <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
+    </Match>
 </FindBugsFilter>
