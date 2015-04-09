@@ -29,6 +29,8 @@ import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
@@ -195,7 +197,7 @@ public class SuppressWithNearbyCommentFilterTest
 
     @Override
     protected Checker createChecker(Configuration filterConfig)
-        throws CheckstyleException
+            throws CheckstyleException, UnsupportedEncodingException
     {
         final DefaultConfiguration checkerConfig =
             new DefaultConfiguration("configuration");
