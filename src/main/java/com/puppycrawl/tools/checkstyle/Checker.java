@@ -34,6 +34,8 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -55,6 +57,9 @@ import static com.puppycrawl.tools.checkstyle.Utils.fileExtensionMatches;
  */
 public class Checker extends AutomaticBean implements MessageDispatcher
 {
+    /** Logger for Checker */
+    private static final Log LOG = LogFactory.getLog(Checker.class);
+
     /** maintains error count */
     private final SeverityLevelCounter counter = new SeverityLevelCounter(
             SeverityLevel.ERROR);
@@ -269,14 +274,13 @@ public class Checker extends AutomaticBean implements MessageDispatcher
                 }
             }
             catch (final FileNotFoundException fnfe) {
-                Utils.getExceptionLogger().debug(
-                        "FileNotFoundException occured.", fnfe);
+                LOG.debug("FileNotFoundException occured.", fnfe);
                 fileMessages.add(new LocalizedMessage(0,
                         Defn.CHECKSTYLE_BUNDLE, "general.fileNotFound", null,
                         null, this.getClass(), null));
             }
             catch (final IOException ioe) {
-                Utils.getExceptionLogger().debug("IOException occured.", ioe);
+                LOG.debug("IOException occured.", ioe);
                 fileMessages.add(new LocalizedMessage(0,
                         Defn.CHECKSTYLE_BUNDLE, "general.exception",
                         new String[] {ioe.getMessage()}, null, this.getClass(),
