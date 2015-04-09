@@ -161,6 +161,7 @@
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.5</antlr4.version>
     <maven.site.plugin.version>3.4</maven.site.plugin.version>
+    <maven.findbugs.plugin.version>3.0.1</maven.findbugs.plugin.version>
     <tools.jar.version>1.7.0</tools.jar.version>
     <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
     <java.version>1.7</java.version>
@@ -259,6 +260,17 @@
             </excludeRoots>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>findbugs-maven-plugin</artifactId>
+          <version>${maven.findbugs.plugin.version}</version>
+          <configuration>
+            <!--<effort>Max</effort>
+            <threshold>Low</threshold>-->
+            <excludeFilterFile>config/findbugs-exclude.xml</excludeFilterFile>
+          </configuration>
+        </plugin>
+
         <!-- This plugin's configuration is used to store Eclipse
              m2e settings only. It has no influence on the Maven build itself.
         -->
@@ -932,6 +944,19 @@
         </executions>
       </plugin>
 
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+        <version>${maven.findbugs.plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
   </build>
 
@@ -1050,12 +1075,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
-        <version>3.0.1</version>
-        <configuration>
-          <!--<effort>Max</effort>
-          <threshold>Low</threshold> -->
-          <excludeFilterFile>config/findbugs-exclude.xml</excludeFilterFile>
-        </configuration>
+        <version>${maven.findbugs.plugin.version}</version>
       </plugin>
 
       <plugin>
