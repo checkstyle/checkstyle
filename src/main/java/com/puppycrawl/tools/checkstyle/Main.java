@@ -28,6 +28,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Properties;
 import org.apache.commons.cli.CommandLine;
@@ -65,8 +66,9 @@ public final class Main
      * Loops over the files specified checking them for errors. The exit code
      * is the number of errors found in all the files.
      * @param args the command line arguments
+     * @exception UnsupportedEncodingException if there is a problem to use UTF-8
      **/
-    public static void main(String[] args)
+    public static void main(String[] args) throws UnsupportedEncodingException
     {
         // parse the parameters
         final CommandLineParser clp = new PosixParser();
@@ -183,10 +185,12 @@ public final class Main
      * @param out the stream to log to
      * @param closeOut whether the stream should be closed
      * @return a fresh new <code>AuditListener</code>
+     * @exception UnsupportedEncodingException if there is problem to use UTf-8
      */
     private static AuditListener createListener(CommandLine line,
                                                 OutputStream out,
                                                 boolean closeOut)
+            throws UnsupportedEncodingException
     {
         final String format =
             line.hasOption("f") ? line.getOptionValue("f") : "plain";
