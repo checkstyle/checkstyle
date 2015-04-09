@@ -1391,7 +1391,7 @@ public static final int [] array; // @cs.suppress ConstantName | NoWhitespaceAft
         </p>
         <p>
           Usage: This filter only works in conjunction with a
-          <code>SuppressWarningsHolder</code>, since that check finds
+          <a href="config_annotation.html#SuppressWarningsHolder">SuppressWarningsHolder</a>, since that check finds
           the annotations in the Java files and makes them available for
           the filter. Because of that, a configuration that includes
           this filter must also include
