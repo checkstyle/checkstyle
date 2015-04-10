@@ -62,14 +62,10 @@ public class HandlerFactory
                     });
             typeHandlers.put(type, ctor);
         }
-        catch (final NoSuchMethodException e) {
-            throw new RuntimeException("couldn't find ctor for "
-                                       + handlerClass);
-        }
-        catch (final SecurityException e) {
-            LOG.debug("couldn't find ctor for " + handlerClass, e);
-            throw new RuntimeException("couldn't find ctor for "
-                                       + handlerClass);
+        catch (final NoSuchMethodException | SecurityException e) {
+            final String message = "couldn't find ctor for " + handlerClass;
+            LOG.debug(message, e);
+            throw new RuntimeException(message);
         }
     }
 
@@ -166,20 +162,15 @@ public class HandlerFactory
                         indentCheck, ast, parent);
             }
         }
-        catch (final InstantiationException e) {
-            LOG.debug("couldn't instantiate constructor for " + ast, e);
-            throw new RuntimeException("couldn't instantiate constructor for "
-                                       + ast);
+        catch (final InstantiationException | InvocationTargetException e) {
+            final String message = "couldn't instantiate constructor for " + ast;
+            LOG.debug(message, e);
+            throw new RuntimeException(message);
         }
         catch (final IllegalAccessException e) {
-            LOG.debug("couldn't access constructor for " + ast, e);
-            throw new RuntimeException("couldn't access constructor for "
-                                       + ast);
-        }
-        catch (final InvocationTargetException e) {
-            LOG.debug("couldn't instantiate constructor for " + ast, e);
-            throw new RuntimeException("couldn't instantiate constructor for "
-                                       + ast);
+            final String message = "couldn't access constructor for " + ast;
+            LOG.debug(message, e);
+            throw new RuntimeException(message);
         }
         if (expHandler == null) {
             throw new RuntimeException("no handler for type " + ast.getType());

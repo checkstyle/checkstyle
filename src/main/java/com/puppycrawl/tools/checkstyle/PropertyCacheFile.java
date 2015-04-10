@@ -33,6 +33,8 @@ import java.security.MessageDigest;
 import com.google.common.io.Closeables;
 import com.google.common.io.Flushables;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * This class maintains a persistent(on file-system) store of the files
@@ -48,6 +50,9 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
  */
 final class PropertyCacheFile
 {
+    /** Logger for PropertyCacheFile */
+    private static final Log LOG = LogFactory.getLog(PropertyCacheFile.class);
+
     /**
      * The property key to use for storing the hashcode of the
      * configuration. To avoid nameclashes with the files that are
@@ -96,8 +101,7 @@ final class PropertyCacheFile
                 details.put(CONFIG_HASH_KEY, currentConfigHash);
             }
             catch (final IOException e) {
-                Utils.getExceptionLogger()
-                    .debug("Unable to open cache file, ignoring.", e);
+                LOG.debug("Unable to open cache file, ignoring.", e);
             }
             finally {
                 Closeables.closeQuietly(inStream);
@@ -116,8 +120,7 @@ final class PropertyCacheFile
                 details.store(out, null);
             }
             catch (final IOException e) {
-                Utils.getExceptionLogger()
-                    .debug("Unable to save cache file.", e);
+                LOG.debug("Unable to save cache file.", e);
             }
             finally {
                 if (out != null) {
@@ -138,7 +141,7 @@ final class PropertyCacheFile
             Closeables.close(stream, false);
         }
         catch (final IOException ex) {
-            Utils.getExceptionLogger()
+            LOG
                     .debug("Unable to flush and close output stream.", ex);
         }
     }
@@ -196,8 +199,7 @@ final class PropertyCacheFile
             return hexEncode(md.digest());
         }
         catch (final Exception ex) { // IO, NoSuchAlgorithm
-            Utils.getExceptionLogger()
-                .debug("Unable to calculate hashcode.", ex);
+            LOG.debug("Unable to calculate hashcode.", ex);
             return "ALWAYS FRESH: " + System.currentTimeMillis();
         }
     }

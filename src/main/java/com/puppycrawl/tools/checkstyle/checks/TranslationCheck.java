@@ -26,7 +26,9 @@ import com.puppycrawl.tools.checkstyle.Defn;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-import com.puppycrawl.tools.checkstyle.Utils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -77,6 +79,9 @@ public class TranslationCheck
      * file.
      */
     public static final String MSG_KEY = "translation.missingKey";
+
+    /** Logger for TranslationCheck */
+    private static final Log LOG = LogFactory.getLog(TranslationCheck.class);
 
     /** The property files to process. */
     private final List<File> propertyFiles = Lists.newArrayList();
@@ -230,7 +235,7 @@ public class TranslationCheck
         final SortedSet<LocalizedMessage> messages = Sets.newTreeSet();
         messages.add(message);
         getMessageDispatcher().fireErrors(file.getPath(), messages);
-        Utils.getExceptionLogger().debug("IOException occured.", ex);
+        LOG.debug("IOException occured.", ex);
     }
 
 

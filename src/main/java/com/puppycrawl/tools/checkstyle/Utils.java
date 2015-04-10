@@ -25,9 +25,6 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 
 /**
  * Contains utility methods.
@@ -36,9 +33,6 @@ import org.apache.commons.logging.LogFactory;
  */
 public final class Utils
 {
-    /** Shared instance of logger for exception logging. */
-    private static final Log EXCEPTION_LOG =
-        LogFactory.getLog("com.puppycrawl.tools.checkstyle.ExceptionLog");
 
     /** stop instances being created **/
     private Utils()
@@ -80,17 +74,6 @@ public final class Utils
         }
 
         return result;
-    }
-
-    /**
-     * Accessor for shared instance of logger which should be
-     * used to log all exceptions occurred during <code>FileSetCheck</code>
-     * work (<code>debug()</code> should be used).
-     * @return shared exception logger.
-     */
-    public static Log getExceptionLogger()
-    {
-        return EXCEPTION_LOG;
     }
 
     /**

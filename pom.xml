@@ -242,7 +242,7 @@
               <ruleset>rulesets/java/imports.xml</ruleset>
               <!--<ruleset>rulesets/java/javabeans.xml</ruleset>-->
               <!--<ruleset>rulesets/java/junit.xml</ruleset>-->
-              <!--<ruleset>rulesets/java/logging-jakarta-commons.xml</ruleset>-->
+              <ruleset>rulesets/java/logging-jakarta-commons.xml</ruleset>
               <!--<ruleset>rulesets/java/logging-java.xml</ruleset>-->
               <!--<ruleset>rulesets/java/migrating.xml</ruleset>-->
               <!--<ruleset>rulesets/java/naming.xml</ruleset>-->
