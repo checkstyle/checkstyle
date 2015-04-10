@@ -341,7 +341,6 @@ public final class TreeWalker
         if (ast != null) {
             processIter(ast, astState);
         }
-
         notifyEnd(ast, astState);
     }
 

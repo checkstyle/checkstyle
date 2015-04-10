@@ -23,30 +23,37 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.Writer;
 
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+import org.junit.rules.TemporaryFolder;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class TreeWalkerTest extends BaseCheckTestSupport
 {
+    @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
+
     @Test
     public void testProperFileExtension() throws Exception
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ConstantNameCheck.class);
         final String content = "public class Main { public static final int k = 5 + 4; }";
-        final File file = File.createTempFile("file", ".java");
+        final File file = temporaryFolder.newFile("file.java");
         final Writer writer = new BufferedWriter(new FileWriter(file));
         writer.write(content);
         writer.close();
         final String[] expected1 = {
             "1:45: Name 'k' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
-        verify(checkConfig, file.getCanonicalPath(), expected1);
-        file.delete();
+        verify(checkConfig, file.getPath(), expected1);
     }
 
     @Test
@@ -54,16 +61,14 @@ public class TreeWalkerTest extends BaseCheckTestSupport
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ConstantNameCheck.class);
-        final File file = File.createTempFile("file", ".pdf");
+        final File file = temporaryFolder.newFile("file.pdf");
         final String content = "public class Main { public static final int k = 5 + 4; }";
         final BufferedWriter writer = new BufferedWriter(new FileWriter(file));
         writer.write(content);
         writer.close();
         final String[] expected = {
-
         };
-        verify(checkConfig, file.getCanonicalPath(), expected);
-        file.delete();
+        verify(checkConfig, file.getPath(), expected);
     }
 
 
@@ -89,5 +94,40 @@ public class TreeWalkerTest extends BaseCheckTestSupport
                     + " was not found in Acceptable tokens list in check"
                     + " com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"));
         }
+    }
+
+    @Test
+    public void testOnEmptyFile() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = {
+        };
+
+        verify(checkConfig, pathToEmptyFile, expected);
+    }
+
+    @Test
+    public void testWithCheckNotHavingTreeWalkerAsParent() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
+        final String[] expected = {
+        };
+
+        try {
+            verify(checkConfig, temporaryFolder.newFile().getPath(), expected);
+            fail();
+        }
+        catch (CheckstyleException exception) {
+            assertTrue(exception.getMessage().contains("TreeWalker is not allowed as a parent of"));
+        }
+    }
+
+    @Test
+    public void testSettersForParameters() throws Exception
+    {
+        final TreeWalker treeWalker = new TreeWalker();
+        treeWalker.setTabWidth(1);
+        treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
     }
 }
