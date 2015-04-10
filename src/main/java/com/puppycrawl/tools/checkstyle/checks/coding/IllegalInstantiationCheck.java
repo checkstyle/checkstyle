@@ -171,11 +171,9 @@ public class IllegalInstantiationCheck
     private void processImport(DetailAST ast)
     {
         final FullIdent name = FullIdent.createFullIdentBelow(ast);
-        if (name != null) {
-            // Note: different from UnusedImportsCheck.processImport(),
-            // '.*' imports are also added here
-            imports.add(name);
-        }
+        // Note: different from UnusedImportsCheck.processImport(),
+        // '.*' imports are also added here
+        imports.add(name);
     }
 
     /**
