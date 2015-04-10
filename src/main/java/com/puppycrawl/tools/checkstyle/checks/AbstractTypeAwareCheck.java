@@ -321,9 +321,7 @@ public abstract class AbstractTypeAwareCheck extends Check
     private void processImport(DetailAST ast)
     {
         final FullIdent name = FullIdent.createFullIdentBelow(ast);
-        if (name != null) {
-            imports.add(name.getText());
-        }
+        imports.add(name.getText());
     }
 
     /**

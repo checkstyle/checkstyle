@@ -204,7 +204,7 @@ public class SuppressWarningsHolder
     {
         final List<Entry> entries = ENTRIES.get();
         final String checkAlias = getAlias(sourceName);
-        if (entries != null && checkAlias != null) {
+        if (checkAlias != null) {
             for (Entry entry : entries) {
                 final boolean afterStart =
                     entry.getFirstLine() < line
