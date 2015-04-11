@@ -312,7 +312,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      */
     private boolean isMatchingClassName(String className)
     {
-        final String shortName = className.substring(className.lastIndexOf(".") + 1);
+        final String shortName = className.substring(className.lastIndexOf('.') + 1);
         return illegalClassNames.contains(className)
                 || illegalClassNames.contains(shortName)
                 || !legalAbstractClassNames.contains(className)
@@ -329,7 +329,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     {
         if (illegalClassNames.contains(canonicalName)) {
             final String shortName = canonicalName.
-                substring(canonicalName.lastIndexOf(".") + 1);
+                substring(canonicalName.lastIndexOf('.') + 1);
             illegalClassNames.add(shortName);
         }
     }

@@ -540,7 +540,7 @@ public class CustomImportOrderCheck extends Check
     private boolean matchesSamePackageImportGroup(boolean isStatic,
         String importFullPath, String currentGroup)
     {
-        final String importPath = importFullPath.substring(0, importFullPath.lastIndexOf("."));
+        final String importPath = importFullPath.substring(0, importFullPath.lastIndexOf('.'));
         return !isStatic && SAME_PACKAGE_RULE_GROUP.equals(currentGroup)
                 && samePackageDomainsRegExp.contains(importPath);
     }
@@ -670,8 +670,8 @@ public class CustomImportOrderCheck extends Check
         }
         else if (ruleStr.startsWith(SAME_PACKAGE_RULE_GROUP)) {
 
-            final String rule = ruleStr.substring(ruleStr.indexOf("(") + 1,
-                    ruleStr.indexOf(")"));
+            final String rule = ruleStr.substring(ruleStr.indexOf('(') + 1,
+                    ruleStr.indexOf(')'));
             try {
                 samePackageMatchingDepth = Integer.parseInt(rule);
             }
@@ -703,7 +703,7 @@ public class CustomImportOrderCheck extends Check
         int count = firstPackageDomainsCount;
 
         while (tokens.hasMoreTokens() && count > 0) {
-            builder.append(tokens.nextToken()).append(".");
+            builder.append(tokens.nextToken()).append('.');
             count--;
         }
         return builder.append("*").toString();

@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * <p>
@@ -207,9 +208,8 @@ public class OperatorWrapCheck
         // by itself. This last bit is to handle the operator on a line by
         // itself.
         if (wOp == WrapOption.NL
-            && !text.equals(currentLine.trim())
-            && currentLine.substring(colNo + text.length())
-                .trim().length() == 0)
+                && !text.equals(currentLine.trim())
+                && StringUtils.isBlank(currentLine.substring(colNo + text.length())))
         {
             log(lineNo, colNo, LINE_NEW, text);
         }

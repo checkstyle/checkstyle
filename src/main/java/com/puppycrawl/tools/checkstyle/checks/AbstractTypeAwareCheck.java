@@ -160,10 +160,10 @@ public abstract class AbstractTypeAwareCheck extends Check
             || ast.getType() == TokenTypes.ENUM_DEF)
         {
             // perhaps it was inner class
-            int dotIdx = currentClass.lastIndexOf("$");
+            int dotIdx = currentClass.lastIndexOf('$');
             if (dotIdx == -1) {
                 // perhaps just a class
-                dotIdx = currentClass.lastIndexOf(".");
+                dotIdx = currentClass.lastIndexOf('.');
             }
             if (dotIdx == -1) {
                 // looks like a topmost class

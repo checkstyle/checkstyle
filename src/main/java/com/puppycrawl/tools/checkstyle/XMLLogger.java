@@ -187,7 +187,7 @@ public class XMLLogger
                     sb.append("&quot;");
                     break;
                 case '&':
-                    final int nextSemi = value.indexOf(";", i);
+                    final int nextSemi = value.indexOf(';', i);
                     if (nextSemi < 0
                         || !isReference(value.substring(i, nextSemi + 1)))
                     {

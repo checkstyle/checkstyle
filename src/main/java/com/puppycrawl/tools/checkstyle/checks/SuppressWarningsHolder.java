@@ -178,7 +178,7 @@ public class SuppressWarningsHolder
     public void setAliasList(String aliasList)
     {
         for (String sourceAlias : aliasList.split(",")) {
-            final int index = sourceAlias.indexOf("=");
+            final int index = sourceAlias.indexOf('=');
             if (index > 0) {
                 registerAlias(sourceAlias.substring(0, index), sourceAlias
                     .substring(index + 1));

@@ -113,7 +113,7 @@ public final class PackageNamesLoader
             final String subPackage = iterator.next();
             buf.append(subPackage);
             if (!subPackage.endsWith(".")) {
-                buf.append(".");
+                buf.append('.');
             }
         }
         return buf.toString();

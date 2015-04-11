@@ -740,7 +740,7 @@ public class VisibilityModifierCheck
         final List<String> shortNames = new ArrayList<>();
         for (String canonicalClassName : canonicalClassNames) {
             final String shortClassName = canonicalClassName
-                    .substring(canonicalClassName.lastIndexOf(".") + 1,
+                    .substring(canonicalClassName.lastIndexOf('.') + 1,
                     canonicalClassName.length());
             shortNames.add(shortClassName);
         }
@@ -755,7 +755,7 @@ public class VisibilityModifierCheck
     private static String getClassShortName(String canonicalClassName)
     {
         final String shortClassName = canonicalClassName
-                .substring(canonicalClassName.lastIndexOf(".") + 1,
+                .substring(canonicalClassName.lastIndexOf('.') + 1,
                 canonicalClassName.length());
         return shortClassName;
     }

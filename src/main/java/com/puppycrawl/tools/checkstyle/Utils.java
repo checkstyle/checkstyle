@@ -179,7 +179,7 @@ public final class Utils
      */
     public static String baseClassname(String type)
     {
-        final int i = type.lastIndexOf(".");
+        final int i = type.lastIndexOf('.');
         return i == -1 ? type : type.substring(i + 1);
     }
 

@@ -65,10 +65,10 @@ public abstract class AbstractIllegalCheck extends Check
         illegalClassNames.clear();
         for (final String name : classNames) {
             illegalClassNames.add(name);
-            final int lastDot = name.lastIndexOf(".");
+            final int lastDot = name.lastIndexOf('.');
             if (lastDot > 0 && lastDot < name.length() - 1) {
                 final String shortName = name
-                        .substring(name.lastIndexOf(".") + 1);
+                        .substring(name.lastIndexOf('.') + 1);
                 illegalClassNames.add(shortName);
             }
         }

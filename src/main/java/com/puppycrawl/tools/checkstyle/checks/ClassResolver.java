@@ -164,7 +164,7 @@ public class ClassResolver
                 return safeLoad(name);
             }
             //Perhaps it's fully-qualified inner class
-            final int dot = name.lastIndexOf(".");
+            final int dot = name.lastIndexOf('.');
             if (dot != -1) {
                 final String innerName =
                     name.substring(0, dot) + "$" + name.substring(dot + 1);

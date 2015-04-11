@@ -17,6 +17,7 @@
   <allow pkg="javax.xml.parsers"/>
   <allow pkg="org.apache.commons.beanutils"/>
   <allow pkg="org.apache.commons.logging"/>
+  <allow pkg="org.apache.commons.lang3"/>
   <allow pkg="org.xml.sax"/>
   <allow pkg="com.puppycrawl.tools.checkstyle"/>
 
