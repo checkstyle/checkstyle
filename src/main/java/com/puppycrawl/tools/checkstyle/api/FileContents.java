@@ -47,7 +47,7 @@ public final class FileContents implements CommentListener
             .compile(MATCH_SINGLELINE_COMMENT_PAT);
 
     /** the file name */
-    private final String filename;
+    private final String fileName;
 
     /** the text */
     private final FileText text;
@@ -76,7 +76,7 @@ public final class FileContents implements CommentListener
      */
     @Deprecated public FileContents(String filename, String[] lines)
     {
-        this.filename = filename;
+        this.fileName = filename;
         text = FileText.fromLines(new File(filename), Arrays.asList(lines));
     }
 
@@ -87,7 +87,7 @@ public final class FileContents implements CommentListener
      */
     public FileContents(FileText text)
     {
-        filename = text.getFile().toString();
+        fileName = text.getFile().toString();
         this.text = text;
     }
 
@@ -261,9 +261,9 @@ public final class FileContents implements CommentListener
     }
 
     /** @return the name of the file */
-    public String getFilename()
+    public String getFileName()
     {
-        return filename;
+        return fileName;
     }
 
     /**
@@ -332,6 +332,6 @@ public final class FileContents implements CommentListener
      */
     public boolean inPackageInfo()
     {
-        return this.getFilename().endsWith("package-info.java");
+        return this.getFileName().endsWith("package-info.java");
     }
 }

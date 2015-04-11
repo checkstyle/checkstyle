@@ -111,7 +111,7 @@ class HtmlTag
      * Used for displaying a Checkstyle error.
      * @return an int line number.
      */
-    public int getLineno()
+    public int getLineNo()
     {
         return lineNo;
     }
