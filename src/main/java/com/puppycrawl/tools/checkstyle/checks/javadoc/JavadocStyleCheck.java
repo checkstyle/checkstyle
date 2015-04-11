@@ -371,8 +371,8 @@ public class JavadocStyleCheck
             final HtmlTag tag = parser.nextTag();
 
             if (tag.isIncompleteTag()) {
-                log(tag.getLineno(), INCOMPLETE_TAG,
-                    text[tag.getLineno() - lineno]);
+                log(tag.getLineNo(), INCOMPLETE_TAG,
+                    text[tag.getLineNo() - lineno]);
                 return;
             }
             if (tag.isClosedTag()) {
@@ -389,7 +389,7 @@ public class JavadocStyleCheck
                 // We have found a close tag.
                 if (isExtraHtml(tag.getId(), htmlStack)) {
                     // No corresponding open tag was found on the stack.
-                    log(tag.getLineno(),
+                    log(tag.getLineNo(),
                         tag.getPosition(),
                         EXTRA_HTML,
                         tag);
@@ -409,7 +409,7 @@ public class JavadocStyleCheck
                 && !htag.getId().equals(lastFound)
                 && !typeParameters.contains(htag.getId()))
             {
-                log(htag.getLineno(), htag.getPosition(), UNCLOSED_HTML, htag);
+                log(htag.getLineNo(), htag.getPosition(), UNCLOSED_HTML, htag);
                 lastFound = htag.getId();
             }
         }
@@ -448,7 +448,7 @@ public class JavadocStyleCheck
                 continue;
             }
             lastFound = lastOpenTag.getId();
-            log(lastOpenTag.getLineno(),
+            log(lastOpenTag.getLineNo(),
                 lastOpenTag.getPosition(),
                 UNCLOSED_HTML,
                 lastOpenTag);

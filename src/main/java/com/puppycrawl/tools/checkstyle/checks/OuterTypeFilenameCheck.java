@@ -111,7 +111,7 @@ public class OuterTypeFilenameCheck extends Check
      */
     private String getFileName()
     {
-        String fname = getFileContents().getFilename();
+        String fname = getFileContents().getFileName();
         fname = fname.substring(fname.lastIndexOf(File.separatorChar) + 1);
         fname = fname.replaceAll("\\.[^\\.]*$", "");
         return fname;

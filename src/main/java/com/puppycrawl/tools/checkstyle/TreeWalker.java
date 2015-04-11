@@ -467,7 +467,7 @@ public final class TreeWalker
         final String fullText = contents.getText().getFullText().toString();
         final Reader sr = new StringReader(fullText);
         final GeneratedJavaLexer lexer = new GeneratedJavaLexer(sr);
-        lexer.setFilename(contents.getFilename());
+        lexer.setFilename(contents.getFileName());
         lexer.setCommentListener(contents);
         lexer.setTreatAssertAsKeyword(true);
         lexer.setTreatEnumAsKeyword(true);
@@ -480,7 +480,7 @@ public final class TreeWalker
 
         final GeneratedJavaRecognizer parser =
             new GeneratedJavaRecognizer(filter);
-        parser.setFilename(contents.getFilename());
+        parser.setFilename(contents.getFileName());
         parser.setASTNodeClass(DetailAST.class.getName());
         parser.compilationUnit();
 
