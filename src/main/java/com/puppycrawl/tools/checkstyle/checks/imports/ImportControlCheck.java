@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.apache.commons.beanutils.ConversionException;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Check that controls what packages can be imported in each package. Useful
@@ -137,7 +138,7 @@ public class ImportControlCheck extends Check
     public void setUrl(final String url)
     {
         // Handle empty param
-        if (url == null || url.trim().length() == 0) {
+        if (StringUtils.isBlank(url)) {
             return;
         }
         final URI uri;
@@ -164,7 +165,7 @@ public class ImportControlCheck extends Check
     public void setFile(final String name)
     {
         // Handle empty param
-        if (name == null || name.trim().length() == 0) {
+        if (StringUtils.isBlank(name)) {
             return;
         }
 

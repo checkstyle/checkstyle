@@ -248,7 +248,7 @@
               <!--<ruleset>rulesets/java/naming.xml</ruleset>-->
               <!--<ruleset>rulesets/java/optimizations.xml</ruleset>-->
               <!--<ruleset>rulesets/java/strictexception.xml</ruleset>-->
-              <!--<ruleset>rulesets/java/strings.xml</ruleset>-->
+              <ruleset>rulesets/java/strings.xml</ruleset>
               <!--<ruleset>rulesets/java/sunsecure.xml</ruleset>-->
               <ruleset>rulesets/java/typeresolution.xml</ruleset>
               <ruleset>rulesets/java/unnecessary.xml</ruleset>
@@ -765,7 +765,7 @@
           <regex><pattern>.*.checks.design.ThrowsCountCheck</pattern><branchRate>75</branchRate><lineRate>83</lineRate></regex>
           <regex><pattern>.*.checks.design.VisibilityModifierCheck</pattern><branchRate>95</branchRate><lineRate>95</lineRate></regex>
 
-          <regex><pattern>.*.checks.header.AbstractHeaderCheck</pattern><branchRate>79</branchRate><lineRate>85</lineRate></regex>
+          <regex><pattern>.*.checks.header.AbstractHeaderCheck</pattern><branchRate>85</branchRate><lineRate>85</lineRate></regex>
           <regex><pattern>.*.checks.header.HeaderCheck</pattern><branchRate>18</branchRate><lineRate>45</lineRate></regex>
           <regex><pattern>.*.checks.header.RegexpHeaderCheck</pattern><branchRate>87</branchRate><lineRate>93</lineRate></regex>
 
@@ -775,7 +775,7 @@
           <regex><pattern>.*.checks.imports.CustomImportOrderCheck</pattern><branchRate>93</branchRate><lineRate>91</lineRate></regex>
           <regex><pattern>.*.checks.imports.Guard</pattern><branchRate>86</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.imports.IllegalImportCheck</pattern><branchRate>100</branchRate><lineRate>94</lineRate></regex>
-          <regex><pattern>.*.checks.imports.ImportControlCheck</pattern><branchRate>75</branchRate><lineRate>70</lineRate></regex>
+          <regex><pattern>.*.checks.imports.ImportControlCheck</pattern><branchRate>85</branchRate><lineRate>70</lineRate></regex>
           <regex><pattern>.*.checks.imports.ImportControlLoader</pattern><branchRate>72</branchRate><lineRate>88</lineRate></regex>
           <regex><pattern>.*.checks.imports.ImportOrderCheck</pattern><branchRate>91</branchRate><lineRate>99</lineRate></regex>
           <regex><pattern>.*.checks.imports.PkgControl</pattern><branchRate>80</branchRate><lineRate>100</lineRate></regex>
@@ -875,7 +875,7 @@
           <regex><pattern>.*.checks.whitespace.MethodParamPadCheck</pattern><branchRate>100</branchRate><lineRate>95</lineRate></regex>
           <regex><pattern>.*.checks.whitespace.NoWhitespaceAfterCheck</pattern><branchRate>94</branchRate><lineRate>98</lineRate></regex>
           <regex><pattern>.*.checks.whitespace.NoWhitespaceBeforeCheck</pattern><branchRate>90</branchRate><lineRate>100</lineRate></regex>
-          <regex><pattern>.*.checks.whitespace.OperatorWrapCheck</pattern><branchRate>68</branchRate><lineRate>82</lineRate></regex>
+          <regex><pattern>.*.checks.whitespace.OperatorWrapCheck</pattern><branchRate>68</branchRate><lineRate>81</lineRate></regex>
           <regex><pattern>.*.checks.whitespace.ParenPadCheck</pattern><branchRate>86</branchRate><lineRate>95</lineRate></regex>
           <regex><pattern>.*.checks.whitespace.SeparatorWrapCheck</pattern><branchRate>100</branchRate><lineRate>93</lineRate></regex>
           <regex><pattern>.*.checks.whitespace.TypecastParenPadCheck</pattern><branchRate>87</branchRate><lineRate>88</lineRate></regex>

@@ -319,7 +319,7 @@ public final class AnnotationUseStyleCheck extends Check
             && AnnotationUseStyleCheck.ANNOTATION_ELEMENT_SINGLE_NAME.equals(
                 valuePair.getFirstChild().getText()))
         {
-            this.log(annotation.getLineNo(), "annotation.incorrect.style",
+            this.log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.COMPACT);
         }
     }
@@ -344,7 +344,7 @@ public final class AnnotationUseStyleCheck extends Check
         if (arrayInit != null
             && arrayInit.getChildCount(TokenTypes.EXPR) == 1)
         {
-            this.log(annotation.getLineNo(), "annotation.incorrect.style",
+            this.log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.COMPACT_NO_ARRAY);
         }
         //in expanded style with one value and the correct element name
@@ -358,7 +358,7 @@ public final class AnnotationUseStyleCheck extends Check
                     valuePair.getFirstChild().getText())
                     && nestedArrayInit.getChildCount(TokenTypes.EXPR) == 1)
             {
-                this.log(annotation.getLineNo(), "annotation.incorrect.style",
+                this.log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                     ElementStyle.COMPACT_NO_ARRAY);
             }
         }

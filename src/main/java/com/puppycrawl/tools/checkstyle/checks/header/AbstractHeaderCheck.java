@@ -41,6 +41,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Abstract super class for header checks.
@@ -89,7 +90,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     public void setHeaderFile(String fileName)
     {
         // Handle empty param
-        if (fileName == null || fileName.trim().length() == 0) {
+        if (StringUtils.isBlank(fileName)) {
             return;
         }
 
@@ -183,7 +184,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      */
     public void setHeader(String header)
     {
-        if (header == null || header.trim().length() == 0) {
+        if (StringUtils.isBlank(header)) {
             return;
         }
 

@@ -113,8 +113,7 @@ public class DefaultLogger
                 + BUFFER_CUSHION;
             final StringBuilder sb = new StringBuilder(bufLen);
 
-            sb.append(fileName);
-            sb.append(':').append(evt.getLine());
+            sb.append(fileName).append(':').append(evt.getLine());
             if (evt.getColumn() > 0) {
                 sb.append(':').append(evt.getColumn());
             }

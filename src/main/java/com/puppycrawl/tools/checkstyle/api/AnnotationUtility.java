@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Contains utility methods designed to work with annotations.
@@ -142,7 +143,7 @@ public final class AnnotationUtility
             throw new NullPointerException("the annotation is null");
         }
 
-        if (annotation.trim().length() == 0) {
+        if (StringUtils.isBlank(annotation)) {
             throw new IllegalArgumentException("the annotation"
                 + "is empty or spaces");
         }

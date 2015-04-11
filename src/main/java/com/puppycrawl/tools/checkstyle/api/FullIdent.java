@@ -18,6 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a full identifier, including dots, with associated
  * position information.
@@ -35,8 +40,8 @@ package com.puppycrawl.tools.checkstyle.api;
  **/
 public final class FullIdent
 {
-    /** the string **/
-    private final StringBuffer buffer = new StringBuffer();
+    /** the list holding subsequent elements of identifier **/
+    private final List<String> elements = new ArrayList<>();
     /** the line number **/
     private int lineNo;
     /** the column number **/
@@ -50,7 +55,7 @@ public final class FullIdent
     /** @return the text **/
     public String getText()
     {
-        return buffer.toString();
+        return StringUtils.join(elements, "");
     }
 
     /** @return the line number **/
@@ -71,7 +76,7 @@ public final class FullIdent
      */
     private void append(String text)
     {
-        buffer.append(text);
+        elements.add(text);
     }
 
     /**
@@ -81,7 +86,7 @@ public final class FullIdent
      */
     private void append(DetailAST ast)
     {
-        buffer.append(ast.getText());
+        elements.add(ast.getText());
         if (lineNo == 0) {
             lineNo = ast.getLineNo();
         }

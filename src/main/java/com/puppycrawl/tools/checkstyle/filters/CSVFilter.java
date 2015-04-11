@@ -68,7 +68,7 @@ class CSVFilter implements IntFilter
         final StringTokenizer tokenizer = new StringTokenizer(pattern, ",");
         while (tokenizer.hasMoreTokens()) {
             final String token = tokenizer.nextToken().trim();
-            final int index = token.indexOf("-");
+            final int index = token.indexOf('-');
             if (index == -1) {
                 final int matchValue = Integer.parseInt(token);
                 addFilter(new IntMatchFilter(matchValue));
