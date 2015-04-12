@@ -6,7 +6,7 @@ jdk:
   - oraclejdk8
 
 install: mvn clean verify site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true
-             -Dpmd.skip=true -Dfindbugs.skip=true
+#             -Dpmd.skip=true -Dfindbugs.skip=true
 
 after_success:
   - mvn clean cobertura:cobertura coveralls:report
