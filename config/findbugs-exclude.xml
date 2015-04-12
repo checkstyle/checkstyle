@@ -58,4 +58,9 @@
       <Method name="setClassloader" />
       <Bug pattern="NM_CONFUSING" />
     </Match>
+    <Match>
+      <!-- till #596 -->
+      <Class name="com.puppycrawl.tools.checkstyle.Main" />
+      <Bug pattern="DM_EXIT" />
+    </Match>
 </FindBugsFilter>
