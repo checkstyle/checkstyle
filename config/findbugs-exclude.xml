@@ -10,6 +10,24 @@
       <Bug pattern="DM_DEFAULT_ENCODING" />
     </Match>
     <Match>
+      <!-- Look like catch Exception and throw BuidException is normal practice in ANT, so we follow their style -->
+      <!-- Example: https://git-wip-us.apache.org/repos/asf?p=ant.git;a=blob;f=src/main/org/apache/tools/ant/taskdefs/Checksum.java;h=7a94ca098baf241b175a6bab3dda092aed835ada;hb=HEAD#l574 -->
+      <Class name="com.puppycrawl.tools.checkstyle.CheckStyleTask" />
+      <Method name="createChecker" />
+      <Bug pattern="REC_CATCH_EXCEPTION" />
+    </Match>
+    <Match>
+      <!-- Confirmed, on any exception, keep running -->
+      <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile" />
+      <Method name="getConfigHashCode" />
+      <Bug pattern="REC_CATCH_EXCEPTION" />
+    </Match>
+    <Match>
+      <!-- Deprecated code, code will be removed afer swithing to use JavaDoc AST tree -->
+      <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils" />
+      <Bug pattern="REC_CATCH_EXCEPTION" />
+    </Match>
+    <Match>
       <!-- till #911 -->
       <Package name="~com\.puppycrawl\.tools\.checkstyle.*" />
       <Bug pattern="EQ_COMPARETO_USE_OBJECT_EQUALS" />
