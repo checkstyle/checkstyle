@@ -69,6 +69,10 @@
       <Bug pattern="DM_EXIT" />
     </Match>
     <Match>
+      <!-- till #925 -->
+      <Package name="~com\.puppycrawl\.tools\.checkstyle\.gui.*" />
+    </Match>
+    <Match>
       <!-- till #896 -->
       <Or>
         <Class name="com.puppycrawl.tools.checkstyle.api.Scope" />
