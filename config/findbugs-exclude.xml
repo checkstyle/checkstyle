@@ -64,6 +64,11 @@
       <Bug pattern="DM_EXIT" />
     </Match>
     <Match>
+      <!-- till #923 -->
+      <Class name="com.puppycrawl.tools.checkstyle.api.TokenTypes" />
+      <Bug pattern="DM_EXIT" />
+    </Match>
+    <Match>
       <!-- till #896 -->
       <Or>
         <Class name="com.puppycrawl.tools.checkstyle.api.Scope" />
