@@ -87,4 +87,20 @@
       <Class name="com.puppycrawl.tools.checkstyle.api.DetailAST" />
       <Bug pattern="BC_UNCONFIRMED_CAST" />
     </Match>
+    <Match>
+      <!-- false positive, beginTree is a kind of constructor for Checks -->
+      <Or>
+        <Class name="com.puppycrawl.tools.checkstyle.checks.DeclarationCollector" />
+        <Class name="com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck" />
+        <Class name="com.puppycrawl.tools.checkstyle.checks.RegexpCheck" />
+        <!-- createJavadocNode is private and can not be launched without visitToken-->
+        <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck" />
+        <!-- has only one public method and all nitialized inthat method-->
+        <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector" />
+        <!-- beginProcessing() is kind of c-tor -->
+        <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck" />
+        <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck" />
+      </Or>
+      <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" />
+    </Match>
 </FindBugsFilter>
