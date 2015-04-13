@@ -94,7 +94,7 @@ public class JavadocNodeImpl implements DetailNode
     public DetailNode[] getChildren()
     {
         if (children == null) {
-            return null;
+            return new DetailNode[0];
         }
         else {
             return Arrays.copyOf(children, children.length);
