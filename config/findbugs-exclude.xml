@@ -63,4 +63,9 @@
       <Class name="com.puppycrawl.tools.checkstyle.Main" />
       <Bug pattern="DM_EXIT" />
     </Match>
+    <Match>
+      <!-- have never been a case for years, Eclipse does not show any other classes inherited from CommonASTWithHiddenTokens -->
+      <Class name="com.puppycrawl.tools.checkstyle.api.DetailAST" />
+      <Bug pattern="BC_UNCONFIRMED_CAST" />
+    </Match>
 </FindBugsFilter>
