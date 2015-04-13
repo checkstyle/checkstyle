@@ -53,6 +53,24 @@
       <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
     </Match>
     <Match>
+      <!-- it is ok here, as business meaning of that cases is not the same, it is ocasional similarity -->
+      <Class name="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck" />
+      <Method name="visitToken" />
+      <Bug pattern="DB_DUPLICATE_SWITCH_CLAUSES" />
+    </Match>
+    <Match>
+      <!-- false positive, condition elements are not the same -->
+      <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler" />
+      <Method name="collectFirstNodes" />
+      <Bug pattern="RpC_REPEATED_CONDITIONAL_TEST" />
+    </Match>
+    <Match>
+      <!-- false positive, "preceded" is returned from method as result -->
+      <Class name="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck" />
+      <Method name="getPreceded" />
+      <Bug pattern="DLS_DEAD_LOCAL_STORE" />
+    </Match>
+    <Match>
       <!-- till #922 -->
       <Class name="com.puppycrawl.tools.checkstyle.Checker" />
       <Method name="setClassloader" />
