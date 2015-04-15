@@ -61,7 +61,7 @@ public class BlockParentHandler extends ExpressionHandler
      */
     protected int[] getCheckedChildren()
     {
-        return CHECKED_CHILDREN;
+        return CHECKED_CHILDREN.clone();
     }
 
     /**
