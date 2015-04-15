@@ -249,7 +249,7 @@
               <!--<ruleset>rulesets/java/optimizations.xml</ruleset>-->
               <!--<ruleset>rulesets/java/strictexception.xml</ruleset>-->
               <ruleset>rulesets/java/strings.xml</ruleset>
-              <!--<ruleset>rulesets/java/sunsecure.xml</ruleset>-->
+              <ruleset>rulesets/java/sunsecure.xml</ruleset>
               <ruleset>rulesets/java/typeresolution.xml</ruleset>
               <ruleset>rulesets/java/unnecessary.xml</ruleset>
               <ruleset>rulesets/java/unusedcode.xml</ruleset>

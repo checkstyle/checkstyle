@@ -752,7 +752,7 @@ public abstract class AbstractJavadocCheck extends Check
 
         public Object[] getMessageArguments()
         {
-            return messageArguments;
+            return messageArguments.clone();
         }
 
     }
