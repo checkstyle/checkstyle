@@ -130,4 +130,12 @@ public class TreeWalkerTest extends BaseCheckTestSupport
         treeWalker.setTabWidth(1);
         treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
     }
+
+    @Test
+    public void testNonExistingCacheFileDoesNotThrowException()
+    {
+        final TreeWalker treeWalker = new TreeWalker();
+        treeWalker.setCacheFile("/invalid");
+        treeWalker.destroy();
+    }
 }
