@@ -180,7 +180,7 @@ class InputWhitespace
         }
     }
 
-    
+
     /** bug 806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
     private int i ;
     //           ^ whitespace
@@ -248,4 +248,6 @@ class SpecialCasesInForLoop
             }
         }.start();
     }
+
+    public void foo(java.util.List<? extends String[]> bar, Comparable<? super Object[]> baz) { }
 }
