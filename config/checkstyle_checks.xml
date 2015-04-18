@@ -52,6 +52,11 @@
     <property name="maximum" value="0"/>
   </module>
 
+  <!-- 
+  <module name="RegexpHeader"/>
+  <module name="RegexpMultiline"/>
+  <module name="UniqueProperties"/>
+  -->
   <module name="TreeWalker">
     <property name="tabWidth" value="4"/>
 
@@ -221,5 +226,77 @@
     <module name="SuppressWarnings"/>
     <module name="OuterTypeFilename"/>
     <module name="HideUtilityClassConstructor"/>
+<!--
+    <module name="AbbreviationAsWordInName"/>
+    <module name="AbstractClassName"/>
+    <module name="AnnotationLocation"/>
+    <module name="AnonInnerLength"/>
+    <module name="ArrayTypeStyle"/>
+    <module name="AtclauseOrder"/>
+    <module name="AvoidEscapedUnicodeCharacters"/>
+    <module name="AvoidInlineConditionals"/>
+    <module name="AvoidNestedBlocks"/>
+    <module name="AvoidStaticImport"/>
+    <module name="BooleanExpressionComplexity"/>
+    <module name="ClassDataAbstractionCoupling"/>
+    <module name="ClassFanOutComplexity"/>
+    <module name="ClassTypeParameterName"/>
+    <module name="CovariantEquals"/>
+    <module name="CustomImportOrder"/>
+    <module name="DeclarationOrder"/>
+    <module name="DefaultComesLast"/>
+    <module name="DescendantToken"/>
+    <module name="DesignForExtension"/>
+    <module name="EmptyCatchBlock"/>
+    <module name="EmptyForInitializerPad"/>
+    <module name="EmptyLineSeparator"/>
+    <module name="EmptyStatement"/>
+    <module name="ExecutableStatementCount"/>
+    <module name="FallThrough"/>
+    <module name="FinalParameters"/>
+    <module name="HiddenField"/>
+    <module name="IllegalToken"/>
+    <module name="IllegalTokenText"/>
+    <module name="IllegalType"/>
+    <module name="ImportOrder"/>
+    <module name="InnerTypeLast"/>
+    <module name="InterfaceIsType"/>
+    <module name="InterfaceTypeParameterName"/>
+    <module name="JavadocParagraph"/>
+    <module name="JavadocTagContinuationIndentation"/>
+    <module name="JavaNCSS"/>
+    <module name="MethodTypeParameterName"/>
+    <module name="MissingCtor"/>
+    <module name="ModifiedControlVariable"/>
+    <module name="MultipleStringLiterals"/>
+    <module name="MultipleVariableDeclarations"/>
+    <module name="MutableException"/>
+    <module name="NoClone"/>
+    <module name="NoFinalizer"/>
+    <module name="NoLineWrap"/>
+    <module name="NonEmptyAtclauseDescription"/>
+    <module name="NPathComplexity"/>
+    <module name="OneTopLevelClass"/>
+    <module name="OverloadMethodsDeclarationOrder"/>
+    <module name="PackageDeclaration"/>
+    <module name="Regexp"/>
+    <module name="RegexpSinglelineJava"/>
+    <module name="TrailingComment"/>
+    <module name="RequireThis"/>
+    <module name="ReturnCount"/>
+    <module name="SeparatorWrap"/>
+    <module name="SingleLineJavadoc"/>
+    <module name="StringLiteralEquality"/>
+    <module name="SummaryJavadoc"/>
+    <module name="SuperClone"/>
+    <module name="SuperFinalize"/>
+    <module name="SuppressWarningsHolder"/>
+    <module name="ThrowsCount"/>
+    <module name="TodoComment"/>
+    <module name="UncommentedMain"/>
+    <module name="UnnecessaryParentheses"/>
+    <module name="VariableDeclarationUsageDistance"/>
+    <module name="WriteTag"/>
+-->
   </module>
 </module>
