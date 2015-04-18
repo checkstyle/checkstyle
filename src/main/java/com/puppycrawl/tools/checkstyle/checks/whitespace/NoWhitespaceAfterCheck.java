@@ -204,7 +204,12 @@ public class NoWhitespaceAfterCheck extends Check
                 typeOrIdent = getArrayIdentifier(arrayDeclarator);
             }
             else {
-                typeOrIdent = arrayDeclarator.getFirstChild();
+                if (isArrayUsedAsTypeForGenericBoundedWildcard(arrayDeclarator)) {
+                    typeOrIdent = arrayDeclarator.getParent();
+                }
+                else {
+                    typeOrIdent = arrayDeclarator.getFirstChild();
+                }
             }
         }
         return typeOrIdent;
@@ -247,6 +252,21 @@ public class NoWhitespaceAfterCheck extends Check
     private static boolean isArrayInstantiation(DetailAST arrayDeclaration)
     {
         return arrayDeclaration.getParent().getType() == TokenTypes.LITERAL_NEW;
+    }
+
+    /**
+     * Checks if current array is used as type for generic bounded wildcard.
+     * <p>
+     * E.g. {@code <? extends String[]>} or {@code <? super Object[]>}.
+     * </p>
+     * @param arrayDeclarator {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}
+     * @return true if current array is used as type for generic bounded wildcard.
+     */
+    private static boolean isArrayUsedAsTypeForGenericBoundedWildcard(DetailAST arrayDeclarator)
+    {
+        final int firstChildType = arrayDeclarator.getFirstChild().getType();
+        return firstChildType == TokenTypes.TYPE_UPPER_BOUNDS
+                || firstChildType == TokenTypes.TYPE_LOWER_BOUNDS;
     }
 
     /**

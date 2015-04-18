@@ -83,6 +83,8 @@ public class ParenPadCheckTest
             "225:14: " + getCheckMessage(WS_NOT_FOLLOWED, "("),
             "235:14: " + getCheckMessage(WS_NOT_FOLLOWED, "("),
             "235:39: " + getCheckMessage(WS_NOT_PRECEDED, ")"),
+            "252:21: " + getCheckMessage(WS_NOT_FOLLOWED, "("),
+            "252:93: " + getCheckMessage(WS_NOT_PRECEDED, ")"),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
