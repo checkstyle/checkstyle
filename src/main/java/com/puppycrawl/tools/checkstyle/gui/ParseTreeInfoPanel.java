@@ -62,8 +62,8 @@ public class ParseTreeInfoPanel extends JPanel
     private final JTreeTable treeTable;
     private final ParseTreeModel parseTreeModel;
     private final JTextArea jTextArea;
-    private File lastDirectory = null;
-    private File currentFile = null;
+    private File lastDirectory;
+    private File currentFile;
     private final Action reloadAction;
     private final List<Integer>   lines2position  = new ArrayList<>();
 
