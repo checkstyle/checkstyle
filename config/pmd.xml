@@ -24,7 +24,20 @@
   <!--<rule ref="rulesets/java/logging-java.xml"/>-->
   <rule ref="rulesets/java/migrating.xml"/>
   <!--<rule ref="rulesets/java/naming.xml"/>-->
-  <!--<rule ref="rulesets/java/optimizations.xml"/>-->
+  <rule ref="rulesets/java/optimizations.xml">
+    <!--produces more false-positives than real problems-->
+    <exclude name="AvoidInstantiatingObjectsInLoops"/>
+    <!--pollutes code with modifiers-->
+    <exclude name="LocalVariableCouldBeFinal"/>
+    <!--pollutes code with modifiers-->
+    <exclude name="MethodArgumentCouldBeFinal"/>
+    <!--till #948-->
+    <exclude name="PrematureDeclaration"/>
+    <!--till #949-->
+    <exclude name="SimplifyStartsWith"/>
+    <!--not configurable, decreases readability-->
+    <exclude name="UseStringBufferForStringAppends"/>
+  </rule>
   <!--<rule ref="rulesets/java/strictexception.xml"/>-->
   <rule ref="rulesets/java/strings.xml"/>
   <rule ref="rulesets/java/sunsecure.xml"/>
