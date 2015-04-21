@@ -44,11 +44,19 @@ public final class JavadocTags
         this.invalidTags = invalidTags;
     }
 
+    /**
+     *  Getter for validTags field.
+     *  @return validTags field
+     */
     public List<JavadocTag> getValidTags()
     {
         return validTags;
     }
 
+    /**
+     *  Getter for invalidTags field.
+     *  @return invalidTags field
+     */
     public List<InvalidJavadocTag> getInvalidTags()
     {
         return invalidTags;

@@ -7,10 +7,19 @@ import javax.swing.JTextArea;
 
 public class CodeSelector
 {
+    /** DetailAST node*/
     private final DetailAST ast;
+    /** editor */
     private final JTextArea editor;
+    /** mapping */
     private final List<Integer> lines2position;
 
+    /**
+     * Constructor
+     * @param ast
+     * @param editor
+     * @param lines2position
+     */
     public CodeSelector(final DetailAST ast, final JTextArea editor,
                         final List<Integer> lines2position)
     {
@@ -19,6 +28,9 @@ public class CodeSelector
         this.lines2position = lines2position;
     }
 
+    /**
+     * Set a selection position from AST line and Column
+     */
     public void select() {
         int start = lines2position.get(ast.getLineNo()) + ast.getColumnNo();
         int end = findLastPosition(ast);

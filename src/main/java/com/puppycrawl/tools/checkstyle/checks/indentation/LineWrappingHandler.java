@@ -91,18 +91,28 @@ public class LineWrappingHandler
         return firstNode.getColumnNo() + indentLevel;
     }
 
-    // Getters for private fields.
-
+    /**
+     *  Getter for firstNode field
+     *  @return firstNode field
+     */
     protected final DetailAST getFirstNode()
     {
         return firstNode;
     }
 
+    /**
+     *  Getter for lastNode field
+     *  @return lastNode field
+     */
     protected final DetailAST getLastNode()
     {
         return lastNode;
     }
 
+    /**
+     *  Getter for indentLevel field
+     *  @return indentLevel field
+     */
     protected final int getIndentLevel()
     {
         return indentLevel;

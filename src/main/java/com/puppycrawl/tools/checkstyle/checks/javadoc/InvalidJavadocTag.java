@@ -44,16 +44,28 @@ public final class InvalidJavadocTag
         this.name = name;
     }
 
+    /**
+     *  Getter for line field.
+     *  @return line field
+     */
     public int getLine()
     {
         return line;
     }
 
+    /**
+     *  Getter for col field.
+     *  @return col field
+     */
     public int getCol()
     {
         return col;
     }
 
+    /**
+     *  Getter for name field.
+     *  @return name field
+     */
     public String getName()
     {
         return name;
