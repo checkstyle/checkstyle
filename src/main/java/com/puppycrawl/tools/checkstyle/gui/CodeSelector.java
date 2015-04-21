@@ -23,6 +23,9 @@ import java.awt.Color;
 import java.util.List;
 import javax.swing.JTextArea;
 
+/**
+ * Helper class to select a code.
+ */
 public class CodeSelector
 {
     /** DetailAST node*/
