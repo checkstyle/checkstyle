@@ -10,7 +10,33 @@
   <rule ref="rulesets/java/basic.xml"/>
   <rule ref="rulesets/java/braces.xml"/>
   <rule ref="rulesets/java/clone.xml"/>
-  <!--<rule ref="rulesets/java/codesize.xml"/>-->
+  <rule ref="rulesets/java/codesize.xml">
+	  <!-- till #954 -->
+	  <exclude name="CyclomaticComplexity"/>
+	  <exclude name="ModifiedCyclomaticComplexity"/>
+	  <exclude name="StdCyclomaticComplexity"/>
+	  <!-- till #953 -->
+	  <exclude name="NPathComplexity"/>
+  </rule>
+	  <rule ref="rulesets/java/codesize.xml/TooManyMethods">
+		<properties>
+			<property name="maxmethods" value="20"/>
+		</properties>
+	  </rule>
+	  <rule ref="rulesets/java/codesize.xml/ExcessiveClassLength">
+		<properties>
+			<!-- *TokenTypes are special classes that a big due to a lot of description comments -->
+			<!-- JavadocMethodCheck is depreaced class, till it is redone to use JabadocAst -->
+			<property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes' or @Image='TokenTypes' or @Image='JavadocMethodCheck']"/>
+		</properties>
+	  </rule>
+	  <rule ref="rulesets/java/codesize.xml/ExcessiveMethodLength">
+		<properties>
+			<!-- JavadocMethodCheck is depreaced class, till it is redone to use JavadocAst -->
+			<property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck']"/>
+		</properties>
+	  </rule>
+
   <!--<rule ref="rulesets/java/comments.xml"/>-->
   <!--<rule ref="rulesets/java/controversial.xml"/>-->
   <!--<rule ref="rulesets/java/coupling.xml"/>-->
