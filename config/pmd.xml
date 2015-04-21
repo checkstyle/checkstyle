@@ -37,7 +37,26 @@
 		</properties>
 	  </rule>
 
-  <!--<rule ref="rulesets/java/comments.xml"/>-->
+  <rule ref="rulesets/java/comments.xml">
+	  <!-- <exclude name="CommentRequired"/> -->
+	  <!-- we use class comments as source for xdoc files, so sontent is big and that is by design -->
+	  <exclude name="CommentSize"/>
+  </rule>
+	  <rule ref="rulesets/java/comments.xml/CommentRequired">
+		<properties>
+			<!-- *TokenTypes are special class, comments are as traling comments -->
+			<property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes'] | //Annotation/MarkerAnnotation//Name[@Image='Override']"/>
+		</properties>
+	  </rule>
+	  <rule ref="rulesets/java/comments.xml/CommentSize">
+		<properties>
+			<!-- we use class comments as source for xdoc files, so sontent is big and that is by design -->
+			<property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration | //PackageDeclaration | //ClassOrInterfaceDeclaration[@Image='JavadocTagInfo'] | //ClassOrInterfaceDeclaration[@Image='SeverityLevel'] | //ClassOrInterfaceDeclaration[@Image='LeftCurlyOption'] | //ClassOrInterfaceDeclaration[@Image='RightCurlyOption'] | //ClassOrInterfaceDeclaration[@Image='ImportOrderOption']"/>
+			<property name="maxLines" value="8"/>
+			<property name="maxLineLength" value="100"/>
+		</properties>
+	  </rule>
+
   <!--<rule ref="rulesets/java/controversial.xml"/>-->
   <!--<rule ref="rulesets/java/coupling.xml"/>-->
   <!--<rule ref="rulesets/java/design.xml"/>-->
