@@ -30,8 +30,14 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  */
 public class Main
 {
+    /**
+     * Main frame
+     */
     static JFrame frame;
 
+    /**
+     * Entry point
+     */
     public static void main(String[] args)
     {
         frame = new JFrame("CheckStyle");
@@ -46,6 +52,10 @@ public class Main
         frame.setVisible(true);
     }
 
+    /**
+     * Method is used for testing inthe past
+     * @param ast
+     */
     public static void displayAst(DetailAST ast)
     {
         JFrame frame = new JFrame("CheckStyle");
