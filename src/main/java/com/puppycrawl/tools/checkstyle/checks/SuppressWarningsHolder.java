@@ -278,39 +278,9 @@ public class SuppressWarningsHolder
                 return;
             }
 
-            // get target of annotation
-            DetailAST targetAST = null;
-            DetailAST parentAST = ast.getParent();
-            if (parentAST != null) {
-                switch (parentAST.getType()) {
-                    case TokenTypes.MODIFIERS:
-                    case TokenTypes.ANNOTATIONS:
-                        parentAST = parentAST.getParent();
-                        if (parentAST != null) {
-                            switch (parentAST.getType()) {
-                                case TokenTypes.ANNOTATION_DEF:
-                                case TokenTypes.PACKAGE_DEF:
-                                case TokenTypes.CLASS_DEF:
-                                case TokenTypes.INTERFACE_DEF:
-                                case TokenTypes.ENUM_DEF:
-                                case TokenTypes.ENUM_CONSTANT_DEF:
-                                case TokenTypes.CTOR_DEF:
-                                case TokenTypes.METHOD_DEF:
-                                case TokenTypes.PARAMETER_DEF:
-                                case TokenTypes.VARIABLE_DEF:
-                                    targetAST = parentAST;
-                                    break;
+            final DetailAST targetAST = getAnnotationTarget(ast);
 
-                                default:
-                                    // unexpected target type
-                            }
-                        }
-                        break;
 
-                    default:
-                        // unexpected container type
-                }
-            }
             if (targetAST == null) {
                 log(ast, "suppress.warnings.invalid.target");
                 return;
@@ -343,6 +313,48 @@ public class SuppressWarningsHolder
                 }
             }
         }
+    }
+
+    /**
+     * get target of annotation
+     * @param ast the AST node to get the child of
+     * @return get target of annotation
+     */
+    private DetailAST getAnnotationTarget(DetailAST ast)
+    {
+        DetailAST targetAST = null;
+        DetailAST parentAST = ast.getParent();
+        if (parentAST != null) {
+            switch (parentAST.getType()) {
+                case TokenTypes.MODIFIERS:
+                case TokenTypes.ANNOTATIONS:
+                    parentAST = parentAST.getParent();
+                    if (parentAST != null) {
+                        switch (parentAST.getType()) {
+                            case TokenTypes.ANNOTATION_DEF:
+                            case TokenTypes.PACKAGE_DEF:
+                            case TokenTypes.CLASS_DEF:
+                            case TokenTypes.INTERFACE_DEF:
+                            case TokenTypes.ENUM_DEF:
+                            case TokenTypes.ENUM_CONSTANT_DEF:
+                            case TokenTypes.CTOR_DEF:
+                            case TokenTypes.METHOD_DEF:
+                            case TokenTypes.PARAMETER_DEF:
+                            case TokenTypes.VARIABLE_DEF:
+                                targetAST = parentAST;
+                                break;
+
+                            default:
+                                // unexpected target type
+                        }
+                    }
+                    break;
+
+                default:
+                    // unexpected container type
+            }
+        }
+        return targetAST;
     }
 
     /**
