@@ -28,9 +28,11 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -40,6 +42,7 @@ import java.util.regex.Pattern;
  * @author Chris Stillwell
  * @author Daniel Grenner
  * @author Travis Schneeberger
+ * @author Mehmet Can Cömert
  */
 public class JavadocStyleCheck
     extends Check
@@ -467,7 +470,7 @@ public class JavadocStyleCheck
         // Can't simply not put them on the stack, since singletons
         // like <dt> and <dd> (unhappily) may either be terminated
         // or not terminated. Both options are legal.
-        return SINGLE_TAGS.contains(tag.getId().toLowerCase());
+        return SINGLE_TAGS.contains(tag.getId().toLowerCase(Locale.ENGLISH));
     }
 
     /**
@@ -478,7 +481,7 @@ public class JavadocStyleCheck
      */
     private boolean isAllowedTag(HtmlTag tag)
     {
-        return ALLOWED_TAGS.contains(tag.getId().toLowerCase());
+        return ALLOWED_TAGS.contains(tag.getId().toLowerCase(Locale.ENGLISH));
     }
 
     /**

@@ -21,8 +21,16 @@ package com.puppycrawl.tools.checkstyle.api;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Locale;
+
 import org.junit.Test;
 
+/**
+ * Test cases for {@link Scope} enumeration.
+ * 
+ * @author Mehmet Can Cömert
+ */
 public class ScopeTest
 {
     @Test(expected = IllegalArgumentException.class)
@@ -45,6 +53,21 @@ public class ScopeTest
         Scope.getInstance("    PackAge ");
         Scope.getInstance("privaTe   ");
         Scope.getInstance("AnonInner");
+    }
+    
+    @Test
+    public void testMixedCaseSpacesWithDifferentLocales() {
+		Locale[] differentLocales = new Locale[] { new Locale("TR", "tr") };
+		Locale defaultLocale = Locale.getDefault();
+
+		try {
+			for (Locale differentLocale : differentLocales) {
+				Locale.setDefault(differentLocale);
+				testMixedCaseSpaces();
+			}
+		} finally {
+			Locale.setDefault(defaultLocale);
+		}
     }
 
     @Test

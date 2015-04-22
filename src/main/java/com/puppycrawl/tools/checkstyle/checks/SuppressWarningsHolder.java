@@ -20,7 +20,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -30,12 +29,14 @@ import org.apache.commons.beanutils.ConversionException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
  * Maintains a set of check suppressions from {@link SuppressWarnings}
  * annotations.
  * @author Trevor Robinson
+ * @author Mehmet Can Cömert
  */
 public class SuppressWarningsHolder
     extends Check
@@ -136,7 +137,7 @@ public class SuppressWarningsHolder
         if (sourceName.endsWith(CHECK_SUFFIX)) {
             endIndex -= CHECK_SUFFIX.length();
         }
-        return sourceName.substring(startIndex, endIndex).toLowerCase();
+        return sourceName.substring(startIndex, endIndex).toLowerCase(Locale.ENGLISH);
     }
 
     /**
