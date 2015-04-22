@@ -73,7 +73,9 @@
     <exclude name="DataflowAnomalyAnalysis"/>
     <!-- turning local varibles to fields create design problems and extend scope of variable -->
     <exclude name="AvoidFinalLocalVariable"/>
+    <!-- conflicts with names that does not mean in/out -->
     <exclude name="AvoidPrefixingMethodParameters"/>
+    <!-- that is not practical, no options to allow some magic numbers, we will use our implementation -->
     <exclude name="AvoidLiteralsInIfCondition"/>
     <!-- Checkstyle is not thread safe -->
     <exclude name="UseConcurrentHashMap"/>
