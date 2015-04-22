@@ -58,7 +58,7 @@
 	  </rule>
 
   <rule ref="rulesets/java/controversial.xml">
-    <exclude name="UnnecessaryConstructor"/>
+    <!-- calling super() is completely pointless, no matter if class inherits anything or not; it is meaningful only if you do not call implicit constructor of base class -->
     <exclude name="CallSuperInConstructor"/>
     <exclude name="NullAssignment"/>
     <exclude name="OnlyOneReturn"/>
