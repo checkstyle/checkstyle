@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import java.util.Locale;
+
 import org.apache.commons.beanutils.ConversionException;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
@@ -115,6 +117,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  *
  * @author Travis Schneeberger
+ * @author Mehmet Can Cömert
  */
 public final class AnnotationUseStyleCheck extends Check
 {
@@ -217,7 +220,7 @@ public final class AnnotationUseStyleCheck extends Check
         final String string)
     {
         try {
-            return Enum.valueOf(enuclass, string.trim().toUpperCase());
+            return Enum.valueOf(enuclass, string.trim().toUpperCase(Locale.ENGLISH));
         }
         catch (final IllegalArgumentException iae) {
             throw new ConversionException("unable to parse " + string, iae);
