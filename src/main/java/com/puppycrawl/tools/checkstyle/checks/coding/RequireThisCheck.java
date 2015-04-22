@@ -105,11 +105,6 @@ public class RequireThisCheck extends DeclarationCollector
         return checkMethods;
     }
 
-    /** Creates new instance of the check. */
-    public RequireThisCheck()
-    {
-    }
-
     @Override
     public int[] getDefaultTokens()
     {
