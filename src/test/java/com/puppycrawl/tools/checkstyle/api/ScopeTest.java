@@ -28,7 +28,6 @@ import org.junit.Test;
 
 /**
  * Test cases for {@link Scope} enumeration.
- * 
  * @author Mehmet Can Cömert
  */
 public class ScopeTest
@@ -54,20 +53,21 @@ public class ScopeTest
         Scope.getInstance("privaTe   ");
         Scope.getInstance("AnonInner");
     }
-    
-    @Test
-    public void testMixedCaseSpacesWithDifferentLocales() {
-		Locale[] differentLocales = new Locale[] { new Locale("TR", "tr") };
-		Locale defaultLocale = Locale.getDefault();
 
-		try {
-			for (Locale differentLocale : differentLocales) {
-				Locale.setDefault(differentLocale);
-				testMixedCaseSpaces();
-			}
-		} finally {
-			Locale.setDefault(defaultLocale);
-		}
+    @Test
+    public void testMixedCaseSpacesWithDifferentLocales()
+    {
+        Locale[] differentLocales = new Locale[] {new Locale("TR", "tr") };
+        Locale defaultLocale = Locale.getDefault();
+        try {
+            for (Locale differentLocale : differentLocales) {
+                Locale.setDefault(differentLocale);
+                testMixedCaseSpaces();
+            }
+        }
+        finally {
+            Locale.setDefault(defaultLocale);
+        }
     }
 
     @Test

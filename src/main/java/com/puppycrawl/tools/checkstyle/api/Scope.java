@@ -22,7 +22,6 @@ import java.util.Locale;
 
 /**
  * Represents a Java visibility scope.
- * 
  * @author Lars Kühne
  * @author Travis Schneeberger
  * @author Mehmet Can Cömert
