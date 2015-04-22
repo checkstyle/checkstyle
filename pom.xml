@@ -256,7 +256,7 @@
           <artifactId>lifecycle-mapping</artifactId>
           <version>1.0.0</version>
           <configuration>
-            <lifecycleMappingMetadata>https://github.com/checkstyle/checkstyle/issues
+            <lifecycleMappingMetadata>
               <pluginExecutions>
                 <pluginExecution>
                   <pluginExecutionFilter>
