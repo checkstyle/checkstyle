@@ -60,7 +60,9 @@
   <rule ref="rulesets/java/controversial.xml">
     <!-- calling super() is completely pointless, no matter if class inherits anything or not; it is meaningful only if you do not call implicit constructor of base class -->
     <exclude name="CallSuperInConstructor"/>
+    <!-- We reuse Check instances between java files, we need to clear state of class in beginTree() methods -->
     <exclude name="NullAssignment"/>
+    <!-- it is possible only in functional languages and fanatically-pristine code, withot aditional option that are done at ReturnCountExtendedCheck it is not good rule -->
     <exclude name="OnlyOneReturn"/>
     <exclude name="AssignmentInOperand"/>
     <exclude name="AtLeastOneConstructor"/>
