@@ -20,8 +20,15 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+
+import java.util.Locale;
+
 import org.junit.Test;
 
+/**
+ * Test cases for {@link SeverityLevel} enumeration.
+ * @author Mehmet Can Cömert
+ */
 public class SeverityLevelTest
 {
     @Test(expected = IllegalArgumentException.class)
@@ -42,5 +49,21 @@ public class SeverityLevelTest
         SeverityLevel.getInstance(" iNfo");
         SeverityLevel.getInstance(" WarniNg");
         SeverityLevel.getInstance("    ERROR ");
+    }
+
+    @Test
+    public void testMixedCaseSpacesWithDifferentLocales()
+    {
+        Locale[] differentLocales = new Locale[] {new Locale("TR", "tr") };
+        Locale defaultLocale = Locale.getDefault();
+        try {
+            for (Locale differentLocale : differentLocales) {
+                Locale.setDefault(differentLocale);
+                testMixedCaseSpaces();
+            }
+        }
+        finally {
+            Locale.setDefault(defaultLocale);
+        }
     }
 }

@@ -18,11 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.Locale;
+
 /**
  * Represents a Java visibility scope.
- *
  * @author Lars Kühne
  * @author Travis Schneeberger
+ * @author Mehmet Can Cömert
  */
 public enum Scope
 {
@@ -50,7 +52,7 @@ public enum Scope
      */
     public String getName()
     {
-        return name().toLowerCase();
+        return name().toLowerCase(Locale.ENGLISH);
     }
 
     /**
@@ -73,6 +75,6 @@ public enum Scope
      */
     public static Scope getInstance(String scopeName)
     {
-        return valueOf(Scope.class, scopeName.trim().toUpperCase());
+        return valueOf(Scope.class, scopeName.trim().toUpperCase(Locale.ENGLISH));
     }
 }
