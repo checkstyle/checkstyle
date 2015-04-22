@@ -107,8 +107,10 @@ public final class IllegalCatchCheck extends AbstractIllegalCheck
         }
         else {
             exceptionTypes.add(currentNode);
-            while ((currentNode = currentNode.getNextSibling()) != null) {
+            currentNode = currentNode.getNextSibling();
+            while (currentNode != null) {
                 exceptionTypes.add(currentNode);
+                currentNode = currentNode.getNextSibling();
             }
         }
         return exceptionTypes;

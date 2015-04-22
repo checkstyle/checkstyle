@@ -64,7 +64,6 @@
     <exclude name="NullAssignment"/>
     <!-- it is possible only in functional languages and fanatically-pristine code, withot aditional option that are done at ReturnCountExtendedCheck it is not good rule -->
     <exclude name="OnlyOneReturn"/>
-    <exclude name="AssignmentInOperand"/>
     <exclude name="AtLeastOneConstructor"/>
     <exclude name="DontImportSun"/>
     <exclude name="BooleanInversion"/>
