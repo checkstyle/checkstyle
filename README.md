@@ -58,7 +58,7 @@ directory.
 [travis img]:https://secure.travis-ci.org/checkstyle/checkstyle.png
 
 [sonar]:http://nemo.sonarqube.org/dashboard/index/com.puppycrawl.tools:checkstyle
-[sonar img]:https://dev.eclipse.org/sonar/images/sonarqube-24x100.png
+[sonar img]:https://dev.eclipse.org/sonar/images/logo.png?1400775536
 
 [coverage]:https://coveralls.io/r/checkstyle/checkstyle
 [coverage img]:https://coveralls.io/repos/checkstyle/checkstyle/badge.svg
