@@ -289,7 +289,8 @@ public class SuppressWarningsHolder
             final int firstLine = targetAST.getLineNo();
             final int firstColumn = targetAST.getColumnNo();
             final DetailAST nextAST = targetAST.getNextSibling();
-            final int lastLine, lastColumn;
+            final int lastLine;
+            final int lastColumn;
             if (nextAST != null) {
                 lastLine = nextAST.getLineNo();
                 lastColumn = nextAST.getColumnNo() - 1;
