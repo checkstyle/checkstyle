@@ -64,10 +64,9 @@
     <exclude name="NullAssignment"/>
     <!-- it is possible only in functional languages and fanatically-pristine code, withot aditional option that are done at ReturnCountExtendedCheck it is not good rule -->
     <exclude name="OnlyOneReturn"/>
+    <!-- oposite to UnnecessaryConstructor -->
     <exclude name="AtLeastOneConstructor"/>
-    <exclude name="DontImportSun"/>
     <exclude name="BooleanInversion"/>
-    <exclude name="SuspiciousOctalEscape"/>
     <exclude name="DefaultPackage"/>
     <exclude name="DataflowAnomalyAnalysis"/>
     <exclude name="AvoidFinalLocalVariable"/>
@@ -75,11 +74,10 @@
     <exclude name="AvoidUsingVolatile"/>
     <exclude name="AvoidUsingNativeCode"/>
     <exclude name="AvoidAccessibilityAlteration"/>
-    <exclude name="DoNotCallGarbageCollectionExplicitly"/>
     <exclude name="OneDeclarationPerLine"/>
     <exclude name="AvoidPrefixingMethodParameters"/>
     <exclude name="AvoidLiteralsInIfCondition"/>
-    <exclude name="UseObjectForClearerAPI"/>
+    <!-- Checkstyle is not thread safe -->
     <exclude name="UseConcurrentHashMap"/>
   </rule>
   <rule ref="rulesets/java/coupling.xml">
