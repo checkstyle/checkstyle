@@ -57,7 +57,30 @@
 		</properties>
 	  </rule>
 
-  <!--<rule ref="rulesets/java/controversial.xml"/>-->
+  <rule ref="rulesets/java/controversial.xml">
+    <exclude name="UnnecessaryConstructor"/>
+    <exclude name="CallSuperInConstructor"/>
+    <exclude name="NullAssignment"/>
+    <exclude name="OnlyOneReturn"/>
+    <exclude name="AssignmentInOperand"/>
+    <exclude name="AtLeastOneConstructor"/>
+    <exclude name="DontImportSun"/>
+    <exclude name="BooleanInversion"/>
+    <exclude name="SuspiciousOctalEscape"/>
+    <exclude name="DefaultPackage"/>
+    <exclude name="DataflowAnomalyAnalysis"/>
+    <exclude name="AvoidFinalLocalVariable"/>
+    <exclude name="AvoidUsingShortType"/>
+    <exclude name="AvoidUsingVolatile"/>
+    <exclude name="AvoidUsingNativeCode"/>
+    <exclude name="AvoidAccessibilityAlteration"/>
+    <exclude name="DoNotCallGarbageCollectionExplicitly"/>
+    <exclude name="OneDeclarationPerLine"/>
+    <exclude name="AvoidPrefixingMethodParameters"/>
+    <exclude name="AvoidLiteralsInIfCondition"/>
+    <exclude name="UseObjectForClearerAPI"/>
+    <exclude name="UseConcurrentHashMap"/>
+  </rule>
   <rule ref="rulesets/java/coupling.xml">
 	  <!-- produce too much violations, suppresssed till we figure out how useful that metrics-->
 	  <exclude name="LawOfDemeter"/>
