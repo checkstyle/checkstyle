@@ -28,9 +28,9 @@ import java.util.Locale;
  * Each violation of an audit check is assigned one of the severity levels
  * defined here.
  * </p>
- *
  * @author David Schneider
  * @author Travis Schneeberger
+ * @author Mehmet Can Cömert
  */
 public enum SeverityLevel
 {
