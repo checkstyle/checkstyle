@@ -510,9 +510,9 @@ public final class ConfigurationLoader
         throws CheckstyleException
     {
         int prev = 0;
-        int pos;
         //search for the next instance of $ from the 'prev' position
-        while ((pos = value.indexOf('$', prev)) >= 0) {
+        int pos = value.indexOf('$', prev);
+        while (pos >= 0) {
 
             //if there was any text before this, add it as a fragment
             //TODO, this check could be modified to go if pos>prev;
@@ -558,6 +558,9 @@ public final class ConfigurationLoader
                 propertyRefs.add(propertyName);
                 prev = endName + 1;
             }
+
+            //search for the next instance of $ from the 'prev' position
+            pos = value.indexOf('$', prev);
         }
         //no more $ signs found
         //if there is any tail to the file, append it
