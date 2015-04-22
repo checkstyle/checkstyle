@@ -27,7 +27,6 @@ import org.junit.Test;
 
 /**
  * Test cases for {@link SeverityLevel} enumeration.
- * 
  * @author Mehmet Can Cömert
  */
 public class SeverityLevelTest
@@ -51,19 +50,20 @@ public class SeverityLevelTest
         SeverityLevel.getInstance(" WarniNg");
         SeverityLevel.getInstance("    ERROR ");
     }
-    
-    @Test
-    public void testMixedCaseSpacesWithDifferentLocales() {
-		Locale[] differentLocales = new Locale[] { new Locale("TR", "tr") };
-		Locale defaultLocale = Locale.getDefault();
 
-		try {
-			for (Locale differentLocale : differentLocales) {
-				Locale.setDefault(differentLocale);
-				testMixedCaseSpaces();
-			}
-		} finally {
-			Locale.setDefault(defaultLocale);
-		}
+    @Test
+    public void testMixedCaseSpacesWithDifferentLocales()
+    {
+        Locale[] differentLocales = new Locale[] {new Locale("TR", "tr") };
+        Locale defaultLocale = Locale.getDefault();
+        try {
+            for (Locale differentLocale : differentLocales) {
+                Locale.setDefault(differentLocale);
+                testMixedCaseSpaces();
+            }
+        }
+        finally {
+            Locale.setDefault(defaultLocale);
+        }
     }
 }
