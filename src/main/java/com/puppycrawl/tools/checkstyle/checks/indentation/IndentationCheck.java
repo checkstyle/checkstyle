@@ -141,11 +141,6 @@ public class IndentationCheck extends Check
     /** factory from which handlers are distributed */
     private final HandlerFactory handlerFactory = new HandlerFactory();
 
-    /** Creates a new instance of IndentationCheck. */
-    public IndentationCheck()
-    {
-    }
-
     /**
      * Get forcing strict condition.
      * @return forceStrictCondition value.

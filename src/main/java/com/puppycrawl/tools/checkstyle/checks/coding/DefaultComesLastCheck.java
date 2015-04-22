@@ -49,12 +49,6 @@ public class DefaultComesLastCheck extends Check
      */
     public static final String MSG_KEY = "default.comes.last";
 
-    /** Creates new instance of the check. */
-    public DefaultComesLastCheck()
-    {
-        // do nothing
-    }
-
     @Override
     public int[] getDefaultTokens()
     {

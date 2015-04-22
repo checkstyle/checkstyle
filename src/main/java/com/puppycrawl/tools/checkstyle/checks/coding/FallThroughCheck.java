@@ -86,12 +86,6 @@ public class FallThroughCheck extends Check
     /** Relief regexp. */
     private Pattern regExp;
 
-    /** Creates new instance of the check. */
-    public FallThroughCheck()
-    {
-        // do nothing
-    }
-
     @Override
     public int[] getDefaultTokens()
     {

@@ -57,11 +57,6 @@ public class MultipleVariableDeclarationsCheck extends Check
      */
     public static final String MSG_MULTIPLE_COMMA = "multiple.variable.declarations.comma";
 
-    /** Creates new instance of the check. */
-    public MultipleVariableDeclarationsCheck()
-    {
-    }
-
     @Override
     public int[] getDefaultTokens()
     {

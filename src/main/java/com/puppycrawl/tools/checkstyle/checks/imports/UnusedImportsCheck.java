@@ -80,11 +80,6 @@ public class UnusedImportsCheck extends Check
     /** set of references - possibly to imports or other things. */
     private final Set<String> referenced = Sets.newHashSet();
 
-    /** Default constructor. */
-    public UnusedImportsCheck()
-    {
-    }
-
     public void setProcessJavadoc(boolean value)
     {
         processJavadoc = value;
