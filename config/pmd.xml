@@ -66,20 +66,25 @@
     <exclude name="OnlyOneReturn"/>
     <!-- oposite to UnnecessaryConstructor -->
     <exclude name="AtLeastOneConstructor"/>
+    <!-- deprecated by PMD -->
     <exclude name="BooleanInversion"/>
     <exclude name="DefaultPackage"/>
+    <!-- that rule is too buggy, too much false positives-->
     <exclude name="DataflowAnomalyAnalysis"/>
+    <!-- turning local varibles to fields create design problems and extend scope of variable -->
     <exclude name="AvoidFinalLocalVariable"/>
-    <exclude name="AvoidUsingShortType"/>
-    <exclude name="AvoidUsingVolatile"/>
-    <exclude name="AvoidUsingNativeCode"/>
-    <exclude name="AvoidAccessibilityAlteration"/>
     <exclude name="OneDeclarationPerLine"/>
     <exclude name="AvoidPrefixingMethodParameters"/>
     <exclude name="AvoidLiteralsInIfCondition"/>
     <!-- Checkstyle is not thread safe -->
     <exclude name="UseConcurrentHashMap"/>
   </rule>
+	  <rule ref="rulesets/java/controversial.xml/AvoidUsingShortType">
+		<properties>
+			<!-- that class integate checkstyle and antlr that is why it has a lot of imports -->
+			<property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AutomaticBean']"/>
+		</properties>
+	  </rule>
   <rule ref="rulesets/java/coupling.xml">
 	  <!-- produce too much violations, suppresssed till we figure out how useful that metrics-->
 	  <exclude name="LawOfDemeter"/>
