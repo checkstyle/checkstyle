@@ -68,6 +68,7 @@
     <exclude name="AtLeastOneConstructor"/>
     <!-- deprecated by PMD -->
     <exclude name="BooleanInversion"/>
+    <!-- till #957 -->
     <exclude name="DefaultPackage"/>
     <!-- that rule is too buggy, too much false positives-->
     <exclude name="DataflowAnomalyAnalysis"/>
