@@ -58,7 +58,25 @@
 	  </rule>
 
   <!--<rule ref="rulesets/java/controversial.xml"/>-->
-  <!--<rule ref="rulesets/java/coupling.xml"/>-->
+  <rule ref="rulesets/java/coupling.xml">
+	  <!-- produce too much violations, suppresssed till we figure out how useful that metrics-->
+	  <exclude name="LawOfDemeter"/>
+	  <!-- this rule is for managing import, we have special Check for that -->
+	  <exclude name="LoosePackageCoupling"/>
+  </rule>
+	  <rule ref="rulesets/java/coupling.xml/ExcessiveImports">
+		<properties>
+			<!-- that class integate checkstyle and antlr that is why it has a lot of imports -->
+			<property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='TreeWalker']"/>
+		</properties>
+	  </rule>
+	  <rule ref="rulesets/java/coupling.xml/CouplingBetweenObjects">
+		<properties>
+			<!-- I donot see any problem , looks like false positive -->
+			<property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='HandlerFactory']"/>
+		</properties>
+	  </rule>
+
   <!--<rule ref="rulesets/java/design.xml"/>-->
   <rule ref="rulesets/java/empty.xml"/>
   <rule ref="rulesets/java/finalizers.xml"/>
