@@ -109,8 +109,8 @@
   <rule ref="rulesets/java/design.xml">
     <!-- this produce false positives on gui.Main -->
     <exclude name="UseUtilityClass"/>
-    <exclude name="AvoidReassigningParameters"/>
-    <exclude name="SwitchDensity"/>
+    <!--<exclude name="AvoidReassigningParameters"/>-->
+    <!--<exclude name="SwitchDensity"/>-->
     <exclude name="ConstructorCallsOverridableMethod"/>
     <exclude name="AccessorClassGeneration"/>
     <exclude name="FinalFieldCouldBeStatic"/>
@@ -163,6 +163,12 @@
     <properties>
       <!-- default is 3 but we try to use single point of exit from method and that require extra IFs -->
       <property name="problemDepth" value="4"/>
+    </properties>
+  </rule>
+  <rule ref="rulesets/java/design.xml/SwitchDensity">
+    <properties>
+      <!-- till #973 -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='DeclarationOrderCheck']"/>
     </properties>
   </rule>
 
