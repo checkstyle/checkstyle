@@ -45,7 +45,6 @@ public class ParseTreeModel extends AbstractTreeTableModel
     {
         final ASTFactory factory = new ASTFactory();
         factory.setASTNodeClass(DetailAST.class.getName());
-        // TODO: Need to resolve if need a fake root node....
         return (DetailAST) factory.create(TokenTypes.EOF, "ROOT");
     }
 

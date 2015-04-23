@@ -89,7 +89,7 @@ final class InputValidClassDefIndent6 extends java.awt.event.MouseAdapter implem
         } //indent:8 exp:8
 
 
-        // TODO: this is broken right now: //indent:8 exp:8
+        //     : this is broken right now: //indent:8 exp:8
         //   1) this is both an expression and an OBJBLOCK //indent:8 exp:8
         //   2) methods aren't yet parsed //indent:8 exp:8
         //   3) only CLASSDEF is handled now, not OBJBLOCK //indent:8 exp:8

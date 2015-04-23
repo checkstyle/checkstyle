@@ -32,8 +32,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author o_sukhodolsky
- * TODO: For every or: _value += (_orCount * (nestedValue - 1));
- * TODO: For every and: ???
  */
 public final class NPathComplexityCheck extends AbstractComplexityCheck
 {

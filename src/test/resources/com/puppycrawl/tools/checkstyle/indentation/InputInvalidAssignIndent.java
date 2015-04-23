@@ -27,10 +27,10 @@ public class InputInvalidAssignIndent //indent:0 exp:0
         int i //indent:8 exp:8
          = //indent:9 exp:12 warn
           1; //indent:10 exp:12 warn
-        // TODO: this should be illegal. //indent:8 exp:8
+        //     : this should be illegal. //indent:8 exp:8
         i = //indent:8 exp:8
             3; //indent:12 exp:12
-        // TODO: add more testing //indent:8 exp:8
+        //     : add more testing //indent:8 exp:8
     } //indent:4 exp:4
 
     private String[] mIndentCheck = null; //indent:4 exp:4

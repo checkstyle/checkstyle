@@ -148,7 +148,7 @@ public class InputInvalidMethodIndent { //indent:0 exp:0
           6, 7, 8, 9); //indent:10 exp:12 warn
 
 
-// TODO: this is not illegal, but probably should be //indent:0 exp:0
+//     : this is not illegal, but probably should be //indent:0 exp:0
 //        myfunc3(11, 11, Integer. //indent:0 exp:0
 //            getInteger("mytest").intValue(), //indent:0 exp:0
 //            11); //indent:0 exp:0

@@ -56,13 +56,6 @@ public class TranslationCheckTest
             expected);
     }
 
-    // TODO: test with the same resourcebundle name in different packages
-    // x/messages.properties
-    //     key1=x
-    // y/messages.properties
-    //     key2=y
-    // should not result in error message about key1 missing in the y bundle
-
     @Test
     public void testBaseNameSeparator() throws Exception
     {

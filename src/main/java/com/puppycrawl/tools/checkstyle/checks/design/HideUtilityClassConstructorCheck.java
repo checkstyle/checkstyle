@@ -110,8 +110,6 @@ public class HideUtilityClassConstructorCheck extends Check
 
         // figure out if class extends java.lang.object directly
         // keep it simple for now and get a 99% solution
-        // TODO: check for "extends java.lang.Object" and "extends Object"
-        // consider "import org.omg.CORBA.*"
         final boolean extendsJLO = // J.Lo even made it into in our sources :-)
             ast.findFirstToken(TokenTypes.EXTENDS_CLAUSE) == null;
 

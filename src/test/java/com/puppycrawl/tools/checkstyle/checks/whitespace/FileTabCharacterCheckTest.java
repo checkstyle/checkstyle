@@ -91,7 +91,7 @@ public class FileTabCharacterCheckTest
 
     /**
      * Creates a configuration that is functionally close to that in the docs.
-     * @param verbose TODO
+     * @param verbose verbose mode
      */
     private DefaultConfiguration createConfig(boolean verbose)
     {

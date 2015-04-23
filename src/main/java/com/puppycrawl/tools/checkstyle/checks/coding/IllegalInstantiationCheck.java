@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.Utils;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-// TODO: Clean up potential duplicate code here and in UnusedImportsCheck
 /**
  * <p>
  * Checks for illegal instantiations where a factory method is preferred.

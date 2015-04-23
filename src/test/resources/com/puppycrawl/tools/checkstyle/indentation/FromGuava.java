@@ -26,7 +26,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
 
   enum Strength { //indent:2 exp:2
     /*                                                                                            //indent:4 exp:4
-     * TODO(kevinb): If we strongly reference the value and aren't loading, we needn't wrap the   //indent:5 exp:5
+     *     (kevinb): If we strongly reference the value and aren't loading, we needn't wrap the   //indent:5 exp:5
      * value. This could save ~8 bytes per entry.                                                 //indent:5 exp:5
      */                                                                                           //indent:5 exp:5
 

@@ -96,7 +96,7 @@ public class LeftCurlyCheck
      */
     public static final String MSG_KEY_LINE_BREAK_AFTER = "line.break.after";
 
-    /** TODO: replace this ugly hack **/
+    /** maxLineLength **/
     private int maxLineLength = DEFAULT_MAX_LINE_LENGTH;
 
     /** If true, Check will ignore enums*/
@@ -141,8 +141,6 @@ public class LeftCurlyCheck
             TokenTypes.LITERAL_IF,
             TokenTypes.LITERAL_ELSE,
             TokenTypes.LITERAL_FOR,
-            // TODO: need to handle....
-            //TokenTypes.STATIC_INIT,
         };
     }
 

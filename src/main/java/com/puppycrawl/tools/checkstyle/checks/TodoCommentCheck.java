@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * A check for TODO comments. To check for other patterns in Java comments, set
+ * A check for 'TODO' comments. To check for other patterns in Java comments, set
  * property format.
  * </p>
  * <p>
@@ -61,7 +61,7 @@ public class TodoCommentCheck
     public static final String MSG_KEY = "todo.match";
 
     /**
-     * Format of todo comment.
+     * Format of 'todo' comment.
      */
     private String format = "TODO:";
 
@@ -77,9 +77,9 @@ public class TodoCommentCheck
     }
 
     /**
-     * Setter for todo comment format.
+     * Setter for 'todo' comment format.
      * @param format
-     *        format of todo comment.
+     *        format of 'todo' comment.
      * @throws org.apache.commons.beanutils.ConversionException
      *         if unable to create Pattern object.
      */

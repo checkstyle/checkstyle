@@ -55,7 +55,7 @@ class InputIncorrectAnnotationLocation
         @MyAnnotation2
         @MyAnnotation1(value = "") public InnerClass()
         {
-            // TODO Auto-generated constructor stub
+            // comment
         }
         @MyAnnotation1(value = "")
             @MyAnnotation2 //warn

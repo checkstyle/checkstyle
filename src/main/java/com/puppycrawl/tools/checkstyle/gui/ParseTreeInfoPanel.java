@@ -298,8 +298,6 @@ public class ParseTreeInfoPanel extends JPanel
         p.add(reloadButton);
 
         try {
-            // TODO: creating an object for the side effect of the constructor
-            // and then ignoring the object looks strange.
             new FileDrop(sp, new FileDropListener(sp));
         }
         catch (final TooManyListenersException ex)

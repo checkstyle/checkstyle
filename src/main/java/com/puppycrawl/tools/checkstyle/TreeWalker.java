@@ -159,9 +159,6 @@ public final class TreeWalker
         checkContext.add("classLoader", classLoader);
         checkContext.add("messages", getMessageCollector());
         checkContext.add("severity", getSeverity());
-        // TODO: hmmm.. this looks less than elegant
-        // we have just parsed the string,
-        // now we're recreating it only to parse it again a few moments later
         checkContext.add("tabWidth", String.valueOf(tabWidth));
 
         childContext = checkContext;
@@ -171,7 +168,6 @@ public final class TreeWalker
     public void setupChild(Configuration childConf)
         throws CheckstyleException
     {
-        // TODO: improve the error handing
         final String name = childConf.getName();
         final Object module = moduleFactory.createModule(name);
         if (!(module instanceof Check)) {

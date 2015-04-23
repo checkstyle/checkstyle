@@ -23,34 +23,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-// TODO: allow preset indentation styles (IE... GNU style, Sun style, etc...)?
-
-// TODO: optionally make imports (and other?) statements required to start
-//   line? -- but maybe this should be a different check
-
-// TODO: optionally allow array children, throws clause, etc...
-//   to be of any indentation > required, for emacs-style indentation
-
-// TODO: this is not illegal, but probably should be:
-//        myfunc3(11, 11, Integer.
-//            getInteger("mytest").intValue(),  // this should be in 4 more
-//            11);
-
-// TODO: any dot-based indentation doesn't work (at least not yet...) the
-//  problem is that we don't know which way an expression tree will be built
-//  and with dot trees, they are built backwards.  This means code like
-//
-//  org.blah.mystuff
-//      .myclass.getFactoryObject()
-//          .objFunc().otherMethod();
-// and
-//  return ((MethodCallHandler) parent)
-//      .findContainingMethodCall(this);
-//  is all checked at the level of the first line.  Simple dots are actually
-// checked but the method call handler will have to be changed drastically
-// to fix the above...
-
-
 /**
  * Checks correct indentation of Java Code.
  *

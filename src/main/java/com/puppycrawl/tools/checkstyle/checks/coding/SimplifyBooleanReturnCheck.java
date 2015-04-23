@@ -79,7 +79,6 @@ public class SimplifyBooleanReturnCheck
         final AST elseStatement = elseLiteral.getFirstChild();
 
         // skip '(' and ')'
-        // TODO: Introduce helpers in DetailAST
         final AST condition = ast.getFirstChild().getNextSibling();
         final AST thenStatement = condition.getNextSibling().getNextSibling();
 

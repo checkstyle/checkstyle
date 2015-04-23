@@ -131,7 +131,6 @@ public final class ConfigurationLoader
                                  Attributes atts)
             throws SAXException
         {
-            // TODO: debug logging for support purposes
             if (qName.equals(MODULE)) {
                 //create configuration
                 final String name = atts.getValue(NAME);
@@ -515,9 +514,6 @@ public final class ConfigurationLoader
         while (pos >= 0) {
 
             //if there was any text before this, add it as a fragment
-            //TODO, this check could be modified to go if pos>prev;
-            //seems like this current version could stick empty strings
-            //into the list
             if (pos > 0) {
                 fragments.add(value.substring(prev, pos));
             }

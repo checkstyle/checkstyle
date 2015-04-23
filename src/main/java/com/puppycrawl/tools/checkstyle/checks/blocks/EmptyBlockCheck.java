@@ -96,7 +96,6 @@ public class EmptyBlockCheck
             TokenTypes.INSTANCE_INIT,
             TokenTypes.STATIC_INIT,
             TokenTypes.LITERAL_SWITCH,
-            //TODO: does this handle TokenTypes.LITERAL_SYNCHRONIZED?
         };
     }
 
@@ -119,7 +118,6 @@ public class EmptyBlockCheck
             TokenTypes.LITERAL_SWITCH,
             TokenTypes.LITERAL_DEFAULT,
             TokenTypes.ARRAY_INIT,
-            //TODO: does this handle TokenTypes.LITERAL_SYNCHRONIZED?
         };
     }
 

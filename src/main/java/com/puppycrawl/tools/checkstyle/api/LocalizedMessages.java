@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-// TODO: check that this class is in the right package
-// as soon as architecture has settled. At the time of writing
-// this class is not necessary as a part of the public api
-
 import com.google.common.collect.Sets;
 
 import java.util.Set;

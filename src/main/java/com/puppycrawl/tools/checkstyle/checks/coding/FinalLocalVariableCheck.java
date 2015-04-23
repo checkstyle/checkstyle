@@ -172,8 +172,6 @@ public class FinalLocalVariableCheck extends Check
 
             case TokenTypes.IDENT:
                 final int parentType = ast.getParent().getType();
-                // TODO: is there better way to check is ast
-                // in left part of assignment?
                 if ((TokenTypes.POST_DEC == parentType
                         || TokenTypes.DEC == parentType
                         || TokenTypes.POST_INC == parentType

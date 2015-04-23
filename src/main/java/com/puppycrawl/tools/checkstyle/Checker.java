@@ -182,7 +182,6 @@ public class Checker extends AutomaticBean implements MessageDispatcher
             }
         }
         catch (final Exception ex) {
-            // TODO i18n
             throw new CheckstyleException("cannot initialize module " + name
                     + " - " + ex.getMessage(), ex);
         }

@@ -203,7 +203,6 @@ public class OperatorWrapCheck
         final int lineNo = ast.getLineNo();
         final String currentLine = getLine(lineNo - 1);
 
-        // TODO: Handle comments before and after operator
         // Check if rest of line is whitespace, and not just the operator
         // by itself. This last bit is to handle the operator on a line by
         // itself.

@@ -277,7 +277,6 @@ public class SuppressionCommentFilter
     /** The message format to suppress. */
     private String messageFormat;
 
-    //TODO: Investigate performance improvement with array
     /** Tagged comments */
     private final List<Tag> tags = Lists.newArrayList();
 
@@ -398,7 +397,6 @@ public class SuppressionCommentFilter
         final FileContents currentContents = FileContentsHolder.getContents();
         if (currentContents == null) {
             // we have no contents, so we can not filter.
-            // TODO: perhaps we should notify user somehow?
             return true;
         }
         if (getFileContents() != currentContents) {
@@ -421,8 +419,6 @@ public class SuppressionCommentFilter
     private Tag findNearestMatch(AuditEvent event)
     {
         Tag result = null;
-        // TODO: try binary search if sequential search becomes a performance
-        // problem.
         for (Tag tag : tags) {
             if (tag.getLine() > event.getLine()
                 || tag.getLine() == event.getLine()

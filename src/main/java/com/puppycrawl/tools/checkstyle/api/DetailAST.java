@@ -191,12 +191,8 @@ public final class DetailAST extends CommonASTWithHiddenTokens
      * Set the parent token.
      * @param parent the parent token
      */
-    // TODO: should be private but that breaks the DetailASTTest
-    // until we manage parent in DetailAST instead of externally
     void setParent(DetailAST parent)
     {
-        // TODO: Check visibility, could be private
-        // if set in setFirstChild() and friends
         this.parent = parent;
         final DetailAST nextSibling = getNextSibling();
         if (nextSibling != null) {

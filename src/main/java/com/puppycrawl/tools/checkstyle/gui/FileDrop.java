@@ -74,14 +74,10 @@ import javax.swing.border.Border;
  */
 class FileDrop
 {
-    // TODO: Not sure that changing borders is a good idea.
-    // At least we should make sure that the border insets are preserved so
-    // that the panel layout does not change during the DnD operation.
 
     private transient Border normalBorder;
     private final transient DropTargetListener dropListener;
 
-    // TODO: Blue is not a nice color in all LookAndFeels
     /* Default border color */
     private static final Color DEFAULT_BORDER_COLOR =
             new Color(0f, 0f, 1f, 0.25f);

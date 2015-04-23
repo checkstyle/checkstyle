@@ -93,7 +93,6 @@ public final class FullIdent
         else if (ast.getLineNo() > 0) {
             lineNo = Math.min(lineNo, ast.getLineNo());
         }
-        // TODO: make a function
         if (colNo == 0) {
             colNo = ast.getColumnNo();
         }

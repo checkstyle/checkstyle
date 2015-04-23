@@ -49,7 +49,7 @@ public class InputInvalidWhileIndent { //indent:0 exp:0
             System.getProperty("foo"); //indent:12 exp:12
       } //indent:6 exp:8 warn
 
-        while (test)      {        // TODO: this is allowed //indent:8 exp:8
+        while (test)      {        //     : this is allowed //indent:8 exp:8
               if (test) { //indent:14 exp:12 warn
                   System.getProperty("foo"); //indent:18 exp:16 warn
               } //indent:14 exp:12 warn

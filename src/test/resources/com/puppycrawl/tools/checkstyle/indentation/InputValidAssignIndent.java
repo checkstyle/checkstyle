@@ -52,7 +52,7 @@ public class InputValidAssignIndent //indent:0 exp:0
 //         function.lastArgument().candidate //indent:0 exp:0
 //             = //indent:0 exp:0
 //             parameters; //indent:0 exp:0
-        // TODO: add more testing //indent:8 exp:8
+        //     : add more testing //indent:8 exp:8
     } //indent:4 exp:4
 
     private interface AnInterfaceFooWithALongName { //indent:4 exp:4

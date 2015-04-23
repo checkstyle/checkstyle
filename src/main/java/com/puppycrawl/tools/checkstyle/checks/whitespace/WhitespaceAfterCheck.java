@@ -88,7 +88,6 @@ public class WhitespaceAfterCheck
         final DetailAST targetAST;
         if (ast.getType() == TokenTypes.TYPECAST) {
             targetAST = ast.findFirstToken(TokenTypes.RPAREN);
-            // TODO: i18n
             message = new Object[]{"cast"};
         }
         else {

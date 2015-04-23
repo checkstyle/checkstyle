@@ -1397,9 +1397,6 @@ typeCastParameters
 	: classTypeSpec[true] (BAND^ classTypeSpec[true])*
 	;
 
-// TODO: handle type parameters more effectively - I think this production needs
-// a refactoring like the original Antlr Java grammar got
-// qualified names, array expressions, method invocation, post inc/dec
 postfixExpression
 	:	primaryExpression // start with a primary
 
@@ -1619,8 +1616,6 @@ options {
 
     private CommentListener mCommentListener = null;
 
-    // TODO: Check visibility of this method one parsing is done in central
-    // utility method
     public void setCommentListener(CommentListener aCommentListener)
     {
         mCommentListener = aCommentListener;

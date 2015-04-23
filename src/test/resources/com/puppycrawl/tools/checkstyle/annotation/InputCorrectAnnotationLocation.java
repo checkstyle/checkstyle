@@ -26,7 +26,7 @@ class InputCorrectAnnotationLocation
     @MyAnnotation5
     public InputCorrectAnnotationLocation()
     {
-        // TODO Auto-generated constructor stub
+        //comment
     }
     @MyAnnotation5
     @MyAnnotation6
@@ -59,7 +59,7 @@ class InputCorrectAnnotationLocation
         @MyAnnotation6
         public InnerClass()
         {
-            // TODO Auto-generated constructor stub
+            // comment
         }
         @MyAnnotation5
         @MyAnnotation6 void foo1(int a) {}

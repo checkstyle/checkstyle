@@ -129,8 +129,6 @@ public class SeparatorWrapCheck
     @Override
     public void visitToken(DetailAST ast)
     {
-        // TODO: It is a copy/paste from OperatorWrapCheck.
-        //It should be fixed in another issue
         final String text = ast.getText();
         final int colNo = ast.getColumnNo();
         final int lineNo = ast.getLineNo();

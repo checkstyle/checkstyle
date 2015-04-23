@@ -24,7 +24,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 /** Tests SuppressElementFilter */
-// TODO: this test should be removed/rewritten
 public class FilterSetTest
 {
     private CSVFilter filter;

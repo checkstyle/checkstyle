@@ -14,7 +14,7 @@ public class InputLambdaTest17{
 
         public Object tryAdvance(SpinedBuffer<P_OUT> b)
         {
-            // TODO Auto-generated method stub
+            // comment
             return null;
         }
 

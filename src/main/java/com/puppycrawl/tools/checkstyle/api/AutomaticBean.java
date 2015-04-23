@@ -63,7 +63,7 @@ public class AutomaticBean
     private static BeanUtilsBean createBeanUtilsBean()
     {
         final ConvertUtilsBean cub = new ConvertUtilsBean();
-        // TODO: is there a smarter way to tell beanutils not to use defaults?
+
         cub.register(new BooleanConverter(), Boolean.TYPE);
         cub.register(new BooleanConverter(), Boolean.class);
         cub.register(new ArrayConverter(
@@ -127,7 +127,6 @@ public class AutomaticBean
 
         final BeanUtilsBean beanUtils = createBeanUtilsBean();
 
-        // TODO: debug log messages
         final String[] attributes = configuration.getAttributeNames();
 
         for (final String key : attributes) {
@@ -187,7 +186,6 @@ public class AutomaticBean
     {
         final BeanUtilsBean beanUtils = createBeanUtilsBean();
 
-        // TODO: debug log messages
         final Collection<String> attributes = context.getAttributeNames();
 
         for (final String key : attributes) {
@@ -197,8 +195,6 @@ public class AutomaticBean
                 beanUtils.copyProperty(this, key, value);
             }
             catch (final InvocationTargetException e) {
-                // TODO: log.debug("The bean " + this.getClass()
-                // + " is not interested in " + value)
                 throw new CheckstyleException("cannot set property "
                     + key + " to value " + value + " in bean "
                     + this.getClass().getName(), e);

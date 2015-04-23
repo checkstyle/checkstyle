@@ -157,7 +157,7 @@ public final class CheckDocsDoclet
     /**
      * Doclet entry point.
      * @param root parsed javadoc of all java files passed to the javadoc task
-     * @return true (TODO: semantics of the return value is not clear to me)
+     * @return boolean value
      * @throws IOException if there are problems writing output
      */
     public static boolean start(RootDoc root) throws IOException
@@ -182,8 +182,6 @@ public final class CheckDocsDoclet
 
         for (final ClassDoc classDoc : classDocs) {
 
-            // TODO: introduce a "CheckstyleModule" interface
-            // so we can do better in the next line...
             if (classDoc.typeName().endsWith("Check")
                     && !classDoc.isAbstract())
             {
@@ -244,7 +242,7 @@ public final class CheckDocsDoclet
                 return opt[1];
             }
         }
-        return null; // TODO: throw exception here ???
+        return null;
     }
 
     /**

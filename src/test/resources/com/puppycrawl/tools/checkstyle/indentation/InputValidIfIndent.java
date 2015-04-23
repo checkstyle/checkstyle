@@ -200,7 +200,7 @@ public class InputValidIfIndent { //indent:0 exp:0
             System.getProperty("blah"); //indent:12 exp:12
 
 
-        // TODO: bother to support this style? //indent:8 exp:8
+        //     : bother to support this style? //indent:8 exp:8
         if (test) { //indent:8 exp:8
             System.getProperty("blah"); //indent:12 exp:12
         } else //indent:8 exp:8

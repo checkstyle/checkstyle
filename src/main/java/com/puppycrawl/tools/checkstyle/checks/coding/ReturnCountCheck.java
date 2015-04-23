@@ -35,7 +35,6 @@ import java.util.Deque;
  * </p>
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
- * TODO: Test for inside a static block
  */
 public final class ReturnCountCheck extends AbstractFormatCheck
 {

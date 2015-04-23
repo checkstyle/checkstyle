@@ -282,8 +282,6 @@ public class SuppressWithNearbyCommentFilter
     /** The influence of the suppression comment. */
     private String influenceFormat;
 
-
-    //TODO: Investigate performance improvement with array
     /** Tagged comments */
     private final List<Tag> tags = Lists.newArrayList();
 
@@ -410,7 +408,6 @@ public class SuppressWithNearbyCommentFilter
         final FileContents currentContents = FileContentsHolder.getContents();
         if (currentContents == null) {
             // we have no contents, so we can not filter.
-            // TODO: perhaps we should notify user somehow?
             return true;
         }
         if (getFileContents() != currentContents) {
