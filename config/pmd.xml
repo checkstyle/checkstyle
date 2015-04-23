@@ -109,9 +109,6 @@
   <rule ref="rulesets/java/design.xml">
     <!-- this produce false positives on gui.Main -->
     <exclude name="UseUtilityClass"/>
-    <!--<exclude name="AvoidReassigningParameters"/>-->
-    <!--<exclude name="SwitchDensity"/>-->
-    <exclude name="ConstructorCallsOverridableMethod"/>
     <exclude name="AccessorClassGeneration"/>
     <exclude name="FinalFieldCouldBeStatic"/>
     <exclude name="CloseResource"/>
