@@ -187,11 +187,17 @@
   </rule>
   <rule ref="rulesets/java/strictexception.xml">
     <exclude name="AvoidCatchingGenericException"/>
-    <exclude name="AvoidCatchingThrowable"/>
     <exclude name="AvoidThrowingNullPointerException"/>
     <exclude name="AvoidThrowingRawExceptionTypes"/>
     <exclude name="ExceptionAsFlowControl"/>
   </rule>
+  <rule ref="rulesets/java/strictexception.xml/AvoidCatchingThrowable">
+    <properties>
+      <!-- log name of problematic file and do not crash completely (bug 694111) -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='TreeWalker']//MethodDeclarator/@Image='processFiltered'"/>
+    </properties>
+  </rule>
+
   <rule ref="rulesets/java/strings.xml"/>
   <rule ref="rulesets/java/sunsecure.xml"/>
   <rule ref="rulesets/java/typeresolution.xml"/>
