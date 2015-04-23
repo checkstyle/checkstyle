@@ -136,6 +136,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "52:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
             "54:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
             "63:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
+            "76:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
             "83:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
             "89:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
             "97:19: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{"),
@@ -147,6 +148,8 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "131:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
             "133:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
             "148:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
+            "157:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
+            "164:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
         };
         verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
@@ -160,6 +163,8 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "91:19: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
             "97:19: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
             "142:37: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
+            "158:12: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
+            "165:16: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
         };
         verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
@@ -221,6 +226,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "39:29: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{"),
             "39:34: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{"),
             "45:37: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{"),
+            "51:12: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{"),
             "54:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),
             "56:27: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{"),
             "66:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{"),

@@ -152,3 +152,19 @@ class Absent_CustomFieldSerializer4
 class EmptyClass2 {}
 
 interface EmptyInterface3 {}
+
+class ClassWithStaticInitializers
+{
+    static {
+    }
+    static
+    {}
+
+    static class Inner
+    {
+        static {
+            int i = 1;
+        }
+    }
+
+}
