@@ -11,60 +11,60 @@
   <rule ref="rulesets/java/braces.xml"/>
   <rule ref="rulesets/java/clone.xml"/>
   <rule ref="rulesets/java/codesize.xml">
-	  <!-- till #954 -->
-	  <exclude name="CyclomaticComplexity"/>
-	  <exclude name="ModifiedCyclomaticComplexity"/>
-	  <exclude name="StdCyclomaticComplexity"/>
-	  <!-- till #953 -->
-	  <exclude name="NPathComplexity"/>
+    <!-- till #954 -->
+    <exclude name="CyclomaticComplexity"/>
+    <exclude name="ModifiedCyclomaticComplexity"/>
+    <exclude name="StdCyclomaticComplexity"/>
+    <!-- till #953 -->
+    <exclude name="NPathComplexity"/>
   </rule>
-	  <rule ref="rulesets/java/codesize.xml/TooManyMethods">
-		<properties>
-			<property name="maxmethods" value="20"/>
-		</properties>
-	  </rule>
-	  <rule ref="rulesets/java/codesize.xml/ExcessiveClassLength">
-		<properties>
-			<!-- *TokenTypes are special classes that a big due to a lot of description comments -->
-			<!-- JavadocMethodCheck is depreaced class, till it is redone to use JabadocAst -->
-			<property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes' or @Image='TokenTypes' or @Image='JavadocMethodCheck']"/>
-		</properties>
-	  </rule>
-	  <rule ref="rulesets/java/codesize.xml/ExcessiveMethodLength">
-		<properties>
-			<!-- JavadocMethodCheck is depreaced class, till it is redone to use JavadocAst -->
-			<property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck']"/>
-		</properties>
-	  </rule>
+  <rule ref="rulesets/java/codesize.xml/TooManyMethods">
+    <properties>
+      <property name="maxmethods" value="20"/>
+    </properties>
+  </rule>
+  <rule ref="rulesets/java/codesize.xml/ExcessiveClassLength">
+    <properties>
+      <!-- *TokenTypes are special classes that a big due to a lot of description comments -->
+      <!-- JavadocMethodCheck is deprecated class, till it is redone to use JavadocAst -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes' or @Image='TokenTypes' or @Image='JavadocMethodCheck']"/>
+    </properties>
+  </rule>
+  <rule ref="rulesets/java/codesize.xml/ExcessiveMethodLength">
+    <properties>
+      <!-- JavadocMethodCheck is deprecated class, till it is redone to use JavadocAst -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck']"/>
+    </properties>
+  </rule>
 
   <rule ref="rulesets/java/comments.xml">
-	  <!-- <exclude name="CommentRequired"/> -->
-	  <!-- we use class comments as source for xdoc files, so sontent is big and that is by design -->
-	  <exclude name="CommentSize"/>
+    <!-- <exclude name="CommentRequired"/> -->
+    <!-- we use class comments as source for xdoc files, so content is big and that is by design -->
+    <exclude name="CommentSize"/>
   </rule>
-	  <rule ref="rulesets/java/comments.xml/CommentRequired">
-		<properties>
-			<!-- *TokenTypes are special class, comments are as traling comments -->
-			<property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes'] | //Annotation/MarkerAnnotation//Name[@Image='Override']"/>
-		</properties>
-	  </rule>
-	  <rule ref="rulesets/java/comments.xml/CommentSize">
-		<properties>
-			<!-- we use class comments as source for xdoc files, so sontent is big and that is by design -->
-			<property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration | //PackageDeclaration | //ClassOrInterfaceDeclaration[@Image='JavadocTagInfo'] | //ClassOrInterfaceDeclaration[@Image='SeverityLevel'] | //ClassOrInterfaceDeclaration[@Image='LeftCurlyOption'] | //ClassOrInterfaceDeclaration[@Image='RightCurlyOption'] | //ClassOrInterfaceDeclaration[@Image='ImportOrderOption']"/>
-			<property name="maxLines" value="8"/>
-			<property name="maxLineLength" value="100"/>
-		</properties>
-	  </rule>
+  <rule ref="rulesets/java/comments.xml/CommentRequired">
+    <properties>
+      <!-- *TokenTypes are special class, comments are as trailing comments -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes'] | //Annotation/MarkerAnnotation//Name[@Image='Override']"/>
+    </properties>
+  </rule>
+  <rule ref="rulesets/java/comments.xml/CommentSize">
+    <properties>
+      <!-- we use class comments as source for xdoc files, so content is big and that is by design -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration | //PackageDeclaration | //ClassOrInterfaceDeclaration[@Image='JavadocTagInfo'] | //ClassOrInterfaceDeclaration[@Image='SeverityLevel'] | //ClassOrInterfaceDeclaration[@Image='LeftCurlyOption'] | //ClassOrInterfaceDeclaration[@Image='RightCurlyOption'] | //ClassOrInterfaceDeclaration[@Image='ImportOrderOption']"/>
+      <property name="maxLines" value="8"/>
+      <property name="maxLineLength" value="100"/>
+    </properties>
+  </rule>
 
   <rule ref="rulesets/java/controversial.xml">
     <!-- calling super() is completely pointless, no matter if class inherits anything or not; it is meaningful only if you do not call implicit constructor of base class -->
     <exclude name="CallSuperInConstructor"/>
     <!-- We reuse Check instances between java files, we need to clear state of class in beginTree() methods -->
     <exclude name="NullAssignment"/>
-    <!-- it is possible only in functional languages and fanatically-pristine code, withot aditional option that are done at ReturnCountExtendedCheck it is not good rule -->
+    <!-- it is possible only in functional languages and fanatically-pristine code, without additional option that are done at ReturnCountExtendedCheck it is not good rule -->
     <exclude name="OnlyOneReturn"/>
-    <!-- oposite to UnnecessaryConstructor -->
+    <!-- opposite to UnnecessaryConstructor -->
     <exclude name="AtLeastOneConstructor"/>
     <!-- deprecated by PMD -->
     <exclude name="BooleanInversion"/>
@@ -72,7 +72,7 @@
     <exclude name="DefaultPackage"/>
     <!-- that rule is too buggy, too much false positives-->
     <exclude name="DataflowAnomalyAnalysis"/>
-    <!-- turning local varibles to fields create design problems and extend scope of variable -->
+    <!-- turning local variables to fields create design problems and extend scope of variable -->
     <exclude name="AvoidFinalLocalVariable"/>
     <!-- conflicts with names that does not mean in/out -->
     <exclude name="AvoidPrefixingMethodParameters"/>
@@ -81,30 +81,30 @@
     <!-- Checkstyle is not thread safe -->
     <exclude name="UseConcurrentHashMap"/>
   </rule>
-	  <rule ref="rulesets/java/controversial.xml/AvoidUsingShortType">
-		<properties>
-			<!-- that class integate checkstyle and antlr that is why it has a lot of imports -->
-			<property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AutomaticBean']"/>
-		</properties>
-	  </rule>
-  <rule ref="rulesets/java/coupling.xml">
-	  <!-- produce too much violations, suppresssed till we figure out how useful that metrics-->
-	  <exclude name="LawOfDemeter"/>
-	  <!-- this rule is for managing import, we have special Check for that -->
-	  <exclude name="LoosePackageCoupling"/>
+  <rule ref="rulesets/java/controversial.xml/AvoidUsingShortType">
+    <properties>
+      <!-- that class integrates checkstyle and antlr that is why it has a lot of imports -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AutomaticBean']"/>
+    </properties>
   </rule>
-	  <rule ref="rulesets/java/coupling.xml/ExcessiveImports">
-		<properties>
-			<!-- that class integate checkstyle and antlr that is why it has a lot of imports -->
-			<property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='TreeWalker']"/>
-		</properties>
-	  </rule>
-	  <rule ref="rulesets/java/coupling.xml/CouplingBetweenObjects">
-		<properties>
-			<!-- I donot see any problem , looks like false positive -->
-			<property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='HandlerFactory']"/>
-		</properties>
-	  </rule>
+  <rule ref="rulesets/java/coupling.xml">
+    <!-- produce too much violations, suppressed till we figure out how useful that metrics-->
+    <exclude name="LawOfDemeter"/>
+    <!-- this rule is for managing import, we have special Check for that -->
+    <exclude name="LoosePackageCoupling"/>
+  </rule>
+  <rule ref="rulesets/java/coupling.xml/ExcessiveImports">
+    <properties>
+      <!-- that class integrates checkstyle and antlr that is why it has a lot of imports -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='TreeWalker']"/>
+    </properties>
+  </rule>
+  <rule ref="rulesets/java/coupling.xml/CouplingBetweenObjects">
+    <properties>
+      <!-- I do not see any problem , looks like false positive -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='HandlerFactory']"/>
+    </properties>
+  </rule>
 
   <rule ref="rulesets/java/design.xml">
     <exclude name="UseUtilityClass"/>
