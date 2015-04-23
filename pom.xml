@@ -666,7 +666,7 @@
           <regex><pattern>.*.checks.TrailingCommentCheck</pattern><branchRate>90</branchRate><lineRate>93</lineRate></regex>
           <regex><pattern>.*.checks.TranslationCheck</pattern><branchRate>81</branchRate><lineRate>83</lineRate></regex>
           <regex><pattern>.*.checks.UncommentedMainCheck</pattern><branchRate>83</branchRate><lineRate>88</lineRate></regex>
-          <regex><pattern>.*.checks.UniquePropertiesCheck\$.*</pattern><branchRate>75</branchRate><lineRate>100</lineRate></regex>
+          <regex><pattern>.*.checks.UniquePropertiesCheck\$.*</pattern><branchRate>75</branchRate><lineRate>90</lineRate></regex>
           <regex><pattern>.*.checks.UpperEllCheck</pattern><branchRate>100</branchRate><lineRate>83</lineRate></regex>
 
 
