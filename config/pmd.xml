@@ -113,7 +113,6 @@
     <exclude name="ConfusingTernary"/>
     <!-- extra final modifier does not make code more secure in that cases-->
     <exclude name="ImmutableField"/>
-    <exclude name="AvoidSynchronizedAtMethodLevel"/>
     <exclude name="MissingBreakInSwitch"/>
     <exclude name="UseNotifyAllInsteadOfNotify"/>
     <exclude name="AvoidInstanceofChecksInCatchClause"/>

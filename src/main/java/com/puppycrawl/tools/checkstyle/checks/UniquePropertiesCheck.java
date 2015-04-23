@@ -138,14 +138,16 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck
                 .create();
 
         @Override
-        public synchronized Object put(Object key, Object value)
+        public Object put(Object key, Object value)
         {
-            final Object oldValue = super.put(key, value);
-            if (oldValue != null && key instanceof String) {
-                final String keyString = (String) key;
-                duplicatedStrings.add(keyString);
+            synchronized (this) {
+                final Object oldValue = super.put(key, value);
+                if (oldValue != null && key instanceof String) {
+                    final String keyString = (String) key;
+                    duplicatedStrings.add(keyString);
+                }
+                return oldValue;
             }
-            return oldValue;
         }
 
         public Multiset<String> getDuplicatedStrings()
