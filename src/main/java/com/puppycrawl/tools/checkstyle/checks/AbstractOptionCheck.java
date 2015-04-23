@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.Locale;
+
 import org.apache.commons.beanutils.ConversionException;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
@@ -60,7 +62,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
     public void setOption(String optionStr) throws ConversionException
     {
         try {
-            option = Enum.valueOf(optionClass, optionStr.trim().toUpperCase());
+            option = Enum.valueOf(optionClass, optionStr.trim().toUpperCase(Locale.ENGLISH));
         }
         catch (IllegalArgumentException iae) {
             throw new ConversionException("unable to parse " + option, iae);

@@ -99,20 +99,6 @@
       <Package name="~com\.puppycrawl\.tools\.checkstyle\.gui.*" />
     </Match>
     <Match>
-      <!-- till #896 -->
-      <Or>
-        <Class name="com.puppycrawl.tools.checkstyle.api.Scope" />
-        <Class name="com.puppycrawl.tools.checkstyle.api.SeverityLevel" />
-        <Class name="com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck" />
-        <Class name="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck" />
-        <Class name="com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder" />
-        <Class name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck" />
-        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck" />
-        <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck" />
-      </Or>
-      <Bug pattern="DM_CONVERT_CASE" />
-    </Match>
-    <Match>
       <!-- have never been a case for years, Eclipse does not show any other classes inherited from CommonASTWithHiddenTokens -->
       <Class name="com.puppycrawl.tools.checkstyle.api.DetailAST" />
       <Bug pattern="BC_UNCONFIRMED_CAST" />
