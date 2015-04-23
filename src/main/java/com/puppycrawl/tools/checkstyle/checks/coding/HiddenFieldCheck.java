@@ -26,8 +26,10 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.Utils;
 
+import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Pattern;
+
 import org.apache.commons.beanutils.ConversionException;
 
 /**
@@ -414,7 +416,7 @@ public class HiddenFieldCheck
         if (name != null && (name.length() == 1
                 || name.length() > 1 && !Character.isUpperCase(name.charAt(1))))
         {
-            setterName = name.substring(0, 1).toUpperCase() + name.substring(1);
+            setterName = name.substring(0, 1).toUpperCase(Locale.ENGLISH) + name.substring(1);
         }
         return setterName;
     }

@@ -20,10 +20,13 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.List;
+import java.util.Locale;
+
 import org.apache.commons.beanutils.ConversionException;
 
 /**
@@ -108,7 +111,7 @@ public class NewlineAtEndOfFileCheck
         try {
             lineSeparator =
                 Enum.valueOf(LineSeparatorOption.class, lineSeparatorParam.trim()
-                    .toUpperCase());
+                    .toUpperCase(Locale.ENGLISH));
         }
         catch (IllegalArgumentException iae) {
             throw new ConversionException("unable to parse " + lineSeparatorParam,
