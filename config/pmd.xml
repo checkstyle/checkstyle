@@ -185,7 +185,13 @@
     <!--not configurable, decreases readability-->
     <exclude name="UseStringBufferForStringAppends"/>
   </rule>
-  <!--<rule ref="rulesets/java/strictexception.xml"/>-->
+  <rule ref="rulesets/java/strictexception.xml">
+    <exclude name="AvoidCatchingGenericException"/>
+    <exclude name="AvoidCatchingThrowable"/>
+    <exclude name="AvoidThrowingNullPointerException"/>
+    <exclude name="AvoidThrowingRawExceptionTypes"/>
+    <exclude name="ExceptionAsFlowControl"/>
+  </rule>
   <rule ref="rulesets/java/strings.xml"/>
   <rule ref="rulesets/java/sunsecure.xml"/>
   <rule ref="rulesets/java/typeresolution.xml"/>
