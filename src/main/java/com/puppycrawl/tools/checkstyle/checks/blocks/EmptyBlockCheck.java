@@ -38,6 +38,7 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
  *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR},
  *  {@link TokenTypes#STATIC_INIT STATIC_INIT},
  *  {@link TokenTypes#LITERAL_SWITCH LITERAL_SWITCH}.
+ *  {@link TokenTypes#LITERAL_SYNCHRONIZED LITERAL_SYNCHRONIZED}.
  * </p>
  *
  * <p> An example of how to configure the check is:
@@ -96,6 +97,7 @@ public class EmptyBlockCheck
             TokenTypes.INSTANCE_INIT,
             TokenTypes.STATIC_INIT,
             TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_SYNCHRONIZED,
         };
     }
 
@@ -114,8 +116,8 @@ public class EmptyBlockCheck
             TokenTypes.INSTANCE_INIT,
             TokenTypes.STATIC_INIT,
             TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_SYNCHRONIZED,
             TokenTypes.LITERAL_CASE,
-            TokenTypes.LITERAL_SWITCH,
             TokenTypes.LITERAL_DEFAULT,
             TokenTypes.ARRAY_INIT,
         };

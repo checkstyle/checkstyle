@@ -202,4 +202,12 @@ class InputSemantic
         
     }
 
+    synchronized void foo() {
+        synchronized (this) {} // not OK
+        synchronized (Class.class) { // OK
+            synchronized (new Object()) {
+                // not OK if checking statements
+            }
+        }
+    }
 }
