@@ -109,15 +109,10 @@
   <rule ref="rulesets/java/design.xml">
     <!-- this produce false positives on gui.Main -->
     <exclude name="UseUtilityClass"/>
+    <!-- till #974-->
     <exclude name="ConfusingTernary"/>
-    <exclude name="InstantiationToGetClass"/>
-    <exclude name="IdempotentOperations"/>
-    <exclude name="SimpleDateFormatNeedsLocale"/>
+    <!-- extra final modifier does not make code more secure in that cases-->
     <exclude name="ImmutableField"/>
-    <exclude name="UseLocaleWithCaseConversions"/>
-    <exclude name="AvoidProtectedFieldInFinalClass"/>
-    <exclude name="AssignmentToNonFinalStatic"/>
-    <exclude name="MissingStaticMethodInNonInstantiatableClass"/>
     <exclude name="AvoidSynchronizedAtMethodLevel"/>
     <exclude name="MissingBreakInSwitch"/>
     <exclude name="UseNotifyAllInsteadOfNotify"/>
