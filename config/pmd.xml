@@ -107,9 +107,8 @@
   </rule>
 
   <rule ref="rulesets/java/design.xml">
+    <!-- this produce false positives on gui.Main -->
     <exclude name="UseUtilityClass"/>
-    <exclude name="SimplifyBooleanReturns"/>
-    <exclude name="SimplifyBooleanExpressions"/>
     <exclude name="SwitchStmtsShouldHaveDefault"/>
     <exclude name="AvoidDeeplyNestedIfStmts"/>
     <exclude name="AvoidReassigningParameters"/>
