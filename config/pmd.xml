@@ -109,7 +109,6 @@
   <rule ref="rulesets/java/design.xml">
     <!-- this produce false positives on gui.Main -->
     <exclude name="UseUtilityClass"/>
-    <exclude name="AvoidDeeplyNestedIfStmts"/>
     <exclude name="AvoidReassigningParameters"/>
     <exclude name="SwitchDensity"/>
     <exclude name="ConstructorCallsOverridableMethod"/>
@@ -160,6 +159,13 @@
     <exclude name="GodClass"/>
     <exclude name="AvoidProtectedMethodInFinalClassNotExtending"/>
   </rule>
+  <rule ref="rulesets/java/design.xml/AvoidDeeplyNestedIfStmts">
+    <properties>
+      <!-- default is 3 but we try to use single point of exit from method and that require extra IFs -->
+      <property name="problemDepth" value="4"/>
+    </properties>
+  </rule>
+
   <rule ref="rulesets/java/empty.xml"/>
   <rule ref="rulesets/java/finalizers.xml"/>
   <rule ref="rulesets/java/imports.xml"/>

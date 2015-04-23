@@ -61,23 +61,12 @@ public class MethodCallHandler extends ExpressionHandler
 
                 // we should increase indentation only if this is the first
                 // chained method call which was moved to the next line
-                final DetailAST main = getMainAst();
-                final DetailAST dot = main.getFirstChild();
-                final DetailAST target = dot.getFirstChild();
-
-                if (dot.getType() == TokenTypes.DOT
-                    && target.getType() == TokenTypes.METHOD_CALL)
-                {
-                    final DetailAST dot1 = target.getFirstChild();
-                    final DetailAST target1 = dot1.getFirstChild();
-
-                    if (dot1.getType() == TokenTypes.DOT
-                        && target1.getType() == TokenTypes.METHOD_CALL)
-                    {
-                        return container.getLevel();
-                    }
+                if (isChainedMethodCallWrapped()) {
+                    return container.getLevel();
                 }
-                return new IndentLevel(container.getLevel(), getBasicOffset());
+                else {
+                    return new IndentLevel(container.getLevel(), getBasicOffset());
+                }
             }
 
             // if we get here, we are the child of the left hand side (name
@@ -101,6 +90,32 @@ public class MethodCallHandler extends ExpressionHandler
             return new IndentLevel(lineStart);
         }
         return super.getLevelImpl();
+    }
+
+    /**
+     * if this is the first chained method call which was moved to the next line
+     * @return true if chained class are wrapped
+     */
+    private boolean isChainedMethodCallWrapped()
+    {
+        boolean result = false;
+        final DetailAST main = getMainAst();
+        final DetailAST dot = main.getFirstChild();
+        final DetailAST target = dot.getFirstChild();
+
+        if (dot.getType() == TokenTypes.DOT
+            && target.getType() == TokenTypes.METHOD_CALL)
+        {
+            final DetailAST dot1 = target.getFirstChild();
+            final DetailAST target1 = dot1.getFirstChild();
+
+            if (dot1.getType() == TokenTypes.DOT
+                && target1.getType() == TokenTypes.METHOD_CALL)
+            {
+                result = true;
+            }
+        }
+        return result;
     }
 
     /**
