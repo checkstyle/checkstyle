@@ -229,7 +229,7 @@ public abstract class DeclarationCollector extends Check
      * @author Stephen Bloch
      * June 19, 2003
      */
-    private abstract static class LexicalFrame
+    private static class LexicalFrame
     {
         /** Set of name of variables declared in this frame. */
         private final Set<String> varNames;

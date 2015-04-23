@@ -115,7 +115,6 @@
     <exclude name="ImmutableField"/>
     <!-- this rule does not have any option, unreasonable to use -->
     <exclude name="MissingBreakInSwitch"/>
-    <exclude name="AbstractClassWithoutAbstractMethod"/>
     <exclude name="SimplifyConditional"/>
     <exclude name="CompareObjectsWithEquals"/>
     <exclude name="PositionLiteralsFirstInComparisons"/>
