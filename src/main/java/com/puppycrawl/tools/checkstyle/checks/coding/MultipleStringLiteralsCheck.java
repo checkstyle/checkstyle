@@ -210,7 +210,7 @@ public class MultipleStringLiteralsCheck extends Check
          * @param line int
          * @param col int
          */
-        private StringInfo(int line, int col)
+        public StringInfo(int line, int col)
         {
             this.line = line;
             this.col = col;

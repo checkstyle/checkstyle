@@ -117,7 +117,7 @@ public final class ConfigurationLoader
          * @throws SAXException if an error occurs
          * @throws ParserConfigurationException if an error occurs
          */
-        private InternalLoader()
+        public InternalLoader()
             throws SAXException, ParserConfigurationException
         {
             // super(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);

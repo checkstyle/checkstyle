@@ -109,7 +109,6 @@
   <rule ref="rulesets/java/design.xml">
     <!-- this produce false positives on gui.Main -->
     <exclude name="UseUtilityClass"/>
-    <exclude name="AccessorClassGeneration"/>
     <exclude name="FinalFieldCouldBeStatic"/>
     <exclude name="CloseResource"/>
     <exclude name="NonStaticInitializer"/>
