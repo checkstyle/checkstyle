@@ -113,9 +113,8 @@
     <exclude name="ConfusingTernary"/>
     <!-- extra final modifier does not make code more secure in that cases-->
     <exclude name="ImmutableField"/>
+    <!-- this rule does not have any option, unreasonable to use -->
     <exclude name="MissingBreakInSwitch"/>
-    <exclude name="UseNotifyAllInsteadOfNotify"/>
-    <exclude name="AvoidInstanceofChecksInCatchClause"/>
     <exclude name="AbstractClassWithoutAbstractMethod"/>
     <exclude name="SimplifyConditional"/>
     <exclude name="CompareObjectsWithEquals"/>
