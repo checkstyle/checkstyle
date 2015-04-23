@@ -84,8 +84,9 @@ public class ParseTreeModel extends AbstractTreeTableModel
                 return Integer.class;
             case 4:
                 return String.class;
+            default:
+                return Object.class;
         }
-        return Object.class;
     }
 
     @Override
@@ -103,8 +104,9 @@ public class ParseTreeModel extends AbstractTreeTableModel
                 return ast.getColumnNo();
             case 4:
                 return ast.getText();
+            default:
+                return null;
         }
-        return null;
     }
 
     @Override

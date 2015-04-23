@@ -109,7 +109,6 @@
   <rule ref="rulesets/java/design.xml">
     <!-- this produce false positives on gui.Main -->
     <exclude name="UseUtilityClass"/>
-    <exclude name="SwitchStmtsShouldHaveDefault"/>
     <exclude name="AvoidDeeplyNestedIfStmts"/>
     <exclude name="AvoidReassigningParameters"/>
     <exclude name="SwitchDensity"/>
