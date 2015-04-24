@@ -345,7 +345,7 @@ public abstract class ExpressionHandler
     {
         final String line = indentCheck.getLine(lineNum - 1);
         final int start = getLineStart(line);
-        if (indentLevel.gt(start)) {
+        if (indentLevel.greaterThan(start)) {
             logChildError(lineNum, start, indentLevel);
         }
     }
@@ -369,7 +369,7 @@ public abstract class ExpressionHandler
         // error if this statement starts the line and it is less than
         // the correct indentation level
         if (mustMatch ? !indentLevel.accept(start)
-            : colNum == start && indentLevel.gt(start))
+            : colNum == start && indentLevel.greaterThan(start))
         {
             logChildError(lineNum, start, indentLevel);
         }

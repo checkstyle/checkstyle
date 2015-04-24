@@ -165,7 +165,6 @@
     <exclude name="AvoidFieldNameMatchingMethodName"/>
     <exclude name="LongVariable"/>
     <exclude name="ShortClassName"/>
-    <exclude name="ShortMethodName"/>
     <exclude name="ShortVariable"/>
   </rule>
   <rule ref="rulesets/java/optimizations.xml">

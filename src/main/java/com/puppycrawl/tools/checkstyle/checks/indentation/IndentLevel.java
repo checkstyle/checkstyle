@@ -80,7 +80,7 @@ public class IndentLevel
      * @return true if <code>indent</code> less then minimal of
      *         acceptable indentation levels, false otherwise.
      */
-    public boolean gt(int indent)
+    public boolean greaterThan(int indent)
     {
         return levels.nextSetBit(0) > indent;
     }
