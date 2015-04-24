@@ -220,7 +220,7 @@ public class NoWhitespaceAfterCheck extends Check
      * <p>
      * <code>
      * int[] someArray;
-     * <code>
+     * </code>
      * </p>
      * <p>
      * someArray is identifier.

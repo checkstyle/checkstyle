@@ -364,7 +364,7 @@ public class ImportOrderCheck
     }
 
     /**
-     * Checks whether static imports grouped by <b>top<b/> or <b>bottom<b/> option
+     * Checks whether static imports grouped by <b>top</b> or <b>bottom</b> option
      * are sorted alphabetically or not.
      * @param isStatic if current import is static.
      * @return true if static imports should be sorted alphabetically.
