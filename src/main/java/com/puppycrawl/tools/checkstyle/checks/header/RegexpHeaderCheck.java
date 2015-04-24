@@ -145,4 +145,25 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
         }
     }
 
+    /**
+     * Validates the {@code header} by compiling it with
+     * {@link Pattern#compile(java.lang.String) } and throws
+     * {@link PatternSyntaxException} if {@code header} isn't a valid pattern.
+     * @param header the header value to validate and set (in that order)
+     */
+    @Override
+    public void setHeader(String header)
+    {
+        if (header == null || header.trim().length() == 0) {
+            return;
+        }
+        try {
+            Pattern.compile(header);
+        }
+        catch (PatternSyntaxException exception) {
+            throw exception;
+        }
+        super.setHeader(header);
+    }
+
 }
