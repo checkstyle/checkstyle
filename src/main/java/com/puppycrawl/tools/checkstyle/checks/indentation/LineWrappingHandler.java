@@ -80,7 +80,7 @@ public class LineWrappingHandler
         this.firstNode = firstNode;
         this.lastNode = lastNode;
         indentLevel = indentCheck.getLineWrappingIndentation();
-        forceStrictCondition = indentCheck.getForceStrictCondition();
+        forceStrictCondition = indentCheck.isForceStrictCondition();
     }
 
     /**

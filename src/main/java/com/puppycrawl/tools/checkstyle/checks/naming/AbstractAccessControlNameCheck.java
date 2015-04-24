@@ -114,12 +114,6 @@ public abstract class AbstractAccessControlNameCheck
         applyToPublic = applyTo;
     }
 
-    /** @return true if the check should be applied to public members. */
-    public boolean getApplyToPublic()
-    {
-        return applyToPublic;
-    }
-
     /**
      * Sets whether we should apply the check to protected members.
      *
@@ -128,12 +122,6 @@ public abstract class AbstractAccessControlNameCheck
     public void setApplyToProtected(boolean applyTo)
     {
         applyToProtected = applyTo;
-    }
-
-    /** @return true if the check should be applied to protected members. */
-    public boolean getApplyToProtected()
-    {
-        return applyToProtected;
     }
 
     /**
@@ -147,14 +135,6 @@ public abstract class AbstractAccessControlNameCheck
     }
 
     /**
-     * @return true if the check should be applied to package-private members.
-     */
-    public boolean getApplyToPackage()
-    {
-        return applyToPackage;
-    }
-
-    /**
      * Sets whether we should apply the check to private members.
      *
      * @param applyTo new value of the property.
@@ -162,11 +142,5 @@ public abstract class AbstractAccessControlNameCheck
     public void setApplyToPrivate(boolean applyTo)
     {
         applyToPrivate = applyTo;
-    }
-
-    /** @return true if the check should be applied to private members. */
-    public boolean getApplyToPrivate()
-    {
-        return applyToPrivate;
     }
 }

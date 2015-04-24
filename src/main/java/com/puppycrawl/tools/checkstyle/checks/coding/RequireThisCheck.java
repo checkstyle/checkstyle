@@ -81,13 +81,6 @@ public class RequireThisCheck extends DeclarationCollector
     {
         this.checkFields = checkFields;
     }
-    /**
-     * @return true if we should check fields usage false otherwise.
-     */
-    public boolean getCheckFields()
-    {
-        return checkFields;
-    }
 
     /**
      * Setter for checkMethods property.
@@ -96,13 +89,6 @@ public class RequireThisCheck extends DeclarationCollector
     public void setCheckMethods(boolean checkMethods)
     {
         this.checkMethods = checkMethods;
-    }
-    /**
-     * @return true if we should check methods usage false otherwise.
-     */
-    public boolean getCheckMethods()
-    {
-        return checkMethods;
     }
 
     @Override

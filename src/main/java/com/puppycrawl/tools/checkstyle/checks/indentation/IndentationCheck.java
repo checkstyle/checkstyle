@@ -117,7 +117,7 @@ public class IndentationCheck extends Check
      * Get forcing strict condition.
      * @return forceStrictCondition value.
      */
-    public boolean getForceStrictCondition()
+    public boolean isForceStrictCondition()
     {
         return forceStrictCondition;
     }
