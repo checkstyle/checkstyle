@@ -112,7 +112,7 @@ public class DeclarationOrderCheck extends Check
     private static class ScopeState
     {
         /** The state the check is in */
-        private int scopeState = STATE_STATIC_VARIABLE_DEF;
+        private int currentScopeState = STATE_STATIC_VARIABLE_DEF;
 
         /** The sub-state the check is in */
         private Scope declarationAccess = Scope.PUBLIC;
@@ -164,13 +164,13 @@ public class DeclarationOrderCheck extends Check
                 }
 
                 state = scopeStates.peek();
-                if (state.scopeState > STATE_CTOR_DEF) {
+                if (state.currentScopeState > STATE_CTOR_DEF) {
                     if (!ignoreConstructors) {
                         log(ast, MSG_CONSTRUCTOR);
                     }
                 }
                 else {
-                    state.scopeState = STATE_CTOR_DEF;
+                    state.currentScopeState = STATE_CTOR_DEF;
                 }
                 break;
 
@@ -180,13 +180,13 @@ public class DeclarationOrderCheck extends Check
                     return;
                 }
 
-                if (state.scopeState > STATE_METHOD_DEF) {
+                if (state.currentScopeState > STATE_METHOD_DEF) {
                     if (!ignoreMethods) {
                         log(ast, MSG_METHOD);
                     }
                 }
                 else {
-                    state.scopeState = STATE_METHOD_DEF;
+                    state.currentScopeState = STATE_METHOD_DEF;
                 }
                 break;
 
@@ -200,24 +200,24 @@ public class DeclarationOrderCheck extends Check
 
                 state = scopeStates.peek();
                 if (ast.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
-                    if (state.scopeState > STATE_STATIC_VARIABLE_DEF) {
+                    if (state.currentScopeState > STATE_STATIC_VARIABLE_DEF) {
                         if (!ignoreModifiers
-                            || state.scopeState > STATE_INSTANCE_VARIABLE_DEF)
+                            || state.currentScopeState > STATE_INSTANCE_VARIABLE_DEF)
                         {
                             log(ast, MSG_STATIC);
                         }
                     }
                     else {
-                        state.scopeState = STATE_STATIC_VARIABLE_DEF;
+                        state.currentScopeState = STATE_STATIC_VARIABLE_DEF;
                     }
                 }
                 else {
-                    if (state.scopeState > STATE_INSTANCE_VARIABLE_DEF) {
+                    if (state.currentScopeState > STATE_INSTANCE_VARIABLE_DEF) {
                         log(ast, MSG_INSTANCE);
                     }
-                    else if (state.scopeState == STATE_STATIC_VARIABLE_DEF) {
+                    else if (state.currentScopeState == STATE_STATIC_VARIABLE_DEF) {
                         state.declarationAccess = Scope.PUBLIC;
-                        state.scopeState = STATE_INSTANCE_VARIABLE_DEF;
+                        state.currentScopeState = STATE_INSTANCE_VARIABLE_DEF;
                     }
                 }
 
