@@ -20,8 +20,8 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 /**
  * Represents the policy for checking block statements.
- * @see com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck
  * @author Rick Giles
+ * @see com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck
  */
 public enum BlockOption
 {

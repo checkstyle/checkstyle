@@ -176,11 +176,11 @@ public final class FileContents implements CommentListener
 
     /**
      * Returns the specified C comment as a String array.
-     * @return C comment as a array
      * @param startLineNo the starting line number
      * @param startColNo the starting column number
      * @param endLineNo the ending line number
      * @param endColNo the ending column number
+     * @return C comment as a array
      **/
     private String[] extractCComment(int startLineNo, int startColNo,
             int endLineNo, int endColNo)
@@ -206,8 +206,8 @@ public final class FileContents implements CommentListener
     /**
      * Returns the Javadoc comment before the specified line.
      * A return value of <code>null</code> means there is no such comment.
-     * @return the Javadoc comment, or <code>null</code> if none
      * @param lineNoBefore the line number to check before
+     * @return the Javadoc comment, or <code>null</code> if none
      **/
     public TextBlock getJavadocBefore(int lineNoBefore)
     {

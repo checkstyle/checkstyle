@@ -108,8 +108,8 @@ public final class MethodCountCheck extends Check
         }
 
         /**
-         * @return the value of a scope counter
          * @param scope the scope counter to get the value of
+         * @return the value of a scope counter
          */
         int value(Scope scope)
         {

@@ -50,11 +50,11 @@ public final class TokenTypesDoclet
     /**
      * The doclet's starter method.
      * @param root <code>RootDoc</code> given to the doclet
+     * @return true if the given <code>RootDoc</code> is processed.
      * @exception FileNotFoundException will be thrown if the doclet
      *            will be unable to write to the specified file.
      * @exception UnsupportedEncodingException will be thrown if the doclet
      *            will be unable to use UTF-8 encoding.
-     * @return true if the given <code>RootDoc</code> is processed.
      */
     public static boolean start(RootDoc root)
             throws FileNotFoundException, UnsupportedEncodingException

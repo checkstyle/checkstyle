@@ -30,9 +30,9 @@ import com.puppycrawl.tools.checkstyle.api.Check;
  * representation to the {@link Enum} is to {@link String#trim()} the string
  * and convert using {@link String#toUpperCase()} and then look up using
  * {@link Enum#valueOf}.
- * @param <T> the type of the option.
  * @author Oliver Burn
  * @author Rick Giles
+ * @param <T> the type of the option.
  */
 public abstract class AbstractOptionCheck<T extends Enum<T>>
     extends Check

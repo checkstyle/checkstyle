@@ -580,8 +580,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      * Returns the tags in a javadoc comment. Only finds throws, exception,
      * param, return and see tags.
      *
-     * @return the tags found
      * @param comment the Javadoc comment
+     * @return the tags found
      */
     private List<JavadocTag> getMethodTags(TextBlock comment)
     {

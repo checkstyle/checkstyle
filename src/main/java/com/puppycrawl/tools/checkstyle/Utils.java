@@ -174,8 +174,8 @@ public final class Utils
     }
 
     /**
-     * @return the base class name from a fully qualified name
      * @param type the fully qualified name. Cannot be null
+     * @return the base class name from a fully qualified name
      */
     public static String baseClassname(String type)
     {

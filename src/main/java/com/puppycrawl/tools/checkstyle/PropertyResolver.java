@@ -27,8 +27,8 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * resolve the values of external properties like <code>${basename}</code>
  * that occur in the configuration file.
  *
- * @see ConfigurationLoader
  * @author lkuehne
+ * @see ConfigurationLoader
  */
 public interface PropertyResolver
 {

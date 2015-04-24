@@ -146,9 +146,9 @@ final class PropertyCacheFile
     }
 
     /**
-     * @return whether the specified file has already been checked ok
      * @param fileName the file to check
      * @param timestamp the timestamp of the file to check
+     * @return whether the specified file has already been checked ok
      */
     boolean alreadyChecked(String fileName, long timestamp)
     {

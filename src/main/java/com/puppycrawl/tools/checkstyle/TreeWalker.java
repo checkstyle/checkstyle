@@ -447,11 +447,11 @@ public final class TreeWalker
      *
      * @param contents
      *                contains the contents of the file
+     * @return the root of the AST
      * @throws TokenStreamException
      *                 if lexing failed
      * @throws RecognitionException
      *                 if parsing failed
-     * @return the root of the AST
      */
     public static DetailAST parse(FileContents contents)
         throws RecognitionException, TokenStreamException

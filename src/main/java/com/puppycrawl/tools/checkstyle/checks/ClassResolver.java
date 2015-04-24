@@ -122,8 +122,8 @@ public class ClassResolver
     }
 
     /**
-     * @return whether a specified class is loadable with safeLoad().
      * @param name name of the class to check
+     * @return whether a specified class is loadable with safeLoad().
      */
     public boolean isLoadable(String name)
     {

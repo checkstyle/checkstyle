@@ -226,6 +226,7 @@
     <module name="SuppressWarnings"/>
     <module name="OuterTypeFilename"/>
     <module name="HideUtilityClassConstructor"/>
+    <module name="AtclauseOrder"/>
     <module name="AvoidNestedBlocks">
       <property name="allowInSwitchCase" value="true"/>
     </module>
@@ -236,7 +237,6 @@
     <module name="AnnotationLocation"/>
     <module name="AnonInnerLength"/>
     <module name="ArrayTypeStyle"/>
-    <module name="AtclauseOrder"/>
     <module name="AvoidEscapedUnicodeCharacters"/>
     <module name="AvoidInlineConditionals"/>
     <module name="AvoidStaticImport"/>

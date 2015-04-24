@@ -54,9 +54,9 @@ import org.apache.commons.beanutils.ConversionException;
  * since that module makes the suppression comments in the .java
  * files available <i>sub rosa</i>.
  * </p>
- * @see FileContentsHolder
  * @author Mike McMahon
  * @author Rick Giles
+ * @see FileContentsHolder
  */
 public class SuppressionCommentFilter
     extends AutomaticBean

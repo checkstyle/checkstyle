@@ -206,8 +206,8 @@ public class XMLLogger
     }
 
     /**
-     * @return whether the given argument a character or entity reference
      * @param ent the possible entity to look for.
+     * @return whether the given argument a character or entity reference
      */
     public boolean isReference(String ent)
     {

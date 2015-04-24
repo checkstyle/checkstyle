@@ -21,9 +21,9 @@ package com.puppycrawl.tools.checkstyle.api;
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
 
 /**
+ * @author Baratali Izmailov
  * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
  * javadoc - The Java API Documentation Generator</a>
- * @author Baratali Izmailov
  */
 public final class JavadocTokenTypes
 {

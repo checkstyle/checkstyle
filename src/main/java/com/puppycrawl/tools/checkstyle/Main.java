@@ -80,10 +80,10 @@ public final class Main
      * Parses and executes Checkstyle based on passed arguments.
      * @param args
      *        command line parameters
+     * @return parsed information about passed parameters
      * @throws ParseException
      *         when passed arguments are not valid
      * @exception CheckstyleException when provided parameters are not supported
-     * @return parsed information about passed parameters
      */
     private static CommandLine parseCli(String[] args)
             throws ParseException

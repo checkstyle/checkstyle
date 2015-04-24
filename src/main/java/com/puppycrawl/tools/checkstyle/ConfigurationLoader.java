@@ -440,11 +440,11 @@ public final class ConfigurationLoader
      * @param defaultValue default to use if one of the properties in value
      *              cannot be resolved from props.
      *
+     * @return the original string with the properties replaced, or
+     *         <code>null</code> if the original string is <code>null</code>.
      * @throws CheckstyleException if the string contains an opening
      *                           <code>${</code> without a closing
      *                           <code>}</code>
-     * @return the original string with the properties replaced, or
-     *         <code>null</code> if the original string is <code>null</code>.
      *
      * Code copied from ant -
      * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java

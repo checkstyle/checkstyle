@@ -567,8 +567,8 @@ public class CheckStyleTask extends Task
         }
 
         /**
-         * @return a DefaultLogger instance
          * @param task the task to possibly log to
+         * @return a DefaultLogger instance
          * @throws IOException if an error occurs
          */
         private AuditListener createDefaultLogger(Task task)
@@ -583,8 +583,8 @@ public class CheckStyleTask extends Task
         }
 
         /**
-         * @return an XMLLogger instance
          * @param task the task to possibly log to
+         * @return an XMLLogger instance
          * @throws IOException if an error occurs
          */
         private AuditListener createXMLLogger(Task task) throws IOException
