@@ -229,6 +229,7 @@
     <module name="AvoidNestedBlocks">
       <property name="allowInSwitchCase" value="true"/>
     </module>
+    <module name="AvoidStaticImport"/>
 
 <!--
     <module name="AbbreviationAsWordInName"/>
@@ -239,7 +240,6 @@
     <module name="AtclauseOrder"/>
     <module name="AvoidEscapedUnicodeCharacters"/>
     <module name="AvoidInlineConditionals"/>
-    <module name="AvoidStaticImport"/>
     <module name="BooleanExpressionComplexity"/>
     <module name="ClassDataAbstractionCoupling"/>
     <module name="ClassFanOutComplexity"/>
