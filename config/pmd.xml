@@ -164,8 +164,13 @@
     <exclude name="AbstractNaming"/>
     <exclude name="AvoidFieldNameMatchingMethodName"/>
     <exclude name="LongVariable"/>
-    <exclude name="ShortClassName"/>
     <exclude name="ShortVariable"/>
+  </rule>
+  <rule ref="rulesets/java/naming.xml/ShortClassName">
+    <properties>
+      <!-- Main is good name for class containing main method, Tag as inner class name is also fine -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main' or @Image='Tag']"/>
+    </properties>
   </rule>
   <rule ref="rulesets/java/optimizations.xml">
     <!--produces more false-positives than real problems-->

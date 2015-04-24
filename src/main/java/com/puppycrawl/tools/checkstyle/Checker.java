@@ -275,13 +275,13 @@ public class Checker extends AutomaticBean implements MessageDispatcher
             catch (final FileNotFoundException fnfe) {
                 LOG.debug("FileNotFoundException occured.", fnfe);
                 fileMessages.add(new LocalizedMessage(0,
-                        Defn.CHECKSTYLE_BUNDLE, "general.fileNotFound", null,
+                        Definitions.CHECKSTYLE_BUNDLE, "general.fileNotFound", null,
                         null, this.getClass(), null));
             }
             catch (final IOException ioe) {
                 LOG.debug("IOException occured.", ioe);
                 fileMessages.add(new LocalizedMessage(0,
-                        Defn.CHECKSTYLE_BUNDLE, "general.exception",
+                        Definitions.CHECKSTYLE_BUNDLE, "general.exception",
                         new String[] {ioe.getMessage()}, null, this.getClass(),
                         null));
             }

@@ -242,7 +242,7 @@ public final class TreeWalker
     {
         return new LocalizedMessage(
                 0,
-                Defn.CHECKSTYLE_BUNDLE,
+                Definitions.CHECKSTYLE_BUNDLE,
                 "general.exception",
                 new String[] {message },
                 getId(),

@@ -50,7 +50,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport
             "37:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Checker"),
             "38:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.CheckerTest"),
             "39:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport"),
-            "40:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Defn"),
+            "40:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Definitions"),
             "41:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Input15Extensions"),
             "42:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest"),
             "43:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.CheckStyleTask"),

@@ -22,12 +22,12 @@ package com.puppycrawl.tools.checkstyle;
  * Contains constant definitions common to the package.
  * @author Oliver Burn
  **/
-public final class Defn
+public final class Definitions
 {
     /**
-     * Do no allow <code>Defn</code> instances to be created.
+     * Do no allow <code>Definitions</code> instances to be created.
      **/
-    private Defn()
+    private Definitions()
     {
     }
 
