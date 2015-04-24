@@ -160,7 +160,16 @@
   <rule ref="rulesets/java/logging-jakarta-commons.xml"/>
   <!--<rule ref="rulesets/java/logging-java.xml"/>-->
   <rule ref="rulesets/java/migrating.xml"/>
-  <!--<rule ref="rulesets/java/naming.xml"/>-->
+  <rule ref="rulesets/java/naming.xml">
+    <exclude name="AbstractNaming"/>
+    <exclude name="AvoidFieldNameMatchingMethodName"/>
+    <exclude name="AvoidFieldNameMatchingTypeName"/>
+    <exclude name="BooleanGetMethodName"/>
+    <exclude name="LongVariable"/>
+    <exclude name="ShortClassName"/>
+    <exclude name="ShortMethodName"/>
+    <exclude name="ShortVariable"/>
+  </rule>
   <rule ref="rulesets/java/optimizations.xml">
     <!--produces more false-positives than real problems-->
     <exclude name="AvoidInstantiatingObjectsInLoops"/>
