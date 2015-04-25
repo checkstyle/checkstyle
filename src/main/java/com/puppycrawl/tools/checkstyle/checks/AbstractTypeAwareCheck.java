@@ -18,6 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,7 +28,6 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -55,8 +57,7 @@ public abstract class AbstractTypeAwareCheck extends Check
     private ClassResolver classResolver;
 
     /** Stack of maps for type params. */
-    private final FastStack<Map<String, ClassInfo>> typeParams =
-        FastStack.newInstance();
+    private final Deque<Map<String, ClassInfo>> typeParams = new ArrayDeque<>();
 
     /**
      * Whether to log class loading errors to the checkstyle report
@@ -407,8 +408,9 @@ public abstract class AbstractTypeAwareCheck extends Check
     protected final ClassInfo findClassAlias(final String name)
     {
         ClassInfo ci = null;
-        for (int i = typeParams.size() - 1; i >= 0; i--) {
-            final Map<String, ClassInfo> paramMap = typeParams.peek(i);
+        final Iterator<Map<String, ClassInfo>> iterator = typeParams.descendingIterator();
+        while (iterator.hasNext()) {
+            final Map<String, ClassInfo> paramMap = iterator.next();
             ci = paramMap.get(name);
             if (ci != null) {
                 break;

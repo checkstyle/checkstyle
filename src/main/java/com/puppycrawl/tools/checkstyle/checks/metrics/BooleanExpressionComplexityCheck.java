@@ -20,9 +20,11 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Restricts nested boolean operators (&amp;&amp;, ||, &amp;, | and ^) to
@@ -47,11 +49,11 @@ public final class BooleanExpressionComplexityCheck extends Check
     private static final int DEFAULT_MAX = 3;
 
     /** Stack of contexts. */
-    private final FastStack<Context> contextStack = FastStack.newInstance();
+    private final Deque<Context> contextStack = new ArrayDeque<>();
     /** Maximum allowed complexity. */
     private int max;
     /** Current context. */
-    private Context context;
+    private Context context = new Context(false);
 
     /** Creates new instance of the check. */
     public BooleanExpressionComplexityCheck()
