@@ -47,8 +47,6 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
 
-import static com.puppycrawl.tools.checkstyle.Utils.fileExtensionMatches;
-
 /**
  * This class provides the functionality to check a set of files.
  * @author Oliver Burn
@@ -259,7 +257,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
 
         // Process each file
         for (final File f : files) {
-            if (!fileExtensionMatches(f, fileExtensions)) {
+            if (!Utils.fileExtensionMatches(f, fileExtensions)) {
                 continue;
             }
             final String fileName = f.getAbsolutePath();
