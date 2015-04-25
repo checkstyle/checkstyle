@@ -20,10 +20,13 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -77,8 +80,7 @@ public class FinalLocalVariableCheck extends Check
     public static final String MSG_KEY = "final.variable";
 
     /** Scope Stack */
-    private final FastStack<Map<String, DetailAST>> scopeStack =
-        FastStack.newInstance();
+    private final Deque<Map<String, DetailAST>> scopeStack = new ArrayDeque<>();
 
     /** Controls whether to check enhanced for-loop variable. */
     private boolean validateEnhancedForLoopVariable;
@@ -275,8 +277,9 @@ public class FinalLocalVariableCheck extends Check
      */
     private void removeVariable(DetailAST ast)
     {
-        for (int i = scopeStack.size() - 1; i >= 0; i--) {
-            final Map<String, DetailAST> state = scopeStack.peek(i);
+        final Iterator<Map<String, DetailAST>> iterator = scopeStack.descendingIterator();
+        while (iterator.hasNext()) {
+            final Map<String, DetailAST> state = iterator.next();
             final Object obj = state.remove(ast.getText());
             if (obj != null) {
                 break;
