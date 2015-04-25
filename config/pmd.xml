@@ -165,10 +165,14 @@
     <exclude name="AbstractNaming"/>
     <!-- till #984 -->
     <exclude name="AvoidFieldNameMatchingMethodName"/>
-    <!-- nothing bad in long and descriptive variable names if only they fit line -->
-    <exclude name="LongVariable"/>
     <!-- till #985 -->
     <exclude name="ShortVariable"/>
+  </rule>
+  <rule ref="rulesets/java/naming.xml/LongVariable">
+    <properties>
+      <!-- nothing bad in long and descriptive variable names if only they fit line, but still keep it reasonable -->
+      <property name="minimum" value="45"/>
+    </properties>
   </rule>
   <rule ref="rulesets/java/naming.xml/ShortClassName">
     <properties>
