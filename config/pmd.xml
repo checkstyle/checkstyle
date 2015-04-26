@@ -117,7 +117,9 @@
     <exclude name="MissingBreakInSwitch"/>
     <!-- we need compare by ref as Tree structure is immutable, we can easily rely on refs -->
     <exclude name="CompareObjectsWithEquals"/>
+    <!-- till #995 -->
     <exclude name="UncommentedEmptyMethod"/>
+    <!-- till #996 -->
     <exclude name="PreserveStackTrace"/>
     <exclude name="UseCollectionIsEmpty"/>
     <exclude name="EmptyMethodInAbstractClassShouldBeAbstract"/>
