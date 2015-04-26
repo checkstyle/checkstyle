@@ -21,8 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
-
-import static org.apache.commons.lang3.StringUtils.isNotBlank;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Checks for empty blocks. The policy to verify is specified using the {@link
@@ -177,7 +176,7 @@ public class EmptyBlockCheck
                 // Handle braces on the same line
                 final String txt = lines[slistLineNo - 1]
                     .substring(slistColNo + 1, rcurlyColNo);
-                if (isNotBlank(txt)) {
+                if (StringUtils.isNotBlank(txt)) {
                     retVal = true;
                 }
             }
