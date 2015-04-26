@@ -97,7 +97,8 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
     }
 
     // Need to fix the line endings in the input file
-    @Ignore @Test
+    @Ignore
+    @Test
     public void testCarriageReturn() throws Exception
     {
         final String illegal = "\\r";
