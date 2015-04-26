@@ -211,7 +211,7 @@ public class XMLLogger
      */
     public boolean isReference(String ent)
     {
-        if (!(ent.charAt(0) == '&') || !ent.endsWith(";")) {
+        if (ent.charAt(0) != '&' || !ent.endsWith(";")) {
             return false;
         }
 

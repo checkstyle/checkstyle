@@ -124,7 +124,6 @@
     <!-- till #997 -->
     <exclude name="EmptyMethodInAbstractClassShouldBeAbstract"/>
     <exclude name="TooFewBranchesForASwitchStatement"/>
-    <exclude name="LogicInversion"/>
     <exclude name="UseVarargs"/>
     <!-- we will use our own declaration order logic -->
     <exclude name="FieldDeclarationsShouldBeAtStartOfClass"/>

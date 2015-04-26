@@ -414,7 +414,7 @@ public class CustomImportOrderCheck extends Check
                     && previousImport != null
                     && matchesImportGroup(importObject.isStatic(),
                             fullImportIdent, currentGroup)
-                    && !(compareImports(fullImportIdent, previousImport) >= 0))
+                    && compareImports(fullImportIdent, previousImport) < 0)
             {
                 log(importObject.getLineNumber(), MSG_LEX, fullImportIdent);
             }
