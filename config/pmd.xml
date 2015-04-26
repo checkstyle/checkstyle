@@ -121,8 +121,8 @@
     <exclude name="UncommentedEmptyMethod"/>
     <!-- till #996 -->
     <exclude name="PreserveStackTrace"/>
+    <!-- till #997 -->
     <exclude name="EmptyMethodInAbstractClassShouldBeAbstract"/>
-    <exclude name="SingularField"/>
     <exclude name="TooFewBranchesForASwitchStatement"/>
     <exclude name="LogicInversion"/>
     <exclude name="UseVarargs"/>
