@@ -115,29 +115,20 @@
     <exclude name="ImmutableField"/>
     <!-- this rule does not have any option, unreasonable to use -->
     <exclude name="MissingBreakInSwitch"/>
-    <exclude name="SimplifyConditional"/>
+    <!-- we need compare by ref as Tree structure is immutable, we can easily rely on refs -->
     <exclude name="CompareObjectsWithEquals"/>
-    <exclude name="PositionLiteralsFirstInComparisons"/>
-    <exclude name="PositionLiteralsFirstInCaseInsensitiveComparisons"/>
-    <exclude name="UnnecessaryLocalBeforeReturn"/>
-    <exclude name="NonThreadSafeSingleton"/>
     <exclude name="UncommentedEmptyMethod"/>
-    <exclude name="UncommentedEmptyConstructor"/>
-    <exclude name="AvoidConstantsInterface"/>
-    <exclude name="UnsynchronizedStaticDateFormatter"/>
     <exclude name="PreserveStackTrace"/>
     <exclude name="UseCollectionIsEmpty"/>
-    <exclude name="ClassWithOnlyPrivateConstructorsShouldBeFinal"/>
     <exclude name="EmptyMethodInAbstractClassShouldBeAbstract"/>
     <exclude name="SingularField"/>
-    <exclude name="ReturnEmptyArrayRatherThanNull"/>
-    <exclude name="AbstractClassWithoutAnyMethod"/>
     <exclude name="TooFewBranchesForASwitchStatement"/>
     <exclude name="LogicInversion"/>
     <exclude name="UseVarargs"/>
+    <!-- we will use our own declaration order logic -->
     <exclude name="FieldDeclarationsShouldBeAtStartOfClass"/>
+    <!-- too much alarms of Checks, we will never move logic out of Check, each Check is independed logic contianer -->
     <exclude name="GodClass"/>
-    <exclude name="AvoidProtectedMethodInFinalClassNotExtending"/>
   </rule>
   <rule ref="rulesets/java/design.xml/AvoidDeeplyNestedIfStmts">
     <properties>
