@@ -121,7 +121,7 @@ public abstract class AbstractFileSetCheck
      * @param extensions the set of file extensions. A missing
      * initial '.' character of an extension is automatically added.
      */
-    public final void setFileExtensions(String[] extensions)
+    public final void setFileExtensions(String... extensions)
     {
         if (extensions == null) {
             fileExtensions = null;

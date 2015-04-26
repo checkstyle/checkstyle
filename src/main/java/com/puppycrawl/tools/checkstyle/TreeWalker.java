@@ -119,7 +119,7 @@ public final class TreeWalker
      */
     public TreeWalker()
     {
-        setFileExtensions(new String[]{"java"});
+        setFileExtensions("java");
     }
 
     /** @param tabWidth the distance between tab stops */

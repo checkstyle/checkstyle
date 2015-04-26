@@ -49,9 +49,7 @@ public class MissingCtorCheck extends DescendantTokenCheck
     /** Creates new instance of the check. */
     public MissingCtorCheck()
     {
-        setLimitedTokens(new String[] {
-            TokenTypes.getTokenName(TokenTypes.CTOR_DEF),
-        });
+        setLimitedTokens(TokenTypes.getTokenName(TokenTypes.CTOR_DEF));
         setMinimumNumber(1);
         setMaximumDepth(2);
         setMinimumMessage(MSG_KEY);

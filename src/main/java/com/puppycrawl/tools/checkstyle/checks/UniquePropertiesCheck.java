@@ -54,8 +54,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck
      */
     public UniquePropertiesCheck()
     {
-        super.setFileExtensions(new String[]
-        {"properties"});
+        super.setFileExtensions("properties");
     }
 
     @Override

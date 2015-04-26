@@ -170,7 +170,7 @@ public class ImportOrderCheck
      *
      * @param packageGroups a comma-separated list of package names/prefixes.
      */
-    public void setGroups(String[] packageGroups)
+    public void setGroups(String... packageGroups)
     {
         groups = new Pattern[packageGroups.length];
 

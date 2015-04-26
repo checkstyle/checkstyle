@@ -220,7 +220,7 @@ final class PropertyCacheFile
      * @param byteArray the byte array
      * @return hex encoding of <code>byteArray</code>
      */
-    private static String hexEncode(byte[] byteArray)
+    private static String hexEncode(byte... byteArray)
     {
         final StringBuilder buf = new StringBuilder(2 * byteArray.length);
         for (final byte b : byteArray) {

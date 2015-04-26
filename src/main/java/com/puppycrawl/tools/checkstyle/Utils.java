@@ -46,7 +46,7 @@ public final class Utils
      * @param fileExtensions files extensions, empty property in config makes it matches to all.
      * @return whether there is a match.
      */
-    public static boolean fileExtensionMatches(File file, String[] fileExtensions)
+    public static boolean fileExtensionMatches(File file, String... fileExtensions)
     {
         boolean result = false;
         if (fileExtensions == null || fileExtensions.length == 0) {

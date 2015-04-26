@@ -316,7 +316,7 @@ public class VisibilityModifierCheck
      * Set the list of ignore annotations.
      * @param annotationNames array of ignore annotations canonical names.
      */
-    public void setIgnoreAnnotationCanonicalNames(String[] annotationNames)
+    public void setIgnoreAnnotationCanonicalNames(String... annotationNames)
     {
         ignoreAnnotationCanonicalNames = Arrays.asList(annotationNames);
     }
@@ -379,7 +379,7 @@ public class VisibilityModifierCheck
      * Set the list of immutable classes types names.
      * @param classNames array of immutable types canonical names.
      */
-    public void setImmutableClassCanonicalNames(String[] classNames)
+    public void setImmutableClassCanonicalNames(String... classNames)
     {
         immutableClassCanonicalNames = Arrays.asList(classNames);
     }

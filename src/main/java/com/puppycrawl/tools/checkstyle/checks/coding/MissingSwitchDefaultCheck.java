@@ -54,9 +54,7 @@ public class MissingSwitchDefaultCheck extends DescendantTokenCheck
     /** Creates new instance of the check. */
     public MissingSwitchDefaultCheck()
     {
-        setLimitedTokens(new String[] {
-            TokenTypes.getTokenName(TokenTypes.LITERAL_DEFAULT),
-        });
+        setLimitedTokens(TokenTypes.getTokenName(TokenTypes.LITERAL_DEFAULT));
         setMinimumNumber(1);
         setMaximumDepth(2);
         setMinimumMessage(MSG_KEY);

@@ -273,7 +273,7 @@ public class JavadocStyleCheck
      * @param comments the lines of Javadoc.
      * @return a comment text String.
      */
-    private String getCommentText(String[] comments)
+    private String getCommentText(String... comments)
     {
         final StringBuffer buffer = new StringBuffer();
         for (final String line : comments) {

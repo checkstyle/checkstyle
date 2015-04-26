@@ -52,7 +52,7 @@ public final class Main
      * @param args the command line arguments
      * @exception UnsupportedEncodingException if there is a problem to use UTF-8
      **/
-    public static void main(String[] args) throws UnsupportedEncodingException
+    public static void main(String... args) throws UnsupportedEncodingException
     {
         boolean parseResult = false;
         try {
@@ -85,7 +85,7 @@ public final class Main
      *         when passed arguments are not valid
      * @exception CheckstyleException when provided parameters are not supported
      */
-    private static CommandLine parseCli(String[] args)
+    private static CommandLine parseCli(String... args)
             throws ParseException
     {
         // parse the parameters
@@ -198,7 +198,7 @@ public final class Main
      * @throws CheckstyleException
      *         when there is no file to process
      */
-    private static List<File> getFilesToProcess(String[] filesToProcess)
+    private static List<File> getFilesToProcess(String... filesToProcess)
             throws CheckstyleException
     {
         final List<File> files = Lists.newLinkedList();

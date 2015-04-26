@@ -44,7 +44,7 @@ public final class ClassDataAbstractionCouplingCheck
     public ClassDataAbstractionCouplingCheck()
     {
         super(DEFAULT_MAX);
-        setTokens(new String[] {"LITERAL_NEW"});
+        setTokens("LITERAL_NEW");
     }
 
     @Override

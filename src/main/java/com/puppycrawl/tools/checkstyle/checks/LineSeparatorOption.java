@@ -55,7 +55,7 @@ public enum LineSeparatorOption
      * @return if bytes is equal to the byte representation
      * of this line separator
      */
-    public boolean matches(byte[] bytes)
+    public boolean matches(byte... bytes)
     {
         final String s = new String(bytes);
         return s.equals(lineSeparator);

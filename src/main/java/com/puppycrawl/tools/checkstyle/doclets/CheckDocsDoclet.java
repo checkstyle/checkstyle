@@ -235,7 +235,7 @@ public final class CheckDocsDoclet
      * @param options Javadoc commandline options
      * @return the dest dir specified on the command line (or ant task)
      */
-    public static String getDestDir(String[][] options)
+    public static String getDestDir(String[]... options)
     {
         for (final String[] opt : options) {
             if (DEST_DIR_OPT.equalsIgnoreCase(opt[0])) {

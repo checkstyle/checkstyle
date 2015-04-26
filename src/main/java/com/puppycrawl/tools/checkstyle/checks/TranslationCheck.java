@@ -94,7 +94,7 @@ public class TranslationCheck
      */
     public TranslationCheck()
     {
-        setFileExtensions(new String[]{"properties"});
+        setFileExtensions("properties");
         setBasenameSeparator("_");
     }
 

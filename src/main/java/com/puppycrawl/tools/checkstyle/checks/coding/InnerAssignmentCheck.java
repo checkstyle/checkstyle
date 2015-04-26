@@ -244,7 +244,7 @@ public class InnerAssignmentCheck
      * @return whether the parents nodes of ast match
      * one of the allowed type paths
      */
-    private static boolean isInContext(DetailAST ast, int[][] contextSet)
+    private static boolean isInContext(DetailAST ast, int[]... contextSet)
     {
         for (int[] element : contextSet) {
             DetailAST current = ast;

@@ -98,7 +98,7 @@ public class AvoidStarImportCheck
      * @param excludesParam a list of package names/fully-qualifies class names
      * where star imports are ok
      */
-    public void setExcludes(String[] excludesParam)
+    public void setExcludes(String... excludesParam)
     {
         excludes.clear();
         for (final String exclude : excludesParam) {

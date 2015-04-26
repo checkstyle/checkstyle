@@ -402,7 +402,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      * Set the list of illegal variable types.
      * @param classNames array of illegal variable types
      */
-    public void setIllegalClassNames(String[] classNames)
+    public void setIllegalClassNames(String... classNames)
     {
         illegalClassNames.clear();
         Collections.addAll(illegalClassNames, classNames);
@@ -422,7 +422,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      * Set the list of ignore method names.
      * @param methodNames array of ignored method names
      */
-    public void setIgnoredMethodNames(String[] methodNames)
+    public void setIgnoredMethodNames(String... methodNames)
     {
         ignoredMethodNames.clear();
         Collections.addAll(ignoredMethodNames, methodNames);
@@ -442,7 +442,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      * Set the list of legal abstract class names.
      * @param classNames array of legal abstract class names
      */
-    public void setLegalAbstractClassNames(String[] classNames)
+    public void setLegalAbstractClassNames(String... classNames)
     {
         legalAbstractClassNames.clear();
         Collections.addAll(legalAbstractClassNames, classNames);

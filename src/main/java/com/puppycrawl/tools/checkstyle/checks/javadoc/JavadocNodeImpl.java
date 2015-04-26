@@ -133,7 +133,7 @@ public class JavadocNodeImpl implements DetailNode
         this.columnNumber = columnNumber;
     }
 
-    public void setChildren(DetailNode[] children)
+    public void setChildren(DetailNode... children)
     {
         this.children = Arrays.copyOf(children, children.length);
     }

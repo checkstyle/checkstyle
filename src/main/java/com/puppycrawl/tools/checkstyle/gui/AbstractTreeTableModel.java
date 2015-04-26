@@ -136,7 +136,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
      */
     protected void fireTreeNodesChanged(Object source, Object[] path,
             int[] childIndices,
-            Object[] children)
+            Object... children)
     {
         // Guaranteed to return a non-null array
         final Object[] listeners = listenerList.getListenerList();
@@ -164,7 +164,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
      */
     protected void fireTreeNodesInserted(Object source, Object[] path,
             int[] childIndices,
-            Object[] children)
+            Object... children)
     {
         // Guaranteed to return a non-null array
         final Object[] listeners = listenerList.getListenerList();
@@ -192,7 +192,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
      */
     protected void fireTreeNodesRemoved(Object source, Object[] path,
             int[] childIndices,
-            Object[] children)
+            Object... children)
     {
         // Guaranteed to return a non-null array
         final Object[] listeners = listenerList.getListenerList();
@@ -220,7 +220,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
      */
     protected void fireTreeStructureChanged(Object source, Object[] path,
             int[] childIndices,
-            Object[] children)
+            Object... children)
     {
         // Guaranteed to return a non-null array
         final Object[] listeners = listenerList.getListenerList();
