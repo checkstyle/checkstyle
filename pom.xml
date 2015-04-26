@@ -52,6 +52,13 @@
       </roles>
     </developer>
     <developer>
+      <id>mkordas</id>
+      <name>Michał Kordas</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
       <id>daniilyar</id>
       <name>Daniil Yaroslavtsev</name>
       <roles>
