@@ -18,17 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Before;
-import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
+
+import java.io.File;
 
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
 
 public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
 {
     private DefaultConfiguration checkConfig;
+
+    @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
     @Before
     public void setUp()
@@ -96,20 +103,20 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
-    // Need to fix the line endings in the input file
-    @Ignore
     @Test
     public void testCarriageReturn() throws Exception
     {
         final String illegal = "\\r";
         checkConfig.addAttribute("format", illegal);
         final String[] expected = {
-            "14: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
-            "16: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
-            "19: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
-            "21: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "1: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "3: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
         };
-        verify(checkConfig, getPath("InputLineBreaks.java"), expected);
+
+        final File file = temporaryFolder.newFile();
+        Files.write("first line \r\n second line \n\r third line", file, Charsets.UTF_8);
+
+        verify(checkConfig, file.getPath(), expected);
     }
 
 }
