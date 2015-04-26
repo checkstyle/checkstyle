@@ -246,7 +246,7 @@ class FileDrop
          * @param files An array of <tt>File</tt>s that were dropped.
          * @since 1.0
          */
-        void filesDropped(File[] files);
+        void filesDropped(File... files);
     }
 
     private class FileDropTargetListener implements DropTargetListener

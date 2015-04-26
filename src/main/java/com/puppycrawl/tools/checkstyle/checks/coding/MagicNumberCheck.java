@@ -346,7 +346,7 @@ public class MagicNumberCheck extends Check
      * BeanUtils converts numeric token list to double array automatically.
      * @param list list of numbers to ignore.
      */
-    public void setIgnoreNumbers(double[] list)
+    public void setIgnoreNumbers(double... list)
     {
         if (list.length == 0) {
             ignoreNumbers = new double[0];

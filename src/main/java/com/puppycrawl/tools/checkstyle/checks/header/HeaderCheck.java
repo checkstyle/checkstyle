@@ -74,7 +74,7 @@ public class HeaderCheck extends AbstractHeaderCheck
      * Set the lines numbers to ignore in the header check.
      * @param list comma separated list of line numbers to ignore in header.
      */
-    public void setIgnoreLines(int[] list)
+    public void setIgnoreLines(int... list)
     {
         if (list == null || list.length == 0) {
             ignoreLines = EMPTY_INT_ARRAY;

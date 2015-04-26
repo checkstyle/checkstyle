@@ -327,7 +327,7 @@ public class UnnecessaryParenthesesCheck extends Check
      * @return <code>true</code> if <code>type</code> was found in <code>
      *         tokens</code>.
      */
-    private boolean inTokenList(int type, int[] tokens)
+    private boolean inTokenList(int type, int... tokens)
     {
         // NOTE: Given the small size of the two arrays searched, I'm not sure
         //       it's worth bothering with doing a binary search or using a

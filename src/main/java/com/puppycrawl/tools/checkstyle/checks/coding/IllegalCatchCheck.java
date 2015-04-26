@@ -43,13 +43,8 @@ public final class IllegalCatchCheck extends AbstractIllegalCheck
     /** Creates new instance of the check. */
     public IllegalCatchCheck()
     {
-        super(new String[] {"Exception", "Error",
-                            "RuntimeException", "Throwable",
-                            "java.lang.Error",
-                            "java.lang.Exception",
-                            "java.lang.RuntimeException",
-                            "java.lang.Throwable",
-        });
+        super("Exception", "Error", "RuntimeException", "Throwable", "java.lang.Error",
+                "java.lang.Exception", "java.lang.RuntimeException", "java.lang.Throwable");
     }
 
     @Override

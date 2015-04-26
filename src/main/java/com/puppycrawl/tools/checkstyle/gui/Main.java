@@ -38,7 +38,7 @@ public class Main
     /**
      * Entry point
      */
-    public static void main(String[] args)
+    public static void main(String... args)
     {
         frame = new JFrame("CheckStyle");
         final ParseTreeInfoPanel panel = new ParseTreeInfoPanel();

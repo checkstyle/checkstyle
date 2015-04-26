@@ -75,14 +75,14 @@ public class IllegalImportCheck
      */
     public IllegalImportCheck()
     {
-        setIllegalPkgs(new String[] {"sun"});
+        setIllegalPkgs("sun");
     }
 
     /**
      * Set the list of illegal packages.
      * @param from array of illegal packages
      */
-    public void setIllegalPkgs(String[] from)
+    public void setIllegalPkgs(String... from)
     {
         illegalPkgs = from.clone();
     }

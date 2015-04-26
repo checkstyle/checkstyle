@@ -109,7 +109,7 @@ public class MultipleStringLiteralsCheck extends Check
      * Adds a set of tokens the check is interested in.
      * @param strRep the string representation of the tokens interested in
      */
-    public final void setIgnoreOccurrenceContext(String[] strRep)
+    public final void setIgnoreOccurrenceContext(String... strRep)
     {
         ignoreOccurrenceContext.clear();
         for (final String s : strRep) {

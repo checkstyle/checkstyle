@@ -35,7 +35,7 @@ public abstract class AbstractIllegalCheck extends Check
      * Constructs an object.
      * @param initialNames the initial class names to treat as illegal
      */
-    protected AbstractIllegalCheck(final String[] initialNames)
+    protected AbstractIllegalCheck(final String... initialNames)
     {
         assert initialNames != null;
         setIllegalClassNames(initialNames);
@@ -59,7 +59,7 @@ public abstract class AbstractIllegalCheck extends Check
      * @param classNames
      *            array of illegal exception classes
      */
-    public final void setIllegalClassNames(final String[] classNames)
+    public final void setIllegalClassNames(final String... classNames)
     {
         assert classNames != null;
         illegalClassNames.clear();

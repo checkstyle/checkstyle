@@ -160,7 +160,7 @@ public class ParseTreeInfoPanel extends JPanel
         private final JScrollPane mSp;
 
         @Override
-        public void filesDropped(File[] files)
+        public void filesDropped(File... files)
         {
             if (files != null && files.length > 0)
             {

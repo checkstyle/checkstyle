@@ -56,7 +56,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck
     {
         // java, not html!
         // The rule is: Every JAVA file should have a package.html sibling
-        setFileExtensions(new String[]{"java"});
+        setFileExtensions("java");
     }
 
     @Override

@@ -125,8 +125,6 @@
     <exclude name="EmptyMethodInAbstractClassShouldBeAbstract"/>
     <!-- till #998 -->
     <exclude name="TooFewBranchesForASwitchStatement"/>
-    <!-- till #999 -->
-    <exclude name="UseVarargs"/>
     <!-- we will use our own declaration order logic -->
     <exclude name="FieldDeclarationsShouldBeAtStartOfClass"/>
     <!-- too much alarms of Checks, we will never move logic out of Check, each Check is independed logic contianer -->

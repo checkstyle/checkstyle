@@ -141,7 +141,7 @@ public final class TokenTypesDoclet
      * @param options all specified options.
      * @return destination file name
      */
-    private static String getDestFileName(String[][] options)
+    private static String getDestFileName(String[]... options)
     {
         String fileName = null;
         for (final String[] opt : options) {

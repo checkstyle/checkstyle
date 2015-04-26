@@ -106,7 +106,7 @@ public abstract class AbstractClassCouplingCheck extends Check
      * Sets user-excluded classes to ignore.
      * @param excludedClasses the list of classes to ignore.
      */
-    public final void setExcludedClasses(String[] excludedClasses)
+    public final void setExcludedClasses(String... excludedClasses)
     {
         this.excludedClasses = ImmutableSet.copyOf(excludedClasses);
     }

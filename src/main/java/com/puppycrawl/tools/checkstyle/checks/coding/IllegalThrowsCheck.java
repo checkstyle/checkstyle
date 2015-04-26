@@ -71,12 +71,8 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
     /** Creates new instance of the check. */
     public IllegalThrowsCheck()
     {
-        super(new String[] {"Error",
-                            "RuntimeException", "Throwable",
-                            "java.lang.Error",
-                            "java.lang.RuntimeException",
-                            "java.lang.Throwable",
-        });
+        super("Error", "RuntimeException", "Throwable", "java.lang.Error",
+                "java.lang.RuntimeException", "java.lang.Throwable");
         setIgnoredMethodNames(DEFAULT_IGNORED_METHOD_NAMES);
     }
 
@@ -144,7 +140,7 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
      * Set the list of ignore method names.
      * @param methodNames array of ignored method names
      */
-    public void setIgnoredMethodNames(String[] methodNames)
+    public void setIgnoredMethodNames(String... methodNames)
     {
         ignoredMethodNames.clear();
         Collections.addAll(ignoredMethodNames, methodNames);
