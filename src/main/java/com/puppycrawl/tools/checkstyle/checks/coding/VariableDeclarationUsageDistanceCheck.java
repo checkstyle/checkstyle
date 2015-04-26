@@ -487,7 +487,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check
                     }
                     // If expression doesn't contain variable and this variable
                     // hasn't been met yet, than distance + 1.
-                    else if (variableUsageExpressions.size() == 0
+                    else if (variableUsageExpressions.isEmpty()
                             && currentStatementAst.getType() != TokenTypes.VARIABLE_DEF)
                     {
                         dist++;

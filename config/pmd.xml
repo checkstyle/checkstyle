@@ -121,7 +121,6 @@
     <exclude name="UncommentedEmptyMethod"/>
     <!-- till #996 -->
     <exclude name="PreserveStackTrace"/>
-    <exclude name="UseCollectionIsEmpty"/>
     <exclude name="EmptyMethodInAbstractClassShouldBeAbstract"/>
     <exclude name="SingularField"/>
     <exclude name="TooFewBranchesForASwitchStatement"/>
