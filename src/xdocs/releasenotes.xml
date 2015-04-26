@@ -17,6 +17,124 @@
 
   <body>
 
+    <section name="Release 6.6">
+      <p>New:</p>
+      <ul>
+        <li>
+          New option for MagicNumber to ignore magic numbers in field declarations. Author:  ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/148">#148</a>
+        </li>
+        <li>
+          New option for ModifiedControlVariable Check to ignore validation of variables defined in for which are not change in for iterator part. Author:  liscju <a href="https://github.com/checkstyle/checkstyle/issues/286">#286</a>
+        </li>
+
+      </ul>
+
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Extend LeftCurly check to verify static initializers. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/966">#966</a>
+        </li>
+        <li>
+          Extend EmptyBlock check to verify synchronized blocks. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/964">#964</a>
+        </li>
+        <li>
+          Fix generics with arrays handling in NoWhitespaceAfter. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/931">#931</a>
+        </li>
+        <li>
+          Fix upper/lower case conversation, enhance tests . Author:  Mehmet Can Cömert  <a href="https://github.com/checkstyle/checkstyle/issues/969">#969</a>
+        </li>
+        <li>
+          Introduce new handler SynchronizedHandler for checking identation. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/580">#580</a>
+        </li>
+        <li>
+          added validation for header in setHeader in RegexpHeaderCheck.java to provide better feedback when an invalid Pattern is specified. Author: richter722 and Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/897">#897</a>
+        </li>
+      </ul>
+
+      <p>Notes:</p>
+      <ul>
+        <li>
+          Delete System.exit() and delegate exit control into separate method. Author:  Damian Szczepanik <a href="https://github.com/checkstyle/checkstyle/pull/882">#882</a>
+        </li>
+        <li>
+          Repair ignored test. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/994">#994</a>
+        </li>
+        <li>
+          Fix AnnotationLocation violation in Checkstyle codebase. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/945">#945</a>
+        </li>
+        <li>
+          Fix AvoidStaticImport check violations in codebase. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/979">#979</a>
+        </li>
+        <li>
+          Fix AtclauseOrder check violations in codebase. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/978">#978</a>
+        </li>
+        <li>
+          Resolve Javadoc problems found by Checkstyle. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/978">#978</a>
+        </li>
+        <li>
+          Replace all occurrences of FastStack with ArrayDeque. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/86">#86</a>
+        </li>
+        <li>
+          Fix PMD violations from numerous ruleset in Checkstyle. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/#744">#744</a>
+        </li>
+        <li>
+          Fix PMD violations from numerous ruleset in Checkstyle. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/987">#987</a>,
+<a href="https://github.com/checkstyle/checkstyle/issues/982">#982</a>,
+<a href="https://github.com/checkstyle/checkstyle/issues/872">#872</a>,
+<a href="https://github.com/checkstyle/checkstyle/issues/744">#744</a>,
+<a href="https://github.com/checkstyle/checkstyle/issues/942">#942</a>,
+<a href="https://github.com/checkstyle/checkstyle/issues/945">#945</a>,
+<a href="https://github.com/checkstyle/checkstyle/issues/744">#744</a>,
+<a href="https://github.com/checkstyle/checkstyle/issues/874">#874</a>,
+<a href="https://github.com/checkstyle/checkstyle/issues/873">#873</a>,
+<a href="https://github.com/checkstyle/checkstyle/issues/871">#871</a>,
+<a href="https://github.com/checkstyle/checkstyle/issues/869">#869</a>,
+<a href="https://github.com/checkstyle/checkstyle/issues/876">#876</a>,
+<a href="https://github.com/checkstyle/checkstyle/issues/875">#875</a>,
+        </li>
+        <li>
+          Update Apache Commons Lang to 3.4. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/899">#899</a>
+        </li>
+        <li>
+          Use use Java 7 instead of custom logic for relative paths. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/857">#857</a>
+        </li>
+        <li>
+          Add test for non existing cache file. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/921">#921</a>
+        </li>
+        <li>
+          Use entrySet iterator to fix FindBugs violations. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/778">#778</a>
+        </li>
+        <li>
+          Integrate Gitter with Checkstyle. Author:  Michał Kordas <a href="https://github.com/checkstyle/checkstyle/issues/864">#864</a>
+        </li>
+        <li>
+          Resolve some problems in Javadoc reported by Java 8. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/291">#291</a>
+        </li>
+        <li>
+          Disable Findbugs for 'grammars' package. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/778">#778</a>
+        </li>
+        <li>
+          Update Maven Compiler Plugin to 3.3. Author:  Michał Kordas <a href="https://github.com/checkstyle/checkstyle/issues/867">#867</a>
+        </li>
+        <li>
+          Update FindBugs Maven Plugin to 3.0.1. Author:  Michał Kordas <a href="https://github.com/checkstyle/checkstyle/issues/865">#865</a>
+        </li>
+        <li>
+          Update Maven Javadoc Plugin to 2.10.3. Author:  Michał Kordas <a href="https://github.com/checkstyle/checkstyle/issues/939">#939</a>
+        </li>
+        <li>
+          Use SVG badge for coveralls.io. Author:  AnirvanSarkar
+        </li>
+        <li>
+          all TODO/FIXME were removed , some of them converted to issues . Author: Roman Ivanov
+        </li>
+        <li>
+          all findbugs validation rules are activated. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/912">#912</a>, <a href="https://github.com/checkstyle/checkstyle/issues/778">#778</a>
+        </li>
+
+      </ul>
+    </section>
+
     <section name="Release 6.5">
       <p>Breaking backward compatibility:</p>
       <ul>
@@ -1177,7 +1295,7 @@
           has been maintained for now, rather than adopting Maven's
           <a href="http://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html">
             standard directory layout
-          </a>. This will change once Maven has been <i>proven</i>.
+         </a>. This will change once Maven has been <i>proven</i>.
         </li>
         <li>
           The Maven <code>&lt;groupId&gt;</code> changed to be
@@ -1187,7 +1305,7 @@
           Introduced
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/FileText.html">
               FileText
-          </a>
+         </a>
           to provide more flexibility on how the contents of a file are
           represented. This allows for Checkers that wish to operate on
           a single character sequence instead of a list of lines.
@@ -1201,7 +1319,7 @@
           Made the method
           <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyBlockCheck.html#hasText%28com.puppycrawl.tools.checkstyle.api.DetailAST%29">
             EmptyBlockCheck.hasText(DetailAST)
-          </a>
+         </a>
           <code>protected</code> so that it is accessible to subclasses.
           Requested by Steve McKay.
         </li>
