@@ -21,10 +21,10 @@
       <p>New:</p>
       <ul>
         <li>
-          New option for MagicNumber to ignore magic numbers in field declarations. Author:  ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/148">#148</a>
+          New option for MagicNumber Check to ignore magic numbers in field declarations. Author:  ychulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/148">#148</a>
         </li>
         <li>
-          New option for ModifiedControlVariable Check to ignore validation of variables defined in for which are not change in for iterator part. Author:  liscju <a href="https://github.com/checkstyle/checkstyle/issues/286">#286</a>
+          New option for ModifiedControlVariable Check to ignore validation of variables defined in for loop which are not changed in for loop iterator part. Author:  liscju <a href="https://github.com/checkstyle/checkstyle/issues/286">#286</a>
         </li>
 
       </ul>
@@ -41,10 +41,10 @@
           Fix generics with arrays handling in NoWhitespaceAfter. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/931">#931</a>
         </li>
         <li>
-          Fix upper/lower case conversation, enhance tests . Author:  Mehmet Can Cömert  <a href="https://github.com/checkstyle/checkstyle/issues/969">#969</a>
+          Fix upper/lower case conversation, enhance tests. Author:  Mehmet Can Cömert  <a href="https://github.com/checkstyle/checkstyle/issues/969">#969</a>
         </li>
         <li>
-          Introduce new handler SynchronizedHandler for checking identation. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/580">#580</a>
+          Introduce new handler SynchronizedHandler for checking indentation. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/580">#580</a>
         </li>
         <li>
           added validation for header in setHeader in RegexpHeaderCheck.java to provide better feedback when an invalid Pattern is specified. Author: richter722 and Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/897">#897</a>
@@ -83,8 +83,6 @@
 <a href="https://github.com/checkstyle/checkstyle/issues/872">#872</a>,
 <a href="https://github.com/checkstyle/checkstyle/issues/744">#744</a>,
 <a href="https://github.com/checkstyle/checkstyle/issues/942">#942</a>,
-<a href="https://github.com/checkstyle/checkstyle/issues/945">#945</a>,
-<a href="https://github.com/checkstyle/checkstyle/issues/744">#744</a>,
 <a href="https://github.com/checkstyle/checkstyle/issues/874">#874</a>,
 <a href="https://github.com/checkstyle/checkstyle/issues/873">#873</a>,
 <a href="https://github.com/checkstyle/checkstyle/issues/871">#871</a>,
@@ -126,7 +124,7 @@
           Use SVG badge for coveralls.io. Author:  AnirvanSarkar
         </li>
         <li>
-          all TODO/FIXME were removed , some of them converted to issues . Author: Roman Ivanov
+          all TODO/FIXME were removed, some of them converted to issues. Author: Roman Ivanov
         </li>
         <li>
           all findbugs validation rules are activated. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/912">#912</a>, <a href="https://github.com/checkstyle/checkstyle/issues/778">#778</a>
