@@ -1015,6 +1015,8 @@
         <artifactId>taglist-maven-plugin</artifactId>
         <version>2.4</version>
         <configuration>
+	  <!-- skip till http://jira.codehaus.org/browse/MTAGLIST-71 -->
+	  <skipTestSources>true</skipTestSources>
           <tagListOptions>
             <tagClasses>
               <tagClass>
@@ -1093,10 +1095,10 @@
             <excludedLink>http://search.maven.org/*</excludedLink>
             <excludedLink>http://junit.org</excludedLink>
             <excludedLink>http://sonar-plugins.codehaus.org/maven-report</excludedLink>
-            <!-- Excluded due to checkstyle's issue #549 until http://jira.codehaus.org/browse/MJAVADOC-425
+            <!-- Excluded due to checkstyle's issue #549 until https://issues.apache.org/jira/browse/MJAVADOC-428
             and http://jira.codehaus.org/browse/DOXIA-525 and http://jira.codehaus.org/browse/MLINKCHECK-21 will be fixed -->
             <excludedLink>**/com/puppycrawl/**</excludedLink>
-            <!-- Excluded due to checkstyle's issue #549 until http://jira.codehaus.org/browse/MJAVADOC-425 will be fixed -->
+            <!-- Excluded due to checkstyle's issue #549 until https://issues.apache.org/jira/browse/MJAVADOC-428 will be fixed -->
             <excludedLink>http://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers.DefaultHandler.html?*</excludedLink>
           </excludedLinks>
           <excludedHttpStatusErrors>
@@ -1215,4 +1217,14 @@
 
 
   </profiles>
+
+  <!-- that repositories are required for tesing plugin's snapshot version -->
+  <pluginRepositories>
+    <pluginRepository>
+      <id>nexus-snapshot</id>
+      <name>Oficial Maven Apache Repo</name>
+      <url>https://nexus.codehaus.org/content/repositories/snapshots/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
 </project>
