@@ -133,7 +133,7 @@ mvn exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" \
         Build all jars, and launch CLI from new build:
         <source>
 mvn clean package -Passembly
-java -jar target/checkstyle-${projectVersion}-all.jar -c /sun_checks.xml MyClass.java
+java -jar target/checkstyle-X.X-SNAPSHOT-all.jar -c /sun_checks.xml MyClass.java
         </source>
       </p>
     </section>
