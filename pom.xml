@@ -189,6 +189,13 @@
       <groupId>org.antlr</groupId>
       <artifactId>antlr4-runtime</artifactId>
       <version>${antlr4.version}</version>
+      <exclusions>
+        <exclusion>
+	  <!-- 1.0.2 version is excluded, we will use version 1.0.1 from antlr:antlr:2.7.7 -->
+          <groupId>org.abego.treelayout</groupId>
+          <artifactId>org.abego.treelayout.core</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>commons-beanutils</groupId>
