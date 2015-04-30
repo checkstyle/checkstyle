@@ -16,10 +16,13 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
+
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import java.io.File;
 
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -28,13 +31,13 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck.MSG_KEY;
 
 public class RedundantModifierTest
-    extends BaseCheckTestSupport
+        extends BaseCheckTestSupport
 {
     @Test
     public void testIt() throws Exception
     {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(RedundantModifierCheck.class);
+                createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = {
             "54:12: " + getCheckMessage(MSG_KEY, "static"),
             "57:9: " + getCheckMessage(MSG_KEY, "public"),
@@ -56,7 +59,7 @@ public class RedundantModifierTest
 
     @Test
     public void testStaticMethodInInterface()
-        throws Exception
+            throws Exception
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
@@ -70,7 +73,7 @@ public class RedundantModifierTest
 
     @Test
     public void testFinalInInterface()
-        throws Exception
+            throws Exception
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
@@ -81,5 +84,52 @@ public class RedundantModifierTest
                 new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/InputFinalInDefaultMethods.java").getCanonicalPath(),
                 expected);
+    }
+
+    @Test
+    public void testGetDefaultTokens()
+    {
+        RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
+        int[] actual = redundantModifierCheckObj.getDefaultTokens();
+        int[] expected = {
+            TokenTypes.METHOD_DEF,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.INTERFACE_DEF,
+        };
+        int[] unexpectedEmptyArray = new int[] {};
+        int[] unexperctedArray = new int[] {
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.PARAMETER_DEF,
+            TokenTypes.CLASS_DEF,
+        };
+        Assert.assertArrayEquals(expected, actual);
+        Assert.assertNotSame(unexpectedEmptyArray, actual);
+        Assert.assertNotSame(unexperctedArray, actual);
+        Assert.assertNotNull(actual);
+    }
+
+    @Test
+    public void testGetAcceptableTokens()
+    {
+        RedundantModifierCheck redundantModifierCheck = new RedundantModifierCheck();
+        int[] actual = redundantModifierCheck.getAcceptableTokens();
+        int[] expected = {
+            TokenTypes.METHOD_DEF,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.INTERFACE_DEF,
+        };
+        int[] unexpectedEmptyArray = new int[] {};
+        int[] unexperctedArray = new int[] {
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.PARAMETER_DEF,
+        };
+        Assert.assertArrayEquals(expected, actual);
+        Assert.assertNotSame(unexpectedEmptyArray, actual);
+        Assert.assertNotSame(unexperctedArray, actual);
+        Assert.assertNotNull(actual);
     }
 }
