@@ -156,6 +156,7 @@ public final class ModifiedControlVariableCheck extends Check
     {
         // clear data
         variableStack.clear();
+        variableStack.push(new ArrayDeque<String>());
     }
 
     @Override
