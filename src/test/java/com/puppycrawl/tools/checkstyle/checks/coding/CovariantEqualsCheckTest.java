@@ -38,6 +38,8 @@ public class CovariantEqualsCheckTest
             "30:20: " + getCheckMessage(MSG_KEY),
             "64:20: " + getCheckMessage(MSG_KEY),
             "78:28: " + getCheckMessage(MSG_KEY),
+            "134:20: " + getCheckMessage(MSG_KEY),
+            "138:9: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputCovariant.java"), expected);
     }
