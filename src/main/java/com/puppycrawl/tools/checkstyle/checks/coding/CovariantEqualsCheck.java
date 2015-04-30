@@ -55,7 +55,7 @@ public class CovariantEqualsCheck extends Check
     @Override
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.LITERAL_NEW, };
+        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.LITERAL_NEW, TokenTypes.ENUM_DEF, };
     }
 
     @Override
@@ -67,7 +67,7 @@ public class CovariantEqualsCheck extends Check
     @Override
     public int[] getAcceptableTokens()
     {
-        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.LITERAL_NEW, };
+        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.LITERAL_NEW, TokenTypes.ENUM_DEF, };
     }
 
     @Override

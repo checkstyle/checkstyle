@@ -127,3 +127,15 @@ class InputGenericCovariant8
         return false;
     }
 }
+
+enum InputEnumCovariant {
+    EQUALS;
+
+    public boolean equals(InputEnumCovariant inputEnumCovariant) {
+        return false;
+    }
+
+    int equals(Integer integer) {
+        return 0;
+    }
+}
