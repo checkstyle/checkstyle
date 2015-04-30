@@ -20,12 +20,13 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import java.io.File;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
-import static org.junit.Assert.*;
+
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck
 .MSG_ANNOTATION_ORDER;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck
@@ -64,32 +65,34 @@ public class ModifierOrderCheckTest
 
 
     @Test
-    public void testGetDefaultTokens(){
+    public void testGetDefaultTokens()
+    {
         ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
 
         int[] actual = modifierOrderCheckObj.getDefaultTokens();
         int[] expected = new int[] {5};
-        int[] unexpectedEmptyArray = new int[]{};
-        int[] unexperctedArray = new int[]{5,3};
+        int[] unexpectedEmptyArray = new int[] {};
+        int[] unexperctedArray = new int[] {5, 3};
 
-        assertArrayEquals(expected, actual);
-        assertNotSame(unexpectedEmptyArray, actual);
-        assertNotSame(unexperctedArray, actual);
-        assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
+        Assert.assertNotSame(unexpectedEmptyArray, actual);
+        Assert.assertNotSame(unexperctedArray, actual);
+        Assert.assertNotNull(actual);
     }
 
     @Test
-    public void testGetAcceptableTokens(){
+    public void testGetAcceptableTokens()
+    {
         ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
 
         int[] actual = modifierOrderCheckObj.getAcceptableTokens();
         int[] expected = new int[] {5};
-        int[] unexpectedEmptyArray = new int[]{};
-        int[] unexperctedArray = new int[]{5,3};
+        int[] unexpectedEmptyArray = new int[] {};
+        int[] unexperctedArray = new int[]{5, 3};
 
-        assertArrayEquals(expected, actual);
-        assertNotSame(unexpectedEmptyArray, actual);
-        assertNotSame(unexperctedArray, actual);
-        assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
+        Assert.assertNotSame(unexpectedEmptyArray, actual);
+        Assert.assertNotSame(unexperctedArray, actual);
+        Assert.assertNotNull(actual);
     }
 }
