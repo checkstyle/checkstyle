@@ -20,44 +20,43 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import java.io.File;
 
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
+import static org.junit.Assert.*;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck.MSG_KEY;
 
 public class RedundantModifierTest
-    extends BaseCheckTestSupport
-{
+        extends BaseCheckTestSupport {
     @Test
-    public void testIt() throws Exception
-    {
+    public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(RedundantModifierCheck.class);
+                createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = {
-            "54:12: " + getCheckMessage(MSG_KEY, "static"),
-            "57:9: " + getCheckMessage(MSG_KEY, "public"),
-            "63:9: " + getCheckMessage(MSG_KEY, "abstract"),
-            "66:9: " + getCheckMessage(MSG_KEY, "public"),
-            //"69:9: Redundant 'abstract' modifier.",
-            "72:9: " + getCheckMessage(MSG_KEY, "final"),
-            "79:13: " + getCheckMessage(MSG_KEY, "final"),
-            "88:12: " + getCheckMessage(MSG_KEY, "final"),
-            "99:1: " + getCheckMessage(MSG_KEY, "abstract"),
-            "116:5: " + getCheckMessage(MSG_KEY, "public"),
-            "117:5: " + getCheckMessage(MSG_KEY, "final"),
-            "118:5: " + getCheckMessage(MSG_KEY, "static"),
-            "120:5: " + getCheckMessage(MSG_KEY, "public"),
-            "121:5: " + getCheckMessage(MSG_KEY, "abstract"),
+                "54:12: " + getCheckMessage(MSG_KEY, "static"),
+                "57:9: " + getCheckMessage(MSG_KEY, "public"),
+                "63:9: " + getCheckMessage(MSG_KEY, "abstract"),
+                "66:9: " + getCheckMessage(MSG_KEY, "public"),
+                //"69:9: Redundant 'abstract' modifier.",
+                "72:9: " + getCheckMessage(MSG_KEY, "final"),
+                "79:13: " + getCheckMessage(MSG_KEY, "final"),
+                "88:12: " + getCheckMessage(MSG_KEY, "final"),
+                "99:1: " + getCheckMessage(MSG_KEY, "abstract"),
+                "116:5: " + getCheckMessage(MSG_KEY, "public"),
+                "117:5: " + getCheckMessage(MSG_KEY, "final"),
+                "118:5: " + getCheckMessage(MSG_KEY, "static"),
+                "120:5: " + getCheckMessage(MSG_KEY, "public"),
+                "121:5: " + getCheckMessage(MSG_KEY, "abstract"),
         };
         verify(checkConfig, getPath("InputModifier.java"), expected);
     }
 
     @Test
     public void testStaticMethodInInterface()
-        throws Exception
-    {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = {
@@ -70,16 +69,45 @@ public class RedundantModifierTest
 
     @Test
     public void testFinalInInterface()
-        throws Exception
-    {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = {
-            "3:9: " + getCheckMessage(MSG_KEY, "final"),
+                "3:9: " + getCheckMessage(MSG_KEY, "final"),
         };
         verify(checkConfig,
                 new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/InputFinalInDefaultMethods.java").getCanonicalPath(),
                 expected);
+    }
+
+    @Test
+    public void testGetDefaultTokens(){
+        RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
+
+        int[] actual = redundantModifierCheckObj.getDefaultTokens();
+        int[] expected = new int[] {9, 10, 161, 15};
+        int[] unexpectedEmptyArray = new int[]{};
+        int[] unexperctedArray = new int[]{8, 9, 160, 14};
+
+        assertArrayEquals(expected, actual);
+        assertNotSame(unexpectedEmptyArray, actual);
+        assertNotSame(unexperctedArray, actual);
+        assertNotNull(actual);
+    }
+
+    @Test
+    public void testGetAcceptableTokens(){
+        RedundantModifierCheck redundantModifierCheck = new RedundantModifierCheck();
+
+        int[] actual = redundantModifierCheck.getAcceptableTokens();
+        int[] expected = new int[]{9, 10, 161, 15};
+        int[] unexpectedEmptyArray = new int[]{};
+        int[] unexperctedArray = new int[]{8, 9, 160};
+
+        assertArrayEquals(expected, actual);
+        assertNotSame(unexpectedEmptyArray, actual);
+        assertNotSame(unexperctedArray, actual);
+        assertNotNull(actual);
     }
 }
