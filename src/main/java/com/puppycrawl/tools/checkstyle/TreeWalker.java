@@ -192,7 +192,7 @@ public final class TreeWalker
             return;
         }
 
-        final String msg = "%s occurred during the analysis of file %s .";
+        final String msg = "%s occurred during the analysis of file %s.";
 
         try {
             final FileText text = FileText.fromLines(file, lines);
