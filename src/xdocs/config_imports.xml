@@ -638,7 +638,7 @@ public class SomeClass { ... }
           SAME_PACKAGE(n), STANDARD_JAVA_PACKAGE and SPECIAL_IMPORTS.
         </p>
         <p>
-          4) STANDARD_JAVA_PACKAGE group. This group sets ordering of standard java (java|javax) imports.
+          4) STANDARD_JAVA_PACKAGE group. This group sets ordering of standard java/javax imports.
         </p>
         <p>
           5) SPECIAL_IMPORTS group. This group may contains some imports
@@ -670,7 +670,7 @@ public class SomeClass { ... }
             <td>standardPackageRegExp</td>
             <td>RegExp for STANDARD_JAVA_PACKAGE group imports.</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>java|javax</code></td>
+            <td><code>^(java|javax)\.</code></td>
           </tr>
           <tr>
             <td>thirdPartyPackageRegExp</td>
@@ -715,7 +715,7 @@ public class SomeClass { ... }
     &lt;property name=&quot;customImportOrderRules&quot;
     value=&quot;STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE&quot;/&gt;
     &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;com|org&quot;/&gt;
-    &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;java|javax&quot;/&gt;
+    &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;^(java|javax)\.&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>

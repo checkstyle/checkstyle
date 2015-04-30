@@ -73,7 +73,7 @@ import com.puppycrawl.tools.checkstyle.Utils;
  * </pre>
  *
  * <pre>
- * STANDARD_JAVA_PACKAGE group. This group sets ordering of standard java (java|javax) imports.
+ * STANDARD_JAVA_PACKAGE group. This group sets ordering of standard java/javax imports.
  * </pre>
  *
  * <pre>
@@ -102,7 +102,7 @@ import com.puppycrawl.tools.checkstyle.Utils;
  *    &lt;property name=&quot;customImportOrderRules&quot;
  *    value=&quot;STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE&quot;/&gt;
  *    &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;com|org&quot;/&gt;
- *    &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;java|javax&quot;/&gt;
+ *    &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;^(java|javax)\.&quot;/&gt;
  * &lt;/module&gt;
  * </code>
  * </pre>
@@ -220,7 +220,7 @@ public class CustomImportOrderCheck extends Check
     private String samePackageDomainsRegExp = "";
 
     /** RegExp for STANDARD_JAVA_PACKAGE group imports */
-    private Pattern standardPackageRegExp = Pattern.compile("java|javax");
+    private Pattern standardPackageRegExp = Pattern.compile("^(java|javax)\\.");
 
     /** RegExp for THIRDPARTY_PACKAGE group imports */
     private Pattern thirdPartyPackageRegExp = Pattern.compile(".*");
