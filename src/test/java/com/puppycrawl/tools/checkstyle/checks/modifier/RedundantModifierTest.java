@@ -20,21 +20,24 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import java.io.File;
 
+
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
+
 import static com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck.MSG_KEY;
 
 public class RedundantModifierTest
-    extends BaseCheckTestSupport
+        extends BaseCheckTestSupport
 {
     @Test
     public void testIt() throws Exception
     {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(RedundantModifierCheck.class);
+                createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = {
             "54:12: " + getCheckMessage(MSG_KEY, "static"),
             "57:9: " + getCheckMessage(MSG_KEY, "public"),
@@ -56,7 +59,7 @@ public class RedundantModifierTest
 
     @Test
     public void testStaticMethodInInterface()
-        throws Exception
+            throws Exception
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
@@ -70,7 +73,7 @@ public class RedundantModifierTest
 
     @Test
     public void testFinalInInterface()
-        throws Exception
+            throws Exception
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
@@ -81,5 +84,37 @@ public class RedundantModifierTest
                 new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/InputFinalInDefaultMethods.java").getCanonicalPath(),
                 expected);
+    }
+
+    @Test
+    public void testGetDefaultTokens()
+    {
+        RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
+
+        int[] actual = redundantModifierCheckObj.getDefaultTokens();
+        int[] expected = new int[] {9, 10, 161, 15};
+        int[] unexpectedEmptyArray = new int[] {};
+        int[] unexperctedArray = new int[] {8, 9, 160, 14};
+
+        Assert.assertArrayEquals(expected, actual);
+        Assert.assertNotSame(unexpectedEmptyArray, actual);
+        Assert.assertNotSame(unexperctedArray, actual);
+        Assert.assertNotNull(actual);
+    }
+
+    @Test
+    public void testGetAcceptableTokens()
+    {
+        RedundantModifierCheck redundantModifierCheck = new RedundantModifierCheck();
+
+        int[] actual = redundantModifierCheck.getAcceptableTokens();
+        int[] expected = new int[] {9, 10, 161, 15};
+        int[] unexpectedEmptyArray = new int[] {};
+        int[] unexperctedArray = new int[] {8, 9, 160};
+
+        Assert.assertArrayEquals(expected, actual);
+        Assert.assertNotSame(unexpectedEmptyArray, actual);
+        Assert.assertNotSame(unexperctedArray, actual);
+        Assert.assertNotNull(actual);
     }
 }

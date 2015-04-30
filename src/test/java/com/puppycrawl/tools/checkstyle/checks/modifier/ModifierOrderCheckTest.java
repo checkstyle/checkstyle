@@ -20,10 +20,12 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import java.io.File;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
 
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck
 .MSG_ANNOTATION_ORDER;
@@ -58,7 +60,39 @@ public class ModifierOrderCheckTest
         final String[] expected = {
         };
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools"
-                  + "/checkstyle/InputModifier2.java").getCanonicalPath(), expected);
+                + "/checkstyle/InputModifier2.java").getCanonicalPath(), expected);
     }
 
+
+    @Test
+    public void testGetDefaultTokens()
+    {
+        ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
+
+        int[] actual = modifierOrderCheckObj.getDefaultTokens();
+        int[] expected = new int[] {5};
+        int[] unexpectedEmptyArray = new int[] {};
+        int[] unexperctedArray = new int[] {5, 3};
+
+        Assert.assertArrayEquals(expected, actual);
+        Assert.assertNotSame(unexpectedEmptyArray, actual);
+        Assert.assertNotSame(unexperctedArray, actual);
+        Assert.assertNotNull(actual);
+    }
+
+    @Test
+    public void testGetAcceptableTokens()
+    {
+        ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
+
+        int[] actual = modifierOrderCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {5};
+        int[] unexpectedEmptyArray = new int[] {};
+        int[] unexperctedArray = new int[]{5, 3};
+
+        Assert.assertArrayEquals(expected, actual);
+        Assert.assertNotSame(unexpectedEmptyArray, actual);
+        Assert.assertNotSame(unexperctedArray, actual);
+        Assert.assertNotNull(actual);
+    }
 }
