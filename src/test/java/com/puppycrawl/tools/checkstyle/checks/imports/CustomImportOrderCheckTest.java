@@ -38,7 +38,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
-        checkConfig.addAttribute("standardPackageRegExp", "java|javax");
+        checkConfig.addAttribute("standardPackageRegExp", "^(java|javax)\\.");
         checkConfig.addAttribute("thirdPartyPackageRegExp", "com|org");
         checkConfig
                 .addAttribute("customImportOrderRules",
@@ -247,7 +247,6 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
-        checkConfig.addAttribute("standardPackageRegExp", "java|javax");
         checkConfig.addAttribute("thirdPartyPackageRegExp", "com|org");
         checkConfig.addAttribute("customImportOrderRules",
             "STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE");
@@ -304,5 +303,20 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
 
         verify(checkConfig, getPath("imports" + File.separator
                 + "InputCustomImportOrderThirdPartyAndSpecial.java"), expected);
+    }
+
+    @Test
+    public void testImportsContainingJava() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("customImportOrderRules",
+                "STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE");
+        final String[] expected = {
+            "5: " + getCheckMessage(MSG_LINE_SEPARATOR,
+                    "com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck"),
+        };
+
+        verify(checkConfig, getPath("imports" + File.separator
+                + "InputCustomImportOrderImportsContainingJava.java"), expected);
     }
 }
