@@ -73,3 +73,7 @@ class InputModifiedControl
     }
     private int i;
 }
+
+@SuppressWarnings(value = "this previously caused NullPointerException")
+class VariableDeclaredBeforeTheFirstBlockBegins {
+}
