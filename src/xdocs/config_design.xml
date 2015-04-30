@@ -686,7 +686,7 @@ public class StringUtils // not final to allow subclassing
         </p>
         <source>
 &lt;module name="OneTopLevelClass"&gt;
-    &lt;property name="tokens" value="CLASS_DEF"&gt;
+    &lt;property name="tokens" value="CLASS_DEF"/&gt;
 &lt;/module&gt;
         </source>
         <p>
