@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.io.File;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -31,12 +32,74 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport
 {
 
     @Test
+    public void testAcceptableTokens() throws Exception
+    {
+        final OneTopLevelClassCheck check =  new OneTopLevelClassCheck();
+        check.getAcceptableTokens();
+        // ZERO tokens as Check do Traverse of Tree himself, he does not need to subscribed to Tokens
+        Assert.assertEquals(0, check.getAcceptableTokens().length);
+    }
+
+    @Test
     public void testFileWithOneTopLevelClass() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OneTopLevelClassCheck.class);
         final String[] expected = {};
         verify(checkConfig, getPath("design" + File.separator + "InputOneTopLevelClass.java"), expected);
+    }
+
+    @Test
+    public void testFileWithOneTopLevelInterface() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(OneTopLevelClassCheck.class);
+        final String[] expected = {};
+        verify(checkConfig, getPath("design" + File.separator + "InputOneTopLevelInterface.java"), expected);
+    }
+
+    @Test
+    public void testFileWithOneTopLevelEnum() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(OneTopLevelClassCheck.class);
+        final String[] expected = {};
+        verify(checkConfig, getPath("design" + File.separator + "InputOneTopLevelEnum.java"), expected);
+    }
+
+    @Test
+    public void testFileWithNoPublicTopLevelClass() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(OneTopLevelClassCheck.class);
+        final String[] expected = {
+            "8: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassNoPublic2"),
+        };
+        verify(checkConfig, getPath("design" + File.separator + "InputOneTopLevelClassNoPublic.java"), expected);
+    }
+
+    @Test
+    public void testFileWithThreeTopLevelInterface() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(OneTopLevelClassCheck.class);
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_KEY, "InputOneTopLevelInterface2inner1"),
+            "11: " + getCheckMessage(MSG_KEY, "InputOneTopLevelInterface2inner2"),
+        };
+        verify(checkConfig, getPath("design" + File.separator + "InputOneTopLevelInterface2.java"), expected);
+    }
+
+    @Test
+    public void testFileWithThreeTopLevelEnum() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(OneTopLevelClassCheck.class);
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_KEY, "InputOneTopLevelEnum2inner1"),
+            "11: " + getCheckMessage(MSG_KEY, "InputOneTopLevelEnum2inner2"),
+        };
+        verify(checkConfig, getPath("design" + File.separator + "InputOneTopLevelEnum2.java"), expected);
     }
 
     @Test

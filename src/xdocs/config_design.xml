@@ -682,13 +682,8 @@ public class StringUtils // not final to allow subclassing
 &lt;module name="OneTopLevelClass"/&gt;
         </source>
         <p>
-          An example of check's configuration applied only to classes:
+          <b>ATTENTION:</b> This Check does support customization of validated token, to not use "tokens" property
         </p>
-        <source>
-&lt;module name="OneTopLevelClass"&gt;
-    &lt;property name="tokens" value="CLASS_DEF"/&gt;
-&lt;/module&gt;
-        </source>
         <p>
           An example of code with violations:
         </p>

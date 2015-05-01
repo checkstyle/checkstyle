@@ -76,6 +76,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </code></pre>
  *
+ * ATTENTION: This Check does support customization of validated token
+ *
  * @author maxvetrenko
  */
 public class OneTopLevelClassCheck extends Check
@@ -99,12 +101,22 @@ public class OneTopLevelClassCheck extends Check
     @Override
     public int[] getDefaultTokens()
     {
+        return getAcceptableTokens();
+    }
+
+    // ZERO tokens as Check do Traverse of Tree himself, he does not need to subscribed to Tokens
+    @Override
+    public int[] getAcceptableTokens()
+    {
         return new int[] {};
     }
 
     @Override
     public void beginTree(DetailAST rootAST)
     {
+        publicTypeFound = false;
+        lineNumberTypeMap.clear();
+
         DetailAST currentNode = rootAST;
         while (currentNode != null) {
             if (currentNode.getType() == TokenTypes.CLASS_DEF
@@ -114,7 +126,6 @@ public class OneTopLevelClassCheck extends Check
                 if (isPublic(currentNode)) {
                     publicTypeFound = true;
                 }
-
                 else {
                     final String typeName = currentNode.
                             findFirstToken(TokenTypes.IDENT).getText();
@@ -128,7 +139,7 @@ public class OneTopLevelClassCheck extends Check
     @Override
     public void finishTree(DetailAST rootAST)
     {
-        if (!publicTypeFound && !lineNumberTypeMap.isEmpty()) {
+        if (!publicTypeFound) {
             // skip first top-level type.
             lineNumberTypeMap.remove(lineNumberTypeMap.firstKey());
         }
@@ -139,8 +150,6 @@ public class OneTopLevelClassCheck extends Check
             log(entry.getKey(), MSG_KEY, entry.getValue());
         }
 
-        lineNumberTypeMap.clear();
-        publicTypeFound = false;
     }
 
     /**
