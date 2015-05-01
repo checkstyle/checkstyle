@@ -730,8 +730,8 @@
           <regex><pattern>.*.checks.coding.MultipleStringLiteralsCheck</pattern><branchRate>90</branchRate><lineRate>94</lineRate></regex>
           <regex><pattern>.*.checks.coding.MultipleVariableDeclarationsCheck</pattern><branchRate>96</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.coding.NestedForDepthCheck</pattern><branchRate>50</branchRate><lineRate>90</lineRate></regex>
-          <regex><pattern>.*.checks.coding.NestedIfDepthCheck</pattern><branchRate>75</branchRate><lineRate>85</lineRate></regex>
-          <regex><pattern>.*.checks.coding.NestedTryDepthCheck</pattern><branchRate>50</branchRate><lineRate>83</lineRate></regex>
+          <regex><pattern>.*.checks.coding.NestedIfDepthCheck</pattern><branchRate>75</branchRate><lineRate>83</lineRate></regex>
+          <regex><pattern>.*.checks.coding.NestedTryDepthCheck</pattern><branchRate>50</branchRate><lineRate>81</lineRate></regex>
           <regex><pattern>.*.checks.coding.OneStatementPerLineCheck</pattern><branchRate>93</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.coding.OverloadMethodsDeclarationOrderCheck</pattern><branchRate>93</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.coding.PackageDeclarationCheck</pattern><branchRate>50</branchRate><lineRate>63</lineRate></regex>
@@ -753,7 +753,7 @@
           <regex><pattern>.*.checks.design.InterfaceIsTypeCheck</pattern><branchRate>100</branchRate><lineRate>85</lineRate></regex>
           <regex><pattern>.*.checks.design.MutableExceptionCheck</pattern><branchRate>85</branchRate><lineRate>92</lineRate></regex>
           <regex><pattern>.*.checks.design.OneTopLevelClassCheck</pattern><branchRate>77</branchRate><lineRate>95</lineRate></regex>
-          <regex><pattern>.*.checks.design.ThrowsCountCheck</pattern><branchRate>75</branchRate><lineRate>83</lineRate></regex>
+          <regex><pattern>.*.checks.design.ThrowsCountCheck</pattern><branchRate>75</branchRate><lineRate>82</lineRate></regex>
           <regex><pattern>.*.checks.design.VisibilityModifierCheck</pattern><branchRate>95</branchRate><lineRate>95</lineRate></regex>
 
           <regex><pattern>.*.checks.header.AbstractHeaderCheck</pattern><branchRate>85</branchRate><lineRate>85</lineRate></regex>

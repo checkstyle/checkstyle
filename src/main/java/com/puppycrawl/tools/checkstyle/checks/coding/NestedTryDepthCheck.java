@@ -58,24 +58,22 @@ public final class NestedTryDepthCheck extends AbstractNestedDepthCheck
     @Override
     public void visitToken(DetailAST ast)
     {
-        switch (ast.getType()) {
-            case TokenTypes.LITERAL_TRY:
-                visitLiteralTry(ast);
-                break;
-            default:
-                throw new IllegalStateException(ast.toString());
+        if (ast.getType() == TokenTypes.LITERAL_TRY) {
+            visitLiteralTry(ast);
+        }
+        else {
+            throw new IllegalStateException(ast.toString());
         }
     }
 
     @Override
     public void leaveToken(DetailAST ast)
     {
-        switch (ast.getType()) {
-            case TokenTypes.LITERAL_TRY:
-                leaveLiteralTry();
-                break;
-            default:
-                throw new IllegalStateException(ast.toString());
+        if (ast.getType() == TokenTypes.LITERAL_TRY) {
+            leaveLiteralTry();
+        }
+        else {
+            throw new IllegalStateException(ast.toString());
         }
     }
 

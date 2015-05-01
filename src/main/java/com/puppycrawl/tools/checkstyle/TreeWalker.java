@@ -703,13 +703,12 @@ public final class TreeWalker
         int lines = initialLinesCnt;
         int columns = initialColumnsCnt;
         for (char c : text.toCharArray()) {
-            switch (c) {
-                case '\n':
-                    lines++;
-                    columns = 0;
-                    break;
-                default:
-                    columns++;
+            if (c == '\n') {
+                lines++;
+                columns = 0;
+            }
+            else {
+                columns++;
             }
         }
         return new SimpleEntry<>(lines, columns);

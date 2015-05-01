@@ -239,12 +239,8 @@ public class DeclarationOrderCheck extends Check
     @Override
     public void leaveToken(DetailAST ast)
     {
-        switch (ast.getType()) {
-            case TokenTypes.OBJBLOCK:
-                scopeStates.pop();
-                break;
-
-            default:
+        if (ast.getType() == TokenTypes.OBJBLOCK) {
+            scopeStates.pop();
         }
     }
 
