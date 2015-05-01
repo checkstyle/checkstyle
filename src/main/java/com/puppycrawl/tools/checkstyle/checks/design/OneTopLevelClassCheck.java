@@ -76,7 +76,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </code></pre>
  *
- * ATTENTION: This Check does support customization of validated token
+ * <p> ATTENTION: This Check does not support customization of validated tokens,
+ *  so do not use the "tokens" property.
+ * </p>
  *
  * @author maxvetrenko
  */

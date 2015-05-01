@@ -682,7 +682,7 @@ public class StringUtils // not final to allow subclassing
 &lt;module name="OneTopLevelClass"/&gt;
         </source>
         <p>
-          <b>ATTENTION:</b> This Check does support customization of validated token, to not use "tokens" property
+          <b>ATTENTION:</b> This Check does not support customization of validated tokens, so do not use the "tokens" property.
         </p>
         <p>
           An example of code with violations:
