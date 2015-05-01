@@ -87,14 +87,6 @@
       <Bug pattern="DM_EXIT" />
     </Match>
     <Match>
-      <!-- till #928 -->
-      <Or>
-        <Class name="com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter$Tag" />
-        <Class name="com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag" />
-      </Or>
-      <Bug pattern="SIC_INNER_SHOULD_BE_STATIC_NEEDS_THIS" />
-    </Match>
-    <Match>
       <!-- till #925 -->
       <Package name="~com\.puppycrawl\.tools\.checkstyle\.gui.*" />
     </Match>
