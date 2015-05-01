@@ -107,12 +107,8 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     @Override
     public void leaveToken(DetailAST ast)
     {
-        switch (ast.getType()) {
-            case TokenTypes.CLASS_DEF:
-                leaveClassDef();
-                break;
-            default:
-                // Do nothing
+        if (ast.getType() == TokenTypes.CLASS_DEF) {
+            leaveClassDef();
         }
     }
 

@@ -123,8 +123,6 @@
     <exclude name="PreserveStackTrace"/>
     <!-- till #997 -->
     <exclude name="EmptyMethodInAbstractClassShouldBeAbstract"/>
-    <!-- till #998 -->
-    <exclude name="TooFewBranchesForASwitchStatement"/>
     <!-- we will use our own declaration order logic -->
     <exclude name="FieldDeclarationsShouldBeAtStartOfClass"/>
     <!-- too much alarms of Checks, we will never move logic out of Check, each Check is independed logic contianer -->
