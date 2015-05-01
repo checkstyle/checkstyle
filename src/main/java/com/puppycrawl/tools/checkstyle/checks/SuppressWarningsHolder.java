@@ -70,8 +70,14 @@ public class SuppressWarningsHolder
     {
         /** the source name of the suppressed check */
         private final String checkName;
-        /** the suppression region for the check */
-        private final int firstLine, firstColumn, lastLine, lastColumn;
+        /** the suppression region for the check - first line */
+        private final int firstLine;
+        /** the suppression region for the check - first column */
+        private final int firstColumn;
+        /** the suppression region for the check - last line */
+        private final int lastLine;
+        /** the suppression region for the check - last column */
+        private final int lastColumn;
 
         /**
          * Constructs a new suppression region entry.
