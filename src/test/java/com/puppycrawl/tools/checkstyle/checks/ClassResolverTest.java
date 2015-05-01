@@ -24,6 +24,7 @@ import static org.junit.Assert.fail;
 import com.google.common.collect.Sets;
 import java.util.Set;
 import org.junit.Test;
+
 public class ClassResolverTest
 {
     @Test
