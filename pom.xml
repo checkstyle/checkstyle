@@ -647,7 +647,6 @@
           <regex><pattern>.*.api.Check</pattern><branchRate>100</branchRate><lineRate>86</lineRate></regex>
           <regex><pattern>.*.api.Comment</pattern><branchRate>100</branchRate><lineRate>95</lineRate></regex>
           <regex><pattern>.*.api.DetailAST</pattern><branchRate>95</branchRate><lineRate>98</lineRate></regex>
-          <regex><pattern>.*.api.FastStack</pattern><branchRate>75</branchRate><lineRate>95</lineRate></regex>
           <regex><pattern>.*.api.FileContents</pattern><branchRate>96</branchRate><lineRate>94</lineRate></regex>
           <regex><pattern>.*.api.FileText</pattern><branchRate>50</branchRate><lineRate>59</lineRate></regex>
           <regex><pattern>.*.api.FilterSet</pattern><branchRate>83</branchRate><lineRate>80</lineRate></regex>
