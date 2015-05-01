@@ -55,6 +55,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
         };
         verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
+
     @Test
     public void testSame() throws Exception
     {

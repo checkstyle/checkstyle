@@ -100,6 +100,7 @@ public class FinalLocalVariableCheckTest
         };
         verify(checkConfig, getPath("coding/InputFinalLocalVariableCheckFalsePositive.java"), expected);
     }
+
     @Test
     public void testEnhancedForLoopVariableTrue() throws Exception
     {
@@ -113,6 +114,7 @@ public class FinalLocalVariableCheckTest
         };
         verify(checkConfig, getPath("coding/InputFinalLocalVariableEnhancedForLoopVariable.java"), expected);
     }
+
     @Test
     public void testEnhancedForLoopVariableFalse() throws Exception
     {

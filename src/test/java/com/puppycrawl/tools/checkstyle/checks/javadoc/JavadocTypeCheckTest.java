@@ -332,6 +332,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
         };
         verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
     }
+
     @Test
     public void testAllowMissingTypeParameters() throws Exception
     {

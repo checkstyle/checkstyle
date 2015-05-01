@@ -121,6 +121,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
         };
         verify(checkConfig, getPath("InputLeftCurlyMethod.java"), expected);
     }
+
     @Test
     public void testDefault3() throws Exception
     {

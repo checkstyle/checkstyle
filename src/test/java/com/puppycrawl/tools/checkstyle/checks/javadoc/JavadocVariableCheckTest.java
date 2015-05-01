@@ -88,6 +88,7 @@ public class JavadocVariableCheckTest
         };
         verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
+
     @Test
     public void testAnother4()
         throws Exception

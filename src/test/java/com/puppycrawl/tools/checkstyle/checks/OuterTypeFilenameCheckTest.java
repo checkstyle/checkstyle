@@ -34,6 +34,7 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport
         final String[] expected = {};
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
+
     @Test
     public void testGood2() throws Exception
     {
