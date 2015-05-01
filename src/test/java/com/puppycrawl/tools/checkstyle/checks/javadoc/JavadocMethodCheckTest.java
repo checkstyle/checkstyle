@@ -105,7 +105,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
             "333: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
         };
 
-        verify(checkConfig, getSrcPath("checks/javadoc/InputTags.java"), expected);
+        verify(checkConfig, getPath("checks/javadoc/InputTags.java"), expected);
     }
 
     @Test
@@ -139,7 +139,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
             "320:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "329:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "333: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL), };
-        verify(checkConfig, getSrcPath("checks/javadoc/InputTags.java"), expected);
+        verify(checkConfig, getPath("checks/javadoc/InputTags.java"), expected);
     }
 
     @Test
@@ -254,7 +254,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
             "320:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "329:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "333: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL), };
-        verify(checkConfig, getSrcPath("checks/javadoc/InputTags.java"), expected);
+        verify(checkConfig, getPath("checks/javadoc/InputTags.java"), expected);
     }
 
     @Test

@@ -36,7 +36,7 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport
         };
 
         verify(checkConfig,
-            getSrcPath("checks/coding/OneStatementPerLineCheckInput.java"),
+            getPath("checks/coding/OneStatementPerLineCheckInput.java"),
             expected);
     }
 }

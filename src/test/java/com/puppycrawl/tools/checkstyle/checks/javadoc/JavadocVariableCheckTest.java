@@ -41,7 +41,7 @@ public class JavadocVariableCheckTest
             "311:5: " + getCheckMessage(JAVADOC_MISSING),
             "330:5: " + getCheckMessage(JAVADOC_MISSING),
         };
-        verify(checkConfig, getSrcPath("checks/javadoc/InputTags.java"), expected);
+        verify(checkConfig, getPath("checks/javadoc/InputTags.java"), expected);
     }
 
     @Test

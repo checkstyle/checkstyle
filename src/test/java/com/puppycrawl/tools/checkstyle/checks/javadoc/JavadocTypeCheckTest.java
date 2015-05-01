@@ -53,7 +53,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
             "302: " + getCheckMessage(JAVADOC_MISSING),
             "327: " + getCheckMessage(JAVADOC_MISSING),
         };
-        verify(checkConfig, getSrcPath("checks/javadoc/InputTags.java"), expected);
+        verify(checkConfig, getPath("checks/javadoc/InputTags.java"), expected);
     }
 
     @Test
