@@ -443,7 +443,7 @@ public abstract class AbstractTypeAwareCheck extends Check
         protected ClassInfo(final Token className)
         {
             if (className == null) {
-                throw new NullPointerException(
+                throw new IllegalArgumentException(
                     "ClassInfo's name should be non-null");
             }
             name = className;
