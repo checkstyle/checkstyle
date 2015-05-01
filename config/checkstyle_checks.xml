@@ -232,6 +232,7 @@
       <property name="allowInSwitchCase" value="true"/>
     </module>
     <module name="AvoidStaticImport"/>
+    <module name="EmptyCatchBlock"/>
 
 <!--
     <module name="AbbreviationAsWordInName"/>
@@ -251,7 +252,6 @@
     <module name="DefaultComesLast"/>
     <module name="DescendantToken"/>
     <module name="DesignForExtension"/>
-    <module name="EmptyCatchBlock"/>
     <module name="EmptyForInitializerPad"/>
     <module name="EmptyLineSeparator"/>
     <module name="EmptyStatement"/>

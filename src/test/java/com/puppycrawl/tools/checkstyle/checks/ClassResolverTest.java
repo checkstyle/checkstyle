@@ -41,6 +41,7 @@ public class ClassResolverTest
             fail("Should not resolve class");
         }
         catch (ClassNotFoundException e) {
+            // expected
         }
         cr.resolve("java.lang.String", "");
         cr.resolve("StringBuffer", "");
@@ -51,6 +52,7 @@ public class ClassResolverTest
             fail();
         }
         catch (ClassNotFoundException e) {
+            // expected
         }
 
         imps.add("java.text.ChoiceFormat");
@@ -64,6 +66,7 @@ public class ClassResolverTest
             fail();
         }
         catch (ClassNotFoundException e) {
+            // expected
         }
     }
 }
