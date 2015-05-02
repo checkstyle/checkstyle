@@ -44,7 +44,7 @@
             <td>
               One of &quot;system&quot; (system default),
               &quot;crlf&quot; (Windows-style), &quot;cr&quot;
-              (Mac-style) and &quot;lf&quot; (Unix-style)
+              (Mac-style), &quot;lf&quot; (Unix-style) and &quot;lf_cr_crlf&quot; (lf, cr or crlf).
             </td>
             <td>&quot;system&quot;</td>
           </tr>

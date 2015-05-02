@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+
 /**
  * Represents the options for line separator settings.
  *
@@ -35,18 +38,21 @@ public enum LineSeparatorOption {
     /** Unix-style line separators. **/
     LF("\n"),
 
+    /** Matches CR, LF and CRLF line separators. **/
+    LF_CR_CRLF("##"), // only the length is used - the actual value is ignored
+
     /** System default line separators. **/
     SYSTEM(System.getProperty("line.separator"));
 
     /** the line separator representation */
-    private final String lineSeparator;
+    private final byte[] lineSeparator;
 
     /**
      * Creates a new <code>LineSeparatorOption</code> instance.
      * @param sep the line separator, e.g. "\r\n"
      */
     private LineSeparatorOption(String sep) {
-        lineSeparator = sep;
+        lineSeparator = sep.getBytes(StandardCharsets.US_ASCII);
     }
 
     /**
@@ -55,15 +61,23 @@ public enum LineSeparatorOption {
      * of this line separator
      */
     public boolean matches(byte... bytes) {
-        final String s = new String(bytes);
-        return s.equals(lineSeparator);
+        if (this == LF_CR_CRLF) {
+            // this silently assumes CRLF and ANY have the same length
+            // and LF and CR are of length 1
+            return CRLF.matches(bytes)
+                || LF.matches(Arrays.copyOfRange(bytes, 1, 2))
+                || CR.matches(Arrays.copyOfRange(bytes, 1, 2));
+        }
+        else {
+            return Arrays.equals(bytes, lineSeparator);
+        }
     }
 
     /**
-     * @return the length of the file separator,
+     * @return the length of the file separator in bytes,
      * e.g. 1 for CR, 2 for CRLF, ...
      */
     public int length() {
-        return lineSeparator.length();
+        return lineSeparator.length;
     }
 }
