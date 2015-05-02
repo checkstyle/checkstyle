@@ -218,7 +218,7 @@ public class SuppressionCommentFilterTest
             checkerConfig.addChild(aFilterConfig);
         }
         final Checker checker = new Checker();
-        final Locale locale = Locale.ENGLISH;
+        final Locale locale = Locale.ROOT;
         checker.setLocaleCountry(locale.getCountry());
         checker.setLocaleLanguage(locale.getLanguage());
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());

@@ -57,9 +57,9 @@ public abstract class BaseCheckTestSupport {
             throws Exception {
         final DefaultConfiguration dc = createCheckerConfig(checkConfig);
         final Checker c = new Checker();
-        // make sure the tests always run with english error messages
-        // so the tests don't fail in supported locales like german
-        final Locale locale = Locale.ENGLISH;
+        // make sure the tests always run with default error messages (language-invariant)
+        // so the tests don't fail in supported locales like German
+        final Locale locale = Locale.ROOT;
         c.setLocaleCountry(locale.getCountry());
         c.setLocaleLanguage(locale.getLanguage());
         c.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
