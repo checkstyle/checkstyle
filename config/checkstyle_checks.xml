@@ -242,6 +242,7 @@
     <module name="EmptyLineSeparator">
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
     </module>
+    <module name="FallThrough"/>
 
 <!--
     <module name="AbbreviationAsWordInName"/>
@@ -257,7 +258,6 @@
     <module name="EmptyForInitializerPad"/>
     <module name="EmptyStatement"/>
     <module name="ExecutableStatementCount"/>
-    <module name="FallThrough"/>
     <module name="FinalParameters"/>
     <module name="HiddenField"/>
     <module name="IllegalToken"/>
