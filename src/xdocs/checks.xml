@@ -438,13 +438,16 @@
       <tr>
         <td><a href="config_annotation.html#MissingDeprecated">MissingDeprecated</a></td>
         <td>
-          This class is used to verify that both the
+          This class is used to verify that both the java.lang.Deprecated annotation is
+          present and the @deprecated Javadoc tag is present when either is present.
         </td>
       </tr>
       <tr>
         <td><a href="config_annotation.html#MissingOverride">MissingOverride</a></td>
         <td>
-        This class is used to verify that the </td>
+        This class is used to verify that the java.lang.Override annotation is present
+        when the {@inheritDoc} javadoc tag is present.
+        </td>
       </tr>
       <tr>
         <td><a href="config_coding.html#MissingSwitchDefault">MissingSwitchDefault</a></td>
