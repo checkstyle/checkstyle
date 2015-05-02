@@ -227,11 +227,17 @@
     <module name="OuterTypeFilename"/>
     <module name="HideUtilityClassConstructor"/>
     <module name="AnnotationLocation"/>
+    <module name="AnonInnerLength"/>
+    <module name="ArrayTypeStyle"/>
     <module name="AtclauseOrder"/>
     <module name="AvoidNestedBlocks">
       <property name="allowInSwitchCase" value="true"/>
     </module>
     <module name="AvoidStaticImport"/>
+    <module name="ClassTypeParameterName"/>
+    <module name="CovariantEquals"/>
+    <module name="DefaultComesLast"/>
+    <module name="DescendantToken"/>
     <module name="EmptyCatchBlock"/>
     <module name="EmptyLineSeparator">
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
@@ -240,20 +246,13 @@
 <!--
     <module name="AbbreviationAsWordInName"/>
     <module name="AbstractClassName"/>
-    <module name="AnnotationLocation"/>
-    <module name="AnonInnerLength"/>
-    <module name="ArrayTypeStyle"/>
     <module name="AvoidEscapedUnicodeCharacters"/>
     <module name="AvoidInlineConditionals"/>
     <module name="BooleanExpressionComplexity"/>
     <module name="ClassDataAbstractionCoupling"/>
     <module name="ClassFanOutComplexity"/>
-    <module name="ClassTypeParameterName"/>
-    <module name="CovariantEquals"/>
     <module name="CustomImportOrder"/>
     <module name="DeclarationOrder"/>
-    <module name="DefaultComesLast"/>
-    <module name="DescendantToken"/>
     <module name="DesignForExtension"/>
     <module name="EmptyForInitializerPad"/>
     <module name="EmptyStatement"/>
