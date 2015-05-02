@@ -1,0 +1,3 @@
+/src/test/resources/com/puppycrawl/tools/checkstyle/InputNewlineLfAtEndOfFile.java eol=lf
+/src/test/resources/com/puppycrawl/tools/checkstyle/InputNewlineCrlfAtEndOfFile.java eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/InputNewlineCrAtEndOfFile.java -text

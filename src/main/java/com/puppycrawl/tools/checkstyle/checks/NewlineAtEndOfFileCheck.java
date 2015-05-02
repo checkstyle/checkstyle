@@ -52,7 +52,7 @@ import org.apache.commons.beanutils.ConversionException;
  * &lt;/module&gt;</pre>
  * <p>
  * Valid values for the 'lineSeparator' property are 'system' (system default),
- * 'crlf' (windows), 'cr' (mac) and 'lf' (unix).
+ * 'crlf' (windows), 'cr' (mac), 'lf' (unix) and 'lf_cr_crlf' (lf, cr or crlf).
  * </p>
  *
  * @author Christopher Lenz
@@ -99,11 +99,11 @@ public class NewlineAtEndOfFileCheck
     }
 
     /**
-     * Sets the line separator to one of 'crlf', 'lf' or 'cr'.
+     * Sets the line separator to one of 'crlf', 'lf','cr', 'lf_cr_crlf' or 'system'.
      *
      * @param lineSeparatorParam The line separator to set
      * @throws IllegalArgumentException If the specified line separator is not
-     *         one of 'crlf', 'lf' or 'cr'
+     *         one of 'crlf', 'lf', 'cr', 'lf_cr_crlf' or 'system'
      */
     public void setLineSeparator(String lineSeparatorParam) {
         try {

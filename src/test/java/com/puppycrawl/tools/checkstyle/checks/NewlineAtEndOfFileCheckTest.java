@@ -38,14 +38,72 @@ public class NewlineAtEndOfFileCheckTest
     }
 
     @Test
-    public void testNewlineAtEndOfFile() throws Exception {
+    public void testNewlineLfAtEndOfFile() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = {};
         verify(
             createChecker(checkConfig),
-            getPath("InputNewlineAtEndOfFile.java"),
+            getPath("InputNewlineLfAtEndOfFile.java"),
+            expected);
+    }
+
+    @Test
+    public void testNewlineCrlfAtEndOfFile() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addAttribute("lineSeparator", LineSeparatorOption.CRLF.toString());
+        final String[] expected = {};
+        verify(
+            createChecker(checkConfig),
+            getPath("InputNewlineCrlfAtEndOfFile.java"),
+            expected);
+    }
+
+    @Test
+    public void testNewlineCrAtEndOfFile() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addAttribute("lineSeparator", LineSeparatorOption.CR.toString());
+        final String[] expected = {};
+        verify(
+            createChecker(checkConfig),
+            getPath("InputNewlineCrAtEndOfFile.java"),
+            expected);
+    }
+
+    @Test
+    public void testAnyNewlineAtEndOfFile() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
+        final String[] expected = {};
+        verify(
+            createChecker(checkConfig),
+            getPath("InputNewlineCrlfAtEndOfFile.java"),
+            expected);
+        verify(
+            createChecker(checkConfig),
+            getPath("InputNewlineLfAtEndOfFile.java"),
+            expected);
+        verify(
+            createChecker(checkConfig),
+            getPath("InputNewlineCrAtEndOfFile.java"),
+            expected);
+    }
+
+    @Test
+    public void testNoNewlineLfAtEndOfFile() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
+        final String[] expected = {
+            "0: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+        };
+        verify(
+            createChecker(checkConfig),
+            getPath("InputNoNewlineAtEndOfFile.java"),
             expected);
     }
 
@@ -53,7 +111,7 @@ public class NewlineAtEndOfFileCheckTest
     public void testNoNewlineAtEndOfFile() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
+        checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
         final String[] expected = {
             "0: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
