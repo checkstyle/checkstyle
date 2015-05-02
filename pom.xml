@@ -226,6 +226,13 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.github.stefanbirkner</groupId>
+      <artifactId>system-rules</artifactId>
+      <version>1.9.0</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -628,7 +635,7 @@
           <regex><pattern>.*.DefaultConfiguration</pattern><branchRate>100</branchRate><lineRate>92</lineRate></regex>
           <regex><pattern>.*.DefaultLogger</pattern><branchRate>75</branchRate><lineRate>76</lineRate></regex>
           <regex><pattern>.*.Definitions</pattern><branchRate>100</branchRate><lineRate>0</lineRate></regex>
-          <regex><pattern>.*.Main</pattern><branchRate>0</branchRate><lineRate>0</lineRate></regex>
+          <regex><pattern>.*.Main</pattern><branchRate>65</branchRate><lineRate>78</lineRate></regex>
           <regex><pattern>.*.PackageNamesLoader</pattern><branchRate>78</branchRate><lineRate>72</lineRate></regex>
           <regex><pattern>.*.PackageObjectFactory</pattern><branchRate>75</branchRate><lineRate>75</lineRate></regex>
           <regex><pattern>.*.PropertiesExpander</pattern><branchRate>50</branchRate><lineRate>83</lineRate></regex>

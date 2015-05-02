@@ -31,6 +31,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -56,29 +57,64 @@ public final class Main
      * Loops over the files specified checking them for errors. The exit code
      * is the number of errors found in all the files.
      * @param args the command line arguments
-     * @exception UnsupportedEncodingException if there is a problem to use UTF-8
+     * @throws UnsupportedEncodingException if there is a problem to use UTF-8
+     * @throws CheckstyleException if there is a problem with parsing a property file
+     * @throws FileNotFoundException if there is a problem with files access
      **/
     public static void main(String... args) throws UnsupportedEncodingException
+            , CheckstyleException, FileNotFoundException
     {
-        boolean parseResult = false;
+        int errorCounter = 0;
+        boolean cliViolations = false;
+
         try {
-            processCommandLine(parseCli(args));
-            parseResult = true;
+            //parse CLI arguments
+            final CommandLine commandLine = parseCli(args);
+
+            // show version and exit if it is requested
+            if (commandLine.hasOption("v")) {
+                System.out.println("Checkstyle version: "
+                        + Main.class.getPackage().getImplementationVersion());
+            }
+            else {
+                // return error is smth is wrong in arguments
+                final List<String> messages = validateCli(commandLine);
+                cliViolations = !messages.isEmpty();
+                if (messages.isEmpty()) {
+
+                    // create config helper object
+                    final CliOptions config = convertCliToPojo(commandLine);
+                    // run Checker
+                    errorCounter = runCheckstyle(config);
+
+                }
+                else {
+                    errorCounter = 1;
+                    for (String message : messages) {
+                        System.out.println(message);
+                    }
+                }
+            }
         }
-        catch (final ParseException e) {
-            System.err.println("Could not parse parameters: " + e.getMessage());
-            e.printStackTrace();
+        catch (ParseException pex) {
+            // smth wrong with arguments - print error and manual
+            cliViolations = true;
+            errorCounter = 1;
+            System.out.println(pex.getMessage());
+            printUsage();
         }
-        catch (final Exception e) {
-            System.err.println("Could not execute Checkstyle: " + e.getMessage());
-            e.printStackTrace();
+        catch (Exception ex) {
+            // smth wrong during processing
+            errorCounter = 1;
+            throw ex;
         }
         finally {
-            if (!parseResult) {
-                usage();
+            // return exit code base on validation of Checker
+            if (errorCounter != 0 && !cliViolations) {
+                System.out.println(String.format("Checkstyle ends with %d errors.", errorCounter));
             }
             // provide proper exit code based on results.
-            System.exit(parseResult ? 0 : 1);
+            System.exit(errorCounter);
         }
     }
 
@@ -89,7 +125,6 @@ public final class Main
      * @return parsed information about passed parameters
      * @throws ParseException
      *         when passed arguments are not valid
-     * @exception CheckstyleException when provided parameters are not supported
      */
     private static CommandLine parseCli(String... args)
             throws ParseException
@@ -101,130 +136,169 @@ public final class Main
     }
 
     /**
+     * Do validation of Command line options
+     * @param cmdLine command line object
+     * @return list of violations
+     */
+    private static List<String> validateCli(CommandLine cmdLine)
+    {
+        final List<String> result = new ArrayList<>();
+        // ensure a configuration file is specified
+        if (!cmdLine.hasOption("c")) {
+            result.add("Must specify a config XML file.");
+        }
+        else {
+            // validate optional parameters
+            if (cmdLine.hasOption("f")) {
+                final String format = cmdLine.getOptionValue("f");
+                if (!"plain".equals(format) && !"xml".equals(format)) {
+                    result.add(String.format("Invalid output format."
+                            + " Found '%s' but expected 'plain' or 'xml'.", format));
+                }
+            }
+            if (cmdLine.hasOption("p")) {
+                final String propertiesLocation = cmdLine.getOptionValue("p");
+                final File file = new File(propertiesLocation);
+                if (!file.exists()) {
+                    result.add(String.format("Could not find file '%s'.", propertiesLocation));
+                }
+            }
+            if (cmdLine.hasOption("o")) {
+                final String outputLocation = cmdLine.getOptionValue("o");
+                final File file = new File(outputLocation);
+                if (!file.exists()) {
+                    result.add(String.format("Could not find file '%s'.", outputLocation));
+                }
+            }
+            final List<File> files = getFilesToProcess(cmdLine.getArgs());
+            if (files.isEmpty()) {
+                result.add("Must specify files to process, found 0.");
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Util method to convert ComandLine type to POJO object
+     * @param cmdLine command line object
+     * @return command line option as POJO object
+     */
+    private static CliOptions convertCliToPojo(CommandLine cmdLine)
+    {
+        final CliOptions conf = new CliOptions();
+        conf.format = cmdLine.getOptionValue("f");
+        if (conf.format == null) {
+            conf.format = "plain";
+        }
+        conf.outputLocation = cmdLine.getOptionValue("o");
+        conf.configLocation = cmdLine.getOptionValue("c");
+        conf.propertiesLocation = cmdLine.getOptionValue("p");
+        conf.files = getFilesToProcess(cmdLine.getArgs());
+        return conf;
+    }
+
+    /**
      * Executes required Checkstyle actions based on passed parameters.
-     * @param line
-     *        list of actions to execute
+     * @param cliOptions
+     *        pojo object that contains all options
+     * @return number of violations of ERROR level
+     * @throws FileNotFoundException
+     *         when output file could not be found
      * @throws CheckstyleException
-     *         when could not create checker
+     *         when properties file could not be loaded
      * @throws UnsupportedEncodingException
      *         if there is problem to use UTf-8
      */
-    private static void processCommandLine(CommandLine line)
-            throws CheckstyleException, UnsupportedEncodingException
+    private static int runCheckstyle(CliOptions cliOptions)
+            throws CheckstyleException, UnsupportedEncodingException, FileNotFoundException
     {
-        // show version and exit
-        if (line.hasOption("v")) {
-            System.out.println("Checkstyle version: "
-                    + Main.class.getPackage().getImplementationVersion());
-            return;
-        }
-
-        // ensure a configuration file is specified
-        if (!line.hasOption("c")) {
-            System.out.println("Must specify a config XML file.");
-            return;
-        }
-
         // setup the properties
         final Properties props =
-                line.hasOption("p")
-                        ? loadProperties(new File(line.getOptionValue("p")))
+                cliOptions.propertiesLocation != null
+                        ? loadProperties(new File(cliOptions.propertiesLocation))
                         : System.getProperties();
-        final String configFormat = line.getOptionValue("c");
-        final Configuration config = loadConfig(configFormat, props);
 
-        // setup the output stream
-        OutputStream out = null;
-        boolean closeOut = false;
-        if (line.hasOption("o")) {
-            final String fname = line.getOptionValue("o");
-            try {
-                out = new FileOutputStream(fname);
-                closeOut = true;
-            }
-            catch (final FileNotFoundException e) {
-                throw new CheckstyleException(String.format(
-                        "Could not find file '%s': %s ", fname, e.getMessage()));
-            }
-        }
-        else {
-            out = System.out;
-            closeOut = false;
-        }
+        // create a configuration
+        final Configuration config = ConfigurationLoader.loadConfiguration(
+                cliOptions.configLocation, new PropertiesExpander(props));
 
-        final String format = line.hasOption("f") ? line.getOptionValue("f") : "plain";
-        final AuditListener listener = createListener(format, out, closeOut);
-        final List<File> files = getFilesToProcess(line.getArgs());
-        if (files.isEmpty()) {
-            throw new CheckstyleException("Must specify files to process, found 0.");
-        }
+        // create a listener for output
+        final AuditListener listener = createListener(cliOptions.format, cliOptions.outputLocation);
 
-        final Checker checker = createChecker(config, listener);
-        final int errorCounter = checker.process(files);
-        checker.destroy();
-        if (errorCounter != 0) {
-            throw new CheckstyleException(String.format(
-                    "Checkstyle ends with %d errors.", errorCounter));
-        }
-    }
-
-    /**
-     * Creates the Checker object.
-     * @param config
-     *        the configuration to use
-     * @param auditListener
-     *        the sticky beak to track what happens
-     * @return a nice new fresh Checker
-     * @throws CheckstyleException when could not create checker
-     */
-    private static Checker createChecker(Configuration config,
-            AuditListener auditListener)
-            throws CheckstyleException
-    {
+        // create Checker object and run it
+        int errorCounter = 0;
         final Checker checker = new Checker();
 
-        final ClassLoader moduleClassLoader = Checker.class.getClassLoader();
-        checker.setModuleClassLoader(moduleClassLoader);
-        checker.configure(config);
-        checker.addListener(auditListener);
+        try {
 
-        return checker;
+            final ClassLoader moduleClassLoader = Checker.class.getClassLoader();
+            checker.setModuleClassLoader(moduleClassLoader);
+            checker.configure(config);
+            checker.addListener(listener);
+
+            // run Checker
+            errorCounter = checker.process(cliOptions.files);
+
+        }
+        finally {
+            checker.destroy();
+        }
+
+        return errorCounter;
     }
 
     /**
-     * Determines the files to process.
-     * @param filesToProcess
-     *        arguments that were not processed yet but shall be
-     * @return list of files to process
+     * Loads properties from a File.
+     * @param file
+     *        the properties file
+     * @return the properties in file
      * @throws CheckstyleException
-     *         when there is no file to process
+     *         when could not load properties file
      */
-    private static List<File> getFilesToProcess(String... filesToProcess)
+    private static Properties loadProperties(File file)
             throws CheckstyleException
     {
-        final List<File> files = Lists.newLinkedList();
-        for (String element : filesToProcess) {
-            files.addAll(listFiles(new File(element)));
+        final Properties properties = new Properties();
+
+        try (FileInputStream fis = new FileInputStream(file)) {
+            properties.load(fis);
+        }
+        catch (final IOException e) {
+            throw new CheckstyleException(String.format(
+                    "Unable to load properties from file '%s'.", file.getAbsolutePath()), e);
         }
 
-        return files;
+        return properties;
     }
 
     /**
      * Creates the audit listener.
      *
      * @param format format of the auditt listener
-     * @param out the stream to log to
-     * @param closeOut whether the stream should be closed
+     * @param outputLocation the location of output
      * @return a fresh new <code>AuditListener</code>
      * @exception UnsupportedEncodingException if there is problem to use UTf-8
-     * @exception CheckstyleException when provided parameters are not supported
+     * @exception FileNotFoundException when provided output location is not found
      */
     private static AuditListener createListener(String format,
-                                                OutputStream out,
-                                                boolean closeOut)
-            throws UnsupportedEncodingException, CheckstyleException
+                                                String outputLocation)
+            throws UnsupportedEncodingException, FileNotFoundException
     {
+
+        // setup the output stream
+        OutputStream out = null;
+        boolean closeOut = false;
+        if (outputLocation != null) {
+            out = new FileOutputStream(outputLocation);
+            closeOut = true;
+        }
+        else {
+            out = System.out;
+            closeOut = false;
+        }
+
+        // setup a listener
         AuditListener listener = null;
         switch (format) {
             case "xml":
@@ -236,7 +310,7 @@ public final class Main
                 break;
 
             default:
-                throw new CheckstyleException("Invalid output format. Found '" + format
+                throw new IllegalStateException("Invalid output format. Found '" + format
                         + "' but expected 'plain' or 'xml'.");
         }
 
@@ -244,44 +318,19 @@ public final class Main
     }
 
     /**
-     * Loads the configuration file. Will exit if unable to load.
-     *
-     * @param format
-     *            specifies the location of the configuration
-     * @param props
-     *            the properties to resolve with the configuration
-     * @return a fresh new configuration
-     * @throws CheckstyleException
-     *             when could not load properties file
+     * Determines the files to process.
+     * @param filesToProcess
+     *        arguments that were not processed yet but shall be
+     * @return list of files to process
      */
-    private static Configuration loadConfig(String format,
-                                            Properties props)
-            throws CheckstyleException
+    private static List<File> getFilesToProcess(String... filesToProcess)
     {
-        return ConfigurationLoader.loadConfiguration(format, new PropertiesExpander(props));
-    }
+        final List<File> files = Lists.newLinkedList();
+        for (String element : filesToProcess) {
+            files.addAll(listFiles(new File(element)));
+        }
 
-    /** Prints the usage information. **/
-    private static void usage()
-    {
-        final HelpFormatter hf = new HelpFormatter();
-        hf.printHelp(String.format("java %s [options] -c <config.xml> file...",
-                Main.class.getName()), buildOptions());
-    }
-
-    /**
-     * Builds and returns list of parameters supported by cli Checkstyle.
-     * @return available options
-     */
-    private static Options buildOptions()
-    {
-        final Options options = new Options();
-        options.addOption("c", true, "Sets the check configuration file to use.");
-        options.addOption("o", true, "Sets the output file. Defaults to stdout");
-        options.addOption("p", true, "Loads the properties file");
-        options.addOption("f", true, "Sets the output format. (plain|xml). Defaults to plain");
-        options.addOption("v", false, "Print product version and exit");
-        return options;
+        return files;
     }
 
     /**
@@ -310,27 +359,41 @@ public final class Main
         return files;
     }
 
-    /**
-     * Loads properties from a File.
-     * @param file
-     *        the properties file
-     * @return the properties in file
-     * @throws CheckstyleException
-     *         when could not load properties file
-     */
-    private static Properties loadProperties(File file)
-            throws CheckstyleException
+    /** Prints the usage information. **/
+    private static void printUsage()
     {
-        final Properties properties = new Properties();
+        final HelpFormatter hf = new HelpFormatter();
+        hf.printHelp(String.format("java %s [options] -c <config.xml> file...",
+                Main.class.getName()), buildOptions());
+    }
 
-        try (FileInputStream fis = new FileInputStream(file)) {
-            properties.load(fis);
-        }
-        catch (final IOException e) {
-            throw new CheckstyleException(String.format(
-                    "Unable to load properties from file '%s'.", file.getAbsolutePath()), e);
-        }
+    /**
+     * Builds and returns list of parameters supported by cli Checkstyle.
+     * @return available options
+     */
+    private static Options buildOptions()
+    {
+        final Options options = new Options();
+        options.addOption("c", true, "Sets the check configuration file to use.");
+        options.addOption("o", true, "Sets the output file. Defaults to stdout");
+        options.addOption("p", true, "Loads the properties file");
+        options.addOption("f", true, "Sets the output format. (plain|xml). Defaults to plain");
+        options.addOption("v", false, "Print product version and exit");
+        return options;
+    }
 
-        return properties;
+    /** Helper structure to clear show what is required for Checker to run. **/
+    private static class CliOptions
+    {
+        /** properties file location */
+        private String propertiesLocation;
+        /** config file location */
+        private String configLocation;
+        /** output format */
+        private String format;
+        /** output file location */
+        private String outputLocation;
+        /** list of file to validate */
+        private List<File> files;
     }
 }
