@@ -263,9 +263,13 @@ public class EmptyLineSeparatorCheck extends Check
                     if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
                         log(ast.getLineNo(), MSG_SHOULD_BE_SEPARATED, ast.getText());
                     }
+                    if (!hasEmptyLineAfter(ast)) {
+                        log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
+                    }
                     if (hasNotAllowedTwoEmptyLinesBefore(ast)) {
                         log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
                     }
+                    break;
                 default:
                     if (nextToken.getType() != TokenTypes.RCURLY && !hasEmptyLineAfter(ast)) {
                         log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
