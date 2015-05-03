@@ -49,15 +49,15 @@ public class XMLLogger
     /** hex radix */
     private static final int BASE_16 = 16;
 
+    /** some known entities to detect */
+    private static final String[] ENTITIES = {"gt", "amp", "lt", "apos",
+                                              "quot", };
+
     /** close output stream in auditFinished */
     private boolean closeStream;
 
     /** helper writer that allows easy encoding and printing */
     private PrintWriter writer;
-
-    /** some known entities to detect */
-    private static final String[] ENTITIES = {"gt", "amp", "lt", "apos",
-                                              "quot", };
 
     /**
      * Creates a new <code>XMLLogger</code> instance.

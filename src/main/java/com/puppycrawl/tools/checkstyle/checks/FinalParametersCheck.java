@@ -60,20 +60,6 @@ public class FinalParametersCheck extends Check
     public static final String MSG_KEY = "final.parameter";
 
     /**
-     * Option to ignore primitive types as params.
-     */
-    private boolean ignorePrimitiveTypes;
-
-    /**
-     * Sets ignoring primitive types as params.
-     * @param ignorePrimitiveTypes true or false.
-     */
-    public void setIgnorePrimitiveTypes(boolean ignorePrimitiveTypes)
-    {
-        this.ignorePrimitiveTypes = ignorePrimitiveTypes;
-    }
-
-    /**
      * Contains
      * <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
      * primitive datatypes</a>.
@@ -87,6 +73,20 @@ public class FinalParametersCheck extends Check
             TokenTypes.LITERAL_DOUBLE,
             TokenTypes.LITERAL_BOOLEAN,
             TokenTypes.LITERAL_CHAR);
+
+    /**
+     * Option to ignore primitive types as params.
+     */
+    private boolean ignorePrimitiveTypes;
+
+    /**
+     * Sets ignoring primitive types as params.
+     * @param ignorePrimitiveTypes true or false.
+     */
+    public void setIgnorePrimitiveTypes(boolean ignorePrimitiveTypes)
+    {
+        this.ignorePrimitiveTypes = ignorePrimitiveTypes;
+    }
 
     @Override
     public int[] getDefaultTokens()

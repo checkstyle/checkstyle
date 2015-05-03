@@ -57,15 +57,6 @@ public class BlockParentHandler extends ExpressionHandler
     };
 
     /**
-     * Returns array of token types which should be checked among childrens.
-     * @return array of token types to check.
-     */
-    protected int[] getCheckedChildren()
-    {
-        return CHECKED_CHILDREN.clone();
-    }
-
-    /**
      * Construct an instance of this handler with the given indentation check,
      * name, abstract syntax tree, and parent handler.
      *
@@ -78,6 +69,15 @@ public class BlockParentHandler extends ExpressionHandler
         String name, DetailAST ast, ExpressionHandler parent)
     {
         super(indentCheck, name, ast, parent);
+    }
+
+    /**
+     * Returns array of token types which should be checked among childrens.
+     * @return array of token types to check.
+     */
+    protected int[] getCheckedChildren()
+    {
+        return CHECKED_CHILDREN.clone();
     }
 
     /**

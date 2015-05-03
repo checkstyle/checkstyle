@@ -87,6 +87,13 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  */
 public class SuppressWarningsCheck extends AbstractFormatCheck
 {
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED =
+        "suppressed.warning.not.allowed";
+
     /** {@link SuppressWarnings SuppressWarnings} annotation name */
     private static final String SUPPRESS_WARNINGS = "SuppressWarnings";
 
@@ -96,13 +103,6 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
      */
     private static final String FQ_SUPPRESS_WARNINGS =
         "java.lang." + SUPPRESS_WARNINGS;
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED =
-        "suppressed.warning.not.allowed";
 
     /**
      * Ctor that specifies the default for the format property

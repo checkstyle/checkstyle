@@ -104,15 +104,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class NeedBracesCheck extends Check
 {
     /**
-     * Check's option for skipping single-line statements.
-     */
-    private boolean allowSingleLineStatement;
-
-    /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
     public static final String MSG_KEY_NEED_BRACES = "needBraces";
+
+    /**
+     * Check's option for skipping single-line statements.
+     */
+    private boolean allowSingleLineStatement;
 
     /**
      * Setter.

@@ -65,6 +65,9 @@ public final class LocalizedMessage
     private static final Map<String, ResourceBundle> BUNDLE_CACHE =
         Collections.synchronizedMap(new HashMap<String, ResourceBundle>());
 
+    /** the default severity level if one is not specified */
+    private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
+
     /** the line number **/
     private final int lineNo;
     /** the column number **/
@@ -75,9 +78,6 @@ public final class LocalizedMessage
 
     /** the id of the module generating the message. */
     private final String moduleId;
-
-    /** the default severity level if one is not specified */
-    private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
 
     /** key for the message format **/
     private final String key;
@@ -93,51 +93,6 @@ public final class LocalizedMessage
 
     /** a custom message overriding the default message from the bundle. */
     private final String customMessage;
-
-    @Override
-    public boolean equals(Object object)
-    {
-        if (this == object) {
-            return true;
-        }
-        if (!(object instanceof LocalizedMessage)) {
-            return false;
-        }
-
-        final LocalizedMessage localizedMessage = (LocalizedMessage) object;
-
-        if (colNo != localizedMessage.colNo) {
-            return false;
-        }
-        if (lineNo != localizedMessage.lineNo) {
-            return false;
-        }
-        if (!key.equals(localizedMessage.key)) {
-            return false;
-        }
-
-        if (!Arrays.equals(args, localizedMessage.args)) {
-            return false;
-        }
-        // ignoring bundle for perf reasons.
-
-        // we currently never load the same error from different bundles.
-
-        return true;
-    }
-
-    @Override
-    public int hashCode()
-    {
-        int result;
-        result = lineNo;
-        result = HASH_MULT * result + colNo;
-        result = HASH_MULT * result + key.hashCode();
-        for (final Object element : args) {
-            result = HASH_MULT * result + element.hashCode();
-        }
-        return result;
-    }
 
     /**
      * Creates a new <code>LocalizedMessage</code> instance.
@@ -253,6 +208,51 @@ public final class LocalizedMessage
     {
         this(lineNo, 0, bundle, key, args, DEFAULT_SEVERITY, moduleId,
                 sourceClass, customMessage);
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof LocalizedMessage)) {
+            return false;
+        }
+
+        final LocalizedMessage localizedMessage = (LocalizedMessage) object;
+
+        if (colNo != localizedMessage.colNo) {
+            return false;
+        }
+        if (lineNo != localizedMessage.lineNo) {
+            return false;
+        }
+        if (!key.equals(localizedMessage.key)) {
+            return false;
+        }
+
+        if (!Arrays.equals(args, localizedMessage.args)) {
+            return false;
+        }
+        // ignoring bundle for perf reasons.
+
+        // we currently never load the same error from different bundles.
+
+        return true;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result;
+        result = lineNo;
+        result = HASH_MULT * result + colNo;
+        result = HASH_MULT * result + key.hashCode();
+        for (final Object element : args) {
+            result = HASH_MULT * result + element.hashCode();
+        }
+        return result;
     }
 
     /** Clears the cache. */

@@ -74,13 +74,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class LocalVariableNameCheck
     extends AbstractNameCheck
 {
+    /** Regexp for one-char loop variables. */
+    private static Pattern sSingleChar = Pattern.compile("^[a-z]$");
+
     /**
      * Allow one character name for initialization expression in FOR loop.
      */
     private boolean allowOneCharVarInForLoop;
-
-    /** Regexp for one-char loop variables. */
-    private static Pattern sSingleChar = Pattern.compile("^[a-z]$");
 
     /** Creates a new <code>LocalVariableNameCheck</code> instance. */
     public LocalVariableNameCheck()

@@ -62,6 +62,18 @@ final class PropertyCacheFile
      */
     private static final String CONFIG_HASH_KEY = "configuration*?";
 
+    /** hex digits */
+    private static final char[] HEX_CHARS = {
+        '0', '1', '2', '3', '4', '5', '6', '7',
+        '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+    };
+
+    /** mask for last byte */
+    private static final int MASK_0X0F = 0x0F;
+
+    /** bit shift */
+    private static final int SHIFT_4 = 4;
+
     /** name of file to store details **/
     private final String detailsFile;
     /** the details on files **/
@@ -203,18 +215,6 @@ final class PropertyCacheFile
             return "ALWAYS FRESH: " + System.currentTimeMillis();
         }
     }
-
-    /** hex digits */
-    private static final char[] HEX_CHARS = {
-        '0', '1', '2', '3', '4', '5', '6', '7',
-        '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
-    };
-
-    /** mask for last byte */
-    private static final int MASK_0X0F = 0x0F;
-
-    /** bit shift */
-    private static final int SHIFT_4 = 4;
 
     /**
      * Hex-encodes a byte array.

@@ -56,11 +56,11 @@ final class ImportControlLoader extends AbstractLoader
     private static final String DTD_RESOURCE_NAME_1_1 =
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_1.dtd";
 
-    /** Used to hold the {@link PkgControl} objects. */
-    private final Deque<PkgControl> stack = new ArrayDeque<>();
-
     /** the map to lookup the resource name by the id */
     private static final Map<String, String> DTD_RESOURCE_BY_ID = new HashMap<>();
+
+    /** Used to hold the {@link PkgControl} objects. */
+    private final Deque<PkgControl> stack = new ArrayDeque<>();
 
     /** Initialise the map */
     static {

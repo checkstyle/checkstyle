@@ -83,6 +83,9 @@ public final class TreeWalker
     /** default distance between tab stops */
     private static final int DEFAULT_TAB_WIDTH = 8;
 
+    /** logger for debug purpose */
+    private static final Log LOG = LogFactory.getLog(TreeWalker.class);
+
     /** maps from token name to ordinary checks */
     private final Multimap<String, Check> tokenToOrdinaryChecks =
         HashMultimap.create();
@@ -111,9 +114,6 @@ public final class TreeWalker
 
     /** a factory for creating submodules (i.e. the Checks) */
     private ModuleFactory moduleFactory;
-
-    /** logger for debug purpose */
-    private static final Log LOG = LogFactory.getLog(TreeWalker.class);
 
     /**
      * Creates a new <code>TreeWalker</code> instance.
