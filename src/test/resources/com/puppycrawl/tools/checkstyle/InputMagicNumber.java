@@ -189,5 +189,12 @@ class TestHashCodeMethod {
     @IntMethodAnnotation(value=43)
     public void another2() {
     }
+    
+    @IntMethodAnnotation(-44)
+    public void anotherNegative() {
+    }
 
+    @IntMethodAnnotation(value=-45)
+    public void anotherNegative2() {
+    }
 }

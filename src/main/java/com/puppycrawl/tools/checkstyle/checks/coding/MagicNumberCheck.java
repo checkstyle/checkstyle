@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.Arrays;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-import java.util.Arrays;
 
 /**
  * <p>
@@ -160,7 +161,7 @@ public class MagicNumberCheck extends Check
     @Override
     public void visitToken(DetailAST ast)
     {
-        if (ignoreAnnotation && isInAnnotation(ast)) {
+        if (ignoreAnnotation && isChildOf(ast, TokenTypes.ANNOTATION)) {
             return;
         }
 
@@ -389,17 +390,24 @@ public class MagicNumberCheck extends Check
     }
 
     /**
-     * Determines if the column displays a token type of annotation or
-     * annotation member
+     * Determines if the given AST node has a parent node with given token type code.
      *
      * @param ast the AST from which to search for annotations
+     * @param type the type code of parent token
      *
-     * @return {@code true} if the token type for this node is a annotation
+     * @return {@code true} if the AST node has a parent with given token type.
      */
-    private boolean isInAnnotation(DetailAST ast)
+    private static boolean isChildOf(DetailAST ast, int type)
     {
-        return TokenTypes.ANNOTATION == ast.getParent().getParent().getType()
-                || TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR
-                        == ast.getParent().getParent().getType();
+        boolean result = false;
+        DetailAST node = ast;
+        do {
+            if (node.getType() == type) {
+                result = true;
+            }
+            node = node.getParent();
+        } while (node != null && !result);
+
+        return result;
     }
 }

@@ -74,6 +74,8 @@ public class MagicNumberCheckTest
             "182:15: " + getCheckMessage(MSG_KEY, "101"),
             "185:26: " + getCheckMessage(MSG_KEY, "42"),
             "189:32: " + getCheckMessage(MSG_KEY, "43"),
+            "193:26: " + getCheckMessage(MSG_KEY, "-44"),
+            "197:32: " + getCheckMessage(MSG_KEY, "-45"),
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -373,6 +375,8 @@ public class MagicNumberCheckTest
             "182:15: " + getCheckMessage(MSG_KEY, "101"),
             "185:26: " + getCheckMessage(MSG_KEY, "42"),
             "189:32: " + getCheckMessage(MSG_KEY, "43"),
+            "193:26: " + getCheckMessage(MSG_KEY, "-44"),
+            "197:32: " + getCheckMessage(MSG_KEY, "-45"),
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
