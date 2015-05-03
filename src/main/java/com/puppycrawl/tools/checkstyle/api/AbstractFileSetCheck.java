@@ -132,7 +132,7 @@ public abstract class AbstractFileSetCheck
         fileExtensions = new String[extensions.length];
         for (int i = 0; i < extensions.length; i++) {
             final String extension = extensions[i];
-            if (extension.startsWith(".")) {
+            if (Utils.startsWithChar(extension, '.')) {
                 fileExtensions[i] = extension;
             }
             else {

@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import com.google.common.collect.Lists;
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -170,7 +171,7 @@ public final class CheckUtils
                     radix = BASE_8;
                     txt = txt.substring(1);
                 }
-                if (txt.endsWith("L") || txt.endsWith("l")) {
+                if (Utils.endsWithChar(txt, 'L') || Utils.endsWithChar(txt, 'l')) {
                     txt = txt.substring(0, txt.length() - 1);
                 }
                 if (txt.length() > 0) {

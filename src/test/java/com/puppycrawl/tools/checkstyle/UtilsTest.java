@@ -79,6 +79,8 @@ public class UtilsTest
         assertTrue(fileExtensionMatches(file, null));
         file = new File("file.java");
         assertTrue(fileExtensionMatches(file, fileExtensions));
+        file = new File("file.");
+        assertTrue(fileExtensionMatches(file, ""));
     }
 
     @Test

@@ -766,24 +766,25 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
             // Loop looking for matching param
             final Iterator<DetailAST> paramIt = params.iterator();
+            final String arg1 = tag.getArg1();
             while (paramIt.hasNext()) {
                 final DetailAST param = paramIt.next();
-                if (param.getText().equals(tag.getArg1())) {
+                if (param.getText().equals(arg1)) {
                     found = true;
                     paramIt.remove();
                     break;
                 }
             }
 
-            if (tag.getArg1().startsWith("<") && tag.getArg1().endsWith(">")) {
+            if (Utils.startsWithChar(arg1, '<') && Utils.endsWithChar(arg1, '>')) {
                 // Loop looking for matching type param
                 final Iterator<DetailAST> typeParamsIt = typeParams.iterator();
                 while (typeParamsIt.hasNext()) {
                     final DetailAST typeParam = typeParamsIt.next();
                     if (typeParam.findFirstToken(TokenTypes.IDENT).getText()
                             .equals(
-                                    tag.getArg1().substring(1,
-                                            tag.getArg1().length() - 1)))
+                                    arg1.substring(1,
+                                        arg1.length() - 1)))
                     {
                         found = true;
                         typeParamsIt.remove();
@@ -796,7 +797,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             // Handle extra JavadocTag
             if (!found) {
                 log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
-                        "@param", tag.getArg1());
+                        "@param", arg1);
             }
         }
 

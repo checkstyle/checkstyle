@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -70,7 +71,7 @@ public class UpperEllCheck extends Check
     @Override
     public void visitToken(DetailAST ast)
     {
-        if (ast.getText().endsWith("l")) {
+        if (Utils.endsWithChar(ast.getText(), 'l')) {
             log(ast.getLineNo(),
                 ast.getColumnNo() + ast.getText().length() - 1,
                 MSG_KEY);

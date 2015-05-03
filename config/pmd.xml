@@ -192,8 +192,6 @@
     <exclude name="MethodArgumentCouldBeFinal"/>
     <!--till #948-->
     <exclude name="PrematureDeclaration"/>
-    <!--till #949-->
-    <exclude name="SimplifyStartsWith"/>
     <!--not configurable, decreases readability-->
     <exclude name="UseStringBufferForStringAppends"/>
   </rule>

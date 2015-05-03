@@ -19,13 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import org.apache.commons.beanutils.ConversionException;
+
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-
-import org.apache.commons.beanutils.ConversionException;
 
 /**
  * Contains utility methods.
@@ -58,7 +58,7 @@ public final class Utils
             final String[] withDotExtensions = new String[fileExtensions.length];
             for (int i = 0; i < fileExtensions.length; i++) {
                 final String extension = fileExtensions[i];
-                if (extension.startsWith(".")) {
+                if (startsWithChar(extension, '.')) {
                     withDotExtensions[i] = extension;
                 }
                 else {
@@ -199,5 +199,39 @@ public final class Utils
         final Path pathAbsolute = Paths.get(path).normalize();
         final Path pathBase = Paths.get(baseDirectory).normalize();
         return pathBase.relativize(pathAbsolute).toString();
+    }
+
+    /**
+     * Tests if this string starts with the specified prefix.
+     * <p/>
+     * It is faster version of {@link String#startsWith(String)} optimized for one-character
+     * prefixes at the expense of some readability. Suggested by SimplifyStartsWith PMD rule:
+     * http://pmd.sourceforge.net/pmd-5.3.1/pmd-java/rules/java/optimizations.html#SimplifyStartsWith
+     *
+     * @param string the <code>String</code> to check
+     * @param prefix the prefix to find
+     * @return <code>true</code> if the <code>char</code> is a prefix of the given
+     * <code>String</code>; <code>false</code> otherwise.
+     */
+    public static boolean startsWithChar(String string, char prefix)
+    {
+        return string.length() > 0 && string.charAt(0) == prefix;
+    }
+
+    /**
+     * Tests if this string ends with the specified suffix.
+     * <p/>
+     * It is faster version of {@link String#endsWith(String)} optimized for one-character
+     * suffixes at the expense of some readability. Suggested by SimplifyStartsWith PMD rule:
+     * http://pmd.sourceforge.net/pmd-5.3.1/pmd-java/rules/java/optimizations.html#SimplifyStartsWith
+     *
+     * @param string the <code>String</code> to check
+     * @param suffix the suffix to find
+     * @return <code>true</code> if the <code>char</code> is a suffix of the given
+     * <code>String</code>; <code>false</code> otherwise.
+     */
+    public static boolean endsWithChar(String string, char suffix)
+    {
+        return string.length() > 0 && string.charAt(string.length() - 1) == suffix;
     }
 }

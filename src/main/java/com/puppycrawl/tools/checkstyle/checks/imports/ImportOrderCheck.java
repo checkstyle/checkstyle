@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -183,15 +184,15 @@ public class ImportOrderCheck
             if (WILDCARD_GROUP_NAME.equals(pkg)) {
                 grp = Pattern.compile(""); // matches any package
             }
-            else if (pkg.startsWith("/")) {
-                if (!pkg.endsWith("/")) {
+            else if (Utils.startsWithChar(pkg, '/')) {
+                if (!Utils.endsWithChar(pkg, '/')) {
                     throw new IllegalArgumentException("Invalid group");
                 }
                 pkg = pkg.substring(1, pkg.length() - 1);
                 grp = Pattern.compile(pkg);
             }
             else {
-                if (!pkg.endsWith(".")) {
+                if (!Utils.endsWithChar(pkg, '.')) {
                     pkg = pkg + ".";
                 }
                 grp = Pattern.compile("^" + Pattern.quote(pkg));

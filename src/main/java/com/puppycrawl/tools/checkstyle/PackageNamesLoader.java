@@ -113,7 +113,7 @@ public final class PackageNamesLoader
         while (iterator.hasNext()) {
             final String subPackage = iterator.next();
             buf.append(subPackage);
-            if (!subPackage.endsWith(".")) {
+            if (!Utils.endsWithChar(subPackage, '.')) {
                 buf.append('.');
             }
         }
