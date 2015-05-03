@@ -611,7 +611,7 @@
       <plugin>
        <groupId>org.codehaus.mojo</groupId>
        <artifactId>cobertura-maven-plugin</artifactId>
-       <version>2.6</version>
+       <version>2.7</version>
        <configuration>
         <format>xml</format>
         <check>
@@ -995,7 +995,14 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
-        <version>2.6</version>
+        <version>2.7</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>cobertura</report>
+            </reports>
+          </reportSet>
+        </reportSets>
         <configuration>
           <formats>
             <format>xml</format>
