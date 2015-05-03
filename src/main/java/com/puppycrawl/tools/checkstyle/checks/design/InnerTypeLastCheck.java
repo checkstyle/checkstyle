@@ -41,6 +41,9 @@ public class InnerTypeLastCheck extends Check
      */
     public static final String MSG_KEY = "arrangement.members.before.inner";
 
+    /** Meet a root class. */
+    private boolean rootClass = true;
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -52,9 +55,6 @@ public class InnerTypeLastCheck extends Check
     {
         return new int[] {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
     }
-
-    /** Meet a root class. */
-    private boolean rootClass = true;
 
     @Override
     public void visitToken(DetailAST ast)

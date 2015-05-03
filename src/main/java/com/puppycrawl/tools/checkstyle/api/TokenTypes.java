@@ -37,11 +37,6 @@ import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes;
  */
 public final class TokenTypes
 {
-    /** prevent instantiation */
-    private TokenTypes()
-    {
-    }
-
     // The following three types are never part of an AST,
     // left here as a reminder so nobody will read them accidentally
 
@@ -3531,6 +3526,11 @@ public final class TokenTypes
 
         TOKEN_NAME_TO_VALUE = builder.build();
         TOKEN_VALUE_TO_NAME = tempTokenValueToName;
+    }
+
+    /** prevent instantiation */
+    private TokenTypes()
+    {
     }
 
     /**

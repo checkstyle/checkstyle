@@ -65,15 +65,6 @@ public class MultipleStringLiteralsCheck extends Check
     private int allowedDuplicates = 1;
 
     /**
-     * Sets the maximum allowed duplicates of a string.
-     * @param allowedDuplicates The maximum number of duplicates.
-     */
-    public void setAllowedDuplicates(int allowedDuplicates)
-    {
-        this.allowedDuplicates = allowedDuplicates;
-    }
-
-    /**
      * Pattern for matching ignored strings.
      */
     private Pattern pattern;
@@ -85,6 +76,15 @@ public class MultipleStringLiteralsCheck extends Check
     {
         setIgnoreStringsRegexp("^\"\"$");
         ignoreOccurrenceContext.set(TokenTypes.ANNOTATION);
+    }
+
+    /**
+     * Sets the maximum allowed duplicates of a string.
+     * @param allowedDuplicates The maximum number of duplicates.
+     */
+    public void setAllowedDuplicates(int allowedDuplicates)
+    {
+        this.allowedDuplicates = allowedDuplicates;
     }
 
     /**

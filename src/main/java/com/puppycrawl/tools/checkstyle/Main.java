@@ -47,6 +47,11 @@ import org.apache.commons.cli.PosixParser;
  **/
 public final class Main
 {
+    /** Don't create instance of this class, use {@link #main(String[])} method instead. */
+    private Main()
+    {
+    }
+
     /**
      * Loops over the files specified checking them for errors. The exit code
      * is the number of errors found in all the files.
@@ -161,11 +166,6 @@ public final class Main
             throw new CheckstyleException(String.format(
                     "Checkstyle ends with %d errors.", errorCounter));
         }
-    }
-
-    /** Don't create instance of this class, use {@link #main(String[])} method instead. */
-    private Main()
-    {
     }
 
     /**

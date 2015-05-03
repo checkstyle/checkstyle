@@ -238,6 +238,39 @@ public class VisibilityModifierCheck
      */
     public static final String MSG_KEY = "variable.notPrivate";
 
+    /** Default immutable types canonical names. */
+    private static final List<String> DEFAULT_IMMUTABLE_TYPES = ImmutableList.of(
+        "java.lang.String",
+        "java.lang.Integer",
+        "java.lang.Byte",
+        "java.lang.Character",
+        "java.lang.Short",
+        "java.lang.Boolean",
+        "java.lang.Long",
+        "java.lang.Double",
+        "java.lang.Float",
+        "java.lang.StackTraceElement",
+        "java.math.BigInteger",
+        "java.math.BigDecimal",
+        "java.io.File",
+        "java.util.Locale",
+        "java.util.UUID",
+        "java.net.URL",
+        "java.net.URI",
+        "java.net.Inet4Address",
+        "java.net.Inet6Address",
+        "java.net.InetSocketAddress"
+    );
+
+    /** Default ignore annotations canonical names. */
+    private static final List<String> DEFAULT_IGNORE_ANNOTATIONS = ImmutableList.of(
+        "org.junit.Rule",
+        "com.google.common.annotations.VisibleForTesting"
+    );
+
+    /** contains explicit access modifiers. */
+    private static final String[] EXPLICIT_MODS = {"public", "private", "protected"};
+
     /** whether protected members are allowed */
     private boolean protectedAllowed;
 
@@ -273,39 +306,6 @@ public class VisibilityModifierCheck
     /** List of immutable classes short names. */
     private final List<String> immutableClassShortNames =
             getClassShortNames(DEFAULT_IMMUTABLE_TYPES);
-
-    /** Default immutable types canonical names. */
-    private static final List<String> DEFAULT_IMMUTABLE_TYPES = ImmutableList.of(
-        "java.lang.String",
-        "java.lang.Integer",
-        "java.lang.Byte",
-        "java.lang.Character",
-        "java.lang.Short",
-        "java.lang.Boolean",
-        "java.lang.Long",
-        "java.lang.Double",
-        "java.lang.Float",
-        "java.lang.StackTraceElement",
-        "java.math.BigInteger",
-        "java.math.BigDecimal",
-        "java.io.File",
-        "java.util.Locale",
-        "java.util.UUID",
-        "java.net.URL",
-        "java.net.URI",
-        "java.net.Inet4Address",
-        "java.net.Inet6Address",
-        "java.net.InetSocketAddress"
-    );
-
-    /** Default ignore annotations canonical names. */
-    private static final List<String> DEFAULT_IGNORE_ANNOTATIONS = ImmutableList.of(
-        "org.junit.Rule",
-        "com.google.common.annotations.VisibleForTesting"
-    );
-
-    /** contains explicit access modifiers. */
-    private static final String[] EXPLICIT_MODS = {"public", "private", "protected"};
 
     /** @return whether protected members are allowed */
     public boolean isProtectedAllowed()

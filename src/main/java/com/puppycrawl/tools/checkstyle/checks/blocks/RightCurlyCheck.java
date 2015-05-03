@@ -72,9 +72,6 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  */
 public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
 {
-    /** Do we need to check if rculry starts line. */
-    private boolean shouldStartLine = true;
-
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -98,6 +95,9 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
      * file.
      */
     public static final String MSG_KEY_LINE_NEW = "line.new";
+
+    /** Do we need to check if rculry starts line. */
+    private boolean shouldStartLine = true;
 
     /**
      * Sets the right curly option to same.

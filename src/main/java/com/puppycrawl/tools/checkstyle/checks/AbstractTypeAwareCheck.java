@@ -75,6 +75,12 @@ public abstract class AbstractTypeAwareCheck extends Check
     private boolean logLoadErrors = true;
 
     /**
+     * Whether to show class loading errors in the checkstyle report.
+     * Request ID 1491630
+     */
+    private boolean suppressLoadErrors;
+
+    /**
      * Controls whether to log class loading errors to the checkstyle report
      * instead of throwing a RTE.
      *
@@ -84,12 +90,6 @@ public abstract class AbstractTypeAwareCheck extends Check
     {
         this.logLoadErrors = logLoadErrors;
     }
-
-    /**
-     * Whether to show class loading errors in the checkstyle report.
-     * Request ID 1491630
-     */
-    private boolean suppressLoadErrors;
 
     /**
      * Controls whether to show class loading errors in the checkstyle report.
@@ -428,15 +428,6 @@ public abstract class AbstractTypeAwareCheck extends Check
         /** <code>FullIdent</code> associated with this class. */
         private final Token name;
 
-        /** @return class name */
-        public final Token getName()
-        {
-            return name;
-        }
-
-        /** @return <code>Class</code> associated with an object. */
-        public abstract Class<?> getClazz();
-
         /**
          * Creates new instance of class inforamtion object.
          * @param className token which represents class name.
@@ -449,6 +440,15 @@ public abstract class AbstractTypeAwareCheck extends Check
             }
             name = className;
         }
+
+        /** @return class name */
+        public final Token getName()
+        {
+            return name;
+        }
+
+        /** @return <code>Class</code> associated with an object. */
+        public abstract Class<?> getClazz();
     }
 
     /** Represents regular classes/enumes. */

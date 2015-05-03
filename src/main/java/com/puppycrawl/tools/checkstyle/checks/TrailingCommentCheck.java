@@ -114,6 +114,15 @@ public class TrailingCommentCheck extends AbstractFormatCheck
     private Pattern legalComment;
 
     /**
+     * Creates new instance of the check.
+     * @throws ConversionException unable to parse DEFAULT_FORMAT.
+     */
+    public TrailingCommentCheck() throws ConversionException
+    {
+        super(DEFAULT_FORMAT);
+    }
+
+    /**
      * Sets patter for legal trailing comments.
      * @param format format to set.
      * @throws ConversionException if unable to create Pattern object
@@ -122,14 +131,6 @@ public class TrailingCommentCheck extends AbstractFormatCheck
         throws ConversionException
     {
         legalComment = Utils.createPattern(format);
-    }
-    /**
-     * Creates new instance of the check.
-     * @throws ConversionException unable to parse DEFAULT_FORMAT.
-     */
-    public TrailingCommentCheck() throws ConversionException
-    {
-        super(DEFAULT_FORMAT);
     }
 
     @Override

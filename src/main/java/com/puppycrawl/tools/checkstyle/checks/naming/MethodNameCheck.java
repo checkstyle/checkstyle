@@ -81,11 +81,6 @@ public class MethodNameCheck
     public static final String MSG_KEY = "method.name.equals.class.name";
 
     /**
-     * for allowing method name to be the same as the class name.
-     */
-    private boolean allowClassName;
-
-    /**
      * {@link Override Override} annotation name.
      */
     private static final String OVERRIDE = "Override";
@@ -94,6 +89,11 @@ public class MethodNameCheck
      * Canonical {@link Override Override} annotation name.
      */
     private static final String CANONICAL_OVERRIDE = "java.lang." + OVERRIDE;
+
+    /**
+     * for allowing method name to be the same as the class name.
+     */
+    private boolean allowClassName;
 
     /** Creates a new <code>MethodNameCheck</code> instance. */
     public MethodNameCheck()

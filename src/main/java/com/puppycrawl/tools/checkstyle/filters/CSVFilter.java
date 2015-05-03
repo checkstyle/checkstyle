@@ -37,24 +37,6 @@ class CSVFilter implements IntFilter
     private final Set<IntFilter> filters = Sets.newHashSet();
 
     /**
-     * Adds a IntFilter to the set.
-     * @param filter the IntFilter to add.
-     */
-    public void addFilter(IntFilter filter)
-    {
-        filters.add(filter);
-    }
-
-    /**
-     * Returns the IntFilters of the filter set.
-     * @return the IntFilters of the filter set.
-     */
-    protected Set<IntFilter> getFilters()
-    {
-        return filters;
-    }
-
-    /**
      * Constructs a <code>CSVFilter</code> from a CSV, Comma-Separated Values,
      * string. Each value is an integer, or a range of integers. A range of
      * integers is of the form integer-integer, such as 1-10.
@@ -82,6 +64,24 @@ class CSVFilter implements IntFilter
                 addFilter(new IntRangeFilter(lowerBound, upperBound));
             }
         }
+    }
+
+    /**
+     * Adds a IntFilter to the set.
+     * @param filter the IntFilter to add.
+     */
+    public void addFilter(IntFilter filter)
+    {
+        filters.add(filter);
+    }
+
+    /**
+     * Returns the IntFilters of the filter set.
+     * @return the IntFilters of the filter set.
+     */
+    protected Set<IntFilter> getFilters()
+    {
+        return filters;
     }
 
     /**

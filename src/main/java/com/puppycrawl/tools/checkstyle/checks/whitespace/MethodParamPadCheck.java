@@ -84,6 +84,10 @@ public class MethodParamPadCheck
      */
     public static final String WS_NOT_PRECEDED = "ws.notPreceded";
 
+    /** Whether whitespace is allowed if the method identifier is at a
+     * linebreak */
+    private boolean allowLineBreaks;
+
     /**
      * Sets the pad option to nospace.
      */
@@ -91,10 +95,6 @@ public class MethodParamPadCheck
     {
         super(PadOption.NOSPACE, PadOption.class);
     }
-
-    /** Whether whitespace is allowed if the method identifier is at a
-     * linebreak */
-    private boolean allowLineBreaks;
 
     @Override
     public int[] getDefaultTokens()

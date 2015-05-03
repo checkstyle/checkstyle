@@ -74,6 +74,26 @@ import com.puppycrawl.tools.checkstyle.Utils;
  */
 public final class MissingDeprecatedCheck extends Check
 {
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_ANNOTATION_MISSING_DEPRECATED =
+            "annotation.missing.deprecated";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_JAVADOC_DUPLICATE_TAG =
+            "javadoc.duplicateTag";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_JAVADOC_MISSING = "javadoc.missing";
+
     /** {@link Deprecated Deprecated} annotation name */
     private static final String DEPRECATED = "Deprecated";
 
@@ -96,26 +116,6 @@ public final class MissingDeprecatedCheck extends Check
     private static final String END_JAVADOC = "*/";
     /** Multiline finished at next Javadoc * */
     private static final String NEXT_TAG = "@";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_KEY_ANNOTATION_MISSING_DEPRECATED =
-        "annotation.missing.deprecated";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_KEY_JAVADOC_DUPLICATE_TAG =
-        "javadoc.duplicateTag";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_KEY_JAVADOC_MISSING = "javadoc.missing";
 
     /** {@inheritDoc} */
     @Override

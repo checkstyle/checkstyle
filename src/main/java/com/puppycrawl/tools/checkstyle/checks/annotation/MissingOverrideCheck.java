@@ -77,16 +77,6 @@ import com.puppycrawl.tools.checkstyle.Utils;
  */
 public final class MissingOverrideCheck extends Check
 {
-    /** {@link Override Override} annotation name */
-    private static final String OVERRIDE = "Override";
-
-    /** fully-qualified {@link Override Override} annotation name */
-    private static final String FQ_OVERRIDE = "java.lang." + OVERRIDE;
-
-    /** compiled regexp to match Javadoc tags with no argument and {} * */
-    private static final Pattern MATCH_INHERITDOC =
-        Utils.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
-
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -99,6 +89,16 @@ public final class MissingOverrideCheck extends Check
      */
     public static final String MSG_KEY_ANNOTATION_MISSING_OVERRIDE =
         "annotation.missing.override";
+
+    /** {@link Override Override} annotation name */
+    private static final String OVERRIDE = "Override";
+
+    /** fully-qualified {@link Override Override} annotation name */
+    private static final String FQ_OVERRIDE = "java.lang." + OVERRIDE;
+
+    /** compiled regexp to match Javadoc tags with no argument and {} * */
+    private static final Pattern MATCH_INHERITDOC =
+        Utils.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
 
     /** @see #setJavaFiveCompatibility(boolean) */
     private boolean javaFiveCompatibility;

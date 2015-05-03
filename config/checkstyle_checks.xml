@@ -236,6 +236,7 @@
     <module name="AvoidStaticImport"/>
     <module name="ClassTypeParameterName"/>
     <module name="CovariantEquals"/>
+    <module name="DeclarationOrder"/>
     <module name="DefaultComesLast"/>
     <module name="DescendantToken"/>
     <module name="EmptyCatchBlock"/>
@@ -252,7 +253,6 @@
     <module name="ClassDataAbstractionCoupling"/>
     <module name="ClassFanOutComplexity"/>
     <module name="CustomImportOrder"/>
-    <module name="DeclarationOrder"/>
     <module name="DesignForExtension"/>
     <module name="EmptyForInitializerPad"/>
     <module name="EmptyStatement"/>

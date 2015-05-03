@@ -88,16 +88,16 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class AvoidNestedBlocksCheck extends Check
 {
     /**
-     * Whether nested blocks are allowed if they are the
-     * only child of a switch case.
-     */
-    private boolean allowInSwitchCase;
-
-    /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
     public static final String MSG_KEY_BLOCK_NESTED = "block.nested";
+
+    /**
+     * Whether nested blocks are allowed if they are the
+     * only child of a switch case.
+     */
+    private boolean allowInSwitchCase;
 
     @Override
     public int[] getDefaultTokens()

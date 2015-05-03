@@ -34,6 +34,16 @@ import java.util.List;
  */
 public final class CheckUtils
 {
+    // constants for parseDouble()
+    /** octal radix */
+    private static final int BASE_8 = 8;
+
+    /** decimal radix */
+    private static final int BASE_10 = 10;
+
+    /** hex radix */
+    private static final int BASE_16 = 16;
+
     /** prevent instances */
     private CheckUtils()
     {
@@ -131,16 +141,6 @@ public final class CheckUtils
     {
         return FullIdent.createFullIdent(typeAST.getFirstChild());
     }
-
-    // constants for parseDouble()
-    /** octal radix */
-    private static final int BASE_8 = 8;
-
-    /** decimal radix */
-    private static final int BASE_10 = 10;
-
-    /** hex radix */
-    private static final int BASE_16 = 16;
 
     /**
      * Returns the value represented by the specified string of the specified

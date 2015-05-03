@@ -230,20 +230,6 @@ public final class ConfigurationLoader
     private final boolean omitIgnoredModules;
 
     /**
-     * Creates mapping between local resources and dtd ids.
-     * @return map between local resources and dtd ids.
-     */
-    private static Map<String, String> createIdToResourceNameMap()
-    {
-        final Map<String, String> map = Maps.newHashMap();
-        map.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
-        map.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
-        map.put(DTD_PUBLIC_ID_1_2, DTD_RESOURCE_NAME_1_2);
-        map.put(DTD_PUBLIC_ID_1_3, DTD_RESOURCE_NAME_1_3);
-        return map;
-    }
-
-    /**
      * Creates a new <code>ConfigurationLoader</code> instance.
      * @param overrideProps resolver for overriding properties
      * @param omitIgnoredModules <code>true</code> if ignored modules should be
@@ -258,6 +244,20 @@ public final class ConfigurationLoader
         saxHandler = new InternalLoader();
         overridePropsResolver = overrideProps;
         this.omitIgnoredModules = omitIgnoredModules;
+    }
+
+    /**
+     * Creates mapping between local resources and dtd ids.
+     * @return map between local resources and dtd ids.
+     */
+    private static Map<String, String> createIdToResourceNameMap()
+    {
+        final Map<String, String> map = Maps.newHashMap();
+        map.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
+        map.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
+        map.put(DTD_PUBLIC_ID_1_2, DTD_RESOURCE_NAME_1_2);
+        map.put(DTD_PUBLIC_ID_1_3, DTD_RESOURCE_NAME_1_3);
+        return map;
     }
 
     /**

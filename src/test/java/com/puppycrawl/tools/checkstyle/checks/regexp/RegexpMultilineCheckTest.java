@@ -34,9 +34,9 @@ import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.RE
 
 public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
 {
-    private DefaultConfiguration checkConfig;
-
     @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
+
+    private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp()

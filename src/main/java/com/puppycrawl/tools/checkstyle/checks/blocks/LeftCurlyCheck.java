@@ -76,9 +76,6 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 public class LeftCurlyCheck
     extends AbstractOptionCheck<LeftCurlyOption>
 {
-    /** default maximum line length */
-    private static final int DEFAULT_MAX_LINE_LENGTH = 80;
-
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -96,6 +93,9 @@ public class LeftCurlyCheck
      * file.
      */
     public static final String MSG_KEY_LINE_BREAK_AFTER = "line.break.after";
+
+    /** default maximum line length */
+    private static final int DEFAULT_MAX_LINE_LENGTH = 80;
 
     /** maxLineLength **/
     private int maxLineLength = DEFAULT_MAX_LINE_LENGTH;

@@ -122,13 +122,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class AnnotationUseStyleCheck extends Check
 {
     /**
-     * the element name used to receive special linguistic support
-     * for annotation use.
-     */
-    private static final String ANNOTATION_ELEMENT_SINGLE_NAME =
-        "value";
-
-    /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
@@ -162,6 +155,13 @@ public final class AnnotationUseStyleCheck extends Check
      */
     public static final String MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT =
         "annotation.trailing.comma.present";
+
+    /**
+     * the element name used to receive special linguistic support
+     * for annotation use.
+     */
+    private static final String ANNOTATION_ELEMENT_SINGLE_NAME =
+            "value";
 
     //not extending AbstractOptionCheck because check
     //has more than one option type.

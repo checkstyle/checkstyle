@@ -45,30 +45,9 @@ public class HandlerFactory
     private final Map<Integer, Constructor<?>> typeHandlers =
         Maps.newHashMap();
 
-    /**
-     * registers a handler
-     *
-     * @param type
-     *                type from TokenTypes
-     * @param handlerClass
-     *                the handler to register
-     */
-    private void register(int type, Class<?> handlerClass)
-    {
-        try {
-            final Constructor<?> ctor = handlerClass
-                    .getConstructor(new Class[] {IndentationCheck.class,
-                        DetailAST.class, // current AST
-                        ExpressionHandler.class, // parent
-                    });
-            typeHandlers.put(type, ctor);
-        }
-        catch (final NoSuchMethodException | SecurityException e) {
-            final String message = "couldn't find ctor for " + handlerClass;
-            LOG.debug(message, e);
-            throw new RuntimeException(message);
-        }
-    }
+    /** cache for created method call handlers */
+    private final Map<DetailAST, ExpressionHandler> createdHandlers =
+        Maps.newHashMap();
 
     /** Creates a HandlerFactory. */
     public HandlerFactory()
@@ -102,6 +81,31 @@ public class HandlerFactory
         register(TokenTypes.LITERAL_NEW, NewHandler.class);
         register(TokenTypes.INDEX_OP, IndexHandler.class);
         register(TokenTypes.LITERAL_SYNCHRONIZED, SynchronizedHandler.class);
+    }
+
+    /**
+     * registers a handler
+     *
+     * @param type
+     *                type from TokenTypes
+     * @param handlerClass
+     *                the handler to register
+     */
+    private void register(int type, Class<?> handlerClass)
+    {
+        try {
+            final Constructor<?> ctor = handlerClass
+                .getConstructor(new Class[] {IndentationCheck.class,
+                    DetailAST.class, // current AST
+                    ExpressionHandler.class, // parent
+                });
+            typeHandlers.put(type, ctor);
+        }
+        catch (final NoSuchMethodException | SecurityException e) {
+            final String message = "couldn't find ctor for " + handlerClass;
+            LOG.debug(message, e);
+            throw new RuntimeException(message);
+        }
     }
 
     /**
@@ -209,8 +213,4 @@ public class HandlerFactory
     {
         createdHandlers.clear();
     }
-
-    /** cache for created method call handlers */
-    private final Map<DetailAST, ExpressionHandler> createdHandlers =
-        Maps.newHashMap();
 }
