@@ -17,20 +17,18 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.api;
+package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.apache.commons.lang3.StringUtils;
 
 /**
  * Contains utility methods designed to work with annotations.
  *
  * @author Travis Schneeberger
- *
- * @deprecated will be removed completely in next releases
- *             Replaced by exact copy but in non api package
- *             {@link com.puppycrawl.tools.checkstyle.AnnotationUtility}
  */
-@Deprecated
 public final class AnnotationUtility
 {
     /**

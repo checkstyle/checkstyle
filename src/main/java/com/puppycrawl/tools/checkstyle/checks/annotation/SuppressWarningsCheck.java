@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import java.util.regex.Matcher;
 
-import com.puppycrawl.tools.checkstyle.api.AnnotationUtility;
+import com.puppycrawl.tools.checkstyle.AnnotationUtility;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;

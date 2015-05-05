@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import com.google.common.collect.ImmutableMap;
+import com.puppycrawl.tools.checkstyle.ScopeUtils;
+
 import java.util.Map;
 
 /**

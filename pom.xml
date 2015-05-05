@@ -625,9 +625,10 @@
          <haltOnFailure>true</haltOnFailure>
          <branchRate>100</branchRate>
          <lineRate>100</lineRate>
-         <totalBranchRate>84</totalBranchRate>
-         <totalLineRate>92</totalLineRate>
+         <totalBranchRate>82</totalBranchRate>
+         <totalLineRate>90</totalLineRate>
          <regexes>
+          <regex><pattern>.*.checkstyle.AnnotationUtility</pattern><branchRate>60</branchRate><lineRate>60</lineRate></regex>
           <regex><pattern>.*.Checker</pattern><branchRate>79</branchRate><lineRate>85</lineRate></regex>
           <regex><pattern>.*.ConfigurationLoader</pattern><branchRate>86</branchRate><lineRate>79</lineRate></regex>
           <regex><pattern>.*.ConfigurationLoader\$.*</pattern><branchRate>65</branchRate><lineRate>84</lineRate></regex>
@@ -640,6 +641,7 @@
           <regex><pattern>.*.PackageObjectFactory</pattern><branchRate>75</branchRate><lineRate>75</lineRate></regex>
           <regex><pattern>.*.PropertiesExpander</pattern><branchRate>50</branchRate><lineRate>83</lineRate></regex>
           <regex><pattern>.*.PropertyCacheFile</pattern><branchRate>22</branchRate><lineRate>19</lineRate></regex>
+          <regex><pattern>.*.checkstyle.ScopeUtils</pattern><branchRate>90</branchRate><lineRate>94</lineRate></regex>
           <regex><pattern>.*.TreeWalker</pattern><branchRate>92</branchRate><lineRate>91</lineRate></regex>
           <regex><pattern>.*.XMLLogger</pattern><branchRate>86</branchRate><lineRate>97</lineRate></regex>
 
@@ -647,7 +649,7 @@
           <regex><pattern>.*.api.AbstractFileSetCheck</pattern><branchRate>75</branchRate><lineRate>87</lineRate></regex>
           <regex><pattern>.*.api.AbstractLoader</pattern><branchRate>75</branchRate><lineRate>88</lineRate></regex>
           <regex><pattern>.*.api.AbstractViolationReporter</pattern><branchRate>100</branchRate><lineRate>90</lineRate></regex>
-          <regex><pattern>.*.api.AnnotationUtility</pattern><branchRate>60</branchRate><lineRate>60</lineRate></regex>
+          <regex><pattern>.*.api.AnnotationUtility</pattern><branchRate>0</branchRate><lineRate>0</lineRate></regex>
           <regex><pattern>.*.api.AuditEvent</pattern><branchRate>100</branchRate><lineRate>93</lineRate></regex>
           <regex><pattern>.*.api.AutomaticBean</pattern><branchRate>90</branchRate><lineRate>82</lineRate></regex>
           <regex><pattern>.*.api.AutomaticBean\$.*</pattern><branchRate>75</branchRate><lineRate>90</lineRate></regex>
@@ -664,7 +666,7 @@
           <regex><pattern>.*.api.LineColumn</pattern><branchRate>0</branchRate><lineRate>60</lineRate></regex>
           <regex><pattern>.*.api.LocalizedMessage</pattern><branchRate>53</branchRate><lineRate>67</lineRate></regex>
           <regex><pattern>.*.api.LocalizedMessage\$.*</pattern><branchRate>41</branchRate><lineRate>66</lineRate></regex>
-          <regex><pattern>.*.api.ScopeUtils</pattern><branchRate>90</branchRate><lineRate>94</lineRate></regex>
+          <regex><pattern>.*.api.ScopeUtils</pattern><branchRate>0</branchRate><lineRate>0</lineRate></regex>
           <regex><pattern>.*.api.SeverityLevelCounter</pattern><branchRate>50</branchRate><lineRate>76</lineRate></regex>
           <regex><pattern>.*.api.TokenTypes</pattern><branchRate>62</branchRate><lineRate>80</lineRate></regex>
 

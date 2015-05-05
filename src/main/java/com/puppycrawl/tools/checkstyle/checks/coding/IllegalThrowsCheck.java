@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.api.AnnotationUtility;
+import com.puppycrawl.tools.checkstyle.AnnotationUtility;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;

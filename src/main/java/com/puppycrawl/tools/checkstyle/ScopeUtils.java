@@ -17,21 +17,18 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.api;
+package com.puppycrawl.tools.checkstyle;
 
 import antlr.collections.AST;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.Scope;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Contains utility methods for working on scope.
  *
  * @author Oliver Burn
- *
- * @deprecated will be removed completely in next releases
- *             Replaced by exact copy but in non api package
- *             {@link com.puppycrawl.tools.checkstyle.ScopeUtils}
- *
  */
-@Deprecated
 public final class ScopeUtils
 {
     /** prevent instantiation */
