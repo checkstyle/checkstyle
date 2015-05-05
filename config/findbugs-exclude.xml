@@ -42,11 +42,10 @@
       <Class name="com.puppycrawl.tools.checkstyle.api.AuditEvent" />
       <Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED" />
     </Match>
-    <Match>
-      <!-- till #596 -->
+<!--    <Match>
       <Class name="com.puppycrawl.tools.checkstyle.Main" />
       <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE" />
-    </Match>
+    </Match>-->
     <Match>
       <!-- till #766 -->
       <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler" />
@@ -77,8 +76,9 @@
       <Bug pattern="NM_CONFUSING" />
     </Match>
     <Match>
-      <!-- till #596 -->
+      <!-- that CLI class so we need system exit code there, but only in main(...) method -->
       <Class name="com.puppycrawl.tools.checkstyle.Main" />
+      <Method name="main" />
       <Bug pattern="DM_EXIT" />
     </Match>
     <Match>

@@ -44,7 +44,8 @@ import org.apache.commons.cli.PosixParser;
 
 /**
  * Wrapper command line program for the Checker.
- * @author Damian Szczepanik (damianszczepanik@github)
+ * @author the original author or authors.
+ *
  **/
 public final class Main
 {
@@ -344,19 +345,23 @@ public final class Main
     {
         // could be replaced with org.apache.commons.io.FileUtils.list() method
         // if only we add commons-io library
-        final List<File> files = Lists.newLinkedList();
+        final List<File> result = Lists.newLinkedList();
 
         if (node.canRead()) {
             if (node.isDirectory()) {
-                for (File element : node.listFiles()) {
-                    files.addAll(listFiles(element));
+                final File[] files = node.listFiles();
+                // listFiles() can return null, so we need to check it
+                if (files != null) {
+                    for (File element : files) {
+                        result.addAll(listFiles(element));
+                    }
                 }
             }
             else if (node.isFile()) {
-                files.add(node);
+                result.add(node);
             }
         }
-        return files;
+        return result;
     }
 
     /** Prints the usage information. **/

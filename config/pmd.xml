@@ -151,10 +151,7 @@
   <rule ref="rulesets/java/junit.xml"/>
   <rule ref="rulesets/java/logging-jakarta-commons.xml"/>
 
-  <rule ref="rulesets/java/logging-java.xml">
-    <!-- till #596 -->
-    <exclude name="AvoidPrintStackTrace"/>
-  </rule>
+  <rule ref="rulesets/java/logging-java.xml"/>
   <rule ref="rulesets/java/logging-java.xml/SystemPrintln">
     <properties>
       <!-- it is ok to use println in CLI class -->
