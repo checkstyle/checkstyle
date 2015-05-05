@@ -625,8 +625,8 @@
          <haltOnFailure>true</haltOnFailure>
          <branchRate>100</branchRate>
          <lineRate>100</lineRate>
-         <totalBranchRate>83</totalBranchRate>
-         <totalLineRate>90</totalLineRate>
+         <totalBranchRate>84</totalBranchRate>
+         <totalLineRate>92</totalLineRate>
          <regexes>
           <regex><pattern>.*.Checker</pattern><branchRate>79</branchRate><lineRate>85</lineRate></regex>
           <regex><pattern>.*.ConfigurationLoader</pattern><branchRate>86</branchRate><lineRate>79</lineRate></regex>
