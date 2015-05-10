@@ -240,10 +240,26 @@
     <module name="DefaultComesLast"/>
     <module name="DescendantToken"/>
     <module name="EmptyCatchBlock"/>
+    <module name="EmptyForInitializerPad"/>
     <module name="EmptyLineSeparator">
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
     </module>
     <module name="FallThrough"/>
+    <module name="IllegalTokenText"/>
+    <module name="InterfaceIsType"/>
+    <module name="InterfaceTypeParameterName"/>
+    <module name="MethodTypeParameterName"/>
+    <module name="MultipleVariableDeclarations"/>
+    <module name="MutableException"/>
+    <module name="NoClone"/>
+    <module name="NoFinalizer"/>
+    <module name="NoLineWrap"/>
+    <module name="StringLiteralEquality"/>
+    <module name="SuperClone"/>
+    <module name="SuperFinalize"/>
+    <module name="SuppressWarningsHolder"/>
+    <module name="TodoComment"/>
+    <module name="UnnecessaryParentheses"/>
 
 <!--
     <module name="AbbreviationAsWordInName"/>
@@ -255,30 +271,20 @@
     <module name="ClassFanOutComplexity"/>
     <module name="CustomImportOrder"/>
     <module name="DesignForExtension"/>
-    <module name="EmptyForInitializerPad"/>
     <module name="EmptyStatement"/>
     <module name="ExecutableStatementCount"/>
     <module name="FinalParameters"/>
     <module name="HiddenField"/>
     <module name="IllegalToken"/>
-    <module name="IllegalTokenText"/>
     <module name="IllegalType"/>
     <module name="ImportOrder"/>
     <module name="InnerTypeLast"/>
-    <module name="InterfaceIsType"/>
-    <module name="InterfaceTypeParameterName"/>
     <module name="JavadocParagraph"/>
     <module name="JavadocTagContinuationIndentation"/>
     <module name="JavaNCSS"/>
-    <module name="MethodTypeParameterName"/>
     <module name="MissingCtor"/>
     <module name="ModifiedControlVariable"/>
     <module name="MultipleStringLiterals"/>
-    <module name="MultipleVariableDeclarations"/>
-    <module name="MutableException"/>
-    <module name="NoClone"/>
-    <module name="NoFinalizer"/>
-    <module name="NoLineWrap"/>
     <module name="NonEmptyAtclauseDescription"/>
     <module name="NPathComplexity"/>
     <module name="OneTopLevelClass"/>
@@ -291,15 +297,9 @@
     <module name="ReturnCount"/>
     <module name="SeparatorWrap"/>
     <module name="SingleLineJavadoc"/>
-    <module name="StringLiteralEquality"/>
     <module name="SummaryJavadoc"/>
-    <module name="SuperClone"/>
-    <module name="SuperFinalize"/>
-    <module name="SuppressWarningsHolder"/>
     <module name="ThrowsCount"/>
-    <module name="TodoComment"/>
     <module name="UncommentedMain"/>
-    <module name="UnnecessaryParentheses"/>
     <module name="VariableDeclarationUsageDistance"/>
     <module name="WriteTag"/>
 -->
