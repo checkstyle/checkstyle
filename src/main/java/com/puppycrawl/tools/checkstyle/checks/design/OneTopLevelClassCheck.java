@@ -142,17 +142,18 @@ public class OneTopLevelClassCheck extends Check
     @Override
     public void finishTree(DetailAST rootAST)
     {
-        if (!publicTypeFound) {
-            // skip first top-level type.
-            lineNumberTypeMap.remove(lineNumberTypeMap.firstKey());
-        }
+        if (!lineNumberTypeMap.isEmpty()) {
+            if (!publicTypeFound) {
+                // skip first top-level type.
+                lineNumberTypeMap.remove(lineNumberTypeMap.firstKey());
+            }
 
-        for (Map.Entry<Integer, String> entry
-                : lineNumberTypeMap.entrySet())
-        {
-            log(entry.getKey(), MSG_KEY, entry.getValue());
+            for (Map.Entry<Integer, String> entry
+                    : lineNumberTypeMap.entrySet())
+            {
+                log(entry.getKey(), MSG_KEY, entry.getValue());
+            }
         }
-
     }
 
     /**
