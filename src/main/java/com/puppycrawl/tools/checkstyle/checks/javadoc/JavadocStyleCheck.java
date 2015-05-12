@@ -364,8 +364,6 @@ public class JavadocStyleCheck
         final int lineno = comment.getStartLineNo();
         final Deque<HtmlTag> htmlStack = new ArrayDeque<>();
         final String[] text = comment.getText();
-        final List<String> typeParameters =
-            CheckUtils.getTypeParameterNames(ast);
 
         TagParser parser = null;
         parser = new TagParser(text, lineno);
@@ -407,6 +405,7 @@ public class JavadocStyleCheck
 
         // Identify any tags left on the stack.
         String lastFound = ""; // Skip multiples, like <b>...<b>
+        final List<String> typeParameters = CheckUtils.getTypeParameterNames(ast);
         for (final HtmlTag htag : htmlStack) {
             if (!isSingleTag(htag)
                 && !htag.getId().equals(lastFound)

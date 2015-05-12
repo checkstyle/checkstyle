@@ -193,7 +193,6 @@ public class UnnecessaryParenthesesCheck extends Check
     public void visitToken(DetailAST ast)
     {
         final int type = ast.getType();
-        final boolean surrounded = isSurrounded(ast);
         final DetailAST parent = ast.getParent();
 
         if (type == TokenTypes.ASSIGN
@@ -204,6 +203,7 @@ public class UnnecessaryParenthesesCheck extends Check
         }
 
         // An identifier surrounded by parentheses.
+        final boolean surrounded = isSurrounded(ast);
         if (surrounded && type == TokenTypes.IDENT) {
             parentToSkip = ast.getParent();
             log(ast, MSG_IDENT, ast.getText());

@@ -140,8 +140,6 @@ public class ModifierOrderCheck
      */
     DetailAST checkOrderSuggestedByJLS(List<DetailAST> modifiers)
     {
-        int i = 0;
-        DetailAST modifier;
         final Iterator<DetailAST> it = modifiers.iterator();
         //No modifiers, no problems
         if (!it.hasNext()) {
@@ -149,6 +147,7 @@ public class ModifierOrderCheck
         }
 
         //Speed past all initial annotations
+        DetailAST modifier;
         do {
             modifier = it.next();
         }
@@ -159,6 +158,7 @@ public class ModifierOrderCheck
             return null;
         }
 
+        int i = 0;
         while (i < JLS_ORDER.length) {
             if (modifier.getType() == TokenTypes.ANNOTATION) {
                 //Annotation not at start of modifiers, bad

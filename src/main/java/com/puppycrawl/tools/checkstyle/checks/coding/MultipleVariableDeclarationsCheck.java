@@ -74,13 +74,13 @@ public class MultipleVariableDeclarationsCheck extends Check
     public void visitToken(DetailAST ast)
     {
         DetailAST nextNode = ast.getNextSibling();
-        final boolean isCommaSeparated =
-                nextNode != null && nextNode.getType() == TokenTypes.COMMA;
 
         if (nextNode == null) {
             // no next statement - no check
             return;
         }
+
+        final boolean isCommaSeparated = nextNode.getType() == TokenTypes.COMMA;
 
         if (nextNode.getType() == TokenTypes.COMMA
             || nextNode.getType() == TokenTypes.SEMI)
