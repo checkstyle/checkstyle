@@ -21,11 +21,13 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
 import java.io.File;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
 public class MutableExceptionCheckTest extends BaseCheckTestSupport
 {
@@ -53,5 +55,21 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport
         };
 
         verify(checkConfig, getPath("design" + File.separator + "InputMutableException.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens()
+    {
+        MutableExceptionCheck obj = new MutableExceptionCheck();
+        int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
+        assertArrayEquals(expected, obj.getAcceptableTokens());
+    }
+
+    @Test
+    public void testGetRequiredTokens()
+    {
+        MutableExceptionCheck obj = new MutableExceptionCheck();
+        int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
+        assertArrayEquals(expected, obj.getAcceptableTokens());
     }
 }

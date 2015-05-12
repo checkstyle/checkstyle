@@ -21,11 +21,13 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
 import java.io.File;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
 public class InnerTypeLastCheckTest extends BaseCheckTestSupport
 {
@@ -43,5 +45,13 @@ public class InnerTypeLastCheckTest extends BaseCheckTestSupport
         };
         verify(checkConfig, getPath("design" + File.separator
                                     + "InputInnerClassCheck.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens()
+    {
+        InnerTypeLastCheck obj = new InnerTypeLastCheck();
+        int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+        assertArrayEquals(expected, obj.getAcceptableTokens());
     }
 }

@@ -21,9 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
 public class FinalClassCheckTest
     extends BaseCheckTestSupport
@@ -39,5 +41,13 @@ public class FinalClassCheckTest
             "109: " + getCheckMessage(MSG_KEY, "someinnerClass"),
         };
         verify(checkConfig, getPath("InputFinalClass.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens()
+    {
+        FinalClassCheck obj = new FinalClassCheck();
+        int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF};
+        assertArrayEquals(expected, obj.getAcceptableTokens());
     }
 }
