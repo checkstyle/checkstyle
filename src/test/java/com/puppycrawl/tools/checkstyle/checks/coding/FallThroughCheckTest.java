@@ -45,6 +45,7 @@ public class FallThroughCheckTest extends BaseCheckTestSupport
             "369:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "372:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "374:40: " + getCheckMessage(MSG_FALL_THROUGH),
+            "416:13: " + getCheckMessage(MSG_FALL_THROUGH),
         };
         verify(checkConfig,
                getPath("coding" + File.separator + "InputFallThrough.java"),
@@ -69,6 +70,7 @@ public class FallThroughCheckTest extends BaseCheckTestSupport
             "372:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "374:40: " + getCheckMessage(MSG_FALL_THROUGH),
             "376:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "416:13: " + getCheckMessage(MSG_FALL_THROUGH),
         };
         verify(checkConfig,
                getPath("coding" + File.separator + "InputFallThrough.java"),
@@ -112,6 +114,7 @@ public class FallThroughCheckTest extends BaseCheckTestSupport
             "348:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "351:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "353:30: " + getCheckMessage(MSG_FALL_THROUGH),
+            "416:13: " + getCheckMessage(MSG_FALL_THROUGH),
         };
         verify(checkConfig,
                getPath("coding" + File.separator + "InputFallThrough.java"),
