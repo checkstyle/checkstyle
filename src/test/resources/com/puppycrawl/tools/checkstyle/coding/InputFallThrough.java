@@ -406,4 +406,14 @@ public class InputFallThrough
         default:
         }
     }
+
+    void nestedSwitches() {
+        switch (hashCode()) {
+            case 1:
+                switch (hashCode()) { // causing NullPointerException in the past
+                    case 1:
+                }
+            default: // violation - no fall through comment
+        }
+    }
 }

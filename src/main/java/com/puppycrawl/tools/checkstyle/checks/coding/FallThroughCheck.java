@@ -309,7 +309,7 @@ public class FallThroughCheck extends Check
         {
             final DetailAST caseBody =
                 caseGroup.findFirstToken(TokenTypes.SLIST);
-            isTerminated &= isTerminated(caseBody, false, useContinue);
+            isTerminated = caseBody != null && isTerminated(caseBody, false, useContinue);
             caseGroup = caseGroup.getNextSibling();
         }
         return isTerminated;
