@@ -73,7 +73,7 @@ public class UnusedImportsCheck extends Check
     /** flag to indicate when time to start collecting references. */
     private boolean collect;
     /** flag whether to process Javdoc comments. */
-    private boolean processJavadoc;
+    private boolean processingJavadoc;
 
     /** set of the imports. */
     private final Set<FullIdent> imports = Sets.newHashSet();
@@ -83,7 +83,7 @@ public class UnusedImportsCheck extends Check
 
     public void setProcessJavadoc(boolean value)
     {
-        processJavadoc = value;
+        processingJavadoc = value;
     }
 
     @Override
@@ -171,7 +171,7 @@ public class UnusedImportsCheck extends Check
         }
         else {
             collect = true;
-            if (processJavadoc) {
+            if (processingJavadoc) {
                 processJavadoc(ast);
             }
         }

@@ -99,8 +99,8 @@ public class FinalClassCheck
         final ClassDesc desc = classes.pop();
         if (!desc.isDeclaredAsFinal()
             && !desc.isDeclaredAsAbstract()
-            && desc.hasPrivateCtor()
-            && !desc.hasNonPrivateCtor())
+            && desc.isWithPrivateCtor()
+            && !desc.isWithNonPrivateCtor())
         {
             final String className =
                 ast.findFirstToken(TokenTypes.IDENT).getText();
@@ -118,10 +118,10 @@ public class FinalClassCheck
         private final boolean declaredAsAbstract;
 
         /** does class have non-provate ctors */
-        private boolean hasNonPrivateCtor;
+        private boolean withNonPrivateCtor;
 
         /** does class have private ctors */
-        private boolean hasPrivateCtor;
+        private boolean withPrivateCtor;
 
         /**
          *  create a new ClassDesc instance.
@@ -139,31 +139,31 @@ public class FinalClassCheck
         /** adds private ctor. */
         void reportPrivateCtor()
         {
-            hasPrivateCtor = true;
+            withPrivateCtor = true;
         }
 
         /** adds non-private ctor. */
         void reportNonPrivateCtor()
         {
-            hasNonPrivateCtor = true;
+            withNonPrivateCtor = true;
         }
 
         /**
          *  does class have private ctors.
          *  @return true if class has private ctors
          */
-        boolean hasPrivateCtor()
+        boolean isWithPrivateCtor()
         {
-            return hasPrivateCtor;
+            return withPrivateCtor;
         }
 
         /**
          *  does class have non-private ctors.
          *  @return true if class has non-private ctors
          */
-        boolean hasNonPrivateCtor()
+        boolean isWithNonPrivateCtor()
         {
-            return hasNonPrivateCtor;
+            return withNonPrivateCtor;
         }
 
         /**
@@ -191,8 +191,8 @@ public class FinalClassCheck
                 + "["
                 + "final=" + declaredAsFinal
                 + " abstract=" + declaredAsAbstract
-                + " pctor=" + hasPrivateCtor
-                + " ctor=" + hasNonPrivateCtor
+                + " pctor=" + withPrivateCtor
+                + " ctor=" + withNonPrivateCtor
                 + "]";
         }
     }

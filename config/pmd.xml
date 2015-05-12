@@ -163,8 +163,6 @@
   <rule ref="rulesets/java/naming.xml">
     <!-- till #983 -->
     <exclude name="AbstractNaming"/>
-    <!-- till #984 -->
-    <exclude name="AvoidFieldNameMatchingMethodName"/>
     <!-- till #985 -->
     <exclude name="ShortVariable"/>
   </rule>
