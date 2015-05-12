@@ -356,8 +356,8 @@ public final class AnnotationUseStyleCheck extends Check
                 valuePair.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
 
             if (nestedArrayInit != null
-                && AnnotationUseStyleCheck.
-                    ANNOTATION_ELEMENT_SINGLE_NAME.equals(
+                && AnnotationUseStyleCheck
+                    .ANNOTATION_ELEMENT_SINGLE_NAME.equals(
                     valuePair.getFirstChild().getText())
                     && nestedArrayInit.getChildCount(TokenTypes.EXPR) == 1)
             {

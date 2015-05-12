@@ -77,8 +77,7 @@ public class SwitchHandler extends BlockParentHandler
     private void checkSwitchExpr()
     {
         checkExpressionSubtree(
-            getMainAst().findFirstToken(TokenTypes.LPAREN).
-                getNextSibling(),
+            getMainAst().findFirstToken(TokenTypes.LPAREN).getNextSibling(),
             getLevel(),
             false,
             false);

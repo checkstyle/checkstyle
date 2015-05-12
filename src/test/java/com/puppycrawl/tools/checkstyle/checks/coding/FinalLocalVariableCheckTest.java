@@ -136,7 +136,7 @@ public class FinalLocalVariableCheckTest
         checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
         final String[] expected = {};
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
-                + "tools/checkstyle/naming/InputFinalLocalVariableNameLambda.java").
-                getCanonicalPath(), expected);
+                + "tools/checkstyle/naming/InputFinalLocalVariableNameLambda.java")
+                .getCanonicalPath(), expected);
     }
 }

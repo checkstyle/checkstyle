@@ -131,8 +131,8 @@ public class MainTest
                 assertEquals("", errorLog.getLog());
             }
         });
-        Main.main("-c", "src/main/resources/non_existing_config.xml"
-                , "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+        Main.main("-c", "src/main/resources/non_existing_config.xml",
+                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 
     @Test
@@ -145,13 +145,13 @@ public class MainTest
             public void checkAssertion()
             {
                 assertEquals("Invalid output format."
-                        + " Found '" + "xmlp" + "' but expected 'plain' or 'xml'.\n"
-                        , standardLog.getLog());
+                        + " Found '" + "xmlp" + "' but expected 'plain' or 'xml'.\n",
+                        standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
         });
-        Main.main("-c", "/google_checks.xml", "-f" , "xmlp"
-                , "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+        Main.main("-c", "/google_checks.xml", "-f" , "xmlp",
+                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 
     @Test
@@ -168,8 +168,8 @@ public class MainTest
                 assertEquals("", errorLog.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml"
-                , "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
+                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 
     @Test
@@ -195,9 +195,9 @@ public class MainTest
                 assertEquals("", errorLog.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml"
-                , "-f", "xml"
-                , "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
+                "-f", "xml",
+                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 
     @Test
@@ -214,9 +214,9 @@ public class MainTest
                 assertEquals("", errorLog.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml"
-                , "-f", "plain"
-                , "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
+                "-f", "plain",
+                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 
     @Test
@@ -236,13 +236,13 @@ public class MainTest
                     + currentPath
                     + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java:5:7: "
                     + "warning: Name 'InputMainInner' must match pattern '^[a-z0-9]*$'.\n"
-                    + "Audit done.\n"
-                    , standardLog.getLog());
+                    + "Audit done.\n",
+                    standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname2.xml"
-                , "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname2.xml",
+                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 
     @Test
@@ -267,9 +267,9 @@ public class MainTest
                 assertEquals("", errorLog.getLog());
             }
         });
-        Main.main("-c"
-                , "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname2-error.xml"
-                , "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+        Main.main("-c",
+                "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname2-error.xml",
+                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 
     @Test
@@ -285,10 +285,10 @@ public class MainTest
                 assertEquals("", errorLog.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml"
-                , "-f", "plain"
-                , "-o", "myjava.java"
-                , "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
+                "-f", "plain",
+                "-o", "myjava.java",
+                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 
     @Test
@@ -308,10 +308,10 @@ public class MainTest
                 assertEquals("", errorLog.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml"
-                , "-f", "plain"
-                , "-o", file.getCanonicalPath()
-                , "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
+                "-f", "plain",
+                "-o", file.getCanonicalPath(),
+                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 
     @Test
@@ -329,9 +329,9 @@ public class MainTest
             }
         });
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/"
-                + "config-classname-prop.xml"
-                , "-p", "src/test/resources/com/puppycrawl/tools/checkstyle/mycheckstyle.properties"
-                , "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+                + "config-classname-prop.xml",
+                "-p", "src/test/resources/com/puppycrawl/tools/checkstyle/mycheckstyle.properties",
+                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 
     @Test
@@ -348,8 +348,8 @@ public class MainTest
             }
         });
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/"
-                + "config-classname-prop.xml"
-                , "-p", "nonexisting.properties"
-                , "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+                + "config-classname-prop.xml",
+                "-p", "nonexisting.properties",
+                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 }

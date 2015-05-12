@@ -200,8 +200,8 @@ public class FinalParametersCheck extends Check
     {
         boolean result = false;
         if (ignorePrimitiveTypes) {
-            final DetailAST parameterType = paramDef.
-                    findFirstToken(TokenTypes.TYPE).getFirstChild();
+            final DetailAST parameterType = paramDef
+                .findFirstToken(TokenTypes.TYPE).getFirstChild();
             if (primitiveDataTypes.contains(parameterType.getType())) {
                 result = true;
             }

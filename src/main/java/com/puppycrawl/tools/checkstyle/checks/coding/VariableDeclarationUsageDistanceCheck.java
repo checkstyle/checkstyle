@@ -370,8 +370,8 @@ public class VariableDeclarationUsageDistanceCheck extends Check
                     break;
 
                 case TokenTypes.VARIABLE_DEF:
-                    final String currentVariableName = currentSiblingAst.
-                        findFirstToken(TokenTypes.IDENT).getText();
+                    final String currentVariableName = currentSiblingAst
+                        .findFirstToken(TokenTypes.IDENT).getText();
                     isUsedVariableDeclarationFound = variableName.equals(currentVariableName);
                     break;
 

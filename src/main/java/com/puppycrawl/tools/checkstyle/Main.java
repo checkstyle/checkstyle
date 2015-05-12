@@ -62,8 +62,8 @@ public final class Main
      * @throws CheckstyleException if there is a problem with parsing a property file
      * @throws FileNotFoundException if there is a problem with files access
      **/
-    public static void main(String... args) throws UnsupportedEncodingException
-            , CheckstyleException, FileNotFoundException
+    public static void main(String... args) throws UnsupportedEncodingException,
+            CheckstyleException, FileNotFoundException
     {
         int errorCounter = 0;
         boolean cliViolations = false;

@@ -130,8 +130,8 @@ public class OneTopLevelClassCheck extends Check
                     publicTypeFound = true;
                 }
                 else {
-                    final String typeName = currentNode.
-                            findFirstToken(TokenTypes.IDENT).getText();
+                    final String typeName = currentNode
+                            .findFirstToken(TokenTypes.IDENT).getText();
                     lineNumberTypeMap.put(currentNode.getLineNo(), typeName);
                 }
             }
