@@ -195,8 +195,6 @@
   <rule ref="rulesets/java/strictexception.xml">
     <!-- till #959 -->
     <exclude name="AvoidCatchingGenericException"/>
-    <!-- till #960 -->
-    <exclude name="AvoidThrowingNullPointerException"/>
     <!-- till #961 -->
     <exclude name="AvoidThrowingRawExceptionTypes"/>
     <!-- till #962 -->
