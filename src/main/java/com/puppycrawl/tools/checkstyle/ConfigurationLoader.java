@@ -152,8 +152,7 @@ public final class ConfigurationLoader
                 configStack.push(conf);
             }
             else if (qName.equals(PROPERTY)) {
-                //extract name and value
-                final String name = atts.getValue(NAME);
+                //extract value and name
                 final String value;
                 try {
                     value = replaceProperties(atts.getValue(VALUE),
@@ -162,6 +161,7 @@ public final class ConfigurationLoader
                 catch (final CheckstyleException ex) {
                     throw new SAXException(ex.getMessage());
                 }
+                final String name = atts.getValue(NAME);
 
                 //add to attributes of configuration
                 final DefaultConfiguration top =

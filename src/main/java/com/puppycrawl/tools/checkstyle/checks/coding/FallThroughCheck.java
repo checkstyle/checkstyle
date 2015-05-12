@@ -327,7 +327,6 @@ public class FallThroughCheck extends Check
             DetailAST nextCase)
     {
 
-        final int startLineNo = currentCase.getLineNo();
         final int endLineNo = nextCase.getLineNo();
         final int endColNo = nextCase.getColumnNo();
 
@@ -366,6 +365,7 @@ public class FallThroughCheck extends Check
          *    // FALLTHRU
          *    }
          */
+        final int startLineNo = currentCase.getLineNo();
         for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
             if (lines[i].trim().length() != 0) {
                 return commentMatch(regExp, lines[i], i + 1);

@@ -76,10 +76,10 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     @Override
     public void visitJavadocToken(DetailNode ast)
     {
-        final List<DetailNode> textNodes = getAllNewlineNodes(ast);
         if (isInlineDescription(ast)) {
             return;
         }
+        final List<DetailNode> textNodes = getAllNewlineNodes(ast);
         for (DetailNode newlineNode : textNodes) {
             final DetailNode textNode = JavadocUtils.getNextSibling(JavadocUtils
                     .getNextSibling(newlineNode));

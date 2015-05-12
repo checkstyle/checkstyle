@@ -69,6 +69,9 @@ public class IllegalInstantiationCheck
      */
     public static final String MSG_KEY = "instantiation.avoid";
 
+    /** {@link java.lang} package as string */
+    private static final String JAVA_LANG = "java.lang.";
+
     /** Set of fully qualified classnames. E.g. "java.lang.Boolean" */
     private final Set<String> illegalClasses = Sets.newHashSet();
 
@@ -235,8 +238,6 @@ public class IllegalInstantiationCheck
      */
     private String getIllegalInstantiation(String className)
     {
-        final String javlang = "java.lang.";
-
         if (illegalClasses.contains(className)) {
             return className;
         }
@@ -248,9 +249,9 @@ public class IllegalInstantiationCheck
             final int illegalLen = illegal.length();
 
             // class from java.lang
-            if (illegalLen - javlang.length() == clsNameLen
+            if (illegalLen - JAVA_LANG.length() == clsNameLen
                 && illegal.endsWith(className)
-                && illegal.startsWith(javlang))
+                && illegal.startsWith(JAVA_LANG))
             {
                 // java.lang needs no import, but a class without import might
                 // also come from the same file or be in the same package.

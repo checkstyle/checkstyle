@@ -187,8 +187,6 @@
     <exclude name="LocalVariableCouldBeFinal"/>
     <!--pollutes code with modifiers-->
     <exclude name="MethodArgumentCouldBeFinal"/>
-    <!--till #948-->
-    <exclude name="PrematureDeclaration"/>
     <!--not configurable, decreases readability-->
     <exclude name="UseStringBufferForStringAppends"/>
   </rule>

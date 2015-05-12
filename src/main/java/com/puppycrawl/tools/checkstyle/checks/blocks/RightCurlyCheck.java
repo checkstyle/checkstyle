@@ -153,14 +153,15 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
     {
         final Details details = getDetails(ast);
         final DetailAST rcurly = details.rcurly;
-        final DetailAST lcurly = details.lcurly;
-        final DetailAST nextToken = details.nextToken;
-        final boolean shouldCheckLastRcurly = details.shouldCheckLastRcurly;
 
         if (rcurly == null || rcurly.getType() != TokenTypes.RCURLY) {
             // we need to have both tokens to perform the check
             return;
         }
+
+        final DetailAST lcurly = details.lcurly;
+        final DetailAST nextToken = details.nextToken;
+        final boolean shouldCheckLastRcurly = details.shouldCheckLastRcurly;
 
         if (getAbstractOption() == RightCurlyOption.SAME && !hasLineBreakBefore(rcurly)) {
             log(rcurly, MSG_KEY_LINE_BREAK_BEFORE);

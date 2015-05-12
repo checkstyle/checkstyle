@@ -114,15 +114,15 @@ public class LocalVariableNameCheck
     @Override
     protected final boolean mustCheckName(DetailAST ast)
     {
-        final DetailAST modifiersAST =
-            ast.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isFinal = modifiersAST != null
-            && modifiersAST.branchContains(TokenTypes.FINAL);
         if (allowOneCharVarInForLoop && isForLoopVariable(ast)) {
             final String variableName =
                     ast.findFirstToken(TokenTypes.IDENT).getText();
             return !sSingleChar.matcher(variableName).find();
         }
+        final DetailAST modifiersAST =
+            ast.findFirstToken(TokenTypes.MODIFIERS);
+        final boolean isFinal = modifiersAST != null
+            && modifiersAST.branchContains(TokenTypes.FINAL);
         return !isFinal && ScopeUtils.isLocalVariableDef(ast);
     }
 
