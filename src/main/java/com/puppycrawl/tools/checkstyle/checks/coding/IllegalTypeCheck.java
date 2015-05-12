@@ -203,8 +203,8 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
         boolean result = true;
         if (memberModifiers != null) {
             result = false;
-            final DetailAST modifiersAst = methodOrVariableDef.
-                    findFirstToken(TokenTypes.MODIFIERS);
+            final DetailAST modifiersAst = methodOrVariableDef
+                    .findFirstToken(TokenTypes.MODIFIERS);
             if (modifiersAst.getFirstChild() != null) {
                 for (DetailAST modifier = modifiersAst.getFirstChild(); modifier != null;
                          modifier = modifier.getNextSibling())
@@ -329,8 +329,8 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     private void extendIllegalClassNamesWithShortName(String canonicalName)
     {
         if (illegalClassNames.contains(canonicalName)) {
-            final String shortName = canonicalName.
-                substring(canonicalName.lastIndexOf('.') + 1);
+            final String shortName = canonicalName
+                .substring(canonicalName.lastIndexOf('.') + 1);
             illegalClassNames.add(shortName);
         }
     }

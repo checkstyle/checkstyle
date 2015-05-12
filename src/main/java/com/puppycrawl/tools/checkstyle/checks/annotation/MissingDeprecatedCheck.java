@@ -184,8 +184,8 @@ public final class MissingDeprecatedCheck extends Check
             final Matcher javadocNoargMatcher =
                 MissingDeprecatedCheck.MATCH_DEPRECATED.matcher(line);
             final Matcher noargMultilineStart =
-                MissingDeprecatedCheck.
-                    MATCH_DEPRECATED_MULTILINE_START.matcher(line);
+                MissingDeprecatedCheck
+                    .MATCH_DEPRECATED_MULTILINE_START.matcher(line);
 
             if (javadocNoargMatcher.find()) {
                 if (found) {

@@ -254,6 +254,14 @@
     <module name="NoClone"/>
     <module name="NoFinalizer"/>
     <module name="NoLineWrap"/>
+    <module name="SeparatorWrap">
+      <property name="tokens" value="DOT"/>
+      <property name="option" value="nl"/>
+    </module>
+    <module name="SeparatorWrap">
+      <property name="tokens" value="COMMA"/>
+      <property name="option" value="EOL"/>
+    </module>
     <module name="StringLiteralEquality"/>
     <module name="SuperClone"/>
     <module name="SuperFinalize"/>
@@ -295,7 +303,6 @@
     <module name="TrailingComment"/>
     <module name="RequireThis"/>
     <module name="ReturnCount"/>
-    <module name="SeparatorWrap"/>
     <module name="SingleLineJavadoc"/>
     <module name="SummaryJavadoc"/>
     <module name="ThrowsCount"/>

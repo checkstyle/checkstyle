@@ -327,8 +327,8 @@ public final class TreeWalker
      * @param contents the contents of the file the AST was generated from.
      * @param astState state of AST.
      */
-    private void walk(DetailAST ast, FileContents contents
-            , AstState astState)
+    private void walk(DetailAST ast, FileContents contents,
+            AstState astState)
     {
         notifyBegin(ast, contents, astState);
 
@@ -345,8 +345,8 @@ public final class TreeWalker
      * @param contents the contents of the file the AST was generated from.
      * @param astState state of AST.
      */
-    private void notifyBegin(DetailAST rootAST, FileContents contents
-            , AstState astState)
+    private void notifyBegin(DetailAST rootAST, FileContents contents,
+            AstState astState)
     {
         Set<Check> checks;
 

@@ -649,8 +649,8 @@ public class CustomImportOrderCheck extends Check
      */
     private static String getFullImportIdent(DetailAST token)
     {
-        return token != null ? FullIdent.createFullIdent(token.
-                findFirstToken(TokenTypes.DOT)).getText() : "";
+        return token != null ? FullIdent.createFullIdent(token
+                .findFirstToken(TokenTypes.DOT)).getText() : "";
     }
 
     /**

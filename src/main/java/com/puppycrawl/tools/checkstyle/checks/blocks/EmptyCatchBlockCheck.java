@@ -256,8 +256,8 @@ public class EmptyCatchBlockCheck extends Check
     private boolean isVerifiable(DetailAST emptyCatchAst, String commentContent)
     {
         final String exceptionVariableName = getExceptionVariableName(emptyCatchAst);
-        final boolean isMatchingVariableName = variableNameRegexp.
-                matcher(exceptionVariableName).find();
+        final boolean isMatchingVariableName = variableNameRegexp
+                .matcher(exceptionVariableName).find();
         final boolean isMatchingCommentContent = !commentContent.isEmpty()
                  && commentRegexp.matcher(commentContent).find();
         return !isMatchingVariableName && !isMatchingCommentContent;

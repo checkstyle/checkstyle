@@ -288,8 +288,8 @@ public abstract class AbstractJavadocCheck extends Check
         JavadocNodeImpl[] children = new JavadocNodeImpl[childCount];
 
         for (int i = 0; i < childCount; i++) {
-            final JavadocNodeImpl child = createJavadocNode(parseTreeNode.getChild(i)
-                    , rootJavadocNode, i);
+            final JavadocNodeImpl child = createJavadocNode(parseTreeNode.getChild(i),
+                    rootJavadocNode, i);
             children[i] = child;
         }
         rootJavadocNode.setChildren(children);
@@ -310,8 +310,8 @@ public abstract class AbstractJavadocCheck extends Check
 
                 for (int j = 0; j < subChildren.length; j++) {
                     final JavadocNodeImpl child =
-                            createJavadocNode(currentParseTreeNodeChild.getChild(j)
-                                    , currentJavadocNode, j);
+                            createJavadocNode(currentParseTreeNodeChild.getChild(j),
+                                    currentJavadocNode, j);
 
                     subChildren[j] = child;
                 }

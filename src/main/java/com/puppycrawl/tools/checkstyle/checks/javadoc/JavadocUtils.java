@@ -80,8 +80,8 @@ public final class JavadocUtils
                 }
             }
             catch (Exception e) {
-                throw new IllegalStateException("Failed to instantiate collection of Javadoc tokens"
-                        , e);
+                throw new IllegalStateException(
+                    "Failed to instantiate collection of Javadoc tokens", e);
             }
         }
 
