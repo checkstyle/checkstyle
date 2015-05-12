@@ -20,9 +20,11 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
 public class InterfaceIsTypeCheckTest
     extends BaseCheckTestSupport
@@ -53,4 +55,19 @@ public class InterfaceIsTypeCheckTest
         verify(checkConfig, getPath("InputInterfaceIsType.java"), expected);
     }
 
+    @Test
+    public void testGetAcceptableTokens()
+    {
+        InterfaceIsTypeCheck obj = new InterfaceIsTypeCheck();
+        int[] expected = {TokenTypes.INTERFACE_DEF};
+        assertArrayEquals(expected, obj.getAcceptableTokens());
+    }
+
+    @Test
+    public void testGetRequiredTokens()
+    {
+        InterfaceIsTypeCheck obj = new InterfaceIsTypeCheck();
+        int[] expected = {TokenTypes.INTERFACE_DEF};
+        assertArrayEquals(expected, obj.getAcceptableTokens());
+    }
 }

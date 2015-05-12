@@ -19,7 +19,9 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -254,5 +256,17 @@ public class VisibilityModifierCheckTest
             "10:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
         };
         verify(checkConfig, getPath("AnnotatedVisibilitySameTypeName.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens()
+    {
+        VisibilityModifierCheck obj = new VisibilityModifierCheck();
+        int[] expected = {
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.OBJBLOCK,
+            TokenTypes.IMPORT,
+        };
+        assertArrayEquals(expected, obj.getAcceptableTokens());
     }
 }

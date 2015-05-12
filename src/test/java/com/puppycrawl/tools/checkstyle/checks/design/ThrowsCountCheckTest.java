@@ -21,9 +21,12 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
+
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
 public class ThrowsCountCheckTest extends BaseCheckTestSupport
 {
@@ -52,5 +55,21 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport
         };
 
         verify(checkConfig, getPath("design" + File.separator + "InputThrowsCount.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens()
+    {
+        ThrowsCountCheck obj = new ThrowsCountCheck();
+        int[] expected = {TokenTypes.LITERAL_THROWS};
+        assertArrayEquals(expected, obj.getAcceptableTokens());
+    }
+
+    @Test
+    public void testGetRequiredTokens()
+    {
+        ThrowsCountCheck obj = new ThrowsCountCheck();
+        int[] expected = {TokenTypes.LITERAL_THROWS};
+        assertArrayEquals(expected, obj.getAcceptableTokens());
     }
 }

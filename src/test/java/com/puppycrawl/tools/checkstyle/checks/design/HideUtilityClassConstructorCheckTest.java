@@ -21,10 +21,13 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
+
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck
 .MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
 public class HideUtilityClassConstructorCheckTest
     extends BaseCheckTestSupport
@@ -102,4 +105,11 @@ public class HideUtilityClassConstructorCheckTest
         verify(checkConfig, getPath("design" + File.separator + "HideUtilityClassContructor3041574_3.java"), expected);
     }
 
+    @Test
+    public void testGetAcceptableTokens()
+    {
+        HideUtilityClassConstructorCheck obj = new HideUtilityClassConstructorCheck();
+        int[] expected = {TokenTypes.CLASS_DEF};
+        assertArrayEquals(expected, obj.getAcceptableTokens());
+    }
 }

@@ -20,9 +20,11 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
 public class DesignForExtensionCheckTest
     extends BaseCheckTestSupport
@@ -40,4 +42,11 @@ public class DesignForExtensionCheckTest
 
     }
 
+    @Test
+    public void testGetAcceptableTokens()
+    {
+        DesignForExtensionCheck obj = new DesignForExtensionCheck();
+        int[] expected = {TokenTypes.METHOD_DEF};
+        assertArrayEquals(expected, obj.getAcceptableTokens());
+    }
 }
