@@ -295,7 +295,7 @@ public final class FileText extends AbstractList<String>
      * Find positions of line breaks in the full text.
      * @return an array giving the first positions of each line.
      */
-    private int[] lineBreaks()
+    private int[] findLineBreaks()
     {
         if (lineBreaks == null) {
             final int[] lineBreaks = new int[size() + 1];
@@ -323,7 +323,7 @@ public final class FileText extends AbstractList<String>
      */
     public LineColumn lineColumn(int pos)
     {
-        final int[] lineBreaks = lineBreaks();
+        final int[] lineBreaks = findLineBreaks();
         int lineNo = Arrays.binarySearch(lineBreaks, pos);
         if (lineNo < 0) {
             // we have: lineNo = -(insertion point) - 1

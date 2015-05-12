@@ -378,7 +378,7 @@ public class CustomImportOrderCheck extends Check
         }
 
         final ImportDetails firstImport = importToGroupList.get(0);
-        String currentGroup = getImportGroup(firstImport.isStatic(),
+        String currentGroup = getImportGroup(firstImport.isStaticImport(),
                 firstImport.getImportFullPath());
         int groupNumber = customImportOrderRules.indexOf(currentGroup);
         String previousImport = null;
@@ -412,7 +412,7 @@ public class CustomImportOrderCheck extends Check
             }
             else if (sortImportsInGroupAlphabetically
                     && previousImport != null
-                    && matchesImportGroup(importObject.isStatic(),
+                    && matchesImportGroup(importObject.isStaticImport(),
                             fullImportIdent, currentGroup)
                     && compareImports(fullImportIdent, previousImport) < 0)
             {
@@ -726,7 +726,7 @@ public class CustomImportOrderCheck extends Check
         private String importGroup;
 
         /** Is static import */
-        private boolean isStatic;
+        private boolean staticImport;
 
         /**
          * @param importFullPath
@@ -735,16 +735,16 @@ public class CustomImportOrderCheck extends Check
          *        import line number.
          * @param importGroup
          *        import group.
-         * @param isStatic
+         * @param staticImport
          *        if import is static.
          */
         public ImportDetails(String importFullPath,
-                int lineNumber, String importGroup, boolean isStatic)
+                int lineNumber, String importGroup, boolean staticImport)
         {
             setImportFullPath(importFullPath);
             setLineNumber(lineNumber);
             setImportGroup(importGroup);
-            setStatic(isStatic);
+            setStaticImport(staticImport);
         }
 
         /**
@@ -808,9 +808,9 @@ public class CustomImportOrderCheck extends Check
          * Checks if import is static.
          * @return true, if import is static.
          */
-        public boolean isStatic()
+        public boolean isStaticImport()
         {
-            return isStatic;
+            return staticImport;
         }
 
         /**
@@ -818,9 +818,9 @@ public class CustomImportOrderCheck extends Check
          * @param isStatic
          *        if import is static.
          */
-        public void setStatic(boolean isStatic)
+        public void setStaticImport(boolean isStatic)
         {
-            this.isStatic = isStatic;
+            this.staticImport = isStatic;
         }
     }
 }

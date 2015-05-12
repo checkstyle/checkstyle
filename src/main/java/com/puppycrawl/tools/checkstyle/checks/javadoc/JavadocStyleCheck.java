@@ -99,17 +99,17 @@ public class JavadocStyleCheck
      * Indicates if the first sentence should be checked for proper end of
      * sentence punctuation.
      */
-    private boolean checkFirstSentence = true;
+    private boolean checkingFirstSentence = true;
 
     /**
      * Indicates if the HTML within the comment should be checked.
      */
-    private boolean checkHtml = true;
+    private boolean checkingHtml = true;
 
     /**
      * Indicates if empty javadoc statements should be checked.
      */
-    private boolean checkEmptyJavadoc;
+    private boolean checkingEmptyJavadoc;
 
     @Override
     public int[] getDefaultTokens()
@@ -219,15 +219,15 @@ public class JavadocStyleCheck
             return;
         }
 
-        if (checkFirstSentence) {
+        if (checkingFirstSentence) {
             checkFirstSentence(ast, comment);
         }
 
-        if (checkHtml) {
+        if (checkingHtml) {
             checkHtml(ast, comment);
         }
 
-        if (checkEmptyJavadoc) {
+        if (checkingEmptyJavadoc) {
             checkEmptyJavadoc(comment);
         }
     }
@@ -557,7 +557,7 @@ public class JavadocStyleCheck
      */
     public void setCheckFirstSentence(boolean flag)
     {
-        checkFirstSentence = flag;
+        checkingFirstSentence = flag;
     }
 
     /**
@@ -566,7 +566,7 @@ public class JavadocStyleCheck
      */
     public void setCheckHtml(boolean flag)
     {
-        checkHtml = flag;
+        checkingHtml = flag;
     }
 
     /**
@@ -575,6 +575,6 @@ public class JavadocStyleCheck
      */
     public void setCheckEmptyJavadoc(boolean flag)
     {
-        checkEmptyJavadoc = flag;
+        checkingEmptyJavadoc = flag;
     }
 }

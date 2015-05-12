@@ -33,7 +33,7 @@ public class SynchronizedHandler extends BlockParentHandler
     /**
      * Determine that "synchronized" token used as modifier of method
      */
-    private boolean isMethodModifier;
+    private boolean methodModifier;
 
     /**
      * Construct an instance of this handler with the given indentation check,
@@ -47,13 +47,13 @@ public class SynchronizedHandler extends BlockParentHandler
                                ExpressionHandler parent)
     {
         super(indentCheck, "synchronized", ast, parent);
-        isMethodModifier = isMethodModifier(ast);
+        methodModifier = isMethodModifier(ast);
     }
 
     @Override
     public void checkIndentation()
     {
-        if (!isMethodModifier) {
+        if (!methodModifier) {
             super.checkIndentation();
             checkSynchronizedExpr();
             final LineWrappingHandler lineWrap =

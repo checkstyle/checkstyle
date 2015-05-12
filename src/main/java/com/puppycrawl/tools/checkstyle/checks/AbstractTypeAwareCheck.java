@@ -457,7 +457,7 @@ public abstract class AbstractTypeAwareCheck extends Check
         /** name of surrounding class. */
         private final String surroundingClass;
         /** is class loadable. */
-        private boolean isLoadable = true;
+        private boolean loadable = true;
         /** <code>Class</code> object of this class if it's loadable. */
         private Class<?> classObj;
         /** the check we use to resolve classes. */
@@ -480,7 +480,7 @@ public abstract class AbstractTypeAwareCheck extends Check
         /** @return if class is loadable ot not. */
         private boolean isLoadable()
         {
-            return isLoadable;
+            return loadable;
         }
 
         @Override
@@ -499,7 +499,7 @@ public abstract class AbstractTypeAwareCheck extends Check
         private void setClazz(Class<?> classObj)
         {
             this.classObj = classObj;
-            isLoadable = classObj != null;
+            loadable = classObj != null;
         }
 
         @Override
@@ -507,7 +507,7 @@ public abstract class AbstractTypeAwareCheck extends Check
         {
             return "RegularClass[name=" + getName()
                 + ", in class=" + surroundingClass
-                + ", loadable=" + isLoadable
+                + ", loadable=" + loadable
                 + ", class=" + classObj + "]";
         }
     }
