@@ -39,7 +39,7 @@ public class MethodCountCheckTest extends BaseCheckTestSupport
         MethodCountCheck methodCountCheckObj =
             new MethodCountCheck();
         int[] actual = methodCountCheckObj.getAcceptableTokens();
-        int[] expected = new int[]{
+        int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.ENUM_DEF,

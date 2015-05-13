@@ -35,9 +35,12 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport
         OuterTypeNumberCheck outerTypeNumberObj =
             new OuterTypeNumberCheck();
         int[] actual = outerTypeNumberObj.getAcceptableTokens();
-        int[] expected = new int[]{TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
-            TokenTypes.ANNOTATION_DEF};
+        int[] expected = {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
+        };
 
         assertArrayEquals(expected, actual);
     }

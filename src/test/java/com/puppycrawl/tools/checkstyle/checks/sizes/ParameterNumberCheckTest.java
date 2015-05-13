@@ -36,8 +36,10 @@ public class ParameterNumberCheckTest
         ParameterNumberCheck paramNumberCheckObj =
             new ParameterNumberCheck();
         int[] actual = paramNumberCheckObj.getAcceptableTokens();
-        int[] expected = new int[]{TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF};
+        int[] expected = {
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+        };
         assertArrayEquals(expected, actual);
     }
 
