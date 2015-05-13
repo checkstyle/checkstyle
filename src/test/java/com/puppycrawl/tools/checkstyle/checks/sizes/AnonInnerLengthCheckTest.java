@@ -19,11 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import static com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
-
-import static com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck.MSG_KEY;
 
 /**
  * @author Rob Worth
@@ -31,6 +33,16 @@ import static com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck.
  */
 public class AnonInnerLengthCheckTest extends BaseCheckTestSupport
 {
+    @Test
+    public void testGetAcceptableTokens()
+    {
+        AnonInnerLengthCheck anonInnerLengthCheckObj =
+            new AnonInnerLengthCheck();
+        int[] actual = anonInnerLengthCheckObj.getAcceptableTokens();
+        int[] expected = new int[]{TokenTypes.LITERAL_NEW};
+
+        assertArrayEquals(expected, actual);
+    }
 
     @Test
     public void testDefault() throws Exception

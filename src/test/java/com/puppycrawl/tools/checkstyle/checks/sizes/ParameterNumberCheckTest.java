@@ -19,15 +19,28 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import static com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
-
-import static com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck.MSG_KEY;
 
 public class ParameterNumberCheckTest
     extends BaseCheckTestSupport
 {
+    @Test
+    public void testGetAcceptableTokens()
+    {
+        ParameterNumberCheck paramNumberCheckObj =
+            new ParameterNumberCheck();
+        int[] actual = paramNumberCheckObj.getAcceptableTokens();
+        int[] expected = new int[]{TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF};
+        assertArrayEquals(expected, actual);
+    }
+
     @Test
     public void testDefault()
         throws Exception
