@@ -11,3 +11,7 @@ install: mvn clean verify site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true
 
 after_success:
   - mvn clean cobertura:cobertura coveralls:report
+  
+cache:
+  directories:
+  - ~/.m2
