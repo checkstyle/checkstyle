@@ -43,8 +43,9 @@
       <Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED" />
     </Match>
     <Match>
-      <!-- till #766 -->
+      <!-- false-postive, as Map will return null if key is not found -->
       <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler" />
+      <Method name="collectFirstNodes" />
       <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
     </Match>
     <Match>
