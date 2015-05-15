@@ -746,7 +746,7 @@
           <regex><pattern>.*.checks.coding.PackageDeclarationCheck</pattern><branchRate>50</branchRate><lineRate>63</lineRate></regex>
           <regex><pattern>.*.checks.coding.ParameterAssignmentCheck</pattern><branchRate>80</branchRate><lineRate>91</lineRate></regex>
           <regex><pattern>.*.checks.coding.RequireThisCheck</pattern><branchRate>100</branchRate><lineRate>89</lineRate></regex>
-          <regex><pattern>.*.checks.coding.ReturnCountCheck</pattern><branchRate>50</branchRate><lineRate>73</lineRate></regex>
+          <regex><pattern>.*.checks.coding.ReturnCountCheck</pattern><branchRate>55</branchRate><lineRate>74</lineRate></regex>
           <regex><pattern>.*.checks.coding.SimplifyBooleanExpressionCheck</pattern><branchRate>100</branchRate><lineRate>77</lineRate></regex>
           <regex><pattern>.*.checks.coding.SimplifyBooleanReturnCheck</pattern><branchRate>83</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.coding.StringLiteralEqualityCheck</pattern><branchRate>100</branchRate><lineRate>87</lineRate></regex>

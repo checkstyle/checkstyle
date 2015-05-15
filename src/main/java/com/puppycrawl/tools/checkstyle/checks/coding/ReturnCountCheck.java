@@ -27,8 +27,8 @@ import java.util.Deque;
 
 /**
  * <p>
- * Restricts return statements to a specified count (default = 2).
- * Ignores specified methods (<code>equals()</code> by default).
+ * Restricts the number of return statements in methods, constructors and lambda expressions
+ * (2 by default). Ignores specified methods (<code>equals()</code> by default).
  * </p>
  * <p>
  * Rationale: Too many return points can be indication that code is
@@ -69,6 +69,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
+            TokenTypes.LAMBDA,
             TokenTypes.LITERAL_RETURN,
         };
     }
@@ -77,8 +78,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     public int[] getRequiredTokens()
     {
         return new int[]{
-            TokenTypes.CTOR_DEF,
-            TokenTypes.METHOD_DEF,
+            TokenTypes.LITERAL_RETURN,
         };
     }
 
@@ -88,6 +88,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
+            TokenTypes.LAMBDA,
             TokenTypes.LITERAL_RETURN,
         };
     }
@@ -125,6 +126,9 @@ public final class ReturnCountCheck extends AbstractFormatCheck
             case TokenTypes.METHOD_DEF:
                 visitMethodDef(ast);
                 break;
+            case TokenTypes.LAMBDA:
+                visitLambda();
+                break;
             case TokenTypes.LITERAL_RETURN:
                 context.visitLiteralReturn();
                 break;
@@ -139,7 +143,8 @@ public final class ReturnCountCheck extends AbstractFormatCheck
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF:
             case TokenTypes.METHOD_DEF:
-                leaveMethodDef(ast);
+            case TokenTypes.LAMBDA:
+                leave(ast);
                 break;
             case TokenTypes.LITERAL_RETURN:
                 // Do nothing
@@ -162,14 +167,22 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     }
 
     /**
-     * Checks number of return statements and restore
-     * previous method context.
-     * @param ast method def node.
+     * Checks number of return statements and restore previous context.
+     * @param ast node to leave.
      */
-    private void leaveMethodDef(DetailAST ast)
+    private void leave(DetailAST ast)
     {
         context.checkCount(ast);
         context = contextStack.pop();
+    }
+
+    /**
+     * Creates new lambda context and places old one on the stack.
+     */
+    private void visitLambda()
+    {
+        contextStack.push(context);
+        context = new Context(true);
     }
 
     /**

@@ -1742,8 +1742,8 @@ if (&quot;something&quot;.equals(x))
     <section name="ReturnCount">
       <subsection name="Description">
         <p>
-          Restricts the number of return statements (2 by default).  Ignores
-          specified methods (<code>equals()</code> by default).
+          Restricts the number of return statements in methods, constructors and lambda expressions
+          (2 by default). Ignores specified methods (<code>equals()</code> by default).
         </p>
 
         <p>
@@ -1759,6 +1759,21 @@ if (&quot;something&quot;.equals(x))
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>
+              subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">LAMBDA</a>
+            </td>
+            <td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">LAMBDA</a>
+            </td>
           </tr>
           <tr>
             <td>max</td>
@@ -1795,6 +1810,26 @@ if (&quot;something&quot;.equals(x))
 &lt;module name=&quot;ReturnCount&quot;&gt;
     &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
     &lt;property name=&quot;format&quot; value=&quot;^$&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check so that it doesn't allow any return statements
+          in constructors, more than one return statement in all lambda
+          expressions and more than two return statements in methods:
+        </p>
+        <source>
+&lt;module name=&quot;ReturnCount&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;0&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+&lt;/module&gt;
+&lt;module name=&quot;ReturnCount&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;1&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;LAMBDA&quot;/&gt;
+&lt;/module&gt;
+&lt;module name=&quot;ReturnCount&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

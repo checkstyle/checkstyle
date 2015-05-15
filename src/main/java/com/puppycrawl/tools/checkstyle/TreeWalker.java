@@ -222,7 +222,7 @@ public final class TreeWalker
         // RecognitionException and any other (need to check if needed)
         catch (Throwable ex) {
             final String exceptionMsg = String.format(msg, ex.getClass().getSimpleName(), fileName);
-            LOG.error(exceptionMsg);
+            LOG.error(exceptionMsg, ex);
             getMessageCollector().add(createLocalizedMessage(ex.getMessage()));
         }
 
