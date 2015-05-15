@@ -10,7 +10,7 @@
       <Bug pattern="DM_DEFAULT_ENCODING" />
     </Match>
     <Match>
-      <!-- Look like catch Exception and throw BuidException is normal practice in ANT, so we follow their style -->
+      <!-- Looks like catch Exception and throw BuidException is normal practice in ANT, so we follow their style -->
       <!-- Example: https://git-wip-us.apache.org/repos/asf?p=ant.git;a=blob;f=src/main/org/apache/tools/ant/taskdefs/Checksum.java;h=7a94ca098baf241b175a6bab3dda092aed835ada;hb=HEAD#l574 -->
       <Class name="com.puppycrawl.tools.checkstyle.CheckStyleTask" />
       <Method name="createChecker" />
@@ -33,8 +33,8 @@
       <Bug pattern="EQ_COMPARETO_USE_OBJECT_EQUALS" />
     </Match>
     <Match>
-      <!-- till #910 -->
-      <Package name="~com\.puppycrawl\.tools\.checkstyle.*" />
+      <!-- see a reason of suppression at #910 -->
+      <Class name="com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties" />
       <Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS" />
     </Match>
     <Match>
@@ -42,10 +42,6 @@
       <Class name="com.puppycrawl.tools.checkstyle.api.AuditEvent" />
       <Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED" />
     </Match>
-<!--    <Match>
-      <Class name="com.puppycrawl.tools.checkstyle.Main" />
-      <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE" />
-    </Match>-->
     <Match>
       <!-- till #766 -->
       <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler" />
