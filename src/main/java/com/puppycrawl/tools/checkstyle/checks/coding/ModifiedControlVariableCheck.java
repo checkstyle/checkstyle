@@ -47,7 +47,8 @@ import java.util.Set;
  * </p>
  * Rationale: If the control variable is modified inside the loop
  * body, the program flow becomes more difficult to follow.<br/>
- * {@link http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14}
+ * See <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14">
+ * FOR statement</a> specification for more details.
  * </p>
  * Examples:
  * <p>
