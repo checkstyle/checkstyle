@@ -629,7 +629,7 @@
          <totalLineRate>90</totalLineRate>
          <regexes>
           <regex><pattern>.*.checkstyle.AnnotationUtility</pattern><branchRate>60</branchRate><lineRate>60</lineRate></regex>
-          <regex><pattern>.*.Checker</pattern><branchRate>79</branchRate><lineRate>85</lineRate></regex>
+          <regex><pattern>.*.Checker</pattern><branchRate>79</branchRate><lineRate>84</lineRate></regex>
           <regex><pattern>.*.ConfigurationLoader</pattern><branchRate>86</branchRate><lineRate>79</lineRate></regex>
           <regex><pattern>.*.ConfigurationLoader\$.*</pattern><branchRate>65</branchRate><lineRate>84</lineRate></regex>
 
