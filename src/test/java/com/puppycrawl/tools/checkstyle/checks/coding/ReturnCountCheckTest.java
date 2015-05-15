@@ -53,4 +53,58 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputReturnCount.java"), expected);
     }
+
+    @Test
+    public void testMethodsAndLambdas() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
+        checkConfig.addAttribute("max", "1");
+        final String[] expected = {
+            "14:55: " + getCheckMessage(MSG_KEY, 2, 1),
+            "26:49: " + getCheckMessage(MSG_KEY, 2, 1),
+            "33:42: " + getCheckMessage(MSG_KEY, 3, 1),
+            "40:5: " + getCheckMessage(MSG_KEY, 2, 1),
+            "48:57: " + getCheckMessage(MSG_KEY, 2, 1),
+        };
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+            + "checkstyle/coding/InputReturnCountLambda.java").getCanonicalPath(), expected);
+    }
+
+    @Test
+    public void testLambdasOnly() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
+        checkConfig.addAttribute("tokens", "LAMBDA");
+        final String[] expected = {
+            "33:42: " + getCheckMessage(MSG_KEY, 3, 2),
+        };
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+            + "checkstyle/coding/InputReturnCountLambda.java").getCanonicalPath(), expected);
+    }
+
+    @Test
+    public void testMethodsOnly() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
+        checkConfig.addAttribute("tokens", "METHOD_DEF");
+        final String[] expected = {
+            "25:5: " + getCheckMessage(MSG_KEY, 3, 2),
+            "32:5: " + getCheckMessage(MSG_KEY, 4, 2),
+            "40:5: " + getCheckMessage(MSG_KEY, 4, 2),
+            "55:5: " + getCheckMessage(MSG_KEY, 3, 2),
+        };
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+            + "checkstyle/coding/InputReturnCountLambda.java").getCanonicalPath(), expected);
+    }
+
+    @Test
+    public void testWithReturnOnlyAsTokens() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
+        checkConfig.addAttribute("tokens", "LITERAL_RETURN");
+        final String[] expected = {
+        };
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+            + "checkstyle/coding/InputReturnCountLambda.java").getCanonicalPath(), expected);
+    }
 }
