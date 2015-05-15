@@ -84,8 +84,9 @@ public class TreeTableModelAdapter extends AbstractTableModel
 {
     /** For Serialisation that will never happen. */
     private static final long serialVersionUID = 8269213416115369275L;
+
     private final JTree tree;
-    private final TreeTableModel treeTableModel;
+    private final transient TreeTableModel treeTableModel;
 
     public TreeTableModelAdapter(TreeTableModel treeTableModel, JTree tree)
     {

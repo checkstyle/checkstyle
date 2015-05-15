@@ -30,15 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TooManyListenersException;
 
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 
 import antlr.ANTLRException;
@@ -59,7 +51,8 @@ public class ParseTreeInfoPanel extends JPanel
 {
     /** For Serialisation that will never happen. */
     private static final long serialVersionUID = -4243405131202059043L;
-    private final ParseTreeModel parseTreeModel;
+
+    private final transient ParseTreeModel parseTreeModel;
     private final JTextArea jTextArea;
     private File lastDirectory;
     private File currentFile;
@@ -270,8 +263,7 @@ public class ParseTreeInfoPanel extends JPanel
     {
         setLayout(new BorderLayout());
 
-        final DetailAST treeRoot = null;
-        parseTreeModel = new ParseTreeModel(treeRoot);
+        parseTreeModel = new ParseTreeModel(null);
         JTreeTable treeTable = new JTreeTable(parseTreeModel);
         final JScrollPane sp = new JScrollPane(treeTable);
         this.add(sp, BorderLayout.NORTH);
@@ -308,20 +300,46 @@ public class ParseTreeInfoPanel extends JPanel
 
     private void showErrorDialog(final Component parent, final String msg)
     {
-        final Runnable showError = new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                JOptionPane.showMessageDialog(parent, msg);
-            }
-        };
+        final Runnable showError = new FrameShower(parent, msg);
         SwingUtilities.invokeLater(showError);
     }
 
     public List<Integer> getLines2position()
     {
       return lines2position;
+    }
+
+    /**
+     * http://findbugs.sourceforge.net/bugDescriptions.html#SW_SWING_METHODS_INVOKED_IN_SWING_THREAD
+     */
+    private static class FrameShower implements Runnable
+    {
+        /**
+         * frame
+         */
+        final Component parent;
+
+        /**
+         * frame
+         */
+        final String msg;
+
+        /**
+         * contstructor
+         */
+        public FrameShower(Component parent, final String msg)
+        {
+            this.parent = parent;
+            this.msg = msg;
+        }
+
+        /**
+         * display a frame
+         */
+        public void run()
+        {
+            JOptionPane.showMessageDialog(parent, msg);
+        }
     }
 }
 
