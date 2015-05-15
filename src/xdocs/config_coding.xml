@@ -1088,7 +1088,7 @@ class MyClass {
           <p>
             Rationale: If the control variable is modified inside the loop
             body, the program flow becomes more difficult to follow.<br/>
-            See <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14">for statement</a> specification for more details.
+            See <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14">FOR statement</a> specification for more details.
           </p>
         <p>
             Such loop would be supressed:
