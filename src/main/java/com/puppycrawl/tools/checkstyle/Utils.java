@@ -19,11 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import com.google.common.collect.ImmutableMap;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.apache.commons.beanutils.ConversionException;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -34,6 +38,46 @@ import java.util.regex.PatternSyntaxException;
  */
 public final class Utils
 {
+
+    /** maps from a token name to value */
+    private static final ImmutableMap<String, Integer> TOKEN_NAME_TO_VALUE;
+    /** maps from a token value to name */
+    private static final String[] TOKEN_VALUE_TO_NAME;
+
+    // initialise the constants
+    static {
+        final ImmutableMap.Builder<String, Integer> builder =
+                ImmutableMap.builder();
+        final Field[] fields = TokenTypes.class.getDeclaredFields();
+        String[] tempTokenValueToName = new String[0];
+        for (final Field f : fields) {
+            // Only process the int declarations.
+            if (f.getType() != Integer.TYPE) {
+                continue;
+            }
+
+            final String name = f.getName();
+            try {
+                final int tokenValue = f.getInt(name);
+                builder.put(name, tokenValue);
+                if (tokenValue > tempTokenValueToName.length - 1) {
+                    final String[] temp = new String[tokenValue + 1];
+                    System.arraycopy(tempTokenValueToName, 0,
+                            temp, 0, tempTokenValueToName.length);
+                    tempTokenValueToName = temp;
+                }
+                tempTokenValueToName[tokenValue] = name;
+            }
+            catch (final IllegalArgumentException | IllegalAccessException e) {
+                throw new IllegalStateException(
+                        "Failed to instantiate collection of Java tokens", e);
+            }
+        }
+
+        TOKEN_NAME_TO_VALUE = builder.build();
+        TOKEN_VALUE_TO_NAME = tempTokenValueToName;
+    }
+
 
     /** stop instances being created **/
     private Utils()
@@ -233,5 +277,80 @@ public final class Utils
     public static boolean endsWithChar(String string, char suffix)
     {
         return string.length() > 0 && string.charAt(string.length() - 1) == suffix;
+    }
+
+    /**
+     * Returns the name of a token for a given ID.
+     * @param iD the ID of the token name to get
+     * @return a token name
+     */
+    public static String getTokenName(int iD)
+    {
+        if (iD > TOKEN_VALUE_TO_NAME.length - 1) {
+            throw new IllegalArgumentException("given id " + iD);
+        }
+        final String name = TOKEN_VALUE_TO_NAME[iD];
+        if (name == null) {
+            throw new IllegalArgumentException("given id " + iD);
+        }
+        return name;
+    }
+
+    /**
+     * Returns the ID of a token for a given name.
+     * @param name the name of the token ID to get
+     * @return a token ID
+     */
+    public static int getTokenId(String name)
+    {
+        final Integer id = TOKEN_NAME_TO_VALUE.get(name);
+        if (id == null) {
+            throw new IllegalArgumentException("given name " + name);
+        }
+        return id.intValue();
+    }
+
+    /**
+     * Returns the short description of a token for a given name.
+     * @param name the name of the token ID to get
+     * @return a short description
+     */
+    public static String getShortDescription(String name)
+    {
+        if (!TOKEN_NAME_TO_VALUE.containsKey(name)) {
+            throw new IllegalArgumentException("given name " + name);
+        }
+
+        final String tokentypes =
+            "com.puppycrawl.tools.checkstyle.api.tokentypes";
+        final ResourceBundle bundle = ResourceBundle.getBundle(tokentypes);
+        return bundle.getString(name);
+    }
+
+    /**
+     * Is argument comment-related type (SINGLE_LINE_COMMENT,
+     * BLOCK_COMMENT_BEGIN, BLOCK_COMMENT_END, COMMENT_CONTENT).
+     * @param type
+     *        token type.
+     * @return true if type is comment-related type.
+     */
+    public static boolean isCommentType(int type)
+    {
+        return type == TokenTypes.SINGLE_LINE_COMMENT
+                || type == TokenTypes.BLOCK_COMMENT_BEGIN
+                || type == TokenTypes.BLOCK_COMMENT_END
+                || type == TokenTypes.COMMENT_CONTENT;
+    }
+
+    /**
+     * Is argument comment-related type name (SINGLE_LINE_COMMENT,
+     * BLOCK_COMMENT_BEGIN, BLOCK_COMMENT_END, COMMENT_CONTENT).
+     * @param type
+     *        token type name.
+     * @return true if type is comment-related type name.
+     */
+    public static boolean isCommentType(String type)
+    {
+        return isCommentType(getTokenId(type));
     }
 }

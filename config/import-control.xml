@@ -20,6 +20,7 @@
   <allow pkg="org.apache.commons.lang3"/>
   <allow pkg="org.xml.sax"/>
   <allow pkg="com.puppycrawl.tools.checkstyle"/>
+  <allow pkg="java.lang.reflect"/>
 
   <!-- The local ones -->
   <allow class="java.security.MessageDigest" local-only="true"/>
@@ -30,7 +31,6 @@
   <subpackage name="api">
     <allow pkg="com.puppycrawl.tools.checkstyle.grammars"/>
     <allow pkg="java.beans"/>
-    <allow pkg="java.lang.reflect"/>
     <allow pkg="java.text"/>
     <allow class="com.puppycrawl.tools.checkstyle.grammars.CommentListener"
            local-only="true"/>

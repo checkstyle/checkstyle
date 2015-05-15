@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -81,7 +82,7 @@ public class IllegalTokenCheck
             tokensToCopy = new int[tokenNames.size()];
             int i = 0;
             for (String name : tokenNames) {
-                tokensToCopy[i] = TokenTypes.getTokenId(name);
+                tokensToCopy[i] = Utils.getTokenId(name);
                 i++;
             }
         }

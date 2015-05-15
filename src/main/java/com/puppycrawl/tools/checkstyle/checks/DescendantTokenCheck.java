@@ -20,9 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import antlr.collections.AST;
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 import java.util.Arrays;
 import java.util.Set;
 
@@ -227,7 +228,7 @@ public class DescendantTokenCheck extends Check
         countTokens(ast, 0);
 
         // name of this token
-        final String name = TokenTypes.getTokenName(ast.getType());
+        final String name = Utils.getTokenName(ast.getType());
 
         if (sumTokenCounts) {
             int total = 0;
@@ -254,7 +255,7 @@ public class DescendantTokenCheck extends Check
             for (int element : limitedTokens) {
                 final int tokenCount = counts[element - 1];
                 if (tokenCount < minimumNumber) {
-                    final String descendantName = TokenTypes
+                    final String descendantName = Utils
                             .getTokenName(element);
                     log(ast.getLineNo(), ast.getColumnNo(),
                             null == minimumMessage ? MSG_KEY_MIN
@@ -265,7 +266,7 @@ public class DescendantTokenCheck extends Check
                             descendantName);
                 }
                 if (tokenCount > maximumNumber) {
-                    final String descendantName = TokenTypes
+                    final String descendantName = Utils
                             .getTokenName(element);
                     log(ast.getLineNo(), ast.getColumnNo(),
                             null == maximumMessage ? MSG_KEY_MAX
@@ -311,7 +312,7 @@ public class DescendantTokenCheck extends Check
         final int[] result = new int[tokenNames.size()];
         int i = 0;
         for (String name : tokenNames) {
-            result[i++] = TokenTypes.getTokenId(name);
+            result[i++] = Utils.getTokenId(name);
         }
         return result;
     }
@@ -326,7 +327,7 @@ public class DescendantTokenCheck extends Check
 
         int maxToken = 0;
         for (int i = 0; i < limitedTokensParam.length; i++) {
-            limitedTokens[i] = TokenTypes.getTokenId(limitedTokensParam[i]);
+            limitedTokens[i] = Utils.getTokenId(limitedTokensParam[i]);
             if (limitedTokens[i] > maxToken) {
                 maxToken = limitedTokens[i];
             }

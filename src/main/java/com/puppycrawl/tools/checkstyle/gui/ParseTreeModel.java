@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.gui;
 
 import antlr.ASTFactory;
 import antlr.collections.AST;
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -97,7 +98,7 @@ public class ParseTreeModel extends AbstractTreeTableModel
             case 0:
                 return null;
             case 1:
-                return TokenTypes.getTokenName(ast.getType());
+                return Utils.getTokenName(ast.getType());
             case 2:
                 return ast.getLineNo();
             case 3:

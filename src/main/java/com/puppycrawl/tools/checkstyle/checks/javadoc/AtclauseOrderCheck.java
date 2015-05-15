@@ -24,6 +24,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -107,7 +108,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
     {
         final List<Integer> customTarget = new ArrayList<>();
         for (String type : target.split(", ")) {
-            customTarget.add(TokenTypes.getTokenId(type));
+            customTarget.add(Utils.getTokenId(type));
         }
         this.target = customTarget;
     }

@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.api;
 import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
 import static org.junit.Assert.assertEquals;
 
+import com.puppycrawl.tools.checkstyle.Utils;
 import org.junit.Test;
 
 public class TokenTypesTest
@@ -30,7 +31,7 @@ public class TokenTypesTest
     public void testGetShortDescription()
     {
         assertEquals("short description for EQUAL",
-                "The <code>==</code> (equal) operator.", TokenTypes
+                "The <code>==</code> (equal) operator.", Utils
                         .getShortDescription("EQUAL"));
     }
 

@@ -24,6 +24,7 @@ import java.util.BitSet;
 import antlr.CommonASTWithHiddenTokens;
 import antlr.Token;
 import antlr.collections.AST;
+import com.puppycrawl.tools.checkstyle.Utils;
 
 /**
  * An extension of the CommonAST that records the line and column
@@ -220,7 +221,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens
             DetailAST child = getFirstChild();
             while (child != null) {
                 // comment node can't be start of any java statement/definition
-                if (TokenTypes.isCommentType(child.getType())) {
+                if (Utils.isCommentType(child.getType())) {
                     child = child.getNextSibling();
                 }
                 else {
@@ -231,7 +232,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens
             DetailAST sibling = getNextSibling();
             while (sibling != null) {
                 // comment node can't be start of any java statement/definition
-                if (TokenTypes.isCommentType(sibling.getType())) {
+                if (Utils.isCommentType(sibling.getType())) {
                     sibling = sibling.getNextSibling();
                 }
                 else {
@@ -261,7 +262,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens
             DetailAST child = getFirstChild();
             while (child != null) {
                 // comment node can't be start of any java statement/definition
-                if (TokenTypes.isCommentType(child.getType())) {
+                if (Utils.isCommentType(child.getType())) {
                     child = child.getNextSibling();
                 }
                 else {
@@ -272,7 +273,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens
             DetailAST sibling = getNextSibling();
             while (sibling != null) {
                 // comment node can't be start of any java statement/definition
-                if (TokenTypes.isCommentType(sibling.getType())) {
+                if (Utils.isCommentType(sibling.getType())) {
                     sibling = sibling.getNextSibling();
                 }
                 else {

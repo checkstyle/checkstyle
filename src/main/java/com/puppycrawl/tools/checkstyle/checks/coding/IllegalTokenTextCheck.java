@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -93,7 +93,7 @@ public class IllegalTokenTextCheck
         final int[] result = new int[tokenNames.size()];
         int i = 0;
         for (final String name : tokenNames) {
-            result[i] = TokenTypes.getTokenId(name);
+            result[i] = Utils.getTokenId(name);
             i++;
         }
         return result;

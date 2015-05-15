@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.google.common.collect.Sets;
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -467,7 +468,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     {
         final List<Integer> modifiersList = new ArrayList<>();
         for (String modifier : modifiers.split(",")) {
-            modifiersList.add(TokenTypes.getTokenId(modifier.trim()));
+            modifiersList.add(Utils.getTokenId(modifier.trim()));
         }
         this.memberModifiers = modifiersList;
     }

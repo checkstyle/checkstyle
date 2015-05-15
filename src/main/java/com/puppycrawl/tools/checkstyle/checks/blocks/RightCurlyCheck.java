@@ -270,7 +270,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
                 break;
             default:
                 throw new RuntimeException("Unexpected token type ("
-                        + TokenTypes.getTokenName(ast.getType()) + ")");
+                        + Utils.getTokenName(ast.getType()) + ")");
         }
 
         final Details details = new Details();

@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -50,7 +51,7 @@ public class MissingCtorCheck extends DescendantTokenCheck
     /** Creates new instance of the check. */
     public MissingCtorCheck()
     {
-        setLimitedTokens(TokenTypes.getTokenName(TokenTypes.CTOR_DEF));
+        setLimitedTokens(Utils.getTokenName(TokenTypes.CTOR_DEF));
         setMinimumNumber(1);
         setMaximumDepth(2);
         setMinimumMessage(MSG_KEY);

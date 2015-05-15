@@ -265,7 +265,7 @@ public final class TreeWalker
             final int[] acceptableTokens = check.getAcceptableTokens();
             Arrays.sort(acceptableTokens);
             for (String token : checkTokens) {
-                final int tokenId = TokenTypes.getTokenId(token);
+                final int tokenId = Utils.getTokenId(token);
                 if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
                     registerCheck(token, check);
                 }
@@ -297,7 +297,7 @@ public final class TreeWalker
      */
     private void registerCheck(int tokenID, Check check)
     {
-        registerCheck(TokenTypes.getTokenName(tokenID), check);
+        registerCheck(Utils.getTokenName(tokenID), check);
     }
 
     /**
@@ -310,7 +310,7 @@ public final class TreeWalker
         if (check.isCommentNodesRequired()) {
             tokenToCommentChecks.put(token, check);
         }
-        else if (TokenTypes.isCommentType(token)) {
+        else if (Utils.isCommentType(token)) {
             final String message = String.format("Check '%s' waits for comment type "
                     + "token ('%s') and should override 'isCommentNodesRequred()' "
                     + "method to return 'true'", check.getClass().getName(), token);
@@ -392,7 +392,7 @@ public final class TreeWalker
     private void notifyVisit(DetailAST ast, AstState astState)
     {
         Collection<Check> visitors;
-        final String tokenType = TokenTypes.getTokenName(ast.getType());
+        final String tokenType = Utils.getTokenName(ast.getType());
 
         if (astState == AstState.WITH_COMMENTS) {
             if (!tokenToCommentChecks.containsKey(tokenType)) {
@@ -421,7 +421,7 @@ public final class TreeWalker
     private void notifyLeave(DetailAST ast, AstState astState)
     {
         Collection<Check> visitors;
-        final String tokenType = TokenTypes.getTokenName(ast.getType());
+        final String tokenType = Utils.getTokenName(ast.getType());
 
         if (astState == AstState.WITH_COMMENTS) {
             if (!tokenToCommentChecks.containsKey(tokenType)) {

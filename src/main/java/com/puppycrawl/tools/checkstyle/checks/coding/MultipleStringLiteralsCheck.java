@@ -114,7 +114,7 @@ public class MultipleStringLiteralsCheck extends Check
     {
         ignoreOccurrenceContext.clear();
         for (final String s : strRep) {
-            final int type = TokenTypes.getTokenId(s);
+            final int type = Utils.getTokenId(s);
             ignoreOccurrenceContext.set(type);
         }
     }

@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 import java.io.File;
 import java.io.IOException;
 
+import com.puppycrawl.tools.checkstyle.Utils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -80,7 +81,7 @@ public class TypeNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", TokenTypes.getTokenName(TokenTypes.CLASS_DEF));
+        checkConfig.addAttribute("tokens", Utils.getTokenName(TokenTypes.CLASS_DEF));
         final String[] expected = {
             "3:7: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderClass", DEFAULT_PATTERN),
@@ -94,7 +95,7 @@ public class TypeNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", TokenTypes.getTokenName(TokenTypes.INTERFACE_DEF));
+        checkConfig.addAttribute("tokens", Utils.getTokenName(TokenTypes.INTERFACE_DEF));
         final String[] expected = {
             "5:22: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderInterface", DEFAULT_PATTERN),
@@ -108,7 +109,7 @@ public class TypeNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", TokenTypes.getTokenName(TokenTypes.ENUM_DEF));
+        checkConfig.addAttribute("tokens", Utils.getTokenName(TokenTypes.ENUM_DEF));
         final String[] expected = {
             "7:17: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderEnum", DEFAULT_PATTERN),
@@ -122,7 +123,7 @@ public class TypeNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", TokenTypes.getTokenName(TokenTypes.ANNOTATION_DEF));
+        checkConfig.addAttribute("tokens", Utils.getTokenName(TokenTypes.ANNOTATION_DEF));
         final String[] expected = {
             "9:23: " + getCheckMessage(MSG_INVALID_PATTERN,
                 "inputHeaderAnnotation", DEFAULT_PATTERN),
