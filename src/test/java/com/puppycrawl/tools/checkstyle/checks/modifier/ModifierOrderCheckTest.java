@@ -21,24 +21,26 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import java.io.File;
 
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck
-.MSG_ANNOTATION_ORDER;
+        .MSG_ANNOTATION_ORDER;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck
-.MSG_MODIFIER_ORDER;
+        .MSG_MODIFIER_ORDER;
 
 public class ModifierOrderCheckTest
-    extends BaseCheckTestSupport
+        extends BaseCheckTestSupport
 {
     @Test
     public void testIt() throws Exception
     {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ModifierOrderCheck.class);
+                createCheckConfig(ModifierOrderCheck.class);
         final String[] expected = {
             "14:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
             "18:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
@@ -52,14 +54,47 @@ public class ModifierOrderCheckTest
 
     @Test
     public void testDefaultMethods()
-        throws Exception
+            throws Exception
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ModifierOrderCheck.class);
         final String[] expected = {
         };
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools"
-                  + "/checkstyle/InputModifier2.java").getCanonicalPath(), expected);
+                + "/checkstyle/InputModifier2.java").getCanonicalPath(), expected);
     }
 
+    @Test
+    public void testGetDefaultTokens()
+    {
+        ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
+        int[] actual = modifierOrderCheckObj.getDefaultTokens();
+        int[] expected = new int[] {TokenTypes.MODIFIERS};
+        int[] unexpectedEmptyArray = new int[] {};
+        int[] unexperctedArray = new int[] {
+            TokenTypes.MODIFIERS,
+            TokenTypes.OBJBLOCK,
+        };
+        Assert.assertArrayEquals(expected, actual);
+        Assert.assertNotSame(unexpectedEmptyArray, actual);
+        Assert.assertNotSame(unexperctedArray, actual);
+        Assert.assertNotNull(actual);
+    }
+
+    @Test
+    public void testGetAcceptableTokens()
+    {
+        ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
+        int[] actual = modifierOrderCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {TokenTypes.MODIFIERS};
+        int[] unexpectedEmptyArray = new int[] {};
+        int[] unexperctedArray = new int[] {
+            TokenTypes.MODIFIERS,
+            TokenTypes.OBJBLOCK,
+        };
+        Assert.assertArrayEquals(expected, actual);
+        Assert.assertNotSame(unexpectedEmptyArray, actual);
+        Assert.assertNotSame(unexperctedArray, actual);
+        Assert.assertNotNull(actual);
+    }
 }
