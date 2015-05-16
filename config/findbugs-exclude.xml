@@ -38,11 +38,6 @@
       <Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS" />
     </Match>
     <Match>
-      <!-- till #909 -->
-      <Class name="com.puppycrawl.tools.checkstyle.api.AuditEvent" />
-      <Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED" />
-    </Match>
-    <Match>
       <!-- false-postive, as Map will return null if key is not found -->
       <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler" />
       <Method name="collectFirstNodes" />
