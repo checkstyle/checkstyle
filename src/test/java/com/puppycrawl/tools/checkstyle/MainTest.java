@@ -54,7 +54,8 @@ public class MainTest
         {
             public void checkAssertion()
             {
-                assertEquals("Checkstyle version: null\n", standardLog.getLog());
+                assertEquals("Checkstyle version: null" + System.lineSeparator(),
+                    standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
         });
@@ -70,14 +71,14 @@ public class MainTest
         {
             public void checkAssertion()
             {
-                String usage = "Unrecognized option: -w\n"
-                    + "usage: java com.puppycrawl.tools.checkstyle.Main [options] -c <config.xml>\n"
-                    + "            file...\n"
-                    + " -c <arg>   Sets the check configuration file to use.\n"
-                    + " -f <arg>   Sets the output format. (plain|xml). Defaults to plain\n"
-                    + " -o <arg>   Sets the output file. Defaults to stdout\n"
-                    + " -p <arg>   Loads the properties file\n"
-                    + " -v         Print product version and exit\n";
+                String usage = String.format("Unrecognized option: -w%n"
+                    + "usage: java com.puppycrawl.tools.checkstyle.Main [options] -c <config.xml>%n"
+                    + "            file...%n"
+                    + " -c <arg>   Sets the check configuration file to use.%n"
+                    + " -f <arg>   Sets the output format. (plain|xml). Defaults to plain%n"
+                    + " -o <arg>   Sets the output file. Defaults to stdout%n"
+                    + " -p <arg>   Loads the properties file%n"
+                    + " -v         Print product version and exit%n");
 
                 assertEquals(usage, standardLog.getLog());
                 assertEquals("", errorLog.getLog());
@@ -95,7 +96,8 @@ public class MainTest
         {
             public void checkAssertion()
             {
-                assertEquals("Must specify a config XML file.\n", standardLog.getLog());
+                assertEquals("Must specify a config XML file." + System.lineSeparator(),
+                    standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
         });
@@ -111,7 +113,8 @@ public class MainTest
         {
             public void checkAssertion()
             {
-                assertEquals("Must specify files to process, found 0.\n", standardLog.getLog());
+                assertEquals("Must specify files to process, found 0." + System.lineSeparator(),
+                    standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
         });
@@ -127,7 +130,8 @@ public class MainTest
         {
             public void checkAssertion()
             {
-                assertEquals("Checkstyle ends with 1 errors.\n", standardLog.getLog());
+                assertEquals("Checkstyle ends with 1 errors." + System.lineSeparator(),
+                    standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
         });
@@ -144,9 +148,8 @@ public class MainTest
         {
             public void checkAssertion()
             {
-                assertEquals("Invalid output format."
-                        + " Found '" + "xmlp" + "' but expected 'plain' or 'xml'.\n",
-                        standardLog.getLog());
+                assertEquals(String.format("Invalid output format. "
+                    + "Found 'xmlp' but expected 'plain' or 'xml'.%n"), standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
         });
@@ -163,8 +166,8 @@ public class MainTest
         {
             public void checkAssertion()
             {
-                assertEquals("Starting audit...\n"
-                        + "Audit done.\n", standardLog.getLog());
+                assertEquals(String.format("Starting audit...%n"
+                        + "Audit done.%n"), standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
         });
@@ -182,16 +185,19 @@ public class MainTest
             public void checkAssertion() throws IOException
             {
                 String currentPath = new File(".").getCanonicalPath();
+                String expectedPath = currentPath
+                        + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
+                        .replace("/", File.separator);
                 final ResourceBundle compilationProperties =
                         ResourceBundle.getBundle("checkstylecompilation");
                 String version = compilationProperties.getString("checkstyle.compile.version");
-                assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-                        + "<checkstyle version=\"" + version + "\">\n"
+                assertEquals(String.format("<?xml version=\"1.0\" encoding=\"UTF-8\"?>%n"
+                        + "<checkstyle version=\"" + version + "\">%n"
                         + "<file name=\""
-                        + currentPath
-                        + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java\">\n"
-                        + "</file>\n"
-                        + "</checkstyle>\n", standardLog.getLog());
+                        + expectedPath
+                        + "\">%n"
+                        + "</file>%n"
+                        + "</checkstyle>%n"), standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
         });
@@ -209,8 +215,8 @@ public class MainTest
         {
             public void checkAssertion()
             {
-                assertEquals("Starting audit...\n"
-                        + "Audit done.\n", standardLog.getLog());
+                assertEquals(String.format("Starting audit...%n"
+                        + "Audit done.%n"), standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
         });
@@ -229,14 +235,15 @@ public class MainTest
             public void checkAssertion() throws IOException
             {
                 String currentPath = new File(".").getCanonicalPath();
-                assertEquals("Starting audit...\n"
-                    + currentPath
-                    + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java:3:14: "
-                    + "warning: Name 'InputMain' must match pattern '^[a-z0-9]*$'.\n"
-                    + currentPath
-                    + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java:5:7: "
-                    + "warning: Name 'InputMainInner' must match pattern '^[a-z0-9]*$'.\n"
-                    + "Audit done.\n",
+                String expectedPath = currentPath
+                    + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
+                    .replace("/", File.separator);
+                assertEquals(String.format("Starting audit...%n"
+                    + expectedPath + ":3:14: "
+                    + "warning: Name 'InputMain' must match pattern '^[a-z0-9]*$'.%n"
+                    + expectedPath + ":5:7: "
+                    + "warning: Name 'InputMainInner' must match pattern '^[a-z0-9]*$'.%n"
+                    + "Audit done.%n"),
                     standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
@@ -255,15 +262,16 @@ public class MainTest
             public void checkAssertion() throws IOException
             {
                 String currentPath = new File(".").getCanonicalPath();
-                assertEquals("Starting audit...\n"
-                        + currentPath
-                        + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java:3:14: "
-                        + "Name 'InputMain' must match pattern '^[a-z0-9]*$'.\n"
-                        + currentPath
-                        + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java:5:7: "
-                        + "Name 'InputMainInner' must match pattern '^[a-z0-9]*$'.\n"
-                        + "Audit done.\n"
-                        + "Checkstyle ends with 2 errors.\n", standardLog.getLog());
+                String expectedPath = currentPath
+                    + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
+                    .replace("/", File.separator);
+                assertEquals(String.format("Starting audit...%n"
+                        + expectedPath + ":3:14: "
+                        + "Name 'InputMain' must match pattern '^[a-z0-9]*$'.%n"
+                        + expectedPath + ":5:7: "
+                        + "Name 'InputMainInner' must match pattern '^[a-z0-9]*$'.%n"
+                        + "Audit done.%n"
+                        + "Checkstyle ends with 2 errors.%n"), standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
         });
@@ -281,7 +289,8 @@ public class MainTest
         {
             public void checkAssertion()
             {
-                assertEquals("Could not find file 'myjava.java'.\n", standardLog.getLog());
+                assertEquals("Could not find file 'myjava.java'." + System.lineSeparator(),
+                    standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
         });
@@ -323,8 +332,8 @@ public class MainTest
         {
             public void checkAssertion()
             {
-                assertEquals("Starting audit...\n"
-                        + "Audit done.\n", standardLog.getLog());
+                assertEquals(String.format("Starting audit...%n"
+                        + "Audit done.%n"), standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
         });
@@ -343,7 +352,8 @@ public class MainTest
         {
             public void checkAssertion()
             {
-                assertEquals("Could not find file 'nonexisting.properties'.\n", standardLog.getLog());
+                assertEquals("Could not find file 'nonexisting.properties'."
+                    + System.lineSeparator(), standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
         });
