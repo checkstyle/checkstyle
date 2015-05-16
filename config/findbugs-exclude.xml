@@ -28,11 +28,6 @@
       <Bug pattern="REC_CATCH_EXCEPTION" />
     </Match>
     <Match>
-      <!-- till #911 -->
-      <Package name="~com\.puppycrawl\.tools\.checkstyle.*" />
-      <Bug pattern="EQ_COMPARETO_USE_OBJECT_EQUALS" />
-    </Match>
-    <Match>
       <!-- see a reason of suppression at #910 -->
       <Class name="com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties" />
       <Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS" />

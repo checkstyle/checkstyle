@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.Objects;
+
 /**
  * Immutable line and column numbers.
  *
@@ -63,5 +65,27 @@ public class LineColumn implements Comparable<LineColumn>
         return this.getLine() != lineColumn.getLine()
             ? this.getLine() - lineColumn.getLine()
             : this.getColumn() - lineColumn.getColumn();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final LineColumn that = (LineColumn) o;
+        return Objects.equals(line, that.line)
+                && Objects.equals(col, that.col);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(line, col);
     }
 }

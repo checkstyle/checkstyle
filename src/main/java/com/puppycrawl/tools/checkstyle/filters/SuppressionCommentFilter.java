@@ -31,6 +31,7 @@ import java.lang.ref.WeakReference;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -193,6 +194,32 @@ public class SuppressionCommentFilter
             }
 
             return line - object.line;
+        }
+
+        /** {@inheritDoc} */
+        @Override
+        public boolean equals(Object o)
+        {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            final Tag tag = (Tag) o;
+            return Objects.equals(line, tag.line)
+                    && Objects.equals(column, tag.column)
+                    && Objects.equals(on, tag.on)
+                    && Objects.equals(text, tag.text)
+                    && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
+                    && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp);
+        }
+
+        /** {@inheritDoc} */
+        @Override
+        public int hashCode()
+        {
+            return Objects.hash(text, line, column, on, tagCheckRegexp, tagMessageRegexp);
         }
 
         /**

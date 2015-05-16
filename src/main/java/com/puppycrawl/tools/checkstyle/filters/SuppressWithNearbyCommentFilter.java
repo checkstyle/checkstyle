@@ -32,6 +32,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -189,6 +190,31 @@ public class SuppressWithNearbyCommentFilter
             }
 
             return firstLine - other.firstLine;
+        }
+
+        /** {@inheritDoc} */
+        @Override
+        public boolean equals(Object o)
+        {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            final Tag tag = (Tag) o;
+            return Objects.equals(firstLine, tag.firstLine)
+                    && Objects.equals(lastLine, tag.lastLine)
+                    && Objects.equals(text, tag.text)
+                    && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
+                    && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp);
+        }
+
+        /** {@inheritDoc} */
+        @Override
+        public int hashCode()
+        {
+            return Objects.hash(text, firstLine, lastLine, tagCheckRegexp, tagMessageRegexp);
         }
 
         /**

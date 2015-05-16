@@ -664,7 +664,7 @@
           <regex><pattern>.*.api.JavadocTagInfo</pattern><branchRate>25</branchRate><lineRate>77</lineRate></regex>
           <regex><pattern>.*.api.JavadocTagInfo\$.*</pattern><branchRate>0</branchRate><lineRate>8</lineRate></regex>
           <regex><pattern>.*.api.JavadocTokenTypes</pattern><branchRate>100</branchRate><lineRate>0</lineRate></regex>
-          <regex><pattern>.*.api.LineColumn</pattern><branchRate>0</branchRate><lineRate>60</lineRate></regex>
+          <regex><pattern>.*.api.LineColumn</pattern><branchRate>0</branchRate><lineRate>33</lineRate></regex>
           <regex><pattern>.*.api.LocalizedMessage</pattern><branchRate>53</branchRate><lineRate>67</lineRate></regex>
           <regex><pattern>.*.api.LocalizedMessage\$.*</pattern><branchRate>41</branchRate><lineRate>66</lineRate></regex>
           <regex><pattern>.*.api.ScopeUtils</pattern><branchRate>0</branchRate><lineRate>0</lineRate></regex>
@@ -889,11 +889,11 @@
           <regex><pattern>.*.filters.IntRangeFilter</pattern><branchRate>100</branchRate><lineRate>90</lineRate></regex>
           <regex><pattern>.*.filters.SuppressElement</pattern><branchRate>69</branchRate><lineRate>78</lineRate></regex>
           <regex><pattern>.*.filters.SuppressionCommentFilter</pattern><branchRate>83</branchRate><lineRate>87</lineRate></regex>
-          <regex><pattern>.*.filters.SuppressionCommentFilter\$.*</pattern><branchRate>87</branchRate><lineRate>84</lineRate></regex>
+          <regex><pattern>.*.filters.SuppressionCommentFilter\$.*</pattern><branchRate>41</branchRate><lineRate>69</lineRate></regex>
           <regex><pattern>.*.filters.SuppressionFilter</pattern><branchRate>0</branchRate><lineRate>0</lineRate></regex>
           <regex><pattern>.*.filters.SuppressionsLoader</pattern><branchRate>68</branchRate><lineRate>77</lineRate></regex>
           <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter</pattern><branchRate>76</branchRate><lineRate>89</lineRate></regex>
-          <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter\$.*</pattern><branchRate>81</branchRate><lineRate>75</lineRate></regex>
+          <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter\$.*</pattern><branchRate>47</branchRate><lineRate>63</lineRate></regex>
 
          </regexes>
         </check>
