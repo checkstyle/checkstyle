@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import com.google.common.collect.Sets;
+
+import java.util.Objects;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -96,21 +98,19 @@ class CSVFilter implements IntFilter {
     }
 
     @Override
-    public String toString() {
-        return filters.toString();
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        final CSVFilter csvFilter = (CSVFilter) object;
+        return Objects.equals(filters, csvFilter.filters);
     }
 
     @Override
     public int hashCode() {
-        return filters.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (object instanceof CSVFilter) {
-            final CSVFilter other = (CSVFilter) object;
-            return this.filters.equals(other.filters);
-        }
-        return false;
+        return Objects.hash(filters);
     }
 }

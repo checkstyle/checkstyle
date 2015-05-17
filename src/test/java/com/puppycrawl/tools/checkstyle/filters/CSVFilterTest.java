@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.Test;
 
 /** Tests CSVFilter */
@@ -71,5 +73,10 @@ public class CSVFilterTest {
         assertTrue("equal 2", filter.accept(Integer.valueOf(2)));
         assertFalse("greater than", filter.accept(Integer.valueOf(3)));
         assertTrue("equal 10", filter.accept(Integer.valueOf(10)));
+    }
+
+    @Test
+    public void testEqualsAndHashCode() {
+        EqualsVerifier.forClass(CSVFilter.class).usingGetClass().verify();
     }
 }
