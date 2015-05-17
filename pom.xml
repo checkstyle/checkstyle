@@ -665,7 +665,6 @@
           <regex><pattern>.*.api.DetailAST</pattern><branchRate>95</branchRate><lineRate>98</lineRate></regex>
           <regex><pattern>.*.api.FileContents</pattern><branchRate>96</branchRate><lineRate>94</lineRate></regex>
           <regex><pattern>.*.api.FileText</pattern><branchRate>50</branchRate><lineRate>59</lineRate></regex>
-          <regex><pattern>.*.api.FilterSet</pattern><branchRate>83</branchRate><lineRate>80</lineRate></regex>
           <regex><pattern>.*.api.FullIdent</pattern><branchRate>83</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.api.JavadocTagInfo</pattern><branchRate>25</branchRate><lineRate>77</lineRate></regex>
           <regex><pattern>.*.api.JavadocTagInfo\$.*</pattern><branchRate>0</branchRate><lineRate>8</lineRate></regex>
