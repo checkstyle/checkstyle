@@ -64,6 +64,6 @@ public class InterfaceIsTypeCheckTest
     public void testGetRequiredTokens() {
         InterfaceIsTypeCheck obj = new InterfaceIsTypeCheck();
         int[] expected = {TokenTypes.INTERFACE_DEF};
-        assertArrayEquals(expected, obj.getAcceptableTokens());
+        assertArrayEquals(expected, obj.getRequiredTokens());
     }
 }

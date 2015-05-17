@@ -66,6 +66,6 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
     public void testGetRequiredTokens() {
         ThrowsCountCheck obj = new ThrowsCountCheck();
         int[] expected = {TokenTypes.LITERAL_THROWS};
-        assertArrayEquals(expected, obj.getAcceptableTokens());
+        assertArrayEquals(expected, obj.getRequiredTokens());
     }
 }
