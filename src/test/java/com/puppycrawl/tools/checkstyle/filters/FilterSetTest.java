@@ -21,6 +21,9 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import com.puppycrawl.tools.checkstyle.api.FilterSet;
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -53,5 +56,10 @@ public class FilterSetTest {
         assertTrue("1", filter.accept(Integer.valueOf(1)));
         filter.addFilter(new IntRangeFilter(3, 4));
         assertTrue("0 is in [3,4]", filter.accept(Integer.valueOf(0)));
+    }
+
+    @Test
+    public void testEqualsAndHashCode() {
+        EqualsVerifier.forClass(FilterSet.class).usingGetClass().verify();
     }
 }

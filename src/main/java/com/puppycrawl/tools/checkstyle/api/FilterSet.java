@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import com.google.common.collect.Sets;
+
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -49,31 +51,21 @@ public class FilterSet
         filters.remove(filter);
     }
 
-    /**
-     * Returns the Filters of the filter set.
-     * @return the Filters of the filter set.
-     */
-    protected Set<Filter> getFilters() {
-        return filters;
-    }
-
     @Override
-    public String toString() {
-        return filters.toString();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final FilterSet filterSet = (FilterSet) o;
+        return Objects.equals(filters, filterSet.filters);
     }
 
     @Override
     public int hashCode() {
-        return filters.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (object instanceof FilterSet) {
-            final FilterSet other = (FilterSet) object;
-            return this.filters.equals(other.filters);
-        }
-        return false;
+        return Objects.hash(filters);
     }
 
     /** {@inheritDoc} */
