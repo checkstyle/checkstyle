@@ -41,8 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * @author maxvetrenko
  *
  */
-public class JavadocParagraphCheck extends AbstractJavadocCheck
-{
+public class JavadocParagraphCheck extends AbstractJavadocCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -63,8 +62,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
     public static final String MSG_REDUNDANT_PARAGRAPH = "javadoc.paragraph.redundant.paragraph";
 
     @Override
-    public int[] getDefaultJavadocTokens()
-    {
+    public int[] getDefaultJavadocTokens() {
         return new int[] {
             JavadocTokenTypes.NEWLINE,
             JavadocTokenTypes.HTML_ELEMENT,
@@ -72,14 +70,12 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
     }
 
     @Override
-    public void visitJavadocToken(DetailNode ast)
-    {
+    public void visitJavadocToken(DetailNode ast) {
         if (ast.getType() == JavadocTokenTypes.NEWLINE && isEmptyLine(ast)) {
             checkEmptyLine(ast);
         }
         else if (ast.getType() == JavadocTokenTypes.HTML_ELEMENT
-                && JavadocUtils.getFirstChild(ast).getType() == JavadocTokenTypes.P_TAG_OPEN)
-        {
+                && JavadocUtils.getFirstChild(ast).getType() == JavadocTokenTypes.P_TAG_OPEN) {
             checkParagraphTag(ast);
         }
     }
@@ -88,13 +84,11 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
      * Determines whether or not the next line after empty line has paragraph tag in the beginning.
      * @param newline NEWLINE node.
      */
-    private void checkEmptyLine(DetailNode newline)
-    {
+    private void checkEmptyLine(DetailNode newline) {
         final DetailNode nearestToken = getNearestNode(newline);
         if (!isLastEmptyLine(newline) && nearestToken != null
                 && nearestToken.getType() == JavadocTokenTypes.TEXT
-                && nearestToken.getChildren().length > 1)
-        {
+                && nearestToken.getChildren().length > 1) {
             log(newline.getLineNumber(), MSG_TAG_AFTER);
         }
     }
@@ -103,8 +97,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
      * Determines whether or not the line with paragraph tag has previous empty line.
      * @param tag html tag.
      */
-    private void checkParagraphTag(DetailNode tag)
-    {
+    private void checkParagraphTag(DetailNode tag) {
         final DetailNode newLine = getNearestEmptyLine(tag);
         if (isFirstParagraph(tag)) {
             log(tag.getLineNumber(), MSG_REDUNDANT_PARAGRAPH);
@@ -119,12 +112,10 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
      * @param node DetailNode node.
      * @return nearest node.
      */
-    private DetailNode getNearestNode(DetailNode node)
-    {
+    private DetailNode getNearestNode(DetailNode node) {
         DetailNode tag = JavadocUtils.getNextSibling(node);
         while (tag != null && (tag.getType() == JavadocTokenTypes.LEADING_ASTERISK
-                || tag.getType() == JavadocTokenTypes.NEWLINE))
-        {
+                || tag.getType() == JavadocTokenTypes.NEWLINE)) {
             tag = JavadocUtils.getNextSibling(tag);
         }
         return tag;
@@ -135,17 +126,14 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
      * @param newLine NEWLINE node.
      * @return true, if line is empty line.
      */
-    private boolean isEmptyLine(DetailNode newLine)
-    {
+    private boolean isEmptyLine(DetailNode newLine) {
         DetailNode previousSibling = JavadocUtils.getPreviousSibling(newLine);
         if (previousSibling == null
-                || previousSibling.getParent().getType() != JavadocTokenTypes.JAVADOC)
-        {
+                || previousSibling.getParent().getType() != JavadocTokenTypes.JAVADOC) {
             return false;
         }
         if (previousSibling.getType() == JavadocTokenTypes.TEXT
-                && previousSibling.getChildren().length == 1)
-        {
+                && previousSibling.getChildren().length == 1) {
             previousSibling = JavadocUtils.getPreviousSibling(previousSibling);
         }
         return previousSibling != null
@@ -157,16 +145,14 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
      * @param paragraphTag paragraph tag.
      * @return true, if line with paragraph tag is first line in javadoc.
      */
-    private boolean isFirstParagraph(DetailNode paragraphTag)
-    {
+    private boolean isFirstParagraph(DetailNode paragraphTag) {
         DetailNode previousNode = JavadocUtils.getPreviousSibling(paragraphTag);
         while (previousNode != null) {
             if (previousNode.getType() == JavadocTokenTypes.TEXT
                     && previousNode.getChildren().length > 1
                 || previousNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
                     && previousNode.getType() != JavadocTokenTypes.NEWLINE
-                    && previousNode.getType() != JavadocTokenTypes.TEXT)
-            {
+                    && previousNode.getType() != JavadocTokenTypes.TEXT) {
                 return false;
             }
             previousNode = JavadocUtils.getPreviousSibling(previousNode);
@@ -179,13 +165,11 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
      * @param node DetailNode node.
      * @return Some nearest empty line in javadoc.
      */
-    private DetailNode getNearestEmptyLine(DetailNode node)
-    {
+    private DetailNode getNearestEmptyLine(DetailNode node) {
         DetailNode newLine = JavadocUtils.getPreviousSibling(node);
         while (newLine != null) {
             final DetailNode previousSibling = JavadocUtils.getPreviousSibling(newLine);
-            if (newLine.getType() == JavadocTokenTypes.NEWLINE && isEmptyLine(newLine))
-            {
+            if (newLine.getType() == JavadocTokenTypes.NEWLINE && isEmptyLine(newLine)) {
                 break;
             }
             newLine = previousSibling;
@@ -198,14 +182,12 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck
      * @param newLine NEWLINE node.
      * @return true, if NEWLINE node is a last node in javadoc.
      */
-    private boolean isLastEmptyLine(DetailNode newLine)
-    {
+    private boolean isLastEmptyLine(DetailNode newLine) {
         DetailNode nextNode = JavadocUtils.getNextSibling(newLine);
         while (nextNode != null && nextNode.getType() != JavadocTokenTypes.JAVADOC_TAG) {
             if (nextNode.getType() == JavadocTokenTypes.TEXT
                     && nextNode.getChildren().length > 1
-                    || nextNode.getType() == JavadocTokenTypes.HTML_ELEMENT)
-            {
+                    || nextNode.getType() == JavadocTokenTypes.HTML_ELEMENT) {
                 return false;
             }
             nextNode = JavadocUtils.getNextSibling(nextNode);

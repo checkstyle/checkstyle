@@ -28,11 +28,9 @@ import static com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCh
 import static org.junit.Assert.assertArrayEquals;
 
 public class DesignForExtensionCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
-    public void testIt() throws Exception
-    {
+    public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(DesignForExtensionCheck.class);
         final String[] expected = {
@@ -44,8 +42,7 @@ public class DesignForExtensionCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens()
-    {
+    public void testGetAcceptableTokens() {
         DesignForExtensionCheck obj = new DesignForExtensionCheck();
         int[] expected = {TokenTypes.METHOD_DEF};
         assertArrayEquals(expected, obj.getAcceptableTokens());

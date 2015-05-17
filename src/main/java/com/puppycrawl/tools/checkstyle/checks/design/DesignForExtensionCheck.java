@@ -56,8 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author lkuehne
  */
-public class DesignForExtensionCheck extends Check
-{
+public class DesignForExtensionCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -66,20 +65,17 @@ public class DesignForExtensionCheck extends Check
     public static final String MSG_KEY = "design.forExtension";
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.METHOD_DEF};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.METHOD_DEF};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         // nothing to do for Interfaces
         if (ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
             return;
@@ -90,8 +86,7 @@ public class DesignForExtensionCheck extends Check
         if (modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)
             || modifiers.branchContains(TokenTypes.ABSTRACT)
             || modifiers.branchContains(TokenTypes.FINAL)
-            || modifiers.branchContains(TokenTypes.LITERAL_STATIC))
-        {
+            || modifiers.branchContains(TokenTypes.LITERAL_STATIC)) {
             return;
         }
 
@@ -106,8 +101,7 @@ public class DesignForExtensionCheck extends Check
         // implementation can be null even if method not abstract
         final DetailAST implementation = ast.findFirstToken(TokenTypes.SLIST);
         if (implementation != null
-            && implementation.getFirstChild().getType() == TokenTypes.RCURLY)
-        {
+            && implementation.getFirstChild().getType() == TokenTypes.RCURLY) {
             return;
         }
 
@@ -116,8 +110,7 @@ public class DesignForExtensionCheck extends Check
         final DetailAST classMods =
             classDef.findFirstToken(TokenTypes.MODIFIERS);
         if (classDef.getType() == TokenTypes.ENUM_DEF
-            || classMods.branchContains(TokenTypes.FINAL))
-        {
+            || classMods.branchContains(TokenTypes.FINAL)) {
             return;
         }
 
@@ -158,12 +151,10 @@ public class DesignForExtensionCheck extends Check
      * @param ast the start node for searching
      * @return the CLASS_DEF node.
      */
-    private DetailAST findContainingClass(DetailAST ast)
-    {
+    private DetailAST findContainingClass(DetailAST ast) {
         DetailAST searchAST = ast;
         while (searchAST.getType() != TokenTypes.CLASS_DEF
-               && searchAST.getType() != TokenTypes.ENUM_DEF)
-        {
+               && searchAST.getType() != TokenTypes.ENUM_DEF) {
             searchAST = searchAST.getParent();
         }
         return searchAST;

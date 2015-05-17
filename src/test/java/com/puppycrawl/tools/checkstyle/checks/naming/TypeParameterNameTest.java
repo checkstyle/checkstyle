@@ -29,12 +29,10 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 
 public class TypeParameterNameTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
     public void testClassDefault()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ClassTypeParameterNameCheck.class);
 
@@ -50,8 +48,7 @@ public class TypeParameterNameTest
 
     @Test
     public void testMethodDefault()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodTypeParameterNameCheck.class);
 
@@ -69,8 +66,7 @@ public class TypeParameterNameTest
 
     @Test
     public void testInterfaceDefault()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(InterfaceTypeParameterNameCheck.class);
 
@@ -84,8 +80,7 @@ public class TypeParameterNameTest
 
     @Test
     public void testClassFooName()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ClassTypeParameterNameCheck.class);
         checkConfig.addAttribute("format", "^foo$");
@@ -101,8 +96,7 @@ public class TypeParameterNameTest
 
     @Test
     public void testMethodFooName()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodTypeParameterNameCheck.class);
         checkConfig.addAttribute("format", "^foo$");
@@ -123,8 +117,7 @@ public class TypeParameterNameTest
 
     @Test
     public void testInterfaceFooName()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(InterfaceTypeParameterNameCheck.class);
         checkConfig.addAttribute("format", "^foo$");

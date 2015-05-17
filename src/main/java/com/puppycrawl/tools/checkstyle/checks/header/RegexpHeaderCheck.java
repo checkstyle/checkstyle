@@ -40,8 +40,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author Lars Kühne
  * @author o_sukhodolsky
  */
-public class RegexpHeaderCheck extends AbstractHeaderCheck
-{
+public class RegexpHeaderCheck extends AbstractHeaderCheck {
     /** empty array to avoid instantiations. */
     private static final int[] EMPTY_INT_ARRAY = new int[0];
 
@@ -55,8 +54,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
      * Set the lines numbers to repeat in the header check.
      * @param list comma separated list of line numbers to repeat in header.
      */
-    public void setMultiLines(int... list)
-    {
+    public void setMultiLines(int... list) {
         if (list == null || list.length == 0) {
             multiLines = EMPTY_INT_ARRAY;
             return;
@@ -68,8 +66,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
     }
 
     @Override
-    protected void processFiltered(File file, List<String> lines)
-    {
+    protected void processFiltered(File file, List<String> lines) {
         final int headerSize = getHeaderLines().size();
         final int fileSize = lines.size();
 
@@ -115,8 +112,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
      * @param headerLineNo the header line number.
      * @return true if and only if the line matches the required header line.
      */
-    private boolean isMatch(String line, int headerLineNo)
-    {
+    private boolean isMatch(String line, int headerLineNo) {
         return headerRegexps.get(headerLineNo).matcher(line).find();
     }
 
@@ -124,14 +120,12 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
      * @param lineNo a line number
      * @return if <code>lineNo</code> is one of the repeat header lines.
      */
-    private boolean isMultiLine(int lineNo)
-    {
+    private boolean isMultiLine(int lineNo) {
         return Arrays.binarySearch(multiLines, lineNo + 1) >= 0;
     }
 
     @Override
-    protected void postprocessHeaderLines()
-    {
+    protected void postprocessHeaderLines() {
         final List<String> headerLines = getHeaderLines();
         headerRegexps.clear();
         for (String line : headerLines) {
@@ -154,8 +148,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
      * @param header the header value to validate and set (in that order)
      */
     @Override
-    public void setHeader(String header)
-    {
+    public void setHeader(String header) {
         if (StringUtils.isBlank(header)) {
             return;
         }

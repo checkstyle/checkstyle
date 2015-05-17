@@ -29,8 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author o_sukhodolsky
  */
-public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
-{
+public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -42,14 +41,12 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
     private static final int DEFAULT_MAX = 20;
 
     /** Creates new instance of this check. */
-    public ClassFanOutComplexityCheck()
-    {
+    public ClassFanOutComplexityCheck() {
         super(DEFAULT_MAX);
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.CLASS_DEF,
@@ -63,8 +60,7 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.CLASS_DEF,
@@ -78,8 +74,7 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
     }
 
     @Override
-    protected String getLogMessageId()
-    {
+    protected String getLogMessageId() {
         return MSG_KEY;
     }
 }

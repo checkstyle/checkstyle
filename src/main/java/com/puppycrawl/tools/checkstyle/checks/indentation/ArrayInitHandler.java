@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author jrichard
  */
-public class ArrayInitHandler extends BlockParentHandler
-{
+public class ArrayInitHandler extends BlockParentHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * astract syntax tree, and parent handler.
@@ -38,14 +37,12 @@ public class ArrayInitHandler extends BlockParentHandler
      * @param parent        the parent handler
      */
     public ArrayInitHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent)
-    {
+        DetailAST ast, ExpressionHandler parent) {
         super(indentCheck, "array initialization", ast, parent);
     }
 
     @Override
-    protected IndentLevel getLevelImpl()
-    {
+    protected IndentLevel getLevelImpl() {
         final DetailAST parentAST = getMainAst().getParent();
         final int type = parentAST.getType();
         if (type == TokenTypes.LITERAL_NEW || type == TokenTypes.ASSIGN) {
@@ -61,52 +58,44 @@ public class ArrayInitHandler extends BlockParentHandler
     }
 
     @Override
-    protected DetailAST getToplevelAST()
-    {
+    protected DetailAST getToplevelAST() {
         return null;
     }
 
     @Override
-    protected DetailAST getLCurly()
-    {
+    protected DetailAST getLCurly() {
         return getMainAst();
     }
 
     @Override
-    protected IndentLevel curlyLevel()
-    {
+    protected IndentLevel curlyLevel() {
         final IndentLevel level = new IndentLevel(getLevel(), getBraceAdjustement());
         level.addAcceptedIndent(level.getLastIndentLevel() + getLineWrappingIndent());
         return level;
     }
 
     @Override
-    protected DetailAST getRCurly()
-    {
+    protected DetailAST getRCurly() {
         return getMainAst().findFirstToken(TokenTypes.RCURLY);
     }
 
     @Override
-    protected boolean rcurlyMustStart()
-    {
+    protected boolean rcurlyMustStart() {
         return false;
     }
 
     @Override
-    protected boolean childrenMayNest()
-    {
+    protected boolean childrenMayNest() {
         return true;
     }
 
     @Override
-    protected DetailAST getListChild()
-    {
+    protected DetailAST getListChild() {
         return getMainAst();
     }
 
     @Override
-    protected IndentLevel getChildrenExpectedLevel()
-    {
+    protected IndentLevel getChildrenExpectedLevel() {
         final IndentLevel expectedIndent =
             new IndentLevel(getLevel(), getIndentCheck().getArrayInitIndent(),
                     getIndentCheck().getLineWrappingIndentation());
@@ -132,14 +121,12 @@ public class ArrayInitHandler extends BlockParentHandler
      *         specified column on specified line or -1 if
      *         such char doesn't exist.
      */
-    private int getNextFirstNonblankOnLineAfter(int lineNo, int columnNo)
-    {
+    private int getNextFirstNonblankOnLineAfter(int lineNo, int columnNo) {
         int realColumnNo = columnNo + 1;
         final String line = getIndentCheck().getLines()[lineNo - 1];
         final int lineLength = line.length();
         while (realColumnNo < lineLength
-               && Character.isWhitespace(line.charAt(realColumnNo)))
-        {
+               && Character.isWhitespace(line.charAt(realColumnNo))) {
             realColumnNo++;
         }
 
@@ -151,8 +138,7 @@ public class ArrayInitHandler extends BlockParentHandler
      * @return value of lineWrappingIndentation property
      *         of <code>IndentationCheck</code>
      */
-    private int getLineWrappingIndent()
-    {
+    private int getLineWrappingIndent() {
         return getIndentCheck().getLineWrappingIndentation();
     }
 }

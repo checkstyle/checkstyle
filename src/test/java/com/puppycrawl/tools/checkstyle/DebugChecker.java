@@ -7,21 +7,17 @@ package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
-class DebugChecker extends Checker
-{
-    public DebugChecker() throws CheckstyleException
-    {
+class DebugChecker extends Checker {
+    public DebugChecker() throws CheckstyleException {
     }
 
     @Override
-    public void fireAuditFinished()
-    {
+    public void fireAuditFinished() {
         super.fireAuditFinished();
     }
 
     @Override
-    public void fireAuditStarted()
-    {
+    public void fireAuditStarted() {
         super.fireAuditStarted();
     }
 }

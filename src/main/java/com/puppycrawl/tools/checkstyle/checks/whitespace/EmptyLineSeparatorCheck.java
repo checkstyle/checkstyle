@@ -144,8 +144,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author maxvetrenko
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
-public class EmptyLineSeparatorCheck extends Check
-{
+public class EmptyLineSeparatorCheck extends Check {
 
     /**
      * A key is pointing to the warning message empty.line.separator in "messages.properties"
@@ -171,8 +170,7 @@ public class EmptyLineSeparatorCheck extends Check
      * @param allow
      *        User's value.
      */
-    public final void setAllowNoEmptyLineBetweenFields(boolean allow)
-    {
+    public final void setAllowNoEmptyLineBetweenFields(boolean allow) {
         allowNoEmptyLineBetweenFields = allow;
     }
 
@@ -180,14 +178,12 @@ public class EmptyLineSeparatorCheck extends Check
      * Allow multiple empty lines between class members.
      * @param allow User's value.
      */
-    public void setAllowMultipleEmptyLines(boolean allow)
-    {
+    public void setAllowMultipleEmptyLines(boolean allow) {
         allowMultipleEmptyLines = allow;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
@@ -203,8 +199,7 @@ public class EmptyLineSeparatorCheck extends Check
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
@@ -220,8 +215,7 @@ public class EmptyLineSeparatorCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final DetailAST nextToken = ast.getNextSibling();
 
         if (nextToken != null) {
@@ -231,28 +225,24 @@ public class EmptyLineSeparatorCheck extends Check
                     if (isTypeField(ast) && !hasEmptyLineAfter(ast)) {
                         if (allowNoEmptyLineBetweenFields
                             && nextToken.getType() != TokenTypes.VARIABLE_DEF
-                            && nextToken.getType() != TokenTypes.RCURLY)
-                        {
+                            && nextToken.getType() != TokenTypes.RCURLY) {
                             log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
                                  nextToken.getText());
                         }
                         else if (!allowNoEmptyLineBetweenFields
-                                 && nextToken.getType() != TokenTypes.RCURLY)
-                        {
+                                 && nextToken.getType() != TokenTypes.RCURLY) {
                             log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
                                  nextToken.getText());
                         }
                     }
-                    if (isTypeField(ast) && hasNotAllowedTwoEmptyLinesBefore(ast))
-                    {
+                    if (isTypeField(ast) && hasNotAllowedTwoEmptyLinesBefore(ast)) {
                         log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
                     }
                     break;
                 case TokenTypes.IMPORT:
                     if (astType != nextToken.getType() && !hasEmptyLineAfter(ast)
                         || ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)
-                            && ast.getPreviousSibling() == null)
-                    {
+                            && ast.getPreviousSibling() == null) {
                         log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
                     }
                     if (hasNotAllowedTwoEmptyLinesBefore(ast)) {
@@ -286,8 +276,7 @@ public class EmptyLineSeparatorCheck extends Check
      * @param token DetailAST token
      * @return true, if token has empty two lines before and allowMultipleEmptyLines is false
      */
-    private boolean hasNotAllowedTwoEmptyLinesBefore(DetailAST token)
-    {
+    private boolean hasNotAllowedTwoEmptyLinesBefore(DetailAST token) {
         return !allowMultipleEmptyLines && hasEmptyLineBefore(token)
                 && isPrePreviousLineEmpty(token);
     }
@@ -297,8 +286,7 @@ public class EmptyLineSeparatorCheck extends Check
      * @param token DetailAST token.
      * @return true, if token has empty lines before.
      */
-    private boolean isPrePreviousLineEmpty(DetailAST token)
-    {
+    private boolean isPrePreviousLineEmpty(DetailAST token) {
         boolean result = false;
         final int lineNo = token.getLineNo();
         // 3 is the number of the pre-previous line because the numbering starts from zero.
@@ -315,8 +303,7 @@ public class EmptyLineSeparatorCheck extends Check
      * @param token token.
      * @return true if token have empty line after.
      */
-    private boolean hasEmptyLineAfter(DetailAST token)
-    {
+    private boolean hasEmptyLineAfter(DetailAST token) {
         DetailAST lastToken = token.getLastChild().getLastChild();
         if (null == lastToken) {
             lastToken = token.getLastChild();
@@ -329,8 +316,7 @@ public class EmptyLineSeparatorCheck extends Check
      * @param token token.
      * @return true, if token have empty line before.
      */
-    private boolean hasEmptyLineBefore(DetailAST token)
-    {
+    private boolean hasEmptyLineBefore(DetailAST token) {
         final int lineNo = token.getLineNo();
         if (lineNo == 1) {
             return false;
@@ -345,8 +331,7 @@ public class EmptyLineSeparatorCheck extends Check
      * @param variableDef variable definition.
      * @return true variable definition is a type field.
      */
-    private boolean isTypeField(DetailAST variableDef)
-    {
+    private boolean isTypeField(DetailAST variableDef) {
         final int parentType = variableDef.getParent().getParent().getType();
         return parentType == TokenTypes.CLASS_DEF;
     }

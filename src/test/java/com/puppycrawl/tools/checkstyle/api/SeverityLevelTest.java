@@ -30,11 +30,9 @@ import org.junit.Test;
  * Test cases for {@link SeverityLevel} enumeration.
  * @author Mehmet Can Cömert
  */
-public class SeverityLevelTest
-{
+public class SeverityLevelTest {
     @Test(expected = IllegalArgumentException.class)
-    public void testMisc()
-    {
+    public void testMisc() {
         final SeverityLevel o = SeverityLevel.getInstance("info");
         assertNotNull(o);
         assertEquals("info", o.toString());
@@ -44,8 +42,7 @@ public class SeverityLevelTest
     }
 
     @Test
-    public void testMixedCaseSpaces()
-    {
+    public void testMixedCaseSpaces() {
         SeverityLevel.getInstance("IgnoRe ");
         SeverityLevel.getInstance(" iNfo");
         SeverityLevel.getInstance(" WarniNg");
@@ -53,8 +50,7 @@ public class SeverityLevelTest
     }
 
     @Test
-    public void testMixedCaseSpacesWithDifferentLocales()
-    {
+    public void testMixedCaseSpacesWithDifferentLocales() {
         Locale[] differentLocales = new Locale[] {new Locale("TR", "tr") };
         Locale defaultLocale = Locale.getDefault();
         try {

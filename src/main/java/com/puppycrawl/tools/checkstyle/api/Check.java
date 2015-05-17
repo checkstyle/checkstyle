@@ -33,8 +33,7 @@ import com.puppycrawl.tools.checkstyle.Utils;
  * @see <a href="{@docRoot}/../writingchecks.html" target="_top">Writing
  * your own checks</a>
  */
-public abstract class Check extends AbstractViolationReporter
-{
+public abstract class Check extends AbstractViolationReporter {
     /** default tab width for column reporting */
     private static final int DEFAULT_TAB_WIDTH = 8;
 
@@ -56,8 +55,7 @@ public abstract class Check extends AbstractViolationReporter
      */
     private ClassLoader loader;
 
-    public boolean isCommentNodesRequired()
-    {
+    public boolean isCommentNodesRequired() {
         return false;
     }
 
@@ -77,8 +75,7 @@ public abstract class Check extends AbstractViolationReporter
      * @return the token set this check is designed for.
      * @see TokenTypes
      */
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         final int[] defaultTokens = getDefaultTokens();
         final int[] copy = new int[defaultTokens.length];
         System.arraycopy(defaultTokens, 0, copy, 0, defaultTokens.length);
@@ -90,8 +87,7 @@ public abstract class Check extends AbstractViolationReporter
      * @return the token set this must be registered for.
      * @see TokenTypes
      */
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return new int[] {};
     }
 
@@ -99,8 +95,7 @@ public abstract class Check extends AbstractViolationReporter
      * Adds a set of tokens the check is interested in.
      * @param strRep the string representation of the tokens interested in
      */
-    public final void setTokens(String... strRep)
-    {
+    public final void setTokens(String... strRep) {
         Collections.addAll(tokens, strRep);
     }
 
@@ -108,8 +103,7 @@ public abstract class Check extends AbstractViolationReporter
      * Returns the tokens registered for the check.
      * @return the set of token names
      */
-    public final Set<String> getTokenNames()
-    {
+    public final Set<String> getTokenNames() {
         return tokens;
     }
 
@@ -117,8 +111,7 @@ public abstract class Check extends AbstractViolationReporter
      * Set the global object used to collect messages.
      * @param messages the messages to log with
      */
-    public final void setMessages(LocalizedMessages messages)
-    {
+    public final void setMessages(LocalizedMessages messages) {
         this.messages = messages;
     }
 
@@ -126,15 +119,13 @@ public abstract class Check extends AbstractViolationReporter
      * Initialise the check. This is the time to verify that the check has
      * everything required to perform it job.
      */
-    public void init()
-    {
+    public void init() {
     }
 
     /**
      * Destroy the check. It is being retired from service.
      */
-    public void destroy()
-    {
+    public void destroy() {
     }
 
     /**
@@ -142,8 +133,7 @@ public abstract class Check extends AbstractViolationReporter
      * information that is to be collected whilst processing a tree.
      * @param rootAST the root of the tree
      */
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
     }
 
     /**
@@ -151,32 +141,28 @@ public abstract class Check extends AbstractViolationReporter
      * information collected whilst processing a tree.
      * @param rootAST the root of the tree
      */
-    public void finishTree(DetailAST rootAST)
-    {
+    public void finishTree(DetailAST rootAST) {
     }
 
     /**
      * Called to process a token.
      * @param ast the token to process
      */
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
     }
 
     /**
      * Called after all the child nodes have been process.
      * @param ast the token leaving
      */
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
     }
 
     /**
      * Returns the lines associated with the tree.
      * @return the file contents
      */
-    public final String[] getLines()
-    {
+    public final String[] getLines() {
         return getFileContents().getLines();
     }
 
@@ -185,8 +171,7 @@ public abstract class Check extends AbstractViolationReporter
      * @param index index of the line
      * @return the line from the file contents
      */
-    public final String getLine(int index)
-    {
+    public final String getLine(int index) {
         return getFileContents().getLine(index);
     }
 
@@ -194,8 +179,7 @@ public abstract class Check extends AbstractViolationReporter
      * Set the file contents associated with the tree.
      * @param contents the manager
      */
-    public final void setFileContents(FileContents contents)
-    {
+    public final void setFileContents(FileContents contents) {
         fileContents = contents;
     }
 
@@ -203,8 +187,7 @@ public abstract class Check extends AbstractViolationReporter
      * Returns the file contents associated with the tree.
      * @return the file contents
      */
-    public final FileContents getFileContents()
-    {
+    public final FileContents getFileContents() {
         return fileContents;
     }
 
@@ -212,8 +195,7 @@ public abstract class Check extends AbstractViolationReporter
      * Set the class loader associated with the tree.
      * @param loader the class loader
      */
-    public final void setClassLoader(ClassLoader loader)
-    {
+    public final void setClassLoader(ClassLoader loader) {
         this.loader = loader;
     }
 
@@ -221,14 +203,12 @@ public abstract class Check extends AbstractViolationReporter
      * Returns the class loader associated with the tree.
      * @return the class loader
      */
-    public final ClassLoader getClassLoader()
-    {
+    public final ClassLoader getClassLoader() {
         return loader;
     }
 
     /** @return the tab width to report errors with */
-    protected final int getTabWidth()
-    {
+    protected final int getTabWidth() {
         return tabWidth;
     }
 
@@ -236,14 +216,12 @@ public abstract class Check extends AbstractViolationReporter
      * Set the tab width to report errors with.
      * @param tabWidth an <code>int</code> value
      */
-    public final void setTabWidth(int tabWidth)
-    {
+    public final void setTabWidth(int tabWidth) {
         this.tabWidth = tabWidth;
     }
 
     @Override
-    public final void log(int line, String key, Object... args)
-    {
+    public final void log(int line, String key, Object... args) {
         messages.add(
             new LocalizedMessage(
                 line,
@@ -259,8 +237,7 @@ public abstract class Check extends AbstractViolationReporter
 
     @Override
     public final void log(int lineNo, int colNo, String key,
-            Object... args)
-    {
+            Object... args) {
         final int col = 1 + Utils.lengthExpandedTabs(
             getLines()[lineNo - 1], colNo, getTabWidth());
         messages.add(

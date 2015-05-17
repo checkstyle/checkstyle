@@ -26,11 +26,9 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck.MSG_KEY;
 
 public class SimplifyBooleanExpressionCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
-    public void testIt() throws Exception
-    {
+    public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(SimplifyBooleanExpressionCheck.class);
         final String[] expected = {

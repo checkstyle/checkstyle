@@ -29,8 +29,7 @@ import java.util.Arrays;
  *
  * @author jrichard
  */
-public abstract class ExpressionHandler
-{
+public abstract class ExpressionHandler {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -83,8 +82,7 @@ public abstract class ExpressionHandler
      * @param parent        the parent handler
      */
     public ExpressionHandler(IndentationCheck indentCheck,
-            String typeName, DetailAST expr, ExpressionHandler parent)
-    {
+            String typeName, DetailAST expr, ExpressionHandler parent) {
         this.indentCheck = indentCheck;
         this.typeName = typeName;
         mainAst = expr;
@@ -99,8 +97,7 @@ public abstract class ExpressionHandler
      *
      * @return the expected indentation amount
      */
-    public final IndentLevel getLevel()
-    {
+    public final IndentLevel getLevel() {
         if (level == null) {
             level = getLevelImpl();
         }
@@ -112,8 +109,7 @@ public abstract class ExpressionHandler
      *
      * @return the expected indentation amount
      */
-    protected IndentLevel getLevelImpl()
-    {
+    protected IndentLevel getLevelImpl() {
         return parent.suggestedChildLevel(this);
     }
 
@@ -126,8 +122,7 @@ public abstract class ExpressionHandler
      *
      * @return suggested indentation for child
      */
-    public IndentLevel suggestedChildLevel(ExpressionHandler child)
-    {
+    public IndentLevel suggestedChildLevel(ExpressionHandler child) {
         return new IndentLevel(getLevel(), getBasicOffset());
     }
 
@@ -139,8 +134,7 @@ public abstract class ExpressionHandler
      * @param actualLevel    the actual indent level of the expression
      */
     protected final void logError(DetailAST ast, String subtypeName,
-                                  int actualLevel)
-    {
+                                  int actualLevel) {
         logError(ast, subtypeName, actualLevel, getLevel());
     }
 
@@ -153,8 +147,7 @@ public abstract class ExpressionHandler
      * @param expectedLevel the expected indent level of the expression
      */
     protected final void logError(DetailAST ast, String subtypeName,
-                                  int actualLevel, IndentLevel expectedLevel)
-    {
+                                  int actualLevel, IndentLevel expectedLevel) {
         final String typeStr =
                 "".equals(subtypeName) ? "" : " " + subtypeName;
         String messageKey = MSG_ERROR;
@@ -174,8 +167,7 @@ public abstract class ExpressionHandler
      */
     private void logChildError(int line,
                                int actualLevel,
-                               IndentLevel expectedLevel)
-    {
+                               IndentLevel expectedLevel) {
         String messageKey = MSG_CHILD_ERROR;
         if (expectedLevel.isMultiLevel()) {
             messageKey = MSG_CHILD_ERROR_MULTI;
@@ -191,8 +183,7 @@ public abstract class ExpressionHandler
      *
      * @return true if it is, false otherwise
      */
-    protected final boolean startsLine(DetailAST ast)
-    {
+    protected final boolean startsLine(DetailAST ast) {
         return getLineStart(ast) == expandedTabsColumnNo(ast);
     }
 
@@ -204,8 +195,7 @@ public abstract class ExpressionHandler
      *
      * @return true if they are, false otherwise
      */
-    static boolean areOnSameLine(DetailAST ast1, DetailAST ast2)
-    {
+    static boolean areOnSameLine(DetailAST ast1, DetailAST ast2) {
         return ast1 != null && ast2 != null
             && ast1.getLineNo() == ast2.getLineNo();
     }
@@ -216,8 +206,7 @@ public abstract class ExpressionHandler
      * @param ast a root of sub-tree in which the search shoul be performed.
      * @return a token which occurs first in the file.
      */
-    static DetailAST getFirstToken(DetailAST ast)
-    {
+    static DetailAST getFirstToken(DetailAST ast) {
         DetailAST first = ast;
         DetailAST child = ast.getFirstChild();
 
@@ -225,8 +214,7 @@ public abstract class ExpressionHandler
             final DetailAST toTest = getFirstToken(child);
             if (toTest.getLineNo() < first.getLineNo()
                 || toTest.getLineNo() == first.getLineNo()
-                    && toTest.getColumnNo() < first.getColumnNo())
-            {
+                    && toTest.getColumnNo() < first.getColumnNo()) {
                 first = toTest;
             }
             child = child.getNextSibling();
@@ -242,8 +230,7 @@ public abstract class ExpressionHandler
      *
      * @return the start of the line for the given expression
      */
-    protected final int getLineStart(DetailAST ast)
-    {
+    protected final int getLineStart(DetailAST ast) {
         final String line = indentCheck.getLine(ast.getLineNo() - 1);
         return getLineStart(line);
     }
@@ -257,8 +244,7 @@ public abstract class ExpressionHandler
      * @param indentLevel   the required indent level
      */
     protected final void checkLinesIndent(int startLine, int endLine,
-        IndentLevel indentLevel)
-    {
+        IndentLevel indentLevel) {
         // check first line
         checkSingleLine(startLine, indentLevel);
 
@@ -275,8 +261,7 @@ public abstract class ExpressionHandler
      *              fisrt line in checkLinesIndent()
      *         false otherwise
      */
-    protected boolean shouldIncreaseIndent()
-    {
+    protected boolean shouldIncreaseIndent() {
         return true;
     }
 
@@ -291,8 +276,7 @@ public abstract class ExpressionHandler
     private void checkLinesIndent(LineSet lines,
                                   IndentLevel indentLevel,
                                   boolean firstLineMatches,
-                                  int firstLine)
-    {
+                                  int firstLine) {
         if (lines.isEmpty()) {
             return;
         }
@@ -318,8 +302,7 @@ public abstract class ExpressionHandler
 
         IndentLevel theLevel = indentLevel;
         if (firstLineMatches
-            || firstLine > mainAst.getLineNo() && shouldIncreaseIndent())
-        {
+            || firstLine > mainAst.getLineNo() && shouldIncreaseIndent()) {
             theLevel = new IndentLevel(indentLevel, getBasicOffset());
         }
 
@@ -342,8 +325,7 @@ public abstract class ExpressionHandler
      * @param lineNum       the line number to check
      * @param indentLevel   the required indent level
      */
-    private void checkSingleLine(int lineNum, IndentLevel indentLevel)
-    {
+    private void checkSingleLine(int lineNum, IndentLevel indentLevel) {
         final String line = indentCheck.getLine(lineNum - 1);
         final int start = getLineStart(line);
         if (indentLevel.greaterThan(start)) {
@@ -361,8 +343,7 @@ public abstract class ExpressionHandler
      */
 
     private void checkSingleLine(int lineNum, int colNum,
-        IndentLevel indentLevel, boolean mustMatch)
-    {
+        IndentLevel indentLevel, boolean mustMatch) {
         final String line = indentCheck.getLine(lineNum - 1);
         final int start = getLineStart(line);
         // if must match is set, it is an error if the line start is not
@@ -370,8 +351,7 @@ public abstract class ExpressionHandler
         // error if this statement starts the line and it is less than
         // the correct indentation level
         if (mustMatch ? !indentLevel.accept(start)
-            : colNum == start && indentLevel.greaterThan(start))
-        {
+            : colNum == start && indentLevel.greaterThan(start)) {
             logChildError(lineNum, start, indentLevel);
         }
     }
@@ -383,8 +363,7 @@ public abstract class ExpressionHandler
      *
      * @return the start of the specified line
      */
-    protected final int getLineStart(String line)
-    {
+    protected final int getLineStart(String line) {
         for (int start = 0; start < line.length(); start++) {
             final char c = line.charAt(start);
 
@@ -410,13 +389,11 @@ public abstract class ExpressionHandler
                                        int[] tokenTypes,
                                        IndentLevel startLevel,
                                        boolean firstLineMatches,
-                                       boolean allowNesting)
-    {
+                                       boolean allowNesting) {
         Arrays.sort(tokenTypes);
         for (DetailAST child = parent.getFirstChild();
                 child != null;
-                child = child.getNextSibling())
-        {
+                child = child.getNextSibling()) {
             if (Arrays.binarySearch(tokenTypes, child.getType()) >= 0) {
                 checkExpressionSubtree(child, startLevel,
                     firstLineMatches, allowNesting);
@@ -437,8 +414,7 @@ public abstract class ExpressionHandler
         IndentLevel level,
         boolean firstLineMatches,
         boolean allowNesting
-    )
-    {
+    ) {
         final LineSet subtreeLines = new LineSet();
         final int firstLine = getFirstLine(Integer.MAX_VALUE, tree);
         if (firstLineMatches && !allowNesting) {
@@ -458,8 +434,7 @@ public abstract class ExpressionHandler
      *
      * @return the first line of the expression
      */
-    protected final int getFirstLine(int startLine, DetailAST tree)
-    {
+    protected final int getFirstLine(int startLine, DetailAST tree) {
         int realStart = startLine;
         final int currLine = tree.getLineNo();
         if (currLine < realStart) {
@@ -469,8 +444,7 @@ public abstract class ExpressionHandler
         // check children
         for (DetailAST node = tree.getFirstChild();
             node != null;
-            node = node.getNextSibling())
-        {
+            node = node.getNextSibling()) {
             realStart = getFirstLine(realStart, node);
         }
 
@@ -485,8 +459,7 @@ public abstract class ExpressionHandler
      *
      * @return the column number for the start of the expression
      */
-    protected final int expandedTabsColumnNo(DetailAST ast)
-    {
+    protected final int expandedTabsColumnNo(DetailAST ast) {
         final String line =
             indentCheck.getLine(ast.getLineNo() - 1);
 
@@ -502,11 +475,9 @@ public abstract class ExpressionHandler
      * @param allowNesting   whether or not to allow nested subtrees
      */
     protected final void findSubtreeLines(LineSet lines, DetailAST tree,
-        boolean allowNesting)
-    {
+        boolean allowNesting) {
         if (getIndentCheck().getHandlerFactory().isHandledType(tree.getType())
-            || tree.getLineNo() < 0)
-        {
+            || tree.getLineNo() < 0) {
             return;
         }
 
@@ -521,8 +492,7 @@ public abstract class ExpressionHandler
         // check children
         for (DetailAST node = tree.getFirstChild();
             node != null;
-            node = node.getNextSibling())
-        {
+            node = node.getNextSibling()) {
             findSubtreeLines(lines, node, allowNesting);
         }
     }
@@ -530,17 +500,14 @@ public abstract class ExpressionHandler
     /**
      * Check the indentation level of modifiers.
      */
-    protected void checkModifiers()
-    {
+    protected void checkModifiers() {
         final DetailAST modifiers =
             mainAst.findFirstToken(TokenTypes.MODIFIERS);
         for (DetailAST modifier = modifiers.getFirstChild();
              modifier != null;
-             modifier = modifier.getNextSibling())
-        {
+             modifier = modifier.getNextSibling()) {
             if (startsLine(modifier)
-                && !getLevel().accept(expandedTabsColumnNo(modifier)))
-            {
+                && !getLevel().accept(expandedTabsColumnNo(modifier))) {
                 logError(modifier, "modifier",
                     expandedTabsColumnNo(modifier));
             }
@@ -557,8 +524,7 @@ public abstract class ExpressionHandler
      *
      * @return the IndentCheck attribute
      */
-    protected final IndentationCheck getIndentCheck()
-    {
+    protected final IndentationCheck getIndentCheck() {
         return indentCheck;
     }
 
@@ -567,8 +533,7 @@ public abstract class ExpressionHandler
      *
      * @return the MainAst attribute
      */
-    protected final DetailAST getMainAst()
-    {
+    protected final DetailAST getMainAst() {
         return mainAst;
     }
 
@@ -577,8 +542,7 @@ public abstract class ExpressionHandler
      *
      * @return the Parent attribute
      */
-    protected final ExpressionHandler getParent()
-    {
+    protected final ExpressionHandler getParent() {
         return parent;
     }
 
@@ -586,8 +550,7 @@ public abstract class ExpressionHandler
      * A shortcut for <code>IndentationCheck</code> property.
      * @return value of basicOffset property of <code>IndentationCheck</code>
      */
-    protected final int getBasicOffset()
-    {
+    protected final int getBasicOffset() {
         return getIndentCheck().getBasicOffset();
     }
 
@@ -596,8 +559,7 @@ public abstract class ExpressionHandler
      * @return value of braceAdjustment property
      *         of <code>IndentationCheck</code>
      */
-    protected final int getBraceAdjustement()
-    {
+    protected final int getBraceAdjustement() {
         return getIndentCheck().getBraceAdjustement();
     }
 
@@ -606,8 +568,7 @@ public abstract class ExpressionHandler
      * @param rparen parenthesis to check
      * @param lparen left parenthesis associated with aRparen
      */
-    protected final void checkRParen(DetailAST lparen, DetailAST rparen)
-    {
+    protected final void checkRParen(DetailAST lparen, DetailAST rparen) {
         // no paren - no check :)
         if (rparen == null) {
             return;
@@ -633,14 +594,12 @@ public abstract class ExpressionHandler
      * Check the indentation of the left parenthesis.
      * @param lparen parenthesis to check
      */
-    protected final void checkLParen(final DetailAST lparen)
-    {
+    protected final void checkLParen(final DetailAST lparen) {
         // the rcurly can either be at the correct indentation, or on the
         // same line as the lcurly
         if (lparen == null
             || getLevel().accept(expandedTabsColumnNo(lparen))
-            || !startsLine(lparen))
-        {
+            || !startsLine(lparen)) {
             return;
         }
         logError(lparen, "lparen", expandedTabsColumnNo(lparen));

@@ -47,17 +47,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Travis Schneeberger
  */
 public class MethodTypeParameterNameCheck
-    extends AbstractTypeParameterNameCheck
-{
+    extends AbstractTypeParameterNameCheck {
     /** Creates a new <code>MethodTypeParameterNameCheck</code> instance. */
-    public MethodTypeParameterNameCheck()
-    {
+    public MethodTypeParameterNameCheck() {
         super("^[A-Z]$");
     }
 
     @Override
-    protected final int getLocation()
-    {
+    protected final int getLocation() {
         return TokenTypes.METHOD_DEF;
     }
 }

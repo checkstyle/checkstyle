@@ -28,20 +28,17 @@ import java.util.SortedSet;
  * Collection of messages.
  * @author Oliver Burn
  */
-public final class LocalizedMessages
-{
+public final class LocalizedMessages {
     /** contains the messages logged **/
     private final Set<LocalizedMessage> messages = Sets.newTreeSet();
 
     /** @return the logged messages **/
-    public SortedSet<LocalizedMessage> getMessages()
-    {
+    public SortedSet<LocalizedMessage> getMessages() {
         return Sets.newTreeSet(messages);
     }
 
     /** Reset the object. **/
-    public void reset()
-    {
+    public void reset() {
         messages.clear();
     }
 
@@ -49,14 +46,12 @@ public final class LocalizedMessages
      * Logs a message to be reported.
      * @param aMsg the message to log
      **/
-    public void add(LocalizedMessage aMsg)
-    {
+    public void add(LocalizedMessage aMsg) {
         messages.add(aMsg);
     }
 
     /** @return the number of messages */
-    public int size()
-    {
+    public int size() {
         return messages.size();
     }
 }

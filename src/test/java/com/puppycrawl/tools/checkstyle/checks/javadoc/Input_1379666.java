@@ -14,8 +14,7 @@ public class Input_1379666 {
      * @throws Input_1379666.BadStringFormat some text
      */
     public void error1()
-        throws com.puppycrawl.tools.checkstyle.checks.javadoc.Input_1379666.BadStringFormat
-    {
+        throws com.puppycrawl.tools.checkstyle.checks.javadoc.Input_1379666.BadStringFormat {
     }
 
     /**

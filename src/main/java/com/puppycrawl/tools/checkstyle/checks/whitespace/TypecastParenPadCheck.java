@@ -48,29 +48,24 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * @author Oliver Burn
  */
-public class TypecastParenPadCheck extends AbstractParenPadCheck
-{
+public class TypecastParenPadCheck extends AbstractParenPadCheck {
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return new int[] {TokenTypes.RPAREN, TokenTypes.TYPECAST};
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return getRequiredTokens();
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.RPAREN, TokenTypes.TYPECAST};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         // Strange logic in this method to guard against checking RPAREN tokens
         // that are not associated with a TYPECAST token.
         if (ast.getType() == TokenTypes.TYPECAST) {
@@ -79,8 +74,7 @@ public class TypecastParenPadCheck extends AbstractParenPadCheck
         else if (ast.getParent() != null
                  && ast.getParent().getType() == TokenTypes.TYPECAST
                  && ast.getParent().findFirstToken(TokenTypes.RPAREN)
-                     == ast)
-        {
+                     == ast) {
             processRight(ast);
         }
     }

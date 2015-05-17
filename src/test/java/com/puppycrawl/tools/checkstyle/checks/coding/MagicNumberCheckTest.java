@@ -26,12 +26,10 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck.MSG_KEY;
 
 public class MagicNumberCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
     public void testDefault()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MagicNumberCheck.class);
         final String[] expected = {
@@ -82,8 +80,7 @@ public class MagicNumberCheckTest
 
     @Test
     public void testIgnoreSome()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("ignoreNumbers", "0, 1, 3.0, 8, 16, 3000");
@@ -129,8 +126,7 @@ public class MagicNumberCheckTest
 
     @Test
     public void testIgnoreNone()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("ignoreNumbers", "");
@@ -204,8 +200,7 @@ public class MagicNumberCheckTest
 
     @Test
     public void testIntegersOnly()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("tokens", "NUM_INT, NUM_LONG");
@@ -249,8 +244,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreNegativeOctalHex() throws Exception
-    {
+    public void testIgnoreNegativeOctalHex() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("ignoreNumbers", "-9223372036854775808, -2147483648, -1, 0, 1, 2");
@@ -291,8 +285,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreHashCodeMethod() throws Exception
-    {
+    public void testIgnoreHashCodeMethod() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("ignoreHashCodeMethod", "true");
@@ -340,8 +333,7 @@ public class MagicNumberCheckTest
 
     @Test
     public void testIgnoreFieldDeclaration()
-            throws Exception
-    {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("ignoreFieldDeclaration", "true");

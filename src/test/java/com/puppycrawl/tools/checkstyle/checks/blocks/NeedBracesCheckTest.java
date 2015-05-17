@@ -28,11 +28,9 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck.MSG_KEY_NEED_BRACES;
 
-public class NeedBracesCheckTest extends BaseCheckTestSupport
-{
+public class NeedBracesCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testIt() throws Exception
-    {
+    public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NeedBracesCheck.class);
         final String[] expected = {
@@ -58,8 +56,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testSigleLineStatements() throws Exception
-    {
+    public void testSigleLineStatements() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NeedBracesCheck.class);
         checkConfig.addAttribute("allowSingleLineStatement", "true");
@@ -75,8 +72,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testSigleLineLambda() throws Exception
-    {
+    public void testSigleLineLambda() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NeedBracesCheck.class);
         checkConfig.addAttribute("tokens", "LAMBDA");
@@ -89,8 +85,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testSigleLineCaseDefault() throws Exception
-    {
+    public void testSigleLineCaseDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NeedBracesCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_CASE, LITERAL_DEFAULT");

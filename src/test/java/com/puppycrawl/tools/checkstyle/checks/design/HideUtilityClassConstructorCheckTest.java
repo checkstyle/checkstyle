@@ -31,12 +31,10 @@ import static com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassCons
 import static org.junit.Assert.assertArrayEquals;
 
 public class HideUtilityClassConstructorCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     /** only static methods and no constructor - default ctor is visible */
     @Test
-    public void testUtilClass() throws Exception
-    {
+    public void testUtilClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = {
@@ -47,8 +45,7 @@ public class HideUtilityClassConstructorCheckTest
 
     /** nonstatic methods - always OK */
     @Test
-    public void testNonUtilClass() throws Exception
-    {
+    public void testNonUtilClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = {
@@ -57,8 +54,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    public void testDerivedNonUtilClass() throws Exception
-    {
+    public void testDerivedNonUtilClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = {
@@ -67,8 +63,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    public void testOnlyNonstaticFieldNonUtilClass() throws Exception
-    {
+    public void testOnlyNonstaticFieldNonUtilClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = {
@@ -77,8 +72,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    public void testEmptyAbstractClass() throws Exception
-    {
+    public void testEmptyAbstractClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = {
@@ -87,8 +81,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    public void testEmptyClassWithOnlyPrivateFields() throws Exception
-    {
+    public void testEmptyClassWithOnlyPrivateFields() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = {
@@ -97,8 +90,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    public void testClassWithStaticInnerClass() throws Exception
-    {
+    public void testClassWithStaticInnerClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = {
@@ -107,8 +99,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens()
-    {
+    public void testGetAcceptableTokens() {
         HideUtilityClassConstructorCheck obj = new HideUtilityClassConstructorCheck();
         int[] expected = {TokenTypes.CLASS_DEF};
         assertArrayEquals(expected, obj.getAcceptableTokens());

@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author pirat9600q
  *
  */
-public class MethodCallLineWrapHandler extends LineWrappingHandler
-{
+public class MethodCallLineWrapHandler extends LineWrappingHandler {
     /**
      * Creates new instance of MethodCallLineWrapHandler.
      * @param instance instance of IndentationCheck.
@@ -36,14 +35,12 @@ public class MethodCallLineWrapHandler extends LineWrappingHandler
      * @param lastNode last node of method call statement.
      */
     public MethodCallLineWrapHandler(IndentationCheck instance,
-        DetailAST firstNode, DetailAST lastNode)
-    {
+        DetailAST firstNode, DetailAST lastNode) {
         super(instance, firstNode, lastNode);
     }
 
     @Override
-    protected int getCurrentIndentation()
-    {
+    protected int getCurrentIndentation() {
         DetailAST curNode = getFirstNode();
         while (curNode.getType() != TokenTypes.IDENT) {
             curNode = curNode.getFirstChild();

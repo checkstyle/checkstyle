@@ -30,20 +30,17 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacter
 .FILE_CONTAINS_TAB;
 
 public class FileTabCharacterCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Override
     protected DefaultConfiguration createCheckerConfig(
-        Configuration checkConfig)
-    {
+        Configuration checkConfig) {
         final DefaultConfiguration dc = new DefaultConfiguration("root");
         dc.addChild(checkConfig);
         return dc;
     }
 
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig = createConfig(false);
         final String[] expected = {
             "19:25: " + getCheckMessage(FILE_CONTAINS_TAB),
@@ -56,8 +53,7 @@ public class FileTabCharacterCheckTest
     }
 
     @Test
-    public void testVerbose() throws Exception
-    {
+    public void testVerbose() throws Exception {
         final DefaultConfiguration checkConfig = createConfig(true);
         final String[] expected = {
             "19:25: " + getCheckMessage(CONTAINS_TAB),
@@ -77,8 +73,7 @@ public class FileTabCharacterCheckTest
     }
 
     @Test
-    public void testBadFile() throws Exception
-    {
+    public void testBadFile() throws Exception {
         final DefaultConfiguration checkConfig = createConfig(false);
         final String path = getPath("Claira");
         final String[] expected = {
@@ -94,8 +89,7 @@ public class FileTabCharacterCheckTest
      * Creates a configuration that is functionally close to that in the docs.
      * @param verbose verbose mode
      */
-    private DefaultConfiguration createConfig(boolean verbose)
-    {
+    private DefaultConfiguration createConfig(boolean verbose) {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FileTabCharacterCheck.class);
         checkConfig.addAttribute("eachLine", Boolean.toString(verbose));

@@ -30,8 +30,7 @@ import java.util.Set;
  * for more information.
  * @author Oliver Burn
  */
-public class JavadocPackageCheck extends AbstractFileSetCheck
-{
+public class JavadocPackageCheck extends AbstractFileSetCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -53,23 +52,20 @@ public class JavadocPackageCheck extends AbstractFileSetCheck
     /**
      * Creates a new instance.
      */
-    public JavadocPackageCheck()
-    {
+    public JavadocPackageCheck() {
         // java, not html!
         // The rule is: Every JAVA file should have a package.html sibling
         setFileExtensions("java");
     }
 
     @Override
-    public void beginProcessing(String charset)
-    {
+    public void beginProcessing(String charset) {
         super.beginProcessing(charset);
         directoriesChecked.clear();
     }
 
     @Override
-    protected void processFiltered(File file, List<String> lines)
-    {
+    protected void processFiltered(File file, List<String> lines) {
         // Check if already processed directory
         final File dir = file.getParentFile();
         if (directoriesChecked.contains(dir)) {
@@ -96,8 +92,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck
      * file.
      * @param allowLegacy whether to allow support.
      */
-    public void setAllowLegacy(boolean allowLegacy)
-    {
+    public void setAllowLegacy(boolean allowLegacy) {
         this.allowLegacy = allowLegacy;
     }
 }

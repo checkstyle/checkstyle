@@ -32,21 +32,18 @@ import java.io.File;
 
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
 
-public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
-{
+public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
     @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(RegexpMultilineCheck.class);
     }
 
     @Test
-    public void testIt() throws Exception
-    {
+    public void testIt() throws Exception {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         checkConfig.addAttribute("format", illegal);
         final String[] expected = {
@@ -57,8 +54,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
 
     @Test
     public void testMessageProperty()
-        throws Exception
-    {
+        throws Exception {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         final String message = "Bad line :(";
         checkConfig.addAttribute("format", illegal);
@@ -70,8 +66,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testIgnoreCaseTrue() throws Exception
-    {
+    public void testIgnoreCaseTrue() throws Exception {
         final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreCase", "true");
@@ -82,8 +77,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testIgnoreCaseFalse() throws Exception
-    {
+    public void testIgnoreCaseFalse() throws Exception {
         final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreCase", "false");
@@ -92,8 +86,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testIllegalFailBelowErrorLimit() throws Exception
-    {
+    public void testIllegalFailBelowErrorLimit() throws Exception {
         final String illegal = "^import";
         checkConfig.addAttribute("format", illegal);
         final String[] expected = {
@@ -105,8 +98,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testCarriageReturn() throws Exception
-    {
+    public void testCarriageReturn() throws Exception {
         final String illegal = "\\r";
         checkConfig.addAttribute("format", illegal);
         final String[] expected = {

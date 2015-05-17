@@ -62,8 +62,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author lkuehne
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
-public class NoWhitespaceAfterCheck extends Check
-{
+public class NoWhitespaceAfterCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -75,8 +74,7 @@ public class NoWhitespaceAfterCheck extends Check
     private boolean allowLineBreaks = true;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.ARRAY_INIT,
             TokenTypes.INC,
@@ -91,8 +89,7 @@ public class NoWhitespaceAfterCheck extends Check
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.ARRAY_INIT,
             TokenTypes.INC,
@@ -108,12 +105,10 @@ public class NoWhitespaceAfterCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         DetailAST astNode = ast;
         if (ast.getType() == TokenTypes.ARRAY_DECLARATOR
-                 || ast.getType() == TokenTypes.TYPECAST)
-        {
+                 || ast.getType() == TokenTypes.TYPECAST) {
             astNode = getPreceded(ast);
         }
 
@@ -121,8 +116,7 @@ public class NoWhitespaceAfterCheck extends Check
         final int after = getPositionAfter(astNode);
 
         if ((after >= line.length() || Character.isWhitespace(line.charAt(after)))
-                 && hasRedundantWhitespace(line, after))
-        {
+                 && hasRedundantWhitespace(line, after)) {
             log(astNode.getLineNo(), after,
                 MSG_KEY, astNode.getText());
         }
@@ -134,8 +128,7 @@ public class NoWhitespaceAfterCheck extends Check
      *  or {@link TokenTypes#TYPECAST TYPECAST}.
      * @return possible place of redundant whitespace.
      */
-    private static DetailAST getPreceded(DetailAST arrayOrTypeCast)
-    {
+    private static DetailAST getPreceded(DetailAST arrayOrTypeCast) {
         DetailAST preceded = arrayOrTypeCast;
         switch (arrayOrTypeCast.getType()) {
             case TokenTypes.TYPECAST:
@@ -155,14 +148,12 @@ public class NoWhitespaceAfterCheck extends Check
      * @param ast Node representing token.
      * @return position after token.
      */
-    private static int getPositionAfter(DetailAST ast)
-    {
+    private static int getPositionAfter(DetailAST ast) {
         int after;
         //If target of possible redundant whitespace is in method definition
         if (ast.getType() == TokenTypes.IDENT
                 && ast.getNextSibling() != null
-                && ast.getNextSibling().getType() == TokenTypes.LPAREN)
-        {
+                && ast.getNextSibling().getType() == TokenTypes.LPAREN) {
             final DetailAST methodDef = ast.getParent();
             final DetailAST endOfParams = methodDef.findFirstToken(TokenTypes.RPAREN);
             after = endOfParams.getColumnNo() + 1;
@@ -179,8 +170,7 @@ public class NoWhitespaceAfterCheck extends Check
      * @param arrayDeclarator {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}
      * @return target place before possible redundant whitespace.
      */
-    private static DetailAST getArrayTypeOrIdentifier(DetailAST arrayDeclarator)
-    {
+    private static DetailAST getArrayTypeOrIdentifier(DetailAST arrayDeclarator) {
         DetailAST typeOrIdent = arrayDeclarator;
         if (isArrayInstantiation(arrayDeclarator)) {
             typeOrIdent = arrayDeclarator.getParent().getFirstChild();
@@ -228,8 +218,7 @@ public class NoWhitespaceAfterCheck extends Check
      * @param arrayDeclarator {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}
      * @return array identifier.
      */
-    private static DetailAST getArrayIdentifier(DetailAST arrayDeclarator)
-    {
+    private static DetailAST getArrayIdentifier(DetailAST arrayDeclarator) {
         return arrayDeclarator.getParent().getNextSibling();
     }
 
@@ -238,8 +227,7 @@ public class NoWhitespaceAfterCheck extends Check
      * @param arrayDeclaration {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}
      * @return true if current array is multidimensional.
      */
-    private static boolean isMultiDimensionalArray(DetailAST arrayDeclaration)
-    {
+    private static boolean isMultiDimensionalArray(DetailAST arrayDeclaration) {
         return arrayDeclaration.getParent().getType() == TokenTypes.ARRAY_DECLARATOR
                 || arrayDeclaration.getFirstChild().getType() == TokenTypes.ARRAY_DECLARATOR;
     }
@@ -249,8 +237,7 @@ public class NoWhitespaceAfterCheck extends Check
      * @param arrayDeclaration {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}
      * @return true if current array declaration is part of array instantiation.
      */
-    private static boolean isArrayInstantiation(DetailAST arrayDeclaration)
-    {
+    private static boolean isArrayInstantiation(DetailAST arrayDeclaration) {
         return arrayDeclaration.getParent().getType() == TokenTypes.LITERAL_NEW;
     }
 
@@ -262,8 +249,7 @@ public class NoWhitespaceAfterCheck extends Check
      * @param arrayDeclarator {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}
      * @return true if current array is used as type for generic bounded wildcard.
      */
-    private static boolean isArrayUsedAsTypeForGenericBoundedWildcard(DetailAST arrayDeclarator)
-    {
+    private static boolean isArrayUsedAsTypeForGenericBoundedWildcard(DetailAST arrayDeclarator) {
         final int firstChildType = arrayDeclarator.getFirstChild().getType();
         return firstChildType == TokenTypes.TYPE_UPPER_BOUNDS
                 || firstChildType == TokenTypes.TYPE_LOWER_BOUNDS;
@@ -274,8 +260,7 @@ public class NoWhitespaceAfterCheck extends Check
      * @param allowLineBreaks whether whitespace should be
      * flagged at linebreaks.
      */
-    public void setAllowLineBreaks(boolean allowLineBreaks)
-    {
+    public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;
     }
 
@@ -294,8 +279,7 @@ public class NoWhitespaceAfterCheck extends Check
      * @param arrayDeclaration {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}
      * @return true if array is declared in C style
      */
-    private static boolean isCstyleArrayDeclaration(DetailAST arrayDeclaration)
-    {
+    private static boolean isCstyleArrayDeclaration(DetailAST arrayDeclaration) {
         boolean result = false;
         final DetailAST identifier = getArrayIdentifier(arrayDeclaration);
         if (identifier != null) {
@@ -312,14 +296,12 @@ public class NoWhitespaceAfterCheck extends Check
      * @param arrayDeclaration {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}
      * @return true if multidimensional array is declared in C style.
      */
-    private static boolean isCstyleMultiDimensionalArrayDeclaration(DetailAST arrayDeclaration)
-    {
+    private static boolean isCstyleMultiDimensionalArrayDeclaration(DetailAST arrayDeclaration) {
         boolean result = false;
         DetailAST parentArrayDeclaration = arrayDeclaration;
         while (parentArrayDeclaration != null) {
             if (parentArrayDeclaration.getParent() != null
-                    && parentArrayDeclaration.getParent().getType() == TokenTypes.TYPE)
-            {
+                    && parentArrayDeclaration.getParent().getType() == TokenTypes.TYPE) {
                 result = isCstyleArrayDeclaration(parentArrayDeclaration);
             }
             parentArrayDeclaration = parentArrayDeclaration.getParent();
@@ -333,8 +315,7 @@ public class NoWhitespaceAfterCheck extends Check
      * @param after specified index.
      * @return true if line contains redundant whitespace.
      */
-    private boolean hasRedundantWhitespace(String line, int after)
-    {
+    private boolean hasRedundantWhitespace(String line, int after) {
         boolean result = !allowLineBreaks;
         for (int i = after + 1; !result && i < line.length(); i++) {
             if (!Character.isWhitespace(line.charAt(i))) {

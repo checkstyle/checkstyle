@@ -30,28 +30,24 @@ import org.junit.Before;
 import org.junit.Test;
 
 /** Tests SuppressElementFilter */
-public class SuppressElementTest
-{
+public class SuppressElementTest {
     private SuppressElement filter;
 
     @Before
     public void setUp()
-        throws PatternSyntaxException
-    {
+        throws PatternSyntaxException {
         filter = new SuppressElement("Test");
         filter.setChecks("Test");
     }
 
     @Test
-    public void testDecideDefault()
-    {
+    public void testDecideDefault() {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         assertTrue(ev.getFileName(), filter.accept(ev));
     }
 
     @Test
-    public void testDecideLocalizedMessage()
-    {
+    public void testDecideLocalizedMessage() {
         LocalizedMessage message =
             new LocalizedMessage(0, 0, "", "", null, null, this.getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
@@ -60,8 +56,7 @@ public class SuppressElementTest
     }
 
     @Test
-    public void testDecideByLine()
-    {
+    public void testDecideByLine() {
         LocalizedMessage message =
             new LocalizedMessage(10, 10, "", "", null, null, this.getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
@@ -73,8 +68,7 @@ public class SuppressElementTest
     }
 
     @Test
-    public void testDecideByColumn()
-    {
+    public void testDecideByColumn() {
         LocalizedMessage message =
             new LocalizedMessage(10, 10, "", "", null, null, this.getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
@@ -86,8 +80,7 @@ public class SuppressElementTest
     }
 
     @Test
-    public void testEquals() throws PatternSyntaxException
-    {
+    public void testEquals() throws PatternSyntaxException {
         final SuppressElement filter2 = new SuppressElement("Test");
         filter2.setChecks("Test");
         assertEquals("filter, filter2", filter, filter2);

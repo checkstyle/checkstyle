@@ -23,8 +23,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
  * Value object for storing data about an invalid Javadoc validTags.
  * @author Oliver Burn
  */
-public final class InvalidJavadocTag
-{
+public final class InvalidJavadocTag {
     /** The line in which the invalid tag occurs. */
     private final int line;
     /** The column in which the invalid tag occurs. */
@@ -38,8 +37,7 @@ public final class InvalidJavadocTag
      * @param col the column of the tag
      * @param name the name of the invalid tag
      */
-    public InvalidJavadocTag(int line, int col, String name)
-    {
+    public InvalidJavadocTag(int line, int col, String name) {
         this.line = line;
         this.col = col;
         this.name = name;
@@ -49,8 +47,7 @@ public final class InvalidJavadocTag
      *  Getter for line field.
      *  @return line field
      */
-    public int getLine()
-    {
+    public int getLine() {
         return line;
     }
 
@@ -58,8 +55,7 @@ public final class InvalidJavadocTag
      *  Getter for col field.
      *  @return col field
      */
-    public int getCol()
-    {
+    public int getCol() {
         return col;
     }
 
@@ -67,8 +63,7 @@ public final class InvalidJavadocTag
      *  Getter for name field.
      *  @return name field
      */
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 }

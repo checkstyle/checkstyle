@@ -54,8 +54,7 @@ import com.google.common.io.Closeables;
  *
  * @author Martin von Gagern
  */
-public final class FileText extends AbstractList<String>
-{
+public final class FileText extends AbstractList<String> {
 
     /**
      * The number of characters to read in one go.
@@ -111,8 +110,7 @@ public final class FileText extends AbstractList<String>
      * @throws NullPointerException if the text is null
      * @throws IOException if the file could not be read
      */
-    public FileText(File file, String charsetName) throws IOException
-    {
+    public FileText(File file, String charsetName) throws IOException {
         this.file = file;
 
         // We use our own decoder, to be sure we have complete control
@@ -178,8 +176,7 @@ public final class FileText extends AbstractList<String>
      * @param lines the lines of the text, without terminators
      * @throws NullPointerException if the lines array is null
      */
-    private FileText(File file, List<String> lines)
-    {
+    private FileText(File file, List<String> lines) {
         final StringBuilder buf = new StringBuilder();
         for (final String line : lines) {
             buf.append(line).append('\n');
@@ -205,8 +202,7 @@ public final class FileText extends AbstractList<String>
      * @param lines the lines of the text, without terminators
      * @return an object representing the denoted text file
      */
-    public static FileText fromLines(File file, List<String> lines)
-    {
+    public static FileText fromLines(File file, List<String> lines) {
         return lines instanceof FileText
             ? (FileText) lines
             : new FileText(file, lines);
@@ -216,8 +212,7 @@ public final class FileText extends AbstractList<String>
      * Get the name of the file.
      * @return an object containing the name of the file
      */
-    public File getFile()
-    {
+    public File getFile() {
         return file;
     }
 
@@ -226,8 +221,7 @@ public final class FileText extends AbstractList<String>
      * Will be <code>null</code> for a file reconstructed from its lines.
      * @return the charset used when the file was read
      */
-    public Charset getCharset()
-    {
+    public Charset getCharset() {
         return charset;
     }
 
@@ -237,8 +231,7 @@ public final class FileText extends AbstractList<String>
      * @return a buffer containing the bytes making up the file
      * @throws IOException if the bytes could not be read from the file
      */
-    public ByteBuffer getBytes() throws IOException
-    {
+    public ByteBuffer getBytes() throws IOException {
         // We might decide to cache file bytes in the future.
         if (file == null) {
             return null;
@@ -275,8 +268,7 @@ public final class FileText extends AbstractList<String>
      * Retrieve the full text of the file.
      * @return the full text of the file
      */
-    public CharSequence getFullText()
-    {
+    public CharSequence getFullText() {
         return fullText;
     }
 
@@ -286,8 +278,7 @@ public final class FileText extends AbstractList<String>
      * {@code text.toArray(new String[text.size()])}.
      * @return an array of all lines of the text
      */
-    public String[] toLinesArray()
-    {
+    public String[] toLinesArray() {
         return lines.clone();
     }
 
@@ -295,8 +286,7 @@ public final class FileText extends AbstractList<String>
      * Find positions of line breaks in the full text.
      * @return an array giving the first positions of each line.
      */
-    private int[] findLineBreaks()
-    {
+    private int[] findLineBreaks() {
         if (lineBreaks == null) {
             final int[] lineBreaks = new int[size() + 1];
             lineBreaks[0] = 0;
@@ -321,8 +311,7 @@ public final class FileText extends AbstractList<String>
      * @param pos the character position in the full text
      * @return the line and column numbers of this character
      */
-    public LineColumn lineColumn(int pos)
-    {
+    public LineColumn lineColumn(int pos) {
         final int[] lineBreaks = findLineBreaks();
         int lineNo = Arrays.binarySearch(lineBreaks, pos);
         if (lineNo < 0) {
@@ -343,8 +332,7 @@ public final class FileText extends AbstractList<String>
      * @return the line with the given number
      */
     @Override
-    public String get(final int lineNo)
-    {
+    public String get(final int lineNo) {
         return lines[lineNo];
     }
 
@@ -353,8 +341,7 @@ public final class FileText extends AbstractList<String>
      * @return the number of lines in the text
      */
     @Override
-    public int size()
-    {
+    public int size() {
         return lines.length;
     }
 

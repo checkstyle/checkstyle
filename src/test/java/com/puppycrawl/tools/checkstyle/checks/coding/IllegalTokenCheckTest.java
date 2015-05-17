@@ -26,12 +26,10 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck.MSG_KEY;
 
 public class IllegalTokenCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
     public void testDefault()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(IllegalTokenCheck.class);
         final String[] expected = {
@@ -43,8 +41,7 @@ public class IllegalTokenCheckTest
     }
 
     @Test
-    public void testNative() throws Exception
-    {
+    public void testNative() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(IllegalTokenCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_NATIVE");

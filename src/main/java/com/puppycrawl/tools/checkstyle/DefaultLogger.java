@@ -42,8 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  */
 public class DefaultLogger
     extends AutomaticBean
-    implements AuditListener
-{
+    implements AuditListener {
     /** cushion for avoiding StringBuffer.expandCapacity */
     private static final int BUFFER_CUSHION = 12;
 
@@ -64,8 +63,7 @@ public class DefaultLogger
      * @exception UnsupportedEncodingException if there is a problem to use UTF-8 encoding
      */
     public DefaultLogger(OutputStream os, boolean closeStreamsAfterUse)
-            throws UnsupportedEncodingException
-    {
+            throws UnsupportedEncodingException {
         // no need to close oS twice
         this(os, closeStreamsAfterUse, os, false);
     }
@@ -82,8 +80,7 @@ public class DefaultLogger
     public DefaultLogger(OutputStream infoStream,
                          boolean closeInfoAfterUse,
                          OutputStream errorStream,
-                         boolean closeErrorAfterUse) throws UnsupportedEncodingException
-    {
+                         boolean closeErrorAfterUse) throws UnsupportedEncodingException {
         closeInfo = closeInfoAfterUse;
         closeError = closeErrorAfterUse;
         final Writer infoStreamWriter = new OutputStreamWriter(infoStream, "UTF-8");
@@ -101,8 +98,7 @@ public class DefaultLogger
      * @see AuditListener
      **/
     @Override
-    public void addError(AuditEvent evt)
-    {
+    public void addError(AuditEvent evt) {
         final SeverityLevel severityLevel = evt.getSeverityLevel();
         if (SeverityLevel.IGNORE != severityLevel) {
 
@@ -128,8 +124,7 @@ public class DefaultLogger
 
     /** {@inheritDoc} */
     @Override
-    public void addException(AuditEvent evt, Throwable throwable)
-    {
+    public void addException(AuditEvent evt, Throwable throwable) {
         synchronized (errorWriter) {
             errorWriter.println("Error auditing " + evt.getFileName());
             throwable.printStackTrace(errorWriter);
@@ -138,27 +133,23 @@ public class DefaultLogger
 
     /** {@inheritDoc} */
     @Override
-    public void auditStarted(AuditEvent evt)
-    {
+    public void auditStarted(AuditEvent evt) {
         infoWriter.println("Starting audit...");
     }
 
     /** {@inheritDoc} */
     @Override
-    public void fileFinished(AuditEvent evt)
-    {
+    public void fileFinished(AuditEvent evt) {
     }
 
     /** {@inheritDoc} */
     @Override
-    public void fileStarted(AuditEvent evt)
-    {
+    public void fileStarted(AuditEvent evt) {
     }
 
     /** {@inheritDoc} */
     @Override
-    public void auditFinished(AuditEvent evt)
-    {
+    public void auditFinished(AuditEvent evt) {
         infoWriter.println("Audit done.");
         closeStreams();
     }
@@ -166,8 +157,7 @@ public class DefaultLogger
     /**
      * Flushes the output streams and closes them if needed.
      */
-    protected void closeStreams()
-    {
+    protected void closeStreams() {
         infoWriter.flush();
         if (closeInfo) {
             infoWriter.close();

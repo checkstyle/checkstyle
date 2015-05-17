@@ -71,8 +71,7 @@ import java.util.Map;
  * </p>
  * @author k_gibbs, r_auckenthaler
  */
-public class FinalLocalVariableCheck extends Check
-{
+public class FinalLocalVariableCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -90,14 +89,12 @@ public class FinalLocalVariableCheck extends Check
      * Whether to check enhanced for-loop variable or not.
      * @param validateEnhancedForLoopVariable whether to check for-loop variable
      */
-    public final void setValidateEnhancedForLoopVariable(boolean validateEnhancedForLoopVariable)
-    {
+    public final void setValidateEnhancedForLoopVariable(boolean validateEnhancedForLoopVariable) {
         this.validateEnhancedForLoopVariable = validateEnhancedForLoopVariable;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.IDENT,
             TokenTypes.CTOR_DEF,
@@ -112,8 +109,7 @@ public class FinalLocalVariableCheck extends Check
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.IDENT,
             TokenTypes.CTOR_DEF,
@@ -129,8 +125,7 @@ public class FinalLocalVariableCheck extends Check
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.IDENT,
             TokenTypes.CTOR_DEF,
@@ -144,8 +139,7 @@ public class FinalLocalVariableCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.OBJBLOCK:
             case TokenTypes.SLIST:
@@ -160,15 +154,13 @@ public class FinalLocalVariableCheck extends Check
             case TokenTypes.PARAMETER_DEF:
                 if (ScopeUtils.inInterfaceBlock(ast)
                     || inAbstractOrNativeMethod(ast)
-                    || inLambda(ast))
-                {
+                    || inLambda(ast)) {
                     break;
                 }
             case TokenTypes.VARIABLE_DEF:
                 if (ast.getParent().getType() != TokenTypes.OBJBLOCK
                     && shouldCheckEnhancedForLoopVariable(ast)
-                    && isVariableInForInit(ast))
-                {
+                    && isVariableInForInit(ast)) {
                     insertVariable(ast);
                 }
                 break;
@@ -191,8 +183,7 @@ public class FinalLocalVariableCheck extends Check
                         || TokenTypes.BXOR_ASSIGN == parentType
                         || TokenTypes.BOR_ASSIGN == parentType
                         || TokenTypes.BAND_ASSIGN == parentType)
-                        && ast.getParent().getFirstChild() == ast)
-                {
+                        && ast.getParent().getFirstChild() == ast) {
                     removeVariable(ast);
                 }
                 break;
@@ -206,8 +197,7 @@ public class FinalLocalVariableCheck extends Check
      * @param ast The ast to compare.
      * @return true if enhanced for-loop variable should be checked.
      */
-    private boolean shouldCheckEnhancedForLoopVariable(DetailAST ast)
-    {
+    private boolean shouldCheckEnhancedForLoopVariable(DetailAST ast) {
         return validateEnhancedForLoopVariable
                 || ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE;
     }
@@ -224,8 +214,7 @@ public class FinalLocalVariableCheck extends Check
      * @param variableDef variable definition node.
      * @return true if variable is defined in {@link TokenTypes#FOR_INIT for-loop init}
      */
-    private static boolean isVariableInForInit(DetailAST variableDef)
-    {
+    private static boolean isVariableInForInit(DetailAST variableDef) {
         return variableDef.getParent().getType() != TokenTypes.FOR_INIT;
     }
 
@@ -234,8 +223,7 @@ public class FinalLocalVariableCheck extends Check
      * @param ast the AST to check.
      * @return true if ast is a descendant of an abstract or native method.
      */
-    private static boolean inAbstractOrNativeMethod(DetailAST ast)
-    {
+    private static boolean inAbstractOrNativeMethod(DetailAST ast) {
         DetailAST parent = ast.getParent();
         while (parent != null) {
             if (parent.getType() == TokenTypes.METHOD_DEF) {
@@ -254,8 +242,7 @@ public class FinalLocalVariableCheck extends Check
      * @param paramDef {@link TokenTypes#PARAMETER_DEF parameter def}.
      * @return true if current param is lamda's param.
      */
-    private static boolean inLambda(DetailAST paramDef)
-    {
+    private static boolean inLambda(DetailAST paramDef) {
         return paramDef.getParent().getParent().getType() == TokenTypes.LAMBDA;
     }
 
@@ -263,8 +250,7 @@ public class FinalLocalVariableCheck extends Check
      * Inserts a variable at the topmost scope stack
      * @param ast the variable to insert
      */
-    private void insertVariable(DetailAST ast)
-    {
+    private void insertVariable(DetailAST ast) {
         if (!ast.branchContains(TokenTypes.FINAL)) {
             final Map<String, DetailAST> state = scopeStack.peek();
             final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
@@ -276,8 +262,7 @@ public class FinalLocalVariableCheck extends Check
      * Removes the variable from the Stacks
      * @param ast Variable to remove
      */
-    private void removeVariable(DetailAST ast)
-    {
+    private void removeVariable(DetailAST ast) {
         final Iterator<Map<String, DetailAST>> iterator = scopeStack.descendingIterator();
         while (iterator.hasNext()) {
             final Map<String, DetailAST> state = iterator.next();
@@ -289,8 +274,7 @@ public class FinalLocalVariableCheck extends Check
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         super.leaveToken(ast);
 
         switch (ast.getType()) {

@@ -26,11 +26,9 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck.MSG_KEY;
 
-public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport
-{
+public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
     @Test
-    public void test() throws Exception
-    {
+    public void test() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(ClassFanOutComplexityCheck.class);
 
         checkConfig.addAttribute("max", "0");
@@ -45,8 +43,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void test15() throws Exception
-    {
+    public void test15() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(ClassFanOutComplexityCheck.class);
 
         checkConfig.addAttribute("max", "0");

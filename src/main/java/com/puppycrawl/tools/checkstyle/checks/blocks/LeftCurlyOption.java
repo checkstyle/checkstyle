@@ -24,8 +24,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
  *
  * @author Oliver Burn
  */
-public enum LeftCurlyOption
-{
+public enum LeftCurlyOption {
     /**
      * Represents the policy for placing the brace at the end of line. For
      * example:

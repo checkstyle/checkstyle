@@ -34,8 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
  */
 public class SuppressionFilter
     extends AutomaticBean
-    implements Filter
-{
+    implements Filter {
     /** set of individual suppresses */
     private FilterSet filters = new FilterSet();
 
@@ -45,33 +44,28 @@ public class SuppressionFilter
      * @throws CheckstyleException if there is an error.
      */
     public void setFile(String fileName)
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         filters = SuppressionsLoader.loadSuppressions(fileName);
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean accept(AuditEvent event)
-    {
+    public boolean accept(AuditEvent event) {
         return filters.accept(event);
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return filters.toString();
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return filters.hashCode();
     }
 
     @Override
-    public boolean equals(Object object)
-    {
+    public boolean equals(Object object) {
         if (object instanceof SuppressionFilter) {
             final SuppressionFilter other = (SuppressionFilter) object;
             return this.filters.equals(other.filters);

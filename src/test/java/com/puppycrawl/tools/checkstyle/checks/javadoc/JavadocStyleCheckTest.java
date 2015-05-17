@@ -34,16 +34,13 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.E
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.JAVADOC_MISSING;
 
 public class JavadocStyleCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
     public void testDefaultSettings()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
-        final String[] expected =
-        {
+        final String[] expected = {
             "20: " + getCheckMessage(NO_PERIOD),
             "53: " + getCheckMessage(NO_PERIOD),
             "63:11: " + getCheckMessage(UNCLOSED_HTML, "<b>This guy is missing end of bold tag"),
@@ -67,14 +64,12 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testFirstSentence() throws Exception
-    {
+    public void testFirstSentence() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
         checkConfig.addAttribute("checkFirstSentence", "true");
         checkConfig.addAttribute("checkHtml", "false");
-        final String[] expected =
-        {
+        final String[] expected = {
             "20: " + getCheckMessage(NO_PERIOD),
             "53: " + getCheckMessage(NO_PERIOD),
             "74: " + getCheckMessage(NO_PERIOD),
@@ -88,16 +83,14 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testFirstSentenceFormat() throws Exception
-    {
+    public void testFirstSentenceFormat() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
         checkConfig.addAttribute("checkFirstSentence", "true");
         checkConfig.addAttribute("checkHtml", "false");
         checkConfig.addAttribute("endOfSentenceFormat",
                 "([.][ \t\n\r\f<])|([.]$)");
-        final String[] expected =
-        {
+        final String[] expected = {
             "20: " + getCheckMessage(NO_PERIOD),
             "32: " + getCheckMessage(NO_PERIOD),
             "39: " + getCheckMessage(NO_PERIOD),
@@ -113,13 +106,11 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testHtml() throws Exception
-    {
+    public void testHtml() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);
         checkConfig.addAttribute("checkFirstSentence", "false");
         checkConfig.addAttribute("checkHtml", "true");
-        final String[] expected =
-        {
+        final String[] expected = {
             "63:11: " + getCheckMessage(UNCLOSED_HTML, "<b>This guy is missing end of bold tag"),
             "66:7: " + getCheckMessage(EXTRA_HTML, "</td>Extra tag shouldn't be here"),
             "68:19: " + getCheckMessage(UNCLOSED_HTML, "<code>dummy."),
@@ -136,13 +127,11 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testHtmlComment() throws Exception
-    {
+    public void testHtmlComment() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);
         checkConfig.addAttribute("checkFirstSentence", "false");
         checkConfig.addAttribute("checkHtml", "true");
-        final String[] expected =
-        {
+        final String[] expected = {
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheckHtmlComment.java"), expected);
@@ -150,16 +139,14 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testScopePublic()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
         checkConfig.addAttribute("checkFirstSentence", "true");
         checkConfig.addAttribute("checkHtml", "true");
         checkConfig.addAttribute("checkEmptyJavadoc", "true");
         checkConfig.addAttribute("scope", "public");
-        final String[] expected =
-        {
+        final String[] expected = {
             "88: " + getCheckMessage(NO_PERIOD),
             "89:31: " + getCheckMessage(EXTRA_HTML, "</code>"),
             "90: " + getCheckMessage(INCOMPLETE_TAG, "    * should fail <"),
@@ -174,16 +161,14 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testScopeProtected()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
         checkConfig.addAttribute("checkFirstSentence", "true");
         checkConfig.addAttribute("checkHtml", "true");
         checkConfig.addAttribute("checkEmptyJavadoc", "true");
         checkConfig.addAttribute("scope", "protected");
-        final String[] expected =
-        {
+        final String[] expected = {
             "74: " + getCheckMessage(NO_PERIOD),
             "75:23: " + getCheckMessage(UNCLOSED_HTML, "<b>should fail"),
             "88: " + getCheckMessage(NO_PERIOD),
@@ -201,16 +186,14 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testScopePackage()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
         checkConfig.addAttribute("checkFirstSentence", "true");
         checkConfig.addAttribute("checkHtml", "true");
         checkConfig.addAttribute("checkEmptyJavadoc", "true");
         checkConfig.addAttribute("scope", "package");
-        final String[] expected =
-        {
+        final String[] expected = {
             "74: " + getCheckMessage(NO_PERIOD),
             "75:23: " + getCheckMessage(UNCLOSED_HTML, "<b>should fail"),
             "81: " + getCheckMessage(NO_PERIOD),
@@ -230,14 +213,12 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testEmptyJavadoc() throws Exception
-    {
+    public void testEmptyJavadoc() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);
         checkConfig.addAttribute("checkFirstSentence", "false");
         checkConfig.addAttribute("checkHtml", "false");
         checkConfig.addAttribute("checkEmptyJavadoc", "true");
-        final String[] expected =
-        {
+        final String[] expected = {
             "205: " + getCheckMessage(EMPTY),
             "211: " + getCheckMessage(EMPTY),
             "218: " + getCheckMessage(EMPTY),
@@ -250,14 +231,12 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testExcludeScope()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
         checkConfig.addAttribute("scope", "private");
         checkConfig.addAttribute("excludeScope", "protected");
-        final String[] expected =
-        {
+        final String[] expected = {
             "20: " + getCheckMessage(NO_PERIOD),
             "53: " + getCheckMessage(NO_PERIOD),
             "63:11: " + getCheckMessage(UNCLOSED_HTML, "<b>This guy is missing end of bold tag"),
@@ -274,12 +253,10 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void packageInfoInheritDoc() throws Exception
-    {
+    public void packageInfoInheritDoc() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
-        final String[] expected =
-        {
+        final String[] expected = {
             "1: " + getCheckMessage(NO_PERIOD),
         };
 
@@ -292,12 +269,10 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void packageInfoInvalid() throws Exception
-    {
+    public void packageInfoInvalid() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
-        final String[] expected =
-        {
+        final String[] expected = {
             "1: " + getCheckMessage(NO_PERIOD),
         };
 
@@ -310,12 +285,10 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void packageInfoAnnotation() throws Exception
-    {
+    public void packageInfoAnnotation() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
-        final String[] expected =
-        {
+        final String[] expected = {
         };
 
         String basePath = "javadoc" + File.separator
@@ -327,8 +300,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void packageInfoMissing() throws Exception
-    {
+    public void packageInfoMissing() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
         final String[] expected = {
@@ -344,8 +316,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void packageInfoValid() throws Exception
-    {
+    public void packageInfoValid() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
         final String[] expected = {};

@@ -25,19 +25,16 @@ import static org.junit.Assert.assertEquals;
 import com.puppycrawl.tools.checkstyle.Utils;
 import org.junit.Test;
 
-public class TokenTypesTest
-{
+public class TokenTypesTest {
     @Test
-    public void testGetShortDescription()
-    {
+    public void testGetShortDescription() {
         assertEquals("short description for EQUAL",
                 "The <code>==</code> (equal) operator.", Utils
                         .getShortDescription("EQUAL"));
     }
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException
-    {
+    public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertUtilsClassHasPrivateConstructor(TokenTypes.class);
     }
 }

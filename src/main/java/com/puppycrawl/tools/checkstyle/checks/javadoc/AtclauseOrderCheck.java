@@ -62,8 +62,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author max
  *
  */
-public class AtclauseOrderCheck extends AbstractJavadocCheck
-{
+public class AtclauseOrderCheck extends AbstractJavadocCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -104,8 +103,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
      * Sets custom targets.
      * @param target user's targets.
      */
-    public void setTarget(String target)
-    {
+    public void setTarget(String target) {
         final List<Integer> customTarget = new ArrayList<>();
         for (String type : target.split(", ")) {
             customTarget.add(Utils.getTokenId(type));
@@ -117,24 +115,21 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
      * Sets custom order of atclauses.
      * @param order user's order.
      */
-    public void setTagOrder(String order)
-    {
+    public void setTagOrder(String order) {
         final List<String> customOrder = new ArrayList<>();
         Collections.addAll(customOrder, order.split(", "));
         tagOrder = customOrder;
     }
 
     @Override
-    public int[] getDefaultJavadocTokens()
-    {
+    public int[] getDefaultJavadocTokens() {
         return new int[] {
             JavadocTokenTypes.JAVADOC,
         };
     }
 
     @Override
-    public void visitJavadocToken(DetailNode ast)
-    {
+    public void visitJavadocToken(DetailNode ast) {
         final int parentType = getParentType(getBlockCommentAst());
 
         if (target.contains(parentType)) {
@@ -146,8 +141,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
      * Checks order of atclauses in tag section node.
      * @param javadoc Javadoc root node.
      */
-    private void checkOrderInTagSection(DetailNode javadoc)
-    {
+    private void checkOrderInTagSection(DetailNode javadoc) {
         int indexOrderOfPreviousTag = 0;
         int indexOrderOfCurrentTag = 0;
 
@@ -157,8 +151,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
                 indexOrderOfCurrentTag = tagOrder.indexOf(tagText);
 
                 if (tagOrder.contains(tagText)
-                        && indexOrderOfCurrentTag < indexOrderOfPreviousTag)
-                {
+                        && indexOrderOfCurrentTag < indexOrderOfPreviousTag) {
                     log(node.getLineNumber(), MSG_KEY, tagOrder.toString());
                 }
                 indexOrderOfPreviousTag = indexOrderOfCurrentTag;
@@ -171,8 +164,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck
      * @param commentBlock child node.
      * @return parent type.
      */
-    private int getParentType(DetailAST commentBlock)
-    {
+    private int getParentType(DetailAST commentBlock) {
         int type = 0;
         final DetailAST parentNode = commentBlock.getParent();
         if (parentNode != null) {

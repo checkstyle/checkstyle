@@ -74,8 +74,7 @@ import org.apache.commons.beanutils.ConversionException;
  *
  * @author Lars Kühne
  */
-public class LineLengthCheck extends Check
-{
+public class LineLengthCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -95,20 +94,17 @@ public class LineLengthCheck extends Check
     /**
      * Creates a new <code>LineLengthCheck</code> instance.
      */
-    public LineLengthCheck()
-    {
+    public LineLengthCheck() {
         setIgnorePattern("^$");
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[0];
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         final String[] lines = getLines();
         for (int i = 0; i < lines.length; i++) {
 
@@ -118,8 +114,7 @@ public class LineLengthCheck extends Check
 
 
             if (realLength > max
-                && !ignorePattern.matcher(line).find())
-            {
+                && !ignorePattern.matcher(line).find()) {
                 log(i + 1, MSG_KEY, max, realLength);
             }
         }
@@ -128,8 +123,7 @@ public class LineLengthCheck extends Check
     /**
      * @param length the maximum length of a line
      */
-    public void setMax(int length)
-    {
+    public void setMax(int length) {
         max = length;
     }
 
@@ -139,8 +133,7 @@ public class LineLengthCheck extends Check
      * @throws ConversionException if unable to create Pattern object
      */
     public void setIgnorePattern(String format)
-        throws ConversionException
-    {
+        throws ConversionException {
         ignorePattern = Utils.createPattern(format);
     }
 }

@@ -51,8 +51,7 @@ import org.apache.tools.ant.types.Reference;
  * of the task for usage.
  * @author Oliver Burn
  */
-public class CheckStyleTask extends Task
-{
+public class CheckStyleTask extends Task {
     /** poor man's enum for an xml formatter */
     private static final String E_XML = "xml";
     /** poor man's enum for an plain formatter */
@@ -108,14 +107,12 @@ public class CheckStyleTask extends Task
      * @param propertyName the name of the property to set
      *                      in the event of an failure.
      */
-    public void setFailureProperty(String propertyName)
-    {
+    public void setFailureProperty(String propertyName) {
         failureProperty = propertyName;
     }
 
     /** @param fail whether to fail if a violation is found */
-    public void setFailOnViolation(boolean fail)
-    {
+    public void setFailOnViolation(boolean fail) {
         failOnViolation = fail;
     }
 
@@ -123,8 +120,7 @@ public class CheckStyleTask extends Task
      * Sets the maximum number of errors allowed. Default is 0.
      * @param maxErrors the maximum number of errors allowed.
      */
-    public void setMaxErrors(int maxErrors)
-    {
+    public void setMaxErrors(int maxErrors) {
         this.maxErrors = maxErrors;
     }
 
@@ -133,8 +129,7 @@ public class CheckStyleTask extends Task
      * {@link Integer#MAX_VALUE}.
      * @param maxWarnings the maximum number of warnings allowed.
      */
-    public void setMaxWarnings(int maxWarnings)
-    {
+    public void setMaxWarnings(int maxWarnings) {
         this.maxWarnings = maxWarnings;
     }
 
@@ -142,8 +137,7 @@ public class CheckStyleTask extends Task
      * Adds uset of files (nested fileset attribute).
      * @param fS the file set to add
      */
-    public void addFileset(FileSet fS)
-    {
+    public void addFileset(FileSet fS) {
         fileSets.add(fS);
     }
 
@@ -151,8 +145,7 @@ public class CheckStyleTask extends Task
      * Add a formatter.
      * @param formatter the formatter to add for logging.
      */
-    public void addFormatter(Formatter formatter)
-    {
+    public void addFormatter(Formatter formatter) {
         formatters.add(formatter);
     }
 
@@ -160,8 +153,7 @@ public class CheckStyleTask extends Task
      * Add an override property.
      * @param property the property to add
      */
-    public void addProperty(Property property)
-    {
+    public void addProperty(Property property) {
         overrideProps.add(property);
     }
 
@@ -169,8 +161,7 @@ public class CheckStyleTask extends Task
      * Set the class path.
      * @param classpath the path to locate cluses
      */
-    public void setClasspath(Path classpath)
-    {
+    public void setClasspath(Path classpath) {
         if (this.classpath == null) {
             this.classpath = classpath;
         }
@@ -183,14 +174,12 @@ public class CheckStyleTask extends Task
      * Set the class path from a reference defined elsewhere.
      * @param classpathRef the reference to an instance defining the classpath
      */
-    public void setClasspathRef(Reference classpathRef)
-    {
+    public void setClasspathRef(Reference classpathRef) {
         createClasspath().setRefid(classpathRef);
     }
 
     /** @return a created path for locating cluses */
-    public Path createClasspath()
-    {
+    public Path createClasspath() {
         if (classpath == null) {
             classpath = new Path(getProject());
         }
@@ -198,20 +187,17 @@ public class CheckStyleTask extends Task
     }
 
     /** @param file the file to be checked */
-    public void setFile(File file)
-    {
+    public void setFile(File file) {
         fileName = file.getAbsolutePath();
     }
 
     /** @param file the configuration file to use */
-    public void setConfig(File file)
-    {
+    public void setConfig(File file) {
         setConfigLocation(file.getAbsolutePath());
     }
 
     /** @param url the URL of the configuration to use */
-    public void setConfigURL(URL url)
-    {
+    public void setConfigURL(URL url) {
         setConfigLocation(url.toExternalForm());
     }
 
@@ -219,8 +205,7 @@ public class CheckStyleTask extends Task
      * Sets the location of the configuration.
      * @param location the location, which is either a
      */
-    private void setConfigLocation(String location)
-    {
+    private void setConfigLocation(String location) {
         if (configLocation != null) {
             throw new BuildException("Attributes 'config' and 'configURL' "
                     + "must not be set at the same time");
@@ -229,8 +214,7 @@ public class CheckStyleTask extends Task
     }
 
     /** @param omit whether to omit ignored modules */
-    public void setOmitIgnoredModules(boolean omit)
-    {
+    public void setOmitIgnoredModules(boolean omit) {
         omitIgnoredModules = omit;
     }
 
@@ -243,8 +227,7 @@ public class CheckStyleTask extends Task
      * of individually setting them.
      * @param props the properties File to use
      */
-    public void setProperties(File props)
-    {
+    public void setProperties(File props) {
         propertiesFile = props;
     }
 
@@ -253,8 +236,7 @@ public class CheckStyleTask extends Task
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void execute() throws BuildException
-    {
+    public void execute() throws BuildException {
         final long startTime = System.currentTimeMillis();
 
         try {
@@ -270,8 +252,7 @@ public class CheckStyleTask extends Task
     /**
      * Helper implementation to perform execution.
      */
-    private void realExecute()
-    {
+    private void realExecute() {
         // output version info in debug mode
         final ResourceBundle compilationProperties = ResourceBundle
                 .getBundle("checkstylecompilation");
@@ -347,8 +328,7 @@ public class CheckStyleTask extends Task
      * Creates new instance of <code>Checker</code>.
      * @return new instance of <code>Checker</code>
      */
-    private Checker createChecker()
-    {
+    private Checker createChecker() {
         Checker c = null;
         try {
             final Properties props = createOverridingProperties();
@@ -392,8 +372,7 @@ public class CheckStyleTask extends Task
      * @return the properties for property expansion expansion
      * @throws BuildException if an error occurs
      */
-    private Properties createOverridingProperties()
-    {
+    private Properties createOverridingProperties() {
         final Properties retVal = new Properties();
 
         // Load the properties file if specified
@@ -436,8 +415,7 @@ public class CheckStyleTask extends Task
      * @throws IOException if an error occurs
      */
     protected AuditListener[] getListeners() throws ClassNotFoundException,
-            InstantiationException, IllegalAccessException, IOException
-    {
+            InstantiationException, IllegalAccessException, IOException {
         final int formatterCount = Math.max(1, formatters.size());
 
         final AuditListener[] listeners = new AuditListener[formatterCount];
@@ -462,8 +440,7 @@ public class CheckStyleTask extends Task
      * returns the list of files (full path name) to process.
      * @return the list of files included via the filesets.
      */
-    protected List<File> scanFileSets()
-    {
+    protected List<File> scanFileSets() {
         final List<File> list = Lists.newArrayList();
         if (fileName != null) {
             // oops we've got an additional one to process, don't
@@ -494,14 +471,12 @@ public class CheckStyleTask extends Task
      * Poor mans enumeration for the formatter types.
      * @author Oliver Burn
      */
-    public static class FormatterType extends EnumeratedAttribute
-    {
+    public static class FormatterType extends EnumeratedAttribute {
         /** my possible values */
         private static final String[] VALUES = {E_XML, E_PLAIN};
 
         @Override
-        public String[] getValues()
-        {
+        public String[] getValues() {
             return VALUES.clone();
         }
     }
@@ -510,8 +485,7 @@ public class CheckStyleTask extends Task
      * Details about a formatter to be used.
      * @author Oliver Burn
      */
-    public static class Formatter
-    {
+    public static class Formatter {
         /** the formatter type */
         private FormatterType formatterType;
         /** the file to output to */
@@ -523,8 +497,7 @@ public class CheckStyleTask extends Task
          * Set the type of the formatter.
          * @param type the type
          */
-        public void setType(FormatterType type)
-        {
+        public void setType(FormatterType type) {
             final String val = type.getValue();
             if (!E_XML.equals(val) && !E_PLAIN.equals(val)) {
                 throw new BuildException("Invalid formatter type: " + val);
@@ -537,8 +510,7 @@ public class CheckStyleTask extends Task
          * Set the file to output to.
          * @param to the file to output to
          */
-        public void setTofile(File to)
-        {
+        public void setTofile(File to) {
             toFile = to;
         }
 
@@ -546,8 +518,7 @@ public class CheckStyleTask extends Task
          * Sets whether or not we write to a file if it is provided.
          * @param use whether not not to use provided file.
          */
-        public void setUseFile(boolean use)
-        {
+        public void setUseFile(boolean use) {
             useFile = use;
         }
 
@@ -557,11 +528,9 @@ public class CheckStyleTask extends Task
          * @return a listener
          * @throws IOException if an error occurs
          */
-        public AuditListener createListener(Task task) throws IOException
-        {
+        public AuditListener createListener(Task task) throws IOException {
             if (formatterType != null
-                    && E_XML.equals(formatterType.getValue()))
-            {
+                    && E_XML.equals(formatterType.getValue())) {
                 return createXMLLogger(task);
             }
             return createDefaultLogger(task);
@@ -573,8 +542,7 @@ public class CheckStyleTask extends Task
          * @throws IOException if an error occurs
          */
         private AuditListener createDefaultLogger(Task task)
-            throws IOException
-        {
+            throws IOException {
             if (toFile == null || !useFile) {
                 return new DefaultLogger(
                     new LogOutputStream(task, Project.MSG_DEBUG),
@@ -588,8 +556,7 @@ public class CheckStyleTask extends Task
          * @return an XMLLogger instance
          * @throws IOException if an error occurs
          */
-        private AuditListener createXMLLogger(Task task) throws IOException
-        {
+        private AuditListener createXMLLogger(Task task) throws IOException {
             if (toFile == null || !useFile) {
                 return new XMLLogger(new LogOutputStream(task,
                         Project.MSG_INFO), true);
@@ -601,59 +568,50 @@ public class CheckStyleTask extends Task
     /**
      * Represents a property that consists of a key and value.
      */
-    public static class Property
-    {
+    public static class Property {
         /** the property key */
         private String key;
         /** the property value */
         private String value;
 
         /** @return the property key */
-        public String getKey()
-        {
+        public String getKey() {
             return key;
         }
 
         /** @param key sets the property key */
-        public void setKey(String key)
-        {
+        public void setKey(String key) {
             this.key = key;
         }
 
         /** @return the property value */
-        public String getValue()
-        {
+        public String getValue() {
             return value;
         }
 
         /** @param value set the property value */
-        public void setValue(String value)
-        {
+        public void setValue(String value) {
             this.value = value;
         }
 
         /** @param value set the property value from a File */
-        public void setFile(File value)
-        {
+        public void setFile(File value) {
             setValue(value.getAbsolutePath());
         }
     }
 
     /** Represents a custom listener. */
-    public static class Listener
-    {
+    public static class Listener {
         /** classname of the listener class */
         private String classname;
 
         /** @return the classname */
-        public String getClassname()
-        {
+        public String getClassname() {
             return classname;
         }
 
         /** @param classname set the classname */
-        public void setClassname(String classname)
-        {
+        public void setClassname(String classname) {
             this.classname = classname;
         }
     }

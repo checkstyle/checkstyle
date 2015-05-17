@@ -30,11 +30,9 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDecl
 import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck
 .MSG_MULTIPLE_COMMA;
 
-public class MultipleVariableDeclarationsCheckTest extends BaseCheckTestSupport
-{
+public class MultipleVariableDeclarationsCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testIt() throws Exception
-    {
+    public void testIt() throws Exception {
         DefaultConfiguration checkConfig =
             createCheckConfig(MultipleVariableDeclarationsCheck.class);
 

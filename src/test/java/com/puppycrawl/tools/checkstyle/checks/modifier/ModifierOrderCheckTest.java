@@ -32,11 +32,9 @@ import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck
 .MSG_MODIFIER_ORDER;
 
 public class ModifierOrderCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
-    public void testIt() throws Exception
-    {
+    public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ModifierOrderCheck.class);
         final String[] expected = {
@@ -52,8 +50,7 @@ public class ModifierOrderCheckTest
 
     @Test
     public void testDefaultMethods()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ModifierOrderCheck.class);
         final String[] expected = {

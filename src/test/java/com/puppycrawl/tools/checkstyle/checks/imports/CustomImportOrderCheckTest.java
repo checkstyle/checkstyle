@@ -29,14 +29,12 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCh
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_NONGROUP_IMPORT;
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_ORDER;
 
-public class CustomImportOrderCheckTest extends BaseCheckTestSupport
-{
+public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
     /**
      * @throws Exception
      */
     @Test
-    public void testCustom() throws Exception
-    {
+    public void testCustom() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
         checkConfig.addAttribute("standardPackageRegExp", "^(java|javax)\\.");
@@ -70,8 +68,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testDefaultPackage() throws Exception
-    {
+    public void testDefaultPackage() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
         checkConfig.addAttribute("thirdPartyPackageRegExp", "com.|org.");
@@ -94,8 +91,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testNonSpecifiedImports() throws Exception
-    {
+    public void testNonSpecifiedImports() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
         checkConfig.addAttribute("thirdPartyPackageRegExp", "org.");
@@ -117,8 +113,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testOrderRuleWithOneGroup() throws Exception
-    {
+    public void testOrderRuleWithOneGroup() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
         checkConfig.addAttribute("thirdPartyPackageRegExp", "org.");
@@ -138,8 +133,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testSamePackageAndStatic() throws Exception
-    {
+    public void testSamePackageAndStatic() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
         checkConfig.addAttribute("thirdPartyPackageRegExp", "org.");
@@ -162,8 +156,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testOnlySamePackage() throws Exception
-    {
+    public void testOnlySamePackage() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
         checkConfig.addAttribute("customImportOrderRules", "SAME_PACKAGE(3)");
@@ -182,8 +175,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testWithoutLineSeparator() throws Exception
-    {
+    public void testWithoutLineSeparator() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
         checkConfig.addAttribute("thirdPartyPackageRegExp", "org.");
@@ -207,8 +199,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testNoValid() throws Exception
-    {
+    public void testNoValid() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
         checkConfig.addAttribute("thirdPartyPackageRegExp", ".*");
@@ -223,8 +214,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testPossibleIndexOutOfBoundsException() throws Exception
-    {
+    public void testPossibleIndexOutOfBoundsException() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
         checkConfig.addAttribute("thirdPartyPackageRegExp", ".*");
@@ -244,8 +234,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testDefaultPackage2() throws Exception
-    {
+    public void testDefaultPackage2() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
         checkConfig.addAttribute("thirdPartyPackageRegExp", "com|org");
@@ -273,8 +262,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testWithoutThirdPartyPackage() throws Exception
-    {
+    public void testWithoutThirdPartyPackage() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
@@ -290,8 +278,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testThirdPartyAndSpecialImports() throws Exception
-    {
+    public void testThirdPartyAndSpecialImports() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
         checkConfig.addAttribute("specialImportsRegExp", "antlr.*");
@@ -307,8 +294,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testImportsContainingJava() throws Exception
-    {
+    public void testImportsContainingJava() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(CustomImportOrderCheck.class);
         checkConfig.addAttribute("customImportOrderRules",
                 "STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE");

@@ -27,8 +27,7 @@ import java.util.regex.Pattern;
  * Options for a detector.
  * @author Oliver Burn
  */
-class DetectorOptions
-{
+class DetectorOptions {
     /**
      * Flags to compile a regular expression with.
      * See {@link Pattern#flags()}.
@@ -55,8 +54,7 @@ class DetectorOptions
      * @param reporter used to report violations.
      */
     public DetectorOptions(int compileFlags,
-            AbstractViolationReporter reporter)
-    {
+            AbstractViolationReporter reporter) {
         this.compileFlags = compileFlags;
         this.reporter = reporter;
     }
@@ -66,8 +64,7 @@ class DetectorOptions
      * @param format the format to use when matching lines.
      * @return current instance
      */
-    public DetectorOptions setFormat(String format)
-    {
+    public DetectorOptions setFormat(String format) {
         this.format = format;
         return this;
     }
@@ -77,8 +74,7 @@ class DetectorOptions
      * @param message message to use when reporting a match.
      * @return current instance.
      */
-    public DetectorOptions setMessage(String message)
-    {
+    public DetectorOptions setMessage(String message) {
         this.message = message;
         return this;
     }
@@ -88,8 +84,7 @@ class DetectorOptions
      * @param minimum the minimum allowed number of detections.
      * @return current instance
      */
-    public DetectorOptions setMinimum(int minimum)
-    {
+    public DetectorOptions setMinimum(int minimum) {
         this.minimum = minimum;
         return this;
     }
@@ -99,8 +94,7 @@ class DetectorOptions
      * @param maximum the maximum allowed number of detections.
      * @return current instance
      */
-    public DetectorOptions setMaximum(int maximum)
-    {
+    public DetectorOptions setMaximum(int maximum) {
         this.maximum = maximum;
         return this;
     }
@@ -110,8 +104,7 @@ class DetectorOptions
      * @param sup the suppressor to use.
      * @return current instance
      */
-    public DetectorOptions setSuppressor(MatchSuppressor sup)
-    {
+    public DetectorOptions setSuppressor(MatchSuppressor sup) {
         suppressor = sup;
         return this;
     }
@@ -121,8 +114,7 @@ class DetectorOptions
      * @param ignore whether to ignore case when matching.
      * @return current instance
      */
-    public DetectorOptions setIgnoreCase(boolean ignore)
-    {
+    public DetectorOptions setIgnoreCase(boolean ignore) {
         ignoreCase = ignore;
         return this;
     }
@@ -131,8 +123,7 @@ class DetectorOptions
      * Format of the regular expression.
      * @return format of the regular expression.
      */
-    public String getFormat()
-    {
+    public String getFormat() {
         return format;
     }
 
@@ -140,8 +131,7 @@ class DetectorOptions
      * The violation reporter to use.
      * @return the violation reporter to use.
      */
-    public AbstractViolationReporter getReporter()
-    {
+    public AbstractViolationReporter getReporter() {
         return reporter;
     }
 
@@ -149,8 +139,7 @@ class DetectorOptions
      * The message to report errors with.
      * @return the message to report errors with.
      */
-    public String getMessage()
-    {
+    public String getMessage() {
         return message;
     }
 
@@ -158,8 +147,7 @@ class DetectorOptions
      * The minimum number of allowed detections.
      * @return the minimum number of allowed detections.
      */
-    public int getMinimum()
-    {
+    public int getMinimum() {
         return minimum;
     }
 
@@ -167,8 +155,7 @@ class DetectorOptions
      * The maximum number of allowed detections.
      * @return the maximum number of allowed detections.
      */
-    public int getMaximum()
-    {
+    public int getMaximum() {
         return maximum;
     }
 
@@ -176,8 +163,7 @@ class DetectorOptions
      * The suppressor to use.
      * @return the suppressor to use.
      */
-    public MatchSuppressor getSuppressor()
-    {
+    public MatchSuppressor getSuppressor() {
         return suppressor;
     }
 
@@ -185,8 +171,7 @@ class DetectorOptions
      * Whether to ignore case when matching.
      * @return whether to ignore case when matching.
      */
-    public boolean isIgnoreCase()
-    {
+    public boolean isIgnoreCase() {
         return ignoreCase;
     }
 
@@ -194,8 +179,7 @@ class DetectorOptions
      * The pattern to use when matching.
      * @return the pattern to use when matching.
      */
-    public Pattern getPattern()
-    {
+    public Pattern getPattern() {
         final int options = ignoreCase ? compileFlags
                 | Pattern.CASE_INSENSITIVE : compileFlags;
         return Pattern.compile(format, options);

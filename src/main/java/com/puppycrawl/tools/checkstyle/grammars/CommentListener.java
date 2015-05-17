@@ -25,8 +25,7 @@ package com.puppycrawl.tools.checkstyle.grammars;
  *
  * @author o_sukhodolsky
  */
-public interface CommentListener
-{
+public interface CommentListener {
     /**
      * Report the location of a single line comment that extends from the
      * given point to the end of the line. The type of comment is identified

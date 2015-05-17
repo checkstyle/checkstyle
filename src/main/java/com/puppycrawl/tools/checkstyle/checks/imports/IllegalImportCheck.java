@@ -58,8 +58,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Lars Kühne
  */
 public class IllegalImportCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -73,8 +72,7 @@ public class IllegalImportCheck
     /**
      * Creates a new <code>IllegalImportCheck</code> instance.
      */
-    public IllegalImportCheck()
-    {
+    public IllegalImportCheck() {
         setIllegalPkgs("sun");
     }
 
@@ -82,26 +80,22 @@ public class IllegalImportCheck
      * Set the list of illegal packages.
      * @param from array of illegal packages
      */
-    public void setIllegalPkgs(String... from)
-    {
+    public void setIllegalPkgs(String... from) {
         illegalPkgs = from.clone();
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final FullIdent imp;
         if (ast.getType() == TokenTypes.IMPORT) {
             imp = FullIdent.createFullIdentBelow(ast);
@@ -123,8 +117,7 @@ public class IllegalImportCheck
      * @param importText the argument of the import keyword
      * @return if <code>importText</code> contains an illegal package prefix
      */
-    private boolean isIllegalImport(String importText)
-    {
+    private boolean isIllegalImport(String importText) {
         for (String element : illegalPkgs) {
             if (importText.startsWith(element + ".")) {
                 return true;

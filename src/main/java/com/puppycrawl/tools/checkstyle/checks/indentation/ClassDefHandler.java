@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author jrichard
  */
-public class ClassDefHandler extends BlockParentHandler
-{
+public class ClassDefHandler extends BlockParentHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -39,8 +38,7 @@ public class ClassDefHandler extends BlockParentHandler
      */
     public ClassDefHandler(IndentationCheck indentCheck,
                            DetailAST ast,
-                           ExpressionHandler parent)
-    {
+                           ExpressionHandler parent) {
         super(indentCheck,
               ast.getType() == TokenTypes.CLASS_DEF
               ? "class def" : ast.getType() == TokenTypes.ENUM_DEF
@@ -49,35 +47,30 @@ public class ClassDefHandler extends BlockParentHandler
     }
 
     @Override
-    protected DetailAST getLCurly()
-    {
+    protected DetailAST getLCurly() {
         return getMainAst().findFirstToken(TokenTypes.OBJBLOCK)
             .findFirstToken(TokenTypes.LCURLY);
     }
 
     @Override
-    protected DetailAST getRCurly()
-    {
+    protected DetailAST getRCurly() {
         return getMainAst().findFirstToken(TokenTypes.OBJBLOCK)
             .findFirstToken(TokenTypes.RCURLY);
     }
 
     @Override
-    protected DetailAST getToplevelAST()
-    {
+    protected DetailAST getToplevelAST() {
         return null;
         // note: ident checked by hand in check indentation;
     }
 
     @Override
-    protected DetailAST getListChild()
-    {
+    protected DetailAST getListChild() {
         return getMainAst().findFirstToken(TokenTypes.OBJBLOCK);
     }
 
     @Override
-    public void checkIndentation()
-    {
+    public void checkIndentation() {
         final DetailAST modifiers = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
         if (modifiers.getChildCount() == 0) {
             final DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
@@ -98,8 +91,7 @@ public class ClassDefHandler extends BlockParentHandler
     }
 
     @Override
-    protected int[] getCheckedChildren()
-    {
+    protected int[] getCheckedChildren() {
         return new int[] {
             TokenTypes.EXPR,
             TokenTypes.OBJBLOCK,

@@ -42,8 +42,7 @@ import org.apache.commons.beanutils.ConversionException;
  * @author o_sukhodolsky
  */
 public class UncommentedMainCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -69,15 +68,13 @@ public class UncommentedMainCheck
      * @throws ConversionException if unable to create Pattern object
      */
     public void setExcludedClasses(String excludedClasses)
-        throws ConversionException
-    {
+        throws ConversionException {
         this.excludedClasses = excludedClasses;
         excludedClassesPattern = Utils.createPattern(excludedClasses);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.METHOD_DEF,
             TokenTypes.CLASS_DEF,
@@ -86,8 +83,7 @@ public class UncommentedMainCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.METHOD_DEF,
             TokenTypes.CLASS_DEF,
@@ -96,22 +92,19 @@ public class UncommentedMainCheck
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return getDefaultTokens();
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         packageName = FullIdent.createFullIdent(null);
         currentClass = null;
         classDepth = 0;
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.CLASS_DEF) {
             if (classDepth == 1) {
                 currentClass = null;
@@ -121,8 +114,7 @@ public class UncommentedMainCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.PACKAGE_DEF:
                 visitPackageDef(ast);
@@ -142,8 +134,7 @@ public class UncommentedMainCheck
      * Sets current package.
      * @param packageDef node for package definition
      */
-    private void visitPackageDef(DetailAST packageDef)
-    {
+    private void visitPackageDef(DetailAST packageDef) {
         packageName = FullIdent.createFullIdent(packageDef.getLastChild()
                 .getPreviousSibling());
     }
@@ -152,8 +143,7 @@ public class UncommentedMainCheck
      * If not inner class then change current class name.
      * @param classDef node for class definition
      */
-    private void visitClassDef(DetailAST classDef)
-    {
+    private void visitClassDef(DetailAST classDef) {
         // we are not use inner classes because they can not
         // have static methods
         if (classDepth == 0) {
@@ -168,8 +158,7 @@ public class UncommentedMainCheck
      * <code>public static void main(String[])</code>.
      * @param method method definition node
      */
-    private void visitMethodDef(DetailAST method)
-    {
+    private void visitMethodDef(DetailAST method) {
         if (classDepth != 1) {
             // method in inner class or in interface definition
             return;
@@ -179,8 +168,7 @@ public class UncommentedMainCheck
             && checkName(method)
             && checkModifiers(method)
             && checkType(method)
-            && checkParams(method))
-        {
+            && checkParams(method)) {
             log(method.getLineNo(), MSG_KEY);
         }
     }
@@ -189,8 +177,7 @@ public class UncommentedMainCheck
      * Checks that current class is not excluded
      * @return true if check passed, false otherwise
      */
-    private boolean checkClassName()
-    {
+    private boolean checkClassName() {
         return !excludedClassesPattern.matcher(currentClass).find();
     }
 
@@ -199,8 +186,7 @@ public class UncommentedMainCheck
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
-    private boolean checkName(DetailAST method)
-    {
+    private boolean checkName(DetailAST method) {
         final DetailAST ident = method.findFirstToken(TokenTypes.IDENT);
         return "main".equals(ident.getText());
     }
@@ -210,8 +196,7 @@ public class UncommentedMainCheck
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
-    private boolean checkModifiers(DetailAST method)
-    {
+    private boolean checkModifiers(DetailAST method) {
         final DetailAST modifiers =
             method.findFirstToken(TokenTypes.MODIFIERS);
 
@@ -224,8 +209,7 @@ public class UncommentedMainCheck
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
-    private boolean checkType(DetailAST method)
-    {
+    private boolean checkType(DetailAST method) {
         final DetailAST type =
             method.findFirstToken(TokenTypes.TYPE).getFirstChild();
         return type.getType() == TokenTypes.LITERAL_VOID;
@@ -236,8 +220,7 @@ public class UncommentedMainCheck
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
-    private boolean checkParams(DetailAST method)
-    {
+    private boolean checkParams(DetailAST method) {
         final DetailAST params = method.findFirstToken(TokenTypes.PARAMETERS);
         if (params.getChildCount() != 1) {
             return false;
@@ -253,8 +236,7 @@ public class UncommentedMainCheck
         final DetailAST arrayType = arrayDecl.getFirstChild();
 
         if (arrayType.getType() == TokenTypes.IDENT
-            || arrayType.getType() == TokenTypes.DOT)
-        {
+            || arrayType.getType() == TokenTypes.DOT) {
             final FullIdent type = FullIdent.createFullIdent(arrayType);
             return "String".equals(type.getText())
                     || "java.lang.String".equals(type.getText());

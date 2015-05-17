@@ -51,8 +51,7 @@ import java.util.regex.Pattern;
  * @author Rick Giles
  */
 public class IllegalTokenTextCheck
-    extends AbstractFormatCheck
-{
+    extends AbstractFormatCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -69,25 +68,21 @@ public class IllegalTokenTextCheck
     /**
      * Instantiates a new instance.
      */
-    public IllegalTokenTextCheck()
-    {
+    public IllegalTokenTextCheck() {
         super("$^"); // the empty language
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[0];
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         // Any tokens set by property 'tokens' are acceptable
         final Set<String> tokenNames = getTokenNames();
         final int[] result = new int[tokenNames.size()];
@@ -100,8 +95,7 @@ public class IllegalTokenTextCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final String text = ast.getText();
         if (getRegexp().matcher(text).find()) {
             String message = getMessage();
@@ -121,8 +115,7 @@ public class IllegalTokenTextCheck
      * @param message custom message which should be used
      *                 to report about violations.
      */
-    public void setMessage(String message)
-    {
+    public void setMessage(String message) {
         this.message = null == message ? "" : message;
     }
 
@@ -131,8 +124,7 @@ public class IllegalTokenTextCheck
      * @return custom message which should be used
      * to report about violations.
      */
-    public String getMessage()
-    {
+    public String getMessage() {
         return message;
     }
 
@@ -140,8 +132,7 @@ public class IllegalTokenTextCheck
      * Set whether or not the match is case sensitive.
      * @param caseInsensitive true if the match is case insensitive.
      */
-    public void setIgnoreCase(boolean caseInsensitive)
-    {
+    public void setIgnoreCase(boolean caseInsensitive) {
         if (caseInsensitive) {
             setCompileFlags(Pattern.CASE_INSENSITIVE);
         }

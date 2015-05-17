@@ -85,8 +85,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *
  * @author lkuehne
  */
-public class AvoidNestedBlocksCheck extends Check
-{
+public class AvoidNestedBlocksCheck extends Check {
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -100,26 +99,22 @@ public class AvoidNestedBlocksCheck extends Check
     private boolean allowInSwitchCase;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.SLIST};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.SLIST};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         if (parent.getType() == TokenTypes.SLIST) {
             if (allowInSwitchCase
                     && parent.getParent().getType() == TokenTypes.CASE_GROUP
-                    && parent.getNumberOfChildren() == 1)
-            {
+                    && parent.getNumberOfChildren() == 1) {
                 return;
             }
             log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY_BLOCK_NESTED);
@@ -131,8 +126,7 @@ public class AvoidNestedBlocksCheck extends Check
      * @param allowInSwitchCase whether nested blocks are allowed
      *                 if they are the only child of a switch case.
      */
-    public void setAllowInSwitchCase(boolean allowInSwitchCase)
-    {
+    public void setAllowInSwitchCase(boolean allowInSwitchCase) {
         this.allowInSwitchCase = allowInSwitchCase;
     }
 }

@@ -26,12 +26,10 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED;
 
 public class AvoidNestedBlocksCheckTest
-        extends BaseCheckTestSupport
-{
+        extends BaseCheckTestSupport {
     @Test
     public void testStrictSettings()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidNestedBlocksCheck.class);
         final String[] expected = {
@@ -45,8 +43,7 @@ public class AvoidNestedBlocksCheckTest
 
     @Test
     public void testAllowSwitchInCase()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidNestedBlocksCheck.class);
         checkConfig.addAttribute("allowInSwitchCase", Boolean.TRUE.toString());

@@ -29,11 +29,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck.MSG_KEY;
 
 public class IllegalInstantiationCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
-    public void testIt() throws Exception
-    {
+    public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(IllegalInstantiationCheck.class);
         checkConfig.addAttribute(
@@ -54,8 +52,7 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
-    public void testJava8() throws Exception
-    {
+    public void testJava8() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(IllegalInstantiationCheck.class);
         final String[] expected = {};

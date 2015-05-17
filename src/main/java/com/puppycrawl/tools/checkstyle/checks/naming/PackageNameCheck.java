@@ -61,13 +61,11 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * @author Oliver Burn
  */
 public class PackageNameCheck
-    extends AbstractFormatCheck
-{
+    extends AbstractFormatCheck {
     /**
      * Creates a new <code>PackageNameCheck</code> instance.
      */
-    public PackageNameCheck()
-    {
+    public PackageNameCheck() {
         // Uppercase letters seem rather uncommon, but they're allowed in
         // http://docs.oracle.com/javase/specs/
         //   second_edition/html/packages.doc.html#40169
@@ -75,20 +73,17 @@ public class PackageNameCheck
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.PACKAGE_DEF};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.PACKAGE_DEF};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final DetailAST nameAST = ast.getLastChild().getPreviousSibling();
         final FullIdent full = FullIdent.createFullIdent(nameAST);
         if (!getRegexp().matcher(full.getText()).find()) {

@@ -25,8 +25,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
  * Represents a Javadoc tag. Provides methods to query what type of tag it is.
  * @author Oliver Burn
  */
-public class JavadocTag
-{
+public class JavadocTag {
     /** the line number of the tag **/
     private final int lineNo;
     /** the column number of the tag **/
@@ -43,8 +42,7 @@ public class JavadocTag
      * @param tag the tag string
      * @param arg1 the tag argument
      **/
-    public JavadocTag(int line, int column, String tag, String arg1)
-    {
+    public JavadocTag(int line, int column, String tag, String arg1) {
         lineNo = line;
         columnNo = column;
         this.arg1 = arg1;
@@ -57,82 +55,69 @@ public class JavadocTag
      * @param column the column number of the tag
      * @param tag the tag string
      **/
-    public JavadocTag(int line, int column, String tag)
-    {
+    public JavadocTag(int line, int column, String tag) {
         this(line, column, tag, null);
     }
 
     /** @return the tag string **/
-    public String getTagName()
-    {
+    public String getTagName() {
         return tagInfo.getName();
     }
 
     /** @return the first argument. null if not set. **/
-    public String getArg1()
-    {
+    public String getArg1() {
         return arg1;
     }
 
     /** @return the line number **/
-    public int getLineNo()
-    {
+    public int getLineNo() {
         return lineNo;
     }
 
     /** @return the column number */
-    public int getColumnNo()
-    {
+    public int getColumnNo() {
         return columnNo;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "{Tag = '" + getTagName() + "', lineNo = " + getLineNo()
             + ", columnNo=" + columnNo + ", Arg1 = '" + getArg1() + "'}";
     }
 
     /** @return whether the tag is an 'author' tag **/
-    public boolean isAuthorTag()
-    {
+    public boolean isAuthorTag() {
         return JavadocTagInfo.AUTHOR == tagInfo;
     }
 
     /** @return whether the tag is an 'return' tag **/
-    public boolean isReturnTag()
-    {
+    public boolean isReturnTag() {
         return JavadocTagInfo.RETURN == tagInfo;
     }
 
     /** @return whether the tag is an 'param' tag **/
-    public boolean isParamTag()
-    {
+    public boolean isParamTag() {
         return JavadocTagInfo.PARAM == tagInfo;
     }
 
     /** @return whether the tag is an 'throws' or 'exception' tag **/
-    public boolean isThrowsTag()
-    {
+    public boolean isThrowsTag() {
         return JavadocTagInfo.THROWS == tagInfo
             || JavadocTagInfo.EXCEPTION == tagInfo;
     }
 
     /** @return whether the tag is a 'see' or 'inheritDoc' tag **/
-    public boolean isSeeOrInheritDocTag()
-    {
+    public boolean isSeeOrInheritDocTag() {
         return JavadocTagInfo.SEE == tagInfo || isInheritDocTag();
     }
 
     /** @return whether the tag is a 'inheritDoc' tag **/
-    public boolean isInheritDocTag()
-    {
+    public boolean isInheritDocTag() {
         return JavadocTagInfo.INHERIT_DOC == tagInfo;
     }
 
     /** @return whether the tag can contain references to imported classes **/
-    public boolean canReferenceImports()
-    {
+    public boolean canReferenceImports() {
         return JavadocTagInfo.SEE == tagInfo
                 || JavadocTagInfo.LINK == tagInfo
                 || JavadocTagInfo.LINKPLAIN == tagInfo

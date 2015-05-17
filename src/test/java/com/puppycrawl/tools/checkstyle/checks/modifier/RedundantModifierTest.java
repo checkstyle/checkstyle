@@ -29,11 +29,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck.MSG_KEY;
 
 public class RedundantModifierTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
-    public void testIt() throws Exception
-    {
+    public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = {
@@ -57,8 +55,7 @@ public class RedundantModifierTest
 
     @Test
     public void testStaticMethodInInterface()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = {
@@ -71,8 +68,7 @@ public class RedundantModifierTest
 
     @Test
     public void testFinalInInterface()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = {

@@ -45,8 +45,7 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
  * @author Rick Giles
  */
 public final class SuppressionsLoader
-    extends AbstractLoader
-{
+    extends AbstractLoader {
     /** the public ID for the configuration dtd */
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Suppressions 1.0//EN";
@@ -72,8 +71,7 @@ public final class SuppressionsLoader
      * @throws SAXException if an error occurs
      */
     private SuppressionsLoader()
-        throws ParserConfigurationException, SAXException
-    {
+        throws ParserConfigurationException, SAXException {
         super(createIdToResourceNameMap());
     }
 
@@ -81,8 +79,7 @@ public final class SuppressionsLoader
      * Returns the loaded filter chain.
      * @return the loaded filter chain.
      */
-    public FilterSet getFilterChain()
-    {
+    public FilterSet getFilterChain() {
         return filterChain;
     }
 
@@ -91,8 +88,7 @@ public final class SuppressionsLoader
                              String localName,
                              String qName,
                              Attributes atts)
-        throws SAXException
-    {
+        throws SAXException {
         if ("suppress".equals(qName)) {
             //add SuppressElement filter to the filter chain
             final String files = atts.getValue("files");
@@ -136,8 +132,7 @@ public final class SuppressionsLoader
      * @throws CheckstyleException if an error occurs.
      */
     public static FilterSet loadSuppressions(String filename)
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         try {
             // figure out if this is a File or a URL
             URI uri;
@@ -189,8 +184,7 @@ public final class SuppressionsLoader
      */
     private static FilterSet loadSuppressions(
             InputSource source, String sourceName)
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         try {
             final SuppressionsLoader suppressionsLoader =
                 new SuppressionsLoader();
@@ -220,8 +214,7 @@ public final class SuppressionsLoader
      * Creates mapping between local resources and dtd ids.
      * @return map between local resources and dtd ids.
      */
-    private static Map<String, String> createIdToResourceNameMap()
-    {
+    private static Map<String, String> createIdToResourceNameMap() {
         final Map<String, String> map = Maps.newHashMap();
         map.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
         map.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);

@@ -34,12 +34,10 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class JavadocUtilsTest
-{
+public class JavadocUtilsTest {
 
     @Test
-    public void testTags()
-    {
+    public void testTags() {
         final String[] text = {
             "/** @see elsewhere ",
             " * {@link List }, {@link List link text }",
@@ -53,8 +51,7 @@ public class JavadocUtilsTest
     }
 
     @Test
-    public void testTagType()
-    {
+    public void testTagType() {
         final String[] text = {
             "/** @see block",
             " * {@link List inline}, {@link List#add(Object)}",
@@ -69,8 +66,7 @@ public class JavadocUtilsTest
     }
 
     @Test
-    public void testInlineTagLinkText()
-    {
+    public void testInlineTagLinkText() {
         final String[] text = {
             "/** {@link List link text }",
         };
@@ -81,8 +77,7 @@ public class JavadocUtilsTest
     }
 
     @Test
-    public void testInlineTagMethodRef()
-    {
+    public void testInlineTagMethodRef() {
         final String[] text = {
             "/** {@link List#add(Object)}",
         };
@@ -93,8 +88,7 @@ public class JavadocUtilsTest
     }
 
     @Test
-    public void testTagPositions()
-    {
+    public void testTagPositions() {
         final String[] text = {
             "/** @see elsewhere",
             "    also {@link Name value} */",
@@ -121,8 +115,7 @@ public class JavadocUtilsTest
     }
 
     @Test
-    public void testInvalidTags()
-    {
+    public void testInvalidTags() {
         final String[] text = {
             "/** @fake block",
             " * {@bogus inline}",
@@ -136,15 +129,13 @@ public class JavadocUtilsTest
     }
 
     @Test
-    public void testEmptyBlockComment()
-    {
+    public void testEmptyBlockComment() {
         final String emptyComment = "";
         assertFalse(JavadocUtils.isJavadocComment(emptyComment));
     }
 
     @Test
-    public void testEmptyBlockCommentAst()
-    {
+    public void testEmptyBlockCommentAst() {
         DetailAST commentBegin = new DetailAST();
         commentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
         commentBegin.setText("/*");
@@ -164,15 +155,13 @@ public class JavadocUtilsTest
     }
 
     @Test
-    public void testEmptyJavadocComment()
-    {
+    public void testEmptyJavadocComment() {
         final String emptyJavadocComment = "*";
         assertTrue(JavadocUtils.isJavadocComment(emptyJavadocComment));
     }
 
     @Test
-    public void testEmptyJavadocCommentAst()
-    {
+    public void testEmptyJavadocCommentAst() {
         DetailAST commentBegin = new DetailAST();
         commentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
         commentBegin.setText("/*");
@@ -192,8 +181,7 @@ public class JavadocUtilsTest
     }
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException
-    {
+    public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertUtilsClassHasPrivateConstructor(JavadocUtils.class);
     }
 }

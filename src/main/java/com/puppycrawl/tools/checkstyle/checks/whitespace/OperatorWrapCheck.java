@@ -88,8 +88,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author Rick Giles
  */
 public class OperatorWrapCheck
-    extends AbstractOptionCheck<WrapOption>
-{
+    extends AbstractOptionCheck<WrapOption> {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -106,14 +105,12 @@ public class OperatorWrapCheck
     /**
      * Sets the operator wrap option to new line.
      */
-    public OperatorWrapCheck()
-    {
+    public OperatorWrapCheck() {
         super(WrapOption.NL, WrapOption.class);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.QUESTION,          // '?'
             TokenTypes.COLON,             // ':' (not reported for a case)
@@ -142,8 +139,7 @@ public class OperatorWrapCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.QUESTION,          // '?'
             TokenTypes.COLON,             // ':' (not reported for a case)
@@ -185,13 +181,11 @@ public class OperatorWrapCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.COLON) {
             final DetailAST parent = ast.getParent();
             if (parent.getType() == TokenTypes.LITERAL_DEFAULT
-                || parent.getType() == TokenTypes.LITERAL_CASE)
-            {
+                || parent.getType() == TokenTypes.LITERAL_CASE) {
                 //we do not want to check colon for cases and defaults
                 return;
             }
@@ -208,13 +202,11 @@ public class OperatorWrapCheck
         // itself.
         if (wOp == WrapOption.NL
                 && !text.equals(currentLine.trim())
-                && StringUtils.isBlank(currentLine.substring(colNo + text.length())))
-        {
+                && StringUtils.isBlank(currentLine.substring(colNo + text.length()))) {
             log(lineNo, colNo, LINE_NEW, text);
         }
         else if (wOp == WrapOption.EOL
-                  && Utils.whitespaceBefore(colNo - 1, currentLine))
-        {
+                  && Utils.whitespaceBefore(colNo - 1, currentLine)) {
             log(lineNo, colNo, LINE_PREVIOUS, text);
         }
     }

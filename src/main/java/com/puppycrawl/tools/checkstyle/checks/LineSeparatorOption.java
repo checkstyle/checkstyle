@@ -25,8 +25,7 @@ package com.puppycrawl.tools.checkstyle.checks;
  * @author lkuehne
  * @see NewlineAtEndOfFileCheck
  */
-public enum LineSeparatorOption
-{
+public enum LineSeparatorOption {
     /** Windows-style line separators. **/
     CRLF("\r\n"),
 
@@ -46,8 +45,7 @@ public enum LineSeparatorOption
      * Creates a new <code>LineSeparatorOption</code> instance.
      * @param sep the line separator, e.g. "\r\n"
      */
-    private LineSeparatorOption(String sep)
-    {
+    private LineSeparatorOption(String sep) {
         lineSeparator = sep;
     }
 
@@ -56,8 +54,7 @@ public enum LineSeparatorOption
      * @return if bytes is equal to the byte representation
      * of this line separator
      */
-    public boolean matches(byte... bytes)
-    {
+    public boolean matches(byte... bytes) {
         final String s = new String(bytes);
         return s.equals(lineSeparator);
     }
@@ -66,8 +63,7 @@ public enum LineSeparatorOption
      * @return the length of the file separator,
      * e.g. 1 for CR, 2 for CRLF, ...
      */
-    public int length()
-    {
+    public int length() {
         return lineSeparator.length();
     }
 }

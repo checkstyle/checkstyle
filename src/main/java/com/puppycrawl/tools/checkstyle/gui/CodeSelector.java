@@ -27,8 +27,7 @@ import javax.swing.JTextArea;
 /**
  * Helper class to select a code.
  */
-public class CodeSelector
-{
+public class CodeSelector {
     /** DetailAST node*/
     private final DetailAST ast;
     /** editor */
@@ -43,8 +42,7 @@ public class CodeSelector
      * @param lines2position
      */
     public CodeSelector(final DetailAST ast, final JTextArea editor,
-                        final List<Integer> lines2position)
-    {
+                        final List<Integer> lines2position) {
         this.ast = ast;
         this.editor = editor;
         this.lines2position = lines2position;
@@ -64,15 +62,12 @@ public class CodeSelector
         editor.transferFocusBackward();
     }
 
-    private int findLastPosition(final DetailAST ast)
-    {
-        if (ast.getChildCount() == 0)
-        {
+    private int findLastPosition(final DetailAST ast) {
+        if (ast.getChildCount() == 0) {
             return lines2position.get(ast.getLineNo()) + ast.getColumnNo()
                 + ast.getText().length();
         }
-        else
-        {
+        else {
             return findLastPosition(ast.getLastChild());
         }
     }

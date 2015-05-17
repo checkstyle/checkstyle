@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author liscju piotr.listkiewicz@gmail.com
  */
-public class SynchronizedHandler extends BlockParentHandler
-{
+public class SynchronizedHandler extends BlockParentHandler {
 
     /**
      * Determine that "synchronized" token used as modifier of method
@@ -44,15 +43,13 @@ public class SynchronizedHandler extends BlockParentHandler
      * @param parent      the parent handler
      */
     public SynchronizedHandler(IndentationCheck indentCheck, DetailAST ast,
-                               ExpressionHandler parent)
-    {
+                               ExpressionHandler parent) {
         super(indentCheck, "synchronized", ast, parent);
         methodModifier = isMethodModifier(ast);
     }
 
     @Override
-    public void checkIndentation()
-    {
+    public void checkIndentation() {
         if (!methodModifier) {
             super.checkIndentation();
             checkSynchronizedExpr();
@@ -66,8 +63,7 @@ public class SynchronizedHandler extends BlockParentHandler
     /**
      * Check identation of expression we synchronized on
      */
-    private void checkSynchronizedExpr()
-    {
+    private void checkSynchronizedExpr() {
         final DetailAST syncAst = getMainAst().findFirstToken(TokenTypes.LPAREN)
                 .getNextSibling();
         final IndentLevel expected =
@@ -80,8 +76,7 @@ public class SynchronizedHandler extends BlockParentHandler
      * @param ast synchronized(TokenTypes.LITERAL_SYNCHRONIZED) to check
      * @return true if synchronized only modifies method
      */
-    private static boolean isMethodModifier(DetailAST ast)
-    {
+    private static boolean isMethodModifier(DetailAST ast) {
         return ast.getParent().getType() == TokenTypes.MODIFIERS;
     }
 
@@ -90,8 +85,7 @@ public class SynchronizedHandler extends BlockParentHandler
      * @param syncStatementAST ast node(TokenTypes.LITERAL_SYNCHRONIZED)
      * @return right parenthesis of synchronized statement.
      */
-    private static DetailAST getSynchronizedStatementRightParen(DetailAST syncStatementAST)
-    {
+    private static DetailAST getSynchronizedStatementRightParen(DetailAST syncStatementAST) {
         return syncStatementAST.findFirstToken(TokenTypes.RPAREN);
     }
 }

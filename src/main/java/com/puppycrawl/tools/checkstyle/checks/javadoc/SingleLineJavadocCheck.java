@@ -37,8 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * @author maxvetrenko
  *
  */
-public class SingleLineJavadocCheck extends AbstractJavadocCheck
-{
+public class SingleLineJavadocCheck extends AbstractJavadocCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -47,19 +46,16 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck
     public static final String MSG_KEY = "singleline.javadoc";
 
     @Override
-    public int[] getDefaultJavadocTokens()
-    {
+    public int[] getDefaultJavadocTokens() {
         return new int[] {
             JavadocTokenTypes.JAVADOC,
         };
     }
 
     @Override
-    public void visitJavadocToken(DetailNode ast)
-    {
+    public void visitJavadocToken(DetailNode ast) {
         if (isSingleLineJavadoc()
-                && (hasJavadocTags(ast) || hasJavadocInlineTags(ast)))
-        {
+                && (hasJavadocTags(ast) || hasJavadocInlineTags(ast))) {
             log(ast.getLineNumber(), "singleline.javadoc");
         }
     }
@@ -69,8 +65,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck
      *
      * @return true, if comment is single line comment.
      */
-    private boolean isSingleLineJavadoc()
-    {
+    private boolean isSingleLineJavadoc() {
         final DetailAST blockCommentStart = getBlockCommentAst();
         final DetailAST blockCommentEnd = blockCommentStart.getLastChild();
 
@@ -83,8 +78,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck
      * @param javadocRoot javadoc root node.
      * @return true, if comment has javadoc tags.
      */
-    private boolean hasJavadocTags(DetailNode javadocRoot)
-    {
+    private boolean hasJavadocTags(DetailNode javadocRoot) {
         final DetailNode javadocTagSection =
                 JavadocUtils.findFirstToken(javadocRoot, JavadocTokenTypes.JAVADOC_TAG);
         return javadocTagSection != null;
@@ -96,8 +90,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck
      * @param javadocRoot javadoc root node.
      * @return true, if comment has in-line tags tags.
      */
-    private boolean hasJavadocInlineTags(DetailNode javadocRoot)
-    {
+    private boolean hasJavadocInlineTags(DetailNode javadocRoot) {
         return JavadocUtils.branchContains(javadocRoot, JavadocTokenTypes.JAVADOC_INLINE_TAG);
     }
 }

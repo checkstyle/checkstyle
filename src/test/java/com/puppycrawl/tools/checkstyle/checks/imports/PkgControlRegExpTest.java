@@ -25,14 +25,12 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PkgControlRegExpTest
-{
+public class PkgControlRegExpTest {
     private final PkgControl pcRoot = new PkgControl("com.kazgroup.courtlink");
     private final PkgControl pcCommon = new PkgControl(pcRoot, "common");
 
     @Before
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         pcRoot.addGuard(new Guard(false, false, ".*\\.(spring|lui)framework", false, true));
         pcRoot.addGuard(new Guard(false, false, "org\\.hibernate", false, true));
         pcRoot.addGuard(new Guard(true, false, "org\\.(apache|lui)\\.commons", false, true));
@@ -41,15 +39,13 @@ public class PkgControlRegExpTest
     }
 
     @Test
-    public void testFullPkg()
-    {
+    public void testFullPkg() {
         assertEquals("com.kazgroup.courtlink", pcRoot.getFullPackage());
         assertEquals("com.kazgroup.courtlink.common", pcCommon.getFullPackage());
     }
 
     @Test
-    public void testLocateFinest()
-    {
+    public void testLocateFinest() {
         assertEquals(pcRoot, pcRoot
                 .locateFinest("com.kazgroup.courtlink.domain"));
         assertEquals(pcCommon, pcRoot
@@ -58,8 +54,7 @@ public class PkgControlRegExpTest
     }
 
     @Test
-    public void testCheckAccess()
-    {
+    public void testCheckAccess() {
         assertEquals(AccessResult.DISALLOWED, pcCommon.checkAccess(
                 "org.springframework.something",
                 "com.kazgroup.courtlink.common"));
@@ -91,8 +86,7 @@ public class PkgControlRegExpTest
     }
 
     @Test
-    public void testUnknownPkg()
-    {
+    public void testUnknownPkg() {
         assertNull(pcRoot.locateFinest("net.another"));
     }
 }

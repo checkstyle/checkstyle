@@ -36,8 +36,7 @@ import java.util.regex.Pattern;
  * @author Oliver Burn
  */
 public class JavadocVariableCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -61,8 +60,7 @@ public class JavadocVariableCheck
      * Sets the scope to check.
      * @param from string to get the scope from
      */
-    public void setScope(String from)
-    {
+    public void setScope(String from) {
         scope = Scope.getInstance(from);
     }
 
@@ -70,8 +68,7 @@ public class JavadocVariableCheck
      * Set the excludeScope.
      * @param scope a <code>String</code> value
      */
-    public void setExcludeScope(String scope)
-    {
+    public void setExcludeScope(String scope) {
         excludeScope = Scope.getInstance(scope);
     }
 
@@ -80,8 +77,7 @@ public class JavadocVariableCheck
      * @param regexp regular expression to define variable names to ignore.
      * @throws org.apache.commons.beanutils.ConversionException if unable to create Pattern object.
      */
-    public void setIgnoreNamePattern(String regexp)
-    {
+    public void setIgnoreNamePattern(String regexp) {
         ignoreNameRegexp = regexp;
         if (!(regexp == null || regexp.length() == 0)) {
             ignoreNamePattern = Utils.createPattern(regexp);
@@ -95,14 +91,12 @@ public class JavadocVariableCheck
      * Gets the variable names to ignore in the check.
      * @return true regexp string to define variable names to ignore.
      */
-    public String getIgnoreNamePattern()
-    {
+    public String getIgnoreNamePattern() {
         return ignoreNameRegexp;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
@@ -110,8 +104,7 @@ public class JavadocVariableCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
@@ -119,8 +112,7 @@ public class JavadocVariableCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (shouldCheck(ast)) {
             final FileContents contents = getFileContents();
             final TextBlock cmt =
@@ -137,8 +129,7 @@ public class JavadocVariableCheck
      * @param ast the AST to check
      * @return true if the variable name of ast is in the ignore list.
      */
-    private boolean isIgnored(DetailAST ast)
-    {
+    private boolean isIgnored(DetailAST ast) {
         final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
         return ignoreNamePattern != null
                 && ignoreNamePattern.matcher(name).matches();
@@ -149,8 +140,7 @@ public class JavadocVariableCheck
      * @param ast a given node.
      * @return whether we should check a given node.
      */
-    private boolean shouldCheck(final DetailAST ast)
-    {
+    private boolean shouldCheck(final DetailAST ast) {
         if (ScopeUtils.inCodeBlock(ast) || isIgnored(ast)) {
             return false;
         }

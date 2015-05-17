@@ -30,19 +30,16 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCh
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.WS_PRECEDED;
 
 public class MethodParamPadCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(MethodParamPadCheck.class);
     }
 
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final String[] expected = {
             "11:32: " + getCheckMessage(WS_PRECEDED, "("),
             "13:15: " + getCheckMessage(WS_PRECEDED, "("),
@@ -65,8 +62,7 @@ public class MethodParamPadCheckTest
     }
 
     @Test
-    public void testAllowLineBreaks() throws Exception
-    {
+    public void testAllowLineBreaks() throws Exception {
         checkConfig.addAttribute("allowLineBreaks", "true");
         final String[] expected = {
             "11:32: " + getCheckMessage(WS_PRECEDED, "("),
@@ -82,8 +78,7 @@ public class MethodParamPadCheckTest
     }
 
     @Test
-    public void testSpaceOption() throws Exception
-    {
+    public void testSpaceOption() throws Exception {
         checkConfig.addAttribute("option", "space");
         final String[] expected = {
             "6:31: " + getCheckMessage(WS_NOT_PRECEDED, "("),
@@ -112,8 +107,7 @@ public class MethodParamPadCheckTest
     }
 
     @Test
-    public void test1322879() throws Exception
-    {
+    public void test1322879() throws Exception {
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = {
         };

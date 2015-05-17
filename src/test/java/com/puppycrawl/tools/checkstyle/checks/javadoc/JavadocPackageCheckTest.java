@@ -28,20 +28,17 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck.MSG_PACKAGE_INFO;
 
 public class JavadocPackageCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Override
     protected DefaultConfiguration createCheckerConfig(
-        Configuration aCheckConfig)
-    {
+        Configuration aCheckConfig) {
         final DefaultConfiguration dc = new DefaultConfiguration("root");
         dc.addChild(aCheckConfig);
         return dc;
     }
 
     @Test
-    public void testMissing() throws Exception
-    {
+    public void testMissing() throws Exception {
         final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         final String[] expected = {
             "0: " + getCheckMessage(MSG_PACKAGE_INFO),
@@ -54,8 +51,7 @@ public class JavadocPackageCheckTest
     }
 
     @Test
-    public void testBoth() throws Exception
-    {
+    public void testBoth() throws Exception {
         final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         final String[] expected = {
             "0: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
@@ -66,8 +62,7 @@ public class JavadocPackageCheckTest
     }
 
     @Test
-    public void testHtmlDisallowed() throws Exception
-    {
+    public void testHtmlDisallowed() throws Exception {
         final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         final String[] expected = {
             "0: Missing package-info.java file.",
@@ -78,8 +73,7 @@ public class JavadocPackageCheckTest
     }
 
     @Test
-    public void testHtmlAllowed() throws Exception
-    {
+    public void testHtmlAllowed() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         checkConfig.addAttribute("allowLegacy", "true");
         final String[] expected = {};
@@ -89,8 +83,7 @@ public class JavadocPackageCheckTest
     }
 
     @Test
-    public void testAnnotation() throws Exception
-    {
+    public void testAnnotation() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         final String[] expected = {};
         verify(createChecker(checkConfig),

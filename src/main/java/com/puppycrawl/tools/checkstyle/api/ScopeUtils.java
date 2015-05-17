@@ -32,11 +32,9 @@ import antlr.collections.AST;
  *
  */
 @Deprecated
-public final class ScopeUtils
-{
+public final class ScopeUtils {
     /** prevent instantiation */
-    private ScopeUtils()
-    {
+    private ScopeUtils() {
     }
 
     /**
@@ -45,13 +43,11 @@ public final class ScopeUtils
      * @param aMods root node of a modifier set
      * @return a <code>Scope</code> value
      */
-    public static Scope getScopeFromMods(DetailAST aMods)
-    {
+    public static Scope getScopeFromMods(DetailAST aMods) {
         Scope retVal = Scope.PACKAGE; // default scope
         for (AST token = aMods.getFirstChild();
             token != null;
-            token = token.getNextSibling())
-        {
+            token = token.getNextSibling()) {
             if ("public".equals(token.getText())) {
                 retVal = Scope.PUBLIC;
                 break;
@@ -73,19 +69,16 @@ public final class ScopeUtils
      * @param aAST the node to return the scope for
      * @return the Scope of the surrounding block
      */
-    public static Scope getSurroundingScope(DetailAST aAST)
-    {
+    public static Scope getSurroundingScope(DetailAST aAST) {
         Scope retVal = null;
         for (DetailAST token = aAST.getParent();
              token != null;
-             token = token.getParent())
-        {
+             token = token.getParent()) {
             final int type = token.getType();
             if (type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.INTERFACE_DEF
                 || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.ENUM_DEF)
-            {
+                || type == TokenTypes.ENUM_DEF) {
                 final DetailAST mods =
                     token.findFirstToken(TokenTypes.MODIFIERS);
                 final Scope modScope = ScopeUtils.getScopeFromMods(mods);
@@ -109,20 +102,17 @@ public final class ScopeUtils
      * block
      * @return a <code>boolean</code> value
      */
-    public static boolean inInterfaceBlock(DetailAST aAST)
-    {
+    public static boolean inInterfaceBlock(DetailAST aAST) {
         boolean retVal = false;
 
         // Loop up looking for a containing interface block
         for (DetailAST token = aAST.getParent();
              token != null;
-             token = token.getParent())
-        {
+             token = token.getParent()) {
             final int type = token.getType();
             if (type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.ANNOTATION_DEF)
-            {
+                || type == TokenTypes.ANNOTATION_DEF) {
                 break; // in a class, enum or annotation
             }
             else if (type == TokenTypes.LITERAL_NEW) {
@@ -144,20 +134,17 @@ public final class ScopeUtils
      * block
      * @return a <code>boolean</code> value
      */
-    public static boolean inAnnotationBlock(DetailAST aAST)
-    {
+    public static boolean inAnnotationBlock(DetailAST aAST) {
         boolean retVal = false;
 
         // Loop up looking for a containing interface block
         for (DetailAST token = aAST.getParent();
              token != null;
-             token = token.getParent())
-        {
+             token = token.getParent()) {
             final int type = token.getType();
             if (type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.INTERFACE_DEF)
-            {
+                || type == TokenTypes.INTERFACE_DEF) {
                 break; // in a class, enum or interface
             }
             else if (type == TokenTypes.LITERAL_NEW) {
@@ -180,8 +167,7 @@ public final class ScopeUtils
      * or annotation block
      * @return a <code>boolean</code> value
      */
-    public static boolean inInterfaceOrAnnotationBlock(DetailAST aAST)
-    {
+    public static boolean inInterfaceOrAnnotationBlock(DetailAST aAST) {
         return inInterfaceBlock(aAST) || inAnnotationBlock(aAST);
     }
 
@@ -192,20 +178,17 @@ public final class ScopeUtils
      * block
      * @return a <code>boolean</code> value
      */
-    public static boolean inEnumBlock(DetailAST aAST)
-    {
+    public static boolean inEnumBlock(DetailAST aAST) {
         boolean retVal = false;
 
         // Loop up looking for a containing interface block
         for (DetailAST token = aAST.getParent();
              token != null;
-             token = token.getParent())
-        {
+             token = token.getParent()) {
             final int type = token.getType();
             if (type == TokenTypes.INTERFACE_DEF
                 || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.CLASS_DEF)
-            {
+                || type == TokenTypes.CLASS_DEF) {
                 break; // in an interface, annotation or class
             }
             else if (type == TokenTypes.LITERAL_NEW) {
@@ -227,21 +210,18 @@ public final class ScopeUtils
      * @param aAST the node to check
      * @return a <code>boolean</code> value
      */
-    public static boolean inCodeBlock(DetailAST aAST)
-    {
+    public static boolean inCodeBlock(DetailAST aAST) {
         boolean retVal = false;
 
         // Loop up looking for a containing code block
         for (DetailAST token = aAST.getParent();
              token != null;
-             token = token.getParent())
-        {
+             token = token.getParent()) {
             final int type = token.getType();
             if (type == TokenTypes.METHOD_DEF
                 || type == TokenTypes.CTOR_DEF
                 || type == TokenTypes.INSTANCE_INIT
-                || type == TokenTypes.STATIC_INIT)
-            {
+                || type == TokenTypes.STATIC_INIT) {
                 retVal = true;
                 break;
             }
@@ -256,18 +236,15 @@ public final class ScopeUtils
      * @param aAST the node to check
      * @return a <code>boolean</code> value
      */
-    public static boolean isOuterMostType(DetailAST aAST)
-    {
+    public static boolean isOuterMostType(DetailAST aAST) {
         boolean retVal = true;
         for (DetailAST parent = aAST.getParent();
              parent != null;
-             parent = parent.getParent())
-        {
+             parent = parent.getParent()) {
             if (parent.getType() == TokenTypes.CLASS_DEF
                 || parent.getType() == TokenTypes.INTERFACE_DEF
                 || parent.getType() == TokenTypes.ANNOTATION_DEF
-                || parent.getType() == TokenTypes.ENUM_DEF)
-            {
+                || parent.getType() == TokenTypes.ENUM_DEF) {
                 retVal = false;
                 break;
             }
@@ -283,8 +260,7 @@ public final class ScopeUtils
      * @param aAST the node to check.
      * @return whether aAST is a local variable definition.
      */
-    public static boolean isLocalVariableDef(DetailAST aAST)
-    {
+    public static boolean isLocalVariableDef(DetailAST aAST) {
         // variable declaration?
         if (aAST.getType() == TokenTypes.VARIABLE_DEF) {
             final DetailAST parent = aAST.getParent();

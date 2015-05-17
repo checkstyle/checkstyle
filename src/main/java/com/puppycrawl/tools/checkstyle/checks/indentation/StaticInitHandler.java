@@ -26,8 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *
  * @author Jeff Weston
  */
-public class StaticInitHandler extends BlockParentHandler
-{
+public class StaticInitHandler extends BlockParentHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -37,14 +36,12 @@ public class StaticInitHandler extends BlockParentHandler
      * @param parent        the parent handler
      */
     public StaticInitHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent)
-    {
+        DetailAST ast, ExpressionHandler parent) {
         super(indentCheck, "static initialization", ast, parent);
     }
 
     @Override
-    protected boolean toplevelMustStartLine()
-    {
+    protected boolean toplevelMustStartLine() {
         return false;
     }
 }

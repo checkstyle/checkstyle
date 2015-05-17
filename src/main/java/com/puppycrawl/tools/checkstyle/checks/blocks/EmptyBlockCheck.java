@@ -61,8 +61,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author Lars Kühne
  */
 public class EmptyBlockCheck
-    extends AbstractOptionCheck<BlockOption>
-{
+    extends AbstractOptionCheck<BlockOption> {
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -78,14 +77,12 @@ public class EmptyBlockCheck
     /**
      * Creates a new <code>EmptyBlockCheck</code> instance.
      */
-    public EmptyBlockCheck()
-    {
+    public EmptyBlockCheck() {
         super(BlockOption.STMT, BlockOption.class);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.LITERAL_WHILE,
             TokenTypes.LITERAL_TRY,
@@ -102,8 +99,7 @@ public class EmptyBlockCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.LITERAL_WHILE,
             TokenTypes.LITERAL_TRY,
@@ -124,8 +120,7 @@ public class EmptyBlockCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final DetailAST slistToken = ast.findFirstToken(TokenTypes.SLIST);
         final DetailAST leftCurly = slistToken != null
                 ? slistToken : ast.findFirstToken(TokenTypes.LCURLY);
@@ -146,8 +141,7 @@ public class EmptyBlockCheck
                 }
             }
             else if (getAbstractOption() == BlockOption.TEXT
-                    && !hasText(leftCurly))
-            {
+                    && !hasText(leftCurly)) {
                 log(leftCurly.getLineNo(),
                     leftCurly.getColumnNo(),
                     MSG_KEY_BLOCK_EMPTY,
@@ -160,8 +154,7 @@ public class EmptyBlockCheck
      * @param slistAST a <code>DetailAST</code> value
      * @return whether the SLIST token contains any text.
      */
-    protected boolean hasText(final DetailAST slistAST)
-    {
+    protected boolean hasText(final DetailAST slistAST) {
         boolean retVal = false;
 
         final DetailAST rightCurly = slistAST.findFirstToken(TokenTypes.RCURLY);
@@ -186,8 +179,7 @@ public class EmptyBlockCheck
                 if (lines[slistLineNo - 1]
                      .substring(slistColNo + 1).trim().length() != 0
                     || lines[rcurlyLineNo - 1]
-                        .substring(0, rcurlyColNo).trim().length() != 0)
-                {
+                        .substring(0, rcurlyColNo).trim().length() != 0) {
                     retVal = true;
                 }
                 else {

@@ -49,8 +49,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Oliver Burn
  */
-final class PropertyCacheFile
-{
+final class PropertyCacheFile {
     /** Logger for PropertyCacheFile */
     private static final Log LOG = LogFactory.getLog(PropertyCacheFile.class);
 
@@ -85,8 +84,7 @@ final class PropertyCacheFile
      * @param currentConfig the current configuration, not null
      * @param fileName the cache file
      */
-    PropertyCacheFile(Configuration currentConfig, String fileName)
-    {
+    PropertyCacheFile(Configuration currentConfig, String fileName) {
         boolean setInActive = true;
         if (fileName != null) {
             FileInputStream inStream = null;
@@ -100,8 +98,7 @@ final class PropertyCacheFile
                     details.getProperty(CONFIG_HASH_KEY);
                 setInActive = false;
                 if (cachedConfigHash == null
-                    || !cachedConfigHash.equals(currentConfigHash))
-                {
+                    || !cachedConfigHash.equals(currentConfigHash)) {
                     // Detected configuration change - clear cache
                     details.clear();
                     details.put(CONFIG_HASH_KEY, currentConfigHash);
@@ -124,8 +121,7 @@ final class PropertyCacheFile
     }
 
     /** Cleans up the object and updates the cache file. **/
-    void destroy()
-    {
+    void destroy() {
         if (detailsFile != null) {
             FileOutputStream out = null;
             try {
@@ -147,8 +143,7 @@ final class PropertyCacheFile
      * Flushes and closes output stream.
      * @param stream the output stream
      */
-    private void flushAndCloseOutStream(OutputStream stream)
-    {
+    private void flushAndCloseOutStream(OutputStream stream) {
         try {
             Flushables.flush(stream, false);
             Closeables.close(stream, false);
@@ -163,8 +158,7 @@ final class PropertyCacheFile
      * @param timestamp the timestamp of the file to check
      * @return whether the specified file has already been checked ok
      */
-    boolean alreadyChecked(String fileName, long timestamp)
-    {
+    boolean alreadyChecked(String fileName, long timestamp) {
         final String lastChecked = details.getProperty(fileName);
         return lastChecked != null
             && lastChecked.equals(Long.toString(timestamp));
@@ -175,8 +169,7 @@ final class PropertyCacheFile
      * @param fileName name of the file that checked ok
      * @param timestamp the timestamp of the file
      */
-    void checkedOk(String fileName, long timestamp)
-    {
+    void checkedOk(String fileName, long timestamp) {
         details.put(fileName, Long.toString(timestamp));
     }
 
@@ -186,8 +179,7 @@ final class PropertyCacheFile
      * @param configuration the GlobalProperties
      * @return the hashcode for <code>configuration</code>
      */
-    private String getConfigHashCode(Serializable configuration)
-    {
+    private String getConfigHashCode(Serializable configuration) {
         try {
             // im-memory serialization of Configuration
 
@@ -221,8 +213,7 @@ final class PropertyCacheFile
      * @param byteArray the byte array
      * @return hex encoding of <code>byteArray</code>
      */
-    private static String hexEncode(byte... byteArray)
-    {
+    private static String hexEncode(byte... byteArray) {
         final StringBuilder buf = new StringBuilder(2 * byteArray.length);
         for (final byte b : byteArray) {
             final int low = b & MASK_0X0F;

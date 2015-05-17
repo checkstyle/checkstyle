@@ -30,8 +30,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
  * @see JavadocNodeImpl
  * @see com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
  */
-public interface DetailNode
-{
+public interface DetailNode {
     /**
      * Node type.
      * @return node type.

@@ -23,9 +23,7 @@ package com.puppycrawl.tools.checkstyle.api;
  * An interface for filtering AuditEvents.
  * @author Rick Giles
  */
-public interface Filter
-
-{
+public interface Filter {
     /**
      * Determines whether or not a filtered AuditEvent is accepted.
      * @param event the AuditEvent to filter.

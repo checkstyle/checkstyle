@@ -27,12 +27,10 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck.MSG_FALL_THROUGH;
 import static com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck.MSG_FALL_THROUGH_LAST;
 
-public class FallThroughCheckTest extends BaseCheckTestSupport
-{
+public class FallThroughCheckTest extends BaseCheckTestSupport {
 
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
         final String[] expected = {
             "14:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -53,8 +51,7 @@ public class FallThroughCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testLastCaseGroup() throws Exception
-    {
+    public void testLastCaseGroup() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
         checkConfig.addAttribute("checkLastCaseGroup", "true");
         final String[] expected = {
@@ -78,8 +75,7 @@ public class FallThroughCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testOwnPattern() throws Exception
-    {
+    public void testOwnPattern() throws Exception {
         final String ownPattern = "Continue with next case";
         final DefaultConfiguration checkConfig =
             createCheckConfig(FallThroughCheck.class);

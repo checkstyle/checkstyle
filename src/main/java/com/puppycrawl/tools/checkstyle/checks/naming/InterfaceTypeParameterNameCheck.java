@@ -47,17 +47,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author maxvetrenko
  */
 public class InterfaceTypeParameterNameCheck
-    extends AbstractTypeParameterNameCheck
-{
+    extends AbstractTypeParameterNameCheck {
     /** Creates a new <code>InterfaceTypeParameterNameCheck</code> instance. */
-    public InterfaceTypeParameterNameCheck()
-    {
+    public InterfaceTypeParameterNameCheck() {
         super("^[A-Z]$");
     }
 
     @Override
-    protected final int getLocation()
-    {
+    protected final int getLocation() {
         return TokenTypes.INTERFACE_DEF;
     }
 }

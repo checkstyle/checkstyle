@@ -26,8 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *
  * @author jrichard
  */
-public class FinallyHandler extends BlockParentHandler
-{
+public class FinallyHandler extends BlockParentHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * astract syntax tree, and parent handler.
@@ -37,14 +36,12 @@ public class FinallyHandler extends BlockParentHandler
      * @param parent        the parent handler
      */
     public FinallyHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent)
-    {
+        DetailAST ast, ExpressionHandler parent) {
         super(indentCheck, "finally", ast, parent);
     }
 
     @Override
-    protected boolean toplevelMustStartLine()
-    {
+    protected boolean toplevelMustStartLine() {
         return false;
     }
 }

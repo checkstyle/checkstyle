@@ -26,11 +26,9 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck.MSG_KEY;
 
 public class ModifiedControlVariableCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
-    public void testModifiedControlVariable() throws Exception
-    {
+    public void testModifiedControlVariable() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ModifiedControlVariableCheck.class);
         final String[] expected = {

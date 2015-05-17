@@ -26,11 +26,9 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck.MSG_KEY;
 
 public class TodoCommentCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
-    public void testIt() throws Exception
-    {
+    public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TodoCommentCheck.class);
         checkConfig.addAttribute("format", "FIXME:");

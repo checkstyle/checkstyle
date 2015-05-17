@@ -39,8 +39,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author <a href="mailto:solid.danil@gmail.com">Danil Lopatin</a>
  */
-public final class AbstractClassNameCheck extends AbstractFormatCheck
-{
+public final class AbstractClassNameCheck extends AbstractFormatCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -64,8 +63,7 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
     private boolean ignoreName;
 
     /** Creates new instance of the check. */
-    public AbstractClassNameCheck()
-    {
+    public AbstractClassNameCheck() {
         super(DEFAULT_FORMAT);
     }
 
@@ -73,8 +71,7 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
      * Whether to ignore checking for the <code>abstract</code> modifier.
      * @param value new value
      */
-    public void setIgnoreModifier(boolean value)
-    {
+    public void setIgnoreModifier(boolean value) {
         ignoreModifier = value;
     }
 
@@ -82,32 +79,27 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
      * Whether to ignore checking the name.
      * @param value new value.
      */
-    public void setIgnoreName(boolean value)
-    {
+    public void setIgnoreName(boolean value) {
         ignoreName = value;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[]{TokenTypes.CLASS_DEF};
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return getDefaultTokens();
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[]{TokenTypes.CLASS_DEF};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         visitClassDef(ast);
     }
 
@@ -115,8 +107,7 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
      * Checks class definition.
      * @param ast class definition for check.
      */
-    private void visitClassDef(DetailAST ast)
-    {
+    private void visitClassDef(DetailAST ast) {
         final String className =
             ast.findFirstToken(TokenTypes.IDENT).getText();
         if (isAbstract(ast)) {
@@ -136,8 +127,7 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
      * @param ast class definition for check.
      * @return true if a given class declared as abstract.
      */
-    private boolean isAbstract(DetailAST ast)
-    {
+    private boolean isAbstract(DetailAST ast) {
         final DetailAST abstractAST = ast.findFirstToken(TokenTypes.MODIFIERS)
             .findFirstToken(TokenTypes.ABSTRACT);
 
@@ -148,8 +138,7 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
      * @param className class name for check.
      * @return true if class name matches format of abstract class names.
      */
-    private boolean isMatchingClassName(String className)
-    {
+    private boolean isMatchingClassName(String className) {
         return getRegexp().matcher(className).find();
     }
 }

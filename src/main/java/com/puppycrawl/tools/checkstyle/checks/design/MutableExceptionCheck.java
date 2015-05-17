@@ -38,8 +38,7 @@ import java.util.Deque;
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
-public final class MutableExceptionCheck extends AbstractFormatCheck
-{
+public final class MutableExceptionCheck extends AbstractFormatCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -57,8 +56,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     private boolean checking;
 
     /** Creates new instance of the check. */
-    public MutableExceptionCheck()
-    {
+    public MutableExceptionCheck() {
         super(DEFAULT_FORMAT);
         setExtendedClassNameFormat(DEFAULT_FORMAT);
     }
@@ -67,32 +65,27 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
      * Sets the format of extended class name to the specified regular expression.
      * @param extendedClassNameFormat a <code>String</code> value
      */
-    public void setExtendedClassNameFormat(String extendedClassNameFormat)
-    {
+    public void setExtendedClassNameFormat(String extendedClassNameFormat) {
         this.extendedClassNameFormat = extendedClassNameFormat;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return getDefaultTokens();
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.CLASS_DEF:
                 visitClassDef(ast);
@@ -106,8 +99,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.CLASS_DEF) {
             leaveClassDef();
         }
@@ -117,15 +109,13 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
      * Called when we start processing class definition.
      * @param ast class definition node
      */
-    private void visitClassDef(DetailAST ast)
-    {
+    private void visitClassDef(DetailAST ast) {
         checkingStack.push(checking ? Boolean.TRUE : Boolean.FALSE);
         checking = isNamedAsException(ast) && isExtendedClassNamedAsException(ast);
     }
 
     /** Called when we leave class definition. */
-    private void leaveClassDef()
-    {
+    private void leaveClassDef() {
         checking = checkingStack.pop();
     }
 
@@ -133,8 +123,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
      * Checks variable definition.
      * @param ast variable def node for check
      */
-    private void visitVariableDef(DetailAST ast)
-    {
+    private void visitVariableDef(DetailAST ast) {
         if (checking && ast.getParent().getType() == TokenTypes.OBJBLOCK) {
             final DetailAST modifiersAST =
                 ast.findFirstToken(TokenTypes.MODIFIERS);
@@ -150,8 +139,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
      * @param ast class definition node
      * @return true if a class name conforms to specified format
      */
-    private boolean isNamedAsException(DetailAST ast)
-    {
+    private boolean isNamedAsException(DetailAST ast) {
         final String className = ast.findFirstToken(TokenTypes.IDENT).getText();
         return getRegexp().matcher(className).find();
     }
@@ -160,8 +148,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
      * @param ast class definition node
      * @return true if extended class name conforms to specified format
      */
-    private boolean isExtendedClassNamedAsException(DetailAST ast)
-    {
+    private boolean isExtendedClassNamedAsException(DetailAST ast) {
         final DetailAST extendsClause = ast.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
         if (extendsClause != null) {
             final DetailAST extendedClass = extendsClause.findFirstToken(TokenTypes.IDENT);

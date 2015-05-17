@@ -26,11 +26,9 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY;
 
-public class ReturnCountCheckTest extends BaseCheckTestSupport
-{
+public class ReturnCountCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ReturnCountCheck.class);
         final String[] expected = {
@@ -41,8 +39,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testFormat() throws Exception
-    {
+    public void testFormat() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ReturnCountCheck.class);
         checkConfig.addAttribute("format", "^$");
@@ -55,8 +52,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testMethodsAndLambdas() throws Exception
-    {
+    public void testMethodsAndLambdas() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
         checkConfig.addAttribute("max", "1");
         final String[] expected = {
@@ -71,8 +67,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testLambdasOnly() throws Exception
-    {
+    public void testLambdasOnly() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
         checkConfig.addAttribute("tokens", "LAMBDA");
         final String[] expected = {
@@ -83,8 +78,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testMethodsOnly() throws Exception
-    {
+    public void testMethodsOnly() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
         checkConfig.addAttribute("tokens", "METHOD_DEF");
         final String[] expected = {
@@ -98,8 +92,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testWithReturnOnlyAsTokens() throws Exception
-    {
+    public void testWithReturnOnlyAsTokens() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_RETURN");
         final String[] expected = {

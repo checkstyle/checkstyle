@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author jrichard
  */
-public class DoWhileHandler extends BlockParentHandler
-{
+public class DoWhileHandler extends BlockParentHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -38,24 +37,21 @@ public class DoWhileHandler extends BlockParentHandler
      * @param parent        the parent handler
      */
     public DoWhileHandler(IndentationCheck indentCheck,
-            DetailAST ast, ExpressionHandler parent)
-    {
+            DetailAST ast, ExpressionHandler parent) {
         super(indentCheck, "do..while", ast, parent);
     }
 
     /**
      * Check the indentation level of the conditional expression.
      */
-    private void checkCondExpr()
-    {
+    private void checkCondExpr() {
         final DetailAST condAst = getMainAst()
             .findFirstToken(TokenTypes.LPAREN).getNextSibling();
         checkExpressionSubtree(condAst, getLevel(), false, false);
     }
 
     @Override
-    public void checkIndentation()
-    {
+    public void checkIndentation() {
         super.checkIndentation();
         checkCondExpr();
     }

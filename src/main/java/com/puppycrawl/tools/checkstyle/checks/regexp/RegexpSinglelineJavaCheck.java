@@ -28,8 +28,7 @@ import java.util.Arrays;
  * Supports ignoring comments for matches.
  * @author Oliver Burn
  */
-public class RegexpSinglelineJavaCheck extends Check
-{
+public class RegexpSinglelineJavaCheck extends Check {
     /** The detection options to use. */
     private DetectorOptions options = new DetectorOptions(0, this);
     /** The detector to use. */
@@ -38,21 +37,18 @@ public class RegexpSinglelineJavaCheck extends Check
     private final CommentSuppressor suppressor = new CommentSuppressor();
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[0];
     }
 
     @Override
-    public void init()
-    {
+    public void init() {
         super.init();
         detector = new SinglelineDetector(options);
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         suppressor.setCurrentContents(getFileContents());
         detector.processLines(Arrays.asList(getLines()));
     }
@@ -61,8 +57,7 @@ public class RegexpSinglelineJavaCheck extends Check
      * Set the format of the regular expression to match.
      * @param format the format of the regular expression to match.
      */
-    public void setFormat(String format)
-    {
+    public void setFormat(String format) {
         options.setFormat(format);
     }
 
@@ -70,8 +65,7 @@ public class RegexpSinglelineJavaCheck extends Check
      * Set the message to report for a match.
      * @param message the message to report for a match.
      */
-    public void setMessage(String message)
-    {
+    public void setMessage(String message) {
         options.setMessage(message);
     }
 
@@ -79,8 +73,7 @@ public class RegexpSinglelineJavaCheck extends Check
      * Set the minimum number of matches required per file.
      * @param minimum the minimum number of matches required per file.
      */
-    public void setMinimum(int minimum)
-    {
+    public void setMinimum(int minimum) {
         options.setMinimum(minimum);
     }
 
@@ -88,8 +81,7 @@ public class RegexpSinglelineJavaCheck extends Check
      * Set the maximum number of matches required per file.
      * @param maximum the maximum number of matches required per file.
      */
-    public void setMaximum(int maximum)
-    {
+    public void setMaximum(int maximum) {
         options.setMaximum(maximum);
     }
 
@@ -97,8 +89,7 @@ public class RegexpSinglelineJavaCheck extends Check
      * Set whether to ignore case when matching.
      * @param ignore whether to ignore case when matching.
      */
-    public void setIgnoreCase(boolean ignore)
-    {
+    public void setIgnoreCase(boolean ignore) {
         options.setIgnoreCase(ignore);
     }
 
@@ -106,8 +97,7 @@ public class RegexpSinglelineJavaCheck extends Check
      * Set whether to ignore comments when matching.
      * @param ignore whether to ignore comments when matching.
      */
-    public void setIgnoreComments(boolean ignore)
-    {
+    public void setIgnoreComments(boolean ignore) {
         if (ignore) {
             options.setSuppressor(suppressor);
         }

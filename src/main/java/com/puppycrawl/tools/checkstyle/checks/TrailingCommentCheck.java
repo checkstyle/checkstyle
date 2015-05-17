@@ -98,8 +98,7 @@ import org.apache.commons.beanutils.ConversionException;
  *
  * @author o_sukhodolsky
  */
-public class TrailingCommentCheck extends AbstractFormatCheck
-{
+public class TrailingCommentCheck extends AbstractFormatCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -117,8 +116,7 @@ public class TrailingCommentCheck extends AbstractFormatCheck
      * Creates new instance of the check.
      * @throws ConversionException unable to parse DEFAULT_FORMAT.
      */
-    public TrailingCommentCheck() throws ConversionException
-    {
+    public TrailingCommentCheck() throws ConversionException {
         super(DEFAULT_FORMAT);
     }
 
@@ -128,26 +126,22 @@ public class TrailingCommentCheck extends AbstractFormatCheck
      * @throws ConversionException if unable to create Pattern object
      */
     public void setLegalComment(final String format)
-        throws ConversionException
-    {
+        throws ConversionException {
         legalComment = Utils.createPattern(format);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[0];
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         throw new IllegalStateException("visitToken() shouldn't be called.");
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         final Pattern blankLinePattern = getRegexp();
         final Map<Integer, TextBlock> cppComments = getFileContents()
                 .getCppComments();
@@ -180,8 +174,7 @@ public class TrailingCommentCheck extends AbstractFormatCheck
             }
             if (comment != null
                 && !blankLinePattern.matcher(lineBefore).find()
-                && !isLegalComment(comment))
-            {
+                && !isLegalComment(comment)) {
                 log(lineNo.intValue(), MSG_KEY);
             }
         }
@@ -193,8 +186,7 @@ public class TrailingCommentCheck extends AbstractFormatCheck
      * @param comment comment to check.
      * @return true if the comment if legal.
      */
-    private boolean isLegalComment(final TextBlock comment)
-    {
+    private boolean isLegalComment(final TextBlock comment) {
         if (legalComment == null) {
             return false;
         }

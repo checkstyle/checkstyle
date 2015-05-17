@@ -130,8 +130,7 @@ import org.apache.commons.beanutils.ConversionException;
  * @author Dmitri Priimak
  */
 public class HiddenFieldCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -165,8 +164,7 @@ public class HiddenFieldCheck
     private boolean ignoreAbstractMethods;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
@@ -177,8 +175,7 @@ public class HiddenFieldCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
@@ -186,8 +183,7 @@ public class HiddenFieldCheck
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
@@ -196,14 +192,12 @@ public class HiddenFieldCheck
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         currentFrame = new FieldFrame(null, true, null);
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final int type = ast.getType();
         switch (type) {
             case TokenTypes.VARIABLE_DEF:
@@ -223,8 +217,7 @@ public class HiddenFieldCheck
      * @param ast token to process
      * @param type type of the token
      */
-    private void visitOtherTokens(DetailAST ast, int type)
-    {
+    private void visitOtherTokens(DetailAST ast, int type) {
         //A more thorough check of enum constant class bodies is
         //possible (checking for hidden fields against the enum
         //class body in addition to enum constant class bodies)
@@ -268,12 +261,10 @@ public class HiddenFieldCheck
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.CLASS_DEF
             || ast.getType() == TokenTypes.ENUM_DEF
-            || ast.getType() == TokenTypes.ENUM_CONSTANT_DEF)
-        {
+            || ast.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
             //pop
             currentFrame = currentFrame.getParent();
         }
@@ -285,12 +276,10 @@ public class HiddenFieldCheck
      * Store a field for later comparison with local variables and parameters.
      * @param ast the variable token.
      */
-    private void processVariable(DetailAST ast)
-    {
+    private void processVariable(DetailAST ast) {
         if (!ScopeUtils.inInterfaceOrAnnotationBlock(ast)
             && (ScopeUtils.isLocalVariableDef(ast)
-                || ast.getType() == TokenTypes.PARAMETER_DEF))
-        {
+                || ast.getType() == TokenTypes.PARAMETER_DEF)) {
             // local variable or parameter. Does it shadow a field?
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();
@@ -300,8 +289,7 @@ public class HiddenFieldCheck
                 && (regexp == null || !getRegexp().matcher(name).find())
                 && !isIgnoredSetterParam(ast, name)
                 && !isIgnoredConstructorParam(ast)
-                && !isIgnoredParamOfAbstractMethod(ast))
-            {
+                && !isIgnoredParamOfAbstractMethod(ast)) {
                 log(nameAST, MSG_KEY, name);
             }
         }
@@ -313,8 +301,7 @@ public class HiddenFieldCheck
      * @param ast the node to check.
      * @return true if ast is in a static method or a static block;
      */
-    private static boolean inStatic(DetailAST ast)
-    {
+    private static boolean inStatic(DetailAST ast) {
         DetailAST parent = ast.getParent();
         while (parent != null) {
             switch (parent.getType()) {
@@ -345,15 +332,13 @@ public class HiddenFieldCheck
      * @return true if ast should be ignored because check property
      * ignoreSetter is true and ast is the parameter of a setter method.
      */
-    private boolean isIgnoredSetterParam(DetailAST ast, String name)
-    {
+    private boolean isIgnoredSetterParam(DetailAST ast, String name) {
         if (ast.getType() == TokenTypes.PARAMETER_DEF && ignoreSetter) {
             final DetailAST parametersAST = ast.getParent();
             final DetailAST methodAST = parametersAST.getParent();
             if (parametersAST.getChildCount() == 1
                 && methodAST.getType() == TokenTypes.METHOD_DEF
-                && isSetterMethod(methodAST, name))
-            {
+                && isSetterMethod(methodAST, name)) {
                 return true;
             }
         }
@@ -369,8 +354,7 @@ public class HiddenFieldCheck
      * @param aName name of single parameter of this method.
      * @return true of false indicating of method is a setter or not.
      */
-    private boolean isSetterMethod(DetailAST aMethodAST, String aName)
-    {
+    private boolean isSetterMethod(DetailAST aMethodAST, String aName) {
         final String methodName =
             aMethodAST.findFirstToken(TokenTypes.IDENT).getText();
         boolean isSetterMethod = false;
@@ -382,8 +366,7 @@ public class HiddenFieldCheck
             final DetailAST typeAST = aMethodAST.findFirstToken(TokenTypes.TYPE);
             final String returnType = typeAST.getFirstChild().getText();
             if (typeAST.branchContains(TokenTypes.LITERAL_VOID)
-                || setterCanReturnItsClass && currentFrame.embeddedIn(returnType))
-            {
+                || setterCanReturnItsClass && currentFrame.embeddedIn(returnType)) {
                 // this method has signature
                 //
                 //     void set${Name}(${anyType} ${name})
@@ -408,15 +391,13 @@ public class HiddenFieldCheck
      * @param name a property name
      * @return capitalized property name
      */
-    private static String capitalize(final String name)
-    {
+    private static String capitalize(final String name) {
         String setterName = name;
         // we should not capitalize the first character if the second
         // one is a capital one, since according to JavBeans spec
         // setXYzz() is a setter for XYzz property, not for xYzz one.
         if (name != null && (name.length() == 1
-                || name.length() > 1 && !Character.isUpperCase(name.charAt(1))))
-        {
+                || name.length() > 1 && !Character.isUpperCase(name.charAt(1)))) {
             setterName = name.substring(0, 1).toUpperCase(Locale.ENGLISH) + name.substring(1);
         }
         return setterName;
@@ -429,12 +410,10 @@ public class HiddenFieldCheck
      * @return true if ast should be ignored because check property
      * ignoreConstructorParameter is true and ast is a constructor parameter.
      */
-    private boolean isIgnoredConstructorParam(DetailAST ast)
-    {
+    private boolean isIgnoredConstructorParam(DetailAST ast) {
         boolean result = false;
         if (ast.getType() == TokenTypes.PARAMETER_DEF
-            && ignoreConstructorParameter)
-        {
+            && ignoreConstructorParameter) {
             final DetailAST parametersAST = ast.getParent();
             final DetailAST constructorAST = parametersAST.getParent();
             result = constructorAST.getType() == TokenTypes.CTOR_DEF;
@@ -450,12 +429,10 @@ public class HiddenFieldCheck
      * ignoreAbstactMethods is true and ast is a parameter of abstract
      * methods.
      */
-    private boolean isIgnoredParamOfAbstractMethod(DetailAST ast)
-    {
+    private boolean isIgnoredParamOfAbstractMethod(DetailAST ast) {
         boolean result = false;
         if (ast.getType() == TokenTypes.PARAMETER_DEF
-            && ignoreAbstractMethods)
-        {
+            && ignoreAbstractMethods) {
             final DetailAST method = ast.getParent().getParent();
             if (method.getType() == TokenTypes.METHOD_DEF) {
                 final DetailAST mods = method.findFirstToken(TokenTypes.MODIFIERS);
@@ -471,8 +448,7 @@ public class HiddenFieldCheck
      * @throws ConversionException if unable to create Pattern object
      */
     public void setIgnoreFormat(String format)
-        throws ConversionException
-    {
+        throws ConversionException {
         regexp = Utils.createPattern(format);
     }
 
@@ -481,8 +457,7 @@ public class HiddenFieldCheck
      * @param ignoreSetter decide whether to ignore the parameter of
      * a property setter method.
      */
-    public void setIgnoreSetter(boolean ignoreSetter)
-    {
+    public void setIgnoreSetter(boolean ignoreSetter) {
         this.ignoreSetter = ignoreSetter;
     }
 
@@ -497,8 +472,7 @@ public class HiddenFieldCheck
      *        the default behavior.
      */
     public void setSetterCanReturnItsClass(
-        boolean aSetterCanReturnItsClass)
-    {
+        boolean aSetterCanReturnItsClass) {
         setterCanReturnItsClass = aSetterCanReturnItsClass;
     }
 
@@ -508,8 +482,7 @@ public class HiddenFieldCheck
      * constructor parameters.
      */
     public void setIgnoreConstructorParameter(
-        boolean ignoreConstructorParameter)
-    {
+        boolean ignoreConstructorParameter) {
         this.ignoreConstructorParameter = ignoreConstructorParameter;
     }
 
@@ -519,14 +492,12 @@ public class HiddenFieldCheck
      * parameters of abstract methods.
      */
     public void setIgnoreAbstractMethods(
-        boolean ignoreAbstractMethods)
-    {
+        boolean ignoreAbstractMethods) {
         this.ignoreAbstractMethods = ignoreAbstractMethods;
     }
 
     /** @return the regexp to match against */
-    public Pattern getRegexp()
-    {
+    public Pattern getRegexp() {
         return regexp;
     }
 
@@ -536,8 +507,7 @@ public class HiddenFieldCheck
      * Describe class FieldFrame
      * @author Rick Giles
      */
-    private static class FieldFrame
-    {
+    private static class FieldFrame {
         /** name of the frame, such name of the class or enum declaration */
         private final String frameName;
 
@@ -559,8 +529,7 @@ public class HiddenFieldCheck
          * @param staticType is this a static inner type (class or enum).
          * @param frameName name associated with the frame, which can be a
          */
-        public FieldFrame(FieldFrame parent, boolean staticType, String frameName)
-        {
+        public FieldFrame(FieldFrame parent, boolean staticType, String frameName) {
             this.parent = parent;
             this.staticType = staticType;
             this.frameName = frameName;
@@ -570,8 +539,7 @@ public class HiddenFieldCheck
          * Is this frame for static inner type.
          * @return is this field frame for static inner type.
          */
-        boolean isStaticType()
-        {
+        boolean isStaticType() {
             return staticType;
         }
 
@@ -579,8 +547,7 @@ public class HiddenFieldCheck
          * Adds an instance field to this FieldFrame.
          * @param field  the name of the instance field.
          */
-        public void addInstanceField(String field)
-        {
+        public void addInstanceField(String field) {
             instanceFields.add(field);
         }
 
@@ -588,8 +555,7 @@ public class HiddenFieldCheck
          * Adds a static field to this FieldFrame.
          * @param field  the name of the instance field.
          */
-        public void addStaticField(String field)
-        {
+        public void addStaticField(String field) {
             staticFields.add(field);
         }
 
@@ -598,8 +564,7 @@ public class HiddenFieldCheck
          * @param field the field to check.
          * @return true if this FieldFrame contains instance field field.
          */
-        public boolean containsInstanceField(String field)
-        {
+        public boolean containsInstanceField(String field) {
             return instanceFields.contains(field)
                     || !isStaticType()
                     && parent != null
@@ -612,8 +577,7 @@ public class HiddenFieldCheck
          * @param field the field to check.
          * @return true if this FieldFrame contains static field field.
          */
-        public boolean containsStaticField(String field)
-        {
+        public boolean containsStaticField(String field) {
             return staticFields.contains(field)
                     || parent != null
                     && parent.containsStaticField(field);
@@ -624,8 +588,7 @@ public class HiddenFieldCheck
          * Getter for parent frame.
          * @return parent frame.
          */
-        public FieldFrame getParent()
-        {
+        public FieldFrame getParent() {
             return parent;
         }
 
@@ -639,8 +602,7 @@ public class HiddenFieldCheck
          * @return true if current frame is embedded in class or enum
          * with name classOrNameName
          */
-        private boolean embeddedIn(String classOrEnumName)
-        {
+        private boolean embeddedIn(String classOrEnumName) {
             FieldFrame currentFrame = this;
             while (currentFrame != null) {
                 if (Objects.equal(currentFrame.frameName, classOrEnumName)) {

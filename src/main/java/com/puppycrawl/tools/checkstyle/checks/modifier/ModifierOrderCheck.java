@@ -64,8 +64,7 @@ import java.util.List;
  * @author Lars Kühne
  */
 public class ModifierOrderCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -83,27 +82,23 @@ public class ModifierOrderCheck
      * The order of modifiers as suggested in sections 8.1.1,
      * 8.3.1 and 8.4.3 of the JLS.
      */
-    private static final String[] JLS_ORDER =
-    {
+    private static final String[] JLS_ORDER = {
         "public", "protected", "private", "abstract", "static", "final",
         "transient", "volatile", "synchronized", "native", "strictfp", "default",
     };
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.MODIFIERS};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.MODIFIERS};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final List<DetailAST> mods = Lists.newArrayList();
         DetailAST modifier = ast.getFirstChild();
         while (modifier != null) {
@@ -138,8 +133,7 @@ public class ModifierOrderCheck
      * @return null if the order is correct, otherwise returns the offending
      * *       modifier AST.
      */
-    DetailAST checkOrderSuggestedByJLS(List<DetailAST> modifiers)
-    {
+    DetailAST checkOrderSuggestedByJLS(List<DetailAST> modifiers) {
         final Iterator<DetailAST> it = modifiers.iterator();
         //No modifiers, no problems
         if (!it.hasNext()) {
@@ -166,8 +160,7 @@ public class ModifierOrderCheck
             }
 
             while (i < JLS_ORDER.length
-                   && !JLS_ORDER[i].equals(modifier.getText()))
-            {
+                   && !JLS_ORDER[i].equals(modifier.getText())) {
                 i++;
             }
 

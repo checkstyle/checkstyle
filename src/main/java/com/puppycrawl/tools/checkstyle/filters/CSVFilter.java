@@ -31,8 +31,7 @@ import java.util.StringTokenizer;
  * @author Rick Giles
  * @author o_sukhodolsky
  */
-class CSVFilter implements IntFilter
-{
+class CSVFilter implements IntFilter {
     /** filter set */
     private final Set<IntFilter> filters = Sets.newHashSet();
 
@@ -46,8 +45,7 @@ class CSVFilter implements IntFilter
      * contain a parsable integer.
      */
     public CSVFilter(String pattern)
-        throws NumberFormatException
-    {
+        throws NumberFormatException {
         final StringTokenizer tokenizer = new StringTokenizer(pattern, ",");
         while (tokenizer.hasMoreTokens()) {
             final String token = tokenizer.nextToken().trim();
@@ -70,8 +68,7 @@ class CSVFilter implements IntFilter
      * Adds a IntFilter to the set.
      * @param filter the IntFilter to add.
      */
-    public void addFilter(IntFilter filter)
-    {
+    public void addFilter(IntFilter filter) {
         filters.add(filter);
     }
 
@@ -79,8 +76,7 @@ class CSVFilter implements IntFilter
      * Returns the IntFilters of the filter set.
      * @return the IntFilters of the filter set.
      */
-    protected Set<IntFilter> getFilters()
-    {
+    protected Set<IntFilter> getFilters() {
         return filters;
     }
 
@@ -90,8 +86,7 @@ class CSVFilter implements IntFilter
      * @return true if intValue is an Integer that matches a CSV value.
      */
     @Override
-    public boolean accept(int intValue)
-    {
+    public boolean accept(int intValue) {
         for (IntFilter filter : getFilters()) {
             if (filter.accept(intValue)) {
                 return true;
@@ -101,20 +96,17 @@ class CSVFilter implements IntFilter
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return filters.toString();
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return filters.hashCode();
     }
 
     @Override
-    public boolean equals(Object object)
-    {
+    public boolean equals(Object object) {
         if (object instanceof CSVFilter) {
             final CSVFilter other = (CSVFilter) object;
             return this.filters.equals(other.filters);

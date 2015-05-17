@@ -30,27 +30,23 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Lars Kühne
  */
-public class ParseTreeModel extends AbstractTreeTableModel
-{
+public class ParseTreeModel extends AbstractTreeTableModel {
     private static final String[] COLUMN_NAMES = new String[]{
         "Tree", "Type", "Line", "Column", "Text"
     };
 
-    public ParseTreeModel(DetailAST parseTree)
-    {
+    public ParseTreeModel(DetailAST parseTree) {
         super(createArtificialTreeRoot());
         setParseTree(parseTree);
     }
 
-    private static DetailAST createArtificialTreeRoot()
-    {
+    private static DetailAST createArtificialTreeRoot() {
         final ASTFactory factory = new ASTFactory();
         factory.setASTNodeClass(DetailAST.class.getName());
         return (DetailAST) factory.create(TokenTypes.EOF, "ROOT");
     }
 
-    void setParseTree(DetailAST parseTree)
-    {
+    void setParseTree(DetailAST parseTree) {
         final DetailAST root = (DetailAST) getRoot();
         root.setFirstChild(parseTree);
         final Object[] path = {root};
@@ -60,20 +56,17 @@ public class ParseTreeModel extends AbstractTreeTableModel
     }
 
     @Override
-    public int getColumnCount()
-    {
+    public int getColumnCount() {
         return COLUMN_NAMES.length;
     }
 
     @Override
-    public String getColumnName(int column)
-    {
+    public String getColumnName(int column) {
         return COLUMN_NAMES[column];
     }
 
     @Override
-    public Class<?> getColumnClass(int column)
-    {
+    public Class<?> getColumnClass(int column) {
         switch (column) {
             case 0:
                 return TreeTableModel.class;
@@ -91,8 +84,7 @@ public class ParseTreeModel extends AbstractTreeTableModel
     }
 
     @Override
-    public Object getValueAt(Object node, int column)
-    {
+    public Object getValueAt(Object node, int column) {
         final DetailAST ast = (DetailAST) node;
         switch (column) {
             case 0:
@@ -111,13 +103,11 @@ public class ParseTreeModel extends AbstractTreeTableModel
     }
 
     @Override
-    public void setValueAt(Object aValue, Object node, int column)
-    {
+    public void setValueAt(Object aValue, Object node, int column) {
     }
 
     @Override
-    public Object getChild(Object parent, int index)
-    {
+    public Object getChild(Object parent, int index) {
         final DetailAST ast = (DetailAST) parent;
         int i = 0;
         AST child = ast.getFirstChild();
@@ -129,8 +119,7 @@ public class ParseTreeModel extends AbstractTreeTableModel
     }
 
     @Override
-    public int getChildCount(Object parent)
-    {
+    public int getChildCount(Object parent) {
         final DetailAST ast = (DetailAST) parent;
         return ast.getChildCount();
     }

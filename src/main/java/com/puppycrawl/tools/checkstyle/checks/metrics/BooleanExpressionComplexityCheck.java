@@ -37,8 +37,7 @@ import java.util.Deque;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author o_sukhodolsky
  */
-public final class BooleanExpressionComplexityCheck extends Check
-{
+public final class BooleanExpressionComplexityCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -57,14 +56,12 @@ public final class BooleanExpressionComplexityCheck extends Check
     private Context context = new Context(false);
 
     /** Creates new instance of the check. */
-    public BooleanExpressionComplexityCheck()
-    {
+    public BooleanExpressionComplexityCheck() {
         setMax(DEFAULT_MAX);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
@@ -78,8 +75,7 @@ public final class BooleanExpressionComplexityCheck extends Check
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
@@ -88,8 +84,7 @@ public final class BooleanExpressionComplexityCheck extends Check
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
@@ -106,8 +101,7 @@ public final class BooleanExpressionComplexityCheck extends Check
      * Getter for maximum allowed complexity.
      * @return value of maximum allowed complexity.
      */
-    public int getMax()
-    {
+    public int getMax() {
         return max;
     }
 
@@ -115,14 +109,12 @@ public final class BooleanExpressionComplexityCheck extends Check
      * Setter for maximum allowed complexity.
      * @param max new maximum allowed complexity.
      */
-    public void setMax(int max)
-    {
+    public void setMax(int max) {
         this.max = max;
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF:
             case TokenTypes.METHOD_DEF:
@@ -156,8 +148,7 @@ public final class BooleanExpressionComplexityCheck extends Check
      * @param logicalOperator logical operator
      * @return true if logical operator is part of constructor or method call
      */
-    private boolean isPassedInParameter(DetailAST logicalOperator)
-    {
+    private boolean isPassedInParameter(DetailAST logicalOperator) {
         return logicalOperator.getParent().getType() == TokenTypes.EXPR
             && logicalOperator.getParent().getParent().getType() == TokenTypes.ELIST;
     }
@@ -170,14 +161,12 @@ public final class BooleanExpressionComplexityCheck extends Check
      * @param binaryOr {@link TokenTypes#BOR binary or}
      * @return true if binary or is applied to exceptions in multi-catch.
      */
-    private static boolean isPipeOperator(DetailAST binaryOr)
-    {
+    private static boolean isPipeOperator(DetailAST binaryOr) {
         return binaryOr.getParent().getType() == TokenTypes.TYPE;
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF:
             case TokenTypes.METHOD_DEF:
@@ -195,21 +184,18 @@ public final class BooleanExpressionComplexityCheck extends Check
      * Creates new context for a given method.
      * @param ast a method we start to check.
      */
-    private void visitMethodDef(DetailAST ast)
-    {
+    private void visitMethodDef(DetailAST ast) {
         contextStack.push(context);
         context = new Context(!CheckUtils.isEqualsMethod(ast));
     }
 
     /** Removes old context. */
-    private void leaveMethodDef()
-    {
+    private void leaveMethodDef() {
         context = contextStack.pop();
     }
 
     /** Creates and pushes new context. */
-    private void visitExpr()
-    {
+    private void visitExpr() {
         contextStack.push(context);
         context = new Context(context == null || context.isChecking());
     }
@@ -218,8 +204,7 @@ public final class BooleanExpressionComplexityCheck extends Check
      * Restores previous context.
      * @param ast expression we leave.
      */
-    private void leaveExpr(DetailAST ast)
-    {
+    private void leaveExpr(DetailAST ast) {
         context.checkCount(ast);
         context = contextStack.pop();
     }
@@ -230,8 +215,7 @@ public final class BooleanExpressionComplexityCheck extends Check
      * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
      * @author o_sukhodolsky
      */
-    private class Context
-    {
+    private class Context {
         /**
          * Should we perform check in current context or not.
          * Usually false if we are inside equals() method.
@@ -244,8 +228,7 @@ public final class BooleanExpressionComplexityCheck extends Check
          * Creates new instance.
          * @param checking should we check in current context or not.
          */
-        public Context(boolean checking)
-        {
+        public Context(boolean checking) {
             this.checking = checking;
             count = 0;
         }
@@ -254,14 +237,12 @@ public final class BooleanExpressionComplexityCheck extends Check
          * Getter for checking property.
          * @return should we check in current context or not.
          */
-        public boolean isChecking()
-        {
+        public boolean isChecking() {
             return checking;
         }
 
         /** Increases operator counter. */
-        public void visitBooleanOperator()
-        {
+        public void visitBooleanOperator() {
             ++count;
         }
 
@@ -269,8 +250,7 @@ public final class BooleanExpressionComplexityCheck extends Check
          * Checks if we violates maximum allowed complexity.
          * @param ast a node we check now.
          */
-        public void checkCount(DetailAST ast)
-        {
+        public void checkCount(DetailAST ast) {
             if (checking && count > getMax()) {
                 final DetailAST parentAST = ast.getParent();
 

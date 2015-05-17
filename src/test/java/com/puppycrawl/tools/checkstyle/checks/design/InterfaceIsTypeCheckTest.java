@@ -28,12 +28,10 @@ import static com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheck
 import static org.junit.Assert.assertArrayEquals;
 
 public class InterfaceIsTypeCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
     public void testDefault()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(InterfaceIsTypeCheck.class);
         final String[] expected = {
@@ -44,8 +42,7 @@ public class InterfaceIsTypeCheckTest
 
     @Test
     public void testAllowMarker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(InterfaceIsTypeCheck.class);
         checkConfig.addAttribute("allowMarkerInterfaces", "false");
@@ -57,16 +54,14 @@ public class InterfaceIsTypeCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens()
-    {
+    public void testGetAcceptableTokens() {
         InterfaceIsTypeCheck obj = new InterfaceIsTypeCheck();
         int[] expected = {TokenTypes.INTERFACE_DEF};
         assertArrayEquals(expected, obj.getAcceptableTokens());
     }
 
     @Test
-    public void testGetRequiredTokens()
-    {
+    public void testGetRequiredTokens() {
         InterfaceIsTypeCheck obj = new InterfaceIsTypeCheck();
         int[] expected = {TokenTypes.INTERFACE_DEF};
         assertArrayEquals(expected, obj.getAcceptableTokens());

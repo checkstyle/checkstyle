@@ -30,8 +30,7 @@ import java.util.Arrays;
  * @author Baratali Izmailov
  *
  */
-public class JavadocNodeImpl implements DetailNode
-{
+public class JavadocNodeImpl implements DetailNode {
     /**
      * Node index among parent's children
      */
@@ -68,32 +67,27 @@ public class JavadocNodeImpl implements DetailNode
     private DetailNode parent;
 
     @Override
-    public int getType()
-    {
+    public int getType() {
         return type;
     }
 
     @Override
-    public String getText()
-    {
+    public String getText() {
         return text;
     }
 
     @Override
-    public int getLineNumber()
-    {
+    public int getLineNumber() {
         return lineNumber;
     }
 
     @Override
-    public int getColumnNumber()
-    {
+    public int getColumnNumber() {
         return columnNumber;
     }
 
     @Override
-    public DetailNode[] getChildren()
-    {
+    public DetailNode[] getChildren() {
         if (children == null) {
             return new DetailNode[0];
         }
@@ -103,55 +97,45 @@ public class JavadocNodeImpl implements DetailNode
     }
 
     @Override
-    public DetailNode getParent()
-    {
+    public DetailNode getParent() {
         return parent;
     }
 
     @Override
-    public int getIndex()
-    {
+    public int getIndex() {
         return index;
     }
 
-    public void setType(int type)
-    {
+    public void setType(int type) {
         this.type = type;
     }
 
-    public void setText(String text)
-    {
+    public void setText(String text) {
         this.text = text;
     }
 
-    public void setLineNumber(int lineNumber)
-    {
+    public void setLineNumber(int lineNumber) {
         this.lineNumber = lineNumber;
     }
 
-    public void setColumnNumber(int columnNumber)
-    {
+    public void setColumnNumber(int columnNumber) {
         this.columnNumber = columnNumber;
     }
 
-    public void setChildren(DetailNode... children)
-    {
+    public void setChildren(DetailNode... children) {
         this.children = Arrays.copyOf(children, children.length);
     }
 
-    public void setParent(DetailNode parent)
-    {
+    public void setParent(DetailNode parent) {
         this.parent = parent;
     }
 
-    public void setIndex(int index)
-    {
+    public void setIndex(int index) {
         this.index = index;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return JavadocUtils.getTokenName(getType())
                 + "[" + getLineNumber() + "x" + getColumnNumber() + "]";
     }

@@ -31,11 +31,9 @@ import org.junit.Test;
  * TestCase to check DetailAST.
  * @author Oliver Burn
  */
-public class DetailASTTest
-{
+public class DetailASTTest {
     @Test
-    public void testGetChildCount()
-    {
+    public void testGetChildCount() {
         final DetailAST root = new DetailAST();
         final DetailAST firstLevelA = new DetailAST();
         final DetailAST firstLevelB = new DetailAST();
@@ -64,17 +62,14 @@ public class DetailASTTest
     }
 
     @Test
-    public void testTreeStructure() throws Exception
-    {
+    public void testTreeStructure() throws Exception {
         checkDir(new File("src/test/resources/com/puppycrawl/tools/checkstyle"));
     }
 
-    private void checkDir(File dir) throws Exception
-    {
+    private void checkDir(File dir) throws Exception {
         File[] files = dir.listFiles(new FileFilter() {
                 @Override
-                public boolean accept(File file)
-                {
+                public boolean accept(File file) {
                     return (file.getName().endsWith(".java")
                             || file.isDirectory())
                         && !file.getName().endsWith("InputGrammar.java");
@@ -90,8 +85,7 @@ public class DetailASTTest
         }
     }
 
-    private void checkFile(String filename) throws Exception
-    {
+    private void checkFile(String filename) throws Exception {
         final FileText text = new FileText(new File(filename),
                            System.getProperty("file.encoding", "UTF-8"));
         final FileContents contents = new FileContents(text);
@@ -103,8 +97,7 @@ public class DetailASTTest
                            final DetailAST parent,
                            final DetailAST prev,
                            final String filename,
-                           final DetailAST root)
-    {
+                           final DetailAST root) {
         Object[] params = new Object[] {
             node, parent, prev, filename, root,
         };

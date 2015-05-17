@@ -5,30 +5,25 @@ import org.junit.Assert;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
-public class CompareTreesWithComments extends Check
-{
+public class CompareTreesWithComments extends Check {
     protected static DetailAST expectedTree;
 
     @Override
-    public boolean isCommentNodesRequired()
-    {
+    public boolean isCommentNodesRequired() {
         return true;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[]{};
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
-    {
+    public void beginTree(DetailAST aRootAST) {
         Assert.assertTrue(isAstEquals(expectedTree, aRootAST));
     }
 
-    private boolean isAstEquals(DetailAST expected, DetailAST actual)
-    {
+    private boolean isAstEquals(DetailAST expected, DetailAST actual) {
         boolean result = false;
         if (expected == actual) {
             result = true;
@@ -38,8 +33,7 @@ public class CompareTreesWithComments extends Check
         } else {
             if (expected.getType() == actual.getType()
                     && expected.getLineNo() == actual.getLineNo()
-                    && expected.getColumnNo() == actual.getColumnNo())
-            {
+                    && expected.getColumnNo() == actual.getColumnNo()) {
                 if (expected.getText() == null) {
                     result = actual.getText() == null;
                 }

@@ -32,8 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author <a href="mailto:IliaDubinin91@gmail.com">Ilja Dubinin</a>
  */
-public final class IllegalCatchCheck extends AbstractIllegalCheck
-{
+public final class IllegalCatchCheck extends AbstractIllegalCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -42,33 +41,28 @@ public final class IllegalCatchCheck extends AbstractIllegalCheck
     public static final String MSG_KEY = "illegal.catch";
 
     /** Creates new instance of the check. */
-    public IllegalCatchCheck()
-    {
+    public IllegalCatchCheck() {
         super("Exception", "Error", "RuntimeException", "Throwable", "java.lang.Error",
                 "java.lang.Exception", "java.lang.RuntimeException", "java.lang.Throwable");
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.LITERAL_CATCH};
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return getDefaultTokens();
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.LITERAL_CATCH};
     }
 
     @Override
-    public void visitToken(DetailAST detailAST)
-    {
+    public void visitToken(DetailAST detailAST) {
         final DetailAST paradef =
             detailAST.findFirstToken(TokenTypes.PARAMETER_DEF);
         final DetailAST excTypeParent =
@@ -90,8 +84,7 @@ public final class IllegalCatchCheck extends AbstractIllegalCheck
      * @param parentToken - parent node for types (TYPE or BOR)
      * @return list, that contains all exception types in current catch
      */
-    public List<DetailAST> getAllExceptionTypes(DetailAST parentToken)
-    {
+    public List<DetailAST> getAllExceptionTypes(DetailAST parentToken) {
         DetailAST currentNode = parentToken.getFirstChild();
         final List<DetailAST> exceptionTypes = new LinkedList<>();
         if (currentNode.getType() == TokenTypes.BOR) {

@@ -30,10 +30,8 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class VisibilityModifierCheckTest
-    extends BaseCheckTestSupport
-{
-    private Checker getChecker() throws Exception
-    {
+    extends BaseCheckTestSupport {
+    private Checker getChecker() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("publicMemberPattern", "^f[A-Z][a-zA-Z0-9]*$");
@@ -42,8 +40,7 @@ public class VisibilityModifierCheckTest
 
     @Test
     public void testInner()
-        throws Exception
-    {
+        throws Exception {
         final String[] expected = {
             "30:24: " + getCheckMessage(MSG_KEY, "rData"),
             "33:27: " + getCheckMessage(MSG_KEY, "protectedVariable"),
@@ -57,8 +54,7 @@ public class VisibilityModifierCheckTest
 
     @Test
     public void testIgnoreAccess()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("publicMemberPattern", "^r[A-Z]");
@@ -72,8 +68,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testSimple() throws Exception
-    {
+    public void testSimple() throws Exception {
         final String[] expected = {
             "39:19: " + getCheckMessage(MSG_KEY, "mNumCreated2"),
             "49:23: " + getCheckMessage(MSG_KEY, "sTest1"),
@@ -86,8 +81,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testStrictJavadoc() throws Exception
-    {
+    public void testStrictJavadoc() throws Exception {
         final String[] expected = {
             "44:9: " + getCheckMessage(MSG_KEY, "mLen"),
             "45:19: " + getCheckMessage(MSG_KEY, "mDeer"),
@@ -97,8 +91,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testAllowPublicFinalFieldsInImmutableClass() throws Exception
-    {
+    public void testAllowPublicFinalFieldsInImmutableClass() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(VisibilityModifierCheck.class);
         final String[] expected = {
@@ -113,8 +106,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testUserSpecifiedImmutableClassesList() throws Exception
-    {
+    public void testUserSpecifiedImmutableClassesList() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("immutableClassCanonicalNames", "java.util.List,"
@@ -133,8 +125,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testImmutableSpecifiedSameTypeName() throws Exception
-    {
+    public void testImmutableSpecifiedSameTypeName() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("immutableClassCanonicalNames",
@@ -148,8 +139,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testImmutableDefaultValueSameTypeName() throws Exception
-    {
+    public void testImmutableDefaultValueSameTypeName() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(VisibilityModifierCheck.class);
         final String[] expected = {
@@ -162,8 +152,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testImmutableStarImportFalseNegative() throws Exception
-    {
+    public void testImmutableStarImportFalseNegative() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("immutableClassCanonicalNames", "java.util.Arrays");
@@ -173,8 +162,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testImmutableStarImportNoWarn() throws Exception
-    {
+    public void testImmutableStarImportNoWarn() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("immutableClassCanonicalNames",
@@ -185,8 +173,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testDefaultAnnotationPatterns() throws Exception
-    {
+    public void testDefaultAnnotationPatterns() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(VisibilityModifierCheck.class);
         final String[] expected = {
@@ -201,8 +188,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testCustomAnnotationPatterns() throws Exception
-    {
+    public void testCustomAnnotationPatterns() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("ignoreAnnotationCanonicalNames",
@@ -224,8 +210,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testIgnoreAnnotationNoPattern() throws Exception
-    {
+    public void testIgnoreAnnotationNoPattern() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("ignoreAnnotationCanonicalNames", "");
@@ -249,8 +234,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testIgnoreAnnotationSameName() throws Exception
-    {
+    public void testIgnoreAnnotationSameName() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(VisibilityModifierCheck.class);
         final String[] expected = {
@@ -260,8 +244,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens()
-    {
+    public void testGetAcceptableTokens() {
         VisibilityModifierCheck obj = new VisibilityModifierCheck();
         int[] expected = {
             TokenTypes.VARIABLE_DEF,

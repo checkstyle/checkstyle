@@ -35,8 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author maxvetrenko
  *
  */
-public class LineWrappingHandler
-{
+public class LineWrappingHandler {
 
     /**
      * The current instance of <code>IndentationCheck</code> class using this
@@ -75,8 +74,7 @@ public class LineWrappingHandler
      * @param lastNode
      *            last node for current expression.
      */
-    public LineWrappingHandler(IndentationCheck instance, DetailAST firstNode, DetailAST lastNode)
-    {
+    public LineWrappingHandler(IndentationCheck instance, DetailAST firstNode, DetailAST lastNode) {
         indentCheck = instance;
         this.firstNode = firstNode;
         this.lastNode = lastNode;
@@ -87,8 +85,7 @@ public class LineWrappingHandler
     /**
      * @return correct indentation for current expression.
      */
-    protected int getCurrentIndentation()
-    {
+    protected int getCurrentIndentation() {
         return firstNode.getColumnNo() + indentLevel;
     }
 
@@ -96,8 +93,7 @@ public class LineWrappingHandler
      *  Getter for firstNode field
      *  @return firstNode field
      */
-    protected final DetailAST getFirstNode()
-    {
+    protected final DetailAST getFirstNode() {
         return firstNode;
     }
 
@@ -105,8 +101,7 @@ public class LineWrappingHandler
      *  Getter for lastNode field
      *  @return lastNode field
      */
-    protected final DetailAST getLastNode()
-    {
+    protected final DetailAST getLastNode() {
         return lastNode;
     }
 
@@ -114,16 +109,14 @@ public class LineWrappingHandler
      *  Getter for indentLevel field
      *  @return indentLevel field
      */
-    protected final int getIndentLevel()
-    {
+    protected final int getIndentLevel() {
         return indentLevel;
     }
 
     /**
      * Checks line wrapping into expressions and definitions.
      */
-    public void checkIndentation()
-    {
+    public void checkIndentation() {
         final NavigableMap<Integer, DetailAST> firstNodesOnLines = collectFirstNodes();
 
         final DetailAST firstNode = firstNodesOnLines.get(firstNodesOnLines.firstKey());
@@ -141,8 +134,7 @@ public class LineWrappingHandler
 
             if (currentType == TokenTypes.RCURLY
                     || currentType == TokenTypes.RPAREN
-                    || currentType == TokenTypes.ARRAY_INIT)
-            {
+                    || currentType == TokenTypes.ARRAY_INIT) {
                 logWarningMessage(node, firstNodeIndent);
             }
             else if (currentType == TokenTypes.LITERAL_IF) {
@@ -165,19 +157,16 @@ public class LineWrappingHandler
      *            first node.
      * @return indentation of first node.
      */
-    private int getFirstNodeIndent(DetailAST node)
-    {
+    private int getFirstNodeIndent(DetailAST node) {
         int indentLevel = node.getColumnNo();
 
         if (node.getType() == TokenTypes.LITERAL_IF
-                && node.getParent().getType() == TokenTypes.LITERAL_ELSE)
-        {
+                && node.getParent().getType() == TokenTypes.LITERAL_ELSE) {
             final DetailAST lcurly = node.getParent().getPreviousSibling();
             final DetailAST rcurly = lcurly.getLastChild();
 
             if (lcurly.getType() == TokenTypes.SLIST
-                    && rcurly.getLineNo() == node.getLineNo())
-            {
+                    && rcurly.getLineNo() == node.getLineNo()) {
                 indentLevel = rcurly.getColumnNo();
             }
             else {
@@ -193,8 +182,7 @@ public class LineWrappingHandler
      * @return NavigableMap which contains lines numbers as a key and first
      *         nodes on lines as a values.
      */
-    private NavigableMap<Integer, DetailAST> collectFirstNodes()
-    {
+    private NavigableMap<Integer, DetailAST> collectFirstNodes() {
         final NavigableMap<Integer, DetailAST> result = new TreeMap<>();
 
         result.put(firstNode.getLineNo(), firstNode);
@@ -211,8 +199,7 @@ public class LineWrappingHandler
 
                 if (firstTokenOnLine == null
                         || firstTokenOnLine != null
-                        && firstTokenOnLine.getColumnNo() >= curNode.getColumnNo())
-                {
+                        && firstTokenOnLine.getColumnNo() >= curNode.getColumnNo()) {
                     result.put(curNode.getLineNo(), curNode);
                 }
                 curNode = getNextCurNode(curNode);
@@ -227,8 +214,7 @@ public class LineWrappingHandler
      * @param curNode current node.
      * @return next curNode node.
      */
-    private DetailAST getNextCurNode(DetailAST curNode)
-    {
+    private DetailAST getNextCurNode(DetailAST curNode) {
         DetailAST nodeToVisit = curNode.getFirstChild();
         DetailAST currentNode = curNode;
 
@@ -249,8 +235,7 @@ public class LineWrappingHandler
      *     first nodes as values and line numbers as keys.
      */
     private void checkAnnotationIndentation(DetailAST atNode,
-            NavigableMap<Integer, DetailAST> firstNodesOnLines)
-    {
+            NavigableMap<Integer, DetailAST> firstNodesOnLines) {
         final int currentIndent = atNode.getColumnNo() + indentLevel;
         final int firstNodeIndent = atNode.getColumnNo();
         final Collection<DetailAST> values = firstNodesOnLines.values();
@@ -264,12 +249,10 @@ public class LineWrappingHandler
 
             if (node.getLineNo() < lastAnnotationLine
                     || node.getLineNo() == lastAnnotationLine
-                    && node.getColumnNo() <= lastAnnotattionColumn)
-            {
+                    && node.getColumnNo() <= lastAnnotattionColumn) {
                 final DetailAST parentNode = node.getParent();
                 if (node.getType() == TokenTypes.AT
-                        && parentNode.getParent().getType() == TokenTypes.MODIFIERS)
-                {
+                        && parentNode.getParent().getType() == TokenTypes.MODIFIERS) {
                     logWarningMessage(node, firstNodeIndent);
                 }
                 else {
@@ -288,12 +271,10 @@ public class LineWrappingHandler
      * @param atNode first at-clause node.
      * @return last annotation node.
      */
-    private DetailAST getLastAnnotationNode(DetailAST atNode)
-    {
+    private DetailAST getLastAnnotationNode(DetailAST atNode) {
         DetailAST lastAnnotation = atNode.getParent();
         while (lastAnnotation.getNextSibling() != null
-                && lastAnnotation.getNextSibling().getType() == TokenTypes.ANNOTATION)
-        {
+                && lastAnnotation.getNextSibling().getType() == TokenTypes.ANNOTATION) {
             lastAnnotation = lastAnnotation.getNextSibling();
         }
         return lastAnnotation.getLastChild();
@@ -307,8 +288,7 @@ public class LineWrappingHandler
      * @param currentIndent
      *            correct indentation.
      */
-    private void logWarningMessage(DetailAST currentNode, int currentIndent)
-    {
+    private void logWarningMessage(DetailAST currentNode, int currentIndent) {
         if (forceStrictCondition) {
             if (currentNode.getColumnNo() != currentIndent) {
                 indentCheck.indentationLog(currentNode.getLineNo(),

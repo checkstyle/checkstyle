@@ -31,11 +31,9 @@ import org.junit.Test;
  * Test cases for {@link Scope} enumeration.
  * @author Mehmet Can Cömert
  */
-public class ScopeTest
-{
+public class ScopeTest {
     @Test(expected = IllegalArgumentException.class)
-    public void testMisc()
-    {
+    public void testMisc() {
         final Scope o = Scope.getInstance("public");
         assertNotNull(o);
         assertEquals("public", o.toString());
@@ -45,8 +43,7 @@ public class ScopeTest
     }
 
     @Test
-    public void testMixedCaseSpaces()
-    {
+    public void testMixedCaseSpaces() {
         Scope.getInstance("NothinG ");
         Scope.getInstance(" PuBlic");
         Scope.getInstance(" ProteCted");
@@ -56,8 +53,7 @@ public class ScopeTest
     }
 
     @Test
-    public void testMixedCaseSpacesWithDifferentLocales()
-    {
+    public void testMixedCaseSpacesWithDifferentLocales() {
         Locale[] differentLocales = new Locale[] {new Locale("TR", "tr") };
         Locale defaultLocale = Locale.getDefault();
         try {
@@ -72,8 +68,7 @@ public class ScopeTest
     }
 
     @Test
-    public void testIsInAnonInner()
-    {
+    public void testIsInAnonInner() {
         assertTrue(Scope.NOTHING.isIn(Scope.ANONINNER));
         assertTrue(Scope.PUBLIC.isIn(Scope.ANONINNER));
         assertTrue(Scope.PROTECTED.isIn(Scope.ANONINNER));
@@ -83,8 +78,7 @@ public class ScopeTest
     }
 
     @Test
-    public void testIsInPrivate()
-    {
+    public void testIsInPrivate() {
         assertTrue(Scope.NOTHING.isIn(Scope.PRIVATE));
         assertTrue(Scope.PUBLIC.isIn(Scope.PRIVATE));
         assertTrue(Scope.PROTECTED.isIn(Scope.PRIVATE));
@@ -94,8 +88,7 @@ public class ScopeTest
     }
 
     @Test
-    public void testIsInPackage()
-    {
+    public void testIsInPackage() {
         assertTrue(Scope.NOTHING.isIn(Scope.PACKAGE));
         assertTrue(Scope.PUBLIC.isIn(Scope.PACKAGE));
         assertTrue(Scope.PROTECTED.isIn(Scope.PACKAGE));
@@ -105,8 +98,7 @@ public class ScopeTest
     }
 
     @Test
-    public void testIsInProtected()
-    {
+    public void testIsInProtected() {
         assertTrue(Scope.NOTHING.isIn(Scope.PROTECTED));
         assertTrue(Scope.PUBLIC.isIn(Scope.PROTECTED));
         assertTrue(Scope.PROTECTED.isIn(Scope.PROTECTED));
@@ -116,8 +108,7 @@ public class ScopeTest
     }
 
     @Test
-    public void testIsInPublic()
-    {
+    public void testIsInPublic() {
         assertTrue(Scope.NOTHING.isIn(Scope.PUBLIC));
         assertTrue(Scope.PUBLIC.isIn(Scope.PUBLIC));
         assertTrue(!Scope.PROTECTED.isIn(Scope.PUBLIC));
@@ -127,8 +118,7 @@ public class ScopeTest
     }
 
     @Test
-    public void testIsInNothing()
-    {
+    public void testIsInNothing() {
         assertTrue(Scope.NOTHING.isIn(Scope.NOTHING));
         assertTrue(!Scope.PUBLIC.isIn(Scope.NOTHING));
         assertTrue(!Scope.PROTECTED.isIn(Scope.NOTHING));

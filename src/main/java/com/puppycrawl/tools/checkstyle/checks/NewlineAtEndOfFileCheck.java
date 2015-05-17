@@ -59,8 +59,7 @@ import org.apache.commons.beanutils.ConversionException;
  * @author lkuehne
  */
 public class NewlineAtEndOfFileCheck
-    extends AbstractFileSetCheck
-{
+    extends AbstractFileSetCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -78,8 +77,7 @@ public class NewlineAtEndOfFileCheck
     private LineSeparatorOption lineSeparator = LineSeparatorOption.SYSTEM;
 
     @Override
-    protected void processFiltered(File file, List<String> lines)
-    {
+    protected void processFiltered(File file, List<String> lines) {
         // Cannot use lines as the line separators have been removed!
         RandomAccessFile randomAccessFile = null;
         try {
@@ -107,8 +105,7 @@ public class NewlineAtEndOfFileCheck
      * @throws IllegalArgumentException If the specified line separator is not
      *         one of 'crlf', 'lf' or 'cr'
      */
-    public void setLineSeparator(String lineSeparatorParam)
-    {
+    public void setLineSeparator(String lineSeparatorParam) {
         try {
             lineSeparator =
                 Enum.valueOf(LineSeparatorOption.class, lineSeparatorParam.trim()
@@ -129,8 +126,7 @@ public class NewlineAtEndOfFileCheck
      *         provided reader
      */
     private boolean endsWithNewline(RandomAccessFile randomAccessFile)
-        throws IOException
-    {
+        throws IOException {
         final int len = lineSeparator.length();
         if (randomAccessFile.length() < len) {
             return false;

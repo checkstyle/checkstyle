@@ -28,20 +28,17 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAround
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck.WS_NOT_PRECEDED;
 
 public class WhitespaceAroundTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(WhitespaceAroundCheck.class);
     }
 
     @Test
     public void testIt()
-        throws Exception
-    {
+        throws Exception {
         final String[] expected = {
             "16:22: " + getCheckMessage(WS_NOT_PRECEDED, "="),
             "16:23: " + getCheckMessage(WS_NOT_FOLLOWED, "="),
@@ -84,8 +81,7 @@ public class WhitespaceAroundTest
 
     @Test
     public void testIt2()
-        throws Exception
-    {
+        throws Exception {
         final String[] expected = {
             "153:27: " + getCheckMessage(WS_NOT_FOLLOWED, "="),
             "154:27: " + getCheckMessage(WS_NOT_FOLLOWED, "="),
@@ -99,8 +95,7 @@ public class WhitespaceAroundTest
 
     @Test
     public void testIt3()
-        throws Exception
-    {
+        throws Exception {
         final String[] expected = {
             "41:14: " + getCheckMessage(WS_NOT_FOLLOWED, "while"),
             "58:12: " + getCheckMessage(WS_NOT_FOLLOWED, "for"),
@@ -116,8 +111,7 @@ public class WhitespaceAroundTest
 
     @Test
     public void testIt4()
-        throws Exception
-    {
+        throws Exception {
         checkConfig.addAttribute("allowEmptyMethods", "true");
         checkConfig.addAttribute("allowEmptyConstructors", "true");
         final String[] expected = {
@@ -129,8 +123,7 @@ public class WhitespaceAroundTest
 
     @Test
     public void testGenericsTokensAreFlagged()
-        throws Exception
-    {
+        throws Exception {
         final String[] expected = {
             "6:67: " + getCheckMessage(WS_NOT_PRECEDED, "&"),
             "6:68: " + getCheckMessage(WS_NOT_FOLLOWED, "&"),
@@ -139,8 +132,7 @@ public class WhitespaceAroundTest
     }
 
     @Test
-    public void test1322879And1649038() throws Exception
-    {
+    public void test1322879And1649038() throws Exception {
         final String[] expected = {
         };
         verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
@@ -148,8 +140,7 @@ public class WhitespaceAroundTest
     }
 
     @Test
-    public void testIgnoreEnhancedForColon() throws Exception
-    {
+    public void testIgnoreEnhancedForColon() throws Exception {
         checkConfig.addAttribute("ignoreEnhancedForColon", "false");
         final String[] expected = {
             "19:20: " + getCheckMessage(WS_NOT_PRECEDED, ":"),
@@ -159,8 +150,7 @@ public class WhitespaceAroundTest
     }
 
     @Test
-    public void testEmptyTypes() throws Exception
-    {
+    public void testEmptyTypes() throws Exception {
         checkConfig.addAttribute("allowEmptyTypes", "true");
         final String[] expected = {
             "29:95: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
@@ -175,8 +165,7 @@ public class WhitespaceAroundTest
     }
 
     @Test
-    public void testEmptyLoops() throws Exception
-    {
+    public void testEmptyLoops() throws Exception {
         checkConfig.addAttribute("allowEmptyLoops", "true");
         final String[] expected = {
             "40:65: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
@@ -195,8 +184,7 @@ public class WhitespaceAroundTest
     }
 
     @Test
-    public void testSwitchWhitespaceAround() throws Exception
-    {
+    public void testSwitchWhitespaceAround() throws Exception {
         final String[] expected = {
             "6:15: " + getCheckMessage(WS_NOT_FOLLOWED, "switch"),
         };
@@ -206,8 +194,7 @@ public class WhitespaceAroundTest
     }
 
     @Test
-    public void testDoWhileWhitespaceAround() throws Exception
-    {
+    public void testDoWhileWhitespaceAround() throws Exception {
         final String[] expected = {
             "9:16: " + getCheckMessage(WS_NOT_FOLLOWED, "while"),
         };
@@ -217,8 +204,7 @@ public class WhitespaceAroundTest
     }
 
     @Test
-    public void allowEmptyMethods() throws Exception
-    {
+    public void allowEmptyMethods() throws Exception {
         checkConfig.addAttribute("allowEmptyMethods", "true");
         final String[] expected = {};
         verify(checkConfig,

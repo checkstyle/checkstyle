@@ -94,8 +94,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * @author Lars Kühne
  * @author Daniel Solano Gómez
  */
-public class MagicNumberCheck extends Check
-{
+public class MagicNumberCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -137,8 +136,7 @@ public class MagicNumberCheck extends Check
     private boolean ignoreFieldDeclaration;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.NUM_DOUBLE,
             TokenTypes.NUM_FLOAT,
@@ -148,8 +146,7 @@ public class MagicNumberCheck extends Check
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.NUM_DOUBLE,
             TokenTypes.NUM_FLOAT,
@@ -159,15 +156,13 @@ public class MagicNumberCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (ignoreAnnotation && isChildOf(ast, TokenTypes.ANNOTATION)) {
             return;
         }
 
         if (inIgnoreList(ast)
-            || ignoreHashCodeMethod && isInHashCodeMethod(ast))
-        {
+            || ignoreHashCodeMethod && isInHashCodeMethod(ast)) {
             return;
         }
 
@@ -198,13 +193,11 @@ public class MagicNumberCheck extends Check
      * @return the constant def or null if ast is not
      * contained in a constant definition
      */
-    private DetailAST findContainingConstantDef(DetailAST ast)
-    {
+    private DetailAST findContainingConstantDef(DetailAST ast) {
         DetailAST varDefAST = ast;
         while (varDefAST != null
                 && varDefAST.getType() != TokenTypes.VARIABLE_DEF
-                && varDefAST.getType() != TokenTypes.ENUM_CONSTANT_DEF)
-        {
+                && varDefAST.getType() != TokenTypes.ENUM_CONSTANT_DEF) {
             varDefAST = varDefAST.getParent();
         }
 
@@ -215,8 +208,7 @@ public class MagicNumberCheck extends Check
 
         // implicit constant?
         if (ScopeUtils.inInterfaceOrAnnotationBlock(varDefAST)
-            || varDefAST.getType() == TokenTypes.ENUM_CONSTANT_DEF)
-        {
+            || varDefAST.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
             return varDefAST;
         }
 
@@ -234,8 +226,7 @@ public class MagicNumberCheck extends Check
      * Reports aAST as a magic number, includes unary operators as needed.
      * @param ast the AST node that contains the number to report
      */
-    private void reportMagicNumber(DetailAST ast)
-    {
+    private void reportMagicNumber(DetailAST ast) {
         String text = ast.getText();
         final DetailAST parent = ast.getParent();
         DetailAST reportAST = ast;
@@ -264,8 +255,7 @@ public class MagicNumberCheck extends Check
      * @return {@code true} if {@code ast} is in the scope of a valid hash
      * code method
      */
-    private boolean isInHashCodeMethod(DetailAST ast)
-    {
+    private boolean isInHashCodeMethod(DetailAST ast) {
         // if not in a code block, can't be in hashCode()
         if (!ScopeUtils.inCodeBlock(ast)) {
             return false;
@@ -274,8 +264,7 @@ public class MagicNumberCheck extends Check
         // find the method definition AST
         DetailAST methodDefAST = ast.getParent();
         while (null != methodDefAST
-                && TokenTypes.METHOD_DEF != methodDefAST.getType())
-        {
+                && TokenTypes.METHOD_DEF != methodDefAST.getType()) {
             methodDefAST = methodDefAST.getParent();
         }
 
@@ -309,8 +298,7 @@ public class MagicNumberCheck extends Check
      * @return true if the number of ast is in the ignore list of this
      * check.
      */
-    private boolean inIgnoreList(DetailAST ast)
-    {
+    private boolean inIgnoreList(DetailAST ast) {
         double value = CheckUtils.parseDouble(ast.getText(), ast.getType());
         final DetailAST parent = ast.getParent();
         if (parent.getType() == TokenTypes.UNARY_MINUS) {
@@ -326,12 +314,10 @@ public class MagicNumberCheck extends Check
      *
      * @return {@code true} if {@code ast} is in the scope of field declaration
      */
-    private boolean isFieldDeclaration(DetailAST ast)
-    {
+    private boolean isFieldDeclaration(DetailAST ast) {
         DetailAST varDefAST = ast;
         while (varDefAST != null
-                && varDefAST.getType() != TokenTypes.VARIABLE_DEF)
-        {
+                && varDefAST.getType() != TokenTypes.VARIABLE_DEF) {
             varDefAST = varDefAST.getParent();
         }
 
@@ -348,8 +334,7 @@ public class MagicNumberCheck extends Check
      * BeanUtils converts numeric token list to double array automatically.
      * @param list list of numbers to ignore.
      */
-    public void setIgnoreNumbers(double... list)
-    {
+    public void setIgnoreNumbers(double... list) {
         if (list.length == 0) {
             ignoreNumbers = new double[0];
         }
@@ -365,8 +350,7 @@ public class MagicNumberCheck extends Check
      * @param ignoreHashCodeMethod decide whether to ignore
      * hash code methods
      */
-    public void setIgnoreHashCodeMethod(boolean ignoreHashCodeMethod)
-    {
+    public void setIgnoreHashCodeMethod(boolean ignoreHashCodeMethod) {
         this.ignoreHashCodeMethod = ignoreHashCodeMethod;
     }
 
@@ -374,8 +358,7 @@ public class MagicNumberCheck extends Check
      * Set whether to ignore Annotations.
      * @param ignoreAnnotation decide whether to ignore annotations
      */
-    public void setIgnoreAnnotation(boolean ignoreAnnotation)
-    {
+    public void setIgnoreAnnotation(boolean ignoreAnnotation) {
         this.ignoreAnnotation = ignoreAnnotation;
     }
 
@@ -384,8 +367,7 @@ public class MagicNumberCheck extends Check
      * @param ignoreFieldDeclaration decide whether to ignore magic numbers
      * in field declaration
      */
-    public void setIgnoreFieldDeclaration(boolean ignoreFieldDeclaration)
-    {
+    public void setIgnoreFieldDeclaration(boolean ignoreFieldDeclaration) {
         this.ignoreFieldDeclaration = ignoreFieldDeclaration;
     }
 
@@ -397,8 +379,7 @@ public class MagicNumberCheck extends Check
      *
      * @return {@code true} if the AST node has a parent with given token type.
      */
-    private static boolean isChildOf(DetailAST ast, int type)
-    {
+    private static boolean isChildOf(DetailAST ast, int type) {
         boolean result = false;
         DetailAST node = ast;
         do {

@@ -36,14 +36,12 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthes
  *
  * @author  Eric K. Roe
  */
-public class UnnecessaryParenthesesCheckTest extends BaseCheckTestSupport
-{
+public class UnnecessaryParenthesesCheckTest extends BaseCheckTestSupport {
     private static final String TEST_FILE = "coding" + File.separator
         + "InputUnnecessaryParentheses.java";
 
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(UnnecessaryParenthesesCheck.class);
 
@@ -98,8 +96,7 @@ public class UnnecessaryParenthesesCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void test15Extensions() throws Exception
-    {
+    public void test15Extensions() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(UnnecessaryParenthesesCheck.class);
         final String[] expected = {};
         verify(checkConfig, getPath("Input15Extensions.java"), expected);

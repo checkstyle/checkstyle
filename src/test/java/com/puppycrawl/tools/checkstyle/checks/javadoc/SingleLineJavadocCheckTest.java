@@ -26,11 +26,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck.MSG_KEY;
 
-public class SingleLineJavadocCheckTest extends BaseCheckTestSupport
-{
+public class SingleLineJavadocCheckTest extends BaseCheckTestSupport {
     @Test
-    public void simpleTest() throws Exception
-    {
+    public void simpleTest() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(SingleLineJavadocCheck.class);
         final String[] expected = {

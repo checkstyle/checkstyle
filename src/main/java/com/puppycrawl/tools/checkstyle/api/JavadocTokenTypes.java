@@ -26,8 +26,7 @@ import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
  * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
  * javadoc - The Java API Documentation Generator</a>
  */
-public final class JavadocTokenTypes
-{
+public final class JavadocTokenTypes {
     private static final int RULE_TYPES_OFFSET = 10000;
 
     /**
@@ -1386,8 +1385,7 @@ public final class JavadocTokenTypes
 
 
 
-    private JavadocTokenTypes()
-    {
+    private JavadocTokenTypes() {
     }
 
 }

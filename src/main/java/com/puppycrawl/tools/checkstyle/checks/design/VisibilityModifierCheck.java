@@ -229,8 +229,7 @@ import com.puppycrawl.tools.checkstyle.Utils;
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 public class VisibilityModifierCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -308,8 +307,7 @@ public class VisibilityModifierCheck
             getClassShortNames(DEFAULT_IMMUTABLE_TYPES);
 
     /** @return whether protected members are allowed */
-    public boolean isProtectedAllowed()
-    {
+    public boolean isProtectedAllowed() {
         return protectedAllowed;
     }
 
@@ -317,8 +315,7 @@ public class VisibilityModifierCheck
      * Set the list of ignore annotations.
      * @param annotationNames array of ignore annotations canonical names.
      */
-    public void setIgnoreAnnotationCanonicalNames(String... annotationNames)
-    {
+    public void setIgnoreAnnotationCanonicalNames(String... annotationNames) {
         ignoreAnnotationCanonicalNames = Arrays.asList(annotationNames);
     }
 
@@ -326,14 +323,12 @@ public class VisibilityModifierCheck
      * Set whether protected members are allowed.
      * @param protectedAllowed whether protected members are allowed
      */
-    public void setProtectedAllowed(boolean protectedAllowed)
-    {
+    public void setProtectedAllowed(boolean protectedAllowed) {
         this.protectedAllowed = protectedAllowed;
     }
 
     /** @return whether package visible members are allowed */
-    public boolean isPackageAllowed()
-    {
+    public boolean isPackageAllowed() {
         return packageAllowed;
     }
 
@@ -341,8 +336,7 @@ public class VisibilityModifierCheck
      * Set whether package visible members are allowed.
      * @param packageAllowed whether package visible members are allowed
      */
-    public void setPackageAllowed(boolean packageAllowed)
-    {
+    public void setPackageAllowed(boolean packageAllowed) {
         this.packageAllowed = packageAllowed;
     }
 
@@ -353,8 +347,7 @@ public class VisibilityModifierCheck
      * @throws org.apache.commons.beanutils.ConversionException
      *         if unable to create Pattern object
      */
-    public void setPublicMemberPattern(String pattern)
-    {
+    public void setPublicMemberPattern(String pattern) {
         publicMemberPattern = Utils.createPattern(pattern);
         publicMemberFormat = pattern;
     }
@@ -362,8 +355,7 @@ public class VisibilityModifierCheck
     /**
      * @return the regexp for public members to ignore.
      */
-    private Pattern getPublicMemberRegexp()
-    {
+    private Pattern getPublicMemberRegexp() {
         return publicMemberPattern;
     }
 
@@ -371,8 +363,7 @@ public class VisibilityModifierCheck
      * Sets whether public immutable are allowed.
      * @param allow user's value.
      */
-    public void setAllowPublicImmutableFields(boolean allow)
-    {
+    public void setAllowPublicImmutableFields(boolean allow) {
         this.allowPublicImmutableFields = allow;
     }
 
@@ -380,14 +371,12 @@ public class VisibilityModifierCheck
      * Set the list of immutable classes types names.
      * @param classNames array of immutable types canonical names.
      */
-    public void setImmutableClassCanonicalNames(String... classNames)
-    {
+    public void setImmutableClassCanonicalNames(String... classNames) {
         immutableClassCanonicalNames = Arrays.asList(classNames);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.IMPORT,
@@ -395,8 +384,7 @@ public class VisibilityModifierCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.OBJBLOCK,
@@ -405,8 +393,7 @@ public class VisibilityModifierCheck
     }
 
     @Override
-    public void beginTree(DetailAST rootAst)
-    {
+    public void beginTree(DetailAST rootAst) {
         immutableClassShortNames.clear();
         final List<String> classShortNames =
                 getClassShortNames(immutableClassCanonicalNames);
@@ -419,8 +406,7 @@ public class VisibilityModifierCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.VARIABLE_DEF:
                 if (!isAnonymousClassVariable(ast)) {
@@ -441,8 +427,7 @@ public class VisibilityModifierCheck
      * @param variableDef {@link TokenTypes#VARIABLE_DEF VARIABLE_DEF}
      * @return true if current variable definition is definition of an anonymous class.
      */
-    private static boolean isAnonymousClassVariable(DetailAST variableDef)
-    {
+    private static boolean isAnonymousClassVariable(DetailAST variableDef) {
         return variableDef.getParent().getType() != TokenTypes.OBJBLOCK;
     }
 
@@ -451,8 +436,7 @@ public class VisibilityModifierCheck
      * If it is not proper according to Check - puts violation on it.
      * @param variableDef variable to check.
      */
-    private void visitVariableDef(DetailAST variableDef)
-    {
+    private void visitVariableDef(DetailAST variableDef) {
         final boolean inInterfaceOrAnnotationBlock =
                 ScopeUtils.inInterfaceOrAnnotationBlock(variableDef);
 
@@ -471,8 +455,7 @@ public class VisibilityModifierCheck
      * @param variableDef {@link TokenTypes#VARIABLE_DEF VARIABLE_DEF}
      * @return true if variable def has ignore annotation.
      */
-    private boolean hasIgnoreAnnotation(DetailAST variableDef)
-    {
+    private boolean hasIgnoreAnnotation(DetailAST variableDef) {
         final DetailAST firstIgnoreAnnotation =
                  containsMatchingAnnotation(variableDef);
         return firstIgnoreAnnotation != null;
@@ -484,8 +467,7 @@ public class VisibilityModifierCheck
      * <b>immutableClassShortNames</b> - removes it from the last one.
      * @param importAst {@link TokenTypes#IMPORT Import}
      */
-    private void visitImport(DetailAST importAst)
-    {
+    private void visitImport(DetailAST importAst) {
         if (!isStarImport(importAst)) {
             final DetailAST type = importAst.getFirstChild();
             final String canonicalName = getCanonicalName(type);
@@ -495,13 +477,11 @@ public class VisibilityModifierCheck
             // but its short name collides with one of specified class - removes the short name
             // from list to avoid names collision
             if (!immutableClassCanonicalNames.contains(canonicalName)
-                     && immutableClassShortNames.contains(shortName))
-            {
+                     && immutableClassShortNames.contains(shortName)) {
                 immutableClassShortNames.remove(shortName);
             }
             if (!ignoreAnnotationCanonicalNames.contains(canonicalName)
-                     && ignoreAnnotationShortNames.contains(shortName))
-            {
+                     && ignoreAnnotationShortNames.contains(shortName)) {
                 ignoreAnnotationShortNames.remove(shortName);
             }
         }
@@ -517,8 +497,7 @@ public class VisibilityModifierCheck
      * @param importAst {@link TokenTypes#IMPORT Import}
      * @return true if it is star import
      */
-    private static boolean isStarImport(DetailAST importAst)
-    {
+    private static boolean isStarImport(DetailAST importAst) {
         boolean result = false;
         DetailAST toVisit = importAst;
         while (toVisit != null) {
@@ -537,8 +516,7 @@ public class VisibilityModifierCheck
      * @param variableName Variable's name.
      * @return true if variable has proper access modifier.
      */
-    private boolean hasProperAccessModifier(DetailAST variableDef, String variableName)
-    {
+    private boolean hasProperAccessModifier(DetailAST variableDef, String variableName) {
         boolean result = true;
 
         final Set<String> mods = getModifiers(variableDef);
@@ -566,8 +544,7 @@ public class VisibilityModifierCheck
      * @param variableDefAST an AST where type == VARIABLE_DEF AST.
      * @return the variable name in variableDefAST
      */
-    private static DetailAST getVarNameAST(DetailAST variableDefAST)
-    {
+    private static DetailAST getVarNameAST(DetailAST variableDefAST) {
         DetailAST ast = variableDefAST.getFirstChild();
         DetailAST varNameAst = null;
         while (ast != null) {
@@ -586,8 +563,7 @@ public class VisibilityModifierCheck
      * @param defAST AST for a variable or class definition.
      * @return the set of modifier Strings for defAST.
      */
-    private static Set<String> getModifiers(DetailAST defAST)
-    {
+    private static Set<String> getModifiers(DetailAST defAST) {
         final AST modifiersAST = defAST.findFirstToken(TokenTypes.MODIFIERS);
         final Set<String> modifiersSet = new HashSet<>();
         if (modifiersAST != null) {
@@ -606,8 +582,7 @@ public class VisibilityModifierCheck
      * @param modifiers the set of modifier Strings
      * @return one of "public", "private", "protected", "package"
      */
-    private static String getVisibilityScope(Set<String> modifiers)
-    {
+    private static String getVisibilityScope(Set<String> modifiers) {
         String accessModifier = "package";
         for (final String modifier : EXPLICIT_MODS) {
             if (modifiers.contains(modifier)) {
@@ -627,8 +602,7 @@ public class VisibilityModifierCheck
      * @param variableDef Field in consideration.
      * @return true if field is immutable.
      */
-    private boolean isImmutableField(DetailAST variableDef)
-    {
+    private boolean isImmutableField(DetailAST variableDef) {
         boolean result = false;
 
         final DetailAST modifiers = variableDef.findFirstToken(TokenTypes.MODIFIERS);
@@ -653,8 +627,7 @@ public class VisibilityModifierCheck
      * @param isCanonicalName is given name canonical.
      * @return String representation of given type's name.
      */
-    private static String getTypeName(DetailAST type, boolean isCanonicalName)
-    {
+    private static String getTypeName(DetailAST type, boolean isCanonicalName) {
         String typeName = "";
         if (isCanonicalName) {
             typeName = getCanonicalName(type);
@@ -674,8 +647,7 @@ public class VisibilityModifierCheck
      * @param type Ast {@link TokenTypes#TYPE TYPE} node.
      * @return true if current type is primitive type.
      */
-    private static boolean isPrimitive(DetailAST type)
-    {
+    private static boolean isPrimitive(DetailAST type) {
         return type.getFirstChild().getType() != TokenTypes.IDENT;
     }
 
@@ -684,8 +656,7 @@ public class VisibilityModifierCheck
      * @param type DetailAST {@link TokenTypes#TYPE TYPE} node.
      * @return canonical type's name
      */
-    private static String getCanonicalName(DetailAST type)
-    {
+    private static String getCanonicalName(DetailAST type) {
         final StringBuilder canonicalNameBuilder = new StringBuilder();
         DetailAST toVisit = type.getFirstChild();
         while (toVisit != null) {
@@ -711,16 +682,14 @@ public class VisibilityModifierCheck
      *        method returns null
      */
     private static DetailAST
-        getNextSubTreeNode(DetailAST currentNodeAst, DetailAST subTreeRootAst)
-    {
+        getNextSubTreeNode(DetailAST currentNodeAst, DetailAST subTreeRootAst) {
         DetailAST currentNode = currentNodeAst;
         DetailAST toVisitAst = currentNode.getFirstChild();
         while (toVisitAst == null) {
             toVisitAst = currentNode.getNextSibling();
             if (toVisitAst == null) {
                 if (currentNode.getParent().equals(subTreeRootAst)
-                         && currentNode.getParent().getColumnNo() == subTreeRootAst.getColumnNo())
-                {
+                         && currentNode.getParent().getColumnNo() == subTreeRootAst.getColumnNo()) {
                     break;
                 }
                 currentNode = currentNode.getParent();
@@ -736,8 +705,7 @@ public class VisibilityModifierCheck
      * @param canonicalClassNames canonical class names.
      * @return the list of short names of classes.
      */
-    private static List<String> getClassShortNames(List<String> canonicalClassNames)
-    {
+    private static List<String> getClassShortNames(List<String> canonicalClassNames) {
         final List<String> shortNames = new ArrayList<>();
         for (String canonicalClassName : canonicalClassNames) {
             final String shortClassName = canonicalClassName
@@ -753,8 +721,7 @@ public class VisibilityModifierCheck
      * @param canonicalClassName canonical class name.
      * @return short name of class.
      */
-    private static String getClassShortName(String canonicalClassName)
-    {
+    private static String getClassShortName(String canonicalClassName) {
         final String shortClassName = canonicalClassName
                 .substring(canonicalClassName.lastIndexOf('.') + 1,
                 canonicalClassName.length());
@@ -784,22 +751,19 @@ public class VisibilityModifierCheck
      * @return the AST representing the first such annotation or null if
      *         no such annotation was found
      */
-    private DetailAST containsMatchingAnnotation(DetailAST variableDef)
-    {
+    private DetailAST containsMatchingAnnotation(DetailAST variableDef) {
         DetailAST matchingAnnotation = null;
 
         final DetailAST holder = AnnotationUtility.getAnnotationHolder(variableDef);
 
         for (DetailAST child = holder.getFirstChild();
-            child != null; child = child.getNextSibling())
-        {
+            child != null; child = child.getNextSibling()) {
             if (child.getType() == TokenTypes.ANNOTATION) {
                 final DetailAST at = child.getFirstChild();
                 final String name =
                     FullIdent.createFullIdent(at.getNextSibling()).getText();
                 if (ignoreAnnotationCanonicalNames.contains(name)
-                         || ignoreAnnotationShortNames.contains(name))
-                {
+                         || ignoreAnnotationShortNames.contains(name)) {
                     matchingAnnotation = child;
                     break;
                 }

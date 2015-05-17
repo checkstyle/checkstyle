@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
  * Checks for the number of defined types at the "outer" level.
  * @author oliverb
  */
-public class OuterTypeNumberCheck extends Check
-{
+public class OuterTypeNumberCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -44,37 +43,32 @@ public class OuterTypeNumberCheck extends Check
     private int outerNum;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF, TokenTypes.ANNOTATION_DEF, };
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF, TokenTypes.ANNOTATION_DEF, };
     }
 
     @Override
-    public void beginTree(DetailAST ast)
-    {
+    public void beginTree(DetailAST ast) {
         currentDepth = 0;
         outerNum = 0;
     }
 
     @Override
-    public void finishTree(DetailAST ast)
-    {
+    public void finishTree(DetailAST ast) {
         if (max < outerNum) {
             log(ast, MSG_KEY, outerNum, max);
         }
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (0 == currentDepth) {
             outerNum++;
         }
@@ -82,8 +76,7 @@ public class OuterTypeNumberCheck extends Check
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         currentDepth--;
     }
 
@@ -91,8 +84,7 @@ public class OuterTypeNumberCheck extends Check
      * Sets the maximum allowed number of outer types.
      * @param to the new number.
      */
-    public void setMax(int to)
-    {
+    public void setMax(int to) {
         max = to;
     }
 }

@@ -27,12 +27,10 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import static com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck.MSG_KEY;
 
 public class HiddenFieldCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
     public void testNoParameters()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
         checkConfig.addAttribute("tokens", "VARIABLE_DEF");
@@ -61,8 +59,7 @@ public class HiddenFieldCheckTest
 
     @Test
     public void testDefault()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
         final String[] expected = {
@@ -108,8 +105,7 @@ public class HiddenFieldCheckTest
     /** tests ignoreFormat property */
     @Test
     public void testIgnoreFormat()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
         checkConfig.addAttribute("ignoreFormat", "^i.*$");
@@ -149,8 +145,7 @@ public class HiddenFieldCheckTest
     /** tests ignoreSetter property */
     @Test
     public void testIgnoreSetter()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
         checkConfig.addAttribute("ignoreSetter", "true");
@@ -193,8 +188,7 @@ public class HiddenFieldCheckTest
     /** tests ignoreSetter and setterCanReturnItsClass properties */
     @Test
     public void testIgnoreChainSetter()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
         checkConfig.addAttribute("ignoreSetter", "true");
@@ -236,8 +230,7 @@ public class HiddenFieldCheckTest
     /** tests ignoreConstructorParameter property */
     @Test
     public void testIgnoreConstructorParameter()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
         checkConfig.addAttribute("ignoreConstructorParameter", "true");
@@ -281,8 +274,7 @@ public class HiddenFieldCheckTest
     /** Test against a class with field declarations in different order */
     @Test
     public void testReordered()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
         final String[] expected = {
@@ -311,8 +303,7 @@ public class HiddenFieldCheckTest
     }
 
     @Test
-    public void testIgnoreAbstractMethods() throws Exception
-    {
+    public void testIgnoreAbstractMethods() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
         checkConfig.addAttribute("ignoreAbstractMethods", "true");

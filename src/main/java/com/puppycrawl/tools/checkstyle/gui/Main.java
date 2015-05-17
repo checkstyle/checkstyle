@@ -29,8 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 /**
  * Entry point for starting the checkstyle GUI.
  */
-public class Main
-{
+public class Main {
     /**
      * Main frame
      */
@@ -39,8 +38,7 @@ public class Main
     /**
      * Entry point
      */
-    public static void main(String... args)
-    {
+    public static void main(String... args) {
         frame = new JFrame("CheckStyle");
         final ParseTreeInfoPanel panel = new ParseTreeInfoPanel();
         frame.getContentPane().add(panel);
@@ -58,8 +56,7 @@ public class Main
      * Method is used for testing inthe past
      * @param ast
      */
-    public static void displayAst(DetailAST ast)
-    {
+    public static void displayAst(DetailAST ast) {
         JFrame frame = new JFrame("CheckStyle");
         final ParseTreeInfoPanel panel = new ParseTreeInfoPanel();
         frame.getContentPane().add(panel);
@@ -72,8 +69,7 @@ public class Main
     /**
      * http://findbugs.sourceforge.net/bugDescriptions.html#SW_SWING_METHODS_INVOKED_IN_SWING_THREAD
      */
-    private static class FrameShower implements Runnable
-    {
+    private static class FrameShower implements Runnable {
         /**
          * frame
          */
@@ -82,16 +78,14 @@ public class Main
         /**
          * contstructor
          */
-        public FrameShower(JFrame frame)
-        {
+        public FrameShower(JFrame frame) {
             this.frame = frame;
         }
 
         /**
          * display a frame
          */
-        public void run()
-        {
+        public void run() {
             frame.pack();
             frame.setVisible(true);
         }

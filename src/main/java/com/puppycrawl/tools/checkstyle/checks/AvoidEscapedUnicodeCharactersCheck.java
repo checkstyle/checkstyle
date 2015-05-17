@@ -105,8 +105,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  */
 public class AvoidEscapedUnicodeCharactersCheck
-    extends Check
-{
+    extends Check {
     /** Regular expression for Unicode chars */
     private static Pattern sUnicodeRegexp = Pattern.compile("\\\\u[a-fA-F0-9]{4}");
 
@@ -163,8 +162,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * Set allowIfAllCharactersEscaped.
      * @param allow user's value.
      */
-    public final void setAllowEscapesForControlCharacters(boolean allow)
-    {
+    public final void setAllowEscapesForControlCharacters(boolean allow) {
         allowEscapesForControlCharacters = allow;
     }
 
@@ -172,8 +170,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * Set allowByTailComment.
      * @param allow user's value.
      */
-    public final void setAllowByTailComment(boolean allow)
-    {
+    public final void setAllowByTailComment(boolean allow) {
         allowByTailComment = allow;
     }
 
@@ -181,8 +178,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * Set allowIfAllCharactersEscaped.
      * @param allow user's value.
      */
-    public final void setAllowIfAllCharactersEscaped(boolean allow)
-    {
+    public final void setAllowIfAllCharactersEscaped(boolean allow) {
         allowIfAllCharactersEscaped = allow;
     }
 
@@ -190,26 +186,22 @@ public class AvoidEscapedUnicodeCharactersCheck
      * Set allowSpaceEscapes.
      * @param allow user's value.
      */
-    public final void setAllowNonPrintableEscapes(boolean allow)
-    {
+    public final void setAllowNonPrintableEscapes(boolean allow) {
         allowNonPrintableEscapes = allow;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
 
         final String literal = ast.getText();
 
@@ -218,8 +210,7 @@ public class AvoidEscapedUnicodeCharactersCheck
                 || allowEscapesForControlCharacters
                         && isOnlyUnicodeValidChars(literal, sUnicodeControl)
                 || allowNonPrintableEscapes
-                        && isOnlyUnicodeValidChars(literal, sNonPrintableChars)))
-        {
+                        && isOnlyUnicodeValidChars(literal, sNonPrintableChars))) {
             log(ast.getLineNo(), "forbid.escaped.unicode.char");
         }
     }
@@ -229,8 +220,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @param literal String literal.
      * @return true if literal has Unicode chars.
      */
-    private boolean hasUnicodeChar(String literal)
-    {
+    private boolean hasUnicodeChar(String literal) {
         return sUnicodeRegexp.matcher(literal).find();
     }
 
@@ -240,8 +230,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @param pattern RegExp for valid characters.
      * @return true, if String literal contains Unicode control chars.
      */
-    private boolean isOnlyUnicodeValidChars(String literal, Pattern pattern)
-    {
+    private boolean isOnlyUnicodeValidChars(String literal, Pattern pattern) {
         final int unicodeMatchesCounter =
                 countMatches(sUnicodeRegexp, literal);
         final int unicodeValidMatchesCouter =
@@ -254,8 +243,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @param ast current token.
      * @return true if trail comment is present after ast token.
      */
-    private boolean hasTrailComment(DetailAST ast)
-    {
+    private boolean hasTrailComment(DetailAST ast) {
         boolean result = false;
         final DetailAST variableDef = getVariableDef(ast);
         DetailAST semi;
@@ -290,8 +278,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @param target String literal.
      * @return count of regexp matchers.
      */
-    private int countMatches(Pattern pattern, String target)
-    {
+    private int countMatches(Pattern pattern, String target) {
         int matcherCounter = 0;
         final Matcher matcher = pattern.matcher(target);
         while (matcher.find()) {
@@ -305,12 +292,10 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @param ast current token.
      * @return variable definition.
      */
-    private DetailAST getVariableDef(DetailAST ast)
-    {
+    private DetailAST getVariableDef(DetailAST ast) {
         DetailAST result = ast.getParent();
         while (result != null
-                && result.getType() != TokenTypes.VARIABLE_DEF)
-        {
+                && result.getType() != TokenTypes.VARIABLE_DEF) {
             result = result.getParent();
         }
         return result;
@@ -321,12 +306,10 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @param ast current token.
      * @return semi token or null.
      */
-    private DetailAST getSemi(DetailAST ast)
-    {
+    private DetailAST getSemi(DetailAST ast) {
         DetailAST result = ast.getParent();
         while (result != null
-                && result.getLastChild().getType() != TokenTypes.SEMI)
-        {
+                && result.getLastChild().getType() != TokenTypes.SEMI) {
             result = result.getParent();
         }
         if (result != null) {
@@ -340,8 +323,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @param literal current literal.
      * @return true if all characters in String literal is escaped.
      */
-    private boolean isAllCharactersEscaped(String literal)
-    {
+    private boolean isAllCharactersEscaped(String literal) {
         return allowIfAllCharactersEscaped
                 && sAllEscapedChars.matcher(literal.substring(1,
                         literal.length() - 1)).find();

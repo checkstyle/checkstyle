@@ -47,8 +47,7 @@ for (Iterator foo = very.long.line.iterator();
  * @author Rick Giles
  */
 public class EmptyForIteratorPadCheck
-    extends AbstractOptionCheck<PadOption>
-{
+    extends AbstractOptionCheck<PadOption> {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -65,28 +64,24 @@ public class EmptyForIteratorPadCheck
     /**
      * Sets the paren pad otion to nospace.
      */
-    public EmptyForIteratorPadCheck()
-    {
+    public EmptyForIteratorPadCheck() {
         super(PadOption.NOSPACE, PadOption.class);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.FOR_ITERATOR,
         };
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.FOR_ITERATOR,
         };
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (ast.getChildCount() == 0) {
             //empty for iterator. test pad after semi.
             final DetailAST semi = ast.getPreviousSibling();
@@ -95,13 +90,11 @@ public class EmptyForIteratorPadCheck
             //don't check if at end of line
             if (after < line.length()) {
                 if (PadOption.NOSPACE == getAbstractOption()
-                    && Character.isWhitespace(line.charAt(after)))
-                {
+                    && Character.isWhitespace(line.charAt(after))) {
                     log(semi.getLineNo(), after, WS_FOLLOWED, ";");
                 }
                 else if (PadOption.SPACE == getAbstractOption()
-                         && !Character.isWhitespace(line.charAt(after)))
-                {
+                         && !Character.isWhitespace(line.charAt(after))) {
                     log(semi.getLineNo(), after, WS_NOT_FOLLOWED, ";");
                 }
             }

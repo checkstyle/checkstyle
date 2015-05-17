@@ -41,15 +41,12 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
  * To enable and disable the creation of type comments go to
  * Window>Preferences>Java>Code Generation.
  */
-public class JavadocTypeCheckTest extends BaseCheckTestSupport
-{
+public class JavadocTypeCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testTags() throws Exception
-    {
+    public void testTags() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
-        final String[] expected =
-        {
+        final String[] expected = {
             "8: " + getCheckMessage(JAVADOC_MISSING),
             "302: " + getCheckMessage(JAVADOC_MISSING),
             "327: " + getCheckMessage(JAVADOC_MISSING),
@@ -58,12 +55,10 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testInner() throws Exception
-    {
+    public void testInner() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
-        final String[] expected =
-        {
+        final String[] expected = {
             "14: " + getCheckMessage(JAVADOC_MISSING),
             "21: " + getCheckMessage(JAVADOC_MISSING),
             "27: " + getCheckMessage(JAVADOC_MISSING),
@@ -72,12 +67,10 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testStrict() throws Exception
-    {
+    public void testStrict() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
-        final String[] expected =
-        {
+        final String[] expected = {
             "7: " + getCheckMessage(JAVADOC_MISSING),
             "9: " + getCheckMessage(JAVADOC_MISSING),
             "14: " + getCheckMessage(JAVADOC_MISSING),
@@ -87,26 +80,22 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testProtected() throws Exception
-    {
+    public void testProtected() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
-        final String[] expected =
-        {
+        final String[] expected = {
             "7: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
 
     @Test
-    public void testPublic() throws Exception
-    {
+    public void testPublic() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
-        final String[] expected =
-        {
+        final String[] expected = {
             "7: " + getCheckMessage(JAVADOC_MISSING),
             "38: " + getCheckMessage(JAVADOC_MISSING),
         };
@@ -114,13 +103,11 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testProtest() throws Exception
-    {
+    public void testProtest() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
-        final String[] expected =
-        {
+        final String[] expected = {
             "7: " + getCheckMessage(JAVADOC_MISSING),
             "29: " + getCheckMessage(JAVADOC_MISSING),
             "38: " + getCheckMessage(JAVADOC_MISSING),
@@ -130,15 +117,13 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testPkg() throws Exception
-    {
+    public void testPkg() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute(
             "scope",
             Scope.getInstance("package").getName());
-        final String[] expected =
-        {
+        final String[] expected = {
             "18: " + getCheckMessage(JAVADOC_MISSING),
             "20: " + getCheckMessage(JAVADOC_MISSING),
             "22: " + getCheckMessage(JAVADOC_MISSING),
@@ -147,28 +132,24 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testEclipse() throws Exception
-    {
+    public void testEclipse() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute(
             "scope",
             Scope.getInstance("public").getName());
-        final String[] expected =
-        {
+        final String[] expected = {
             "18: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputScopeInnerClasses.java"), expected);
     }
 
     @Test
-    public void testAuthorRequired() throws Exception
-    {
+    public void testAuthorRequired() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "\\S");
-        final String[] expected =
-        {
+        final String[] expected = {
             "13: " + getCheckMessage(MISSING_TAG, "@author"),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
@@ -176,8 +157,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testAuthorRegularEx()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "0*");
@@ -191,8 +171,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testAuthorRegularExError()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "ABC");
@@ -212,8 +191,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testVersionRequired()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "\\S");
@@ -225,8 +203,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testVersionRegularEx()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "^\\p{Digit}+\\.\\p{Digit}+$");
@@ -240,8 +217,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testVersionRegularExError()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "\\$Revision.*\\$");
@@ -263,8 +239,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testScopes() throws Exception
-    {
+    public void testScopes() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         final String[] expected = {
@@ -285,8 +260,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testScopes2() throws Exception
-    {
+    public void testScopes2() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
@@ -300,8 +274,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testExcludeScope() throws Exception
-    {
+    public void testExcludeScope() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
@@ -322,8 +295,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testTypeParameters() throws Exception
-    {
+    public void testTypeParameters() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         final String[] expected = {
@@ -334,8 +306,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testAllowMissingTypeParameters() throws Exception
-    {
+    public void testAllowMissingTypeParameters() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("allowMissingParamTags", "true");
@@ -346,8 +317,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testBadTag() throws Exception
-    {
+    public void testBadTag() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         final String[] expected = {
@@ -359,8 +329,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testBadTagSuppress() throws Exception
-    {
+    public void testBadTagSuppress() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("allowUnknownTags", "true");

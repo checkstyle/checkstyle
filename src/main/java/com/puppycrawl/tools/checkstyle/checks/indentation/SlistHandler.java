@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author jrichard
  */
-public class SlistHandler extends BlockParentHandler
-{
+public class SlistHandler extends BlockParentHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -38,14 +37,12 @@ public class SlistHandler extends BlockParentHandler
      * @param parent        the parent handler
      */
     public SlistHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent)
-    {
+        DetailAST ast, ExpressionHandler parent) {
         super(indentCheck, "block", ast, parent);
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler child)
-    {
+    public IndentLevel suggestedChildLevel(ExpressionHandler child) {
         // this is:
         //  switch (var) {
         //     case 3: {
@@ -59,16 +56,14 @@ public class SlistHandler extends BlockParentHandler
         if (getParent() instanceof BlockParentHandler
                 && !(getParent() instanceof SlistHandler)
             || getParent() instanceof CaseHandler
-                && child instanceof SlistHandler)
-        {
+                && child instanceof SlistHandler) {
             return getParent().suggestedChildLevel(child);
         }
         return super.suggestedChildLevel(child);
     }
 
     @Override
-    protected DetailAST getNonlistChild()
-    {
+    protected DetailAST getNonlistChild() {
         // blocks always have either block children or they are transparent
         // and aren't checking children at all.  In the later case, the
         // superclass will want to check single children, so when it
@@ -77,26 +72,22 @@ public class SlistHandler extends BlockParentHandler
     }
 
     @Override
-    protected DetailAST getListChild()
-    {
+    protected DetailAST getListChild() {
         return getMainAst();
     }
 
     @Override
-    protected DetailAST getLCurly()
-    {
+    protected DetailAST getLCurly() {
         return getMainAst();
     }
 
     @Override
-    protected DetailAST getRCurly()
-    {
+    protected DetailAST getRCurly() {
         return getMainAst().findFirstToken(TokenTypes.RCURLY);
     }
 
     @Override
-    protected DetailAST getToplevelAST()
-    {
+    protected DetailAST getToplevelAST() {
         return null;
     }
 
@@ -105,8 +96,7 @@ public class SlistHandler extends BlockParentHandler
      *
      * @return true if it does, false otherwise
      */
-    private boolean hasBlockParent()
-    {
+    private boolean hasBlockParent() {
         final int parentType = getMainAst().getParent().getType();
         return parentType == TokenTypes.LITERAL_IF
             || parentType == TokenTypes.LITERAL_FOR
@@ -123,8 +113,7 @@ public class SlistHandler extends BlockParentHandler
     }
 
     @Override
-    public void checkIndentation()
-    {
+    public void checkIndentation() {
         // only need to check this if parent is not
         // an if, else, while, do, ctor, method
         if (hasBlockParent() || isSameLineCaseGroup()) {
@@ -137,8 +126,7 @@ public class SlistHandler extends BlockParentHandler
      * Checks if SLIST node is placed at the same line as CASE_GROUP node.
      * @return true, if SLIST node is places at the same line as CASE_GROUP node.
      */
-    private boolean isSameLineCaseGroup()
-    {
+    private boolean isSameLineCaseGroup() {
         final DetailAST parentNode = getMainAst().getParent();
         return parentNode.getType() == TokenTypes.CASE_GROUP
             && getMainAst().getLineNo() == parentNode.getLineNo();

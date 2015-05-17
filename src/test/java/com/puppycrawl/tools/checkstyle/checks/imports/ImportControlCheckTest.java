@@ -33,11 +33,9 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_UNKNOWN_PKG;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_MISSING_FILE;
 
-public class ImportControlCheckTest extends BaseCheckTestSupport
-{
+public class ImportControlCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testOne() throws Exception
-    {
+    public void testOne() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file", "src/test/resources/com/puppycrawl/tools/checkstyle/import-control_one.xml");
         final String[] expected = {"5:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File")};
@@ -47,8 +45,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testTwo() throws Exception
-    {
+    public void testTwo() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file",
                 "src/test/resources/com/puppycrawl/tools/checkstyle/import-control_two.xml");
@@ -63,8 +60,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testWrong() throws Exception
-    {
+    public void testWrong() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file",
                 "src/test/resources/com/puppycrawl/tools/checkstyle/import-control_wrong.xml");
@@ -75,8 +71,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testMissing() throws Exception
-    {
+    public void testMissing() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         final String[] expected = {"1:40: " + getCheckMessage(MSG_MISSING_FILE)};
         verify(checkConfig, getPath("imports" + File.separator
@@ -84,8 +79,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testEmpty() throws Exception
-    {
+    public void testEmpty() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file", "   ");
         final String[] expected = {"1:40: " + getCheckMessage(MSG_MISSING_FILE)};
@@ -94,8 +88,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testUnknown() throws Exception
-    {
+    public void testUnknown() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file", "unknown-file");
         final String[] expected = {};
@@ -110,8 +103,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testBroken() throws Exception
-    {
+    public void testBroken() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file",
                 "src/test/resources/com/puppycrawl/tools/checkstyle/import-control_broken.xml");

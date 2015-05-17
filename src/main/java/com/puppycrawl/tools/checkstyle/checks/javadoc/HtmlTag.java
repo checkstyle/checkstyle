@@ -24,8 +24,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
  *
  * @author Chris Stillwell
  */
-class HtmlTag
-{
+class HtmlTag {
     /** The maximum length of text to display with this tag. */
     private static final int MAX_TEXT_LEN = 60;
 
@@ -57,8 +56,7 @@ class HtmlTag
      * @param text the line of comment text for this tag.
      */
     HtmlTag(String id, int lineNo, int position, boolean closedTag,
-            boolean incomplete, String text)
-    {
+            boolean incomplete, String text) {
         this.id = !"".equals(id) && id.charAt(0) == '/'
             ? id.substring(1) : id;
         this.lineNo = lineNo;
@@ -72,8 +70,7 @@ class HtmlTag
      * Returns the id (name) of this tag.
      * @return a String id.
      */
-    public String getId()
-    {
+    public String getId() {
         return id;
     }
 
@@ -81,8 +78,7 @@ class HtmlTag
      * Indicates if this tag is a close (end) tag.
      * @return <code>true</code> is this is a close tag.
      */
-    public boolean isCloseTag()
-    {
+    public boolean isCloseTag() {
         if (position == text.length() - 1) {
             return false;
         }
@@ -93,8 +89,7 @@ class HtmlTag
      * Indicates if this tag is a self-closed XHTML style.
      * @return <code>true</code> is this is a self-closed tag.
      */
-    public boolean isClosedTag()
-    {
+    public boolean isClosedTag() {
         return closedTag;
     }
 
@@ -102,8 +97,7 @@ class HtmlTag
      * Indicates if this tag is incomplete (has no close &gt;).
      * @return <code>true</code> if the tag is incomplete.
      */
-    public boolean isIncompleteTag()
-    {
+    public boolean isIncompleteTag() {
         return incomplete;
     }
 
@@ -112,8 +106,7 @@ class HtmlTag
      * Used for displaying a Checkstyle error.
      * @return an int line number.
      */
-    public int getLineNo()
-    {
+    public int getLineNo() {
         return lineNo;
     }
 
@@ -122,14 +115,12 @@ class HtmlTag
      * was found.  Used for displaying a Checkstyle error.
      * @return an int relative to zero.
      */
-    public int getPosition()
-    {
+    public int getPosition() {
         return position;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         final int startOfText = position;
         final int endOfText =
             Math.min(startOfText + HtmlTag.MAX_TEXT_LEN, text.length());

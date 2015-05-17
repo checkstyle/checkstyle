@@ -41,8 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * @author o_sukhodolsky
  */
-public class DefaultComesLastCheck extends Check
-{
+public class DefaultComesLastCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -51,36 +50,31 @@ public class DefaultComesLastCheck extends Check
     public static final String MSG_KEY = "default.comes.last";
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.LITERAL_DEFAULT,
         };
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return getDefaultTokens();
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final DetailAST defaultGroupAST = ast.getParent();
         //default keywords used in annotations too - not what we're
         //interested in
         if (defaultGroupAST.getType() != TokenTypes.ANNOTATION_FIELD_DEF
-                && defaultGroupAST.getType() != TokenTypes.MODIFIERS)
-        {
+                && defaultGroupAST.getType() != TokenTypes.MODIFIERS) {
             final DetailAST switchAST = defaultGroupAST.getParent();
             final DetailAST lastGroupAST =
                 switchAST.getLastChild().getPreviousSibling();
 
             if (defaultGroupAST.getLineNo() != lastGroupAST.getLineNo()
                 || defaultGroupAST.getColumnNo()
-                    != lastGroupAST.getColumnNo())
-            {
+                    != lastGroupAST.getColumnNo()) {
                 log(ast, MSG_KEY);
             }
         }

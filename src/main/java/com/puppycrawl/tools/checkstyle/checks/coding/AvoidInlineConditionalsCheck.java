@@ -37,8 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *
  * @author lkuehne
  */
-public class AvoidInlineConditionalsCheck extends Check
-{
+public class AvoidInlineConditionalsCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -47,26 +46,22 @@ public class AvoidInlineConditionalsCheck extends Check
     public static final String MSG_KEY = "inline.conditional.avoid";
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[]{TokenTypes.QUESTION};
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return getDefaultTokens();
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[]{TokenTypes.QUESTION};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         // the only place a QUESTION token can occur is in inline conditionals
         // so no need to do any further tricks here - pretty trivial Check!
 

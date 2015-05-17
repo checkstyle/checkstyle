@@ -16,11 +16,9 @@ import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
  * @author Rick Giles
  */
 public class GeneratedJava14LexerTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
-    public void testUnexpectedChar() throws IOException, Exception
-    {
+    public void testUnexpectedChar() throws IOException, Exception {
         Assume.assumeFalse(SystemUtils.IS_OS_WINDOWS); // Encoding problems can occur in Windows
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
@@ -31,8 +29,7 @@ public class GeneratedJava14LexerTest
     }
     
     @Test
-    public void testSemicolonBetweenImports() throws IOException, Exception
-    {
+    public void testSemicolonBetweenImports() throws IOException, Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         final String[] expected = {

@@ -29,12 +29,10 @@ import org.junit.Test;
  * @author Michael Studman
  */
 public class VarargTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
     public void testCanParse()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};

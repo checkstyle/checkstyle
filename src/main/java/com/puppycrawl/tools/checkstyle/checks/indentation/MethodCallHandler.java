@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author jrichard
  */
-public class MethodCallHandler extends ExpressionHandler
-{
+public class MethodCallHandler extends ExpressionHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -38,8 +37,7 @@ public class MethodCallHandler extends ExpressionHandler
      * @param parent        the parent handler
      */
     public MethodCallHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent)
-    {
+        DetailAST ast, ExpressionHandler parent) {
         super(indentCheck,
             ast.getType() == TokenTypes.METHOD_CALL
                 ? "method call" : "ctor call",
@@ -48,8 +46,7 @@ public class MethodCallHandler extends ExpressionHandler
     }
 
     @Override
-    protected IndentLevel getLevelImpl()
-    {
+    protected IndentLevel getLevelImpl() {
         // if inside a method call's params, this could be part of
         // an expression, so get the previous line's start
         if (getParent() instanceof MethodCallHandler) {
@@ -97,22 +94,19 @@ public class MethodCallHandler extends ExpressionHandler
      * if this is the first chained method call which was moved to the next line
      * @return true if chained class are wrapped
      */
-    private boolean isChainedMethodCallWrapped()
-    {
+    private boolean isChainedMethodCallWrapped() {
         boolean result = false;
         final DetailAST main = getMainAst();
         final DetailAST dot = main.getFirstChild();
         final DetailAST target = dot.getFirstChild();
 
         if (dot.getType() == TokenTypes.DOT
-            && target.getType() == TokenTypes.METHOD_CALL)
-        {
+            && target.getType() == TokenTypes.METHOD_CALL) {
             final DetailAST dot1 = target.getFirstChild();
             final DetailAST target1 = dot1.getFirstChild();
 
             if (dot1.getType() == TokenTypes.DOT
-                && target1.getType() == TokenTypes.METHOD_CALL)
-            {
+                && target1.getType() == TokenTypes.METHOD_CALL) {
                 result = true;
             }
         }
@@ -127,8 +121,7 @@ public class MethodCallHandler extends ExpressionHandler
      *
      * @return the first AST of the specified method call
      */
-    private DetailAST getFirstAst(DetailAST ast)
-    {
+    private DetailAST getFirstAst(DetailAST ast) {
         // walk down the first child part of the dots that make up a method
         // call name
 
@@ -145,8 +138,7 @@ public class MethodCallHandler extends ExpressionHandler
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler child)
-    {
+    public IndentLevel suggestedChildLevel(ExpressionHandler child) {
         // for whatever reason a method that crosses lines, like asList
         // here:
         //            System.out.println("methods are: " + Arrays.asList(
@@ -156,20 +148,17 @@ public class MethodCallHandler extends ExpressionHandler
         final DetailAST first = getMainAst().getFirstChild();
         int indentLevel = getLineStart(first);
         if (!areOnSameLine(child.getMainAst().getFirstChild(),
-                           getMainAst().getFirstChild()))
-        {
+                           getMainAst().getFirstChild())) {
             indentLevel += getBasicOffset();
         }
         return new IndentLevel(indentLevel);
     }
 
     @Override
-    public void checkIndentation()
-    {
+    public void checkIndentation() {
         final DetailAST exprNode = getMainAst().getParent();
         if (exprNode.getParent().getType() != TokenTypes.LCURLY
-            && exprNode.getParent().getType() != TokenTypes.SLIST)
-        {
+            && exprNode.getParent().getType() != TokenTypes.SLIST) {
             return;
         }
         final DetailAST methodName = getMainAst().getFirstChild();
@@ -196,8 +185,7 @@ public class MethodCallHandler extends ExpressionHandler
     }
 
     @Override
-    protected boolean shouldIncreaseIndent()
-    {
+    protected boolean shouldIncreaseIndent() {
         return false;
     }
 
@@ -208,8 +196,7 @@ public class MethodCallHandler extends ExpressionHandler
      * @return ast node containing right paren for specified method call. If
      * method calls are chained returns right paren for last call.
      */
-    private static DetailAST getMethodCallLastNode(DetailAST firstNode)
-    {
+    private static DetailAST getMethodCallLastNode(DetailAST firstNode) {
         DetailAST lastNode;
         if (firstNode.getNextSibling() == null) {
             lastNode = firstNode.getLastChild();

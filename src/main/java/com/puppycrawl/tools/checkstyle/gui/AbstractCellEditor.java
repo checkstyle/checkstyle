@@ -76,55 +76,47 @@ import javax.swing.event.EventListenerList;
  * 
  * @author Philip Milne
  */
-public class AbstractCellEditor implements CellEditor
-{
+public class AbstractCellEditor implements CellEditor {
     private final EventListenerList listenerList = new EventListenerList();
 
     /** @see CellEditor */
     @Override
-    public Object getCellEditorValue()
-    {
+    public Object getCellEditorValue() {
         return null;
     }
 
     /** @see CellEditor */
     @Override
-    public boolean isCellEditable(EventObject e)
-    {
+    public boolean isCellEditable(EventObject e) {
         return true;
     }
 
     /** @see CellEditor */
     @Override
-    public boolean shouldSelectCell(EventObject anEvent)
-    {
+    public boolean shouldSelectCell(EventObject anEvent) {
         return false;
     }
 
     /** @see CellEditor */
     @Override
-    public boolean stopCellEditing()
-    {
+    public boolean stopCellEditing() {
         return true;
     }
 
     /** @see CellEditor */
     @Override
-    public void cancelCellEditing()
-    {
+    public void cancelCellEditing() {
     }
 
     /** @see CellEditor */
     @Override
-    public void addCellEditorListener(CellEditorListener l)
-    {
+    public void addCellEditorListener(CellEditorListener l) {
         listenerList.add(CellEditorListener.class, l);
     }
 
     /** @see CellEditor */
     @Override
-    public void removeCellEditorListener(CellEditorListener l)
-    {
+    public void removeCellEditorListener(CellEditorListener l) {
         listenerList.remove(CellEditorListener.class, l);
     }
 
@@ -133,8 +125,7 @@ public class AbstractCellEditor implements CellEditor
      * notification on this event type.
      * @see EventListenerList
      */
-    protected void fireEditingStopped()
-    {
+    protected void fireEditingStopped() {
         // Guaranteed to return a non-null array
         final Object[] listeners = listenerList.getListenerList();
         // Process the listeners last to first, notifying
@@ -151,8 +142,7 @@ public class AbstractCellEditor implements CellEditor
      * notification on this event type.
      * @see EventListenerList
      */
-    protected void fireEditingCanceled()
-    {
+    protected void fireEditingCanceled() {
         // Guaranteed to return a non-null array
         final Object[] listeners = listenerList.getListenerList();
         // Process the listeners last to first, notifying

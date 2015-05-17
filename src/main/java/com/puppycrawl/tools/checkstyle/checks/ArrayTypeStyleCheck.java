@@ -31,26 +31,22 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * By default the Check enforces Java style.
  * @author lkuehne
  */
-public class ArrayTypeStyleCheck extends Check
-{
+public class ArrayTypeStyleCheck extends Check {
     /** controls whether to use Java or C style */
     private boolean javaStyle = true;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.ARRAY_DECLARATOR};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.ARRAY_DECLARATOR};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final DetailAST typeAST = ast.getParent();
         if (typeAST.getType() != TokenTypes.TYPE) {
             return;
@@ -78,8 +74,7 @@ public class ArrayTypeStyleCheck extends Check
      * Controls whether to check for Java or C style.
      * @param javaStyle true if Java style should be used.
      */
-    public void setJavaStyle(boolean javaStyle)
-    {
+    public void setJavaStyle(boolean javaStyle) {
         this.javaStyle = javaStyle;
     }
 }

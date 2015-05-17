@@ -47,11 +47,9 @@ import org.apache.commons.cli.PosixParser;
  * @author the original author or authors.
  *
  **/
-public final class Main
-{
+public final class Main {
     /** Don't create instance of this class, use {@link #main(String[])} method instead. */
-    private Main()
-    {
+    private Main() {
     }
 
     /**
@@ -63,8 +61,7 @@ public final class Main
      * @throws FileNotFoundException if there is a problem with files access
      **/
     public static void main(String... args) throws UnsupportedEncodingException,
-            CheckstyleException, FileNotFoundException
-    {
+            CheckstyleException, FileNotFoundException {
         int errorCounter = 0;
         boolean cliViolations = false;
 
@@ -128,8 +125,7 @@ public final class Main
      *         when passed arguments are not valid
      */
     private static CommandLine parseCli(String... args)
-            throws ParseException
-    {
+            throws ParseException {
         // parse the parameters
         final CommandLineParser clp = new PosixParser();
         // always returns not null value
@@ -141,8 +137,7 @@ public final class Main
      * @param cmdLine command line object
      * @return list of violations
      */
-    private static List<String> validateCli(CommandLine cmdLine)
-    {
+    private static List<String> validateCli(CommandLine cmdLine) {
         final List<String> result = new ArrayList<>();
         // ensure a configuration file is specified
         if (!cmdLine.hasOption("c")) {
@@ -185,8 +180,7 @@ public final class Main
      * @param cmdLine command line object
      * @return command line option as POJO object
      */
-    private static CliOptions convertCliToPojo(CommandLine cmdLine)
-    {
+    private static CliOptions convertCliToPojo(CommandLine cmdLine) {
         final CliOptions conf = new CliOptions();
         conf.format = cmdLine.getOptionValue("f");
         if (conf.format == null) {
@@ -212,8 +206,7 @@ public final class Main
      *         if there is problem to use UTf-8
      */
     private static int runCheckstyle(CliOptions cliOptions)
-            throws CheckstyleException, UnsupportedEncodingException, FileNotFoundException
-    {
+            throws CheckstyleException, UnsupportedEncodingException, FileNotFoundException {
         // setup the properties
         final Properties props =
                 cliOptions.propertiesLocation != null
@@ -258,8 +251,7 @@ public final class Main
      *         when could not load properties file
      */
     private static Properties loadProperties(File file)
-            throws CheckstyleException
-    {
+            throws CheckstyleException {
         final Properties properties = new Properties();
 
         try (FileInputStream fis = new FileInputStream(file)) {
@@ -284,8 +276,7 @@ public final class Main
      */
     private static AuditListener createListener(String format,
                                                 String outputLocation)
-            throws UnsupportedEncodingException, FileNotFoundException
-    {
+            throws UnsupportedEncodingException, FileNotFoundException {
 
         // setup the output stream
         OutputStream out = null;
@@ -324,8 +315,7 @@ public final class Main
      *        arguments that were not processed yet but shall be
      * @return list of files to process
      */
-    private static List<File> getFilesToProcess(String... filesToProcess)
-    {
+    private static List<File> getFilesToProcess(String... filesToProcess) {
         final List<File> files = Lists.newLinkedList();
         for (String element : filesToProcess) {
             files.addAll(listFiles(new File(element)));
@@ -341,8 +331,7 @@ public final class Main
      *        the node to process
      * @return found files
      */
-    private static List<File> listFiles(File node)
-    {
+    private static List<File> listFiles(File node) {
         // could be replaced with org.apache.commons.io.FileUtils.list() method
         // if only we add commons-io library
         final List<File> result = Lists.newLinkedList();
@@ -365,8 +354,7 @@ public final class Main
     }
 
     /** Prints the usage information. **/
-    private static void printUsage()
-    {
+    private static void printUsage() {
         final HelpFormatter hf = new HelpFormatter();
         hf.printHelp(String.format("java %s [options] -c <config.xml> file...",
                 Main.class.getName()), buildOptions());
@@ -376,8 +364,7 @@ public final class Main
      * Builds and returns list of parameters supported by cli Checkstyle.
      * @return available options
      */
-    private static Options buildOptions()
-    {
+    private static Options buildOptions() {
         final Options options = new Options();
         options.addOption("c", true, "Sets the check configuration file to use.");
         options.addOption("o", true, "Sets the output file. Defaults to stdout");
@@ -388,8 +375,7 @@ public final class Main
     }
 
     /** Helper structure to clear show what is required for Checker to run. **/
-    private static class CliOptions
-    {
+    private static class CliOptions {
         /** properties file location */
         private String propertiesLocation;
         /** config file location */

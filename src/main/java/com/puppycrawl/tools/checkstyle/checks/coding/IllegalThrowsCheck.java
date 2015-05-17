@@ -49,8 +49,7 @@ import java.util.Set;
  * @author John Sirois
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
-public final class IllegalThrowsCheck extends AbstractIllegalCheck
-{
+public final class IllegalThrowsCheck extends AbstractIllegalCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -70,34 +69,29 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
     private final Set<String> ignoredMethodNames = Sets.newHashSet();
 
     /** Creates new instance of the check. */
-    public IllegalThrowsCheck()
-    {
+    public IllegalThrowsCheck() {
         super("Error", "RuntimeException", "Throwable", "java.lang.Error",
                 "java.lang.RuntimeException", "java.lang.Throwable");
         setIgnoredMethodNames(DEFAULT_IGNORED_METHOD_NAMES);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.LITERAL_THROWS};
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return getDefaultTokens();
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.LITERAL_THROWS};
     }
 
     @Override
-    public void visitToken(DetailAST detailAST)
-    {
+    public void visitToken(DetailAST detailAST) {
         final DetailAST methodDef = detailAST.getParent();
         DetailAST token = detailAST.getFirstChild();
         // Check if the method with the given name should be ignored.
@@ -119,8 +113,7 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
      * @param methodDef {@link TokenTypes#METHOD_DEF METHOD_DEF}
      * @return true if method is ignorable.
      */
-    private boolean isIgnorableMethod(DetailAST methodDef)
-    {
+    private boolean isIgnorableMethod(DetailAST methodDef) {
         return shouldIgnoreMethod(methodDef.findFirstToken(TokenTypes.IDENT).getText())
             || ignoreOverriddenMethods
                && (AnnotationUtility.containsAnnotation(methodDef, "Override")
@@ -132,8 +125,7 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
      * @param name the name to check
      * @return whether the method with the passed name should be ignored
      */
-    private boolean shouldIgnoreMethod(String name)
-    {
+    private boolean shouldIgnoreMethod(String name) {
         return ignoredMethodNames.contains(name);
     }
 
@@ -141,8 +133,7 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
      * Set the list of ignore method names.
      * @param methodNames array of ignored method names
      */
-    public void setIgnoredMethodNames(String... methodNames)
-    {
+    public void setIgnoredMethodNames(String... methodNames) {
         ignoredMethodNames.clear();
         Collections.addAll(ignoredMethodNames, methodNames);
     }
@@ -151,8 +142,7 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
      * Sets <b>ignoreOverriddenMethods</b> property value.
      * @param ignoreOverriddenMethods Check's property.
      */
-    public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods)
-    {
+    public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods) {
         this.ignoreOverriddenMethods = ignoreOverriddenMethods;
     }
 }

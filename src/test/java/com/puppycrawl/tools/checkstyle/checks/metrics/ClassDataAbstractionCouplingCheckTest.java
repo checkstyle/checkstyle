@@ -27,11 +27,9 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck
 .MSG_KEY;
 
-public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport
-{
+public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport {
     @Test
-    public void test() throws Exception
-    {
+    public void test() throws Exception {
         DefaultConfiguration checkConfig =
             createCheckConfig(ClassDataAbstractionCouplingCheck.class);
 

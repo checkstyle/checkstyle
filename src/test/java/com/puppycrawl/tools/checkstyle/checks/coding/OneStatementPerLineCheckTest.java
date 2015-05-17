@@ -24,11 +24,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck.MSG_KEY;
-public class OneStatementPerLineCheckTest extends BaseCheckTestSupport
-{
+public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testMultiCaseClass() throws Exception
-    {
+    public void testMultiCaseClass() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(OneStatementPerLineCheck.class);
         final String[] expected = {
             "99:18: " + getCheckMessage(MSG_KEY),

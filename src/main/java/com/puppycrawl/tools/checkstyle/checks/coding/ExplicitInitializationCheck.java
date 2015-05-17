@@ -49,8 +49,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  *
  * @author o_sukhodolsky
  */
-public class ExplicitInitializationCheck extends Check
-{
+public class ExplicitInitializationCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -59,31 +58,26 @@ public class ExplicitInitializationCheck extends Check
     public static final String MSG_KEY = "explicit.init";
 
     @Override
-    public final int[] getDefaultTokens()
-    {
+    public final int[] getDefaultTokens() {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     @Override
-    public final int[] getRequiredTokens()
-    {
+    public final int[] getRequiredTokens() {
         return getDefaultTokens();
     }
 
     @Override
-    public final int[] getAcceptableTokens()
-    {
+    public final int[] getAcceptableTokens() {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         // do not check local variables and
         // fields declared in interface/annotations
         if (ScopeUtils.isLocalVariableDef(ast)
-            || ScopeUtils.inInterfaceOrAnnotationBlock(ast))
-        {
+            || ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
             return;
         }
 
@@ -95,8 +89,7 @@ public class ExplicitInitializationCheck extends Check
 
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         if (modifiers != null
-            && modifiers.branchContains(TokenTypes.FINAL))
-        {
+            && modifiers.branchContains(TokenTypes.FINAL)) {
             // do not check final variables
             return;
         }
@@ -106,15 +99,13 @@ public class ExplicitInitializationCheck extends Check
         final DetailAST exprStart =
             assign.getFirstChild().getFirstChild();
         if (isObjectType(type)
-            && exprStart.getType() == TokenTypes.LITERAL_NULL)
-        {
+            && exprStart.getType() == TokenTypes.LITERAL_NULL) {
             log(ident, MSG_KEY, ident.getText(), "null");
         }
 
         final int primitiveType = type.getFirstChild().getType();
         if (primitiveType == TokenTypes.LITERAL_BOOLEAN
-            && exprStart.getType() == TokenTypes.LITERAL_FALSE)
-        {
+            && exprStart.getType() == TokenTypes.LITERAL_FALSE) {
             log(ident, MSG_KEY, ident.getText(), "false");
         }
         if (isNumericType(primitiveType) && isZero(exprStart)) {
@@ -123,8 +114,7 @@ public class ExplicitInitializationCheck extends Check
         if (primitiveType == TokenTypes.LITERAL_CHAR
             && (isZero(exprStart)
                 || exprStart.getType() == TokenTypes.CHAR_LITERAL
-                && "'\\0'".equals(exprStart.getText())))
-        {
+                && "'\\0'".equals(exprStart.getText()))) {
             log(ident, MSG_KEY, ident.getText(), "\\0");
         }
     }
@@ -134,8 +124,7 @@ public class ExplicitInitializationCheck extends Check
      * @param type type to check.
      * @return true if it is an object type.
      */
-    private boolean isObjectType(DetailAST type)
-    {
+    private boolean isObjectType(DetailAST type) {
         final int objectType = type.getFirstChild().getType();
         return objectType == TokenTypes.IDENT || objectType == TokenTypes.DOT
                 || objectType == TokenTypes.ARRAY_DECLARATOR;
@@ -147,8 +136,7 @@ public class ExplicitInitializationCheck extends Check
      * @return true if it's a numeric type.
      * @see TokenTypes
      */
-    private boolean isNumericType(int type)
-    {
+    private boolean isNumericType(int type) {
         return type == TokenTypes.LITERAL_BYTE
                 || type == TokenTypes.LITERAL_SHORT
                 || type == TokenTypes.LITERAL_INT
@@ -161,8 +149,7 @@ public class ExplicitInitializationCheck extends Check
      * @param expr node to check.
      * @return true if given node contains numeric constant for zero.
      */
-    private boolean isZero(DetailAST expr)
-    {
+    private boolean isZero(DetailAST expr) {
         final int type = expr.getType();
         switch (type) {
             case TokenTypes.NUM_FLOAT:

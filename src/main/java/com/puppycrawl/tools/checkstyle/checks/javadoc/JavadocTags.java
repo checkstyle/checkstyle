@@ -26,8 +26,7 @@ import java.util.List;
  * about invalid validTags encountered in a certain Javadoc comment.
  * @author Oliver Burn
  */
-public final class JavadocTags
-{
+public final class JavadocTags {
     /** Valid validTags. */
     private final List<JavadocTag> validTags;
     /** Invalid validTags. */
@@ -39,8 +38,7 @@ public final class JavadocTags
      * @param invalidTags the list of invalid tags
      */
     public JavadocTags(List<JavadocTag> tags,
-            List<InvalidJavadocTag> invalidTags)
-    {
+            List<InvalidJavadocTag> invalidTags) {
         validTags = tags;
         this.invalidTags = invalidTags;
     }
@@ -49,8 +47,7 @@ public final class JavadocTags
      *  Getter for validTags field.
      *  @return validTags field
      */
-    public List<JavadocTag> getValidTags()
-    {
+    public List<JavadocTag> getValidTags() {
         return validTags;
     }
 
@@ -58,8 +55,7 @@ public final class JavadocTags
      *  Getter for invalidTags field.
      *  @return invalidTags field
      */
-    public List<InvalidJavadocTag> getInvalidTags()
-    {
+    public List<InvalidJavadocTag> getInvalidTags() {
         return invalidTags;
     }
 }

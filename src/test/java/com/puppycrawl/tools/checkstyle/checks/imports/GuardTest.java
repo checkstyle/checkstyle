@@ -24,11 +24,9 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
-public class GuardTest
-{
+public class GuardTest {
     @Test
-    public void testPkgGuard1()
-    {
+    public void testPkgGuard1() {
         final Guard g = new Guard(true, false, "pkg", false, false);
         assertNotNull(g);
         assertEquals(AccessResult.UNKNOWN, g.verifyImport("asda"));
@@ -40,8 +38,7 @@ public class GuardTest
     }
 
     @Test
-    public void testPkgGuard2()
-    {
+    public void testPkgGuard2() {
         final Guard g = new Guard(true, false, "pkg", true, false);
         assertNotNull(g);
         assertEquals(AccessResult.UNKNOWN, g.verifyImport("asda"));
@@ -52,8 +49,7 @@ public class GuardTest
     }
 
     @Test
-    public void testClassGuard()
-    {
+    public void testClassGuard() {
         final Guard g = new Guard(true, false, "pkg.a", false);
         assertNotNull(g);
         assertEquals(AccessResult.UNKNOWN, g.verifyImport("asda"));
@@ -65,8 +61,7 @@ public class GuardTest
     }
 
     @Test
-    public void testPkgGuard1re()
-    {
+    public void testPkgGuard1re() {
         final Guard g = new Guard(true, false, "pkg", false, true);
         assertNotNull(g);
         assertEquals(AccessResult.UNKNOWN, g.verifyImport("asda"));
@@ -78,8 +73,7 @@ public class GuardTest
     }
 
     @Test
-    public void testPkgGuard2re()
-    {
+    public void testPkgGuard2re() {
         final Guard g = new Guard(true, false, "pkg", true, true);
         assertNotNull(g);
         assertEquals(AccessResult.UNKNOWN, g.verifyImport("asda"));
@@ -90,8 +84,7 @@ public class GuardTest
     }
 
     @Test
-    public void testClassGuardre()
-    {
+    public void testClassGuardre() {
         final Guard g = new Guard(true, false, "pkg.a", true);
         assertNotNull(g);
         assertEquals(AccessResult.UNKNOWN, g.verifyImport("asda"));
@@ -103,8 +96,7 @@ public class GuardTest
     }
 
     @Test
-    public void testPkgGuard1re2()
-    {
+    public void testPkgGuard1re2() {
         final Guard g = new Guard(true, false, "(pkg|hallo)", false, true);
         assertNotNull(g);
         assertEquals(AccessResult.UNKNOWN, g.verifyImport("asda"));
@@ -120,8 +112,7 @@ public class GuardTest
     }
 
     @Test
-    public void testPkgGuard2re2()
-    {
+    public void testPkgGuard2re2() {
         final Guard g = new Guard(true, false, "(pkg|hallo)", true, true);
         assertNotNull(g);
         assertEquals(AccessResult.UNKNOWN, g.verifyImport("asda"));
@@ -135,8 +126,7 @@ public class GuardTest
     }
 
     @Test
-    public void testClassGuardre2()
-    {
+    public void testClassGuardre2() {
         final Guard g = new Guard(true, false, "pk[gx]\\.a", true);
         assertNotNull(g);
         assertEquals(AccessResult.UNKNOWN, g.verifyImport("asda"));

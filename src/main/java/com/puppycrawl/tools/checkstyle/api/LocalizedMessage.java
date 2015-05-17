@@ -47,8 +47,7 @@ import java.util.ResourceBundle.Control;
  * @author lkuehne
  */
 public final class LocalizedMessage
-    implements Comparable<LocalizedMessage>, Serializable
-{
+    implements Comparable<LocalizedMessage>, Serializable {
     /** Required for serialization. */
     private static final long serialVersionUID = 5675176836184862150L;
 
@@ -115,8 +114,7 @@ public final class LocalizedMessage
                             SeverityLevel severityLevel,
                             String moduleId,
                             Class<?> sourceClass,
-                            String customMessage)
-    {
+                            String customMessage) {
         this.lineNo = lineNo;
         this.colNo = colNo;
         this.key = key;
@@ -147,8 +145,7 @@ public final class LocalizedMessage
                             Object[] args,
                             String moduleId,
                             Class<?> sourceClass,
-                            String customMessage)
-    {
+                            String customMessage) {
         this(lineNo,
              colNo,
              bundle,
@@ -179,8 +176,7 @@ public final class LocalizedMessage
                             SeverityLevel severityLevel,
                             String moduleId,
                             Class<?> sourceClass,
-                            String customMessage)
-    {
+                            String customMessage) {
         this(lineNo, 0, bundle, key, args, severityLevel, moduleId,
                 sourceClass, customMessage);
     }
@@ -204,15 +200,13 @@ public final class LocalizedMessage
         Object[] args,
         String moduleId,
         Class<?> sourceClass,
-        String customMessage)
-    {
+        String customMessage) {
         this(lineNo, 0, bundle, key, args, DEFAULT_SEVERITY, moduleId,
                 sourceClass, customMessage);
     }
 
     @Override
-    public boolean equals(Object object)
-    {
+    public boolean equals(Object object) {
         if (this == object) {
             return true;
         }
@@ -243,8 +237,7 @@ public final class LocalizedMessage
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         int result;
         result = lineNo;
         result = HASH_MULT * result + colNo;
@@ -256,16 +249,14 @@ public final class LocalizedMessage
     }
 
     /** Clears the cache. */
-    public static void clearCache()
-    {
+    public static void clearCache() {
         synchronized (BUNDLE_CACHE) {
             BUNDLE_CACHE.clear();
         }
     }
 
     /** @return the translated message **/
-    public String getMessage()
-    {
+    public String getMessage() {
 
         final String customMessage = getCustomMessage();
         if (customMessage != null) {
@@ -294,8 +285,7 @@ public final class LocalizedMessage
      * @return the formatted custom message or <code>null</code>
      *          if there is no custom message
      */
-    private String getCustomMessage()
-    {
+    private String getCustomMessage() {
 
         if (customMessage == null) {
             return null;
@@ -311,8 +301,7 @@ public final class LocalizedMessage
      * @param bundleName the bundle name
      * @return a ResourceBundle
      */
-    private ResourceBundle getBundle(String bundleName)
-    {
+    private ResourceBundle getBundle(String bundleName) {
         synchronized (BUNDLE_CACHE) {
             ResourceBundle bundle = BUNDLE_CACHE
                     .get(bundleName);
@@ -326,26 +315,22 @@ public final class LocalizedMessage
     }
 
     /** @return the line number **/
-    public int getLineNo()
-    {
+    public int getLineNo() {
         return lineNo;
     }
 
     /** @return the column number **/
-    public int getColumnNo()
-    {
+    public int getColumnNo() {
         return colNo;
     }
 
     /** @return the severity level **/
-    public SeverityLevel getSeverityLevel()
-    {
+    public SeverityLevel getSeverityLevel() {
         return severityLevel;
     }
 
     /** @return the module identifier. */
-    public String getModuleId()
-    {
+    public String getModuleId() {
         return moduleId;
     }
 
@@ -355,20 +340,17 @@ public final class LocalizedMessage
      *
      * @return the message key
      */
-    public String getKey()
-    {
+    public String getKey() {
         return key;
     }
 
     /** @return the name of the source for this LocalizedMessage */
-    public String getSourceName()
-    {
+    public String getSourceName() {
         return sourceClass.getName();
     }
 
     /** @param locale the locale to use for localization **/
-    public static void setLocale(Locale locale)
-    {
+    public static void setLocale(Locale locale) {
         sLocale = locale;
     }
 
@@ -378,8 +360,7 @@ public final class LocalizedMessage
 
     /** {@inheritDoc} */
     @Override
-    public int compareTo(LocalizedMessage other)
-    {
+    public int compareTo(LocalizedMessage other) {
         if (getLineNo() == other.getLineNo()) {
             if (getColumnNo() == other.getColumnNo()) {
                 return getMessage().compareTo(other.getMessage());
@@ -398,13 +379,11 @@ public final class LocalizedMessage
      *
      * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
      */
-    private static class UTF8Control extends Control
-    {
+    private static class UTF8Control extends Control {
         @Override
         public ResourceBundle newBundle(String aBaseName, Locale aLocale, String aFormat,
                  ClassLoader aLoader, boolean aReload) throws IllegalAccessException,
-                  InstantiationException, IOException
-        {
+                  InstantiationException, IOException {
             // The below is a copy of the default implementation.
             final String bundleName = toBundleName(aBaseName, aLocale);
             final String resourceName = toResourceName(bundleName, "properties");

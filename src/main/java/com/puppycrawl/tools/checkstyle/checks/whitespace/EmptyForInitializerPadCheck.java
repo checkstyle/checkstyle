@@ -47,8 +47,7 @@ for (
  * @author lkuehne
  */
 public class EmptyForInitializerPadCheck
-    extends AbstractOptionCheck<PadOption>
-{
+    extends AbstractOptionCheck<PadOption> {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -65,28 +64,24 @@ public class EmptyForInitializerPadCheck
     /**
      * Sets the paren pad otion to nospace.
      */
-    public EmptyForInitializerPadCheck()
-    {
+    public EmptyForInitializerPadCheck() {
         super(PadOption.NOSPACE, PadOption.class);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.FOR_INIT,
         };
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.FOR_INIT,
         };
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (ast.getChildCount() == 0) {
             //empty for initializer. test pad before semi.
             final DetailAST semi = ast.getNextSibling();
@@ -97,13 +92,11 @@ public class EmptyForInitializerPadCheck
             if (!Utils.whitespaceBefore(before, line)) {
                 final PadOption option = getAbstractOption();
                 if (PadOption.NOSPACE == option
-                    && Character.isWhitespace(line.charAt(before)))
-                {
+                    && Character.isWhitespace(line.charAt(before))) {
                     log(semi.getLineNo(), before, MSG_PRECEDED, ";");
                 }
                 else if (PadOption.SPACE == option
-                         && !Character.isWhitespace(line.charAt(before)))
-                {
+                         && !Character.isWhitespace(line.charAt(before))) {
                     log(semi.getLineNo(), before, MSG_NOT_PRECEDED, ";");
                 }
             }

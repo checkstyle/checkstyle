@@ -42,8 +42,7 @@ import org.xml.sax.SAXException;
  * @author Rick Giles
  */
 public final class PackageNamesLoader
-    extends AbstractLoader
-{
+    extends AbstractLoader {
     /** the public ID for the configuration dtd */
     private static final String DTD_PUBLIC_ID =
         "-//Puppy Crawl//DTD Package Names 1.0//EN";
@@ -70,8 +69,7 @@ public final class PackageNamesLoader
      * @throws SAXException if an error occurs
      */
     private PackageNamesLoader()
-        throws ParserConfigurationException, SAXException
-    {
+        throws ParserConfigurationException, SAXException {
         super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
     }
 
@@ -80,8 +78,7 @@ public final class PackageNamesLoader
      * this loader processed.
      * @return the set of package names
      */
-    private Set<String> getPackageNames()
-    {
+    private Set<String> getPackageNames() {
         return packageNames;
     }
 
@@ -90,8 +87,7 @@ public final class PackageNamesLoader
                              String localName,
                              String qName,
                              Attributes atts)
-        throws SAXException
-    {
+        throws SAXException {
         if ("package".equals(qName)) {
             //push package name
             final String name = atts.getValue("name");
@@ -106,8 +102,7 @@ public final class PackageNamesLoader
      * Creates a full package name from the package names on the stack.
      * @return the full name of the current package.
      */
-    private String getPackageName()
-    {
+    private String getPackageName() {
         final StringBuilder buf = new StringBuilder();
         final Iterator<String> iterator = packageStack.descendingIterator();
         while (iterator.hasNext()) {
@@ -123,8 +118,7 @@ public final class PackageNamesLoader
     @Override
     public void endElement(String namespaceURI,
                            String localName,
-                           String qName)
-    {
+                           String qName) {
         if ("package".equals(qName)) {
 
             packageNames.add(getPackageName());
@@ -142,8 +136,7 @@ public final class PackageNamesLoader
      * @throws CheckstyleException if an error occurs.
      */
     public static Set<String> getPackageNames(ClassLoader classLoader)
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
 
         Enumeration<URL> packageFiles = null;
         try {
@@ -185,8 +178,7 @@ public final class PackageNamesLoader
      * @throws CheckstyleException if the creation failed
      */
     private static PackageNamesLoader newPackageNamesLoader()
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         try {
             return new PackageNamesLoader();
         }
@@ -207,8 +199,7 @@ public final class PackageNamesLoader
     private static void loadPackageNamesSource(
             InputSource source, String sourceName,
             PackageNamesLoader nameLoader)
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         try {
             nameLoader.parseInputSource(source);
         }

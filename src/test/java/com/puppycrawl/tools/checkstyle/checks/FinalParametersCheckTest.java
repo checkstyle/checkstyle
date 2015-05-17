@@ -25,11 +25,9 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck.MSG_KEY;
 
-public class FinalParametersCheckTest extends BaseCheckTestSupport
-{
+public class FinalParametersCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testDefaultTokens() throws Exception
-    {
+    public void testDefaultTokens() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalParametersCheck.class);
         final String[] expected = {
@@ -49,8 +47,7 @@ public class FinalParametersCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testCtorToken() throws Exception
-    {
+    public void testCtorToken() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "CTOR_DEF");
@@ -63,8 +60,7 @@ public class FinalParametersCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testMethodToken() throws Exception
-    {
+    public void testMethodToken() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "METHOD_DEF");
@@ -82,8 +78,7 @@ public class FinalParametersCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testCatchToken() throws Exception
-    {
+    public void testCatchToken() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_CATCH");
@@ -96,8 +91,7 @@ public class FinalParametersCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testForEachClauseToken() throws Exception
-    {
+    public void testForEachClauseToken() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "FOR_EACH_CLAUSE");
@@ -109,8 +103,7 @@ public class FinalParametersCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIgnorePrimitiveTypesParameters() throws Exception
-    {
+    public void testIgnorePrimitiveTypesParameters() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("ignorePrimitiveTypes", "true");

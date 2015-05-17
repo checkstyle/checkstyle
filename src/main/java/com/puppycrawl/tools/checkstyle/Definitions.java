@@ -23,8 +23,7 @@ package com.puppycrawl.tools.checkstyle;
  * Contains constant definitions common to the package.
  * @author Oliver Burn
  **/
-public final class Definitions
-{
+public final class Definitions {
     /** Name of resource bundle for Checkstyle. */
     public static final String CHECKSTYLE_BUNDLE =
             "com.puppycrawl.tools.checkstyle.messages";
@@ -32,7 +31,6 @@ public final class Definitions
     /**
      * Do no allow <code>Definitions</code> instances to be created.
      **/
-    private Definitions()
-    {
+    private Definitions() {
     }
 }

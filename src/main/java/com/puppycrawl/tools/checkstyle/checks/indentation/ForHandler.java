@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author jrichard
  */
-public class ForHandler extends BlockParentHandler
-{
+public class ForHandler extends BlockParentHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -38,16 +37,14 @@ public class ForHandler extends BlockParentHandler
      * @param parent        the parent handler
      */
     public ForHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent)
-    {
+        DetailAST ast, ExpressionHandler parent) {
         super(indentCheck, "for", ast, parent);
     }
 
     /**
      * Check the indentation of the parameters of the 'for' loop.
      */
-    private void checkForParams()
-    {
+    private void checkForParams() {
         final IndentLevel expected =
             new IndentLevel(getLevel(), getBasicOffset());
         final DetailAST init = getMainAst().findFirstToken(TokenTypes.FOR_INIT);
@@ -72,8 +69,7 @@ public class ForHandler extends BlockParentHandler
     }
 
     @Override
-    public void checkIndentation()
-    {
+    public void checkIndentation() {
         checkForParams();
         super.checkIndentation();
         final LineWrappingHandler lineWrap =
@@ -83,8 +79,7 @@ public class ForHandler extends BlockParentHandler
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler child)
-    {
+    public IndentLevel suggestedChildLevel(ExpressionHandler child) {
         if (child instanceof ElseHandler) {
             return getLevel();
         }
@@ -97,8 +92,7 @@ public class ForHandler extends BlockParentHandler
      *          literal-for ast node(TokenTypes.LITERAL_FOR)
      * @return right parenthesis of for-loop statement.
      */
-    private static DetailAST getForLoopRightParen(DetailAST literalForAst)
-    {
+    private static DetailAST getForLoopRightParen(DetailAST literalForAst) {
         return literalForAst.findFirstToken(TokenTypes.RPAREN);
     }
 }

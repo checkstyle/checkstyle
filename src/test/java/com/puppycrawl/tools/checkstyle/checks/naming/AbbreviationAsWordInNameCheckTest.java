@@ -26,15 +26,13 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
-public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
-{
+public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
 
     /** Warning message*/
     private String warningMessage;
 
     @Test
-    public void testTypeNamesForThreePermitedCapitalLetters() throws Exception
-    {
+    public void testTypeNamesForThreePermitedCapitalLetters() throws Exception {
 
         final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 3;
@@ -55,8 +53,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testTypeNamesForFourPermitedCapitalLetters() throws Exception
-    {
+    public void testTypeNamesForFourPermitedCapitalLetters() throws Exception {
 
         final int expectedCapitalCount = 4;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
@@ -74,8 +71,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testTypeNamesForFivePermitedCapitalLetters() throws Exception
-    {
+    public void testTypeNamesForFivePermitedCapitalLetters() throws Exception {
 
         final int expectedCapitalCount = 5;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
@@ -93,8 +89,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNames() throws Exception
-    {
+    public void testTypeAndVariablesAndMethodNames() throws Exception {
 
         final int expectedCapitalCount = 5;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
@@ -120,8 +115,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNamesWithNoIgnores() throws Exception
-    {
+    public void testTypeAndVariablesAndMethodNamesWithNoIgnores() throws Exception {
 
         final int expectedCapitalCount = 5;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
@@ -150,8 +144,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNamesWithIgnores() throws Exception
-    {
+    public void testTypeAndVariablesAndMethodNamesWithIgnores() throws Exception {
 
         final int expectedCapitalCount = 5;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
@@ -176,8 +169,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNamesWithIgnoresFinal() throws Exception
-    {
+    public void testTypeAndVariablesAndMethodNamesWithIgnoresFinal() throws Exception {
 
         final int expectedCapitalCount = 4;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
@@ -205,8 +197,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNamesWithIgnoresStatic() throws Exception
-    {
+    public void testTypeAndVariablesAndMethodNamesWithIgnoresStatic() throws Exception {
 
         final int expectedCapitalCount = 5;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
@@ -233,8 +224,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testTypeNamesForThreePermitedCapitalLettersWithOverridenMethod() throws Exception
-    {
+    public void testTypeNamesForThreePermitedCapitalLettersWithOverridenMethod() throws Exception {
 
         final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 3;
@@ -253,8 +243,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testTypeNamesForZeroPermitedCapitalLetter() throws Exception
-    {
+    public void testTypeNamesForZeroPermitedCapitalLetter() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 0;
@@ -300,8 +289,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testNPE() throws Exception
-    {
+    public void testNPE() throws Exception {
 
         final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 1;

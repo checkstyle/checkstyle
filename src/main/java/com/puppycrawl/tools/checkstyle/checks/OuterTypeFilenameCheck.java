@@ -29,8 +29,7 @@ import java.io.File;
  * @author Oliver Burn
  * @author maxvetrenko
  */
-public class OuterTypeFilenameCheck extends Check
-{
+public class OuterTypeFilenameCheck extends Check {
     /** indicates whether the first token has been seen in the file. */
     private boolean seenFirstToken;
 
@@ -47,8 +46,7 @@ public class OuterTypeFilenameCheck extends Check
     private DetailAST wrongType;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF, TokenTypes.ANNOTATION_DEF,
@@ -56,8 +54,7 @@ public class OuterTypeFilenameCheck extends Check
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF, TokenTypes.ANNOTATION_DEF,
@@ -65,8 +62,7 @@ public class OuterTypeFilenameCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST ast)
-    {
+    public void beginTree(DetailAST ast) {
         fileName = getFileName();
         seenFirstToken = false;
         validFirst = false;
@@ -75,8 +71,7 @@ public class OuterTypeFilenameCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final String outerTypeName = ast.findFirstToken(TokenTypes.IDENT).getText();
         if (!seenFirstToken) {
 
@@ -90,8 +85,7 @@ public class OuterTypeFilenameCheck extends Check
         else {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             if (modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
-                    && ast.getParent() == null)
-            {
+                    && ast.getParent() == null) {
                 hasPublic = true;
             }
         }
@@ -99,8 +93,7 @@ public class OuterTypeFilenameCheck extends Check
     }
 
     @Override
-    public void finishTree(DetailAST rootAST)
-    {
+    public void finishTree(DetailAST rootAST) {
         if (!(validFirst || hasPublic) && wrongType != null) {
             log(wrongType.getLineNo(), "type.file.mismatch");
         }
@@ -110,8 +103,7 @@ public class OuterTypeFilenameCheck extends Check
      * Get source file name.
      * @return source file name.
      */
-    private String getFileName()
-    {
+    private String getFileName() {
         String fname = getFileContents().getFileName();
         fname = fname.substring(fname.lastIndexOf(File.separatorChar) + 1);
         fname = fname.replaceAll("\\.[^\\.]*$", "");

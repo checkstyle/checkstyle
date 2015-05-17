@@ -76,13 +76,11 @@ import org.apache.commons.beanutils.ConversionException;
  */
 public class SuppressWithNearbyCommentFilter
     extends AutomaticBean
-    implements Filter
-{
+    implements Filter {
     /**
      * A Tag holds a suppression comment and its location.
      */
-    public static class Tag implements Comparable<Tag>
-    {
+    public static class Tag implements Comparable<Tag> {
         /** The text of the tag. */
         private final String text;
 
@@ -107,8 +105,7 @@ public class SuppressWithNearbyCommentFilter
          * on.
          */
         public Tag(String text, int line, SuppressWithNearbyCommentFilter filter)
-            throws ConversionException
-        {
+            throws ConversionException {
             this.text = text;
 
             tagCheckRegexp = filter.checkRegexp;
@@ -156,20 +153,17 @@ public class SuppressWithNearbyCommentFilter
         }
 
         /** @return the text of the tag. */
-        public String getText()
-        {
+        public String getText() {
             return text;
         }
 
         /** @return the line number of the first suppressed line. */
-        public int getFirstLine()
-        {
+        public int getFirstLine() {
             return firstLine;
         }
 
         /** @return the line number of the last suppressed line. */
-        public int getLastLine()
-        {
+        public int getLastLine() {
             return lastLine;
         }
 
@@ -183,8 +177,7 @@ public class SuppressWithNearbyCommentFilter
          * @see java.lang.Comparable#compareTo(java.lang.Object)
          */
         @Override
-        public int compareTo(Tag other)
-        {
+        public int compareTo(Tag other) {
             if (firstLine == other.firstLine) {
                 return lastLine - other.lastLine;
             }
@@ -194,8 +187,7 @@ public class SuppressWithNearbyCommentFilter
 
         /** {@inheritDoc} */
         @Override
-        public boolean equals(Object o)
-        {
+        public boolean equals(Object o) {
             if (this == o) {
                 return true;
             }
@@ -212,8 +204,7 @@ public class SuppressWithNearbyCommentFilter
 
         /** {@inheritDoc} */
         @Override
-        public int hashCode()
-        {
+        public int hashCode() {
             return Objects.hash(text, firstLine, lastLine, tagCheckRegexp, tagMessageRegexp);
         }
 
@@ -223,8 +214,7 @@ public class SuppressWithNearbyCommentFilter
          * @param event the <code>AuditEvent</code> to check.
          * @return true if the source of event matches the text of this tag.
          */
-        public boolean isMatch(AuditEvent event)
-        {
+        public boolean isMatch(AuditEvent event) {
             final int line = event.getLine();
             if (line < firstLine) {
                 return false;
@@ -255,8 +245,7 @@ public class SuppressWithNearbyCommentFilter
         private String expandFrocomment(
             String comment,
             String string,
-            Pattern regexp)
-        {
+            Pattern regexp) {
             final Matcher matcher = regexp.matcher(comment);
             // Match primarily for effect.
             if (!matcher.find()) {
@@ -272,8 +261,7 @@ public class SuppressWithNearbyCommentFilter
 
         /** {@inheritDoc} */
         @Override
-        public final String toString()
-        {
+        public final String toString() {
             return "Tag[lines=[" + getFirstLine() + " to " + getLastLine()
                 + "]; text='" + getText() + "']";
         }
@@ -327,8 +315,7 @@ public class SuppressWithNearbyCommentFilter
      * Initializes comment on, comment off, and check formats
      * to defaults.
      */
-    public SuppressWithNearbyCommentFilter()
-    {
+    public SuppressWithNearbyCommentFilter() {
         if (DEFAULT_COMMENT_FORMAT != null) {
             setCommentFormat(DEFAULT_COMMENT_FORMAT);
         }
@@ -346,14 +333,12 @@ public class SuppressWithNearbyCommentFilter
      * @throws ConversionException if unable to create Pattern object.
      */
     public void setCommentFormat(String format)
-        throws ConversionException
-    {
+        throws ConversionException {
         commentRegexp = Utils.createPattern(format);
     }
 
     /** @return the FileContents for this filter. */
-    public FileContents getFileContents()
-    {
+    public FileContents getFileContents() {
         return fileContentsReference.get();
     }
 
@@ -361,8 +346,7 @@ public class SuppressWithNearbyCommentFilter
      * Set the FileContents for this filter.
      * @param fileContents the FileContents for this filter.
      */
-    public void setFileContents(FileContents fileContents)
-    {
+    public void setFileContents(FileContents fileContents) {
         fileContentsReference = new WeakReference<>(fileContents);
     }
 
@@ -372,8 +356,7 @@ public class SuppressWithNearbyCommentFilter
      * @throws ConversionException if unable to create Pattern object
      */
     public void setCheckFormat(String format)
-        throws ConversionException
-    {
+        throws ConversionException {
         checkRegexp = Utils.createPattern(format);
         checkFormat = format;
     }
@@ -384,8 +367,7 @@ public class SuppressWithNearbyCommentFilter
      * @throws ConversionException if unable to create Pattern object
      */
     public void setMessageFormat(String format)
-        throws ConversionException
-    {
+        throws ConversionException {
         Utils.createPattern(format);
         messageFormat = format;
     }
@@ -396,8 +378,7 @@ public class SuppressWithNearbyCommentFilter
      * @throws ConversionException unable to parse format
      */
     public void setInfluenceFormat(String format)
-        throws ConversionException
-    {
+        throws ConversionException {
         if (!Utils.isPatternValid(format)) {
             throw new ConversionException("Unable to parse format: " + format);
         }
@@ -409,8 +390,7 @@ public class SuppressWithNearbyCommentFilter
      * Set whether to look in C++ comments.
      * @param checkCPP <code>true</code> if C++ comments are checked.
      */
-    public void setCheckCPP(boolean checkCPP)
-    {
+    public void setCheckCPP(boolean checkCPP) {
         this.checkCPP = checkCPP;
     }
 
@@ -418,15 +398,13 @@ public class SuppressWithNearbyCommentFilter
      * Set whether to look in C comments.
      * @param checkC <code>true</code> if C comments are checked.
      */
-    public void setCheckC(boolean checkC)
-    {
+    public void setCheckC(boolean checkC) {
         this.checkC = checkC;
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean accept(AuditEvent event)
-    {
+    public boolean accept(AuditEvent event) {
         if (event.getLocalizedMessage() == null) {
             return true;        // A special event.
         }
@@ -455,8 +433,7 @@ public class SuppressWithNearbyCommentFilter
      * Collects all the suppression tags for all comments into a list and
      * sorts the list.
      */
-    private void tagSuppressions()
-    {
+    private void tagSuppressions() {
         tags.clear();
         final FileContents contents = getFileContents();
         if (checkCPP) {
@@ -477,8 +454,7 @@ public class SuppressWithNearbyCommentFilter
      * set of suppression tags.
      * @param comments the set of comments.
      */
-    private void tagSuppressions(Collection<TextBlock> comments)
-    {
+    private void tagSuppressions(Collection<TextBlock> comments) {
         for (final TextBlock comment : comments) {
             final int startLineNo = comment.getStartLineNo();
             final String[] text = comment.getText();
@@ -495,8 +471,7 @@ public class SuppressWithNearbyCommentFilter
      * @param text the string to tag.
      * @param line the line number of text.
      */
-    private void tagCommentLine(String text, int line)
-    {
+    private void tagCommentLine(String text, int line) {
         final Matcher matcher = commentRegexp.matcher(text);
         if (matcher.find()) {
             addTag(matcher.group(0), line);
@@ -508,8 +483,7 @@ public class SuppressWithNearbyCommentFilter
      * @param text the text of the tag.
      * @param line the line number of the tag.
      */
-    private void addTag(String text, int line)
-    {
+    private void addTag(String text, int line) {
         final Tag tag = new Tag(text, line, this);
         tags.add(tag);
     }

@@ -26,8 +26,7 @@ import java.util.Objects;
  *
  * @author Martin von Gagern
  */
-public class LineColumn implements Comparable<LineColumn>
-{
+public class LineColumn implements Comparable<LineColumn> {
 
     /** The one-based line number */
     private final int line;
@@ -40,28 +39,24 @@ public class LineColumn implements Comparable<LineColumn>
      * @param line the one-based line number
      * @param col the zero-based column number
      */
-    public LineColumn(int line, int col)
-    {
+    public LineColumn(int line, int col) {
         this.line = line;
         this.col = col;
     }
 
     /** @return the one-based line number */
-    public int getLine()
-    {
+    public int getLine() {
         return line;
     }
 
     /** @return the zero-based column number */
-    public int getColumn()
-    {
+    public int getColumn() {
         return col;
     }
 
     /** {@inheritDoc} */
     @Override
-    public int compareTo(LineColumn lineColumn)
-    {
+    public int compareTo(LineColumn lineColumn) {
         return this.getLine() != lineColumn.getLine()
             ? this.getLine() - lineColumn.getLine()
             : this.getColumn() - lineColumn.getColumn();
@@ -69,8 +64,7 @@ public class LineColumn implements Comparable<LineColumn>
 
     /** {@inheritDoc} */
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
@@ -84,8 +78,7 @@ public class LineColumn implements Comparable<LineColumn>
 
     /** {@inheritDoc} */
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return Objects.hash(line, col);
     }
 }

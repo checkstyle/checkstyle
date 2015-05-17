@@ -33,8 +33,7 @@ import java.io.IOException;
 import org.apache.commons.beanutils.ConversionException;
 import org.junit.Test;
 
-public class UtilsTest
-{
+public class UtilsTest {
 
     /** After appending to path produces equivalent, but denormalized path */
     private static final String PATH_DENORMALIZER = "/levelDown/.././";
@@ -44,8 +43,7 @@ public class UtilsTest
      */
     @Test
     public void testLengthExpandedTabs()
-        throws Exception
-    {
+        throws Exception {
         final String s1 = "\t";
         assertEquals(8, Utils.lengthExpandedTabs(s1, s1.length(), 8));
 
@@ -65,14 +63,12 @@ public class UtilsTest
     }
 
     @Test(expected = ConversionException.class)
-    public void testBadRegex()
-    {
+    public void testBadRegex() {
         Utils.createPattern("[");
     }
 
     @Test
-    public void testFileExtensions()
-    {
+    public void testFileExtensions() {
         final String[] fileExtensions = {"java"};
         File file = new File("file.pdf");
         assertFalse(fileExtensionMatches(file, fileExtensions));
@@ -84,36 +80,31 @@ public class UtilsTest
     }
 
     @Test
-    public void testBaseClassnameForCanonicalName()
-    {
+    public void testBaseClassnameForCanonicalName() {
         assertEquals("List", baseClassname("java.util.List"));
     }
 
     @Test
-    public void testBaseClassnameForSimpleName()
-    {
+    public void testBaseClassnameForSimpleName() {
         assertEquals("Set", baseClassname("Set"));
     }
 
     @Test
-    public void testRelativeNormalizedPath()
-    {
+    public void testRelativeNormalizedPath() {
         final String relativePath = relativizeAndNormalizePath("/home", "/home/test");
 
         assertEquals("test", relativePath);
     }
 
     @Test
-    public void testRelativeNormalizedPathWithNullBaseDirectory()
-    {
+    public void testRelativeNormalizedPathWithNullBaseDirectory() {
         final String relativePath = relativizeAndNormalizePath(null, "/tmp");
 
         assertEquals("/tmp", relativePath);
     }
 
     @Test
-    public void testRelativeNormalizedPathWithDenormalizedBaseDirectory() throws IOException
-    {
+    public void testRelativeNormalizedPathWithDenormalizedBaseDirectory() throws IOException {
         final String sampleAbsolutePath = new File("src/main/java").getCanonicalPath();
         final String absoluteFilePath = sampleAbsolutePath + "/SampleFile.java";
         final String basePath = sampleAbsolutePath + PATH_DENORMALIZER;
@@ -124,14 +115,12 @@ public class UtilsTest
     }
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException
-    {
+    public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertUtilsClassHasPrivateConstructor(Utils.class);
     }
 
     @Test
-    public void testInvalidPattern()
-    {
+    public void testInvalidPattern() {
         boolean result = Utils.isPatternValid("some[invalidPattern");
         assertFalse(result);
     }

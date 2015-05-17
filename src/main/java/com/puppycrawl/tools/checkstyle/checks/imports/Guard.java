@@ -23,8 +23,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
  * Represents whether a package is allowed to be used or not.
  * @author Oliver Burn
  */
-class Guard
-{
+class Guard {
     /** Indicates if allow access or not. */
     private final boolean allowed;
     /** Package to control access to. */
@@ -55,8 +54,7 @@ class Guard
      *        expression.
      */
     Guard(final boolean allow, final boolean localOnly,
-        final String pkgName, final boolean exactMatch, final boolean regExp)
-    {
+        final String pkgName, final boolean exactMatch, final boolean regExp) {
         allowed = allow;
         this.localOnly = localOnly;
         this.pkgName = pkgName;
@@ -74,8 +72,7 @@ class Guard
      *        expression.
      */
     Guard(final boolean allow, final boolean localOnly,
-        final String className, final boolean regExp)
-    {
+        final String className, final boolean regExp) {
         allowed = allow;
         this.localOnly = localOnly;
         this.regExp = regExp;
@@ -89,8 +86,7 @@ class Guard
      * @param forImport the package to check.
      * @return a result {@link AccessResult} indicating whether it can be used.
      */
-    AccessResult verifyImport(final String forImport)
-    {
+    AccessResult verifyImport(final String forImport) {
         assert forImport != null;
         if (className != null) {
             final boolean classMatch = regExp
@@ -124,8 +120,7 @@ class Guard
     /**
      * @return returns whether the guard is to only be applied locally.
      */
-    boolean isLocalOnly()
-    {
+    boolean isLocalOnly() {
         return localOnly;
     }
 
@@ -135,8 +130,7 @@ class Guard
      * @param matched indicates whether there was a match.
      * @return An appropriate {@link AccessResult}.
      */
-    private AccessResult calculateResult(final boolean matched)
-    {
+    private AccessResult calculateResult(final boolean matched) {
         if (matched) {
             return allowed ? AccessResult.ALLOWED : AccessResult.DISALLOWED;
         }

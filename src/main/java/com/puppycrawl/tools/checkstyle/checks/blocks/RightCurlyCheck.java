@@ -70,8 +70,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * @author o_sukhodolsky
  * @author maxvetrenko
  */
-public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
-{
+public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -102,8 +101,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
     /**
      * Sets the right curly option to same.
      */
-    public RightCurlyCheck()
-    {
+    public RightCurlyCheck() {
         super(RightCurlyOption.SAME, RightCurlyOption.class);
     }
 
@@ -111,14 +109,12 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
      * Does the check need to check if rcurly starts line.
      * @param flag new value of this property.
      */
-    public void setShouldStartLine(boolean flag)
-    {
+    public void setShouldStartLine(boolean flag) {
         shouldStartLine = flag;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.LITERAL_TRY,
             TokenTypes.LITERAL_CATCH,
@@ -129,8 +125,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.LITERAL_TRY,
             TokenTypes.LITERAL_CATCH,
@@ -149,8 +144,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final Details details = getDetails(ast);
         final DetailAST rcurly = details.rcurly;
 
@@ -173,14 +167,12 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
             }
         }
         else if (getAbstractOption() == RightCurlyOption.SAME
-                && rcurly.getLineNo() != nextToken.getLineNo())
-        {
+                && rcurly.getLineNo() != nextToken.getLineNo()) {
             log(rcurly, MSG_KEY_LINE_SAME, "}");
         }
         else if (getAbstractOption() == RightCurlyOption.ALONE
                 && rcurly.getLineNo() == nextToken.getLineNo()
-                && !isEmptyBody(lcurly))
-        {
+                && !isEmptyBody(lcurly)) {
             log(rcurly, MSG_KEY_LINE_ALONE, "}");
         }
 
@@ -201,8 +193,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
      * @param ast detail ast.
      * @return object that contain all details to make a validation.
      */
-    private Details getDetails(DetailAST ast)
-    {
+    private Details getDetails(DetailAST ast) {
         // Attempt to locate the tokens to do the check
         boolean shouldCheckLastRcurly = false;
         DetailAST rcurly = null;
@@ -287,8 +278,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
      * @param lcurly left curly.
      * @return true if definition body is empty.
      */
-    private boolean isEmptyBody(DetailAST lcurly)
-    {
+    private boolean isEmptyBody(DetailAST lcurly) {
         boolean result = false;
         if (lcurly.getParent().getType() == TokenTypes.OBJBLOCK) {
             if (lcurly.getNextSibling().getType() == TokenTypes.RCURLY) {
@@ -306,8 +296,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
      * @param ast the given node.
      * @return the token which represents next lexical item.
      */
-    private DetailAST getNextToken(DetailAST ast)
-    {
+    private DetailAST getNextToken(DetailAST ast) {
         DetailAST next = null;
         DetailAST parent = ast;
         while (parent != null && next == null) {
@@ -324,8 +313,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
      * @return
      *        True, if right curly has line break before.
      */
-    private boolean hasLineBreakBefore(DetailAST rightCurly)
-    {
+    private boolean hasLineBreakBefore(DetailAST rightCurly) {
         if (rightCurly != null) {
             final DetailAST previousToken = rightCurly.getPreviousSibling();
             if (previousToken != null && rightCurly.getLineNo() == previousToken.getLineNo()) {
@@ -338,8 +326,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
     /**
      * Structure that contains all details for validation
      */
-    static class Details
-    {
+    static class Details {
         /** right curly */
         private DetailAST rcurly;
         /** left curly */

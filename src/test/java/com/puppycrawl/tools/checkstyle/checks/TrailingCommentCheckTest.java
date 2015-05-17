@@ -26,19 +26,16 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck.MSG_KEY;
 
-public class TrailingCommentCheckTest extends BaseCheckTestSupport
-{
+public class TrailingCommentCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(TrailingCommentCheck.class);
     }
 
     @Test
-    public void testDefaults() throws Exception
-    {
+    public void testDefaults() throws Exception {
         final String[] expected = {
             "4: " + getCheckMessage(MSG_KEY),
             "7: " + getCheckMessage(MSG_KEY),
@@ -51,8 +48,7 @@ public class TrailingCommentCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testLegalComment() throws Exception
-    {
+    public void testLegalComment() throws Exception {
         checkConfig.addAttribute("legalComment", "^NOI18N$");
         final String[] expected = {
             "4: " + getCheckMessage(MSG_KEY),

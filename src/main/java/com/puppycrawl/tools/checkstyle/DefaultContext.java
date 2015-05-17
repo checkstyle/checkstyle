@@ -31,22 +31,19 @@ import java.util.Map;
  * A default implementation of the Context interface.
  * @author lkuehne
  */
-public final class DefaultContext implements Context
-{
+public final class DefaultContext implements Context {
     /** stores the context entries */
     private final Map<String, Object> entries = Maps.newHashMap();
 
     /** {@inheritDoc} */
     @Override
-    public Object get(String key)
-    {
+    public Object get(String key) {
         return entries.get(key);
     }
 
     /** {@inheritDoc} */
     @Override
-    public ImmutableCollection<String> getAttributeNames()
-    {
+    public ImmutableCollection<String> getAttributeNames() {
         return ImmutableList.copyOf(entries.keySet());
     }
 
@@ -55,8 +52,7 @@ public final class DefaultContext implements Context
      * @param key the context key
      * @param value the value for key
      */
-    public void add(String key, Object value)
-    {
+    public void add(String key, Object value) {
         entries.put(key, value);
     }
 }

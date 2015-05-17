@@ -29,8 +29,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck.
  * The unit-test for the <code>NestedForDepthCheck</code>-checkstyle enhancement.
  * @see com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck
  */
-public class NestedForDepthCheckTest extends BaseCheckTestSupport
-{
+public class NestedForDepthCheckTest extends BaseCheckTestSupport {
     /**
      * Call the check allowing 2 layers of nested for-statements. This
      * means the top-level for can contain up to 2 levels of nested for
@@ -41,8 +40,7 @@ public class NestedForDepthCheckTest extends BaseCheckTestSupport
      * interface-requirements for test-methods
      */
     @Test
-    public void testNestedTooDeep() throws Exception
-    {
+    public void testNestedTooDeep() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NestedForDepthCheck.class);
         checkConfig.addAttribute("max", "2");
@@ -67,8 +65,7 @@ public class NestedForDepthCheckTest extends BaseCheckTestSupport
      * interface-requirements for test-methods
      */
     @Test
-    public void testNestedOk() throws Exception
-    {
+    public void testNestedOk() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NestedForDepthCheck.class);
         checkConfig.addAttribute("max", "4");

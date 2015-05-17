@@ -41,64 +41,53 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.WRITE
 /**
  * @author Daniel Grenner
  */
-public class WriteTagCheckTest extends BaseCheckTestSupport
-{
+public class WriteTagCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(WriteTagCheck.class);
     }
 
     @Test
-    public void testDefaultSettings() throws Exception
-    {
-        final String[] expected =
-        {
+    public void testDefaultSettings() throws Exception {
+        final String[] expected = {
         };
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
-    public void testTag() throws Exception
-    {
+    public void testTag() throws Exception {
         checkConfig.addAttribute("tag", "@author");
         checkConfig.addAttribute("tagFormat", "\\S");
-        final String[] expected =
-        {
+        final String[] expected = {
             "10: " + getCheckMessage(WRITE_TAG, "@author", "Daniel Grenner"),
         };
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
-    public void testMissingFormat() throws Exception
-    {
+    public void testMissingFormat() throws Exception {
         checkConfig.addAttribute("tag", "@author");
-        final String[] expected =
-        {
+        final String[] expected = {
             "10: " + getCheckMessage(WRITE_TAG, "@author", "Daniel Grenner"),
         };
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
-    public void testTagSeverity() throws Exception
-    {
+    public void testTagSeverity() throws Exception {
         checkConfig.addAttribute("tag", "@incomplete");
         checkConfig.addAttribute("tagFormat", "\\S");
         checkConfig.addAttribute("tagSeverity", "warning");
-        final String[] expected =
-        {
+        final String[] expected = {
             "11: " + getCheckMessage(WRITE_TAG, "warning: @incomplete", "This class needs more code..."),
         };
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
-    public void testDoubleTag() throws Exception
-    {
+    public void testDoubleTag() throws Exception {
         checkConfig.addAttribute("tag", "@doubletag");
         checkConfig.addAttribute("tagFormat", "\\S");
         final String[] expected = {
@@ -109,8 +98,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testEmptyTag() throws Exception
-    {
+    public void testEmptyTag() throws Exception {
         checkConfig.addAttribute("tag", "@emptytag");
         checkConfig.addAttribute("tagFormat", "");
         final String[] expected = {
@@ -121,19 +109,16 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
 
 
     @Test
-    public void testMissingTag() throws Exception
-    {
+    public void testMissingTag() throws Exception {
         checkConfig.addAttribute("tag", "@missingtag");
-        final String[] expected =
-        {
+        final String[] expected = {
             "16: " + getCheckMessage(MISSING_TAG, "@missingtag"),
         };
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
-    public void testMethod() throws Exception
-    {
+    public void testMethod() throws Exception {
         checkConfig.addAttribute("tag", "@todo");
         checkConfig.addAttribute("tagFormat", "\\S");
         checkConfig.addAttribute("tokens",
@@ -147,34 +132,29 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testSeverity() throws Exception
-    {
+    public void testSeverity() throws Exception {
         checkConfig.addAttribute("tag", "@author");
         checkConfig.addAttribute("tagFormat", "\\S");
         checkConfig.addAttribute("severity", "ignore");
-        final String[] expected =
-        {
+        final String[] expected = {
             "10: " + getCheckMessage(WRITE_TAG, "@author", "Daniel Grenner"),
         };
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
-    public void testIgnoreMissing() throws Exception
-    {
+    public void testIgnoreMissing() throws Exception {
         checkConfig.addAttribute("tag", "@todo2");
         checkConfig.addAttribute("tagFormat", "\\S");
         checkConfig.addAttribute("severity", "ignore");
-        final String[] expected =
-        {
+        final String[] expected = {
         };
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
     @Test
     public void testRegularEx()
-        throws Exception
-    {
+        throws Exception {
         checkConfig.addAttribute("tag", "@author");
         checkConfig.addAttribute("tagFormat", "0*");
         final String[] expected = {
@@ -184,8 +164,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testRegularExError()
-        throws Exception
-    {
+        throws Exception {
         checkConfig.addAttribute("tag", "@author");
         checkConfig.addAttribute("tagFormat", "ABC");
         final String[] expected = {
@@ -195,16 +174,14 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testEnumsAndAnnotations() throws Exception
-    {
+    public void testEnumsAndAnnotations() throws Exception {
         checkConfig.addAttribute("tag", "@incomplete");
         checkConfig.addAttribute("tagFormat", ".*");
         checkConfig.addAttribute("severity", "ignore");
         checkConfig.addAttribute("tagSeverity", "error");
         checkConfig.addAttribute("tokens",
             "ANNOTATION_DEF, ENUM_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF");
-        final String[] expected =
-        {
+        final String[] expected = {
             "9: " + getCheckMessage(WRITE_TAG, "@incomplete", "This enum needs more code..."),
             "13: " + getCheckMessage(WRITE_TAG, "@incomplete", "This enum constant needs more code..."),
             "19: " + getCheckMessage(WRITE_TAG, "@incomplete", "This annotation needs more code..."),
@@ -218,8 +195,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
                           File[] processedFiles,
                           String messageFileName,
                           String[] expected)
-        throws Exception
-    {
+        throws Exception {
         stream.flush();
         final List<File> theFiles = Lists.newArrayList();
         Collections.addAll(theFiles, processedFiles);

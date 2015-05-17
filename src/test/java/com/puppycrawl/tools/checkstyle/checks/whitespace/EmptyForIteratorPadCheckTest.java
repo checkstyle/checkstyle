@@ -30,19 +30,16 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIterator
 .WS_NOT_FOLLOWED;
 
 public class EmptyForIteratorPadCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(EmptyForIteratorPadCheck.class);
     }
 
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final String[] expected = {
             "27:31: " + getCheckMessage(WS_FOLLOWED, ";"),
             "43:32: " + getCheckMessage(WS_FOLLOWED, ";"),
@@ -51,8 +48,7 @@ public class EmptyForIteratorPadCheckTest
     }
 
     @Test
-    public void testSpaceOption() throws Exception
-    {
+    public void testSpaceOption() throws Exception {
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = {
             "23:31: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),

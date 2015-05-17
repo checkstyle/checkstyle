@@ -28,11 +28,9 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck
 import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck
     .MSG_EQUALS_IGNORE_CASE_AVOID_NULL;
 
-public class EqualsAvoidNullTest extends BaseCheckTestSupport
-{
+public class EqualsAvoidNullTest extends BaseCheckTestSupport {
     @Test
-    public void testEqualsWithDefault() throws Exception
-    {
+    public void testEqualsWithDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(EqualsAvoidNullCheck.class);
 
@@ -66,8 +64,7 @@ public class EqualsAvoidNullTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testEqualsWithoutEqualsIgnoreCase() throws Exception
-    {
+    public void testEqualsWithoutEqualsIgnoreCase() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(EqualsAvoidNullCheck.class);
         checkConfig.addAttribute("ignoreEqualsIgnoreCase", "true");

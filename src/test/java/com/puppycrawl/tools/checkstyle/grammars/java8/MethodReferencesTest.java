@@ -27,13 +27,11 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 
-public class MethodReferencesTest extends BaseCheckTestSupport
-{
+public class MethodReferencesTest extends BaseCheckTestSupport {
 
     @Test
     public void testCanParse()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};
@@ -45,8 +43,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport
 
     @Test
     public void testFromSpec()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};
@@ -58,8 +55,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport
 
     @Test
     public void testGenericInPostfixExpressionBeforeReference()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};

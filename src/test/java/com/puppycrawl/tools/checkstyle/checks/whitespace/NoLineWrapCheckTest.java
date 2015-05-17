@@ -26,19 +26,16 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck.MSG_KEY;
 
 public class NoLineWrapCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
-    public void testCaseWithoutLineWrapping() throws Exception
-    {
+    public void testCaseWithoutLineWrapping() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(NoLineWrapCheck.class);
         final String[] expected = {};
         verify(checkConfig, getPath("whitespace/NoLineWrapGoodInput.java"), expected);
     }
 
     @Test
-    public void testDefaultTokensLineWrapping() throws Exception
-    {
+    public void testDefaultTokensLineWrapping() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(NoLineWrapCheck.class);
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY, "package"),
@@ -49,8 +46,7 @@ public class NoLineWrapCheckTest
 
     @Test
     public void testCustomTokensLineWrapping()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(NoLineWrapCheck.class);
         checkConfig.addAttribute("tokens", "IMPORT, CLASS_DEF, METHOD_DEF, ENUM_DEF");
         final String[] expected = {

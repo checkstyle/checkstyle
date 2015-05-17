@@ -29,11 +29,9 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
-public class ThrowsCountCheckTest extends BaseCheckTestSupport
-{
+public class ThrowsCountCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
 
         String[] expected = {
@@ -46,8 +44,7 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testMax() throws Exception
-    {
+    public void testMax() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
         checkConfig.addAttribute("max", "2");
 
@@ -59,16 +56,14 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testGetAcceptableTokens()
-    {
+    public void testGetAcceptableTokens() {
         ThrowsCountCheck obj = new ThrowsCountCheck();
         int[] expected = {TokenTypes.LITERAL_THROWS};
         assertArrayEquals(expected, obj.getAcceptableTokens());
     }
 
     @Test
-    public void testGetRequiredTokens()
-    {
+    public void testGetRequiredTokens() {
         ThrowsCountCheck obj = new ThrowsCountCheck();
         int[] expected = {TokenTypes.LITERAL_THROWS};
         assertArrayEquals(expected, obj.getAcceptableTokens());

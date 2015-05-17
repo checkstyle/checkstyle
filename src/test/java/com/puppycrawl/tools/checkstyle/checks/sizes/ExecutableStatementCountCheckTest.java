@@ -26,11 +26,9 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck.MSG_KEY;
 
 public class ExecutableStatementCountCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
-    public void testMaxZero() throws Exception
-    {
+    public void testMaxZero() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ExecutableStatementCountCheck.class);
 
@@ -53,8 +51,7 @@ public class ExecutableStatementCountCheckTest
     }
 
     @Test
-    public void testMethodDef() throws Exception
-    {
+    public void testMethodDef() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ExecutableStatementCountCheck.class);
 
@@ -74,8 +71,7 @@ public class ExecutableStatementCountCheckTest
     }
 
     @Test
-    public void testCtorDef() throws Exception
-    {
+    public void testCtorDef() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ExecutableStatementCountCheck.class);
 
@@ -91,8 +87,7 @@ public class ExecutableStatementCountCheckTest
     }
 
     @Test
-    public void testStaticInit() throws Exception
-    {
+    public void testStaticInit() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ExecutableStatementCountCheck.class);
 
@@ -107,8 +102,7 @@ public class ExecutableStatementCountCheckTest
     }
 
     @Test
-    public void testInstanceInit() throws Exception
-    {
+    public void testInstanceInit() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ExecutableStatementCountCheck.class);
 

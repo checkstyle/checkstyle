@@ -28,8 +28,7 @@ import java.util.Properties;
  * @author lkuehne
  */
 public final class PropertiesExpander
-    implements PropertyResolver
-{
+    implements PropertyResolver {
     /** the underlying Properties object. */
     private final Properties properties;
 
@@ -39,8 +38,7 @@ public final class PropertiesExpander
      * property resolution.
      * @throws IllegalArgumentException indicates null was passed
      */
-    public PropertiesExpander(Properties properties)
-    {
+    public PropertiesExpander(Properties properties) {
         if (properties == null) {
             throw new IllegalArgumentException("cannot pass null");
         }
@@ -49,8 +47,7 @@ public final class PropertiesExpander
 
     /** {@inheritDoc} */
     @Override
-    public String resolve(String propertyName)
-    {
+    public String resolve(String propertyName) {
         return properties.getProperty(propertyName);
     }
 }

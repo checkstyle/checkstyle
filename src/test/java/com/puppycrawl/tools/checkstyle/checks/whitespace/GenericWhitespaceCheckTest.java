@@ -37,13 +37,11 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespac
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_PRECEDED;
 
 public class GenericWhitespaceCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(GenericWhitespaceCheck.class);
         Map<Class<?>, Integer> x = Maps.newHashMap();
         for (final Map.Entry<Class<?>, Integer> entry : x.entrySet()) {
@@ -53,8 +51,7 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final String[] expected = {
             "16:13: " + getCheckMessage(WS_PRECEDED, "<"),
             "16:15: " + getCheckMessage(WS_FOLLOWED, "<"),
@@ -89,15 +86,13 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
-    public void testGh47() throws Exception
-    {
+    public void testGh47() throws Exception {
         final String[] expected = {};
         verify(checkConfig, getPath("whitespace/Gh47.java"), expected);
     }
 
     @Test
-    public void testInnerClass() throws Exception
-    {
+    public void testInnerClass() throws Exception {
         final String[] expected = {
 
         };
@@ -106,8 +101,7 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
-    public void testMethodReferences() throws Exception
-    {
+    public void testMethodReferences() throws Exception {
         final String[] expected = {};
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                 + "checkstyle/grammars/java8/"
@@ -115,8 +109,7 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
-    public void testMethodReferences2() throws Exception
-    {
+    public void testMethodReferences2() throws Exception {
         final String[] expected = {
             "7:69: " + getCheckMessage(WS_FOLLOWED, ">"),
         };

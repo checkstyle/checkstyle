@@ -29,11 +29,9 @@ import java.io.File;
 import static com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
-public class InnerTypeLastCheckTest extends BaseCheckTestSupport
-{
+public class InnerTypeLastCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testMembersBeforeInner() throws Exception
-    {
+    public void testMembersBeforeInner() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(InnerTypeLastCheck.class);
         final String[] expected = {
@@ -48,8 +46,7 @@ public class InnerTypeLastCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testGetAcceptableTokens()
-    {
+    public void testGetAcceptableTokens() {
         InnerTypeLastCheck obj = new InnerTypeLastCheck();
         int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
         assertArrayEquals(expected, obj.getAcceptableTokens());

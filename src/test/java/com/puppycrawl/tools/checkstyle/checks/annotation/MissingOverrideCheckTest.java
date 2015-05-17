@@ -29,16 +29,14 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON;
 
-public class MissingOverrideCheckTest extends BaseCheckTestSupport
-{
+public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     /**
      * This tests that classes not extending anything explicitly will be correctly
      * flagged for only including the inheritDoc tag.
      * @throws Exception
      */
     @Test
-    public void testBadOverrideFromObject() throws Exception
-    {
+    public void testBadOverrideFromObject() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "false");
 
@@ -58,8 +56,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testBadOverrideFromObjectJ5Compat() throws Exception
-    {
+    public void testBadOverrideFromObjectJ5Compat() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
@@ -79,8 +76,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testBadOverrideFromOther() throws Exception
-    {
+    public void testBadOverrideFromOther() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         final String[] expected = {
             "10: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
@@ -101,8 +97,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testBadOverrideFromOtherJ5Compat() throws Exception
-    {
+    public void testBadOverrideFromOtherJ5Compat() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
@@ -118,8 +113,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testBadAnnonOverride() throws Exception
-    {
+    public void testBadAnnonOverride() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         final String[] expected = {
             "10: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
@@ -137,8 +131,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testBadAnnonOverrideJ5Compat() throws Exception
-    {
+    public void testBadAnnonOverrideJ5Compat() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
         final String[] expected = {
@@ -152,8 +145,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testNotOverride() throws Exception
-    {
+    public void testNotOverride() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         final String[] expected = {
             "8: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
@@ -169,8 +161,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testGoodOverrideFromObject() throws Exception
-    {
+    public void testGoodOverrideFromObject() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "false");
 
@@ -186,8 +177,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testGoodOverrideFromObjectJ5Compat() throws Exception
-    {
+    public void testGoodOverrideFromObjectJ5Compat() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
@@ -203,8 +193,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testGoodOverrideFromOther() throws Exception
-    {
+    public void testGoodOverrideFromOther() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         final String[] expected = {
         };
@@ -218,8 +207,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testGoodOverrideFromOtherJ5Compat() throws Exception
-    {
+    public void testGoodOverrideFromOtherJ5Compat() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
@@ -235,8 +223,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testGoodAnnonOverride() throws Exception
-    {
+    public void testGoodAnnonOverride() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         final String[] expected = {
         };
@@ -250,8 +237,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testGoodAnnonOverrideJ5Compat() throws Exception
-    {
+    public void testGoodAnnonOverrideJ5Compat() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
         final String[] expected = {

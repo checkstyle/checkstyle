@@ -27,23 +27,20 @@ import java.util.List;
  * Implementation of a check that looks for a single line in any file type.
  * @author Oliver Burn
  */
-public class RegexpSinglelineCheck extends AbstractFileSetCheck
-{
+public class RegexpSinglelineCheck extends AbstractFileSetCheck {
     /** The detection options to use. */
     private DetectorOptions options = new DetectorOptions(0, this);
     /** The detector to use. */
     private SinglelineDetector detector;
 
     @Override
-    public void beginProcessing(String charset)
-    {
+    public void beginProcessing(String charset) {
         super.beginProcessing(charset);
         detector = new SinglelineDetector(options);
     }
 
     @Override
-    protected void processFiltered(File file, List<String> lines)
-    {
+    protected void processFiltered(File file, List<String> lines) {
         detector.processLines(lines);
     }
 
@@ -51,8 +48,7 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck
      * Set the format of the regular expression to match.
      * @param format the format of the regular expression to match.
      */
-    public void setFormat(String format)
-    {
+    public void setFormat(String format) {
         options.setFormat(format);
     }
 
@@ -60,8 +56,7 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck
      * Set the message to report for a match.
      * @param message the message to report for a match.
      */
-    public void setMessage(String message)
-    {
+    public void setMessage(String message) {
         options.setMessage(message);
     }
 
@@ -69,8 +64,7 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck
      * Set the minimum number of matches required per file.
      * @param minimum the minimum number of matches required per file.
      */
-    public void setMinimum(int minimum)
-    {
+    public void setMinimum(int minimum) {
         options.setMinimum(minimum);
     }
 
@@ -78,8 +72,7 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck
      * Set the maximum number of matches required per file.
      * @param maximum the maximum number of matches required per file.
      */
-    public void setMaximum(int maximum)
-    {
+    public void setMaximum(int maximum) {
         options.setMaximum(maximum);
     }
 
@@ -87,8 +80,7 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck
      * Set whether to ignore case when matching.
      * @param ignore whether to ignore case when matching.
      */
-    public void setIgnoreCase(boolean ignore)
-    {
+    public void setIgnoreCase(boolean ignore) {
         options.setIgnoreCase(ignore);
     }
 }

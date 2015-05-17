@@ -42,8 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </pre>
  * @author Rick Giles
  */
-public class EmptyStatementCheck extends Check
-{
+public class EmptyStatementCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -52,20 +51,17 @@ public class EmptyStatementCheck extends Check
     public static final String MSG_KEY = "empty.statement";
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.EMPTY_STAT};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.EMPTY_STAT};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
     }
 }

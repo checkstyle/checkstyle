@@ -28,8 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * arguments.
  * @author Oliver Burn
  */
-public abstract class AbstractIllegalMethodCheck extends Check
-{
+public abstract class AbstractIllegalMethodCheck extends Check {
     /** Name of method to disallow. */
     private final String methodName;
     /** The error key to report with. */
@@ -40,27 +39,23 @@ public abstract class AbstractIllegalMethodCheck extends Check
      * @param methodName name of the method to disallow.
      * @param errorKey the error key to report with.
      */
-    public AbstractIllegalMethodCheck(String methodName, String errorKey)
-    {
+    public AbstractIllegalMethodCheck(String methodName, String errorKey) {
         this.methodName = methodName;
         this.errorKey = errorKey;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.METHOD_DEF};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.METHOD_DEF};
     }
 
     @Override
-    public void visitToken(DetailAST aAST)
-    {
+    public void visitToken(DetailAST aAST) {
         final DetailAST mid = aAST.findFirstToken(TokenTypes.IDENT);
         final String name = mid.getText();
 

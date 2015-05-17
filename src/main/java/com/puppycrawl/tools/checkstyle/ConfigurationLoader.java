@@ -52,8 +52,7 @@ import java.util.Map;
  *
  * @author Oliver Burn
  */
-public final class ConfigurationLoader
-{
+public final class ConfigurationLoader {
     /** Logger for ConfigurationLoader. */
     private static final Log LOG = LogFactory.getLog(ConfigurationLoader.class);
 
@@ -94,8 +93,7 @@ public final class ConfigurationLoader
      * appear in the public API of the ConfigurationLoader.
      */
     private final class InternalLoader
-        extends AbstractLoader
-    {
+        extends AbstractLoader {
         /** module elements */
         private static final String MODULE = "module";
         /** name attribute */
@@ -119,8 +117,7 @@ public final class ConfigurationLoader
          * @throws ParserConfigurationException if an error occurs
          */
         public InternalLoader()
-            throws SAXException, ParserConfigurationException
-        {
+            throws SAXException, ParserConfigurationException {
             // super(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
             super(createIdToResourceNameMap());
         }
@@ -130,8 +127,7 @@ public final class ConfigurationLoader
                                  String localName,
                                  String qName,
                                  Attributes atts)
-            throws SAXException
-        {
+            throws SAXException {
             if (qName.equals(MODULE)) {
                 //create configuration
                 final String name = atts.getValue(NAME);
@@ -183,8 +179,7 @@ public final class ConfigurationLoader
         public void endElement(String namespaceURI,
                                String localName,
                                String qName)
-            throws SAXException
-        {
+            throws SAXException {
             if (qName.equals(MODULE)) {
 
                 final Configuration recentModule =
@@ -239,8 +234,7 @@ public final class ConfigurationLoader
      */
     private ConfigurationLoader(final PropertyResolver overrideProps,
                                 final boolean omitIgnoredModules)
-        throws ParserConfigurationException, SAXException
-    {
+        throws ParserConfigurationException, SAXException {
         saxHandler = new InternalLoader();
         overridePropsResolver = overrideProps;
         this.omitIgnoredModules = omitIgnoredModules;
@@ -250,8 +244,7 @@ public final class ConfigurationLoader
      * Creates mapping between local resources and dtd ids.
      * @return map between local resources and dtd ids.
      */
-    private static Map<String, String> createIdToResourceNameMap()
-    {
+    private static Map<String, String> createIdToResourceNameMap() {
         final Map<String, String> map = Maps.newHashMap();
         map.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
         map.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
@@ -271,8 +264,7 @@ public final class ConfigurationLoader
      * @throws SAXException if an error occurs
      */
     private void parseInputSource(InputSource source)
-        throws IOException, SAXException
-    {
+        throws IOException, SAXException {
         saxHandler.parseInputSource(source);
     }
 
@@ -284,8 +276,7 @@ public final class ConfigurationLoader
      * @throws CheckstyleException if an error occurs
      */
     public static Configuration loadConfiguration(String config,
-            PropertyResolver overridePropsResolver) throws CheckstyleException
-    {
+            PropertyResolver overridePropsResolver) throws CheckstyleException {
         return loadConfiguration(config, overridePropsResolver, false);
     }
 
@@ -301,8 +292,7 @@ public final class ConfigurationLoader
      */
     public static Configuration loadConfiguration(String config,
         PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         try {
             // figure out if this is a File or a URL
             URI uri;
@@ -371,8 +361,7 @@ public final class ConfigurationLoader
     @Deprecated
     public static Configuration loadConfiguration(InputStream configStream,
         PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         return loadConfiguration(new InputSource(configStream),
                                  overridePropsResolver, omitIgnoredModules);
     }
@@ -391,8 +380,7 @@ public final class ConfigurationLoader
      */
     public static Configuration loadConfiguration(InputSource configSource,
         PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         try {
             final ConfigurationLoader loader =
                 new ConfigurationLoader(overridePropsResolver,
@@ -422,8 +410,7 @@ public final class ConfigurationLoader
      * Returns the configuration in the last file parsed.
      * @return Configuration object
      */
-    private Configuration getConfiguration()
-    {
+    private Configuration getConfiguration() {
         return configuration;
     }
 
@@ -453,8 +440,7 @@ public final class ConfigurationLoader
     // Package visible for testing purposes
     static String replaceProperties(
             String value, PropertyResolver props, String defaultValue)
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         if (value == null) {
             return null;
         }
@@ -507,8 +493,7 @@ public final class ConfigurationLoader
     private static void parsePropertyString(String value,
                                            List<String> fragments,
                                            List<String> propertyRefs)
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         int prev = 0;
         //search for the next instance of $ from the 'prev' position
         int pos = value.indexOf('$', prev);

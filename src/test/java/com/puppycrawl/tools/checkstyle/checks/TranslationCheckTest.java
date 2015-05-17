@@ -28,20 +28,17 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY;
 
 public class TranslationCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Override
     protected DefaultConfiguration createCheckerConfig(
-        Configuration checkConfig)
-    {
+        Configuration checkConfig) {
         final DefaultConfiguration dc = new DefaultConfiguration("root");
         dc.addChild(checkConfig);
         return dc;
     }
 
     @Test
-    public void testTranslation() throws Exception
-    {
+    public void testTranslation() throws Exception {
         final Configuration checkConfig = createCheckConfig(TranslationCheck.class);
         final String[] expected = {
             "0: " + getCheckMessage(MSG_KEY, "only.english"),
@@ -58,8 +55,7 @@ public class TranslationCheckTest
     }
 
     @Test
-    public void testBaseNameSeparator() throws Exception
-    {
+    public void testBaseNameSeparator() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
         checkConfig.addAttribute("basenameSeparator", "-");
         final String[] expected = {

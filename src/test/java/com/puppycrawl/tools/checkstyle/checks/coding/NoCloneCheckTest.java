@@ -30,12 +30,10 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck.MSG_KEY
  * NoCloneCheck test.
  */
 public class NoCloneCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
     public void testHasClone()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NoCloneCheck.class);
         final String[] expected = {

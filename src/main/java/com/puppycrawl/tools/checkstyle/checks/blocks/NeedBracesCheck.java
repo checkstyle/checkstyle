@@ -101,8 +101,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Rick Giles
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
-public class NeedBracesCheck extends Check
-{
+public class NeedBracesCheck extends Check {
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -118,14 +117,12 @@ public class NeedBracesCheck extends Check
      * Setter.
      * @param allowSingleLineStatement Check's option for skipping single-line statements
      */
-    public void setAllowSingleLineStatement(boolean allowSingleLineStatement)
-    {
+    public void setAllowSingleLineStatement(boolean allowSingleLineStatement) {
         this.allowSingleLineStatement = allowSingleLineStatement;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.LITERAL_DO,
             TokenTypes.LITERAL_ELSE,
@@ -136,8 +133,7 @@ public class NeedBracesCheck extends Check
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.LITERAL_DO,
             TokenTypes.LITERAL_ELSE,
@@ -151,13 +147,11 @@ public class NeedBracesCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final DetailAST slistAST = ast.findFirstToken(TokenTypes.SLIST);
         boolean isElseIf = false;
         if (ast.getType() == TokenTypes.LITERAL_ELSE
-            && ast.findFirstToken(TokenTypes.LITERAL_IF) != null)
-        {
+            && ast.findFirstToken(TokenTypes.LITERAL_IF) != null) {
             isElseIf = true;
         }
 
@@ -173,8 +167,7 @@ public class NeedBracesCheck extends Check
      * @param statement if, for, while, do-while, lambda, else, case, default statements.
      * @return true if current statement can be skipped by Check.
      */
-    private boolean isSkipStatement(DetailAST statement)
-    {
+    private boolean isSkipStatement(DetailAST statement) {
         return allowSingleLineStatement && isSingleLineStatement(statement);
     }
 
@@ -193,8 +186,7 @@ public class NeedBracesCheck extends Check
      * @param statement if, for, while, do-while, lambda, else, case, default statements.
      * @return true if current statement is single-line statement.
      */
-    private static boolean isSingleLineStatement(DetailAST statement)
-    {
+    private static boolean isSingleLineStatement(DetailAST statement) {
         boolean result = false;
         switch (statement.getType()) {
             case TokenTypes.LITERAL_IF:
@@ -238,12 +230,10 @@ public class NeedBracesCheck extends Check
      * @param literalWhile {@link TokenTypes#LITERAL_WHILE while statement}.
      * @return true if current while statement is single-line statement.
      */
-    private static boolean isSingleLineWhile(DetailAST literalWhile)
-    {
+    private static boolean isSingleLineWhile(DetailAST literalWhile) {
         boolean result = false;
         if (literalWhile.getParent().getType() == TokenTypes.SLIST
-                && literalWhile.getLastChild().getType() != TokenTypes.SLIST)
-        {
+                && literalWhile.getLastChild().getType() != TokenTypes.SLIST) {
             final DetailAST block = literalWhile.getLastChild().getPreviousSibling();
             result = literalWhile.getLineNo() == block.getLineNo();
         }
@@ -260,12 +250,10 @@ public class NeedBracesCheck extends Check
      * @param literalDo {@link TokenTypes#LITERAL_DO do-while statement}.
      * @return true if current do-while statement is single-line statement.
      */
-    private static boolean isSingleLineDoWhile(DetailAST literalDo)
-    {
+    private static boolean isSingleLineDoWhile(DetailAST literalDo) {
         boolean result = false;
         if (literalDo.getParent().getType() == TokenTypes.SLIST
-                && literalDo.getFirstChild().getType() != TokenTypes.SLIST)
-        {
+                && literalDo.getFirstChild().getType() != TokenTypes.SLIST) {
             final DetailAST block = literalDo.getFirstChild();
             result = block.getLineNo() == literalDo.getLineNo();
         }
@@ -282,15 +270,13 @@ public class NeedBracesCheck extends Check
      * @param literalFor {@link TokenTypes#LITERAL_FOR for statement}.
      * @return true if current for statement is single-line statement.
      */
-    private static boolean isSingleLineFor(DetailAST literalFor)
-    {
+    private static boolean isSingleLineFor(DetailAST literalFor) {
         boolean result = false;
         if (literalFor.getLastChild().getType() == TokenTypes.EMPTY_STAT) {
             result = true;
         }
         else if (literalFor.getParent().getType() == TokenTypes.SLIST
-                && literalFor.getLastChild().getType() != TokenTypes.SLIST)
-        {
+                && literalFor.getLastChild().getType() != TokenTypes.SLIST) {
             final DetailAST block = literalFor.findFirstToken(TokenTypes.EXPR);
             if (block != null) {
                 result = literalFor.getLineNo() == block.getLineNo();
@@ -309,8 +295,7 @@ public class NeedBracesCheck extends Check
      * @param literalIf {@link TokenTypes#LITERAL_IF if statement}.
      * @return true if current if statement is single-line statement.
      */
-    private static boolean isSingleLineIf(DetailAST literalIf)
-    {
+    private static boolean isSingleLineIf(DetailAST literalIf) {
         boolean result = false;
         final DetailAST ifCondition = literalIf.findFirstToken(TokenTypes.EXPR);
         if (literalIf.getParent().getType() == TokenTypes.SLIST) {
@@ -333,8 +318,7 @@ public class NeedBracesCheck extends Check
      * @param lambda {@link TokenTypes#LAMBDA lambda statement}.
      * @return true if current lambda statement is single-line statement.
      */
-    private static boolean isSingleLineLambda(DetailAST lambda)
-    {
+    private static boolean isSingleLineLambda(DetailAST lambda) {
         boolean result = false;
         final DetailAST block = lambda.getLastChild();
         if (block.getType() != TokenTypes.SLIST) {
@@ -354,8 +338,7 @@ public class NeedBracesCheck extends Check
      * @param literalCase {@link TokenTypes#LITERAL_CASE case statement}.
      * @return true if current case statement is single-line statement.
      */
-    private static boolean isSingleLineCase(DetailAST literalCase)
-    {
+    private static boolean isSingleLineCase(DetailAST literalCase) {
         boolean result = false;
         final DetailAST slist = literalCase.getNextSibling();
         final DetailAST block = slist.getFirstChild();
@@ -379,8 +362,7 @@ public class NeedBracesCheck extends Check
      * @param literalDefault {@link TokenTypes#LITERAL_DEFAULT default statement}.
      * @return true if current default statement is single-line statement.
      */
-    private static boolean isSingleLineDefault(DetailAST literalDefault)
-    {
+    private static boolean isSingleLineDefault(DetailAST literalDefault) {
         boolean result = false;
         final DetailAST slist = literalDefault.getNextSibling();
         final DetailAST block = slist.getFirstChild();
@@ -400,8 +382,7 @@ public class NeedBracesCheck extends Check
      * @param literalElse {@link TokenTypes#LITERAL_ELSE else statement}.
      * @return true if current else statement is single-line statement.
      */
-    private static boolean isSingleLineElse(DetailAST literalElse)
-    {
+    private static boolean isSingleLineElse(DetailAST literalElse) {
         boolean result = false;
         final DetailAST block = literalElse.getFirstChild();
         if (block.getType() != TokenTypes.SLIST) {

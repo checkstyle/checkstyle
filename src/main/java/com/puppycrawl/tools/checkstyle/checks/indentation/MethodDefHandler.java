@@ -28,8 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author jrichard
  * @author Maikel Steneker
  */
-public class MethodDefHandler extends BlockParentHandler
-{
+public class MethodDefHandler extends BlockParentHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -39,33 +38,28 @@ public class MethodDefHandler extends BlockParentHandler
      * @param parent        the parent handler
      */
     public MethodDefHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent)
-    {
+        DetailAST ast, ExpressionHandler parent) {
         super(indentCheck, ast.getType() == TokenTypes.CTOR_DEF
             ? "ctor def" : "method def", ast, parent);
     }
 
     @Override
-    protected DetailAST getToplevelAST()
-    {
+    protected DetailAST getToplevelAST() {
         // we check this stuff ourselves below
         return null;
     }
 
     @Override
-    protected void checkModifiers()
-    {
+    protected void checkModifiers() {
         final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
         if (startsLine(modifier)
-            && !getLevel().accept(expandedTabsColumnNo(modifier)))
-        {
+            && !getLevel().accept(expandedTabsColumnNo(modifier))) {
             logError(modifier, "modifier", expandedTabsColumnNo(modifier));
         }
     }
 
     @Override
-    public void checkIndentation()
-    {
+    public void checkIndentation() {
         checkModifiers();
 
         final LineWrappingHandler lineWrap =
@@ -85,8 +79,7 @@ public class MethodDefHandler extends BlockParentHandler
      *          method definition ast node(TokenTypes.LITERAL_IF)
      * @return right parenthesis of method definition parameter list.
      */
-    private static DetailAST getMethodDefParamRightParen(DetailAST methodDefAst)
-    {
+    private static DetailAST getMethodDefParamRightParen(DetailAST methodDefAst) {
         return methodDefAst.findFirstToken(TokenTypes.RPAREN);
     }
 }

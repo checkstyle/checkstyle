@@ -29,11 +29,9 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class FinalLocalVariableCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalLocalVariableCheck.class);
 
@@ -61,8 +59,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testParameter() throws Exception
-    {
+    public void testParameter() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "PARAMETER_DEF");
@@ -76,8 +73,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testNativeMethods() throws Exception
-    {
+    public void testNativeMethods() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "PARAMETER_DEF");
@@ -89,8 +85,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testFalsePositive() throws Exception
-    {
+    public void testFalsePositive() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "VARIABLE_DEF, PARAMETER_DEF");
@@ -102,8 +97,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testEnhancedForLoopVariableTrue() throws Exception
-    {
+    public void testEnhancedForLoopVariableTrue() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "VARIABLE_DEF, PARAMETER_DEF");
@@ -116,8 +110,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testEnhancedForLoopVariableFalse() throws Exception
-    {
+    public void testEnhancedForLoopVariableFalse() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "VARIABLE_DEF, PARAMETER_DEF");
@@ -129,8 +122,7 @@ public class FinalLocalVariableCheckTest
 
     @Test
     public void testLambda()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");

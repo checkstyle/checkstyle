@@ -25,8 +25,7 @@ package com.puppycrawl.tools.checkstyle.api;
  *
  * @author lkuehne
  */
-public final class SeverityLevelCounter implements AuditListener
-{
+public final class SeverityLevelCounter implements AuditListener {
     /** The severity level to watch out for. */
     private SeverityLevel level;
 
@@ -37,8 +36,7 @@ public final class SeverityLevelCounter implements AuditListener
      * Creates a new counter.
      * @param level the severity level events need to have, must be non-null.
      */
-    public SeverityLevelCounter(SeverityLevel level)
-    {
+    public SeverityLevelCounter(SeverityLevel level) {
         if (level == null) {
             throw new IllegalArgumentException();
         }
@@ -47,8 +45,7 @@ public final class SeverityLevelCounter implements AuditListener
 
     /** {@inheritDoc} */
     @Override
-    public void addError(AuditEvent evt)
-    {
+    public void addError(AuditEvent evt) {
         if (level == evt.getSeverityLevel()) {
             count++;
         }
@@ -56,8 +53,7 @@ public final class SeverityLevelCounter implements AuditListener
 
     /** {@inheritDoc} */
     @Override
-    public void addException(AuditEvent evt, Throwable throwable)
-    {
+    public void addException(AuditEvent evt, Throwable throwable) {
         if (SeverityLevel.ERROR == level) {
             count++;
         }
@@ -65,35 +61,30 @@ public final class SeverityLevelCounter implements AuditListener
 
     /** {@inheritDoc} */
     @Override
-    public void auditStarted(AuditEvent evt)
-    {
+    public void auditStarted(AuditEvent evt) {
         count = 0;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void fileStarted(AuditEvent evt)
-    {
+    public void fileStarted(AuditEvent evt) {
     }
 
     /** {@inheritDoc} */
     @Override
-    public void auditFinished(AuditEvent evt)
-    {
+    public void auditFinished(AuditEvent evt) {
     }
 
     /** {@inheritDoc} */
     @Override
-    public void fileFinished(AuditEvent evt)
-    {
+    public void fileFinished(AuditEvent evt) {
     }
 
     /**
      * Returns the number of counted events since audit started.
      * @return the number of counted events since audit started.
      */
-    public int getCount()
-    {
+    public int getCount() {
         return count;
     }
 }

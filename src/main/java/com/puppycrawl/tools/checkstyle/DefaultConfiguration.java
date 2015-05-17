@@ -34,8 +34,7 @@ import java.util.Set;
  * Default implementation of the Configuration interface.
  * @author lkuehne
  */
-public final class DefaultConfiguration implements Configuration
-{
+public final class DefaultConfiguration implements Configuration {
     /** Required for serialization. */
     private static final long serialVersionUID = 1157875385356127169L;
 
@@ -55,23 +54,20 @@ public final class DefaultConfiguration implements Configuration
      * Instantiates a DefaultConfiguration.
      * @param name the name for this DefaultConfiguration.
      */
-    public DefaultConfiguration(String name)
-    {
+    public DefaultConfiguration(String name) {
         this.name = name;
     }
 
     /** {@inheritDoc} */
     @Override
-    public String[] getAttributeNames()
-    {
+    public String[] getAttributeNames() {
         final Set<String> keySet = attributeMap.keySet();
         return keySet.toArray(new String[keySet.size()]);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getAttribute(String name) throws CheckstyleException
-    {
+    public String getAttribute(String name) throws CheckstyleException {
         if (!attributeMap.containsKey(name)) {
             throw new CheckstyleException(
                     "missing key '" + name + "' in " + getName());
@@ -81,16 +77,14 @@ public final class DefaultConfiguration implements Configuration
 
     /** {@inheritDoc} */
     @Override
-    public Configuration[] getChildren()
-    {
+    public Configuration[] getChildren() {
         return children.toArray(
             new Configuration[children.size()]);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
@@ -98,8 +92,7 @@ public final class DefaultConfiguration implements Configuration
      * Makes a configuration a child of this configuration.
      * @param configuration the child configuration.
      */
-    public void addChild(Configuration configuration)
-    {
+    public void addChild(Configuration configuration) {
         children.add(configuration);
     }
 
@@ -107,8 +100,7 @@ public final class DefaultConfiguration implements Configuration
      * Removes a child of this configuration.
      * @param configuration the child configuration to remove.
      */
-    public void removeChild(final Configuration configuration)
-    {
+    public void removeChild(final Configuration configuration) {
         children.remove(configuration);
     }
 
@@ -117,8 +109,7 @@ public final class DefaultConfiguration implements Configuration
      * @param name the name of the attribute.
      * @param value the value of the attribute.
      */
-    public void addAttribute(String name, String value)
-    {
+    public void addAttribute(String name, String value) {
         final String current = attributeMap.put(name, value);
         if (null == current) {
             attributeMap.put(name, value);
@@ -133,8 +124,7 @@ public final class DefaultConfiguration implements Configuration
      * @param key the message key
      * @param value the custom message pattern
      */
-    public void addMessage(String key, String value)
-    {
+    public void addMessage(String key, String value) {
         messages.put(key, value);
     }
 
@@ -144,8 +134,7 @@ public final class DefaultConfiguration implements Configuration
      * @return unmodifiable map containing custom messages
      */
     @Override
-    public ImmutableMap<String, String> getMessages()
-    {
+    public ImmutableMap<String, String> getMessages() {
         return ImmutableMap.copyOf(messages);
     }
 }

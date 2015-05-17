@@ -28,8 +28,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
-public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
-{
+public final class NestedIfDepthCheck extends AbstractNestedDepthCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -41,26 +40,22 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
     private static final int DEFAULT_MAX = 1;
 
     /** Creates new check instance with default allowed nesting depth. */
-    public NestedIfDepthCheck()
-    {
+    public NestedIfDepthCheck() {
         super(DEFAULT_MAX);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.LITERAL_IF};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.LITERAL_IF};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.LITERAL_IF) {
             visitLiteralIf(ast);
         }
@@ -70,8 +65,7 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.LITERAL_IF) {
             leaveLiteralIf(ast);
         }
@@ -84,8 +78,7 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
      * Increases current nesting depth.
      * @param literalIf node for if.
      */
-    private void visitLiteralIf(DetailAST literalIf)
-    {
+    private void visitLiteralIf(DetailAST literalIf) {
         if (!CheckUtils.isElseIf(literalIf)) {
             nestIn(literalIf, MSG_KEY);
         }
@@ -95,8 +88,7 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
      * Decreases current nesting depth.
      * @param literalIf node for if.
      */
-    private void leaveLiteralIf(DetailAST literalIf)
-    {
+    private void leaveLiteralIf(DetailAST literalIf) {
         if (!CheckUtils.isElseIf(literalIf)) {
             nestOut();
         }

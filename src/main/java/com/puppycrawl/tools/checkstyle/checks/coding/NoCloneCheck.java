@@ -126,8 +126,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  * @see java.lang.Cloneable
  * @see java.lang.CloneNotSupportedException
  */
-public class NoCloneCheck extends AbstractIllegalMethodCheck
-{
+public class NoCloneCheck extends AbstractIllegalMethodCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -138,8 +137,7 @@ public class NoCloneCheck extends AbstractIllegalMethodCheck
     /**
      * Creates an instance.
      */
-    public NoCloneCheck()
-    {
+    public NoCloneCheck() {
         super("clone", MSG_KEY);
     }
 }

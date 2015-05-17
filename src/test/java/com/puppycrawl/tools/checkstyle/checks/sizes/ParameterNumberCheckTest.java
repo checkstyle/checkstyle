@@ -27,11 +27,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
 public class ParameterNumberCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
-    public void testGetAcceptableTokens()
-    {
+    public void testGetAcceptableTokens() {
         ParameterNumberCheck paramNumberCheckObj =
             new ParameterNumberCheck();
         int[] actual = paramNumberCheckObj.getAcceptableTokens();
@@ -45,8 +43,7 @@ public class ParameterNumberCheckTest
 
     @Test
     public void testDefault()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNumberCheck.class);
         final String[] expected = {
@@ -57,8 +54,7 @@ public class ParameterNumberCheckTest
 
     @Test
     public void testNum()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNumberCheck.class);
         checkConfig.addAttribute("max", "2");
@@ -71,8 +67,7 @@ public class ParameterNumberCheckTest
 
     @Test
     public void shouldLogActualParameterNumber()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNumberCheck.class);
         checkConfig.addMessage("maxParam", "{0},{1}");
@@ -84,8 +79,7 @@ public class ParameterNumberCheckTest
 
     @Test
     public void shouldIgnoreMethodsWithOverrideAnnotation()
-            throws Exception
-    {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ParameterNumberCheck.class);
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");

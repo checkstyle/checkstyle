@@ -78,8 +78,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * @author maxvetrenko
  */
 public class SeparatorWrapCheck
-    extends AbstractOptionCheck<WrapOption>
-{
+    extends AbstractOptionCheck<WrapOption> {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -96,14 +95,12 @@ public class SeparatorWrapCheck
     /**
      * Sets the comma wrap option to end of the line.
      */
-    public SeparatorWrapCheck()
-    {
+    public SeparatorWrapCheck() {
         super(WrapOption.EOL, WrapOption.class);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.DOT,
             TokenTypes.COMMA,
@@ -111,8 +108,7 @@ public class SeparatorWrapCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.DOT,
             TokenTypes.COMMA,
@@ -127,8 +123,7 @@ public class SeparatorWrapCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final String text = ast.getText();
         final int colNo = ast.getColumnNo();
         final int lineNo = ast.getLineNo();
@@ -140,13 +135,11 @@ public class SeparatorWrapCheck
         final WrapOption wSp = getAbstractOption();
 
         if (wSp == WrapOption.EOL
-                && substringBeforeToken.length() == 0)
-        {
+                && substringBeforeToken.length() == 0) {
             log(lineNo, colNo, LINE_PREVIOUS, text);
         }
         else if (wSp == WrapOption.NL
-                 && substringAfterToken.length() == 0)
-        {
+                 && substringAfterToken.length() == 0) {
             log(lineNo, colNo, LINE_NEW, text);
         }
     }

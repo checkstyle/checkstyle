@@ -36,8 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Oliver Burn
  */
 public class CyclomaticComplexityCheck
-    extends AbstractComplexityCheck
-{
+    extends AbstractComplexityCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -49,14 +48,12 @@ public class CyclomaticComplexityCheck
     private static final int DEFAULT_VALUE = 10;
 
     /** Create an instance. */
-    public CyclomaticComplexityCheck()
-    {
+    public CyclomaticComplexityCheck() {
         super(DEFAULT_VALUE);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
@@ -75,8 +72,7 @@ public class CyclomaticComplexityCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
@@ -95,14 +91,12 @@ public class CyclomaticComplexityCheck
     }
 
     @Override
-    protected final void visitTokenHook(DetailAST ast)
-    {
+    protected final void visitTokenHook(DetailAST ast) {
         incrementCurrentValue(BigInteger.ONE);
     }
 
     @Override
-    protected final String getMessageID()
-    {
+    protected final String getMessageID() {
         return MSG_KEY;
     }
 }

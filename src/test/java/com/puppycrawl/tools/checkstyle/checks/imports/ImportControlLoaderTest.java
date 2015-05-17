@@ -25,11 +25,9 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import java.io.File;
 import org.junit.Test;
 
-public class ImportControlLoaderTest
-{
+public class ImportControlLoaderTest {
     @Test
-    public void testLoad() throws CheckstyleException
-    {
+    public void testLoad() throws CheckstyleException {
         final PkgControl root =
                 ImportControlLoader.load(new File(
                         "src/test/resources/com/puppycrawl/tools/checkstyle/import-control_complete.xml").toURI());

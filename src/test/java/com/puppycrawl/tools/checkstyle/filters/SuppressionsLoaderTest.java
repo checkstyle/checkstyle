@@ -37,12 +37,10 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
  * Tests SuppressionsLoader.
  * @author Rick Giles
  */
-public class SuppressionsLoaderTest
-{
+public class SuppressionsLoaderTest {
     @Test
     public void testNoSuppressions()
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(
                     "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_none.xml");
@@ -52,8 +50,7 @@ public class SuppressionsLoaderTest
 
     @Test
     public void testLoadFromURL()
-        throws CheckstyleException, InterruptedException
-    {
+        throws CheckstyleException, InterruptedException {
         boolean online = isInternetReachable();
 
         Assume.assumeTrue(online);
@@ -73,8 +70,7 @@ public class SuppressionsLoaderTest
             catch (CheckstyleException ex) {
                 // for some reason Travis CI failed some times(unstable) on reading this file
                 if (attemptCount < attemptLimit
-                        && ex.getMessage().contains("unable to read"))
-                {
+                        && ex.getMessage().contains("unable to read")) {
                     attemptCount++;
                     // wait for bad/disconnection time to pass
                     Thread.sleep(1000);
@@ -90,21 +86,18 @@ public class SuppressionsLoaderTest
     }
 
     @Test(expected = CheckstyleException.class)
-    public void testLoadFromMalformedURL() throws CheckstyleException
-    {
+    public void testLoadFromMalformedURL() throws CheckstyleException {
         SuppressionsLoader.loadSuppressions("http");
     }
 
     @Test(expected = CheckstyleException.class)
-    public void testLoadFromNonExistingURL() throws CheckstyleException
-    {
+    public void testLoadFromNonExistingURL() throws CheckstyleException {
         SuppressionsLoader.loadSuppressions("http://^%$^* %&% %^&");
     }
 
     @Test
     public void testMultipleSuppression()
-        throws CheckstyleException, PatternSyntaxException
-    {
+        throws CheckstyleException, PatternSyntaxException {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(
                     "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_multiple.xml");
@@ -129,8 +122,7 @@ public class SuppressionsLoaderTest
     }
 
     @Test
-    public void testNoFile()
-    {
+    public void testNoFile() {
         final String fn = "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_no_file.xml";
         try {
             SuppressionsLoader.loadSuppressions(fn);
@@ -143,8 +135,7 @@ public class SuppressionsLoaderTest
     }
 
     @Test
-    public void testNoCheck()
-    {
+    public void testNoCheck() {
         final String fn = "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_no_check.xml";
         try {
             SuppressionsLoader.loadSuppressions(fn);
@@ -157,8 +148,7 @@ public class SuppressionsLoaderTest
     }
 
     @Test
-    public void testBadInt()
-    {
+    public void testBadInt() {
         final String fn = "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_bad_int.xml";
         try {
             SuppressionsLoader.loadSuppressions(fn);
@@ -170,8 +160,7 @@ public class SuppressionsLoaderTest
         }
     }
 
-    private static boolean isInternetReachable()
-    {
+    private static boolean isInternetReachable() {
         try {
             URL url = new URL("http://www.yahoo.com");
             HttpURLConnection urlConnect = (HttpURLConnection) url.openConnection();

@@ -33,12 +33,10 @@ import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_M
  *
  * @author Lars Ködderitzsch
  */
-public class JavaNCSSCheckTest extends BaseCheckTestSupport
-{
+public class JavaNCSSCheckTest extends BaseCheckTestSupport {
 
     @Test
-    public void test() throws Exception
-    {
+    public void test() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(JavaNCSSCheck.class);
 
         checkConfig.addAttribute("methodMaximum", "0");

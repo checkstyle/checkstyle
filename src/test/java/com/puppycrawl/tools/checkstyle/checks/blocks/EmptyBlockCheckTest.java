@@ -28,12 +28,10 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck.MSG_
 import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck.MSG_KEY_BLOCK_NO_STMT;
 
 public class EmptyBlockCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
     public void testDefault()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(EmptyBlockCheck.class);
         final String[] expected = {
@@ -50,8 +48,7 @@ public class EmptyBlockCheckTest
 
     @Test
     public void testText()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(EmptyBlockCheck.class);
         checkConfig.addAttribute("option", BlockOption.TEXT.toString());
@@ -66,8 +63,7 @@ public class EmptyBlockCheckTest
 
     @Test
     public void testStatement()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(EmptyBlockCheck.class);
         checkConfig.addAttribute("option", BlockOption.STMT.toString());
@@ -84,8 +80,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void allowEmptyLoops() throws Exception
-    {
+    public void allowEmptyLoops() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(EmptyBlockCheck.class);
         checkConfig.addAttribute("option", BlockOption.STMT.toString());
@@ -102,8 +97,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void allowEmptyLoopsText() throws Exception
-    {
+    public void allowEmptyLoopsText() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(EmptyBlockCheck.class);
         checkConfig.addAttribute("option", BlockOption.TEXT.toString());

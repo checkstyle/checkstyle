@@ -28,19 +28,16 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterC
 .WS_NOT_FOLLOWED;
 
 public class WhitespaceAfterCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(WhitespaceAfterCheck.class);
     }
 
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final String[] expected = {
             "42:40: " + getCheckMessage(WS_NOT_FOLLOWED, ","),
             "71:30: " + getCheckMessage(WS_NOT_FOLLOWED, ","),
@@ -49,8 +46,7 @@ public class WhitespaceAfterCheckTest
     }
 
     @Test
-    public void testCast() throws Exception
-    {
+    public void testCast() throws Exception {
         final String[] expected = {
             "88:21: " + getCheckMessage(WS_NOT_FOLLOWED, "cast"),
         };
@@ -58,8 +54,7 @@ public class WhitespaceAfterCheckTest
     }
 
     @Test
-    public void testSemi() throws Exception
-    {
+    public void testSemi() throws Exception {
         final String[] expected = {
             "58:23: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
             "58:29: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
@@ -69,8 +64,7 @@ public class WhitespaceAfterCheckTest
     }
 
     @Test
-    public void testEmptyForIterator() throws Exception
-    {
+    public void testEmptyForIterator() throws Exception {
         final String[] expected = {
             "14:31: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
             "17:31: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
@@ -79,8 +73,7 @@ public class WhitespaceAfterCheckTest
     }
 
     @Test
-    public void testTypeArgumentAndParameterCommas() throws Exception
-    {
+    public void testTypeArgumentAndParameterCommas() throws Exception {
         final String[] expected = {
             "11:21: " + getCheckMessage(WS_NOT_FOLLOWED, ","),
             "11:23: " + getCheckMessage(WS_NOT_FOLLOWED, ","),
@@ -90,8 +83,7 @@ public class WhitespaceAfterCheckTest
     }
 
     @Test
-    public void test1322879() throws Exception
-    {
+    public void test1322879() throws Exception {
         final String[] expected = {
         };
         verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),

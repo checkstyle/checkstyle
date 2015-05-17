@@ -29,11 +29,9 @@ import java.io.File;
 import static com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
-public class MutableExceptionCheckTest extends BaseCheckTestSupport
-{
+public class MutableExceptionCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
 
         String[] expected = {
@@ -45,8 +43,7 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testFormat() throws Exception
-    {
+    public void testFormat() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
         checkConfig.addAttribute("format", "^.*Failure$");
         checkConfig.addAttribute("extendedClassNameFormat", "^.*ThreadDeath$");
@@ -58,16 +55,14 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testGetAcceptableTokens()
-    {
+    public void testGetAcceptableTokens() {
         MutableExceptionCheck obj = new MutableExceptionCheck();
         int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
         assertArrayEquals(expected, obj.getAcceptableTokens());
     }
 
     @Test
-    public void testGetRequiredTokens()
-    {
+    public void testGetRequiredTokens() {
         MutableExceptionCheck obj = new MutableExceptionCheck();
         int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
         assertArrayEquals(expected, obj.getAcceptableTokens());

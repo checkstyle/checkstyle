@@ -41,8 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
-public final class ThrowsCountCheck extends Check
-{
+public final class ThrowsCountCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -57,28 +56,24 @@ public final class ThrowsCountCheck extends Check
     private int max;
 
     /** Creates new instance of the check. */
-    public ThrowsCountCheck()
-    {
+    public ThrowsCountCheck() {
         setMax(DEFAULT_MAX);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.LITERAL_THROWS,
         };
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return getDefaultTokens();
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.LITERAL_THROWS,
         };
@@ -88,8 +83,7 @@ public final class ThrowsCountCheck extends Check
      * Getter for max property.
      * @return maximum allowed throws statements.
      */
-    public int getMax()
-    {
+    public int getMax() {
         return max;
     }
 
@@ -97,14 +91,12 @@ public final class ThrowsCountCheck extends Check
      * Setter for max property.
      * @param max maximum allowed throws statements.
      */
-    public void setMax(int max)
-    {
+    public void setMax(int max) {
         this.max = max;
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.LITERAL_THROWS) {
             visitLiteralThrows(ast);
         }
@@ -117,8 +109,7 @@ public final class ThrowsCountCheck extends Check
      * Checks number of throws statements.
      * @param ast throws for check.
      */
-    private void visitLiteralThrows(DetailAST ast)
-    {
+    private void visitLiteralThrows(DetailAST ast) {
         // Account for all the commas!
         final int count = (ast.getChildCount() + 1) / 2;
         if (count > getMax()) {

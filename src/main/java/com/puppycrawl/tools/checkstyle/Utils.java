@@ -36,8 +36,7 @@ import java.util.regex.PatternSyntaxException;
  *
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
-public final class Utils
-{
+public final class Utils {
 
     /** maps from a token name to value */
     private static final ImmutableMap<String, Integer> TOKEN_NAME_TO_VALUE;
@@ -80,8 +79,7 @@ public final class Utils
 
 
     /** stop instances being created **/
-    private Utils()
-    {
+    private Utils() {
     }
 
     /**
@@ -91,8 +89,7 @@ public final class Utils
      * @param fileExtensions files extensions, empty property in config makes it matches to all.
      * @return whether there is a match.
      */
-    public static boolean fileExtensionMatches(File file, String... fileExtensions)
-    {
+    public static boolean fileExtensionMatches(File file, String... fileExtensions) {
         boolean result = false;
         if (fileExtensions == null || fileExtensions.length == 0) {
             result = true;
@@ -129,8 +126,7 @@ public final class Utils
      * @param line the line to check
      * @return whether there is only whitespace
      */
-    public static boolean whitespaceBefore(int index, String line)
-    {
+    public static boolean whitespaceBefore(int index, String line) {
         for (int i = 0; i < index; i++) {
             if (!Character.isWhitespace(line.charAt(i))) {
                 return false;
@@ -146,8 +142,7 @@ public final class Utils
      * @param line the string to process
      * @return the length of the string ignoring all trailing whitespace
      **/
-    public static int lengthMinusTrailingWhitespace(String line)
-    {
+    public static int lengthMinusTrailingWhitespace(String line) {
         int len = line.length();
         for (int i = len - 1; i >= 0; i--) {
             if (!Character.isWhitespace(line.charAt(i))) {
@@ -169,8 +164,7 @@ public final class Utils
      */
     public static int lengthExpandedTabs(String string,
                                          int toIdx,
-                                         int tabWidth)
-    {
+                                         int tabWidth) {
         int len = 0;
         for (int idx = 0; idx < toIdx; idx++) {
             if (string.charAt(idx) == '\t') {
@@ -189,8 +183,7 @@ public final class Utils
      *        string to validate
      * @return true if the pattern is valid false otherwise
      */
-    public static boolean isPatternValid(String pattern)
-    {
+    public static boolean isPatternValid(String pattern) {
         try {
             Pattern.compile(pattern);
         }
@@ -207,8 +200,7 @@ public final class Utils
      * @throws ConversionException if unable to create Pattern object.
      **/
     public static Pattern createPattern(String pattern)
-        throws ConversionException
-    {
+        throws ConversionException {
         try {
             return Pattern.compile(pattern);
         }
@@ -222,8 +214,7 @@ public final class Utils
      * @param type the fully qualified name. Cannot be null
      * @return the base class name from a fully qualified name
      */
-    public static String baseClassname(String type)
-    {
+    public static String baseClassname(String type) {
         final int i = type.lastIndexOf('.');
         return i == -1 ? type : type.substring(i + 1);
     }
@@ -235,8 +226,7 @@ public final class Utils
      * @return the relative normalized path between base directory and path or path if base
      * directory is null
      */
-    public static String relativizeAndNormalizePath(final String baseDirectory, final String path)
-    {
+    public static String relativizeAndNormalizePath(final String baseDirectory, final String path) {
         if (baseDirectory == null) {
             return path;
         }
@@ -257,8 +247,7 @@ public final class Utils
      * @return <code>true</code> if the <code>char</code> is a prefix of the given
      * <code>String</code>; <code>false</code> otherwise.
      */
-    public static boolean startsWithChar(String string, char prefix)
-    {
+    public static boolean startsWithChar(String string, char prefix) {
         return string.length() > 0 && string.charAt(0) == prefix;
     }
 
@@ -274,8 +263,7 @@ public final class Utils
      * @return <code>true</code> if the <code>char</code> is a suffix of the given
      * <code>String</code>; <code>false</code> otherwise.
      */
-    public static boolean endsWithChar(String string, char suffix)
-    {
+    public static boolean endsWithChar(String string, char suffix) {
         return string.length() > 0 && string.charAt(string.length() - 1) == suffix;
     }
 
@@ -284,8 +272,7 @@ public final class Utils
      * @param iD the ID of the token name to get
      * @return a token name
      */
-    public static String getTokenName(int iD)
-    {
+    public static String getTokenName(int iD) {
         if (iD > TOKEN_VALUE_TO_NAME.length - 1) {
             throw new IllegalArgumentException("given id " + iD);
         }
@@ -301,8 +288,7 @@ public final class Utils
      * @param name the name of the token ID to get
      * @return a token ID
      */
-    public static int getTokenId(String name)
-    {
+    public static int getTokenId(String name) {
         final Integer id = TOKEN_NAME_TO_VALUE.get(name);
         if (id == null) {
             throw new IllegalArgumentException("given name " + name);
@@ -315,8 +301,7 @@ public final class Utils
      * @param name the name of the token ID to get
      * @return a short description
      */
-    public static String getShortDescription(String name)
-    {
+    public static String getShortDescription(String name) {
         if (!TOKEN_NAME_TO_VALUE.containsKey(name)) {
             throw new IllegalArgumentException("given name " + name);
         }
@@ -334,8 +319,7 @@ public final class Utils
      *        token type.
      * @return true if type is comment-related type.
      */
-    public static boolean isCommentType(int type)
-    {
+    public static boolean isCommentType(int type) {
         return type == TokenTypes.SINGLE_LINE_COMMENT
                 || type == TokenTypes.BLOCK_COMMENT_BEGIN
                 || type == TokenTypes.BLOCK_COMMENT_END
@@ -349,8 +333,7 @@ public final class Utils
      *        token type name.
      * @return true if type is comment-related type name.
      */
-    public static boolean isCommentType(String type)
-    {
+    public static boolean isCommentType(String type) {
         return isCommentType(getTokenId(type));
     }
 }

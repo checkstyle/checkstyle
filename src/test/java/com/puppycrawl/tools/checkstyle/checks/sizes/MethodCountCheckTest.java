@@ -30,11 +30,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
-public class MethodCountCheckTest extends BaseCheckTestSupport
-{
+public class MethodCountCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testGetAcceptableTokens()
-    {
+    public void testGetAcceptableTokens() {
         MethodCountCheck methodCountCheckObj =
             new MethodCountCheck();
         int[] actual = methodCountCheckObj.getAcceptableTokens();
@@ -50,8 +48,7 @@ public class MethodCountCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testDefaults() throws Exception
-    {
+    public void testDefaults() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodCountCheck.class);
 
@@ -63,8 +60,7 @@ public class MethodCountCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testThrees() throws Exception
-    {
+    public void testThrees() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodCountCheck.class);
         checkConfig.addAttribute("maxPrivate", "3");
@@ -90,8 +86,7 @@ public class MethodCountCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testEnum() throws Exception
-    {
+    public void testEnum() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodCountCheck.class);
         checkConfig.addAttribute("maxPrivate", "0");

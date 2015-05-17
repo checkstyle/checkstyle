@@ -27,13 +27,11 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 
-public class DefaulMethodsTest extends BaseCheckTestSupport
-{
+public class DefaulMethodsTest extends BaseCheckTestSupport {
 
     @Test
     public void testCanParse()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};
@@ -47,8 +45,7 @@ public class DefaulMethodsTest extends BaseCheckTestSupport
 
     @Test
     public void testSwitch()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = {};

@@ -28,13 +28,11 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import org.junit.Test;
 
 /** Tests SeverityMatchFilter */
-public class SeverityMatchFilterTest
-{
+public class SeverityMatchFilterTest {
     private final SeverityMatchFilter filter = new SeverityMatchFilter();
 
     @Test
-    public void testDefault()
-    {
+    public void testDefault() {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         assertFalse("no message", filter.accept(ev));
         SeverityLevel level = SeverityLevel.ERROR;
@@ -51,8 +49,7 @@ public class SeverityMatchFilterTest
     }
 
     @Test
-    public void testSeverity()
-    {
+    public void testSeverity() {
         filter.setSeverity("info");
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         // event with no message has severity level INFO
@@ -71,8 +68,7 @@ public class SeverityMatchFilterTest
     }
 
     @Test
-    public void testAcceptOnMatch()
-    {
+    public void testAcceptOnMatch() {
         filter.setSeverity("info");
         filter.setAcceptOnMatch(false);
         final AuditEvent ev = new AuditEvent(this, "Test.java");

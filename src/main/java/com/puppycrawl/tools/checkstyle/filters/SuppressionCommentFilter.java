@@ -62,16 +62,14 @@ import org.apache.commons.beanutils.ConversionException;
  */
 public class SuppressionCommentFilter
     extends AutomaticBean
-    implements Filter
-{
+    implements Filter {
     /**
      * A Tag holds a suppression comment and its location, and determines
      * whether the supression turns checkstyle reporting on or off.
      * @author Rick Giles
      */
     public static class Tag
-        implements Comparable<Tag>
-    {
+        implements Comparable<Tag> {
         /** The text of the tag. */
         private final String text;
 
@@ -101,8 +99,7 @@ public class SuppressionCommentFilter
          * on.
          */
         public Tag(int line, int column, String text, boolean on, SuppressionCommentFilter filter)
-            throws ConversionException
-        {
+            throws ConversionException {
             this.line = line;
             this.column = column;
             this.text = text;
@@ -145,14 +142,12 @@ public class SuppressionCommentFilter
         }
 
         /** @return the text of the tag. */
-        public String getText()
-        {
+        public String getText() {
             return text;
         }
 
         /** @return the line number of the tag in the source file. */
-        public int getLine()
-        {
+        public int getLine() {
             return line;
         }
 
@@ -162,8 +157,7 @@ public class SuppressionCommentFilter
          * first line.
          * @return the column number of the tag in the source file.
          */
-        public int getColumn()
-        {
+        public int getColumn() {
             return column;
         }
 
@@ -172,8 +166,7 @@ public class SuppressionCommentFilter
          * off.
          * @return <code>true</code>if the suppression turns reporting on.
          */
-        public boolean isOn()
-        {
+        public boolean isOn() {
             return on;
         }
 
@@ -187,8 +180,7 @@ public class SuppressionCommentFilter
          * @see java.lang.Comparable#compareTo(java.lang.Object)
          */
         @Override
-        public int compareTo(Tag object)
-        {
+        public int compareTo(Tag object) {
             if (line == object.line) {
                 return column - object.column;
             }
@@ -198,8 +190,7 @@ public class SuppressionCommentFilter
 
         /** {@inheritDoc} */
         @Override
-        public boolean equals(Object o)
-        {
+        public boolean equals(Object o) {
             if (this == o) {
                 return true;
             }
@@ -217,8 +208,7 @@ public class SuppressionCommentFilter
 
         /** {@inheritDoc} */
         @Override
-        public int hashCode()
-        {
+        public int hashCode() {
             return Objects.hash(text, line, column, on, tagCheckRegexp, tagMessageRegexp);
         }
 
@@ -228,8 +218,7 @@ public class SuppressionCommentFilter
          * @param event the <code>AuditEvent</code> to check.
          * @return true if the source of event matches the text of this tag.
          */
-        public boolean isMatch(AuditEvent event)
-        {
+        public boolean isMatch(AuditEvent event) {
             final Matcher tagMatcher =
                 tagCheckRegexp.matcher(event.getSourceName());
             if (tagMatcher.find()) {
@@ -253,8 +242,7 @@ public class SuppressionCommentFilter
         private String expandFromCoont(
             String comment,
             String string,
-            Pattern regexp)
-        {
+            Pattern regexp) {
             final Matcher matcher = regexp.matcher(comment);
             // Match primarily for effect.
             if (!matcher.find()) {
@@ -269,8 +257,7 @@ public class SuppressionCommentFilter
         }
 
         @Override
-        public final String toString()
-        {
+        public final String toString() {
             return "Tag[line=" + getLine() + "; col=" + getColumn()
                 + "; on=" + isOn() + "; text='" + getText() + "']";
         }
@@ -323,8 +310,7 @@ public class SuppressionCommentFilter
      * Initializes comment on, comment off, and check formats
      * to defaults.
      */
-    public SuppressionCommentFilter()
-    {
+    public SuppressionCommentFilter() {
         setOnCommentFormat(DEFAULT_ON_FORMAT);
         setOffCommentFormat(DEFAULT_OFF_FORMAT);
         setCheckFormat(DEFAULT_CHECK_FORMAT);
@@ -336,8 +322,7 @@ public class SuppressionCommentFilter
      * @throws ConversionException if unable to create Pattern object.
      */
     public void setOffCommentFormat(String format)
-        throws ConversionException
-    {
+        throws ConversionException {
         offRegexp = Utils.createPattern(format);
     }
 
@@ -347,14 +332,12 @@ public class SuppressionCommentFilter
      * @throws ConversionException if unable to create Pattern object.
      */
     public void setOnCommentFormat(String format)
-        throws ConversionException
-    {
+        throws ConversionException {
         onRegexp = Utils.createPattern(format);
     }
 
     /** @return the FileContents for this filter. */
-    public FileContents getFileContents()
-    {
+    public FileContents getFileContents() {
         return fileContentsReference.get();
     }
 
@@ -362,8 +345,7 @@ public class SuppressionCommentFilter
      * Set the FileContents for this filter.
      * @param fileContents the FileContents for this filter.
      */
-    public void setFileContents(FileContents fileContents)
-    {
+    public void setFileContents(FileContents fileContents) {
         fileContentsReference = new WeakReference<>(fileContents);
     }
 
@@ -373,8 +355,7 @@ public class SuppressionCommentFilter
      * @throws ConversionException if unable to create Pattern object
      */
     public void setCheckFormat(String format)
-        throws ConversionException
-    {
+        throws ConversionException {
         checkRegexp = Utils.createPattern(format);
         checkFormat = format;
 
@@ -386,8 +367,7 @@ public class SuppressionCommentFilter
      * @throws ConversionException unable to parse format
      */
     public void setMessageFormat(String format)
-        throws ConversionException
-    {
+        throws ConversionException {
         if (!Utils.isPatternValid(format)) {
             throw new ConversionException("Unable to parse format: " + format);
         }
@@ -399,8 +379,7 @@ public class SuppressionCommentFilter
      * Set whether to look in C++ comments.
      * @param checkCPP <code>true</code> if C++ comments are checked.
      */
-    public void setCheckCPP(boolean checkCPP)
-    {
+    public void setCheckCPP(boolean checkCPP) {
         this.checkCPP = checkCPP;
     }
 
@@ -408,15 +387,13 @@ public class SuppressionCommentFilter
      * Set whether to look in C comments.
      * @param checkC <code>true</code> if C comments are checked.
      */
-    public void setCheckC(boolean checkC)
-    {
+    public void setCheckC(boolean checkC) {
         this.checkC = checkC;
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean accept(AuditEvent event)
-    {
+    public boolean accept(AuditEvent event) {
         if (event.getLocalizedMessage() == null) {
             return true;        // A special event.
         }
@@ -445,14 +422,12 @@ public class SuppressionCommentFilter
      * @param event the <code>AuditEvent</code> to match.
      * @return The <code>Tag</code> nearest event.
      */
-    private Tag findNearestMatch(AuditEvent event)
-    {
+    private Tag findNearestMatch(AuditEvent event) {
         Tag result = null;
         for (Tag tag : tags) {
             if (tag.getLine() > event.getLine()
                 || tag.getLine() == event.getLine()
-                    && tag.getColumn() > event.getColumn())
-            {
+                    && tag.getColumn() > event.getColumn()) {
                 break;
             }
             if (tag.isMatch(event)) {
@@ -466,8 +441,7 @@ public class SuppressionCommentFilter
      * Collects all the suppression tags for all comments into a list and
      * sorts the list.
      */
-    private void tagSuppressions()
-    {
+    private void tagSuppressions() {
         tags.clear();
         final FileContents contents = getFileContents();
         if (checkCPP) {
@@ -488,8 +462,7 @@ public class SuppressionCommentFilter
      * set of suppression tags.
      * @param comments the set of comments.
      */
-    private void tagSuppressions(Collection<TextBlock> comments)
-    {
+    private void tagSuppressions(Collection<TextBlock> comments) {
         for (TextBlock comment : comments) {
             final int startLineNo = comment.getStartLineNo();
             final String[] text = comment.getText();
@@ -507,8 +480,7 @@ public class SuppressionCommentFilter
      * @param line the line number of text.
      * @param column the column number of text.
      */
-    private void tagCommentLine(String text, int line, int column)
-    {
+    private void tagCommentLine(String text, int line, int column) {
         final Matcher offMatcher = offRegexp.matcher(text);
         if (offMatcher.find()) {
             addTag(offMatcher.group(0), line, column, false);
@@ -528,8 +500,7 @@ public class SuppressionCommentFilter
      * @param column the column number of the tag.
      * @param on <code>true</code> if the tag turns checkstyle reporting on.
      */
-    private void addTag(String text, int line, int column, boolean on)
-    {
+    private void addTag(String text, int line, int column, boolean on) {
         final Tag tag = new Tag(line, column, text, on, this);
         tags.add(tag);
     }

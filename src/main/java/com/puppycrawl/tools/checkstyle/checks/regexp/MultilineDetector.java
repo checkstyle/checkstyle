@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
  * A detector that matches across multiple lines.
  * @author oliver
  */
-class MultilineDetector
-{
+class MultilineDetector {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -55,8 +54,7 @@ class MultilineDetector
      * Creates an instance.
      * @param options the options to use.
      */
-    public MultilineDetector(DetectorOptions options)
-    {
+    public MultilineDetector(DetectorOptions options) {
         this.options = options;
     }
 
@@ -64,8 +62,7 @@ class MultilineDetector
      * Processes an entire text file looking for matches.
      * @param text the text to process
      */
-    public void processLines(FileText text)
-    {
+    public void processLines(FileText text) {
         this.text = text;
         resetState();
         matcher = options.getPattern().matcher(text.getFullText());
@@ -74,8 +71,7 @@ class MultilineDetector
     }
 
     /** recursive method that finds the matches. */
-    private void findMatch()
-    {
+    private void findMatch() {
         final boolean foundMatch = matcher.find();
         if (!foundMatch) {
             return;
@@ -85,8 +81,7 @@ class MultilineDetector
         final LineColumn end = text.lineColumn(matcher.end());
 
         if (!options.getSuppressor().shouldSuppress(start.getLine(),
-                start.getColumn(), end.getLine(), end.getColumn()))
-        {
+                start.getColumn(), end.getLine(), end.getColumn())) {
             currentMatches++;
             if (currentMatches > options.getMaximum()) {
                 if ("".equals(options.getMessage())) {
@@ -102,8 +97,7 @@ class MultilineDetector
         findMatch();
     }
     /** Perform processing at the end of a set of lines. */
-    private void finish()
-    {
+    private void finish() {
         if (currentMatches < options.getMinimum()) {
             if ("".equals(options.getMessage())) {
                 options.getReporter().log(0, REGEXP_MINIMUM,
@@ -118,8 +112,7 @@ class MultilineDetector
     /**
      * Reset the state of the detector.
      */
-    private void resetState()
-    {
+    private void resetState() {
         currentMatches = 0;
     }
 }

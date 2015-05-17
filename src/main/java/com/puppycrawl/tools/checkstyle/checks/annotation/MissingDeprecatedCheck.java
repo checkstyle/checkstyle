@@ -72,8 +72,7 @@ import com.puppycrawl.tools.checkstyle.Utils;
  *
  * @author Travis Schneeberger
  */
-public final class MissingDeprecatedCheck extends Check
-{
+public final class MissingDeprecatedCheck extends Check {
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -119,15 +118,13 @@ public final class MissingDeprecatedCheck extends Check
 
     /** {@inheritDoc} */
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return this.getAcceptableTokens();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
@@ -143,8 +140,7 @@ public final class MissingDeprecatedCheck extends Check
 
     /** {@inheritDoc} */
     @Override
-    public void visitToken(final DetailAST ast)
-    {
+    public void visitToken(final DetailAST ast) {
         final TextBlock javadoc =
             this.getFileContents().getJavadocBefore(ast.getLineNo());
 
@@ -165,8 +161,7 @@ public final class MissingDeprecatedCheck extends Check
      * @param javadoc the javadoc of the AST
      * @return true if contains the tag
      */
-    private boolean containsJavadocTag(final TextBlock javadoc)
-    {
+    private boolean containsJavadocTag(final TextBlock javadoc) {
         if (javadoc == null) {
             return false;
         }
@@ -201,8 +196,7 @@ public final class MissingDeprecatedCheck extends Check
                 // not whitespace or '*' characters.
 
                 for (int reindex = i + 1;
-                    reindex < lines.length; reindex++)
-                {
+                    reindex < lines.length; reindex++) {
                     final Matcher multilineCont =
                         MissingDeprecatedCheck.MATCH_DEPRECATED_MULTILINE_CONT
                         .matcher(lines[reindex]);
@@ -211,8 +205,7 @@ public final class MissingDeprecatedCheck extends Check
                         reindex = lines.length;
                         final String lFin = multilineCont.group(1);
                         if (!lFin.equals(MissingDeprecatedCheck.NEXT_TAG)
-                            && !lFin.equals(MissingDeprecatedCheck.END_JAVADOC))
-                        {
+                            && !lFin.equals(MissingDeprecatedCheck.END_JAVADOC)) {
                             if (found) {
                                 this.log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
                                     JavadocTagInfo.DEPRECATED.getText());

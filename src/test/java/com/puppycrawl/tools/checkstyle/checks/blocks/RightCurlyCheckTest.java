@@ -30,19 +30,16 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_SAME;
 
-public class RightCurlyCheckTest extends BaseCheckTestSupport
-{
+public class RightCurlyCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(RightCurlyCheck.class);
     }
 
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final String[] expected = {
             "25:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}"),
             "28:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}"),
@@ -57,8 +54,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testSame() throws Exception
-    {
+    public void testSame() throws Exception {
         checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
         final String[] expected = {
             "25:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}"),
@@ -74,8 +70,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testAlone() throws Exception
-    {
+    public void testAlone() throws Exception {
         checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         final String[] expected = {
             "93:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
@@ -85,8 +80,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testNewLine() throws Exception
-    {
+    public void testNewLine() throws Exception {
         checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF");
         final String[] expected = {
@@ -98,8 +92,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testShouldStartLine() throws Exception
-    {
+    public void testShouldStartLine() throws Exception {
         checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         checkConfig.addAttribute("shouldStartLine", "false");
         final String[] expected = {
@@ -109,8 +102,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testMethodCtorNamedClassClosingBrace() throws Exception
-    {
+    public void testMethodCtorNamedClassClosingBrace() throws Exception {
         checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         checkConfig.addAttribute("shouldStartLine", "false");
         final String[] expected = {
@@ -120,8 +112,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testForceLineBreakBefore() throws Exception
-    {
+    public void testForceLineBreakBefore() throws Exception {
         checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         checkConfig.addAttribute("tokens", "LITERAL_FOR,"
                 + "LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT");
@@ -134,8 +125,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testForceLineBreakBefore2() throws Exception
-    {
+    public void testForceLineBreakBefore2() throws Exception {
         final String[] expected = {
             "24:33: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}"),
             "32:44: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}"),
@@ -146,8 +136,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testNPE() throws Exception
-    {
+    public void testNPE() throws Exception {
         checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT");
         final String[] expected = {

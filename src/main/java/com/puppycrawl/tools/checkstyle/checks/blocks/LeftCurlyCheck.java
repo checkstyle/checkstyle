@@ -74,8 +74,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * @author maxvetrenko
  */
 public class LeftCurlyCheck
-    extends AbstractOptionCheck<LeftCurlyOption>
-{
+    extends AbstractOptionCheck<LeftCurlyOption> {
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -106,8 +105,7 @@ public class LeftCurlyCheck
     /**
      * Creates a default instance and sets the policy to EOL.
      */
-    public LeftCurlyCheck()
-    {
+    public LeftCurlyCheck() {
         super(LeftCurlyOption.EOL, LeftCurlyOption.class);
     }
 
@@ -116,14 +114,12 @@ public class LeftCurlyCheck
      * left curly brace.
      * @param maxLineLength the max allowed line length
      */
-    public void setMaxLineLength(int maxLineLength)
-    {
+    public void setMaxLineLength(int maxLineLength) {
         this.maxLineLength = maxLineLength;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
@@ -147,8 +143,7 @@ public class LeftCurlyCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
@@ -172,8 +167,7 @@ public class LeftCurlyCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final DetailAST startToken;
         final DetailAST brace;
 
@@ -243,8 +237,7 @@ public class LeftCurlyCheck
      * @param ast <code>DetailAST</code>.
      * @return <code>DetailAST</code>.
      */
-    private DetailAST skipAnnotationOnlyLines(DetailAST ast)
-    {
+    private DetailAST skipAnnotationOnlyLines(DetailAST ast) {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         if (modifiers == null) {
             return ast;
@@ -263,8 +256,7 @@ public class LeftCurlyCheck
         final int lastAnnotLineNumber = lastAnnot.getLineNo();
         while (lastAnnot.getPreviousSibling() != null
                && lastAnnot.getPreviousSibling().getLineNo()
-                    == lastAnnotLineNumber)
-        {
+                    == lastAnnotLineNumber) {
             lastAnnot = lastAnnot.getPreviousSibling();
         }
         return lastAnnot;
@@ -276,12 +268,10 @@ public class LeftCurlyCheck
      * @param modifiers <code>DetailAST</code>.
      * @return <code>DetailAST</code> or null if there are no annotations.
      */
-    private DetailAST findLastAnnotation(DetailAST modifiers)
-    {
+    private DetailAST findLastAnnotation(DetailAST modifiers) {
         DetailAST annot = modifiers.findFirstToken(TokenTypes.ANNOTATION);
         while (annot != null && annot.getNextSibling() != null
-               && annot.getNextSibling().getType() == TokenTypes.ANNOTATION)
-        {
+               && annot.getNextSibling().getType() == TokenTypes.ANNOTATION) {
             annot = annot.getNextSibling();
         }
         return annot;
@@ -294,8 +284,7 @@ public class LeftCurlyCheck
      * @param startToken token for start of expression
      */
     private void verifyBrace(final DetailAST brace,
-                             final DetailAST startToken)
-    {
+                             final DetailAST startToken) {
         final String braceLine = getLine(brace.getLineNo() - 1);
 
         // calculate the previous line length without trailing whitespace. Need
@@ -307,8 +296,7 @@ public class LeftCurlyCheck
 
         // Check for being told to ignore, or have '{}' which is a special case
         if (braceLine.length() <= brace.getColumnNo() + 1
-                || braceLine.charAt(brace.getColumnNo() + 1) != '}')
-        {
+                || braceLine.charAt(brace.getColumnNo() + 1) != '}') {
             if (getAbstractOption() == LeftCurlyOption.NL) {
                 if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
                     log(brace.getLineNo(), brace.getColumnNo(),
@@ -317,8 +305,7 @@ public class LeftCurlyCheck
             }
             else if (getAbstractOption() == LeftCurlyOption.EOL) {
                 if (Utils.whitespaceBefore(brace.getColumnNo(), braceLine)
-                    && prevLineLen + 2 <= maxLineLength)
-                {
+                    && prevLineLen + 2 <= maxLineLength) {
                     log(brace.getLineNo(), brace.getColumnNo(),
                         MSG_KEY_LINE_PREVIOUS, "{");
                 }
@@ -327,8 +314,7 @@ public class LeftCurlyCheck
                 }
             }
             else if (getAbstractOption() == LeftCurlyOption.NLOW
-                    && startToken.getLineNo() != brace.getLineNo())
-            {
+                    && startToken.getLineNo() != brace.getLineNo()) {
                 // not on the same line
                 if (startToken.getLineNo() + 1 == brace.getLineNo()) {
                     if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
@@ -355,21 +341,19 @@ public class LeftCurlyCheck
      * @return
      *        True, left curly has line break after.
      */
-    private boolean hasLineBreakAfter(DetailAST leftCurly)
-    {
+    private boolean hasLineBreakAfter(DetailAST leftCurly) {
         DetailAST nextToken = null;
         if (leftCurly.getType() == TokenTypes.SLIST) {
             nextToken = leftCurly.getFirstChild();
         }
         else {
-            if (leftCurly.getParent().getParent().getType() == TokenTypes.ENUM_DEF && !ignoreEnums)
-            {
+            if (leftCurly.getParent().getParent().getType() == TokenTypes.ENUM_DEF
+                    && !ignoreEnums) {
                 nextToken = leftCurly.getNextSibling();
             }
         }
         if (nextToken != null && nextToken.getType() != TokenTypes.RCURLY
-                && leftCurly.getLineNo() == nextToken.getLineNo())
-        {
+                && leftCurly.getLineNo() == nextToken.getLineNo()) {
             return false;
         }
         return true;

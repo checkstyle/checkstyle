@@ -42,8 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author lkuehne
  */
 public class InnerAssignmentCheck
-        extends Check
-{
+        extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -60,8 +59,7 @@ public class InnerAssignmentCheck
         {TokenTypes.VARIABLE_DEF},
         {TokenTypes.EXPR, TokenTypes.ELIST, TokenTypes.FOR_INIT},
         {TokenTypes.EXPR, TokenTypes.ELIST, TokenTypes.FOR_ITERATOR},
-        {TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR},
-        {
+        {TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR}, {
             TokenTypes.RESOURCE,
             TokenTypes.RESOURCES,
             TokenTypes.RESOURCE_SPECIFICATION,
@@ -106,8 +104,7 @@ public class InnerAssignmentCheck
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.ASSIGN,            // '='
             TokenTypes.DIV_ASSIGN,        // "/="
@@ -125,8 +122,7 @@ public class InnerAssignmentCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.ASSIGN,            // '='
             TokenTypes.DIV_ASSIGN,        // "/="
@@ -144,8 +140,7 @@ public class InnerAssignmentCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (isInContext(ast, ALLOWED_ASSIGMENT_CONTEXT)) {
             return;
         }
@@ -190,8 +185,7 @@ public class InnerAssignmentCheck
      * @param ast an assignment operator AST
      * @return whether ast is in the body of a flow control statement
      */
-    private static boolean isInNoBraceControlStatement(DetailAST ast)
-    {
+    private static boolean isInNoBraceControlStatement(DetailAST ast) {
         if (!isInContext(ast, CONTROL_CONTEXT)) {
             return false;
         }
@@ -214,8 +208,7 @@ public class InnerAssignmentCheck
      * @param ast assignment AST
      * @return whether the context of the assignemt AST indicates the idiom
      */
-    private boolean isInWhileIdiom(DetailAST ast)
-    {
+    private boolean isInWhileIdiom(DetailAST ast) {
         if (!isComparison(ast.getParent())) {
             return false;
         }
@@ -228,8 +221,7 @@ public class InnerAssignmentCheck
      * @param ast the AST to check
      * @return true iff ast is a comparison operator.
      */
-    private static boolean isComparison(DetailAST ast)
-    {
+    private static boolean isComparison(DetailAST ast) {
         final int astType = ast.getType();
         return Arrays.binarySearch(COMPARISON_TYPES, astType) >= 0;
     }
@@ -244,8 +236,7 @@ public class InnerAssignmentCheck
      * @return whether the parents nodes of ast match
      * one of the allowed type paths
      */
-    private static boolean isInContext(DetailAST ast, int[]... contextSet)
-    {
+    private static boolean isInContext(DetailAST ast, int[]... contextSet) {
         for (int[] element : contextSet) {
             DetailAST current = ast;
             final int len = element.length;

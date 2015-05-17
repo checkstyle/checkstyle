@@ -33,21 +33,18 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MS
 import static com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck.DEFAULT_PATTERN;
 
 public class TypeNameCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
 
     private final String inputFilename;
 
-    public TypeNameCheckTest() throws IOException
-    {
+    public TypeNameCheckTest() throws IOException {
         inputFilename = getPath("naming" + File.separator
                 + "InputTypeName.java");
     }
 
     @Test
     public void testSpecified()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(TypeNameCheck.class);
         checkConfig.addAttribute("format", "^inputHe");
@@ -58,8 +55,7 @@ public class TypeNameCheckTest
 
     @Test
     public void testDefault()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(TypeNameCheck.class);
         final String[] expected = {
@@ -77,8 +73,7 @@ public class TypeNameCheckTest
 
     @Test
     public void testClassSpecific()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypeNameCheck.class);
         checkConfig.addAttribute("tokens", Utils.getTokenName(TokenTypes.CLASS_DEF));
@@ -91,8 +86,7 @@ public class TypeNameCheckTest
 
     @Test
     public void testInterfaceSpecific()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypeNameCheck.class);
         checkConfig.addAttribute("tokens", Utils.getTokenName(TokenTypes.INTERFACE_DEF));
@@ -105,8 +99,7 @@ public class TypeNameCheckTest
 
     @Test
     public void testEnumSpecific()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypeNameCheck.class);
         checkConfig.addAttribute("tokens", Utils.getTokenName(TokenTypes.ENUM_DEF));
@@ -119,8 +112,7 @@ public class TypeNameCheckTest
 
     @Test
     public void testAnnotationSpecific()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypeNameCheck.class);
         checkConfig.addAttribute("tokens", Utils.getTokenName(TokenTypes.ANNOTATION_DEF));

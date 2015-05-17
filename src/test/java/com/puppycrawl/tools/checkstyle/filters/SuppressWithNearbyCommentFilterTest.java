@@ -38,8 +38,7 @@ import java.util.Locale;
 import org.junit.Test;
 
 public class SuppressWithNearbyCommentFilterTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     private static String[] sAllMessages = {
         "14:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "15:17: Name 'A2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -68,8 +67,7 @@ public class SuppressWithNearbyCommentFilterTest
     };
 
     @Test
-    public void testNone() throws Exception
-    {
+    public void testNone() throws Exception {
         final DefaultConfiguration filterConfig = null;
         final String[] suppressed = {
         };
@@ -77,8 +75,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressWithNearbyCommentFilter.class);
         final String[] suppressed = {
@@ -93,8 +90,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testCheckC() throws Exception
-    {
+    public void testCheckC() throws Exception {
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("checkC", "false");
@@ -106,8 +102,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testCheckCPP() throws Exception
-    {
+    public void testCheckCPP() throws Exception {
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("checkCPP", "false");
@@ -121,8 +116,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testUsingAVariableMessage() throws Exception
-    {
+    public void testUsingAVariableMessage() throws Exception {
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("commentFormat", "ALLOW CATCH (\\w+) BECAUSE");
@@ -137,8 +131,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testUsingAVariableCheckOnNextLine() throws Exception
-    {
+    public void testUsingAVariableCheckOnNextLine() throws Exception {
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("commentFormat", "ALLOW (\\w+) ON NEXT LINE");
@@ -151,8 +144,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testUsingAVariableCheckOnPreviousLine() throws Exception
-    {
+    public void testUsingAVariableCheckOnPreviousLine() throws Exception {
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("commentFormat", "ALLOW (\\w+) ON PREVIOUS LINE");
@@ -165,8 +157,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testVariableCheckOnVariableNumberOfLines() throws Exception
-    {
+    public void testVariableCheckOnVariableNumberOfLines() throws Exception {
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("commentFormat", "ALLOW (\\w+) UNTIL THIS LINE([+-]\\d+)");
@@ -182,15 +173,13 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
 
-    public static DefaultConfiguration createFilterConfig(Class<?> classObj)
-    {
+    public static DefaultConfiguration createFilterConfig(Class<?> classObj) {
         return new DefaultConfiguration(classObj.getName());
     }
 
     protected void verifySuppressed(Configuration filterConfig,
                                     String[] suppressed)
-        throws Exception
-    {
+        throws Exception {
         verify(createChecker(filterConfig),
                getPath("filters/InputSuppressWithNearbyCommentFilter.java"),
                removeSuppressed(sAllMessages, suppressed));
@@ -198,8 +187,7 @@ public class SuppressWithNearbyCommentFilterTest
 
     @Override
     protected Checker createChecker(Configuration filterConfig)
-            throws CheckstyleException, UnsupportedEncodingException
-    {
+            throws CheckstyleException, UnsupportedEncodingException {
         final DefaultConfiguration checkerConfig =
             new DefaultConfiguration("configuration");
         final DefaultConfiguration checksConfig = createCheckConfig(TreeWalker.class);
@@ -221,8 +209,7 @@ public class SuppressWithNearbyCommentFilterTest
         return checker;
     }
 
-    private String[] removeSuppressed(String[] from, String[] remove)
-    {
+    private String[] removeSuppressed(String[] from, String[] remove) {
         final Collection<String> coll =
             Lists.newArrayList(Arrays.asList(from));
         coll.removeAll(Arrays.asList(remove));

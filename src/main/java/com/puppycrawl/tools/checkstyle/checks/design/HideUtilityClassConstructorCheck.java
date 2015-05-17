@@ -33,8 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *
  * @author lkuehne
  */
-public class HideUtilityClassConstructorCheck extends Check
-{
+public class HideUtilityClassConstructorCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -43,20 +42,17 @@ public class HideUtilityClassConstructorCheck extends Check
     public static final String MSG_KEY = "hide.utility.class";
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.CLASS_DEF};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.CLASS_DEF};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (isAbstract(ast)) {
             // abstract class could not have private constructor
             return;
@@ -74,8 +70,7 @@ public class HideUtilityClassConstructorCheck extends Check
         while (child != null) {
             final int type = child.getType();
             if (type == TokenTypes.METHOD_DEF
-                    || type == TokenTypes.VARIABLE_DEF)
-            {
+                    || type == TokenTypes.VARIABLE_DEF) {
                 hasMethodOrField = true;
                 final DetailAST modifiers =
                     child.findFirstToken(TokenTypes.MODIFIERS);
@@ -96,8 +91,7 @@ public class HideUtilityClassConstructorCheck extends Check
                 final DetailAST modifiers =
                     child.findFirstToken(TokenTypes.MODIFIERS);
                 if (!modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)
-                    && !modifiers.branchContains(TokenTypes.LITERAL_PROTECTED))
-                {
+                    && !modifiers.branchContains(TokenTypes.LITERAL_PROTECTED)) {
                     // treat package visible as public
                     // for the purpose of this Check
                     hasPublicCtor = true;
@@ -126,8 +120,7 @@ public class HideUtilityClassConstructorCheck extends Check
      * @param ast class definition for check.
      * @return true if a given class declared as abstract.
      */
-    private boolean isAbstract(DetailAST ast)
-    {
+    private boolean isAbstract(DetailAST ast) {
         return ast.findFirstToken(TokenTypes.MODIFIERS)
             .branchContains(TokenTypes.ABSTRACT);
     }
@@ -136,8 +129,7 @@ public class HideUtilityClassConstructorCheck extends Check
      * @param ast class definition for check.
      * @return true if a given class declared as static.
      */
-    private boolean isStatic(DetailAST ast)
-    {
+    private boolean isStatic(DetailAST ast) {
         return ast.findFirstToken(TokenTypes.MODIFIERS)
             .branchContains(TokenTypes.LITERAL_STATIC);
     }

@@ -40,8 +40,7 @@ import org.apache.commons.beanutils.ConversionException;
  * @author Rick Giles
  */
 public class SuppressElement
-    implements Filter
-{
+    implements Filter {
     /** hash function multiplicand */
     private static final int HASH_MULT = 29;
 
@@ -80,8 +79,7 @@ public class SuppressElement
      * @throws ConversionException if unable to create Pattern object.
      */
     public SuppressElement(String files)
-        throws ConversionException
-    {
+        throws ConversionException {
         filePattern = files;
         fileRegexp = Pattern.compile(files);
     }
@@ -92,8 +90,7 @@ public class SuppressElement
      * @throws ConversionException if unable to create Pattern object
      */
     public void setChecks(final String checks)
-        throws ConversionException
-    {
+        throws ConversionException {
         checkPattern = checks;
         checkRegexp = Utils.createPattern(checks);
     }
@@ -102,8 +99,7 @@ public class SuppressElement
      * Set the module id for filtering. Cannot be null.
      * @param moduleId the id
      */
-    public void setModuleId(final String moduleId)
-    {
+    public void setModuleId(final String moduleId) {
         this.moduleId = moduleId;
     }
     /**
@@ -111,8 +107,7 @@ public class SuppressElement
      * E.g. "1,7-15,18".
      * @param lines CSV values and ranges for line number filtering.
      */
-    public void setLines(String lines)
-    {
+    public void setLines(String lines) {
         linesCSV = lines;
         if (lines != null) {
             lineFilter = new CSVFilter(lines);
@@ -127,8 +122,7 @@ public class SuppressElement
      *  E.g. "1,7-15,18".
      * @param columns CSV values and ranges for column number filtering.
      */
-    public void setColumns(String columns)
-    {
+    public void setColumns(String columns) {
         columnsCSV = columns;
         if (columns != null) {
             columnFilter = new CSVFilter(columns);
@@ -140,8 +134,7 @@ public class SuppressElement
 
     /** {@inheritDoc} */
     @Override
-    public boolean accept(AuditEvent event)
-    {
+    public boolean accept(AuditEvent event) {
         // file and check match?
         if (event.getFileName() == null
                 || !fileRegexp.matcher(event.getFileName()).find()
@@ -149,8 +142,7 @@ public class SuppressElement
                 || moduleId != null && !moduleId.equals(event
                         .getModuleId())
                 || checkRegexp != null && !checkRegexp.matcher(
-                        event.getSourceName()).find())
-        {
+                        event.getSourceName()).find()) {
             return true;
         }
 
@@ -170,16 +162,14 @@ public class SuppressElement
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "SuppressElement[files=" + filePattern + ",checks="
             + checkPattern + ",lines=" + linesCSV + ",columns="
             + columnsCSV + "]";
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         int result = HASH_MULT * filePattern.hashCode();
         if (checkPattern != null) {
             result = HASH_MULT * result + checkPattern.hashCode();
@@ -197,8 +187,7 @@ public class SuppressElement
     }
 
     @Override
-    public boolean equals(Object object)
-    {
+    public boolean equals(Object object) {
         if (object instanceof SuppressElement) {
             final SuppressElement other = (SuppressElement) object;
 

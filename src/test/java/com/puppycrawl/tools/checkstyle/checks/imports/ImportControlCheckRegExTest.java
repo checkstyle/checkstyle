@@ -26,11 +26,9 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_DISALLOWED;
 
-public class ImportControlCheckRegExTest extends BaseCheckTestSupport
-{
+public class ImportControlCheckRegExTest extends BaseCheckTestSupport {
     @Test
-    public void testOne() throws Exception
-    {
+    public void testOne() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file",
                 "src/test/resources/com/puppycrawl/tools/checkstyle/import-control_one-re.xml");
@@ -41,8 +39,7 @@ public class ImportControlCheckRegExTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testTwo() throws Exception
-    {
+    public void testTwo() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file",
                 "src/test/resources/com/puppycrawl/tools/checkstyle/import-control_two-re.xml");

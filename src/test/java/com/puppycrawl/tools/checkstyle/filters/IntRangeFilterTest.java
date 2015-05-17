@@ -25,11 +25,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /** Tests IntRangeFilter */
-public class IntRangeFilterTest
-{
+public class IntRangeFilterTest {
     @Test
-    public void testDecide()
-    {
+    public void testDecide() {
         final IntFilter filter = new IntRangeFilter(0, 10);
         assertFalse("less than", filter.accept(Integer.valueOf(-1)));
         assertTrue("in range", filter.accept(Integer.valueOf(0)));
@@ -39,8 +37,7 @@ public class IntRangeFilterTest
     }
 
     @Test
-    public void testDecideSingle()
-    {
+    public void testDecideSingle() {
         final IntFilter filter = new IntRangeFilter(0, 0);
         assertFalse("less than", filter.accept(Integer.valueOf(-1)));
         assertTrue("in range", filter.accept(Integer.valueOf(0)));
@@ -48,8 +45,7 @@ public class IntRangeFilterTest
     }
 
     @Test
-    public void testDecideEmpty()
-    {
+    public void testDecideEmpty() {
         final IntFilter filter = new IntRangeFilter(10, 0);
         assertFalse("out", filter.accept(Integer.valueOf(-1)));
         assertFalse("out", filter.accept(Integer.valueOf(0)));
@@ -59,8 +55,7 @@ public class IntRangeFilterTest
     }
 
     @Test
-    public void testEquals()
-    {
+    public void testEquals() {
         final IntFilter filter = new IntRangeFilter(0, 2);
         final IntFilter filter2 = new IntRangeFilter(0, 2);
         final IntFilter filter3 = new IntRangeFilter(0, 1);

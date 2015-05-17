@@ -114,8 +114,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author maxvetrenko
  */
-public class AnnotationLocationCheck extends Check
-{
+public class AnnotationLocationCheck extends Check {
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -147,8 +146,7 @@ public class AnnotationLocationCheck extends Check
      * Some javadoc.
      * @param allow Some javadoc.
      */
-    public final void setAllowSamelineSingleParameterlessAnnotation(boolean allow)
-    {
+    public final void setAllowSamelineSingleParameterlessAnnotation(boolean allow) {
         allowSamelineSingleParameterlessAnnotation = allow;
     }
 
@@ -156,8 +154,7 @@ public class AnnotationLocationCheck extends Check
      * Some javadoc.
      * @param allow Some javadoc.
      */
-    public final void setAllowSamelineParameterizedAnnotation(boolean allow)
-    {
+    public final void setAllowSamelineParameterizedAnnotation(boolean allow) {
         allowSamelineParameterizedAnnotation = allow;
     }
 
@@ -165,14 +162,12 @@ public class AnnotationLocationCheck extends Check
      * Some javadoc.
      * @param allow Some javadoc.
      */
-    public final void setAllowSamelineMultipleAnnotations(boolean allow)
-    {
+    public final void setAllowSamelineMultipleAnnotations(boolean allow) {
         allowSamelineMultipleAnnotations = allow;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
@@ -184,8 +179,7 @@ public class AnnotationLocationCheck extends Check
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
@@ -206,8 +200,7 @@ public class AnnotationLocationCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final DetailAST modifiersNode = ast.findFirstToken(TokenTypes.MODIFIERS);
 
         if (hasAnnotations(modifiersNode)) {
@@ -220,8 +213,7 @@ public class AnnotationLocationCheck extends Check
      * @param modifierNode Some javadoc.
      * @param correctLevel Some javadoc.
      */
-    private void checkAnnotations(DetailAST modifierNode, int correctLevel)
-    {
+    private void checkAnnotations(DetailAST modifierNode, int correctLevel) {
         DetailAST annotation = modifierNode.getFirstChild();
 
         while (annotation != null && annotation.getType() == TokenTypes.ANNOTATION) {
@@ -245,8 +237,7 @@ public class AnnotationLocationCheck extends Check
      * @param hasParams Some javadoc.
      * @return Some javadoc.
      */
-    private boolean isCorrectLocation(DetailAST annotation, boolean hasParams)
-    {
+    private boolean isCorrectLocation(DetailAST annotation, boolean hasParams) {
         final boolean allowingCondition = hasParams ? allowSamelineParameterizedAnnotation
             : allowSamelineSingleParameterlessAnnotation;
         return allowingCondition && !hasNodeBefore(annotation)
@@ -259,8 +250,7 @@ public class AnnotationLocationCheck extends Check
      * @param annotation Some javadoc.
      * @return Some javadoc.
      */
-    private static String getAnnotationName(DetailAST annotation)
-    {
+    private static String getAnnotationName(DetailAST annotation) {
         DetailAST idenNode = annotation.findFirstToken(TokenTypes.IDENT);
         if (idenNode == null) {
             idenNode = annotation.findFirstToken(TokenTypes.DOT).findFirstToken(TokenTypes.IDENT);
@@ -273,8 +263,7 @@ public class AnnotationLocationCheck extends Check
      * @param annotation Some javadoc.
      * @return Some javadoc.
      */
-    private static boolean hasNodeAfter(DetailAST annotation)
-    {
+    private static boolean hasNodeAfter(DetailAST annotation) {
         final int annotationLineNo = annotation.getLineNo();
         DetailAST nextNode = annotation.getNextSibling();
 
@@ -290,8 +279,7 @@ public class AnnotationLocationCheck extends Check
      * @param annotation Some javadoc.
      * @return Some javadoc.
      */
-    private static boolean hasNodeBefore(DetailAST annotation)
-    {
+    private static boolean hasNodeBefore(DetailAST annotation) {
         final int annotationLineNo = annotation.getLineNo();
         final DetailAST previousNode = annotation.getPreviousSibling();
 
@@ -303,8 +291,7 @@ public class AnnotationLocationCheck extends Check
      * @param annotation Some javadoc.
      * @return Some javadoc.
      */
-    private static boolean hasNodeBeside(DetailAST annotation)
-    {
+    private static boolean hasNodeBeside(DetailAST annotation) {
         return hasNodeBefore(annotation) || hasNodeAfter(annotation);
     }
 
@@ -313,8 +300,7 @@ public class AnnotationLocationCheck extends Check
      * @param modifierNode Some javadoc.
      * @return Some javadoc.
      */
-    private static int getAnnotationLevel(DetailAST modifierNode)
-    {
+    private static int getAnnotationLevel(DetailAST modifierNode) {
         return modifierNode.getParent().getColumnNo();
     }
 
@@ -323,8 +309,7 @@ public class AnnotationLocationCheck extends Check
      * @param annotation Some javadoc.
      * @return Some javadoc.
      */
-    private static boolean isParameterized(DetailAST annotation)
-    {
+    private static boolean isParameterized(DetailAST annotation) {
         return annotation.findFirstToken(TokenTypes.EXPR) != null;
     }
 
@@ -333,8 +318,7 @@ public class AnnotationLocationCheck extends Check
      * @param modifierNode Some javadoc.
      * @return Some javadoc.
      */
-    private static boolean hasAnnotations(DetailAST modifierNode)
-    {
+    private static boolean hasAnnotations(DetailAST modifierNode) {
         return modifierNode.findFirstToken(TokenTypes.ANNOTATION) != null;
     }
 }

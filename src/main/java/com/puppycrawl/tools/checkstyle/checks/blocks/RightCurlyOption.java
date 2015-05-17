@@ -24,8 +24,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
  *
  * @author Oliver Burn
  */
-public enum RightCurlyOption
-{
+public enum RightCurlyOption {
     /**
      * Represents the policy that the brace must be alone on the line. For
      * example:

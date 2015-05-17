@@ -49,12 +49,10 @@ import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser.TrTagClose
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser.TrTagOpenContext;
 
 //@formatter:off
-public class ParseTreeBuilder
-{
+public class ParseTreeBuilder {
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
-    public static ParseTree treeOneSimpleHtmlTag()
-    {
+    public static ParseTree treeOneSimpleHtmlTag() {
         JavadocContext Rohae = new JavadocContext(null, 0);
         HtmlElementContext qazLp = new HtmlElementContext(Rohae, 0);
         HtmlTagContext tShZn = new HtmlTagContext(qazLp, 0);
@@ -96,8 +94,7 @@ public class ParseTreeBuilder
         Rohae.addChild(okEpH);
         return Rohae;
     }
-    public static ParseTree treeTextBeforeJavadocTags()
-    {
+    public static ParseTree treeTextBeforeJavadocTags() {
         JavadocContext gfEDH = new JavadocContext(null, 0);
         CommonToken rpeYD = new CommonToken(JavadocTokenTypes.NEWLINE, LINE_SEPARATOR);
         gfEDH.addChild(rpeYD);
@@ -235,8 +232,7 @@ public class ParseTreeBuilder
         gfEDH.addChild(cnrjp);
         return gfEDH;
     }
-    public static ParseTree treeCustomJavadocTags()
-    {
+    public static ParseTree treeCustomJavadocTags() {
         JavadocContext vqeRv = new JavadocContext(null, 0);
         CommonToken kUYEj = new CommonToken(JavadocTokenTypes.LEADING_ASTERISK, " *");
         vqeRv.addChild(kUYEj);
@@ -308,8 +304,7 @@ public class ParseTreeBuilder
         vqeRv.addChild(QNmAS);
         return vqeRv;
     }
-    public static ParseTree treeJavadocTagDescriptionWithInlineTags()
-    {
+    public static ParseTree treeJavadocTagDescriptionWithInlineTags() {
         JavadocContext ckejg = new JavadocContext(null, 0);
         JavadocTagContext HBaud = new JavadocTagContext(ckejg, 0);
         CommonToken YeyWs = new CommonToken(JavadocTokenTypes.DEPRECATED_LITERAL, "@deprecated");
@@ -421,8 +416,7 @@ public class ParseTreeBuilder
         ckejg.addChild(mDnxb);
         return ckejg;
     }
-    public static ParseTree treeLeadingAsterisks()
-    {
+    public static ParseTree treeLeadingAsterisks() {
         JavadocContext ESHfJ = new JavadocContext(null, 0);
         CommonToken avwXT = new CommonToken(JavadocTokenTypes.NEWLINE, LINE_SEPARATOR);
         ESHfJ.addChild(avwXT);
@@ -498,8 +492,7 @@ public class ParseTreeBuilder
         ESHfJ.addChild(CvXeG);
         return ESHfJ;
     }
-    public static ParseTree treeAuthorWithMailto()
-    {
+    public static ParseTree treeAuthorWithMailto() {
         JavadocContext TGTbm = new JavadocContext(null, 0);
         JavadocTagContext dzPuU = new JavadocTagContext(TGTbm, 0);
         CommonToken KeavR = new CommonToken(JavadocTokenTypes.AUTHOR_LITERAL, "@author");
@@ -581,8 +574,7 @@ public class ParseTreeBuilder
         TGTbm.addChild(OPdHU);
         return TGTbm;
     }
-    public static ParseTree treeHtmlTagsInParagraph()
-    {
+    public static ParseTree treeHtmlTagsInParagraph() {
         JavadocContext GAVYr = new JavadocContext(null, 0);
         CommonToken rEvDw = new CommonToken(JavadocTokenTypes.NEWLINE, LINE_SEPARATOR);
         GAVYr.addChild(rEvDw);
@@ -784,8 +776,7 @@ public class ParseTreeBuilder
         GAVYr.addChild(ZdVEY);
         return GAVYr;
     }
-    public static ParseTree treeLinkInlineTags()
-    {
+    public static ParseTree treeLinkInlineTags() {
         JavadocContext qUDSi = new JavadocContext(null, 0);
         JavadocInlineTagContext qrmKv = new JavadocInlineTagContext(qUDSi, 0);
         CommonToken nyjfF = new CommonToken(JavadocTokenTypes.JAVADOC_INLINE_TAG_START, "{");
@@ -857,8 +848,7 @@ public class ParseTreeBuilder
         qUDSi.addChild(NyyJM);
         return qUDSi;
     }
-    public static ParseTree treeSeeReferenceWithFewNestedClasses()
-    {
+    public static ParseTree treeSeeReferenceWithFewNestedClasses() {
         JavadocContext CzKVl = new JavadocContext(null, 0);
         JavadocTagContext gokiA = new JavadocTagContext(CzKVl, 0);
         CommonToken grzaZ = new CommonToken(JavadocTokenTypes.SEE_LITERAL, "@see");
@@ -956,8 +946,7 @@ public class ParseTreeBuilder
         CzKVl.addChild(gjaAk);
         return CzKVl;
     }
-    public static ParseTree treeParamWithGeneric()
-    {
+    public static ParseTree treeParamWithGeneric() {
         JavadocContext QPFRD = new JavadocContext(null, 0);
         JavadocTagContext aGEJG = new JavadocTagContext(QPFRD, 0);
         CommonToken KeLjt = new CommonToken(JavadocTokenTypes.PARAM_LITERAL, "@param");
@@ -1009,8 +998,7 @@ public class ParseTreeBuilder
         QPFRD.addChild(TBVcX);
         return QPFRD;
     }
-    public static ParseTree treeSerial()
-    {
+    public static ParseTree treeSerial() {
         JavadocContext LvQLs = new JavadocContext(null, 0);
         JavadocTagContext zgAMl = new JavadocTagContext(LvQLs, 0);
         CommonToken dbPvj = new CommonToken(JavadocTokenTypes.SERIAL_LITERAL, "@serial");
@@ -1294,8 +1282,7 @@ public class ParseTreeBuilder
         LvQLs.addChild(lJyJx);
         return LvQLs;
     }
-    public static ParseTree treeSince()
-    {
+    public static ParseTree treeSince() {
         JavadocContext KzwtL = new JavadocContext(null, 0);
         CommonToken KBdjc = new CommonToken(JavadocTokenTypes.LEADING_ASTERISK, "*");
         KzwtL.addChild(KBdjc);
@@ -1363,8 +1350,7 @@ public class ParseTreeBuilder
         KzwtL.addChild(lWOPi);
         return KzwtL;
     }
-    public static ParseTree treeUnclosedAndClosedParagraphs()
-    {
+    public static ParseTree treeUnclosedAndClosedParagraphs() {
         JavadocContext YgctO = new JavadocContext(null, 0);
         HtmlElementContext uErtB = new HtmlElementContext(YgctO, 0);
         PTagOpenContext GFcZu = new PTagOpenContext(uErtB, 0);
@@ -1476,8 +1462,7 @@ public class ParseTreeBuilder
         YgctO.addChild(bSvLk);
         return YgctO;
     }
-    public static ParseTree treeListWithUnclosedItemInUnclosedParagraph()
-    {
+    public static ParseTree treeListWithUnclosedItemInUnclosedParagraph() {
         JavadocContext cQkWm = new JavadocContext(null, 0);
         HtmlElementContext xNsDD = new HtmlElementContext(cQkWm, 0);
         PTagOpenContext BqpVW = new PTagOpenContext(xNsDD, 0);
@@ -1592,8 +1577,7 @@ public class ParseTreeBuilder
         return cQkWm;
     }
 
-    public static ParseTree treeUnclosedParagraphFollowedByJavadocTag()
-    {
+    public static ParseTree treeUnclosedParagraphFollowedByJavadocTag() {
         JavadocContext toAar = new JavadocContext(null, 0);
         HtmlElementContext FmXNr = new HtmlElementContext(toAar, 0);
         PTagOpenContext ryFvE = new PTagOpenContext(FmXNr, 0);
@@ -1672,8 +1656,7 @@ public class ParseTreeBuilder
         return toAar;
     }
 
-    public static ParseTree treeAllJavadocInlineTags()
-    {
+    public static ParseTree treeAllJavadocInlineTags() {
         JavadocContext XCFCp = new JavadocContext(null, 0);
         JavadocInlineTagContext vvMvz = new JavadocInlineTagContext(XCFCp, 0);
         CommonToken tyjLa = new CommonToken(JavadocTokenTypes.JAVADOC_INLINE_TAG_START, "{");
@@ -1873,8 +1856,7 @@ public class ParseTreeBuilder
         XCFCp.addChild(zqHMX);
         return XCFCp;
     }
-    public static ParseTree treeDocRootInheritDoc()
-    {
+    public static ParseTree treeDocRootInheritDoc() {
         JavadocContext CAWJW = new JavadocContext(null, 0);
         CommonToken yedSF = new CommonToken(JavadocTokenTypes.NEWLINE, LINE_SEPARATOR);
         CAWJW.addChild(yedSF);
@@ -1998,8 +1980,7 @@ public class ParseTreeBuilder
         CAWJW.addChild(qNjgf);
         return CAWJW;
     }
-    public static ParseTree treeFewWhiteSpacesAsSeparator()
-    {
+    public static ParseTree treeFewWhiteSpacesAsSeparator() {
         JavadocContext zKyCD = new JavadocContext(null, 0);
         CommonToken WeoVx = new CommonToken(JavadocTokenTypes.LEADING_ASTERISK, "       *");
         zKyCD.addChild(WeoVx);
@@ -2101,8 +2082,7 @@ public class ParseTreeBuilder
         zKyCD.addChild(JrVuu);
         return zKyCD;
     }
-    public static ParseTree treeMixedCaseOfHtmlTags()
-    {
+    public static ParseTree treeMixedCaseOfHtmlTags() {
         JavadocContext iWKZR = new JavadocContext(null, 0);
         HtmlElementContext fcyyo = new HtmlElementContext(iWKZR, 0);
         PTagOpenContext UKnca = new PTagOpenContext(fcyyo, 0);
@@ -2270,8 +2250,7 @@ public class ParseTreeBuilder
         iWKZR.addChild(iclNb);
         return iWKZR;
     }
-    public static ParseTree treeComments()
-    {
+    public static ParseTree treeComments() {
         JavadocContext kbtaA = new JavadocContext(null, 0);
         CommonToken Tiacl = new CommonToken(JavadocTokenTypes.LEADING_ASTERISK, " *");
         kbtaA.addChild(Tiacl);
@@ -2386,8 +2365,7 @@ public class ParseTreeBuilder
         return kbtaA;
     }
 
-    public static ParseTree treeNegativeNumberInAttribute()
-    {
+    public static ParseTree treeNegativeNumberInAttribute() {
         JavadocContext vfDcF = new JavadocContext(null, 0);
         HtmlElementContext wKROF = new HtmlElementContext(vfDcF, 0);
         HtmlTagContext EYqee = new HtmlTagContext(wKROF, 0);
@@ -2432,8 +2410,7 @@ public class ParseTreeBuilder
         return vfDcF;
     }
 
-    public static ParseTree treeDollarInLink()
-    {
+    public static ParseTree treeDollarInLink() {
         JavadocContext yCrNh = new JavadocContext(null, 0);
         JavadocInlineTagContext yZEPk = new JavadocInlineTagContext(yCrNh, 0);
         CommonToken QaRFV = new CommonToken(JavadocTokenTypes.JAVADOC_INLINE_TAG_START, "{");

@@ -30,11 +30,9 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class DeclarationOrderCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(DeclarationOrderCheck.class);
 
@@ -70,8 +68,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testOnlyConstructors() throws Exception
-    {
+    public void testOnlyConstructors() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(DeclarationOrderCheck.class);
         checkConfig.addAttribute("ignoreConstructors", "false");
@@ -91,8 +88,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testOnlyModifiers() throws Exception
-    {
+    public void testOnlyModifiers() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(DeclarationOrderCheck.class);
         checkConfig.addAttribute("ignoreConstructors", "true");

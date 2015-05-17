@@ -8,24 +8,20 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 
-class DebugFilter implements Filter
-{
+class DebugFilter implements Filter {
     private boolean called;
 
     @Override
-    public boolean accept(AuditEvent event)
-    {
+    public boolean accept(AuditEvent event) {
         called = true;
         return true;
     }
 
-    public boolean wasCalled()
-    {
+    public boolean wasCalled() {
         return called;
     }
 
-    public void resetFilter()
-    {
+    public void resetFilter() {
         called = false;
     }
 }

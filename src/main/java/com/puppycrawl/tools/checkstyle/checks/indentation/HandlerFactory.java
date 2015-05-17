@@ -34,8 +34,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author jrichard
  */
-public class HandlerFactory
-{
+public class HandlerFactory {
     /** Logger for indentation check. */
     private static final Log LOG = LogFactory.getLog(HandlerFactory.class);
 
@@ -50,8 +49,7 @@ public class HandlerFactory
         Maps.newHashMap();
 
     /** Creates a HandlerFactory. */
-    public HandlerFactory()
-    {
+    public HandlerFactory() {
         register(TokenTypes.CASE_GROUP, CaseHandler.class);
         register(TokenTypes.LITERAL_SWITCH, SwitchHandler.class);
         register(TokenTypes.SLIST, SlistHandler.class);
@@ -91,8 +89,7 @@ public class HandlerFactory
      * @param handlerClass
      *                the handler to register
      */
-    private void register(int type, Class<?> handlerClass)
-    {
+    private void register(int type, Class<?> handlerClass) {
         try {
             final Constructor<?> ctor = handlerClass
                 .getConstructor(new Class[] {IndentationCheck.class,
@@ -114,8 +111,7 @@ public class HandlerFactory
      * @param type type from TokenTypes
      * @return true if handler is registered, false otherwise
      */
-    public boolean isHandledType(int type)
-    {
+    public boolean isHandledType(int type) {
         final Set<Integer> typeSet = typeHandlers.keySet();
         return typeSet.contains(type);
     }
@@ -125,8 +121,7 @@ public class HandlerFactory
      *
      * @return int[] of TokenType types
      */
-    public int[] getHandledTypes()
-    {
+    public int[] getHandledTypes() {
         final Set<Integer> typeSet = typeHandlers.keySet();
         final int[] types = new int[typeSet.size()];
         int index = 0;
@@ -147,8 +142,7 @@ public class HandlerFactory
      * @return the ExpressionHandler for ast
      */
     public ExpressionHandler getHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent)
-    {
+        DetailAST ast, ExpressionHandler parent) {
         final ExpressionHandler handler =
             createdHandlers.get(ast);
         if (handler != null) {
@@ -194,8 +188,7 @@ public class HandlerFactory
      * @return new instance.
      */
     ExpressionHandler createMethodCallHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent)
-    {
+        DetailAST ast, ExpressionHandler parent) {
         ExpressionHandler theParent = parent;
         DetailAST astNode = ast.getFirstChild();
         while (astNode != null && astNode.getType() == TokenTypes.DOT) {
@@ -209,8 +202,7 @@ public class HandlerFactory
     }
 
     /** Clears cache of created handlers. */
-    void clearCreatedHandlers()
-    {
+    void clearCreatedHandlers() {
         createdHandlers.clear();
     }
 }

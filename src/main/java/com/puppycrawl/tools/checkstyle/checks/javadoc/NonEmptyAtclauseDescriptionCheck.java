@@ -43,8 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * @author maxvetrenko
  *
  */
-public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck
-{
+public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -53,8 +52,7 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck
     public static final String MSG_KEY = "non.empty.atclause";
 
     @Override
-    public int[] getDefaultJavadocTokens()
-    {
+    public int[] getDefaultJavadocTokens() {
         return new int[] {
             JavadocTokenTypes.PARAM_LITERAL,
             JavadocTokenTypes.RETURN_LITERAL,
@@ -64,8 +62,7 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck
     }
 
     @Override
-    public void visitJavadocToken(DetailNode ast)
-    {
+    public void visitJavadocToken(DetailNode ast) {
         if (isEmptyTag(ast.getParent())) {
             log(ast.getLineNumber(), MSG_KEY, ast.getText());
         }
@@ -76,8 +73,7 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck
      * @param tagNode at-clause tag.
      * @return true, if at-clause tag is empty.
      */
-    private boolean isEmptyTag(DetailNode tagNode)
-    {
+    private boolean isEmptyTag(DetailNode tagNode) {
         final DetailNode tagDescription =
                 JavadocUtils.findFirstToken(tagNode, JavadocTokenTypes.DESCRIPTION);
         return tagDescription == null;

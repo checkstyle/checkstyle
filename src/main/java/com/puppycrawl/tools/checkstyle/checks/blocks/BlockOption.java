@@ -24,8 +24,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
  * @author Rick Giles
  * @see com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck
  */
-public enum BlockOption
-{
+public enum BlockOption {
     /**
      * Represents the policy that there is some text in the block. For example:
      *

@@ -31,11 +31,9 @@ import java.util.List;
 import java.util.TreeSet;
 import org.junit.Test;
 
-public class CheckerTest
-{
+public class CheckerTest {
     @Test
-    public void testDestroy() throws Exception
-    {
+    public void testDestroy() throws Exception {
         final DebugChecker c = new DebugChecker();
         final DebugAuditAdapter aa = new DebugAuditAdapter();
         c.addListener(aa);
@@ -60,8 +58,7 @@ public class CheckerTest
     }
 
     @Test
-    public void testAddListener() throws Exception
-    {
+    public void testAddListener() throws Exception {
         final DebugChecker c = new DebugChecker();
         final DebugAuditAdapter aa = new DebugAuditAdapter();
         c.addListener(aa);
@@ -91,8 +88,7 @@ public class CheckerTest
     }
 
     @Test
-    public void testRemoveListener() throws Exception
-    {
+    public void testRemoveListener() throws Exception {
         final DebugChecker c = new DebugChecker();
         final DebugAuditAdapter aa = new DebugAuditAdapter();
         final DebugAuditAdapter aa2 = new DebugAuditAdapter();
@@ -131,8 +127,7 @@ public class CheckerTest
     }
 
     @Test
-    public void testAddFilter() throws Exception
-    {
+    public void testAddFilter() throws Exception {
         final DebugChecker c = new DebugChecker();
         final DebugFilter f = new DebugFilter();
 
@@ -167,8 +162,7 @@ public class CheckerTest
     }
 
     @Test
-    public void testRemoveFilter() throws Exception
-    {
+    public void testRemoveFilter() throws Exception {
         final DebugChecker c = new DebugChecker();
         final DebugFilter f = new DebugFilter();
         final DebugFilter f2 = new DebugFilter();
@@ -211,8 +205,7 @@ public class CheckerTest
     }
 
     @Test
-    public void testFileExtensions() throws Exception
-    {
+    public void testFileExtensions() throws Exception {
         final Checker c = new Checker();
         final List<File> files = new ArrayList<>();
         File f = new File("file.pdf");

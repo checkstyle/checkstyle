@@ -23,12 +23,10 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
-public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport
-{
+public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
 
     @Test
-    public void testGood1() throws Exception
-    {
+    public void testGood1() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeFilenameCheck.class);
         final String[] expected = {};
@@ -36,8 +34,7 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testGood2() throws Exception
-    {
+    public void testGood2() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeFilenameCheck.class);
         final String[] expected = {};

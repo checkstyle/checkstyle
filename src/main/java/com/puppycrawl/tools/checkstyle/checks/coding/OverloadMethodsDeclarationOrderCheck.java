@@ -47,8 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * @author maxvetrenko
  */
-public class OverloadMethodsDeclarationOrderCheck extends Check
-{
+public class OverloadMethodsDeclarationOrderCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -58,30 +57,26 @@ public class OverloadMethodsDeclarationOrderCheck extends Check
 
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.OBJBLOCK,
         };
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.OBJBLOCK,
         };
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final int parentType = ast.getParent().getType();
         if (parentType == TokenTypes.CLASS_DEF
                 || parentType == TokenTypes.ENUM_DEF
                 || parentType == TokenTypes.INTERFACE_DEF
-                || parentType == TokenTypes.LITERAL_NEW)
-        {
+                || parentType == TokenTypes.LITERAL_NEW) {
             checkOverloadMethodsGrouping(ast);
         }
     }
@@ -92,8 +87,7 @@ public class OverloadMethodsDeclarationOrderCheck extends Check
      * @param objectBlock
      *        is a class, interface or enum object block.
      */
-    private void checkOverloadMethodsGrouping(DetailAST objectBlock)
-    {
+    private void checkOverloadMethodsGrouping(DetailAST objectBlock) {
         final int allowedDistance = 1;
         DetailAST currentToken = objectBlock.getFirstChild();
         final Map<String, Integer> methodIndexMap = new HashMap<>();

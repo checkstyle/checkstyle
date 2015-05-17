@@ -29,8 +29,7 @@ import java.util.Map;
  * @author lkuehne
  */
 public abstract class AbstractViolationReporter
-    extends AutomaticBean
-{
+    extends AutomaticBean {
     /** the severity level of any violations found */
     private SeverityLevel severityLevel = SeverityLevel.ERROR;
 
@@ -43,8 +42,7 @@ public abstract class AbstractViolationReporter
      * @see SeverityLevel
      * @see LocalizedMessage#getSeverityLevel
      */
-    public final SeverityLevel getSeverityLevel()
-    {
+    public final SeverityLevel getSeverityLevel() {
         return severityLevel;
     }
 
@@ -55,8 +53,7 @@ public abstract class AbstractViolationReporter
      * @param severity  The new severity level
      * @see SeverityLevel
      */
-    public final void setSeverity(String severity)
-    {
+    public final void setSeverity(String severity) {
         severityLevel = SeverityLevel.getInstance(severity);
     }
 
@@ -65,8 +62,7 @@ public abstract class AbstractViolationReporter
      *
      *  @return  the check's severity level name.
      */
-    public final String getSeverity()
-    {
+    public final String getSeverity() {
         return severityLevel.getName();
     }
 
@@ -74,8 +70,7 @@ public abstract class AbstractViolationReporter
      * Returns the identifier of the reporter. Can be null.
      * @return the id
      */
-    public final String getId()
-    {
+    public final String getId() {
         return id;
     }
 
@@ -83,8 +78,7 @@ public abstract class AbstractViolationReporter
      * Sets the identifier of the reporter. Can be null.
      * @param id the id
      */
-    public final void setId(final String id)
-    {
+    public final void setId(final String id) {
         this.id = id;
     }
 
@@ -96,8 +90,7 @@ public abstract class AbstractViolationReporter
      * @param key key to locale message format
      * @param args arguments to format
      */
-    protected final void log(DetailAST ast, String key, Object... args)
-    {
+    protected final void log(DetailAST ast, String key, Object... args) {
         log(ast.getLineNo(), ast.getColumnNo(), key, args);
     }
 
@@ -117,8 +110,7 @@ public abstract class AbstractViolationReporter
      * @return name of a resource bundle that contains the messages
      * used by this module.
      */
-    protected String getMessageBundle()
-    {
+    protected String getMessageBundle() {
         final String className = this.getClass().getName();
         return getMessageBundle(className);
     }
@@ -128,8 +120,7 @@ public abstract class AbstractViolationReporter
      * for this configuration.
      * @return unmodifiable map containing custom messages
      */
-    protected Map<String, String> getCustomMessages()
-    {
+    protected Map<String, String> getCustomMessages() {
         return getConfiguration().getMessages();
     }
 
@@ -139,8 +130,7 @@ public abstract class AbstractViolationReporter
      * @return name of a resource bundle that contains the messages
      * used by the module.
      */
-    String getMessageBundle(final String className)
-    {
+    String getMessageBundle(final String className) {
         final int endIndex = className.lastIndexOf('.');
         final String messages = "messages";
         if (endIndex < 0) {

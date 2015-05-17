@@ -26,12 +26,10 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.ParameterAssignmentCheck.MSG_KEY;
 
-public class ParameterAssignmentCheckTest extends BaseCheckTestSupport
-{
+public class ParameterAssignmentCheckTest extends BaseCheckTestSupport {
     @Test
     public void testDefault()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterAssignmentCheck.class);
         final String[] expected = {

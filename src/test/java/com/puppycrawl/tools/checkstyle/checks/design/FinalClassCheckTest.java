@@ -28,11 +28,9 @@ import static com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck.MSG_
 import static org.junit.Assert.assertArrayEquals;
 
 public class FinalClassCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
-    public void testFianlClass() throws Exception
-    {
+    public void testFianlClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalClassCheck.class);
         final String[] expected = {
@@ -44,8 +42,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens()
-    {
+    public void testGetAcceptableTokens() {
         FinalClassCheck obj = new FinalClassCheck();
         int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF};
         assertArrayEquals(expected, obj.getAcceptableTokens());

@@ -28,8 +28,7 @@ import java.util.Set;
  *
  * @author Oliver Burn
  */
-public class ClassResolver
-{
+public class ClassResolver {
     /** name of the package to check if the class belongs to **/
     private final String pkg;
     /** set of imports to check against **/
@@ -44,8 +43,7 @@ public class ClassResolver
      * @param pkg the name of the package the class may belong to
      * @param imports set of imports to check if the class belongs to
      */
-    public ClassResolver(ClassLoader loader, String pkg, Set<String> imports)
-    {
+    public ClassResolver(ClassLoader loader, String pkg, Set<String> imports) {
         this.loader = loader;
         this.pkg = pkg;
         this.imports = imports;
@@ -65,8 +63,7 @@ public class ClassResolver
      * @throws ClassNotFoundException if unable to resolve the class
      */
     public Class<?> resolve(String name, String currentClass)
-        throws ClassNotFoundException
-    {
+        throws ClassNotFoundException {
         // See if the class is full qualified
         Class<?> clazz = resolveQualifiedName(name);
         if (clazz != null) {
@@ -126,8 +123,7 @@ public class ClassResolver
      * @param name name of the class to check
      * @return whether a specified class is loadable with safeLoad().
      */
-    public boolean isLoadable(String name)
-    {
+    public boolean isLoadable(String name) {
         try {
             safeLoad(name);
             return true;
@@ -145,8 +141,7 @@ public class ClassResolver
      * @throws ClassNotFoundException if an error occurs
      */
     public Class<?> safeLoad(String name)
-        throws ClassNotFoundException
-    {
+        throws ClassNotFoundException {
         // The next line will load the class using the specified class
         // loader. The magic is having the "false" parameter. This means the
         // class will not be initialised. Very, very important.
@@ -158,8 +153,7 @@ public class ClassResolver
      * @param name a given name of class.
      * @return Class object for the given name or null.
      */
-    private Class<?> resolveQualifiedName(final String name)
-    {
+    private Class<?> resolveQualifiedName(final String name) {
         try {
             if (isLoadable(name)) {
                 return safeLoad(name);

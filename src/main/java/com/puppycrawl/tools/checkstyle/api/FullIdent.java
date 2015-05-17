@@ -39,8 +39,7 @@ import java.util.List;
  * @see TokenTypes#DOT
  * @see TokenTypes#IDENT
  **/
-public final class FullIdent
-{
+public final class FullIdent {
     /** the list holding subsequent elements of identifier **/
     private final List<String> elements = new ArrayList<>();
     /** the line number **/
@@ -49,25 +48,21 @@ public final class FullIdent
     private int colNo;
 
     /** hide default constructor */
-    private FullIdent()
-    {
+    private FullIdent() {
     }
 
     /** @return the text **/
-    public String getText()
-    {
+    public String getText() {
         return StringUtils.join(elements, "");
     }
 
     /** @return the line number **/
-    public int getLineNo()
-    {
+    public int getLineNo() {
         return lineNo;
     }
 
     /** @return the column number **/
-    public int getColumnNo()
-    {
+    public int getColumnNo() {
         return colNo;
     }
 
@@ -75,8 +70,7 @@ public final class FullIdent
      * Append the specified text.
      * @param text the text to append
      */
-    private void append(String text)
-    {
+    private void append(String text) {
         elements.add(text);
     }
 
@@ -85,8 +79,7 @@ public final class FullIdent
      * column.
      * @param ast the token to append
      */
-    private void append(DetailAST ast)
-    {
+    private void append(DetailAST ast) {
         elements.add(ast.getText());
         if (lineNo == 0) {
             lineNo = ast.getLineNo();
@@ -107,8 +100,7 @@ public final class FullIdent
      * @param ast the node to start from
      * @return a <code>FullIdent</code> value
      */
-    public static FullIdent createFullIdent(DetailAST ast)
-    {
+    public static FullIdent createFullIdent(DetailAST ast) {
         final FullIdent fi = new FullIdent();
         extractFullIdent(fi, ast);
         return fi;
@@ -119,8 +111,7 @@ public final class FullIdent
      * @param ast the parent node from where to start from
      * @return a <code>FullIdent</code> value
      */
-    public static FullIdent createFullIdentBelow(DetailAST ast)
-    {
+    public static FullIdent createFullIdentBelow(DetailAST ast) {
         return createFullIdent(ast.getFirstChild());
     }
 
@@ -130,8 +121,7 @@ public final class FullIdent
      * @param full the FullIdent to add to
      * @param ast the node to recurse from
      */
-    private static void extractFullIdent(FullIdent full, DetailAST ast)
-    {
+    private static void extractFullIdent(FullIdent full, DetailAST ast) {
         if (ast == null) {
             return;
         }
@@ -148,8 +138,7 @@ public final class FullIdent
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return getText() + "[" + getLineNo() + "x" + getColumnNo() + "]";
     }
 

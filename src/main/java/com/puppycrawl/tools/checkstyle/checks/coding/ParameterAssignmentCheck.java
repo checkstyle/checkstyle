@@ -42,8 +42,7 @@ import java.util.Set;
  * </p>
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
-public final class ParameterAssignmentCheck extends Check
-{
+public final class ParameterAssignmentCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -57,8 +56,7 @@ public final class ParameterAssignmentCheck extends Check
     private Set<String> parameterNames;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
@@ -82,14 +80,12 @@ public final class ParameterAssignmentCheck extends Check
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return getDefaultTokens();
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
@@ -113,16 +109,14 @@ public final class ParameterAssignmentCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         // clear data
         parameterNamesStack.clear();
         parameterNames = Collections.emptySet();
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF:
             case TokenTypes.METHOD_DEF:
@@ -154,8 +148,7 @@ public final class ParameterAssignmentCheck extends Check
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF:
             case TokenTypes.METHOD_DEF:
@@ -188,8 +181,7 @@ public final class ParameterAssignmentCheck extends Check
      * Ckecks if this is assignments of parameter.
      * @param ast assignment to check.
      */
-    private void visitAssign(DetailAST ast)
-    {
+    private void visitAssign(DetailAST ast) {
         checkIdent(ast);
     }
 
@@ -197,8 +189,7 @@ public final class ParameterAssignmentCheck extends Check
      * Checks if this is increment/decrement of parameter.
      * @param ast dec/inc to check.
      */
-    private void visitIncDec(DetailAST ast)
-    {
+    private void visitIncDec(DetailAST ast) {
         checkIdent(ast);
     }
 
@@ -206,15 +197,13 @@ public final class ParameterAssignmentCheck extends Check
      * Check if ident is parameter.
      * @param ast ident to check.
      */
-    private void checkIdent(DetailAST ast)
-    {
+    private void checkIdent(DetailAST ast) {
         if (parameterNames != null && !parameterNames.isEmpty()) {
             final DetailAST identAST = ast.getFirstChild();
 
             if (identAST != null
                 && identAST.getType() == TokenTypes.IDENT
-                && parameterNames.contains(identAST.getText()))
-            {
+                && parameterNames.contains(identAST.getText())) {
                 log(ast.getLineNo(), ast.getColumnNo(),
                     MSG_KEY, identAST.getText());
             }
@@ -225,8 +214,7 @@ public final class ParameterAssignmentCheck extends Check
      * Creates new set of parameters and store old one in stack.
      * @param ast a method to process.
      */
-    private void visitMethodDef(DetailAST ast)
-    {
+    private void visitMethodDef(DetailAST ast) {
         parameterNamesStack.push(parameterNames);
         parameterNames = Sets.newHashSet();
 
@@ -234,8 +222,7 @@ public final class ParameterAssignmentCheck extends Check
     }
 
     /** Restores old set of parameters. */
-    private void leaveMethodDef()
-    {
+    private void leaveMethodDef() {
         parameterNames = parameterNamesStack.pop();
     }
 
@@ -243,14 +230,12 @@ public final class ParameterAssignmentCheck extends Check
      * Creates new parameter set for given method.
      * @param ast a method for process.
      */
-    private void visitMethodParameters(DetailAST ast)
-    {
+    private void visitMethodParameters(DetailAST ast) {
         DetailAST parameterDefAST =
             ast.findFirstToken(TokenTypes.PARAMETER_DEF);
 
         for (; parameterDefAST != null;
-             parameterDefAST = parameterDefAST.getNextSibling())
-        {
+             parameterDefAST = parameterDefAST.getNextSibling()) {
             if (parameterDefAST.getType() == TokenTypes.PARAMETER_DEF) {
                 final DetailAST param =
                     parameterDefAST.findFirstToken(TokenTypes.IDENT);

@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author jrichard
  */
-public class ImportHandler extends ExpressionHandler
-{
+public class ImportHandler extends ExpressionHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -38,14 +37,12 @@ public class ImportHandler extends ExpressionHandler
      * @param parent        the parent handler
      */
     public ImportHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent)
-    {
+        DetailAST ast, ExpressionHandler parent) {
         super(indentCheck, "import", ast, parent);
     }
 
     @Override
-    public void checkIndentation()
-    {
+    public void checkIndentation() {
         final int lineStart = getMainAst().getLineNo();
         final DetailAST semi = getMainAst().findFirstToken(TokenTypes.SEMI);
         final int lineEnd = semi.getLineNo();

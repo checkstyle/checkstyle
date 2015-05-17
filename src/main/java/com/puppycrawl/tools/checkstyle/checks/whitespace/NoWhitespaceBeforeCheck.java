@@ -58,8 +58,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author lkuehne
  */
 public class NoWhitespaceBeforeCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -71,8 +70,7 @@ public class NoWhitespaceBeforeCheck
     private boolean allowLineBreaks;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.SEMI,
             TokenTypes.POST_INC,
@@ -81,8 +79,7 @@ public class NoWhitespaceBeforeCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.SEMI,
             TokenTypes.POST_INC,
@@ -92,8 +89,7 @@ public class NoWhitespaceBeforeCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final String line = getLine(ast.getLineNo() - 1);
         final int before = ast.getColumnNo() - 1;
 
@@ -104,8 +100,7 @@ public class NoWhitespaceBeforeCheck
                 final DetailAST sibling = ast.getPreviousSibling();
                 if (sibling != null
                         && sibling.getType() == TokenTypes.FOR_INIT
-                        && sibling.getChildCount() == 0)
-                {
+                        && sibling.getChildCount() == 0) {
                     return;
                 }
             }
@@ -128,8 +123,7 @@ public class NoWhitespaceBeforeCheck
      * @param allowLineBreaks whether whitespace should be
      * flagged at linebreaks.
      */
-    public void setAllowLineBreaks(boolean allowLineBreaks)
-    {
+    public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;
     }
 }

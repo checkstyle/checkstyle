@@ -56,8 +56,7 @@ import java.util.Deque;
  *
  * @author r_auckenthaler
  */
-public class DeclarationOrderCheck extends Check
-{
+public class DeclarationOrderCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -110,8 +109,7 @@ public class DeclarationOrderCheck extends Check
     /**
      * private class to encapsulate the state
      */
-    private static class ScopeState
-    {
+    private static class ScopeState {
         /** The state the check is in */
         private int currentScopeState = STATE_STATIC_VARIABLE_DEF;
 
@@ -127,8 +125,7 @@ public class DeclarationOrderCheck extends Check
     private boolean ignoreModifiers;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
@@ -138,8 +135,7 @@ public class DeclarationOrderCheck extends Check
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
@@ -149,8 +145,7 @@ public class DeclarationOrderCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final int parentType = ast.getParent().getType();
         ScopeState state;
 
@@ -194,8 +189,7 @@ public class DeclarationOrderCheck extends Check
             case TokenTypes.MODIFIERS:
                 if (parentType != TokenTypes.VARIABLE_DEF
                     || ast.getParent().getParent().getType()
-                        != TokenTypes.OBJBLOCK)
-                {
+                        != TokenTypes.OBJBLOCK) {
                     return;
                 }
 
@@ -203,8 +197,7 @@ public class DeclarationOrderCheck extends Check
                 if (ast.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
                     if (state.currentScopeState > STATE_STATIC_VARIABLE_DEF) {
                         if (!ignoreModifiers
-                            || state.currentScopeState > STATE_INSTANCE_VARIABLE_DEF)
-                        {
+                            || state.currentScopeState > STATE_INSTANCE_VARIABLE_DEF) {
                             log(ast, MSG_STATIC);
                         }
                     }
@@ -238,8 +231,7 @@ public class DeclarationOrderCheck extends Check
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.OBJBLOCK) {
             scopeStates.pop();
         }
@@ -249,8 +241,7 @@ public class DeclarationOrderCheck extends Check
      * Sets whether to ignore constructors.
      * @param ignoreConstructors whether to ignore constructors.
      */
-    public void setIgnoreConstructors(boolean ignoreConstructors)
-    {
+    public void setIgnoreConstructors(boolean ignoreConstructors) {
         this.ignoreConstructors = ignoreConstructors;
     }
 
@@ -258,8 +249,7 @@ public class DeclarationOrderCheck extends Check
      * Sets whether to ignore methods.
      * @param ignoreMethods whether to ignore methods.
      */
-    public void setIgnoreMethods(boolean ignoreMethods)
-    {
+    public void setIgnoreMethods(boolean ignoreMethods) {
         this.ignoreMethods = ignoreMethods;
     }
 
@@ -267,8 +257,7 @@ public class DeclarationOrderCheck extends Check
      * Sets whether to ignore modifiers.
      * @param ignoreModifiers whether to ignore modifiers.
      */
-    public void setIgnoreModifiers(boolean ignoreModifiers)
-    {
+    public void setIgnoreModifiers(boolean ignoreModifiers) {
         this.ignoreModifiers = ignoreModifiers;
     }
 }

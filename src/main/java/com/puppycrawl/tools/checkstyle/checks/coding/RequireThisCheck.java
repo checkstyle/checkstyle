@@ -54,8 +54,7 @@ import com.puppycrawl.tools.checkstyle.checks.DeclarationCollector;
  * @author Stephen Bloch
  * @author o_sukhodolsky
  */
-public class RequireThisCheck extends DeclarationCollector
-{
+public class RequireThisCheck extends DeclarationCollector {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -78,8 +77,7 @@ public class RequireThisCheck extends DeclarationCollector
      * Setter for checkFields property.
      * @param checkFields should we check fields usage or not.
      */
-    public void setCheckFields(boolean checkFields)
-    {
+    public void setCheckFields(boolean checkFields) {
         this.checkFields = checkFields;
     }
 
@@ -87,14 +85,12 @@ public class RequireThisCheck extends DeclarationCollector
      * Setter for checkMethods property.
      * @param checkMethods should we check methods usage or not.
      */
-    public void setCheckMethods(boolean checkMethods)
-    {
+    public void setCheckMethods(boolean checkMethods) {
         this.checkMethods = checkMethods;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.CLASS_DEF,
             TokenTypes.CTOR_DEF,
@@ -109,22 +105,19 @@ public class RequireThisCheck extends DeclarationCollector
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return getDefaultTokens();
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.IDENT,
         };
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         super.visitToken(ast);
         if (ast.getType() == TokenTypes.IDENT) {
             processIDENT(ast);
@@ -137,14 +130,12 @@ public class RequireThisCheck extends DeclarationCollector
      *
      * @param ast IDENT to check.
      */
-    private void processIDENT(DetailAST ast)
-    {
+    private void processIDENT(DetailAST ast) {
         final int parentType = ast.getParent().getType();
 
         if (parentType == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR
             || parentType == TokenTypes.ANNOTATION
-            || parentType == TokenTypes.ANNOTATION_FIELD_DEF)
-        {
+            || parentType == TokenTypes.ANNOTATION_FIELD_DEF) {
             //cannot refer to 'this' from annotations
             return;
         }
@@ -171,14 +162,12 @@ public class RequireThisCheck extends DeclarationCollector
         }
 
         if (parentType == TokenTypes.DOT
-            && ast.getPreviousSibling() != null)
-        {
+            && ast.getPreviousSibling() != null) {
             // it's the method name in a method call; no problem
             return;
         }
         if (parentType == TokenTypes.TYPE
-            || parentType == TokenTypes.LITERAL_NEW)
-        {
+            || parentType == TokenTypes.LITERAL_NEW) {
             // it's a type name; no problem
             return;
         }
@@ -189,8 +178,7 @@ public class RequireThisCheck extends DeclarationCollector
             || parentType == TokenTypes.ENUM_DEF
             || parentType == TokenTypes.INTERFACE_DEF
             || parentType == TokenTypes.PARAMETER_DEF
-            || parentType == TokenTypes.TYPE_ARGUMENT)
-        {
+            || parentType == TokenTypes.TYPE_ARGUMENT) {
             // it's being declared; no problem
             return;
         }

@@ -117,8 +117,7 @@ import java.util.regex.Pattern;
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 public class ImportOrderCheck
-    extends AbstractOptionCheck<ImportOrderOption>
-{
+    extends AbstractOptionCheck<ImportOrderOption> {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -160,8 +159,7 @@ public class ImportOrderCheck
     /**
      * Groups static imports under each group.
      */
-    public ImportOrderCheck()
-    {
+    public ImportOrderCheck() {
         super(ImportOrderOption.UNDER, ImportOrderOption.class);
     }
 
@@ -171,8 +169,7 @@ public class ImportOrderCheck
      *
      * @param packageGroups a comma-separated list of package names/prefixes.
      */
-    public void setGroups(String... packageGroups)
-    {
+    public void setGroups(String... packageGroups) {
         groups = new Pattern[packageGroups.length];
 
         for (int i = 0; i < packageGroups.length; i++) {
@@ -210,8 +207,7 @@ public class ImportOrderCheck
      *            whether lexicographic ordering of imports within a group
      *            required or not.
      */
-    public void setOrdered(boolean ordered)
-    {
+    public void setOrdered(boolean ordered) {
         this.ordered = ordered;
     }
 
@@ -222,8 +218,7 @@ public class ImportOrderCheck
      * @param separated
      *            whether groups should be separated by oen blank line.
      */
-    public void setSeparated(boolean separated)
-    {
+    public void setSeparated(boolean separated) {
         this.separated = separated;
     }
 
@@ -233,8 +228,7 @@ public class ImportOrderCheck
      * @param caseSensitive
      *            whether string comparison should be case sensitive.
      */
-    public void setCaseSensitive(boolean caseSensitive)
-    {
+    public void setCaseSensitive(boolean caseSensitive) {
         this.caseSensitive = caseSensitive;
     }
 
@@ -243,26 +237,22 @@ public class ImportOrderCheck
      * are sorted alphabetically or according to the package groupings.
      * @param sortAlphabetically true or false.
      */
-    public void setSortStaticImportsAlphabetically(boolean sortAlphabetically)
-    {
+    public void setSortStaticImportsAlphabetically(boolean sortAlphabetically) {
         this.sortStaticImportsAlphabetically = sortAlphabetically;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         lastGroup = Integer.MIN_VALUE;
         lastImportLine = Integer.MIN_VALUE;
         lastImport = "";
@@ -271,8 +261,7 @@ public class ImportOrderCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final FullIdent ident;
         final boolean isStatic;
 
@@ -336,8 +325,7 @@ public class ImportOrderCheck
      *                  previous static but current is non-static (under).
      */
     private void doVisitToken(FullIdent ident, boolean isStatic,
-            boolean previous)
-    {
+            boolean previous) {
         if (ident != null) {
             final String name = ident.getText();
             final int groupIdx = getGroupNumber(name);
@@ -351,8 +339,7 @@ public class ImportOrderCheck
                 }
             }
             else if (groupIdx == lastGroup || sortStaticImportsAlphabetically
-                     && isAlphabeticallySortableStaticImport(isStatic))
-            {
+                     && isAlphabeticallySortableStaticImport(isStatic)) {
                 doVisitTokenInSameGroup(isStatic, previous, name, line);
             }
             else {
@@ -370,12 +357,10 @@ public class ImportOrderCheck
      * @param isStatic if current import is static.
      * @return true if static imports should be sorted alphabetically.
      */
-    private boolean isAlphabeticallySortableStaticImport(boolean isStatic)
-    {
+    private boolean isAlphabeticallySortableStaticImport(boolean isStatic) {
         boolean result = false;
         if (isStatic && (getAbstractOption() == ImportOrderOption.TOP
-                || getAbstractOption() == ImportOrderOption.BOTTOM))
-        {
+                || getAbstractOption() == ImportOrderOption.BOTTOM)) {
             result = true;
         }
         return result;
@@ -391,8 +376,7 @@ public class ImportOrderCheck
      * @param line the line of the current import.
      */
     private void doVisitTokenInSameGroup(boolean isStatic,
-            boolean previous, String name, int line)
-    {
+            boolean previous, String name, int line) {
         if (!ordered) {
             return;
         }
@@ -429,8 +413,7 @@ public class ImportOrderCheck
      * @param name the import name to find.
      * @return group number for given import name.
      */
-    private int getGroupNumber(String name)
-    {
+    private int getGroupNumber(String name) {
         int bestIndex = groups.length;
         int bestLength = -1;
         int bestPos = 0;
@@ -442,8 +425,7 @@ public class ImportOrderCheck
             while (matcher.find()) {
                 final int length = matcher.end() - matcher.start();
                 if (length > bestLength
-                    || length == bestLength && matcher.start() < bestPos)
-                {
+                    || length == bestLength && matcher.start() < bestPos) {
                     bestIndex = i;
                     bestLength = length;
                     bestPos = matcher.start();
@@ -469,8 +451,7 @@ public class ImportOrderCheck
      *         string1 is lexicographically greater than string2.
      */
     private static int compare(String string1, String string2,
-            boolean caseSensitive)
-    {
+            boolean caseSensitive) {
         int result;
         if (caseSensitive) {
             result = string1.compareTo(string2);

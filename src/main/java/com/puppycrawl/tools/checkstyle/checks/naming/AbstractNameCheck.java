@@ -29,8 +29,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * @author Rick Giles
  */
 public abstract class AbstractNameCheck
-    extends AbstractFormatCheck
-{
+    extends AbstractFormatCheck {
     /**
      * Message key for invalid pattern error.
      */
@@ -40,8 +39,7 @@ public abstract class AbstractNameCheck
      * Creates a new <code>AbstractNameCheck</code> instance.
      * @param format format to check with
      */
-    public AbstractNameCheck(String format)
-    {
+    public AbstractNameCheck(String format) {
         super(format);
     }
 
@@ -52,14 +50,12 @@ public abstract class AbstractNameCheck
      * @return true if the IDENT subnode of ast should be checked against
      * the format regexp.
      */
-    protected boolean mustCheckName(DetailAST ast)
-    {
+    protected boolean mustCheckName(DetailAST ast) {
         return true;
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (mustCheckName(ast)) {
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             if (!getRegexp().matcher(nameAST.getText()).find()) {

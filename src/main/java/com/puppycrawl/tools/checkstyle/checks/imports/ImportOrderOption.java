@@ -24,8 +24,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
  * @author David DIDIER
  * @see com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck
  */
-public enum ImportOrderOption
-{
+public enum ImportOrderOption {
     /**
      * Represents the policy that static imports are all at the top.
      * For example:

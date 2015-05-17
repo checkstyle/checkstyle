@@ -31,12 +31,10 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPad
 .WS_NOT_PRECEDED;
 
 public class TypecastParenPadCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
     public void testDefault()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypecastParenPadCheck.class);
         final String[] expected = {
@@ -48,8 +46,7 @@ public class TypecastParenPadCheckTest
 
     @Test
     public void testSpace()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypecastParenPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
@@ -67,8 +64,7 @@ public class TypecastParenPadCheckTest
     }
 
     @Test
-    public void test1322879() throws Exception
-    {
+    public void test1322879() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypecastParenPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());

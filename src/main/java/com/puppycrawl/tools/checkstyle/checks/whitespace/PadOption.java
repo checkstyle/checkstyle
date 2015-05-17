@@ -26,8 +26,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
  * @see EmptyForIteratorPadCheck
  * @see ParenPadCheck
  */
-public enum PadOption
-{
+public enum PadOption {
     /**
      * Represents no spacing following a left parenthesis
      * or preceding a right one.

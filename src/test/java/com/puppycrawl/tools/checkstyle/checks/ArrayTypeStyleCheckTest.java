@@ -24,12 +24,10 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
 public class ArrayTypeStyleCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
     public void testJavaStyle()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ArrayTypeStyleCheck.class);
         final String[] expected = {
@@ -41,8 +39,7 @@ public class ArrayTypeStyleCheckTest
 
     @Test
     public void testCStyle()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ArrayTypeStyleCheck.class);
         checkConfig.addAttribute("javaStyle", "false");

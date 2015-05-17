@@ -28,20 +28,17 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapChe
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.LINE_PREVIOUS;
 
 public class SeparatorWrapCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(SeparatorWrapCheck.class);
     }
 
     @Test
     public void testDot()
-        throws Exception
-    {
+        throws Exception {
         checkConfig.addAttribute("option", "NL");
         checkConfig.addAttribute("tokens", "DOT");
         final String[] expected = {
@@ -51,8 +48,7 @@ public class SeparatorWrapCheckTest
     }
 
     @Test
-    public void testComma() throws Exception
-    {
+    public void testComma() throws Exception {
         checkConfig.addAttribute("option", "EOL");
         checkConfig.addAttribute("tokens", "COMMA");
         final String[] expected = {

@@ -37,8 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.TextBlock;
  * Contains utility methods for working with Javadoc.
  * @author Lyle Hanson
  */
-public final class JavadocUtils
-{
+public final class JavadocUtils {
     /** maps from a token name to value */
     private static final ImmutableMap<String, Integer> TOKEN_NAME_TO_VALUE;
     /** maps from a token value to name */
@@ -57,8 +56,7 @@ public final class JavadocUtils
 
             // Only process public int fields.
             if (!Modifier.isPublic(f.getModifiers())
-                    || f.getType() != Integer.TYPE)
-            {
+                    || f.getType() != Integer.TYPE) {
                 continue;
             }
 
@@ -90,8 +88,7 @@ public final class JavadocUtils
     }
 
     /** prevent instantiation */
-    private JavadocUtils()
-    {
+    private JavadocUtils() {
     }
 
 
@@ -104,8 +101,7 @@ public final class JavadocUtils
      * @return all standalone validTags from the given javadoc.
      */
     public static JavadocTags getJavadocTags(TextBlock cmt,
-            JavadocTagType tagType)
-    {
+            JavadocTagType tagType) {
         final String[] text = cmt.getText();
         final List<JavadocTag> tags = Lists.newArrayList();
         final List<InvalidJavadocTag> invalidTags = Lists.newArrayList();
@@ -114,8 +110,7 @@ public final class JavadocUtils
             final String s = text[i];
             final Matcher blockTagMatcher = blockTagPattern.matcher(s);
             if ((tagType == JavadocTagType.ALL || tagType == JavadocTagType.BLOCK)
-                    && blockTagMatcher.find())
-            {
+                    && blockTagMatcher.find()) {
                 final String tagName = blockTagMatcher.group(1);
                 String content = s.substring(blockTagMatcher.end(1));
                 if (content.endsWith("*/")) {
@@ -135,8 +130,7 @@ public final class JavadocUtils
                 }
             }
             // No block tag, so look for inline validTags
-            else if (tagType == JavadocTagType.ALL || tagType == JavadocTagType.INLINE)
-            {
+            else if (tagType == JavadocTagType.ALL || tagType == JavadocTagType.INLINE) {
                 // Match Javadoc text after comment characters
                 final Pattern commentPattern = Pattern.compile("^\\s*(?:/\\*{2,}|\\*+)\\s*(.*)");
                 final Matcher commentMatcher = commentPattern.matcher(s);
@@ -182,8 +176,7 @@ public final class JavadocUtils
     /**
      * The type of Javadoc tag we want returned.
      */
-    public enum JavadocTagType
-    {
+    public enum JavadocTagType {
         /** block type. */
         BLOCK,
         /** inline type. */
@@ -199,8 +192,7 @@ public final class JavadocUtils
      * @return true if commentContent starts with '*' javadoc comment
      *         identifier.
      */
-    public static boolean isJavadocComment(String commentContent)
-    {
+    public static boolean isJavadocComment(String commentContent) {
         boolean result = false;
 
         if (!commentContent.isEmpty()) {
@@ -218,8 +210,7 @@ public final class JavadocUtils
      * @return true if block comment content starts with '*' javadoc comment
      *         identifier.
      */
-    public static boolean isJavadocComment(DetailAST blockCommentBegin)
-    {
+    public static boolean isJavadocComment(DetailAST blockCommentBegin) {
         final String commentContent = getBlockCommentContent(blockCommentBegin);
         return isJavadocComment(commentContent);
     }
@@ -230,8 +221,7 @@ public final class JavadocUtils
      *        block comment AST.
      * @return content of block comment.
      */
-    public static String getBlockCommentContent(DetailAST blockCommentBegin)
-    {
+    public static String getBlockCommentContent(DetailAST blockCommentBegin) {
         final DetailAST commentContent = blockCommentBegin.getFirstChild();
         return commentContent.getText();
     }
@@ -242,8 +232,7 @@ public final class JavadocUtils
      *        Javadoc comment AST
      * @return content of Javadoc comment.
      */
-    public static String getJavadocCommentContent(DetailAST javdocCommentBegin)
-    {
+    public static String getJavadocCommentContent(DetailAST javdocCommentBegin) {
         final DetailAST commentContent = javdocCommentBegin.getFirstChild();
         return commentContent.getText().substring(1);
     }
@@ -256,8 +245,7 @@ public final class JavadocUtils
      *        the token type to match
      * @return the matching token, or null if no match
      */
-    public static DetailNode findFirstToken(DetailNode node, int type)
-    {
+    public static DetailNode findFirstToken(DetailNode node, int type) {
         DetailNode retVal = null;
         for (DetailNode i = getFirstChild(node); i != null; i = getNextSibling(i)) {
             if (i.getType() == type) {
@@ -274,8 +262,7 @@ public final class JavadocUtils
      * @param node DetailNode
      * @return first child
      */
-    public static DetailNode getFirstChild(DetailNode node)
-    {
+    public static DetailNode getFirstChild(DetailNode node) {
         return node.getChildren().length > 0 ? node.getChildren()[0] : null;
     }
 
@@ -286,8 +273,7 @@ public final class JavadocUtils
      * @param type token type
      * @return true if node contains any node of type type among children on any deep level.
      */
-    public static boolean branchContains(DetailNode node, int type)
-    {
+    public static boolean branchContains(DetailNode node, int type) {
         DetailNode curNode = node;
         while (curNode != null) {
 
@@ -319,8 +305,7 @@ public final class JavadocUtils
      * @param node DetailNode
      * @return next sibling.
      */
-    public static DetailNode getNextSibling(DetailNode node)
-    {
+    public static DetailNode getNextSibling(DetailNode node) {
         final DetailNode parent = node.getParent();
         if (parent != null) {
             final int nextSiblingIndex = node.getIndex() + 1;
@@ -337,8 +322,7 @@ public final class JavadocUtils
      * @param node DetailNode
      * @return previous sibling
      */
-    public static DetailNode getPreviousSibling(DetailNode node)
-    {
+    public static DetailNode getPreviousSibling(DetailNode node) {
         final DetailNode parent = node.getParent();
         if (parent != null) {
             final int previousSiblingIndex = node.getIndex() - 1;
@@ -356,8 +340,7 @@ public final class JavadocUtils
      *        the ID of the token name to get
      * @return a token name
      */
-    public static String getTokenName(int iD)
-    {
+    public static String getTokenName(int iD) {
         if (iD == JavadocTokenTypes.EOF) {
             return "EOF";
         }
@@ -377,8 +360,7 @@ public final class JavadocUtils
      *        the name of the token ID to get
      * @return a token ID
      */
-    public static int getTokenId(String name)
-    {
+    public static int getTokenId(String name) {
         final Integer id = TOKEN_NAME_TO_VALUE.get(name);
         if (id == null) {
             throw new IllegalArgumentException("Unknown javdoc token name. Given name " + name);

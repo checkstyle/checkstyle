@@ -28,12 +28,10 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDes
 .MSG_KEY;
 
 public class NonEmptyAtclauseDescriptionCheckTest
-        extends BaseCheckTestSupport
-{
+        extends BaseCheckTestSupport {
     @Test
     public void testCheck()
-            throws Exception
-    {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(NonEmptyAtclauseDescriptionCheck.class);
         final String[] expected = {

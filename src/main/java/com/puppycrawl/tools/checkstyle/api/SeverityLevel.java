@@ -34,8 +34,7 @@ import java.util.Locale;
  * @author Travis Schneeberger
  * @author Mehmet Can Cömert
  */
-public enum SeverityLevel
-{
+public enum SeverityLevel {
     /** security level ignore. */
     IGNORE,
     /** security level info. */
@@ -46,16 +45,14 @@ public enum SeverityLevel
     ERROR;
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return getName();
     }
 
     /**
      * @return the name of this severity level.
      */
-    public String getName()
-    {
+    public String getName() {
         return name().toLowerCase(Locale.ENGLISH);
     }
 
@@ -66,8 +63,7 @@ public enum SeverityLevel
      * @return the <code>SeverityLevel</code>
      * associated with <code>securityLevelName</code>
      */
-    public static SeverityLevel getInstance(String securityLevelName)
-    {
+    public static SeverityLevel getInstance(String securityLevelName) {
         return valueOf(SeverityLevel.class, securityLevelName.trim()
                 .toUpperCase(Locale.ENGLISH));
     }

@@ -26,8 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *
  * @author jrichard
  */
-public class TryHandler extends BlockParentHandler
-{
+public class TryHandler extends BlockParentHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -37,17 +36,14 @@ public class TryHandler extends BlockParentHandler
      * @param parent        the parent handler
      */
     public TryHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent)
-    {
+        DetailAST ast, ExpressionHandler parent) {
         super(indentCheck, "try", ast, parent);
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler child)
-    {
+    public IndentLevel suggestedChildLevel(ExpressionHandler child) {
         if (child instanceof CatchHandler
-            || child instanceof FinallyHandler)
-        {
+            || child instanceof FinallyHandler) {
             return getLevel();
         }
         return super.suggestedChildLevel(child);

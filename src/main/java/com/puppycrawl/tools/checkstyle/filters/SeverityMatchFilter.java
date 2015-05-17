@@ -32,8 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  */
 public class SeverityMatchFilter
     extends AutomaticBean
-    implements Filter
-{
+    implements Filter {
     /** the severity level to accept */
     private SeverityLevel severityLevel = SeverityLevel.ERROR;
 
@@ -47,8 +46,7 @@ public class SeverityMatchFilter
      * @param severity  The new severity level
      * @see SeverityLevel
      */
-    public final void setSeverity(String severity)
-    {
+    public final void setSeverity(String severity) {
         severityLevel = SeverityLevel.getInstance(severity);
     }
 
@@ -57,15 +55,13 @@ public class SeverityMatchFilter
      * @param acceptOnMatch if true, accept on matches; if
      * false, reject on matches.
      */
-    public final void setAcceptOnMatch(boolean acceptOnMatch)
-    {
+    public final void setAcceptOnMatch(boolean acceptOnMatch) {
         this.acceptOnMatch = acceptOnMatch;
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean accept(AuditEvent event)
-    {
+    public boolean accept(AuditEvent event) {
         final boolean result = severityLevel == event.getSeverityLevel();
         if (acceptOnMatch) {
             return result;

@@ -57,8 +57,7 @@ import com.puppycrawl.tools.checkstyle.Utils;
  * @author max
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
-public class SummaryJavadocCheck extends AbstractJavadocCheck
-{
+public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -86,8 +85,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
      * Sets custom value of regular expression for forbidden summary fragments.
      * @param pattern user's value.
      */
-    public void setForbiddenSummaryFragments(String pattern)
-    {
+    public void setForbiddenSummaryFragments(String pattern) {
         forbiddenSummaryFragments = Utils.createPattern(pattern);
     }
 
@@ -95,22 +93,19 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
      * Sets value of period symbol at the end of first javadoc sentence.
      * @param period period's value.
      */
-    public void setPeriod(String period)
-    {
+    public void setPeriod(String period) {
         this.period = period;
     }
 
     @Override
-    public int[] getDefaultJavadocTokens()
-    {
+    public int[] getDefaultJavadocTokens() {
         return new int[] {
             JavadocTokenTypes.JAVADOC,
         };
     }
 
     @Override
-    public void visitJavadocToken(DetailNode ast)
-    {
+    public void visitJavadocToken(DetailNode ast) {
         String firstSentence = getFirstSentence(ast);
         final int endOfSentence = firstSentence.lastIndexOf(period);
         if (endOfSentence == -1) {
@@ -129,13 +124,11 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
      * @param ast Javadoc root node.
      * @return first sentence.
      */
-    private String getFirstSentence(DetailNode ast)
-    {
+    private String getFirstSentence(DetailNode ast) {
         final StringBuilder result = new StringBuilder();
         for (DetailNode child : ast.getChildren()) {
             if (child.getType() != JavadocTokenTypes.JAVADOC_INLINE_TAG
-                && child.getText().contains(". "))
-            {
+                && child.getText().contains(". ")) {
                 result.append(getCharsTillDot(child));
                 break;
             }
@@ -151,14 +144,12 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
      * @param textNode node with javadoc text.
      * @return String with chars till first dot.
      */
-    private String getCharsTillDot(DetailNode textNode)
-    {
+    private String getCharsTillDot(DetailNode textNode) {
         final StringBuilder result = new StringBuilder();
         for (DetailNode child : textNode.getChildren()) {
             result.append(child.getText());
             if (".".equals(child.getText())
-                && JavadocUtils.getNextSibling(child).getType() == JavadocTokenTypes.WS)
-            {
+                && JavadocUtils.getNextSibling(child).getType() == JavadocTokenTypes.WS) {
                 break;
             }
         }
@@ -170,8 +161,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck
      * @param firstSentence String with first sentence.
      * @return true, if first sentence contains forbidden summary fragment.
      */
-    private boolean containsForbiddenFragment(String firstSentence)
-    {
+    private boolean containsForbiddenFragment(String firstSentence) {
         // This regexp is used to convert multiline javdoc to single line without stars.
         String javadocText = firstSentence.replaceAll("\n[ ]+(\\*)|^[ ]+(\\*)", " ");
         javadocText = CharMatcher.WHITESPACE.trimAndCollapseFrom(javadocText, ' ');

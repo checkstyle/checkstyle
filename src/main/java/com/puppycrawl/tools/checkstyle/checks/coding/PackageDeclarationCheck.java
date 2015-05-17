@@ -31,8 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author Oliver Burn
  */
-public final class PackageDeclarationCheck extends Check
-{
+public final class PackageDeclarationCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -44,40 +43,34 @@ public final class PackageDeclarationCheck extends Check
     private boolean defined;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.PACKAGE_DEF};
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return getDefaultTokens();
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.PACKAGE_DEF};
     }
 
     @Override
-    public void beginTree(DetailAST ast)
-    {
+    public void beginTree(DetailAST ast) {
         defined = false;
     }
 
     @Override
-    public void finishTree(DetailAST ast)
-    {
+    public void finishTree(DetailAST ast) {
         if (!defined) {
             log(ast.getLineNo(), MSG_KEY);
         }
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         defined = true;
     }
 }

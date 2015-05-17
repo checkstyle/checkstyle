@@ -41,8 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author lkuehne
  */
 public class SimplifyBooleanExpressionCheck
-        extends Check
-{
+        extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -51,28 +50,24 @@ public class SimplifyBooleanExpressionCheck
     public static final String MSG_KEY = "simplify.expression";
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         // Return empty list to prevent user changing tokens in the
         // configuration.
         return new int[] {};
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         switch (parent.getType()) {
             case TokenTypes.NOT_EQUAL:

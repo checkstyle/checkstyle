@@ -86,8 +86,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Travis Schneeberger
  * version 1.0
  */
-public class EqualsAvoidNullCheck extends Check
-{
+public class EqualsAvoidNullCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -105,20 +104,17 @@ public class EqualsAvoidNullCheck extends Check
     private boolean ignoreEqualsIgnoreCase;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.METHOD_CALL};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.METHOD_CALL};
     }
 
     @Override
-    public void visitToken(final DetailAST methodCall)
-    {
+    public void visitToken(final DetailAST methodCall) {
         final DetailAST dot = methodCall.getFirstChild();
         if (dot.getType() != TokenTypes.DOT) {
             return;
@@ -133,8 +129,7 @@ public class EqualsAvoidNullCheck extends Check
         //for the dot operator which cannot be improved
         if (objCalledOn.getType() == TokenTypes.STRING_LITERAL
                 || objCalledOn.getType() == TokenTypes.LITERAL_NEW
-                || objCalledOn.getType() == TokenTypes.DOT)
-        {
+                || objCalledOn.getType() == TokenTypes.DOT) {
             return;
         }
 
@@ -142,16 +137,14 @@ public class EqualsAvoidNullCheck extends Check
         final DetailAST expr = dot.getNextSibling().getFirstChild();
 
         if ("equals".equals(method.getText())
-            && containsOneArg(expr) && containsAllSafeTokens(expr))
-        {
+            && containsOneArg(expr) && containsAllSafeTokens(expr)) {
             log(methodCall.getLineNo(), methodCall.getColumnNo(),
                 MSG_EQUALS_AVOID_NULL);
         }
 
         if (!ignoreEqualsIgnoreCase
             && "equalsIgnoreCase".equals(method.getText())
-            && containsOneArg(expr) && containsAllSafeTokens(expr))
-        {
+            && containsOneArg(expr) && containsAllSafeTokens(expr)) {
             log(methodCall.getLineNo(), methodCall.getColumnNo(),
                 MSG_EQUALS_IGNORE_CASE_AVOID_NULL);
         }
@@ -164,8 +157,7 @@ public class EqualsAvoidNullCheck extends Check
      * @param expr the argument expression
      * @return true if the method contains no args, false if not
      */
-    private boolean containsNoArgs(final AST expr)
-    {
+    private boolean containsNoArgs(final AST expr) {
         return expr == null;
     }
 
@@ -176,8 +168,7 @@ public class EqualsAvoidNullCheck extends Check
      * @param expr the argument expression
      * @return true if the method contains multiple args, false if not
      */
-    private boolean containsMultiArgs(final AST expr)
-    {
+    private boolean containsMultiArgs(final AST expr) {
         final AST comma = expr.getNextSibling();
         return comma != null && comma.getType() == TokenTypes.COMMA;
     }
@@ -189,8 +180,7 @@ public class EqualsAvoidNullCheck extends Check
      * @param expr the argument expression
      * @return true if the method contains a single arg, false if not
      */
-    private boolean containsOneArg(final AST expr)
-    {
+    private boolean containsOneArg(final AST expr) {
         return !containsNoArgs(expr) && !containsMultiArgs(expr);
     }
 
@@ -208,8 +198,7 @@ public class EqualsAvoidNullCheck extends Check
      * @param expr the argument expression
      * @return - true if any child matches the set of tokens, false if not
      */
-    private boolean containsAllSafeTokens(final DetailAST expr)
-    {
+    private boolean containsAllSafeTokens(final DetailAST expr) {
         DetailAST arg = expr.getFirstChild();
 
         if (arg.branchContains(TokenTypes.METHOD_CALL)) {
@@ -227,8 +216,7 @@ public class EqualsAvoidNullCheck extends Check
         //arg = skipVariablePlusAssign(arg);
 
         if (arg.branchContains(TokenTypes.PLUS_ASSIGN)
-                || arg.branchContains(TokenTypes.IDENT))
-        {
+                || arg.branchContains(TokenTypes.IDENT)) {
             return false;
         }
 
@@ -241,11 +229,9 @@ public class EqualsAvoidNullCheck extends Check
      * @param currentAST current token in the argument expression
      * @return the next relevant token
      */
-    private DetailAST skipVariableAssign(final DetailAST currentAST)
-    {
+    private DetailAST skipVariableAssign(final DetailAST currentAST) {
         if (currentAST.getType() == TokenTypes.ASSIGN
-                && currentAST.getFirstChild().getType() == TokenTypes.IDENT)
-        {
+                && currentAST.getFirstChild().getType() == TokenTypes.IDENT) {
             return currentAST.getFirstChild().getNextSibling();
         }
         return currentAST;
@@ -256,8 +242,7 @@ public class EqualsAvoidNullCheck extends Check
      * @param newValue whether to ignore checking
      *    {@code String.equalsIgnoreCase(String)}.
      */
-    public void setIgnoreEqualsIgnoreCase(boolean newValue)
-    {
+    public void setIgnoreEqualsIgnoreCase(boolean newValue) {
         ignoreEqualsIgnoreCase = newValue;
     }
 }

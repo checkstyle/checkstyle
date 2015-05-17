@@ -29,11 +29,9 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameChe
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck
 .NO_ABSTRACT_CLASS_MODIFIER;
 
-public class AbstractClassNameCheckTest extends BaseCheckTestSupport
-{
+public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testIllegalAbstractClassName() throws Exception
-    {
+    public void testIllegalAbstractClassName() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AbstractClassNameCheck.class);
         checkConfig.addAttribute("ignoreName", "false");
@@ -52,8 +50,7 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIllegalClassType() throws Exception
-    {
+    public void testIllegalClassType() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(AbstractClassNameCheck.class);
         checkConfig.addAttribute("ignoreName", "true");
         checkConfig.addAttribute("ignoreModifier", "false");
@@ -69,8 +66,7 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testAllVariants() throws Exception
-    {
+    public void testAllVariants() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(AbstractClassNameCheck.class);
         checkConfig.addAttribute("ignoreName", "false");
         checkConfig.addAttribute("ignoreModifier", "false");
@@ -92,8 +88,7 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testFalsePositive() throws Exception
-    {
+    public void testFalsePositive() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(AbstractClassNameCheck.class);
 //        checkConfig.addAttribute("ignoreName", "false");
 //        checkConfig.addAttribute("ignoreModifier", "false");

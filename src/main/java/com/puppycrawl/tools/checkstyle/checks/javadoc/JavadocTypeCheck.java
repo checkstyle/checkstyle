@@ -41,8 +41,7 @@ import org.apache.commons.beanutils.ConversionException;
  * @author Michael Tamm
  */
 public class JavadocTypeCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -104,8 +103,7 @@ public class JavadocTypeCheck
      * Sets the scope to check.
      * @param from string to set scope from
      */
-    public void setScope(String from)
-    {
+    public void setScope(String from) {
         scope = Scope.getInstance(from);
     }
 
@@ -113,8 +111,7 @@ public class JavadocTypeCheck
      * Set the excludeScope.
      * @param scope a <code>String</code> value
      */
-    public void setExcludeScope(String scope)
-    {
+    public void setExcludeScope(String scope) {
         excludeScope = Scope.getInstance(scope);
     }
 
@@ -124,8 +121,7 @@ public class JavadocTypeCheck
      * @throws ConversionException if unable to create Pattern object.
      */
     public void setAuthorFormat(String format)
-        throws ConversionException
-    {
+        throws ConversionException {
         authorFormat = format;
         authorFormatPattern = Utils.createPattern(format);
     }
@@ -136,8 +132,7 @@ public class JavadocTypeCheck
      * @throws ConversionException if unable to create Pattern object.
      */
     public void setVersionFormat(String format)
-        throws ConversionException
-    {
+        throws ConversionException {
         versionFormat = format;
         versionFormatPattern = Utils.createPattern(format);
     }
@@ -148,8 +143,7 @@ public class JavadocTypeCheck
      *
      * @param flag a <code>Boolean</code> value
      */
-    public void setAllowMissingParamTags(boolean flag)
-    {
+    public void setAllowMissingParamTags(boolean flag) {
         allowMissingParamTags = flag;
     }
 
@@ -157,14 +151,12 @@ public class JavadocTypeCheck
      * Controls whether to flag errors for unknown tags. Defaults to false.
      * @param flag a <code>Boolean</code> value
      */
-    public void setAllowUnknownTags(boolean flag)
-    {
+    public void setAllowUnknownTags(boolean flag) {
         allowUnknownTags = flag;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
@@ -174,8 +166,7 @@ public class JavadocTypeCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
@@ -185,8 +176,7 @@ public class JavadocTypeCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (shouldCheck(ast)) {
             final FileContents contents = getFileContents();
             final int lineNo = ast.getLineNo();
@@ -223,8 +213,7 @@ public class JavadocTypeCheck
      * @param ast a given node.
      * @return whether we should check a given node.
      */
-    private boolean shouldCheck(final DetailAST ast)
-    {
+    private boolean shouldCheck(final DetailAST ast) {
         final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
         final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
         final Scope scope =
@@ -245,8 +234,7 @@ public class JavadocTypeCheck
      * @param cmt the Javadoc comment to process.
      * @return all standalone tags from the given javadoc.
      */
-    private List<JavadocTag> getJavadocTags(TextBlock cmt)
-    {
+    private List<JavadocTag> getJavadocTags(TextBlock cmt) {
         final JavadocTags tags = JavadocUtils.getJavadocTags(cmt,
             JavadocUtils.JavadocTagType.BLOCK);
         if (!allowUnknownTags) {
@@ -267,8 +255,7 @@ public class JavadocTypeCheck
      * @param format pattern for the tag value.
      */
     private void checkTag(int lineNo, List<JavadocTag> tags, String tagName,
-                          Pattern formatPattern, String format)
-    {
+                          Pattern formatPattern, String format) {
         if (formatPattern == null) {
             return;
         }
@@ -296,15 +283,13 @@ public class JavadocTypeCheck
      * @param typeParamName the name of the type parameter
      */
     private void checkTypeParamTag(final int lineNo,
-            final List<JavadocTag> tags, final String typeParamName)
-    {
+            final List<JavadocTag> tags, final String typeParamName) {
         boolean found = false;
         for (int i = tags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = tags.get(i);
             if (tag.isParamTag()
                 && tag.getArg1() != null
-                && tag.getArg1().indexOf("<" + typeParamName + ">") == 0)
-            {
+                && tag.getArg1().indexOf("<" + typeParamName + ">") == 0) {
                 found = true;
             }
         }
@@ -321,8 +306,7 @@ public class JavadocTypeCheck
      */
     private void checkUnusedTypeParamTags(
         final List<JavadocTag> tags,
-        final List<String> typeParamNames)
-    {
+        final List<String> typeParamNames) {
         final Pattern pattern = Pattern.compile("\\s*<([^>]+)>.*");
         for (int i = tags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = tags.get(i);

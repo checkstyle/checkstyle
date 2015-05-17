@@ -31,20 +31,17 @@ import org.junit.Test;
  * @author Rick Giles
  * @author lkuehne
  */
-public class PackageNamesLoaderTest
-{
+public class PackageNamesLoaderTest {
     @Test
     public void testDefault()
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         final Set<String> packageNames = PackageNamesLoader
                 .getPackageNames(Thread.currentThread()
                         .getContextClassLoader());
         validatePackageNames(packageNames);
     }
 
-    private void validatePackageNames(Set<String> pkgNames)
-    {
+    private void validatePackageNames(Set<String> pkgNames) {
         final String[] checkstylePackages = {
             "com.puppycrawl.tools.checkstyle.",
             "com.puppycrawl.tools.checkstyle.checks.",

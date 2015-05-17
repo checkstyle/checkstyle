@@ -27,8 +27,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  * @author smckay@google.com (Steve McKay)
  * @author lkuehne
  */
-public class NoFinalizerCheck extends AbstractIllegalMethodCheck
-{
+public class NoFinalizerCheck extends AbstractIllegalMethodCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -39,8 +38,7 @@ public class NoFinalizerCheck extends AbstractIllegalMethodCheck
     /**
      * Creates an instance.
      */
-    public NoFinalizerCheck()
-    {
+    public NoFinalizerCheck() {
         super("finalize", MSG_KEY);
     }
 }

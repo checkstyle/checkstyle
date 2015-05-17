@@ -36,8 +36,7 @@ import java.util.Map;
  * @author Alexander Jesse
  * @author Oliver Burn
  */
-public final class MethodCountCheck extends Check
-{
+public final class MethodCountCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -74,8 +73,7 @@ public final class MethodCountCheck extends Check
      * class. Objects of this class are used on the Stack to count the
      * methods for each class and layer.
      */
-    private static class MethodCounter
-    {
+    private static class MethodCounter {
         /** Maintains the counts. */
         private final Map<Scope, Integer> counts = new EnumMap<>(Scope.class);
         /** indicated is an interface, in which case all methods are public */
@@ -88,8 +86,7 @@ public final class MethodCountCheck extends Check
          * @param inInterface indicated if counter for an interface. In which
          *        case, add all counts as public methods.
          */
-        MethodCounter(boolean inInterface)
-        {
+        MethodCounter(boolean inInterface) {
             this.inInterface = inInterface;
         }
 
@@ -97,8 +94,7 @@ public final class MethodCountCheck extends Check
          * Increments to counter by one for the supplied scope.
          * @param scope the scope counter to increment.
          */
-        void increment(Scope scope)
-        {
+        void increment(Scope scope) {
             total++;
             if (inInterface) {
                 counts.put(Scope.PUBLIC, 1 + value(Scope.PUBLIC));
@@ -112,15 +108,13 @@ public final class MethodCountCheck extends Check
          * @param scope the scope counter to get the value of
          * @return the value of a scope counter
          */
-        int value(Scope scope)
-        {
+        int value(Scope scope) {
             final Integer value = counts.get(scope);
             return null == value ? 0 : value;
         }
 
         /** @return the total number of methods. */
-        int getTotal()
-        {
+        int getTotal() {
             return total;
         }
     }
@@ -141,8 +135,7 @@ public final class MethodCountCheck extends Check
     private final Deque<MethodCounter> counters = new ArrayDeque<>();
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
@@ -153,8 +146,7 @@ public final class MethodCountCheck extends Check
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
@@ -165,13 +157,11 @@ public final class MethodCountCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (TokenTypes.CLASS_DEF == ast.getType()
             || TokenTypes.INTERFACE_DEF == ast.getType()
             || TokenTypes.ENUM_CONSTANT_DEF == ast.getType()
-            || TokenTypes.ENUM_DEF == ast.getType())
-        {
+            || TokenTypes.ENUM_DEF == ast.getType()) {
             counters.push(new MethodCounter(
                 TokenTypes.INTERFACE_DEF == ast.getType()));
         }
@@ -181,13 +171,11 @@ public final class MethodCountCheck extends Check
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         if (TokenTypes.CLASS_DEF == ast.getType()
             || TokenTypes.INTERFACE_DEF == ast.getType()
             || TokenTypes.ENUM_CONSTANT_DEF == ast.getType()
-            || TokenTypes.ENUM_DEF == ast.getType())
-        {
+            || TokenTypes.ENUM_DEF == ast.getType()) {
             final MethodCounter counter = counters.pop();
             checkCounters(counter, ast);
         }
@@ -198,8 +186,7 @@ public final class MethodCountCheck extends Check
      * @param method
      *            The method-subtree from the AbstractSyntaxTree.
      */
-    private void raiseCounter(DetailAST method)
-    {
+    private void raiseCounter(DetailAST method) {
         final MethodCounter actualCounter = counters.peek();
         final DetailAST temp = method.findFirstToken(TokenTypes.MODIFIERS);
         final Scope scope = ScopeUtils.getScopeFromMods(temp);
@@ -211,8 +198,7 @@ public final class MethodCountCheck extends Check
      * @param counter the method counters to check
      * @param ast to report errors against.
      */
-    private void checkCounters(MethodCounter counter, DetailAST ast)
-    {
+    private void checkCounters(MethodCounter counter, DetailAST ast) {
         checkMax(maxPrivate, counter.value(Scope.PRIVATE),
                  MSG_PRIVATE_METHODS, ast);
         checkMax(maxPackage, counter.value(Scope.PACKAGE),
@@ -231,8 +217,7 @@ public final class MethodCountCheck extends Check
      * @param msg the message to log. Takes two arguments of value and maximum.
      * @param ast the AST to associate with the message.
      */
-    private void checkMax(int max, int value, String msg, DetailAST ast)
-    {
+    private void checkMax(int max, int value, String msg, DetailAST ast) {
         if (max < value) {
             log(ast.getLineNo(), msg, value, max);
         }
@@ -242,8 +227,7 @@ public final class MethodCountCheck extends Check
      * Sets the maximum allowed <code>private</code> methods per type.
      * @param value the maximum allowed.
      */
-    public void setMaxPrivate(int value)
-    {
+    public void setMaxPrivate(int value) {
         maxPrivate = value;
     }
 
@@ -251,8 +235,7 @@ public final class MethodCountCheck extends Check
      * Sets the maximum allowed <code>package</code> methods per type.
      * @param value the maximum allowed.
      */
-    public void setMaxPackage(int value)
-    {
+    public void setMaxPackage(int value) {
         maxPackage = value;
     }
 
@@ -260,8 +243,7 @@ public final class MethodCountCheck extends Check
      * Sets the maximum allowed <code>protected</code> methods per type.
      * @param value the maximum allowed.
      */
-    public void setMaxProtected(int value)
-    {
+    public void setMaxProtected(int value) {
         maxProtected = value;
     }
 
@@ -269,8 +251,7 @@ public final class MethodCountCheck extends Check
      * Sets the maximum allowed <code>public</code> methods per type.
      * @param value the maximum allowed.
      */
-    public void setMaxPublic(int value)
-    {
+    public void setMaxPublic(int value) {
         maxPublic = value;
     }
 
@@ -278,8 +259,7 @@ public final class MethodCountCheck extends Check
      * Sets the maximum total methods per type.
      * @param value the maximum allowed.
      */
-    public void setMaxTotal(int value)
-    {
+    public void setMaxTotal(int value) {
         maxTotal = value;
     }
 }

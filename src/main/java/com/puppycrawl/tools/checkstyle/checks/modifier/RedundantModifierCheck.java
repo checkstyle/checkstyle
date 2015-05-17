@@ -33,8 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author lkuehne
  */
 public class RedundantModifierCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -43,8 +42,7 @@ public class RedundantModifierCheck
     public static final String MSG_KEY = "redundantModifier";
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.METHOD_DEF,
             TokenTypes.VARIABLE_DEF,
@@ -54,14 +52,12 @@ public class RedundantModifierCheck
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return new int[] {};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.METHOD_DEF,
             TokenTypes.VARIABLE_DEF,
@@ -71,16 +67,14 @@ public class RedundantModifierCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (TokenTypes.INTERFACE_DEF == ast.getType()) {
             final DetailAST modifiers =
                 ast.findFirstToken(TokenTypes.MODIFIERS);
             if (null != modifiers) {
                 for (final int tokenType : new int[] {
                     TokenTypes.LITERAL_STATIC,
-                    TokenTypes.ABSTRACT, })
-                {
+                    TokenTypes.ABSTRACT, }) {
                     final DetailAST modifier =
                             modifiers.findFirstToken(tokenType);
                     if (null != modifier) {
@@ -104,8 +98,7 @@ public class RedundantModifierCheck
                     || type == TokenTypes.LITERAL_STATIC
                             && ast.getType() != TokenTypes.METHOD_DEF
                     || type == TokenTypes.ABSTRACT
-                    || type == TokenTypes.FINAL)
-                {
+                    || type == TokenTypes.FINAL) {
                     log(modifier.getLineNo(), modifier.getColumnNo(),
                             MSG_KEY, modifier.getText());
                     break;
@@ -152,8 +145,7 @@ public class RedundantModifierCheck
      * @param ast AST node
      * @return true or false
      */
-    private static boolean isInterfaceOrAnnotationMember(DetailAST ast)
-    {
+    private static boolean isInterfaceOrAnnotationMember(DetailAST ast) {
         final DetailAST parentTypeDef = ast.getParent().getParent();
         return parentTypeDef.getType() == TokenTypes.INTERFACE_DEF
                || parentTypeDef.getType() == TokenTypes.ANNOTATION_DEF;
@@ -166,8 +158,7 @@ public class RedundantModifierCheck
      * @param methodDef method definition node
      * @return true or false
      */
-    private static boolean isAnnotatedWithSafeVarargs(DetailAST methodDef)
-    {
+    private static boolean isAnnotatedWithSafeVarargs(DetailAST methodDef) {
         boolean result = false;
         final List<DetailAST> methodAnnotationsList = getMethodAnnotationsList(methodDef);
         for (DetailAST annotationNode : methodAnnotationsList) {
@@ -184,8 +175,7 @@ public class RedundantModifierCheck
      * @param methodDef method definition node
      * @return List of annotations
      */
-    private static List<DetailAST> getMethodAnnotationsList(DetailAST methodDef)
-    {
+    private static List<DetailAST> getMethodAnnotationsList(DetailAST methodDef) {
         final List<DetailAST> annotationsList = new ArrayList<>();
         final DetailAST modifiers = methodDef.findFirstToken(TokenTypes.MODIFIERS);
         DetailAST modifier = modifiers.getFirstChild();

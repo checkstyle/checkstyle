@@ -45,8 +45,7 @@ import com.puppycrawl.tools.checkstyle.Utils;
  *
  * @author  jrichard
  */
-public class IndentationCheckTest extends BaseCheckTestSupport
-{
+public class IndentationCheckTest extends BaseCheckTestSupport {
     private static final Pattern NONEMPTY_LINE_REGEX =
                     Pattern.compile(".*?\\S+.*?");
 
@@ -67,8 +66,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     protected static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
                     final int tabWidth)
-                    throws IOException
-    {
+                    throws IOException {
         int lineNumber = 1;
         List<Integer> result = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(aFileName))) {
@@ -113,20 +111,17 @@ public class IndentationCheckTest extends BaseCheckTestSupport
         return result.toArray(new Integer[result.size()]);
     }
 
-    private static int getIndentFromComment(String comment)
-    {
+    private static int getIndentFromComment(String comment) {
         final Matcher match = GET_INDENT_FROM_COMMENT_REGEX.matcher(comment);
         match.matches();
         return Integer.parseInt(match.group(1));
     }
 
-    private static boolean isWarnComment(String comment)
-    {
+    private static boolean isWarnComment(String comment) {
         return comment.endsWith(" warn");
     }
 
-    private static boolean isCommentConsistent(String comment)
-    {
+    private static boolean isCommentConsistent(String comment) {
         final int indentInComment = getIndentFromComment(comment);
         final boolean isWarnComment = isWarnComment(comment);
 
@@ -162,8 +157,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
         throw new IllegalArgumentException();
     }
 
-    private static int getLineStart(String line, final int tabWidth)
-    {
+    private static int getLineStart(String line, final int tabWidth) {
         for (int index = 0; index < line.length(); ++index) {
             if (!Character.isWhitespace(line.charAt(index))) {
                 return Utils.lengthExpandedTabs(line, index, tabWidth);
@@ -174,8 +168,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     private void verifyWarns(Configuration config, String filePath,
                     String[] expected, int warnCountCorrection)
-                    throws Exception
-    {
+                    throws Exception {
         final int tabWidth = Integer.parseInt(config.getAttribute("tabWidth"));
         Integer[] linesWithWarn =
                         getLinesWithWarnAndCheckComments(filePath, tabWidth);
@@ -188,14 +181,12 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     private void verifyWarns(Configuration config, String filePath,
                     String[] expected)
-                    throws Exception
-    {
+                    throws Exception {
         verifyWarns(config, filePath, expected, 0);
     }
 
     @Test
-    public void forbidCStyle() throws Exception
-    {
+    public void forbidCStyle() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         checkConfig.addAttribute("arrayInitIndent", "4");
         checkConfig.addAttribute("basicOffset", "4");
@@ -213,8 +204,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testZeroCaseLevel() throws Exception
-    {
+    public void testZeroCaseLevel() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         checkConfig.addAttribute("arrayInitIndent", "4");
         checkConfig.addAttribute("basicOffset", "4");
@@ -229,8 +219,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testAndroidStyle() throws Exception
-    {
+    public void testAndroidStyle() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         checkConfig.addAttribute("arrayInitIndent", "4");
         checkConfig.addAttribute("basicOffset", "4");
@@ -255,8 +244,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testMethodCallLineWrap() throws Exception
-    {
+    public void testMethodCallLineWrap() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -275,8 +263,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testDifficultAnnotations() throws Exception
-    {
+    public void testDifficultAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -296,8 +283,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testAnonClassesFromGuava() throws Exception
-    {
+    public void testAnonClassesFromGuava() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -314,8 +300,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testAnnotatins() throws Exception
-    {
+    public void testAnnotatins() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -331,8 +316,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testCorrectIfAndParameters() throws Exception
-    {
+    public void testCorrectIfAndParameters() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -348,8 +332,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testAnonymousClasses() throws Exception
-    {
+    public void testAnonymousClasses() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -365,8 +348,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testArrays() throws Exception
-    {
+    public void testArrays() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "2");
@@ -383,8 +365,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testLables() throws Exception
-    {
+    public void testLables() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -401,8 +382,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testClassesAndMethods() throws Exception
-    {
+    public void testClassesAndMethods() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -419,8 +399,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testMembers() throws Exception
-    {
+    public void testMembers() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -440,8 +419,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testInvalidLabel() throws Exception
-    {
+    public void testInvalidLabel() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -464,8 +442,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testValidLabel() throws Exception
-    {
+    public void testValidLabel() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -482,8 +459,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testValidIfWithChecker() throws Exception
-    {
+    public void testValidIfWithChecker() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -503,8 +479,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testValidDotWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -523,8 +498,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testValidMethodWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -545,8 +519,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testInvalidMethodWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -604,8 +577,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testInvalidSwitchWithChecker()
-        throws Exception
-    {
+        throws Exception {
 
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
@@ -651,8 +623,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testValidSwitchWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -671,8 +642,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testValidArrayInitDefaultIndentWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -691,8 +661,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testValidArrayInitWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "8");
@@ -710,8 +679,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testInvalidArrayInitWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -763,8 +731,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testValidTryWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -783,8 +750,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testInvalidTryWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -829,8 +795,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testInvalidClassDefWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -885,8 +850,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testInvalidBlockWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -961,8 +925,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testInvalidIfWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1065,8 +1028,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testInvalidWhileWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1117,8 +1079,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testInvalidForWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1165,8 +1126,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testValidForWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1185,8 +1145,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testValidDoWhileWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1205,8 +1164,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testValidBlockWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1226,8 +1184,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testValidWhileWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1246,8 +1203,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testValidClassDefWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1268,8 +1224,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testValidInterfaceDefWithChecker()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1288,8 +1243,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testValidCommaWithChecker()
-        throws Exception
-    {
+        throws Exception {
 
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
@@ -1308,8 +1262,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testTabs() throws Exception
-    {
+    public void testTabs() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1327,8 +1280,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIndentationLevel() throws Exception
-    {
+    public void testIndentationLevel() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1346,8 +1298,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testThrowsIndentationLevel() throws Exception
-    {
+    public void testThrowsIndentationLevel() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1364,8 +1315,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testCaseLevel() throws Exception
-    {
+    public void testCaseLevel() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1383,8 +1333,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testBraceAdjustment() throws Exception
-    {
+    public void testBraceAdjustment() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1402,8 +1351,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testInvalidAssignWithChecker() throws Exception
-    {
+    public void testInvalidAssignWithChecker() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1424,8 +1372,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testValidAssignWithChecker() throws Exception
-    {
+    public void testValidAssignWithChecker() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1442,8 +1389,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void test15Extensions() throws Exception
-    {
+    public void test15Extensions() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1459,8 +1405,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testTryResources() throws Exception
-    {
+    public void testTryResources() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1477,8 +1422,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testSwitchCustom() throws Exception
-    {
+    public void testSwitchCustom() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1495,8 +1439,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testSynchronizedStatement() throws Exception
-    {
+    public void testSynchronizedStatement() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         checkConfig.addAttribute("arrayInitIndent", "4");
         checkConfig.addAttribute("basicOffset", "4");
@@ -1512,8 +1455,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testSynchronizedMethod() throws Exception
-    {
+    public void testSynchronizedMethod() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         checkConfig.addAttribute("arrayInitIndent", "4");
         checkConfig.addAttribute("basicOffset", "4");

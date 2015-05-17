@@ -37,11 +37,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  * </pre>
  * @author Rick Giles
  */
-public class SuperCloneCheck extends AbstractSuperCheck
-{
+public class SuperCloneCheck extends AbstractSuperCheck {
     @Override
-    protected String getMethodName()
-    {
+    protected String getMethodName() {
         return "clone";
     }
 }

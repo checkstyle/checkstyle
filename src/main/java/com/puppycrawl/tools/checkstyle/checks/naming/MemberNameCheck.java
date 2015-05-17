@@ -50,29 +50,24 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Rick Giles
  */
 public class MemberNameCheck
-    extends AbstractAccessControlNameCheck
-{
+    extends AbstractAccessControlNameCheck {
     /** Creates a new <code>MemberNameCheck</code> instance. */
-    public MemberNameCheck()
-    {
+    public MemberNameCheck() {
         super("^[a-z][a-zA-Z0-9]*$");
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     @Override
-    protected final boolean mustCheckName(DetailAST ast)
-    {
+    protected final boolean mustCheckName(DetailAST ast) {
         final DetailAST modifiersAST =
             ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isStatic = modifiersAST != null

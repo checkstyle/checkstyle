@@ -24,14 +24,12 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 import org.junit.Test;
 
-public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
-{
+public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport {
 
     private final String MSG = getCheckMessage("forbid.escaped.unicode.char");
 
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         DefaultConfiguration checkConfig =
                 createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
         final String[] expected = {
@@ -66,8 +64,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testAllowEscapesForControlCharacterst() throws Exception
-    {
+    public void testAllowEscapesForControlCharacterst() throws Exception {
         DefaultConfiguration checkConfig =
                 createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowEscapesForControlCharacters", "true");
@@ -100,8 +97,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testAllowByTailComment() throws Exception
-    {
+    public void testAllowByTailComment() throws Exception {
         DefaultConfiguration checkConfig =
                 createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowByTailComment", "true");
@@ -129,8 +125,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testAllowAllCharactersEscaped() throws Exception
-    {
+    public void testAllowAllCharactersEscaped() throws Exception {
         DefaultConfiguration checkConfig =
                 createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowIfAllCharactersEscaped", "true");
@@ -149,8 +144,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void allowNonPrintableEscapes() throws Exception
-    {
+    public void allowNonPrintableEscapes() throws Exception {
         DefaultConfiguration checkConfig =
                 createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowNonPrintableEscapes", "true");

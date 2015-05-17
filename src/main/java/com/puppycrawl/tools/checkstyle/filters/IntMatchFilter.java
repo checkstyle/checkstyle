@@ -23,8 +23,7 @@ package com.puppycrawl.tools.checkstyle.filters;
  * This filter accepts a matching Integer.
  * @author Rick Giles
  */
-class IntMatchFilter implements IntFilter
-{
+class IntMatchFilter implements IntFilter {
     /** the matching Integer */
     private final int matchValue;
 
@@ -32,33 +31,28 @@ class IntMatchFilter implements IntFilter
      * Constructs a MatchFilter for an int.
      * @param matchValue the matching int.
      */
-    public IntMatchFilter(int matchValue)
-    {
+    public IntMatchFilter(int matchValue) {
         this.matchValue = matchValue;
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean accept(int intValue)
-    {
+    public boolean accept(int intValue) {
         return matchValue == intValue;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "IntMatchFilter[" + matchValue + "]";
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return Integer.valueOf(matchValue).hashCode();
     }
 
     @Override
-    public boolean equals(Object object)
-    {
+    public boolean equals(Object object) {
         if (object instanceof IntMatchFilter) {
             final IntMatchFilter other = (IntMatchFilter) object;
             return this.matchValue == other.matchValue;

@@ -47,8 +47,7 @@ import java.util.Set;
  * @author lkuehne
  */
 public class EqualsHashCodeCheck
-        extends Check
-{
+        extends Check {
     // implementation note: we have to use the following members to
     // keep track of definitions in different inner classes
 
@@ -65,27 +64,23 @@ public class EqualsHashCodeCheck
     private final Set<DetailAST> objBlockWithHashCode = Sets.newHashSet();
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.METHOD_DEF};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.METHOD_DEF};
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         objBlockEquals.clear();
         objBlockWithHashCode.clear();
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final DetailAST modifiers = ast.getFirstChild();
         final AST type = ast.findFirstToken(TokenTypes.TYPE);
         final AST methodName = ast.findFirstToken(TokenTypes.IDENT);
@@ -96,15 +91,13 @@ public class EqualsHashCodeCheck
                 && modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
                 && parameters.getChildCount() == 1
                 && isObjectParam(parameters.getFirstChild())
-            )
-        {
+            ) {
             objBlockEquals.put(ast.getParent(), ast);
         }
         else if (type.getFirstChild().getType() == TokenTypes.LITERAL_INT
                 && "hashCode".equals(methodName.getText())
                 && modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
-                && parameters.getFirstChild() == null) // no params
-        {
+                && parameters.getFirstChild() == null) { // no params
             objBlockWithHashCode.add(ast.getParent());
         }
     }
@@ -114,8 +107,7 @@ public class EqualsHashCodeCheck
      * @param firstChild the AST to check
      * @return true iff firstChild is a parameter of an Object type.
      */
-    private boolean isObjectParam(AST firstChild)
-    {
+    private boolean isObjectParam(AST firstChild) {
         final AST modifiers = firstChild.getFirstChild();
         final AST type = modifiers.getNextSibling();
         switch (type.getFirstChild().getType()) {
@@ -134,8 +126,7 @@ public class EqualsHashCodeCheck
     }
 
     @Override
-    public void finishTree(DetailAST rootAST)
-    {
+    public void finishTree(DetailAST rootAST) {
         for (Map.Entry<DetailAST, DetailAST> detailASTDetailASTEntry : objBlockEquals.entrySet()) {
             if (!objBlockWithHashCode.contains(detailASTDetailASTEntry.getKey())) {
                 final DetailAST equalsAST = detailASTDetailASTEntry.getValue();

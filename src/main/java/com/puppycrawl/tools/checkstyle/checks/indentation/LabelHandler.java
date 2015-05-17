@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author jrichard
  */
-public class LabelHandler extends ExpressionHandler
-{
+public class LabelHandler extends ExpressionHandler {
     /**
      * The types of expressions that are children of a label.
      */
@@ -45,14 +44,12 @@ public class LabelHandler extends ExpressionHandler
      * @param parent        the parent handler
      */
     public LabelHandler(IndentationCheck indentCheck,
-        DetailAST expr, ExpressionHandler parent)
-    {
+        DetailAST expr, ExpressionHandler parent) {
         super(indentCheck, "label", expr, parent);
     }
 
     @Override
-    protected IndentLevel getLevelImpl()
-    {
+    protected IndentLevel getLevelImpl() {
         final IndentLevel level = new IndentLevel(super.getLevelImpl(), -getBasicOffset());
         level.addAcceptedIndent(super.getLevelImpl());
         return level;
@@ -61,14 +58,12 @@ public class LabelHandler extends ExpressionHandler
     /**
      * Check the indentation of the label.
      */
-    private void checkLabel()
-    {
+    private void checkLabel() {
         checkChildren(getMainAst(), LABEL_CHILDREN, getLevel(), true, false);
     }
 
     @Override
-    public void checkIndentation()
-    {
+    public void checkIndentation() {
         checkLabel();
         // need to check children (like 'block' parents do)
         final DetailAST parent = getMainAst().getFirstChild().getNextSibling();

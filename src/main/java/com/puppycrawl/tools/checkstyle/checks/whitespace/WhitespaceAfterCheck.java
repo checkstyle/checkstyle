@@ -53,8 +53,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author Rick Giles
  */
 public class WhitespaceAfterCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -63,8 +62,7 @@ public class WhitespaceAfterCheck
     public static final String WS_NOT_FOLLOWED = "ws.notFollowed";
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.COMMA,
             TokenTypes.SEMI,
@@ -73,8 +71,7 @@ public class WhitespaceAfterCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.COMMA,
             TokenTypes.SEMI,
@@ -83,8 +80,7 @@ public class WhitespaceAfterCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final Object[] message;
         final DetailAST targetAST;
         if (ast.getType() == TokenTypes.TYPECAST) {
@@ -103,8 +99,7 @@ public class WhitespaceAfterCheck
 
             final char charAfter = line.charAt(after);
             if (targetAST.getType() == TokenTypes.SEMI
-                && (charAfter == ';' || charAfter == ')'))
-            {
+                && (charAfter == ';' || charAfter == ')')) {
                 return;
             }
             if (!Character.isWhitespace(charAfter)) {
@@ -114,8 +109,7 @@ public class WhitespaceAfterCheck
                         targetAST.getNextSibling();
                     if (sibling != null
                         && sibling.getType() == TokenTypes.FOR_ITERATOR
-                        && sibling.getChildCount() == 0)
-                    {
+                        && sibling.getChildCount() == 0) {
                         return;
                     }
                 }

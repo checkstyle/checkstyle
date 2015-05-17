@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author o_sukhodolsky
  */
-public class MemberDefHandler extends ExpressionHandler
-{
+public class MemberDefHandler extends ExpressionHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -38,14 +37,12 @@ public class MemberDefHandler extends ExpressionHandler
      * @param parent        the parent handler
      */
     public MemberDefHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent)
-    {
+        DetailAST ast, ExpressionHandler parent) {
         super(indentCheck, "member def", ast, parent);
     }
 
     @Override
-    public void checkIndentation()
-    {
+    public void checkIndentation() {
         final DetailAST modifiersNode = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
         if (modifiersNode.getChildCount() != 0) {
             checkModifiers();
@@ -62,18 +59,15 @@ public class MemberDefHandler extends ExpressionHandler
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler child)
-    {
+    public IndentLevel suggestedChildLevel(ExpressionHandler child) {
         return getLevel();
     }
 
     @Override
-    protected void checkModifiers()
-    {
+    protected void checkModifiers() {
         final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
         if (startsLine(modifier)
-            && !getLevel().accept(expandedTabsColumnNo(modifier)))
-        {
+            && !getLevel().accept(expandedTabsColumnNo(modifier))) {
             logError(modifier, "modifier", expandedTabsColumnNo(modifier));
         }
     }
@@ -81,8 +75,7 @@ public class MemberDefHandler extends ExpressionHandler
     /**
      * Check the indentation of the method type.
      */
-    private void checkType()
-    {
+    private void checkType() {
         final DetailAST type = getMainAst().findFirstToken(TokenTypes.TYPE);
         final DetailAST ident = ExpressionHandler.getFirstToken(type);
         final int columnNo = expandedTabsColumnNo(ident);
@@ -96,8 +89,7 @@ public class MemberDefHandler extends ExpressionHandler
      * @param variableDef current variable_def.
      * @return true if variable_def node is array declaration.
      */
-    private boolean isArrayDeclaration(DetailAST variableDef)
-    {
+    private boolean isArrayDeclaration(DetailAST variableDef) {
         return variableDef.findFirstToken(TokenTypes.TYPE)
             .findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null;
     }
@@ -108,8 +100,7 @@ public class MemberDefHandler extends ExpressionHandler
      *          ast node of type TokenTypes.VARIABLE_DEF
      * @return ast node of type TokenTypes.SEMI
      */
-    private static DetailAST getVarDefStatementSemicolon(DetailAST variableDef)
-    {
+    private static DetailAST getVarDefStatementSemicolon(DetailAST variableDef) {
         DetailAST lastNode = variableDef.getLastChild();
         if (lastNode.getType() != TokenTypes.SEMI) {
             lastNode = variableDef.getNextSibling();

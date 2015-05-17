@@ -72,8 +72,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author maxvetrenko
  */
 public class LocalVariableNameCheck
-    extends AbstractNameCheck
-{
+    extends AbstractNameCheck {
     /** Regexp for one-char loop variables. */
     private static Pattern sSingleChar = Pattern.compile("^[a-z]$");
 
@@ -83,19 +82,16 @@ public class LocalVariableNameCheck
     private boolean allowOneCharVarInForLoop;
 
     /** Creates a new <code>LocalVariableNameCheck</code> instance. */
-    public LocalVariableNameCheck()
-    {
+    public LocalVariableNameCheck() {
         super("^[a-z][a-zA-Z0-9]*$");
     }
 
-    public final void setAllowOneCharVarInForLoop(boolean allow)
-    {
+    public final void setAllowOneCharVarInForLoop(boolean allow) {
         allowOneCharVarInForLoop = allow;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
@@ -103,8 +99,7 @@ public class LocalVariableNameCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
@@ -112,8 +107,7 @@ public class LocalVariableNameCheck
     }
 
     @Override
-    protected final boolean mustCheckName(DetailAST ast)
-    {
+    protected final boolean mustCheckName(DetailAST ast) {
         if (allowOneCharVarInForLoop && isForLoopVariable(ast)) {
             final String variableName =
                     ast.findFirstToken(TokenTypes.IDENT).getText();
@@ -131,8 +125,7 @@ public class LocalVariableNameCheck
      * @param variableDef variable definition.
      * @return true if a variable is the loop's one.
      */
-    private boolean isForLoopVariable(DetailAST variableDef)
-    {
+    private boolean isForLoopVariable(DetailAST variableDef) {
         final int parentType = variableDef.getParent().getType();
         return parentType == TokenTypes.FOR_INIT
                 || parentType == TokenTypes.FOR_EACH_CLAUSE;

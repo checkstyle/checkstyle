@@ -27,8 +27,7 @@ import java.util.BitSet;
  *
  * @author o_sukhodolsky
  */
-public class IndentLevel
-{
+public class IndentLevel {
     /** set of acceptable indentation levels. */
     private final BitSet levels = new BitSet();
 
@@ -36,8 +35,7 @@ public class IndentLevel
      * Creates new instance with one accaptable indentation level.
      * @param indent accaptable indentation level.
      */
-    public IndentLevel(int indent)
-    {
+    public IndentLevel(int indent) {
         levels.set(indent);
     }
 
@@ -46,8 +44,7 @@ public class IndentLevel
      * @param base parent's level
      * @param offsets offsets from parent's level.
      */
-    public IndentLevel(IndentLevel base, int... offsets)
-    {
+    public IndentLevel(IndentLevel base, int... offsets) {
         final BitSet src = base.levels;
         for (int i = src.nextSetBit(0); i >= 0; i = src.nextSetBit(i + 1)) {
             for (int offset : offsets) {
@@ -60,8 +57,7 @@ public class IndentLevel
      * Checks wether we have more than one level.
      * @return wether we have more than one level.
      */
-    public final boolean isMultiLevel()
-    {
+    public final boolean isMultiLevel() {
         return levels.cardinality() > 1;
     }
 
@@ -71,8 +67,7 @@ public class IndentLevel
      * @return true if given indentation is acceptable,
      *         false otherwise.
      */
-    public boolean accept(int indent)
-    {
+    public boolean accept(int indent) {
         return levels.get(indent);
     }
 
@@ -81,8 +76,7 @@ public class IndentLevel
      * @return true if <code>indent</code> less then minimal of
      *         acceptable indentation levels, false otherwise.
      */
-    public boolean greaterThan(int indent)
-    {
+    public boolean greaterThan(int indent) {
         return levels.nextSetBit(0) > indent;
     }
 
@@ -90,8 +84,7 @@ public class IndentLevel
      * Adds one more acceptable indentation level.
      * @param indent new acceptable indentation.
      */
-    public void addAcceptedIndent(int indent)
-    {
+    public void addAcceptedIndent(int indent) {
         levels.set(indent);
     }
 
@@ -99,8 +92,7 @@ public class IndentLevel
      * Adds one more acceptable indentation level.
      * @param indent new acceptable indentation.
      */
-    public void addAcceptedIndent(IndentLevel indent)
-    {
+    public void addAcceptedIndent(IndentLevel indent) {
         levels.or(indent.levels);
     }
 
@@ -108,8 +100,7 @@ public class IndentLevel
      * Returns first indentation level.
      * @return indentation level.
      */
-    public int getFirstIndentLevel()
-    {
+    public int getFirstIndentLevel() {
         return levels.nextSetBit(0);
     }
 
@@ -117,21 +108,18 @@ public class IndentLevel
      * Returns last indentation level.
      * @return indentation level.
      */
-    public int getLastIndentLevel()
-    {
+    public int getLastIndentLevel() {
         return levels.length() - 1;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         if (levels.cardinality() == 1) {
             return String.valueOf(levels.nextSetBit(0));
         }
         final StringBuilder sb = new StringBuilder();
         for (int i = levels.nextSetBit(0); i >= 0;
-            i = levels.nextSetBit(i + 1))
-        {
+            i = levels.nextSetBit(i + 1)) {
             if (sb.length() > 0) {
                 sb.append(", ");
             }

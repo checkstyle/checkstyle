@@ -41,8 +41,7 @@ import java.util.Set;
  * </pre>
  * @author Rick Giles
  */
-public class CovariantEqualsCheck extends Check
-{
+public class CovariantEqualsCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -54,26 +53,22 @@ public class CovariantEqualsCheck extends Check
     private final Set<DetailAST> equalsMethods = Sets.newHashSet();
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.CLASS_DEF, TokenTypes.LITERAL_NEW, TokenTypes.ENUM_DEF, };
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return getDefaultTokens();
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.CLASS_DEF, TokenTypes.LITERAL_NEW, TokenTypes.ENUM_DEF, };
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         equalsMethods.clear();
         boolean hasEqualsObject = false;
 
@@ -83,8 +78,7 @@ public class CovariantEqualsCheck extends Check
             DetailAST child = objBlock.getFirstChild();
             while (child != null) {
                 if (child.getType() == TokenTypes.METHOD_DEF
-                        && CheckUtils.isEqualsMethod(child))
-                {
+                        && CheckUtils.isEqualsMethod(child)) {
                     if (hasObjectParameter(child)) {
                         hasEqualsObject = true;
                     }
@@ -114,8 +108,7 @@ public class CovariantEqualsCheck extends Check
      * Precondition: ast is a TokenTypes.METHOD_DEF node.
      * @return true if ast has exactly one parameter of type Object.
      */
-    private boolean hasObjectParameter(DetailAST ast)
-    {
+    private boolean hasObjectParameter(DetailAST ast) {
         // one parameter?
         final DetailAST paramsNode = ast.findFirstToken(TokenTypes.PARAMETERS);
         if (paramsNode.getChildCount() != 1) {

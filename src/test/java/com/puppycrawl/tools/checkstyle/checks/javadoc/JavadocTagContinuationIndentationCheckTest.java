@@ -28,11 +28,9 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuat
 .MSG_KEY;
 
 public class JavadocTagContinuationIndentationCheckTest
-        extends BaseCheckTestSupport
-{
+        extends BaseCheckTestSupport {
     @Test
-    public void testFP() throws Exception
-    {
+    public void testFP() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(JavadocTagContinuationIndentationCheck.class);
         final String[] expected = {
@@ -41,8 +39,7 @@ public class JavadocTagContinuationIndentationCheckTest
     }
 
     @Test
-    public void testCheck() throws Exception
-    {
+    public void testCheck() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(JavadocTagContinuationIndentationCheck.class);
         final String[] expected = {

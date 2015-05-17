@@ -61,11 +61,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * @author Oliver Burn
  */
-public class ParenPadCheck extends AbstractParenPadCheck
-{
+public class ParenPadCheck extends AbstractParenPadCheck {
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.RPAREN,
                           TokenTypes.LPAREN,
                           TokenTypes.CTOR_CALL,
@@ -75,8 +73,7 @@ public class ParenPadCheck extends AbstractParenPadCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.RPAREN,
                           TokenTypes.LPAREN,
                           TokenTypes.CTOR_CALL,
@@ -86,15 +83,13 @@ public class ParenPadCheck extends AbstractParenPadCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         DetailAST theAst = ast;
         // Strange logic in this method to guard against checking RPAREN tokens
         // that are associated with a TYPECAST token.
         if (theAst.getType() != TokenTypes.RPAREN) {
             if (theAst.getType() == TokenTypes.CTOR_CALL
-                || theAst.getType() == TokenTypes.SUPER_CTOR_CALL)
-            {
+                || theAst.getType() == TokenTypes.SUPER_CTOR_CALL) {
                 theAst = theAst.getFirstChild();
             }
             if (!isPreceedsEmptyForInit(theAst)) {
@@ -105,8 +100,7 @@ public class ParenPadCheck extends AbstractParenPadCheck
                  || theAst.getParent().getType() != TokenTypes.TYPECAST
                  || theAst.getParent().findFirstToken(TokenTypes.RPAREN)
                      != theAst)
-                 && !isFollowsEmptyForIterator(theAst))
-        {
+                 && !isFollowsEmptyForIterator(theAst)) {
             processRight(theAst);
         }
     }
@@ -115,15 +109,13 @@ public class ParenPadCheck extends AbstractParenPadCheck
      * @param ast the token to check
      * @return whether a token follows an empty for iterator
      */
-    private boolean isFollowsEmptyForIterator(DetailAST ast)
-    {
+    private boolean isFollowsEmptyForIterator(DetailAST ast) {
         boolean followsEmptyForIterator = false;
         final DetailAST parent = ast.getParent();
         //Only traditional for statements are examined, not for-each statements
         if (parent != null
             && parent.getType() == TokenTypes.LITERAL_FOR
-            && parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null)
-        {
+            && parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null) {
             final DetailAST forIterator =
                 parent.findFirstToken(TokenTypes.FOR_ITERATOR);
             followsEmptyForIterator = forIterator.getChildCount() == 0
@@ -136,15 +128,13 @@ public class ParenPadCheck extends AbstractParenPadCheck
      * @param ast the token to check
      * @return whether a token preceeds an empty for initializer
      */
-    private boolean isPreceedsEmptyForInit(DetailAST ast)
-    {
+    private boolean isPreceedsEmptyForInit(DetailAST ast) {
         boolean preceedsEmptyForInintializer = false;
         final DetailAST parent = ast.getParent();
         //Only traditional for statements are examined, not for-each statements
         if (parent != null
             && parent.getType() == TokenTypes.LITERAL_FOR
-            && parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null)
-        {
+            && parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null) {
             final DetailAST forIterator =
                     parent.findFirstToken(TokenTypes.FOR_INIT);
             preceedsEmptyForInintializer = forIterator.getChildCount() == 0

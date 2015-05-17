@@ -64,8 +64,7 @@ import org.apache.commons.beanutils.ConversionException;
  * @author Daniel Grenner
  */
 public class WriteTagCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -103,8 +102,7 @@ public class WriteTagCheck
      * @throws ConversionException if unable to create Pattern object.
      */
     public void setTag(String tag)
-        throws ConversionException
-    {
+        throws ConversionException {
         this.tag = tag;
         tagRE = Utils.createPattern(tag + "\\s*(.*$)");
     }
@@ -115,8 +113,7 @@ public class WriteTagCheck
      * @throws ConversionException if unable to create Pattern object
      */
     public void setTagFormat(String format)
-        throws ConversionException
-    {
+        throws ConversionException {
         tagFormat = format;
         tagFormatRE = Utils.createPattern(format);
     }
@@ -128,14 +125,12 @@ public class WriteTagCheck
      * @param severity  The new severity level
      * @see SeverityLevel
      */
-    public final void setTagSeverity(String severity)
-    {
+    public final void setTagSeverity(String severity) {
         tagSeverityLevel = SeverityLevel.getInstance(severity);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.INTERFACE_DEF,
                           TokenTypes.CLASS_DEF,
                           TokenTypes.ENUM_DEF,
@@ -144,8 +139,7 @@ public class WriteTagCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.INTERFACE_DEF,
                           TokenTypes.CLASS_DEF,
                           TokenTypes.ENUM_DEF,
@@ -158,8 +152,7 @@ public class WriteTagCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final FileContents contents = getFileContents();
         final int lineNo = ast.getLineNo();
         final TextBlock cmt =
@@ -188,8 +181,7 @@ public class WriteTagCheck
             String tag,
             Pattern tagRE,
             Pattern formatRE,
-            String format)
-    {
+            String format) {
         if (tagRE == null) {
             return;
         }
@@ -228,8 +220,7 @@ public class WriteTagCheck
      *
      * @see java.text.MessageFormat
      */
-    protected final void logTag(int line, String tag, String tagValue)
-    {
+    protected final void logTag(int line, String tag, String tagValue) {
         final String originalSeverity = getSeverity();
         setSeverity(tagSeverityLevel.getName());
 

@@ -24,8 +24,7 @@ package com.puppycrawl.tools.checkstyle.api;
  *
  * @author o_sukhodolsky
  */
-public class Comment implements TextBlock
-{
+public class Comment implements TextBlock {
     /** text of the comment. */
     private final String[] text;
 
@@ -49,8 +48,7 @@ public class Comment implements TextBlock
      * @param lastCol number of the last column of the comment.
      */
     public Comment(final String[] text, final int firstCol,
-            final int lastLine, final int lastCol)
-    {
+            final int lastLine, final int lastCol) {
         this.text = new String[text.length];
         System.arraycopy(text, 0, this.text, 0, this.text.length);
         firstLine = lastLine - this.text.length + 1;
@@ -61,44 +59,38 @@ public class Comment implements TextBlock
 
     /** {@inheritDoc} */
     @Override
-    public final String[] getText()
-    {
+    public final String[] getText() {
         return text.clone();
     }
 
     /** {@inheritDoc} */
     @Override
-    public final int getStartLineNo()
-    {
+    public final int getStartLineNo() {
         return firstLine;
     }
 
     /** {@inheritDoc} */
     @Override
-    public final int getEndLineNo()
-    {
+    public final int getEndLineNo() {
         return lastLine;
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getStartColNo()
-    {
+    public int getStartColNo() {
         return firstCol;
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getEndColNo()
-    {
+    public int getEndColNo() {
         return lastCol;
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean intersects(int startLineNo, int startColNo,
-                              int endLineNo, int endColNo)
-    {
+                              int endLineNo, int endColNo) {
         // compute a single number for start and end
         // to simplify conditional logic
         final long multiplier = Integer.MAX_VALUE;
@@ -111,8 +103,7 @@ public class Comment implements TextBlock
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Comment[" + firstLine + ":" + firstCol + "-"
             + lastLine + ":" + lastCol + "]";
     }

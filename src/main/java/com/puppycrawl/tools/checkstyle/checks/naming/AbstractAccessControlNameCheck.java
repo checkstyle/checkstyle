@@ -46,8 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Rick Giles
  */
 public abstract class AbstractAccessControlNameCheck
-    extends AbstractNameCheck
-{
+    extends AbstractNameCheck {
     /** If true, applies the check be public members. */
     private boolean applyToPublic = true;
 
@@ -66,14 +65,12 @@ public abstract class AbstractAccessControlNameCheck
      * @param format
      *                format to check with
      */
-    public AbstractAccessControlNameCheck(String format)
-    {
+    public AbstractAccessControlNameCheck(String format) {
         super(format);
     }
 
     @Override
-    protected boolean mustCheckName(DetailAST ast)
-    {
+    protected boolean mustCheckName(DetailAST ast) {
         return shouldCheckInScope(ast);
     }
 
@@ -84,8 +81,7 @@ public abstract class AbstractAccessControlNameCheck
      *                modifiers of member to check.
      * @return true if we should check such member.
      */
-    protected boolean shouldCheckInScope(DetailAST modifiers)
-    {
+    protected boolean shouldCheckInScope(DetailAST modifiers) {
         if (modifiers == null) {
             // if there are no modifiers it is a package-private
             return applyToPackage;
@@ -110,8 +106,7 @@ public abstract class AbstractAccessControlNameCheck
      *
      * @param applyTo new value of the property.
      */
-    public void setApplyToPublic(boolean applyTo)
-    {
+    public void setApplyToPublic(boolean applyTo) {
         applyToPublic = applyTo;
     }
 
@@ -120,8 +115,7 @@ public abstract class AbstractAccessControlNameCheck
      *
      * @param applyTo new value of the property.
      */
-    public void setApplyToProtected(boolean applyTo)
-    {
+    public void setApplyToProtected(boolean applyTo) {
         applyToProtected = applyTo;
     }
 
@@ -130,8 +124,7 @@ public abstract class AbstractAccessControlNameCheck
      *
      * @param applyTo new value of the property.
      */
-    public void setApplyToPackage(boolean applyTo)
-    {
+    public void setApplyToPackage(boolean applyTo) {
         applyToPackage = applyTo;
     }
 
@@ -140,8 +133,7 @@ public abstract class AbstractAccessControlNameCheck
      *
      * @param applyTo new value of the property.
      */
-    public void setApplyToPrivate(boolean applyTo)
-    {
+    public void setApplyToPrivate(boolean applyTo) {
         applyToPrivate = applyTo;
     }
 }

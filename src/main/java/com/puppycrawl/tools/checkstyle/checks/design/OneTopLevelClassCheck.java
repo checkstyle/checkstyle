@@ -83,8 +83,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author maxvetrenko
  */
-public class OneTopLevelClassCheck extends Check
-{
+public class OneTopLevelClassCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -102,21 +101,18 @@ public class OneTopLevelClassCheck extends Check
     private SortedMap<Integer, String> lineNumberTypeMap = new TreeMap<>();
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return getAcceptableTokens();
     }
 
     // ZERO tokens as Check do Traverse of Tree himself, he does not need to subscribed to Tokens
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {};
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         publicTypeFound = false;
         lineNumberTypeMap.clear();
 
@@ -124,8 +120,7 @@ public class OneTopLevelClassCheck extends Check
         while (currentNode != null) {
             if (currentNode.getType() == TokenTypes.CLASS_DEF
                     || currentNode.getType() == TokenTypes.ENUM_DEF
-                    || currentNode.getType() == TokenTypes.INTERFACE_DEF)
-            {
+                    || currentNode.getType() == TokenTypes.INTERFACE_DEF) {
                 if (isPublic(currentNode)) {
                     publicTypeFound = true;
                 }
@@ -140,8 +135,7 @@ public class OneTopLevelClassCheck extends Check
     }
 
     @Override
-    public void finishTree(DetailAST rootAST)
-    {
+    public void finishTree(DetailAST rootAST) {
         if (!lineNumberTypeMap.isEmpty()) {
             if (!publicTypeFound) {
                 // skip first top-level type.
@@ -149,8 +143,7 @@ public class OneTopLevelClassCheck extends Check
             }
 
             for (Map.Entry<Integer, String> entry
-                    : lineNumberTypeMap.entrySet())
-            {
+                    : lineNumberTypeMap.entrySet()) {
                 log(entry.getKey(), MSG_KEY, entry.getValue());
             }
         }
@@ -161,8 +154,7 @@ public class OneTopLevelClassCheck extends Check
      * @param typeDef type definition node.
      * @return true if a type has a public access level modifier.
      */
-    private boolean isPublic(DetailAST typeDef)
-    {
+    private boolean isPublic(DetailAST typeDef) {
         final DetailAST modifiers =
                 typeDef.findFirstToken(TokenTypes.MODIFIERS);
         return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null;

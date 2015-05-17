@@ -100,8 +100,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author Scott Violet
  * @author Lars Kühne
  */
-public class JTreeTable extends JTable
-{
+public class JTreeTable extends JTable {
     /** For Serialisation that will never happen. */
     private static final long serialVersionUID = -8493693409423365387L;
     /** A subclass of JTree. */
@@ -109,8 +108,7 @@ public class JTreeTable extends JTable
     private JTextArea editor;
     private List<Integer> lines2position;
 
-    public JTreeTable(TreeTableModel treeTableModel)
-    {
+    public JTreeTable(TreeTableModel treeTableModel) {
         super();
 
         // Create the tree. It will be used as a renderer and editor.
@@ -176,8 +174,7 @@ public class JTreeTable extends JTable
      * never receive this unless we forward it in this manner.
      */
     @Override
-    public void updateUI()
-    {
+    public void updateUI() {
         super.updateUI();
         if (tree != null) {
             tree.updateUI();
@@ -195,8 +192,7 @@ public class JTreeTable extends JTable
      * editing row in this case, ensures the editor is never painted.
      */
     @Override
-    public int getEditingRow()
-    {
+    public int getEditingRow() {
         final Class<?> editingClass = getColumnClass(editingColumn);
         return editingClass == TreeTableModel.class ? -1 : editingRow;
     }
@@ -205,8 +201,7 @@ public class JTreeTable extends JTable
      * Overridden to pass the new rowHeight to the tree.
      */
     @Override
-    public void setRowHeight(int newRowHeight)
-    {
+    public void setRowHeight(int newRowHeight) {
         super.setRowHeight(newRowHeight);
         if (tree != null && tree.getRowHeight() != newRowHeight) {
             tree.setRowHeight(getRowHeight());
@@ -216,8 +211,7 @@ public class JTreeTable extends JTable
     /**
      * @return the tree that is being shared between the model.
      */
-    public JTree getTree()
-    {
+    public JTree getTree() {
         return tree;
     }
 
@@ -225,8 +219,7 @@ public class JTreeTable extends JTable
      * A TreeCellRenderer that displays a JTree.
      */
     class TreeTableCellRenderer extends JTree implements
-            TableCellRenderer
-    {
+            TableCellRenderer {
         /**
          *
          */
@@ -235,8 +228,7 @@ public class JTreeTable extends JTable
         protected int visibleRow;
 
         /** creates a new instance */
-        public TreeTableCellRenderer(TreeModel model)
-        {
+        public TreeTableCellRenderer(TreeModel model) {
             super(model);
         }
 
@@ -245,8 +237,7 @@ public class JTreeTable extends JTable
          * to match that of the table.
          */
         @Override
-        public void updateUI()
-        {
+        public void updateUI() {
             super.updateUI();
             // Make the tree's cell renderer use the table's cell selection
             // colors.
@@ -269,13 +260,11 @@ public class JTreeTable extends JTable
          * the table.
          */
         @Override
-        public void setRowHeight(int newRowHeight)
-        {
+        public void setRowHeight(int newRowHeight) {
             if (newRowHeight > 0) {
                 super.setRowHeight(newRowHeight);
                 if (JTreeTable.this != null &&
-                        JTreeTable.this.getRowHeight() != newRowHeight)
-                {
+                        JTreeTable.this.getRowHeight() != newRowHeight) {
                     JTreeTable.this.setRowHeight(getRowHeight());
                 }
             }
@@ -285,8 +274,7 @@ public class JTreeTable extends JTable
          * This is overridden to set the height to match that of the JTable.
          */
         @Override
-        public void setBounds(int x, int y, int w, int h)
-        {
+        public void setBounds(int x, int y, int w, int h) {
             super.setBounds(x, 0, w, JTreeTable.this.getHeight());
         }
 
@@ -295,8 +283,7 @@ public class JTreeTable extends JTable
          * row will be drawn at 0,0.
          */
         @Override
-        public void paint(Graphics g)
-        {
+        public void paint(Graphics g) {
             g.translate(0, -visibleRow * getRowHeight());
             super.paint(g);
         }
@@ -310,8 +297,7 @@ public class JTreeTable extends JTable
                 Object value,
                 boolean isSelected,
                 boolean hasFocus,
-                int row, int column)
-        {
+                int row, int column) {
             if (isSelected) {
                 setBackground(table.getSelectionBackground());
             } else {
@@ -329,14 +315,12 @@ public class JTreeTable extends JTable
      * JTree.
      */
     public class TreeTableCellEditor extends AbstractCellEditor implements
-            TableCellEditor
-    {
+            TableCellEditor {
         @Override
         public Component getTableCellEditorComponent(JTable table,
                 Object value,
                 boolean isSelected,
-                int r, int c)
-        {
+                int r, int c) {
             return tree;
         }
 
@@ -361,8 +345,7 @@ public class JTreeTable extends JTable
          * @see TableCellEditor
          */
         @Override
-        public boolean isCellEditable(EventObject e)
-        {
+        public boolean isCellEditable(EventObject e) {
             if (e instanceof MouseEvent) {
                 for (int counter = getColumnCount() - 1; counter >= 0;
                      counter--) {
@@ -390,8 +373,7 @@ public class JTreeTable extends JTable
      * a change in the ListSelectionModel happens, the paths are updated
      * in the DefaultTreeSelectionModel.
      */
-    class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel
-    {
+    class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
         /**
          *
          */
@@ -399,8 +381,7 @@ public class JTreeTable extends JTable
         /** Set to true when we are updating the ListSelectionModel. */
         protected boolean updatingListSelectionModel;
 
-        public ListToTreeSelectionModelWrapper()
-        {
+        public ListToTreeSelectionModelWrapper() {
             super();
             getListSelectionModel().addListSelectionListener
                     (createListSelectionListener());
@@ -413,8 +394,7 @@ public class JTreeTable extends JTable
          *
          * @return the list selection model
          */
-        ListSelectionModel getListSelectionModel()
-        {
+        ListSelectionModel getListSelectionModel() {
             return listSelectionModel;
         }
 
@@ -424,8 +404,7 @@ public class JTreeTable extends JTable
          * alters the ListSelectionModel.
          */
         @Override
-        public void resetRowSelection()
-        {
+        public void resetRowSelection() {
             if (!updatingListSelectionModel) {
                 updatingListSelectionModel = true;
                 try {
@@ -444,8 +423,7 @@ public class JTreeTable extends JTable
         /**
          * Creates and returns an instance of ListSelectionHandler.
          */
-        private ListSelectionListener createListSelectionListener()
-        {
+        private ListSelectionListener createListSelectionListener() {
             return new ListSelectionHandler();
         }
 
@@ -454,8 +432,7 @@ public class JTreeTable extends JTable
          * reset the selected paths from the selected rows in the list
          * selection model.
          */
-        protected void updateSelectedPathsFromSelectedRows()
-        {
+        protected void updateSelectedPathsFromSelectedRows() {
             if (!updatingListSelectionModel) {
                 updatingListSelectionModel = true;
                 try {
@@ -487,23 +464,19 @@ public class JTreeTable extends JTable
          * Class responsible for calling updateSelectedPathsFromSelectedRows
          * when the selection of the list changse.
          */
-        class ListSelectionHandler implements ListSelectionListener
-        {
+        class ListSelectionHandler implements ListSelectionListener {
             @Override
-            public void valueChanged(ListSelectionEvent e)
-            {
+            public void valueChanged(ListSelectionEvent e) {
                 updateSelectedPathsFromSelectedRows();
             }
         }
     }
 
-    public void setEditor(JTextArea mJTextArea)
-    {
+    public void setEditor(JTextArea mJTextArea) {
          this.editor = mJTextArea;
     }
 
-    public void setLinePositionMap(List<Integer> lines2position)
-    {
+    public void setLinePositionMap(List<Integer> lines2position) {
         this.lines2position = lines2position;
     }
 }

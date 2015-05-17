@@ -31,12 +31,10 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck.MSG
  * @author smckay@google.com (Steve McKay)
  */
 public class NoFinalizerCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
     public void testHasFinalizer()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NoFinalizerCheck.class);
         final String[] expected = {
@@ -47,8 +45,7 @@ public class NoFinalizerCheckTest
 
     @Test
     public void testHasNoFinalizer()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NoFinalizerCheck.class);
         final String[] expected = {

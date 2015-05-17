@@ -36,8 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
  * @param <T> the type of the option.
  */
 public abstract class AbstractOptionCheck<T extends Enum<T>>
-    extends Check
-{
+    extends Check {
     /** Since I cannot get this by going <tt>T.class</tt>. */
     private final Class<T> optionClass;
     /** the policy to enforce */
@@ -49,8 +48,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
      * @param optionClass the class for the option. Required due to a quirk
      *        in the Java language.
      */
-    public AbstractOptionCheck(T literalDefault, Class<T> optionClass)
-    {
+    public AbstractOptionCheck(T literalDefault, Class<T> optionClass) {
         option = literalDefault;
         this.optionClass = optionClass;
     }
@@ -60,8 +58,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
      * @param optionStr string to decode option from
      * @throws ConversionException if unable to decode
      */
-    public void setOption(String optionStr) throws ConversionException
-    {
+    public void setOption(String optionStr) throws ConversionException {
         try {
             option = Enum.valueOf(optionClass, optionStr.trim().toUpperCase(Locale.ENGLISH));
         }
@@ -73,8 +70,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
     /**
      * @return the <code>AbstractOption</code> set
      */
-    public T getAbstractOption()
-    {
+    public T getAbstractOption() {
         // WARNING!! Do not rename this method to getOption(). It breaks
         // BeanUtils, which will silently not call setOption. Very annoying!
         return option;

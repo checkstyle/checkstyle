@@ -25,33 +25,28 @@ import org.junit.Before;
 import org.junit.Test;
 
 /** Tests SuppressElementFilter */
-public class FilterSetTest
-{
+public class FilterSetTest {
     private CSVFilter filter;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         filter = new CSVFilter("");
     }
 
     @Test
-    public void testEmptyChain()
-    {
+    public void testEmptyChain() {
         assertFalse("0", filter.accept(Integer.valueOf(0)));
     }
 
     @Test
-    public void testOneFilter()
-    {
+    public void testOneFilter() {
         filter.addFilter(new IntMatchFilter(0));
         assertTrue("0", filter.accept(Integer.valueOf(0)));
         assertFalse("1", filter.accept(Integer.valueOf(1)));
     }
 
     @Test
-    public void testMultipleFilter()
-    {
+    public void testMultipleFilter() {
         filter.addFilter(new IntMatchFilter(0));
         filter.addFilter(new IntRangeFilter(0, 2));
         assertTrue("0", filter.accept(Integer.valueOf(0)));

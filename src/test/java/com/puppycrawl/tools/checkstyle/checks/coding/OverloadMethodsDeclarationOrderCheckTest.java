@@ -27,11 +27,9 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDecla
 .MSG_KEY;
 
 public class OverloadMethodsDeclarationOrderCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OverloadMethodsDeclarationOrderCheck.class);
 

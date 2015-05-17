@@ -52,8 +52,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Baratali Izmailov
  */
 public class TodoCommentCheck
-        extends Check
-{
+        extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -72,8 +71,7 @@ public class TodoCommentCheck
     private Pattern regexp = Pattern.compile(format);
 
     @Override
-    public boolean isCommentNodesRequired()
-    {
+    public boolean isCommentNodesRequired() {
         return true;
     }
 
@@ -84,27 +82,23 @@ public class TodoCommentCheck
      * @throws org.apache.commons.beanutils.ConversionException
      *         if unable to create Pattern object.
      */
-    public void setFormat(String format)
-    {
+    public void setFormat(String format) {
         this.format = format;
         regexp = Utils.createPattern(format);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.COMMENT_CONTENT };
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.COMMENT_CONTENT };
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final String[] lines = ast.getText().split("\n");
 
         for (int i = 0; i < lines.length; i++) {

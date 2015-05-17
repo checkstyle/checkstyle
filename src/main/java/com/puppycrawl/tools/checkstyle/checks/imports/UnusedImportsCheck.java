@@ -51,8 +51,7 @@ import java.util.regex.Pattern;
  *
  * @author Oliver Burn
  */
-public class UnusedImportsCheck extends Check
-{
+public class UnusedImportsCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -81,22 +80,19 @@ public class UnusedImportsCheck extends Check
     /** set of references - possibly to imports or other things. */
     private final Set<String> referenced = Sets.newHashSet();
 
-    public void setProcessJavadoc(boolean value)
-    {
+    public void setProcessJavadoc(boolean value) {
         processingJavadoc = value;
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         collect = false;
         imports.clear();
         referenced.clear();
     }
 
     @Override
-    public void finishTree(DetailAST rootAST)
-    {
+    public void finishTree(DetailAST rootAST) {
         // loop over all the imports to see if referenced.
         for (final FullIdent imp : imports) {
             if (!referenced.contains(Utils.baseClassname(imp.getText()))) {
@@ -108,8 +104,7 @@ public class UnusedImportsCheck extends Check
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.IDENT,
             TokenTypes.IMPORT,
@@ -129,14 +124,12 @@ public class UnusedImportsCheck extends Check
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return getDefaultTokens();
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.IDENT,
             TokenTypes.IMPORT,
@@ -156,8 +149,7 @@ public class UnusedImportsCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.IDENT) {
             if (collect) {
                 processIdent(ast);
@@ -181,15 +173,13 @@ public class UnusedImportsCheck extends Check
      * Collects references made by IDENT.
      * @param ast the IDENT node to process
      */
-    private void processIdent(DetailAST ast)
-    {
+    private void processIdent(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         final int parentType = parent.getType();
         if (parentType != TokenTypes.DOT
             && parentType != TokenTypes.METHOD_DEF
             || parentType == TokenTypes.DOT
-                && ast.getNextSibling() != null)
-        {
+                && ast.getNextSibling() != null) {
             referenced.add(ast.getText());
         }
     }
@@ -198,8 +188,7 @@ public class UnusedImportsCheck extends Check
      * Collects the details of imports.
      * @param ast node containing the import details
      */
-    private void processImport(DetailAST ast)
-    {
+    private void processImport(DetailAST ast) {
         final FullIdent name = FullIdent.createFullIdentBelow(ast);
         if (!name.getText().endsWith(".*")) {
             imports.add(name);
@@ -210,8 +199,7 @@ public class UnusedImportsCheck extends Check
      * Collects the details of static imports.
      * @param ast node containing the static import details
      */
-    private void processStaticImport(DetailAST ast)
-    {
+    private void processStaticImport(DetailAST ast) {
         final FullIdent name =
             FullIdent.createFullIdent(
                 ast.getFirstChild().getNextSibling());
@@ -224,8 +212,7 @@ public class UnusedImportsCheck extends Check
      * Collects references made in Javadoc comments.
      * @param ast node to inspect for Javadoc
      */
-    private void processJavadoc(DetailAST ast)
-    {
+    private void processJavadoc(DetailAST ast) {
         final FileContents contents = getFileContents();
         final int lineNo = ast.getLineNo();
         final TextBlock cmt = contents.getJavadocBefore(lineNo);
@@ -240,22 +227,19 @@ public class UnusedImportsCheck extends Check
      * @param cmt The javadoc block to parse
      * @return a set of classes referenced in the javadoc block
      */
-    private Set<String> processJavadoc(TextBlock cmt)
-    {
+    private Set<String> processJavadoc(TextBlock cmt) {
         final Set<String> references = new HashSet<>();
         // process all the @link type tags
         // INLINEs inside BLOCKs get hidden when using ALL
         for (final JavadocTag tag
-                : getValidTags(cmt, JavadocUtils.JavadocTagType.INLINE))
-        {
+                : getValidTags(cmt, JavadocUtils.JavadocTagType.INLINE)) {
             if (tag.canReferenceImports()) {
                 references.addAll(processJavadocTag(tag));
             }
         }
         // process all the @throws type tags
         for (final JavadocTag tag
-                : getValidTags(cmt, JavadocUtils.JavadocTagType.BLOCK))
-        {
+                : getValidTags(cmt, JavadocUtils.JavadocTagType.BLOCK)) {
             if (tag.canReferenceImports()) {
                 references.addAll(
                         matchPattern(tag.getArg1(), FIRST_CLASS_NAME));
@@ -271,8 +255,7 @@ public class UnusedImportsCheck extends Check
      * @return the list of tags
      */
     private List<JavadocTag> getValidTags(TextBlock cmt,
-            JavadocUtils.JavadocTagType tagType)
-    {
+            JavadocUtils.JavadocTagType tagType) {
         return JavadocUtils.getJavadocTags(cmt, tagType).getValidTags();
     }
 
@@ -281,13 +264,11 @@ public class UnusedImportsCheck extends Check
      * @param tag The javadoc tag to parse
      * @return A list of references found in this tag
      */
-    private Set<String> processJavadocTag(JavadocTag tag)
-    {
+    private Set<String> processJavadocTag(JavadocTag tag) {
         final Set<String> references = new HashSet<>();
         final String identifier = tag.getArg1().trim();
         for (Pattern pattern : new Pattern[]
-        {FIRST_CLASS_NAME, ARGUMENT_NAME})
-        {
+        {FIRST_CLASS_NAME, ARGUMENT_NAME}) {
             references.addAll(matchPattern(identifier, pattern));
         }
         return references;
@@ -300,8 +281,7 @@ public class UnusedImportsCheck extends Check
      * @param pattern The Pattern used to extract the texts
      * @return A list of texts which matched the pattern
      */
-    private Set<String> matchPattern(String identifier, Pattern pattern)
-    {
+    private Set<String> matchPattern(String identifier, Pattern pattern) {
         final Set<String> references = new HashSet<>();
         final Matcher matcher = pattern.matcher(identifier);
         while (matcher.find()) {

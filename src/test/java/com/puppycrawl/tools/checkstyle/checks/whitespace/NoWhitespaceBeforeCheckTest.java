@@ -27,19 +27,16 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck.MSG_KEY;
 
 public class NoWhitespaceBeforeCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(NoWhitespaceBeforeCheck.class);
     }
 
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final String[] expected = {
             "30:14: " + getCheckMessage(MSG_KEY, "++"),
             "30:21: " + getCheckMessage(MSG_KEY, "--"),
@@ -54,8 +51,7 @@ public class NoWhitespaceBeforeCheckTest
     }
 
     @Test
-    public void testDot() throws Exception
-    {
+    public void testDot() throws Exception {
         checkConfig.addAttribute("tokens", "DOT");
         final String[] expected = {
             "5:12: " + getCheckMessage(MSG_KEY, "."),
@@ -68,8 +64,7 @@ public class NoWhitespaceBeforeCheckTest
     }
 
     @Test
-    public void testDotAllowLineBreaks() throws Exception
-    {
+    public void testDotAllowLineBreaks() throws Exception {
         checkConfig.addAttribute("tokens", "DOT");
         checkConfig.addAttribute("allowLineBreaks", "yes");
         final String[] expected = {

@@ -34,8 +34,7 @@ import java.util.ResourceBundle;
 
 import static org.junit.Assert.assertEquals;
 
-public class MainTest
-{
+public class MainTest {
     @Rule
     public TemporaryFolder temporaryFolder = new TemporaryFolder();
     @Rule
@@ -47,13 +46,10 @@ public class MainTest
 
     @Test
     public void testVersionPrint()
-            throws Exception
-    {
+            throws Exception {
         exit.expectSystemExitWithStatus(0);
-        exit.checkAssertionAfterwards(new Assertion()
-        {
-            public void checkAssertion()
-            {
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() {
                 assertEquals("Checkstyle version: null" + System.lineSeparator(),
                     standardLog.getLog());
                 assertEquals("", errorLog.getLog());
@@ -64,13 +60,10 @@ public class MainTest
 
     @Test
     public void testWrongArgument()
-            throws Exception
-    {
+            throws Exception {
         exit.expectSystemExitWithStatus(1);
-        exit.checkAssertionAfterwards(new Assertion()
-        {
-            public void checkAssertion()
-            {
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() {
                 String usage = String.format("Unrecognized option: -w%n"
                     + "usage: java com.puppycrawl.tools.checkstyle.Main [options] -c <config.xml>%n"
                     + "            file...%n"
@@ -89,13 +82,10 @@ public class MainTest
 
     @Test
     public void testNoConfigSpecified()
-            throws Exception
-    {
+            throws Exception {
         exit.expectSystemExitWithStatus(1);
-        exit.checkAssertionAfterwards(new Assertion()
-        {
-            public void checkAssertion()
-            {
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() {
                 assertEquals("Must specify a config XML file." + System.lineSeparator(),
                     standardLog.getLog());
                 assertEquals("", errorLog.getLog());
@@ -106,13 +96,10 @@ public class MainTest
 
     @Test
     public void testNonExistingTargetFile()
-            throws Exception
-    {
+            throws Exception {
         exit.expectSystemExitWithStatus(1);
-        exit.checkAssertionAfterwards(new Assertion()
-        {
-            public void checkAssertion()
-            {
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() {
                 assertEquals("Must specify files to process, found 0." + System.lineSeparator(),
                     standardLog.getLog());
                 assertEquals("", errorLog.getLog());
@@ -123,13 +110,10 @@ public class MainTest
 
     @Test
     public void testNonExistingConfigFile()
-            throws Exception
-    {
+            throws Exception {
         exit.expectSystemExitWithStatus(1);
-        exit.checkAssertionAfterwards(new Assertion()
-        {
-            public void checkAssertion()
-            {
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() {
                 assertEquals("Checkstyle ends with 1 errors." + System.lineSeparator(),
                     standardLog.getLog());
                 assertEquals("", errorLog.getLog());
@@ -141,13 +125,10 @@ public class MainTest
 
     @Test
     public void testNonExistingOutputFormat()
-            throws Exception
-    {
+            throws Exception {
         exit.expectSystemExitWithStatus(1);
-        exit.checkAssertionAfterwards(new Assertion()
-        {
-            public void checkAssertion()
-            {
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() {
                 assertEquals(String.format("Invalid output format. "
                     + "Found 'xmlp' but expected 'plain' or 'xml'.%n"), standardLog.getLog());
                 assertEquals("", errorLog.getLog());
@@ -159,13 +140,10 @@ public class MainTest
 
     @Test
     public void testExistingTargetFile()
-            throws Exception
-    {
+            throws Exception {
         exit.expectSystemExitWithStatus(0);
-        exit.checkAssertionAfterwards(new Assertion()
-        {
-            public void checkAssertion()
-            {
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() {
                 assertEquals(String.format("Starting audit...%n"
                         + "Audit done.%n"), standardLog.getLog());
                 assertEquals("", errorLog.getLog());
@@ -177,13 +155,10 @@ public class MainTest
 
     @Test
     public void testExistingTargetFileXmlOutput()
-            throws Exception
-    {
+            throws Exception {
         exit.expectSystemExitWithStatus(0);
-        exit.checkAssertionAfterwards(new Assertion()
-        {
-            public void checkAssertion() throws IOException
-            {
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() throws IOException {
                 String currentPath = new File(".").getCanonicalPath();
                 String expectedPath = currentPath
                         + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
@@ -208,13 +183,10 @@ public class MainTest
 
     @Test
     public void testExistingTargetFilePlainOutput()
-            throws Exception
-    {
+            throws Exception {
         exit.expectSystemExitWithStatus(0);
-        exit.checkAssertionAfterwards(new Assertion()
-        {
-            public void checkAssertion()
-            {
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() {
                 assertEquals(String.format("Starting audit...%n"
                         + "Audit done.%n"), standardLog.getLog());
                 assertEquals("", errorLog.getLog());
@@ -227,13 +199,10 @@ public class MainTest
 
     @Test
     public void testExistingTargetFileWithViolations()
-            throws Exception
-    {
+            throws Exception {
         exit.expectSystemExitWithStatus(0);
-        exit.checkAssertionAfterwards(new Assertion()
-        {
-            public void checkAssertion() throws IOException
-            {
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() throws IOException {
                 String currentPath = new File(".").getCanonicalPath();
                 String expectedPath = currentPath
                     + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
@@ -254,13 +223,10 @@ public class MainTest
 
     @Test
     public void testExistingTargetFileWithError()
-            throws Exception
-    {
+            throws Exception {
         exit.expectSystemExitWithStatus(2);
-        exit.checkAssertionAfterwards(new Assertion()
-        {
-            public void checkAssertion() throws IOException
-            {
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() throws IOException {
                 String currentPath = new File(".").getCanonicalPath();
                 String expectedPath = currentPath
                     + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
@@ -282,13 +248,10 @@ public class MainTest
 
     @Test
     public void testExistingTargetFilePlainOutputToNonExistingFile()
-            throws Exception
-    {
+            throws Exception {
         exit.expectSystemExitWithStatus(1);
-        exit.checkAssertionAfterwards(new Assertion()
-        {
-            public void checkAssertion()
-            {
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() {
                 assertEquals("Could not find file 'myjava.java'." + System.lineSeparator(),
                     standardLog.getLog());
                 assertEquals("", errorLog.getLog());
@@ -302,16 +265,13 @@ public class MainTest
 
     @Test
     public void testExistingTargetFilePlainOutputToFile()
-            throws Exception
-    {
+            throws Exception {
         final File file = temporaryFolder.newFile("file.output");
         //Assert.assertTrue(file.getTotalSpace() == 0);
 
         exit.expectSystemExitWithStatus(0);
-        exit.checkAssertionAfterwards(new Assertion()
-        {
-            public void checkAssertion()
-            {
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() {
                 //Assert.assertTrue(file.getTotalSpace() > 0);
                 assertEquals("", standardLog.getLog());
                 assertEquals("", errorLog.getLog());
@@ -325,13 +285,10 @@ public class MainTest
 
     @Test
     public void testExistingTargetFilePlainOutputProperties()
-            throws Exception
-    {
+            throws Exception {
         exit.expectSystemExitWithStatus(0);
-        exit.checkAssertionAfterwards(new Assertion()
-        {
-            public void checkAssertion()
-            {
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() {
                 assertEquals(String.format("Starting audit...%n"
                         + "Audit done.%n"), standardLog.getLog());
                 assertEquals("", errorLog.getLog());
@@ -345,13 +302,10 @@ public class MainTest
 
     @Test
     public void testExistingTargetFilePlainOutputNonexistingProperties()
-            throws Exception
-    {
+            throws Exception {
         exit.expectSystemExitWithStatus(1);
-        exit.checkAssertionAfterwards(new Assertion()
-        {
-            public void checkAssertion()
-            {
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() {
                 assertEquals("Could not find file 'nonexisting.properties'."
                     + System.lineSeparator(), standardLog.getLog());
                 assertEquals("", errorLog.getLog());

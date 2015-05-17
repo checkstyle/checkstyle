@@ -37,8 +37,7 @@ import java.util.regex.Pattern;
  *
  * @author Daniel Grenner
  */
-public class MultipleStringLiteralsCheck extends Check
-{
+public class MultipleStringLiteralsCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -72,8 +71,7 @@ public class MultipleStringLiteralsCheck extends Check
     /**
      * Construct an instance with default values.
      */
-    public MultipleStringLiteralsCheck()
-    {
+    public MultipleStringLiteralsCheck() {
         setIgnoreStringsRegexp("^\"\"$");
         ignoreOccurrenceContext.set(TokenTypes.ANNOTATION);
     }
@@ -82,8 +80,7 @@ public class MultipleStringLiteralsCheck extends Check
      * Sets the maximum allowed duplicates of a string.
      * @param allowedDuplicates The maximum number of duplicates.
      */
-    public void setAllowedDuplicates(int allowedDuplicates)
-    {
+    public void setAllowedDuplicates(int allowedDuplicates) {
         this.allowedDuplicates = allowedDuplicates;
     }
 
@@ -94,11 +91,9 @@ public class MultipleStringLiteralsCheck extends Check
      * @throws org.apache.commons.beanutils.ConversionException
      *         if unable to create Pattern object
      */
-    public void setIgnoreStringsRegexp(String ignoreStringsRegexp)
-    {
+    public void setIgnoreStringsRegexp(String ignoreStringsRegexp) {
         if (ignoreStringsRegexp != null
-            && ignoreStringsRegexp.length() > 0)
-        {
+            && ignoreStringsRegexp.length() > 0) {
             pattern = Utils.createPattern(ignoreStringsRegexp);
         }
         else {
@@ -110,8 +105,7 @@ public class MultipleStringLiteralsCheck extends Check
      * Adds a set of tokens the check is interested in.
      * @param strRep the string representation of the tokens interested in
      */
-    public final void setIgnoreOccurrenceContext(String... strRep)
-    {
+    public final void setIgnoreOccurrenceContext(String... strRep) {
         ignoreOccurrenceContext.clear();
         for (final String s : strRep) {
             final int type = Utils.getTokenId(s);
@@ -120,20 +114,17 @@ public class MultipleStringLiteralsCheck extends Check
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.STRING_LITERAL};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.STRING_LITERAL};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (isInIgnoreOccurrenceContext(ast)) {
             return;
         }
@@ -158,12 +149,10 @@ public class MultipleStringLiteralsCheck extends Check
      * @return whether the path from the root node to ast contains one of the
      * token type in {@link #ignoreOccurrenceContext}.
      */
-    private boolean isInIgnoreOccurrenceContext(DetailAST ast)
-    {
+    private boolean isInIgnoreOccurrenceContext(DetailAST ast) {
         for (DetailAST token = ast;
              token.getParent() != null;
-             token = token.getParent())
-        {
+             token = token.getParent()) {
             final int type = token.getType();
             if (ignoreOccurrenceContext.get(type)) {
                 return true;
@@ -173,15 +162,13 @@ public class MultipleStringLiteralsCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         super.beginTree(rootAST);
         stringMap.clear();
     }
 
     @Override
-    public void finishTree(DetailAST rootAST)
-    {
+    public void finishTree(DetailAST rootAST) {
         for (Map.Entry<String, List<StringInfo>> stringListEntry : stringMap.entrySet()) {
             final List<StringInfo> hits = stringListEntry.getValue();
             if (hits.size() > allowedDuplicates) {
@@ -196,8 +183,7 @@ public class MultipleStringLiteralsCheck extends Check
     /**
      * This class contains information about where a string was found.
      */
-    private static final class StringInfo
-    {
+    private static final class StringInfo {
         /**
          * Line of finding
          */
@@ -211,8 +197,7 @@ public class MultipleStringLiteralsCheck extends Check
          * @param line int
          * @param col int
          */
-        public StringInfo(int line, int col)
-        {
+        public StringInfo(int line, int col) {
             this.line = line;
             this.col = col;
         }
@@ -221,8 +206,7 @@ public class MultipleStringLiteralsCheck extends Check
          * The line where a string was found.
          * @return int Line of the string.
          */
-        private int getLine()
-        {
+        private int getLine() {
             return line;
         }
 
@@ -230,8 +214,7 @@ public class MultipleStringLiteralsCheck extends Check
          * The column where a string was found.
          * @return int Column of the string.
          */
-        private int getCol()
-        {
+        private int getCol() {
             return col;
         }
     }

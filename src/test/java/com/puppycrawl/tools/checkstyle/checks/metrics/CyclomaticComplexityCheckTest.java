@@ -26,11 +26,9 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck.MSG_KEY;
 
 public class CyclomaticComplexityCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
-    public void test() throws Exception
-    {
+    public void test() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(CyclomaticComplexityCheck.class);
 

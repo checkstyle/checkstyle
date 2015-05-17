@@ -28,8 +28,7 @@ import java.util.Locale;
  * @author Travis Schneeberger
  * @author Mehmet Can Cömert
  */
-public enum Scope
-{
+public enum Scope {
     /** nothing scope. */
     NOTHING,
     /** public scope. */
@@ -44,16 +43,14 @@ public enum Scope
     ANONINNER;
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return getName();
     }
 
     /**
      * @return the name of this severity level.
      */
-    public String getName()
-    {
+    public String getName() {
         return name().toLowerCase(Locale.ENGLISH);
     }
 
@@ -64,8 +61,7 @@ public enum Scope
      * @param scope a <code>Scope</code> value
      * @return if <code>this</code> is a subscope of <code>scope</code>.
      */
-    public boolean isIn(Scope scope)
-    {
+    public boolean isIn(Scope scope) {
         return compareTo(scope) <= 0;
     }
 
@@ -75,8 +71,7 @@ public enum Scope
      * @param scopeName scope name, such as "nothing", "public", etc.
      * @return the <code>Scope</code> associated with <code>scopeName</code>
      */
-    public static Scope getInstance(String scopeName)
-    {
+    public static Scope getInstance(String scopeName) {
         return valueOf(Scope.class, scopeName.trim().toUpperCase(Locale.ENGLISH));
     }
 }

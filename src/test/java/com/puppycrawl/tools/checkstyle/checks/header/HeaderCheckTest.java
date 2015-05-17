@@ -33,11 +33,9 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISSING;
 
-public class HeaderCheckTest extends BaseFileSetCheckTestSupport
-{
+public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Test
-    public void testStaticHeader() throws Exception
-    {
+    public void testStaticHeader() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("configs/java.header"));
@@ -49,8 +47,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testRegexpHeader() throws Exception
-    {
+    public void testRegexpHeader() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header"));
@@ -61,8 +58,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testRegexpHeaderURL() throws Exception
-    {
+    public void testRegexpHeaderURL() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpHeaderCheck.class);
         URI uri = new File(getPath("regexp.header")).toURI();
@@ -74,8 +70,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testInlineRegexpHeader() throws Exception
-    {
+    public void testInlineRegexpHeader() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("header", "^/*$\\n// .*\\n// Created: 2002\\n^//.*\\n^//.*");
@@ -86,8 +81,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testFailureForMultilineRegexp() throws Exception
-    {
+    public void testFailureForMultilineRegexp() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("header", "^(.*\\n.*)");
@@ -101,8 +95,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testRegexpHeaderIgnore() throws Exception
-    {
+    public void testRegexpHeaderIgnore() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header1"));
@@ -112,8 +105,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testRegexpHeaderMulti1() throws Exception
-    {
+    public void testRegexpHeaderMulti1() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
@@ -124,8 +116,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testRegexpHeaderMulti2() throws Exception
-    {
+    public void testRegexpHeaderMulti2() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
@@ -136,8 +127,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testRegexpHeaderMulti3() throws Exception
-    {
+    public void testRegexpHeaderMulti3() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
@@ -148,8 +138,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testRegexpHeaderMulti4() throws Exception
-    {
+    public void testRegexpHeaderMulti4() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
@@ -160,8 +149,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testRegexpHeaderMulti5() throws Exception
-    {
+    public void testRegexpHeaderMulti5() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
@@ -173,8 +161,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testRegexpHeaderSmallHeader() throws Exception
-    {
+    public void testRegexpHeaderSmallHeader() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
@@ -186,8 +173,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
 
     @Test
     public void testNoHeader()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HeaderCheck.class);
         // No header file specified
@@ -201,8 +187,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testNonExistingHeaderFile() throws Exception
-    {
+    public void testNonExistingHeaderFile() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("nonexisting.file"));
@@ -216,8 +201,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testInvalidCharset() throws Exception
-    {
+    public void testInvalidCharset() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("config/java.header"));
@@ -232,8 +216,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
-    public void testEmptyFilename() throws Exception
-    {
+    public void testEmptyFilename() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", "");

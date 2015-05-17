@@ -51,8 +51,7 @@ import java.util.Set;
  * @author Oliver Burn
  */
 public class RedundantImportCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -80,16 +79,14 @@ public class RedundantImportCheck
     private final Set<FullIdent> staticImports = Sets.newHashSet();
 
     @Override
-    public void beginTree(DetailAST aRootAST)
-    {
+    public void beginTree(DetailAST aRootAST) {
         pkgName = null;
         imports.clear();
         staticImports.clear();
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[]
         {TokenTypes.IMPORT,
          TokenTypes.STATIC_IMPORT,
@@ -97,8 +94,7 @@ public class RedundantImportCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[]
         {TokenTypes.IMPORT,
          TokenTypes.STATIC_IMPORT,
@@ -106,8 +102,7 @@ public class RedundantImportCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.PACKAGE_DEF) {
             pkgName = FullIdent.createFullIdent(
                     ast.getLastChild().getPreviousSibling()).getText();
@@ -155,8 +150,7 @@ public class RedundantImportCheck
      * @param pkg the package name
      * @return whether from the package
      */
-    private static boolean fromPackage(String importName, String pkg)
-    {
+    private static boolean fromPackage(String importName, String pkg) {
         boolean retVal = false;
         if (pkg == null) {
             // If not package, then check for no package in the import.

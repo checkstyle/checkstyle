@@ -30,19 +30,16 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitiali
 .MSG_PRECEDED;
 
 public class EmptyForInitializerPadCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(EmptyForInitializerPadCheck.class);
     }
 
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final String[] expected = {
             "48:14: " + getCheckMessage(MSG_PRECEDED, ";"),
         };
@@ -50,8 +47,7 @@ public class EmptyForInitializerPadCheckTest
     }
 
     @Test
-    public void testSpaceOption() throws Exception
-    {
+    public void testSpaceOption() throws Exception {
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = {
             "51:13: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),

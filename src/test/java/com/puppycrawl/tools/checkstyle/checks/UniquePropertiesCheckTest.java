@@ -42,14 +42,12 @@ import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_K
 /**
  * JUnit tests for Unique Properties check.
  */
-public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport
-{
+public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
 
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(UniquePropertiesCheck.class);
     }
 
@@ -59,10 +57,8 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport
      *             on error occurres
      */
     @Test
-    public void testDefault() throws Exception
-    {
-        final String[] expected =
-        {
+    public void testDefault() throws Exception {
+        final String[] expected = {
             "3: " + getCheckMessage(MSG_KEY, "general.exception", 2),
             "5: " + getCheckMessage(MSG_KEY, "DefaultLogger.auditStarted", 2),
             "11: " + getCheckMessage(MSG_KEY, "onlineManual", 3),
@@ -81,8 +77,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport
      *             on error occurs
      */
     @Test
-    public void testNotFoundKey() throws Exception
-    {
+    public void testNotFoundKey() throws Exception {
         final UniquePropertiesCheck check = new UniquePropertiesCheck();
         final List<String> testStrings = new ArrayList<>(3);
         testStrings.add("");
@@ -100,8 +95,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport
      *             on error occurs
      */
     @Test
-    public void testIOException() throws Exception
-    {
+    public void testIOException() throws Exception {
         final UniquePropertiesCheck check = new UniquePropertiesCheck();
         check.configure(checkConfig);
         final String fileName =
@@ -129,8 +123,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport
      * @throws Exception
      *             on file exists
      */
-    private String getFileNotFoundDetail(File file) throws Exception
-    {
+    private String getFileNotFoundDetail(File file) throws Exception {
         // Create exception to know detail message we should wait in
         // LocalisedMessage
         try {

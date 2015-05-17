@@ -30,8 +30,7 @@ import java.io.Serializable;
  * href="http://jakarta.apache.org/avalon/">Jakarta's Avalon framework</a>.
  * @author lkuehne
  */
-public interface Configuration extends Serializable
-{
+public interface Configuration extends Serializable {
     /**
      * The set of attribute names.
      * @return The set of attribute names, never null.

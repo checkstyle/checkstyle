@@ -26,11 +26,9 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck.MSG_KEY;
 
-public class ExplicitInitializationCheckTest extends BaseCheckTestSupport
-{
+public class ExplicitInitializationCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ExplicitInitializationCheck.class);
         final String[] expected = {

@@ -62,8 +62,7 @@ import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
  * @author Oliver Burn
  */
 public final class TreeWalker
-    extends AbstractFileSetCheck
-{
+    extends AbstractFileSetCheck {
     /**
      * State of AST.
      * Indicates whether tree contains certain nodes.
@@ -118,27 +117,23 @@ public final class TreeWalker
     /**
      * Creates a new <code>TreeWalker</code> instance.
      */
-    public TreeWalker()
-    {
+    public TreeWalker() {
         setFileExtensions("java");
     }
 
     /** @param tabWidth the distance between tab stops */
-    public void setTabWidth(int tabWidth)
-    {
+    public void setTabWidth(int tabWidth) {
         this.tabWidth = tabWidth;
     }
 
     /** @param fileName the cache file */
-    public void setCacheFile(String fileName)
-    {
+    public void setCacheFile(String fileName) {
         final Configuration configuration = getConfiguration();
         cache = new PropertyCacheFile(configuration, fileName);
     }
 
     /** @param classLoader class loader to resolve classes with. */
-    public void setClassLoader(ClassLoader classLoader)
-    {
+    public void setClassLoader(ClassLoader classLoader) {
         this.classLoader = classLoader;
     }
 
@@ -146,14 +141,12 @@ public final class TreeWalker
      * Sets the module factory for creating child modules (Checks).
      * @param moduleFactory the factory
      */
-    public void setModuleFactory(ModuleFactory moduleFactory)
-    {
+    public void setModuleFactory(ModuleFactory moduleFactory) {
         this.moduleFactory = moduleFactory;
     }
 
     @Override
-    public void finishLocalSetup()
-    {
+    public void finishLocalSetup() {
         final DefaultContext checkContext = new DefaultContext();
         checkContext.add("classLoader", classLoader);
         checkContext.add("messages", getMessageCollector());
@@ -165,8 +158,7 @@ public final class TreeWalker
 
     @Override
     public void setupChild(Configuration childConf)
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         final String name = childConf.getName();
         final Object module = moduleFactory.createModule(name);
         if (!(module instanceof Check)) {
@@ -182,14 +174,12 @@ public final class TreeWalker
     }
 
     @Override
-    protected void processFiltered(File file, List<String> lines)
-    {
+    protected void processFiltered(File file, List<String> lines) {
         // check if already checked and passed the file
         final String fileName = file.getPath();
         final long timestamp = file.lastModified();
         if (cache.alreadyChecked(fileName, timestamp)
-                 || !Utils.fileExtensionMatches(file, getFileExtensions()))
-        {
+                 || !Utils.fileExtensionMatches(file, getFileExtensions())) {
             return;
         }
 
@@ -237,8 +227,7 @@ public final class TreeWalker
      *        message that will be used for created object
      * @return instance of created object
      */
-    private LocalizedMessage createLocalizedMessage(String message)
-    {
+    private LocalizedMessage createLocalizedMessage(String message) {
         return new LocalizedMessage(
                 0,
                 Definitions.CHECKSTYLE_BUNDLE,
@@ -254,8 +243,7 @@ public final class TreeWalker
      * @throws CheckstyleException if an error occurs
      */
     private void registerCheck(Check check)
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         final int[] tokens;
         final Set<String> checkTokens = check.getTokenNames();
         if (!checkTokens.isEmpty()) {
@@ -295,8 +283,7 @@ public final class TreeWalker
      * @param tokenID the id of the token
      * @param check the check to register
      */
-    private void registerCheck(int tokenID, Check check)
-    {
+    private void registerCheck(int tokenID, Check check) {
         registerCheck(Utils.getTokenName(tokenID), check);
     }
 
@@ -305,8 +292,7 @@ public final class TreeWalker
      * @param token the name of the token
      * @param check the check to register
      */
-    private void registerCheck(String token, Check check)
-    {
+    private void registerCheck(String token, Check check) {
         if (check.isCommentNodesRequired()) {
             tokenToCommentChecks.put(token, check);
         }
@@ -328,8 +314,7 @@ public final class TreeWalker
      * @param astState state of AST.
      */
     private void walk(DetailAST ast, FileContents contents,
-            AstState astState)
-    {
+            AstState astState) {
         notifyBegin(ast, contents, astState);
 
         // empty files are not flagged by javac, will yield ast == null
@@ -346,8 +331,7 @@ public final class TreeWalker
      * @param astState state of AST.
      */
     private void notifyBegin(DetailAST rootAST, FileContents contents,
-            AstState astState)
-    {
+            AstState astState) {
         Set<Check> checks;
 
         if (astState == AstState.WITH_COMMENTS) {
@@ -368,8 +352,7 @@ public final class TreeWalker
      * @param rootAST the root of the tree.
      * @param astState state of AST.
      */
-    private void notifyEnd(DetailAST rootAST, AstState astState)
-    {
+    private void notifyEnd(DetailAST rootAST, AstState astState) {
         Set<Check> checks;
 
         if (astState == AstState.WITH_COMMENTS) {
@@ -389,8 +372,7 @@ public final class TreeWalker
      * @param ast the node to notify for.
      * @param astState state of AST.
      */
-    private void notifyVisit(DetailAST ast, AstState astState)
-    {
+    private void notifyVisit(DetailAST ast, AstState astState) {
         Collection<Check> visitors;
         final String tokenType = Utils.getTokenName(ast.getType());
 
@@ -418,8 +400,7 @@ public final class TreeWalker
      *        the node to notify for
      * @param astState state of AST.
      */
-    private void notifyLeave(DetailAST ast, AstState astState)
-    {
+    private void notifyLeave(DetailAST ast, AstState astState) {
         Collection<Check> visitors;
         final String tokenType = Utils.getTokenName(ast.getType());
 
@@ -453,8 +434,7 @@ public final class TreeWalker
      *                 if parsing failed
      */
     public static DetailAST parse(FileContents contents)
-        throws RecognitionException, TokenStreamException
-    {
+        throws RecognitionException, TokenStreamException {
         final String fullText = contents.getText().getFullText().toString();
         final Reader sr = new StringReader(fullText);
         final GeneratedJavaLexer lexer = new GeneratedJavaLexer(sr);
@@ -479,8 +459,7 @@ public final class TreeWalker
     }
 
     @Override
-    public void destroy()
-    {
+    public void destroy() {
         for (Check c : ordinaryChecks) {
             c.destroy();
         }
@@ -497,8 +476,7 @@ public final class TreeWalker
      * @param root the root of tree for process
      * @param astState state of AST.
      */
-    private void processIter(DetailAST root, AstState astState)
-    {
+    private void processIter(DetailAST root, AstState astState) {
         DetailAST curNode = root;
         while (curNode != null) {
             notifyVisit(curNode, astState);
@@ -522,8 +500,7 @@ public final class TreeWalker
      *        root of AST.
      * @return root of AST with comment nodes.
      */
-    private static DetailAST appendHiddenCommentNodes(DetailAST root)
-    {
+    private static DetailAST appendHiddenCommentNodes(DetailAST root) {
         DetailAST result = root;
         DetailAST curNode = root;
         DetailAST lastNode = root;
@@ -584,8 +561,7 @@ public final class TreeWalker
      *        second DetailAST node.
      * @return true if position of ast1 is greater than position of ast2.
      */
-    private static boolean isPositionGreater(DetailAST ast1, DetailAST ast2)
-    {
+    private static boolean isPositionGreater(DetailAST ast1, DetailAST ast2) {
         if (ast1.getLineNo() > ast2.getLineNo()) {
             return true;
         }
@@ -607,8 +583,7 @@ public final class TreeWalker
      *        Token object.
      * @return DetailAST of comment node.
      */
-    private static DetailAST createCommentAstFromToken(Token token)
-    {
+    private static DetailAST createCommentAstFromToken(Token token) {
         switch (token.getType()) {
             case TokenTypes.SINGLE_LINE_COMMENT:
                 return createSlCommentNode(token);
@@ -625,8 +600,7 @@ public final class TreeWalker
      *        Token object.
      * @return DetailAST with SINGLE_LINE_COMMENT type.
      */
-    private static DetailAST createSlCommentNode(Token token)
-    {
+    private static DetailAST createSlCommentNode(Token token) {
         final DetailAST slComment = new DetailAST();
         slComment.setType(TokenTypes.SINGLE_LINE_COMMENT);
         slComment.setText("//");
@@ -655,8 +629,7 @@ public final class TreeWalker
      *        Token object.
      * @return DetailAST with BLOCK_COMMENT type.
      */
-    private static DetailAST createBlockCommentNode(Token token)
-    {
+    private static DetailAST createBlockCommentNode(Token token) {
         final DetailAST blockComment = new DetailAST();
         blockComment.initialize(TokenTypes.BLOCK_COMMENT_BEGIN, "/*");
 
@@ -699,8 +672,7 @@ public final class TreeWalker
      *         counter.
      */
     private static Entry<Integer, Integer> countLinesColumns(
-            String text, int initialLinesCnt, int initialColumnsCnt)
-    {
+            String text, int initialLinesCnt, int initialColumnsCnt) {
         int lines = initialLinesCnt;
         int columns = initialColumnsCnt;
         for (char c : text.toCharArray()) {

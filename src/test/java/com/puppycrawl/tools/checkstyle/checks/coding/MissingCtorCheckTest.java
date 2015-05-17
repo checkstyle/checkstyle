@@ -26,11 +26,9 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck.MSG_KEY;
 
-public class MissingCtorCheckTest extends BaseCheckTestSupport
-{
+public class MissingCtorCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testMissingSwitchDefault() throws Exception
-    {
+    public void testMissingSwitchDefault() throws Exception {
         DefaultConfiguration checkConfig =
             createCheckConfig(MissingCtorCheck.class);
 

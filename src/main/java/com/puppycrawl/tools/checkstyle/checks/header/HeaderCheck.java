@@ -28,8 +28,7 @@ import java.util.List;
  *
  * @author Lars Kühne
  */
-public class HeaderCheck extends AbstractHeaderCheck
-{
+public class HeaderCheck extends AbstractHeaderCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -53,8 +52,7 @@ public class HeaderCheck extends AbstractHeaderCheck
      * @param lineNo a line number
      * @return if <code>lineNo</code> is one of the ignored header lines.
      */
-    private boolean isIgnoreLine(int lineNo)
-    {
+    private boolean isIgnoreLine(int lineNo) {
         return Arrays.binarySearch(ignoreLines, lineNo) >= 0;
     }
 
@@ -64,8 +62,7 @@ public class HeaderCheck extends AbstractHeaderCheck
      * @param line the line contents
      * @return true if and only if the line matches the required header line
      */
-    protected boolean isMatch(int lineNumber, String line)
-    {
+    protected boolean isMatch(int lineNumber, String line) {
         // skip lines we are meant to ignore
         return isIgnoreLine(lineNumber + 1)
             || getHeaderLines().get(lineNumber).equals(line);
@@ -75,8 +72,7 @@ public class HeaderCheck extends AbstractHeaderCheck
      * Set the lines numbers to ignore in the header check.
      * @param list comma separated list of line numbers to ignore in header.
      */
-    public void setIgnoreLines(int... list)
-    {
+    public void setIgnoreLines(int... list) {
         if (list == null || list.length == 0) {
             ignoreLines = EMPTY_INT_ARRAY;
             return;
@@ -88,8 +84,7 @@ public class HeaderCheck extends AbstractHeaderCheck
     }
 
     @Override
-    protected void processFiltered(File file, List<String> lines)
-    {
+    protected void processFiltered(File file, List<String> lines) {
         if (getHeaderLines().size() > lines.size()) {
             log(1, MSG_MISSING);
         }

@@ -72,8 +72,7 @@ import javax.swing.border.Border;
  * @author  Robert Harder
  * @author  Lars K?hne
  */
-class FileDrop
-{
+class FileDrop {
 
     private transient Border normalBorder;
     private final transient DropTargetListener dropListener;
@@ -95,8 +94,7 @@ class FileDrop
     FileDrop(
             final Component c,
             final Listener listener)
-            throws TooManyListenersException
-    {
+            throws TooManyListenersException {
         this(   c, // Drop target
                 BorderFactory.createMatteBorder(2, 2, 2, 2, DEFAULT_BORDER_COLOR), // Drag border
                 true, // Recursive
@@ -122,27 +120,23 @@ class FileDrop
             final Border dragBorder,
             final boolean recursive,
             final Listener listener)
-            throws TooManyListenersException
-    {
+            throws TooManyListenersException {
         dropListener = new FileDropTargetListener(c, dragBorder, listener);
         makeDropTarget(c, recursive);
     }
 
 
     private void makeDropTarget(final Component c, boolean recursive)
-            throws TooManyListenersException
-    {
+            throws TooManyListenersException {
         // Make drop target
         final DropTarget dt = new DropTarget();
         dt.addDropTargetListener(dropListener);
 
         // Listen for hierarchy changes and remove the
         // drop target when the parent gets cleared out.
-        c.addHierarchyListener(new HierarchyListener()
-        {
+        c.addHierarchyListener(new HierarchyListener() {
             @Override
-            public void hierarchyChanged(HierarchyEvent evt)
-            {
+            public void hierarchyChanged(HierarchyEvent evt) {
                 final Component parent = c.getParent();
                 if (parent == null) {
                     c.setDropTarget(null);
@@ -168,8 +162,7 @@ class FileDrop
 
 
     /** Determine if the dragged data is a file list. */
-    private boolean isDragOk(final DropTargetDragEvent evt)
-    {
+    private boolean isDragOk(final DropTargetDragEvent evt) {
         boolean ok = false;
         final DataFlavor[] flavors = evt.getCurrentDataFlavors();
 
@@ -196,8 +189,7 @@ class FileDrop
      * @param c The component to unregister as a drop target
      * @since 1.0
      */
-    static void remove(Component c)
-    {
+    static void remove(Component c) {
         remove(c, true);
     }
 
@@ -211,8 +203,7 @@ class FileDrop
      * @param recursive Recursively unregister components within a container
      * @since 1.0
      */
-    static void remove(Component c, boolean recursive)
-    {
+    static void remove(Component c, boolean recursive) {
         c.setDropTarget(null);
         if (recursive && c instanceof Container) {
             final Component[] comps = ((Container) c).getComponents();
@@ -238,8 +229,7 @@ class FileDrop
      *
      * @since 1.0
      */
-    public interface Listener
-    {
+    public interface Listener {
         /**
          * This method is called when files have been successfully dropped.
          *
@@ -249,15 +239,13 @@ class FileDrop
         void filesDropped(File... files);
     }
 
-    private class FileDropTargetListener implements DropTargetListener
-    {
+    private class FileDropTargetListener implements DropTargetListener {
         private final Component component;
         private final Border dragBorder;
         private final Listener listener;
 
         @Override
-        public void dragEnter(DropTargetDragEvent evt)
-        {
+        public void dragEnter(DropTargetDragEvent evt) {
             if (isDragOk(evt)) {
                 if (component instanceof JComponent) {
                     final JComponent jc = (JComponent) component;
@@ -273,8 +261,7 @@ class FileDrop
 
         @Override
         @SuppressWarnings("unchecked")
-        public void drop(DropTargetDropEvent evt)
-        {
+        public void drop(DropTargetDropEvent evt) {
             try {
                 final Transferable tr = evt.getTransferable();
 
@@ -308,8 +295,7 @@ class FileDrop
         }
 
         @Override
-        public void dragExit(DropTargetEvent evt)
-        {
+        public void dragExit(DropTargetEvent evt) {
             if (component instanceof JComponent) {
                 final JComponent jc = (JComponent) component;
                 jc.setBorder(normalBorder);
@@ -317,8 +303,7 @@ class FileDrop
         }
 
         @Override
-        public void dropActionChanged(DropTargetDragEvent evt)
-        {
+        public void dropActionChanged(DropTargetDragEvent evt) {
             if (isDragOk(evt)) {
                 evt.acceptDrag(DnDConstants.ACTION_COPY);
             }
@@ -328,12 +313,10 @@ class FileDrop
         }
 
         @Override
-        public void dragOver(DropTargetDragEvent dtde)
-        {
+        public void dragOver(DropTargetDragEvent dtde) {
         }
 
-        public FileDropTargetListener(Component component, Border dragBorder, Listener listener)
-        {
+        public FileDropTargetListener(Component component, Border dragBorder, Listener listener) {
             this.component = component;
             this.dragBorder = dragBorder;
             this.listener = listener;

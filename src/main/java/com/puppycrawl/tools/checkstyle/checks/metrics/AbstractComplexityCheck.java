@@ -33,8 +33,7 @@ import java.util.Deque;
  * @author Oliver Burn
  */
 public abstract class AbstractComplexityCheck
-    extends Check
-{
+    extends Check {
     /** the initial current value */
     private static final BigInteger INITIAL_VALUE = BigInteger.ONE;
 
@@ -51,8 +50,7 @@ public abstract class AbstractComplexityCheck
      * Creates an instance.
      * @param max the threshold of when to report an error
      */
-    public AbstractComplexityCheck(int max)
-    {
+    public AbstractComplexityCheck(int max) {
         this.max = max;
     }
 
@@ -67,8 +65,7 @@ public abstract class AbstractComplexityCheck
      *
      * @param ast the token being visited
      */
-    protected void visitTokenHook(DetailAST ast)
-    {
+    protected void visitTokenHook(DetailAST ast) {
     }
 
     /**
@@ -77,13 +74,11 @@ public abstract class AbstractComplexityCheck
      *
      * @param ast the token being left
      */
-    protected void leaveTokenHook(DetailAST ast)
-    {
+    protected void leaveTokenHook(DetailAST ast) {
     }
 
     @Override
-    public final int[] getRequiredTokens()
-    {
+    public final int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
@@ -93,8 +88,7 @@ public abstract class AbstractComplexityCheck
     }
 
     /** @return the maximum threshold allowed */
-    public final int getMax()
-    {
+    public final int getMax() {
         return max;
     }
 
@@ -103,14 +97,12 @@ public abstract class AbstractComplexityCheck
      *
      * @param max the maximum threshold
      */
-    public final void setMax(int max)
-    {
+    public final void setMax(int max) {
         this.max = max;
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF:
             case TokenTypes.METHOD_DEF:
@@ -124,8 +116,7 @@ public abstract class AbstractComplexityCheck
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF:
             case TokenTypes.METHOD_DEF:
@@ -141,8 +132,7 @@ public abstract class AbstractComplexityCheck
     /**
      * @return the current value
      */
-    protected final BigInteger getCurrentValue()
-    {
+    protected final BigInteger getCurrentValue() {
         return currentValue;
     }
 
@@ -150,8 +140,7 @@ public abstract class AbstractComplexityCheck
      * Set the current value
      * @param value the new value
      */
-    protected final void setCurrentValue(BigInteger value)
-    {
+    protected final void setCurrentValue(BigInteger value) {
         currentValue = value;
     }
 
@@ -160,14 +149,12 @@ public abstract class AbstractComplexityCheck
      *
      * @param by the amount to increment by
      */
-    protected final void incrementCurrentValue(BigInteger by)
-    {
+    protected final void incrementCurrentValue(BigInteger by) {
         setCurrentValue(getCurrentValue().add(by));
     }
 
     /** Push the current value on the stack */
-    protected final void pushValue()
-    {
+    protected final void pushValue() {
         valueStack.push(currentValue);
         currentValue = INITIAL_VALUE;
     }
@@ -175,15 +162,13 @@ public abstract class AbstractComplexityCheck
     /**
      * @return pop a value off the stack and make it the current value
      */
-    protected final BigInteger popValue()
-    {
+    protected final BigInteger popValue() {
         currentValue = valueStack.pop();
         return currentValue;
     }
 
     /** Process the start of the method definition */
-    private void visitMethodDef()
-    {
+    private void visitMethodDef() {
         pushValue();
     }
 
@@ -192,8 +177,7 @@ public abstract class AbstractComplexityCheck
      *
      * @param ast the token representing the method definition
      */
-    private void leaveMethodDef(DetailAST ast)
-    {
+    private void leaveMethodDef(DetailAST ast) {
         final BigInteger bigIntegerMax = BigInteger.valueOf(max);
         if (currentValue.compareTo(bigIntegerMax) > 0) {
             log(ast, getMessageID(), currentValue, bigIntegerMax);

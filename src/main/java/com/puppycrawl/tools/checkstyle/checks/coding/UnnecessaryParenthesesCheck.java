@@ -51,8 +51,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Eric Roe
  */
-public class UnnecessaryParenthesesCheck extends Check
-{
+public class UnnecessaryParenthesesCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -132,8 +131,7 @@ public class UnnecessaryParenthesesCheck extends Check
     private int assignDepth;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.EXPR,
             TokenTypes.IDENT,
@@ -161,8 +159,7 @@ public class UnnecessaryParenthesesCheck extends Check
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.EXPR,
             TokenTypes.IDENT,
@@ -190,14 +187,12 @@ public class UnnecessaryParenthesesCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final int type = ast.getType();
         final DetailAST parent = ast.getParent();
 
         if (type == TokenTypes.ASSIGN
-            && parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
-        {
+            && parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             // shouldn't process assign in annotation pairs
             return;
         }
@@ -234,14 +229,12 @@ public class UnnecessaryParenthesesCheck extends Check
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         final int type = ast.getType();
         final DetailAST parent = ast.getParent();
 
         if (type == TokenTypes.ASSIGN
-            && parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
-        {
+            && parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             // shouldn't process assign in annotation pairs
             return;
         }
@@ -258,8 +251,7 @@ public class UnnecessaryParenthesesCheck extends Check
                     log(ast, MSG_ASSIGN);
                 }
                 else if (ast.getParent().getType()
-                    == TokenTypes.LITERAL_RETURN)
-                {
+                    == TokenTypes.LITERAL_RETURN) {
                     log(ast, MSG_RETURN);
                 }
                 else {
@@ -286,8 +278,7 @@ public class UnnecessaryParenthesesCheck extends Check
      * @return <code>true</code> if <code>ast</code> is surrounded by
      *         parentheses.
      */
-    private boolean isSurrounded(DetailAST ast)
-    {
+    private boolean isSurrounded(DetailAST ast) {
         final DetailAST prev = ast.getPreviousSibling();
         final DetailAST next = ast.getNextSibling();
 
@@ -304,8 +295,7 @@ public class UnnecessaryParenthesesCheck extends Check
      * @throws IllegalArgumentException if <code>ast.getType()</code> is not
      *         equal to <code>TokenTypes.EXPR</code>.
      */
-    private boolean exprSurrounded(DetailAST ast)
-    {
+    private boolean exprSurrounded(DetailAST ast) {
         if (ast.getType() != TokenTypes.EXPR) {
             throw new IllegalArgumentException("Not an expression node.");
         }
@@ -327,8 +317,7 @@ public class UnnecessaryParenthesesCheck extends Check
      * @return <code>true</code> if <code>type</code> was found in <code>
      *         tokens</code>.
      */
-    private boolean inTokenList(int type, int... tokens)
-    {
+    private boolean inTokenList(int type, int... tokens) {
         // NOTE: Given the small size of the two arrays searched, I'm not sure
         //       it's worth bothering with doing a binary search or using a
         //       HashMap to do the searches.
@@ -348,8 +337,7 @@ public class UnnecessaryParenthesesCheck extends Check
      * @return the chopped string if <code>string</code> is longer than
      *         <code>MAX_QUOTED_LENGTH</code>; otherwise <code>string</code>.
      */
-    private String chopString(String string)
-    {
+    private String chopString(String string) {
         if (string.length() > MAX_QUOTED_LENGTH) {
             return string.substring(0, MAX_QUOTED_LENGTH) + "...\"";
         }

@@ -63,8 +63,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Oliver Burn
  */
 public class ParameterNumberCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -91,8 +90,7 @@ public class ParameterNumberCheck
      * Sets the maximum number of allowed parameters.
      * @param max the max allowed parameters
      */
-    public void setMax(int max)
-    {
+    public void setMax(int max) {
         this.max = max;
     }
 
@@ -101,26 +99,22 @@ public class ParameterNumberCheck
      * &#064;{@link java.lang.Override} annotation.
      * @param ignoreOverriddenMethods set ignore overridden methods
      */
-    public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods)
-    {
+    public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods) {
         this.ignoreOverriddenMethods = ignoreOverriddenMethods;
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
         final int count = params.getChildCount(TokenTypes.PARAMETER_DEF);
         if (count > max && !ignoreNumberOfParameters(ast)) {
@@ -135,8 +129,7 @@ public class ParameterNumberCheck
      * @return true if this is overridden method and number of parameters should be ignored
      *         false otherwise
      */
-    private boolean ignoreNumberOfParameters(DetailAST ast)
-    {
+    private boolean ignoreNumberOfParameters(DetailAST ast) {
         //if you override a method, you have no power over the number of parameters
         return ignoreOverriddenMethods
                 && (AnnotationUtility.containsAnnotation(ast, OVERRIDE)

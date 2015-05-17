@@ -155,8 +155,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Oliver Burn
  * @author maxvetrenko
  */
-public class WhitespaceAroundCheck extends Check
-{
+public class WhitespaceAroundCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -182,8 +181,7 @@ public class WhitespaceAroundCheck extends Check
     private boolean ignoreEnhancedForColon = true;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.ASSIGN,
             TokenTypes.BAND,
@@ -239,8 +237,7 @@ public class WhitespaceAroundCheck extends Check
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.ASSIGN,
             TokenTypes.BAND,
@@ -300,8 +297,7 @@ public class WhitespaceAroundCheck extends Check
      * Sets whether or not empty method bodies are allowed.
      * @param allow <code>true</code> to allow empty method bodies.
      */
-    public void setAllowEmptyMethods(boolean allow)
-    {
+    public void setAllowEmptyMethods(boolean allow) {
         allowEmptyMethods = allow;
     }
 
@@ -309,8 +305,7 @@ public class WhitespaceAroundCheck extends Check
      * Sets whether or not empty constructor bodies are allowed.
      * @param allow <code>true</code> to allow empty constructor bodies.
      */
-    public void setAllowEmptyConstructors(boolean allow)
-    {
+    public void setAllowEmptyConstructors(boolean allow) {
         allowEmptyCtors = allow;
     }
 
@@ -319,8 +314,7 @@ public class WhitespaceAroundCheck extends Check
      * colon in an enhanced for loop.
      * @param ignore <code>true</code> to ignore enhanced for colon.
      */
-    public void setIgnoreEnhancedForColon(boolean ignore)
-    {
+    public void setIgnoreEnhancedForColon(boolean ignore) {
         ignoreEnhancedForColon = ignore;
     }
 
@@ -328,8 +322,7 @@ public class WhitespaceAroundCheck extends Check
      * Sets whether or not empty type bodies are allowed.
      * @param allow <code>true</code> to allow empty type bodies.
      */
-    public void setAllowEmptyTypes(boolean allow)
-    {
+    public void setAllowEmptyTypes(boolean allow) {
         allowEmptyTypes = allow;
     }
 
@@ -337,14 +330,12 @@ public class WhitespaceAroundCheck extends Check
      * Sets whether or not empty loop bodies are allowed.
      * @param allow <code>true</code> to allow empty loops bodies.
      */
-    public void setAllowEmptyLoops(boolean allow)
-    {
+    public void setAllowEmptyLoops(boolean allow) {
         allowEmptyLoops = allow;
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final int currentType = ast.getType();
         final int parentType = ast.getParent().getType();
 
@@ -352,35 +343,30 @@ public class WhitespaceAroundCheck extends Check
         if ((currentType == TokenTypes.RCURLY
                 || currentType == TokenTypes.LCURLY)
             && (parentType == TokenTypes.ARRAY_INIT
-                || parentType == TokenTypes.ANNOTATION_ARRAY_INIT))
-        {
+                || parentType == TokenTypes.ANNOTATION_ARRAY_INIT)) {
             return;
         }
 
         // Check for import pkg.name.*;
         if (currentType == TokenTypes.STAR
-            && parentType == TokenTypes.DOT)
-        {
+            && parentType == TokenTypes.DOT) {
             return;
         }
 
         // Check for an SLIST that has a parent CASE_GROUP. It is not a '{'.
         if (currentType == TokenTypes.SLIST
-            && parentType == TokenTypes.CASE_GROUP)
-        {
+            && parentType == TokenTypes.CASE_GROUP) {
             return;
         }
 
         if (currentType == TokenTypes.COLON) {
             //we do not want to check colon for cases and defaults
             if (parentType == TokenTypes.LITERAL_DEFAULT
-                || parentType == TokenTypes.LITERAL_CASE)
-            {
+                || parentType == TokenTypes.LITERAL_CASE) {
                 return;
             }
             else if (parentType == TokenTypes.FOR_EACH_CLAUSE
-                && this.ignoreEnhancedForColon)
-            {
+                && this.ignoreEnhancedForColon) {
                 return;
             }
         }
@@ -388,8 +374,7 @@ public class WhitespaceAroundCheck extends Check
         // Checks if empty methods, ctors or loops are allowed.
         if (isEmptyMethodBlock(ast, parentType)
                 || isEmptyCtorBlock(ast, parentType)
-                || isEmptyLoop(ast, parentType))
-        {
+                || isEmptyLoop(ast, parentType)) {
             return;
         }
 
@@ -421,8 +406,7 @@ public class WhitespaceAroundCheck extends Check
                 && (nextChar == ')'
                     || nextChar == ';'
                     || nextChar == ','
-                    || nextChar == '.')))
-        {
+                    || nextChar == '.'))) {
             log(ast.getLineNo(), ast.getColumnNo() + ast.getText().length(),
                     WS_NOT_FOLLOWED, ast.getText());
         }
@@ -436,8 +420,7 @@ public class WhitespaceAroundCheck extends Check
      * @return <code>true</code> if <code>ast</code> makes up part of an
      *         allowed empty method block.
      */
-    private boolean isEmptyMethodBlock(DetailAST ast, int parentType)
-    {
+    private boolean isEmptyMethodBlock(DetailAST ast, int parentType) {
         return allowEmptyMethods
             && isEmptyBlock(ast, parentType, TokenTypes.METHOD_DEF);
     }
@@ -450,8 +433,7 @@ public class WhitespaceAroundCheck extends Check
      * @return <code>true</code> if <code>ast</code> makes up part of an
      *         allowed empty constructor block.
      */
-    private boolean isEmptyCtorBlock(DetailAST ast, int parentType)
-    {
+    private boolean isEmptyCtorBlock(DetailAST ast, int parentType) {
         return allowEmptyCtors
             && isEmptyBlock(ast, parentType, TokenTypes.CTOR_DEF);
     }
@@ -463,8 +445,7 @@ public class WhitespaceAroundCheck extends Check
      * @return <code>true</code> if <code>ast</code> makes up part of an
      *         allowed empty loop block.
      */
-    private boolean isEmptyLoop(DetailAST ast, int parentType)
-    {
+    private boolean isEmptyLoop(DetailAST ast, int parentType) {
         return allowEmptyLoops
             && (isEmptyBlock(ast, parentType, TokenTypes.LITERAL_FOR)
                     || isEmptyBlock(ast,
@@ -486,20 +467,17 @@ public class WhitespaceAroundCheck extends Check
      *         empty block contained under a <code>match</code> token type
      *         node.
      */
-    private boolean isEmptyType(DetailAST ast, int parentType)
-    {
+    private boolean isEmptyType(DetailAST ast, int parentType) {
         final int type = ast.getType();
         if ((type == TokenTypes.RCURLY || type == TokenTypes.LCURLY)
-                && parentType == TokenTypes.OBJBLOCK)
-        {
+                && parentType == TokenTypes.OBJBLOCK) {
             final DetailAST typeNode = ast.getParent().getParent();
             final int matchType = typeNode.getType();
             if (matchType == TokenTypes.CLASS_DEF
                     || matchType == TokenTypes.INTERFACE_DEF
                     || matchType == TokenTypes.ENUM_DEF
                     || matchType == TokenTypes.LITERAL_NEW
-                    || matchType == TokenTypes.ANNOTATION_DEF)
-            {
+                    || matchType == TokenTypes.ANNOTATION_DEF) {
                 return true;
             }
         }
@@ -521,8 +499,7 @@ public class WhitespaceAroundCheck extends Check
      *         empty block contained under a <code>match</code> token type
      *         node.
      */
-    private boolean isEmptyBlock(DetailAST ast, int parentType, int match)
-    {
+    private boolean isEmptyBlock(DetailAST ast, int parentType, int match) {
         final int type = ast.getType();
         if (type == TokenTypes.RCURLY) {
             final DetailAST grandParent = ast.getParent().getParent();

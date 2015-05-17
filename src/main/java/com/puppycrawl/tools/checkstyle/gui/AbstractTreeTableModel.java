@@ -72,13 +72,11 @@ import javax.swing.tree.TreePath;
  *
  * @author Philip Milne
  */
-public abstract class AbstractTreeTableModel implements TreeTableModel
-{
+public abstract class AbstractTreeTableModel implements TreeTableModel {
     private final Object root;
     private final EventListenerList listenerList = new EventListenerList();
 
-    public AbstractTreeTableModel(Object root)
-    {
+    public AbstractTreeTableModel(Object root) {
         this.root = root;
     }
 
@@ -87,26 +85,22 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
     //
 
     @Override
-    public Object getRoot()
-    {
+    public Object getRoot() {
         return root;
     }
 
     @Override
-    public boolean isLeaf(Object node)
-    {
+    public boolean isLeaf(Object node) {
         return getChildCount(node) == 0;
     }
 
     @Override
-    public void valueForPathChanged(TreePath path, Object newValue)
-    {
+    public void valueForPathChanged(TreePath path, Object newValue) {
     }
 
     // This is not called in the JTree's default mode: use a naive implementation.
     @Override
-    public int getIndexOfChild(Object parent, Object child)
-    {
+    public int getIndexOfChild(Object parent, Object child) {
         for (int i = 0; i < getChildCount(parent); i++) {
             if (getChild(parent, i).equals(child)) {
                 return i;
@@ -116,14 +110,12 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
     }
 
     @Override
-    public void addTreeModelListener(TreeModelListener l)
-    {
+    public void addTreeModelListener(TreeModelListener l) {
         listenerList.add(TreeModelListener.class, l);
     }
 
     @Override
-    public void removeTreeModelListener(TreeModelListener l)
-    {
+    public void removeTreeModelListener(TreeModelListener l) {
         listenerList.remove(TreeModelListener.class, l);
     }
 
@@ -136,8 +128,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
      */
     protected void fireTreeNodesChanged(Object source, Object[] path,
             int[] childIndices,
-            Object... children)
-    {
+            Object... children) {
         // Guaranteed to return a non-null array
         final Object[] listeners = listenerList.getListenerList();
         TreeModelEvent e = null;
@@ -164,8 +155,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
      */
     protected void fireTreeNodesInserted(Object source, Object[] path,
             int[] childIndices,
-            Object... children)
-    {
+            Object... children) {
         // Guaranteed to return a non-null array
         final Object[] listeners = listenerList.getListenerList();
         TreeModelEvent e = null;
@@ -192,8 +182,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
      */
     protected void fireTreeNodesRemoved(Object source, Object[] path,
             int[] childIndices,
-            Object... children)
-    {
+            Object... children) {
         // Guaranteed to return a non-null array
         final Object[] listeners = listenerList.getListenerList();
         TreeModelEvent e = null;
@@ -220,8 +209,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
      */
     protected void fireTreeStructureChanged(Object source, Object[] path,
             int[] childIndices,
-            Object... children)
-    {
+            Object... children) {
         // Guaranteed to return a non-null array
         final Object[] listeners = listenerList.getListenerList();
         TreeModelEvent e = null;
@@ -244,8 +232,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
     //
 
     @Override
-    public Class<?> getColumnClass(int column)
-    {
+    public Class<?> getColumnClass(int column) {
         return Object.class;
     }
 
@@ -254,14 +241,12 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
      *  and keyboard events in the Tree column to the underlying JTree.
      */
     @Override
-    public boolean isCellEditable(Object node, int column)
-    {
+    public boolean isCellEditable(Object node, int column) {
         return getColumnClass(column) == TreeTableModel.class;
     }
 
     @Override
-    public void setValueAt(Object value, Object node, int column)
-    {
+    public void setValueAt(Object value, Object node, int column) {
     }
 
 

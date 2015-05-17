@@ -26,11 +26,9 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck.MSG_KEY;
 
-public class NPathComplexityCheckTest extends BaseCheckTestSupport
-{
+public class NPathComplexityCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testCalculation() throws Exception
-    {
+    public void testCalculation() throws Exception {
         DefaultConfiguration checkConfig =
             createCheckConfig(NPathComplexityCheck.class);
 
@@ -52,8 +50,7 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIntegerOverflow() throws Exception
-    {
+    public void testIntegerOverflow() throws Exception {
         DefaultConfiguration checkConfig =
             createCheckConfig(NPathComplexityCheck.class);
 

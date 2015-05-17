@@ -63,8 +63,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Travis Schneeberger
  */
 public class AvoidStarImportCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -82,14 +81,12 @@ public class AvoidStarImportCheck
     private boolean allowStaticMemberImports;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
@@ -99,8 +96,7 @@ public class AvoidStarImportCheck
      * @param excludesParam a list of package names/fully-qualifies class names
      * where star imports are ok
      */
-    public void setExcludes(String... excludesParam)
-    {
+    public void setExcludes(String... excludesParam) {
         excludes.clear();
         for (final String exclude : excludesParam) {
             excludes.add(exclude.endsWith(".*") ? exclude : exclude + ".*");
@@ -111,8 +107,7 @@ public class AvoidStarImportCheck
      * Sets whether or not to allow all non-static class imports.
      * @param allow true to allow false to disallow
      */
-    public void setAllowClassImports(boolean allow)
-    {
+    public void setAllowClassImports(boolean allow) {
         allowClassImports = allow;
     }
 
@@ -120,21 +115,18 @@ public class AvoidStarImportCheck
      * Sets whether or not to allow all static member imports.
      * @param allow true to allow false to disallow
      */
-    public void setAllowStaticMemberImports(boolean allow)
-    {
+    public void setAllowStaticMemberImports(boolean allow) {
         allowStaticMemberImports = allow;
     }
 
     @Override
-    public void visitToken(final DetailAST ast)
-    {
+    public void visitToken(final DetailAST ast) {
         if (!allowClassImports && TokenTypes.IMPORT == ast.getType()) {
             final DetailAST startingDot = ast.getFirstChild();
             logsStarredImportViolation(startingDot);
         }
         else if (!allowStaticMemberImports
-            && TokenTypes.STATIC_IMPORT == ast.getType())
-        {
+            && TokenTypes.STATIC_IMPORT == ast.getType()) {
             // must navigate past the static keyword
             final DetailAST startingDot = ast.getFirstChild().getNextSibling();
             logsStarredImportViolation(startingDot);
@@ -146,8 +138,7 @@ public class AvoidStarImportCheck
      * it's not excluded then a violation is logged.
      * @param startingDot the starting dot for the import statement
      */
-    private void logsStarredImportViolation(DetailAST startingDot)
-    {
+    private void logsStarredImportViolation(DetailAST startingDot) {
         final FullIdent name = FullIdent.createFullIdent(startingDot);
         if (isStaredImport(name) && !excludes.contains(name.getText())) {
             log(startingDot.getLineNo(), MSG_KEY, name.getText());
@@ -159,8 +150,7 @@ public class AvoidStarImportCheck
      * @param importIdent the full import identifier
      * @return true if a start import false if not
      */
-    private boolean isStaredImport(FullIdent importIdent)
-    {
+    private boolean isStaredImport(FullIdent importIdent) {
         return null != importIdent && importIdent.getText().endsWith(".*");
     }
 }

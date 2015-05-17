@@ -37,8 +37,7 @@ import java.util.Deque;
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
-public final class ReturnCountCheck extends AbstractFormatCheck
-{
+public final class ReturnCountCheck extends AbstractFormatCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -57,15 +56,13 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     private Context context;
 
     /** Creates new instance of the checks. */
-    public ReturnCountCheck()
-    {
+    public ReturnCountCheck() {
         super("^equals$");
         setMax(DEFAULT_MAX);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
@@ -75,16 +72,14 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return new int[]{
             TokenTypes.LITERAL_RETURN,
         };
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
@@ -97,8 +92,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
      * Getter for max property.
      * @return maximum allowed number of return statements.
      */
-    public int getMax()
-    {
+    public int getMax() {
         return max;
     }
 
@@ -106,21 +100,18 @@ public final class ReturnCountCheck extends AbstractFormatCheck
      * Setter for max property.
      * @param max maximum allowed number of return statements.
      */
-    public void setMax(int max)
-    {
+    public void setMax(int max) {
         this.max = max;
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         context = new Context(false);
         contextStack.clear();
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF:
             case TokenTypes.METHOD_DEF:
@@ -138,8 +129,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF:
             case TokenTypes.METHOD_DEF:
@@ -158,8 +148,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
      * Creates new method context and places old one on the stack.
      * @param ast method definition for check.
      */
-    private void visitMethodDef(DetailAST ast)
-    {
+    private void visitMethodDef(DetailAST ast) {
         contextStack.push(context);
         final DetailAST methodNameAST = ast.findFirstToken(TokenTypes.IDENT);
         context =
@@ -170,8 +159,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
      * Checks number of return statements and restore previous context.
      * @param ast node to leave.
      */
-    private void leave(DetailAST ast)
-    {
+    private void leave(DetailAST ast) {
         context.checkCount(ast);
         context = contextStack.pop();
     }
@@ -179,8 +167,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     /**
      * Creates new lambda context and places old one on the stack.
      */
-    private void visitLambda()
-    {
+    private void visitLambda() {
         contextStack.push(context);
         context = new Context(true);
     }
@@ -189,8 +176,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
      * Class to encapsulate information about one method.
      * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
      */
-    private class Context
-    {
+    private class Context {
         /** Whether we should check this method or not. */
         private final boolean checking;
         /** Counter for return statements. */
@@ -200,15 +186,13 @@ public final class ReturnCountCheck extends AbstractFormatCheck
          * Creates new method context.
          * @param checking should we check this method or not.
          */
-        public Context(boolean checking)
-        {
+        public Context(boolean checking) {
             this.checking = checking;
             count = 0;
         }
 
         /** Increase number of return statements. */
-        public void visitLiteralReturn()
-        {
+        public void visitLiteralReturn() {
             ++count;
         }
 
@@ -217,8 +201,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
          * than allowed.
          * @param ast method def associated with this context.
          */
-        public void checkCount(DetailAST ast)
-        {
+        public void checkCount(DetailAST ast) {
             if (checking && count > getMax()) {
                 log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY,
                     count, getMax());

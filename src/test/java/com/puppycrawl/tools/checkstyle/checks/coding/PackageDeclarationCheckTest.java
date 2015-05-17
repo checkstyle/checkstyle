@@ -26,11 +26,9 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck.MSG_KEY;
 
-public class PackageDeclarationCheckTest extends BaseCheckTestSupport
-{
+public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
 
         String[] expected = {

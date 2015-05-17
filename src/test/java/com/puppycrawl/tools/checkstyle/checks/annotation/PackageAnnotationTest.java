@@ -24,16 +24,14 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
-public class PackageAnnotationTest extends BaseCheckTestSupport
-{
+public class PackageAnnotationTest extends BaseCheckTestSupport {
     /**
      * This tests a package annotation that is in the package-info.java file.
      *
      * @throws Exception
      */
     @Test
-    public void testGoodPackageAnnotation() throws Exception
-    {
+    public void testGoodPackageAnnotation() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
 
         final String[] expected = {

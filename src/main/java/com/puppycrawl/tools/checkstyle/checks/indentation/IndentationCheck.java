@@ -78,8 +78,7 @@ import java.util.Deque;
  * @author Maikel Steneker
  * @author maxvetrenko
  */
-public class IndentationCheck extends Check
-{
+public class IndentationCheck extends Check {
     /** Default indentation amount - based on Sun */
     private static final int DEFAULT_INDENTATION = 4;
 
@@ -118,8 +117,7 @@ public class IndentationCheck extends Check
      * Get forcing strict condition.
      * @return forceStrictCondition value.
      */
-    public boolean isForceStrictCondition()
-    {
+    public boolean isForceStrictCondition() {
         return forceStrictCondition;
     }
 
@@ -127,8 +125,7 @@ public class IndentationCheck extends Check
      * Set forcing strict condition.
      * @param value user's value of forceStrictCondition.
      */
-    public void setForceStrictCondition(boolean value)
-    {
+    public void setForceStrictCondition(boolean value) {
         forceStrictCondition = value;
     }
 
@@ -137,8 +134,7 @@ public class IndentationCheck extends Check
      *
      * @param basicOffset   the number of tabs or spaces to indent
      */
-    public void setBasicOffset(int basicOffset)
-    {
+    public void setBasicOffset(int basicOffset) {
         this.basicOffset = basicOffset;
     }
 
@@ -147,8 +143,7 @@ public class IndentationCheck extends Check
      *
      * @return the number of tabs or spaces to indent
      */
-    public int getBasicOffset()
-    {
+    public int getBasicOffset() {
         return basicOffset;
     }
 
@@ -157,8 +152,7 @@ public class IndentationCheck extends Check
      *
      * @param adjustmentAmount   the brace offset
      */
-    public void setBraceAdjustment(int adjustmentAmount)
-    {
+    public void setBraceAdjustment(int adjustmentAmount) {
         braceAdjustment = adjustmentAmount;
     }
 
@@ -167,8 +161,7 @@ public class IndentationCheck extends Check
      *
      * @return the positive offset to adjust braces
      */
-    public int getBraceAdjustement()
-    {
+    public int getBraceAdjustement() {
         return braceAdjustment;
     }
 
@@ -177,8 +170,7 @@ public class IndentationCheck extends Check
      *
      * @param amount   the case indentation level
      */
-    public void setCaseIndent(int amount)
-    {
+    public void setCaseIndent(int amount) {
         caseIndentationAmount = amount;
     }
 
@@ -187,8 +179,7 @@ public class IndentationCheck extends Check
      *
      * @return the case indentation level
      */
-    public int getCaseIndent()
-    {
+    public int getCaseIndent() {
         return caseIndentationAmount;
     }
 
@@ -197,8 +188,7 @@ public class IndentationCheck extends Check
      *
      * @param throwsIndent the throws indentation level
      */
-    public void setThrowsIndent(int throwsIndent)
-    {
+    public void setThrowsIndent(int throwsIndent) {
         throwsIndentationAmount = throwsIndent;
     }
 
@@ -207,8 +197,7 @@ public class IndentationCheck extends Check
      *
      * @return the throws indentation level
      */
-    public int getThrowsIndent()
-    {
+    public int getThrowsIndent() {
         return this.throwsIndentationAmount;
     }
 
@@ -217,8 +206,7 @@ public class IndentationCheck extends Check
      *
      * @param arrayInitIndent the array initialisation indentation level
      */
-    public void setArrayInitIndent(int arrayInitIndent)
-    {
+    public void setArrayInitIndent(int arrayInitIndent) {
         arrayInitIndentationAmount = arrayInitIndent;
     }
 
@@ -227,8 +215,7 @@ public class IndentationCheck extends Check
      *
      * @return the initialisation indentation level
      */
-    public int getArrayInitIndent()
-    {
+    public int getArrayInitIndent() {
         return this.arrayInitIndentationAmount;
     }
 
@@ -237,8 +224,7 @@ public class IndentationCheck extends Check
      *
      * @return the line-wrapping indentation level
      */
-    public int getLineWrappingIndentation()
-    {
+    public int getLineWrappingIndentation() {
         return lineWrappingIndentation;
     }
 
@@ -248,8 +234,7 @@ public class IndentationCheck extends Check
      *
      * @param lineWrappingIndentation the line-wrapping indentation level
      */
-    public void setLineWrappingIndentation(int lineWrappingIndentation)
-    {
+    public void setLineWrappingIndentation(int lineWrappingIndentation) {
         this.lineWrappingIndentation = lineWrappingIndentation;
     }
 
@@ -262,8 +247,7 @@ public class IndentationCheck extends Check
      *
      * @see java.text.MessageFormat
      */
-    public void indentationLog(int line, String key, Object... args)
-    {
+    public void indentationLog(int line, String key, Object... args) {
         super.log(line, key, args);
     }
 
@@ -272,28 +256,24 @@ public class IndentationCheck extends Check
      *
      * @return the width of a tab
      */
-    public int getIndentationTabWidth()
-    {
+    public int getIndentationTabWidth() {
         return getTabWidth();
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return handlerFactory.getHandledTypes();
     }
 
     @Override
-    public void beginTree(DetailAST ast)
-    {
+    public void beginTree(DetailAST ast) {
         handlerFactory.clearCreatedHandlers();
         handlers.clear();
         handlers.push(new PrimordialHandler(this));
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final ExpressionHandler handler = handlerFactory.getHandler(this, ast,
             handlers.peek());
         handlers.push(handler);
@@ -301,8 +281,7 @@ public class IndentationCheck extends Check
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         handlers.pop();
     }
 
@@ -311,8 +290,7 @@ public class IndentationCheck extends Check
      *
      * @return the handler factory
      */
-    final HandlerFactory getHandlerFactory()
-    {
+    final HandlerFactory getHandlerFactory() {
         return handlerFactory;
     }
 }

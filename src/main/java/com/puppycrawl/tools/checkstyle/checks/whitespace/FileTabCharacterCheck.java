@@ -27,8 +27,7 @@ import java.util.List;
  * Checks to see if a file contains a tab character.
  * @author oliverb
  */
-public class FileTabCharacterCheck extends AbstractFileSetCheck
-{
+public class FileTabCharacterCheck extends AbstractFileSetCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -46,8 +45,7 @@ public class FileTabCharacterCheck extends AbstractFileSetCheck
     private boolean eachLine;
 
     @Override
-    protected void processFiltered(File file, List<String> lines)
-    {
+    protected void processFiltered(File file, List<String> lines) {
         int lineNum = 0;
         for (final String line : lines) {
             lineNum++;
@@ -68,8 +66,7 @@ public class FileTabCharacterCheck extends AbstractFileSetCheck
      * Whether report on each line containing a tab.
      * @param eachLine Whether report on each line containing a tab.
      */
-    public void setEachLine(boolean eachLine)
-    {
+    public void setEachLine(boolean eachLine) {
         this.eachLine = eachLine;
     }
 }

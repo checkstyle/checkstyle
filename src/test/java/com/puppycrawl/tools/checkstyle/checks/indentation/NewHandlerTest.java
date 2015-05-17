@@ -29,11 +29,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 /**
  * @author Ilja Dubinin
  */
-public class NewHandlerTest extends BaseCheckTestSupport
-{
+public class NewHandlerTest extends BaseCheckTestSupport {
     @Test
-    public void testInvalidLabel() throws Exception
-    {
+    public void testInvalidLabel() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         final String[] expected = {
 

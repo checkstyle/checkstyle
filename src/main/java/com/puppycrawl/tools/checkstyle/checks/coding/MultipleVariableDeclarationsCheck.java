@@ -43,8 +43,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * </pre>
  * @author o_sukhodolsky
  */
-public class MultipleVariableDeclarationsCheck extends Check
-{
+public class MultipleVariableDeclarationsCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -59,20 +58,17 @@ public class MultipleVariableDeclarationsCheck extends Check
     public static final String MSG_MULTIPLE_COMMA = "multiple.variable.declarations.comma";
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         DetailAST nextNode = ast.getNextSibling();
 
         if (nextNode == null) {
@@ -83,14 +79,12 @@ public class MultipleVariableDeclarationsCheck extends Check
         final boolean isCommaSeparated = nextNode.getType() == TokenTypes.COMMA;
 
         if (nextNode.getType() == TokenTypes.COMMA
-            || nextNode.getType() == TokenTypes.SEMI)
-        {
+            || nextNode.getType() == TokenTypes.SEMI) {
             nextNode = nextNode.getNextSibling();
         }
 
         if (nextNode != null
-            && nextNode.getType() == TokenTypes.VARIABLE_DEF)
-        {
+            && nextNode.getType() == TokenTypes.VARIABLE_DEF) {
             final DetailAST firstNode = CheckUtils.getFirstNode(ast);
             if (isCommaSeparated) {
                 // Check if the multiple variable declarations are in a
@@ -120,16 +114,14 @@ public class MultipleVariableDeclarationsCheck extends Check
      * @param node the root of tree for search.
      * @return sub-node with maximum (line, column) pair.
      */
-    private static DetailAST getLastNode(final DetailAST node)
-    {
+    private static DetailAST getLastNode(final DetailAST node) {
         DetailAST currentNode = node;
         DetailAST child = node.getFirstChild();
         while (child != null) {
             final DetailAST newNode = getLastNode(child);
             if (newNode.getLineNo() > currentNode.getLineNo()
                 || newNode.getLineNo() == currentNode.getLineNo()
-                    && newNode.getColumnNo() > currentNode.getColumnNo())
-            {
+                    && newNode.getColumnNo() > currentNode.getColumnNo()) {
                 currentNode = newNode;
             }
             child = child.getNextSibling();

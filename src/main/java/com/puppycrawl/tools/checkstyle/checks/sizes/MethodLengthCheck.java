@@ -54,8 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * @author Lars Kühne
  */
-public class MethodLengthCheck extends Check
-{
+public class MethodLengthCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -73,20 +72,17 @@ public class MethodLengthCheck extends Check
     private int max = DEFAULT_MAX_LINES;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final DetailAST openingBrace = ast.findFirstToken(TokenTypes.SLIST);
         if (openingBrace != null) {
             final DetailAST closingBrace =
@@ -113,8 +109,7 @@ public class MethodLengthCheck extends Check
     /**
      * @param length the maximum length of a method.
      */
-    public void setMax(int length)
-    {
+    public void setMax(int length) {
         max = length;
     }
 
@@ -122,8 +117,7 @@ public class MethodLengthCheck extends Check
      * @param countEmpty whether to count empty and single line comments
      * of the form //.
      */
-    public void setCountEmpty(boolean countEmpty)
-    {
+    public void setCountEmpty(boolean countEmpty) {
         this.countEmpty = countEmpty;
     }
 }

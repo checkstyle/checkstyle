@@ -37,8 +37,7 @@ import java.util.Deque;
  *
  * @author Lars Ködderitzsch
  */
-public class JavaNCSSCheck extends Check
-{
+public class JavaNCSSCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -80,8 +79,7 @@ public class JavaNCSSCheck extends Check
     private Deque<Counter> counters;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[]{
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
@@ -115,8 +113,7 @@ public class JavaNCSSCheck extends Check
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return new int[]{
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
@@ -150,8 +147,7 @@ public class JavaNCSSCheck extends Check
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[]{
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
@@ -185,8 +181,7 @@ public class JavaNCSSCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         counters = new ArrayDeque<>();
 
         //add a counter for the file
@@ -194,16 +189,14 @@ public class JavaNCSSCheck extends Check
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final int tokenType = ast.getType();
 
         if (TokenTypes.CLASS_DEF == tokenType
             || TokenTypes.METHOD_DEF == tokenType
             || TokenTypes.CTOR_DEF == tokenType
             || TokenTypes.STATIC_INIT == tokenType
-            || TokenTypes.INSTANCE_INIT == tokenType)
-        {
+            || TokenTypes.INSTANCE_INIT == tokenType) {
             //add a counter for this class/method
             counters.push(new Counter());
         }
@@ -218,14 +211,12 @@ public class JavaNCSSCheck extends Check
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         final int tokenType = ast.getType();
         if (TokenTypes.METHOD_DEF == tokenType
             || TokenTypes.CTOR_DEF == tokenType
             || TokenTypes.STATIC_INIT == tokenType
-            || TokenTypes.INSTANCE_INIT == tokenType)
-        {
+            || TokenTypes.INSTANCE_INIT == tokenType) {
             //pop counter from the stack
             final Counter counter = counters.pop();
 
@@ -248,8 +239,7 @@ public class JavaNCSSCheck extends Check
     }
 
     @Override
-    public void finishTree(DetailAST rootAST)
-    {
+    public void finishTree(DetailAST rootAST) {
         //pop counter from the stack
         final Counter counter = counters.pop();
 
@@ -266,8 +256,7 @@ public class JavaNCSSCheck extends Check
      * @param fileMax
      *            the maximum ncss
      */
-    public void setFileMaximum(int fileMax)
-    {
+    public void setFileMaximum(int fileMax) {
         this.fileMax = fileMax;
     }
 
@@ -277,8 +266,7 @@ public class JavaNCSSCheck extends Check
      * @param classMax
      *            the maximum ncss
      */
-    public void setClassMaximum(int classMax)
-    {
+    public void setClassMaximum(int classMax) {
         this.classMax = classMax;
     }
 
@@ -288,8 +276,7 @@ public class JavaNCSSCheck extends Check
      * @param methodMax
      *            the maximum ncss
      */
-    public void setMethodMaximum(int methodMax)
-    {
+    public void setMethodMaximum(int methodMax) {
         this.methodMax = methodMax;
     }
 
@@ -300,8 +287,7 @@ public class JavaNCSSCheck extends Check
      *            the AST
      * @return true if the token is countable
      */
-    private boolean isCountable(DetailAST ast)
-    {
+    private boolean isCountable(DetailAST ast) {
         boolean countable = true;
 
         final int tokenType = ast.getType();
@@ -323,8 +309,7 @@ public class JavaNCSSCheck extends Check
      * @param ast the AST
      * @return true if the variable definition is countable, false otherwise
      */
-    private boolean isVariableDefCountable(DetailAST ast)
-    {
+    private boolean isVariableDefCountable(DetailAST ast) {
         boolean countable = false;
 
         //count variable defs only if they are direct child to a slist or
@@ -332,8 +317,7 @@ public class JavaNCSSCheck extends Check
         final int parentType = ast.getParent().getType();
 
         if (TokenTypes.SLIST == parentType
-            || TokenTypes.OBJBLOCK == parentType)
-        {
+            || TokenTypes.OBJBLOCK == parentType) {
             final DetailAST prevSibling = ast.getPreviousSibling();
 
             //is countable if no previous sibling is found or
@@ -353,8 +337,7 @@ public class JavaNCSSCheck extends Check
      * @param ast the AST
      * @return true if the expression is countable, false otherwise
      */
-    private boolean isExpressionCountable(DetailAST ast)
-    {
+    private boolean isExpressionCountable(DetailAST ast) {
         boolean countable = true;
 
         //count expressions only if they are direct child to a slist (method
@@ -386,16 +369,14 @@ public class JavaNCSSCheck extends Check
      *
      * Class representing a counter,
      */
-    private static class Counter
-    {
+    private static class Counter {
         /** the counters internal integer */
         private int ivCount;
 
         /**
          * Increments the counter.
          */
-        public void increment()
-        {
+        public void increment() {
             ivCount++;
         }
 
@@ -404,8 +385,7 @@ public class JavaNCSSCheck extends Check
          *
          * @return the counter
          */
-        public int getCount()
-        {
+        public int getCount() {
             return ivCount;
         }
     }

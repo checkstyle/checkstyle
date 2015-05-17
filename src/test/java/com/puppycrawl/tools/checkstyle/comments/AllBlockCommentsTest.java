@@ -33,35 +33,29 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class AllBlockCommentsTest extends BaseCheckTestSupport
-{
+public class AllBlockCommentsTest extends BaseCheckTestSupport {
     protected static final Set<String> allComments = Sets.newLinkedHashSet();
 
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
-    public static class BlockCommentListenerCheck extends Check
-    {
+    public static class BlockCommentListenerCheck extends Check {
         @Override
-        public boolean isCommentNodesRequired()
-        {
+        public boolean isCommentNodesRequired() {
             return true;
         }
 
         @Override
-        public int[] getDefaultTokens()
-        {
+        public int[] getDefaultTokens() {
             return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN};
         }
 
         @Override
-        public int[] getAcceptableTokens()
-        {
+        public int[] getAcceptableTokens() {
             return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN};
         }
 
         @Override
-        public void init()
-        {
+        public void init() {
             allComments.addAll(Arrays.asList("0", "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10", "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
@@ -74,8 +68,7 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport
         }
 
         @Override
-        public void visitToken(DetailAST aAST)
-        {
+        public void visitToken(DetailAST aAST) {
             String commentContent = aAST.getFirstChild().getText();
             if (!allComments.remove(commentContent)) {
                 Assert.fail("Unexpected comment: " + commentContent);
@@ -85,8 +78,7 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testAllBlockComments() throws Exception
-    {
+    public void testAllBlockComments() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(BlockCommentListenerCheck.class);
         final String[] expected = {};
         verify(checkConfig, getPath("comments" + File.separator

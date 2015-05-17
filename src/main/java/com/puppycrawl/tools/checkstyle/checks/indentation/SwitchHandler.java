@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author jrichard
  */
-public class SwitchHandler extends BlockParentHandler
-{
+public class SwitchHandler extends BlockParentHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -38,26 +37,22 @@ public class SwitchHandler extends BlockParentHandler
      * @param parent        the parent handler
      */
     public SwitchHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent)
-    {
+        DetailAST ast, ExpressionHandler parent) {
         super(indentCheck, "switch", ast, parent);
     }
 
     @Override
-    protected DetailAST getLCurly()
-    {
+    protected DetailAST getLCurly() {
         return getMainAst().findFirstToken(TokenTypes.LCURLY);
     }
 
     @Override
-    protected DetailAST getRCurly()
-    {
+    protected DetailAST getRCurly() {
         return getMainAst().findFirstToken(TokenTypes.RCURLY);
     }
 
     @Override
-    protected DetailAST getListChild()
-    {
+    protected DetailAST getListChild() {
         // all children should be taken care of by case handler (plus
         // there is no parent of just the cases, if checking is needed
         // here in the future, an additional way beyond checkChildren()
@@ -66,16 +61,14 @@ public class SwitchHandler extends BlockParentHandler
     }
 
     @Override
-    protected DetailAST getNonlistChild()
-    {
+    protected DetailAST getNonlistChild() {
         return null;
     }
 
     /**
      * Check the indentation of the switch expression.
      */
-    private void checkSwitchExpr()
-    {
+    private void checkSwitchExpr() {
         checkExpressionSubtree(
             getMainAst().findFirstToken(TokenTypes.LPAREN).getNextSibling(),
             getLevel(),
@@ -84,8 +77,7 @@ public class SwitchHandler extends BlockParentHandler
     }
 
     @Override
-    public void checkIndentation()
-    {
+    public void checkIndentation() {
         checkSwitchExpr();
         super.checkIndentation();
     }

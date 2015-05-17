@@ -26,8 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Restricts nested try-catch-finally blocks to a specified depth (default = 1).
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
-public final class NestedTryDepthCheck extends AbstractNestedDepthCheck
-{
+public final class NestedTryDepthCheck extends AbstractNestedDepthCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -39,26 +38,22 @@ public final class NestedTryDepthCheck extends AbstractNestedDepthCheck
     private static final int DEFAULT_MAX = 1;
 
     /** Creates new check instance with default allowed nesting depth. */
-    public NestedTryDepthCheck()
-    {
+    public NestedTryDepthCheck() {
         super(DEFAULT_MAX);
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.LITERAL_TRY};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.LITERAL_TRY};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.LITERAL_TRY) {
             visitLiteralTry(ast);
         }
@@ -68,8 +63,7 @@ public final class NestedTryDepthCheck extends AbstractNestedDepthCheck
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.LITERAL_TRY) {
             leaveLiteralTry();
         }
@@ -82,14 +76,12 @@ public final class NestedTryDepthCheck extends AbstractNestedDepthCheck
      * Increases current nesting depth.
      * @param literalTry node for try.
      */
-    private void visitLiteralTry(DetailAST literalTry)
-    {
+    private void visitLiteralTry(DetailAST literalTry) {
         nestIn(literalTry, MSG_KEY);
     }
 
     /** Decreases current nesting depth */
-    private void leaveLiteralTry()
-    {
+    private void leaveLiteralTry() {
         nestOut();
     }
 }

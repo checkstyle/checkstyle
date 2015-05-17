@@ -164,8 +164,7 @@ import java.util.Set;
  * @author Tim Tyler &lt;tim@tt1.org&gt;
  * @author Rick Giles
  */
-public class DescendantTokenCheck extends Check
-{
+public class DescendantTokenCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -215,14 +214,12 @@ public class DescendantTokenCheck extends Check
     private int[] counts = new int[0];
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[0];
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         //reset counts
         Arrays.fill(counts, 0);
         countTokens(ast, 0);
@@ -285,8 +282,7 @@ public class DescendantTokenCheck extends Check
      * @param ast the root token for descendants.
      * @param depth the maximum depth of the counted descendants.
      */
-    private void countTokens(AST ast, int depth)
-    {
+    private void countTokens(AST ast, int depth) {
         if (depth <= maximumDepth) {
             //update count
             if (depth >= minimumDepth) {
@@ -305,8 +301,7 @@ public class DescendantTokenCheck extends Check
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         // Any tokens set by property 'tokens' are acceptable
         final Set<String> tokenNames = getTokenNames();
         final int[] result = new int[tokenNames.size()];
@@ -321,8 +316,7 @@ public class DescendantTokenCheck extends Check
      * Sets the tokens which occurance as descendant is limited.
      * @param limitedTokensParam - list of tokens to ignore.
      */
-    public void setLimitedTokens(String... limitedTokensParam)
-    {
+    public void setLimitedTokens(String... limitedTokensParam) {
         limitedTokens = new int[limitedTokensParam.length];
 
         int maxToken = 0;
@@ -339,8 +333,7 @@ public class DescendantTokenCheck extends Check
      * Sets the minimum depth for descendant counts.
      * @param minimumDepth the minimum depth for descendant counts.
      */
-    public void setMinimumDepth(int minimumDepth)
-    {
+    public void setMinimumDepth(int minimumDepth) {
         this.minimumDepth = minimumDepth;
     }
 
@@ -348,8 +341,7 @@ public class DescendantTokenCheck extends Check
      * Sets the maximum depth for descendant counts.
      * @param maximumDepth the maximum depth for descendant counts.
      */
-    public void setMaximumDepth(int maximumDepth)
-    {
+    public void setMaximumDepth(int maximumDepth) {
         this.maximumDepth = maximumDepth;
     }
 
@@ -357,8 +349,7 @@ public class DescendantTokenCheck extends Check
     * Sets a minimum count for descendants.
     * @param minimumNumber the minimum count for descendants.
     */
-    public void setMinimumNumber(int minimumNumber)
-    {
+    public void setMinimumNumber(int minimumNumber) {
         this.minimumNumber = minimumNumber;
     }
 
@@ -366,8 +357,7 @@ public class DescendantTokenCheck extends Check
       * Sets a maximum count for descendants.
       * @param maximumNumber the maximum count for descendants.
       */
-    public void setMaximumNumber(int maximumNumber)
-    {
+    public void setMaximumNumber(int maximumNumber) {
         this.maximumNumber = maximumNumber;
     }
 
@@ -382,8 +372,7 @@ public class DescendantTokenCheck extends Check
      * <li>{3} - name of limited token</li>
      * </ul>
      */
-    public void setMinimumMessage(String message)
-    {
+    public void setMinimumMessage(String message) {
         minimumMessage = message;
     }
 
@@ -399,8 +388,7 @@ public class DescendantTokenCheck extends Check
      * </ul>
      */
 
-    public void setMaximumMessage(String message)
-    {
+    public void setMaximumMessage(String message) {
         maximumMessage = message;
     }
 
@@ -409,8 +397,7 @@ public class DescendantTokenCheck extends Check
      * individual counts.
      * @param sum whether to use the sum.
      */
-    public void setSumTokenCounts(boolean sum)
-    {
+    public void setSumTokenCounts(boolean sum) {
         sumTokenCounts = sum;
     }
 }

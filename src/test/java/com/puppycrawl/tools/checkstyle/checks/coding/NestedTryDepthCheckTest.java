@@ -25,11 +25,9 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck.MSG_KEY;
 
-public class NestedTryDepthCheckTest extends BaseCheckTestSupport
-{
+public class NestedTryDepthCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NestedTryDepthCheck.class);
 
@@ -43,8 +41,7 @@ public class NestedTryDepthCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testCustonestingDepth() throws Exception
-    {
+    public void testCustonestingDepth() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NestedTryDepthCheck.class);
         checkConfig.addAttribute("max", "2");

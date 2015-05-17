@@ -26,15 +26,13 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck.MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED;
 
-public class SuppressWarningsTest extends BaseCheckTestSupport
-{
+public class SuppressWarningsTest extends BaseCheckTestSupport {
     /**
      * Tests SuppressWarnings with default regex.
      * @throws Exception
      */
     @Test
-    public void testSingleDefault() throws Exception
-    {
+    public void testSingleDefault() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
 
         final String[] expected = {
@@ -57,8 +55,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testSingleAll() throws Exception
-    {
+    public void testSingleAll() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", ".*");
 
@@ -101,8 +98,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testSingleNoUnchecked() throws Exception
-    {
+    public void testSingleNoUnchecked() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*");
 
@@ -127,8 +123,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testSingleNoUncheckedTokens() throws Exception
-    {
+    public void testSingleNoUncheckedTokens() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*");
         checkConfig.addAttribute("tokens", "CLASS_DEF,METHOD_DEF");
@@ -151,8 +146,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testSingleNoUnWildcard() throws Exception
-    {
+    public void testSingleNoUnWildcard() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", ".*un.*");
 
@@ -186,8 +180,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testSingleNoUncheckedUnused() throws Exception
-    {
+    public void testSingleNoUncheckedUnused() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*|^unused$");
 
@@ -218,8 +211,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testSingleNoUncheckedUnusedAll() throws Exception
-    {
+    public void testSingleNoUncheckedUnusedAll() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*|^unused$*|.*");
 
@@ -262,8 +254,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testCompactDefault() throws Exception
-    {
+    public void testCompactDefault() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
 
         final String[] expected = {
@@ -293,8 +284,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testCompactAll() throws Exception
-    {
+    public void testCompactAll() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", ".*");
 
@@ -356,8 +346,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testCompactNoUnchecked() throws Exception
-    {
+    public void testCompactNoUnchecked() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*");
 
@@ -386,8 +375,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testCompactNoUncheckedTokens() throws Exception
-    {
+    public void testCompactNoUncheckedTokens() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*");
         checkConfig.addAttribute("tokens", "CLASS_DEF");
@@ -407,8 +395,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testCompactNoUnWildcard() throws Exception
-    {
+    public void testCompactNoUnWildcard() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "un.*");
 
@@ -451,8 +438,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testCompactNoUncheckedUnused() throws Exception
-    {
+    public void testCompactNoUncheckedUnused() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*|^unused$");
 
@@ -489,8 +475,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testCompactNoUncheckedUnusedAll() throws Exception
-    {
+    public void testCompactNoUncheckedUnusedAll() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*|^unused$*|.*");
 
@@ -552,8 +537,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testExpandedDefault() throws Exception
-    {
+    public void testExpandedDefault() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
 
         final String[] expected = {
@@ -581,8 +565,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testExpandedAll() throws Exception
-    {
+    public void testExpandedAll() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", ".*");
 
@@ -641,8 +624,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testExpandedNoUnchecked() throws Exception
-    {
+    public void testExpandedNoUnchecked() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*");
 
@@ -671,8 +653,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testExpandedNoUncheckedTokens() throws Exception
-    {
+    public void testExpandedNoUncheckedTokens() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*");
         checkConfig.addAttribute("tokens", "CLASS_DEF");
@@ -692,8 +673,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testExpandedNoUnWildcard() throws Exception
-    {
+    public void testExpandedNoUnWildcard() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "un.*");
 
@@ -733,8 +713,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testExpandedNoUncheckedUnused() throws Exception
-    {
+    public void testExpandedNoUncheckedUnused() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*|^unused$");
 
@@ -772,8 +751,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
      * @throws Exception
      */
     @Test
-    public void testExpandedNoUncheckedUnusedAll() throws Exception
-    {
+    public void testExpandedNoUncheckedUnusedAll() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
         checkConfig.addAttribute("format", "^unchecked$*|^unused$*|.*");
 
@@ -827,8 +805,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testUncheckedInConstant() throws Exception
-    {
+    public void testUncheckedInConstant() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
 
         String[] expected = {

@@ -29,12 +29,10 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck.MSG_KEY;
 
-public class OneTopLevelClassCheckTest extends BaseCheckTestSupport
-{
+public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
 
     @Test
-    public void testAcceptableTokens() throws Exception
-    {
+    public void testAcceptableTokens() throws Exception {
         final OneTopLevelClassCheck check =  new OneTopLevelClassCheck();
         check.getAcceptableTokens();
         // ZERO tokens as Check do Traverse of Tree himself, he does not need to subscribed to Tokens
@@ -42,8 +40,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testFileWithOneTopLevelClass() throws Exception
-    {
+    public void testFileWithOneTopLevelClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OneTopLevelClassCheck.class);
         final String[] expected = {};
@@ -51,8 +48,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testFileWithOneTopLevelInterface() throws Exception
-    {
+    public void testFileWithOneTopLevelInterface() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(OneTopLevelClassCheck.class);
         final String[] expected = {};
@@ -60,8 +56,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testFileWithOneTopLevelEnum() throws Exception
-    {
+    public void testFileWithOneTopLevelEnum() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(OneTopLevelClassCheck.class);
         final String[] expected = {};
@@ -69,8 +64,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testFileWithNoPublicTopLevelClass() throws Exception
-    {
+    public void testFileWithNoPublicTopLevelClass() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
@@ -80,8 +74,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testFileWithThreeTopLevelInterface() throws Exception
-    {
+    public void testFileWithThreeTopLevelInterface() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
@@ -92,8 +85,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testFileWithThreeTopLevelEnum() throws Exception
-    {
+    public void testFileWithThreeTopLevelEnum() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
@@ -104,8 +96,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testFileWithFewTopLevelClasses() throws Exception
-    {
+    public void testFileWithFewTopLevelClasses() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
@@ -120,8 +111,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testFileWithSecondEnumTopLevelClass() throws Exception
-    {
+    public void testFileWithSecondEnumTopLevelClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
@@ -131,8 +121,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testPackageInfoWithNoTypesDeclared() throws Exception
-    {
+    public void testPackageInfoWithNoTypesDeclared() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
         };

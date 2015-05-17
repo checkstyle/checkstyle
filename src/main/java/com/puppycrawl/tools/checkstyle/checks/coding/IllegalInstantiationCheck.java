@@ -60,8 +60,7 @@ import java.util.StringTokenizer;
  * @author lkuehne
  */
 public class IllegalInstantiationCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -88,8 +87,7 @@ public class IllegalInstantiationCheck
     private final Set<DetailAST> instantiations = Sets.newHashSet();
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.IMPORT,
             TokenTypes.LITERAL_NEW,
@@ -99,15 +97,13 @@ public class IllegalInstantiationCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         // Return an empty array to not allow user to change configuration.
         return new int[] {};
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.IMPORT,
             TokenTypes.LITERAL_NEW,
@@ -116,8 +112,7 @@ public class IllegalInstantiationCheck
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         super.beginTree(rootAST);
         pkgName = null;
         imports.clear();
@@ -126,8 +121,7 @@ public class IllegalInstantiationCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.LITERAL_NEW:
                 processLiteralNew(ast);
@@ -147,8 +141,7 @@ public class IllegalInstantiationCheck
     }
 
     @Override
-    public void finishTree(DetailAST rootAST)
-    {
+    public void finishTree(DetailAST rootAST) {
         for (DetailAST literalNewAST : instantiations) {
             postprocessLiteralNew(literalNewAST);
         }
@@ -160,8 +153,7 @@ public class IllegalInstantiationCheck
      *
      * @param ast the classdef token.
      */
-    private void processClassDef(DetailAST ast)
-    {
+    private void processClassDef(DetailAST ast) {
         final DetailAST identToken = ast.findFirstToken(TokenTypes.IDENT);
         final String className = identToken.getText();
         classNames.add(className);
@@ -171,8 +163,7 @@ public class IllegalInstantiationCheck
      * Perform processing for an import token
      * @param ast the import token
      */
-    private void processImport(DetailAST ast)
-    {
+    private void processImport(DetailAST ast) {
         final FullIdent name = FullIdent.createFullIdentBelow(ast);
         // Note: different from UnusedImportsCheck.processImport(),
         // '.*' imports are also added here
@@ -183,8 +174,7 @@ public class IllegalInstantiationCheck
      * Perform processing for an package token
      * @param ast the package token
      */
-    private void processPackageDef(DetailAST ast)
-    {
+    private void processPackageDef(DetailAST ast) {
         final DetailAST packageNameAST = ast.getLastChild()
                 .getPreviousSibling();
         final FullIdent packageIdent =
@@ -196,8 +186,7 @@ public class IllegalInstantiationCheck
      * Collects a "new" token.
      * @param ast the "new" token
      */
-    private void processLiteralNew(DetailAST ast)
-    {
+    private void processLiteralNew(DetailAST ast) {
         if (ast.getParent().getType() == TokenTypes.METHOD_REF) {
             return;
         }
@@ -209,13 +198,11 @@ public class IllegalInstantiationCheck
      * has finished.
      * @param ast the "new" token.
      */
-    private void postprocessLiteralNew(DetailAST ast)
-    {
+    private void postprocessLiteralNew(DetailAST ast) {
         final DetailAST typeNameAST = ast.getFirstChild();
         final AST nameSibling = typeNameAST.getNextSibling();
         if (nameSibling != null
-                && nameSibling.getType() == TokenTypes.ARRAY_DECLARATOR)
-        {
+                && nameSibling.getType() == TokenTypes.ARRAY_DECLARATOR) {
             // ast == "new Boolean[]"
             return;
         }
@@ -236,8 +223,7 @@ public class IllegalInstantiationCheck
      * @return the fully qualified class name of className
      * or null if instantiation of className is OK
      */
-    private String getIllegalInstantiation(String className)
-    {
+    private String getIllegalInstantiation(String className) {
         if (illegalClasses.contains(className)) {
             return className;
         }
@@ -251,8 +237,7 @@ public class IllegalInstantiationCheck
             // class from java.lang
             if (illegalLen - JAVA_LANG.length() == clsNameLen
                 && illegal.endsWith(className)
-                && illegal.startsWith(JAVA_LANG))
-            {
+                && illegal.startsWith(JAVA_LANG)) {
                 // java.lang needs no import, but a class without import might
                 // also come from the same file or be in the same package.
                 // E.g. if a class defines an inner class "Boolean",
@@ -292,8 +277,7 @@ public class IllegalInstantiationCheck
                 && clsNameLen == illegalLen - pkgNameLen - 1
                 && illegal.charAt(pkgNameLen) == '.'
                 && illegal.endsWith(className)
-                && illegal.startsWith(pkgName))
-            {
+                && illegal.startsWith(pkgName)) {
                 return illegal;
             }
             // import statements
@@ -311,8 +295,7 @@ public class IllegalInstantiationCheck
                 }
                 else {
                     if (Utils.baseClassname(importArg).equals(className)
-                        && illegalClasses.contains(importArg))
-                    {
+                        && illegalClasses.contains(importArg)) {
                         return importArg;
                     }
                 }
@@ -325,8 +308,7 @@ public class IllegalInstantiationCheck
      * Sets the classes that are illegal to instantiate.
      * @param classNames a comma seperate list of class names
      */
-    public void setClasses(String classNames)
-    {
+    public void setClasses(String classNames) {
         illegalClasses.clear();
         final StringTokenizer tok = new StringTokenizer(classNames, ",");
         while (tok.hasMoreTokens()) {

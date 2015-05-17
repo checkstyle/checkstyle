@@ -26,11 +26,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
-public class OuterTypeNumberCheckTest extends BaseCheckTestSupport
-{
+public class OuterTypeNumberCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testGetAcceptableTokens()
-    {
+    public void testGetAcceptableTokens() {
         OuterTypeNumberCheck outerTypeNumberObj =
             new OuterTypeNumberCheck();
         int[] actual = outerTypeNumberObj.getAcceptableTokens();
@@ -44,8 +42,7 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeNumberCheck.class);
         final String[] expected = {
@@ -55,8 +52,7 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testMax30() throws Exception
-    {
+    public void testMax30() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeNumberCheck.class);
         checkConfig.addAttribute("max", "30");

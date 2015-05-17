@@ -36,8 +36,7 @@ import java.util.Set;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author o_sukhodolsky
  */
-public abstract class AbstractClassCouplingCheck extends Check
-{
+public abstract class AbstractClassCouplingCheck extends Check {
     /** Class names to ignore. */
     private static final Set<String> DEFAULT_EXCLUDED_CLASSES =
                 ImmutableSet.<String>builder()
@@ -77,20 +76,17 @@ public abstract class AbstractClassCouplingCheck extends Check
      * Creates new instance of the check.
      * @param defaultMax default value for allowed complexity.
      */
-    protected AbstractClassCouplingCheck(int defaultMax)
-    {
+    protected AbstractClassCouplingCheck(int defaultMax) {
         setMax(defaultMax);
     }
 
     @Override
-    public final int[] getDefaultTokens()
-    {
+    public final int[] getDefaultTokens() {
         return getRequiredTokens();
     }
 
     /** @return allowed complexity. */
-    public final int getMax()
-    {
+    public final int getMax() {
         return max;
     }
 
@@ -98,8 +94,7 @@ public abstract class AbstractClassCouplingCheck extends Check
      * Sets maximum allowed complexity.
      * @param max allowed complexity.
      */
-    public final void setMax(int max)
-    {
+    public final void setMax(int max) {
         this.max = max;
     }
 
@@ -107,14 +102,12 @@ public abstract class AbstractClassCouplingCheck extends Check
      * Sets user-excluded classes to ignore.
      * @param excludedClasses the list of classes to ignore.
      */
-    public final void setExcludedClasses(String... excludedClasses)
-    {
+    public final void setExcludedClasses(String... excludedClasses) {
         this.excludedClasses = ImmutableSet.copyOf(excludedClasses);
     }
 
     @Override
-    public final void beginTree(DetailAST ast)
-    {
+    public final void beginTree(DetailAST ast) {
         packageName = "";
     }
 
@@ -122,8 +115,7 @@ public abstract class AbstractClassCouplingCheck extends Check
     protected abstract String getLogMessageId();
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.PACKAGE_DEF:
                 visitPackageDef(ast);
@@ -149,8 +141,7 @@ public abstract class AbstractClassCouplingCheck extends Check
     }
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.CLASS_DEF:
             case TokenTypes.INTERFACE_DEF:
@@ -167,8 +158,7 @@ public abstract class AbstractClassCouplingCheck extends Check
      * Stores package of current class we check.
      * @param pkg package definition.
      */
-    private void visitPackageDef(DetailAST pkg)
-    {
+    private void visitPackageDef(DetailAST pkg) {
         final FullIdent ident = FullIdent.createFullIdent(pkg.getLastChild()
                 .getPreviousSibling());
         packageName = ident.getText();
@@ -178,8 +168,7 @@ public abstract class AbstractClassCouplingCheck extends Check
      * Creates new context for a given class.
      * @param classDef class definition node.
      */
-    private void visitClassDef(DetailAST classDef)
-    {
+    private void visitClassDef(DetailAST classDef) {
         contextStack.push(context);
         final String className =
             classDef.findFirstToken(TokenTypes.IDENT).getText();
@@ -189,8 +178,7 @@ public abstract class AbstractClassCouplingCheck extends Check
     }
 
     /** Restores previous context. */
-    private void leaveClassDef()
-    {
+    private void leaveClassDef() {
         context.checkCoupling();
         context = contextStack.pop();
     }
@@ -201,8 +189,7 @@ public abstract class AbstractClassCouplingCheck extends Check
      * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
      * @author o_sukhodolsky
      */
-    private class Context
-    {
+    private class Context {
         /**
          * Set of referenced classes.
          * Sorted by name for predictable error messages in unit tests.
@@ -222,8 +209,7 @@ public abstract class AbstractClassCouplingCheck extends Check
          * @param lineNo line of class definition.
          * @param columnNo column of class definition.
          */
-        public Context(String className, int lineNo, int columnNo)
-        {
+        public Context(String className, int lineNo, int columnNo) {
             this.className = className;
             this.lineNo = lineNo;
             this.columnNo = columnNo;
@@ -233,12 +219,10 @@ public abstract class AbstractClassCouplingCheck extends Check
          * Visits throws clause and collects all exceptions we throw.
          * @param literalThrows throws to process.
          */
-        public void visitLiteralThrows(DetailAST literalThrows)
-        {
+        public void visitLiteralThrows(DetailAST literalThrows) {
             for (DetailAST childAST = literalThrows.getFirstChild();
                  childAST != null;
-                 childAST = childAST.getNextSibling())
-            {
+                 childAST = childAST.getNextSibling()) {
                 if (childAST.getType() != TokenTypes.COMMA) {
                     addReferencedClassName(childAST);
                 }
@@ -249,8 +233,7 @@ public abstract class AbstractClassCouplingCheck extends Check
          * Visits type.
          * @param ast type to process.
          */
-        public void visitType(DetailAST ast)
-        {
+        public void visitType(DetailAST ast) {
             final String className = CheckUtils.createFullType(ast).getText();
             context.addReferencedClassName(className);
         }
@@ -259,8 +242,7 @@ public abstract class AbstractClassCouplingCheck extends Check
          * Visits NEW.
          * @param ast NEW to process.
          */
-        public void visitLiteralNew(DetailAST ast)
-        {
+        public void visitLiteralNew(DetailAST ast) {
             context.addReferencedClassName(ast.getFirstChild());
         }
 
@@ -268,8 +250,7 @@ public abstract class AbstractClassCouplingCheck extends Check
          * Adds new referenced class.
          * @param ast a node which represents referenced class.
          */
-        private void addReferencedClassName(DetailAST ast)
-        {
+        private void addReferencedClassName(DetailAST ast) {
             final String className = FullIdent.createFullIdent(ast).getText();
             addReferencedClassName(className);
         }
@@ -278,16 +259,14 @@ public abstract class AbstractClassCouplingCheck extends Check
          * Adds new referenced class.
          * @param className class name of the referenced class.
          */
-        private void addReferencedClassName(String className)
-        {
+        private void addReferencedClassName(String className) {
             if (isSignificant(className)) {
                 referencedClassNames.add(className);
             }
         }
 
         /** Checks if coupling less than allowed or not. */
-        public void checkCoupling()
-        {
+        public void checkCoupling() {
             referencedClassNames.remove(className);
             referencedClassNames.remove(packageName + "." + className);
 
@@ -303,8 +282,7 @@ public abstract class AbstractClassCouplingCheck extends Check
          * @param className class to check.
          * @return true if we should count this class.
          */
-        private boolean isSignificant(String className)
-        {
+        private boolean isSignificant(String className) {
             return className.length() > 0
                     && !excludedClasses.contains(className)
                     && !className.startsWith("java.lang.");

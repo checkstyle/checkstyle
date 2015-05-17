@@ -54,8 +54,7 @@ import java.util.SortedSet;
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  * @author lkuehne
  */
-public class Checker extends AutomaticBean implements MessageDispatcher
-{
+public class Checker extends AutomaticBean implements MessageDispatcher {
     /** Logger for Checker */
     private static final Log LOG = LogFactory.getLog(Checker.class);
 
@@ -117,14 +116,12 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      *
      * @throws CheckstyleException if an error occurs
      */
-    public Checker() throws CheckstyleException
-    {
+    public Checker() throws CheckstyleException {
         addListener(counter);
     }
 
     @Override
-    public void finishLocalSetup() throws CheckstyleException
-    {
+    public void finishLocalSetup() throws CheckstyleException {
         final Locale locale = new Locale(localeLanguage, localeCountry);
         LocalizedMessage.setLocale(locale);
 
@@ -153,8 +150,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
 
     @Override
     protected void setupChild(Configuration childConf)
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         final String name = childConf.getName();
         try {
             final Object child = moduleFactory.createModule(name);
@@ -191,8 +187,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * that is executed in process().
      * @param fileSetCheck the additional FileSetCheck
      */
-    public void addFileSetCheck(FileSetCheck fileSetCheck)
-    {
+    public void addFileSetCheck(FileSetCheck fileSetCheck) {
         fileSetCheck.setMessageDispatcher(this);
         fileSetChecks.add(fileSetCheck);
     }
@@ -201,8 +196,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * Adds a filter to the end of the audit event filter chain.
      * @param filter the additional filter
      */
-    public void addFilter(Filter filter)
-    {
+    public void addFilter(Filter filter) {
         filters.addFilter(filter);
     }
 
@@ -210,14 +204,12 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * Removes filter.
      * @param filter filter to remove.
      */
-    public void removeFilter(Filter filter)
-    {
+    public void removeFilter(Filter filter) {
         filters.removeFilter(filter);
     }
 
     /** Cleans up the object. **/
-    public void destroy()
-    {
+    public void destroy() {
         listeners.clear();
         filters.clear();
     }
@@ -226,8 +218,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * Add the listener that will be used to receive events from the audit.
      * @param listener the nosy thing
      */
-    public final void addListener(AuditListener listener)
-    {
+    public final void addListener(AuditListener listener) {
         listeners.add(listener);
     }
 
@@ -235,8 +226,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * Removes a given listener.
      * @param listener a listener to remove
      */
-    public void removeListener(AuditListener listener)
-    {
+    public void removeListener(AuditListener listener) {
         listeners.remove(listener);
     }
 
@@ -248,8 +238,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * @return the total number of errors found
      * @see #destroy()
      */
-    public int process(List<File> files)
-    {
+    public int process(List<File> files) {
         // Prepare to start
         fireAuditStarted();
         for (final FileSetCheck fsc : fileSetChecks) {
@@ -305,14 +294,12 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     }
 
     /** @param basedir the base directory to strip off in filenames */
-    public void setBasedir(String basedir)
-    {
+    public void setBasedir(String basedir) {
         this.basedir = basedir;
     }
 
     /** notify all listeners about the audit start */
-    protected void fireAuditStarted()
-    {
+    protected void fireAuditStarted() {
         final AuditEvent evt = new AuditEvent(this);
         for (final AuditListener listener : listeners) {
             listener.auditStarted(evt);
@@ -320,8 +307,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     }
 
     /** notify all listeners about the audit end */
-    protected void fireAuditFinished()
-    {
+    protected void fireAuditFinished() {
         final AuditEvent evt = new AuditEvent(this);
         for (final AuditListener listener : listeners) {
             listener.auditFinished(evt);
@@ -335,8 +321,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      *            the file to be audited
      */
     @Override
-    public void fireFileStarted(String fileName)
-    {
+    public void fireFileStarted(String fileName) {
         final String stripped = Utils.relativizeAndNormalizePath(basedir, fileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
         for (final AuditListener listener : listeners) {
@@ -351,8 +336,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      *            the audited file
      */
     @Override
-    public void fireFileFinished(String fileName)
-    {
+    public void fireFileFinished(String fileName) {
         final String stripped = Utils.relativizeAndNormalizePath(basedir, fileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
         for (final AuditListener listener : listeners) {
@@ -367,8 +351,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * @param errors the audit errors from the file
      */
     @Override
-    public void fireErrors(String fileName, SortedSet<LocalizedMessage> errors)
-    {
+    public void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {
         final String stripped = Utils.relativizeAndNormalizePath(basedir, fileName);
         for (final LocalizedMessage element : errors) {
             final AuditEvent evt = new AuditEvent(this, stripped, element);
@@ -386,8 +369,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * @param extensions the set of file extensions. A missing
      * initial '.' character of an extension is automatically added.
      */
-    public final void setFileExtensions(String... extensions)
-    {
+    public final void setFileExtensions(String... extensions) {
         if (extensions == null) {
             fileExtensions = null;
             return;
@@ -410,20 +392,17 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      *
      * @param moduleFactory the factory for creating FileSetChecks
      */
-    public void setModuleFactory(ModuleFactory moduleFactory)
-    {
+    public void setModuleFactory(ModuleFactory moduleFactory) {
         this.moduleFactory = moduleFactory;
     }
 
     /** @param localeCountry the country to report messages  **/
-    public void setLocaleCountry(String localeCountry)
-    {
+    public void setLocaleCountry(String localeCountry) {
         this.localeCountry = localeCountry;
     }
 
     /** @param localeLanguage the language to report messages  **/
-    public void setLocaleLanguage(String localeLanguage)
-    {
+    public void setLocaleLanguage(String localeLanguage) {
         this.localeLanguage = localeLanguage;
     }
 
@@ -434,8 +413,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * @param severity  The new severity level
      * @see SeverityLevel
      */
-    public final void setSeverity(String severity)
-    {
+    public final void setSeverity(String severity) {
         severityLevel = SeverityLevel.getInstance(severity);
     }
 
@@ -446,8 +424,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * reflection.
      * @param loader the new classloader
      */
-    public final void setClassLoader(ClassLoader loader)
-    {
+    public final void setClassLoader(ClassLoader loader) {
         this.loader = loader;
     }
 
@@ -460,8 +437,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * @deprecated use {@link #setClassLoader(ClassLoader loader)} instead.
      */
     @Deprecated
-    public final void setClassloader(ClassLoader loader)
-    {
+    public final void setClassloader(ClassLoader loader) {
         setClassLoader(loader);
     }
 
@@ -472,8 +448,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * this module classloader must be specified.
      * @param moduleClassLoader the classloader used to load module classes
      */
-    public final void setModuleClassLoader(ClassLoader moduleClassLoader)
-    {
+    public final void setModuleClassLoader(ClassLoader moduleClassLoader) {
         this.moduleClassLoader = moduleClassLoader;
     }
 
@@ -483,8 +458,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * @throws UnsupportedEncodingException if charset is unsupported.
      */
     public void setCharset(String charset)
-        throws UnsupportedEncodingException
-    {
+        throws UnsupportedEncodingException {
         if (!Charset.isSupported(charset)) {
             final String message = "unsupported charset: '" + charset + "'";
             throw new UnsupportedEncodingException(message);

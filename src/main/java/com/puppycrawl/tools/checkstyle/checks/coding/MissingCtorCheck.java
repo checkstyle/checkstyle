@@ -39,8 +39,7 @@ import com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
  *
  * @author o_sukhodolsky
  */
-public class MissingCtorCheck extends DescendantTokenCheck
-{
+public class MissingCtorCheck extends DescendantTokenCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -49,8 +48,7 @@ public class MissingCtorCheck extends DescendantTokenCheck
     public static final String MSG_KEY = "missing.ctor";
 
     /** Creates new instance of the check. */
-    public MissingCtorCheck()
-    {
+    public MissingCtorCheck() {
         setLimitedTokens(Utils.getTokenName(TokenTypes.CTOR_DEF));
         setMinimumNumber(1);
         setMaximumDepth(2);
@@ -58,24 +56,20 @@ public class MissingCtorCheck extends DescendantTokenCheck
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[]{TokenTypes.CLASS_DEF};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return getDefaultTokens();
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         if (modifiers != null
-            && modifiers.branchContains(TokenTypes.ABSTRACT))
-        {
+            && modifiers.branchContains(TokenTypes.ABSTRACT)) {
             // should apply the check to abstract class
             return;
         }

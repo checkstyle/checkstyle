@@ -34,17 +34,14 @@ import static org.junit.Assert.fail;
  * @author Rick Giles
  * @author lkuehne
  */
-public class ConfigurationLoaderTest
-{
+public class ConfigurationLoaderTest {
     private Configuration loadConfiguration(String name)
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         return loadConfiguration(name, new Properties());
     }
 
     private Configuration loadConfiguration(
-        String name, Properties props) throws CheckstyleException
-    {
+        String name, Properties props) throws CheckstyleException {
         final String fName =
             "src/test/resources/com/puppycrawl/tools/checkstyle/configs/" + name;
 
@@ -54,8 +51,7 @@ public class ConfigurationLoaderTest
 
 
     @Test
-    public void testResourceLoadConfiguration() throws Exception
-    {
+    public void testResourceLoadConfiguration() throws Exception {
         final Properties props = new Properties();
         props.put("checkstyle.basedir", "basedir");
 
@@ -71,16 +67,14 @@ public class ConfigurationLoaderTest
     }
 
     @Test
-    public void testEmptyConfiguration() throws Exception
-    {
+    public void testEmptyConfiguration() throws Exception {
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration("empty_configuration.xml");
         verifyConfigNode(config, "Checker", 0, new Properties());
     }
 
     @Test
-    public void testMissingPropertyName()
-    {
+    public void testMissingPropertyName() {
         try {
             loadConfiguration("missing_property_name.xml");
             fail("missing property name");
@@ -94,8 +88,7 @@ public class ConfigurationLoaderTest
     }
 
     @Test
-    public void testMissingPropertyValue()
-    {
+    public void testMissingPropertyValue() {
         try {
             loadConfiguration("missing_property_value.xml");
             fail("missing property value");
@@ -109,8 +102,7 @@ public class ConfigurationLoaderTest
     }
 
     @Test
-    public void testMissingConfigName()
-    {
+    public void testMissingConfigName() {
         try {
             loadConfiguration("missing_config_name.xml");
             fail("missing module name");
@@ -124,8 +116,7 @@ public class ConfigurationLoaderTest
     }
 
     @Test
-    public void testMissingConfigParent()
-    {
+    public void testMissingConfigParent() {
         try {
             loadConfiguration("missing_config_parent.xml");
             fail("missing module parent");
@@ -139,8 +130,7 @@ public class ConfigurationLoaderTest
     }
 
     @Test
-    public void testCheckstyleChecks() throws Exception
-    {
+    public void testCheckstyleChecks() throws Exception {
         final Properties props = new Properties();
         props.put("checkstyle.basedir", "basedir");
 
@@ -193,8 +183,7 @@ public class ConfigurationLoaderTest
     }
 
     @Test
-    public void testCustomMessages() throws CheckstyleException
-    {
+    public void testCustomMessages() throws CheckstyleException {
         final Properties props = new Properties();
         props.put("checkstyle.basedir", "basedir");
 
@@ -212,8 +201,7 @@ public class ConfigurationLoaderTest
 
     private void verifyConfigNode(
         DefaultConfiguration config, String name, int childrenLength,
-        Properties atts) throws Exception
-    {
+        Properties atts) throws Exception {
         assertEquals("name.", name, config.getName());
         assertEquals(
             "children.length.",
@@ -233,8 +221,7 @@ public class ConfigurationLoaderTest
 
     @Test
     public void testReplacePropertiesNoReplace()
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         final String[] testValues = {null, "", "a", "$a", "{a",
                                      "{a}", "a}", "$a}", "$", "a$b", };
         final Properties props = initProperties();
@@ -246,8 +233,7 @@ public class ConfigurationLoaderTest
     }
 
     @Test
-    public void testReplacePropertiesSyntaxError()
-    {
+    public void testReplacePropertiesSyntaxError() {
         final Properties props = initProperties();
         try {
             final String value = ConfigurationLoader.replaceProperties(
@@ -260,8 +246,7 @@ public class ConfigurationLoaderTest
     }
 
     @Test
-    public void testReplacePropertiesMissingProperty()
-    {
+    public void testReplacePropertiesMissingProperty() {
         final Properties props = initProperties();
         try {
             final String value = ConfigurationLoader.replaceProperties(
@@ -275,8 +260,7 @@ public class ConfigurationLoaderTest
 
     @Test
     public void testReplacePropertiesReplace()
-        throws CheckstyleException
-    {
+        throws CheckstyleException {
         final String[][] testValues = {
             {"${a}", "A"},
             {"x${a}", "xA"},
@@ -300,8 +284,7 @@ public class ConfigurationLoaderTest
         }
     }
 
-    private Properties initProperties()
-    {
+    private Properties initProperties() {
         final Properties props = new Properties();
         props.put("a", "A");
         props.put("b", "B");
@@ -309,8 +292,7 @@ public class ConfigurationLoaderTest
     }
 
     @Test
-    public void testExternalEntity() throws Exception
-    {
+    public void testExternalEntity() throws Exception {
         final Properties props = new Properties();
         props.put("checkstyle.basedir", "basedir");
 
@@ -325,8 +307,7 @@ public class ConfigurationLoaderTest
     }
 
     @Test
-    public void testExternalEntitySubdir() throws Exception
-    {
+    public void testExternalEntitySubdir() throws Exception {
         final Properties props = new Properties();
         props.put("checkstyle.basedir", "basedir");
 
@@ -341,8 +322,7 @@ public class ConfigurationLoaderTest
     }
 
     @Test
-    public void testExternalEntityFromURI() throws Exception
-    {
+    public void testExternalEntityFromURI() throws Exception {
         final Properties props = new Properties();
         props.put("checkstyle.basedir", "basedir");
 

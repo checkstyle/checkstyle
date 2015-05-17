@@ -27,19 +27,16 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck.MSG_KEY;
 
 public class MissingSwitchDefaultCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(MissingSwitchDefaultCheck.class);
     }
 
     @Test
-    public void testMissingSwitchDefault() throws Exception
-    {
+    public void testMissingSwitchDefault() throws Exception {
         final String[] expected = {
             "17:9: " + getCheckMessage(MSG_KEY, "default"),
         };

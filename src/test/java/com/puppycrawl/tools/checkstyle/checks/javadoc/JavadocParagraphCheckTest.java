@@ -28,28 +28,24 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphChe
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_REDUNDANT_PARAGRAPH;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_TAG_AFTER;
 
-public class JavadocParagraphCheckTest extends BaseCheckTestSupport
-{
+public class JavadocParagraphCheckTest extends BaseCheckTestSupport {
 
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(JavadocParagraphCheck.class);
     }
 
     @Test
-    public void testCorrect() throws Exception
-    {
+    public void testCorrect() throws Exception {
         final String[] expected = {};
 
         verify(checkConfig, getPath("javadoc/InputCorrectJavaDocParagraphCheck.java"), expected);
     }
 
     @Test
-    public void testIncorrect() throws Exception
-    {
+    public void testIncorrect() throws Exception {
         final String[] expected = {
             "7: " + getCheckMessage(MSG_LINE_BEFORE),
             "8: " + getCheckMessage(MSG_LINE_BEFORE),

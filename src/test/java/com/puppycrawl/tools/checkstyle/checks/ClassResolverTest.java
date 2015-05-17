@@ -25,11 +25,9 @@ import com.google.common.collect.Sets;
 import java.util.Set;
 import org.junit.Test;
 
-public class ClassResolverTest
-{
+public class ClassResolverTest {
     @Test
-    public void testMisc() throws ClassNotFoundException
-    {
+    public void testMisc() throws ClassNotFoundException {
         final Set<String> imps = Sets.newHashSet();
         imps.add("java.io.File");
         imps.add("nothing.will.match.*");

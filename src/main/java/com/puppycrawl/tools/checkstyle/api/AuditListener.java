@@ -35,8 +35,7 @@ import java.util.EventListener;
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  */
 public interface AuditListener
-    extends EventListener
-{
+    extends EventListener {
     /**
      * Notify that the audit is about to start.
      * @param evt the event details

@@ -28,8 +28,7 @@ import com.google.common.collect.ImmutableCollection;
  * @author lkuehne
  * @see Contextualizable
  */
-public interface Context
-{
+public interface Context {
     /**
      * Searches for the value with the specified attribute key in this context.
      * @param key the attribute key.

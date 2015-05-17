@@ -39,8 +39,7 @@ import java.util.Map;
  * @author Trevor Robinson
  */
 public class SuppressWarningsHolder
-    extends Check
-{
+    extends Check {
     /**
      * Optional prefix for warning suppressions that are only intended to be
      * recognized by checkstyle. For instance, to suppress {@code
@@ -66,8 +65,7 @@ public class SuppressWarningsHolder
     private static final ThreadLocal<List<Entry>> ENTRIES = new ThreadLocal<>();
 
     /** records a particular suppression for a region of a file */
-    private static class Entry
-    {
+    private static class Entry {
         /** the source name of the suppressed check */
         private final String checkName;
         /** the suppression region for the check - first line */
@@ -88,8 +86,7 @@ public class SuppressWarningsHolder
          * @param lastColumn the last column of the suppression region
          */
         public Entry(String checkName, int firstLine, int firstColumn,
-            int lastLine, int lastColumn)
-        {
+            int lastLine, int lastColumn) {
             this.checkName = checkName;
             this.firstLine = firstLine;
             this.firstColumn = firstColumn;
@@ -98,32 +95,27 @@ public class SuppressWarningsHolder
         }
 
         /** @return the source name of the suppressed check */
-        public String getCheckName()
-        {
+        public String getCheckName() {
             return checkName;
         }
 
         /** @return the first line of the suppression region */
-        public int getFirstLine()
-        {
+        public int getFirstLine() {
             return firstLine;
         }
 
         /** @return the first column of the suppression region */
-        public int getFirstColumn()
-        {
+        public int getFirstColumn() {
             return firstColumn;
         }
 
         /** @return the last line of the suppression region */
-        public int getLastLine()
-        {
+        public int getLastLine() {
             return lastLine;
         }
 
         /** @return the last column of the suppression region */
-        public int getLastColumn()
-        {
+        public int getLastColumn() {
             return lastColumn;
         }
     }
@@ -136,8 +128,7 @@ public class SuppressWarningsHolder
      *        name)
      * @return the default alias for the given check
      */
-    public static String getDefaultAlias(String sourceName)
-    {
+    public static String getDefaultAlias(String sourceName) {
         final int startIndex = sourceName.lastIndexOf('.') + 1;
         int endIndex = sourceName.length();
         if (sourceName.endsWith(CHECK_SUFFIX)) {
@@ -154,8 +145,7 @@ public class SuppressWarningsHolder
      *        name)
      * @return the current alias for the given check
      */
-    public static String getAlias(String sourceName)
-    {
+    public static String getAlias(String sourceName) {
         String checkAlias = CHECK_ALIAS_MAP.get(sourceName);
         if (checkAlias == null) {
             checkAlias = getDefaultAlias(sourceName);
@@ -169,8 +159,7 @@ public class SuppressWarningsHolder
      *        name)
      * @param checkAlias the alias used in {@link SuppressWarnings} annotations
      */
-    public static void registerAlias(String sourceName, String checkAlias)
-    {
+    public static void registerAlias(String sourceName, String checkAlias) {
         CHECK_ALIAS_MAP.put(sourceName, checkAlias);
     }
 
@@ -181,8 +170,7 @@ public class SuppressWarningsHolder
      * paramnum}.
      * @param aliasList the list of comma-separated alias assigments
      */
-    public void setAliasList(String aliasList)
-    {
+    public void setAliasList(String aliasList) {
         for (String sourceAlias : aliasList.split(",")) {
             final int index = sourceAlias.indexOf('=');
             if (index > 0) {
@@ -206,8 +194,7 @@ public class SuppressWarningsHolder
      *         source location
      */
     public static boolean isSuppressed(String sourceName, int line,
-        int column)
-    {
+        int column) {
         final List<Entry> entries = ENTRIES.get();
         final String checkAlias = getAlias(sourceName);
         for (Entry entry : entries) {
@@ -229,20 +216,17 @@ public class SuppressWarningsHolder
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.ANNOTATION};
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         ENTRIES.set(new LinkedList<Entry>());
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         // check whether annotation is SuppressWarnings
         // expected children: AT ( IDENT | DOT ) LPAREN <values> RPAREN
         String identifier = getIdentifier(getNthChild(ast, 1));
@@ -327,8 +311,7 @@ public class SuppressWarningsHolder
      * @param ast the AST node to get the child of
      * @return get target of annotation
      */
-    private DetailAST getAnnotationTarget(DetailAST ast)
-    {
+    private DetailAST getAnnotationTarget(DetailAST ast) {
         DetailAST targetAST = null;
         DetailAST parentAST = ast.getParent();
         if (parentAST != null) {
@@ -370,8 +353,7 @@ public class SuppressWarningsHolder
      * @param index the index of the child to get
      * @return the n'th child of the given AST node, or {@code null} if none
      */
-    private static DetailAST getNthChild(DetailAST ast, int index)
-    {
+    private static DetailAST getNthChild(DetailAST ast, int index) {
         DetailAST child = ast.getFirstChild();
         if (child != null) {
             for (int i = 0; i < index && child != null; ++i) {
@@ -387,8 +369,7 @@ public class SuppressWarningsHolder
      * @return the Java identifier represented by the given AST subtree
      * @throws IllegalArgumentException if the AST is invalid
      */
-    private static String getIdentifier(DetailAST ast)
-    {
+    private static String getIdentifier(DetailAST ast) {
         if (ast != null) {
             if (ast.getType() == TokenTypes.IDENT) {
                 return ast.getText();
@@ -407,8 +388,7 @@ public class SuppressWarningsHolder
      * @return the Java string represented by the given AST expression
      * @throws IllegalArgumentException if the AST is invalid
      */
-    private static String getStringExpr(DetailAST ast)
-    {
+    private static String getStringExpr(DetailAST ast) {
         if (ast != null && ast.getType() == TokenTypes.EXPR) {
             final DetailAST firstChild = ast.getFirstChild();
             switch (firstChild.getType()) {
@@ -433,8 +413,7 @@ public class SuppressWarningsHolder
      *         expression or annotation array initializer
      * @throws IllegalArgumentException if the AST is invalid
      */
-    private static List<String> getAnnotationValues(DetailAST ast)
-    {
+    private static List<String> getAnnotationValues(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.EXPR:
                 return ImmutableList.of(getStringExpr(ast));

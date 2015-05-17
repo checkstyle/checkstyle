@@ -28,20 +28,17 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapChec
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.LINE_PREVIOUS;
 
 public class OperatorWrapCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(OperatorWrapCheck.class);
     }
 
     @Test
     public void testDefault()
-        throws Exception
-    {
+        throws Exception {
         final String[] expected = {
             "15:19: " + getCheckMessage(LINE_NEW, "+"),
             "16:15: " + getCheckMessage(LINE_NEW, "-"),
@@ -54,8 +51,7 @@ public class OperatorWrapCheckTest
 
     @Test
     public void testOpWrapEOL()
-        throws Exception
-    {
+        throws Exception {
         checkConfig.addAttribute("option", WrapOption.EOL.toString());
         final String[] expected = {
             "18:13: " + getCheckMessage(LINE_PREVIOUS, "-"),
@@ -67,8 +63,7 @@ public class OperatorWrapCheckTest
 
     @Test
     public void testAssignEOL()
-        throws Exception
-    {
+        throws Exception {
         checkConfig.addAttribute("tokens", "ASSIGN");
         checkConfig.addAttribute("option", WrapOption.EOL.toString());
         final String[] expected = {

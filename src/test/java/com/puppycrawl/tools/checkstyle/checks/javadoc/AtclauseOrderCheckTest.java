@@ -25,12 +25,10 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck.MSG_KEY;
 
-public class AtclauseOrderCheckTest extends BaseCheckTestSupport
-{
+public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
 
     @Test
-    public void testCorrect() throws Exception
-    {
+    public void testCorrect() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
         final String[] expected = {};
 
@@ -38,8 +36,7 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIncorrect() throws Exception
-    {
+    public void testIncorrect() throws Exception {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
         DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
@@ -85,8 +82,7 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIncorrectCustom() throws Exception
-    {
+    public void testIncorrectCustom() throws Exception {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
         DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);

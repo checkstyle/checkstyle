@@ -56,8 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Rob Worth
  */
-public class AnonInnerLengthCheck extends Check
-{
+public class AnonInnerLengthCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -72,20 +71,17 @@ public class AnonInnerLengthCheck extends Check
     private int max = DEFAULT_MAX;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.LITERAL_NEW};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.LITERAL_NEW};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         final DetailAST openingBrace = ast.findFirstToken(TokenTypes.OBJBLOCK);
         if (openingBrace != null) {
             final DetailAST closingBrace =
@@ -103,8 +99,7 @@ public class AnonInnerLengthCheck extends Check
     /**
      * @param length the maximum length of an anonymous inner class.
      */
-    public void setMax(int length)
-    {
+    public void setMax(int length) {
         max = length;
     }
 }

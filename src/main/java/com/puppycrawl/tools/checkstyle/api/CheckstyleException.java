@@ -24,8 +24,7 @@ package com.puppycrawl.tools.checkstyle.api;
  *
  * @author Oliver Burn
  */
-public class CheckstyleException extends Exception
-{
+public class CheckstyleException extends Exception {
     /** For Serialisation that will never happen. */
     private static final long serialVersionUID = -3517342299748221108L;
 
@@ -34,8 +33,7 @@ public class CheckstyleException extends Exception
      *
      * @param message a <code>String</code> value
      */
-    public CheckstyleException(String message)
-    {
+    public CheckstyleException(String message) {
         super(message);
     }
 
@@ -46,8 +44,7 @@ public class CheckstyleException extends Exception
      * @param message a message that explains this exception
      * @param cause the Exception that is wrapped by this exception
      */
-    public CheckstyleException(String message, Throwable cause)
-    {
+    public CheckstyleException(String message, Throwable cause) {
         super(message, cause);
     }
 }

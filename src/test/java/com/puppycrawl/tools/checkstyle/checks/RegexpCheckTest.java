@@ -27,11 +27,9 @@ import static com.puppycrawl.tools.checkstyle.checks.RegexpCheck.MSG_ILLEGAL_REG
 import static com.puppycrawl.tools.checkstyle.checks.RegexpCheck.MSG_DUPLICATE_REGEXP;
 import static com.puppycrawl.tools.checkstyle.checks.RegexpCheck.MSG_REQUIRED_REGEXP;
 
-public class RegexpCheckTest extends BaseCheckTestSupport
-{
+public class RegexpCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testRequiredPass() throws Exception
-    {
+    public void testRequiredPass() throws Exception {
         final String required = "Test case file";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
@@ -42,8 +40,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testRequiredFail() throws Exception
-    {
+    public void testRequiredFail() throws Exception {
         final String required = "This text is not in the file";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
@@ -55,8 +52,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testRequiredNoDuplicatesPass() throws Exception
-    {
+    public void testRequiredNoDuplicatesPass() throws Exception {
         final String required = "Test case file";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
@@ -68,8 +64,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testRequiredNoDuplicatesFail() throws Exception
-    {
+    public void testRequiredNoDuplicatesFail() throws Exception {
         final String required = "Boolean x = new Boolean";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
@@ -82,8 +77,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIllegalPass() throws Exception
-    {
+    public void testIllegalPass() throws Exception {
         final String illegal = "This text is not in the file";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
@@ -95,8 +89,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIllegalFailBelowErrorLimit() throws Exception
-    {
+    public void testIllegalFailBelowErrorLimit() throws Exception {
         final String illegal = "^import";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
@@ -112,8 +105,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIllegalFailAboveErrorLimit() throws Exception
-    {
+    public void testIllegalFailAboveErrorLimit() throws Exception {
         final String illegal = "^import";
         final String error = "The error limit has been exceeded, "
             + "the check is aborting, there may be more unreported errors.";
@@ -132,8 +124,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testMessagePropertyGood()
-        throws Exception
-    {
+        throws Exception {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         final String message = "Bad line :(";
         final DefaultConfiguration checkConfig =
@@ -149,8 +140,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testMessagePropertyBad()
-        throws Exception
-    {
+        throws Exception {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
@@ -164,8 +154,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIgnoreCaseTrue() throws Exception
-    {
+    public void testIgnoreCaseTrue() throws Exception {
         final String illegal = "(?i)SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
@@ -178,8 +167,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIgnoreCaseFalse() throws Exception
-    {
+    public void testIgnoreCaseFalse() throws Exception {
         final String illegalTrue = "(?i)SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
         final DefaultConfiguration checkConfigTrue =
             createCheckConfig(RegexpCheck.class);
@@ -200,8 +188,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIgnoreCommentsCppStyle() throws Exception
-    {
+    public void testIgnoreCommentsCppStyle() throws Exception {
         // See if the comment is removed properly
         final String illegal = "don't use trailing comments";
         final DefaultConfiguration checkConfig =
@@ -215,8 +202,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIgnoreCommentsFalseCppStyle() throws Exception
-    {
+    public void testIgnoreCommentsFalseCppStyle() throws Exception {
         // See if the comment is removed properly
         final String illegal = "don't use trailing comments";
         final DefaultConfiguration checkConfig =
@@ -231,8 +217,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIgnoreCommentsCStyle() throws Exception
-    {
+    public void testIgnoreCommentsCStyle() throws Exception {
         // See if the comment is removed properly
         final String illegal = "c-style 1";
         final DefaultConfiguration checkConfig =
@@ -246,8 +231,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIgnoreCommentsFalseCStyle() throws Exception
-    {
+    public void testIgnoreCommentsFalseCStyle() throws Exception {
         final String illegal = "c-style 1";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
@@ -261,8 +245,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIgnoreCommentsMultipleCStyle() throws Exception
-    {
+    public void testIgnoreCommentsMultipleCStyle() throws Exception {
         // See if a second comment on the same line is removed properly
         final String illegal = "c-style 2";
         final DefaultConfiguration checkConfig =
@@ -276,8 +259,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIgnoreCommentsMultiLine() throws Exception
-    {
+    public void testIgnoreCommentsMultiLine() throws Exception {
         final String illegal = "Let's check multi-line comments";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
@@ -290,8 +272,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIgnoreCommentsInlineStart() throws Exception
-    {
+    public void testIgnoreCommentsInlineStart() throws Exception {
         final String illegal = "long ms /";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
@@ -304,8 +285,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIgnoreCommentsInlineEnd() throws Exception
-    {
+    public void testIgnoreCommentsInlineEnd() throws Exception {
         final String illegal = "int z";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
@@ -319,8 +299,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIgnoreCommentsInlineMiddle() throws Exception
-    {
+    public void testIgnoreCommentsInlineMiddle() throws Exception {
         final String illegal = "int y";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
@@ -334,8 +313,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIgnoreCommentsNoSpaces() throws Exception
-    {
+    public void testIgnoreCommentsNoSpaces() throws Exception {
         // make sure the comment is not turned into spaces
         final String illegal = "long ms  ";
         final DefaultConfiguration checkConfig =

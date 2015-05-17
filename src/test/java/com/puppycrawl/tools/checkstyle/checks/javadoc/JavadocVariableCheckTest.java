@@ -28,12 +28,10 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck.JAVADOC_MISSING;
 
 public class JavadocVariableCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
     public void testDefault()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
         final String[] expected = {
@@ -47,8 +45,7 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testAnother()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
         final String[] expected = {
@@ -61,8 +58,7 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testAnother2()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
@@ -73,8 +69,7 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testAnother3()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
         final String[] expected = {
@@ -91,8 +86,7 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testAnother4()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
@@ -103,8 +97,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testScopes() throws Exception
-    {
+    public void testScopes() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
         final String[] expected = {
@@ -152,8 +145,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testScopes2() throws Exception
-    {
+    public void testScopes2() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
@@ -169,8 +161,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testExcludeScope() throws Exception
-    {
+    public void testExcludeScope() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
         checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
@@ -217,8 +208,7 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testIgnoredVariableNames()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(JavadocVariableCheck.class);
         checkConfig.addAttribute("ignoreNamePattern", "log|logger");

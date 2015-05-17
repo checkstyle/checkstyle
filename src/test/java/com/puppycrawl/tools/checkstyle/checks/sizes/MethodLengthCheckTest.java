@@ -26,11 +26,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
-public class MethodLengthCheckTest extends BaseCheckTestSupport
-{
+public class MethodLengthCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testGetAcceptableTokens()
-    {
+    public void testGetAcceptableTokens() {
         MethodLengthCheck methodLengthCheckObj =
             new MethodLengthCheck();
         int[] actual = methodLengthCheckObj.getAcceptableTokens();
@@ -43,8 +41,7 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIt() throws Exception
-    {
+    public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodLengthCheck.class);
         checkConfig.addAttribute("max", "19");
@@ -55,8 +52,7 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testcountEmpty() throws Exception
-    {
+    public void testcountEmpty() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodLengthCheck.class);
         checkConfig.addAttribute("max", "19");
@@ -67,8 +63,7 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testAbstract() throws Exception
-    {
+    public void testAbstract() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodLengthCheck.class);
         final String[] expected = {

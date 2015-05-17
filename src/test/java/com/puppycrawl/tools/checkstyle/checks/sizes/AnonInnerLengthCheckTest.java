@@ -30,11 +30,9 @@ import org.junit.Test;
  * @author Rob Worth
  * @author Lars Kühne
  */
-public class AnonInnerLengthCheckTest extends BaseCheckTestSupport
-{
+public class AnonInnerLengthCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testGetAcceptableTokens()
-    {
+    public void testGetAcceptableTokens() {
         AnonInnerLengthCheck anonInnerLengthCheckObj =
                 new AnonInnerLengthCheck();
         int[] actual = anonInnerLengthCheckObj.getAcceptableTokens();
@@ -44,8 +42,7 @@ public class AnonInnerLengthCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AnonInnerLengthCheck.class);
         final String[] expected = {
@@ -55,8 +52,7 @@ public class AnonInnerLengthCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testNonDefault() throws Exception
-    {
+    public void testNonDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AnonInnerLengthCheck.class);
         checkConfig.addAttribute("max", "6");

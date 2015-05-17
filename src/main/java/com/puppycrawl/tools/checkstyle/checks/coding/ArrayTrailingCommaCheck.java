@@ -39,8 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </pre>
  * @author o_sukhodolsky
  */
-public class ArrayTrailingCommaCheck extends Check
-{
+public class ArrayTrailingCommaCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -49,27 +48,23 @@ public class ArrayTrailingCommaCheck extends Check
     public static final String MSG_KEY = "array.trailing.comma";
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.ARRAY_INIT};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.ARRAY_INIT};
     }
 
     @Override
-    public void visitToken(DetailAST arrayInit)
-    {
+    public void visitToken(DetailAST arrayInit) {
         final DetailAST rcurly = arrayInit.findFirstToken(TokenTypes.RCURLY);
 
         // if curlys are on the same line
         // or array is empty then check nothing
         if (arrayInit.getLineNo() == rcurly.getLineNo()
-            || arrayInit.getChildCount() == 1)
-        {
+            || arrayInit.getChildCount() == 1) {
             return;
         }
 

@@ -28,20 +28,17 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 
 public class NewlineAtEndOfFileCheckTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Override
     protected DefaultConfiguration createCheckerConfig(
-        Configuration checkConfig)
-    {
+        Configuration checkConfig) {
         final DefaultConfiguration dc = new DefaultConfiguration("root");
         dc.addChild(checkConfig);
         return dc;
     }
 
     @Test
-    public void testNewlineAtEndOfFile() throws Exception
-    {
+    public void testNewlineAtEndOfFile() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
@@ -53,8 +50,7 @@ public class NewlineAtEndOfFileCheckTest
     }
 
     @Test
-    public void testNoNewlineAtEndOfFile() throws Exception
-    {
+    public void testNoNewlineAtEndOfFile() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
@@ -69,8 +65,7 @@ public class NewlineAtEndOfFileCheckTest
 
     @Test(expected = CheckstyleException.class)
     public void testSetLineSeparatorFailure()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", "ct");
@@ -78,8 +73,7 @@ public class NewlineAtEndOfFileCheckTest
     }
 
     @Test
-    public void testEmptyFileFile() throws Exception
-    {
+    public void testEmptyFileFile() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());

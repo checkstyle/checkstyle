@@ -53,8 +53,7 @@ import java.util.Set;
  * @author Rick Giles
  */
 public class IllegalTokenCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -63,8 +62,7 @@ public class IllegalTokenCheck
     public static final String MSG_KEY = "illegal.token";
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.LITERAL_SWITCH,
             TokenTypes.POST_INC,
@@ -73,8 +71,7 @@ public class IllegalTokenCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         // Any tokens set by property 'tokens' are acceptable
         int[] tokensToCopy = getDefaultTokens();
         final Set<String> tokenNames = getTokenNames();
@@ -92,8 +89,7 @@ public class IllegalTokenCheck
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         log(
             ast.getLineNo(),
             ast.getColumnNo(),

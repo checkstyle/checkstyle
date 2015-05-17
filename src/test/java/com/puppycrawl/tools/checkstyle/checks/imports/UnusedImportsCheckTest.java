@@ -26,11 +26,9 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck.MSG_KEY;
 
-public class UnusedImportsCheckTest extends BaseCheckTestSupport
-{
+public class UnusedImportsCheckTest extends BaseCheckTestSupport {
     @Test
-    public void testDefault() throws Exception
-    {
+    public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
         final String[] expected = {
             "8:45: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.imports.InputImportBug"),
@@ -63,8 +61,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testProcessJavadoc() throws Exception
-    {
+    public void testProcessJavadoc() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
         checkConfig.addAttribute("processJavadoc", "true");
         final String[] expected = {
@@ -85,8 +82,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testAnnotations() throws Exception
-    {
+    public void testAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
         final String[] expected = {};
         verify(checkConfig, getPath("imports" + File.separator
@@ -94,8 +90,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testBug() throws Exception
-    {
+    public void testBug() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
         final String[] expected = {};
         verify(checkConfig, getPath("imports" + File.separator

@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author jrichard
  */
-public class ElseHandler extends BlockParentHandler
-{
+public class ElseHandler extends BlockParentHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -38,14 +37,12 @@ public class ElseHandler extends BlockParentHandler
      * @param parent        the parent handler
      */
     public ElseHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent)
-    {
+        DetailAST ast, ExpressionHandler parent) {
         super(indentCheck, "else", ast, parent);
     }
 
     @Override
-    protected void checkToplevelToken()
-    {
+    protected void checkToplevelToken() {
         // check if else is nested with rcurly of if:
         //
         //  } else ...
@@ -56,8 +53,7 @@ public class ElseHandler extends BlockParentHandler
             if (slist != null) {
                 final DetailAST lcurly = slist.getLastChild();
                 if (lcurly != null
-                    && lcurly.getLineNo() == getMainAst().getLineNo())
-                {
+                    && lcurly.getLineNo() == getMainAst().getLineNo()) {
                     // indentation checked as part of LITERAL IF check
                     return;
                 }
@@ -67,8 +63,7 @@ public class ElseHandler extends BlockParentHandler
     }
 
     @Override
-    protected DetailAST getNonlistChild()
-    {
+    protected DetailAST getNonlistChild() {
         return getMainAst().getFirstChild();
     }
 }

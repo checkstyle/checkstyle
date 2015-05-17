@@ -28,19 +28,16 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck
 .SUMMARY_FIRST_SENTENCE;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.SUMMARY_JAVADOC;
 
-public class SummaryJavadocCheckTest extends BaseCheckTestSupport
-{
+public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         checkConfig = createCheckConfig(SummaryJavadocCheck.class);
     }
 
     @Test
-    public void testCorrect() throws Exception
-    {
+    public void testCorrect() throws Exception {
         checkConfig.addAttribute("forbiddenSummaryFragments",
                 "^@return the *|^This method returns *|^A [{]@code [a-zA-Z0-9]+[}]( is a )");
         final String[] expected = {
@@ -50,8 +47,7 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIncorrect() throws Exception
-    {
+    public void testIncorrect() throws Exception {
         checkConfig.addAttribute("forbiddenSummaryFragments",
                 "^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )");
         final String[] expected = {
@@ -67,8 +63,7 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testPeriod() throws Exception
-    {
+    public void testPeriod() throws Exception {
         checkConfig.addAttribute("period", "_");
         final String[] expected = {
             "5: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
@@ -79,8 +74,7 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testNoPeriod() throws Exception
-    {
+    public void testNoPeriod() throws Exception {
         checkConfig.addAttribute("period", "");
         final String[] expected = {
         };

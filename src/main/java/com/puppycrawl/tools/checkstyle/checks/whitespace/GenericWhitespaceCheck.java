@@ -67,8 +67,7 @@ import com.puppycrawl.tools.checkstyle.Utils;
  * </pre>
  * @author Oliver Burn
  */
-public class GenericWhitespaceCheck extends Check
-{
+public class GenericWhitespaceCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -98,28 +97,24 @@ public class GenericWhitespaceCheck extends Check
     private int depth;
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.GENERIC_START, TokenTypes.GENERIC_END};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.GENERIC_START, TokenTypes.GENERIC_END};
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         // Reset for each tree, just incase there are errors in preceeding
         // trees.
         depth = 0;
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.GENERIC_START) {
             processStart(ast);
             depth++;
@@ -134,15 +129,13 @@ public class GenericWhitespaceCheck extends Check
      * Checks the token for the end of Generics.
      * @param ast the token to check
      */
-    private void processEnd(DetailAST ast)
-    {
+    private void processEnd(DetailAST ast) {
         final String line = getLine(ast.getLineNo() - 1);
         final int before = ast.getColumnNo() - 1;
         final int after = ast.getColumnNo() + 1;
 
         if (0 <= before && Character.isWhitespace(line.charAt(before))
-                && !Utils.whitespaceBefore(before, line))
-        {
+                && !Utils.whitespaceBefore(before, line)) {
             log(ast.getLineNo(), before, WS_PRECEDED, ">");
         }
 
@@ -162,8 +155,7 @@ public class GenericWhitespaceCheck extends Check
                             == TokenTypes.DOT
                         && ast.getParent().getParent().getParent().getType()
                             == TokenTypes.METHOD_CALL
-                        || isAfterMethodReference(ast))
-                {
+                        || isAfterMethodReference(ast)) {
                     if (Character.isWhitespace(charAfter)) {
                         log(ast.getLineNo(), after, WS_FOLLOWED, ">");
                     }
@@ -172,8 +164,7 @@ public class GenericWhitespaceCheck extends Check
                     && '(' != charAfter && ')' != charAfter
                     && ',' != charAfter && '[' != charAfter
                     && '.' != charAfter && ':' != charAfter
-                    && !isAfterMethodReference(ast))
-                {
+                    && !isAfterMethodReference(ast)) {
                     log(ast.getLineNo(), after, WS_ILLEGAL_FOLLOW, ">");
                 }
             }
@@ -188,8 +179,7 @@ public class GenericWhitespaceCheck extends Check
                 //
                 final int indexOfAmp = line.indexOf('&', after);
                 if (indexOfAmp != -1
-                    && whitespaceBetween(after, indexOfAmp, line))
-                {
+                    && whitespaceBetween(after, indexOfAmp, line)) {
                     if (indexOfAmp - after == 0) {
                         log(ast.getLineNo(), after, WS_NOT_PRECEDED, "&");
                     }
@@ -210,8 +200,7 @@ public class GenericWhitespaceCheck extends Check
      * @param genericEnd {@link TokenTypes#GENERIC_END}
      * @return true if '>' follows after method reference.
      */
-    private static boolean isAfterMethodReference(DetailAST genericEnd)
-    {
+    private static boolean isAfterMethodReference(DetailAST genericEnd) {
         return genericEnd.getParent().getParent().getType() == TokenTypes.METHOD_REF;
     }
 
@@ -219,8 +208,7 @@ public class GenericWhitespaceCheck extends Check
      * Checks the token for the start of Generics.
      * @param ast the token to check
      */
-    private void processStart(DetailAST ast)
-    {
+    private void processStart(DetailAST ast) {
         final String line = getLine(ast.getLineNo() - 1);
         final int before = ast.getColumnNo() - 1;
         final int after = ast.getColumnNo() + 1;
@@ -237,8 +225,7 @@ public class GenericWhitespaceCheck extends Check
             final DetailAST grandparent = parent.getParent();
             if (TokenTypes.TYPE_PARAMETERS == parent.getType()
                 && (TokenTypes.CTOR_DEF == grandparent.getType()
-                    || TokenTypes.METHOD_DEF == grandparent.getType()))
-            {
+                    || TokenTypes.METHOD_DEF == grandparent.getType())) {
                 // Require whitespace
                 if (!Character.isWhitespace(line.charAt(before))) {
                     log(ast.getLineNo(), before, WS_NOT_PRECEDED, "<");
@@ -246,15 +233,13 @@ public class GenericWhitespaceCheck extends Check
             }
             // Whitespace not required
             else if (Character.isWhitespace(line.charAt(before))
-                && !Utils.whitespaceBefore(before, line))
-            {
+                && !Utils.whitespaceBefore(before, line)) {
                 log(ast.getLineNo(), before, WS_PRECEDED, "<");
             }
         }
 
         if (after < line.length()
-                && Character.isWhitespace(line.charAt(after)))
-        {
+                && Character.isWhitespace(line.charAt(after))) {
             log(ast.getLineNo(), after, WS_FOLLOWED, "<");
         }
     }
@@ -269,8 +254,7 @@ public class GenericWhitespaceCheck extends Check
      * @return whether there are only whitespaces (or nothing)
      */
     private static boolean whitespaceBetween(
-        int fromIndex, int toIndex, String line)
-    {
+        int fromIndex, int toIndex, String line) {
         for (int i = fromIndex; i < toIndex; i++) {
             if (!Character.isWhitespace(line.charAt(i))) {
                 return false;

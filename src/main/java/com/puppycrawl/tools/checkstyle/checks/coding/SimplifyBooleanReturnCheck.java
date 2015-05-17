@@ -39,8 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author Lars Kühne
  */
 public class SimplifyBooleanReturnCheck
-    extends Check
-{
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -49,20 +48,17 @@ public class SimplifyBooleanReturnCheck
     public static final String MSG_KEY = "simplify.boolreturn";
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.LITERAL_IF};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.LITERAL_IF};
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         // LITERAL_IF has the following four or five children:
         // '('
         // condition
@@ -83,8 +79,7 @@ public class SimplifyBooleanReturnCheck
         final AST thenStatement = condition.getNextSibling().getNextSibling();
 
         if (returnsOnlyBooleanLiteral(thenStatement)
-            && returnsOnlyBooleanLiteral(elseStatement))
-        {
+            && returnsOnlyBooleanLiteral(elseStatement)) {
             log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
         }
     }
@@ -109,8 +104,7 @@ public class SimplifyBooleanReturnCheck
      * @param ast the sytax tree to check
      * @return if ast is a return statment with a boolean literal.
      */
-    private static boolean returnsOnlyBooleanLiteral(AST ast)
-    {
+    private static boolean returnsOnlyBooleanLiteral(AST ast) {
         if (isBooleanLiteralReturnStatement(ast)) {
             return true;
         }
@@ -131,8 +125,7 @@ public class SimplifyBooleanReturnCheck
      * @param ast the sytax tree to check
      * @return if ast is a return statment with a boolean literal.
      */
-    private static boolean isBooleanLiteralReturnStatement(AST ast)
-    {
+    private static boolean isBooleanLiteralReturnStatement(AST ast) {
         if (ast == null || ast.getType() != TokenTypes.LITERAL_RETURN) {
             return false;
         }
@@ -152,8 +145,7 @@ public class SimplifyBooleanReturnCheck
      * @param tokenType the TokenType
      * @return true iff tokenType is LITERAL_TRUE or LITERAL_FALSE
      */
-    private static boolean isBooleanLiteralType(final int tokenType)
-    {
+    private static boolean isBooleanLiteralType(final int tokenType) {
         final boolean iastrue = tokenType == TokenTypes.LITERAL_TRUE;
         final boolean isFalse = tokenType == TokenTypes.LITERAL_FALSE;
         return iastrue || isFalse;

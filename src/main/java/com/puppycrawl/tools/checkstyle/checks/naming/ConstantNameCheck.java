@@ -54,29 +54,24 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Rick Giles
  */
 public class ConstantNameCheck
-    extends AbstractAccessControlNameCheck
-{
+    extends AbstractAccessControlNameCheck {
     /** Creates a new <code>ConstantNameCheck</code> instance. */
-    public ConstantNameCheck()
-    {
+    public ConstantNameCheck() {
         super("^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$");
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     @Override
-    protected final boolean mustCheckName(DetailAST ast)
-    {
+    protected final boolean mustCheckName(DetailAST ast) {
         boolean retVal = false;
 
         final DetailAST modifiersAST =
@@ -89,15 +84,13 @@ public class ConstantNameCheck
         if (isStatic  && isFinal && shouldCheckInScope(modifiersAST)
                 || ScopeUtils.inAnnotationBlock(ast)
                 || ScopeUtils.inInterfaceOrAnnotationBlock(ast)
-                        && !ScopeUtils.inCodeBlock(ast))
-        {
+                        && !ScopeUtils.inCodeBlock(ast)) {
             // Handle the serialVersionUID and serialPersistentFields constants
             // which are used for Serialization. Cannot enforce rules on it. :-)
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             if (nameAST != null
                 && !"serialVersionUID".equals(nameAST.getText())
-                && !"serialPersistentFields".equals(nameAST.getText()))
-            {
+                && !"serialPersistentFields".equals(nameAST.getText())) {
                 retVal = true;
             }
         }

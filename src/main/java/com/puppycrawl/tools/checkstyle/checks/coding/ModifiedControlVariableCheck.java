@@ -71,8 +71,7 @@ import java.util.Set;
  * @author Daniel Grenner
  * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  */
-public final class ModifiedControlVariableCheck extends Check
-{
+public final class ModifiedControlVariableCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -94,8 +93,7 @@ public final class ModifiedControlVariableCheck extends Check
     private final Deque<Deque<String>> variableStack = new ArrayDeque<>();
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.OBJBLOCK,
             TokenTypes.LITERAL_FOR,
@@ -121,14 +119,12 @@ public final class ModifiedControlVariableCheck extends Check
     }
 
     @Override
-    public int[] getRequiredTokens()
-    {
+    public int[] getRequiredTokens() {
         return getDefaultTokens();
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.OBJBLOCK,
             TokenTypes.LITERAL_FOR,
@@ -154,16 +150,14 @@ public final class ModifiedControlVariableCheck extends Check
     }
 
     @Override
-    public void beginTree(DetailAST rootAST)
-    {
+    public void beginTree(DetailAST rootAST) {
         // clear data
         variableStack.clear();
         variableStack.push(new ArrayDeque<String>());
     }
 
     @Override
-    public void visitToken(DetailAST ast)
-    {
+    public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.OBJBLOCK:
                 enterBlock();
@@ -198,8 +192,7 @@ public final class ModifiedControlVariableCheck extends Check
 
 
     @Override
-    public void leaveToken(DetailAST ast)
-    {
+    public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.FOR_ITERATOR:
                 leaveForIter(ast.getParent());
@@ -239,15 +232,13 @@ public final class ModifiedControlVariableCheck extends Check
     /**
      * Enters an inner class, which requires a new variable set.
      */
-    private void enterBlock()
-    {
+    private void enterBlock() {
         variableStack.push(new ArrayDeque<String>());
     }
     /**
      * Leave an inner class, so restore variable set.
      */
-    private void exitBlock()
-    {
+    private void exitBlock() {
         variableStack.pop();
     }
 
@@ -255,8 +246,7 @@ public final class ModifiedControlVariableCheck extends Check
      * Get current variable stack
      * @return current variable stack
      */
-    private Deque<String> getCurrentVariables()
-    {
+    private Deque<String> getCurrentVariables() {
         return variableStack.peek();
     }
 
@@ -264,15 +254,13 @@ public final class ModifiedControlVariableCheck extends Check
      * Check if ident is parameter.
      * @param ast ident to check.
      */
-    private void checkIdent(DetailAST ast)
-    {
+    private void checkIdent(DetailAST ast) {
         if (!getCurrentVariables().isEmpty()) {
             final DetailAST identAST = ast.getFirstChild();
 
             if (identAST != null
                 && identAST.getType() == TokenTypes.IDENT
-                && getCurrentVariables().contains(identAST.getText()))
-            {
+                && getCurrentVariables().contains(identAST.getText())) {
                 log(ast.getLineNo(), ast.getColumnNo(),
                     MSG_KEY, identAST.getText());
             }
@@ -283,8 +271,7 @@ public final class ModifiedControlVariableCheck extends Check
      * Push current variables to the stack.
      * @param ast a for definition.
      */
-    private void leaveForIter(DetailAST ast)
-    {
+    private void leaveForIter(DetailAST ast) {
         final Set<String> variablesToPutInScope = getVariablesManagedByForLoop(ast);
         for (String variableName : variablesToPutInScope) {
             getCurrentVariables().push(variableName);
@@ -297,8 +284,7 @@ public final class ModifiedControlVariableCheck extends Check
      * @param ast For Loop
      * @return Set of Variable Name which are managed by for
      */
-    private Set<String> getVariablesManagedByForLoop(DetailAST ast)
-    {
+    private Set<String> getVariablesManagedByForLoop(DetailAST ast) {
         final Set<String> initializedVariables = getForInitVariables(ast);
         final Set<String> iteratingVariables = getForIteratorVariables(ast);
 
@@ -309,8 +295,7 @@ public final class ModifiedControlVariableCheck extends Check
      * Push current variables to the stack.
      * @param forEach a for-each clause
      */
-    private void leaveForEach(DetailAST forEach)
-    {
+    private void leaveForEach(DetailAST forEach) {
         final DetailAST paramDef =
             forEach.findFirstToken(TokenTypes.VARIABLE_DEF);
         final DetailAST paramName = paramDef.findFirstToken(TokenTypes.IDENT);
@@ -321,8 +306,7 @@ public final class ModifiedControlVariableCheck extends Check
      * Pops the variables from the stack.
      * @param ast a for definition.
      */
-    private void leaveForDef(DetailAST ast)
-    {
+    private void leaveForDef(DetailAST ast) {
         final DetailAST forInitAST = ast.findFirstToken(TokenTypes.FOR_INIT);
         if (forInitAST != null) {
             final Set<String> variablesManagedByForLoop = getVariablesManagedByForLoop(ast);
@@ -339,8 +323,7 @@ public final class ModifiedControlVariableCheck extends Check
      * Pops given number of variables from currentVariables
      * @param count Count of variables to be popped from currentVariables
      */
-    private void popCurrentVariables(int count)
-    {
+    private void popCurrentVariables(int count) {
         for (int i = 0; i < count; i++) {
             getCurrentVariables().pop();
         }
@@ -351,16 +334,14 @@ public final class ModifiedControlVariableCheck extends Check
      * @param ast for loop iteral
      * @return set of variables initialized in for loop
      */
-    private static Set<String> getForInitVariables(DetailAST ast)
-    {
+    private static Set<String> getForInitVariables(DetailAST ast) {
         assert ast.getType() == TokenTypes.LITERAL_FOR;
         final Set<String> initializedVariables = new HashSet<>();
         final DetailAST forInitAST = ast.findFirstToken(TokenTypes.FOR_INIT);
 
         for (DetailAST parameterDefAST = forInitAST.findFirstToken(TokenTypes.VARIABLE_DEF);
              parameterDefAST != null;
-             parameterDefAST = parameterDefAST.getNextSibling())
-        {
+             parameterDefAST = parameterDefAST.getNextSibling()) {
             if (parameterDefAST.getType() == TokenTypes.VARIABLE_DEF) {
                 final DetailAST param =
                         parameterDefAST.findFirstToken(TokenTypes.IDENT);
@@ -376,8 +357,7 @@ public final class ModifiedControlVariableCheck extends Check
      * @param ast for loop literal(TokenTypes.LITERAL_FOR)
      * @return names of variables change in iterating part of for
      */
-    private static Set<String> getForIteratorVariables(DetailAST ast)
-    {
+    private static Set<String> getForIteratorVariables(DetailAST ast) {
         final Set<String> iteratorVariables = new HashSet<>();
         final DetailAST forIteratorAST = ast.findFirstToken(TokenTypes.FOR_ITERATOR);
         final DetailAST forUpdateListAST = forIteratorAST.findFirstToken(TokenTypes.ELIST);
@@ -400,14 +380,12 @@ public final class ModifiedControlVariableCheck extends Check
      * @param ast parent of expressions to find
      * @return all child of given ast
      */
-    private static List<DetailAST> findChildrenOfExpressionType(DetailAST ast)
-    {
+    private static List<DetailAST> findChildrenOfExpressionType(DetailAST ast) {
         final List<DetailAST> foundExpressions = new LinkedList<>();
         if (ast != null) {
             for (DetailAST iteratingExpressionAST = ast.findFirstToken(TokenTypes.EXPR);
                  iteratingExpressionAST != null;
-                 iteratingExpressionAST = iteratingExpressionAST.getNextSibling())
-            {
+                 iteratingExpressionAST = iteratingExpressionAST.getNextSibling()) {
                 if (iteratingExpressionAST.getType() == TokenTypes.EXPR) {
                     foundExpressions.add(iteratingExpressionAST.getFirstChild());
                 }

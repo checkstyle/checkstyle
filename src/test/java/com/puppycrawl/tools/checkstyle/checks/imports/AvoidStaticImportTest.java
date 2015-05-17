@@ -27,12 +27,10 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck.MSG_KEY;
 
 public class AvoidStaticImportTest
-    extends BaseCheckTestSupport
-{
+    extends BaseCheckTestSupport {
     @Test
     public void testDefaultOperation()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStaticImportCheck.class);
         final String[] expected = {
@@ -48,8 +46,7 @@ public class AvoidStaticImportTest
 
     @Test
     public void testStarExcludes()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStaticImportCheck.class);
         checkConfig.addAttribute("excludes", "java.io.File.*,sun.net.ftpclient.FtpClient.*");
@@ -63,8 +60,7 @@ public class AvoidStaticImportTest
 
     @Test
     public void testMemberExcludes()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStaticImportCheck.class);
         checkConfig.addAttribute("excludes", "java.io.File.listRoots");
@@ -80,8 +76,7 @@ public class AvoidStaticImportTest
 
     @Test
     public void testBogusMemberExcludes()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStaticImportCheck.class);
         checkConfig.addAttribute(

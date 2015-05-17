@@ -72,8 +72,7 @@ import java.util.Map.Entry;
  * @author lkuehne
  */
 public class TranslationCheck
-    extends AbstractFileSetCheck
-{
+    extends AbstractFileSetCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -93,28 +92,24 @@ public class TranslationCheck
     /**
      * Creates a new <code>TranslationCheck</code> instance.
      */
-    public TranslationCheck()
-    {
+    public TranslationCheck() {
         setFileExtensions("properties");
         setBasenameSeparator("_");
     }
 
     @Override
-    public void beginProcessing(String charset)
-    {
+    public void beginProcessing(String charset) {
         super.beginProcessing(charset);
         propertyFiles.clear();
     }
 
     @Override
-    protected void processFiltered(File file, List<String> lines)
-    {
+    protected void processFiltered(File file, List<String> lines) {
         propertyFiles.add(file);
     }
 
     @Override
-    public void finishProcessing()
-    {
+    public void finishProcessing() {
         super.finishProcessing();
         final Map<String, Set<File>> propFilesMap =
             arrangePropertyFiles(propertyFiles, basenameSeparator);
@@ -131,8 +126,7 @@ public class TranslationCheck
      * @return the extracted basename
      */
     private static String extractPropertyIdentifier(final File file,
-            final String basenameSeparator)
-    {
+            final String basenameSeparator) {
         final String filePath = file.getPath();
         final int dirNameEnd = filePath.lastIndexOf(File.separatorChar);
         final int baseNameStart = dirNameEnd + 1;
@@ -149,8 +143,7 @@ public class TranslationCheck
     *
     * @param basenameSeparator the basename separator
     */
-    public void setBasenameSeparator(String basenameSeparator)
-    {
+    public void setBasenameSeparator(String basenameSeparator) {
         this.basenameSeparator = basenameSeparator;
     }
 
@@ -163,8 +156,7 @@ public class TranslationCheck
      * @return a Map object which holds the arranged property file sets
      */
     private static Map<String, Set<File>> arrangePropertyFiles(
-        List<File> propFiles, String basenameSeparator)
-    {
+        List<File> propFiles, String basenameSeparator) {
         final Map<String, Set<File>> propFileMap = Maps.newHashMap();
 
         for (final File f : propFiles) {
@@ -186,8 +178,7 @@ public class TranslationCheck
      * @param file the property file
      * @return a Set object which holds the loaded keys
      */
-    private Set<Object> loadKeys(File file)
-    {
+    private Set<Object> loadKeys(File file) {
         final Set<Object> keys = Sets.newHashSet();
         InputStream inStream = null;
 
@@ -217,8 +208,7 @@ public class TranslationCheck
      * @param ex the exception that occured
      * @param file the file that could not be processed
      */
-    private void logIOException(IOException ex, File file)
-    {
+    private void logIOException(IOException ex, File file) {
         String[] args = null;
         String key = "general.fileNotFound";
         if (!(ex instanceof FileNotFoundException)) {
@@ -247,8 +237,7 @@ public class TranslationCheck
      * @param fileMap a Map from property files to their key sets
      */
     private void compareKeySets(Set<Object> keys,
-            Map<File, Set<Object>> fileMap)
-    {
+            Map<File, Set<Object>> fileMap) {
         final Set<Entry<File, Set<Object>>> fls = fileMap.entrySet();
 
         for (Entry<File, Set<Object>> entry : fls) {
@@ -284,8 +273,7 @@ public class TranslationCheck
      *
      * @param propFiles the property files organized as Map
      */
-    private void checkPropertyFileSets(Map<String, Set<File>> propFiles)
-    {
+    private void checkPropertyFileSets(Map<String, Set<File>> propFiles) {
         final Set<Entry<String, Set<File>>> entrySet = propFiles.entrySet();
 
         for (Entry<String, Set<File>> entry : entrySet) {

@@ -46,8 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Oliver Burn
  */
 public class TypeNameCheck
-    extends AbstractAccessControlNameCheck
-{
+    extends AbstractAccessControlNameCheck {
 
     /**
      * default pattern for type name.
@@ -57,15 +56,13 @@ public class TypeNameCheck
     /**
      * Creates a new <code>TypeNameCheck</code> instance.
      */
-    public TypeNameCheck()
-    {
+    public TypeNameCheck() {
         super(DEFAULT_PATTERN);
     }
 
     /** {@inheritDoc} */
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {TokenTypes.CLASS_DEF,
                           TokenTypes.INTERFACE_DEF,
                           TokenTypes.ENUM_DEF,
@@ -74,8 +71,7 @@ public class TypeNameCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.CLASS_DEF,
                           TokenTypes.INTERFACE_DEF,
                           TokenTypes.ENUM_DEF,

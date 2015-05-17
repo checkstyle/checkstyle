@@ -25,12 +25,10 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
-public class LineLengthCheckTest extends BaseCheckTestSupport
-{
+public class LineLengthCheckTest extends BaseCheckTestSupport {
     @Test
     public void testSimple()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(LineLengthCheck.class);
         checkConfig.addAttribute("max", "80");
@@ -44,8 +42,7 @@ public class LineLengthCheckTest extends BaseCheckTestSupport
 
     @Test
     public void shouldLogActualLineLength()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(LineLengthCheck.class);
         checkConfig.addAttribute("max", "80");

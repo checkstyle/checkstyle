@@ -26,8 +26,7 @@ import java.util.regex.Matcher;
  * A detector that matches individual lines.
  * @author oliver
  */
-class SinglelineDetector
-{
+class SinglelineDetector {
     /** The detection options to use. */
     private final DetectorOptions options;
     /** Tracks the number of matches. */
@@ -37,8 +36,7 @@ class SinglelineDetector
      * Creates an instance.
      * @param options the options to use.
      */
-    public SinglelineDetector(DetectorOptions options)
-    {
+    public SinglelineDetector(DetectorOptions options) {
         this.options = options;
     }
 
@@ -46,8 +44,7 @@ class SinglelineDetector
      * Processes a set of lines looking for matches.
      * @param lines the lines to process.
      */
-    public void processLines(List<String> lines)
-    {
+    public void processLines(List<String> lines) {
         resetState();
         int lineno = 0;
         for (String line : lines) {
@@ -58,8 +55,7 @@ class SinglelineDetector
     }
 
     /** Perform processing at the end of a set of lines. */
-    private void finish()
-    {
+    private void finish() {
         if (currentMatches < options.getMinimum()) {
             if ("".equals(options.getMessage())) {
                 options.getReporter().log(0, "regexp.minimum",
@@ -74,8 +70,7 @@ class SinglelineDetector
     /**
      * Reset the state of the detector.
      */
-    private void resetState()
-    {
+    private void resetState() {
         currentMatches = 0;
     }
 
@@ -87,8 +82,7 @@ class SinglelineDetector
      * @param startPosition the position to start searching from.
      */
     private void checkLine(int lineno, String line, Matcher matcher,
-            int startPosition)
-    {
+            int startPosition) {
         final boolean foundMatch = matcher.find(startPosition);
         if (!foundMatch) {
             return;
@@ -102,8 +96,7 @@ class SinglelineDetector
         // needs column number of the last character.
         // So we need to use (endCol - 1) here.
         if (options.getSuppressor()
-                .shouldSuppress(lineno, startCol, lineno, endCol - 1))
-        {
+                .shouldSuppress(lineno, startCol, lineno, endCol - 1)) {
             if (endCol < line.length()) {
                 // check if the expression is on the rest of the line
                 checkLine(lineno, line, matcher, endCol);

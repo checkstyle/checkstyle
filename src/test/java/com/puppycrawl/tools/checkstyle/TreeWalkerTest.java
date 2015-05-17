@@ -37,13 +37,11 @@ import org.junit.rules.TemporaryFolder;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-public class TreeWalkerTest extends BaseCheckTestSupport
-{
+public class TreeWalkerTest extends BaseCheckTestSupport {
     @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
     @Test
-    public void testProperFileExtension() throws Exception
-    {
+    public void testProperFileExtension() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ConstantNameCheck.class);
         final String content = "public class Main { public static final int k = 5 + 4; }";
@@ -58,8 +56,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testImproperFileExtension() throws Exception
-    {
+    public void testImproperFileExtension() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ConstantNameCheck.class);
         final File file = temporaryFolder.newFile("file.pdf");
@@ -75,8 +72,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport
 
     @Test
     public void testAcceptableTokens()
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
         checkConfig.addAttribute("tokens", "VARIABLE_DEF, ENUM_DEF, CLASS_DEF, METHOD_DEF,"
@@ -98,8 +94,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testOnEmptyFile() throws Exception
-    {
+    public void testOnEmptyFile() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
         final String[] expected = {
@@ -109,8 +104,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testWithCheckNotHavingTreeWalkerAsParent() throws Exception
-    {
+    public void testWithCheckNotHavingTreeWalkerAsParent() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         final String[] expected = {
         };
@@ -125,16 +119,14 @@ public class TreeWalkerTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testSettersForParameters() throws Exception
-    {
+    public void testSettersForParameters() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.setTabWidth(1);
         treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
     }
 
     @Test
-    public void testNonExistingCacheFileDoesNotThrowException()
-    {
+    public void testNonExistingCacheFileDoesNotThrowException() {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.setCacheFile("/invalid");
         treeWalker.destroy();

@@ -31,8 +31,7 @@ import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-public class AllChecksPresentOnAvailableChecksPageTest
-{
+public class AllChecksPresentOnAvailableChecksPageTest {
     private static final File JAVA_SOURCES_DIRECTORY = new File("src/main/java");
     private static final String AVAILABLE_CHECKS_PATH = "src/xdocs/checks.xml";
     private static final File AVAILABLE_CHECKS_FILE = new File(AVAILABLE_CHECKS_PATH);
@@ -64,8 +63,7 @@ public class AllChecksPresentOnAvailableChecksPageTest
     );
 
     @Test
-    public void testAllChecksPresentOnAvailableChecksPage() throws IOException
-    {
+    public void testAllChecksPresentOnAvailableChecksPage() throws IOException {
         final String availableChecks = Files.toString(AVAILABLE_CHECKS_FILE, UTF_8);
         for (File file : Files.fileTreeTraverser().preOrderTraversal(JAVA_SOURCES_DIRECTORY)) {
             final String fileName = file.getName();
@@ -79,8 +77,7 @@ public class AllChecksPresentOnAvailableChecksPageTest
         }
     }
 
-    private static boolean isPresent(String availableChecks, String checkName)
-    {
+    private static boolean isPresent(String availableChecks, String checkName) {
         final String linkPattern = String.format(LINK_TEMPLATE, checkName);
         final String namingLinkPattern = String.format(NAMING_LINK_TEMPLATE, checkName);
         return availableChecks.matches(linkPattern)

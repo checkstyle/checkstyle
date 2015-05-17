@@ -28,8 +28,7 @@ package com.puppycrawl.tools.checkstyle.api;
  * href="http://jakarta.apache.org/avalon/">Jakarta's Avalon framework</a>.
  * @author lkuehne
  */
-public interface Contextualizable
-{
+public interface Contextualizable {
     /**
      * Sets the context for this Component.
      * @param context the context.

@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author jrichard
  */
-public class PackageDefHandler extends ExpressionHandler
-{
+public class PackageDefHandler extends ExpressionHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -38,14 +37,12 @@ public class PackageDefHandler extends ExpressionHandler
      * @param parent        the parent handler
      */
     public PackageDefHandler(IndentationCheck indentCheck,
-            DetailAST ast, ExpressionHandler parent)
-    {
+            DetailAST ast, ExpressionHandler parent) {
         super(indentCheck, "package def", ast, parent);
     }
 
     @Override
-    public void checkIndentation()
-    {
+    public void checkIndentation() {
         final int columnNo = expandedTabsColumnNo(getMainAst());
         if (!getLevel().accept(columnNo)) {
             logError(getMainAst(), "", columnNo);

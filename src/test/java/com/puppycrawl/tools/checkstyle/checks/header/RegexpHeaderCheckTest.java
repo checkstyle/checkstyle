@@ -27,19 +27,16 @@ import org.junit.Test;
  *
  * @author richter
  */
-public class RegexpHeaderCheckTest
-{
+public class RegexpHeaderCheckTest {
 
-    public RegexpHeaderCheckTest()
-    {
+    public RegexpHeaderCheckTest() {
     }
 
     /**
      * Test of setHeader method, of class RegexpHeaderCheck.
      */
     @Test
-    public void testSetHeaderNull()
-    {
+    public void testSetHeaderNull() {
         // check null passes
         RegexpHeaderCheck instance = new RegexpHeaderCheck();
         // recreate for each test because multiple invocations fail
@@ -51,8 +48,7 @@ public class RegexpHeaderCheckTest
      * Test of setHeader method, of class RegexpHeaderCheck.
      */
     @Test
-    public void testSetHeaderEmpty()
-    {
+    public void testSetHeaderEmpty() {
         // check null passes
         RegexpHeaderCheck instance = new RegexpHeaderCheck();
         // check empty string passes
@@ -65,8 +61,7 @@ public class RegexpHeaderCheckTest
      * Test of setHeader method, of class RegexpHeaderCheck.
      */
     @Test
-    public void testSetHeaderSimple()
-    {
+    public void testSetHeaderSimple() {
         RegexpHeaderCheck instance = new RegexpHeaderCheck();
         // check valid header passes
         instance = new RegexpHeaderCheck();
@@ -78,8 +73,7 @@ public class RegexpHeaderCheckTest
      * Test of setHeader method, of class RegexpHeaderCheck.
      */
     @Test
-    public void testSetHeader()
-    {
+    public void testSetHeader() {
         // check invalid header passes
         RegexpHeaderCheck instance = new RegexpHeaderCheck();
         String header = "^/**\\n * Licensed to the Apache Software Foundation (ASF)";

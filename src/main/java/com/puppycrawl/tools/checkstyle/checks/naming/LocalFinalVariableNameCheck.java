@@ -50,17 +50,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Rick Giles
  */
 public class LocalFinalVariableNameCheck
-    extends AbstractNameCheck
-{
+    extends AbstractNameCheck {
     /** Creates a new <code>LocalFinalVariableNameCheck</code> instance. */
-    public LocalFinalVariableNameCheck()
-    {
+    public LocalFinalVariableNameCheck() {
         super("^[a-z][a-zA-Z0-9]*$");
     }
 
     @Override
-    public int[] getDefaultTokens()
-    {
+    public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
@@ -68,8 +65,7 @@ public class LocalFinalVariableNameCheck
     }
 
     @Override
-    public int[] getAcceptableTokens()
-    {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
@@ -77,8 +73,7 @@ public class LocalFinalVariableNameCheck
     }
 
     @Override
-    protected final boolean mustCheckName(DetailAST ast)
-    {
+    protected final boolean mustCheckName(DetailAST ast) {
         final DetailAST modifiersAST =
             ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isFinal = modifiersAST != null
