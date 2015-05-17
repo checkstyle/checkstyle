@@ -52,6 +52,16 @@ public abstract class InputDesignForExtension
     // We can't check that, so to be safe DesignForExtension requires
     // native methods to also be final
     public native void aNativeMethod();
+    
+    public final void aFinalMethod()
+    {
+    	System.out.println("no way to override");
+    }
+    
+    public static void aStaticMethod()
+    {
+    	System.out.println("no way to override");
+    }
 
     // tries to trigger bug #884035
     // MyComparator is a private class, so there cannot be subclasses
@@ -69,16 +79,44 @@ public abstract class InputDesignForExtension
             }
         }
     }
-}
-
-// enums should be skipped
-enum TEnum
-{
-    FIRST,
-    SECOND;
-
-    public int value()
+    
+    public final class aFinalClass
     {
-        return 3;
+        public void someMethod()
+        {
+        	System.out.println("nonempty and overriding is possible");
+        }
+    }
+    
+    public class nonFinalClass
+    {
+    	//private ctor
+    	private nonFinalClass(){}    	
+        public void someMethod()
+        {
+        	System.out.println("nonempty and overriding is possible");
+        }
+    }
+    
+    public class anotherNonFinalClass
+    {
+    	//nonPrivate ctor
+    	public anotherNonFinalClass(){}    	
+        public void someMethod()
+        {
+        	System.out.println("nonempty and overriding is possible");
+        }
+    }
+    
+    // enums should be skipped
+    public enum TEnum
+    {
+        FIRST,
+        SECOND;
+
+        public int value()
+        {
+            return 3;
+        }
     }
 }

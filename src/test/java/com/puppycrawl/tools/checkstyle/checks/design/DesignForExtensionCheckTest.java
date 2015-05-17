@@ -36,6 +36,7 @@ public class DesignForExtensionCheckTest
         final String[] expected = {
             "46:5: " + getCheckMessage(MSG_KEY, "doh"),
             "54:5: " + getCheckMessage(MSG_KEY, "aNativeMethod"),
+            "105:9: " + getCheckMessage(MSG_KEY, "someMethod"),
         };
         verify(checkConfig, getPath("InputDesignForExtension.java"), expected);
 
