@@ -85,16 +85,16 @@ public class SuppressWithNearbyCommentFilter
         private final String text;
 
         /** The first line where warnings may be suppressed. */
-        private int firstLine;
+        private final int firstLine;
 
         /** The last line where warnings may be suppressed. */
-        private int lastLine;
+        private final int lastLine;
 
         /** The parsed check regexp, expanded for the text of this tag. */
-        private Pattern tagCheckRegexp;
+        private final Pattern tagCheckRegexp;
 
         /** The parsed message regexp, expanded for the text of this tag. */
-        private Pattern tagMessageRegexp;
+        private final Pattern tagMessageRegexp;
 
         /**
          * Constructs a tag.
@@ -108,7 +108,6 @@ public class SuppressWithNearbyCommentFilter
             throws ConversionException {
             this.text = text;
 
-            tagCheckRegexp = filter.checkRegexp;
             //Expand regexp for check and message
             //Does not intern Patterns with Utils.getPattern()
             String format = "";
@@ -119,6 +118,9 @@ public class SuppressWithNearbyCommentFilter
                     format = expandFrocomment(
                          text, filter.messageFormat, filter.commentRegexp);
                     tagMessageRegexp = Pattern.compile(format);
+                }
+                else {
+                    tagMessageRegexp = null;
                 }
                 int influence = 0;
                 if (filter.influenceFormat != null) {
@@ -289,9 +291,6 @@ public class SuppressWithNearbyCommentFilter
     /** The comment pattern that triggers suppression. */
     private String checkFormat;
 
-    /** The parsed check regexp. */
-    private Pattern checkRegexp;
-
     /** The message format to suppress. */
     private String messageFormat;
 
@@ -355,9 +354,7 @@ public class SuppressWithNearbyCommentFilter
      * @param format a <code>String</code> value
      * @throws ConversionException if unable to create Pattern object
      */
-    public void setCheckFormat(String format)
-        throws ConversionException {
-        checkRegexp = Utils.createPattern(format);
+    public void setCheckFormat(String format) throws ConversionException {
         checkFormat = format;
     }
 

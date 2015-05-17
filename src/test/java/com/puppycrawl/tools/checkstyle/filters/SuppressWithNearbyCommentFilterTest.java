@@ -35,6 +35,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
+
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.Test;
 
 public class SuppressWithNearbyCommentFilterTest
@@ -172,6 +174,10 @@ public class SuppressWithNearbyCommentFilterTest
         verifySuppressed(filterConfig, suppressed);
     }
 
+    @Test
+    public void testEqualsAndHashCodeOfTagClass() {
+        EqualsVerifier.forClass(SuppressWithNearbyCommentFilter.Tag.class).usingGetClass().verify();
+    }
 
     public static DefaultConfiguration createFilterConfig(Class<?> classObj) {
         return new DefaultConfiguration(classObj.getName());

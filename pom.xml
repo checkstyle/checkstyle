@@ -232,6 +232,12 @@
       <version>1.9.0</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>nl.jqno.equalsverifier</groupId>
+      <artifactId>equalsverifier</artifactId>
+      <version>1.7.2</version>
+      <scope>test</scope>
+    </dependency>
 
   </dependencies>
 
@@ -893,7 +899,7 @@
           <regex><pattern>.*.filters.SuppressionFilter</pattern><branchRate>0</branchRate><lineRate>0</lineRate></regex>
           <regex><pattern>.*.filters.SuppressionsLoader</pattern><branchRate>68</branchRate><lineRate>77</lineRate></regex>
           <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter</pattern><branchRate>76</branchRate><lineRate>89</lineRate></regex>
-          <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter\$.*</pattern><branchRate>47</branchRate><lineRate>63</lineRate></regex>
+          <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter\$Tag</pattern><branchRate>88</branchRate><lineRate>78</lineRate></regex>
 
          </regexes>
         </check>
