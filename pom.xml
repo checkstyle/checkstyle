@@ -889,7 +889,6 @@
           <regex><pattern>.*.checks.whitespace.WhitespaceAroundCheck</pattern><branchRate>96</branchRate><lineRate>98</lineRate></regex>
 
 
-          <regex><pattern>.*.filters.CSVFilter</pattern><branchRate>100</branchRate><lineRate>93</lineRate></regex>
           <regex><pattern>.*.filters.IntMatchFilter</pattern><branchRate>100</branchRate><lineRate>90</lineRate></regex>
           <regex><pattern>.*.filters.IntRangeFilter</pattern><branchRate>100</branchRate><lineRate>90</lineRate></regex>
           <regex><pattern>.*.filters.SuppressElement</pattern><branchRate>69</branchRate><lineRate>78</lineRate></regex>
