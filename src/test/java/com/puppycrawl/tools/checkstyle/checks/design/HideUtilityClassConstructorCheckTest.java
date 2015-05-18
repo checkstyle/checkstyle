@@ -99,6 +99,15 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
+    public void testProtectedCtor() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HideUtilityClassConstructorCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("design" + File.separator + "HideUtilityClassConstructor.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         HideUtilityClassConstructorCheck obj = new HideUtilityClassConstructorCheck();
         int[] expected = {TokenTypes.CLASS_DEF};
