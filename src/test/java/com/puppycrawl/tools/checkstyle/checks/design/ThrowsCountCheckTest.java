@@ -19,15 +19,22 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import antlr.CommonHiddenStreamToken;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
 import java.io.File;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class ThrowsCountCheckTest extends BaseCheckTestSupport {
     @Test
@@ -67,5 +74,19 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
         ThrowsCountCheck obj = new ThrowsCountCheck();
         int[] expected = {TokenTypes.LITERAL_THROWS};
         assertArrayEquals(expected, obj.getRequiredTokens());
+    }
+
+    @Test
+    public void testWrongTokenType() {
+        ThrowsCountCheck obj = new ThrowsCountCheck();
+        DetailAST ast = new DetailAST();
+        ast.initialize(new CommonHiddenStreamToken(TokenTypes.CLASS_DEF, "class"));
+        try {
+            obj.visitToken(ast);
+            fail();
+        }
+        catch (IllegalStateException e) {
+            assertEquals(ast.toString(), e.getMessage());
+        }
     }
 }
