@@ -66,16 +66,13 @@ public class FinalClassCheck
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
 
         if (ast.getType() == TokenTypes.CLASS_DEF) {
-            final boolean isFinal = modifiers != null
-                    && modifiers.branchContains(TokenTypes.FINAL);
-            final boolean isAbstract = modifiers != null
-                    && modifiers.branchContains(TokenTypes.ABSTRACT);
+            final boolean isFinal = modifiers.branchContains(TokenTypes.FINAL);
+            final boolean isAbstract = modifiers.branchContains(TokenTypes.ABSTRACT);
             classes.push(new ClassDesc(isFinal, isAbstract));
         }
         else if (!ScopeUtils.inEnumBlock(ast)) { //ctors in enums don't matter
             final ClassDesc desc = classes.peek();
-            if (modifiers != null
-                && modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)) {
+            if (modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)) {
                 desc.reportPrivateCtor();
             }
             else {
@@ -167,17 +164,6 @@ public class FinalClassCheck
          */
         boolean isDeclaredAsAbstract() {
             return declaredAsAbstract;
-        }
-
-        @Override
-        public String toString() {
-            return this.getClass().getName()
-                + "["
-                + "final=" + declaredAsFinal
-                + " abstract=" + declaredAsAbstract
-                + " pctor=" + withPrivateCtor
-                + " ctor=" + withNonPrivateCtor
-                + "]";
         }
     }
 }
