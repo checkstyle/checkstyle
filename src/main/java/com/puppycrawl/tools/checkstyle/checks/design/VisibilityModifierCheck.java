@@ -441,7 +441,8 @@ public class VisibilityModifierCheck
                 ScopeUtils.inInterfaceOrAnnotationBlock(variableDef);
 
         if (!inInterfaceOrAnnotationBlock && !hasIgnoreAnnotation(variableDef)) {
-            final DetailAST varNameAST = getVarNameAST(variableDef);
+            final DetailAST varNameAST = variableDef.findFirstToken(TokenTypes.TYPE)
+                .getNextSibling();
             final String varName = varNameAST.getText();
             if (!hasProperAccessModifier(variableDef, varName)) {
                 log(varNameAST.getLineNo(), varNameAST.getColumnNo(),
@@ -537,25 +538,6 @@ public class VisibilityModifierCheck
         }
 
         return result;
-    }
-
-    /**
-     * Returns the variable name in a VARIABLE_DEF AST.
-     * @param variableDefAST an AST where type == VARIABLE_DEF AST.
-     * @return the variable name in variableDefAST
-     */
-    private static DetailAST getVarNameAST(DetailAST variableDefAST) {
-        DetailAST ast = variableDefAST.getFirstChild();
-        DetailAST varNameAst = null;
-        while (ast != null) {
-            final DetailAST nextSibling = ast.getNextSibling();
-            if (ast.getType() == TokenTypes.TYPE) {
-                varNameAst = nextSibling;
-                break;
-            }
-            ast = nextSibling;
-        }
-        return varNameAst;
     }
 
     /**
@@ -665,7 +647,7 @@ public class VisibilityModifierCheck
                 canonicalNameBuilder.append(toVisit.getText());
                 final DetailAST nextSubTreeNode = getNextSubTreeNode(toVisit,
                          type);
-                if (nextSubTreeNode != null && nextSubTreeNode.getType() != TokenTypes.SEMI) {
+                if (nextSubTreeNode != null) {
                     canonicalNameBuilder.append('.');
                 }
             }
