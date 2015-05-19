@@ -9,7 +9,7 @@ public class InputFinalClass
     private InputFinalClass() {}
 }
 
-class test2 {}
+final class test2 {}
 class test3 
 {
    class test4 

@@ -760,8 +760,6 @@
           <regex><pattern>.*.checks.coding.VariableDeclarationUsageDistanceCheck</pattern><branchRate>90</branchRate><lineRate>97</lineRate></regex>
 
 
-          <regex><pattern>.*.checks.design.FinalClassCheck</pattern><branchRate>80</branchRate><lineRate>95</lineRate></regex>
-          <regex><pattern>.*.checks.design.FinalClassCheck\$.*</pattern><branchRate>100</branchRate><lineRate>92</lineRate></regex>
           <regex><pattern>.*.checks.design.InnerTypeLastCheck</pattern><branchRate>100</branchRate><lineRate>93</lineRate></regex>
           <regex><pattern>.*.checks.design.InterfaceIsTypeCheck</pattern><branchRate>100</branchRate><lineRate>85</lineRate></regex>
           <regex><pattern>.*.checks.design.MutableExceptionCheck</pattern><branchRate>85</branchRate><lineRate>92</lineRate></regex>
