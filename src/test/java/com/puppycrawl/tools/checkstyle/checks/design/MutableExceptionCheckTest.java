@@ -19,15 +19,20 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import antlr.CommonHiddenStreamToken;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 import org.junit.Test;
 
 import java.io.File;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.fail;
 
 public class MutableExceptionCheckTest extends BaseCheckTestSupport {
     @Test
@@ -66,5 +71,19 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport {
         MutableExceptionCheck obj = new MutableExceptionCheck();
         int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
         assertArrayEquals(expected, obj.getRequiredTokens());
+    }
+
+    @Test
+    public void testWrongTokenType() {
+        MutableExceptionCheck obj = new MutableExceptionCheck();
+        DetailAST ast = new DetailAST();
+        ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
+        try {
+            obj.visitToken(ast);
+            fail();
+        }
+        catch (IllegalStateException e) {
+            //expected
+        }
     }
 }

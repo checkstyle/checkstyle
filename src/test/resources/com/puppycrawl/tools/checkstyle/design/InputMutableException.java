@@ -32,6 +32,11 @@ public class InputMutableException {
 
         public class CustomFailure extends ThreadDeath {
             private int errorCode;
+            public void someMethod() {
+                if(true) {
+                    final int i = 0;
+                }
+            } 
         }
     }
 }
