@@ -51,6 +51,19 @@ public class FilterSet
         filters.remove(filter);
     }
 
+    /**
+     * Returns the Filters of the filter set.
+     * @return the Filters of the filter set.
+     */
+    public Set<Filter> getFilters() {
+        return filters;
+    }
+
+    @Override
+    public String toString() {
+        return filters.toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

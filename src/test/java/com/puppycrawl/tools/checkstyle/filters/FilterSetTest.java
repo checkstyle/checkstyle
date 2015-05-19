@@ -62,4 +62,30 @@ public class FilterSetTest {
     public void testEqualsAndHashCode() {
         EqualsVerifier.forClass(FilterSet.class).usingGetClass().verify();
     }
+
+    @Test
+    public void testGetFilters() {
+        filter.addFilter(new IntMatchFilter(0));
+        assertTrue("size is the same", filter.getFilters().size() == 1);
+    }
+
+    @Test
+    public void testToString() {
+        filter.addFilter(new IntMatchFilter(0));
+        assertTrue("toString works", filter.toString() != null);
+    }
+
+    @Test
+    public void testGetFilters2() {
+        FilterSet filterSet = new FilterSet();
+        filterSet.addFilter(new SeverityMatchFilter());
+        assertTrue("size is the same", filterSet.getFilters().size() == 1);
+    }
+
+    @Test
+    public void testToString2() {
+        FilterSet filterSet = new FilterSet();
+        filterSet.addFilter(new SeverityMatchFilter());
+        assertTrue("size is the same", filterSet.toString() != null);
+    }
 }
