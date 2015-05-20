@@ -670,7 +670,6 @@
           <regex><pattern>.*.api.JavadocTagInfo</pattern><branchRate>25</branchRate><lineRate>77</lineRate></regex>
           <regex><pattern>.*.api.JavadocTagInfo\$.*</pattern><branchRate>0</branchRate><lineRate>8</lineRate></regex>
           <regex><pattern>.*.api.JavadocTokenTypes</pattern><branchRate>100</branchRate><lineRate>0</lineRate></regex>
-          <regex><pattern>.*.api.LineColumn</pattern><branchRate>0</branchRate><lineRate>33</lineRate></regex>
           <regex><pattern>.*.api.LocalizedMessage</pattern><branchRate>53</branchRate><lineRate>67</lineRate></regex>
           <regex><pattern>.*.api.LocalizedMessage\$.*</pattern><branchRate>41</branchRate><lineRate>66</lineRate></regex>
           <regex><pattern>.*.api.ScopeUtils</pattern><branchRate>0</branchRate><lineRate>0</lineRate></regex>
