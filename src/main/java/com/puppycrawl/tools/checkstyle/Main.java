@@ -37,10 +37,10 @@ import java.util.Properties;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.apache.commons.cli.PosixParser;
 
 /**
  * Wrapper command line program for the Checker.
@@ -127,7 +127,7 @@ public final class Main {
     private static CommandLine parseCli(String... args)
             throws ParseException {
         // parse the parameters
-        final CommandLineParser clp = new PosixParser();
+        final CommandLineParser clp = new DefaultParser();
         // always returns not null value
         return clp.parse(buildOptions(), args);
     }
