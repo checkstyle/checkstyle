@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
+import java.util.Objects;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
@@ -50,9 +51,6 @@ public final class LocalizedMessage
     implements Comparable<LocalizedMessage>, Serializable {
     /** Required for serialization. */
     private static final long serialVersionUID = 5675176836184862150L;
-
-    /** hash function multiplicand */
-    private static final int HASH_MULT = 29;
 
     /** the locale to localise messages to **/
     private static Locale sLocale = Locale.getDefault();
@@ -210,42 +208,25 @@ public final class LocalizedMessage
         if (this == object) {
             return true;
         }
-        if (!(object instanceof LocalizedMessage)) {
+        if (object == null || getClass() != object.getClass()) {
             return false;
         }
-
-        final LocalizedMessage localizedMessage = (LocalizedMessage) object;
-
-        if (colNo != localizedMessage.colNo) {
-            return false;
-        }
-        if (lineNo != localizedMessage.lineNo) {
-            return false;
-        }
-        if (!key.equals(localizedMessage.key)) {
-            return false;
-        }
-
-        if (!Arrays.equals(args, localizedMessage.args)) {
-            return false;
-        }
-        // ignoring bundle for perf reasons.
-
-        // we currently never load the same error from different bundles.
-
-        return true;
+        final LocalizedMessage that = (LocalizedMessage) object;
+        return Objects.equals(lineNo, that.lineNo)
+                && Objects.equals(colNo, that.colNo)
+                && Objects.equals(severityLevel, that.severityLevel)
+                && Objects.equals(moduleId, that.moduleId)
+                && Objects.equals(key, that.key)
+                && Objects.equals(bundle, that.bundle)
+                && Objects.equals(sourceClass, that.sourceClass)
+                && Objects.equals(customMessage, that.customMessage)
+                && Arrays.equals(args, that.args);
     }
 
     @Override
     public int hashCode() {
-        int result;
-        result = lineNo;
-        result = HASH_MULT * result + colNo;
-        result = HASH_MULT * result + key.hashCode();
-        for (final Object element : args) {
-            result = HASH_MULT * result + element.hashCode();
-        }
-        return result;
+        return Objects.hash(lineNo, colNo, severityLevel, moduleId, key, bundle, sourceClass,
+                customMessage, Arrays.hashCode(args));
     }
 
     /** Clears the cache. */
