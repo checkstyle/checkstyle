@@ -117,6 +117,7 @@ public class MagicNumberCheck extends Check {
         TokenTypes.LITERAL_NEW,
         TokenTypes.METHOD_CALL,
         TokenTypes.STAR,
+        TokenTypes.DIV,
     };
 
     static {

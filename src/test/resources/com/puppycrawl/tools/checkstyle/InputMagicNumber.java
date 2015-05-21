@@ -138,7 +138,7 @@ class ComplexButNotFlagged
     // according to user feedback this is typical code that should not be flagged
     // (at least in the default configuration of MagicNumberCheck)
     public static final Integer DEFAULT_INT = new Integer(27);
-    public static final int SECS_PER_DAY = 24 * 60 * 60;
+    public static final int SECS_PER_DAY = 24 * 60 * 60, SPECIAL_RATIO = 4 / 3;
     public static final javax.swing.border.Border STD_BORDER =
         javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3);
 }
