@@ -7,10 +7,18 @@ jdk:
   - oraclejdk8
 
 env:
-  - ARGS="site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true"
-  - ARGS="-Dpmd.skip=true -Dfindbugs.skip=true"
+  - ARGS="test"
+  # cobertura validation
+  - ARGS="verify -Dpmd.skip=true -Dfindbugs.skip=true"
+  # checkstyle
+  - ARGS="verify -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
+  # findbugs + pmd
+  - ARGS="compile pmd:check findbugs:check"
+  # full site
+  - ARGS="site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
+
   
-install: mvn clean verify $ARGS
+install: mvn clean $ARGS
 #site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true
 #             -Dpmd.skip=true -Dfindbugs.skip=true
 
