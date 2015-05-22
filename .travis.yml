@@ -15,3 +15,10 @@ after_success:
 cache:
   directories:
   - ~/.m2
+
+branches:
+  only:
+    - master
+
+matrix:
+  fast_finish: true
