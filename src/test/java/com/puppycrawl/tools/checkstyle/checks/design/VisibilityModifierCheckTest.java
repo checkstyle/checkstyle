@@ -21,8 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
+import antlr.CommonHiddenStreamToken;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -252,5 +255,38 @@ public class VisibilityModifierCheckTest
             TokenTypes.IMPORT,
         };
         assertArrayEquals(expected, obj.getAcceptableTokens());
+    }
+
+    @Test
+    public void testPublicImmutableFieldsNotAllowed() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("allowPublicImmutableFields", "false");
+        final String[] expected = {
+            "10:22: " + getCheckMessage(MSG_KEY, "someIntValue"),
+            "11:39: " + getCheckMessage(MSG_KEY, "includes"),
+            "12:35: " + getCheckMessage(MSG_KEY, "notes"),
+            "13:29: " + getCheckMessage(MSG_KEY, "value"),
+            "14:23: " + getCheckMessage(MSG_KEY, "list"),
+        };
+        verify(checkConfig, getPath("InputPublicImmutable.java"), expected);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWrongTokenType() {
+        VisibilityModifierCheck obj = new VisibilityModifierCheck();
+        DetailAST ast = new DetailAST();
+        ast.initialize(new CommonHiddenStreamToken(TokenTypes.CLASS_DEF, "class"));
+        obj.visitToken(ast);
+    }
+
+    @Test
+    public void testNullModifiers() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VisibilityModifierCheck.class);
+        final String[] expected = {
+            "11:50: " + getCheckMessage(MSG_KEY, "i"),
+        };
+        verify(checkConfig, getPath("InputNullModifiers.java"), expected);
     }
 }

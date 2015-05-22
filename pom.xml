@@ -761,7 +761,6 @@
           <regex><pattern>.*.checks.design.InnerTypeLastCheck</pattern><branchRate>100</branchRate><lineRate>93</lineRate></regex>
           <regex><pattern>.*.checks.design.InterfaceIsTypeCheck</pattern><branchRate>100</branchRate><lineRate>85</lineRate></regex>
           <regex><pattern>.*.checks.design.OneTopLevelClassCheck</pattern><branchRate>77</branchRate><lineRate>95</lineRate></regex>
-          <regex><pattern>.*.checks.design.VisibilityModifierCheck</pattern><branchRate>95</branchRate><lineRate>95</lineRate></regex>
 
           <regex><pattern>.*.checks.header.AbstractHeaderCheck</pattern><branchRate>85</branchRate><lineRate>85</lineRate></regex>
           <regex><pattern>.*.checks.header.HeaderCheck</pattern><branchRate>18</branchRate><lineRate>45</lineRate></regex>
