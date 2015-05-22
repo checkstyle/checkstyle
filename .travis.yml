@@ -6,7 +6,12 @@ jdk:
   - oraclejdk7  
   - oraclejdk8
 
-install: mvn clean verify site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true
+env:
+  - site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true
+  - -Dpmd.skip=true -Dfindbugs.skip=true
+  
+install: mvn clean verify 
+#site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true
 #             -Dpmd.skip=true -Dfindbugs.skip=true
 
 after_success:
