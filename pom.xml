@@ -887,7 +887,7 @@
           <regex><pattern>.*.filters.SuppressElement</pattern><branchRate>69</branchRate><lineRate>78</lineRate></regex>
           <regex><pattern>.*.filters.SuppressionCommentFilter</pattern><branchRate>83</branchRate><lineRate>87</lineRate></regex>
           <regex><pattern>.*.filters.SuppressionCommentFilter\$.*</pattern><branchRate>41</branchRate><lineRate>69</lineRate></regex>
-          <regex><pattern>.*.filters.SuppressionFilter</pattern><branchRate>0</branchRate><lineRate>0</lineRate></regex>
+          <regex><pattern>.*.filters.SuppressionFilter</pattern><branchRate>100</branchRate><lineRate>58</lineRate></regex>
           <regex><pattern>.*.filters.SuppressionsLoader</pattern><branchRate>68</branchRate><lineRate>77</lineRate></regex>
           <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter</pattern><branchRate>76</branchRate><lineRate>89</lineRate></regex>
           <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter\$Tag</pattern><branchRate>88</branchRate><lineRate>78</lineRate></regex>
