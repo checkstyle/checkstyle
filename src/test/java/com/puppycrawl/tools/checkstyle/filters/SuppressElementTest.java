@@ -26,6 +26,9 @@ import static org.junit.Assert.assertTrue;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import java.util.regex.PatternSyntaxException;
+
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -102,5 +105,13 @@ public class SuppressElementTest {
         assertFalse("filter, filter2", filter.equals(filter2));
         filter2.setColumns("1-10");
         assertEquals("filter, filter2", filter, filter2);
+    }
+
+    @Test
+    public void testEqualsAndHashCode() {
+        EqualsVerifier.forClass(SuppressElement.class)
+                .usingGetClass()
+                .suppress(Warning.NONFINAL_FIELDS)
+                .verify();
     }
 }
