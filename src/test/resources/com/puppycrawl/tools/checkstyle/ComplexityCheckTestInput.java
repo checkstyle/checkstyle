@@ -83,4 +83,7 @@ public class ComplexityCheckTestInput {
         };
         new Thread(runnable).start();       
     }
+
+    /** Empty constructor */
+    public ComplexityCheckTestInput(String someString) {}
 }
