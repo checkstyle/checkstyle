@@ -25,6 +25,8 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
 
+import java.util.Objects;
+
 /**
  * <p>
  * This filter accepts AuditEvents according to file, check, line, and
@@ -55,21 +57,19 @@ public class SuppressionFilter
     }
 
     @Override
-    public String toString() {
-        return filters.toString();
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final SuppressionFilter that = (SuppressionFilter) obj;
+        return Objects.equals(filters, that.filters);
     }
 
     @Override
     public int hashCode() {
-        return filters.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (object instanceof SuppressionFilter) {
-            final SuppressionFilter other = (SuppressionFilter) object;
-            return this.filters.equals(other.filters);
-        }
-        return false;
+        return Objects.hash(filters);
     }
 }
