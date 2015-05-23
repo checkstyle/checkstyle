@@ -7,24 +7,24 @@ jdk:
   - oraclejdk8
 
 env:
-  - ARGS="test"
-  # cobertura validation
-  - ARGS="verify -Dpmd.skip=true -Dfindbugs.skip=true"
-  # checkstyle
-  - ARGS="verify -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
-  # findbugs + pmd
-  - ARGS="compile pmd:check findbugs:check"
-  # full site
-  - ARGS="site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
+  # UT only
+  - MAIN_ARGS="test" COVERALLS_ARGS=""
+  # cobertura validation only
+  - MAIN_ARGS="verify -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS="cobertura:cobertura coveralls:report"
+  # checkstyle only
+  - MAIN_ARGS="verify -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
+  # findbugs + pmd only
+  - MAIN_ARGS="compile pmd:check findbugs:check" COVERALLS_ARGS=""
+  # full site only
+  - MAIN_ARGS="site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS=""
 
-  
-install: mvn clean $ARGS
+install: mvn clean $MAIN_ARGS
 #site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true
 #             -Dpmd.skip=true -Dfindbugs.skip=true
 
 after_success:
-  - mvn clean cobertura:cobertura coveralls:report
-  
+  - mvn clean $COVERALLS_ARGS
+
 cache:
   directories:
   - ~/.m2
