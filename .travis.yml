@@ -18,11 +18,10 @@ env:
   # full site only
   - MAIN_ARGS="site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS=""
 
-install: true
+install:
+  - 
 
 script: mvn clean $MAIN_ARGS
-#site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true
-#             -Dpmd.skip=true -Dfindbugs.skip=true
 
 after_success:
   - $COVERALLS_ARGS
