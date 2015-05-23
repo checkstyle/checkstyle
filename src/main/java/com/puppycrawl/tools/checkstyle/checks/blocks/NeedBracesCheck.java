@@ -299,9 +299,13 @@ public class NeedBracesCheck extends Check {
         boolean result = false;
         final DetailAST ifCondition = literalIf.findFirstToken(TokenTypes.EXPR);
         if (literalIf.getParent().getType() == TokenTypes.SLIST) {
-            DetailAST block = literalIf.getLastChild();
-            if (block.getType() != TokenTypes.LITERAL_RETURN) {
-                block = literalIf.getLastChild().getPreviousSibling();
+            final DetailAST literalIfLastChild = literalIf.getLastChild();
+            final DetailAST block;
+            if (literalIfLastChild.getType() == TokenTypes.LITERAL_ELSE) {
+                block = literalIfLastChild.getPreviousSibling();
+            }
+            else {
+                block = literalIfLastChild;
             }
             result = ifCondition.getLineNo() == block.getLineNo();
         }

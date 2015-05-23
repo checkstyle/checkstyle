@@ -83,4 +83,13 @@ public class InputBracesSingleLineStatements
         else System.out.println("no");
         for (;;);
     }
+
+    private int testMissingWarnings() {
+        if (true)
+            throw new RuntimeException();
+        if (true) {
+            return 1;
+        } else
+            return 2;
+    }
 }
