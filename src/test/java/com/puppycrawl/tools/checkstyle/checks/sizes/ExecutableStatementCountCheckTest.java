@@ -19,11 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import static com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck.MSG_KEY;
+
+import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
-
-import static com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck.MSG_KEY;
 
 public class ExecutableStatementCountCheckTest
     extends BaseCheckTestSupport {
@@ -47,7 +50,7 @@ public class ExecutableStatementCountCheckTest
             "79:13: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("ExecutableStatementCountInput.java"), expected);
     }
 
     @Test
@@ -67,7 +70,7 @@ public class ExecutableStatementCountCheckTest
             "79:13: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("ExecutableStatementCountInput.java"), expected);
     }
 
     @Test
@@ -83,7 +86,7 @@ public class ExecutableStatementCountCheckTest
             "76:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("ExecutableStatementCountInput.java"), expected);
     }
 
     @Test
@@ -98,7 +101,7 @@ public class ExecutableStatementCountCheckTest
             "58:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("ExecutableStatementCountInput.java"), expected);
     }
 
     @Test
@@ -113,6 +116,26 @@ public class ExecutableStatementCountCheckTest
             "67:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("ExecutableStatementCountInput.java"), expected);
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void testVisitTokenWhithWrongTokenType() {
+        ExecutableStatementCountCheck checkObj =
+            new ExecutableStatementCountCheck();
+        DetailAST ast = new DetailAST();
+        ast.initialize(
+            new CommonHiddenStreamToken(TokenTypes.ENUM, "ENUM"));
+        checkObj.visitToken(ast);
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void testLeaveTokenWithWrongTokenType() {
+        ExecutableStatementCountCheck checkObj =
+            new ExecutableStatementCountCheck();
+        DetailAST ast = new DetailAST();
+        ast.initialize(
+            new CommonHiddenStreamToken(TokenTypes.ENUM, "ENUM"));
+        checkObj.leaveToken(ast);
     }
 }
