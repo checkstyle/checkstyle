@@ -10,7 +10,7 @@ env:
   # UT only
   - MAIN_ARGS="test" COVERALLS_ARGS=""
   # cobertura validation only
-  - MAIN_ARGS="verify -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS="cobertura:cobertura coveralls:report"
+  - MAIN_ARGS="verify -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS="mvn clean cobertura:cobertura coveralls:report"
   # checkstyle only
   - MAIN_ARGS="verify -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
   # findbugs + pmd only
@@ -25,7 +25,7 @@ script: mvn clean $MAIN_ARGS
 #             -Dpmd.skip=true -Dfindbugs.skip=true
 
 after_success:
-  - mvn clean $COVERALLS_ARGS
+  - $COVERALLS_ARGS
 
 cache:
   directories:
