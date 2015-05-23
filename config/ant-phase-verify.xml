@@ -2,7 +2,11 @@
 
 <project name="phase-package" default="execute">
 
-  <target name="execute">
+  <condition property="checkstyle.ant.skip">
+    <isset property="checkstyle.ant.skip" />
+  </condition>
+
+  <target name="execute" unless="checkstyle.ant.skip">
     <taskdef name="checkstyle"
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask"
              classpath="${mvn.runtime_classpath}"
