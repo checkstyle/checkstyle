@@ -20,11 +20,40 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
+import org.junit.After;
 import org.junit.Test;
 
+import java.util.Locale;
+
+import static org.junit.Assert.assertEquals;
+
 public class LocalizedMessageTest {
+
+    private static final Locale DEFAULT_LOCALE = Locale.getDefault();
+
     @Test
     public void testEqualsAndHashCode() {
         EqualsVerifier.forClass(LocalizedMessage.class).usingGetClass().verify();
+    }
+
+    @Test
+    public void testEnforceEnglishLanguageBySettingUnitedStatesLocale() {
+        Locale.setDefault(Locale.FRENCH);
+        LocalizedMessage.setLocale(Locale.US);
+        LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+
+        assertEquals("Empty statement.", localizedMessage.getMessage());
+    }
+
+    private static LocalizedMessage createSampleLocalizedMessage() {
+        return new LocalizedMessage(0, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                "empty.statement", new Object[]{}, "", LocalizedMessage.class, null);
+    }
+
+    @After
+    public void tearDown() {
+        Locale.setDefault(DEFAULT_LOCALE);
+        LocalizedMessage.clearCache();
+        LocalizedMessage.setLocale(DEFAULT_LOCALE);
     }
 }
