@@ -39,4 +39,6 @@ public class InputMutableException {
             } 
         }
     }
+    
+    class CustomException extends java.lang.Exception {}
 }
