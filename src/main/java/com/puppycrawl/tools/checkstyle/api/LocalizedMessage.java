@@ -332,7 +332,12 @@ public final class LocalizedMessage
 
     /** @param locale the locale to use for localization **/
     public static void setLocale(Locale locale) {
-        sLocale = locale;
+        if (Locale.ENGLISH.getLanguage().equals(locale.getLanguage())) {
+            sLocale = Locale.ROOT;
+        }
+        else {
+            sLocale = locale;
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////
