@@ -37,6 +37,13 @@ public class LocalizedMessageTest {
     }
 
     @Test
+    public void testGetModuleId() {
+        LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+
+        assertEquals("module", localizedMessage.getModuleId());
+    }
+
+    @Test
     public void testMessageInEnglish() {
         LocalizedMessage localizedMessage = createSampleLocalizedMessage();
         LocalizedMessage.setLocale(Locale.ENGLISH);
@@ -72,7 +79,7 @@ public class LocalizedMessageTest {
 
     private static LocalizedMessage createSampleLocalizedMessage() {
         return new LocalizedMessage(0, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
-                "empty.statement", new Object[]{}, "", LocalizedMessage.class, null);
+                "empty.statement", new Object[]{}, "module", LocalizedMessage.class, null);
     }
 
     @After
