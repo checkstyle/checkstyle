@@ -37,9 +37,34 @@ public class LocalizedMessageTest {
     }
 
     @Test
+    public void testMessageInEnglish() {
+        LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+        LocalizedMessage.setLocale(Locale.ENGLISH);
+
+        assertEquals("Empty statement.", localizedMessage.getMessage());
+    }
+
+    @Test
+    public void testMessageInFrench() {
+        LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+        LocalizedMessage.setLocale(Locale.FRENCH);
+
+        assertEquals("Instruction vide.", localizedMessage.getMessage());
+    }
+
+    @Test
     public void testEnforceEnglishLanguageBySettingUnitedStatesLocale() {
         Locale.setDefault(Locale.FRENCH);
         LocalizedMessage.setLocale(Locale.US);
+        LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+
+        assertEquals("Empty statement.", localizedMessage.getMessage());
+    }
+
+    @Test
+    public void testEnforceEnglishLanguageBySettingRootLocale() {
+        Locale.setDefault(Locale.FRENCH);
+        LocalizedMessage.setLocale(Locale.ROOT);
         LocalizedMessage localizedMessage = createSampleLocalizedMessage();
 
         assertEquals("Empty statement.", localizedMessage.getMessage());
