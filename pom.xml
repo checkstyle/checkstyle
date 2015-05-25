@@ -827,7 +827,7 @@
           <regex><pattern>.*.checks.metrics.NPathComplexityCheck</pattern><branchRate>100</branchRate><lineRate>96</lineRate></regex>
 
 
-          <regex><pattern>.*.checks.modifier.ModifierOrderCheck</pattern><branchRate>92</branchRate><lineRate>91</lineRate></regex>
+          <regex><pattern>.*.checks.modifier.ModifierOrderCheck</pattern><branchRate>92</branchRate><lineRate>94</lineRate></regex>
           <regex><pattern>.*.checks.modifier.RedundantModifierCheck</pattern><branchRate>97</branchRate><lineRate>96</lineRate></regex>
 
 
