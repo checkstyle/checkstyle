@@ -151,11 +151,12 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
     private boolean isExtendedClassNamedAsException(DetailAST ast) {
         final DetailAST extendsClause = ast.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
         if (extendsClause != null) {
-            final DetailAST extendedClass = extendsClause.findFirstToken(TokenTypes.IDENT);
-            if (extendedClass != null) {
-                final String extendedClassName = extendedClass.getText();
-                return extendedClassName.matches(extendedClassNameFormat);
+            DetailAST currentNode = extendsClause;
+            while (currentNode.getType() != TokenTypes.IDENT) {
+                currentNode = currentNode.getLastChild();
             }
+            final String extendedClassName = currentNode.getText();
+            return extendedClassName.matches(extendedClassNameFormat);
         }
         return false;
     }
