@@ -42,6 +42,7 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport {
         String[] expected = {
             "6:9: " + getCheckMessage(MSG_KEY, "errorCode"),
             "23:9: " + getCheckMessage(MSG_KEY, "errorCode"),
+            "46:9: " + getCheckMessage(MSG_KEY, "errorCode"),
         };
 
         verify(checkConfig, getPath("design" + File.separator + "InputMutableException.java"), expected);
