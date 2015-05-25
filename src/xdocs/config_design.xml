@@ -105,8 +105,8 @@
             <td><code>^serialVersionUID$</code></td>
           </tr>
           <tr>
-            <td>allowPublicFinalFields</td>
-            <td>allows field with only final modifier be public</td>
+            <td>allowPublicImmutableFields</td>
+            <td>allows immutable fields be declared as public if defined in final class</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><code>true</code></td>
           </tr>
