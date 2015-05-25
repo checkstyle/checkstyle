@@ -1,25 +1,37 @@
 language: java
 sudo: false
 
-jdk:
-  - openjdk7
-  - oraclejdk7  
-  - oraclejdk8
-
-env:
-  # UT only
-  - MAIN_ARGS="test" COVERALLS_ARGS=""
-  # cobertura validation only
-  - MAIN_ARGS="verify -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS="mvn clean cobertura:cobertura coveralls:report"
-  # checkstyle only
-  - MAIN_ARGS="verify -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
-  # findbugs + pmd only
-  - MAIN_ARGS="compile pmd:check findbugs:check" COVERALLS_ARGS=""
-  # full site only
-  - MAIN_ARGS="site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS=""
-
 install:
   - 
+
+matrix:
+  fast_finish: true
+  include:
+    # unit tests (openjdk7, oraclejdk7 and oraclejdk8)
+    - jdk: openjdk7
+      env: DESC="unit tests on openjdk7" MAIN_ARGS="test" COVERALLS_ARGS=""
+    - jdk: oraclejdk7
+      env: DESC="unit tests on oraclejdk7" MAIN_ARGS="test" COVERALLS_ARGS=""
+    - jdk: oraclejdk8
+      env: DESC="unit tests on oraclejdk8" MAIN_ARGS="test" COVERALLS_ARGS=""
+    # checkstyle (openjdk7, oraclejdk7 and oraclejdk8)
+    - jdk: openjdk7
+      env: DESC="checkstyle on openjdk7" MAIN_ARGS="verify -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
+    - jdk: oraclejdk7
+      env: DESC="checkstyle on oraclejdk7" MAIN_ARGS="verify -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
+    - jdk: oraclejdk8
+      env: DESC="checkstyle on oraclejdk8" MAIN_ARGS="verify -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
+    # cobertura and coveralls (oraclejdk8)
+    - jdk: oraclejdk8
+      env: DESC="cobertura and coveralls" MAIN_ARGS="verify -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS="mvn clean cobertura:cobertura coveralls:report"
+    # findbugs and pmd (oraclejdk8)
+    - jdk: oraclejdk8
+      env: DESC="findbugs and pmd" MAIN_ARGS="compile pmd:check findbugs:check" COVERALLS_ARGS=""
+    # site (openjdk7 and oraclejdk8)
+    - jdk: openjdk7
+      env: DESC="site on openjdk7" MAIN_ARGS="site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS=""
+    - jdk: oraclejdk8
+      env: DESC="site on oraclejdk8" MAIN_ARGS="site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS=""
 
 script: mvn clean $MAIN_ARGS
 
@@ -33,6 +45,3 @@ cache:
 branches:
   only:
     - master
-
-matrix:
-  fast_finish: true
