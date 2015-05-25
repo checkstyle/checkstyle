@@ -26,6 +26,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Restricts throws statements to a specified count (default = 1).
+ * Methods with "Override" or "java.lang.Override" annotation are skipped
+ * from validation as current class cannot change signature of these methods.
  * </p>
  * <p>
  * Rationale:
@@ -110,11 +112,51 @@ public final class ThrowsCountCheck extends Check {
      * @param ast throws for check.
      */
     private void visitLiteralThrows(DetailAST ast) {
-        // Account for all the commas!
-        final int count = (ast.getChildCount() + 1) / 2;
-        if (count > getMax()) {
-            log(ast.getLineNo(),  ast.getColumnNo(), MSG_KEY,
-                count, getMax());
+        if (!isOverriding(ast)) {
+            // Account for all the commas!
+            final int count = (ast.getChildCount() + 1) / 2;
+            if (count > getMax()) {
+                log(ast.getLineNo(),  ast.getColumnNo(), MSG_KEY,
+                    count, getMax());
+            }
         }
+    }
+
+    /**
+     * Check if a method has annotation @Override.
+     * @param ast throws, which is being checked.
+     * @return true, if a method has annotation @Override.
+     */
+    private static boolean isOverriding(DetailAST ast) {
+        final DetailAST modifiers = ast.getParent().findFirstToken(TokenTypes.MODIFIERS);
+        boolean isOverriding = false;
+        if (modifiers.branchContains(TokenTypes.ANNOTATION)) {
+            DetailAST child = modifiers.getFirstChild();
+            while (child != null) {
+                if (child.getType() == TokenTypes.ANNOTATION
+                        && "Override".equals(getAnnotationName(child))) {
+                    isOverriding = true;
+                }
+                child = child.getNextSibling();
+            }
+        }
+        return isOverriding;
+    }
+
+    /**
+     * Gets name of an annotation.
+     * @param annotation to get name of.
+     * @return name of an annotation.
+     */
+    private static String getAnnotationName(DetailAST annotation) {
+        final DetailAST dotAst = annotation.findFirstToken(TokenTypes.DOT);
+        String name;
+        if (dotAst != null) {
+            name = dotAst.findFirstToken(TokenTypes.IDENT).getText();
+        }
+        else {
+            name = annotation.findFirstToken(TokenTypes.IDENT).getText();
+        }
+        return name;
     }
 }

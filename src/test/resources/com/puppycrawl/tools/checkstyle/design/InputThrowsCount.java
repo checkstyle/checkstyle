@@ -26,3 +26,26 @@ public class InputThrowsCount {
     void method6() {
     }
 }
+
+class SubClass extends InputThrowsCount {
+    @Override
+    void method1() {        
+    }
+
+    @Deprecated
+    @Override
+    void method4() throws Exception, java.awt.AWTException {
+    }
+
+    @Override
+    void method5() throws Exception, AWTException, Throwable {        
+    }
+    
+    @SuppressWarnings("deprecation")
+    final void method2(Object ...objects) throws Exception, AWTException{        
+    }
+    
+    @java.lang.Override
+    void method3() throws Exception {
+    }
+}

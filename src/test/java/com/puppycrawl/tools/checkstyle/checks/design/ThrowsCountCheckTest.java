@@ -45,6 +45,7 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
             "14:20: " + getCheckMessage(MSG_KEY, 2, 1),
             "18:20: " + getCheckMessage(MSG_KEY, 2, 1),
             "22:20: " + getCheckMessage(MSG_KEY, 3, 1),
+            "45:43: " + getCheckMessage(MSG_KEY, 2, 1),
         };
 
         verify(checkConfig, getPath("design" + File.separator + "InputThrowsCount.java"), expected);
