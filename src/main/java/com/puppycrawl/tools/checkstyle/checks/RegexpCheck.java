@@ -199,7 +199,13 @@ public class RegexpCheck extends AbstractFormatCheck {
         else if (foundMatch) {
             final FileText text = getFileContents().getText();
             final LineColumn start = text.lineColumn(matcher.start());
-            final LineColumn end = text.lineColumn(matcher.end() - 1);
+            final LineColumn end;
+            if (matcher.end() == 0) {
+                end = text.lineColumn(0);
+            }
+            else {
+                end = text.lineColumn(matcher.end() - 1);
+            }
             startLine = start.getLine();
             startColumn = start.getColumn();
             endLine = end.getLine();

@@ -325,4 +325,12 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
+
+    @Test
+    public void testOnFileStartingWithEmptyLine() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RegexpCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputStartingWithEmptyLine.java"), expected);
+    }
 }

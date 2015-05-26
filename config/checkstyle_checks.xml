@@ -236,6 +236,7 @@
     <module name="NoClone"/>
     <module name="NoFinalizer"/>
     <module name="NoLineWrap"/>
+    <module name="Regexp"/>
     <module name="SeparatorWrap">
       <property name="tokens" value="DOT"/>
       <property name="option" value="nl"/>
@@ -280,7 +281,6 @@
     <module name="OneTopLevelClass"/>
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="PackageDeclaration"/>
-    <module name="Regexp"/>
     <module name="RegexpSinglelineJava"/>
     <module name="TrailingComment"/>
     <module name="RequireThis"/>
