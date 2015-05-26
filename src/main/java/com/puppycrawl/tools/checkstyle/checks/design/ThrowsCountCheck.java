@@ -41,6 +41,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * a caller but allows any sub-classes to be caught
  * specifically if necessary.
  * </p>
+ * <p>
+ * <b>ignorePrivateMethods</b> - allows to skip private methods as they do
+ * not cause problems for other classes.
+ * </p>
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
 public final class ThrowsCountCheck extends Check {
@@ -53,6 +57,9 @@ public final class ThrowsCountCheck extends Check {
 
     /** default value of max property */
     private static final int DEFAULT_MAX = 1;
+
+    /** whether private methods must be ignored **/
+    private boolean ignorePrivateMethods = true;
 
     /** maximum allowed throws statements */
     private int max;
@@ -90,6 +97,14 @@ public final class ThrowsCountCheck extends Check {
     }
 
     /**
+     * Sets whether private methods must be ignored.
+     * @param ignorePrivateMethods whether private methods must be ignored.
+     */
+    public void setIgnorePrivateMethods(boolean ignorePrivateMethods) {
+        this.ignorePrivateMethods = ignorePrivateMethods;
+    }
+
+    /**
      * Setter for max property.
      * @param max maximum allowed throws statements.
      */
@@ -112,7 +127,8 @@ public final class ThrowsCountCheck extends Check {
      * @param ast throws for check.
      */
     private void visitLiteralThrows(DetailAST ast) {
-        if (!isOverriding(ast)) {
+        if ((!ignorePrivateMethods || !isInPrivateMethod(ast))
+                && !isOverriding(ast)) {
             // Account for all the commas!
             final int count = (ast.getChildCount() + 1) / 2;
             if (count > getMax()) {
@@ -158,5 +174,15 @@ public final class ThrowsCountCheck extends Check {
             name = annotation.findFirstToken(TokenTypes.IDENT).getText();
         }
         return name;
+    }
+
+    /**
+     * Checks if method, which throws an exception is private.
+     * @param ast throws, which is being checked.
+     * @return true, if method, which throws an exception is private.
+     */
+    private static boolean isInPrivateMethod(DetailAST ast) {
+        final DetailAST methodModifiers = ast.getParent().findFirstToken(TokenTypes.MODIFIERS);
+        return methodModifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
     }
 }

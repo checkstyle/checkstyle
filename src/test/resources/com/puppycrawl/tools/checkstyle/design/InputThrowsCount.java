@@ -25,6 +25,9 @@ public class InputThrowsCount {
 
     void method6() {
     }
+    
+    private void method7() throws Exception, AWTException, Throwable {
+    }
 }
 
 class SubClass extends InputThrowsCount {

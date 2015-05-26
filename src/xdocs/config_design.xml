@@ -591,6 +591,11 @@ public class StringUtils // not final to allow subclassing
           type of exception need be checked for by a caller but any
           subclasses can be caught specifically if necessary.
         </p>
+
+        <p>
+          <b>ignorePrivateMethods</b> - allows to skip private methods as they do
+          not cause problems for other classes.
+        </p>
       </subsection>
 
       <subsection name="Properties">
@@ -607,6 +612,12 @@ public class StringUtils // not final to allow subclassing
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>1</code></td>
           </tr>
+          <tr>
+            <td>ignorePrivateMethods</td>
+            <td>whether private methods must be ignored</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
         </table>
       </subsection>
 
@@ -618,6 +629,15 @@ public class StringUtils // not final to allow subclassing
         <source>
 &lt;module name=&quot;ThrowsCount&quot;&gt;
     &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check so that it doesn't skip private methods:
+        </p>
+        <source>
+&lt;module name=&quot;ThrowsCount&quot;&gt;
+    &lt;property name=&quot;ignorePrivateMethods&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

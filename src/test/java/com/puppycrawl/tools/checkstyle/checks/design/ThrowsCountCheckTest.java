@@ -45,7 +45,7 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
             "14:20: " + getCheckMessage(MSG_KEY, 2, 1),
             "18:20: " + getCheckMessage(MSG_KEY, 2, 1),
             "22:20: " + getCheckMessage(MSG_KEY, 3, 1),
-            "45:43: " + getCheckMessage(MSG_KEY, 2, 1),
+            "48:43: " + getCheckMessage(MSG_KEY, 2, 1),
         };
 
         verify(checkConfig, getPath("design" + File.separator + "InputThrowsCount.java"), expected);
@@ -89,5 +89,19 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
         catch (IllegalStateException e) {
             assertEquals(ast.toString(), e.getMessage());
         }
+    }
+
+    @Test
+    public void testNotIgnorePrivateMethod() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
+        checkConfig.addAttribute("ignorePrivateMethods", "false");
+        String[] expected = {
+            "14:20: " + getCheckMessage(MSG_KEY, 2, 1),
+            "18:20: " + getCheckMessage(MSG_KEY, 2, 1),
+            "22:20: " + getCheckMessage(MSG_KEY, 3, 1),
+            "29:28: " + getCheckMessage(MSG_KEY, 3, 1),
+            "48:43: " + getCheckMessage(MSG_KEY, 2, 1),
+        };
+        verify(checkConfig, getPath("design" + File.separator + "InputThrowsCount.java"), expected);
     }
 }
