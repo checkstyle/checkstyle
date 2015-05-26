@@ -35,8 +35,11 @@ class DetectorOptions {
     private final int compileFlags;
     /** Used for reporting violations. */
     private final AbstractViolationReporter reporter;
-    /** Format of the regular expression to check for. */
-    private String format;
+    /**
+     * Format of the regular expression to check for. Default value is pattern that never matches
+     * any string.
+     */
+    private String format = "$.";
     /** The message to report on detection. If blank, then use the format. */
     private String message = "";
     /** Minimum number of times regular expression should occur in a file. */

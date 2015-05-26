@@ -112,4 +112,11 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         verify(checkConfig, file.getPath(), expected);
     }
 
+    @Test
+    public void testDefaultConfiguration() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RegexpMultilineCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
+    }
 }

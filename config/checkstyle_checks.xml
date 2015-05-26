@@ -52,9 +52,10 @@
     <property name="maximum" value="0"/>
   </module>
 
+  <module name="RegexpMultiline"/>
+
   <!-- 
   <module name="RegexpHeader"/>
-  <module name="RegexpMultiline"/>
   <module name="UniqueProperties"/>
   -->
   <module name="TreeWalker">
