@@ -596,6 +596,9 @@
           <additionalClasspathElements>
             <additionalClasspathElement>src/test/resources-noncompilable</additionalClasspathElement>
           </additionalClasspathElements>
+          <parallel>classes</parallel>
+          <threadCount>1</threadCount>
+          <perCoreThreadCount>true</perCoreThreadCount>
         </configuration>
       </plugin>
 

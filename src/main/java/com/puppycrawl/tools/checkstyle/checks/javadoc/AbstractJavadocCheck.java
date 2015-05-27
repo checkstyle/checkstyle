@@ -69,7 +69,7 @@ public abstract class AbstractJavadocCheck extends Check {
      * key is "line:column"
      * value is DetailNode tree
      */
-    private static final Map<String, ParseStatus> TREE_CACHE = new HashMap<>();
+    private final Map<String, ParseStatus> treeCache = new HashMap<>();
 
     /**
      * Custom error listener.
@@ -160,12 +160,12 @@ public abstract class AbstractJavadocCheck extends Check {
 
     @Override
     public final void beginTree(DetailAST rootAST) {
-        TREE_CACHE.clear();
+        treeCache.clear();
     }
 
     @Override
     public final void finishTree(DetailAST rootAST) {
-        TREE_CACHE.clear();
+        treeCache.clear();
     }
 
     @Override
@@ -182,12 +182,12 @@ public abstract class AbstractJavadocCheck extends Check {
 
             ParseStatus ps;
 
-            if (TREE_CACHE.containsKey(treeCacheKey)) {
-                ps = TREE_CACHE.get(treeCacheKey);
+            if (treeCache.containsKey(treeCacheKey)) {
+                ps = treeCache.get(treeCacheKey);
             }
             else {
                 ps = parseJavadocAsDetailNode(blockCommentAst);
-                TREE_CACHE.put(treeCacheKey, ps);
+                treeCache.put(treeCacheKey, ps);
             }
 
             if (ps.getParseErrorMessage() == null) {
