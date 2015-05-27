@@ -368,8 +368,7 @@ public final class LocalizedMessage
     private static class UTF8Control extends Control {
         @Override
         public ResourceBundle newBundle(String aBaseName, Locale aLocale, String aFormat,
-                 ClassLoader aLoader, boolean aReload) throws IllegalAccessException,
-                  InstantiationException, IOException {
+                 ClassLoader aLoader, boolean aReload) throws IOException {
             // The below is a copy of the default implementation.
             final String bundleName = toBundleName(aBaseName, aLocale);
             final String resourceName = toResourceName(bundleName, "properties");

@@ -414,7 +414,7 @@ public class CheckStyleTask extends Task {
      * @throws IllegalAccessException if an error occurs
      * @throws IOException if an error occurs
      */
-    protected AuditListener[] getListeners() throws ClassNotFoundException,
+    private AuditListener[] getListeners() throws ClassNotFoundException,
             InstantiationException, IllegalAccessException, IOException {
         final int formatterCount = Math.max(1, formatters.size());
 
