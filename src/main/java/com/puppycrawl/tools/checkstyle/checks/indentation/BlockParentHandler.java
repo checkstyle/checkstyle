@@ -175,7 +175,7 @@ public class BlockParentHandler extends ExpressionHandler {
      * @return the curly brace indentation level
      */
     protected IndentLevel curlyLevel() {
-        return new IndentLevel(getLevel(), getBraceAdjustement());
+        return new IndentLevel(getLevel(), getBraceAdjustment());
     }
 
     /**

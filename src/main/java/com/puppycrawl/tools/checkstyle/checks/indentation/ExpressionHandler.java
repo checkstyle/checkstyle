@@ -559,8 +559,8 @@ public abstract class ExpressionHandler {
      * @return value of braceAdjustment property
      *         of <code>IndentationCheck</code>
      */
-    protected final int getBraceAdjustement() {
-        return getIndentCheck().getBraceAdjustement();
+    protected final int getBraceAdjustment() {
+        return getIndentCheck().getBraceAdjustment();
     }
 
     /**

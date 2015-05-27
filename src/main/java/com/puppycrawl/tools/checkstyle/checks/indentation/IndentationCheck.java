@@ -161,7 +161,7 @@ public class IndentationCheck extends Check {
      *
      * @return the positive offset to adjust braces
      */
-    public int getBraceAdjustement() {
+    public int getBraceAdjustment() {
         return braceAdjustment;
     }
 
