@@ -67,9 +67,9 @@ public class InputInvalidMethodIndent { //indent:0 exp:0
     } //indent:4 exp:4
 
      public //indent:5 exp:4 warn
-     final //indent:5 exp:9 warn
-     void //indent:5 exp:9 warn
-    method5() //indent:4 exp:9 warn
+    final //indent:4 exp:5 warn
+    void //indent:4 exp:5 warn
+    method5() //indent:4 exp:5 warn
     { //indent:4 exp:4
         boolean test = true; //indent:8 exp:8
         if (test) { //indent:8 exp:8
@@ -78,9 +78,9 @@ public class InputInvalidMethodIndent { //indent:0 exp:0
     } //indent:4 exp:4
 
    public //indent:3 exp:4 warn
-   final //indent:3 exp:7 warn
-   void //indent:3 exp:7 warn
-     method6() //indent:5 exp:7 warn
+  final //indent:2 exp:3 warn
+  void //indent:2 exp:3 warn
+  method6() //indent:2 exp:3 warn
     { //indent:4 exp:4
         boolean test = true; //indent:8 exp:8
         if (test) { //indent:8 exp:8
@@ -176,8 +176,8 @@ public class InputInvalidMethodIndent { //indent:0 exp:0
     } //indent:4 exp:4
 
     public //indent:4 exp:4
-int[] //indent:0 exp:8 warn
-    method9() //indent:4 exp:8 warn
+int[] //indent:0 exp:4 warn
+    method9() //indent:4 exp:4
     { //indent:4 exp:4
         return null; //indent:8 exp:8
     } //indent:4 exp:4

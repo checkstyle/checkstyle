@@ -124,10 +124,10 @@ public class InputValidMethodIndent extends java.awt.event.MouseAdapter implemen
                 4); //indent:16 exp:>=12
     } //indent:4 exp:4
 
-    // strange IMHO, but I suppose this should be allowed //indent:4 exp:4
+    // Since C days, people have aligned methods with their return type //indent:4 exp:4
     public //indent:4 exp:4
-    void //indent:4 exp:8 warn
-    method5() { //indent:4 exp:8 warn
+  void //indent:2 exp:4 warn
+  method5() { //indent:2 exp:4 warn
     } //indent:4 exp:4
 
 
@@ -192,6 +192,11 @@ public class InputValidMethodIndent extends java.awt.event.MouseAdapter implemen
 
     private void indexTest() { //indent:4 exp:4
         getArray()[0] = 2; //indent:8 exp:8
+    } //indent:4 exp:4
+
+    public //indent:4 exp:4
+    void //indent:4 exp:4
+    method5b() { //indent:4 exp:4
     } //indent:4 exp:4
 
 } //indent:0 exp:0

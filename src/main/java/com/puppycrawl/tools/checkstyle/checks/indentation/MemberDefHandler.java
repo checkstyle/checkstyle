@@ -43,17 +43,20 @@ public class MemberDefHandler extends ExpressionHandler {
 
     @Override
     public void checkIndentation() {
-        final DetailAST modifiersNode = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST main = getMainAst();
+        final DetailAST modifiersNode = main.findFirstToken(TokenTypes.MODIFIERS);
         if (modifiersNode.getChildCount() != 0) {
             checkModifiers();
         }
         else {
             checkType();
         }
+        final DetailAST assign = main.findFirstToken(TokenTypes.ASSIGN);
+        final DetailAST last = getVarDefStatementSemicolon(main);
+        final DetailAST mid = assign == null ? last : assign.getPreviousSibling();
         final LineWrappingHandler lineWrap =
-            new LineWrappingHandler(getIndentCheck(), getMainAst(),
-                getVarDefStatementSemicolon(getMainAst()));
-        if (lineWrap.getLastNode() != null && !isArrayDeclaration(getMainAst())) {
+            new LineWrappingHandler(getIndentCheck(), main, mid, last);
+        if (lineWrap.getLastNode() != null && !isArrayDeclaration(main)) {
             lineWrap.checkIndentation();
         }
     }

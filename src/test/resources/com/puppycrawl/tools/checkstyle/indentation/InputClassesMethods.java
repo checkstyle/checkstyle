@@ -50,7 +50,23 @@ class IndentationCorrectClassInput  //indent:0 exp:0
 
     };  //indent:4 exp:4
   }  //indent:2 exp:2
-} //indent:0 exp:0
+
+  public static SecondClassWithLongLongLongLongName  //indent:2 exp:2
+  methodWithVeryLongName(int argZero,  //indent:2 exp:2
+      int argOne, int argTwo) {  //indent:6 exp:6
+    return null;  //indent:4 exp:4
+  }  //indent:2 exp:2
+
+  public static final SecondClassWithLongLongLongLongName  //indent:2 exp:2
+  STATIC_MEMBER_WITH_A_LONG_NAME = null;  //indent:2 exp:2
+
+  public static SecondClassWithLongLongLongLongName  //indent:2 exp:2
+  STATIC_MEMBER_WITH_A_LONG_NAME_NOT_INITIALIZED;  //indent:2 exp:2
+
+  public static final SecondClassWithLongLongLongLongName  //indent:2 exp:2
+  STATIC_MEMBER_WITH_A_LONG_NAME_AND_LONG_INITIALIZER =  //indent:2 exp:2
+      Object.class.toString().equals("foo") ? null : null;  //indent:6 exp:6
+}  //indent:0 exp:0
 
 class SecondClassWithLongLongLongLongName  //indent:0 exp:0
     extends  //indent:4 exp:4
