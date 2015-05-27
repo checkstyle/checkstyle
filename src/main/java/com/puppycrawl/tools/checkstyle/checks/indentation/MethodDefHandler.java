@@ -67,7 +67,7 @@ public class MethodDefHandler extends BlockParentHandler {
                 getMethodDefParamRightParen(getMainAst()));
         lineWrap.checkIndentation();
         if (getLCurly() == null) {
-            // asbtract method def -- no body
+            // abstract method def -- no body
             return;
         }
         super.checkIndentation();

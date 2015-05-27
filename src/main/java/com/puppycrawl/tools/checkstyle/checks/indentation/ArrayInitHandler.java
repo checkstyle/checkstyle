@@ -69,7 +69,7 @@ public class ArrayInitHandler extends BlockParentHandler {
 
     @Override
     protected IndentLevel curlyLevel() {
-        final IndentLevel level = new IndentLevel(getLevel(), getBraceAdjustement());
+        final IndentLevel level = new IndentLevel(getLevel(), getBraceAdjustment());
         level.addAcceptedIndent(level.getLastIndentLevel() + getLineWrappingIndent());
         return level;
     }
