@@ -27,9 +27,7 @@ matrix:
     # findbugs and pmd (oraclejdk8)
     - jdk: oraclejdk8
       env: DESC="findbugs and pmd" MAIN_ARGS="compile pmd:check findbugs:check" COVERALLS_ARGS=""
-    # site (openjdk7 and oraclejdk8)
-    - jdk: openjdk7
-      env: DESC="site on openjdk7" MAIN_ARGS="site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS=""
+    # site (oraclejdk8 as 'site' success is required to be sure that on release time all will be ok, admins will use oracle8 version)
     - jdk: oraclejdk8
       env: DESC="site on oraclejdk8" MAIN_ARGS="site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS=""
 
