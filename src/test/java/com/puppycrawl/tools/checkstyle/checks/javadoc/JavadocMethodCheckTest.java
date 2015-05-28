@@ -68,6 +68,15 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void allowedAnnotationsTest() throws Exception {
+
+        DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
+        config.addAttribute("allowedAnnotations", "Override,ThisIsOk, \t\n\t ThisIsOkToo");
+        final String[] expected = {};
+        verify(config, getPath("javadoc/AllowedAnnotations.java"), expected);
+    }
+
+    @Test
     public void testTags() throws Exception {
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),

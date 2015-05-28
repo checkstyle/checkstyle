@@ -232,7 +232,12 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      */
     public void setAllowedAnnotations(String userAnnotations) {
         final List<String> annotations = new ArrayList<>();
-        Collections.addAll(annotations, userAnnotations.split(", "));
+        final String[] sAnnotations = userAnnotations.split(",");
+        for (int i = 0; i < sAnnotations.length; i++) {
+            sAnnotations[i] = sAnnotations[i].trim();
+        }
+
+        Collections.addAll(annotations, sAnnotations);
         allowedAnnotations = annotations;
     }
 
