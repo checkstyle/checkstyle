@@ -19,6 +19,8 @@ Documentation is available in HTML format, see http://checkstyle.sourceforge.net
 
 Continuous integration and Quality reports
 ======================
+
+[![Join the chat at https://gitter.im/checkstyle/checkstyle](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/checkstyle/checkstyle?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Travis: [![][travis img]][travis]
 
 Quality reports: http://checkstyle.sourceforge.net/project-reports.html
