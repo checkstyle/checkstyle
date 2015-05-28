@@ -851,14 +851,7 @@
           <regex><pattern>.*.checks.regexp.RegexpSinglelineCheck</pattern><branchRate>100</branchRate><lineRate>76</lineRate></regex>
           <regex><pattern>.*.checks.regexp.SinglelineDetector</pattern><branchRate>93</branchRate><lineRate>96</lineRate></regex>
 
-          <regex><pattern>.*.checks.sizes.AnonInnerLengthCheck</pattern><branchRate>100</branchRate><lineRate>92</lineRate></regex>
-          <regex><pattern>.*.checks.sizes.ExecutableStatementCountCheck</pattern><branchRate>81</branchRate><lineRate>95</lineRate></regex>
-          <regex><pattern>.*.checks.sizes.LineLengthCheck</pattern><branchRate>100</branchRate><lineRate>89</lineRate></regex>
           <regex><pattern>.*.checks.sizes.MethodCountCheck</pattern><branchRate>31</branchRate><lineRate>23</lineRate></regex>
-          <regex><pattern>.*.checks.sizes.MethodLengthCheck</pattern><branchRate>100</branchRate><lineRate>95</lineRate></regex>
-          <regex><pattern>.*.checks.sizes.OuterTypeNumberCheck</pattern><branchRate>75</branchRate><lineRate>94</lineRate></regex>
-          <regex><pattern>.*.checks.sizes.ParameterNumberCheck</pattern><branchRate>100</branchRate><lineRate>93</lineRate></regex>
-
 
           <regex><pattern>.*.checks.whitespace.AbstractParenPadCheck</pattern><branchRate>88</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.whitespace.EmptyForInitializerPadCheck</pattern><branchRate>91</branchRate><lineRate>93</lineRate></regex>
