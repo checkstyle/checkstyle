@@ -60,4 +60,14 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
+
+    @Test
+    public void testWithInnerClass() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(OuterTypeNumberCheck.class);
+        checkConfig.addAttribute("max", "1");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("OuterTypeNumberCheckInput.java"), expected);
+    }
 }

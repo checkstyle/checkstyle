@@ -172,18 +172,17 @@ public final class ExecutableStatementCountCheck
             // find member AST for the statement list
             final DetailAST contextAST = context.getAST();
             DetailAST parent = ast.getParent();
-            while (parent != null) {
-                final int type = parent.getType();
-                if (type == TokenTypes.CTOR_DEF
-                    || type == TokenTypes.METHOD_DEF
-                    || type == TokenTypes.INSTANCE_INIT
-                    || type == TokenTypes.STATIC_INIT) {
-                    if (parent == contextAST) {
-                        context.addCount(ast.getChildCount() / 2);
-                    }
-                    break;
-                }
+            int type = parent.getType();
+            while (type != TokenTypes.CTOR_DEF
+                && type != TokenTypes.METHOD_DEF
+                && type != TokenTypes.INSTANCE_INIT
+                && type != TokenTypes.STATIC_INIT) {
+
                 parent = parent.getParent();
+                type = parent.getType();
+            }
+            if (parent == contextAST) {
+                context.addCount(ast.getChildCount() / 2);
             }
         }
     }
