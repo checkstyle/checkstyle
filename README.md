@@ -3,7 +3,11 @@
 [![][mavenbadge img]][mavenbadge]
 [![][versioneye img]][versioneye]
 [![][sonar img]][sonar]
-[![][gitter img]][gitter]
+
+
+Members chat: [![][gitter img]][gitter]
+Public chat: [![][gitter-public img]][gitter-public]
+
 
 ![](https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/images/logo.png)
 
@@ -74,6 +78,9 @@ directory.
 
 [gitter]:https://gitter.im/checkstyle
 [gitter img]:http://img.shields.io/badge/gitter-JOIN%20CHAT-blue.svg
+
+[gitter-public]:https://gitter.im/checkstyle/checkstyle
+[gitter-public img]:https://badges.gitter.im/Join%20Chat.svg)
 
 [stackoverflow]:http://stackoverflow.com/questions/tagged/checkstyle
 [stackoverflow img]:https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
