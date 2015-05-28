@@ -5,9 +5,8 @@
 [![][sonar img]][sonar]
 
 
-Members chat: [![][gitter img]][gitter]
-Public chat: [![][gitter-public img]][gitter-public]
-
+Organization Members chat: [![][gitter img]][gitter]
+Contributors chat: [![https://gitter.im/checkstyle/checkstyle](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/checkstyle/checkstyle?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ![](https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/images/logo.png)
 
@@ -26,6 +25,8 @@ Quality reports: http://checkstyle.sourceforge.net/project-reports.html
 
 Feedback/Support
 ========
+
+[![https://gitter.im/checkstyle/checkstyle](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/checkstyle/checkstyle?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Please send any feedback to https://groups.google.com/forum/?hl=en#!forum/checkstyle
 
@@ -79,8 +80,8 @@ directory.
 [gitter]:https://gitter.im/checkstyle
 [gitter img]:http://img.shields.io/badge/gitter-JOIN%20CHAT-blue.svg
 
-[gitter-public]:https://gitter.im/checkstyle/checkstyle
-[gitter-public img]:https://badges.gitter.im/Join%20Chat.svg)
+[gitterpublic]:https://gitter.im/checkstyle/checkstyle
+[gitterpublic img]:https://badges.gitter.im/Join%20Chat.svg)
 
 [stackoverflow]:http://stackoverflow.com/questions/tagged/checkstyle
 [stackoverflow img]:https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
