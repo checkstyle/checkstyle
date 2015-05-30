@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.Utils;
@@ -105,8 +104,9 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      */
     public void setTarget(String target) {
         final List<Integer> customTarget = new ArrayList<>();
-        for (String type : target.split(", ")) {
-            customTarget.add(Utils.getTokenId(type));
+        final String[] sTarget = target.split(",");
+        for (int i = 0; i < sTarget.length; i++) {
+            customTarget.add(Utils.getTokenId(sTarget[i].trim()));
         }
         this.target = customTarget;
     }
@@ -117,8 +117,11 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      */
     public void setTagOrder(String order) {
         final List<String> customOrder = new ArrayList<>();
-        Collections.addAll(customOrder, order.split(", "));
-        tagOrder = customOrder;
+        final String[] sOrder = order.split(",");
+        for (int i = 0; i < sOrder.length; i++) {
+            customOrder.add(sOrder[i].trim());
+        }
+        this.tagOrder = customOrder;
     }
 
     @Override
