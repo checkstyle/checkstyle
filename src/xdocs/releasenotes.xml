@@ -103,7 +103,7 @@
           Change location of left curly braces to end of line. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1089">#1089</a>
         </li>
         <li>
-          Make coverage 100% for all classes at package com.puppycrawl.tools.checkstyle.checks.sizes  . Author:  MEZk <a href="https://github.com/checkstyle/checkstyle/issues/1024">#1024</a>
+          Make coverage 100% for all classes at package com.puppycrawl.tools.checkstyle.checks.sizes. Author:  MEZk <a href="https://github.com/checkstyle/checkstyle/issues/1024">#1024</a>
         </li>
         <li>
           100% test coverage for com.puppycrawl.tools.checkstyle.checks.design. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1009">#1009</a>
@@ -124,7 +124,7 @@
           Make tests of Main class platform independent. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1086">#1086</a>
         </li>
         <li>
-          removing abandoned test input files . Author:  Ivan Sopov
+          removing abandoned test input files. Author:  Ivan Sopov
         </li>
         <li>
           Fix typos. Author:  Julian Hyde
@@ -148,10 +148,10 @@
           Update cobertura-maven-plugin to 2.7. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/916">#916</a>
         </li>
         <li>
-          Complete descriptions in checks index . Author:  Andrew Gaul
+          Complete descriptions in checks index. Author:  Andrew Gaul
         </li>
         <li>
-          Remove obsolete space from general error message . Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/1029">#1029</a>
+          Remove obsolete space from general error message. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/1029">#1029</a>
         </li>
         <li>
           Add missing space in error message for CustomImportOrder check. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/1027">#1027</a>
@@ -159,7 +159,7 @@
         <li>
           resolving Findbugs violation: <a href="https://github.com/checkstyle/checkstyle/issues/911">#911</a> , <a href="https://github.com/checkstyle/checkstyle/issues/909">#909</a>,
            <a href="https://github.com/checkstyle/checkstyle/issues/778">#778</a>, <a href="https://github.com/checkstyle/checkstyle/issues/923">#923</a>,
-           <a href="https://github.com/checkstyle/checkstyle/issues/925">#925</a>, <a href="https://github.com/checkstyle/checkstyle/issues/596">#596</a> . Author:  Roman Ivanov
+           <a href="https://github.com/checkstyle/checkstyle/issues/925">#925</a>, <a href="https://github.com/checkstyle/checkstyle/issues/596">#596</a>. Author:  Roman Ivanov
         </li>
         <li>
           huge refactoring for CLI Main class. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/596">#596</a>
