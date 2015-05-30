@@ -34,10 +34,10 @@
       <p>New:</p>
       <ul>
         <li>
-          New option for ThrowsCountCheck to skip private methods. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1136">#1136</a>
+          New option for ThrowsCount check to skip private methods. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1136">#1136</a>
         </li>
         <li>
-          New option value for NewlineAtEndOfFileCheck, LineSeparatorOption.LF_CR_CRLF. Author:  Martin Steiger <a href="https://github.com/checkstyle/checkstyle/issues/1045">#1045</a>
+          New option value for NewlineAtEndOfFile check, LineSeparatorOption.LF_CR_CRLF. Author:  Martin Steiger <a href="https://github.com/checkstyle/checkstyle/issues/1045">#1045</a>
         </li>
       </ul>
 
@@ -109,16 +109,16 @@
           100% test coverage for com.puppycrawl.tools.checkstyle.checks.design. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1009">#1009</a>
         </li>
         <li>
-          removing dead code and refactoring in VisibilityModifierCheck. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1107">#1107</a>
+          removing dead code and refactoring in VisibilityModifier check. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1107">#1107</a>
         </li>
         <li>
           Replace deprecated PosixParser with DefaultParser. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1099">#1099</a>
         </li>
         <li>
-          remove dead code from MutableExceptionCheck. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1103">#1103</a>
+          remove dead code from MutableException check. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1103">#1103</a>
         </li>
         <li>
-          remove dead code from FinalClassCheck. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1100">#1100</a>
+          remove dead code from FinalClass check. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1100">#1100</a>
         </li>
         <li>
           Make tests of Main class platform independent. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1086">#1086</a>
