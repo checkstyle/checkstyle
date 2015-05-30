@@ -34,10 +34,10 @@
       <p>New:</p>
       <ul>
         <li>
-          New option for ThrowsCount check to skip private methods. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1136">#1136</a>
+          New option for <a href="http://checkstyle.sourceforge.net/config_design.html#ThrowsCount">ThrowsCount</a> check to skip private methods. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1136">#1136</a>
         </li>
         <li>
-          New option value for NewlineAtEndOfFile check, LineSeparatorOption.LF_CR_CRLF. Author:  Martin Steiger <a href="https://github.com/checkstyle/checkstyle/issues/1045">#1045</a>
+          New option value for <a href="http://checkstyle.sourceforge.net/config_misc.html#NewlineAtEndOfFile">NewlineAtEndOfFile</a> check, LineSeparatorOption.LF_CR_CRLF. Author:  Martin Steiger <a href="https://github.com/checkstyle/checkstyle/issues/1045">#1045</a>
         </li>
       </ul>
 
@@ -50,10 +50,10 @@
           Fix no possibility to set English language explicitly in config. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/152">#152</a>
         </li>
         <li>
-          Do not verify overriding methods in ThrowsCount check. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1085">#1085</a>
+          Do not verify overriding methods in <a href="http://checkstyle.sourceforge.net/config_design.html#ThrowsCount">ThrowsCount</a> check. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1085">#1085</a>
         </li>
         <li>
-          Fix Regexp check causing exception on file with newline on top. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
+          Fix <a href="http://checkstyle.sourceforge.net/config_misc.html#Regexp">Regexp</a> check causing exception on file with newline on top. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
         </li>
         <li>
           Fix RegexpMultiline causing exception with default config. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
@@ -62,34 +62,34 @@
           Add support for canonical class names in MutableException. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1124">#1124</a>
         </li>
         <li>
-          Fix NeedBraces check not requiring braces in multiline statements when using allowSingleLineStatement option. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/895">#895</a>
+          Fix <a href="http://checkstyle.sourceforge.net/config_blocks.html#NeedBraces">NeedBraces</a> check not requiring braces in multiline statements when using allowSingleLineStatement option. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/895">#895</a>
         </li>
         <li>
           Fix equals and hashCode in SuppressionFilter, SuppressElement, IntRangeFilter, LocalizedMessage and remove obsolete toString. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1088">#1088</a>
         </li>
         <li>
-          Add "/", "+" and "-" to list of allowed tokens in MagicNumber check. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1113">#1113</a>
+          Add "/", "+" and "-" to list of allowed tokens in <a href="http://checkstyle.sourceforge.net/config_coding.html#MagicNumber">MagicNumber</a> check. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1113">#1113</a>
         </li>
         <li>
-          Extend ReturnCount check to use separate return counter for lambdas. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1068">#1068</a>
+          Extend <a href="http://checkstyle.sourceforge.net/config_coding.html#ReturnCount">ReturnCount</a> check to use separate return counter for lambdas. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1068">#1068</a>
         </li>
         <li>
-          Fix exception in OneTopLevelClass Check for package-info files. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1065">#1065</a>
+          Fix exception in <a href="http://checkstyle.sourceforge.net/config_design.html#OneTopLevelClass">OneTopLevelClass</a> check for package-info files. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1065">#1065</a>
         </li>
         <li>
-          Fix exception in FallThrough Check for nested switch statements. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/837">#837</a>
+          Fix exception in <a href="http://checkstyle.sourceforge.net/config_coding.html#FallThrough">FallThrough</a> check for nested switch statements. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/837">#837</a>
         </li>
         <li>
           Magic Number annotation detection enhanced for arbitrary parent nodes. Author:  Mehmet Can Cömert <a href="https://github.com/checkstyle/checkstyle/issues/926">#926</a>
         </li>
         <li>
-          Improve standard package regexp for CustomImportOrder check. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1020">#1020</a>
+          Improve standard package regexp for <a href="http://checkstyle.sourceforge.net/config_imports.html#CustomImportOrder">CustomImportOrder</a> check. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1020">#1020</a>
         </li>
         <li>
-          Fix NPE in ModifiedControlVariable check. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1012">#1012</a>
+          Fix NPE in <a href="http://checkstyle.sourceforge.net/config_coding.html#ModifiedControlVariable">ModifiedControlVariable</a> check. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1012">#1012</a>
         </li>
         <li>
-          Include enums in CovariantEquals check analysis. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1011">#1011</a>
+          Include enums in <a href="http://checkstyle.sourceforge.net/config_coding.html#CovariantEquals">CovariantEquals</a> check analysis. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1011">#1011</a>
         </li>
         <li>
           Fix parsing of allowedAnnotations property in JavadocMethod. Author:  Gustav Carlson <a href="https://github.com/checkstyle/checkstyle/issues/1145">#1145</a>
@@ -109,16 +109,16 @@
           100% test coverage for com.puppycrawl.tools.checkstyle.checks.design. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1009">#1009</a>
         </li>
         <li>
-          removing dead code and refactoring in VisibilityModifier check. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1107">#1107</a>
+          removing dead code and refactoring in <a href="http://checkstyle.sourceforge.net/config_design.html#VisibilityModifier">VisibilityModifier</a> check. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1107">#1107</a>
         </li>
         <li>
           Replace deprecated PosixParser with DefaultParser. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1099">#1099</a>
         </li>
         <li>
-          remove dead code from MutableException check. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1103">#1103</a>
+          remove dead code from <a href="http://checkstyle.sourceforge.net/config_design.html#MutableException">MutableException</a> check. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1103">#1103</a>
         </li>
         <li>
-          remove dead code from FinalClass check. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1100">#1100</a>
+          remove dead code from <a href="http://checkstyle.sourceforge.net/config_design.html#FinalClass">FinalClass</a> check. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1100">#1100</a>
         </li>
         <li>
           Make tests of Main class platform independent. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1086">#1086</a>
@@ -154,24 +154,24 @@
           Remove obsolete space from general error message. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/1029">#1029</a>
         </li>
         <li>
-          Add missing space in error message for CustomImportOrder check. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/1027">#1027</a>
+          Add missing space in error message for <a href="http://checkstyle.sourceforge.net/config_imports.html#CustomImportOrder">CustomImportOrder</a> check. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/1027">#1027</a>
         </li>
         <li>
           resolving Findbugs violation: <a href="https://github.com/checkstyle/checkstyle/issues/911">#911</a> , <a href="https://github.com/checkstyle/checkstyle/issues/909">#909</a>,
-           <a href="https://github.com/checkstyle/checkstyle/issues/778">#778</a>, <a href="https://github.com/checkstyle/checkstyle/issues/923">#923</a>,
-           <a href="https://github.com/checkstyle/checkstyle/issues/925">#925</a>, <a href="https://github.com/checkstyle/checkstyle/issues/596">#596</a>. Author:  Roman Ivanov
+          <a href="https://github.com/checkstyle/checkstyle/issues/778">#778</a>, <a href="https://github.com/checkstyle/checkstyle/issues/923">#923</a>,
+          <a href="https://github.com/checkstyle/checkstyle/issues/925">#925</a>, <a href="https://github.com/checkstyle/checkstyle/issues/596">#596</a>. Author:  Roman Ivanov
         </li>
         <li>
           huge refactoring for CLI Main class. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/596">#596</a>
         </li>
         <li>
-          Option allowPublicFinalFields does not exist in VisibilityModifier check. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1126">#1126</a>
+          Option allowPublicFinalFields does not exist in <a href="http://checkstyle.sourceforge.net/config_design.html#VisibilityModifier">VisibilityModifier</a> check. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1126">#1126</a>
         </li>
         <li>
-          OneTopLevelClass check example is broken and documentation missing, for 'tokens' property. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1017">#1017</a>
+          <a href="http://checkstyle.sourceforge.net/config_design.html#OneTopLevelClass">OneTopLevelClass</a> check example is broken and documentation missing, for 'tokens' property. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1017">#1017</a>
         </li>
         <li>
-          OneTopLevelClass check example in documentation has invalid XML syntax. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1016">#1016</a>
+          <a href="http://checkstyle.sourceforge.net/config_design.html#OneTopLevelClass">OneTopLevelClass</a> check example in documentation has invalid XML syntax. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1016">#1016</a>
         </li>
       </ul>
     </section>
