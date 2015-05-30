@@ -157,9 +157,9 @@
           Add missing space in error message for CustomImportOrder check. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/1027">#1027</a>
         </li>
         <li>
-          resolving Findbugs violation: <a href="https://github.com/checkstyle/checkstyle/isues/911">#911</a> , <a href="https://github.com/checkstyle/checkstyle/isues/909">#909</a>,
-           <a href="https://github.com/checkstyle/checkstyle/isues/778">#778</a>, <a href="https://github.com/checkstyle/checkstyle/isues/923">#923</a>,
-           <a href="https://github.com/checkstyle/checkstyle/isues/925">#925</a>, <a href="https://github.com/checkstyle/checkstyle/isues/596">#596</a> . Author:  Roman Ivanov
+          resolving Findbugs violation: <a href="https://github.com/checkstyle/checkstyle/issues/911">#911</a> , <a href="https://github.com/checkstyle/checkstyle/issues/909">#909</a>,
+           <a href="https://github.com/checkstyle/checkstyle/issues/778">#778</a>, <a href="https://github.com/checkstyle/checkstyle/issues/923">#923</a>,
+           <a href="https://github.com/checkstyle/checkstyle/issues/925">#925</a>, <a href="https://github.com/checkstyle/checkstyle/issues/596">#596</a> . Author:  Roman Ivanov
         </li>
         <li>
           huge refactoring for CLI Main class. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/596">#596</a>
