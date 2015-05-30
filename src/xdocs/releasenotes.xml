@@ -56,10 +56,10 @@
           Fix <a href="http://checkstyle.sourceforge.net/config_misc.html#Regexp">Regexp</a> check causing exception on file with newline on top. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
         </li>
         <li>
-          Fix RegexpMultiline causing exception with default config. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
+          Fix <a href="http://checkstyle.sourceforge.net/config_regexp.html#RegexpMultiline">RegexpMultiline</a> check causing exception with default config. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
         </li>
         <li>
-          Add support for canonical class names in MutableException. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1124">#1124</a>
+          Add support for canonical class names in <a href="http://checkstyle.sourceforge.net/config_design.html#MutableException">MutableException</a>. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1124">#1124</a>
         </li>
         <li>
           Fix <a href="http://checkstyle.sourceforge.net/config_blocks.html#NeedBraces">NeedBraces</a> check not requiring braces in multiline statements when using allowSingleLineStatement option. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/895">#895</a>
@@ -80,7 +80,7 @@
           Fix exception in <a href="http://checkstyle.sourceforge.net/config_coding.html#FallThrough">FallThrough</a> check for nested switch statements. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/837">#837</a>
         </li>
         <li>
-          Magic Number annotation detection enhanced for arbitrary parent nodes. Author:  Mehmet Can Cömert <a href="https://github.com/checkstyle/checkstyle/issues/926">#926</a>
+          Magic Number annotation detection enhanced for arbitrary parent nodes in <a href="http://checkstyle.sourceforge.net/config_coding.html#MagicNumber">MagicNumber</a> check. Author:  Mehmet Can Cömert <a href="https://github.com/checkstyle/checkstyle/issues/926">#926</a>
         </li>
         <li>
           Improve standard package regexp for <a href="http://checkstyle.sourceforge.net/config_imports.html#CustomImportOrder">CustomImportOrder</a> check. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1020">#1020</a>
@@ -92,7 +92,7 @@
           Include enums in <a href="http://checkstyle.sourceforge.net/config_coding.html#CovariantEquals">CovariantEquals</a> check analysis. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1011">#1011</a>
         </li>
         <li>
-          Fix parsing of allowedAnnotations property in JavadocMethod. Author:  Gustav Carlson <a href="https://github.com/checkstyle/checkstyle/issues/1145">#1145</a>
+          Fix parsing of allowedAnnotations property in <a href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocMethod">JavadocMethod</a> check. Author:  Gustav Carlson <a href="https://github.com/checkstyle/checkstyle/issues/1145">#1145</a>
         </li>
 
       </ul>
