@@ -83,16 +83,17 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testIncorrectCustom() throws Exception {
-        final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
-                + " @since, @serial, @serialField, @serialData, @deprecated]";
+        final String tagOrder = "[@since, @version, @param, @return, @throws, @exception,"
+                + " @deprecated, @see, @serial, @serialField, @serialData, @author]";
+        final String customOrder = " @since,  @version, @param,@return,@throws, @exception,"
+                + "@deprecated, @see,@serial,   @serialField,  @serialData,@author";
+
         DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
         checkConfig.addAttribute("target", "CLASS_DEF");
+        checkConfig.addAttribute("tagOrder", customOrder);
 
         final String[] expected = {
-            "9: " + getCheckMessage(MSG_KEY, tagOrder),
-            "11: " + getCheckMessage(MSG_KEY, tagOrder),
-            "12: " + getCheckMessage(MSG_KEY, tagOrder),
-            "115: " + getCheckMessage(MSG_KEY, tagOrder),
+            "113: " + getCheckMessage(MSG_KEY, tagOrder),
         };
         verify(checkConfig, getPath("javadoc/InputIncorrectAtClauseOrderCheck.java"), expected);
     }
