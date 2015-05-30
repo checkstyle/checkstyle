@@ -34,7 +34,7 @@
       <p>New:</p>
       <ul>
         <li>
-          New option for ThrowCountCheck to skip private methods. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1136">#1136</a>
+          New option for ThrowsCountCheck to skip private methods. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1136">#1136</a>
         </li>
         <li>
           New option value for NewlineAtEndOfFileCheck, LineSeparatorOption.LF_CR_CRLF. Author:  Martin Steiger <a href="https://github.com/checkstyle/checkstyle/issues/1045">#1045</a>
