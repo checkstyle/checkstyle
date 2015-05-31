@@ -398,6 +398,8 @@ public class SuppressWarningsHolder
                     return quotedText.substring(1, quotedText.length() - 1);
                 case TokenTypes.IDENT:
                     return firstChild.getText();
+                case TokenTypes.DOT:
+                    return firstChild.getLastChild().getText();
                 default:
                     throw new IllegalArgumentException("String literal AST expected: "
                             + firstChild);
