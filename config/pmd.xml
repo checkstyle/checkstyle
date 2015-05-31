@@ -193,8 +193,12 @@
     <exclude name="AvoidCatchingGenericException"/>
     <!-- till #961 -->
     <exclude name="AvoidThrowingRawExceptionTypes"/>
-    <!-- till #962 -->
-    <exclude name="ExceptionAsFlowControl"/>
+  </rule>
+  <rule ref="rulesets/java/strictexception.xml/ExceptionAsFlowControl">
+    <properties>
+      <!-- till #1159 -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='PackageObjectFactory']"/>
+    </properties>
   </rule>
   <rule ref="rulesets/java/strictexception.xml/AvoidCatchingThrowable">
     <properties>
