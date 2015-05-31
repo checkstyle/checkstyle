@@ -34,7 +34,6 @@ import org.xml.sax.SAXParseException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -293,52 +292,42 @@ public final class ConfigurationLoader {
     public static Configuration loadConfiguration(String config,
         PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
         throws CheckstyleException {
+        // figure out if this is a File or a URL
+        URI uri;
         try {
-            // figure out if this is a File or a URL
-            URI uri;
-            try {
-                final URL url = new URL(config);
-                uri = url.toURI();
+            final URL url = new URL(config);
+            uri = url.toURI();
+        }
+        catch (final MalformedURLException ex) {
+            uri = null;
+        }
+        catch (final URISyntaxException ex) {
+            // URL violating RFC 2396
+            uri = null;
+        }
+        if (uri == null) {
+            final File file = new File(config);
+            if (file.exists()) {
+                uri = file.toURI();
             }
-            catch (final MalformedURLException ex) {
-                uri = null;
-            }
-            catch (final URISyntaxException ex) {
-                // URL violating RFC 2396
-                uri = null;
-            }
-            if (uri == null) {
-                final File file = new File(config);
-                if (file.exists()) {
-                    uri = file.toURI();
+            else {
+                // check to see if the file is in the classpath
+                try {
+                    final URL configUrl = ConfigurationLoader.class
+                            .getResource(config);
+                    if (configUrl == null) {
+                        throw new CheckstyleException("unable to find " + config);
+                    }
+                    uri = configUrl.toURI();
                 }
-                else {
-                    // check to see if the file is in the classpath
-                    try {
-                        final URL configUrl = ConfigurationLoader.class
-                                .getResource(config);
-                        if (configUrl == null) {
-                            throw new FileNotFoundException(config);
-                        }
-                        uri = configUrl.toURI();
-                    }
-                    catch (final URISyntaxException e) {
-                        throw new FileNotFoundException(config);
-                    }
+                catch (final URISyntaxException e) {
+                    throw new CheckstyleException("unable to find " + config);
                 }
             }
-            final InputSource source = new InputSource(uri.toString());
-            return loadConfiguration(source, overridePropsResolver,
-                    omitIgnoredModules);
         }
-        catch (final FileNotFoundException e) {
-            throw new CheckstyleException("unable to find " + config, e);
-        }
-        catch (final CheckstyleException e) {
-                //wrap again to add file name info
-            throw new CheckstyleException("unable to read " + config + " - "
-                    + e.getMessage(), e);
-        }
+        final InputSource source = new InputSource(uri.toString());
+        return loadConfiguration(source, overridePropsResolver,
+                omitIgnoredModules);
     }
 
     /**

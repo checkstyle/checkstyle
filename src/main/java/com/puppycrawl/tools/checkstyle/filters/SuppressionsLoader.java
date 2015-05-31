@@ -133,46 +133,41 @@ public final class SuppressionsLoader
      */
     public static FilterSet loadSuppressions(String filename)
         throws CheckstyleException {
+        // figure out if this is a File or a URL
+        URI uri;
         try {
-            // figure out if this is a File or a URL
-            URI uri;
-            try {
-                final URL url = new URL(filename);
-                uri = url.toURI();
+            final URL url = new URL(filename);
+            uri = url.toURI();
+        }
+        catch (final MalformedURLException ex) {
+            uri = null;
+        }
+        catch (final URISyntaxException ex) {
+            // URL violating RFC 2396
+            uri = null;
+        }
+        if (uri == null) {
+            final File file = new File(filename);
+            if (file.exists()) {
+                uri = file.toURI();
             }
-            catch (final MalformedURLException ex) {
-                uri = null;
-            }
-            catch (final URISyntaxException ex) {
-                // URL violating RFC 2396
-                uri = null;
-            }
-            if (uri == null) {
-                final File file = new File(filename);
-                if (file.exists()) {
-                    uri = file.toURI();
+            else {
+                // check to see if the file is in the classpath
+                try {
+                    final URL configUrl = SuppressionsLoader.class
+                            .getResource(filename);
+                    if (configUrl == null) {
+                        throw new CheckstyleException("unable to find " + filename);
+                    }
+                    uri = configUrl.toURI();
                 }
-                else {
-                    // check to see if the file is in the classpath
-                    try {
-                        final URL configUrl = SuppressionsLoader.class
-                                .getResource(filename);
-                        if (configUrl == null) {
-                            throw new FileNotFoundException(filename);
-                        }
-                        uri = configUrl.toURI();
-                    }
-                    catch (final URISyntaxException e) {
-                        throw new FileNotFoundException(filename);
-                    }
+                catch (final URISyntaxException e) {
+                    throw new CheckstyleException("unable to find " + filename);
                 }
             }
-            final InputSource source = new InputSource(uri.toString());
-            return loadSuppressions(source, filename);
         }
-        catch (final FileNotFoundException e) {
-            throw new CheckstyleException("unable to find " + filename, e);
-        }
+        final InputSource source = new InputSource(uri.toString());
+        return loadSuppressions(source, filename);
     }
 
     /**
