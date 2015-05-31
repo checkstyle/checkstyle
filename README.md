@@ -5,7 +5,7 @@
 [![][sonar img]][sonar]
 
 
-Organization Members chat: [![][gitter img]][gitter]
+Members chat: [![][gitter img]][gitter]
 Contributors chat: [![https://gitter.im/checkstyle/checkstyle](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/checkstyle/checkstyle?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ![](https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/images/logo.png)
