@@ -15,4 +15,16 @@ public class InputSuppressWarningsHolder {
     int e;
     @SuppressWarnings(value = com.puppycrawl.tools.checkstyle.InputSuppressWarningsHolder.UNUSED)
     int f;
+    @SuppressWarnings((1 != 1) ? "" : "unused")
+    int g;
+    @SuppressWarnings("un" + "used")
+    int h;
+    @SuppressWarnings((String) "unused")
+    int i;
+    @SuppressWarnings({})
+    int j;
+    @SuppressWarnings({UNUSED})
+    int k;
+    @SuppressWarnings({"unused", true ? "unused" : ""})
+    int l;
 }

@@ -386,6 +386,7 @@ public class SuppressWarningsHolder
      * Returns the literal string expression represented by an AST.
      * @param ast an AST node for an EXPR
      * @return the Java string represented by the given AST expression
+     *         or empty string if expression is too complex
      * @throws IllegalArgumentException if the AST is invalid
      */
     private static String getStringExpr(DetailAST ast) {
@@ -401,8 +402,8 @@ public class SuppressWarningsHolder
                 case TokenTypes.DOT:
                     return firstChild.getLastChild().getText();
                 default:
-                    throw new IllegalArgumentException("String literal AST expected: "
-                            + firstChild);
+                    // annotations with complex expressions cannot suppress warnings
+                    return "";
             }
         }
         throw new IllegalArgumentException("Expression AST expected: " + ast);
