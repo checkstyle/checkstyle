@@ -34,7 +34,7 @@
       <p>New:</p>
       <ul>
         <li>
-          New "ignorePrivateMethods" property for <a href="http://checkstyle.sourceforge.net/config_design.html#ThrowsCount">ThrowsCount</a> check to skip private methods. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1136">#1136</a>
+          New "ignorePrivateMethods" property for <a href="http://checkstyle.sourceforge.net/config_design.html#ThrowsCount">ThrowsCount</a> check to skip private methods. Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1136">#1136</a>
         </li>
         <li>
           New "crlf" option for lineSeparator property in <a href="http://checkstyle.sourceforge.net/config_misc.html#NewlineAtEndOfFile">NewlineAtEndOfFile</a> check. Author:  Martin Steiger <a href="https://github.com/checkstyle/checkstyle/issues/1045">#1045</a>
@@ -50,7 +50,7 @@
           Fix no possibility to set English language explicitly in config. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/152">#152</a>
         </li>
         <li>
-          Do not verify overriding methods in <a href="http://checkstyle.sourceforge.net/config_design.html#ThrowsCount">ThrowsCount</a> check. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1085">#1085</a>
+          Do not verify overriding methods in <a href="http://checkstyle.sourceforge.net/config_design.html#ThrowsCount">ThrowsCount</a> check. Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1085">#1085</a>
         </li>
         <li>
           Fix <a href="http://checkstyle.sourceforge.net/config_misc.html#Regexp">Regexp</a> check causing exception on file with newline on top. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
@@ -106,19 +106,19 @@
           Make coverage 100% for all classes at package com.puppycrawl.tools.checkstyle.checks.sizes. Author:  MEZk <a href="https://github.com/checkstyle/checkstyle/issues/1024">#1024</a>
         </li>
         <li>
-          100% test coverage for com.puppycrawl.tools.checkstyle.checks.design. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1009">#1009</a>
+          100% test coverage for com.puppycrawl.tools.checkstyle.checks.design. Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1009">#1009</a>
         </li>
         <li>
-          removing dead code and refactoring in <a href="http://checkstyle.sourceforge.net/config_design.html#VisibilityModifier">VisibilityModifier</a> check. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1107">#1107</a>
+          removing dead code and refactoring in <a href="http://checkstyle.sourceforge.net/config_design.html#VisibilityModifier">VisibilityModifier</a> check. Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1107">#1107</a>
         </li>
         <li>
           Replace deprecated PosixParser with DefaultParser. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1099">#1099</a>
         </li>
         <li>
-          remove dead code from <a href="http://checkstyle.sourceforge.net/config_design.html#MutableException">MutableException</a> check. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1103">#1103</a>
+          remove dead code from <a href="http://checkstyle.sourceforge.net/config_design.html#MutableException">MutableException</a> check. Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1103">#1103</a>
         </li>
         <li>
-          remove dead code from <a href="http://checkstyle.sourceforge.net/config_design.html#FinalClass">FinalClass</a> check. Author:  vlad <a href="https://github.com/checkstyle/checkstyle/issues/1100">#1100</a>
+          remove dead code from <a href="http://checkstyle.sourceforge.net/config_design.html#FinalClass">FinalClass</a> check. Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1100">#1100</a>
         </li>
         <li>
           Make tests of Main class platform independent. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1086">#1086</a>
