@@ -318,6 +318,21 @@ public final class JavadocUtils {
     }
 
     /**
+     * Gets next sibling of specified node with the specified type.
+     *
+     * @param node DetailNode
+     * @param tokenType javadoc token type
+     * @return next sibling.
+     */
+    public static DetailNode getNextSibling(DetailNode node, int tokenType) {
+        DetailNode nextSibling = JavadocUtils.getNextSibling(node);
+        while (nextSibling != null && nextSibling.getType() != tokenType) {
+            nextSibling = JavadocUtils.getNextSibling(nextSibling);
+        }
+        return nextSibling;
+    }
+
+    /**
      * Gets previous sibling of specified node.
      * @param node DetailNode
      * @return previous sibling
@@ -366,6 +381,24 @@ public final class JavadocUtils {
             throw new IllegalArgumentException("Unknown javdoc token name. Given name " + name);
         }
         return id.intValue();
+    }
+
+    /**
+     * Gets tag name from javadocTagSection.
+     *
+     * @param javadocTagSection to get tag name from.
+     * @return name, of the javadocTagSection's tag.
+     */
+    public static String getTagName(DetailNode javadocTagSection) {
+        String javadocTagName;
+        if (javadocTagSection.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+            javadocTagName = JavadocUtils.getNextSibling(
+                    JavadocUtils.getFirstChild(javadocTagSection)).getText();
+        }
+        else {
+            javadocTagName = JavadocUtils.getFirstChild(javadocTagSection).getText();
+        }
+        return javadocTagName;
     }
 
 }

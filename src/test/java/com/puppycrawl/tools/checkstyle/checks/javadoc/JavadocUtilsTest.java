@@ -32,6 +32,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
+import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class JavadocUtilsTest {
@@ -183,5 +184,26 @@ public class JavadocUtilsTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertUtilsClassHasPrivateConstructor(JavadocUtils.class);
+    }
+
+    @Test
+    public void testBranchContains() {
+        JavadocNodeImpl node = new JavadocNodeImpl();
+        JavadocNodeImpl firstChild = new JavadocNodeImpl();
+        JavadocNodeImpl secondChild = new JavadocNodeImpl();
+
+        node.setType(JavadocTokenTypes.JAVADOC);
+        firstChild.setType(JavadocTokenTypes.BODY_TAG_OPEN);
+        secondChild.setType(JavadocTokenTypes.CODE_LITERAL);
+
+        node.setChildren(firstChild, secondChild);
+        assertFalse(JavadocUtils.branchContains(node, JavadocTokenTypes.AUTHOR_LITERAL));
+
+        firstChild.setParent(node);
+        secondChild.setParent(node);
+        assertFalse(JavadocUtils.branchContains(node, JavadocTokenTypes.AUTHOR_LITERAL));
+
+        secondChild.setType(JavadocTokenTypes.AUTHOR_LITERAL);
+        assertTrue(JavadocUtils.branchContains(node, JavadocTokenTypes.AUTHOR_LITERAL));
     }
 }
