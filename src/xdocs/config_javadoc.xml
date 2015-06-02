@@ -1133,10 +1133,33 @@ public boolean isSomething()
     <section name="SingleLineJavadoc">
       <subsection name="Description">
         <p>
-           Checks that a JavaDoc block which can fit on a single line and doesn't
+           Checks that a JavaDoc block can fit in a single line and doesn't
            contain at-clauses. Javadoc comment that contains at least one at-clause
-           should be formatted in few lines.
+           should be formatted in a few lines.
         </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>ignoredTags</td>
+            <td>allows to specify at-clauses which are ignored by the check.</td>
+            <td><a href="property_types.html#string">String</a></td>
+            <td><code>null</code></td>
+          </tr>
+          <tr>
+            <td>ignoreInlineTags</td>
+            <td>whether inline tags must be ignored.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+        </table>
       </subsection>
 
       <subsection name="Examples">
@@ -1145,6 +1168,15 @@ public boolean isSomething()
         </p>
         <source>
 &lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
+        </source>
+        <p>
+          To specify a list of ignored at-clauses and make inline at-clauses not ignored:
+        </p>
+        <source>
+&lt;module name=&quot;SingleLineJavadoc&quot;&gt;
+    &lt;property name=&quot;ignoredTags&quot; value=&quot;&#64;inheritDoc, &#64;see&quot;/&gt;
+    &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 

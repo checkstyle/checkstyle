@@ -25,4 +25,19 @@ class Foo{
      * An especially short bit of Javadoc.
      */
     void foo6() {}
+
+    /** @inheritDoc */ //warn
+    void foo7() {}
+
+    /** {@inheritDoc} */ //warn
+    void foo8() {}
+
+    /** @customTag */ //warn
+    void bar() {}
+
+    /** <h1> Some header </h1> {@inheritDoc} {@code bar1} text*/ //warn
+    void bar2() {}
+
+    /** @customTag <a> href="https://github.com/checkstyle/chestyle/"</a> text*/ //warn
+    void bar3() {}
 }

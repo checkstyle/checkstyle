@@ -32,8 +32,30 @@ public class SingleLineJavadocCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(SingleLineJavadocCheck.class);
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_KEY),
             "12: " + getCheckMessage(MSG_KEY),
+            "28: " + getCheckMessage(MSG_KEY),
+            "40: " + getCheckMessage(MSG_KEY),
+            "43: " + getCheckMessage(MSG_KEY),
+            "49: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig, getPath("javadoc/InputSingleLineJavadocCheck.java"), expected);
+    }
+
+    @Test
+    public void testIgnoredTags() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(SingleLineJavadocCheck.class);
+        checkConfig.addAttribute("ignoredTags", "@inheritDoc, @throws,  "
+            + "@ignoredCustomTag");
+        checkConfig.addAttribute("ignoreInlineTags", "false");
+
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_KEY),
+            "34: " + getCheckMessage(MSG_KEY),
+            "37: " + getCheckMessage(MSG_KEY),
+            "40: " + getCheckMessage(MSG_KEY),
+            "46: " + getCheckMessage(MSG_KEY),
+            "49: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("javadoc/InputSingleLineJavadocCheck.java"), expected);
     }

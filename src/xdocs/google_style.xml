@@ -495,7 +495,7 @@
                             </td>
                             <td>
                                 <a
-                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L199">config</a><br/>
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L200">config</a><br/>
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks/EmptyCatchBlockTest.java">test</a>
                             </td>
