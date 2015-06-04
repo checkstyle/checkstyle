@@ -90,7 +90,9 @@ public class DetailASTTest {
                            System.getProperty("file.encoding", "UTF-8"));
         final FileContents contents = new FileContents(text);
         final DetailAST rootAST = TreeWalker.parse(contents);
-        checkTree(rootAST, null, null, filename, rootAST);
+        if (rootAST != null) {
+            checkTree(rootAST, null, null, filename, rootAST);
+        }
     }
 
     private void checkTree(final DetailAST node,

@@ -38,4 +38,15 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                 + "checkstyle/coding/InputNoPackage.java").getCanonicalPath(), expected);
     }
+
+    @Test
+    public void testOnFileWithCommentOnly() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+
+        String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY),
+        };
+
+        verify(checkConfig, getPath("InputWithCommentOnly.java"), expected);
+    }
 }
