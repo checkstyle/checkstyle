@@ -158,15 +158,12 @@ public final class MethodCountCheck extends Check {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (TokenTypes.CLASS_DEF == ast.getType()
-            || TokenTypes.INTERFACE_DEF == ast.getType()
-            || TokenTypes.ENUM_CONSTANT_DEF == ast.getType()
-            || TokenTypes.ENUM_DEF == ast.getType()) {
+        if (TokenTypes.METHOD_DEF == ast.getType()) {
+            raiseCounter(ast);
+        }
+        else {
             final boolean inInterface = TokenTypes.INTERFACE_DEF == ast.getType();
             counters.push(new MethodCounter(inInterface));
-        }
-        else if (TokenTypes.METHOD_DEF == ast.getType()) {
-            raiseCounter(ast);
         }
     }
 
