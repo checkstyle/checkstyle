@@ -28,10 +28,23 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck.MS
 public class IllegalTokenCheckTest
     extends BaseCheckTestSupport {
     @Test
-    public void testDefault()
+    public void testCheckWithDefaultSettings()
         throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(IllegalTokenCheck.class);
+        final String[] expected = {
+            "29:14: " + getCheckMessage(MSG_KEY, "label:"),
+            "31:25: " + getCheckMessage(MSG_KEY, "anotherLabel:"),
+        };
+        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+    }
+
+    @Test
+    public void testPreviouslyIllegalTokens()
+        throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(IllegalTokenCheck.class);
+        checkConfig.addAttribute("tokens", "LITERAL_SWITCH,POST_INC,POST_DEC");
         final String[] expected = {
             "11:9: " + getCheckMessage(MSG_KEY, "switch"),
             "14:18: " + getCheckMessage(MSG_KEY, "--"),

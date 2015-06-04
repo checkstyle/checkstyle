@@ -694,14 +694,14 @@ class SomeClass
     <section name="IllegalToken">
       <subsection name="Description">
         <p>
-          Checks for illegal tokens.
+          Checks for illegal tokens. By default labels are prohibited.
         </p>
 
         <p>
-          Rational: Certain language features often lead to hard-to-maintain
-          code or are not obvious to novice developers. Other features may be
-          discouraged in certain frameworks, such as not having native methods
-          in Enterprise JavaBeans components.
+          Rationale: Certain language features can harm readability, lead to
+          confusion or are not obvious to novice developers. Other features
+          may be discouraged in certain frameworks, such as not having
+          native methods in Enterprise JavaBeans components.
         </p>
       </subsection>
 

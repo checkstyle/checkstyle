@@ -27,11 +27,11 @@ import java.util.Set;
 
 /**
  * <p>
- * Checks for illegal tokens.
+ * Checks for illegal tokens. By default labels are prohibited.
  * </p>
  * <p>
- * Rational: Certain language features are often lead to hard to
- * maintain code or are non-obvious to novice developers. Others
+ * Rationale: Certain language features can harm readability, lead to
+ * confusion or are not obvious to novice developers. Other features
  * may be discouraged in certain frameworks, such as not having
  * native methods in EJB components.
  * </p>
@@ -64,9 +64,7 @@ public class IllegalTokenCheck
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
-            TokenTypes.LITERAL_SWITCH,
-            TokenTypes.POST_INC,
-            TokenTypes.POST_DEC,
+            TokenTypes.LABELED_STAT,
         };
     }
 
@@ -94,7 +92,24 @@ public class IllegalTokenCheck
             ast.getLineNo(),
             ast.getColumnNo(),
             MSG_KEY,
-            ast.getText());
+            convertToString(ast)
+        );
+    }
+
+    /**
+     * Converts given AST node to string representation.
+     * @param ast node to be represented as string
+     * @return string representation of AST node
+     */
+    private String convertToString(DetailAST ast) {
+        final String tokenText;
+        if (ast.getType() == TokenTypes.LABELED_STAT) {
+            tokenText = ast.getFirstChild().getText() + ast.getText();
+        }
+        else {
+            tokenText = ast.getText();
+        }
+        return tokenText;
     }
 
 }
