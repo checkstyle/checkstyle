@@ -644,7 +644,6 @@
 
           <regex><pattern>.*.DefaultConfiguration</pattern><branchRate>100</branchRate><lineRate>92</lineRate></regex>
           <regex><pattern>.*.DefaultLogger</pattern><branchRate>75</branchRate><lineRate>76</lineRate></regex>
-          <regex><pattern>.*.Definitions</pattern><branchRate>100</branchRate><lineRate>0</lineRate></regex>
           <regex><pattern>.*.Main</pattern><branchRate>65</branchRate><lineRate>78</lineRate></regex>
           <regex><pattern>.*.PackageNamesLoader</pattern><branchRate>78</branchRate><lineRate>72</lineRate></regex>
           <regex><pattern>.*.PackageObjectFactory</pattern><branchRate>75</branchRate><lineRate>75</lineRate></regex>
@@ -670,7 +669,6 @@
           <regex><pattern>.*.api.FullIdent</pattern><branchRate>83</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.api.JavadocTagInfo</pattern><branchRate>25</branchRate><lineRate>77</lineRate></regex>
           <regex><pattern>.*.api.JavadocTagInfo\$.*</pattern><branchRate>0</branchRate><lineRate>8</lineRate></regex>
-          <regex><pattern>.*.api.JavadocTokenTypes</pattern><branchRate>100</branchRate><lineRate>0</lineRate></regex>
           <regex><pattern>.*.api.LocalizedMessage\$.*</pattern><branchRate>41</branchRate><lineRate>66</lineRate></regex>
           <regex><pattern>.*.api.SeverityLevelCounter</pattern><branchRate>50</branchRate><lineRate>76</lineRate></regex>
           <regex><pattern>.*.api.TokenTypes</pattern><branchRate>62</branchRate><lineRate>80</lineRate></regex>
