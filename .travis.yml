@@ -23,7 +23,7 @@ matrix:
       env: DESC="checkstyle" MAIN_ARGS="verify -DskipTests -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
     # cobertura and coveralls (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="cobertura and coveralls" MAIN_ARGS="verify -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS="mvn clean cobertura:cobertura coveralls:report"
+      env: DESC="cobertura and coveralls" MAIN_ARGS="cobertura:check" COVERALLS_ARGS="mvn clean cobertura:cobertura coveralls:report"
     # findbugs and pmd (oraclejdk8)
     - jdk: oraclejdk8
       env: DESC="findbugs and pmd" MAIN_ARGS="compile pmd:check findbugs:check" COVERALLS_ARGS=""
