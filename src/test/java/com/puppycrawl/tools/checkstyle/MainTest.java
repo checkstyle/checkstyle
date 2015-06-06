@@ -249,17 +249,16 @@ public class MainTest {
     @Test
     public void testExistingTargetFilePlainOutputToNonExistingFile()
             throws Exception {
-        exit.expectSystemExitWithStatus(1);
+        exit.expectSystemExitWithStatus(0);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
-                assertEquals("Could not find file 'myjava.java'." + System.lineSeparator(),
-                    standardLog.getLog());
+                assertEquals("", standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
         });
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
                 "-f", "plain",
-                "-o", "myjava.java",
+                "-o", temporaryFolder.getRoot() + "/output.txt",
                 "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 
@@ -274,6 +273,26 @@ public class MainTest {
             public void checkAssertion() {
                 //Assert.assertTrue(file.getTotalSpace() > 0);
                 assertEquals("", standardLog.getLog());
+                assertEquals("", errorLog.getLog());
+            }
+        });
+        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
+                "-f", "plain",
+                "-o", file.getCanonicalPath(),
+                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+    }
+
+    @Test
+    public void testExistingTargetFilePlainOutputToFileWithoutRwPermissions()
+            throws Exception {
+        final File file = temporaryFolder.newFile("file.output");
+        file.setReadable(false, false);
+        file.setWritable(false, false);
+        exit.expectSystemExitWithStatus(1);
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() throws IOException {
+                assertEquals("Permission denied : '" + file.getCanonicalPath() + "'."
+                    + System.lineSeparator(), standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
         });

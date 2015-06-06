@@ -162,8 +162,8 @@ public final class Main {
             if (cmdLine.hasOption("o")) {
                 final String outputLocation = cmdLine.getOptionValue("o");
                 final File file = new File(outputLocation);
-                if (!file.exists()) {
-                    result.add(String.format("Could not find file '%s'.", outputLocation));
+                if (file.exists() && !(file.canRead() && file.canWrite())) {
+                    result.add(String.format("Permission denied : '%s'.", outputLocation));
                 }
             }
             final List<File> files = getFilesToProcess(cmdLine.getArgs());
