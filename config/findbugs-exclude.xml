@@ -78,7 +78,7 @@
       <Or>
         <Class name="com.puppycrawl.tools.checkstyle.checks.DeclarationCollector" />
         <Class name="com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck" />
-        <Class name="com.puppycrawl.tools.checkstyle.checks.RegexpCheck" />
+        <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck" />
         <!-- createJavadocNode is private and can not be launched without visitToken-->
         <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck" />
         <!-- has only one public method and all nitialized inthat method-->

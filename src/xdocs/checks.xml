@@ -614,7 +614,7 @@
         <td>Checks for redundant modifiers in interface and annotation definitions.</td>
       </tr>
       <tr>
-        <td><a href="config_misc.html#Regexp">Regexp</a></td>
+        <td><a href="config_regexp.html#Regexp">Regexp</a></td>
         <td>
         A check that makes sure that a specified pattern exists (or not) in the file.</td>
       </tr>

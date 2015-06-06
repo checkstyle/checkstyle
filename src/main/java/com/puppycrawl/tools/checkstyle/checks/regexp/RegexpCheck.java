@@ -17,12 +17,13 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LineColumn;
+import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -17,15 +17,15 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.RegexpCheck.MSG_ILLEGAL_REGEXP;
-import static com.puppycrawl.tools.checkstyle.checks.RegexpCheck.MSG_DUPLICATE_REGEXP;
-import static com.puppycrawl.tools.checkstyle.checks.RegexpCheck.MSG_REQUIRED_REGEXP;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_ILLEGAL_REGEXP;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_DUPLICATE_REGEXP;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_REQUIRED_REGEXP;
 
 public class RegexpCheckTest extends BaseCheckTestSupport {
     @Test

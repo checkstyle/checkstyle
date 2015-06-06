@@ -685,7 +685,6 @@
           <regex><pattern>.*.checks.DescendantTokenCheck</pattern><branchRate>91</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.NewlineAtEndOfFileCheck</pattern><branchRate>83</branchRate><lineRate>88</lineRate></regex>
           <regex><pattern>.*.checks.OuterTypeFilenameCheck</pattern><branchRate>71</branchRate><lineRate>92</lineRate></regex>
-          <regex><pattern>.*.checks.RegexpCheck</pattern><branchRate>97</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.SuppressWarningsHolder</pattern><branchRate>70</branchRate><lineRate>90</lineRate></regex>
           <regex><pattern>.*.checks.TodoCommentCheck</pattern><branchRate>100</branchRate><lineRate>92</lineRate></regex>
           <regex><pattern>.*.checks.TrailingCommentCheck</pattern><branchRate>90</branchRate><lineRate>93</lineRate></regex>
@@ -846,6 +845,7 @@
           <regex><pattern>.*.checks.regexp.CommentSuppressor</pattern><branchRate>75</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.regexp.DetectorOptions</pattern><branchRate>100</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.regexp.MultilineDetector</pattern><branchRate>58</branchRate><lineRate>87</lineRate></regex>
+          <regex><pattern>.*.checks.regexp.RegexpCheck</pattern><branchRate>97</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.regexp.RegexpMultilineCheck</pattern><branchRate>100</branchRate><lineRate>76</lineRate></regex>
           <regex><pattern>.*.checks.regexp.RegexpSinglelineCheck</pattern><branchRate>100</branchRate><lineRate>76</lineRate></regex>
           <regex><pattern>.*.checks.regexp.SinglelineDetector</pattern><branchRate>93</branchRate><lineRate>96</lineRate></regex>
