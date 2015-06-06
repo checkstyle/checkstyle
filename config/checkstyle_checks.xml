@@ -237,6 +237,11 @@
     <module name="NoFinalizer"/>
     <module name="NoLineWrap"/>
     <module name="Regexp"/>
+    <module name="RegexpSinglelineJava"/>
+    <module name="RegexpSinglelineJava">
+      <property name="format" value="[^\p{ASCII}]"/>
+      <property name="ignoreComments" value="true"/>
+    </module>
     <module name="SeparatorWrap">
       <property name="tokens" value="DOT"/>
       <property name="option" value="nl"/>
@@ -284,7 +289,6 @@
     <module name="OneTopLevelClass"/>
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="PackageDeclaration"/>
-    <module name="RegexpSinglelineJava"/>
     <module name="TrailingComment"/>
     <module name="RequireThis"/>
     <module name="ReturnCount"/>
