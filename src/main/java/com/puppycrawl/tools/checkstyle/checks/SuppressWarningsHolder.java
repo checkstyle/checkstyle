@@ -263,8 +263,7 @@ public class SuppressWarningsHolder
                     }
                 }
             }
-            if (values == null) {
-                log(ast, "suppress.warnings.missing.value");
+            if (isAnnotationEmpty(values)) {
                 return;
             }
 
@@ -304,6 +303,14 @@ public class SuppressWarningsHolder
                 }
             }
         }
+    }
+
+    /**
+     * @param values list of values in the annotation
+     * @return whether annotation is empty or contains some values
+     */
+    private boolean isAnnotationEmpty(List<String> values) {
+        return values == null;
     }
 
     /**
