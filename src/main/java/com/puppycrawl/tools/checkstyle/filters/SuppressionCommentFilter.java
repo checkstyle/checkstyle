@@ -83,10 +83,10 @@ public class SuppressionCommentFilter
         private final boolean on;
 
         /** The parsed check regexp, expanded for the text of this tag. */
-        private Pattern tagCheckRegexp;
+        private final transient Pattern tagCheckRegexp;
 
         /** The parsed message regexp, expanded for the text of this tag. */
-        private Pattern tagMessageRegexp;
+        private transient Pattern tagMessageRegexp;
 
         /**
          * Constructs a tag.
@@ -105,7 +105,6 @@ public class SuppressionCommentFilter
             this.text = text;
             this.on = on;
 
-            tagCheckRegexp = filter.checkRegexp;
             //Expand regexp for check and message
             //Does not intern Patterns with Utils.getPattern()
             String format = "";
@@ -201,15 +200,13 @@ public class SuppressionCommentFilter
             return Objects.equals(line, tag.line)
                     && Objects.equals(column, tag.column)
                     && Objects.equals(on, tag.on)
-                    && Objects.equals(text, tag.text)
-                    && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
-                    && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp);
+                    && Objects.equals(text, tag.text);
         }
 
         /** {@inheritDoc} */
         @Override
         public int hashCode() {
-            return Objects.hash(text, line, column, on, tagCheckRegexp, tagMessageRegexp);
+            return Objects.hash(text, line, column, on);
         }
 
         /**
@@ -287,9 +284,6 @@ public class SuppressionCommentFilter
     /** The check format to suppress. */
     private String checkFormat;
 
-    /** The parsed check regexp. */
-    private Pattern checkRegexp;
-
     /** The message format to suppress. */
     private String messageFormat;
 
@@ -356,7 +350,6 @@ public class SuppressionCommentFilter
      */
     public void setCheckFormat(String format)
         throws ConversionException {
-        checkRegexp = Utils.createPattern(format);
         checkFormat = format;
 
     }

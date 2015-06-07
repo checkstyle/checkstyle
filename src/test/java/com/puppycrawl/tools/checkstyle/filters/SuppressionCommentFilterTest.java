@@ -35,7 +35,11 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
+
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class SuppressionCommentFilterTest
     extends BaseCheckTestSupport {
@@ -219,5 +223,19 @@ public class SuppressionCommentFilterTest
             Lists.newArrayList(Arrays.asList(from));
         coll.removeAll(Arrays.asList(remove));
         return coll.toArray(new String[coll.size()]);
+    }
+
+    @Test
+    public void testEqualsAndHashCodeOfTagClass() {
+        EqualsVerifier.forClass(SuppressionCommentFilter.Tag.class).usingGetClass().verify();
+    }
+
+    @Test
+    public void testToStringOfTagClass() {
+        SuppressionCommentFilter.Tag tag = new SuppressionCommentFilter.Tag(
+                0, 1, "text", false, new SuppressionCommentFilter()
+        );
+
+        assertEquals("Tag[line=0; col=1; on=false; text='text']", tag.toString());
     }
 }
