@@ -8,7 +8,7 @@
 
   <target name="execute" unless="checkstyle.ant.skip">
     <taskdef name="checkstyle"
-             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask"
+             classname="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask"
              classpath="${mvn.runtime_classpath}"
              />
 

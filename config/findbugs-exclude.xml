@@ -12,7 +12,7 @@
     <Match>
       <!-- Looks like catch Exception and throw BuidException is normal practice in ANT, so we follow their style -->
       <!-- Example: https://git-wip-us.apache.org/repos/asf?p=ant.git;a=blob;f=src/main/org/apache/tools/ant/taskdefs/Checksum.java;h=7a94ca098baf241b175a6bab3dda092aed835ada;hb=HEAD#l574 -->
-      <Class name="com.puppycrawl.tools.checkstyle.CheckStyleTask" />
+      <Class name="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask" />
       <Method name="createChecker" />
       <Bug pattern="REC_CATCH_EXCEPTION" />
     </Match>

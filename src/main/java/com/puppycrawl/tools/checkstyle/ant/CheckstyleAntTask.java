@@ -17,10 +17,16 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.ant;
 
 import com.google.common.collect.Lists;
 import com.google.common.io.Closeables;
+import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+import com.puppycrawl.tools.checkstyle.DefaultContext;
+import com.puppycrawl.tools.checkstyle.DefaultLogger;
+import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
@@ -51,7 +57,7 @@ import org.apache.tools.ant.types.Reference;
  * of the task for usage.
  * @author Oliver Burn
  */
-public class CheckStyleTask extends Task {
+public class CheckstyleAntTask extends Task {
     /** poor man's enum for an xml formatter */
     private static final String E_XML = "xml";
     /** poor man's enum for an plain formatter */
