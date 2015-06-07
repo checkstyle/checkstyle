@@ -49,7 +49,7 @@
       </p>
 
       <source>
-&lt;taskdef resource=&quot;checkstyletask.properties&quot;
+&lt;taskdef resource=&quot;com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties&quot;
          classpath=&quot;/path/to/checkstyle-${projectVersion}-all.jar&quot;/&gt;
       </source>
 
@@ -60,7 +60,7 @@
       </p>
 
       <source>
-&lt;taskdef resource=&quot;checkstyletask.properties&quot;/&gt;
+&lt;taskdef resource=&quot;com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties&quot;/&gt;
       </source>
 
       <p>
