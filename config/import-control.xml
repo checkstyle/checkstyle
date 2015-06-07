@@ -26,7 +26,10 @@
   <allow class="java.security.MessageDigest" local-only="true"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.grammars" local-only="true"/>
   <allow pkg="org.apache.commons.cli" local-only="true"/>
-  <allow pkg="org.apache.tools.ant" local-only="true"/>
+
+  <subpackage name="ant">
+    <allow pkg="org.apache.tools.ant" local-only="true"/>
+  </subpackage>
 
   <subpackage name="api">
     <allow pkg="com.puppycrawl.tools.checkstyle.grammars"/>

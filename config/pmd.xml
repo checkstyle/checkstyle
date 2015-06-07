@@ -95,8 +95,8 @@
   </rule>
   <rule ref="rulesets/java/coupling.xml/ExcessiveImports">
     <properties>
-      <!-- that class integrates checkstyle and antlr that is why it has a lot of imports -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='TreeWalker']"/>
+      <!-- TreeWalker integrates Checkstyle and antlr and CheckstyleAntTask integrates Checkstyle with Ant -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='TreeWalker' or @Image='CheckstyleAntTask']"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/coupling.xml/CouplingBetweenObjects">

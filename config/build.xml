@@ -17,7 +17,7 @@
   <target name="checkstyle.checkstyle"
           description="Runs checkstyle against it's own sources">
     <taskdef name="checkstyle"
-             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
+             classname="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask">
       <classpath refid="run.classpath"/>
     </taskdef>
     <delete file="${target.dir}/cachefile" />
@@ -69,7 +69,7 @@
   <target name="checkstyle.sun_checks"
           description="Runs checkstyle using sun_checks.xml">
     <taskdef name="checkstyle"
-             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
+             classname="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask">
       <classpath refid="run.classpath"/>
     </taskdef>
 

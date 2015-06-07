@@ -879,7 +879,7 @@
         </check>
         <instrumentation>
             <excludes>
-              <exclude>com/puppycrawl/tools/checkstyle/CheckStyleTask*.class</exclude>
+              <exclude>com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask*.class</exclude>
               <exclude>com/puppycrawl/tools/checkstyle/doclets/*.class</exclude>
               <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
               <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
