@@ -28,3 +28,9 @@ public class InputSuppressWarningsHolder {
     @SuppressWarnings({"unused", true ? "unused" : ""})
     int l;
 }
+
+class CustomSuppressWarnings {
+    @SuppressWarnings
+    private @interface SuppressWarnings {
+    }
+}
