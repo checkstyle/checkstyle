@@ -101,10 +101,9 @@ public final class Main {
             System.out.println(pex.getMessage());
             printUsage();
         }
-        catch (Exception ex) {
-            // smth wrong during processing
+        catch (CheckstyleException e) {
             errorCounter = 1;
-            throw ex;
+            System.out.println(e.getMessage());
         }
         finally {
             // return exit code base on validation of Checker
