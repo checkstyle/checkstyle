@@ -526,13 +526,37 @@
           </execution>
           <execution>
             <id>add-test-source</id>
-            <phase>generate-test-sources</phase>
+            <phase>process-resources</phase>
             <goals>
               <goal>add-test-source</goal>
             </goals>
             <configuration>
               <sources>
                 <source>src/test/resources</source>
+              </sources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>add-ittest-source</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/it/java</source>
+              </sources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>add-ittest-resource</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/it/resources</source>
               </sources>
             </configuration>
           </execution>
@@ -586,6 +610,31 @@
         </dependencies>
       </plugin>
 
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.15</version>
+        <configuration>
+            <includes>
+                <include>com/google/**/*.java</include>
+            </includes>
+        </configuration>
+        <executions>
+          <execution>
+            <id>integration-test</id>
+            <goals>
+              <goal>integration-test</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>verify</id>
+            <goals>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
       <!-- Used to set custom properties -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -596,6 +645,9 @@
           <additionalClasspathElements>
             <additionalClasspathElement>src/test/resources-noncompilable</additionalClasspathElement>
           </additionalClasspathElements>
+          <includes>
+              <include>com/puppycrawl/**/*.java</include>
+          </includes>
         </configuration>
       </plugin>
 
