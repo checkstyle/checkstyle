@@ -28,13 +28,12 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 	
 	URL mUrl;
 	
-	String mXmlName = "google_checks.xml";
+	String mXmlName = "/google_checks.xml";
 	
 	Pattern warnPattern = Utils.createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]warn[*]/");
 	
 	public ConfigurationBuilder(File aROOT)
 			throws CheckstyleException, IOException {
-		ConfigurationGetter.getInstance().updateConfiguration();
 		this.mROOT = aROOT;
 		mConfig = getConfigurationFromXML(mXmlName, System.getProperties());
 		listFiles(mFiles, mROOT, "java");
