@@ -19,11 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.fail;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.io.File;
 
@@ -116,5 +118,19 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         catch (CheckstyleException ex) {
             ;
         }
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        ImportControlCheck testCheckObject =
+                new ImportControlCheck();
+        int[] actual = testCheckObject.getAcceptableTokens();
+        int[] expected = new int[]{
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
+        };
+
+        assertArrayEquals(expected, actual);
     }
 }

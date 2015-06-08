@@ -21,10 +21,13 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 import java.io.File;
 import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
 public class UnusedImportsCheckTest extends BaseCheckTestSupport {
     @Test
@@ -95,5 +98,55 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
         final String[] expected = {};
         verify(checkConfig, getPath("imports" + File.separator
                 + "InputImportBug.java"), expected);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        UnusedImportsCheck testCheckObject =
+                new UnusedImportsCheck();
+        int[] actual = testCheckObject.getRequiredTokens();
+        int[] expected = new int[]{
+            TokenTypes.IDENT,
+            TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
+            // Definitions that may contain Javadoc...
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.VARIABLE_DEF,
+        };
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        UnusedImportsCheck testCheckObject =
+                new UnusedImportsCheck();
+        int[] actual = testCheckObject.getAcceptableTokens();
+        int[] expected = new int[]{
+            TokenTypes.IDENT,
+            TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
+            // Definitions that may contain Javadoc...
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.VARIABLE_DEF,
+        };
+
+        assertArrayEquals(expected, actual);
     }
 }

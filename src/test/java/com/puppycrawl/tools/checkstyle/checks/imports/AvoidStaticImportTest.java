@@ -21,9 +21,12 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 import java.io.File;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck.MSG_KEY;
 
 public class AvoidStaticImportTest
@@ -92,5 +95,15 @@ public class AvoidStaticImportTest
             "28: " + getCheckMessage(MSG_KEY, "java.io.File.pathSeparator"),
         };
         verify(checkConfig, getPath("imports" + File.separator + "InputAvoidStaticImportCheck.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        AvoidStaticImportCheck testCheckObject =
+                new AvoidStaticImportCheck();
+        int[] actual = testCheckObject.getAcceptableTokens();
+        int[] expected = new int[]{TokenTypes.STATIC_IMPORT};
+
+        assertArrayEquals(expected, actual);
     }
 }

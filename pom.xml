@@ -812,17 +812,16 @@
           <regex><pattern>.*.checks.header.RegexpHeaderCheck</pattern><branchRate>87</branchRate><lineRate>93</lineRate></regex>
 
 
-          <regex><pattern>.*.checks.imports.AvoidStarImportCheck</pattern><branchRate>90</branchRate><lineRate>88</lineRate></regex>
-          <regex><pattern>.*.checks.imports.AvoidStaticImportCheck</pattern><branchRate>85</branchRate><lineRate>95</lineRate></regex>
+          <regex><pattern>.*.checks.imports.AvoidStarImportCheck</pattern><branchRate>95</branchRate><lineRate>100</lineRate></regex>
+          <regex><pattern>.*.checks.imports.AvoidStaticImportCheck</pattern><branchRate>91</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.imports.CustomImportOrderCheck</pattern><branchRate>93</branchRate><lineRate>91</lineRate></regex>
           <regex><pattern>.*.checks.imports.Guard</pattern><branchRate>86</branchRate><lineRate>100</lineRate></regex>
-          <regex><pattern>.*.checks.imports.IllegalImportCheck</pattern><branchRate>100</branchRate><lineRate>94</lineRate></regex>
-          <regex><pattern>.*.checks.imports.ImportControlCheck</pattern><branchRate>85</branchRate><lineRate>70</lineRate></regex>
+          <regex><pattern>.*.checks.imports.ImportControlCheck</pattern><branchRate>85</branchRate><lineRate>73</lineRate></regex>
           <regex><pattern>.*.checks.imports.ImportControlLoader</pattern><branchRate>72</branchRate><lineRate>88</lineRate></regex>
-          <regex><pattern>.*.checks.imports.ImportOrderCheck</pattern><branchRate>91</branchRate><lineRate>99</lineRate></regex>
+          <regex><pattern>.*.checks.imports.ImportOrderCheck</pattern><branchRate>92</branchRate><lineRate>99</lineRate></regex>
           <regex><pattern>.*.checks.imports.PkgControl</pattern><branchRate>80</branchRate><lineRate>100</lineRate></regex>
-          <regex><pattern>.*.checks.imports.RedundantImportCheck</pattern><branchRate>81</branchRate><lineRate>94</lineRate></regex>
-          <regex><pattern>.*.checks.imports.UnusedImportsCheck</pattern><branchRate>90</branchRate><lineRate>97</lineRate></regex>
+          <regex><pattern>.*.checks.imports.RedundantImportCheck</pattern><branchRate>81</branchRate><lineRate>97</lineRate></regex>
+          <regex><pattern>.*.checks.imports.UnusedImportsCheck</pattern><branchRate>95</branchRate><lineRate>100</lineRate></regex>
 
 
           <regex><pattern>.*.checks.indentation.ArrayInitHandler</pattern><branchRate>83</branchRate><lineRate>97</lineRate></regex>

@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 import java.io.File;
 import org.junit.Test;
 
@@ -28,6 +30,7 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCh
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_LINE_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_NONGROUP_IMPORT;
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_ORDER;
+import static org.junit.Assert.assertArrayEquals;
 
 public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
     /**
@@ -305,5 +308,19 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
 
         verify(checkConfig, getPath("imports" + File.separator
                 + "InputCustomImportOrderImportsContainingJava.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        CustomImportOrderCheck testCheckObject =
+                new CustomImportOrderCheck();
+        int[] actual = testCheckObject.getAcceptableTokens();
+        int[] expected = new int[]{
+            TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
+            TokenTypes.PACKAGE_DEF,
+        };
+
+        assertArrayEquals(expected, actual);
     }
 }

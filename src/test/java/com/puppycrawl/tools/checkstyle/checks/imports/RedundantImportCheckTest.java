@@ -21,12 +21,15 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 import java.io.File;
 import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_DUPLICATE;
 import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_LANG;
 import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_SAME;
+import static org.junit.Assert.assertArrayEquals;
 
 public class RedundantImportCheckTest
     extends BaseCheckTestSupport {
@@ -44,5 +47,19 @@ public class RedundantImportCheckTest
             "26:1: " + getCheckMessage(MSG_DUPLICATE, 25, "javax.swing.WindowConstants.*"),
         };
         verify(checkConfig, getPath("imports" + File.separator + "InputRedundantImportCheck.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        RedundantImportCheck testCheckObject =
+                new RedundantImportCheck();
+        int[] actual = testCheckObject.getAcceptableTokens();
+        int[] expected = new int[]{
+            TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
+            TokenTypes.PACKAGE_DEF,
+        };
+
+        assertArrayEquals(expected, actual);
     }
 }

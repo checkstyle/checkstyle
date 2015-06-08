@@ -90,6 +90,20 @@ public class AvoidStarImportCheck
         return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
+    @Override
+    public int[] getRequiredTokens() {
+        // original implementation checks both IMPORT and STATIC_IMPORT tokens to avoid ".*" imports
+        // however user can allow using "import" or "import static"
+        // by configuring allowClassImports and allowStaticMemberImports
+        // To avoid potential confusion when user specifies conflicting options on configuration
+        // (see example below) we are adding both tokens to Required list
+        //   <module name="AvoidStarImport">
+        //      <property name="tokens" value="IMPORT"/>
+        //      <property name="allowStaticMemberImports" value="false"/>
+        //   </module>
+        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+    }
+
     /**
      * Sets the list of packages or classes to be exempt from the check.
      * The excludes can contain a .* or not.
