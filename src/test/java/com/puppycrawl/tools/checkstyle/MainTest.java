@@ -114,7 +114,8 @@ public class MainTest {
         exit.expectSystemExitWithStatus(1);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
-                assertEquals("Checkstyle ends with 1 errors." + System.lineSeparator(),
+                assertEquals(String.format("unable to find src/main/resources/non_existing_config.xml%n"
+                        + "Checkstyle ends with 1 errors.%n"),
                     standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
@@ -333,6 +334,22 @@ public class MainTest {
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/"
                 + "config-classname-prop.xml",
                 "-p", "nonexisting.properties",
+                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+    }
+
+    @Test
+    public void testExistingIncorrectConfigFile()
+            throws Exception {
+        exit.expectSystemExitWithStatus(1);
+        exit.checkAssertionAfterwards(new Assertion() {
+            public void checkAssertion() {
+                assertEquals(String.format("unable to parse configuration stream - Content is not allowed in prolog.:7:1%n"
+                        + "Checkstyle ends with 1 errors.%n"), standardLog.getLog());
+                assertEquals("", errorLog.getLog());
+            }
+        });
+        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/"
+                + "config-Incorrect.xml",
                 "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 }
