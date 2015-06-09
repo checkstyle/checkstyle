@@ -12,11 +12,17 @@
   <rule ref="rulesets/java/clone.xml"/>
   <rule ref="rulesets/java/codesize.xml">
     <!-- till #954 -->
-    <exclude name="CyclomaticComplexity"/>
+    <!--<exclude name="CyclomaticComplexity"/>-->
     <exclude name="ModifiedCyclomaticComplexity"/>
     <exclude name="StdCyclomaticComplexity"/>
     <!-- till #953 -->
     <exclude name="NPathComplexity"/>
+  </rule>
+  <rule ref="rulesets/java/codesize.xml/CyclomaticComplexity">
+    <properties>
+      <property name="showClassesComplexity" value="false"/>
+      <property name="reportLevel" value="11"/>
+    </properties>
   </rule>
   <rule ref="rulesets/java/codesize.xml/TooManyMethods">
     <properties>
