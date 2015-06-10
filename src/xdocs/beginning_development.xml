@@ -19,7 +19,7 @@
   <body>
     <section name="Before development">
       <p>
-        1. Ensure that Git, Java JDK >= 1.7 are installed.<br/>
+        1. Ensure that Git, Java JDK >= 1.8 are installed.<br/>
         You can find information about development environment preparation here:
         <a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki/Prepare-Development-Environment-in-Ubuntu-12.04">
         Prepare development environment in Ubuntu</a>.<br/>
