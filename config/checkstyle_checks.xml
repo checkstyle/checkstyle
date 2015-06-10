@@ -258,6 +258,7 @@
       <property name="max" value="2"/>
     </module>
     <module name="TodoComment"/>
+    <module name="UncommentedMain"/>
     <module name="UnnecessaryParentheses"/>
 
 <!--
@@ -294,7 +295,6 @@
     <module name="ReturnCount"/>
     <module name="SingleLineJavadoc"/>
     <module name="SummaryJavadoc"/>
-    <module name="UncommentedMain"/>
     <module name="VariableDeclarationUsageDistance"/>
     <module name="WriteTag"/>
 -->
