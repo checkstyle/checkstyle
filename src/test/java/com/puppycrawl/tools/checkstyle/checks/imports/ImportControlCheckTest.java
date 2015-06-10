@@ -100,7 +100,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             fail("should fail");
         }
         catch (CheckstyleException ex) {
-            ;
+            //donothng
         }
     }
 
@@ -116,7 +116,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             fail("should fail");
         }
         catch (CheckstyleException ex) {
-            ;
+            //donothing
         }
     }
 

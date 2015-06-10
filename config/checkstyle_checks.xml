@@ -226,6 +226,7 @@
     <module name="EmptyLineSeparator">
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
     </module>
+    <module name="EmptyStatement"/>
     <module name="FallThrough"/>
     <module name="IllegalTokenText"/>
     <module name="InterfaceIsType"/>
@@ -271,7 +272,6 @@
     <module name="ClassFanOutComplexity"/>
     <module name="CustomImportOrder"/>
     <module name="DesignForExtension"/>
-    <module name="EmptyStatement"/>
     <module name="ExecutableStatementCount"/>
     <module name="FinalParameters"/>
     <module name="HiddenField"/>
