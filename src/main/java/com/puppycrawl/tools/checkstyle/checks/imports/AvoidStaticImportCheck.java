@@ -122,7 +122,8 @@ public class AvoidStaticImportCheck
                 //a starred import
                 final String excludeMinusDotStar =
                     exclude.substring(0, exclude.length() - 2);
-                if (classOrStaticMember.startsWith(excludeMinusDotStar)) {
+                if (classOrStaticMember.startsWith(excludeMinusDotStar)
+                        && !classOrStaticMember.equals(excludeMinusDotStar)) {
                     final String member =
                         classOrStaticMember.substring(
                             excludeMinusDotStar.length() + 1);
