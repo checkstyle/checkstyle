@@ -61,7 +61,7 @@ public class MainTest {
     @Test
     public void testWrongArgument()
             throws Exception {
-        exit.expectSystemExitWithStatus(1);
+        exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 String usage = String.format("Unrecognized option: -w%n"
@@ -83,7 +83,7 @@ public class MainTest {
     @Test
     public void testNoConfigSpecified()
             throws Exception {
-        exit.expectSystemExitWithStatus(1);
+        exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals("Must specify a config XML file." + System.lineSeparator(),
@@ -97,7 +97,7 @@ public class MainTest {
     @Test
     public void testNonExistingTargetFile()
             throws Exception {
-        exit.expectSystemExitWithStatus(1);
+        exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals("Must specify files to process, found 0." + System.lineSeparator(),
@@ -112,7 +112,7 @@ public class MainTest {
     @Test
     public void testNonExistingConfigFile()
             throws Exception {
-        exit.expectSystemExitWithStatus(1);
+        exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals(String.format("unable to find 'src/main/resources/non_existing_config.xml'.%n"),
@@ -127,7 +127,7 @@ public class MainTest {
     @Test
     public void testNonExistingOutputFormat()
             throws Exception {
-        exit.expectSystemExitWithStatus(1);
+        exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals(String.format("Invalid output format. "
@@ -289,7 +289,7 @@ public class MainTest {
         final File file = temporaryFolder.newFile("file.output");
         file.setReadable(false, false);
         file.setWritable(false, false);
-        exit.expectSystemExitWithStatus(1);
+        exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() throws IOException {
                 assertEquals("Permission denied : '" + file.getCanonicalPath() + "'."
@@ -323,7 +323,7 @@ public class MainTest {
     @Test
     public void testExistingTargetFilePlainOutputNonexistingProperties()
             throws Exception {
-        exit.expectSystemExitWithStatus(1);
+        exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals("Could not find file 'nonexisting.properties'."
@@ -340,7 +340,7 @@ public class MainTest {
     @Test
     public void testExistingIncorrectConfigFile()
             throws Exception {
-        exit.expectSystemExitWithStatus(1);
+        exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals(String.format("unable to parse configuration stream - Content is not allowed in prolog.:7:1%n"

@@ -61,9 +61,13 @@ public final class Main {
      * @throws FileNotFoundException if there is a problem with files access
      **/
     public static void main(String... args) throws UnsupportedEncodingException,
-            CheckstyleException, FileNotFoundException {
+            FileNotFoundException {
         int errorCounter = 0;
         boolean cliViolations = false;
+        // provide proper exit code based on results.
+        final int exitWithCliViolation = -1;
+        final int exitWithCheckstyleException = -2;
+        int exitStatus = 0;
 
         try {
             //parse CLI arguments
@@ -73,20 +77,21 @@ public final class Main {
             if (commandLine.hasOption("v")) {
                 System.out.println("Checkstyle version: "
                         + Main.class.getPackage().getImplementationVersion());
+                exitStatus = 0;
             }
             else {
                 // return error is smth is wrong in arguments
                 final List<String> messages = validateCli(commandLine);
                 cliViolations = !messages.isEmpty();
-                if (messages.isEmpty()) {
-
+                if (!cliViolations) {
                     // create config helper object
                     final CliOptions config = convertCliToPojo(commandLine);
                     // run Checker
                     errorCounter = runCheckstyle(config);
-
+                    exitStatus = errorCounter;
                 }
                 else {
+                    exitStatus = exitWithCliViolation;
                     errorCounter = 1;
                     for (String message : messages) {
                         System.out.println(message);
@@ -97,11 +102,13 @@ public final class Main {
         catch (ParseException pex) {
             // smth wrong with arguments - print error and manual
             cliViolations = true;
+            exitStatus = exitWithCliViolation;
             errorCounter = 1;
             System.out.println(pex.getMessage());
             printUsage();
         }
         catch (CheckstyleException e) {
+            exitStatus = exitWithCheckstyleException;
             errorCounter = 1;
             System.out.println(e.getMessage());
         }
@@ -110,8 +117,7 @@ public final class Main {
             if (errorCounter != 0 && !cliViolations) {
                 System.out.println(String.format("Checkstyle ends with %d errors.", errorCounter));
             }
-            // provide proper exit code based on results.
-            System.exit(errorCounter);
+            System.exit(exitStatus);
         }
     }
 
@@ -276,7 +282,7 @@ public final class Main {
     /**
      * Creates the audit listener.
      *
-     * @param format format of the auditt listener
+     * @param format format of the audit listener
      * @param outputLocation the location of output
      * @return a fresh new <code>AuditListener</code>
      * @exception UnsupportedEncodingException if there is problem to use UTf-8
