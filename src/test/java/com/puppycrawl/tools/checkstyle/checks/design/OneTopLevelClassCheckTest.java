@@ -125,6 +125,6 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
         };
-        verify(checkConfig, getPath("design" + File.separator + "package-info.java"), expected);;
+        verify(checkConfig, getPath("design" + File.separator + "package-info.java"), expected);
     }
 }
