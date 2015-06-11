@@ -72,7 +72,7 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 		String rootPath = absoluteRootPath.substring(0,
 				absoluteRootPath.lastIndexOf("src"));
 		for (File file : mFiles) {
-			if (file.toString().contains(aFileName)) {
+			if (file.toString().endsWith(aFileName+".java")) {
 				return rootPath + file.toString();
 			}
 		}

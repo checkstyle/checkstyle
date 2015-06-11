@@ -17,7 +17,7 @@ public class UpperEllTest extends BaseCheckTestSupport{
     
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException, IOException {
-        builder = new ConfigurationBuilder(new File("src/"));
+        builder = new ConfigurationBuilder(new File("src/it/"));
     }
 
     @Test

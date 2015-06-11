@@ -23,7 +23,7 @@ public class ClassMethodTypeParameterNameTest extends BaseCheckTestSupport{
     
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException, IOException {
-        builder = new ConfigurationBuilder(new File("src/"));
+        builder = new ConfigurationBuilder(new File("src/it/"));
         checkConfig = builder.getCheckConfig("ClassTypeParameterName");
         format = checkConfig.getAttribute("format");
     }
