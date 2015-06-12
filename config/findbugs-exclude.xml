@@ -74,6 +74,14 @@
       <Bug pattern="BC_UNCONFIRMED_CAST" />
     </Match>
     <Match>
+      <!-- Support both getFileName() and getFilename() -->
+      <and>
+        <Class name="com.puppycrawl.tools.checkstyle.api.FileContents" />
+        <Method name="~setFile[nN]ame" />
+      </and>
+      <Bug pattern="NM_CONFUSING" />
+    </Match>
+    <Match>
       <!-- false positive, beginTree is a kind of constructor for Checks -->
       <Or>
         <Class name="com.puppycrawl.tools.checkstyle.checks.DeclarationCollector" />
