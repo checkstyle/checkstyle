@@ -22,6 +22,7 @@
     <properties>
       <property name="showClassesComplexity" value="false"/>
       <property name="reportLevel" value="11"/>
+      <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='validateCli' and ../../..[@Image='Main']]"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/codesize.xml/TooManyMethods">
