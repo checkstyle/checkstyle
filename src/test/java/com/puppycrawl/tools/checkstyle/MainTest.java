@@ -105,7 +105,8 @@ public class MainTest {
                 assertEquals("", errorLog.getLog());
             }
         });
-        Main.main("-c", "/google_checks.xml", "NonexistingFile.java");
+        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
+                "NonexistingFile.java");
     }
 
     @Test
@@ -114,8 +115,7 @@ public class MainTest {
         exit.expectSystemExitWithStatus(1);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
-                assertEquals(String.format("unable to find src/main/resources/non_existing_config.xml%n"
-                        + "Checkstyle ends with 1 errors.%n"),
+                assertEquals(String.format("unable to find 'src/main/resources/non_existing_config.xml'.%n"),
                     standardLog.getLog());
                 assertEquals("", errorLog.getLog());
             }
@@ -135,7 +135,7 @@ public class MainTest {
                 assertEquals("", errorLog.getLog());
             }
         });
-        Main.main("-c", "/google_checks.xml", "-f" , "xmlp",
+        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml", "-f" , "xmlp",
                 "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 

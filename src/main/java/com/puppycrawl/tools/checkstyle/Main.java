@@ -139,10 +139,13 @@ public final class Main {
     private static List<String> validateCli(CommandLine cmdLine) {
         final List<String> result = new ArrayList<>();
         // ensure a configuration file is specified
-        if (!cmdLine.hasOption("c")) {
-            result.add("Must specify a config XML file.");
-        }
-        else {
+        if (cmdLine.hasOption("c")) {
+            final String configLocation = cmdLine.getOptionValue("c");
+            final File configFile =  new File(configLocation);
+            if (!configFile.exists()) {
+                result.add(String.format("unable to find '%s'.", configLocation));
+            }
+
             // validate optional parameters
             if (cmdLine.hasOption("f")) {
                 final String format = cmdLine.getOptionValue("f");
@@ -151,6 +154,7 @@ public final class Main {
                             + " Found '%s' but expected 'plain' or 'xml'.", format));
                 }
             }
+
             if (cmdLine.hasOption("p")) {
                 final String propertiesLocation = cmdLine.getOptionValue("p");
                 final File file = new File(propertiesLocation);
@@ -158,6 +162,7 @@ public final class Main {
                     result.add(String.format("Could not find file '%s'.", propertiesLocation));
                 }
             }
+
             if (cmdLine.hasOption("o")) {
                 final String outputLocation = cmdLine.getOptionValue("o");
                 final File file = new File(outputLocation);
@@ -165,10 +170,14 @@ public final class Main {
                     result.add(String.format("Permission denied : '%s'.", outputLocation));
                 }
             }
+
             final List<File> files = getFilesToProcess(cmdLine.getArgs());
             if (files.isEmpty()) {
                 result.add("Must specify files to process, found 0.");
             }
+        }
+        else {
+            result.add("Must specify a config XML file.");
         }
 
         return result;
