@@ -14,6 +14,8 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="js/anchors.js"></script>
     <script type="text/javascript" src="js/google-analytics.js"></script>
+    <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/ico" />
   </head>
 
   <body>
@@ -21,7 +23,7 @@
     <section name="Consulting or Professional Support">
 
       <p>
-        It is very sad that all materials on our web site, stackoverflow.com knowledge and mail-list do not help you.
+        It 111111111111is very sad that all materials on our web site, stackoverflow.com knowledge and mail-list do not help you.
         If there is something that could be improved in Checkstyle's documentation to make Checkstyle the easiest tool to use - please let our team know.
       </p>
 
