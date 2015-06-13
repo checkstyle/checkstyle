@@ -1198,6 +1198,7 @@
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <pmd.skip>true</pmd.skip>
         <findbugs.skip>true</findbugs.skip>
+        <checkstyle.ant.skip>true</checkstyle.ant.skip>
         <cobertura.skip>true</cobertura.skip>
         <maven.site.skip>true</maven.site.skip>
       </properties>
