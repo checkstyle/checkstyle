@@ -149,27 +149,10 @@ public abstract class AbstractSuperCheck
             return false;
         }
 
-        // same name of method
-        AST sibling = ast.getNextSibling();
-        // ignore type parameters
-        if (sibling != null
-            && sibling.getType() == TokenTypes.TYPE_ARGUMENTS) {
-            sibling = sibling.getNextSibling();
-        }
-        if (sibling == null || sibling.getType() != TokenTypes.IDENT) {
+        if (isSameNameMethod(ast)) {
             return false;
         }
-        final String name = sibling.getText();
-        if (!getMethodName().equals(name)) {
-            return false;
-        }
-
-        // 0 parameters?
-        final DetailAST args = parent.getNextSibling();
-        if (args == null || args.getType() != TokenTypes.ELIST) {
-            return false;
-        }
-        if (args.getChildCount() != 0) {
+        if (isZeroParameters(parent)) {
             return false;
         }
 
@@ -183,6 +166,46 @@ public abstract class AbstractSuperCheck
                 return false;
             }
             parent = parent.getParent();
+        }
+        return false;
+    }
+
+    /**
+     * is 0 parameters?
+     * @param parent parent AST
+     * @return tru if no parameters found
+     */
+    private boolean isZeroParameters(DetailAST parent) {
+
+        final DetailAST args = parent.getNextSibling();
+        if (args == null || args.getType() != TokenTypes.ELIST) {
+            return true;
+        }
+        if (args.getChildCount() != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * is same name of method
+     * @param ast method AST
+     * @return true if method name is the same
+     */
+    private boolean isSameNameMethod(DetailAST ast) {
+
+        AST sibling = ast.getNextSibling();
+        // ignore type parameters
+        if (sibling != null
+            && sibling.getType() == TokenTypes.TYPE_ARGUMENTS) {
+            sibling = sibling.getNextSibling();
+        }
+        if (sibling == null || sibling.getType() != TokenTypes.IDENT) {
+            return true;
+        }
+        final String name = sibling.getText();
+        if (!getMethodName().equals(name)) {
+            return true;
         }
         return false;
     }
