@@ -733,7 +733,7 @@
           <regex><pattern>.*.checks.ArrayTypeStyleCheck</pattern><branchRate>100</branchRate><lineRate>94</lineRate></regex>
           <regex><pattern>.*.checks.AvoidEscapedUnicodeCharactersCheck</pattern><branchRate>97</branchRate><lineRate>98</lineRate></regex>
           <regex><pattern>.*.checks.CheckUtils</pattern><branchRate>91</branchRate><lineRate>97</lineRate></regex>
-          <regex><pattern>.*.checks.ClassResolver</pattern><branchRate>86</branchRate><lineRate>93</lineRate></regex>
+          <regex><pattern>.*.checks.ClassResolver</pattern><branchRate>85</branchRate><lineRate>93</lineRate></regex>
           <regex><pattern>.*.checks.DeclarationCollector</pattern><branchRate>94</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.DescendantTokenCheck</pattern><branchRate>91</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.NewlineAtEndOfFileCheck</pattern><branchRate>83</branchRate><lineRate>88</lineRate></regex>

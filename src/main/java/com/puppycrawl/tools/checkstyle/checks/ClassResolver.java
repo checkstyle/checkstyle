@@ -93,30 +93,61 @@ public class ClassResolver {
             }
         }
 
-        //inner class of this class???
+        // see if inner class of this class
+        clazz = resolveInnerClass(name, currentClass);
+        if (clazz != null) {
+            return clazz;
+        }
+
+        clazz = resolveByStarImports(name);
+        if (clazz != null) {
+            return clazz;
+        }
+
+
+        // Giving up, the type is unknown, so load the class to generate an
+        // exception
+        return safeLoad(name);
+    }
+
+    /**
+     * see if inner class of this class
+     * @param name name of the search Class to search
+     * @param currentClass class where search in
+     * @return class if found , or null if not resolved
+     * @throws ClassNotFoundException  if an error occurs
+     */
+    private Class<?> resolveInnerClass(String name, String currentClass)
+            throws ClassNotFoundException {
+        Class<?> clazz = null;
         if (!"".equals(currentClass)) {
             final String innerClass = (!"".equals(pkg) ? pkg + "." : "")
                 + currentClass + "$" + name;
             if (isLoadable(innerClass)) {
-                return safeLoad(innerClass);
+                clazz = safeLoad(innerClass);
             }
         }
+        return clazz;
+    }
 
-        // try star imports
+    /**
+     * try star imports
+     * @param name name of the Class to search
+     * @return  class if found , or null if not resolved
+     */
+    private Class<?> resolveByStarImports(String name) {
+        Class<?> clazz = null;
         for (String imp : imports) {
             if (imp.endsWith(".*")) {
                 final String fqn = imp.substring(0, imp.lastIndexOf('.') + 1)
                     + name;
                 clazz = resolveQualifiedName(fqn);
                 if (clazz != null) {
-                    return clazz;
+                    break;
                 }
             }
         }
-
-        // Giving up, the type is unknown, so load the class to generate an
-        // exception
-        return safeLoad(name);
+        return clazz;
     }
 
     /**
