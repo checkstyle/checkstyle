@@ -167,22 +167,7 @@ public class FinalLocalVariableCheck extends Check {
 
             case TokenTypes.IDENT:
                 final int parentType = ast.getParent().getType();
-                if ((TokenTypes.POST_DEC == parentType
-                        || TokenTypes.DEC == parentType
-                        || TokenTypes.POST_INC == parentType
-                        || TokenTypes.INC == parentType
-                        || TokenTypes.ASSIGN == parentType
-                        || TokenTypes.PLUS_ASSIGN == parentType
-                        || TokenTypes.MINUS_ASSIGN == parentType
-                        || TokenTypes.DIV_ASSIGN == parentType
-                        || TokenTypes.STAR_ASSIGN == parentType
-                        || TokenTypes.MOD_ASSIGN == parentType
-                        || TokenTypes.SR_ASSIGN == parentType
-                        || TokenTypes.BSR_ASSIGN == parentType
-                        || TokenTypes.SL_ASSIGN == parentType
-                        || TokenTypes.BXOR_ASSIGN == parentType
-                        || TokenTypes.BOR_ASSIGN == parentType
-                        || TokenTypes.BAND_ASSIGN == parentType)
+                if (isAssignOperator(parentType)
                         && ast.getParent().getFirstChild() == ast) {
                     removeVariable(ast);
                 }
@@ -190,6 +175,30 @@ public class FinalLocalVariableCheck extends Check {
 
             default:
         }
+    }
+
+    /**
+     * is Arithmetic operator
+     * @param parentType token AST
+     * @return true is token type is in arithmetic operator
+     */
+    private boolean isAssignOperator(int parentType) {
+        return TokenTypes.POST_DEC == parentType
+                || TokenTypes.DEC == parentType
+                || TokenTypes.POST_INC == parentType
+                || TokenTypes.INC == parentType
+                || TokenTypes.ASSIGN == parentType
+                || TokenTypes.PLUS_ASSIGN == parentType
+                || TokenTypes.MINUS_ASSIGN == parentType
+                || TokenTypes.DIV_ASSIGN == parentType
+                || TokenTypes.STAR_ASSIGN == parentType
+                || TokenTypes.MOD_ASSIGN == parentType
+                || TokenTypes.SR_ASSIGN == parentType
+                || TokenTypes.BSR_ASSIGN == parentType
+                || TokenTypes.SL_ASSIGN == parentType
+                || TokenTypes.BXOR_ASSIGN == parentType
+                || TokenTypes.BOR_ASSIGN == parentType
+                || TokenTypes.BAND_ASSIGN == parentType;
     }
 
     /**
