@@ -304,14 +304,8 @@ public class LeftCurlyCheck
                 }
             }
             else if (getAbstractOption() == LeftCurlyOption.EOL) {
-                if (Utils.whitespaceBefore(brace.getColumnNo(), braceLine)
-                    && prevLineLen + 2 <= maxLineLength) {
-                    log(brace.getLineNo(), brace.getColumnNo(),
-                        MSG_KEY_LINE_PREVIOUS, "{");
-                }
-                if (!hasLineBreakAfter(brace)) {
-                    log(brace.getLineNo(), brace.getColumnNo(), MSG_KEY_LINE_BREAK_AFTER);
-                }
+
+                validateEol(brace, braceLine, prevLineLen);
             }
             else if (getAbstractOption() == LeftCurlyOption.NLOW
                     && startToken.getLineNo() != brace.getLineNo()) {
@@ -319,6 +313,23 @@ public class LeftCurlyCheck
                 validateNewLinePosion(brace, startToken, braceLine, prevLineLen);
 
             }
+        }
+    }
+
+    /**
+     * validate EOL case
+     * @param brace brase AST
+     * @param braceLine line content
+     * @param prevLineLen previous line length
+     */
+    private void validateEol(DetailAST brace, String braceLine, int prevLineLen) {
+        if (Utils.whitespaceBefore(brace.getColumnNo(), braceLine)
+            && prevLineLen + 2 <= maxLineLength) {
+            log(brace.getLineNo(), brace.getColumnNo(),
+                MSG_KEY_LINE_PREVIOUS, "{");
+        }
+        if (!hasLineBreakAfter(brace)) {
+            log(brace.getLineNo(), brace.getColumnNo(), MSG_KEY_LINE_BREAK_AFTER);
         }
     }
 
