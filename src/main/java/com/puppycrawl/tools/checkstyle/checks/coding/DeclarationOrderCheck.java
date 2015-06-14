@@ -147,7 +147,6 @@ public class DeclarationOrderCheck extends Check {
     @Override
     public void visitToken(DetailAST ast) {
         final int parentType = ast.getParent().getType();
-        ScopeState state;
 
         switch (ast.getType()) {
             case TokenTypes.OBJBLOCK:
@@ -159,74 +158,103 @@ public class DeclarationOrderCheck extends Check {
                     return;
                 }
 
-                state = scopeStates.peek();
-                if (state.currentScopeState > STATE_CTOR_DEF) {
-                    if (!ignoreConstructors) {
-                        log(ast, MSG_CONSTRUCTOR);
-                    }
-                }
-                else {
-                    state.currentScopeState = STATE_CTOR_DEF;
-                }
+                processConstructor(ast);
                 break;
 
             case TokenTypes.METHOD_DEF:
-                state = scopeStates.peek();
+
                 if (parentType != TokenTypes.OBJBLOCK) {
                     return;
                 }
 
-                if (state.currentScopeState > STATE_METHOD_DEF) {
-                    if (!ignoreMethods) {
-                        log(ast, MSG_METHOD);
-                    }
-                }
-                else {
-                    state.currentScopeState = STATE_METHOD_DEF;
-                }
+                processMethod(ast);
                 break;
 
             case TokenTypes.MODIFIERS:
                 if (parentType != TokenTypes.VARIABLE_DEF
-                    || ast.getParent().getParent().getType()
+                        || ast.getParent().getParent().getType()
                         != TokenTypes.OBJBLOCK) {
                     return;
                 }
 
-                state = scopeStates.peek();
-                if (ast.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
-                    if (state.currentScopeState > STATE_STATIC_VARIABLE_DEF) {
-                        if (!ignoreModifiers
-                            || state.currentScopeState > STATE_INSTANCE_VARIABLE_DEF) {
-                            log(ast, MSG_STATIC);
-                        }
-                    }
-                    else {
-                        state.currentScopeState = STATE_STATIC_VARIABLE_DEF;
-                    }
-                }
-                else {
-                    if (state.currentScopeState > STATE_INSTANCE_VARIABLE_DEF) {
-                        log(ast, MSG_INSTANCE);
-                    }
-                    else if (state.currentScopeState == STATE_STATIC_VARIABLE_DEF) {
-                        state.declarationAccess = Scope.PUBLIC;
-                        state.currentScopeState = STATE_INSTANCE_VARIABLE_DEF;
-                    }
-                }
-
-                final Scope access = ScopeUtils.getScopeFromMods(ast);
-                if (state.declarationAccess.compareTo(access) > 0) {
-                    if (!ignoreModifiers) {
-                        log(ast, MSG_ACCESS);
-                    }
-                }
-                else {
-                    state.declarationAccess = access;
-                }
+                processModifiers(ast);
                 break;
 
             default:
+                break;
+        }
+    }
+
+    /**
+     * process constructor
+     * @param ast constructor AST
+     */
+    private void processConstructor(DetailAST ast) {
+
+        final ScopeState state = scopeStates.peek();
+        if (state.currentScopeState > STATE_CTOR_DEF) {
+            if (!ignoreConstructors) {
+                log(ast, MSG_CONSTRUCTOR);
+            }
+        }
+        else {
+            state.currentScopeState = STATE_CTOR_DEF;
+        }
+    }
+
+    /**
+     * process Method Token
+     * @param ast ,ethod token AST
+     */
+    private void processMethod(DetailAST ast) {
+
+        final ScopeState state = scopeStates.peek();
+        if (state.currentScopeState > STATE_METHOD_DEF) {
+            if (!ignoreMethods) {
+                log(ast, MSG_METHOD);
+            }
+        }
+        else {
+            state.currentScopeState = STATE_METHOD_DEF;
+        }
+    }
+
+    /**
+     * process modifiers
+     * @param ast ast of Modifiers
+     */
+    private void processModifiers(DetailAST ast) {
+
+        final ScopeState state = scopeStates.peek();
+        if (ast.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
+            if (state.currentScopeState > STATE_STATIC_VARIABLE_DEF) {
+                if (!ignoreModifiers
+                    || state.currentScopeState > STATE_INSTANCE_VARIABLE_DEF) {
+                    log(ast, MSG_STATIC);
+                }
+            }
+            else {
+                state.currentScopeState = STATE_STATIC_VARIABLE_DEF;
+            }
+        }
+        else {
+            if (state.currentScopeState > STATE_INSTANCE_VARIABLE_DEF) {
+                log(ast, MSG_INSTANCE);
+            }
+            else if (state.currentScopeState == STATE_STATIC_VARIABLE_DEF) {
+                state.declarationAccess = Scope.PUBLIC;
+                state.currentScopeState = STATE_INSTANCE_VARIABLE_DEF;
+            }
+        }
+
+        final Scope access = ScopeUtils.getScopeFromMods(ast);
+        if (state.declarationAccess.compareTo(access) > 0) {
+            if (!ignoreModifiers) {
+                log(ast, MSG_ACCESS);
+            }
+        }
+        else {
+            state.declarationAccess = access;
         }
     }
 
