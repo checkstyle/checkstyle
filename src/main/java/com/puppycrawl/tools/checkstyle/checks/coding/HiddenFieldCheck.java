@@ -284,15 +284,34 @@ public class HiddenFieldCheck
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();
 
-            if ((currentFrame.containsStaticField(name)
-                || !inStatic(ast) && currentFrame.containsInstanceField(name))
-                && (regexp == null || !getRegexp().matcher(name).find())
+            if (isStaticOrOnstanceField(ast, name)
+                && !isMatchingRegexp(name)
                 && !isIgnoredSetterParam(ast, name)
                 && !isIgnoredConstructorParam(ast)
                 && !isIgnoredParamOfAbstractMethod(ast)) {
                 log(nameAST, MSG_KEY, name);
             }
         }
+    }
+
+    /**
+     * check for static or instance field.
+     * @param ast token
+     * @param name identifier of token
+     * @return true if static or instance field
+     */
+    private boolean isStaticOrOnstanceField(DetailAST ast, String name) {
+        return currentFrame.containsStaticField(name)
+            || !inStatic(ast) && currentFrame.containsInstanceField(name);
+    }
+
+    /**
+     * check name by regExp
+     * @param name string value to check
+     * @return true is regexp is matching
+     */
+    private boolean isMatchingRegexp(String name) {
+        return regexp != null && regexp.matcher(name).find();
     }
 
     /**
