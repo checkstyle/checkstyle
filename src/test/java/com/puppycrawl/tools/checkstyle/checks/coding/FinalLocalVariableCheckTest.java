@@ -131,4 +131,18 @@ public class FinalLocalVariableCheckTest
                 + "tools/checkstyle/naming/InputFinalLocalVariableNameLambda.java")
                 .getCanonicalPath(), expected);
     }
+
+    @Test
+    public void testVariableNameShadowing()
+        throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(FinalLocalVariableCheck.class);
+        checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
+
+        final String[] expected = {
+            "4:28: " + "Variable 'text' should be declared final.",
+            "17:13: " + "Variable 'x' should be declared final.",
+        };
+        verify(checkConfig, getPath("coding/InputFinalLocalVariableNameShadowing.java"), expected);
+    }
 }

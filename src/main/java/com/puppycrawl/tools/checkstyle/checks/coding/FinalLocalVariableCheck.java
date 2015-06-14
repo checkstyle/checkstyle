@@ -159,8 +159,9 @@ public class FinalLocalVariableCheck extends Check {
                 }
             case TokenTypes.VARIABLE_DEF:
                 if (ast.getParent().getType() != TokenTypes.OBJBLOCK
-                    && shouldCheckEnhancedForLoopVariable(ast)
-                    && isVariableInForInit(ast)) {
+                        && shouldCheckEnhancedForLoopVariable(ast)
+                        && isVariableInForInit(ast)
+                        && !ast.branchContains(TokenTypes.FINAL)) {
                     insertVariable(ast);
                 }
                 break;
@@ -256,15 +257,47 @@ public class FinalLocalVariableCheck extends Check {
     }
 
     /**
+     * Find the Class or Method in which it is defined.
+     * @param ast Variable for which we want to find the scope in which it is defined
+     * @return ast The Class or Method in which it is defined.
+     */
+    private static DetailAST findClassOrMethodInWhichItIsDefined(DetailAST ast) {
+        DetailAST astTraverse = ast;
+        while (!(astTraverse.getType() == TokenTypes.METHOD_DEF
+                || astTraverse.getType() == TokenTypes.CLASS_DEF)) {
+            astTraverse = astTraverse.getParent();
+        }
+        return astTraverse;
+    }
+
+    /**
+     * Check if both the Variable are same.
+     * @param ast1 Variable to compare
+     * @param ast2 Variable to compare
+     * @return true if both the variable are same, otherwise false
+     */
+    private static boolean isSameVariables(DetailAST ast1, DetailAST ast2) {
+        final DetailAST classOrMethodOfAst1 =
+            findClassOrMethodInWhichItIsDefined(ast1);
+        final DetailAST classOrMethodOfAst2 =
+            findClassOrMethodInWhichItIsDefined(ast2);
+
+        final String identifierOfAst1 =
+            classOrMethodOfAst1.findFirstToken(TokenTypes.IDENT).getText();
+        final String identifierOfAst2 =
+            classOrMethodOfAst2.findFirstToken(TokenTypes.IDENT).getText();
+
+        return identifierOfAst1.equals(identifierOfAst2);
+    }
+
+    /**
      * Inserts a variable at the topmost scope stack
      * @param ast the variable to insert
      */
     private void insertVariable(DetailAST ast) {
-        if (!ast.branchContains(TokenTypes.FINAL)) {
-            final Map<String, DetailAST> state = scopeStack.peek();
-            final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
-            state.put(astNode.getText(), astNode);
-        }
+        final Map<String, DetailAST> state = scopeStack.peek();
+        final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
+        state.put(astNode.getText(), astNode);
     }
 
     /**
@@ -275,8 +308,9 @@ public class FinalLocalVariableCheck extends Check {
         final Iterator<Map<String, DetailAST>> iterator = scopeStack.descendingIterator();
         while (iterator.hasNext()) {
             final Map<String, DetailAST> state = iterator.next();
-            final Object obj = state.remove(ast.getText());
-            if (obj != null) {
+            final DetailAST storedVariable = state.get(ast.getText());
+            if (storedVariable != null && isSameVariables(storedVariable, ast)) {
+                state.remove(ast.getText());
                 break;
             }
         }
