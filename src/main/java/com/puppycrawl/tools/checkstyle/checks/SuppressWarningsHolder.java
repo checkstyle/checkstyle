@@ -235,34 +235,7 @@ public class SuppressWarningsHolder
         }
         if ("SuppressWarnings".equals(identifier)) {
 
-            // get values of annotation
-            List<String> values = null;
-            final DetailAST lparenAST = ast.findFirstToken(TokenTypes.LPAREN);
-            if (lparenAST != null) {
-                final DetailAST nextAST = lparenAST.getNextSibling();
-                if (nextAST != null) {
-                    final int nextType = nextAST.getType();
-                    switch (nextType) {
-                        case TokenTypes.EXPR:
-                        case TokenTypes.ANNOTATION_ARRAY_INIT:
-                            values = getAnnotationValues(nextAST);
-                            break;
-
-                        case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
-                            // expected children: IDENT ASSIGN ( EXPR |
-                            // ANNOTATION_ARRAY_INIT )
-                            values = getAnnotationValues(getNthChild(nextAST, 2));
-                            break;
-
-                        case TokenTypes.RPAREN:
-                            // no value present (not valid Java)
-                            break;
-
-                        default:
-                            // unknown annotation value type (new syntax?)
-                    }
-                }
-            }
+            final List<String> values = getAllAnnotationValues(ast);
             if (isAnnotationEmpty(values)) {
                 return;
             }
@@ -303,6 +276,43 @@ public class SuppressWarningsHolder
                 }
             }
         }
+    }
+
+    /**
+     * get all annotation values
+     * @param ast annotation token
+     * @return list values
+     */
+    private List<String> getAllAnnotationValues(DetailAST ast) {
+        // get values of annotation
+        List<String> values = null;
+        final DetailAST lparenAST = ast.findFirstToken(TokenTypes.LPAREN);
+        if (lparenAST != null) {
+            final DetailAST nextAST = lparenAST.getNextSibling();
+            if (nextAST != null) {
+                final int nextType = nextAST.getType();
+                switch (nextType) {
+                    case TokenTypes.EXPR:
+                    case TokenTypes.ANNOTATION_ARRAY_INIT:
+                        values = getAnnotationValues(nextAST);
+                        break;
+
+                    case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
+                        // expected children: IDENT ASSIGN ( EXPR |
+                        // ANNOTATION_ARRAY_INIT )
+                        values = getAnnotationValues(getNthChild(nextAST, 2));
+                        break;
+
+                    case TokenTypes.RPAREN:
+                        // no value present (not valid Java)
+                        break;
+
+                    default:
+                        // unknown annotation value type (new syntax?)
+                }
+            }
+        }
+        return values;
     }
 
     /**
