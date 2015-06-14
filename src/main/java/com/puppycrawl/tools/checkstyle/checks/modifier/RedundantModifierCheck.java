@@ -85,57 +85,73 @@ public class RedundantModifierCheck
             }
         }
         else if (isInterfaceOrAnnotationMember(ast)) {
-            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+            processInterfaceOrAnnotation(ast);
+        }
+        else if (ast.getType() == TokenTypes.METHOD_DEF) {
+            processMethods(ast);
+        }
+    }
+
+    /**
+     * do validation of interface of annotation
+     * @param ast token AST
+     */
+    private void processInterfaceOrAnnotation(DetailAST ast) {
+        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+        DetailAST modifier = modifiers.getFirstChild();
+        while (modifier != null) {
+
+            // javac does not allow final or static in interface methods
+            // order annotation fields hence no need to check that this
+            // is not a method or annotation field
+
+            final int type = modifier.getType();
+            if (type == TokenTypes.LITERAL_PUBLIC
+                || type == TokenTypes.LITERAL_STATIC
+                        && ast.getType() != TokenTypes.METHOD_DEF
+                || type == TokenTypes.ABSTRACT
+                || type == TokenTypes.FINAL) {
+                log(modifier.getLineNo(), modifier.getColumnNo(),
+                        MSG_KEY, modifier.getText());
+                break;
+            }
+
+            modifier = modifier.getNextSibling();
+        }
+    }
+
+    /**
+     * process validation ofMethods
+     * @param ast method AST
+     */
+    private void processMethods(DetailAST ast) {
+        final DetailAST modifiers =
+                        ast.findFirstToken(TokenTypes.MODIFIERS);
+        // private method?
+        boolean checkFinal =
+            modifiers.branchContains(TokenTypes.LITERAL_PRIVATE);
+        // declared in a final class?
+        DetailAST parent = ast.getParent();
+        while (parent != null) {
+            if (parent.getType() == TokenTypes.CLASS_DEF) {
+                final DetailAST classModifiers =
+                    parent.findFirstToken(TokenTypes.MODIFIERS);
+                checkFinal |=
+                    classModifiers.branchContains(TokenTypes.FINAL);
+                break;
+            }
+            parent = parent.getParent();
+        }
+        if (checkFinal && !isAnnotatedWithSafeVarargs(ast)) {
             DetailAST modifier = modifiers.getFirstChild();
             while (modifier != null) {
-
-                // javac does not allow final or static in interface methods
-                // order annotation fields hence no need to check that this
-                // is not a method or annotation field
-
                 final int type = modifier.getType();
-                if (type == TokenTypes.LITERAL_PUBLIC
-                    || type == TokenTypes.LITERAL_STATIC
-                            && ast.getType() != TokenTypes.METHOD_DEF
-                    || type == TokenTypes.ABSTRACT
-                    || type == TokenTypes.FINAL) {
+                if (type == TokenTypes.FINAL) {
                     log(modifier.getLineNo(), modifier.getColumnNo(),
                             MSG_KEY, modifier.getText());
                     break;
                 }
-
                 modifier = modifier.getNextSibling();
-            }
-        }
-        else if (ast.getType() == TokenTypes.METHOD_DEF) {
-            final DetailAST modifiers =
-                            ast.findFirstToken(TokenTypes.MODIFIERS);
-            // private method?
-            boolean checkFinal =
-                modifiers.branchContains(TokenTypes.LITERAL_PRIVATE);
-            // declared in a final class?
-            DetailAST parent = ast.getParent();
-            while (parent != null) {
-                if (parent.getType() == TokenTypes.CLASS_DEF) {
-                    final DetailAST classModifiers =
-                        parent.findFirstToken(TokenTypes.MODIFIERS);
-                    checkFinal |=
-                        classModifiers.branchContains(TokenTypes.FINAL);
-                    break;
-                }
-                parent = parent.getParent();
-            }
-            if (checkFinal && !isAnnotatedWithSafeVarargs(ast)) {
-                DetailAST modifier = modifiers.getFirstChild();
-                while (modifier != null) {
-                    final int type = modifier.getType();
-                    if (type == TokenTypes.FINAL) {
-                        log(modifier.getLineNo(), modifier.getColumnNo(),
-                                MSG_KEY, modifier.getText());
-                        break;
-                    }
-                    modifier = modifier.getNextSibling();
-                }
             }
         }
     }
