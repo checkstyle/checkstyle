@@ -99,22 +99,7 @@ public abstract class DeclarationCollector extends Check {
         final LexicalFrame frame = frameStack.peek();
         switch (ast.getType()) {
             case TokenTypes.VARIABLE_DEF :  {
-                final String name =
-                        ast.findFirstToken(TokenTypes.IDENT).getText();
-                if (frame instanceof ClassFrame) {
-                    final DetailAST mods =
-                            ast.findFirstToken(TokenTypes.MODIFIERS);
-                    if (ScopeUtils.inInterfaceBlock(ast)
-                            || mods.branchContains(TokenTypes.LITERAL_STATIC)) {
-                        ((ClassFrame) frame).addStaticMember(name);
-                    }
-                    else {
-                        ((ClassFrame) frame).addInstanceMember(name);
-                    }
-                }
-                else {
-                    frame.addName(name);
-                }
+                collectVariableDeclarations(ast, frame);
                 break;
             }
             case TokenTypes.PARAMETER_DEF : {
@@ -153,6 +138,30 @@ public abstract class DeclarationCollector extends Check {
                 break;
             default:
                 // do nothing
+        }
+    }
+
+    /**
+     * collect Variable Declarations
+     * @param ast variable token
+     * @param frame current frame
+     */
+    private void collectVariableDeclarations(DetailAST ast, LexicalFrame frame) {
+        final String name =
+                ast.findFirstToken(TokenTypes.IDENT).getText();
+        if (frame instanceof ClassFrame) {
+            final DetailAST mods =
+                    ast.findFirstToken(TokenTypes.MODIFIERS);
+            if (ScopeUtils.inInterfaceBlock(ast)
+                    || mods.branchContains(TokenTypes.LITERAL_STATIC)) {
+                ((ClassFrame) frame).addStaticMember(name);
+            }
+            else {
+                ((ClassFrame) frame).addInstanceMember(name);
+            }
+        }
+        else {
+            frame.addName(name);
         }
     }
 
