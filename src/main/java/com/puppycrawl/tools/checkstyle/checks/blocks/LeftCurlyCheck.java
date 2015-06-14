@@ -315,22 +315,36 @@ public class LeftCurlyCheck
             }
             else if (getAbstractOption() == LeftCurlyOption.NLOW
                     && startToken.getLineNo() != brace.getLineNo()) {
-                // not on the same line
-                if (startToken.getLineNo() + 1 == brace.getLineNo()) {
-                    if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
-                        log(brace.getLineNo(), brace.getColumnNo(),
-                                MSG_KEY_LINE_NEW, "{");
-                    }
-                    else if (prevLineLen + 2 <= maxLineLength) {
-                        log(brace.getLineNo(), brace.getColumnNo(),
-                                MSG_KEY_LINE_PREVIOUS, "{");
-                    }
-                }
-                else if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
-                    log(brace.getLineNo(), brace.getColumnNo(),
-                            MSG_KEY_LINE_NEW, "{");
-                }
+
+                validateNewLinePosion(brace, startToken, braceLine, prevLineLen);
+
             }
+        }
+    }
+
+    /**
+     * validate token on new Line position
+     * @param brace brace AST
+     * @param startToken start Token
+     * @param braceLine content of line with Brace
+     * @param prevLineLen previous Line length
+     */
+    private void validateNewLinePosion(DetailAST brace, DetailAST startToken,
+                                       String braceLine, int prevLineLen) {
+        // not on the same line
+        if (startToken.getLineNo() + 1 == brace.getLineNo()) {
+            if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
+                log(brace.getLineNo(), brace.getColumnNo(),
+                        MSG_KEY_LINE_NEW, "{");
+            }
+            else if (prevLineLen + 2 <= maxLineLength) {
+                log(brace.getLineNo(), brace.getColumnNo(),
+                        MSG_KEY_LINE_PREVIOUS, "{");
+            }
+        }
+        else if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
+            log(brace.getLineNo(), brace.getColumnNo(),
+                    MSG_KEY_LINE_NEW, "{");
         }
     }
 
