@@ -74,30 +74,15 @@ public class ExplicitInitializationCheck extends Check {
 
     @Override
     public void visitToken(DetailAST ast) {
-        // do not check local variables and
-        // fields declared in interface/annotations
-        if (ScopeUtils.isLocalVariableDef(ast)
-            || ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
+        if (isSkipCase(ast)) {
             return;
         }
 
-        final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
-        if (assign == null) {
-            // no assign - no check
-            return;
-        }
-
-        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers != null
-            && modifiers.branchContains(TokenTypes.FINAL)) {
-            // do not check final variables
-            return;
-        }
-
-        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
         final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
+        final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
         final DetailAST exprStart =
             assign.getFirstChild().getFirstChild();
+        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
         if (isObjectType(type)
             && exprStart.getType() == TokenTypes.LITERAL_NULL) {
             log(ident, MSG_KEY, ident.getText(), "null");
@@ -112,11 +97,48 @@ public class ExplicitInitializationCheck extends Check {
             log(ident, MSG_KEY, ident.getText(), "0");
         }
         if (primitiveType == TokenTypes.LITERAL_CHAR
-            && (isZero(exprStart)
-                || exprStart.getType() == TokenTypes.CHAR_LITERAL
-                && "'\\0'".equals(exprStart.getText()))) {
+            && isZeroChar(exprStart)) {
             log(ident, MSG_KEY, ident.getText(), "\\0");
         }
+    }
+
+    /**
+     * examin Char literal for initializing to default value
+     * @param exprStart exprssion
+     * @return true is literal is initialized by zero symbol
+     */
+    private boolean isZeroChar(DetailAST exprStart) {
+        return isZero(exprStart)
+            || exprStart.getType() == TokenTypes.CHAR_LITERAL
+            && "'\\0'".equals(exprStart.getText());
+    }
+
+    /**
+     * chekc for cases that should be skipped: no assignment, local variable, final variables
+     * @param ast Variable def AST
+     * @return true is that is a case that need to be skipped.
+     */
+    private boolean isSkipCase(DetailAST ast) {
+        // do not check local variables and
+        // fields declared in interface/annotations
+        if (ScopeUtils.isLocalVariableDef(ast)
+            || ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
+            return true;
+        }
+
+        final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
+        if (assign == null) {
+            // no assign - no check
+            return true;
+        }
+
+        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+        if (modifiers != null
+            && modifiers.branchContains(TokenTypes.FINAL)) {
+            // do not check final variables
+            return true;
+        }
+        return false;
     }
 
     /**
