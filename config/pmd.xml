@@ -18,20 +18,19 @@
     <!-- till #953 -->
     <exclude name="NPathComplexity"/>
   </rule>
-  <!--
+
   <rule ref="rulesets/java/codesize.xml/CyclomaticComplexity">
     <properties>
       <property name="showClassesComplexity" value="false"/>
-      <property name="reportLevel" value="11"/>
-  -->
+      <property name="reportLevel" value="12"/>
       <!-- validateCli is not reasonbale to split as incapsulation of logic will be damaged
            getDetails - huge Switch, it has to be monolitic
            JavadocMethodCheck, JavadocStyleCheck, JavadocUtils.getJavadocTags() - deprecated
            FinalLocalVariableCheck.visitToken() - it is just big switch , not could be done
       -->
-  <!--    <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='validateCli' and ../../..[@Image='Main']] | //MethodDeclaration[@Name='visitToken' and ../../..[@Image='FinalLocalVariableCheck']] | //MethodDeclaration[@Name='getJavadocTags' and ../../..[@Image='JavadocUtils']] | //MethodDeclaration[@Name='getDetails' and ../../..[@Image='RightCurlyCheck']] | //ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck' or @Image='JavadocStyleCheck']"/>
+      <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='validateCli' and ../../..[@Image='Main']] | //MethodDeclaration[@Name='visitToken' and ../../..[@Image='FinalLocalVariableCheck']] | //MethodDeclaration[@Name='getJavadocTags' and ../../..[@Image='JavadocUtils']] | //MethodDeclaration[@Name='getDetails' and ../../..[@Image='RightCurlyCheck']] | //ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck' or @Image='JavadocStyleCheck']"/>
     </properties>
-  </rule>-->
+  </rule>
   <rule ref="rulesets/java/codesize.xml/TooManyMethods">
     <properties>
       <property name="maxmethods" value="20"/>
