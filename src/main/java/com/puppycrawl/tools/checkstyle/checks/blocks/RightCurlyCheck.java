@@ -154,6 +154,28 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
         }
 
         final DetailAST lcurly = details.lcurly;
+
+        validate(details, rcurly, lcurly);
+
+        if (!shouldStartLine) {
+            return;
+        }
+        final boolean startsLine =
+                Utils.whitespaceBefore(rcurly.getColumnNo(),
+                        getLines()[rcurly.getLineNo() - 1]);
+
+        if (!startsLine && lcurly.getLineNo() != rcurly.getLineNo()) {
+            log(rcurly, MSG_KEY_LINE_NEW, "}");
+        }
+    }
+
+    /**
+     * do general validation
+     * @param details details
+     * @param rcurly right curly token
+     * @param lcurly left curly token
+     */
+    private void validate(Details details, DetailAST rcurly, DetailAST lcurly) {
         final DetailAST nextToken = details.nextToken;
         final boolean shouldCheckLastRcurly = details.shouldCheckLastRcurly;
 
@@ -174,17 +196,6 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
                 && rcurly.getLineNo() == nextToken.getLineNo()
                 && !isEmptyBody(lcurly)) {
             log(rcurly, MSG_KEY_LINE_ALONE, "}");
-        }
-
-        if (!shouldStartLine) {
-            return;
-        }
-        final boolean startsLine =
-                Utils.whitespaceBefore(rcurly.getColumnNo(),
-                        getLines()[rcurly.getLineNo() - 1]);
-
-        if (!startsLine && lcurly.getLineNo() != rcurly.getLineNo()) {
-            log(rcurly, MSG_KEY_LINE_NEW, "}");
         }
     }
 

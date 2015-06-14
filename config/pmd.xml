@@ -22,7 +22,10 @@
     <properties>
       <property name="showClassesComplexity" value="false"/>
       <property name="reportLevel" value="11"/>
-      <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='validateCli' and ../../..[@Image='Main']]"/>
+      <!-- validateCli is not reasonbale to split as incapsulation of logic will be damaged
+           getDetails - huge Switch, it has to be monolitic
+      -->
+      <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='validateCli' and ../../..[@Image='Main']] | //MethodDeclaration[@Name='getDetails' and ../../..[@Image='RightCurlyCheck']]"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/codesize.xml/TooManyMethods">
