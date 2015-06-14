@@ -121,17 +121,10 @@ public class EqualsAvoidNullCheck extends Check {
         }
 
         final DetailAST objCalledOn = dot.getFirstChild();
-
-        //checks for calling equals on String literal and
-        //anon object which cannot be null
-        //Also, checks if calling using strange inner class
-        //syntax outter.inner.equals(otherObj) by looking
-        //for the dot operator which cannot be improved
-        if (objCalledOn.getType() == TokenTypes.STRING_LITERAL
-                || objCalledOn.getType() == TokenTypes.LITERAL_NEW
-                || objCalledOn.getType() == TokenTypes.DOT) {
+        if (isStringLiteral(objCalledOn)) {
             return;
         }
+
 
         final DetailAST method = objCalledOn.getNextSibling();
         final DetailAST expr = dot.getNextSibling().getFirstChild();
@@ -148,6 +141,24 @@ public class EqualsAvoidNullCheck extends Check {
             log(methodCall.getLineNo(), methodCall.getColumnNo(),
                 MSG_EQUALS_IGNORE_CASE_AVOID_NULL);
         }
+    }
+
+    /**
+     * checks for calling equals on String literal and
+     * anon object which cannot be null
+     * Also, checks if calling using strange inner class
+     * syntax outter.inner.equals(otherObj) by looking
+     * for the dot operator which cannot be improved
+     * @param objCalledOn object AST
+     * @return if it is string literal
+     */
+    private boolean isStringLiteral(DetailAST objCalledOn) {
+        if (objCalledOn.getType() == TokenTypes.STRING_LITERAL
+                || objCalledOn.getType() == TokenTypes.LITERAL_NEW
+                || objCalledOn.getType() == TokenTypes.DOT) {
+            return true;
+        }
+        return false;
     }
 
     /**
