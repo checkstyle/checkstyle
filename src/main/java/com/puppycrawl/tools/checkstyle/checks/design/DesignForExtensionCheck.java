@@ -80,13 +80,7 @@ public class DesignForExtensionCheck extends Check {
         if (ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
             return;
         }
-
-        // method is ok if it is private or abstract or final
-        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)
-            || modifiers.branchContains(TokenTypes.ABSTRACT)
-            || modifiers.branchContains(TokenTypes.FINAL)
-            || modifiers.branchContains(TokenTypes.LITERAL_STATIC)) {
+        if (isPrivateOrFinalOrAbstract(ast)) {
             return;
         }
 
@@ -114,6 +108,36 @@ public class DesignForExtensionCheck extends Check {
             return;
         }
 
+        if (hasDefaultOrExplNonPrivateCtor(classDef)) {
+            final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
+            log(ast.getLineNo(), ast.getColumnNo(),
+                MSG_KEY, name);
+        }
+    }
+
+    /**
+     * check for modifiers
+     * @param ast modifier ast
+     * @return tru in modifier is in checked ones
+     */
+    private boolean isPrivateOrFinalOrAbstract(DetailAST ast) {
+        // method is ok if it is private or abstract or final
+        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+        if (modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)
+            || modifiers.branchContains(TokenTypes.ABSTRACT)
+            || modifiers.branchContains(TokenTypes.FINAL)
+            || modifiers.branchContains(TokenTypes.LITERAL_STATIC)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * has Default Or Expl Non Private Ctor
+     * @param classDef class ast
+     * @return true if Check should make a violation
+     */
+    private boolean hasDefaultOrExplNonPrivateCtor(DetailAST classDef) {
         // check if subclassing is prevented by having only private ctors
         final DetailAST objBlock = classDef.findFirstToken(TokenTypes.OBJBLOCK);
 
@@ -127,7 +151,7 @@ public class DesignForExtensionCheck extends Check {
                 hasDefaultConstructor = false;
 
                 final DetailAST ctorMods =
-                    candidate.findFirstToken(TokenTypes.MODIFIERS);
+                        candidate.findFirstToken(TokenTypes.MODIFIERS);
                 if (!ctorMods.branchContains(TokenTypes.LITERAL_PRIVATE)) {
                     hasExplNonPrivateCtor = true;
                     break;
@@ -136,14 +160,7 @@ public class DesignForExtensionCheck extends Check {
             candidate = candidate.getNextSibling();
         }
 
-        if (hasDefaultConstructor || hasExplNonPrivateCtor) {
-            final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
-            log(ast.getLineNo(), ast.getColumnNo(),
-                MSG_KEY, name);
-        }
-
-
-
+        return hasDefaultConstructor || hasExplNonPrivateCtor;
     }
 
     /**
