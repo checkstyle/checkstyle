@@ -187,35 +187,17 @@ public class RegexpCheck extends AbstractFormatCheck {
     /** recursive method that finds the matches. */
     private void findMatch() {
         int startLine;
-        int startColumn;
-        int endLine;
-        int endColumn;
         boolean foundMatch;
         boolean ignore = false;
 
         foundMatch = matcher.find();
-        if (!foundMatch && !illegalPattern && matchCount == 0) {
-            logMessage(0);
-        }
-        else if (foundMatch) {
+        if (foundMatch) {
             final FileText text = getFileContents().getText();
             final LineColumn start = text.lineColumn(matcher.start());
-            final LineColumn end;
-            if (matcher.end() == 0) {
-                end = text.lineColumn(0);
-            }
-            else {
-                end = text.lineColumn(matcher.end() - 1);
-            }
             startLine = start.getLine();
-            startColumn = start.getColumn();
-            endLine = end.getLine();
-            endColumn = end.getColumn();
-            if (ignoreComments) {
-                final FileContents theFileContents = getFileContents();
-                ignore = theFileContents.hasIntersectionWithComment(startLine,
-                    startColumn, endLine, endColumn);
-            }
+
+            ignore = isIgnore(startLine, text, start);
+
             if (!ignore) {
                 matchCount++;
                 if (illegalPattern || checkForDuplicates
@@ -224,11 +206,54 @@ public class RegexpCheck extends AbstractFormatCheck {
                     logMessage(startLine);
                 }
             }
-            if (errorCount < errorLimit
-                    && (ignore || illegalPattern || checkForDuplicates)) {
+            if (canContinueValidation(ignore)) {
                 findMatch();
             }
         }
+        else if (!illegalPattern && matchCount == 0) {
+            logMessage(0);
+        }
+
+    }
+
+    /**
+     * check if we can stop valiation
+     * @param ignore flag
+     * @return true is we can continue
+     */
+    private boolean canContinueValidation(boolean ignore) {
+        return errorCount < errorLimit
+                && (ignore || illegalPattern || checkForDuplicates);
+    }
+
+    /**
+     * detect ignore situation
+     * @param startLine position of line
+     * @param text file text
+     * @param start line colun
+     * @return true is that need to be ignored
+     */
+    private boolean isIgnore(int startLine, FileText text, LineColumn start) {
+        int startColumn;
+        boolean ignore = false;
+        int endLine;
+        int endColumn;
+        final LineColumn end;
+        if (matcher.end() == 0) {
+            end = text.lineColumn(0);
+        }
+        else {
+            end = text.lineColumn(matcher.end() - 1);
+        }
+        startColumn = start.getColumn();
+        endLine = end.getLine();
+        endColumn = end.getColumn();
+        if (ignoreComments) {
+            final FileContents theFileContents = getFileContents();
+            ignore = theFileContents.hasIntersectionWithComment(startLine,
+                startColumn, endLine, endColumn);
+        }
+        return ignore;
     }
 
     /**
