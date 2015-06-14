@@ -224,56 +224,75 @@ public class DescendantTokenCheck extends Check {
         Arrays.fill(counts, 0);
         countTokens(ast, 0);
 
+        if (sumTokenCounts) {
+            logAsTotal(ast);
+        }
+        else {
+            logAsSeparated(ast);
+        }
+    }
+
+    /**
+     * log violations for each Token
+     * @param ast token
+     */
+    private void logAsSeparated(DetailAST ast) {
         // name of this token
         final String name = Utils.getTokenName(ast.getType());
 
-        if (sumTokenCounts) {
-            int total = 0;
-            for (int element : limitedTokens) {
-                total += counts[element - 1];
-            }
-            if (total < minimumNumber) {
+        for (int element : limitedTokens) {
+            final int tokenCount = counts[element - 1];
+            if (tokenCount < minimumNumber) {
+                final String descendantName = Utils
+                        .getTokenName(element);
                 log(ast.getLineNo(), ast.getColumnNo(),
-                        null == minimumMessage ? MSG_KEY_SUM_MIN
+                        null == minimumMessage ? MSG_KEY_MIN
                                 : minimumMessage,
-                        String.valueOf(total),
-                        String.valueOf(minimumNumber), name);
+                        String.valueOf(tokenCount),
+                        String.valueOf(minimumNumber),
+                        name,
+                        descendantName);
             }
-            if (total > maximumNumber) {
+            if (tokenCount > maximumNumber) {
+                final String descendantName = Utils
+                        .getTokenName(element);
                 log(ast.getLineNo(), ast.getColumnNo(),
-                        null == maximumMessage ? MSG_KEY_SUM_MAX
+                        null == maximumMessage ? MSG_KEY_MAX
                                 : maximumMessage,
-                        String.valueOf(total),
+                        String.valueOf(tokenCount),
                         String.valueOf(maximumNumber),
-                        name);
+                        name,
+                        descendantName);
             }
         }
-        else {
-            for (int element : limitedTokens) {
-                final int tokenCount = counts[element - 1];
-                if (tokenCount < minimumNumber) {
-                    final String descendantName = Utils
-                            .getTokenName(element);
-                    log(ast.getLineNo(), ast.getColumnNo(),
-                            null == minimumMessage ? MSG_KEY_MIN
-                                    : minimumMessage,
-                            String.valueOf(tokenCount),
-                            String.valueOf(minimumNumber),
-                            name,
-                            descendantName);
-                }
-                if (tokenCount > maximumNumber) {
-                    final String descendantName = Utils
-                            .getTokenName(element);
-                    log(ast.getLineNo(), ast.getColumnNo(),
-                            null == maximumMessage ? MSG_KEY_MAX
-                                    : maximumMessage,
-                            String.valueOf(tokenCount),
-                            String.valueOf(maximumNumber),
-                            name,
-                            descendantName);
-                }
-            }
+    }
+
+    /**
+     * log validation as one violation
+     * @param ast curent token
+     */
+    private void logAsTotal(DetailAST ast) {
+        // name of this token
+        final String name = Utils.getTokenName(ast.getType());
+
+        int total = 0;
+        for (int element : limitedTokens) {
+            total += counts[element - 1];
+        }
+        if (total < minimumNumber) {
+            log(ast.getLineNo(), ast.getColumnNo(),
+                    null == minimumMessage ? MSG_KEY_SUM_MIN
+                            : minimumMessage,
+                    String.valueOf(total),
+                    String.valueOf(minimumNumber), name);
+        }
+        if (total > maximumNumber) {
+            log(ast.getLineNo(), ast.getColumnNo(),
+                    null == maximumMessage ? MSG_KEY_SUM_MAX
+                            : maximumMessage,
+                    String.valueOf(total),
+                    String.valueOf(maximumNumber),
+                    name);
         }
     }
 
