@@ -144,54 +144,83 @@ public class GenericWhitespaceCheck extends Check {
             // Check if the last Generic, in which case must be a whitespace
             // or a '(),[.'.
             if (1 == depth) {
-                final char charAfter = line.charAt(after);
-
-                // Need to handle a number of cases. First is:
-                //    Collections.<Object>emptySet();
-                //                        ^
-                //                        +--- whitespace not allowed
-                if (ast.getParent().getType() == TokenTypes.TYPE_ARGUMENTS
-                        && ast.getParent().getParent().getType()
-                            == TokenTypes.DOT
-                        && ast.getParent().getParent().getParent().getType()
-                            == TokenTypes.METHOD_CALL
-                        || isAfterMethodReference(ast)) {
-                    if (Character.isWhitespace(charAfter)) {
-                        log(ast.getLineNo(), after, WS_FOLLOWED, ">");
-                    }
-                }
-                else if (!Character.isWhitespace(charAfter)
-                    && '(' != charAfter && ')' != charAfter
-                    && ',' != charAfter && '[' != charAfter
-                    && '.' != charAfter && ':' != charAfter
-                    && !isAfterMethodReference(ast)) {
-                    log(ast.getLineNo(), after, WS_ILLEGAL_FOLLOW, ">");
-                }
+                processSingleGeneric(ast, line, after);
             }
             else {
-                // In a nested Generic type, so can only be a '>' or ',' or '&'
-
-                // In case of several extends definitions:
-                //
-                //   class IntEnumValueType<E extends Enum<E> & IntEnum>
-                //                                          ^
-                //   should be whitespace if followed by & -+
-                //
-                final int indexOfAmp = line.indexOf('&', after);
-                if (indexOfAmp != -1
-                    && whitespaceBetween(after, indexOfAmp, line)) {
-                    if (indexOfAmp - after == 0) {
-                        log(ast.getLineNo(), after, WS_NOT_PRECEDED, "&");
-                    }
-                    else if (indexOfAmp - after != 1) {
-                        log(ast.getLineNo(), after, WS_FOLLOWED, ">");
-                    }
-                }
-                else if (line.charAt(after) == ' ') {
-                    log(ast.getLineNo(), after, WS_FOLLOWED, ">");
-                }
+                processNestedGenerics(ast, line, after);
             }
         }
+    }
+
+    /**
+     * process Nested generics
+     * @param ast token
+     * @param line line content
+     * @param after position after
+     */
+    private void processNestedGenerics(DetailAST ast, String line, int after) {
+        // In a nested Generic type, so can only be a '>' or ',' or '&'
+
+        // In case of several extends definitions:
+        //
+        //   class IntEnumValueType<E extends Enum<E> & IntEnum>
+        //                                          ^
+        //   should be whitespace if followed by & -+
+        //
+        final int indexOfAmp = line.indexOf('&', after);
+        if (indexOfAmp != -1
+            && whitespaceBetween(after, indexOfAmp, line)) {
+            if (indexOfAmp - after == 0) {
+                log(ast.getLineNo(), after, WS_NOT_PRECEDED, "&");
+            }
+            else if (indexOfAmp - after != 1) {
+                log(ast.getLineNo(), after, WS_FOLLOWED, ">");
+            }
+        }
+        else if (line.charAt(after) == ' ') {
+            log(ast.getLineNo(), after, WS_FOLLOWED, ">");
+        }
+    }
+
+    /**
+     * process Single-generic
+     * @param ast token
+     * @param line line content
+     * @param after position after
+     */
+    private void processSingleGeneric(DetailAST ast, String line, int after) {
+        final char charAfter = line.charAt(after);
+
+        // Need to handle a number of cases. First is:
+        //    Collections.<Object>emptySet();
+        //                        ^
+        //                        +--- whitespace not allowed
+        if (isGenericBeforeMethod(ast)) {
+            if (Character.isWhitespace(charAfter)) {
+                log(ast.getLineNo(), after, WS_FOLLOWED, ">");
+            }
+        }
+        else if (!Character.isWhitespace(charAfter)
+            && '(' != charAfter && ')' != charAfter
+            && ',' != charAfter && '[' != charAfter
+            && '.' != charAfter && ':' != charAfter
+            && !isAfterMethodReference(ast)) {
+            log(ast.getLineNo(), after, WS_ILLEGAL_FOLLOW, ">");
+        }
+    }
+
+    /**
+     * is generic before method reference
+     * @param ast ast
+     * @return true if generic before a method ref
+     */
+    private boolean isGenericBeforeMethod(DetailAST ast) {
+        return ast.getParent().getType() == TokenTypes.TYPE_ARGUMENTS
+                && ast.getParent().getParent().getType()
+                    == TokenTypes.DOT
+                && ast.getParent().getParent().getParent().getType()
+                    == TokenTypes.METHOD_CALL
+                || isAfterMethodReference(ast);
     }
 
     /**
