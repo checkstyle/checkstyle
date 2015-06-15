@@ -188,17 +188,32 @@ public class MagicNumberCheck extends Check {
             }
         }
         else {
-            DetailAST astNode = ast.getParent();
-            while (astNode != constantDefAST) {
-                final int type = astNode.getType();
-                if (Arrays.binarySearch(ALLOWED_PATH_TOKENTYPES, type) < 0) {
-                    reportMagicNumber(ast);
-                    break;
-                }
+            final boolean found = isMagicNumberExists(ast, constantDefAST);
+            if (found) {
+                reportMagicNumber(ast);
 
-                astNode = astNode.getParent();
             }
         }
+    }
+
+    /**
+     * is magic number some where at ast tree
+     * @param ast ast token
+     * @param constantDefAST constant ast
+     * @return true if magic number is present
+     */
+    private boolean isMagicNumberExists(DetailAST ast, DetailAST constantDefAST) {
+        boolean found = false;
+        DetailAST astNode = ast.getParent();
+        while (astNode != constantDefAST) {
+            final int type = astNode.getType();
+            if (Arrays.binarySearch(ALLOWED_PATH_TOKENTYPES, type) < 0) {
+                found = true;
+                break;
+            }
+            astNode = astNode.getParent();
+        }
+        return found;
     }
 
     /**
