@@ -45,6 +45,9 @@ import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 
+import static java.lang.Math.PI;
+import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_SAME;
+
 /**
  * Test case for imports
  * Here's an import used only by javadoc: {@link Date}.

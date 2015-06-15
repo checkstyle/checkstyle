@@ -50,6 +50,18 @@ public class RedundantImportCheckTest
     }
 
     @Test
+    public void testUnnamedPackage()
+        throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RedundantImportCheck.class);
+        final String[] expected = {
+            "2:1: " + getCheckMessage(MSG_DUPLICATE, 1, "java.util.List"),
+            "4:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
+        };
+        verify(checkConfig, getPath("imports" + File.separator + "InputRedundantImportCheck_UnnamedPackage.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         RedundantImportCheck testCheckObject =
                 new RedundantImportCheck();
