@@ -26,8 +26,6 @@ Quality reports: http://checkstyle.sourceforge.net/project-reports.html
 Feedback/Support
 ========
 
-[![https://gitter.im/checkstyle/checkstyle](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/checkstyle/checkstyle?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 Please send any feedback to https://groups.google.com/forum/?hl=en#!forum/checkstyle
 
 Questions and Answers from community: [![][stackoverflow img]][stackoverflow]
