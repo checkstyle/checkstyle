@@ -301,30 +301,38 @@ public class AbbreviationAsWordInNameCheck extends Check {
                 if (abbrStarted) {
                     abbrStarted = false;
 
-                    // -1 as a first capital is usually beginning of next word
                     final int endIndex = index - 1;
-                    final int abbrLength = endIndex - beginIndex;
-                    if (abbrLength > allowedAbbreviationLength) {
-                        result = str.substring(beginIndex, endIndex);
-                        if (!allowedAbbreviations.contains(result)) {
-                            break;
-                        }
-                        else {
-                            result = null;
-                        }
+                    // -1 as a first capital is usually beginning of next word
+                    result = getAbbreviationIfIllegal(str, beginIndex, endIndex);
+                    if (result != null) {
+                        break;
                     }
                     beginIndex = -1;
                 }
             }
         }
-        if (abbrStarted) {
+        // if abbreviation at the end of name and it is not single character (example: scaleX)
+        if (abbrStarted && beginIndex != str.length() - 1) {
             final int endIndex = str.length();
-            final int abbrLength = endIndex - beginIndex;
-            if (abbrLength > 1 && abbrLength > allowedAbbreviationLength) {
-                result = str.substring(beginIndex, endIndex);
-                if (allowedAbbreviations.contains(result)) {
-                    result = null;
-                }
+            result = getAbbreviationIfIllegal(str, beginIndex, endIndex);
+        }
+        return result;
+    }
+
+    /**
+     * get Abbreviation if it is illegal
+     * @param str name
+     * @param beginIndex begin index
+     * @param endIndex end index
+     * @return true is abbreviation is bigger that requierd and not in ignore list
+     */
+    private String getAbbreviationIfIllegal(String str, int beginIndex, int endIndex) {
+        String result = null;
+        final int abbrLength = endIndex - beginIndex;
+        if (abbrLength > allowedAbbreviationLength) {
+            final String abbr = str.substring(beginIndex, endIndex);
+            if (!allowedAbbreviations.contains(abbr)) {
+                result = abbr;
             }
         }
         return result;
