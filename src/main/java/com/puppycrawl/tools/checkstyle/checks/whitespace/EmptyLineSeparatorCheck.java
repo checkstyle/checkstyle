@@ -222,43 +222,13 @@ public class EmptyLineSeparatorCheck extends Check {
             final int astType = ast.getType();
             switch (astType) {
                 case TokenTypes.VARIABLE_DEF:
-                    if (isTypeField(ast) && !hasEmptyLineAfter(ast)) {
-                        if (allowNoEmptyLineBetweenFields
-                            && nextToken.getType() != TokenTypes.VARIABLE_DEF
-                            && nextToken.getType() != TokenTypes.RCURLY) {
-                            log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
-                                 nextToken.getText());
-                        }
-                        else if (!allowNoEmptyLineBetweenFields
-                                 && nextToken.getType() != TokenTypes.RCURLY) {
-                            log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
-                                 nextToken.getText());
-                        }
-                    }
-                    if (isTypeField(ast) && hasNotAllowedTwoEmptyLinesBefore(ast)) {
-                        log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
-                    }
+                    processVariableDef(ast, nextToken);
                     break;
                 case TokenTypes.IMPORT:
-                    if (astType != nextToken.getType() && !hasEmptyLineAfter(ast)
-                        || ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)
-                            && ast.getPreviousSibling() == null) {
-                        log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
-                    }
-                    if (hasNotAllowedTwoEmptyLinesBefore(ast)) {
-                        log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
-                    }
+                    processImport(ast, nextToken, astType);
                     break;
                 case TokenTypes.PACKAGE_DEF:
-                    if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
-                        log(ast.getLineNo(), MSG_SHOULD_BE_SEPARATED, ast.getText());
-                    }
-                    if (!hasEmptyLineAfter(ast)) {
-                        log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
-                    }
-                    if (hasNotAllowedTwoEmptyLinesBefore(ast)) {
-                        log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
-                    }
+                    processPackage(ast, nextToken);
                     break;
                 default:
                     if (nextToken.getType() != TokenTypes.RCURLY && !hasEmptyLineAfter(ast)) {
@@ -268,6 +238,64 @@ public class EmptyLineSeparatorCheck extends Check {
                         log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
                     }
             }
+        }
+    }
+
+    /**
+     * process Package
+     * @param ast token
+     * @param nextToken next token
+     */
+    private void processPackage(DetailAST ast, DetailAST nextToken) {
+        if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
+            log(ast.getLineNo(), MSG_SHOULD_BE_SEPARATED, ast.getText());
+        }
+        if (!hasEmptyLineAfter(ast)) {
+            log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
+        }
+        if (hasNotAllowedTwoEmptyLinesBefore(ast)) {
+            log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
+        }
+    }
+
+    /**
+     * process Import
+     * @param ast token
+     * @param nextToken next token
+     * @param astType token Type
+     */
+    private void processImport(DetailAST ast, DetailAST nextToken, int astType) {
+        if (astType != nextToken.getType() && !hasEmptyLineAfter(ast)
+            || ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)
+                && ast.getPreviousSibling() == null) {
+            log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
+        }
+        if (hasNotAllowedTwoEmptyLinesBefore(ast)) {
+            log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
+        }
+    }
+
+    /**
+     * process Variable
+     * @param ast token
+     * @param nextToken next Token
+     */
+    private void processVariableDef(DetailAST ast, DetailAST nextToken) {
+        if (isTypeField(ast) && !hasEmptyLineAfter(ast)) {
+            if (allowNoEmptyLineBetweenFields
+                && nextToken.getType() != TokenTypes.VARIABLE_DEF
+                && nextToken.getType() != TokenTypes.RCURLY) {
+                log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
+                     nextToken.getText());
+            }
+            else if (!allowNoEmptyLineBetweenFields
+                     && nextToken.getType() != TokenTypes.RCURLY) {
+                log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
+                     nextToken.getText());
+            }
+        }
+        if (isTypeField(ast) && hasNotAllowedTwoEmptyLinesBefore(ast)) {
+            log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
         }
     }
 
