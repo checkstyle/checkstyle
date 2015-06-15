@@ -337,49 +337,7 @@ public class WhitespaceAroundCheck extends Check {
     @Override
     public void visitToken(DetailAST ast) {
         final int currentType = ast.getType();
-        final int parentType = ast.getParent().getType();
-
-        // Check for CURLY in array initializer
-        if ((currentType == TokenTypes.RCURLY
-                || currentType == TokenTypes.LCURLY)
-            && (parentType == TokenTypes.ARRAY_INIT
-                || parentType == TokenTypes.ANNOTATION_ARRAY_INIT)) {
-            return;
-        }
-
-        // Check for import pkg.name.*;
-        if (currentType == TokenTypes.STAR
-            && parentType == TokenTypes.DOT) {
-            return;
-        }
-
-        // Check for an SLIST that has a parent CASE_GROUP. It is not a '{'.
-        if (currentType == TokenTypes.SLIST
-            && parentType == TokenTypes.CASE_GROUP) {
-            return;
-        }
-
-        if (currentType == TokenTypes.COLON) {
-            //we do not want to check colon for cases and defaults
-            if (parentType == TokenTypes.LITERAL_DEFAULT
-                || parentType == TokenTypes.LITERAL_CASE) {
-                return;
-            }
-            else if (parentType == TokenTypes.FOR_EACH_CLAUSE
-                && this.ignoreEnhancedForColon) {
-                return;
-            }
-        }
-
-        // Checks if empty methods, ctors or loops are allowed.
-        if (isEmptyMethodBlock(ast, parentType)
-                || isEmptyCtorBlock(ast, parentType)
-                || isEmptyLoop(ast, parentType)) {
-            return;
-        }
-
-        // Checks if empty classes, interfaces or enums are allowed
-        if (allowEmptyTypes && isEmptyType(ast, parentType)) {
+        if (isNotRelevantSituation(ast, currentType)) {
             return;
         }
 
@@ -401,15 +359,114 @@ public class WhitespaceAroundCheck extends Check {
             // Check for "return;"
             && !(currentType == TokenTypes.LITERAL_RETURN
                 && ast.getFirstChild().getType() == TokenTypes.SEMI)
-            // Check for "})" or "};" or "},". Happens with anon-inners
-            && !(currentType == TokenTypes.RCURLY
-                && (nextChar == ')'
-                    || nextChar == ';'
-                    || nextChar == ','
-                    || nextChar == '.'))) {
+            && !isAnnonimousInnerClassEnd(currentType, nextChar)) {
+
             log(ast.getLineNo(), ast.getColumnNo() + ast.getText().length(),
                     WS_NOT_FOLLOWED, ast.getText());
         }
+    }
+
+    /**
+     * Check for "})" or "};" or "},". Happens with anon-inners
+     * @param currentType token
+     * @param nextChar next symbol
+     * @return true is that is end of anon inner class
+     */
+    private boolean isAnnonimousInnerClassEnd(int currentType, char nextChar) {
+        return currentType == TokenTypes.RCURLY
+            && (nextChar == ')'
+                || nextChar == ';'
+                || nextChar == ','
+                || nextChar == '.');
+    }
+
+    /**
+     * is ast is not a target of Check
+     * @param ast ast
+     * @param currentType type of ast
+     * @return true is ok to skip validation
+     */
+    private boolean isNotRelevantSituation(DetailAST ast, int currentType) {
+        final int parentType = ast.getParent().getType();
+
+        // Check for CURLY in array initializer
+        if (isArrayInitialization(currentType, parentType)) {
+            return true;
+        }
+
+        // Check for import pkg.name.*;
+        if (currentType == TokenTypes.STAR
+            && parentType == TokenTypes.DOT) {
+            return true;
+        }
+
+        // Check for an SLIST that has a parent CASE_GROUP. It is not a '{'.
+        if (currentType == TokenTypes.SLIST
+            && parentType == TokenTypes.CASE_GROUP) {
+            return true;
+        }
+
+        if (isColonOfCaseOrDefault(currentType, parentType)) {
+            return true;
+        }
+
+        // Checks if empty methods, ctors or loops are allowed.
+        if (isEmptyBlock(ast, parentType)) {
+            return true;
+        }
+
+        // Checks if empty classes, interfaces or enums are allowed
+        if (allowEmptyTypes && isEmptyType(ast, parentType)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * is empty block
+     * @param ast ast
+     * @param parentType parent
+     * @return true is block is empty
+     */
+    private boolean isEmptyBlock(DetailAST ast, int parentType) {
+        return isEmptyMethodBlock(ast, parentType)
+                || isEmptyCtorBlock(ast, parentType)
+                || isEmptyLoop(ast, parentType);
+    }
+
+    /**
+     * we do not want to check colon for cases and defaults
+     * @param currentType current
+     * @param parentType parent
+     * @return true is cur token in colon of case or default tokens
+     */
+    private boolean isColonOfCaseOrDefault(int currentType, int parentType) {
+        if (currentType == TokenTypes.COLON) {
+            //we do not want to check colon for cases and defaults
+            if (parentType == TokenTypes.LITERAL_DEFAULT
+                || parentType == TokenTypes.LITERAL_CASE) {
+                return true;
+            }
+            else if (parentType == TokenTypes.FOR_EACH_CLAUSE
+                && this.ignoreEnhancedForColon) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * is array initialization
+     * @param currentType curret token
+     * @param parentType parent token
+     * @return true is current token inside array initialization
+     */
+    private boolean isArrayInitialization(int currentType, int parentType) {
+        return (currentType == TokenTypes.RCURLY
+                || currentType == TokenTypes.LCURLY)
+            && (parentType == TokenTypes.ARRAY_INIT
+                || parentType == TokenTypes.ANNOTATION_ARRAY_INIT);
     }
 
     /**
