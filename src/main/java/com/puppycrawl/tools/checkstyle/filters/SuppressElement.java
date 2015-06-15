@@ -134,13 +134,7 @@ public class SuppressElement
     @Override
     public boolean accept(AuditEvent event) {
         // file and check match?
-        if (event.getFileName() == null
-                || !fileRegexp.matcher(event.getFileName()).find()
-                || event.getLocalizedMessage() == null
-                || moduleId != null && !moduleId.equals(event
-                        .getModuleId())
-                || checkRegexp != null && !checkRegexp.matcher(
-                        event.getSourceName()).find()) {
+        if (isFileNameAndModuleMatching(event)) {
             return true;
         }
 
@@ -157,6 +151,21 @@ public class SuppressElement
             return false;
         }
         return true;
+    }
+
+    /**
+     * is matching by file name and Check name
+     * @param event event
+     * @return true is matching
+     */
+    private boolean isFileNameAndModuleMatching(AuditEvent event) {
+        return event.getFileName() == null
+                || !fileRegexp.matcher(event.getFileName()).find()
+                || event.getLocalizedMessage() == null
+                || moduleId != null && !moduleId.equals(event
+                        .getModuleId())
+                || checkRegexp != null && !checkRegexp.matcher(
+                        event.getSourceName()).find();
     }
 
     @Override
