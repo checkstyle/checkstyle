@@ -154,17 +154,10 @@ public class AvoidStarImportCheck
      */
     private void logsStarredImportViolation(DetailAST startingDot) {
         final FullIdent name = FullIdent.createFullIdent(startingDot);
-        if (isStaredImport(name) && !excludes.contains(name.getText())) {
-            log(startingDot.getLineNo(), MSG_KEY, name.getText());
+        final String importText = name.getText();
+        if (importText.endsWith(".*") && !excludes.contains(importText)) {
+            log(startingDot.getLineNo(), MSG_KEY, importText);
         }
     }
 
-    /**
-     * Checks is an import is a stared import.
-     * @param importIdent the full import identifier
-     * @return true if a start import false if not
-     */
-    private boolean isStaredImport(FullIdent importIdent) {
-        return null != importIdent && importIdent.getText().endsWith(".*");
-    }
 }
