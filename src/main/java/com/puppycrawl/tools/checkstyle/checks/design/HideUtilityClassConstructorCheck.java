@@ -105,7 +105,7 @@ public class HideUtilityClassConstructorCheck extends Check {
     /**
      * Details of class that are required for validation
      */
-    private class Details {
+    private static class Details {
         /** class ast */
         private DetailAST ast;
         /** result of details gathering */
