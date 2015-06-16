@@ -11,9 +11,9 @@
   <rule ref="rulesets/java/braces.xml"/>
   <rule ref="rulesets/java/clone.xml"/>
   <rule ref="rulesets/java/codesize.xml">
-    <!-- till #954 -->
-    <exclude name="CyclomaticComplexity"/>
+    <!-- we are using CyclomaticComplexity -->
     <exclude name="ModifiedCyclomaticComplexity"/>
+    <!-- we are using CyclomaticComplexity -->
     <exclude name="StdCyclomaticComplexity"/>
     <!-- till #953 -->
     <exclude name="NPathComplexity"/>
