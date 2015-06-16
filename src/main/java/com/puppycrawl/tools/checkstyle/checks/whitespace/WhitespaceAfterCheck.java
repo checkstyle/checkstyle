@@ -102,22 +102,32 @@ public class WhitespaceAfterCheck
                 && (charAfter == ';' || charAfter == ')')) {
                 return;
             }
-            if (!Character.isWhitespace(charAfter)) {
-                //empty FOR_ITERATOR?
-                if (targetAST.getType() == TokenTypes.SEMI) {
-                    final DetailAST sibling =
-                        targetAST.getNextSibling();
-                    if (sibling != null
-                        && sibling.getType() == TokenTypes.FOR_ITERATOR
-                        && sibling.getChildCount() == 0) {
-                        return;
-                    }
-                }
+            if (!Character.isWhitespace(charAfter) && !isEmptyForIterator(targetAST)) {
+
                 log(targetAST.getLineNo(),
-                    targetAST.getColumnNo() + targetAST.getText().length(),
-                    WS_NOT_FOLLOWED,
-                    message);
+                        targetAST.getColumnNo() + targetAST.getText().length(),
+                        WS_NOT_FOLLOWED,
+                        message);
             }
         }
+    }
+
+    /**
+     * check for empty FOR_ITERATOR
+     * @param targetAST Ast token
+     * @return true if iterator is empty
+     */
+    private boolean isEmptyForIterator(DetailAST targetAST) {
+
+        if (targetAST.getType() == TokenTypes.SEMI) {
+            final DetailAST sibling =
+                targetAST.getNextSibling();
+            if (sibling != null
+                && sibling.getType() == TokenTypes.FOR_ITERATOR
+                && sibling.getChildCount() == 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }
