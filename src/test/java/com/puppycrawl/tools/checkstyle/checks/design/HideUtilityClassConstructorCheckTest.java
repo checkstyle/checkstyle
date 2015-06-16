@@ -23,24 +23,43 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
 
+import static com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck
+.MSG_KEY;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck
-.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
 public class HideUtilityClassConstructorCheckTest
     extends BaseCheckTestSupport {
-    /** only static methods and no constructor - default ctor is visible */
+
     @Test
     public void testUtilClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = {
-            "11:1: " + getCheckMessage(MSG_KEY),
+            "3:1: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputArrayTypeStyle.java"), expected);
+        verify(checkConfig, getPath("design" + File.separator + "UtilityClassConstructor.java"), expected);
+    }
+
+    @Test
+    public void testUtilClassPublicCtor() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(HideUtilityClassConstructorCheck.class);
+        final String[] expected = {
+            "3:1: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig, getPath("design" + File.separator + "UtilityClassConstructorPublic.java"), expected);
+    }
+
+    @Test
+    public void testUtilClassPrivateCtor() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(HideUtilityClassConstructorCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("design" + File.separator + "UtilityClassConstructorPrivate.java"), expected);
     }
 
     /** nonstatic methods - always OK */

@@ -190,7 +190,7 @@ public class HideUtilityClassConstructorCheck extends Check {
                     final boolean isPrivate =
                         modifiers.branchContains(TokenTypes.LITERAL_PRIVATE);
 
-                    if (!isStatic && !isPrivate) {
+                    if (!isStatic) {
                         hasNonStaticMethodOrField = true;
                     }
                     if (isStatic && !isPrivate) {
