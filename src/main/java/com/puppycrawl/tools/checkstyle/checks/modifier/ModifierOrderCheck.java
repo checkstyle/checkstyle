@@ -135,10 +135,6 @@ public class ModifierOrderCheck
      */
     DetailAST checkOrderSuggestedByJLS(List<DetailAST> modifiers) {
         final Iterator<DetailAST> it = modifiers.iterator();
-        //No modifiers, no problems
-        if (!it.hasNext()) {
-            return null;
-        }
 
         //Speed past all initial annotations
         DetailAST modifier;
