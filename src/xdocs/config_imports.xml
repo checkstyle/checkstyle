@@ -240,11 +240,11 @@
             imported more than once.
           </li>
           <li>
-            The class imported is from the <code>java.lang</code>
+            The class non-statically imported is from the <code>java.lang</code>
             package, e.g.  importing <code>java.lang.String</code>.
           </li>
           <li>
-            The class imported is from the same package.
+            The class non-statically imported is from the same package as the current package.
           </li>
         </ul>
       </subsection>
