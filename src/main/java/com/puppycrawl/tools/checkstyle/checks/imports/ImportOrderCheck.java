@@ -275,18 +275,20 @@ public class ImportOrderCheck
             isStatic = true;
         }
 
+        final boolean isStaticAndNotLastImport = isStatic && !lastImportStatic;
+        final boolean isNotStaticAndLastImport = !isStatic && lastImportStatic;
         switch (getAbstractOption()) {
             case TOP:
-                if (!isStatic && lastImportStatic) {
+                if (isNotStaticAndLastImport) {
                     lastGroup = Integer.MIN_VALUE;
                     lastImport = "";
                 }
-                doVisitToken(ident, isStatic, !lastImportStatic && isStatic);
+                doVisitToken(ident, isStatic, isStaticAndNotLastImport);
                 break;
 
             case ABOVE:
                 // previous non-static but current is static
-                doVisitToken(ident, isStatic, !lastImportStatic && isStatic);
+                doVisitToken(ident, isStatic, isStaticAndNotLastImport);
                 break;
 
             case INFLOW:
@@ -295,16 +297,16 @@ public class ImportOrderCheck
                 break;
 
             case BOTTOM:
-                if (isStatic && !lastImportStatic) {
+                if (isStaticAndNotLastImport) {
                     lastGroup = Integer.MIN_VALUE;
                     lastImport = "";
                 }
-                doVisitToken(ident, isStatic, lastImportStatic && !isStatic);
+                doVisitToken(ident, isStatic, isNotStaticAndLastImport);
                 break;
 
             case UNDER:
                 // previous static but current is non-static
-                doVisitToken(ident, isStatic, lastImportStatic && !isStatic);
+                doVisitToken(ident, isStatic, isNotStaticAndLastImport);
                 break;
 
             default:
