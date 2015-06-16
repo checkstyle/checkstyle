@@ -15,8 +15,6 @@
     <exclude name="ModifiedCyclomaticComplexity"/>
     <!-- we are using CyclomaticComplexity -->
     <exclude name="StdCyclomaticComplexity"/>
-    <!-- till #953 -->
-    <exclude name="NPathComplexity"/>
   </rule>
 
   <rule ref="rulesets/java/codesize.xml/CyclomaticComplexity">
@@ -31,6 +29,14 @@
            VariableDeclarationUsageDistanceCheck, CustomImportOrderCheck - it is not OK to have such a complicated logic need to be refactored.
       -->
       <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='validateCli' and ../../..[@Image='Main']] | //MethodDeclaration[@Name='processSingleGeneric' and ../../..[@Image='GenericWhitespaceCheck']] | //MethodDeclaration[@Name='visitToken' and ../../..[@Image='FinalLocalVariableCheck']] | //MethodDeclaration[@Name='getJavadocTags' and ../../..[@Image='JavadocUtils']] | //MethodDeclaration[@Name='getDetails' and ../../..[@Image='RightCurlyCheck']] | //ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck' or @Image='JavadocStyleCheck' or @Image='VariableDeclarationUsageDistanceCheck' or @Image='CustomImportOrderCheck']"/>
+    </properties>
+  </rule>
+  <rule ref="rulesets/java/codesize.xml/NPathComplexity">
+    <properties>
+      <!-- JavadocMethodCheck - deprecated
+           WhitespaceAroundCheck.isNotRelevantSituation - till #953
+      -->
+      <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='isNotRelevantSituation' and ../../..[@Image='WhitespaceAroundCheck']] | //MethodDeclaration[@Name='validateCli' and ../../..[@Image='Main']] | //ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck' or @Image='JavadocStyleCheck']"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/codesize.xml/TooManyMethods">
