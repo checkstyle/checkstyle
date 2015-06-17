@@ -33,6 +33,9 @@ matrix:
     # assembly (oraclejdk8)
     - jdk: oraclejdk8
       env: DESC="assembly" CMD="mvn clean install -Passembly -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS=""
+    # realtest - Orekit (oraclejdk8)
+    - jdk: oraclejdk8
+      env: DESC="RealTest - Orekit" CMD="git clone https://github.com/CS-SI/Orekit.git && cd Orekit && git checkout bc527a1 && sed -i 's/<orekit\.checkstyle\.version>6\.6</<orekit.checkstyle.version>6.8-SNAPSHOT</' pom.xml && cd .. && mvn clean install -Passembly -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd Orekit && mvn compile checkstyle:check" COVERALLS_ARGS=""
 
 script: eval $CMD
 
