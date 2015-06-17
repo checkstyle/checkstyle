@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
 import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_FOLLOWED;
@@ -184,6 +185,42 @@ public class ParenPadCheckTest
             "96:47: " + getCheckMessage(WS_PRECEDED, ")"),
             "97:42: " + getCheckMessage(WS_PRECEDED, ")"),
             "99:44: " + getCheckMessage(WS_PRECEDED, ")"),
+            "112:17: " + getCheckMessage(WS_FOLLOWED, "("),
+            "113:23: " + getCheckMessage(WS_FOLLOWED, "("),
+            "113:25: " + getCheckMessage(WS_FOLLOWED, "("),
+            "113:31: " + getCheckMessage(WS_PRECEDED, ")"),
+            "114:26: " + getCheckMessage(WS_FOLLOWED, "("),
+            "114:28: " + getCheckMessage(WS_FOLLOWED, "("),
+            "114:34: " + getCheckMessage(WS_PRECEDED, ")"),
+            "114:50: " + getCheckMessage(WS_PRECEDED, ")"),
+            "115:26: " + getCheckMessage(WS_FOLLOWED, "("),
+            "115:28: " + getCheckMessage(WS_FOLLOWED, "("),
+            "115:35: " + getCheckMessage(WS_PRECEDED, ")"),
+            "115:53: " + getCheckMessage(WS_PRECEDED, ")"),
+            "115:55: " + getCheckMessage(WS_PRECEDED, ")"),
+            "119:17: " + getCheckMessage(WS_FOLLOWED, "("),
+            "119:22: " + getCheckMessage(WS_PRECEDED, ")"),
+            "123:30: " + getCheckMessage(WS_FOLLOWED, "("),
+            "123:44: " + getCheckMessage(WS_PRECEDED, ")"),
+            "126:22: " + getCheckMessage(WS_FOLLOWED, "("),
+            "126:22: " + getCheckMessage(WS_PRECEDED, ")"),
+            "130:19: " + getCheckMessage(WS_FOLLOWED, "("),
+            "130:19: " + getCheckMessage(WS_PRECEDED, ")"),
+        };
+        verify(checkConfig, getPath("whitespace/InputParenPad.java"), expected);
+    }
+
+    @Test
+    public void testConfigureTokens() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(ParenPadCheck.class);
+        checkConfig.addAttribute("tokens", "METHOD_CALL");
+        final String[] expected = {
+            "90:38: " + getCheckMessage(WS_PRECEDED, ")"),
+            "112:17: " + getCheckMessage(WS_FOLLOWED, "("),
+            "113:23: " + getCheckMessage(WS_FOLLOWED, "("),
+            "115:53: " + getCheckMessage(WS_PRECEDED, ")"),
+            "115:55: " + getCheckMessage(WS_PRECEDED, ")"),
         };
         verify(checkConfig, getPath("whitespace/InputParenPad.java"), expected);
     }

@@ -107,4 +107,29 @@ public class InputParenPad
             }
         }
     }
+
+    String foo() {
+        return ( (Object
+                ) bar( ( 1 > 2 ) ?
+                        ( ( 3 < 4 )? false : true ) :
+                        ( ( 1 == 1 ) ? false : true) ) ).toString();
+    }
+    @MyAnnotation
+    public boolean bar(boolean a) {
+        assert ( true );
+        return true;
+    }
+
+    boolean fooo = this.bar(( true && false ) && true);
 }
+@interface MyAnnotation {
+    String someField( ) default "Hello world";
+}
+
+enum MyEnum {
+    SOME_CONSTANT( ) {
+        int i = (int) (2 * (4 / 2)
+                ); 
+    };
+}
+
