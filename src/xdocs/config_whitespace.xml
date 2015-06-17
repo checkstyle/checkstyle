@@ -712,7 +712,16 @@ for (Iterator foo = very.long.line.iterator();
         <p>
           Checks the policy on the padding of parentheses; i.e. whether a
           space is required after a left parenthesis and before a right
-          parenthesis, or such spaces are forbidden.
+          parenthesis, or such spaces are forbidden, with the exception that it does
+          not check for padding of the right parenthesis at an empty for iterator and
+          empty for initializer.
+          Use Check <a
+          href="config_whitespace.html#EmptyForIteratorPad">EmptyForIteratorPad</a>
+          to validate empty for iterators and <a
+          href="config_whitespace.html#EmptyForInitializerPad">EmptyForInitializerPad</a>
+          to validate empty for initializers. Typecasts are also not checked, as there is <a
+          href="config_whitespace.html#TypecastParenPad">TypecastParenPad</a>
+          to validate them.
         </p>
       </subsection>
 
@@ -736,28 +745,84 @@ for (Iterator foo = very.long.line.iterator();
 
             <td>
               subset of tokens <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION">ANNOTATION</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_CALL">CTOR_CALL</a>,
               <a
-               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LPAREN">LPAREN</a>,
-               <a
-                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">METHOD_CALL</a>,
-                <a
-                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RPAREN">RPAREN</a>,
-                 <a
-                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">SUPER_CTOR_CALL</a>
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">EXPR</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">LITERAL_CATCH</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">LITERAL_DO</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">LITERAL_FOR</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">LITERAL_IF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">LITERAL_NEW</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">LITERAL_SWITCH</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">LITERAL_SYNCHRONIZED</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">LITERAL_WHILE</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">METHOD_CALL</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE_SPECIFICATION">RESOURCE_SPECIFICATION</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">SUPER_CTOR_CALL</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#QUESTION">QUESTION</a>
             </td>
 
             <td>
               <a
-               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_CALL">CTOR_CALL</a>,
-               <a
-                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LPAREN">LPAREN</a>,
-                <a
-                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">METHOD_CALL</a>,
-                 <a
-                  href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RPAREN">RPAREN</a>,
-                  <a
-                  href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">SUPER_CTOR_CALL</a>
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION">ANNOTATION</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_CALL">CTOR_CALL</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">EXPR</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">LITERAL_CATCH</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">LITERAL_DO</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">LITERAL_FOR</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">LITERAL_IF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">LITERAL_NEW</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">LITERAL_SWITCH</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">LITERAL_SYNCHRONIZED</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">LITERAL_WHILE</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">METHOD_CALL</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE_SPECIFICATION">RESOURCE_SPECIFICATION</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">SUPER_CTOR_CALL</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#QUESTION">QUESTION</a>
             </td>
           </tr>
         </table>
