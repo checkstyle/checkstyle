@@ -9,35 +9,35 @@ matrix:
   include:
     # unit tests (openjdk7, oraclejdk7 and oraclejdk8)
     - jdk: openjdk7
-      env: DESC="tests" MAIN_ARGS="integration-test" COVERALLS_ARGS=""
+      env: DESC="tests" CMD="mvn clean integration-test" COVERALLS_ARGS=""
     - jdk: oraclejdk7
-      env: DESC="tests" MAIN_ARGS="integration-test" COVERALLS_ARGS=""
+      env: DESC="tests" CMD="mvn clean integration-test" COVERALLS_ARGS=""
     - jdk: oraclejdk8
-      env: DESC="tests" MAIN_ARGS="integration-test" COVERALLS_ARGS=""
+      env: DESC="tests" CMD="mvn clean integration-test" COVERALLS_ARGS=""
     # checkstyle (openjdk7, oraclejdk7 and oraclejdk8)
     - jdk: openjdk7
-      env: DESC="checkstyle" MAIN_ARGS="verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
+      env: DESC="checkstyle" CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
     - jdk: oraclejdk7
-      env: DESC="checkstyle" MAIN_ARGS="verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
+      env: DESC="checkstyle" CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
     - jdk: oraclejdk8
-      env: DESC="checkstyle" MAIN_ARGS="verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
+      env: DESC="checkstyle" CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
     # cobertura and coveralls (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="cobertura and coveralls" MAIN_ARGS="cobertura:check" COVERALLS_ARGS="mvn clean cobertura:cobertura coveralls:report"
+      env: DESC="cobertura and coveralls" CMD="mvn clean cobertura:check" COVERALLS_ARGS="mvn clean cobertura:cobertura coveralls:report"
     # findbugs and pmd (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="findbugs and pmd" MAIN_ARGS="compile pmd:check findbugs:check" COVERALLS_ARGS=""
+      env: DESC="findbugs and pmd" CMD="mvn clean compile pmd:check findbugs:check" COVERALLS_ARGS=""
     # site (oraclejdk8 as 'site' success is required to be sure that on release time all will be ok, admins will use oracle8 version)
     - jdk: oraclejdk8
-      env: DESC="site" MAIN_ARGS="site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS=""
+      env: DESC="site" CMD="mvn clean site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS=""
     # assembly (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="assembly" MAIN_ARGS="install -Passembly -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS=""
+      env: DESC="assembly" CMD="mvn clean install -Passembly -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS=""
 
-script: mvn clean $MAIN_ARGS
+script: eval $CMD
 
 after_success:
-  - $COVERALLS_ARGS
+  - eval $COVERALLS_ARGS
 
 cache:
   directories:
