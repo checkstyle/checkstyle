@@ -34,7 +34,9 @@
   <rule ref="rulesets/java/codesize.xml/NPathComplexity">
     <properties>
       <!-- JavadocMethodCheck - deprecated
-           WhitespaceAroundCheck.isNotRelevantSituation - till #953
+           WhitespaceAroundCheck.isNotRelevantSituation - npath = 216, but additional extraction
+                                of expression to separate method does not make sense as it will
+                                damage incapsulation of that check.
       -->
       <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='isNotRelevantSituation' and ../../..[@Image='WhitespaceAroundCheck']] | //MethodDeclaration[@Name='validateCli' and ../../..[@Image='Main']] | //ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck' or @Image='JavadocStyleCheck']"/>
     </properties>
