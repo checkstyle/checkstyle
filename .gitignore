@@ -2,7 +2,11 @@
 .classpath
 .project
 .settings
+.externalToolBuilders
 
+# Eclipse-CS Checkstyle Plug-In IDE configuration files
+.checkstyle
+ 
 #Netbeans project files
 nbactions.xml
 nb-configuration.xml
