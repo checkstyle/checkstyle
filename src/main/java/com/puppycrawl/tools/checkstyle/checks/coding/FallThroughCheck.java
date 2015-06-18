@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks for fall through in switch statements
- * Finds locations where a case contains Java code -
+ * Finds locations where a case <b>contains</b> Java code -
  * but lacks a break, return, throw or continue statement.
  *
  * <p>
@@ -38,13 +38,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <p>
  * The following fragment of code will NOT trigger the check,
- * because of the comment "fallthru".
+ * because of the comment "fallthru" and absence of any Java code
+ * in case 5.
  * </p>
  * <pre>
  * case 3:
  *     x = 2;
  *     // fallthru
  * case 4:
+ * case 5:
+ * case 6:
+ *     break;
  * </pre>
  * <p>
  * The recognized relief comment can be configured with the property

@@ -2197,7 +2197,7 @@ if (&quot;something&quot;.equals(x))
         <p>
           Checks for fall-through in <code>switch</code>
           statements. Finds locations where a <code>case</code>
-          contains Java code but lacks a <code>break</code>, <code>return</code>,
+          <b>contains</b> Java code but lacks a <code>break</code>, <code>return</code>,
           <code>throw</code> or <code>continue</code>
           statement.
         </p>
@@ -2219,13 +2219,15 @@ case 0:
 case 1:
     i++;
     // falls through
-case 2: {
+case 2:
+case 3:
+case 4: {
     i++;
 }
 // fallthrough
-case 3:
+case 5:
     i++;
-/* fallthru */case 4:
+/* fallthru */case 6:
     i++
     break;
 }
