@@ -32,6 +32,7 @@ import java.io.File;
 
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.EMPTY;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.STACKOVERFLOW;
 
 public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
     @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
@@ -115,7 +116,6 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(RegexpMultilineCheck.class);
         final String[] expected = {
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
@@ -129,4 +129,30 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
+
+    @Test
+    public void testNoStackOverflowError() throws Exception {
+        // http://madbean.com/2004/mb2004-20/
+        checkConfig.addAttribute("format", "(x|y)*");
+
+        final String[] expected = {
+            "0: " + getCheckMessage(STACKOVERFLOW),
+        };
+
+        final File file = temporaryFolder.newFile();
+        Files.write(makeLargeXYString(), file, Charsets.UTF_8);
+
+        verify(checkConfig, file.getPath(), expected);
+    }
+
+    private CharSequence makeLargeXYString() {
+        // now needs 10'000 or 100'000, as just 1000 is no longer enough today to provoke the StackOverflowError
+        final int size = 100000;
+        StringBuffer largeString = new StringBuffer(size);
+        for (int i = 0; i < size / 2; i++) {
+            largeString.append("xy");
+        }
+        return largeString;
+    }
+
 }
