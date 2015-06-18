@@ -2,10 +2,6 @@ parser grammar JavadocParser;
 
 options { tokenVocab=JavadocLexer; }
 
-@parser::header {
-package com.puppycrawl.tools.checkstyle.grammars.javadoc;
-}
-
 @parser::members {
 	boolean isNextJavadocTag() {
 		int token1 = _input.LA(2);
