@@ -31,6 +31,7 @@ import org.junit.rules.TemporaryFolder;
 import java.io.File;
 
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.EMPTY;
 
 public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
     @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
@@ -116,6 +117,15 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
     public void testDefaultConfiguration() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpMultilineCheck.class);
         final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
+    }
+
+    @Test
+    public void testEmptyFormat() throws Exception {
+        checkConfig.addAttribute("format", null);
+        final String[] expected = {
+            "0: " + getCheckMessage(EMPTY),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
