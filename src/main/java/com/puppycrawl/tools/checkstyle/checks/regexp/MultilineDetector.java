@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import java.util.regex.Matcher;
+
+import com.google.common.base.Strings;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LineColumn;
 
@@ -40,6 +42,12 @@ class MultilineDetector {
      * file.
      */
     public static final String REGEXP_MINIMUM = "regexp.minimum";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String EMPTY = "regexp.empty";
 
     /** The detection options to use. */
     private final DetectorOptions options;
@@ -65,9 +73,15 @@ class MultilineDetector {
     public void processLines(FileText text) {
         this.text = text;
         resetState();
-        matcher = options.getPattern().matcher(text.getFullText());
-        findMatch();
-        finish();
+
+        if (!Strings.isNullOrEmpty(options.getFormat())) {
+            matcher = options.getPattern().matcher(text.getFullText());
+            findMatch();
+            finish();
+        }
+        else {
+            options.getReporter().log(0, EMPTY);
+        }
     }
 
     /** recursive method that finds the matches. */
