@@ -84,7 +84,7 @@
     <Match>
       <!-- false positive, beginTree is a kind of constructor for Checks -->
       <Or>
-        <Class name="com.puppycrawl.tools.checkstyle.checks.DeclarationCollector" />
+        <Class name="com.puppycrawl.tools.checkstyle.checks.AbstractDeclarationCollector" />
         <Class name="com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck" />
         <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck" />
         <!-- createJavadocNode is private and can not be launched without visitToken-->

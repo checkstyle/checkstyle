@@ -36,7 +36,7 @@ public class FinallyHandler extends BlockParentHandler {
      * @param parent        the parent handler
      */
     public FinallyHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent) {
+        DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, "finally", ast, parent);
     }
 

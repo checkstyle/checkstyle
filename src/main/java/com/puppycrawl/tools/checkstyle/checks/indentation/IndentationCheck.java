@@ -108,7 +108,7 @@ public class IndentationCheck extends Check {
     private boolean forceStrictCondition;
 
     /** handlers currently in use */
-    private final Deque<ExpressionHandler> handlers = new ArrayDeque<>();
+    private final Deque<AbstractExpressionHandler> handlers = new ArrayDeque<>();
 
     /** factory from which handlers are distributed */
     private final HandlerFactory handlerFactory = new HandlerFactory();
@@ -274,7 +274,7 @@ public class IndentationCheck extends Check {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final ExpressionHandler handler = handlerFactory.getHandler(this, ast,
+        final AbstractExpressionHandler handler = handlerFactory.getHandler(this, ast,
             handlers.peek());
         handlers.push(handler);
         handler.checkIndentation();

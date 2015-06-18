@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author o_sukhodolsky
  */
-public class MemberDefHandler extends ExpressionHandler {
+public class MemberDefHandler extends AbstractExpressionHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -37,7 +37,7 @@ public class MemberDefHandler extends ExpressionHandler {
      * @param parent        the parent handler
      */
     public MemberDefHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent) {
+        DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, "member def", ast, parent);
     }
 
@@ -59,7 +59,7 @@ public class MemberDefHandler extends ExpressionHandler {
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler child) {
+    public IndentLevel suggestedChildLevel(AbstractExpressionHandler child) {
         return getLevel();
     }
 
@@ -77,7 +77,7 @@ public class MemberDefHandler extends ExpressionHandler {
      */
     private void checkType() {
         final DetailAST type = getMainAst().findFirstToken(TokenTypes.TYPE);
-        final DetailAST ident = ExpressionHandler.getFirstToken(type);
+        final DetailAST ident = AbstractExpressionHandler.getFirstToken(type);
         final int columnNo = expandedTabsColumnNo(ident);
         if (startsLine(ident) && !getLevel().accept(columnNo)) {
             logError(ident, "type", columnNo);

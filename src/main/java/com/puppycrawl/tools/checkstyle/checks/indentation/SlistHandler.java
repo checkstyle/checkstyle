@@ -37,12 +37,12 @@ public class SlistHandler extends BlockParentHandler {
      * @param parent        the parent handler
      */
     public SlistHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent) {
+        DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, "block", ast, parent);
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler child) {
+    public IndentLevel suggestedChildLevel(AbstractExpressionHandler child) {
         // this is:
         //  switch (var) {
         //     case 3: {

@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import static com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler.MSG_CHILD_ERROR;
-import static com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler.MSG_CHILD_ERROR_MULTI;
-import static com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler.MSG_ERROR;
-import static com.puppycrawl.tools.checkstyle.checks.indentation.ExpressionHandler.MSG_ERROR_MULTI;
+import static com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler.MSG_CHILD_ERROR;
+import static com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler.MSG_CHILD_ERROR_MULTI;
+import static com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler.MSG_ERROR;
+import static com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler.MSG_ERROR_MULTI;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

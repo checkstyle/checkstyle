@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.DeclarationCollector;
+import com.puppycrawl.tools.checkstyle.checks.AbstractDeclarationCollector;
 
 /**
  * <p>Checks that code doesn't rely on the &quot;this&quot; default.
@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.checks.DeclarationCollector;
  * @author Stephen Bloch
  * @author o_sukhodolsky
  */
-public class RequireThisCheck extends DeclarationCollector {
+public class RequireThisCheck extends AbstractDeclarationCollector {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

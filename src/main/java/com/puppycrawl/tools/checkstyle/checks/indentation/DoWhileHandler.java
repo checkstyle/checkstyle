@@ -37,7 +37,7 @@ public class DoWhileHandler extends BlockParentHandler {
      * @param parent        the parent handler
      */
     public DoWhileHandler(IndentationCheck indentCheck,
-            DetailAST ast, ExpressionHandler parent) {
+            DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, "do..while", ast, parent);
     }
 

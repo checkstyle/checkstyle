@@ -183,11 +183,16 @@
   </rule>
 
   <rule ref="rulesets/java/migrating.xml"/>
+  
   <rule ref="rulesets/java/naming.xml">
-    <!-- till #983 -->
-    <exclude name="AbstractNaming"/>
     <!-- till #985 -->
     <exclude name="ShortVariable"/>
+  </rule>
+  <rule ref="rulesets/java/naming.xml/AbstractNaming">
+    <properties>
+     <!-- We can not brake compatibility with previous versions -->
+     <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Check']"/>
+    </properties>
   </rule>
   <rule ref="rulesets/java/naming.xml/LongVariable">
     <properties>
@@ -201,6 +206,7 @@
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main' or @Image='Tag']"/>
     </properties>
   </rule>
+  
   <rule ref="rulesets/java/optimizations.xml">
     <!--produces more false-positives than real problems-->
     <exclude name="AvoidInstantiatingObjectsInLoops"/>

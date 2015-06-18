@@ -24,7 +24,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
  *
  * @author jrichard
  */
-public class PrimordialHandler extends ExpressionHandler {
+public class PrimordialHandler extends AbstractExpressionHandler {
     /**
      * Construct an instance of this handler with the given indentation check.
      *
@@ -40,7 +40,7 @@ public class PrimordialHandler extends ExpressionHandler {
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler child) {
+    public IndentLevel suggestedChildLevel(AbstractExpressionHandler child) {
         return new IndentLevel(0);
     }
 

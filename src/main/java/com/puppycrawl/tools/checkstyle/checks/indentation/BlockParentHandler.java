@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author jrichard
  */
-public class BlockParentHandler extends ExpressionHandler {
+public class BlockParentHandler extends AbstractExpressionHandler {
     /**
      * Children checked by parent handlers.
      */
@@ -65,7 +65,7 @@ public class BlockParentHandler extends ExpressionHandler {
      * @param parent        the parent handler
      */
     public BlockParentHandler(IndentationCheck indentCheck,
-        String name, DetailAST ast, ExpressionHandler parent) {
+        String name, DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, name, ast, parent);
     }
 
@@ -311,7 +311,7 @@ public class BlockParentHandler extends ExpressionHandler {
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler child) {
+    public IndentLevel suggestedChildLevel(AbstractExpressionHandler child) {
         return getChildrenExpectedLevel();
     }
 

@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author jrichard
  */
-public class MethodCallHandler extends ExpressionHandler {
+public class MethodCallHandler extends AbstractExpressionHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -37,7 +37,7 @@ public class MethodCallHandler extends ExpressionHandler {
      * @param parent        the parent handler
      */
     public MethodCallHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent) {
+        DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck,
             ast.getType() == TokenTypes.METHOD_CALL
                 ? "method call" : "ctor call",
@@ -71,7 +71,7 @@ public class MethodCallHandler extends ExpressionHandler {
             //  side) of a method call with no "containing" call, use
             //  the first non-method call parent
 
-            ExpressionHandler p = getParent();
+            AbstractExpressionHandler p = getParent();
             while (p instanceof MethodCallHandler) {
                 p = p.getParent();
             }
@@ -138,7 +138,7 @@ public class MethodCallHandler extends ExpressionHandler {
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler child) {
+    public IndentLevel suggestedChildLevel(AbstractExpressionHandler child) {
         // for whatever reason a method that crosses lines, like asList
         // here:
         //            System.out.println("methods are: " + Arrays.asList(

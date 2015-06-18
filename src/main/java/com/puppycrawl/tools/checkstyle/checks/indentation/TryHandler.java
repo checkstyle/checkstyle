@@ -36,12 +36,12 @@ public class TryHandler extends BlockParentHandler {
      * @param parent        the parent handler
      */
     public TryHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent) {
+        DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, "try", ast, parent);
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler child) {
+    public IndentLevel suggestedChildLevel(AbstractExpressionHandler child) {
         if (child instanceof CatchHandler
             || child instanceof FinallyHandler) {
             return getLevel();

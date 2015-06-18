@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author o_sukhodolsky
  * @author Ilja Dubinin
  */
-public class NewHandler extends ExpressionHandler {
+public class NewHandler extends AbstractExpressionHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -38,7 +38,7 @@ public class NewHandler extends ExpressionHandler {
      */
     public NewHandler(IndentationCheck indentCheck,
                       DetailAST ast,
-                      ExpressionHandler parent) {
+                      AbstractExpressionHandler parent) {
         super(indentCheck, "operator new", ast, parent);
     }
 

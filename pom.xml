@@ -734,7 +734,7 @@
           <regex><pattern>.*.checks.AvoidEscapedUnicodeCharactersCheck</pattern><branchRate>97</branchRate><lineRate>98</lineRate></regex>
           <regex><pattern>.*.checks.CheckUtils</pattern><branchRate>91</branchRate><lineRate>97</lineRate></regex>
           <regex><pattern>.*.checks.ClassResolver</pattern><branchRate>85</branchRate><lineRate>93</lineRate></regex>
-          <regex><pattern>.*.checks.DeclarationCollector</pattern><branchRate>94</branchRate><lineRate>100</lineRate></regex>
+          <regex><pattern>.*.checks.AbstractDeclarationCollector</pattern><branchRate>94</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.DescendantTokenCheck</pattern><branchRate>91</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.NewlineAtEndOfFileCheck</pattern><branchRate>83</branchRate><lineRate>88</lineRate></regex>
           <regex><pattern>.*.checks.OuterTypeFilenameCheck</pattern><branchRate>71</branchRate><lineRate>92</lineRate></regex>
@@ -825,7 +825,7 @@
           <regex><pattern>.*.checks.indentation.ArrayInitHandler</pattern><branchRate>83</branchRate><lineRate>97</lineRate></regex>
           <regex><pattern>.*.checks.indentation.BlockParentHandler</pattern><branchRate>86</branchRate><lineRate>98</lineRate></regex>
           <regex><pattern>.*.checks.indentation.ElseHandler</pattern><branchRate>75</branchRate><lineRate>100</lineRate></regex>
-          <regex><pattern>.*.checks.indentation.ExpressionHandler</pattern><branchRate>91</branchRate><lineRate>97</lineRate></regex>
+          <regex><pattern>.*.checks.indentation.AbstractExpressionHandler</pattern><branchRate>91</branchRate><lineRate>97</lineRate></regex>
           <regex><pattern>.*.checks.indentation.ForHandler</pattern><branchRate>75</branchRate><lineRate>95</lineRate></regex>
           <regex><pattern>.*.checks.indentation.HandlerFactory</pattern><branchRate>77</branchRate><lineRate>81</lineRate></regex>
           <regex><pattern>.*.checks.indentation.ImportHandler</pattern><branchRate>50</branchRate><lineRate>87</lineRate></regex>

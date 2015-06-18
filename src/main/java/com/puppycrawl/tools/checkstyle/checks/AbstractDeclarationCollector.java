@@ -38,7 +38,7 @@ import java.util.Set;
  *
  * @author o_sukhodolsky
  */
-public abstract class DeclarationCollector extends Check {
+public abstract class AbstractDeclarationCollector extends Check {
     /**
      * Tree of all the parsed frames
      */

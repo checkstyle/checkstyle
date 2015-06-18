@@ -29,7 +29,7 @@ import java.util.Arrays;
  *
  * @author jrichard
  */
-public abstract class ExpressionHandler {
+public abstract class AbstractExpressionHandler {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -67,7 +67,7 @@ public abstract class ExpressionHandler {
     private final String typeName;
 
     /** containing AST handler */
-    private final ExpressionHandler parent;
+    private final AbstractExpressionHandler parent;
 
     /** indentation amount for this handler */
     private IndentLevel level;
@@ -81,8 +81,8 @@ public abstract class ExpressionHandler {
      * @param expr          the abstract syntax tree
      * @param parent        the parent handler
      */
-    public ExpressionHandler(IndentationCheck indentCheck,
-            String typeName, DetailAST expr, ExpressionHandler parent) {
+    public AbstractExpressionHandler(IndentationCheck indentCheck,
+            String typeName, DetailAST expr, AbstractExpressionHandler parent) {
         this.indentCheck = indentCheck;
         this.typeName = typeName;
         mainAst = expr;
@@ -122,7 +122,7 @@ public abstract class ExpressionHandler {
      *
      * @return suggested indentation for child
      */
-    public IndentLevel suggestedChildLevel(ExpressionHandler child) {
+    public IndentLevel suggestedChildLevel(AbstractExpressionHandler child) {
         return new IndentLevel(getLevel(), getBasicOffset());
     }
 
@@ -542,7 +542,7 @@ public abstract class ExpressionHandler {
      *
      * @return the Parent attribute
      */
-    protected final ExpressionHandler getParent() {
+    protected final AbstractExpressionHandler getParent() {
         return parent;
     }
 

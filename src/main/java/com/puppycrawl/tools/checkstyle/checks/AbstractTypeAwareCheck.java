@@ -57,7 +57,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
     private ClassResolver classResolver;
 
     /** Stack of maps for type params. */
-    private final Deque<Map<String, ClassInfo>> typeParams = new ArrayDeque<>();
+    private final Deque<Map<String, AbstractClassInfo>> typeParams = new ArrayDeque<>();
 
     /**
      * Whether to log class loading errors to the checkstyle report
@@ -315,7 +315,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
         final DetailAST params =
             ast.findFirstToken(TokenTypes.TYPE_PARAMETERS);
 
-        final Map<String, ClassInfo> paramsMap = Maps.newHashMap();
+        final Map<String, AbstractClassInfo> paramsMap = Maps.newHashMap();
         typeParams.push(paramsMap);
 
         if (params == null) {
@@ -334,7 +334,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
                 if (bounds != null) {
                     final FullIdent name =
                         FullIdent.createFullIdentBelow(bounds);
-                    final ClassInfo ci =
+                    final AbstractClassInfo ci =
                         createClassInfo(new Token(name), getCurrentClassName());
                     paramsMap.put(alias, ci);
                 }
@@ -368,9 +368,9 @@ public abstract class AbstractTypeAwareCheck extends Check {
      * @param surroundingClass name of surrounding class.
      * @return class infor for given name.
      */
-    protected final ClassInfo createClassInfo(final Token name,
+    protected final AbstractClassInfo createClassInfo(final Token name,
                                               final String surroundingClass) {
-        final ClassInfo ci = findClassAlias(name.getText());
+        final AbstractClassInfo ci = findClassAlias(name.getText());
         if (ci != null) {
             return new ClassAlias(name, ci);
         }
@@ -382,11 +382,11 @@ public abstract class AbstractTypeAwareCheck extends Check {
      * @param name given name
      * @return ClassInfo for alias if it exists, null otherwise
      */
-    protected final ClassInfo findClassAlias(final String name) {
-        ClassInfo ci = null;
-        final Iterator<Map<String, ClassInfo>> iterator = typeParams.descendingIterator();
+    protected final AbstractClassInfo findClassAlias(final String name) {
+        AbstractClassInfo ci = null;
+        final Iterator<Map<String, AbstractClassInfo>> iterator = typeParams.descendingIterator();
         while (iterator.hasNext()) {
-            final Map<String, ClassInfo> paramMap = iterator.next();
+            final Map<String, AbstractClassInfo> paramMap = iterator.next();
             ci = paramMap.get(name);
             if (ci != null) {
                 break;
@@ -398,7 +398,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
     /**
      * Contains class's <code>Token</code>.
      */
-    protected abstract static class ClassInfo {
+    protected abstract static class AbstractClassInfo {
         /** <code>FullIdent</code> associated with this class. */
         private final Token name;
 
@@ -406,7 +406,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
          * Creates new instance of class inforamtion object.
          * @param className token which represents class name.
          */
-        protected ClassInfo(final Token className) {
+        protected AbstractClassInfo(final Token className) {
             if (className == null) {
                 throw new IllegalArgumentException(
                     "ClassInfo's name should be non-null");
@@ -424,7 +424,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
     }
 
     /** Represents regular classes/enumes. */
-    private static final class RegularClass extends ClassInfo {
+    private static final class RegularClass extends AbstractClassInfo {
         /** name of surrounding class. */
         private final String surroundingClass;
         /** is class loadable. */
@@ -479,16 +479,16 @@ public abstract class AbstractTypeAwareCheck extends Check {
     }
 
     /** Represents type param which is "alias" for real type. */
-    private static class ClassAlias extends ClassInfo {
+    private static class ClassAlias extends AbstractClassInfo {
         /** Class information associated with the alias. */
-        private final ClassInfo classInfo;
+        private final AbstractClassInfo classInfo;
 
         /**
          * Creates nnew instance of the class.
          * @param name token which represents name of class alias.
          * @param classInfo class information associated with the alias.
          */
-        ClassAlias(final Token name, ClassInfo classInfo) {
+        ClassAlias(final Token name, AbstractClassInfo classInfo) {
             super(name);
             this.classInfo = classInfo;
         }

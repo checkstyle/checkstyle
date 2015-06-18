@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author jrichard
  */
-public class CaseHandler extends ExpressionHandler {
+public class CaseHandler extends AbstractExpressionHandler {
     /**
      * The child elements of a case expression.
      */
@@ -45,7 +45,7 @@ public class CaseHandler extends ExpressionHandler {
      * @param parent        the parent handler
      */
     public CaseHandler(IndentationCheck indentCheck,
-        DetailAST expr, ExpressionHandler parent) {
+        DetailAST expr, AbstractExpressionHandler parent) {
         super(indentCheck, "case", expr, parent);
     }
 
@@ -63,7 +63,7 @@ public class CaseHandler extends ExpressionHandler {
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler child) {
+    public IndentLevel suggestedChildLevel(AbstractExpressionHandler child) {
         return getLevel();
     }
 

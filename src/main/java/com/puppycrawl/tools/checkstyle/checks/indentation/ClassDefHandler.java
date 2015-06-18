@@ -38,7 +38,7 @@ public class ClassDefHandler extends BlockParentHandler {
      */
     public ClassDefHandler(IndentationCheck indentCheck,
                            DetailAST ast,
-                           ExpressionHandler parent) {
+                           AbstractExpressionHandler parent) {
         super(indentCheck,
               ast.getType() == TokenTypes.CLASS_DEF
               ? "class def" : ast.getType() == TokenTypes.ENUM_DEF

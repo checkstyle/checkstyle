@@ -45,7 +45,7 @@ public class HandlerFactory {
         Maps.newHashMap();
 
     /** cache for created method call handlers */
-    private final Map<DetailAST, ExpressionHandler> createdHandlers =
+    private final Map<DetailAST, AbstractExpressionHandler> createdHandlers =
         Maps.newHashMap();
 
     /** Creates a HandlerFactory. */
@@ -94,7 +94,7 @@ public class HandlerFactory {
             final Constructor<?> ctor = handlerClass
                 .getConstructor(new Class[] {IndentationCheck.class,
                     DetailAST.class, // current AST
-                    ExpressionHandler.class, // parent
+                    AbstractExpressionHandler.class, // parent
                 });
             typeHandlers.put(type, ctor);
         }
@@ -141,9 +141,9 @@ public class HandlerFactory {
      *
      * @return the ExpressionHandler for ast
      */
-    public ExpressionHandler getHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent) {
-        final ExpressionHandler handler =
+    public AbstractExpressionHandler getHandler(IndentationCheck indentCheck,
+        DetailAST ast, AbstractExpressionHandler parent) {
+        final AbstractExpressionHandler handler =
             createdHandlers.get(ast);
         if (handler != null) {
             return handler;
@@ -153,12 +153,12 @@ public class HandlerFactory {
             return createMethodCallHandler(indentCheck, ast, parent);
         }
 
-        ExpressionHandler expHandler = null;
+        AbstractExpressionHandler expHandler = null;
         try {
             final Constructor<?> handlerCtor =
                 typeHandlers.get(ast.getType());
             if (handlerCtor != null) {
-                expHandler = (ExpressionHandler) handlerCtor.newInstance(
+                expHandler = (AbstractExpressionHandler) handlerCtor.newInstance(
                         indentCheck, ast, parent);
             }
         }
@@ -187,9 +187,9 @@ public class HandlerFactory {
      *
      * @return new instance.
      */
-    ExpressionHandler createMethodCallHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent) {
-        ExpressionHandler theParent = parent;
+    AbstractExpressionHandler createMethodCallHandler(IndentationCheck indentCheck,
+        DetailAST ast, AbstractExpressionHandler parent) {
+        AbstractExpressionHandler theParent = parent;
         DetailAST astNode = ast.getFirstChild();
         while (astNode != null && astNode.getType() == TokenTypes.DOT) {
             astNode = astNode.getFirstChild();

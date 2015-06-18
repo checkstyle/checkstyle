@@ -43,7 +43,7 @@ public class SynchronizedHandler extends BlockParentHandler {
      * @param parent      the parent handler
      */
     public SynchronizedHandler(IndentationCheck indentCheck, DetailAST ast,
-                               ExpressionHandler parent) {
+                               AbstractExpressionHandler parent) {
         super(indentCheck, "synchronized", ast, parent);
         methodModifier = isMethodModifier(ast);
     }

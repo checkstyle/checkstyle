@@ -866,7 +866,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             final String documentedEx = tag.getArg1();
             final Token token = new Token(tag.getArg1(), tag.getLineNo(), tag
                     .getColumnNo());
-            final ClassInfo documentedCI = createClassInfo(token,
+            final AbstractClassInfo documentedCI = createClassInfo(token,
                     getCurrentClassName());
             boolean found = foundThrows.contains(documentedEx);
 
@@ -1037,14 +1037,14 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         /** does the exception have throws tag associated with. */
         private boolean found;
         /** class information associated with this exception. */
-        private final ClassInfo classInfo;
+        private final AbstractClassInfo classInfo;
 
         /**
          * Creates new instance for <code>FullIdent</code>.
          *
          * @param classInfo clas info
          */
-        ExceptionInfo(ClassInfo classInfo) {
+        ExceptionInfo(AbstractClassInfo classInfo) {
             this.classInfo = classInfo;
         }
 

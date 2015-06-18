@@ -37,7 +37,7 @@ public class ArrayInitHandler extends BlockParentHandler {
      * @param parent        the parent handler
      */
     public ArrayInitHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent) {
+        DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, "array initialization", ast, parent);
     }
 

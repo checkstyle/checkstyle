@@ -37,7 +37,7 @@ public class ObjectBlockHandler extends BlockParentHandler {
      * @param parent        the parent handler
      */
     public ObjectBlockHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent) {
+        DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, "object def", ast, parent);
     }
 

@@ -37,12 +37,12 @@ public class IfHandler extends BlockParentHandler {
      * @param parent        the parent handler
      */
     public IfHandler(IndentationCheck indentCheck,
-        DetailAST ast, ExpressionHandler parent) {
+        DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, "if", ast, parent);
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(ExpressionHandler child) {
+    public IndentLevel suggestedChildLevel(AbstractExpressionHandler child) {
         if (child instanceof ElseHandler) {
             return getLevel();
         }
