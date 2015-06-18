@@ -48,6 +48,11 @@ class MultilineDetector {
      * file.
      */
     public static final String EMPTY = "regexp.empty";
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String STACKOVERFLOW = "regexp.StackOverflowError";
 
     /** The detection options to use. */
     private final DetectorOptions options;
@@ -86,27 +91,39 @@ class MultilineDetector {
 
     /** Method that finds the matches. */
     private void findMatch() {
-        boolean foundMatch = matcher.find();
-        while (foundMatch) {
-            final LineColumn start = text.lineColumn(matcher.start());
-            final LineColumn end = text.lineColumn(matcher.end());
+        try {
+            boolean foundMatch = matcher.find();
 
-            if (!options.getSuppressor().shouldSuppress(start.getLine(),
-                    start.getColumn(), end.getLine(), end.getColumn())) {
-                currentMatches++;
-                if (currentMatches > options.getMaximum()) {
-                    if ("".equals(options.getMessage())) {
-                        options.getReporter().log(start.getLine(),
-                                REGEXP_EXCEEDED, matcher.pattern().toString());
-                    }
-                    else {
-                        options.getReporter()
-                                .log(start.getLine(), options.getMessage());
+            while (foundMatch) {
+                final LineColumn start = text.lineColumn(matcher.start());
+                final LineColumn end = text.lineColumn(matcher.end());
+
+                if (!options.getSuppressor().shouldSuppress(start.getLine(),
+                        start.getColumn(), end.getLine(), end.getColumn())) {
+                    currentMatches++;
+                    if (currentMatches > options.getMaximum()) {
+                        if ("".equals(options.getMessage())) {
+                            options.getReporter().log(start.getLine(),
+                                    REGEXP_EXCEEDED, matcher.pattern().toString());
+                        }
+                        else {
+                            options.getReporter()
+                                    .log(start.getLine(), options.getMessage());
+                        }
                     }
                 }
+                foundMatch = matcher.find();
             }
-            foundMatch = matcher.find();
         }
+        // see http://bugs.java.com/bugdatabase/view_bug.do?bug_id=6337993 et al.
+        catch (StackOverflowError e) {
+            // OK http://blog.igorminar.com/2008/05/catching-stackoverflowerror-and-bug-in.html
+            // http://programmers.stackexchange.com/questions/
+            //        209099/is-it-ever-okay-to-catch-stackoverflowerror-in-java
+            options.getReporter().log(0, STACKOVERFLOW, matcher.pattern().toString());
+            return;
+        }
+
     }
 
     /** Perform processing at the end of a set of lines. */
