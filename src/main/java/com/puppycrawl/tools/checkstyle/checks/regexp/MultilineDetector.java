@@ -41,6 +41,12 @@ class MultilineDetector {
      */
     public static final String REGEXP_MINIMUM = "regexp.minimum";
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String STACKOVERFLOW = "regexp.StackOverflowError";
+
     /** The detection options to use. */
     private final DetectorOptions options;
     /** Tracks the number of matches. */
@@ -72,7 +78,18 @@ class MultilineDetector {
 
     /** recursive method that finds the matches. */
     private void findMatch() {
-        final boolean foundMatch = matcher.find();
+        final boolean foundMatch;
+        try {
+            foundMatch = matcher.find();
+        }
+        // see http://bugs.java.com/bugdatabase/view_bug.do?bug_id=6337993 et al.
+        catch (StackOverflowError e) {
+            // OK http://blog.igorminar.com/2008/05/catching-stackoverflowerror-and-bug-in.html
+            // http://programmers.stackexchange.com/questions/
+            //        209099/is-it-ever-okay-to-catch-stackoverflowerror-in-java
+            options.getReporter().log(0, STACKOVERFLOW, matcher.pattern().toString());
+            return;
+        }
         if (!foundMatch) {
             return;
         }
