@@ -316,7 +316,7 @@
                   <pluginExecutionFilter>
                     <groupId>org.antlr</groupId>
                     <artifactId>antlr4-maven-plugin</artifactId>
-                    <versionRange>[4.0,)</versionRange>
+                    <versionRange>[4.2,)</versionRange>
                     <goals>
                       <goal>antlr4</goal>
                     </goals>
@@ -495,8 +495,11 @@
         <version>${antlr4.version}</version>
         <configuration>
           <visitor>true</visitor>
-          <sourceDirectory>${basedir}/src/main/resources/com/puppycrawl/tools/checkstyle/grammars/javadoc</sourceDirectory>
-          <outputDirectory>${project.build.directory}/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammars/javadoc</outputDirectory>
+          <sourceDirectory>${basedir}/src/main/resources/</sourceDirectory>
+          <outputDirectory>${project.build.directory}/generated-sources/antlr/</outputDirectory>
+          <includes>
+            <include>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.g4</include>
+          </includes>
         </configuration>
         <executions>
           <execution>
@@ -521,7 +524,6 @@
             <configuration>
               <sources>
                 <source>${project.build.directory}/generated-sources/antlr/</source>
-                <source>${project.build.directory}/generated-sources/antlr/javadoc</source>
               </sources>
             </configuration>
           </execution>
