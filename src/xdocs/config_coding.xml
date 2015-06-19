@@ -1114,6 +1114,31 @@ class MyClass {
         </source>
       </subsection>
 
+       <subsection name="Properties">
+        <table>
+          <tr class="header">
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+
+          <tr>
+            <td>skipEnhancedForLoopVariable</td>
+            <td>Controls whether to check <a href = "http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">enhanced for-loop</a> variable.</td>
+            <td>
+              <a
+              href="property_types.html#boolean">Boolean</a>
+            </td>
+            <td>
+             <code>
+              false
+             </code>
+            </td>
+          </tr>
+        </table>
+      </subsection>
+
       <subsection name="Example">
         <p>
           To configure the check:
@@ -1121,6 +1146,32 @@ class MyClass {
         <source>
 &lt;module name=&quot;ModifiedControlVariable&quot;/&gt;
         </source>
+
+        <p>
+         By default, This Check validates
+         <a href = "http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
+         Enhanced For-Loop</a>.
+         </p>
+         <p>
+         Option 'skipEnhancedForLoopVariable' could be used to skip check of variable
+         from Enhanced For Loop.
+         </p>
+         <p>
+         An example of how to configure the check so that it skips enhanced For Loop Variable is:
+         </p>
+         <source>
+         &lt;module name="ModifiedControlVariable"&gt;
+             &lt;property name="skipEnhancedForLoopVariable" value="true"/&gt;
+         &lt;/module&gt;
+         </source>
+         <p>Example:</p>
+         <p>
+         <source>
+         for ( String line: lines ) {
+             line = line.trim();   // it will skip this violation
+         }
+         </source>
+         </p>
       </subsection>
 
       <subsection name="Package">

@@ -44,4 +44,25 @@ public class ModifiedControlVariableCheckTest
         verify(checkConfig, getPath("coding/InputModifiedControl.java"), expected);
     }
 
+    @Test
+    public void testEnhancedForLoopVariableTrue() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ModifiedControlVariableCheck.class);
+        checkConfig.addAttribute("skipEnhancedForLoopVariable", "true");
+
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("coding/InputModifiedControlVariableEnhancedForLoopVariable.java"), expected);
+    }
+
+    @Test
+    public void testEnhancedForLoopVariableFalse() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ModifiedControlVariableCheck.class);
+
+        final String[] expected = {
+            "9:18: " + getCheckMessage(MSG_KEY, "line"),
+        };
+        verify(checkConfig, getPath("coding/InputModifiedControlVariableEnhancedForLoopVariable.java"), expected);
+    }
 }
