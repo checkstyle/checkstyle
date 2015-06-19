@@ -53,7 +53,7 @@ import java.util.Set;
  * Examples:
  * <p>
  * <pre>
- * &lt;module name=&quot;ModifiedControlVariableCheck&quot;&gt;
+ * &lt;module name=&quot;ModifiedControlVariable&quot;&gt;
  * &lt;/module&gt;
  * </pre>
  * </p>
@@ -63,6 +63,33 @@ import java.util.Set;
  * <code>
  * for(int i=0;i < 10;) {
  *     i++;
+ * }
+ * </code>
+ * </pre>
+ * </p>
+ * <p>
+ * By default, This Check validates
+ *  <a href = "http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
+ * Enhanced For-Loop</a>.
+ * </p>
+ * <p>
+ * Option 'skipEnhancedForLoopVariable' could be used to skip check of variable
+ *  from Enhanced For Loop.
+ * </p>
+ * <p>
+ * An example of how to configure the check so that it skips enhanced For Loop Variable is:
+ * </p>
+ * <pre>
+ * &lt;module name="ModifiedControlVariable"&gt;
+ *     &lt;property name="skipEnhancedForLoopVariable" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <p>
+ * <pre>
+ * <code>
+ * for (String line: lines) {
+ *     line = line.trim();   // it will skip this violation
  * }
  * </code>
  * </pre>
@@ -92,35 +119,25 @@ public final class ModifiedControlVariableCheck extends Check {
     /** Stack of block parameters. */
     private final Deque<Deque<String>> variableStack = new ArrayDeque<>();
 
+    /** Controls whether to skip enhanced for-loop variable. */
+    private boolean skipEnhancedForLoopVariable;
+
+    /**
+     * Whether to skip enhanced for-loop variable or not.
+     * @param skipEnhancedForLoopVariable whether to skip enhanced for-loop variable
+     */
+    public void setSkipEnhancedForLoopVariable(boolean skipEnhancedForLoopVariable) {
+        this.skipEnhancedForLoopVariable = skipEnhancedForLoopVariable;
+    }
+
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.OBJBLOCK,
-            TokenTypes.LITERAL_FOR,
-            TokenTypes.FOR_ITERATOR,
-            TokenTypes.FOR_EACH_CLAUSE,
-            TokenTypes.ASSIGN,
-            TokenTypes.PLUS_ASSIGN,
-            TokenTypes.MINUS_ASSIGN,
-            TokenTypes.STAR_ASSIGN,
-            TokenTypes.DIV_ASSIGN,
-            TokenTypes.MOD_ASSIGN,
-            TokenTypes.SR_ASSIGN,
-            TokenTypes.BSR_ASSIGN,
-            TokenTypes.SL_ASSIGN,
-            TokenTypes.BAND_ASSIGN,
-            TokenTypes.BXOR_ASSIGN,
-            TokenTypes.BOR_ASSIGN,
-            TokenTypes.INC,
-            TokenTypes.POST_INC,
-            TokenTypes.DEC,
-            TokenTypes.POST_DEC,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return getAcceptableTokens();
     }
 
     @Override
@@ -190,7 +207,6 @@ public final class ModifiedControlVariableCheck extends Check {
         }
     }
 
-
     @Override
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
@@ -198,10 +214,16 @@ public final class ModifiedControlVariableCheck extends Check {
                 leaveForIter(ast.getParent());
                 break;
             case TokenTypes.FOR_EACH_CLAUSE:
-                leaveForEach(ast);
+                final DetailAST paramDef =
+                    ast.findFirstToken(TokenTypes.VARIABLE_DEF);
+                if (shouldCheckEnhancedForLoopVariable(paramDef)) {
+                    leaveForEach(paramDef);
+                }
                 break;
             case TokenTypes.LITERAL_FOR:
-                leaveForDef(ast);
+                if (!getCurrentVariables().isEmpty()) {
+                    leaveForDef(ast);
+                }
                 break;
             case TokenTypes.OBJBLOCK:
                 exitBlock();
@@ -292,12 +314,20 @@ public final class ModifiedControlVariableCheck extends Check {
     }
 
     /**
-     * Push current variables to the stack.
-     * @param forEach a for-each clause
+     * Determines whether enhanced for-loop variable should be checked or not.
+     * @param ast The ast to compare.
+     * @return true if enhanced for-loop variable should be checked.
      */
-    private void leaveForEach(DetailAST forEach) {
-        final DetailAST paramDef =
-            forEach.findFirstToken(TokenTypes.VARIABLE_DEF);
+    private boolean shouldCheckEnhancedForLoopVariable(DetailAST ast) {
+        return !skipEnhancedForLoopVariable
+                || ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE;
+    }
+
+    /**
+     * Push current variables to the stack.
+     * @param paramDef a for-each clause variable
+     */
+    private void leaveForEach(DetailAST paramDef) {
         final DetailAST paramName = paramDef.findFirstToken(TokenTypes.IDENT);
         getCurrentVariables().push(paramName.getText());
     }
@@ -311,7 +341,6 @@ public final class ModifiedControlVariableCheck extends Check {
         if (forInitAST != null) {
             final Set<String> variablesManagedByForLoop = getVariablesManagedByForLoop(ast);
             popCurrentVariables(variablesManagedByForLoop.size());
-
         }
         else {
             // this is for-each loop, just pop veriables
