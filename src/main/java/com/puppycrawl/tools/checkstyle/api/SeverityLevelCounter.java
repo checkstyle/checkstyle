@@ -68,16 +68,19 @@ public final class SeverityLevelCounter implements AuditListener {
     /** {@inheritDoc} */
     @Override
     public void fileStarted(AuditEvent evt) {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /** {@inheritDoc} */
     @Override
     public void auditFinished(AuditEvent evt) {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /** {@inheritDoc} */
     @Override
     public void fileFinished(AuditEvent evt) {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /**

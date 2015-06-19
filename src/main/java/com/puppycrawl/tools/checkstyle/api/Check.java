@@ -120,12 +120,14 @@ public abstract class Check extends AbstractViolationReporter {
      * everything required to perform it job.
      */
     public void init() {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /**
      * Destroy the check. It is being retired from service.
      */
     public void destroy() {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /**
@@ -134,6 +136,7 @@ public abstract class Check extends AbstractViolationReporter {
      * @param rootAST the root of the tree
      */
     public void beginTree(DetailAST rootAST) {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /**
@@ -142,6 +145,7 @@ public abstract class Check extends AbstractViolationReporter {
      * @param rootAST the root of the tree
      */
     public void finishTree(DetailAST rootAST) {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /**
@@ -149,6 +153,7 @@ public abstract class Check extends AbstractViolationReporter {
      * @param ast the token to process
      */
     public void visitToken(DetailAST ast) {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /**
@@ -156,6 +161,7 @@ public abstract class Check extends AbstractViolationReporter {
      * @param ast the token leaving
      */
     public void leaveToken(DetailAST ast) {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /**

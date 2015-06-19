@@ -314,6 +314,7 @@ class FileDrop {
 
         @Override
         public void dragOver(DropTargetDragEvent dtde) {
+            // No code, tree is read-only
         }
 
         public FileDropTargetListener(Component component, Border dragBorder, Listener listener) {

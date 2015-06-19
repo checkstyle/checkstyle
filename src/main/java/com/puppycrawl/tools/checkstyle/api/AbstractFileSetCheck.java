@@ -54,16 +54,19 @@ public abstract class AbstractFileSetCheck
     /** {@inheritDoc} */
     @Override
     public void init() {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /** {@inheritDoc} */
     @Override
     public void destroy() {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /** {@inheritDoc} */
     @Override
     public void beginProcessing(String charset) {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /** {@inheritDoc} */
@@ -81,6 +84,7 @@ public abstract class AbstractFileSetCheck
     /** {@inheritDoc} */
     @Override
     public void finishProcessing() {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /** {@inheritDoc} */

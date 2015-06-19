@@ -96,6 +96,7 @@ public abstract class AbstractJavadocCheck extends Check {
      *        the root of the tree
      */
     public void beginJavadocTree(DetailNode rootAst) {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /**
@@ -104,6 +105,7 @@ public abstract class AbstractJavadocCheck extends Check {
      *        the root of the tree
      */
     public void finishJavadocTree(DetailNode rootAst) {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /**
@@ -112,6 +114,7 @@ public abstract class AbstractJavadocCheck extends Check {
      *        the token to process
      */
     public void visitJavadocToken(DetailNode ast) {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /**
@@ -120,6 +123,7 @@ public abstract class AbstractJavadocCheck extends Check {
      *        the token leaving
      */
     public void leaveJavadocToken(DetailNode ast) {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /**
@@ -170,6 +174,7 @@ public abstract class AbstractJavadocCheck extends Check {
 
     @Override
     public final void leaveToken(DetailAST ast) {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     @Override

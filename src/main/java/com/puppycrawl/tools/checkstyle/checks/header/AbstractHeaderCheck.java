@@ -220,6 +220,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
      * This implementation does nothing.
      */
     protected void postprocessHeaderLines() {
+        // No code by default
     }
 
     @Override

@@ -140,11 +140,13 @@ public class DefaultLogger
     /** {@inheritDoc} */
     @Override
     public void fileFinished(AuditEvent evt) {
+        // No need to implement this method in this class
     }
 
     /** {@inheritDoc} */
     @Override
     public void fileStarted(AuditEvent evt) {
+        // No need to implement this method in this class
     }
 
     /** {@inheritDoc} */

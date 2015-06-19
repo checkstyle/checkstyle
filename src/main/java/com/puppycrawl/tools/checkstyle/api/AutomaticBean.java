@@ -226,6 +226,7 @@ public class AutomaticBean
      * @throws CheckstyleException if there is a configuration error.
      */
     protected void finishLocalSetup() throws CheckstyleException {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /**
@@ -239,6 +240,7 @@ public class AutomaticBean
      */
     protected void setupChild(Configuration childConf)
         throws CheckstyleException {
+        // No code by default, should be overridden only by demand at subclasses
     }
 
     /**

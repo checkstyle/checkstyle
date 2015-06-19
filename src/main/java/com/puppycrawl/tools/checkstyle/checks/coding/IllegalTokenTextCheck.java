@@ -73,10 +73,6 @@ public class IllegalTokenTextCheck
     }
 
     @Override
-    public void beginTree(DetailAST rootAST) {
-    }
-
-    @Override
     public int[] getDefaultTokens() {
         return new int[0];
     }

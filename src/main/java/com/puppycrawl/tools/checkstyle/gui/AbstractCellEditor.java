@@ -106,6 +106,7 @@ public class AbstractCellEditor implements CellEditor {
     /** @see CellEditor */
     @Override
     public void cancelCellEditing() {
+        // No code, tree is read-only
     }
 
     /** @see CellEditor */
