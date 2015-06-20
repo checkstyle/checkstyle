@@ -52,7 +52,7 @@ public class ParseTreeModel extends AbstractTreeTableModel {
         final Object[] path = {root};
         // no need to setup remaining info, as the call results in a
         // table structure changed event anyway - we just pass nulls
-        fireTreeStructureChanged(this, path, null, null);
+        fireTreeStructureChanged(this, path, null, (Object[])null);
     }
 
     @Override
