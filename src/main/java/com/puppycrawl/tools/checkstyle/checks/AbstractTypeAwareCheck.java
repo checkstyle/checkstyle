@@ -170,19 +170,6 @@ public abstract class AbstractTypeAwareCheck extends Check {
         else if (ast.getType() == TokenTypes.METHOD_DEF) {
             typeParams.pop();
         }
-        else if (ast.getType() != TokenTypes.PACKAGE_DEF
-                 && ast.getType() != TokenTypes.IMPORT) {
-            leaveAST(ast);
-        }
-    }
-
-    /**
-     * Called when exiting an AST. A no-op by default, extending classes
-     * may choose to override this to augment their processing.
-     * @param ast the AST we are departing. Guaranteed to not be PACKAGE_DEF,
-     *             CLASS_DEF, or IMPORT
-     */
-    protected void leaveAST(DetailAST ast) {
     }
 
     /**

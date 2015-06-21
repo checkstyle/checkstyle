@@ -65,8 +65,7 @@ public abstract class AbstractComplexityCheck
      *
      * @param ast the token being visited
      */
-    protected void visitTokenHook(DetailAST ast) {
-    }
+    protected abstract void visitTokenHook(DetailAST ast);
 
     /**
      * Hook called when leaving a token. Will not be called the method
@@ -74,8 +73,7 @@ public abstract class AbstractComplexityCheck
      *
      * @param ast the token being left
      */
-    protected void leaveTokenHook(DetailAST ast) {
-    }
+    protected abstract void leaveTokenHook(DetailAST ast);
 
     @Override
     public final int[] getRequiredTokens() {
