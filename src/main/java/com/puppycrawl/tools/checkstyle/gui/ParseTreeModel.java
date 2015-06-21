@@ -19,8 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.gui;
 
+import javax.swing.tree.TreePath;
+
 import antlr.ASTFactory;
 import antlr.collections.AST;
+
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -124,4 +127,8 @@ public class ParseTreeModel extends AbstractTreeTableModel {
         return ast.getChildCount();
     }
 
+    @Override
+    public void valueForPathChanged(TreePath path, Object newValue) {
+        //No Code, as tree is read-only
+    }
 }

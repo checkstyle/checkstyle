@@ -99,4 +99,9 @@ public class CyclomaticComplexityCheck
     protected final String getMessageID() {
         return MSG_KEY;
     }
+
+    @Override
+    protected void leaveTokenHook(DetailAST ast) {
+        // No Code
+    }
 }

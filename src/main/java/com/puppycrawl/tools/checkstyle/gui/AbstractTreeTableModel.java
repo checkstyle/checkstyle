@@ -94,9 +94,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
         return getChildCount(node) == 0;
     }
 
-    @Override
-    public void valueForPathChanged(TreePath path, Object newValue) {
-    }
+    public abstract void valueForPathChanged(TreePath path, Object newValue);
 
     // This is not called in the JTree's default mode: use a naive implementation.
     @Override
@@ -245,9 +243,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
         return getColumnClass(column) == TreeTableModel.class;
     }
 
-    @Override
-    public void setValueAt(Object value, Object node, int column) {
-    }
+    public abstract void setValueAt(Object value, Object node, int column);
 
 
     // Left to be implemented in the subclass:

@@ -144,13 +144,20 @@
     <exclude name="UncommentedEmptyMethod"/>
     <!-- till #996 -->
     <exclude name="PreserveStackTrace"/>
-    <!-- till #997 -->
-    <exclude name="EmptyMethodInAbstractClassShouldBeAbstract"/>
     <!-- we will use our own declaration order logic -->
     <exclude name="FieldDeclarationsShouldBeAtStartOfClass"/>
     <!-- too much alarms of Checks, we will never move logic out of Check, each Check is independed logic contianer -->
     <exclude name="GodClass"/>
   </rule>
+
+  <rule ref="rulesets/java/design.xml/EmptyMethodInAbstractClassShouldBeAbstract">
+    <properties>
+     <!-- Can not change API -->
+    <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AbstractFileSetCheck' 
+    or @Image='Check or @Image='AbstractJavadocCheck']"/>
+    </properties>
+  </rule>
+
   <rule ref="rulesets/java/design.xml/AvoidDeeplyNestedIfStmts">
     <properties>
       <!-- default is 3 but we try to use single point of exit from method and that require extra IFs -->
