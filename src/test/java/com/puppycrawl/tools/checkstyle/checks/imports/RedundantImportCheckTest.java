@@ -58,7 +58,9 @@ public class RedundantImportCheckTest
             "2:1: " + getCheckMessage(MSG_DUPLICATE, 1, "java.util.List"),
             "4:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
         };
-        verify(checkConfig, getPath("imports" + File.separator + "InputRedundantImportCheck_UnnamedPackage.java"), expected);
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/"
+                + "InputRedundantImportCheck_UnnamedPackage.java").getCanonicalPath(), expected);
     }
 
     @Test
