@@ -24,12 +24,11 @@ import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
-import java.io.File;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 import org.junit.Test;
+
+import java.io.File;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
@@ -42,10 +41,10 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
         DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
 
         String[] expected = {
-            "14:20: " + getCheckMessage(MSG_KEY, 2, 1),
-            "18:20: " + getCheckMessage(MSG_KEY, 2, 1),
-            "22:20: " + getCheckMessage(MSG_KEY, 3, 1),
-            "48:43: " + getCheckMessage(MSG_KEY, 2, 1),
+            "17:20: " + getCheckMessage(MSG_KEY, 5, 4),
+            "22:20: " + getCheckMessage(MSG_KEY, 5, 4),
+            "27:20: " + getCheckMessage(MSG_KEY, 6, 4),
+            "55:43: " + getCheckMessage(MSG_KEY, 5, 4),
         };
 
         verify(checkConfig, getPath("design" + File.separator + "InputThrowsCount.java"), expected);
@@ -54,10 +53,10 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
     @Test
     public void testMax() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
-        checkConfig.addAttribute("max", "2");
+        checkConfig.addAttribute("max", "5");
 
         String[] expected = {
-            "22:20: " + getCheckMessage(MSG_KEY, 3, 2),
+            "27:20: " + getCheckMessage(MSG_KEY, 6, 5),
         };
 
         verify(checkConfig, getPath("design" + File.separator + "InputThrowsCount.java"), expected);
@@ -96,11 +95,11 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
         DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
         checkConfig.addAttribute("ignorePrivateMethods", "false");
         String[] expected = {
-            "14:20: " + getCheckMessage(MSG_KEY, 2, 1),
-            "18:20: " + getCheckMessage(MSG_KEY, 2, 1),
-            "22:20: " + getCheckMessage(MSG_KEY, 3, 1),
-            "29:28: " + getCheckMessage(MSG_KEY, 3, 1),
-            "48:43: " + getCheckMessage(MSG_KEY, 2, 1),
+            "17:20: " + getCheckMessage(MSG_KEY, 5, 4),
+            "22:20: " + getCheckMessage(MSG_KEY, 5, 4),
+            "27:20: " + getCheckMessage(MSG_KEY, 6, 4),
+            "35:28: " + getCheckMessage(MSG_KEY, 5, 4),
+            "55:43: " + getCheckMessage(MSG_KEY, 5, 4),
         };
         verify(checkConfig, getPath("design" + File.separator + "InputThrowsCount.java"), expected);
     }
