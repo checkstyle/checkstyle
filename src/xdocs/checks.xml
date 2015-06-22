@@ -713,7 +713,7 @@
       <tr>
         <td><a href="config_design.html#ThrowsCount">ThrowsCount</a></td>
         <td>
-        Restricts throws statements to a specified count (default = 1).</td>
+        Restricts throws statements to a specified count (default = 4).</td>
       </tr>
       <tr>
         <td><a href="config_misc.html#TodoComment">TodoComment</a></td>

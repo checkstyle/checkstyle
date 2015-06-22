@@ -25,7 +25,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Restricts throws statements to a specified count (default = 1).
+ * Restricts throws statements to a specified count (default = 4).
  * Methods with "Override" or "java.lang.Override" annotation are skipped
  * from validation as current class cannot change signature of these methods.
  * </p>
@@ -35,11 +35,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * a method to throw too many differently rooted
  * exceptions makes exception handling onerous and leads
  * to poor programming practices such as catch
- * (Exception). This check forces developers to put
- * exceptions into a hierarchy such that in the simplest
+ * (Exception). 4 is the empirical value which is based
+ * on reports that we had for the ThrowsCountCheck over big projects
+ * such as OpenJDK. This check also forces developers to put exceptions
+ * into a hierarchy such that in the simplest
  * case, only one type of exception need be checked for by
  * a caller but allows any sub-classes to be caught
- * specifically if necessary.
+ * specifically if necessary. For more information on rules
+ * for the exceptions and their issues, see Effective Java:
+ * Programming Language Guide Second Edition
+ * by Joshua Bloch pages 264-273.
  * </p>
  * <p>
  * <b>ignorePrivateMethods</b> - allows to skip private methods as they do
@@ -56,7 +61,7 @@ public final class ThrowsCountCheck extends Check {
     public static final String MSG_KEY = "throws.count";
 
     /** default value of max property */
-    private static final int DEFAULT_MAX = 1;
+    private static final int DEFAULT_MAX = 4;
 
     /** whether private methods must be ignored **/
     private boolean ignorePrivateMethods = true;

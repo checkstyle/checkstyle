@@ -1,6 +1,9 @@
 package com.puppycrawl.tools.checkstyle.design;
 
 import java.awt.AWTException;
+import java.io.EOFException;
+import java.io.FileNotFoundException;
+import java.sql.SQLException;
 
 public class InputThrowsCount {
     void method1() throws Exception
@@ -11,22 +14,26 @@ public class InputThrowsCount {
     {
     }
 
-    void method3() throws Exception, AWTException
+    void method3() throws Exception, AWTException, SQLException,
+            FileNotFoundException, EOFException
     {
     }
 
-    void method4() throws Exception, java.awt.AWTException
+    void method4() throws Exception, java.awt.AWTException, java.sql.SQLException,
+            java.io.FileNotFoundException, java.io.EOFException
     {
     }
 
-    void method5() throws Exception, AWTException, Throwable
+    void method5() throws Exception, AWTException, Throwable, SQLException,
+            FileNotFoundException, EOFException
     {
     }
 
     void method6() {
     }
     
-    private void method7() throws Exception, AWTException, Throwable {
+    private void method7() throws Exception, AWTException, SQLException,
+            FileNotFoundException, EOFException {
     }
 }
 
@@ -41,11 +48,12 @@ class SubClass extends InputThrowsCount {
     }
 
     @Override
-    void method5() throws Exception, AWTException, Throwable {        
+    void method5() throws Exception, AWTException, Throwable {
     }
     
     @SuppressWarnings("deprecation")
-    final void method2(Object ...objects) throws Exception, AWTException{        
+    final void method2(Object ...objects) throws Exception, AWTException, SQLException,
+            FileNotFoundException, EOFException{
     }
     
     @java.lang.Override
