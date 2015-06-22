@@ -23,6 +23,11 @@
       <p>
         This section contains tables to display coverage Java styles by Checkstyle.
       </p>
+
+      <ul>
+        <li><a href="google_style.html">Google's style</a>;</li>
+        <li><a href="sun_style.html">Sun's style</a>.</li>
+      </ul>
     </section>
   </body>
 </document>
