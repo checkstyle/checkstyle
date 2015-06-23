@@ -24,8 +24,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck
-.WS_NOT_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.WS_NOT_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.WS_TYPECAST;
 
 public class WhitespaceAfterCheckTest
     extends BaseCheckTestSupport {
@@ -48,7 +48,7 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testCast() throws Exception {
         final String[] expected = {
-            "88:21: " + getCheckMessage(WS_NOT_FOLLOWED, "cast"),
+            "88:21: " + getCheckMessage(WS_TYPECAST),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
