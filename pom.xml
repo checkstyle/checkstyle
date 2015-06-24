@@ -819,7 +819,6 @@
           <regex><pattern>.*.checks.imports.ImportControlLoader</pattern><branchRate>72</branchRate><lineRate>88</lineRate></regex>
           <regex><pattern>.*.checks.imports.ImportOrderCheck</pattern><branchRate>91</branchRate><lineRate>99</lineRate></regex>
           <regex><pattern>.*.checks.imports.PkgControl</pattern><branchRate>80</branchRate><lineRate>100</lineRate></regex>
-          <regex><pattern>.*.checks.imports.UnusedImportsCheck</pattern><branchRate>95</branchRate><lineRate>100</lineRate></regex>
 
 
           <regex><pattern>.*.checks.indentation.ArrayInitHandler</pattern><branchRate>83</branchRate><lineRate>97</lineRate></regex>

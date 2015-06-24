@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.DefaultLogger;
  **/
 class InputUnusedImportsCheck
 {
-    /** ignore **/
+    /** ignore {@literal <B>Test Javadoc Tag that is not processed for imports</B>}**/
     private Class mUse1 = null;
     /** ignore **/
     private Class mUse2 = java.io.File.class;

@@ -149,4 +149,17 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
 
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void testFileInUnnamedPackage() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
+        final String[] expected = {
+            "3:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "4:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
+        };
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/"
+                + "InputRedundantImportCheck_UnnamedPackage.java").getCanonicalPath(), expected);
+    }
+
 }
