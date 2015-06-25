@@ -417,23 +417,23 @@ class CC {
           conditional statements and multi-part boolean expressions
           (e.g., A &amp;&amp; B, C || D, etc.).
           <br/>
-          The NPATH metric was designed base on Cyclomatic complexity to 
+          The NPATH metric was designed base on Cyclomatic complexity to
           avoid problem of Cyclomatic complexity metric like nesting level within a function.
         </p>
         <p>
-          Metic wsa described at <a href="http://dl.acm.org/citation.cfm?id=42379">"NPATH: a measure of execution path complexity and its applications"</a>. If you need detaled description of algorithm, please read that article,
-          it well written and have number of examples and details.
+          Metic wsa described at <a href="http://dl.acm.org/citation.cfm?id=42379">"NPATH: a measure of execution pathcomplexity and its applications"</a>. If you need detaled description of algorithm, please read that article,
+          it is well written and have number of examples and details.
         </p>
 
         <p>Here is some quotes:</p>
 
         <blockquote>An NPATH threshold value of 200 has been established
-          for a function. The value 200 is based on studies done 
+          for a function. The value 200 is based on studies done
           at AT&amp;T Bell Laboratories [1988 year].
         </blockquote>
 
         <blockquote>
-        Some of the most effective methods of reducing the NPATH value include<br/> 
+        Some of the most effective methods of reducing the NPATH value include<br/>
         - distributing functionality,<br/>
         - implementing multiple if statements as a switch statement<br/>
         - creating a separate function for logical expressions with a high count of and (&amp;&amp;) and or (||) operators.
@@ -441,18 +441,18 @@ class CC {
 
         <blockquote>
         Although strategies to reduce the NPATH complexity
-        of functions are important, care must be taken not to 
-        distort the logical clarity of the software by applying a 
-        strategy to reduce the complexity of functions. That is, 
-        there is a point of diminishing return beyond which a 
-        further attempt at reduction of complexity distorts the 
+        of functions are important, care must be taken not to
+        distort the logical clarity of the software by applying a
+        strategy to reduce the complexity of functions. That is,
+        there is a point of diminishing return beyond which a
+        further attempt at reduction of complexity distorts the
         logical clarity of the system structure.
         </blockquote>
 
         <table>
         <thead><tr><th>Structure</th><th> Complexity expression </th></tr></thead>
         <tr><td>if</td><td>NP((if-range))+NP((expr))+1</td></tr>
-        <tr><td>if-else</td><td>NP((if-range))+NP((else-range))+NP((expr))</td></tr> 
+        <tr><td>if-else</td><td>NP((if-range))+NP((else-range))+NP((expr))</td></tr>
         <tr><td>while</td><td>NP((while-range))+NP((expr))+1</td></tr>
         <tr><td>do while</td><td>NP((do-range))+NP((expr))+1</td></tr>
         <tr><td>for</td><td>NP((for-range))+NP((exprl))+NP((expr2))+NP((expr3))+1</td></tr>
@@ -468,15 +468,14 @@ class CC {
         <tr><td>C function</td><td>P(i=1:i=N) NP(Statement(i))</td></tr>
         </table>
 
-
         <p>
           <b>Rationale:</b> Nejmeh says that his group had an informal NPATH
           limit of 200 on individual routines; functions that exceeded
           this value were candidates for further decomposition - or at
-          least a closer look. 
+          least a closer look.
           <b>Please do not be fanatic with limit 200</b>
-          - choose number that suites your project style. Limit 200 is 
-          empirical number base on some sources of at AT&amp;T Bell Laboratories 
+          - choose number that suites your project style. Limit 200 is
+          empirical number base on some sources of at AT&amp;T Bell Laboratories
           of 1988 year.
         </p>
       </subsection>
