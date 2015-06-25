@@ -387,7 +387,8 @@ class FooBar {
           <li>sorts imports inside each group: ensures that imports
           within each group are in lexicographic order</li>
           <li>sorts according to case: ensures that the comparison
-          between imports is case sensitive</li>
+          between imports is case sensitive, in
+          <a href="http://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a></li>
           <li>groups static imports: ensures the relative order between
           regular imports and static imports (see
           <a href="property_types.html#importOrder">import orders</a>)</li>
@@ -435,7 +436,10 @@ class FooBar {
           </tr>
           <tr>
             <td>caseSensitive</td>
-            <td>whether string comparison should be case sensitive or not</td>
+            <td>whether string comparison should be case sensitive or not.
+              Case sensitive sorting is in
+              <a href="http://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>
+            </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
           </tr>
@@ -480,12 +484,13 @@ class FooBar {
         </source>
 
         <source>
-import static java.lang.Math.abs;
+import static java.lang.Math.PI;
+import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
 import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphabetical order
 
 import org.abego.*;
 
-import java.util.Set;
+import java.util.Set; //  Wrong order for 'java.util.Set' import.
 
 public class SomeClass { ... }
         </source>
