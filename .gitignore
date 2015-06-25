@@ -1,6 +1,6 @@
 #Eclipse project files
-.classpath
-.project
+#.classpath till https://issues.apache.org/jira/browse/MECLIPSE-735
+#.project till https://issues.apache.org/jira/browse/MECLIPSE-735
 .settings
 .externalToolBuilders
 
