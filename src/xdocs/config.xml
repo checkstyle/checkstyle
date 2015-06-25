@@ -19,7 +19,6 @@
   </head>
 
   <body>
-
     <section name="Overview">
       <p>
         A Checkstyle configuration specifies which <em>modules</em> to

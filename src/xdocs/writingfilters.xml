@@ -19,6 +19,13 @@
   </head>
 
   <body>
+    <section name="Content">
+      <macro name="toc">
+        <param name="fromDepth" value="1"/>
+        <param name="toDepth" value="1"/>
+      </macro>
+    </section>
+
     <section name="Overview">
       <p>
         A <code>Checker</code> has a set of <code>Filter</code>s that decide which audit events the <code>Checker</code> reports through its listeners.  Interface

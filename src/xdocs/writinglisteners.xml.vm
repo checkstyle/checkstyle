@@ -19,6 +19,7 @@
   </head>
 
   <body>
+
     <section name="Overview">
       <p>
         A Checkstyle listener monitors the progress of a <code>Checker</code> during the audit of files. The <code>Checker</code> notifies its attached listeners of
