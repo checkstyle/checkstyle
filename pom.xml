@@ -810,12 +810,10 @@
           <regex><pattern>.*.checks.header.RegexpHeaderCheck</pattern><branchRate>87</branchRate><lineRate>93</lineRate></regex>
 
 
-          <regex><pattern>.*.checks.imports.CustomImportOrderCheck</pattern><branchRate>93</branchRate><lineRate>91</lineRate></regex>
-          <regex><pattern>.*.checks.imports.Guard</pattern><branchRate>86</branchRate><lineRate>100</lineRate></regex>
+          <regex><pattern>.*.checks.imports.CustomImportOrderCheck</pattern><branchRate>98</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.imports.ImportControlCheck</pattern><branchRate>85</branchRate><lineRate>73</lineRate></regex>
           <regex><pattern>.*.checks.imports.ImportControlLoader</pattern><branchRate>72</branchRate><lineRate>88</lineRate></regex>
           <regex><pattern>.*.checks.imports.ImportOrderCheck</pattern><branchRate>91</branchRate><lineRate>99</lineRate></regex>
-          <regex><pattern>.*.checks.imports.PkgControl</pattern><branchRate>80</branchRate><lineRate>100</lineRate></regex>
 
 
           <regex><pattern>.*.checks.indentation.ArrayInitHandler</pattern><branchRate>83</branchRate><lineRate>97</lineRate></regex>
