@@ -22,9 +22,11 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.io.File;
+import java.lang.reflect.Method;
 
 import org.junit.Test;
 
@@ -33,6 +35,7 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCh
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_NONGROUP_IMPORT;
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_ORDER;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
     /**
@@ -73,7 +76,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
      * @throws Exception
      */
     @Test
-    public void testDefaultPackage() throws Exception {
+    public void testGoogleStyleguideConfiguraiton() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
         checkConfig.addAttribute("thirdPartyPackageRegExp", "com.|org.");
@@ -326,6 +329,28 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
         assertArrayEquals(expected, actual);
     }
 
+    @Test
+    // UT uses Reflection to avoid removing null-validation from static method,
+    // which is a candidate for utility method in the future
+    public void testGetFullImportIdent() {
+        Object actual;
+        try {
+            Class<?> c = Class.forName(
+                    "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck");
+            Object t = c.newInstance();
+            Method m = c.getDeclaredMethod("getFullImportIdent", DetailAST.class);
+            m.setAccessible(true);
+            actual = m.invoke(t, (DetailAST) null);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            actual = null;
+        }
+
+        String expected = "";
+        assertEquals(expected, (String) actual);
+    }
+
     @Test(expected = CheckstyleException.class)
     public void testSamePackageDepthNegative() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -336,9 +361,8 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
                 "SAME_PACKAGE(-1)");
         final String[] expected = {};
 
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                + "checkstyle/imports/"
-                + "InputCustomImportOrderSamePackageDepth2-5.java").getCanonicalPath(), expected);
+        verify(checkConfig, getPath("imports" + File.separator
+                + "InputCustomImportOrder.java"), expected);
     }
 
     @Test(expected = CheckstyleException.class)
@@ -351,9 +375,50 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
                 "SAME_PACKAGE(0)");
         final String[] expected = {};
 
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+        verify(checkConfig, getPath("imports" + File.separator
+                + "InputCustomImportOrder.java"), expected);
+    }
+
+    @Test(expected = CheckstyleException.class)
+    public void testUnsupportedRule() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("customImportOrderRules", "SAME_PACKAGE(3)###UNSUPPORTED_RULE"); //#AAA##BBBB###CCCC####DDDD
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "6: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "7: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "8: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "9: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+        };
+
+        verify(checkConfig, getPath("imports" + File.separator
+                + "InputCustomImportOrder.java"), expected);
+    }
+
+    @Test(expected = CheckstyleException.class)
+    public void testSamePackageDepthNotInt() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("customImportOrderRules", "SAME_PACKAGE(INT_IS_REQUIRED_HERE)");
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
+        final String[] expected = {};
+
+        verify(checkConfig, getPath("imports" + File.separator
+                + "InputCustomImportOrder.java"), expected);
+    }
+
+    @Test
+    public void testNoImports() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("customImportOrderRules", "SAME_PACKAGE(3)");
+        final String[] expected = {};
+
+        verify(checkConfig, new File("src/test/resources/com/puppycrawl/tools/"
                 + "checkstyle/imports/"
-                + "InputCustomImportOrderSamePackageDepth2-5.java").getCanonicalPath(), expected);
+                + "InputCustomImportOrder_NoImports.java").getCanonicalPath(), expected);
     }
 
 }

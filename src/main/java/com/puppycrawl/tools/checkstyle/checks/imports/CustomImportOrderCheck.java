@@ -296,22 +296,16 @@ public class CustomImportOrderCheck extends Check {
     /**
      * Sets a custom import order from the rules in the string format specified
      * by user.
-     * @param inputCustoimportOrder
+     * @param inputCustomImportOrder
      *        user value.
      */
-    public final void setCustomImportOrderRules(final String inputCustoimportOrder) {
+    public final void setCustomImportOrderRules(final String inputCustomImportOrder) {
         customImportOrderRules.clear();
-        try {
-            for (String currentState : inputCustoimportOrder
-                    .split("\\s*###\\s*")) {
-                addRuleastoList(currentState);
-            }
-            customImportOrderRules.add(NON_GROUP_RULE_GROUP);
+        for (String currentState : inputCustomImportOrder
+                .split("\\s*###\\s*")) {
+            addRuleastoList(currentState);
         }
-        catch (StringIndexOutOfBoundsException exp) {
-            //if the structure of the input rule isn't correct
-            throw new RuntimeException("Unable to parse input rule: " + exp);
-        }
+        customImportOrderRules.add(NON_GROUP_RULE_GROUP);
     }
 
     @Override
@@ -340,8 +334,7 @@ public class CustomImportOrderCheck extends Check {
     @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.PACKAGE_DEF) {
-            if (customImportOrderRules.contains(SAME_PACKAGE_RULE_GROUP)
-                    && samePackageMatchingDepth != -1) {
+            if (customImportOrderRules.contains(SAME_PACKAGE_RULE_GROUP)) {
                 samePackageDomainsRegExp = createSamePackageRegexp(
                         samePackageMatchingDepth, ast);
             }
@@ -640,12 +633,7 @@ public class CustomImportOrderCheck extends Check {
 
             final String rule = ruleStr.substring(ruleStr.indexOf('(') + 1,
                     ruleStr.indexOf(')'));
-            try {
-                samePackageMatchingDepth = Integer.parseInt(rule);
-            }
-            catch (NumberFormatException e) {
-                samePackageDomainsRegExp = rule;
-            }
+            samePackageMatchingDepth = Integer.parseInt(rule);
             if (samePackageMatchingDepth <= 0) {
                 throw new IllegalArgumentException(
                         "SAME_PACKAGE rule parameter should be positive integer: " + ruleStr);
