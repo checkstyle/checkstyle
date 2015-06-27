@@ -146,7 +146,8 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
         final DetailAST warningHolder =
             this.findWarningsHolder(annotation);
 
-        final DetailAST token = warningHolder.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
+        final DetailAST token =
+                warningHolder.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
         DetailAST warning;
 
         if (token != null) {
@@ -188,8 +189,8 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
                     case TokenTypes.DOT:
                         break;
                     default:
-                        throw new IllegalStateException("Should never get here, type: "
-                                + fChild.getType() + " text: " + fChild.getText());
+                        // #1252 - cases like @SuppressWarnings("un" + "used") or
+                        // @SuppressWarnings((String) "unused")
                 }
             }
             warning = warning.getNextSibling();
