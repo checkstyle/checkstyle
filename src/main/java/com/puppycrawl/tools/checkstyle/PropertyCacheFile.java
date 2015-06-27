@@ -27,6 +27,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 import java.security.MessageDigest;
 
@@ -202,9 +203,9 @@ final class PropertyCacheFile {
 
             return hexEncode(md.digest());
         }
-        catch (final Exception ex) { // IO, NoSuchAlgorithm
-            LOG.debug("Unable to calculate hashcode.", ex);
-            return "ALWAYS FRESH: " + System.currentTimeMillis();
+        catch (final IOException | NoSuchAlgorithmException ex) {
+            // rethrow as unchecked exception
+            throw new IllegalStateException("Unable to calculate hashcode.", ex);
         }
     }
 

@@ -24,6 +24,7 @@
 
   <!-- The local ones -->
   <allow class="java.security.MessageDigest" local-only="true"/>
+  <allow class="java.security.NoSuchAlgorithmException" local-only="true"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.grammars" local-only="true"/>
   <allow pkg="org.apache.commons.cli" local-only="true"/>
 
