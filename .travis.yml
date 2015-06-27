@@ -38,7 +38,7 @@ matrix:
       env: DESC="RealTest - Orekit" CMD="git clone https://github.com/CS-SI/Orekit.git && cd Orekit && git checkout bc527a1 && sed -i 's/<orekit\.checkstyle\.version>6\.6</<orekit.checkstyle.version>6.8-SNAPSHOT</' pom.xml && cd .. && mvn clean install -Passembly -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd Orekit && mvn compile checkstyle:check" COVERALLS_ARGS=""
     # NoExceptiontest - Guava (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="NoExceptions - Guava" CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-to-test-on.properties && sed -i 's/#guava/guava/' projects-to-test-on.properties && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=all-checks-test-for-exceptions.xml" COVERALLS_ARGS=""
+      env: DESC="NoExceptions - Guava" CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-to-test-on.properties && sed -i 's/#guava/guava/' projects-to-test-on.properties && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml" COVERALLS_ARGS=""
 
 
 script: eval $CMD
