@@ -265,9 +265,9 @@
     <module name="UnnecessaryParentheses"/>
     <module name="AbbreviationAsWordInName"/>
     <module name="AvoidEscapedUnicodeCharacters"/>
+    <module name="AbstractClassName"/>
 
 <!--
-    <module name="AbstractClassName"/>
     <module name="AvoidInlineConditionals"/>
     <module name="BooleanExpressionComplexity"/>
     <module name="ClassDataAbstractionCoupling"/>
