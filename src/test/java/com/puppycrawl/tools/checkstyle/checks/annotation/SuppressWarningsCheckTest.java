@@ -26,7 +26,7 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck.MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED;
 
-public class SuppressWarningsTest extends BaseCheckTestSupport {
+public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
     /**
      * Tests SuppressWarnings with default regex.
      * @throws Exception
