@@ -77,9 +77,10 @@ public final class JavadocUtils {
                     tempTokenValueToName[tokenValue] = name;
                 }
             }
-            catch (Exception e) {
+            catch (IllegalAccessException ex) {
+                // rethrow as unchecked exception
                 throw new IllegalStateException(
-                    "Failed to instantiate collection of Javadoc tokens", e);
+                    "Failed to instantiate collection of Javadoc tokens", ex);
             }
         }
 

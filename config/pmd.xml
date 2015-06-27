@@ -223,10 +223,14 @@
     <exclude name="UseStringBufferForStringAppends"/>
   </rule>
   <rule ref="rulesets/java/strictexception.xml">
-    <!-- till #959 -->
-    <exclude name="AvoidCatchingGenericException"/>
     <!-- till #961 -->
     <exclude name="AvoidThrowingRawExceptionTypes"/>
+  </rule>
+  <rule ref="rulesets/java/strictexception.xml/AvoidCatchingGenericException">
+    <properties>
+        <!-- till #1244 and #1245 -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Checker' or @Image='CheckstyleAntTask']"/>
+    </properties>
   </rule>
   <rule ref="rulesets/java/strictexception.xml/ExceptionAsFlowControl">
     <properties>
