@@ -146,7 +146,16 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
         final DetailAST warningHolder =
             this.findWarningsHolder(annotation);
 
-        DetailAST warning = warningHolder.findFirstToken(TokenTypes.EXPR);
+        final DetailAST token = warningHolder.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
+        DetailAST warning;
+
+        if (token != null) {
+            // case like '@SuppressWarnings(value = UNUSED)'
+            warning = token.findFirstToken(TokenTypes.EXPR);
+        }
+        else {
+            warning = warningHolder.findFirstToken(TokenTypes.EXPR);
+        }
 
         //rare case with empty array ex: @SuppressWarnings({})
         if (warning == null) {

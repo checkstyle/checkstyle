@@ -815,4 +815,15 @@ public class SuppressWarningsTest extends BaseCheckTestSupport {
         verify(checkConfig, getPath("annotation" + File.separator
                 + "SuppressWarningsConstants.java"), expected);
     }
+
+    @Test
+    public void testValuePairAnnotation() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
+
+        String[] expected = {
+        };
+
+        verify(checkConfig, getPath("annotation" + File.separator
+                + "SuppressWarningsValuePair.java"), expected);
+    }
 }
