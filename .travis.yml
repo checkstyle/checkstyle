@@ -39,6 +39,12 @@ matrix:
     # NoExceptiontest - Guava (oraclejdk8)
     - jdk: oraclejdk8
       env: DESC="NoExceptions - Guava" CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-to-test-on.properties && sed -i 's/#guava/guava/' projects-to-test-on.properties && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml" COVERALLS_ARGS=""
+    # NoExceptiontest - Hibernate ORM (oraclejdk8)
+    - jdk: oraclejdk8
+      env: DESC="NoExceptions - Hibernate ORM" CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-to-test-on.properties && sed -i 's/#hibernate-orm/hibernate-orm/' projects-to-test-on.properties && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml" COVERALLS_ARGS=""
+    # NoExceptiontest - FindBugs (oraclejdk8)
+    - jdk: oraclejdk8
+      env: DESC="NoExceptions - FindBugs" CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-to-test-on.properties && sed -i 's/#findbugs/findbugs/' projects-to-test-on.properties && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml" COVERALLS_ARGS=""
 
 
 script: eval $CMD
