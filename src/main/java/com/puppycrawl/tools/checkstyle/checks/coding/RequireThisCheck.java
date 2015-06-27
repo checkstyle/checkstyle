@@ -120,7 +120,7 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
     public void visitToken(DetailAST ast) {
         super.visitToken(ast);
         if (ast.getType() == TokenTypes.IDENT) {
-            processIDENT(ast);
+            processIdent(ast);
         }
     }
 
@@ -130,7 +130,7 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
      *
      * @param ast IDENT to check.
      */
-    private void processIDENT(DetailAST ast) {
+    private void processIdent(DetailAST ast) {
         final int parentType = ast.getParent().getType();
         switch (parentType) {
             case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:

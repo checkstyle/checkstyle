@@ -33,6 +33,10 @@
     <suppress checks="ThrowsCount"
               files="Main.java"
               lines="63"/>
+    <!-- we can not change it as, Check name is part of API (used in configurations) -->
+    <suppress checks="AbbreviationAsWordInName"
+              files="JavaNCSSCheck.java"
+              lines="40"/>
 
     <!-- Tone down the checking for test code -->
     <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>

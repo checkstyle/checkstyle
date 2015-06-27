@@ -261,9 +261,9 @@
     <module name="TodoComment"/>
     <module name="UncommentedMain"/>
     <module name="UnnecessaryParentheses"/>
+    <module name="AbbreviationAsWordInName"/>
 
 <!--
-    <module name="AbbreviationAsWordInName"/>
     <module name="AbstractClassName"/>
     <module name="AvoidEscapedUnicodeCharacters"/>
     <module name="AvoidInlineConditionals"/>
