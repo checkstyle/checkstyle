@@ -21,6 +21,14 @@
     <suppress checks="AvoidEscapedUnicodeCharactersCheck"
               files="AvoidEscapedUnicodeCharactersCheck.java"/>
 
+    <!-- Can not change API -->
+    <suppress checks="AbstractClassNameCheck"
+              files="Check.java"/>
+
+    <!-- 'Abstract' pattern is used to show it is checking for abstract class name -->
+    <suppress checks="AbstractClassNameCheck"
+              files="AbstractClassNameCheck.java"/>
+
     <!-- Tone down the checking for test code -->
     <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>
     <suppress checks="ImportControl" files=".*[\\/]src[\\/]test[\\/]"/>
