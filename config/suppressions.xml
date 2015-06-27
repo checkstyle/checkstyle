@@ -8,31 +8,6 @@
     <suppress checks="FileLength"
               files="TokenTypes.java"
               lines="1"/>
-    <suppress checks="MagicNumber"
-              files="UnusedPrivateMethodCheck.java"
-              lines="176"/>
-    <suppress checks="ImportControl"
-              files="NewlineAtEndOfFileCheck.java"
-              lines="27"/>
-    <suppress checks="ImportControl"
-              files="TranslationCheck.java"
-              lines="24"/>
-    <suppress checks="ImportControl"
-              files="SuppressionCommentFilter.java"
-              lines="28"/>
-    <suppress checks="ImportControl"
-              files="SuppressWarningsFilter.java"
-              lines="24"/>
-    <suppress checks="ImportControl"
-              files="SuppressWithNearbyCommentFilter.java"
-              lines="28"/>
-    <suppress id="paramNum"
-              files="LocalizedMessage.java"
-              lines="141,148,181,213"/>
-    <!-- Entry point, higher throws count is not a problem -->
-    <suppress checks="ThrowsCount"
-              files="Main.java"
-              lines="63"/>
     <!-- we can not change it as, Check name is part of API (used in configurations) -->
     <suppress checks="AbbreviationAsWordInName"
               files="JavaNCSSCheck.java"
