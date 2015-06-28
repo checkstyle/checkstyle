@@ -268,7 +268,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
                     //SLIST could be absent if method is abstract, and code like "while(true);"
                     rcurly = lcurly.getLastChild();
                 }
-                nextToken = ast;
+                nextToken = lcurly;
                 break;
             default:
                 throw new RuntimeException("Unexpected token type ("
