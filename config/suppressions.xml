@@ -12,6 +12,8 @@
     <suppress checks="AbbreviationAsWordInName"
               files="JavaNCSSCheck.java"
               lines="40"/>
+    <!-- illegal words are part of Javadoc -->
+    <suppress checks="TodoComment" files=".*TodoCommentCheck\.java"/>
 
     <!-- Tone down the checking for test code -->
     <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>

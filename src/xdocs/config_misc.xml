@@ -154,11 +154,11 @@
         </source>
 
         <p>
-          To configure the check for comments that contain <code>WARNING</code>:
+          To configure the check for comments that contain <code>TODO</code> and <code>FIXME</code>:
         </p>
         <source>
 &lt;module name=&quot;TodoComment&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;WARNING&quot;/&gt;
+    &lt;property name=&quot;format&quot; value=&quot;(TODO)|(FIXME)&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * A check for 'TODO' comments. To check for other patterns in Java comments, set
+ * A check for 'TODO:' comments. To check for other patterns in Java comments, set
  * property format.
  * </p>
  * <p>
@@ -40,12 +40,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>
  * An example of how to configure the check for comments that contain
- * <code>WARNING</code> is:
+ * <code>TODO</code> or <code>FIXME</code>is:
  * </p>
  *
  * <pre>
  * &lt;module name="TodoComment"&gt;
- *    &lt;property name="format" value="WARNING"/&gt;
+ *    &lt;property name="format" value="(TODO)|(FIXME)"/&gt;
  * &lt;/module&gt;
  * </pre>
  * @author Oliver Burn

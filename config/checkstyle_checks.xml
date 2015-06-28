@@ -258,7 +258,9 @@
     <module name="ThrowsCount">
       <property name="max" value="2"/>
     </module>
-    <module name="TodoComment"/>
+    <module name="TodoComment">
+      <property name="format" value="(TODO)|(FIXME)" />
+    </module>
     <module name="UncommentedMain"/>
     <module name="UnnecessaryParentheses"/>
     <module name="AbbreviationAsWordInName"/>
