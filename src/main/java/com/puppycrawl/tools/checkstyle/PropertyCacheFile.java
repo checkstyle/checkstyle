@@ -197,7 +197,7 @@ final class PropertyCacheFile {
             // use a message digest here to keep the length of the
             // hashcode reasonable
 
-            final MessageDigest md = MessageDigest.getInstance("SHA");
+            final MessageDigest md = MessageDigest.getInstance("SHA-1");
             md.update(baos.toByteArray());
 
             return hexEncode(md.digest());
