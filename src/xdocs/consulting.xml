@@ -24,7 +24,8 @@
 
       <p>
         If all materials on our web site, stackoverflow.com knowledge and mail-list do not help you.
-        If there is something that could be improved in Checkstyle's documentation to make Checkstyle the easiest tool to use - please let our team know.
+        If there is something that could be improved in Checkstyle's documentation to make Checkstyle
+        the easiest tool to use - please let our team know.
       </p>
 
       <p>
@@ -32,13 +33,14 @@
           - personal consulting on how to introduce Checkstyle into your company process,<br/>
           - help in introducing Checkstyle to legacy projects,<br/>
           - help in developing company's personal code convention/style,<br/>
-          - help in eliminating <a href="http://en.wikipedia.org/wiki/Job_security">Job security</a> by enforcing code standards/style and static code analysis,<br/>
+          - help in eliminating <a href="http://en.wikipedia.org/wiki/Job_security">Job security</a>
+            by enforcing code standards/style and static code analysis,<br/>
           - prioritized handling of bugs/issues,<br/>
           - prioritized handling of enhancement requests,<br/>
           - ....<br/>
       </p>
       <p>
-        Please do not hesitate to contact me (Roman Ivanov) by email, you can find my email in git commits.
+        Please do not hesitate to contact me (Roman Ivanov) by email "ivanov-jr['a']mail[dot]ru".
       </p>
 
     </section>
