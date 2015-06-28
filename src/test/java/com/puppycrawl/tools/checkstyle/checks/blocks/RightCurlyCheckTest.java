@@ -143,4 +143,15 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("InputRightCurlyEmptyAbstractMethod.java"), expected);
     }
+
+    @Test
+    public void testWithAnnotations() throws Exception {
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT");
+        final String[] expected = {
+            "9:57: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
+            "16:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
+        };
+        verify(checkConfig, getPath("InputRightCurlyAnnotations.java"), expected);
+    }
 }
