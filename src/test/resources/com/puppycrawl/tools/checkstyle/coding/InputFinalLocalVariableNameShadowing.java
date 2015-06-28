@@ -24,3 +24,14 @@ class Foo2 {
         }
     }
 }
+
+enum InputFinalLocalVariableNameShadowingEnum{
+    test;
+    final String foo1 = "error";
+    InputFinalLocalVariableNameShadowingEnum()
+    {
+        String foo = foo1;
+        foo += foo1;
+    }
+
+}
