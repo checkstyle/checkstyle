@@ -19,6 +19,186 @@
   </head>
 
   <body>
+    <section name="Release 6.8">
+      <p>Breaking backward compatibility:</p>
+      <ul>
+        <li>
+          Detect only label as illegal token in IllegalToken check, default token set is changed to TokenTypes.LABELED_STAT. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1162">#1162</a>
+        </li>
+        <li>
+          Add possibility to configure targets for ParenPad check, LPAREN and RPAREN were removed from acceptable tokens. #1189 . Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1189">#1189</a>
+        </li>
+        <li>
+          Set default value of max property to 4 (from 1) for ThrowsCountCheck and update javadoc/xdoc. Author:  MEZk <a href="https://github.com/checkstyle/checkstyle/issues/1143">#1143</a>
+        </li>
+        <li>
+          Restoring method FileContents.getFileName() to keep backward compatibility for some time. Author:  Thomas Jensen <a href="https://github.com/checkstyle/checkstyle/issues/1205">#1205</a>
+        </li>
+        <li>
+          Rename CheckStyleTask to CheckstyleAntTask, Rename and move checkstyletask.properties. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1108">#1108</a>
+        </li>
+        <li>
+          Remove AnnotationUtility and ScopeUtils from API package. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1057">#1057</a>
+        </li>
+      </ul>
+
+      <p>New:</p>
+      <ul>
+        <li>
+          New option for <a href="http://checkstyle.sourceforge.net/config_coding.html#ModifiedControlVariable">ModifiedControlVariableCheck</a>: skipEnhancedForLoopVariable. Author:  Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1015">#1015</a>
+        </li>
+        <li>
+          New options for <a href="http://checkstyle.sourceforge.net/config_javadoc.html#SingleLineJavadoc">SingleLineJavadoc</a>: ignoredTags, ignoreInlineTags. Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1063">#1063</a>
+        </li>
+      </ul>
+
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          correction of parsing of attributes in <a href="http://checkstyle.sourceforge.net/config_javadoc.html#AtclauseOrder">AtclauseOrderCheck</a>, #1152 . Author:  Vladislav Lisetskiy  <a href="https://github.com/checkstyle/checkstyle/issues/1152">#1152</a>
+        </li>
+        <li>
+          fix for <a href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocMethod">JavadocMethodCheck</a>: catch NoClassDefFoundError in ClassResolver, #1192 . Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1192">#1192</a>
+        </li>
+        <li>
+          Replace hardcoded message in <a href="http://checkstyle.sourceforge.net/config_whitespace.html#NoWhitespaceAfter">WhitespaceAfterCheck</a> with new message (i18n). Author:  MEZk <a href="https://github.com/checkstyle/checkstyle/issues/967">#967</a>
+        </li>
+        <li>
+          Solution to wrong variable reported because of name shadowing in <a href="http://checkstyle.sourceforge.net/config_coding.html#FinalLocalVariable">FinalLocalVariableCheck</a>. Author:  Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1142">#1142</a>
+        </li>
+        <li>
+          Clarify misleading command line tool (CLI) output. Author:  Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1062">#1062</a>
+        </li>
+        <li>
+          solution to CLI fails when it could not find output file. solves #1181 . Author:  Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1181">#1181</a>
+        </li>
+        <li>
+          Fixed exception in <a href="http://checkstyle.sourceforge.net/config_imports.html#AvoidStaticImport">AvoidStaticImport</a> check trying to exclude members of inner class. Author:  Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1209">#1209</a>
+        </li>
+        <li>
+          Solution to "Incorrect config file cause CLI finish with error but no output with details" solves #1180 . Author:  Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1180">#1180</a>
+        </li>
+        <li>
+          Fix exception in <a href="http://checkstyle.sourceforge.net/config_annotation.html#SuppressWarnings">SuppressWarnings</a> check on complex annotations. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1201">#1201</a>
+        </li>
+        <li>
+          Fix value pair representation in <a href="http://checkstyle.sourceforge.net/config_annotation.html#SuppressWarnings">SuppressWarnings</a> check. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1246">#1246</a>
+        </li>
+        <li>
+          Do not generate violation for empty <a href="http://checkstyle.sourceforge.net/config_annotation.html#SuppressWarnings">SuppressWarnings</a>. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1187">#1187</a>
+        </li>
+        <li>
+          Fix <a href="http://checkstyle.sourceforge.net/config_coding.html#PackageDeclaration">PackageDeclaration</a> check for files with comments only. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1149">#1149</a>
+        </li>
+        <li>
+          Fix exception in <a href="http://checkstyle.sourceforge.net/config_annotation.html#SuppressWarningsHolder">SuppressWarningsHolder</a> on complex annotations or annotation with dot. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1148">#1148</a>
+        </li>
+      </ul>
+
+      <p>Notes:</p>
+      <ul>
+        <li>
+          .gitignore with Eclipse's .externalToolBuilders and .checkstyle from Checkstyle CS Eclipse Plug-in . Author:  Michael Vorburger
+        </li>
+        <li>
+           100% test coverage for com.puppycrawl.tools.checkstyle.checks.sizes. Author:  MEZk <a href="https://github.com/checkstyle/checkstyle/issues/1024">#1024</a>
+        </li>
+        <li>
+          Fix empty html pages for extending Checkstyle and style configurations. Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1231">#1231</a>
+        </li>
+        <li>
+          move non-compilable input to resources-noncompilable . Author:  Vladislav Lisetskiy
+        </li>
+        <li>
+          Minor update in FallThroughCheck xdoc and javadoc . Author:  Vladislav Lisetskiy
+        </li>
+        <li>
+          PMD violations: UncommentedEmptyMethod, EmptyMethodInAbstractClassShouldBeAbstract, AbstractNaming. Author:  Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/995">#995</a>, <a href="https://github.com/checkstyle/checkstyle/issues/997">#997</a>, <a href="https://github.com/checkstyle/checkstyle/issues/983">#983</a>
+        </li>
+        <li>
+          Fix violation of EmptyStatement, UncommentedMain, AvoidEscapedUnicodeCharacters, AbbreviationAsWordInName Checks in Checkstyle code. Author:  Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/945">#945</a>
+        </li>
+        <li>
+          Ineffective suppressions are removed from checkstyle's configs. Author:  Bhavik Patel
+        </li>
+        <li>
+          Checking existance of config file before processing target file. . Author:  Bhavik Patel
+        </li>
+        <li>
+          Changed Integration Tests to use /src/it/. Author:  Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1200">#1200</a>
+        </li>
+        <li>
+          Updated description for UnusedImports, RedundantImport , Change "Beginning Development" page to reference JDK1.8 . Author:  Aleksandr Ivanov
+        </li>
+        <li>
+          UT coverage for RedundantImport. AvoidStarImportCheck check, Added UTs for getAcceptableTokens() and getRequiredTokens(). Author:  Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1128">#1128</a>
+        </li>
+        <li>
+          CyclomaticComplexity applied with level 11. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/954">#954</a>
+        </li>
+        <li>
+          NPathComplexity: extend documentation to make clear how it works, suppression rules for NPathComplexity. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1218">#1218</a>, <a href="https://github.com/checkstyle/checkstyle/issues/953">#953</a>
+        </li>
+        <li>
+          Content section was added to ease navigation in Checks descriptions pages, favicon images (png,ico) were introduced . Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1208">#1208</a>
+        </li>
+        <li>
+          till MECLIPSE-735 we will keep Eclipse project files in repository. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1219">#1219</a>
+        </li>
+        <li>
+          Ordering issue with nested classes in static imports - xdoc was extended. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1239">#1239</a>
+        </li>
+        <li>
+          Update ant to 1.9.5, update for maven-eclipse-plugin to 2.10, system-rules updated to 1.11.0, commons-cli to 1.3.1 . Author:  Roman Ivanov
+        </li>
+        <li>
+          Integrate google-style-config-test as Integration Test. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/863">#863</a>
+        </li>
+        <li>
+          Add known limitations to SuppressWarnings check documentation. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1252">#1252</a>
+        </li>
+        <li>
+          Fix PMD violations of ExceptionAsFlowControl, AvoidCatchingGenericException rule. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/959">#959</a>, <a href="https://github.com/checkstyle/checkstyle/issues/962">#962</a>
+        </li>
+        <li>
+          Use SHA-1 instead on non-standard SHA in PropertyCacheFile. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1251">#1251</a>
+        </li>
+        <li>
+          Add TravisCI build for assembly creation. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1204">#1204</a>
+        </li>
+        <li>
+          Provide additional regression test for ParenPad check. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1189">#1189</a>
+        </li>
+        <li>
+          Add tests for equals and toString in SuppressionCommentFilter. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1088">#1088</a>
+        </li>
+        <li>
+          Move Regexp check from miscellaneous to regexp category. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1170">#1170</a>
+        </li>
+        <li>
+          Remove unused MethodCallLineWrapHandler class. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1178">#1178</a>
+        </li>
+        <li>
+          Make cobertura and coveralls build faster, Provide workaround for incorrect coverage shown by Cobertura. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1176">#1176</a>
+        </li>
+        <li>
+          Generate HTML report on Maven cobertura:cobertura goal. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1169">#1169</a>
+        </li>
+        <li>
+           Add virtual machine crash log files to .gitingore. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1168">#1168</a>
+        </li>
+        <li>
+          Configure RegexpSinglelineJava to detect non-ASCII characters. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1165">#1165</a>
+        </li>
+        <li>
+          Verify that classes with constants have private constructors. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/840">#840</a>
+        </li>
+        <li>
+          Update system-rules to 1.10.0, maven-assembly-plugin to 2.5.5, maven-failsafe-plugin to 2.18.1, Maven Shade Plugin to 2.4. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1156">#1156</a>, <a href="https://github.com/checkstyle/checkstyle/issues/1175">#1175</a>, <a href="https://github.com/checkstyle/checkstyle/issues/1193">#1193</a>, <a href="https://github.com/checkstyle/checkstyle/issues/1204">#1204</a>
+        </li>
+      </ul>
+    </section>
+
     <section name="Release 6.7">
       <p>Breaking backward compatibility:</p>
       <ul>
