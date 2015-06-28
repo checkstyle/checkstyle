@@ -62,6 +62,10 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * not the "unchecked" or "foo" warnings.  All of these warnings will be
  * considered and matched against regardless of what the conditional
  * evaluates to.
+ * <br/>
+ * The check also does not support code like {@code @SuppressWarnings("un" + "used")},
+ * {@code @SuppressWarnings((String) "unused")} or
+ * {@code @SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})}.
  * </p>
  *
  * <p>
@@ -189,8 +193,9 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
                     case TokenTypes.DOT:
                         break;
                     default:
-                        // #1252 - cases like @SuppressWarnings("un" + "used") or
-                        // @SuppressWarnings((String) "unused")
+                        // Known limitation: cases like @SuppressWarnings("un" + "used") or
+                        // @SuppressWarnings((String) "unused") are not properly supported,
+                        // but they should not cause exceptions.
                 }
             }
             warning = warning.getNextSibling();
