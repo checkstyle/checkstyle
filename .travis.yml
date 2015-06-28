@@ -56,7 +56,7 @@ matrix:
       env: DESC="NoExceptionTest - Spring" CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-to-test-on.properties && sed -i 's/#spring-framework/spring-framework/' projects-to-test-on.properties && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml" COVERALLS_ARGS=""
     # NoExceptionTest - Hbase (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="NoExceptionTest - Hbase" CMD="travis_wait git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-to-test-on.properties && sed -i 's/#Hbase/Hbase/' projects-to-test-on.properties && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml" COVERALLS_ARGS=""
+      env: DESC="NoExceptionTest - Hbase" CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-to-test-on.properties && sed -i 's/#Hbase/Hbase/' projects-to-test-on.properties && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && travis_wait ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml" COVERALLS_ARGS=""
 
 
 script: eval $CMD
