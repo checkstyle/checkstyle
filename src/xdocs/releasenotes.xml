@@ -23,13 +23,13 @@
       <p>Breaking backward compatibility:</p>
       <ul>
         <li>
-          Detect only label as illegal token in IllegalToken check, default token set is changed to TokenTypes.LABELED_STAT. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1162">#1162</a>
+          Detect only label as illegal token in <a href="http://checkstyle.sourceforge.net/config_coding.html#IllegalToken">IllegalToken</a> check, default token set is changed to TokenTypes.LABELED_STAT. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1162">#1162</a>
         </li>
         <li>
-          Add possibility to configure targets for ParenPad check, LPAREN and RPAREN were removed from acceptable tokens. #1189 . Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1189">#1189</a>
+          Add possibility to configure targets for <a href="http://checkstyle.sourceforge.net/config_whitespace.html#ParenPad">ParenPad</a> check, LPAREN and RPAREN were removed from acceptable tokens. #1189 . Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1189">#1189</a>
         </li>
         <li>
-          Set default value of max property to 4 (from 1) for ThrowsCountCheck and update javadoc/xdoc. Author:  MEZk <a href="https://github.com/checkstyle/checkstyle/issues/1143">#1143</a>
+          Set default value of max property to 4 (from 1) for <a href="http://checkstyle.sourceforge.net/config_design.html#ThrowsCount">ThrowsCountCheck</a> and update javadoc/xdoc. Author:  MEZk <a href="https://github.com/checkstyle/checkstyle/issues/1143">#1143</a>
         </li>
         <li>
           Restoring method FileContents.getFileName() to keep backward compatibility for some time. Author:  Thomas Jensen <a href="https://github.com/checkstyle/checkstyle/issues/1205">#1205</a>
@@ -70,7 +70,7 @@
           Clarify misleading command line tool (CLI) output. Author:  Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1062">#1062</a>
         </li>
         <li>
-          solution to CLI fails when it could not find output file. solves #1181 . Author:  Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1181">#1181</a>
+          solution to CLI fails when it could not find output file. Author:  Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1181">#1181</a>
         </li>
         <li>
           Fixed exception in <a href="http://checkstyle.sourceforge.net/config_imports.html#AvoidStaticImport">AvoidStaticImport</a> check trying to exclude members of inner class. Author:  Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1209">#1209</a>
@@ -110,7 +110,7 @@
           move non-compilable input to resources-noncompilable . Author:  Vladislav Lisetskiy
         </li>
         <li>
-          Minor update in FallThroughCheck xdoc and javadoc . Author:  Vladislav Lisetskiy
+          Minor update in <a href="http://checkstyle.sourceforge.net/config_coding.html#FallThrough">FallThroughCheck</a> xdoc and javadoc . Author:  Vladislav Lisetskiy
         </li>
         <li>
           PMD violations: UncommentedEmptyMethod, EmptyMethodInAbstractClassShouldBeAbstract, AbstractNaming. Author:  Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/995">#995</a>, <a href="https://github.com/checkstyle/checkstyle/issues/997">#997</a>, <a href="https://github.com/checkstyle/checkstyle/issues/983">#983</a>
@@ -155,7 +155,7 @@
           Integrate google-style-config-test as Integration Test. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/863">#863</a>
         </li>
         <li>
-          Add known limitations to SuppressWarnings check documentation. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1252">#1252</a>
+          Add known limitations to <a href="http://checkstyle.sourceforge.net/config_annotation.html#SuppressWarnings">SuppressWarnings</a> check documentation. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1252">#1252</a>
         </li>
         <li>
           Fix PMD violations of ExceptionAsFlowControl, AvoidCatchingGenericException rule. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/959">#959</a>, <a href="https://github.com/checkstyle/checkstyle/issues/962">#962</a>
@@ -173,7 +173,7 @@
           Add tests for equals and toString in SuppressionCommentFilter. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1088">#1088</a>
         </li>
         <li>
-          Move Regexp check from miscellaneous to regexp category. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1170">#1170</a>
+          Move <a href="http://checkstyle.sourceforge.net/config_regexp.html#Regexp">Regexp</a> check from miscellaneous to regexp category. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1170">#1170</a>
         </li>
         <li>
           Remove unused MethodCallLineWrapHandler class. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1178">#1178</a>
