@@ -29,7 +29,7 @@
           Add possibility to configure targets for <a href="http://checkstyle.sourceforge.net/config_whitespace.html#ParenPad">ParenPad</a> check, LPAREN and RPAREN were removed from acceptable tokens. Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1189">#1189</a>
         </li>
         <li>
-          Set default value of max property to 4 (from 1) for <a href="http://checkstyle.sourceforge.net/config_design.html#ThrowsCount">ThrowsCountCheck</a> and update javadoc/xdoc. Author:  MEZk <a href="https://github.com/checkstyle/checkstyle/issues/1143">#1143</a>
+          Set default value of max property to 4 (from 1) for <a href="http://checkstyle.sourceforge.net/config_design.html#ThrowsCount">ThrowsCountCheck</a> and update javadoc/xdoc. Author:  Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/1143">#1143</a>
         </li>
         <li>
           Restoring method FileContents.getFileName() to keep backward compatibility for some time. Author:  Thomas Jensen <a href="https://github.com/checkstyle/checkstyle/issues/1205">#1205</a>
@@ -61,7 +61,7 @@
           fix for <a href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocMethod">JavadocMethodCheck</a>: catch NoClassDefFoundError in ClassResolver. Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1192">#1192</a>
         </li>
         <li>
-          Replace hardcoded message in <a href="http://checkstyle.sourceforge.net/config_whitespace.html#NoWhitespaceAfter">WhitespaceAfterCheck</a> with new message (i18n). Author:  MEZk <a href="https://github.com/checkstyle/checkstyle/issues/967">#967</a>
+          Replace hardcoded message in <a href="http://checkstyle.sourceforge.net/config_whitespace.html#NoWhitespaceAfter">WhitespaceAfterCheck</a> with new message (i18n). Author:  Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/967">#967</a>
         </li>
         <li>
           Solution to wrong variable reported because of name shadowing in <a href="http://checkstyle.sourceforge.net/config_coding.html#FinalLocalVariable">FinalLocalVariableCheck</a>. Author:  Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1142">#1142</a>
@@ -101,7 +101,7 @@
           .gitignore with Eclipse's .externalToolBuilders and .checkstyle from Checkstyle CS Eclipse Plug-in . Author:  Michael Vorburger
         </li>
         <li>
-           100% test coverage for com.puppycrawl.tools.checkstyle.checks.sizes. Author:  MEZk <a href="https://github.com/checkstyle/checkstyle/issues/1024">#1024</a>
+           100% test coverage for com.puppycrawl.tools.checkstyle.checks.sizes. Author:  Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/1024">#1024</a>
         </li>
         <li>
           Fix empty html pages for extending Checkstyle and style configurations. Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1231">#1231</a>
@@ -285,7 +285,7 @@
           Change location of left curly braces to end of line. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1089">#1089</a>
         </li>
         <li>
-          Make coverage 100% for all classes at package com.puppycrawl.tools.checkstyle.checks.sizes. Author:  MEZk <a href="https://github.com/checkstyle/checkstyle/issues/1024">#1024</a>
+          Make coverage 100% for all classes at package com.puppycrawl.tools.checkstyle.checks.sizes. Author:  Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/1024">#1024</a>
         </li>
         <li>
           100% test coverage for com.puppycrawl.tools.checkstyle.checks.design. Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1009">#1009</a>
