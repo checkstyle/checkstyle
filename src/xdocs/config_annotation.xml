@@ -240,6 +240,10 @@
         not the "unchecked" or "foo" warnings.  All of these warnings will be
         considered and matched against regardless of what the conditional
         evaluates to.
+        <br/>
+        The check also does not support code like <code>@SuppressWarnings("un" + "used")</code>,
+        <code>@SuppressWarnings((String) "unused")</code> or
+        <code>@SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})</code>.
         </p>
       </subsection>
       <subsection name="Properties">

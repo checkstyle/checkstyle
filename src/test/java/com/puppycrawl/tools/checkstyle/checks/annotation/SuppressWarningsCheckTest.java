@@ -26,7 +26,7 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck.MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED;
 
-public class SuppressWarningsTest extends BaseCheckTestSupport {
+public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
     /**
      * Tests SuppressWarnings with default regex.
      * @throws Exception
@@ -814,5 +814,30 @@ public class SuppressWarningsTest extends BaseCheckTestSupport {
 
         verify(checkConfig, getPath("annotation" + File.separator
                 + "SuppressWarningsConstants.java"), expected);
+    }
+
+    @Test
+    public void testValuePairAnnotation() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
+
+        String[] expected = {
+        };
+
+        verify(checkConfig, getPath("annotation" + File.separator
+                + "SuppressWarningsValuePair.java"), expected);
+    }
+
+    @Test
+    public void testWorkingProperlyOnComplexAnnotations() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
+
+        String[] expected = {
+            "18:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "24:23: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "28:52: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "33:5: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+        };
+
+        verify(checkConfig, getPath("InputSuppressWarningsHolder.java"), expected);
     }
 }

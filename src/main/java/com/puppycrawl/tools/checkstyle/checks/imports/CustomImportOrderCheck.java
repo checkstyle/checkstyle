@@ -643,7 +643,7 @@ public class CustomImportOrderCheck extends Check {
             try {
                 samePackageMatchingDepth = Integer.parseInt(rule);
             }
-            catch (Exception e) {
+            catch (NumberFormatException e) {
                 samePackageDomainsRegExp = rule;
             }
             customImportOrderRules.add(SAME_PACKAGE_RULE_GROUP);

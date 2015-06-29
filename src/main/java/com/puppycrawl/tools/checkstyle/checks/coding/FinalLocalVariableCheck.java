@@ -257,14 +257,15 @@ public class FinalLocalVariableCheck extends Check {
     }
 
     /**
-     * Find the Class or Method in which it is defined.
+     * Find the Class or Constructor or Method in which it is defined.
      * @param ast Variable for which we want to find the scope in which it is defined
-     * @return ast The Class or Method in which it is defined.
+     * @return ast The Class or Constructor or Method in which it is defined.
      */
-    private static DetailAST findClassOrMethodInWhichItIsDefined(DetailAST ast) {
+    private static DetailAST findClassOrConstructorOrMethodInWhichItIsDefined(DetailAST ast) {
         DetailAST astTraverse = ast;
         while (!(astTraverse.getType() == TokenTypes.METHOD_DEF
-                || astTraverse.getType() == TokenTypes.CLASS_DEF)) {
+                || astTraverse.getType() == TokenTypes.CLASS_DEF
+                || astTraverse.getType() == TokenTypes.CTOR_DEF)) {
             astTraverse = astTraverse.getParent();
         }
         return astTraverse;
@@ -278,9 +279,9 @@ public class FinalLocalVariableCheck extends Check {
      */
     private static boolean isSameVariables(DetailAST ast1, DetailAST ast2) {
         final DetailAST classOrMethodOfAst1 =
-            findClassOrMethodInWhichItIsDefined(ast1);
+            findClassOrConstructorOrMethodInWhichItIsDefined(ast1);
         final DetailAST classOrMethodOfAst2 =
-            findClassOrMethodInWhichItIsDefined(ast2);
+            findClassOrConstructorOrMethodInWhichItIsDefined(ast2);
 
         final String identifierOfAst1 =
             classOrMethodOfAst1.findFirstToken(TokenTypes.IDENT).getText();
