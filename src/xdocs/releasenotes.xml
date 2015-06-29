@@ -26,7 +26,7 @@
           Detect only label as illegal token in <a href="http://checkstyle.sourceforge.net/config_coding.html#IllegalToken">IllegalToken</a> check, default token set is changed to TokenTypes.LABELED_STAT. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1162">#1162</a>
         </li>
         <li>
-          Add possibility to configure targets for <a href="http://checkstyle.sourceforge.net/config_whitespace.html#ParenPad">ParenPad</a> check, LPAREN and RPAREN were removed from acceptable tokens. #1189 . Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1189">#1189</a>
+          Add possibility to configure targets for <a href="http://checkstyle.sourceforge.net/config_whitespace.html#ParenPad">ParenPad</a> check, LPAREN and RPAREN were removed from acceptable tokens. Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1189">#1189</a>
         </li>
         <li>
           Set default value of max property to 4 (from 1) for <a href="http://checkstyle.sourceforge.net/config_design.html#ThrowsCount">ThrowsCountCheck</a> and update javadoc/xdoc. Author:  MEZk <a href="https://github.com/checkstyle/checkstyle/issues/1143">#1143</a>
@@ -55,10 +55,10 @@
       <p>Bug fixes:</p>
       <ul>
         <li>
-          correction of parsing of attributes in <a href="http://checkstyle.sourceforge.net/config_javadoc.html#AtclauseOrder">AtclauseOrderCheck</a>, #1152 . Author:  Vladislav Lisetskiy  <a href="https://github.com/checkstyle/checkstyle/issues/1152">#1152</a>
+          correction of parsing of attributes in <a href="http://checkstyle.sourceforge.net/config_javadoc.html#AtclauseOrder">AtclauseOrderCheck</a>. Author:  Vladislav Lisetskiy  <a href="https://github.com/checkstyle/checkstyle/issues/1152">#1152</a>
         </li>
         <li>
-          fix for <a href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocMethod">JavadocMethodCheck</a>: catch NoClassDefFoundError in ClassResolver, #1192 . Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1192">#1192</a>
+          fix for <a href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocMethod">JavadocMethodCheck</a>: catch NoClassDefFoundError in ClassResolver. Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1192">#1192</a>
         </li>
         <li>
           Replace hardcoded message in <a href="http://checkstyle.sourceforge.net/config_whitespace.html#NoWhitespaceAfter">WhitespaceAfterCheck</a> with new message (i18n). Author:  MEZk <a href="https://github.com/checkstyle/checkstyle/issues/967">#967</a>
@@ -76,7 +76,7 @@
           Fixed exception in <a href="http://checkstyle.sourceforge.net/config_imports.html#AvoidStaticImport">AvoidStaticImport</a> check trying to exclude members of inner class. Author:  Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1209">#1209</a>
         </li>
         <li>
-          Solution to "Incorrect config file cause CLI finish with error but no output with details" solves #1180 . Author:  Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1180">#1180</a>
+          Solution to "Incorrect config file cause CLI finish with error but no output with details". Author:  Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1180">#1180</a>
         </li>
         <li>
           Fix exception in <a href="http://checkstyle.sourceforge.net/config_annotation.html#SuppressWarnings">SuppressWarnings</a> check on complex annotations. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1201">#1201</a>
