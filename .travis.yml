@@ -23,7 +23,7 @@ matrix:
       env: DESC="checkstyle" CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
     # cobertura and coveralls (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="cobertura and coveralls" CMD="mvn clean cobertura:check" COVERALLS_ARGS="bash <(curl -s https://codecov.io/bash)"
+      env: DESC="cobertura and coveralls" CMD="mvn clean cobertura:cobertura" COVERALLS_ARGS="bash <(curl -s https://codecov.io/bash)"
     # findbugs and pmd (oraclejdk8)
     - jdk: oraclejdk8
       env: DESC="findbugs and pmd" CMD="mvn clean compile pmd:check findbugs:check" COVERALLS_ARGS=""
