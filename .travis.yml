@@ -9,66 +9,107 @@ matrix:
   include:
     # unit tests (openjdk7, oraclejdk7 and oraclejdk8)
     - jdk: openjdk7
-      env: 
-         - DESC="tests" 
-         - CMD="mvn clean integration-test" COVERALLS_ARGS=""
+      env:DESC="tests" CMD="mvn clean integration-test" COVERAGE_CMD=""
     - jdk: oraclejdk7
-      env: DESC="tests" CMD="mvn clean integration-test" COVERALLS_ARGS=""
+      env:DESC="tests" CMD="mvn clean integration-test" COVERAGE_CMD=""
     - jdk: oraclejdk8
-      env: DESC="tests" CMD="mvn clean integration-test" COVERALLS_ARGS=""
+      env:DESC="tests" CMD="mvn clean integration-test" COVERAGE_CMD=""
+
     # checkstyle (openjdk7, oraclejdk7 and oraclejdk8)
     - jdk: openjdk7
-      env: DESC="checkstyle" CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
+      env:DESC="checkstyle" CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERAGE_CMD=""
     - jdk: oraclejdk7
-      env: DESC="checkstyle" CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
+      env:DESC="checkstyle" CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERAGE_CMD=""
     - jdk: oraclejdk8
-      env: DESC="checkstyle" CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERALLS_ARGS=""
+      env:DESC="checkstyle" CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERAGE_CMD=""
+
     # cobertura and coveralls (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="cobertura and coveralls" CMD="mvn clean cobertura:cobertura" COVERALLS_ARGS="bash <(curl -s https://codecov.io/bash)"
+      env:
+        - DESC="cobertura and coveralls"
+        - CMD="mvn clean cobertura:cobertura"
+        - COVERAGE_CMD="bash <(curl -s https://codecov.io/bash)"
     # findbugs and pmd (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="findbugs and pmd" CMD="mvn clean compile pmd:check findbugs:check" COVERALLS_ARGS=""
+      env:
+        - DESC="findbugs and pmd"
+        - CMD="mvn clean compile pmd:check findbugs:check"
+        - COVERAGE_CMD=""
+
     # site (oraclejdk8 as 'site' success is required to be sure that on release time all will be ok, admins will use oracle8 version)
     - jdk: oraclejdk8
-      env: DESC="site" CMD="mvn clean site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS=""
+      env:
+        - DESC="site"
+        - CMD="mvn clean site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true"
+        - COVERAGE_CMD=""
     # assembly (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="assembly" CMD="mvn clean install -Passembly -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true" COVERALLS_ARGS=""
+      env:
+        - DESC="assembly"
+        - CMD="mvn clean install -Passembly -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true"
+        - COVERAGE_CMD=""
+
     # NoErrorTest - Orekit (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="NoErrorTest - Orekit" CMD="git clone https://github.com/CS-SI/Orekit.git && cd Orekit && git checkout bc527a1 && sed -i 's/<orekit\.checkstyle\.version>6\.6</<orekit.checkstyle.version>6.9-SNAPSHOT</' pom.xml && cd .. && mvn clean install -Passembly -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd Orekit && mvn compile checkstyle:check" COVERALLS_ARGS=""
+      env:
+        - DESC="NoErrorTest - Orekit"
+        - CMD="git clone https://github.com/CS-SI/Orekit.git && cd Orekit && git checkout bc527a1 && sed -i 's/<orekit\.checkstyle\.version>6\.6</<orekit.checkstyle.version>6.9-SNAPSHOT</' pom.xml && cd .. && mvn clean install -Passembly -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd Orekit && mvn compile checkstyle:check"
+        - COVERAGE_CMD=""
+
     # NoExceptiontest - Checkstyle, sevntu-checkstyle (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="NoExceptionTest - Checkstyle, sevntu-checkstyle" CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#checkstyle/checkstyle/' projects-for-travis.properties && sed -i 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml" COVERALLS_ARGS=""
+      env:
+        - DESC="NoExceptionTest - Checkstyle, sevntu-checkstyle"
+        - CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#checkstyle/checkstyle/' projects-for-travis.properties && sed -i 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+        - COVERAGE_CMD=""
     # NoExceptiontest - Guava (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="NoExceptionTest - Guava" CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#guava/guava/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml" COVERALLS_ARGS=""
+      env:
+        - DESC="NoExceptionTest - Guava"
+        - CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#guava/guava/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+        - COVERAGE_CMD=""
     # NoExceptionTest - Hibernate ORM (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="NoExceptionTest - Hibernate ORM" CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#hibernate-orm/hibernate-orm/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml" COVERALLS_ARGS=""
+      env:
+        - DESC="NoExceptionTest - Hibernate ORM"
+        - CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#hibernate-orm/hibernate-orm/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+        - COVERAGE_CMD=""
     # NoExceptionTest - FindBugs (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="NoExceptionTest - FindBugs" CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#findbugs/findbugs/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml" COVERALLS_ARGS=""
+      env:
+        - DESC="NoExceptionTest - FindBugs"
+        - CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#findbugs/findbugs/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+        - COVERAGE_CMD=""
     # NoExceptionTest - Pmd,elasticsearch,lombok-ast (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="NoExceptionTest - Pmd,elasticsearch,lombok-ast" CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#pmd/pmd/' projects-for-travis.properties && sed -i 's/#elasticsearch/elasticsearch/' projects-for-travis.properties && sed -i 's/#lombok-ast/lombok-ast/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml" COVERALLS_ARGS=""
+      env:
+        - DESC="NoExceptionTest - Pmd,elasticsearch,lombok-ast"
+        - CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#pmd/pmd/' projects-for-travis.properties && sed -i 's/#elasticsearch/elasticsearch/' projects-for-travis.properties && sed -i 's/#lombok-ast/lombok-ast/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+        - COVERAGE_CMD=""
     # NoExceptionTest - RxJava,java-design-patterns,MaterialDesignLibrary,apache-ant,apache-jsecurity,android-launcher (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="NoExceptionTest - RxJava,java-design-patterns,MaterialDesignLibrary,apache-ant,apache-jsecurity,android-launcher" CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#RxJava/RxJava/' projects-for-travis.properties && sed -i 's/#java-design-patterns/java-design-patterns/' projects-for-travis.properties && sed -i 's/#MaterialDesignLibrary/MaterialDesignLibrary/' projects-for-travis.properties && sed -i 's/#apache-ant/apache-ant/' projects-for-travis.properties && sed -i 's/#apache-jsecurity/apache-jsecurity/' projects-for-travis.properties && sed -i 's/#android-launcher/android-launcher/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml" COVERALLS_ARGS=""
+      env:
+        - DESC="NoExceptionTest - RxJava,java-design-patterns,MaterialDesignLibrary,apache-ant,apache-jsecurity,android-launcher"
+        - CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#RxJava/RxJava/' projects-for-travis.properties && sed -i 's/#java-design-patterns/java-design-patterns/' projects-for-travis.properties && sed -i 's/#MaterialDesignLibrary/MaterialDesignLibrary/' projects-for-travis.properties && sed -i 's/#apache-ant/apache-ant/' projects-for-travis.properties && sed -i 's/#apache-jsecurity/apache-jsecurity/' projects-for-travis.properties && sed -i 's/#android-launcher/android-launcher/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+        - COVERAGE_CMD=""
     # NoExceptionTest - Spring (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="NoExceptionTest - Spring" CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#spring-framework/spring-framework/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && travis_wait ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml" COVERALLS_ARGS=""
+      env:
+        - DESC="NoExceptionTest - Spring"
+        - CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#spring-framework/spring-framework/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && travis_wait ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+        - COVERAGE_CMD=""
     # NoExceptionTest - Hbase (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="NoExceptionTest - Hbase" CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#Hbase/Hbase/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && travis_wait ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml" COVERALLS_ARGS=""
+      env:
+        - DESC="NoExceptionTest - Hbase"
+        - CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#Hbase/Hbase/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && travis_wait ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+        - COVERAGE_CMD=""
 
 
 script: eval $CMD
 
 after_success:
-  - ls -al
-  - eval $COVERALLS_ARGS
+  - eval $COVERAGE_CMD
 
 cache:
   directories:
