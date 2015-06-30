@@ -27,7 +27,7 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="cobertura and coveralls"
-        - CMD="mvn clean cobertura:cobertura"
+        - CMD="mvn clean cobertura:check cobertura:cobertura"
         - COVERAGE_CMD="bash <(curl -s https://codecov.io/bash)"
     # findbugs and pmd (oraclejdk8)
     - jdk: oraclejdk8
