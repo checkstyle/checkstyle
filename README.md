@@ -63,8 +63,9 @@ directory.
 [sonar]:http://nemo.sonarqube.org/dashboard/index/com.puppycrawl.tools:checkstyle
 [sonar img]:https://dev.eclipse.org/sonar/images/logo.png?1400775536
 
-[coverage]:https://coveralls.io/r/checkstyle/checkstyle
-[coverage img]:https://coveralls.io/repos/checkstyle/checkstyle/badge.svg
+[coverage]:http://codecov.io/github/checkstyle/checkstyle?branch=master
+[coverage img]:http://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=master
+
 
 [license]:LICENSE
 [license img]:https://img.shields.io/badge/license-GNU%20LGPL%20v2.1-blue.svg
