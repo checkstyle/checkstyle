@@ -40,6 +40,13 @@ import java.util.Map;
  */
 public class SuppressWarningsHolder
     extends Check {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "suppress.warnings.invalid.target";
+
     /**
      * Optional prefix for warning suppressions that are only intended to be
      * recognized by checkstyle. For instance, to suppress {@code
@@ -244,7 +251,7 @@ public class SuppressWarningsHolder
 
 
             if (targetAST == null) {
-                log(ast, "suppress.warnings.invalid.target");
+                log(ast.getLineNo(), MSG_KEY);
                 return;
             }
 
