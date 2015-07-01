@@ -84,32 +84,31 @@ class MultilineDetector {
         }
     }
 
-    /** recursive method that finds the matches. */
+    /** Method that finds the matches. */
     private void findMatch() {
-        final boolean foundMatch = matcher.find();
-        if (!foundMatch) {
-            return;
-        }
+        boolean foundMatch = matcher.find();
+        while (foundMatch) {
+            final LineColumn start = text.lineColumn(matcher.start());
+            final LineColumn end = text.lineColumn(matcher.end());
 
-        final LineColumn start = text.lineColumn(matcher.start());
-        final LineColumn end = text.lineColumn(matcher.end());
-
-        if (!options.getSuppressor().shouldSuppress(start.getLine(),
-                start.getColumn(), end.getLine(), end.getColumn())) {
-            currentMatches++;
-            if (currentMatches > options.getMaximum()) {
-                if ("".equals(options.getMessage())) {
-                    options.getReporter().log(start.getLine(),
-                            REGEXP_EXCEEDED, matcher.pattern().toString());
-                }
-                else {
-                    options.getReporter()
-                            .log(start.getLine(), options.getMessage());
+            if (!options.getSuppressor().shouldSuppress(start.getLine(),
+                    start.getColumn(), end.getLine(), end.getColumn())) {
+                currentMatches++;
+                if (currentMatches > options.getMaximum()) {
+                    if ("".equals(options.getMessage())) {
+                        options.getReporter().log(start.getLine(),
+                                REGEXP_EXCEEDED, matcher.pattern().toString());
+                    }
+                    else {
+                        options.getReporter()
+                                .log(start.getLine(), options.getMessage());
+                    }
                 }
             }
+            foundMatch = matcher.find();
         }
-        findMatch();
     }
+
     /** Perform processing at the end of a set of lines. */
     private void finish() {
         if (currentMatches < options.getMinimum()) {
