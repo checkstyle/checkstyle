@@ -111,7 +111,7 @@ public class MainTest {
     @Test
     public void testNonExistingConfigFile()
             throws Exception {
-        exit.expectSystemExitWithStatus(-1);
+        exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals(String.format("unable to find src/main/resources/non_existing_config.xml%n"
