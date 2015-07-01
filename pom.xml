@@ -830,7 +830,7 @@
           <regex><pattern>.*.checks.indentation.ImportHandler</pattern><branchRate>50</branchRate><lineRate>87</lineRate></regex>
           <regex><pattern>.*.checks.indentation.IndentationCheck</pattern><branchRate>100</branchRate><lineRate>93</lineRate></regex>
           <regex><pattern>.*.checks.indentation.IndexHandler</pattern><branchRate>100</branchRate><lineRate>75</lineRate></regex>
-          <regex><pattern>.*.checks.indentation.LineWrappingHandler</pattern><branchRate>87</branchRate><lineRate>91</lineRate></regex>
+          <regex><pattern>.*.checks.indentation.LineWrappingHandler</pattern><branchRate>87</branchRate><lineRate>95</lineRate></regex>
           <regex><pattern>.*.checks.indentation.MethodCallHandler</pattern><branchRate>63</branchRate><lineRate>87</lineRate></regex>
           <regex><pattern>.*.checks.indentation.MethodCallLineWrapHandler</pattern><branchRate>0</branchRate><lineRate>0</lineRate></regex>
           <regex><pattern>.*.checks.indentation.MethodDefHandler</pattern><branchRate>87</branchRate><lineRate>100</lineRate></regex>
