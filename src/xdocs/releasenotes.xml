@@ -19,6 +19,27 @@
   </head>
 
   <body>
+    <section name="Release 6.8.1">
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Cannot use config file bundled in jar. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1265">#1265</a>
+        </li>
+        <li>
+          NullPointerException at java.util.regex.Pattern from com.puppycrawl.tools.checkstyle.checks.regexp.DetectorOptions.getPattern. Author: Michael Vorburger <a href="https://github.com/checkstyle/checkstyle/issues/1224">#1224</a>
+        </li>
+        <li>
+          StackOverflow at java.util.regex.* . Author: Michael Vorburger <a href="https://github.com/checkstyle/checkstyle/issues/1221">#1221</a>
+        </li>
+        <li>
+          StackOverflow in com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.findMatch. Author: Michael Vorburger <a href="https://github.com/checkstyle/checkstyle/issues/48">#48</a>
+        </li>
+        <li>
+          RightCurly: Curly brace '}' should be on line by itself not reported for method with annotation. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/1014">#1014</a>
+        </li>
+      </ul>
+    </section>
+
     <section name="Release 6.8">
       <p>Breaking backward compatibility:</p>
       <ul>
