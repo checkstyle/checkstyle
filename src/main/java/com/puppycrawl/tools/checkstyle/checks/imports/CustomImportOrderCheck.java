@@ -42,35 +42,42 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * STATIC group. This group sets the ordering of static imports.
  * </pre>
  *
- * <pre>
+ * <p>
  * SAME_PACKAGE(n) group. This group sets the ordering of the same package imports.
- * 'n' - a number of the first package domains. For example:
- * </pre>
+ * Imports are considered on SAME_PACKAGE group if <b>n</b> first domains in package name
+ * and import name are identical.
+ * </p>
  *
  * <pre>
  * <code>
- * package java.util.concurrent;
+ * package java.util.concurrent.locks;
  *
- * import java.util.regex.Pattern;
- * import java.util.List;
- * import java.util.StringTokenizer;
- * import java.util.regex.Pattern;
- * import java.util.*;
- * import java.util.concurrent.AbstractExecutorService;
- * import java.util.concurrent.*;
- *
- * And we have such configuration: SAME_PACKAGE (3).
- * Same package imports are java.util.*, java.util.concurrent.*,
- * java.util.concurrent.AbstractExecutorService,
- * java.util.List and java.util.StringTokenizer
+ * import java.io.File;
+ * import java.util.*; //#1
+ * import java.util.List; //#2
+ * import java.util.StringTokenizer; //#3
+ * import java.util.concurrent.*; //#4
+ * import java.util.concurrent.AbstractExecutorService; //#5
+ * import java.util.concurrent.locks.LockSupport; //#6
+ * import java.util.regex.Pattern; //#7
+ * import java.util.regex.Matcher; //#8
  * </code>
  * </pre>
  *
- * <pre>
+ * <p>
+ * If we have SAME_PACKAGE(3) on configuration file,
+ * imports #4-6 will be considered as a SAME_PACKAGE group (java.util.concurrent.*,
+ * java.util.concurrent.AbstractExecutorService, java.util.concurrent.locks.LockSupport).
+ * SAME_PACKAGE(2) will include #1-8. SAME_PACKAGE(4) will include only #6.
+ * SAME_PACKAGE(5) will result in no imports assigned to SAME_PACKAGE group because
+ * actual package java.util.concurrent.locks has only 4 domains.
+ * </p>
+ *
+ * <p>
  * THIRD_PARTY_PACKAGE group. This group sets ordering of third party imports.
  * Third party imports are all imports except STATIC,
  * SAME_PACKAGE(n), STANDARD_JAVA_PACKAGE and SPECIAL_IMPORTS.
- * </pre>
+ * </p>
  *
  * <pre>
  * STANDARD_JAVA_PACKAGE group. This group sets ordering of standard java/javax imports.
@@ -82,7 +89,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  *
  * <p>
- * NOTICE!
+ * NOTE!
  * </p>
  * <p>
  * Use the separator '###' between rules.
@@ -593,9 +600,10 @@ public class CustomImportOrderCheck extends Check {
      */
     private boolean matchesSamePackageImportGroup(boolean isStatic,
         String importFullPath, String currentGroup) {
-        final String importPath = importFullPath.substring(0, importFullPath.lastIndexOf('.'));
+        final String importPathTrimmedToSamePackageDepth =
+                getFirstNDomainsFromIdent(this.samePackageMatchingDepth, importFullPath);
         return !isStatic && SAME_PACKAGE_RULE_GROUP.equals(currentGroup)
-                && samePackageDomainsRegExp.contains(importPath);
+                && samePackageDomainsRegExp.equals(importPathTrimmedToSamePackageDepth);
     }
 
     /**
@@ -740,8 +748,22 @@ public class CustomImportOrderCheck extends Check {
      */
     private static String createSamePackageRegexp(int firstPackageDomainsCount,
              DetailAST packageNode) {
-        final StringBuilder builder = new StringBuilder();
         final String packageFullPath = getFullImportIdent(packageNode);
+        return getFirstNDomainsFromIdent(firstPackageDomainsCount, packageFullPath);
+    }
+
+    /**
+     * Extracts defined amount of domains from the left side of package/import identifier
+     * @param firstPackageDomainsCount
+     *        number of first package domains.
+     * @param packageFullPath
+     *        full identifier containing path to package or imported object.
+     * @return String with defined amount of domains or full identifier
+     *        (if full identifier had less domain then specified)
+     */
+    private static String getFirstNDomainsFromIdent(
+            final int firstPackageDomainsCount, final String packageFullPath) {
+        final StringBuilder builder = new StringBuilder();
         final StringTokenizer tokens = new StringTokenizer(packageFullPath, ".");
         int count = firstPackageDomainsCount;
 
@@ -749,7 +771,7 @@ public class CustomImportOrderCheck extends Check {
             builder.append(tokens.nextToken()).append('.');
             count--;
         }
-        return builder.append("*").toString();
+        return builder.toString();
     }
 
     /**

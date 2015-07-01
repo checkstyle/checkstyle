@@ -145,8 +145,6 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
                 "STATIC###SAME_PACKAGE(3)");
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
-            "5: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
             "6: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
             "7: " + getCheckMessage(MSG_ORDER, "STATIC"),
             "8: " + getCheckMessage(MSG_ORDER, "STATIC"),
@@ -160,25 +158,6 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testOnlySamePackage() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(CustomImportOrderCheck.class);
-        checkConfig.addAttribute("customImportOrderRules", "SAME_PACKAGE(3)");
-        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
-        final String[] expected = {
-            "4: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
-            "6: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
-            "7: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
-            "8: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
-            "9: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
-        };
-
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                + "checkstyle/imports/"
-                + "InputCustomImportOrderSamePackage2.java").getCanonicalPath(), expected);
-    }
-
-    @Test
     public void testWithoutLineSeparator() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
@@ -188,8 +167,6 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
                 "STATIC###SAME_PACKAGE(3)");
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
-            "5: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
             "6: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
             "7: " + getCheckMessage(MSG_ORDER, "STATIC"),
             "8: " + getCheckMessage(MSG_ORDER, "STATIC"),
@@ -358,6 +335,80 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
 
         String expected = "";
         assertEquals(expected, (String) actual);
+    }
+
+    public void testSamePackageDepth2() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "false");
+        checkConfig.addAttribute("separateLineBetweenGroups", "false");
+        checkConfig.addAttribute("customImportOrderRules",
+                "SAME_PACKAGE(2)");
+        final String[] expected = {
+            "7: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "8: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "9: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "10: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "11: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "12: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "13: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "14: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            };
+
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/"
+                + "InputCustomImportOrderSamePackageDepth2-5.java").getCanonicalPath(), expected);
+    }
+
+    @Test
+    public void testSamePackageDepth3() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "false");
+        checkConfig.addAttribute("separateLineBetweenGroups", "false");
+        checkConfig.addAttribute("customImportOrderRules",
+                "SAME_PACKAGE(3)");
+        final String[] expected = {
+            "10: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "11: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            "12: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            };
+
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/"
+                + "InputCustomImportOrderSamePackageDepth2-5.java").getCanonicalPath(), expected);
+    }
+
+    @Test
+    public void testSamePackageDepth4() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "false");
+        checkConfig.addAttribute("separateLineBetweenGroups", "false");
+        checkConfig.addAttribute("customImportOrderRules",
+                "SAME_PACKAGE(4)");
+        final String[] expected = {
+            "12: " + getCheckMessage(MSG_ORDER, "SAME_PACKAGE"),
+            };
+
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/"
+                + "InputCustomImportOrderSamePackageDepth2-5.java").getCanonicalPath(), expected);
+    }
+
+    @Test
+    public void testSamePackageDepthLongerThenActualPackage() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "false");
+        checkConfig.addAttribute("separateLineBetweenGroups", "false");
+        checkConfig.addAttribute("customImportOrderRules",
+                "SAME_PACKAGE(5)");
+        final String[] expected = {};
+
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/"
+                + "InputCustomImportOrderSamePackageDepth2-5.java").getCanonicalPath(), expected);
     }
 
     @Test(expected = CheckstyleException.class)
