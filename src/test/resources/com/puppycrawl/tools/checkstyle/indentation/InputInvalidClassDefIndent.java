@@ -98,7 +98,7 @@ final class InputValidClassDefIndent66 extends java.awt.event.MouseAdapter imple
 
     class foo3b {  //indent:4 exp:4
         public  //indent:8 exp:8
-          int x;  //indent:10 exp:>=12 warn
+      int x;  //indent:6 exp:>=8 warn
     } //indent:4 exp:4
 
 

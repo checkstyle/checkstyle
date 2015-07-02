@@ -50,6 +50,11 @@ public class LineWrappingHandler {
     private DetailAST firstNode;
 
     /**
+     * Last node of the header of the current expression.
+     */
+    private final DetailAST midNode;
+
+    /**
      * Last node for current expression.
      */
     private DetailAST lastNode;
@@ -67,6 +72,31 @@ public class LineWrappingHandler {
     /**
      * Sets values of class field, finds last node and calculates indentation level.
      *
+     * <p>If {@code midNode} is not null, all nodes between {@code firstNode}
+     * and {@code midNode} (the header) must be indented 0.
+     *
+     * @param instance
+     *            instance of IndentationCheck.
+     * @param firstNode
+     *            root node for current expression.
+     * @param midNode
+     *            last node of the "header" of the current expression.
+     * @param lastNode
+     *            last node for current expression.
+     */
+    public LineWrappingHandler(IndentationCheck instance, DetailAST firstNode,
+            DetailAST midNode, DetailAST lastNode) {
+        indentCheck = instance;
+        this.firstNode = firstNode;
+        this.midNode = midNode;
+        this.lastNode = lastNode;
+        indentLevel = indentCheck.getLineWrappingIndentation();
+        forceStrictCondition = indentCheck.isForceStrictCondition();
+    }
+
+    /**
+     * Sets values of class field, finds last node and calculates indentation level.
+     *
      * @param instance
      *            instance of IndentationCheck.
      * @param firstNode
@@ -74,12 +104,9 @@ public class LineWrappingHandler {
      * @param lastNode
      *            last node for current expression.
      */
-    public LineWrappingHandler(IndentationCheck instance, DetailAST firstNode, DetailAST lastNode) {
-        indentCheck = instance;
-        this.firstNode = firstNode;
-        this.lastNode = lastNode;
-        indentLevel = indentCheck.getLineWrappingIndentation();
-        forceStrictCondition = indentCheck.isForceStrictCondition();
+    public LineWrappingHandler(IndentationCheck instance, DetailAST firstNode,
+            DetailAST lastNode) {
+        this(instance, firstNode, null, lastNode);
     }
 
     /**
@@ -127,9 +154,15 @@ public class LineWrappingHandler {
         // First node should be removed because it was already checked before.
         firstNodesOnLines.remove(firstNodesOnLines.firstKey());
         final int firstNodeIndent = getFirstNodeIndent(firstNode);
-        final int currentIndent = firstNodeIndent + indentLevel;
 
         for (DetailAST node : firstNodesOnLines.values()) {
+            final int currentIndent;
+            if (midNode != null && isBefore(node, midNode, lastNode)) {
+                currentIndent = firstNodeIndent;
+            }
+            else {
+                currentIndent = firstNodeIndent + indentLevel;
+            }
             final int currentType = node.getType();
 
             if (currentType == TokenTypes.RCURLY
@@ -149,6 +182,36 @@ public class LineWrappingHandler {
             }
         }
     }
+
+    /**
+     * Returns whether {@code node} is before or equal to {@code bound}.
+     * It must in any case be before {@code lastNode}.
+     *
+     * @param node Node
+     * @param bound Possible successor node
+     * @param lastNode Definite successor node
+     * @return Whether node is before or equal to bound
+     */
+    private boolean isBefore(DetailAST node, DetailAST bound, DetailAST lastNode) {
+        for (DetailAST n = node;;) {
+            if (n == bound) {
+                return true;
+            }
+            if (n == lastNode) {
+                return false;
+            }
+            if (n.getNextSibling() != null) {
+                n = n.getNextSibling();
+            }
+            else if (n.getParent() != null) {
+                n = n.getParent();
+            }
+            else {
+                return false;
+            }
+        }
+    }
+
 
     /**
      * Calculates indentation of first node.

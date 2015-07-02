@@ -113,7 +113,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
 
     private static int getIndentFromComment(String comment) {
         final Matcher match = GET_INDENT_FROM_COMMENT_REGEX.matcher(comment);
-        match.matches();
+        Assert.assertTrue(match.matches());
         return Integer.parseInt(match.group(1));
     }
 
@@ -511,8 +511,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         final String fname = getPath("indentation/InputValidMethodIndent.java");
         final String[] expected = {
-            "129: " + getCheckMessage(MSG_ERROR, "void", 4, 8),
-            "130: " + getCheckMessage(MSG_ERROR, "method5", 4, 8),
+            "129: " + getCheckMessage(MSG_ERROR, "void", 2, 4),
+            "130: " + getCheckMessage(MSG_ERROR, "method5", 2, 4),
         };
         verifyWarns(checkConfig, fname, expected);
     }
@@ -539,13 +539,13 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "31: " + getCheckMessage(MSG_ERROR, "method def modifier", 2, 4),
             "32: " + getCheckMessage(MSG_ERROR, "method def rcurly", 6, 4),
             "69: " + getCheckMessage(MSG_ERROR, "method def modifier", 5, 4),
-            "70: " + getCheckMessage(MSG_ERROR, "final", 5, 9),
-            "71: " + getCheckMessage(MSG_ERROR, "void", 5, 9),
-            "72: " + getCheckMessage(MSG_ERROR, "method5", 4, 9),
+            "70: " + getCheckMessage(MSG_ERROR, "final", 4, 5),
+            "71: " + getCheckMessage(MSG_ERROR, "void", 4, 5),
+            "72: " + getCheckMessage(MSG_ERROR, "method5", 4, 5),
             "80: " + getCheckMessage(MSG_ERROR, "method def modifier", 3, 4),
-            "81: " + getCheckMessage(MSG_ERROR, "final", 3, 7),
-            "82: " + getCheckMessage(MSG_ERROR, "void", 3, 7),
-            "83: " + getCheckMessage(MSG_ERROR, "method6", 5, 7),
+            "81: " + getCheckMessage(MSG_ERROR, "final", 2, 3),
+            "82: " + getCheckMessage(MSG_ERROR, "void", 2, 3),
+            "83: " + getCheckMessage(MSG_ERROR, "method6", 2, 3),
             "93: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 8),
             "93: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
             "98: " + getCheckMessage(MSG_ERROR, "member def type", 6, 8),
@@ -568,8 +568,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "158: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 6, 12),
             "170: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
             "175: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
-            "179: " + getCheckMessage(MSG_ERROR, "int", 0, 8),
-            "180: " + getCheckMessage(MSG_ERROR, "method9", 4, 8),
+            "179: " + getCheckMessage(MSG_ERROR, "int", 0, 4),
             "190: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
         };
         verifyWarns(checkConfig, fname, expected, 6);
@@ -826,7 +825,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "88: " + getCheckMessage(MSG_ERROR, "class def ident", 6, 4),
             "91: " + getCheckMessage(MSG_ERROR, "class def ident", 2, 4),
             "95: " + getCheckMessage(MSG_ERROR, "member def modifier", 6, 8),
-            "101: " + getCheckMessage(MSG_ERROR, "int", 10, 12),
+            "101: " + getCheckMessage(MSG_ERROR, "int", 6, 8),
             "106: " + getCheckMessage(MSG_ERROR, "member def modifier", 6, 8),
             "111: " + getCheckMessage(MSG_ERROR, "class def rcurly", 6, 4),
             "113: " + getCheckMessage(MSG_ERROR, "class def ident", 6, 4),
@@ -1217,7 +1216,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         final String fname = getPath("indentation/InputValidClassDefIndent.java");
         final String[] expected = {
             "49: " + getCheckMessage(MSG_ERROR, "class", 0, 4),
-            "71: " + getCheckMessage(MSG_ERROR, "int", 8, 12),
+            "71: " + getCheckMessage(MSG_ERROR, "int", 6, 8),
         };
         verifyWarns(checkConfig, fname, expected);
     }
