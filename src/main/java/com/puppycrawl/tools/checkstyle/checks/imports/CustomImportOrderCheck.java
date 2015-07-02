@@ -385,6 +385,13 @@ public class CustomImportOrderCheck extends Check {
     private final List<ImportDetails> importToGroupList = new ArrayList<>();
 
     /**
+     * Default constructor. Initiates list of rules
+     */
+    public CustomImportOrderCheck() {
+        customImportOrderRules.add(NON_GROUP_RULE_GROUP);
+    }
+
+    /**
      * Sets standardRegExp specified by user.
      * @param regexp
      *        user value.
@@ -498,20 +505,17 @@ public class CustomImportOrderCheck extends Check {
             return;
         }
 
-        final ImportDetails firstImport = importToGroupList.get(0);
-        String currentGroup = getImportGroup(firstImport.isStaticImport(),
-                firstImport.getImportFullPath());
+        String currentGroup = getNextImportGroup(0);
         int currentGroupNumber = customImportOrderRules.indexOf(currentGroup);
         String previousImportFromCurrentGroup = null;
 
         for (ImportDetails importObject : importToGroupList) {
             final String importGroup = importObject.getImportGroup();
             final String fullImportIdent = importObject.getImportFullPath();
-
             if (importGroup.equals(currentGroup)) {
                 if (sortImportsInGroupAlphabetically
-                        && previousImportFromCurrentGroup != null
-                        && compareImports(fullImportIdent, previousImportFromCurrentGroup) < 0) {
+                    && previousImportFromCurrentGroup != null
+                    && compareImports(fullImportIdent, previousImportFromCurrentGroup) < 0) {
                     log(importObject.getLineNumber(), MSG_LEX,
                             fullImportIdent, previousImportFromCurrentGroup);
                 }
@@ -523,7 +527,8 @@ public class CustomImportOrderCheck extends Check {
                 //not the last group, last one is always NON_GROUP
                 if (customImportOrderRules.size() > currentGroupNumber + 1) {
                     final String nextGroup = getNextImportGroup(currentGroupNumber + 1);
-                    if (importGroup.equals(nextGroup)) {
+                    // if import is from next group
+                    if (importGroup.equals(nextGroup) && previousImportFromCurrentGroup != null) {
                         if (separateLineBetweenGroups
                                 && !hasEmptyLineBefore(importObject.getLineNumber())) {
                             log(importObject.getLineNumber(), MSG_LINE_SEPARATOR, fullImportIdent);
