@@ -3,6 +3,8 @@
 #.project till https://issues.apache.org/jira/browse/MECLIPSE-735
 .settings
 .externalToolBuilders
+.classpath
+.project
 
 # Eclipse-CS Checkstyle Plug-In IDE configuration files
 .checkstyle

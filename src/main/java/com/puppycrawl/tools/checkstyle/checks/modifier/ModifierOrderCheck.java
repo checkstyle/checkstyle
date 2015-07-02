@@ -149,7 +149,7 @@ public class ModifierOrderCheck
         }
 
         int i = 0;
-        while (i < JLS_ORDER.length) {
+        while (modifier != null) {
             if (modifier.getType() == TokenTypes.ANNOTATION) {
                 //Annotation not at start of modifiers, bad
                 return modifier;
@@ -164,12 +164,12 @@ public class ModifierOrderCheck
                 //Current modifier is out of JLS order
                 return modifier;
             }
-            else if (!it.hasNext()) {
-                //Reached end of modifiers without problem
-                return null;
+            else if (it.hasNext()) {
+                modifier = it.next();
             }
             else {
-                modifier = it.next();
+                //Reached end of modifiers without problem
+                modifier = null;
             }
         }
 
