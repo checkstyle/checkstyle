@@ -176,6 +176,58 @@
       </subsection>
     </section>
 
+    <section name="CommentsIndentation">
+      <subsection name="Description">
+        <p>
+          Controls the indentation between comments and surrounding code.
+          Comments are indented at the same level as the surrounding code.
+          Detailed info about such convention can be found <a href=
+          "http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s4.8.6.1-block-comment-style">
+          here</a>
+        </p>
+      </subsection>
+
+      <subsection name="Example">
+        <p>
+          To configure the Check:
+        </p>
+        <source>
+&lt;module name=&quot;CommentsIndentation&quot;/module&gt;
+        </source>
+        <source>
+/*
+ * comment
+ * some comment
+ */
+boolean bool = true; - such comment indentation is ok
+
+   /*
+   * comment
+   * some comment
+   */
+double d = 3.14; - Block Comment has incorrect indentation level 3, expected 0.
+
+// some comment - comment is ok
+String str = "";
+
+    // some comment Comment has incorrect indentation level 4, expected 0.
+String str1 = "";
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.indentation
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="Translation">
       <subsection name="Description">
         <p>
