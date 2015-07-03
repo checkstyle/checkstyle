@@ -355,6 +355,13 @@ public class SuppressWarningsHolder
                             case TokenTypes.METHOD_DEF:
                             case TokenTypes.PARAMETER_DEF:
                             case TokenTypes.VARIABLE_DEF:
+                            case TokenTypes.ANNOTATION_FIELD_DEF:
+                            case TokenTypes.TYPE:
+                            case TokenTypes.LITERAL_NEW:
+                            case TokenTypes.LITERAL_THROWS:
+                            case TokenTypes.TYPE_ARGUMENT:
+                            case TokenTypes.IMPLEMENTS_CLAUSE:
+                            case TokenTypes.DOT:
                                 targetAST = parentAST;
                                 break;
 

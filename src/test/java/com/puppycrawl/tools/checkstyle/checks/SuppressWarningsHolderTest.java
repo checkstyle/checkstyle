@@ -19,8 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.io.File;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+
 import org.junit.Test;
 
 public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
@@ -32,5 +35,16 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig, getPath("InputSuppressWarningsHolder.java"), expected);
+    }
+
+    @Test
+    public void testCustomAnnotation() throws Exception {
+        Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
+
+        final String[] expected = {
+        };
+
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/InputSuppressWarningsHolder.java").getCanonicalPath(), expected);
     }
 }
