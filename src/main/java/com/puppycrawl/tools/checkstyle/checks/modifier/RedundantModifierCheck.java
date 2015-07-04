@@ -41,6 +41,14 @@ public class RedundantModifierCheck
      */
     public static final String MSG_KEY = "redundantModifier";
 
+    /**
+     * An array of tokens for interface modifiers.
+     */
+    private static final int[] TOKENS_FOR_INTERFACE_MODIFIERS = new int[] {
+        TokenTypes.LITERAL_STATIC,
+        TokenTypes.ABSTRACT,
+    };
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
@@ -71,16 +79,13 @@ public class RedundantModifierCheck
         if (TokenTypes.INTERFACE_DEF == ast.getType()) {
             final DetailAST modifiers =
                 ast.findFirstToken(TokenTypes.MODIFIERS);
-            if (null != modifiers) {
-                for (final int tokenType : new int[] {
-                    TokenTypes.LITERAL_STATIC,
-                    TokenTypes.ABSTRACT, }) {
-                    final DetailAST modifier =
-                            modifiers.findFirstToken(tokenType);
-                    if (null != modifier) {
-                        log(modifier.getLineNo(), modifier.getColumnNo(),
-                                MSG_KEY, modifier.getText());
-                    }
+
+            for (final int tokenType : TOKENS_FOR_INTERFACE_MODIFIERS) {
+                final DetailAST modifier =
+                        modifiers.findFirstToken(tokenType);
+                if (modifier != null) {
+                    log(modifier.getLineNo(), modifier.getColumnNo(),
+                            MSG_KEY, modifier.getText());
                 }
             }
         }
