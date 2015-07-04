@@ -54,7 +54,7 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck {
     public static final String NO_ABSTRACT_CLASS_MODIFIER = "no.abstract.class.modifier";
 
     /** Default format for abstract class names */
-    private static final String DEFAULT_FORMAT = "^Abstract.+$|^.*Factory$";
+    private static final String DEFAULT_FORMAT = "^Abstract.+$";
 
     /** whether to ignore checking the modifier */
     private boolean ignoreModifier;

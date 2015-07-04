@@ -37,13 +37,12 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("ignoreName", "false");
         checkConfig.addAttribute("ignoreModifier", "true");
 
-        final String pattern = "^Abstract.+$|^.*Factory$";
+        final String pattern = "^Abstract.+$";
 
         final String[] expected = {
             "3:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName", pattern),
             "6:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassName", pattern),
-            "9:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "FactoryWithBadName", pattern),
-            "13:5: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass", pattern),
+            "10:5: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass", pattern),
         };
 
         verify(checkConfig, getPath("naming" + File.separator + "InputAbstractClassName.java"), expected);
@@ -56,10 +55,8 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("ignoreModifier", "false");
 
         final String[] expected = {
-            "26:1: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
-            "29:1: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "Class1Factory"),
-            "33:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
-            "38:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "WellNamedFactory"),
+            "18:1: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
+            "22:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
         };
 
         verify(checkConfig, getPath("naming" + File.separator + "InputAbstractClassName.java"), expected);
@@ -71,17 +68,14 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("ignoreName", "false");
         checkConfig.addAttribute("ignoreModifier", "false");
 
-        final String pattern = "^Abstract.+$|^.*Factory$";
+        final String pattern = "^Abstract.+$";
 
         final String[] expected = {
             "3:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName", pattern),
             "6:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassName", pattern),
-            "9:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "FactoryWithBadName", pattern),
-            "13:5: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass", pattern),
-            "26:1: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
-            "29:1: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "Class1Factory"),
-            "33:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
-            "38:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "WellNamedFactory"),
+            "10:5: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass", pattern),
+            "18:1: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
+            "22:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
         };
 
         verify(checkConfig, getPath("naming" + File.separator + "InputAbstractClassName.java"), expected);
