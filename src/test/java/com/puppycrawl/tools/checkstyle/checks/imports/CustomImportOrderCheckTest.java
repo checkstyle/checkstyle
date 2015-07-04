@@ -21,9 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.io.File;
+
 import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_LEX;
@@ -323,4 +325,35 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
 
         assertArrayEquals(expected, actual);
     }
+
+    @Test(expected = CheckstyleException.class)
+    public void testSamePackageDepthNegative() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "false");
+        checkConfig.addAttribute("separateLineBetweenGroups", "false");
+        checkConfig.addAttribute("customImportOrderRules",
+                "SAME_PACKAGE(-1)");
+        final String[] expected = {};
+
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/"
+                + "InputCustomImportOrderSamePackageDepth2-5.java").getCanonicalPath(), expected);
+    }
+
+    @Test(expected = CheckstyleException.class)
+    public void testSamePackageDepthZero() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "false");
+        checkConfig.addAttribute("separateLineBetweenGroups", "false");
+        checkConfig.addAttribute("customImportOrderRules",
+                "SAME_PACKAGE(0)");
+        final String[] expected = {};
+
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/"
+                + "InputCustomImportOrderSamePackageDepth2-5.java").getCanonicalPath(), expected);
+    }
+
 }

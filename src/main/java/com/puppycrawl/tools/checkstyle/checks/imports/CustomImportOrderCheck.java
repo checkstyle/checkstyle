@@ -646,6 +646,10 @@ public class CustomImportOrderCheck extends Check {
             catch (NumberFormatException e) {
                 samePackageDomainsRegExp = rule;
             }
+            if (samePackageMatchingDepth <= 0) {
+                throw new IllegalArgumentException(
+                        "SAME_PACKAGE rule parameter should be positive integer: " + ruleStr);
+            }
             customImportOrderRules.add(SAME_PACKAGE_RULE_GROUP);
 
         }
