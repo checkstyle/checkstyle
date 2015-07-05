@@ -19,13 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import org.junit.Test;
+import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck.MSG_KEY;
 
 import java.io.File;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck.MSG_KEY;
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
     @Test
@@ -46,6 +48,10 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
         DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
         checkConfig.addAttribute("illegalClassNames",
                                  "java.lang.Error, java.lang.Exception, NullPointerException");
+
+        // check that incorrect names don't break the Check
+        checkConfig.addAttribute("illegalClassNames",
+                "java.lang.IOException.");
 
         String[] expected = {
             "5:33: " + getCheckMessage(MSG_KEY, "NullPointerException"),
@@ -99,6 +105,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
     @Test
     public void testIgnoreOverriddenMethods() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
+        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
 
         String[] expected = {
 
@@ -106,5 +113,32 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
 
         verify(checkConfig, getPath("coding" + File.separator
                 + "InputIllegalThrowsCheckIgnoreOverriddenMethods.java"), expected);
+    }
+
+    /**
+     * Test to validate the IllegalThrowsCheck without <b>ignoreOverriddenMethods</b>
+     * property.
+     * @throws Exception
+     */
+    @Test
+    public void testNotIgnoreOverriddenMethods() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
+        checkConfig.addAttribute("ignoreOverriddenMethods", "false");
+
+        String[] expected = {
+            "7:36: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "12:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+        };
+
+        verify(checkConfig, getPath("coding" + File.separator
+                + "InputIllegalThrowsCheckIgnoreOverriddenMethods.java"), expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        IllegalThrowsCheck check = new IllegalThrowsCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }

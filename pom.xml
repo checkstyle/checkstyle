@@ -765,7 +765,6 @@
           <regex><pattern>.*.checks.blocks.RightCurlyCheck</pattern><branchRate>88</branchRate><lineRate>95</lineRate></regex>
 
 
-          <regex><pattern>.*.checks.coding.AbstractIllegalCheck</pattern><branchRate>64</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.coding.AbstractIllegalMethodCheck</pattern><branchRate>100</branchRate><lineRate>92</lineRate></regex>
           <regex><pattern>.*.checks.coding.AbstractNestedDepthCheck</pattern><branchRate>100</branchRate><lineRate>86</lineRate></regex>
           <regex><pattern>.*.checks.coding.AbstractSuperCheck</pattern><branchRate>78</branchRate><lineRate>88</lineRate></regex>
@@ -782,9 +781,7 @@
           <regex><pattern>.*.checks.coding.FinalLocalVariableCheck</pattern><branchRate>79</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.coding.HiddenFieldCheck</pattern><branchRate>96</branchRate><lineRate>97</lineRate></regex>
           <regex><pattern>.*.checks.coding.HiddenFieldCheck\$.*</pattern><branchRate>94</branchRate><lineRate>100</lineRate></regex>
-          <regex><pattern>.*.checks.coding.IllegalCatchCheck</pattern><branchRate>100</branchRate><lineRate>92</lineRate></regex>
           <regex><pattern>.*.checks.coding.IllegalInstantiationCheck</pattern><branchRate>77</branchRate><lineRate>94</lineRate></regex>
-          <regex><pattern>.*.checks.coding.IllegalThrowsCheck</pattern><branchRate>93</branchRate><lineRate>84</lineRate></regex>
           <regex><pattern>.*.checks.coding.IllegalTokenCheck</pattern><branchRate>75</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.coding.IllegalTokenTextCheck</pattern><branchRate>60</branchRate><lineRate>88</lineRate></regex>
           <regex><pattern>.*.checks.coding.IllegalTypeCheck</pattern><branchRate>93</branchRate><lineRate>93</lineRate></regex>
