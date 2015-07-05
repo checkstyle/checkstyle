@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -89,8 +88,6 @@ public class UnnecessaryParenthesesCheck extends Check {
      */
     public static final String MSG_RETURN = "unnecessary.paren.return";
 
-    /** The minimum number of child nodes to consider for a match. */
-    private static final int MIN_CHILDREN_FOR_MATCH = 3;
     /** The maximum string length before we chop the string. */
     private static final int MAX_QUOTED_LENGTH = 25;
 
@@ -187,6 +184,12 @@ public class UnnecessaryParenthesesCheck extends Check {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        // Check can work with any of acceptable tokens
+        return new int[] {};
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         final int type = ast.getType();
         final DetailAST parent = ast.getParent();
@@ -246,7 +249,7 @@ public class UnnecessaryParenthesesCheck extends Check {
             // warning about an immediate child node in visitToken, so we don't
             // need to log another one here.
 
-            if (parentToSkip != ast && exprSurrounded(ast)) {
+            if (parentToSkip != ast && isExprSurrounded(ast)) {
                 if (assignDepth >= 1) {
                     log(ast, MSG_ASSIGN);
                 }
@@ -279,11 +282,10 @@ public class UnnecessaryParenthesesCheck extends Check {
      *         parentheses.
      */
     private boolean isSurrounded(DetailAST ast) {
+        // if previous sibling is left parenthesis,
+        // next sibling can't be other than right parenthesis
         final DetailAST prev = ast.getPreviousSibling();
-        final DetailAST next = ast.getNextSibling();
-
-        return prev != null && prev.getType() == TokenTypes.LPAREN
-            && next != null && next.getType() == TokenTypes.RPAREN;
+        return prev != null && prev.getType() == TokenTypes.LPAREN;
     }
 
     /**
@@ -292,22 +294,9 @@ public class UnnecessaryParenthesesCheck extends Check {
      *        <code>TokenTypes.EXPR</code>.
      * @return <code>true</code> if the expression is surrounded by
      *         parentheses.
-     * @throws IllegalArgumentException if <code>ast.getType()</code> is not
-     *         equal to <code>TokenTypes.EXPR</code>.
      */
-    private boolean exprSurrounded(DetailAST ast) {
-        if (ast.getType() != TokenTypes.EXPR) {
-            throw new IllegalArgumentException("Not an expression node.");
-        }
-        boolean surrounded = false;
-        if (ast.getChildCount() >= MIN_CHILDREN_FOR_MATCH) {
-            final AST n1 = ast.getFirstChild();
-            final AST nn = ast.getLastChild();
-
-            surrounded = n1.getType() == TokenTypes.LPAREN
-                && nn.getType() == TokenTypes.RPAREN;
-        }
-        return surrounded;
+    private boolean isExprSurrounded(DetailAST ast) {
+        return ast.getFirstChild().getType() == TokenTypes.LPAREN;
     }
 
     /**
