@@ -19,17 +19,20 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import java.io.File;
-import org.junit.Test;
-
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_ASSIGN;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_EXPR;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_IDENT;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_LITERAL;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_RETURN;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_STRING;
+
+import java.io.File;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 /**
  * Test fixture for the UnnecessaryParenthesesCheck.
@@ -100,5 +103,13 @@ public class UnnecessaryParenthesesCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(UnnecessaryParenthesesCheck.class);
         final String[] expected = {};
         verify(checkConfig, getPath("Input15Extensions.java"), expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        UnnecessaryParenthesesCheck check = new UnnecessaryParenthesesCheck();
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }

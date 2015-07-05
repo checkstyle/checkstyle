@@ -806,7 +806,6 @@
           <regex><pattern>.*.checks.coding.SimplifyBooleanExpressionCheck</pattern><branchRate>100</branchRate><lineRate>77</lineRate></regex>
           <regex><pattern>.*.checks.coding.SimplifyBooleanReturnCheck</pattern><branchRate>83</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.coding.StringLiteralEqualityCheck</pattern><branchRate>100</branchRate><lineRate>87</lineRate></regex>
-          <regex><pattern>.*.checks.coding.UnnecessaryParenthesesCheck</pattern><branchRate>91</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.coding.VariableDeclarationUsageDistanceCheck</pattern><branchRate>90</branchRate><lineRate>97</lineRate></regex>
 
 
