@@ -19,14 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck.MSG_KEY;
+
 import java.io.File;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
-import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck.MSG_KEY;
 
 public class IllegalCatchCheckTest extends BaseCheckTestSupport {
     @Test
@@ -73,5 +74,13 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalCatchCheck2.java"), expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        IllegalCatchCheck check = new IllegalCatchCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }
