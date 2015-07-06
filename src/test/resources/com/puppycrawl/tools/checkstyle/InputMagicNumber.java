@@ -136,10 +136,10 @@ class ComplexAndFlagged
 class ComplexButNotFlagged
 {
     // according to user feedback this is typical code that should not be flagged
-    public static final double SPECIAL_SUM = 2 + 1e10, SPECIAL_DIFFERENCE = 4 - java.lang.Math.PI;
-    public static final Integer DEFAULT_INT = new Integer(27);
-    public static final int SECS_PER_DAY = 24 * 60 * 60, SPECIAL_RATIO = 4 / 3;
-    public static final javax.swing.border.Border STD_BORDER =
+    public final double SpecialSum = 2 + 1e10, SpecialDifference = 4 - java.lang.Math.PI;
+    public final Integer DefaultInit = new Integer(27);
+    public final int SpecsPerDay = 24 * 60 * 60, SpecialRatio = 4 / 3;
+    public final javax.swing.border.Border StdBorder =
         javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3);
 }
 
@@ -197,4 +197,15 @@ class TestHashCodeMethod {
     @IntMethodAnnotation(value=-45)
     public void anotherNegative2() {
     }
+}
+
+class TestMethodCall {
+
+	public TestMethodCall(int x){
+
+    }
+
+	public void method2() {
+        final TestMethodCall dummyObject = new TestMethodCall(62);
+	}
 }
