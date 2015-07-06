@@ -87,7 +87,6 @@ class Guard {
      * @return a result {@link AccessResult} indicating whether it can be used.
      */
     AccessResult verifyImport(final String forImport) {
-        assert forImport != null;
         if (className != null) {
             final boolean classMatch = regExp
                 ? forImport.matches(className)
@@ -99,7 +98,6 @@ class Guard {
         // the package. Then check if matched and we must be an exact match.
         // In this case, the text after the first "." must not contain
         // another "." as this indicates that it is not an exact match.
-        assert pkgName != null;
         boolean pkgMatch;
         if (regExp) {
             pkgMatch = forImport.matches(pkgName + "\\..*");

@@ -276,10 +276,6 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
      * @return the string without two quotes
      */
     private String removeQuotes(final String warning) {
-        assert warning != null : "the warning was null";
-        assert warning.charAt(0) == '"';
-        assert warning.charAt(warning.length() - 1) == '"';
-
         return warning.substring(1, warning.length() - 1);
     }
 
