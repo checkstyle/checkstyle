@@ -46,10 +46,4 @@ public class IndexHandler extends AbstractExpressionHandler {
     public void checkIndentation() {
         // do nothing. Used to provide a correct suggested child level for now.
     }
-
-    @Override
-    public IndentLevel suggestedChildLevel(AbstractExpressionHandler child) {
-        return getLevel();
-    }
-
 }
