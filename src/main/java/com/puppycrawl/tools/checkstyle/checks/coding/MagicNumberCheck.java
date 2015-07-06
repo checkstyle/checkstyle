@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.Arrays;
 
 import com.puppycrawl.tools.checkstyle.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -35,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * By default, -1, 0, 1, and 2 are not considered to be magic numbers.
  * </p>
  * <p>
+ * Constant definition is any variable/field that has 'final' modifier.
  * It is fine to have one constant defining multiple numeric literals within one expression:
  * <pre>
  * <code>static final int SECONDS_PER_DAY = 24 * 60 * 60;
@@ -95,12 +97,42 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  *
  *       void foo() {
  *          int i = i + 1; // no violation
- *          int j = j + 8; // violation
+ *          int j = j + (int)0.5; // no violation
  *       }
  *   }
  * </code>
  * </pre>
- *
+ * <p>
+ * Config example of constantWaiverParentToken option:
+ * </p>
+ * <pre>
+ *   &lt;module name=&quot;MagicNumber&quot;&gt;
+ *       &lt;property name=&quot;constantWaiverParentToken&quot; value=&quot;ASSIGN,ARRAY_INIT,EXPR,
+ *       UNARY_PLUS, UNARY_MINUS, TYPECAST, ELIST, DIV, PLUS &quot;/&gt;
+ *   &lt;/module&gt;
+ * </pre>
+ * <p>
+ * result is following violation:
+ * </p>
+ * <pre>
+ * <code>
+ * class TestMethodCall {
+ *     public void method2() {
+ *         final TestMethodCall dummyObject = new TestMethodCall(62);    //violation
+ *         final int a = 3;        // ok as waiver is ASSIGN
+ *         final int [] b = {4, 5} // ok as waiver is ARRAY_INIT
+ *         final int c = -3;       // ok as waiver is UNARY_MINUS
+ *         final int d = +4;       // ok as waiver is UNARY_PLUS
+ *         final int e = method(1, 2) // ELIST is there but violation due to METHOD_CALL
+ *         final int x = 3 * 4;    // violation
+ *         final int y = 3 / 4;    // ok as waiver is DIV
+ *         final int z = 3 + 4;    // ok as waiver is PLUS
+ *         final int w = 3 - 4;    // violation
+ *         final int x = (int)(3.4);    //ok as waiver is TYPECAST
+ *     }
+ * }
+ * </code>
+ * </pre>
  * @author Rick Giles
  * @author Lars Kühne
  * @author Daniel Solano Gómez
@@ -117,7 +149,7 @@ public class MagicNumberCheck extends Check {
      * The token types that are allowed in the AST path from the
      * number literal to the enclosing constant definition.
      */
-    private static final int[] ALLOWED_PATH_TOKENTYPES = {
+    private int[] constantWaiverParentToken = {
         TokenTypes.ASSIGN,
         TokenTypes.ARRAY_INIT,
         TokenTypes.EXPR,
@@ -133,10 +165,6 @@ public class MagicNumberCheck extends Check {
         TokenTypes.MINUS,
     };
 
-    static {
-        Arrays.sort(ALLOWED_PATH_TOKENTYPES);
-    }
-
     /** the numbers to ignore in the check, sorted */
     private double[] ignoreNumbers = {-1, 0, 1, 2};
 
@@ -149,14 +177,18 @@ public class MagicNumberCheck extends Check {
     /** Whether to ignore magic numbers in field declaration. */
     private boolean ignoreFieldDeclaration;
 
+    /**
+     * Constructor for MagicNumber Check.
+     * Sort the allowedTokensBetweenMagicNumberAndConstDef array for binary search.
+     */
+    public MagicNumberCheck() {
+        super();
+        Arrays.sort(constantWaiverParentToken);
+    }
+
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.NUM_DOUBLE,
-            TokenTypes.NUM_FLOAT,
-            TokenTypes.NUM_INT,
-            TokenTypes.NUM_LONG,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -191,7 +223,6 @@ public class MagicNumberCheck extends Check {
             final boolean found = isMagicNumberExists(ast, constantDefAST);
             if (found) {
                 reportMagicNumber(ast);
-
             }
         }
     }
@@ -202,12 +233,12 @@ public class MagicNumberCheck extends Check {
      * @param constantDefAST constant ast
      * @return true if magic number is present
      */
-    private static boolean isMagicNumberExists(DetailAST ast, DetailAST constantDefAST) {
+    private boolean isMagicNumberExists(DetailAST ast, DetailAST constantDefAST) {
         boolean found = false;
         DetailAST astNode = ast.getParent();
         while (astNode != constantDefAST) {
             final int type = astNode.getType();
-            if (Arrays.binarySearch(ALLOWED_PATH_TOKENTYPES, type) < 0) {
+            if (Arrays.binarySearch(constantWaiverParentToken, type) < 0) {
                 found = true;
                 break;
             }
@@ -353,6 +384,17 @@ public class MagicNumberCheck extends Check {
                     == TokenTypes.CLASS_DEF;
     }
 
+    /**
+     * sets the tokens which are allowed between Magic Number and defined Object.
+     * @param tokens The string representation of the tokens interested in
+     */
+    public void setConstantWaiverParentToken(String... tokens) {
+        constantWaiverParentToken = new int[tokens.length];
+        for (int i = 0; i < tokens.length; i++) {
+            constantWaiverParentToken[i] = Utils.getTokenId(tokens[i]);
+        }
+        Arrays.sort(constantWaiverParentToken);
+    }
 
     /**
      * Sets the numbers to ignore in the check.

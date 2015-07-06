@@ -373,4 +373,63 @@ public class MagicNumberCheckTest
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
+
+    @Test
+    public void testwaiverParentToken()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(MagicNumberCheck.class);
+        checkConfig.addAttribute("constantWaiverParentToken", "ASSIGN, ARRAY_INIT,"
+                + " EXPR, UNARY_PLUS, UNARY_MINUS, TYPECAST, ELIST, STAR, DIV, PLUS, MINUS");
+        final String[] expected = {
+            "41:26: " + getCheckMessage(MSG_KEY, "3_000"),
+            "42:32: " + getCheckMessage(MSG_KEY, "1.5_0"),
+            "43:27: " + getCheckMessage(MSG_KEY, "3"),
+            "43:31: " + getCheckMessage(MSG_KEY, "4"),
+            "45:29: " + getCheckMessage(MSG_KEY, "3"),
+            "47:23: " + getCheckMessage(MSG_KEY, "3"),
+            "48:26: " + getCheckMessage(MSG_KEY, "1.5"),
+            "50:22: " + getCheckMessage(MSG_KEY, "3"),
+            "50:29: " + getCheckMessage(MSG_KEY, "5"),
+            "50:37: " + getCheckMessage(MSG_KEY, "3"),
+            "54:26: " + getCheckMessage(MSG_KEY, "3"),
+            "55:39: " + getCheckMessage(MSG_KEY, "3"),
+            "60:25: " + getCheckMessage(MSG_KEY, "010"),
+            "61:25: " + getCheckMessage(MSG_KEY, "011"),
+            "63:30: " + getCheckMessage(MSG_KEY, "0_10L"),
+            "64:30: " + getCheckMessage(MSG_KEY, "011l"),
+            "68:24: " + getCheckMessage(MSG_KEY, "0x10"),
+            "69:24: " + getCheckMessage(MSG_KEY, "0X011"),
+            "71:29: " + getCheckMessage(MSG_KEY, "0x10L"),
+            "72:29: " + getCheckMessage(MSG_KEY, "0X11l"),
+            "85:28: " + getCheckMessage(MSG_KEY, "3"),
+            "92:14: " + getCheckMessage(MSG_KEY, "0xffffffffL"),
+            "100:30: " + getCheckMessage(MSG_KEY, "+3"),
+            "101:29: " + getCheckMessage(MSG_KEY, "-2"),
+            "102:35: " + getCheckMessage(MSG_KEY, "+3.5"),
+            "103:36: " + getCheckMessage(MSG_KEY, "-2.5"),
+            "111:35: " + getCheckMessage(MSG_KEY, "0x80000000"),
+            "112:36: " + getCheckMessage(MSG_KEY, "0x8000000000000000L"),
+            "115:37: " + getCheckMessage(MSG_KEY, "020000000000"),
+            "116:38: " + getCheckMessage(MSG_KEY, "01000000000000000000000L"),
+            "131:20: " + getCheckMessage(MSG_KEY, "378"),
+            "140:52: " + getCheckMessage(MSG_KEY, "27"),
+            "143:53: " + getCheckMessage(MSG_KEY, "3"),
+            "143:56: " + getCheckMessage(MSG_KEY, "3"),
+            "143:59: " + getCheckMessage(MSG_KEY, "3"),
+            "143:62: " + getCheckMessage(MSG_KEY, "3"),
+            "160:16: " + getCheckMessage(MSG_KEY, "31"),
+            "165:16: " + getCheckMessage(MSG_KEY, "42"),
+            "170:16: " + getCheckMessage(MSG_KEY, "13"),
+            "174:15: " + getCheckMessage(MSG_KEY, "21"),
+            "178:15: " + getCheckMessage(MSG_KEY, "37"),
+            "182:15: " + getCheckMessage(MSG_KEY, "101"),
+            "185:26: " + getCheckMessage(MSG_KEY, "42"),
+            "189:32: " + getCheckMessage(MSG_KEY, "43"),
+            "193:26: " + getCheckMessage(MSG_KEY, "-44"),
+            "197:32: " + getCheckMessage(MSG_KEY, "-45"),
+            "209:63: " + getCheckMessage(MSG_KEY, "62"),
+        };
+        verify(checkConfig, getPath("InputMagicNumber.java"), expected);
+    }
 }
