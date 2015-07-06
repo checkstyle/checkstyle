@@ -19,7 +19,20 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 /**
- * This Class contains no logic, but serves as test-input for the unit tests for the 
+ * Two import statements on the same line are illegal.
+ */
+import java.io.EOFException; import java.io.BufferedReader;
+
+/**
+ * Two import statements and one 'empty' statement
+ * which are not on the same line are legal.
+ */
+import java.lang.annotation.Annotation;
+;
+import java.lang.String;
+
+/**
+ * This Class contains no logic, but serves as test-input for the unit tests for the
  * <code>OneStatementPerLineCheck</code>-checkstyle enhancement.
  * @author Alexander Jesse
  * @see com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck
@@ -93,13 +106,12 @@ public class OneStatementPerLineCheckInput {
   }
 
   /**
-   * Simplest form a an illegal layout.
+   * Simplest form of an illegal layout.
    */
   public void doIllegal() {
     one = 1; two = 2;
   }
 
-  
   /**
    * Smalltalk-style is considered as one statement.
    */
@@ -114,10 +126,10 @@ public class OneStatementPerLineCheckInput {
   public void doIllegalSmallTalk2() {
     SmallTalkStyle smalltalker = new SmallTalkStyle();
     smalltalker.doSomething1()
-               .doSomething2()
-               .doSomething3();
+        .doSomething2()
+        .doSomething3();
   }
-  
+
   /**
    * While theoretically being distributed over two lines, this is a sample
    * of 2 statements on one line.
@@ -126,7 +138,7 @@ public class OneStatementPerLineCheckInput {
     one = 1
     ; two = 2;
   }
-  
+
   /**
    * The StringBuffer is a Java-API-class that permits smalltalk-style concatenation
    * on the <code>append</code>-method.
@@ -137,7 +149,7 @@ public class OneStatementPerLineCheckInput {
     sb.append("test2 ").append("test3 ");
     appendToSpringBuffer(sb, "test4");
   }
-  
+
   /**
    * indirect stringbuffer-method. Used only internally.
    * @param sb The stringbuffer we want to append something
@@ -145,5 +157,101 @@ public class OneStatementPerLineCheckInput {
    */
   private void appendToSpringBuffer(StringBuffer sb, String text) {
     sb.append(text);
+  }
+
+  /**
+   * Two declaration statements on the same line are illegal.
+   */
+  int a; int b;
+
+  /**
+   * Two declaration statements which are not on the same line
+   * are legal.
+   */
+  int c;
+  int d;
+
+  /**
+   * Two assignment (declaration) statements on the same line are illegal.
+   */
+  int e = 1; int f = 2;
+
+  /**
+   * Two assignment (declaration) statements on the different lines
+   * are legal.
+   */
+  int g = 1;
+  int h = 2;
+
+  /**
+   * This method contains two increment statements
+   * and two object creation statements on the same line.
+   */
+  private void foo() {
+    //This is two assignment (declaration)
+    //statements on different lines
+    int var1 = 1;
+    int var2 = 2;
+
+    //Two increment statements on the same line are illegal.
+    var1++; var2++;
+
+    //Two object creation statements on the same line are illegal.
+    Object obj1 = new Object(); Object obj2 = new Object();
+  }
+
+  /**
+   * According to java language specifications,
+   * statements end with ';'. That is why ';;'
+   * may be considered as two empty statements on the same line
+   * and rises violation.
+   */
+  ;;
+
+  /**
+   * This method contains break, while-loop
+   * and for-loop statements.
+   */
+  private void foo3() {
+    do {
+      one++;
+      if (two > 4) {
+        break; //legal
+      }
+      one++;
+      two++;
+    } while (two < 7); //legal
+
+    /**
+     *  One statement inside for block is legal.
+     */
+    for (int i = 0; i < 10; i++) one = 5;
+
+    /**
+     *  One statement inside for block where
+     *  increment expression is empty is legal.
+     */
+    for (int i = 0; i < 10;) one = 5;
+
+    /**
+     *  One statement inside for block where
+     *  increment and conditional expressions are empty
+     *  (forever loop) is legal
+     */
+    for (int i = 0;;) one = 5;
+  }
+
+  public void foo4() {
+    /**
+     * a "forever" loop.
+     */
+    for(;;){} //legal
+  }
+
+  public void foo5() {
+    /**
+     *  One statement inside for block is legal
+     */
+    for (;;) { one = 5; }
   }
 }

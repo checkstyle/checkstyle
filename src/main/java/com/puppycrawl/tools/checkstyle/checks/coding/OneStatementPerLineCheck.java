@@ -25,8 +25,44 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Restricts the number of statements per line to one.
+ * <p>
+ *     Rationale: It's very difficult to read multiple statements on one line.
+ * </p>
+ * <p>
+ *     In the Java programming language, statements are the fundamental unit of
+ *     execution. All statements except blocks are terminated by a semicolon.
+ *     Blocks are denoted by open and close curly braces.
+ * </p>
+ * <p>
+ *     OneStatementPerLineCheck checks the following types of statements:
+ *     variable declaration statements, empty statements, assignment statements,
+ *     expression statements, increment statements, object creation statements,
+ *     'for loop' statements, 'break' statements, 'continue' statements,
+ *     'return' statements, import statements.
+ * </p>
+ * <p>
+ *     The following examples will be flagged as a violation:
+ * </p>
+ * <pre>
+ *     //Each line causes violation:
+ *     int var1; int var2;
+ *     var1 = 1; var2 = 2;
+ *     int var1 = 1; int var2 = 2;
+ *     var1++; var2++;
+ *     Object obj1 = new Object(); Object obj2 = new Object();
+ *     import java.io.EOFException; import java.io.BufferedReader;
+ *     ;; //two empty statements on the same line.
+ *
+ *     //Multi-line statements:
+ *     int var1 = 1
+ *     ; var2 = 2; //violation here
+ *     int o = 1, p = 2,
+ *     r = 5; int t; //violation here
+ * </pre>
+ *
  * @author Alexander Jesse
  * @author Oliver Burn
+ * @author Andrei Selkin
  */
 public final class OneStatementPerLineCheck extends Check {
 
@@ -36,10 +72,15 @@ public final class OneStatementPerLineCheck extends Check {
      */
     public static final String MSG_KEY = "multiple.statements.line";
 
-    /** hold the line-number where the last statement ended. */
+    /**
+     * Hold the line-number where the last statement ended.
+     */
     private int lastStatementEnd = -1;
-    /** tracks the depth of EXPR tokens. */
-    private int exprDepth;
+
+    /**
+     * Hold the line-number where the last 'for-loop' statement ended.
+     */
+    private int forStatementEnd = -1;
 
     /**
      * The for-header usually has 3 statements on one line, but THIS IS OK.
@@ -48,40 +89,47 @@ public final class OneStatementPerLineCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.EXPR, TokenTypes.SEMI, TokenTypes.FOR_INIT,
-            TokenTypes.FOR_ITERATOR,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {
-            TokenTypes.EXPR, TokenTypes.SEMI, TokenTypes.FOR_INIT,
+        return new int[]{
+            TokenTypes.SEMI, TokenTypes.FOR_INIT,
             TokenTypes.FOR_ITERATOR,
         };
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
     public void beginTree(DetailAST rootAST) {
-        exprDepth = 0;
         inForHeader = false;
         lastStatementEnd = -1;
+        forStatementEnd = -1;
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.EXPR:
-                visitExpr(ast);
-                break;
             case TokenTypes.SEMI:
-                visitSemi(ast);
+                DetailAST currentStatement = ast;
+                if (isMultilineStatement(currentStatement)) {
+                    currentStatement = ast.getPreviousSibling();
+                }
+                if (isOnTheSameLine(currentStatement, lastStatementEnd,
+                        forStatementEnd) && !inForHeader) {
+                    log(ast, MSG_KEY);
+                }
                 break;
-            case TokenTypes.FOR_INIT:
-                inForHeader = true;
+            case TokenTypes.FOR_ITERATOR:
+                forStatementEnd = ast.getLineNo();
                 break;
             default:
+                inForHeader = true;
                 break;
         }
     }
@@ -89,11 +137,12 @@ public final class OneStatementPerLineCheck extends Check {
     @Override
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
+            case TokenTypes.SEMI:
+                lastStatementEnd = ast.getLineNo();
+                forStatementEnd = -1;
+                break;
             case TokenTypes.FOR_ITERATOR:
                 inForHeader = false;
-                break;
-            case TokenTypes.EXPR:
-                exprDepth--;
                 break;
             default:
                 break;
@@ -101,29 +150,46 @@ public final class OneStatementPerLineCheck extends Check {
     }
 
     /**
-     * Mark the state-change for the statement (entering) and remember the
-     * first line of the last statement. If the first line of the new
-     * statement is the same as the last line of the last statement and we are
-     * not within a for-statement, then the rule is violated.
-     * @param ast token for the {@link TokenTypes#EXPR}.
+     * Checks whether two statements are on the same line.
+     * @param ast token for the current statement.
+     * @param lastStatementEnd the line-number where the last statement ended.
+     * @param forStatementEnd the line-number where the last 'for-loop'
+     *                        statement ended.
+     * @return true if two statements are on the same line.
      */
-    private void visitExpr(DetailAST ast) {
-        exprDepth++;
-        if (exprDepth == 1
-                && !inForHeader
-                && lastStatementEnd == ast.getLineNo()) {
-            log(ast, MSG_KEY);
+    private static boolean isOnTheSameLine(DetailAST ast, int lastStatementEnd,
+                                           int forStatementEnd) {
+        final boolean onTheSameLine;
+        if (lastStatementEnd == ast.getLineNo()
+                && forStatementEnd != ast.getLineNo()) {
+            onTheSameLine = true;
         }
+        else {
+            onTheSameLine = false;
+        }
+        return onTheSameLine;
     }
 
     /**
-     * Mark the state-change for the statement (leaving) and remember the last
-     * line of the last statement.
-     * @param ast for the {@link TokenTypes#SEMI}.
+     * Checks whether statement is multiline.
+     * @param ast token for the current statement.
+     * @return true if one statement is distributed over two or more lines.
      */
-    private void visitSemi(DetailAST ast) {
-        if (exprDepth == 0) {
-            lastStatementEnd = ast.getLineNo();
+    private static boolean isMultilineStatement(DetailAST ast) {
+        final boolean multiline;
+        if (ast.getPreviousSibling() != null) {
+            final DetailAST prevSibling = ast.getPreviousSibling();
+            if (prevSibling.getLineNo() != ast.getLineNo()
+                    && ast.getParent() != null) {
+                multiline = true;
+            }
+            else {
+                multiline = false;
+            }
         }
+        else {
+            multiline = false;
+        }
+        return multiline;
     }
 }
