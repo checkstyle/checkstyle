@@ -296,6 +296,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("ignoreFinal", "false");
+        checkConfig.addAttribute("allowedAbbreviations", null);
 
         final String[] expected = {
         };

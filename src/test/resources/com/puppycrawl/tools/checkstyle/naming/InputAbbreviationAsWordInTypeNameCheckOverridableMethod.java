@@ -18,7 +18,7 @@ abstract class NonAAAAbstractClassName1 extends Class1 {
 }
 
 class Class1 {
-    
+    @SuppressWarnings(value = { "" })
     protected void oveRRRRRrriddenMethod(){
         int a = 0;
         // blah-blah

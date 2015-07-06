@@ -245,12 +245,10 @@ public class AbbreviationAsWordInNameCheck extends Check {
     private static boolean isInterfaceDeclaration(DetailAST variableDefAst) {
         boolean result = false;
         final DetailAST astBlock = variableDefAst.getParent();
-        if (astBlock != null) {
-            final DetailAST astParent2 = astBlock.getParent();
-            if (astParent2 != null
-                    && astParent2.getType() == TokenTypes.INTERFACE_DEF) {
-                result = true;
-            }
+        final DetailAST astParent2 = astBlock.getParent();
+
+        if (astParent2.getType() == TokenTypes.INTERFACE_DEF) {
+            result = true;
         }
         return result;
     }
@@ -267,6 +265,7 @@ public class AbbreviationAsWordInNameCheck extends Check {
         for (DetailAST child : getChildren(methodModifiersAST)) {
             if (child.getType() == TokenTypes.ANNOTATION) {
                 final DetailAST annotationIdent = child.findFirstToken(TokenTypes.IDENT);
+
                 if (annotationIdent != null && "Override".equals(annotationIdent.getText())) {
                     result = true;
                     break;
