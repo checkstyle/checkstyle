@@ -269,7 +269,9 @@ public class IndentationCheck extends Check {
     public void beginTree(DetailAST ast) {
         handlerFactory.clearCreatedHandlers();
         handlers.clear();
-        handlers.push(new PrimordialHandler(this));
+        final PrimordialHandler primordialHandler = new PrimordialHandler(this);
+        handlers.push(primordialHandler);
+        primordialHandler.checkIndentation();
     }
 
     @Override
