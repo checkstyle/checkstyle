@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Restricts the number of statements per line to one.
  * @author Alexander Jesse
  * @author Oliver Burn
+ * @author Andrei Selkin
  */
 public final class OneStatementPerLineCheck extends Check {
 
@@ -36,10 +37,10 @@ public final class OneStatementPerLineCheck extends Check {
      */
     public static final String MSG_KEY = "multiple.statements.line";
 
-    /** hold the line-number where the last statement ended. */
+    /**
+     * hold the line-number where the last statement ended.
+     */
     private int lastStatementEnd = -1;
-    /** tracks the depth of EXPR tokens. */
-    private int exprDepth;
 
     /**
      * The for-header usually has 3 statements on one line, but THIS IS OK.
@@ -48,23 +49,19 @@ public final class OneStatementPerLineCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.EXPR, TokenTypes.SEMI, TokenTypes.FOR_INIT,
-            TokenTypes.FOR_ITERATOR,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {
-            TokenTypes.EXPR, TokenTypes.SEMI, TokenTypes.FOR_INIT,
+        return new int[]{
+            TokenTypes.SEMI, TokenTypes.FOR_INIT,
             TokenTypes.FOR_ITERATOR,
         };
     }
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        exprDepth = 0;
         inForHeader = false;
         lastStatementEnd = -1;
     }
@@ -72,11 +69,20 @@ public final class OneStatementPerLineCheck extends Check {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.EXPR:
-                visitExpr(ast);
-                break;
             case TokenTypes.SEMI:
-                visitSemi(ast);
+                if (lastStatementEnd == ast.getLineNo()
+                    && !inForHeader) {
+                    //Two semicolons on the same line
+                    log(ast, MSG_KEY);
+                }
+                else if (isMultilineStatement(ast)) {
+                    final DetailAST prevSibling = ast.getPreviousSibling();
+                    if (lastStatementEnd == prevSibling.getLineNo()) {
+                        //Two statements on the same line
+                        //and one of them is multiline
+                        log(ast, MSG_KEY);
+                    }
+                }
                 break;
             case TokenTypes.FOR_INIT:
                 inForHeader = true;
@@ -92,8 +98,8 @@ public final class OneStatementPerLineCheck extends Check {
             case TokenTypes.FOR_ITERATOR:
                 inForHeader = false;
                 break;
-            case TokenTypes.EXPR:
-                exprDepth--;
+            case TokenTypes.SEMI:
+                lastStatementEnd = ast.getLineNo();
                 break;
             default:
                 break;
@@ -101,29 +107,19 @@ public final class OneStatementPerLineCheck extends Check {
     }
 
     /**
-     * Mark the state-change for the statement (entering) and remember the
-     * first line of the last statement. If the first line of the new
-     * statement is the same as the last line of the last statement and we are
-     * not within a for-statement, then the rule is violated.
-     * @param ast token for the {@link TokenTypes#EXPR}.
+     * Checks whether statement is multiline.
+     * @param ast token for the statement.
+     * @return true if one statement is distributed over two or more lines.
      */
-    private void visitExpr(DetailAST ast) {
-        exprDepth++;
-        if (exprDepth == 1
-                && !inForHeader
-                && lastStatementEnd == ast.getLineNo()) {
-            log(ast, MSG_KEY);
+    private static boolean isMultilineStatement(DetailAST ast) {
+        boolean multiline = false;
+        if (ast.getPreviousSibling() != null) {
+            final DetailAST prevSibling = ast.getPreviousSibling();
+            if (prevSibling.getLineNo() != ast.getLineNo()
+                    && ast.getParent() != null) {
+                multiline = true;
+            }
         }
-    }
-
-    /**
-     * Mark the state-change for the statement (leaving) and remember the last
-     * line of the last statement.
-     * @param ast for the {@link TokenTypes#SEMI}.
-     */
-    private void visitSemi(DetailAST ast) {
-        if (exprDepth == 0) {
-            lastStatementEnd = ast.getLineNo();
-        }
+        return multiline;
     }
 }

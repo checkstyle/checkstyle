@@ -795,7 +795,6 @@
           <regex><pattern>.*.checks.coding.NestedForDepthCheck</pattern><branchRate>50</branchRate><lineRate>90</lineRate></regex>
           <regex><pattern>.*.checks.coding.NestedIfDepthCheck</pattern><branchRate>75</branchRate><lineRate>83</lineRate></regex>
           <regex><pattern>.*.checks.coding.NestedTryDepthCheck</pattern><branchRate>50</branchRate><lineRate>81</lineRate></regex>
-          <regex><pattern>.*.checks.coding.OneStatementPerLineCheck</pattern><branchRate>93</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.coding.OverloadMethodsDeclarationOrderCheck</pattern><branchRate>93</branchRate><lineRate>96</lineRate></regex>
           <regex><pattern>.*.checks.coding.PackageDeclarationCheck</pattern><branchRate>50</branchRate><lineRate>63</lineRate></regex>
           <regex><pattern>.*.checks.coding.ParameterAssignmentCheck</pattern><branchRate>80</branchRate><lineRate>91</lineRate></regex>

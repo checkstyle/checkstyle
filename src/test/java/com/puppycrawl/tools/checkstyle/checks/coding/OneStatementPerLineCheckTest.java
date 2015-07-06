@@ -29,12 +29,35 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
     public void testMultiCaseClass() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(OneStatementPerLineCheck.class);
         final String[] expected = {
-            "99:18: " + getCheckMessage(MSG_KEY),
-            "127:11: " + getCheckMessage(MSG_KEY),
+            "24:59: " + getCheckMessage(MSG_KEY),
+            "112:21: " + getCheckMessage(MSG_KEY),
+            "139:14: " + getCheckMessage(MSG_KEY),
+            "165:15: " + getCheckMessage(MSG_KEY),
+            "177:23: " + getCheckMessage(MSG_KEY),
+            "197:19: " + getCheckMessage(MSG_KEY),
+            "200:59: " + getCheckMessage(MSG_KEY),
+            "209:4: " + getCheckMessage(MSG_KEY),
+            "228:58: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig,
             getPath("checks/coding/OneStatementPerLineCheckInput.java"),
+            expected);
+    }
+
+    @Test
+    public void testWithMultilineStatements() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(OneStatementPerLineCheck.class);
+        final String[] expected = {
+            "43:21: " + getCheckMessage(MSG_KEY),
+            "60:17: " + getCheckMessage(MSG_KEY),
+            "68:17: " + getCheckMessage(MSG_KEY),
+            "80:10: " + getCheckMessage(MSG_KEY),
+            "89:20: " + getCheckMessage(MSG_KEY),
+        };
+
+        verify(checkConfig,
+            getPath("checks/coding/OneStatementPerLineCheckInput2.java"),
             expected);
     }
 }
