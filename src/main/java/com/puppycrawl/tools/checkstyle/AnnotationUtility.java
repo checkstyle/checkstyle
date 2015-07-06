@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -30,6 +31,12 @@ import org.apache.commons.lang3.StringUtils;
  * @author Travis Schneeberger
  */
 public final class AnnotationUtility {
+
+    /**
+     * Common message
+     */
+    private static final String THE_AST_IS_NULL = "the ast is null";
+
     /**
      * private utility constructor.
      * @throws UnsupportedOperationException if called
@@ -58,11 +65,12 @@ public final class AnnotationUtility {
      * @param ast the current node
      * @param annotation the annotation name to check for
      * @return true if contains the annotation
-     * @throws NullPointerException if the ast or
-     * annotation is null
      */
     public static boolean containsAnnotation(final DetailAST ast,
         String annotation) {
+        if (ast == null) {
+            throw new IllegalArgumentException(THE_AST_IS_NULL);
+        }
         return AnnotationUtility.getAnnotation(ast, annotation) != null;
     }
 
@@ -72,9 +80,11 @@ public final class AnnotationUtility {
      *
      * @param ast the current node
      * @return true if contains an annotation
-     * @throws NullPointerException if the ast is null
      */
     public static boolean containsAnnotation(final DetailAST ast) {
+        if (ast == null) {
+            throw new IllegalArgumentException(THE_AST_IS_NULL);
+        }
         final DetailAST holder = AnnotationUtility.getAnnotationHolder(ast);
         return holder != null && holder.branchContains(TokenTypes.ANNOTATION);
     }
@@ -86,11 +96,10 @@ public final class AnnotationUtility {
      *
      * @param ast the current node
      * @return the Annotation Holder
-     * @throws NullPointerException if the ast is null
      */
     public static DetailAST getAnnotationHolder(DetailAST ast) {
         if (ast == null) {
-            throw new IllegalArgumentException("the ast is null");
+            throw new IllegalArgumentException(THE_AST_IS_NULL);
         }
 
         final DetailAST annotationHolder;
@@ -127,13 +136,11 @@ public final class AnnotationUtility {
      * @param ast the current node
      * @param annotation the annotation name to check for
      * @return the AST representing that annotation
-     * @throws NullPointerException if the ast or
-     * annotation is null
      */
     public static DetailAST getAnnotation(final DetailAST ast,
         String annotation) {
         if (ast == null) {
-            throw new IllegalArgumentException("the ast is null");
+            throw new IllegalArgumentException(THE_AST_IS_NULL);
         }
 
         if (annotation == null) {
@@ -141,8 +148,8 @@ public final class AnnotationUtility {
         }
 
         if (StringUtils.isBlank(annotation)) {
-            throw new IllegalArgumentException("the annotation"
-                + "is empty or spaces");
+            throw new IllegalArgumentException(
+                    "the annotation is empty or spaces");
         }
 
         final DetailAST holder = AnnotationUtility.getAnnotationHolder(ast);
@@ -162,42 +169,4 @@ public final class AnnotationUtility {
         return null;
     }
 
-    /**
-     * Checks to see what the passed in AST (representing
-     * an annotation) is annotating.
-     *
-     * @param ast the AST representing an annotation.
-     * @return the AST the annotation is annotating.
-     * @throws NullPointerException if the ast is null
-     * @throws IllegalArgumentException if the ast is not
-     * an {@link TokenTypes#ANNOTATION}
-     */
-    public static DetailAST annotatingWhat(DetailAST ast) {
-        if (ast == null) {
-            throw new IllegalArgumentException("the ast is null");
-        }
-
-        if (ast.getType() != TokenTypes.ANNOTATION) {
-            throw new IllegalArgumentException(
-                "The ast is not an annotation. AST: " + ast);
-        }
-
-        return ast.getParent().getParent();
-    }
-
-    /**
-     * Checks to see if the passed in AST (representing
-     * an annotation) is annotating the passed in type.
-     * @param ast the AST representing an annotation
-     * @param tokenType the passed in type
-     * @return true if the annotation is annotating a type
-     * equal to the passed in type
-     * @throws NullPointerException if the ast is null
-     * @throws IllegalArgumentException if the ast is not
-     * an {@link TokenTypes#ANNOTATION}
-     */
-    public static boolean isAnnotatingType(DetailAST ast, int tokenType) {
-        final DetailAST astNode = AnnotationUtility.annotatingWhat(ast);
-        return astNode.getType() == tokenType;
-    }
 }
