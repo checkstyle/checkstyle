@@ -545,7 +545,7 @@
       </tr>
       <tr>
         <td><a href="config_coding.html#OneStatementPerLine">OneStatementPerLine</a></td>
-        <td>Checks there is only one statement per line.</td>
+        <td>Checks that there is only one statement per line.</td>
       </tr>
       <tr>
         <td><a href="config_design.html#OneTopLevelClass">OneTopLevelClass</a></td>
