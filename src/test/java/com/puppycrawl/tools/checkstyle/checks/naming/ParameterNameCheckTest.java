@@ -19,11 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
+import org.junit.Assert;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ParameterNameCheckTest
     extends BaseCheckTestSupport {
@@ -63,5 +66,16 @@ public class ParameterNameCheckTest
         final String[] expected = {
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        ParameterNameCheck parameterNameCheckObj = new ParameterNameCheck();
+        int[] actual = parameterNameCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.PARAMETER_DEF,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 }
