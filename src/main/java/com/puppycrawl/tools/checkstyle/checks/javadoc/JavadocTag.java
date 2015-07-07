@@ -81,8 +81,8 @@ public class JavadocTag {
 
     @Override
     public String toString() {
-        return "{Tag = '" + getTagName() + "', lineNo = " + getLineNo()
-            + ", columnNo=" + columnNo + ", Arg1 = '" + getArg1() + "'}";
+        return "JavadocTag{tag='" + getTagName() + "' lineNo=" + lineNo + ", columnNo=" + columnNo
+                + ", arg1='" + arg1 + "'}";
     }
 
     /** @return whether the tag is an 'author' tag **/
