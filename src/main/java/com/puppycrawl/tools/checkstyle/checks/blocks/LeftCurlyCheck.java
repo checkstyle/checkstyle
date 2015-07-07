@@ -377,10 +377,8 @@ public class LeftCurlyCheck
                 nextToken = leftCurly.getNextSibling();
             }
         }
-        if (nextToken != null && nextToken.getType() != TokenTypes.RCURLY
-                && leftCurly.getLineNo() == nextToken.getLineNo()) {
-            return false;
-        }
-        return true;
+        return nextToken == null
+                || nextToken.getType() == TokenTypes.RCURLY
+                || leftCurly.getLineNo() != nextToken.getLineNo();
     }
 }

@@ -295,14 +295,11 @@ public class IllegalInstantiationCheck
 
         // the test is the "no garbage" version of
         // illegal.equals(pkgName + "." + className)
-        if (pkgName != null
-            && clsNameLen == illegalLen - pkgNameLen - 1
-            && illegal.charAt(pkgNameLen) == '.'
-            && illegal.endsWith(className)
-            && illegal.startsWith(pkgName)) {
-            return true;
-        }
-        return false;
+        return pkgName != null
+                && clsNameLen == illegalLen - pkgNameLen - 1
+                && illegal.charAt(pkgNameLen) == '.'
+                && illegal.endsWith(className)
+                && illegal.startsWith(pkgName);
     }
 
     /**

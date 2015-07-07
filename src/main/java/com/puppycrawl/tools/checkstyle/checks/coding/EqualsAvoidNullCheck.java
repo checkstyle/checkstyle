@@ -153,12 +153,9 @@ public class EqualsAvoidNullCheck extends Check {
      * @return if it is string literal
      */
     private boolean isStringLiteral(DetailAST objCalledOn) {
-        if (objCalledOn.getType() == TokenTypes.STRING_LITERAL
+        return objCalledOn.getType() == TokenTypes.STRING_LITERAL
                 || objCalledOn.getType() == TokenTypes.LITERAL_NEW
-                || objCalledOn.getType() == TokenTypes.DOT) {
-            return true;
-        }
-        return false;
+                || objCalledOn.getType() == TokenTypes.DOT;
     }
 
     /**
@@ -226,13 +223,9 @@ public class EqualsAvoidNullCheck extends Check {
         //(s += "SweetString").equals(s); //true
         //arg = skipVariablePlusAssign(arg);
 
-        if (arg.branchContains(TokenTypes.PLUS_ASSIGN)
-                || arg.branchContains(TokenTypes.IDENT)) {
-            return false;
-        }
-
-        //must be just String literals if got here
-        return true;
+        //must be just String literals to return true
+        return !arg.branchContains(TokenTypes.PLUS_ASSIGN)
+                && !arg.branchContains(TokenTypes.IDENT);
     }
 
     /**

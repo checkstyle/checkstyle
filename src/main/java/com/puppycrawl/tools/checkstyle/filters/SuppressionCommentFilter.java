@@ -403,10 +403,7 @@ public class SuppressionCommentFilter
             tagSuppressions();
         }
         final Tag matchTag = findNearestMatch(event);
-        if (matchTag != null && !matchTag.isOn()) {
-            return false;
-        }
-        return true;
+        return matchTag == null || matchTag.isOn();
     }
 
     /**

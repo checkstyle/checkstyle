@@ -123,13 +123,10 @@ public class DesignForExtensionCheck extends Check {
     private boolean isPrivateOrFinalOrAbstract(DetailAST ast) {
         // method is ok if it is private or abstract or final
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)
-            || modifiers.branchContains(TokenTypes.ABSTRACT)
-            || modifiers.branchContains(TokenTypes.FINAL)
-            || modifiers.branchContains(TokenTypes.LITERAL_STATIC)) {
-            return true;
-        }
-        return false;
+        return modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)
+                || modifiers.branchContains(TokenTypes.ABSTRACT)
+                || modifiers.branchContains(TokenTypes.FINAL)
+                || modifiers.branchContains(TokenTypes.LITERAL_STATIC);
     }
 
     /**
