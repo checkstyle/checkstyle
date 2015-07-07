@@ -87,12 +87,10 @@ final class ImportControlLoader extends AbstractLoader {
             stack.push(new PkgControl(pkg));
         }
         else if ("subpackage".equals(qName)) {
-            assert !stack.isEmpty();
             final String name = safeGet(atts, "name");
             stack.push(new PkgControl(stack.peek(), name));
         }
         else if ("allow".equals(qName) || "disallow".equals(qName)) {
-            assert !stack.isEmpty();
             // Need to handle either "pkg" or "class" attribute.
             // May have "exact-match" for "pkg"
             // May have "local-only"
@@ -122,7 +120,6 @@ final class ImportControlLoader extends AbstractLoader {
     public void endElement(final String namespaceURI, final String localName,
         final String qName) {
         if ("subpackage".equals(qName)) {
-            assert stack.size() > 1;
             stack.pop();
         }
     }
@@ -175,7 +172,6 @@ final class ImportControlLoader extends AbstractLoader {
      * @return the root {@link PkgControl} object loaded.
      */
     private PkgControl getRoot() {
-        assert stack.size() == 1;
         return stack.peek();
     }
 

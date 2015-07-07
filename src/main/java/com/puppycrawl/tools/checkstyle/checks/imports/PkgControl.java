@@ -46,7 +46,6 @@ class PkgControl {
      * @param pkgName the name of the package.
      */
     PkgControl(final String pkgName) {
-        assert pkgName != null;
         parent = null;
         fullPackage = pkgName;
     }
@@ -57,8 +56,6 @@ class PkgControl {
      * @param subPkg the sub package name.
      */
     PkgControl(final PkgControl parent, final String subPkg) {
-        assert parent != null;
-        assert subPkg != null;
         this.parent = parent;
         fullPackage = parent.getFullPackage() + "." + subPkg;
         parent.children.add(this);

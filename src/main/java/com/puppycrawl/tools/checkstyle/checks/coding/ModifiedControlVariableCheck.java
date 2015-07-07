@@ -364,7 +364,6 @@ public final class ModifiedControlVariableCheck extends Check {
      * @return set of variables initialized in for loop
      */
     private static Set<String> getForInitVariables(DetailAST ast) {
-        assert ast.getType() == TokenTypes.LITERAL_FOR;
         final Set<String> initializedVariables = new HashSet<>();
         final DetailAST forInitAST = ast.findFirstToken(TokenTypes.FOR_INIT);
 
