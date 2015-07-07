@@ -133,12 +133,7 @@ public class ExplicitInitializationCheck extends Check {
         }
 
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers != null
-            && modifiers.branchContains(TokenTypes.FINAL)) {
-            // do not check final variables
-            return true;
-        }
-        return false;
+        return modifiers != null && modifiers.branchContains(TokenTypes.FINAL);
     }
 
     /**

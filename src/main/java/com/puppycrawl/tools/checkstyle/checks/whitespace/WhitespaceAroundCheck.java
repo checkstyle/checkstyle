@@ -416,11 +416,7 @@ public class WhitespaceAroundCheck extends Check {
         }
 
         // Checks if empty classes, interfaces or enums are allowed
-        if (allowEmptyTypes && isEmptyType(ast, parentType)) {
-            return true;
-        }
-
-        return false;
+        return allowEmptyTypes && isEmptyType(ast, parentType);
     }
 
     /**

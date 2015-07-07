@@ -178,13 +178,7 @@ public abstract class AbstractSuperCheck
     private boolean isZeroParameters(DetailAST parent) {
 
         final DetailAST args = parent.getNextSibling();
-        if (args == null || args.getType() != TokenTypes.ELIST) {
-            return true;
-        }
-        if (args.getChildCount() != 0) {
-            return true;
-        }
-        return false;
+        return args == null || args.getType() != TokenTypes.ELIST || args.getChildCount() != 0;
     }
 
     /**
@@ -204,10 +198,7 @@ public abstract class AbstractSuperCheck
             return true;
         }
         final String name = sibling.getText();
-        if (!getMethodName().equals(name)) {
-            return true;
-        }
-        return false;
+        return !getMethodName().equals(name);
     }
 
     @Override

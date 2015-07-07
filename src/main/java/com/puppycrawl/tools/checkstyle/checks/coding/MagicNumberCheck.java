@@ -311,13 +311,9 @@ public class MagicNumberCheck extends Check {
         // Check for no arguments.
         final DetailAST paramAST =
             methodDefAST.findFirstToken(TokenTypes.PARAMETERS);
-        if (0 != paramAST.getChildCount()) {
-            return false;
-        }
-
         // we are in a 'public int hashCode()' method! The compiler will ensure
         // the method returns an 'int' and is public.
-        return true;
+        return 0 == paramAST.getChildCount();
     }
 
     /**
