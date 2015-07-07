@@ -19,12 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 import java.io.File;
+
+import org.junit.Assert;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MemberNameCheckTest
     extends BaseCheckTestSupport {
@@ -234,6 +238,17 @@ public class MemberNameCheckTest
         verify(checkConfig,
               getPath("naming" + File.separator + "InputMemberNameExtended.java"),
               expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        MemberNameCheck memberNameCheckObj = new MemberNameCheck();
+        int[] actual = memberNameCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.VARIABLE_DEF,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 }
 
