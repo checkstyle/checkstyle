@@ -843,7 +843,6 @@
           <regex><pattern>.*.checks.javadoc.AtclauseOrderCheck</pattern><branchRate>88</branchRate><lineRate>88</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.HtmlTag</pattern><branchRate>75</branchRate><lineRate>90</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.JavadocMethodCheck</pattern><branchRate>90</branchRate><lineRate>96</lineRate></regex>
-          <regex><pattern>.*.checks.javadoc.JavadocNodeImpl</pattern><branchRate>50</branchRate><lineRate>84</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.JavadocPackageCheck</pattern><branchRate>80</branchRate><lineRate>95</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.JavadocParagraphCheck</pattern><branchRate>92</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.javadoc.JavadocStyleCheck</pattern><branchRate>89</branchRate><lineRate>97</lineRate></regex>
