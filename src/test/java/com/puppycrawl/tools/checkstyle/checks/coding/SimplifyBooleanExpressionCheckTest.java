@@ -19,11 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck.MSG_KEY;
+
+import org.junit.Assert;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck.MSG_KEY;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class SimplifyBooleanExpressionCheckTest
     extends BaseCheckTestSupport {
@@ -39,5 +41,13 @@ public class SimplifyBooleanExpressionCheckTest
             "43:32: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputSimplifyBoolean.java"), expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        SimplifyBooleanExpressionCheck check = new SimplifyBooleanExpressionCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }

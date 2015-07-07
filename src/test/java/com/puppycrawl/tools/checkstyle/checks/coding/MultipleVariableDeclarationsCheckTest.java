@@ -19,16 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import org.junit.Test;
-
-import java.io.File;
-
 import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck
 .MSG_MULTIPLE;
 import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck
 .MSG_MULTIPLE_COMMA;
+
+import java.io.File;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class MultipleVariableDeclarationsCheckTest extends BaseCheckTestSupport {
     @Test
@@ -48,5 +50,13 @@ public class MultipleVariableDeclarationsCheckTest extends BaseCheckTestSupport 
         verify(checkConfig,
                getPath("coding" + File.separator + "InputMultipleVariableDeclarations.java"),
                expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        MultipleVariableDeclarationsCheck check = new MultipleVariableDeclarationsCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }

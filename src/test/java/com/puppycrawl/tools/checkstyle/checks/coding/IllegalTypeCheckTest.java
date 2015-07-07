@@ -19,13 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck.MSG_KEY;
+
 import java.io.File;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck.MSG_KEY;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class IllegalTypeCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
@@ -156,5 +159,13 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
 
         verify(checkConfig, getPath("coding" + File.separator
                 + "InputIllegalTypeMemberModifiers.java"), expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        IllegalTypeCheck check = new IllegalTypeCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }

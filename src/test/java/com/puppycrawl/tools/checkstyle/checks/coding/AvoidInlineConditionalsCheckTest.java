@@ -19,11 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.coding.AvoidInlineConditionalsCheck.MSG_KEY;
+
+import org.junit.Assert;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.AvoidInlineConditionalsCheck.MSG_KEY;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class AvoidInlineConditionalsCheckTest
     extends BaseCheckTestSupport {
@@ -38,5 +40,13 @@ public class AvoidInlineConditionalsCheckTest
             "150:34: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        AvoidInlineConditionalsCheck check = new AvoidInlineConditionalsCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }

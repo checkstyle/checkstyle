@@ -19,11 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck.MSG_KEY;
+
+import org.junit.Assert;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck.MSG_KEY;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
 public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
     @Test
     public void testMultiCaseClass() throws Exception {
@@ -36,5 +39,13 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
         verify(checkConfig,
             getPath("checks/coding/OneStatementPerLineCheckInput.java"),
             expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        OneStatementPerLineCheck check = new OneStatementPerLineCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }

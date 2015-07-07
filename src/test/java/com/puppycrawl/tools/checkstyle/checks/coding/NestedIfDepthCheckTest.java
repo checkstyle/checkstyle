@@ -19,11 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck.MSG_KEY;
+
+import org.junit.Assert;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck.MSG_KEY;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class NestedIfDepthCheckTest extends BaseCheckTestSupport {
     @Test
@@ -50,5 +52,13 @@ public class NestedIfDepthCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig, getPath("coding/InputNestedIfDepth.java"), expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        NestedIfDepthCheck check = new NestedIfDepthCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }

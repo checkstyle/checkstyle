@@ -19,12 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import org.junit.Test;
-
 import static com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck
 .MSG_KEY;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class OverloadMethodsDeclarationOrderCheckTest
     extends BaseCheckTestSupport {
@@ -40,5 +42,13 @@ public class OverloadMethodsDeclarationOrderCheckTest
             "111: " + getCheckMessage(MSG_KEY, 100),
         };
         verify(checkConfig, getPath("coding/InputOverloadMethodsDeclarationOrder.java"), expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        OverloadMethodsDeclarationOrderCheck check = new OverloadMethodsDeclarationOrderCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }

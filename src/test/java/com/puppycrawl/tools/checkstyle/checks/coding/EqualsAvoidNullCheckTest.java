@@ -19,16 +19,19 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import java.io.File;
-import org.junit.Test;
-
 import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL;
 import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck
     .MSG_EQUALS_IGNORE_CASE_AVOID_NULL;
 
-public class EqualsAvoidNullTest extends BaseCheckTestSupport {
+import java.io.File;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
+public class EqualsAvoidNullCheckTest extends BaseCheckTestSupport {
     @Test
     public void testEqualsWithDefault() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -84,5 +87,13 @@ public class EqualsAvoidNullTest extends BaseCheckTestSupport {
             "67:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputEqualsAvoidNull.java"), expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        EqualsAvoidNullCheck check = new EqualsAvoidNullCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }

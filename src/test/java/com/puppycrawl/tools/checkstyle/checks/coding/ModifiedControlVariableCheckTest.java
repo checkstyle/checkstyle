@@ -19,11 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck.MSG_KEY;
+
+import org.junit.Assert;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck.MSG_KEY;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class ModifiedControlVariableCheckTest
     extends BaseCheckTestSupport {
@@ -64,5 +66,13 @@ public class ModifiedControlVariableCheckTest
             "9:18: " + getCheckMessage(MSG_KEY, "line"),
         };
         verify(checkConfig, getPath("coding/InputModifiedControlVariableEnhancedForLoopVariable.java"), expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }

@@ -19,14 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck.MSG_KEY;
+
 import java.io.File;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
-import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck.MSG_KEY;
 
 public class IllegalInstantiationCheckTest
     extends BaseCheckTestSupport {
@@ -60,5 +61,13 @@ public class IllegalInstantiationCheckTest
                 new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
                           + "coding/InputIllegalInstantiationCheckTest2.java").getCanonicalPath(),
                 expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        IllegalInstantiationCheck check = new IllegalInstantiationCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }

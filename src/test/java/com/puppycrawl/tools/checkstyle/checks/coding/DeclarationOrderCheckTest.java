@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderChec
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_INSTANCE;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_STATIC;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -122,5 +123,13 @@ public class DeclarationOrderCheckTest
             "178:5: " + getCheckMessage(MSG_INSTANCE),
         };
         verify(checkConfig, getPath("coding/InputDeclarationOrder.java"), expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        DeclarationOrderCheck check = new DeclarationOrderCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }

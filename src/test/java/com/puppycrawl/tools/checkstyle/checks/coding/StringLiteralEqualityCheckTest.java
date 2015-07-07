@@ -19,12 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck.MSG_KEY;
+
 import java.io.File;
+
+import org.junit.Assert;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck.MSG_KEY;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class StringLiteralEqualityCheckTest
         extends BaseCheckTestSupport {
@@ -38,6 +41,14 @@ public class StringLiteralEqualityCheckTest
             "21:22: " + getCheckMessage(MSG_KEY, "=="),
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputStringLiteralEquality.java"), expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        StringLiteralEqualityCheck check = new StringLiteralEqualityCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }
 

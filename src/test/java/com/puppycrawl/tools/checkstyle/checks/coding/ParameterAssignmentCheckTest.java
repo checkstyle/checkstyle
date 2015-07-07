@@ -19,12 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.coding.ParameterAssignmentCheck.MSG_KEY;
+
 import java.io.File;
+
+import org.junit.Assert;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.ParameterAssignmentCheck.MSG_KEY;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class ParameterAssignmentCheckTest extends BaseCheckTestSupport {
     @Test
@@ -40,5 +43,13 @@ public class ParameterAssignmentCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputParameterAssignment.java"),
                expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        ParameterAssignmentCheck check = new ParameterAssignmentCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }

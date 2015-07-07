@@ -19,13 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import java.io.File;
-import org.junit.Test;
-
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_METHOD;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_VARIABLE;
+
+import java.io.File;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class RequireThisCheckTest extends BaseCheckTestSupport {
     @Test
@@ -92,5 +95,13 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
         verify(checkConfig,
                 getPath("coding" + File.separator + "InputRequireThis2.java"),
                 expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        RequireThisCheck check = new RequireThisCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }
