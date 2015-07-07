@@ -19,11 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
+import org.junit.Assert;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class LocalFinalVariableNameCheckTest
     extends BaseCheckTestSupport {
@@ -63,6 +66,18 @@ public class LocalFinalVariableNameCheckTest
             createCheckConfig(LocalFinalVariableNameCheck.class);
         final String[] expected = {};
         verify(checkConfig, getPath("InputInner.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        LocalFinalVariableNameCheck localFinalVariableNameCheckObj = new LocalFinalVariableNameCheck();
+        int[] actual = localFinalVariableNameCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.PARAMETER_DEF,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 }
 
