@@ -876,7 +876,6 @@
           <regex><pattern>.*.checks.naming.LocalVariableNameCheck</pattern><branchRate>94</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.naming.MemberNameCheck</pattern><branchRate>91</branchRate><lineRate>85</lineRate></regex>
           <regex><pattern>.*.checks.naming.MethodNameCheck</pattern><branchRate>100</branchRate><lineRate>93</lineRate></regex>
-          <regex><pattern>.*.checks.naming.PackageNameCheck</pattern><branchRate>100</branchRate><lineRate>88</lineRate></regex>
 
           <regex><pattern>.*.checks.regexp.CommentSuppressor</pattern><branchRate>75</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.regexp.DetectorOptions</pattern><branchRate>100</branchRate><lineRate>96</lineRate></regex>
