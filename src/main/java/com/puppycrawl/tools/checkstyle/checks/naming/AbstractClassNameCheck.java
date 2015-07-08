@@ -90,7 +90,7 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[]{TokenTypes.CLASS_DEF};
     }
 
     @Override
