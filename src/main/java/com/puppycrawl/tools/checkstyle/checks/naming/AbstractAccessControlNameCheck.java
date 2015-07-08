@@ -82,11 +82,6 @@ public abstract class AbstractAccessControlNameCheck
      * @return true if we should check such member.
      */
     protected boolean shouldCheckInScope(DetailAST modifiers) {
-        if (modifiers == null) {
-            // if there are no modifiers it is a package-private
-            return applyToPackage;
-        }
-
         final boolean isPublic = modifiers
                 .branchContains(TokenTypes.LITERAL_PUBLIC);
         final boolean isProtected = modifiers
