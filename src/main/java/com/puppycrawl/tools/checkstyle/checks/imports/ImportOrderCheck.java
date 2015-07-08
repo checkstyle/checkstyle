@@ -277,7 +277,8 @@ public class ImportOrderCheck
 
         final boolean isStaticAndNotLastImport = isStatic && !lastImportStatic;
         final boolean isNotStaticAndLastImport = !isStatic && lastImportStatic;
-        switch (getAbstractOption()) {
+        final ImportOrderOption abstractOption = getAbstractOption();
+        switch (abstractOption) {
             case TOP:
                 if (isNotStaticAndLastImport) {
                     lastGroup = Integer.MIN_VALUE;
@@ -305,12 +306,13 @@ public class ImportOrderCheck
                 break;
 
             case UNDER:
-                // previous static but current is non-static
                 doVisitToken(ident, isStatic, isNotStaticAndLastImport);
                 break;
 
             default:
-                break;
+                throw new IllegalStateException(
+                        "Unexpected option for static imports: " + abstractOption.toString());
+
         }
 
         lastImportLine = ast.findFirstToken(TokenTypes.SEMI).getLineNo();
@@ -328,29 +330,27 @@ public class ImportOrderCheck
      */
     private void doVisitToken(FullIdent ident, boolean isStatic,
             boolean previous) {
-        if (ident != null) {
-            final String name = ident.getText();
-            final int groupIdx = getGroupNumber(name);
-            final int line = ident.getLineNo();
+        final String name = ident.getText();
+        final int groupIdx = getGroupNumber(name);
+        final int line = ident.getLineNo();
 
-            if (groupIdx > lastGroup) {
-                // This check should be made more robust to handle
-                // comments and imports that span more than one line.
-                if (!beforeFirstImport && separated && line - lastImportLine < 2) {
-                    log(line, MSG_SEPARATION, name);
-                }
+        if (groupIdx > lastGroup) {
+            // This check should be made more robust to handle
+            // comments and imports that span more than one line.
+            if (!beforeFirstImport && separated && line - lastImportLine < 2) {
+                log(line, MSG_SEPARATION, name);
             }
-            else if (groupIdx == lastGroup || sortStaticImportsAlphabetically
-                     && isAlphabeticallySortableStaticImport(isStatic)) {
-                doVisitTokenInSameGroup(isStatic, previous, name, line);
-            }
-            else {
-                log(line, MSG_ORDERING, name);
-            }
-
-            lastGroup = groupIdx;
-            lastImport = name;
         }
+        else if (groupIdx == lastGroup || sortStaticImportsAlphabetically
+                 && isAlphabeticallySortableStaticImport(isStatic)) {
+            doVisitTokenInSameGroup(isStatic, previous, name, line);
+        }
+        else {
+            log(line, MSG_ORDERING, name);
+        }
+
+        lastGroup = groupIdx;
+        lastImport = name;
     }
 
     /**

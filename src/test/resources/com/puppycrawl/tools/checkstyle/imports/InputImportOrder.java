@@ -15,5 +15,8 @@ import java.io.InputStream;
 import java.io.Reader;
 import static javax.swing.WindowConstants.*;
 
+import static sun.tools.util.ModifierFilter.ALL_ACCESS;
+import static sun.tools.util.ModifierFilter.PACKAGE;
+
 public class InputImportOrder {
 }
