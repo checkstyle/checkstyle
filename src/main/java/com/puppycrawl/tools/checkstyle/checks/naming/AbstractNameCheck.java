@@ -43,17 +43,6 @@ public abstract class AbstractNameCheck
         super(format);
     }
 
-    /**
-     * Decides whether the name of an AST should be checked against
-     * the format regexp.
-     * @param ast the AST to check.
-     * @return true if the IDENT subnode of ast should be checked against
-     * the format regexp.
-     */
-    protected boolean mustCheckName(DetailAST ast) {
-        return true;
-    }
-
     @Override
     public void visitToken(DetailAST ast) {
         if (mustCheckName(ast)) {
@@ -67,4 +56,13 @@ public abstract class AbstractNameCheck
             }
         }
     }
+
+    /**
+     * Decides whether the name of an AST should be checked against
+     * the format regexp.
+     * @param ast the AST to check.
+     * @return true if the IDENT subnode of ast should be checked against
+     * the format regexp.
+     */
+    protected abstract boolean mustCheckName(DetailAST ast);
 }
