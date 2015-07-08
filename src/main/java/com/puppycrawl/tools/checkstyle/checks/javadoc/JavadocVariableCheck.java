@@ -50,9 +50,6 @@ public class JavadocVariableCheck
     /** the visibility scope where Javadoc comments shouldn't be checked **/
     private Scope excludeScope;
 
-    /** the regular expression to ignore variable name */
-    private String ignoreNameRegexp;
-
     /** the pattern to ignore variable name */
     private Pattern ignoreNamePattern;
 
@@ -78,21 +75,12 @@ public class JavadocVariableCheck
      * @throws org.apache.commons.beanutils.ConversionException if unable to create Pattern object.
      */
     public void setIgnoreNamePattern(String regexp) {
-        ignoreNameRegexp = regexp;
         if (!(regexp == null || regexp.length() == 0)) {
             ignoreNamePattern = Utils.createPattern(regexp);
         }
         else {
             ignoreNamePattern = null;
         }
-    }
-
-    /**
-     * Gets the variable names to ignore in the check.
-     * @return true regexp string to define variable names to ignore.
-     */
-    public String getIgnoreNamePattern() {
-        return ignoreNameRegexp;
     }
 
     @Override

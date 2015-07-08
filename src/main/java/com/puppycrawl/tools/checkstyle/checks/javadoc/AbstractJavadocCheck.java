@@ -113,9 +113,7 @@ public abstract class AbstractJavadocCheck extends Check {
      * @param ast
      *        the token to process
      */
-    public void visitJavadocToken(DetailNode ast) {
-        // No code by default, should be overridden only by demand at subclasses
-    }
+    public abstract void visitJavadocToken(DetailNode ast);
 
     /**
      * Called after all the child nodes have been process.
@@ -133,24 +131,6 @@ public abstract class AbstractJavadocCheck extends Check {
     @Override
     public final int[] getDefaultTokens() {
         return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
-    }
-
-    /**
-     * Defined final to not allow JavadocChecks to change acceptable tokens.
-     * @return acceptable tokens
-     */
-    @Override
-    public final int[] getAcceptableTokens() {
-        return super.getAcceptableTokens();
-    }
-
-    /**
-     * Defined final to not allow JavadocChecks to change required tokens.
-     * @return required tokens
-     */
-    @Override
-    public final int[] getRequiredTokens() {
-        return super.getRequiredTokens();
     }
 
     /**

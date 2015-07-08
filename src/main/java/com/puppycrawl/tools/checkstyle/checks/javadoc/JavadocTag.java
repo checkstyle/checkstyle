@@ -85,11 +85,6 @@ public class JavadocTag {
                 + ", arg1='" + arg1 + "'}";
     }
 
-    /** @return whether the tag is an 'author' tag **/
-    public boolean isAuthorTag() {
-        return JavadocTagInfo.AUTHOR == tagInfo;
-    }
-
     /** @return whether the tag is an 'return' tag **/
     public boolean isReturnTag() {
         return JavadocTagInfo.RETURN == tagInfo;
