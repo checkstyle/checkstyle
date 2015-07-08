@@ -23,9 +23,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.Assertion;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
-import org.junit.contrib.java.lang.system.LogMode;
-import org.junit.contrib.java.lang.system.StandardErrorStreamLog;
-import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
+import org.junit.contrib.java.lang.system.SystemErrRule;
+import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
@@ -40,9 +39,9 @@ public class MainTest {
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
     @Rule
-    public final StandardErrorStreamLog errorLog = new StandardErrorStreamLog(LogMode.LOG_ONLY);
+    public final SystemErrRule systemErr = new SystemErrRule().enableLog().mute();
     @Rule
-    public final StandardOutputStreamLog standardLog = new StandardOutputStreamLog(LogMode.LOG_ONLY);
+    public final SystemOutRule systemOut = new SystemOutRule().enableLog().mute();
 
     @Test
     public void testVersionPrint()
@@ -51,8 +50,8 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals("Checkstyle version: null" + System.lineSeparator(),
-                    standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                        systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-v");
@@ -73,8 +72,8 @@ public class MainTest {
                     + " -p <arg>   Loads the properties file%n"
                     + " -v         Print product version and exit%n");
 
-                assertEquals(usage, standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                assertEquals(usage, systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-w");
@@ -87,8 +86,8 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals("Must specify a config XML file." + System.lineSeparator(),
-                    standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                        systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
@@ -101,8 +100,8 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals("Must specify files to process, found 0." + System.lineSeparator(),
-                    standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                        systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-c", "/google_checks.xml", "NonexistingFile.java");
@@ -115,9 +114,9 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals(String.format("unable to find src/main/resources/non_existing_config.xml%n"
-                        + "Checkstyle ends with 1 errors.%n"),
-                    standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                                + "Checkstyle ends with 1 errors.%n"),
+                        systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-c", "src/main/resources/non_existing_config.xml",
@@ -131,8 +130,8 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals(String.format("Invalid output format. "
-                    + "Found 'xmlp' but expected 'plain' or 'xml'.%n"), standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                        + "Found 'xmlp' but expected 'plain' or 'xml'.%n"), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-c", "/google_checks.xml", "-f" , "xmlp",
@@ -146,8 +145,8 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals(String.format("Starting audit...%n"
-                        + "Audit done.%n"), standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                        + "Audit done.%n"), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
@@ -173,8 +172,8 @@ public class MainTest {
                         + expectedPath
                         + "\">%n"
                         + "</file>%n"
-                        + "</checkstyle>%n"), standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                        + "</checkstyle>%n"), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
@@ -189,8 +188,8 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals(String.format("Starting audit...%n"
-                        + "Audit done.%n"), standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                        + "Audit done.%n"), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
@@ -209,13 +208,13 @@ public class MainTest {
                     + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
                     .replace("/", File.separator);
                 assertEquals(String.format("Starting audit...%n"
-                    + expectedPath + ":3:14: "
-                    + "warning: Name 'InputMain' must match pattern '^[a-z0-9]*$'.%n"
-                    + expectedPath + ":5:7: "
-                    + "warning: Name 'InputMainInner' must match pattern '^[a-z0-9]*$'.%n"
-                    + "Audit done.%n"),
-                    standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                                + expectedPath + ":3:14: "
+                                + "warning: Name 'InputMain' must match pattern '^[a-z0-9]*$'.%n"
+                                + expectedPath + ":5:7: "
+                                + "warning: Name 'InputMainInner' must match pattern '^[a-z0-9]*$'.%n"
+                                + "Audit done.%n"),
+                        systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname2.xml",
@@ -238,8 +237,8 @@ public class MainTest {
                         + expectedPath + ":5:7: "
                         + "Name 'InputMainInner' must match pattern '^[a-z0-9]*$'.%n"
                         + "Audit done.%n"
-                        + "Checkstyle ends with 2 errors.%n"), standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                        + "Checkstyle ends with 2 errors.%n"), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-c",
@@ -253,8 +252,8 @@ public class MainTest {
         exit.expectSystemExitWithStatus(0);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
-                assertEquals("", standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                assertEquals("", systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
@@ -273,8 +272,8 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 //Assert.assertTrue(file.getTotalSpace() > 0);
-                assertEquals("", standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                assertEquals("", systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
@@ -293,8 +292,8 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() throws IOException {
                 assertEquals("Permission denied : '" + file.getCanonicalPath() + "'."
-                    + System.lineSeparator(), standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                        + System.lineSeparator(), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
@@ -310,8 +309,8 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals(String.format("Starting audit...%n"
-                        + "Audit done.%n"), standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                        + "Audit done.%n"), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/"
@@ -327,8 +326,8 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals("Could not find file 'nonexisting.properties'."
-                    + System.lineSeparator(), standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                        + System.lineSeparator(), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/"
@@ -344,8 +343,8 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() {
                 assertEquals(String.format("unable to parse configuration stream - Content is not allowed in prolog.:7:1%n"
-                        + "Checkstyle ends with 1 errors.%n"), standardLog.getLog());
-                assertEquals("", errorLog.getLog());
+                        + "Checkstyle ends with 1 errors.%n"), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/"
