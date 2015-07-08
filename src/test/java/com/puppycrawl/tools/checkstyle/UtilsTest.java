@@ -26,9 +26,12 @@ import static com.puppycrawl.tools.checkstyle.Utils.fileExtensionMatches;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
+import java.lang.reflect.Constructor;
 import java.io.File;
 import java.io.IOException;
+import java.util.Dictionary;
 
 import org.apache.commons.beanutils.ConversionException;
 import org.junit.Test;
@@ -123,5 +126,45 @@ public class UtilsTest {
     public void testInvalidPattern() {
         boolean result = Utils.isPatternValid("some[invalidPattern");
         assertFalse(result);
+    }
+
+    @Test
+    public void testGetExistingConstructor() throws NoSuchMethodException {
+        Constructor<?> constructor = Utils.getConstructor(String.class, String.class);
+
+        assertEquals(String.class.getConstructor(String.class), constructor);
+    }
+
+    @Test
+    public void testGetNonExistingConstructor() throws NoSuchMethodException {
+        try {
+            Utils.getConstructor(Math.class);
+            fail();
+        }
+        catch (IllegalStateException expected) {
+            assertEquals(NoSuchMethodException.class, expected.getCause().getClass());
+        }
+    }
+
+    @Test
+    public void testInvokeConstructor() throws NoSuchMethodException {
+        Constructor<String> constructor = String.class.getConstructor(String.class);
+
+        String constructedString = Utils.invokeConstructor(constructor, "string");
+
+        assertEquals("string", constructedString);
+    }
+
+    @Test
+    public void testInvokeConstructorThatFails() throws NoSuchMethodException {
+        Constructor<Dictionary> constructor = Dictionary.class.getConstructor();
+
+        try {
+            Utils.invokeConstructor(constructor);
+            fail();
+        }
+        catch (IllegalStateException expected) {
+            assertEquals(InstantiationException.class, expected.getCause().getClass());
+        }
     }
 }
