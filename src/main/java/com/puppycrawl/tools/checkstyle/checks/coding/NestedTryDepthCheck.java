@@ -53,35 +53,13 @@ public final class NestedTryDepthCheck extends AbstractNestedDepthCheck {
     }
 
     @Override
-    public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.LITERAL_TRY) {
-            visitLiteralTry(ast);
-        }
-        else {
-            throw new IllegalStateException(ast.toString());
-        }
-    }
-
-    @Override
-    public void leaveToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.LITERAL_TRY) {
-            leaveLiteralTry();
-        }
-        else {
-            throw new IllegalStateException(ast.toString());
-        }
-    }
-
-    /**
-     * Increases current nesting depth.
-     * @param literalTry node for try.
-     */
-    private void visitLiteralTry(DetailAST literalTry) {
+    public void visitToken(DetailAST literalTry) {
         nestIn(literalTry, MSG_KEY);
     }
 
-    /** Decreases current nesting depth */
-    private void leaveLiteralTry() {
+    @Override
+    public void leaveToken(DetailAST literalTry) {
         nestOut();
     }
+
 }
