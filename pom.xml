@@ -817,7 +817,6 @@
           <regex><pattern>.*.checks.indentation.HandlerFactory</pattern><branchRate>77</branchRate><lineRate>81</lineRate></regex>
           <regex><pattern>.*.checks.indentation.ImportHandler</pattern><branchRate>50</branchRate><lineRate>87</lineRate></regex>
           <regex><pattern>.*.checks.indentation.IndentationCheck</pattern><branchRate>100</branchRate><lineRate>93</lineRate></regex>
-          <regex><pattern>.*.checks.indentation.IndexHandler</pattern><branchRate>100</branchRate><lineRate>75</lineRate></regex>
           <regex><pattern>.*.checks.indentation.LineWrappingHandler</pattern><branchRate>87</branchRate><lineRate>95</lineRate></regex>
           <regex><pattern>.*.checks.indentation.MethodCallHandler</pattern><branchRate>63</branchRate><lineRate>87</lineRate></regex>
           <regex><pattern>.*.checks.indentation.MethodCallLineWrapHandler</pattern><branchRate>0</branchRate><lineRate>0</lineRate></regex>
@@ -825,7 +824,6 @@
           <regex><pattern>.*.checks.indentation.NewHandler</pattern><branchRate>83</branchRate><lineRate>77</lineRate></regex>
           <regex><pattern>.*.checks.indentation.ObjectBlockHandler</pattern><branchRate>75</branchRate><lineRate>100</lineRate></regex>
           <regex><pattern>.*.checks.indentation.PackageDefHandler</pattern><branchRate>50</branchRate><lineRate>85</lineRate></regex>
-          <regex><pattern>.*.checks.indentation.PrimordialHandler</pattern><branchRate>100</branchRate><lineRate>60</lineRate></regex>
           <regex><pattern>.*.checks.indentation.SlistHandler</pattern><branchRate>100</branchRate><lineRate>94</lineRate></regex>
           <regex><pattern>.*.checks.indentation.SynchronizedHandler</pattern><branchRate>100</branchRate><lineRate>100</lineRate></regex>
              
