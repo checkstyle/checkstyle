@@ -19,14 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 import java.io.File;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class TypeParameterNameTest
     extends BaseCheckTestSupport {
@@ -129,5 +131,16 @@ public class TypeParameterNameTest
             "52:24: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
         };
         verify(checkConfig, getPath("naming" + File.separator + "InputTypeParameterName.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        AbstractTypeParameterNameCheck typeParameterNameCheckObj = new ClassTypeParameterNameCheck();
+        int[] actual = typeParameterNameCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.TYPE_PARAMETER,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 }

@@ -34,8 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public abstract class AbstractTypeParameterNameCheck
     extends AbstractNameCheck {
-    /** the location of the type parameter **/
-    private int location;
 
     /**
      * Creates a new <code>AbstractTypeParameterNameCheck</code> instance.
@@ -60,20 +58,10 @@ public abstract class AbstractTypeParameterNameCheck
     }
 
     @Override
-    public final void init() {
-        this.location = getLocation();
-    }
-
-    @Override
     protected final boolean mustCheckName(DetailAST ast) {
-        DetailAST location =
+        final DetailAST location =
             ast.getParent().getParent();
-
-        if (location.getType() == TokenTypes.MODIFIERS) {
-            location = location.getParent();
-        }
-
-        return location.getType() == this.location;
+        return location.getType() == getLocation();
     }
 
     /**
