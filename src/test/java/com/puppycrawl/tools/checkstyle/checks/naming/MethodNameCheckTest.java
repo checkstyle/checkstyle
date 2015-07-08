@@ -19,12 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import org.junit.Test;
-
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck.MSG_KEY;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MethodNameCheckTest
     extends BaseCheckTestSupport {
@@ -133,5 +136,16 @@ public class MethodNameCheckTest
         };
 
         verify(checkConfig, getPath("naming/InputMethodNameOverridenMethods.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        MethodNameCheck methodNameCheckObj = new MethodNameCheck();
+        int[] actual = methodNameCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.METHOD_DEF,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 }
