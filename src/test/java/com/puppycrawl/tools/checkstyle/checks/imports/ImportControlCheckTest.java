@@ -133,4 +133,15 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
 
         assertArrayEquals(expected, actual);
     }
+
+    @Test(expected = CheckstyleException.class)
+    public void testWrongFormatURI() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("file",
+                "aaa://src");
+        final String[] expected = {};
+        verify(checkConfig, getPath("imports" + File.separator
+                + "InputImportControl.java"), expected);
+    }
+
 }

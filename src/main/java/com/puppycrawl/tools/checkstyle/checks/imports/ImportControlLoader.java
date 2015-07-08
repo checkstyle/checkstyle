@@ -183,7 +183,7 @@ final class ImportControlLoader extends AbstractLoader {
      * @return the value of the attribute.
      * @throws SAXException if the attribute does not exist.
      */
-    private String safeGet(final Attributes atts, final String name)
+    private static String safeGet(final Attributes atts, final String name)
         throws SAXException {
         final String retVal = atts.getValue(name);
         if (retVal == null) {
