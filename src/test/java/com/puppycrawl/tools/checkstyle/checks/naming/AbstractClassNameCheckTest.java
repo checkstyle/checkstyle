@@ -19,15 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck.ILLEGAL_ABSTRACT_CLASS_NAME;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck.NO_ABSTRACT_CLASS_MODIFIER;
+
 import java.io.File;
+
+import org.junit.Assert;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck
-.ILLEGAL_ABSTRACT_CLASS_NAME;
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck
-.NO_ABSTRACT_CLASS_MODIFIER;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
     @Test
@@ -93,5 +95,27 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
 
         verify(checkConfig, getPath("naming" + File.separator
                  + "InputAbstractClassNameFormerFalsePositive.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        AbstractClassNameCheck classNameCheckObj = new AbstractClassNameCheck();
+        int[] actual = classNameCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.CLASS_DEF,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        AbstractClassNameCheck classNameCheckObj = new AbstractClassNameCheck();
+        int[] actual = classNameCheckObj.getRequiredTokens();
+        int[] expected = new int[] {
+            TokenTypes.CLASS_DEF,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 }
