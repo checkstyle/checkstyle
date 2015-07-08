@@ -1469,4 +1469,13 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         };
         verifyWarns(checkConfig, getPath("indentation/InputSynchronizedMethod.java"), expected);
     }
+
+    @Test
+    public void testAnnotationDefinition() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+        };
+        verifyWarns(checkConfig, getPath("indentation/InputAnnotationDefinition.java"), expected);
+    }
 }
