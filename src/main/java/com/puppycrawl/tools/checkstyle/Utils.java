@@ -24,7 +24,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.apache.commons.beanutils.ConversionException;
 
 import java.io.File;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
@@ -335,5 +337,36 @@ public final class Utils {
      */
     public static boolean isCommentType(String type) {
         return isCommentType(getTokenId(type));
+    }
+
+    /**
+     * @param targetClass from which constructor is returned
+     * @param parameterTypes of constructor
+     * @return constructor of targetClass or {@link IllegalStateException} if any exception occurs
+     * @see Class#getConstructor(Class[])
+     */
+    public static Constructor<?> getConstructor(Class<?> targetClass, Class<?>... parameterTypes) {
+        try {
+            return targetClass.getConstructor(parameterTypes);
+        }
+        catch (NoSuchMethodException ex) {
+            throw new IllegalStateException(ex);
+        }
+    }
+
+    /**
+     * @param constructor to invoke
+     * @param parameters to pass to constructor
+     * @param <T> type of constructor
+     * @return new instance of class or {@link IllegalStateException} if any exception occurs
+     * @see Constructor#newInstance(Object...)
+     */
+    public static <T> T invokeConstructor(Constructor<T> constructor, Object... parameters) {
+        try {
+            return constructor.newInstance(parameters);
+        }
+        catch (InstantiationException | IllegalAccessException | InvocationTargetException ex) {
+            throw new IllegalStateException(ex);
+        }
     }
 }

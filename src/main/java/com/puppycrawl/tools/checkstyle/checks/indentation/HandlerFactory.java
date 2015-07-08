@@ -20,14 +20,12 @@
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.google.common.collect.Maps;
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.Set;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * Factory for handlers. Looks up constructor via reflection.
@@ -35,9 +33,6 @@ import org.apache.commons.logging.LogFactory;
  * @author jrichard
  */
 public class HandlerFactory {
-    /** Logger for indentation check. */
-    private static final Log LOG = LogFactory.getLog(HandlerFactory.class);
-
     /**
      * Registered handlers.
      */
@@ -90,19 +85,12 @@ public class HandlerFactory {
      *                the handler to register
      */
     private void register(int type, Class<?> handlerClass) {
-        try {
-            final Constructor<?> ctor = handlerClass
-                .getConstructor(new Class[] {IndentationCheck.class,
-                    DetailAST.class, // current AST
-                    AbstractExpressionHandler.class, // parent
-                });
-            typeHandlers.put(type, ctor);
-        }
-        catch (final NoSuchMethodException | SecurityException e) {
-            final String message = "couldn't find ctor for " + handlerClass;
-            LOG.debug(message, e);
-            throw new RuntimeException(message);
-        }
+        final Constructor<?> ctor = Utils.getConstructor(handlerClass,
+                IndentationCheck.class,
+                DetailAST.class, // current AST
+                AbstractExpressionHandler.class // parent
+        );
+        typeHandlers.put(type, ctor);
     }
 
     /**
@@ -154,26 +142,11 @@ public class HandlerFactory {
         }
 
         AbstractExpressionHandler expHandler = null;
-        try {
-            final Constructor<?> handlerCtor =
-                typeHandlers.get(ast.getType());
-            if (handlerCtor != null) {
-                expHandler = (AbstractExpressionHandler) handlerCtor.newInstance(
-                        indentCheck, ast, parent);
-            }
-        }
-        catch (final InstantiationException | InvocationTargetException e) {
-            final String message = "couldn't instantiate constructor for " + ast;
-            LOG.debug(message, e);
-            throw new RuntimeException(message);
-        }
-        catch (final IllegalAccessException e) {
-            final String message = "couldn't access constructor for " + ast;
-            LOG.debug(message, e);
-            throw new RuntimeException(message);
-        }
-        if (expHandler == null) {
-            throw new RuntimeException("no handler for type " + ast.getType());
+        final Constructor<?> handlerCtor =
+            typeHandlers.get(ast.getType());
+        if (handlerCtor != null) {
+            expHandler = (AbstractExpressionHandler) Utils.invokeConstructor(
+                    handlerCtor, indentCheck, ast, parent);
         }
         return expHandler;
     }
