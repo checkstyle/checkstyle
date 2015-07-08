@@ -1167,7 +1167,6 @@
             <regex><pattern>.*.checks.javadoc.JavadocPackageCheck</pattern><branchRate>80</branchRate><lineRate>95</lineRate></regex>
             <regex><pattern>.*.checks.javadoc.JavadocParagraphCheck</pattern><branchRate>92</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.javadoc.JavadocStyleCheck</pattern><branchRate>89</branchRate><lineRate>97</lineRate></regex>
-            <regex><pattern>.*.checks.javadoc.JavadocTag</pattern><branchRate>92</branchRate><lineRate>85</lineRate></regex>
             <regex><pattern>.*.checks.javadoc.JavadocTagContinuationIndentationCheck</pattern><branchRate>81</branchRate><lineRate>86</lineRate></regex>
             <regex><pattern>.*.checks.javadoc.JavadocTypeCheck</pattern><branchRate>95</branchRate><lineRate>91</lineRate></regex>
             <regex><pattern>.*.checks.javadoc.JavadocUtils</pattern><branchRate>83</branchRate><lineRate>91</lineRate></regex>

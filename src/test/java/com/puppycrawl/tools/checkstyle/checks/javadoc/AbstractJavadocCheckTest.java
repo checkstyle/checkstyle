@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -32,6 +33,11 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
         @Override
         public int[] getDefaultJavadocTokens() {
             return null;
+        }
+
+        @Override
+        public void visitJavadocToken(DetailNode ast) {
+            // do nothing
         }
 
     }
