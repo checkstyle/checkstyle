@@ -1105,8 +1105,6 @@
             <regex><pattern>.*.checks.coding.ExplicitInitializationCheck</pattern><branchRate>91</branchRate><lineRate>97</lineRate></regex>
             <regex><pattern>.*.checks.coding.FallThroughCheck</pattern><branchRate>90</branchRate><lineRate>97</lineRate></regex>
             <regex><pattern>.*.checks.coding.FinalLocalVariableCheck</pattern><branchRate>82</branchRate><lineRate>100</lineRate></regex>
-            <regex><pattern>.*.checks.coding.HiddenFieldCheck</pattern><branchRate>96</branchRate><lineRate>99</lineRate></regex>
-            <regex><pattern>.*.checks.coding.HiddenFieldCheck\$.*</pattern><branchRate>94</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.coding.IllegalInstantiationCheck</pattern><branchRate>81</branchRate><lineRate>97</lineRate></regex>
             <regex><pattern>.*.checks.coding.IllegalTokenCheck</pattern><branchRate>83</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.coding.IllegalTokenTextCheck</pattern><branchRate>60</branchRate><lineRate>92</lineRate></regex>
