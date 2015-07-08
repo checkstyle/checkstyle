@@ -19,19 +19,19 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.google.common.base.Objects;
-import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.ScopeUtils;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.Utils;
-
 import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.ConversionException;
+
+import com.google.common.base.Objects;
+import com.google.common.collect.Sets;
+import com.puppycrawl.tools.checkstyle.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.Utils;
+import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>Checks that a local variable or a parameter does not shadow
@@ -131,7 +131,6 @@ import org.apache.commons.beanutils.ConversionException;
  */
 public class HiddenFieldCheck
     extends Check {
-
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -415,8 +414,7 @@ public class HiddenFieldCheck
         // we should not capitalize the first character if the second
         // one is a capital one, since according to JavBeans spec
         // setXYzz() is a setter for XYzz property, not for xYzz one.
-        if (name != null && (name.length() == 1
-                || name.length() > 1 && !Character.isUpperCase(name.charAt(1)))) {
+        if (name.length() == 1 || !Character.isUpperCase(name.charAt(1))) {
             setterName = name.substring(0, 1).toUpperCase(Locale.ENGLISH) + name.substring(1);
         }
         return setterName;
@@ -455,7 +453,7 @@ public class HiddenFieldCheck
             final DetailAST method = ast.getParent().getParent();
             if (method.getType() == TokenTypes.METHOD_DEF) {
                 final DetailAST mods = method.findFirstToken(TokenTypes.MODIFIERS);
-                result = mods != null && mods.branchContains(TokenTypes.ABSTRACT);
+                result = mods.branchContains(TokenTypes.ABSTRACT);
             }
         }
         return result;
@@ -513,11 +511,6 @@ public class HiddenFieldCheck
     public void setIgnoreAbstractMethods(
         boolean ignoreAbstractMethods) {
         this.ignoreAbstractMethods = ignoreAbstractMethods;
-    }
-
-    /** @return the regexp to match against */
-    public Pattern getRegexp() {
-        return regexp;
     }
 
     /**
@@ -585,8 +578,8 @@ public class HiddenFieldCheck
          */
         public boolean containsInstanceField(String field) {
             return instanceFields.contains(field)
-                    || !isStaticType()
-                    && parent != null
+                    || parent != null
+                    && !isStaticType()
                     && parent.containsInstanceField(field);
 
         }
@@ -600,7 +593,6 @@ public class HiddenFieldCheck
             return staticFields.contains(field)
                     || parent != null
                     && parent.containsStaticField(field);
-
         }
 
         /**

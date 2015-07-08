@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck.MSG_KEY;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
-import static com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck.MSG_KEY;
 
 public class HiddenFieldCheckTest
     extends BaseCheckTestSupport {
@@ -109,6 +110,7 @@ public class HiddenFieldCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
         checkConfig.addAttribute("ignoreFormat", "^i.*$");
+        Assert.assertNotNull(checkConfig.getAttribute("ignoreFormat"));
         final String[] expected = {
             "18:13: " + getCheckMessage(MSG_KEY, "hidden"),
             "21:33: " + getCheckMessage(MSG_KEY, "hidden"),
