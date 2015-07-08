@@ -19,14 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static org.junit.Assert.fail;
+
+import java.io.File;
+
+import org.junit.Assert;
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import java.io.File;
-import org.junit.Test;
-
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ConstantNameCheckTest
     extends BaseCheckTestSupport {
@@ -133,5 +137,16 @@ public class ConstantNameCheckTest
                 new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/InputStaticModifierInInterface.java").getCanonicalPath(),
                 expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        ConstantNameCheck constantNameCheckObj = new ConstantNameCheck();
+        int[] actual = constantNameCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.VARIABLE_DEF,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 }
