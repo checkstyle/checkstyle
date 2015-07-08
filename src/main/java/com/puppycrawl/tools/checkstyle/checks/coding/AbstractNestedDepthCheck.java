@@ -52,14 +52,6 @@ public abstract class AbstractNestedDepthCheck extends Check {
     }
 
     /**
-     * Getter for maximum allowed nesting depth.
-     * @return maximum allowed nesting depth.
-     */
-    public final int getMax() {
-        return max;
-    }
-
-    /**
      * Setter for maximum allowed nesting depth.
      * @param max maximum allowed nesting depth.
      */

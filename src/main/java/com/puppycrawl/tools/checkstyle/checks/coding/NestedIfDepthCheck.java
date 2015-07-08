@@ -55,42 +55,17 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck {
     }
 
     @Override
-    public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.LITERAL_IF) {
-            visitLiteralIf(ast);
-        }
-        else {
-            throw new IllegalStateException(ast.toString());
-        }
-    }
-
-    @Override
-    public void leaveToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.LITERAL_IF) {
-            leaveLiteralIf(ast);
-        }
-        else {
-            throw new IllegalStateException(ast.toString());
-        }
-    }
-
-    /**
-     * Increases current nesting depth.
-     * @param literalIf node for if.
-     */
-    private void visitLiteralIf(DetailAST literalIf) {
+    public void visitToken(DetailAST literalIf) {
         if (!CheckUtils.isElseIf(literalIf)) {
             nestIn(literalIf, MSG_KEY);
         }
     }
 
-    /**
-     * Decreases current nesting depth.
-     * @param literalIf node for if.
-     */
-    private void leaveLiteralIf(DetailAST literalIf) {
+    @Override
+    public void leaveToken(DetailAST literalIf) {
         if (!CheckUtils.isElseIf(literalIf)) {
             nestOut();
         }
     }
+
 }
