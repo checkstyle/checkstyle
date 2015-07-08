@@ -19,13 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import java.io.File;
-import org.junit.Test;
-
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_ORDERING;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_SEPARATION;
+
+import java.io.File;
+
+import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class ImportOrderCheckTest extends BaseCheckTestSupport {
     @Test
@@ -72,7 +75,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
     @Test
     public void testSeparated() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
-        checkConfig.addAttribute("groups", "java.awt, javax.swing, java.io");
+        checkConfig.addAttribute("groups", "java.awt, javax.swing, java.io, java.util");
         checkConfig.addAttribute("separated", "true");
         checkConfig.addAttribute("ordered", "false");
         final String[] expected = {
@@ -92,6 +95,16 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrderCaseInsensitive.java"), expected);
+    }
+
+    @Test(expected = CheckstyleException.class)
+    public void testInvalidOption() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "invalid_option");
+        final String[] expected = {};
+
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_Top.java"), expected);
     }
 
     @Test
@@ -265,7 +278,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("option", "above");
-        checkConfig.addAttribute("groups", "org, java");
+        checkConfig.addAttribute("groups", "org, java, sun");
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
         final String[] expected = {
             "7: " + getCheckMessage(MSG_ORDERING, "java.lang.Math.PI"),
@@ -282,6 +295,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("groups", "org, java");
         final String[] expected = {
             "4: " + getCheckMessage(MSG_ORDERING, "org.abego.treelayout.Configuration.*"),
+            "9: " + getCheckMessage(MSG_ORDERING, "org.junit.Test"),
         };
         verify(checkConfig, getPath("imports" + File.separator
                  + "InputImportOrderStaticOnDemandGroupOrder.java"), expected);
@@ -294,7 +308,9 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("option", "top");
         checkConfig.addAttribute("groups", "org, java");
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
-        final String[] expected = {};
+        final String[] expected = {
+            "9: " + getCheckMessage(MSG_ORDERING, "org.junit.Test"),
+        };
         verify(checkConfig, getPath("imports" + File.separator
                  + "InputImportOrderStaticOnDemandGroupOrder.java"), expected);
     }
@@ -338,4 +354,34 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         verify(checkConfig, getPath("imports" + File.separator
                  + "InputImportOrderStaticOnDemandGroupOrderBottom.java"), expected);
     }
+
+    @Test(expected = CheckstyleException.class)
+    public void testGroupWithSlashes() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "/^javax");
+        final String[] expected = {};
+
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder.java"), expected);
+    }
+
+    @Test
+    public void testGroupWithDot() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "java.awt.");
+        final String[] expected = {};
+
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_NoFailureForRedundantImports.java"), expected);
+    }
+
+    @Test
+    public void testMultiplePatternMatches() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "/java/,/rga/,/myO/,/org/,/organ./");
+        final String[] expected = {};
+
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/imports/"
+                + "InputImportOrder_MultiplePatternMatches.java").getCanonicalPath(), expected);
+    }
+
 }
