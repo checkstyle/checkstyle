@@ -48,6 +48,12 @@ matrix:
         - DESC="assembly"
         - CMD="mvn clean install -Passembly -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true"
         - COVERAGE_CMD=""
+    # nemo.sonarqube.com (oraclejdk7)
+    - jdk: oraclejdk7
+      env:
+        - DESC="nemo.sonarqube.com"
+        - CMD="mvn clean install cobertura:cobertura -Dcobertura.report.format=xml -Dmaven.test.failure.ignore=true -V -Dcheckstyle.skip=true -Dpmd.skip=true -Dcheckstyle.ant.skip=true"
+        - COVERAGE_CMD=""
 
     # NoErrorTest - Orekit (oraclejdk8)
     - jdk: oraclejdk8
