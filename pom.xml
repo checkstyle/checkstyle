@@ -1120,7 +1120,6 @@
             <regex><pattern>.*.checks.annotation.SuppressWarningsCheck</pattern><branchRate>79</branchRate><lineRate>96</lineRate></regex>
 
 
-            <regex><pattern>.*.checks.blocks.AvoidNestedBlocksCheck</pattern><branchRate>100</branchRate><lineRate>90</lineRate></regex>
             <regex><pattern>.*.checks.blocks.EmptyBlockCheck</pattern><branchRate>88</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.blocks.EmptyCatchBlockCheck</pattern><branchRate>96</branchRate><lineRate>98</lineRate></regex>
             <regex><pattern>.*.checks.blocks.LeftCurlyCheck</pattern><branchRate>87</branchRate><lineRate>94</lineRate></regex>
