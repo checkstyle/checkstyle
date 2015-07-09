@@ -19,15 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE;
+import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON;
+
 import java.io.File;
+
+import org.junit.Assert;
+import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
-import org.junit.Test;
-
-import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE;
-import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     /**
@@ -245,4 +247,14 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
 
         verify(checkConfig, getPath("annotation" + File.separator + "GoodAnnonOverride.java"), expected);
     }
+
+    @Test
+    public void testGetAcceptableTockens() throws Exception {
+        int[] expectedTokens = {TokenTypes.METHOD_DEF };
+        MissingOverrideCheck check = new MissingOverrideCheck();
+        int[] actual = check.getAcceptableTokens();
+        Assert.assertTrue(actual.length == 1);
+        Assert.assertArrayEquals(expectedTokens, actual);
+    }
 }
+
