@@ -19,11 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.UpperEllCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.UpperEllCheck.MSG_KEY;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class UpperEllCheckTest
     extends BaseCheckTestSupport {
@@ -36,5 +40,14 @@ public class UpperEllCheckTest
             "94:43: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
+    }
+
+    @Test
+    public void testAcceptableTockens() {
+        int[] expected = {TokenTypes.NUM_LONG };
+        UpperEllCheck check = new UpperEllCheck();
+        int[] actual = check.getAcceptableTokens();
+        assertTrue(actual.length == 1);
+        assertArrayEquals(expected, actual);
     }
 }
