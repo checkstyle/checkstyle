@@ -69,4 +69,9 @@ public class MissingSwitchDefaultCheck extends DescendantTokenCheck {
     public int[] getAcceptableTokens() {
         return getDefaultTokens();
     }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getDefaultTokens();
+    }
 }
