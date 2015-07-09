@@ -522,19 +522,8 @@ public class WhitespaceAroundCheck extends Check {
      */
     private boolean isEmptyType(DetailAST ast, int parentType) {
         final int type = ast.getType();
-        if ((type == TokenTypes.RCURLY || type == TokenTypes.LCURLY)
-                && parentType == TokenTypes.OBJBLOCK) {
-            final DetailAST typeNode = ast.getParent().getParent();
-            final int matchType = typeNode.getType();
-            if (matchType == TokenTypes.CLASS_DEF
-                    || matchType == TokenTypes.INTERFACE_DEF
-                    || matchType == TokenTypes.ENUM_DEF
-                    || matchType == TokenTypes.LITERAL_NEW
-                    || matchType == TokenTypes.ANNOTATION_DEF) {
-                return true;
-            }
-        }
-        return false;
+        return (type == TokenTypes.RCURLY || type == TokenTypes.LCURLY)
+                && parentType == TokenTypes.OBJBLOCK;
     }
 
     /**

@@ -250,4 +250,15 @@ class SpecialCasesInForLoop
     }
 
     public void foo(java.util.List<? extends String[]> bar, Comparable<? super Object[]> baz) { }
+
+    public void mySuperMethod() {
+        Runnable[] runs = new Runnable[] {new Runnable() {
+                public void run() {
+                }
+            },
+            new Runnable() {
+                public void run() {
+                }
+            }};
+    }
 }

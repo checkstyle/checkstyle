@@ -7,5 +7,9 @@ public class InputSwitchWhitespaceAround {
         default:
             break;
         }
+        switch (k) {
+        case 7:
+            break;
+        }
     }
 }

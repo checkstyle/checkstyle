@@ -19,13 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck.WS_NOT_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck.WS_NOT_PRECEDED;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck.WS_NOT_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck.WS_NOT_PRECEDED;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class WhitespaceAroundTest
     extends BaseCheckTestSupport {
@@ -75,6 +78,7 @@ public class WhitespaceAroundTest
             "153:15: " + getCheckMessage(WS_NOT_FOLLOWED, "assert"),
             "156:20: " + getCheckMessage(WS_NOT_PRECEDED, ":"),
             "156:21: " + getCheckMessage(WS_NOT_FOLLOWED, ":"),
+            "262:14: " + getCheckMessage(WS_NOT_FOLLOWED, "}"),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
@@ -210,5 +214,66 @@ public class WhitespaceAroundTest
         verify(checkConfig,
                getPath("whitespace/InputWhitespaceAround.java"),
                expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        WhitespaceAroundCheck whitespaceAroundCheckObj = new WhitespaceAroundCheck();
+        int[] actual = whitespaceAroundCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.ASSIGN,
+            TokenTypes.BAND,
+            TokenTypes.BAND_ASSIGN,
+            TokenTypes.BOR,
+            TokenTypes.BOR_ASSIGN,
+            TokenTypes.BSR,
+            TokenTypes.BSR_ASSIGN,
+            TokenTypes.BXOR,
+            TokenTypes.BXOR_ASSIGN,
+            TokenTypes.COLON,
+            TokenTypes.DIV,
+            TokenTypes.DIV_ASSIGN,
+            TokenTypes.DO_WHILE,
+            TokenTypes.EQUAL,
+            TokenTypes.GE,
+            TokenTypes.GT,
+            TokenTypes.LAND,
+            TokenTypes.LCURLY,
+            TokenTypes.LE,
+            TokenTypes.LITERAL_CATCH,
+            TokenTypes.LITERAL_DO,
+            TokenTypes.LITERAL_ELSE,
+            TokenTypes.LITERAL_FINALLY,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_RETURN,
+            TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_SYNCHRONIZED,
+            TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.LOR,
+            TokenTypes.LT,
+            TokenTypes.MINUS,
+            TokenTypes.MINUS_ASSIGN,
+            TokenTypes.MOD,
+            TokenTypes.MOD_ASSIGN,
+            TokenTypes.NOT_EQUAL,
+            TokenTypes.PLUS,
+            TokenTypes.PLUS_ASSIGN,
+            TokenTypes.QUESTION,
+            TokenTypes.RCURLY,
+            TokenTypes.SL,
+            TokenTypes.SLIST,
+            TokenTypes.SL_ASSIGN,
+            TokenTypes.SR,
+            TokenTypes.SR_ASSIGN,
+            TokenTypes.STAR,
+            TokenTypes.STAR_ASSIGN,
+            TokenTypes.LITERAL_ASSERT,
+            TokenTypes.TYPE_EXTENSION_AND,
+            TokenTypes.WILDCARD_TYPE,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 }
