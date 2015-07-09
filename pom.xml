@@ -1100,7 +1100,6 @@
             <regex><pattern>.*.checks.coding.DeclarationOrderCheck</pattern><branchRate>82</branchRate><lineRate>93</lineRate></regex>
             <regex><pattern>.*.checks.coding.DefaultComesLastCheck</pattern><branchRate>87</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.coding.EqualsAvoidNullCheck</pattern><branchRate>79</branchRate><lineRate>100</lineRate></regex>
-            <regex><pattern>.*.checks.coding.EqualsHashCodeCheck</pattern><branchRate>75</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.coding.ExplicitInitializationCheck</pattern><branchRate>91</branchRate><lineRate>97</lineRate></regex>
             <regex><pattern>.*.checks.coding.FallThroughCheck</pattern><branchRate>90</branchRate><lineRate>97</lineRate></regex>
             <regex><pattern>.*.checks.coding.FinalLocalVariableCheck</pattern><branchRate>82</branchRate><lineRate>100</lineRate></regex>

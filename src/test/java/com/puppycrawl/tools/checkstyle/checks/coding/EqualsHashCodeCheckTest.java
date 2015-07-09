@@ -42,6 +42,15 @@ public class EqualsHashCodeCheckTest
     }
 
     @Test
+    public void testBooleanMethods() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(EqualsHashCodeCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("coding/InputEqualsHashCodeCheck.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         EqualsHashCodeCheck check = new EqualsHashCodeCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
