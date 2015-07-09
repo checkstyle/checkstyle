@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 import com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
 
 /**
@@ -66,14 +65,15 @@ public class MissingCtorCheck extends DescendantTokenCheck {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return getDefaultTokens();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers != null
-            && modifiers.branchContains(TokenTypes.ABSTRACT)) {
-            // should apply the check to abstract class
-            return;
+        if (!modifiers.branchContains(TokenTypes.ABSTRACT)) {
+            super.visitToken(ast);
         }
-
-        super.visitToken(ast);
     }
 }
