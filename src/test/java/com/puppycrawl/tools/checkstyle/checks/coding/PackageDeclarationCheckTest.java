@@ -50,7 +50,17 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
             "1: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getPath("InputWithCommentOnly.java"), expected);
+        verify(checkConfig, getPath("coding/InputWithCommentOnly.java"), expected);
+    }
+
+    @Test
+    public void testCorrectFile() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+
+        String[] expected = {
+        };
+
+        verify(checkConfig, getPath("coding/InputPackageDeclaration.java"), expected);
     }
 
     @Test

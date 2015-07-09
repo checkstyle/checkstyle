@@ -1115,7 +1115,6 @@
             <regex><pattern>.*.checks.coding.MultipleVariableDeclarationsCheck</pattern><branchRate>96</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.coding.OneStatementPerLineCheck</pattern><branchRate>93</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.coding.OverloadMethodsDeclarationOrderCheck</pattern><branchRate>93</branchRate><lineRate>100</lineRate></regex>
-            <regex><pattern>.*.checks.coding.PackageDeclarationCheck</pattern><branchRate>75</branchRate><lineRate>85</lineRate></regex>
             <regex><pattern>.*.checks.coding.ParameterAssignmentCheck</pattern><branchRate>80</branchRate><lineRate>96</lineRate></regex>
             <regex><pattern>.*.checks.coding.ReturnCountCheck</pattern><branchRate>55</branchRate><lineRate>74</lineRate></regex>
             <regex><pattern>.*.checks.coding.SimplifyBooleanReturnCheck</pattern><branchRate>83</branchRate><lineRate>100</lineRate></regex>
