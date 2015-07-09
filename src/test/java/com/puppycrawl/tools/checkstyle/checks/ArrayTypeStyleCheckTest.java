@@ -19,9 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import org.junit.Test;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ArrayTypeStyleCheckTest
     extends BaseCheckTestSupport {
@@ -50,5 +55,14 @@ public class ArrayTypeStyleCheckTest
             "30:20: Array brackets at illegal position.",
         };
         verify(checkConfig, getPath("InputArrayTypeStyle.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTockens() {
+        int[] expected = {TokenTypes.ARRAY_DECLARATOR };
+        ArrayTypeStyleCheck check = new ArrayTypeStyleCheck();
+        int[] actual = check.getAcceptableTokens();
+        assertTrue(actual.length == 1);
+        assertArrayEquals(expected, actual);
     }
 }
