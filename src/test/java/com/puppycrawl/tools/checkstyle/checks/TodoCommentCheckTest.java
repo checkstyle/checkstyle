@@ -19,11 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck.MSG_KEY;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class TodoCommentCheckTest
     extends BaseCheckTestSupport {
@@ -39,5 +43,14 @@ public class TodoCommentCheckTest
             "167: " + getCheckMessage(MSG_KEY, "FIXME:"),
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        int[] expected = {TokenTypes.COMMENT_CONTENT };
+        TodoCommentCheck check = new TodoCommentCheck();
+        int[] actual = check.getAcceptableTokens();
+        assertTrue(actual.length == 1);
+        assertArrayEquals(expected, actual);
     }
 }
