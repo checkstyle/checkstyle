@@ -1187,7 +1187,6 @@
             <regex><pattern>.*.checks.metrics.NPathComplexityCheck</pattern><branchRate>100</branchRate><lineRate>90</lineRate></regex>
 
 
-            <regex><pattern>.*.checks.naming.AbstractAccessControlNameCheck</pattern><branchRate>95</branchRate><lineRate>80</lineRate></regex>
             <regex><pattern>.*.checks.naming.AbstractClassNameCheck</pattern><branchRate>100</branchRate><lineRate>90</lineRate></regex>
 
             <regex><pattern>.*.checks.regexp.CommentSuppressor</pattern><branchRate>75</branchRate><lineRate>100</lineRate></regex>
