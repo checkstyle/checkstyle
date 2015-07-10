@@ -20,23 +20,23 @@ import com.puppycrawl.tools.checkstyle.Utils;
 
 public class ConfigurationBuilder extends BaseCheckTestSupport {
 
-	private File mROOT;
+	private File ROOT;
 
-	private List<File> mFiles = new ArrayList<File>();
+	private List<File> files = new ArrayList<File>();
 
-	Configuration mConfig;
+	Configuration config;
 	
-	URL mUrl;
+	URL url;
 	
-	String mXmlName = "/google_checks.xml";
+	String xmlName = "/google_checks.xml";
 	
 	Pattern warnPattern = Utils.createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]warn[*]/");
-	
+
 	public ConfigurationBuilder(File aROOT)
 			throws CheckstyleException, IOException {
-		this.mROOT = aROOT;
-		mConfig = getConfigurationFromXML(mXmlName, System.getProperties());
-		listFiles(mFiles, mROOT, "java");
+		this.ROOT = aROOT;
+		config = getConfigurationFromXML(xmlName, System.getProperties());
+		listFiles(files, ROOT, "java");
 	}
 
 	private Configuration getConfigurationFromXML(String aConfigName,
@@ -53,25 +53,25 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 	}
 
 	public Configuration getCheckConfig(String aCheckName) {
-		for (Configuration config : mConfig.getChildren()) {
-			if ("TreeWalker".equals(config.getName())) {
-				for (Configuration checkConfig : config.getChildren()) {
+		for (Configuration currentConfig : config.getChildren()) {
+			if ("TreeWalker".equals(currentConfig.getName())) {
+				for (Configuration checkConfig : currentConfig.getChildren()) {
 					if (aCheckName.equals(checkConfig.getName())) {
 						return checkConfig;
 					}
 				}
-			} else if (aCheckName.equals(config.getName())) {
-				return config;
+			} else if (aCheckName.equals(currentConfig.getName())) {
+				return currentConfig;
 			}
 		}
 		return null;
 	}
 
 	public String getFilePath(String aFileName) {
-		String absoluteRootPath = mROOT.getAbsolutePath();
+		String absoluteRootPath = ROOT.getAbsolutePath();
 		String rootPath = absoluteRootPath.substring(0,
 				absoluteRootPath.lastIndexOf("src"));
-		for (File file : mFiles) {
+		for (File file : files) {
 			if (file.toString().endsWith(aFileName+".java")) {
 				return rootPath + file.toString();
 			}
@@ -93,7 +93,7 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 	}
 
 	public File getROOT() {
-		return mROOT;
+		return ROOT;
 	}
 
 	public Integer[] getLinesWithWarn(String aFileName) throws IOException {

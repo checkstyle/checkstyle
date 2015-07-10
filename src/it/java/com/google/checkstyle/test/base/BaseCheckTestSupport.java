@@ -37,9 +37,9 @@ public abstract class BaseCheckTestSupport
         public void fileStarted(AuditEvent evt) {}
     }
 
-    protected final ByteArrayOutputStream mBAOS = new ByteArrayOutputStream();
-    protected final PrintStream mStream = new PrintStream(mBAOS);
-    protected final Properties mProps = new Properties();
+    protected final ByteArrayOutputStream BAOS = new ByteArrayOutputStream();
+    protected final PrintStream stream = new PrintStream(BAOS);
+    protected final Properties props = new Properties();
 
     public static DefaultConfiguration createCheckConfig(Class<?> aClazz)
     {
@@ -60,7 +60,7 @@ public abstract class BaseCheckTestSupport
         c.setLocaleLanguage(locale.getLanguage());
         c.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         c.configure(dc);
-        c.addListener(new BriefLogger(mStream));
+        c.addListener(new BriefLogger(stream));
         return c;
     }
 
@@ -118,14 +118,14 @@ public abstract class BaseCheckTestSupport
                           Integer[] aWarnsExpected)
         throws Exception
     {
-        mStream.flush();
+        stream.flush();
         final List<File> theFiles = Lists.newArrayList();
         Collections.addAll(theFiles, aProcessedFiles);
         final int errs = aC.process(theFiles);
 
         // process each of the lines
         final ByteArrayInputStream bais =
-            new ByteArrayInputStream(mBAOS.toByteArray());
+            new ByteArrayInputStream(BAOS.toByteArray());
         final LineNumberReader lnr =
             new LineNumberReader(new InputStreamReader(bais));
        
