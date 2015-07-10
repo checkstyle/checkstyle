@@ -338,4 +338,13 @@ public class InputJavadocStyleCheck
 		public void method21() {
 		}
 
+        /**
+         * First sentence.
+         * <
+         * /a>
+         */
+        void tagClosedInNextLine() {
+            
+        } 
+
 }
