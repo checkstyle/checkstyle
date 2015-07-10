@@ -206,4 +206,24 @@ public class JavadocUtilsTest {
         secondChild.setType(JavadocTokenTypes.AUTHOR_LITERAL);
         assertTrue(JavadocUtils.branchContains(node, JavadocTokenTypes.AUTHOR_LITERAL));
     }
+
+    @Test
+    public void testGetTokenNameForId() {
+        assertEquals("EOF", JavadocUtils.getTokenName(JavadocTokenTypes.EOF));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetTokenNameForLargeId() {
+        JavadocUtils.getTokenName(20074);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetTokenNameForInvalidId() {
+        JavadocUtils.getTokenName(100);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetTokenIdThatIsUnknown() {
+        JavadocUtils.getTokenId("");
+    }
 }

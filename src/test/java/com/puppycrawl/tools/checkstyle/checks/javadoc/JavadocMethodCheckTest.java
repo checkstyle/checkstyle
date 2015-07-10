@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG_GENERAL;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
@@ -35,6 +36,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
@@ -43,6 +45,20 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     public void setUp() {
         checkConfig = createCheckConfig(JavadocMethodCheck.class);
         checkConfig.addAttribute("validateThrows", "true");
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        JavadocMethodCheck javadocMethodCheck = new JavadocMethodCheck();
+
+        int[] actual = javadocMethodCheck.getAcceptableTokens();
+        int[] expected = new int[]{
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+        };
+
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -355,6 +371,27 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         final String[] expected = {};
         verify(checkConfig, getPath("javadoc" + File.separator
                                     + "InputNoJavadoc.java"), expected);
+    }
+
+    @Test
+    public void testAllowMissingJavadocTags() throws Exception {
+        checkConfig.addAttribute("allowMissingParamTags", "true");
+        checkConfig.addAttribute("allowMissingThrowsTags", "true");
+        checkConfig.addAttribute("allowMissingReturnTag", "true");
+        final String[] expected = {};
+        verify(checkConfig, getPath("javadoc" + File.separator
+                                    + "InputMissingJavadocTags.java"), expected);
+    }
+
+    @Test
+    public void testDoAllowMissingJavadocTagsByDefault() throws Exception {
+        final String[] expected = {
+            "10: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "20:26: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "number"),
+            "30:42: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "ThreadDeath"),
+        };
+        verify(checkConfig, getPath("javadoc" + File.separator
+                + "InputMissingJavadocTags.java"), expected);
     }
 
     @Test
