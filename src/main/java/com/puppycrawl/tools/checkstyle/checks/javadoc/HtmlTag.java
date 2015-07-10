@@ -57,8 +57,7 @@ class HtmlTag {
      */
     HtmlTag(String id, int lineNo, int position, boolean closedTag,
             boolean incomplete, String text) {
-        this.id = !"".equals(id) && id.charAt(0) == '/'
-            ? id.substring(1) : id;
+        this.id = id;
         this.lineNo = lineNo;
         this.position = position;
         this.text = text;
