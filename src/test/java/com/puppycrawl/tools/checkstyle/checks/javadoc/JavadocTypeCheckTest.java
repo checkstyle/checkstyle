@@ -24,9 +24,11 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MI
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.TAG_FORMAT;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.UNKNOWN_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.UNUSED_TAG;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -42,6 +44,22 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
  * Window>Preferences>Java>Code Generation.
  */
 public class JavadocTypeCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetAcceptableTokens() {
+        JavadocTypeCheck javadocTypeCheck = new JavadocTypeCheck();
+
+        int[] actual = javadocTypeCheck.getAcceptableTokens();
+        int[] expected = new int[]{
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
+        };
+
+        assertArrayEquals(expected, actual);
+    }
+
     @Test
     public void testTags() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -336,7 +354,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
         };
         verify(checkConfig,
-               getPath("javadoc" + File.separator + "InputBadTag.java"),
-               expected);
+                getPath("javadoc" + File.separator + "InputBadTag.java"),
+                expected);
     }
 }

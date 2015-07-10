@@ -23,12 +23,29 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import java.io.File;
+
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck.JAVADOC_MISSING;
+import static org.junit.Assert.assertArrayEquals;
 
 public class JavadocVariableCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetAcceptableTokens() {
+        JavadocVariableCheck javadocVariableCheck = new JavadocVariableCheck();
+
+        int[] actual = javadocVariableCheck.getAcceptableTokens();
+        int[] expected = new int[]{
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+        };
+
+        assertArrayEquals(expected, actual);
+    }
+
     @Test
     public void testDefault()
         throws Exception {
