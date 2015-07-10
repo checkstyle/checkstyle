@@ -6,7 +6,7 @@ abstract public class InputAbstractClassName {
 abstract class NonAbstractClassName {
 }
 
-abstract class AbstractClassName {
+abstract class AbstractClassOther {
     abstract class NonAbstractInnerClass {
     }
 }

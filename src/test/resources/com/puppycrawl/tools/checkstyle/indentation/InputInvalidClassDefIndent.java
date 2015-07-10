@@ -73,7 +73,7 @@ final class InputValidClassDefIndent5b extends java.awt.event.MouseAdapter imple
   } //indent:2 exp:0 warn
 
 
-class InputInvalidClassDefIndentc //indent:0 exp:0
+class InputInvalidClassDefIndentc2 //indent:0 exp:0
   extends java.awt.event.MouseAdapter implements java.awt.event.MouseListener { //indent:2 exp:4 warn
 
 
