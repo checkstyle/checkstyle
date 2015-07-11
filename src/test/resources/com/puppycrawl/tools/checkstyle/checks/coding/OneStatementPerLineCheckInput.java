@@ -24,14 +24,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.io.EOFException; import java.io.BufferedReader;
 
 /**
- * Two import statements and one 'empty' statement
- * which are not on the same line are legal.
- */
-import java.lang.annotation.Annotation;
-;
-import java.lang.String;
-
-/**
  * This Class contains no logic, but serves as test-input for the unit tests for the
  * <code>OneStatementPerLineCheck</code>-checkstyle enhancement.
  * @author Alexander Jesse
@@ -199,14 +191,6 @@ public class OneStatementPerLineCheckInput {
     //Two object creation statements on the same line are illegal.
     Object obj1 = new Object(); Object obj2 = new Object();
   }
-
-  /**
-   * According to java language specifications,
-   * statements end with ';'. That is why ';;'
-   * may be considered as two empty statements on the same line
-   * and rises violation.
-   */
-  ;;
 
   /**
    * This method contains break, while-loop

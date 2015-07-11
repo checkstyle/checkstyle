@@ -27,19 +27,20 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
+import java.io.File;
+
 public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
     @Test
     public void testMultiCaseClass() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(OneStatementPerLineCheck.class);
         final String[] expected = {
             "24:59: " + getCheckMessage(MSG_KEY),
-            "112:21: " + getCheckMessage(MSG_KEY),
-            "139:14: " + getCheckMessage(MSG_KEY),
-            "165:15: " + getCheckMessage(MSG_KEY),
-            "177:23: " + getCheckMessage(MSG_KEY),
-            "197:19: " + getCheckMessage(MSG_KEY),
-            "200:59: " + getCheckMessage(MSG_KEY),
-            "209:4: " + getCheckMessage(MSG_KEY),
+            "104:21: " + getCheckMessage(MSG_KEY),
+            "131:14: " + getCheckMessage(MSG_KEY),
+            "157:15: " + getCheckMessage(MSG_KEY),
+            "169:23: " + getCheckMessage(MSG_KEY),
+            "189:19: " + getCheckMessage(MSG_KEY),
+            "192:59: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig,
@@ -69,6 +70,19 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
 
         verify(checkConfig,
             getPath("checks/coding/OneStatementPerLineCheckInput2.java"),
+            expected);
+    }
+
+    @Test
+    public void oneStatementNonCompilableInputTest() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(OneStatementPerLineCheck.class);
+        final String[] expected = {
+            "24:6: " + getCheckMessage(MSG_KEY),
+        };
+
+        verify(checkConfig, new File("src/test/resources-noncompilable/"
+                + "com/puppycrawl/tools/checkstyle/coding/"
+                + "InputOneStatementPerLineCheck.java").getCanonicalPath(),
             expected);
     }
 }

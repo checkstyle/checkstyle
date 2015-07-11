@@ -22,37 +22,54 @@ public class OneStatementPerLineTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void oneStatmentTest() throws Exception {
+    public void oneStatementTest() throws Exception {
 
         String msg = getCheckMessage(OneStatementPerLineCheck.class, "multiple.statements.line");
 
         final String[] expected = {
             "6:59: " + msg,
-            "58:21: " + msg,
-            "60:21: " + msg,
-            "62:42: " + msg,
-            "65:25: " + msg,
-            "66:35: " + msg,
-            "76:14: " + msg,
-            "103:25: " + msg,
-            "105:25: " + msg,
-            "107:46: " + msg,
-            "110:29: " + msg,
-            "111:39: " + msg,
-            "119:15: " + msg,
-            "131:23: " + msg,
-            "146:59: " + msg,
-            "155:4: " + msg,
-            "186:19: " + msg,
-            "204:15: " + msg,
-            "212:15: " + msg,
-            "224:6: " + msg,
-            "233:22: " + msg,
-            "323:39: " + msg,
+            "50:21: " + msg,
+            "52:21: " + msg,
+            "54:42: " + msg,
+            "57:25: " + msg,
+            "58:35: " + msg,
+            "68:14: " + msg,
+            "95:25: " + msg,
+            "97:25: " + msg,
+            "99:46: " + msg,
+            "102:29: " + msg,
+            "103:39: " + msg,
+            "111:15: " + msg,
+            "123:23: " + msg,
+            "138:59: " + msg,
+            "170:19: " + msg,
+            "188:15: " + msg,
+            "196:15: " + msg,
+            "208:6: " + msg,
+            "217:22: " + msg,
+            "307:39: " + msg,
         };
 
         Configuration checkConfig = builder.getCheckConfig("OneStatementPerLine");
         String filePath = builder.getFilePath("OneStatementPerLineInput");
+
+        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
+    public void oneStatementNonCompilableInputTest() throws Exception {
+
+        String msg = getCheckMessage(OneStatementPerLineCheck.class, "multiple.statements.line");
+
+        final String[] expected = {
+            "24:6: " + msg,
+        };
+
+        Configuration checkConfig = builder.getCheckConfig("OneStatementPerLine");
+        String filePath = new File("src/test/resources-noncompilable/"
+            + "com/puppycrawl/tools/checkstyle/coding/"
+            + "InputOneStatementPerLineCheck.java").getCanonicalPath();
 
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
