@@ -9,11 +9,11 @@ matrix:
   include:
     # unit tests (openjdk7, oraclejdk7 and oraclejdk8)
     - jdk: openjdk7
-      env: DESC="tests" CMD="mvn clean integration-test" COVERAGE_CMD=""
+      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD=""
     - jdk: oraclejdk7
-      env: DESC="tests" CMD="mvn clean integration-test" COVERAGE_CMD=""
+      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD=""
     - jdk: oraclejdk8
-      env: DESC="tests" CMD="mvn clean integration-test" COVERAGE_CMD=""
+      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD=""
 
     # checkstyle (openjdk7, oraclejdk7 and oraclejdk8)
     - jdk: openjdk7
