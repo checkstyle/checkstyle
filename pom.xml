@@ -741,14 +741,13 @@
               <dir>src/site/resources/files</dir>
               <systemId>src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_0.dtd</systemId>
             </validationSet> 
-<!--        Commented till #1341 https://github.com/checkstyle/checkstyle/issues/1341
             <validationSet>
               <dir>src/site</dir>
               <includes>
                 <include>site.xml</include>
               </includes>
               <systemId>http://maven.apache.org/xsd/decoration-1.0.0.xsd</systemId>
-            </validationSet>       --> 
+            </validationSet>
             <validationSet>
               <dir>src/main/resources</dir>
               <includes>
