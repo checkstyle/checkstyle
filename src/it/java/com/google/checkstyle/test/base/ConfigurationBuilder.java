@@ -96,6 +96,10 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 		return ROOT;
 	}
 
+	public List<File> getFiles() {
+            return files;
+	}
+
 	public Integer[] getLinesWithWarn(String aFileName) throws IOException {
 		int lineNumber = 1;
 	    List<Integer> result = new ArrayList<Integer>();
