@@ -1,5 +1,5 @@
 <project name="checkstyle" default="checkstyle.checkstyle" basedir=".">
-  <!-- Building by ANT is no longer formerly supported. Use Maven instead!! ->
+  <!-- Building by ANT is no longer formerly supported. Use Maven instead!! -->
 
   <!-- set global properties for this build -->
   <property name="target.dir" value="${basedir}/target" />

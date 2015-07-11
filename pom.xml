@@ -983,6 +983,55 @@
         </executions>
       </plugin>
 
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>xml-maven-plugin</artifactId>
+        <version>1.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>validate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <validationSets>
+            <validationSet>
+              <dir>config</dir>
+              <excludes>
+                <exclude>java.header</exclude>
+              </excludes>
+            </validationSet>
+            <validationSet>
+              <dir>src/site/resources/files</dir>
+              <systemId>src/main/resources/com/puppycrawl/tools/checkstyle/suppressions_1_0.dtd</systemId>
+            </validationSet> 
+<!--        Commented till #1341 https://github.com/checkstyle/checkstyle/issues/1341
+            <validationSet>
+              <dir>src/site</dir>
+              <includes>
+                <include>site.xml</include>
+              </includes>
+              <systemId>http://maven.apache.org/xsd/decoration-1.0.0.xsd</systemId>
+            </validationSet>       --> 
+            <validationSet>
+              <dir>src/main/resources</dir>
+              <includes>
+                <include>checkstyle_packages.xml</include>
+              </includes>
+              <systemId>src/main/resources/com/puppycrawl/tools/checkstyle/packages_1_0.dtd</systemId>
+            </validationSet>
+            <validationSet>
+              <dir>src/main/resources</dir>
+              <includes>
+                <include>google_checks.xml</include>
+                <include>sun_checks.xml</include>
+              </includes>
+              <systemId>src/main/resources/com/puppycrawl/tools/checkstyle/configuration_1_3.dtd</systemId>
+            </validationSet>
+          </validationSets>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
