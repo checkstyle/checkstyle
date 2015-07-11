@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE import-control PUBLIC
+    "-//Puppy Crawl//DTD Import Control 1.UT//EN"
+    "src/test/resources/com/puppycrawl/tools/checkstyle/imports/import-control_MODIFIED_FOR_UT.dtd">
+
+<import-control pkg="com">
+  <allow class="some.class"/>
+  <new-test-element-for-UT pkg="some.pkg"/>
+  <disallow class="another.class" local-only="true"/>
+  <allow pkg="some.pkg"/>
+  <disallow pkg="another.pkg" local-only="true"/>
+  <disallow pkg="and.another.pkg" exact-match="true"/>
+  <subpackage name="puppycrawl">
+    <disallow pkg="some.pkg"/>
+    <disallow class="some.class"/>
+  </subpackage>
+</import-control>
