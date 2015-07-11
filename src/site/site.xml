@@ -21,7 +21,7 @@
   <poweredBy>
     <logo name="GitHub" href="https://github.com/checkstyle/checkstyle" 
     	img="images/github_logo_social_coding_outlined.png" 
-    	width="120" height="45"/>
+          />
     <logo name="SourceForge"
           img="images/sflogo.gif"
           href="http://sourceforge.net/projects/checkstyle"
