@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.Ignore;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
@@ -22,9 +21,8 @@ public class OneStatementPerLineTest extends BaseCheckTestSupport{
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 
-    @Ignore
     @Test
-    public void oneStatmentTest() throws IOException, Exception {
+    public void oneStatmentTest() throws Exception {
 
         String msg = getCheckMessage(OneStatementPerLineCheck.class, "multiple.statements.line");
 

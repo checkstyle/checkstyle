@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule43onestatement;
 /**
  * Two import statements on the same line are illegal.
  */
-import java.io.EOFException; import java.io.BufferedReader; //violation
+import java.io.EOFException; import java.io.BufferedReader; //warn
 
 /**
  * Two import statements and one 'empty' statement
@@ -55,15 +55,15 @@ public class OneStatementPerLineInput {
    * Simplest form of illegal layouts.
    */
   public void doIllegal() {
-    one = 1; two = 2; //violation
+    one = 1; two = 2; //warn
     if (one == 1) {
-        one++; two++; //violation
+        one++; two++; //warn
     }
-    if (one != 1) { one++; } else { one--; } //violation
+    if (one != 1) { one++; } else { one--; } //warn
     int n = 10;
 
-    doLegal(); doLegal(); //violation
-    while (one == 1) {one++; two--;} //violation
+    doLegal(); doLegal(); //warn
+    while (one == 1) {one++; two--;} //warn
 
   }
 
@@ -73,7 +73,7 @@ public class OneStatementPerLineInput {
    */
   public void doIllegal2() {
     one = 1
-    ; two = 2; //violation
+    ; two = 2; //warn
   }
 
   class Inner
@@ -100,15 +100,15 @@ public class OneStatementPerLineInput {
        * Simplest form a an illegal layout.
        */
       public void doIllegal() {
-        one = 1; two = 2; //violation
+        one = 1; two = 2; //warn
         if (one == 1) {
-            one++; two++; //violation
+            one++; two++; //warn
         }
-        if (one != 1) { one++; } else { one--; } //violation
+        if (one != 1) { one++; } else { one--; } //warn
         int n = 10;
 
-        doLegal(); doLegal(); //violation
-        while (one == 1) {one++; two--;} //violation
+        doLegal(); doLegal(); //warn
+        while (one == 1) {one++; two--;} //warn
 
       }
   }
@@ -116,7 +116,7 @@ public class OneStatementPerLineInput {
   /**
    * Two declaration statements on the same line are illegal.
    */
-  int a; int b; //violation
+  int a; int b; //warn
 
   /**
    * Two declaration statements which are not on the same line
@@ -128,7 +128,7 @@ public class OneStatementPerLineInput {
   /**
    * Two assignment (declaration) statements on the same line are illegal.
    */
-  int e = 1; int f = 2; //violation
+  int e = 1; int f = 2; //warn
 
   /**
    * Two assignment (declaration) statements on the different lines
@@ -143,7 +143,7 @@ public class OneStatementPerLineInput {
    */
   private void foo() {
     //Two object creation statements on the same line are illegal.
-    Object obj1 = new Object(); Object obj2 = new Object(); //violation
+    Object obj1 = new Object(); Object obj2 = new Object(); //warn
   }
 
   /**
@@ -152,7 +152,7 @@ public class OneStatementPerLineInput {
    * may be considered as two empty statements on the same line
    * and rises violation.
    */
-  ;; //violation
+  ;; //warn
 
   /**
    * One multiline  assignment (declaration) statement
@@ -183,7 +183,7 @@ public class OneStatementPerLineInput {
    * are illegal.
    */
   int o = 1, p = 2,
-      r = 5; int t; //violation
+      r = 5; int t; //warn
 
   /**
    * Two assignment (declaration) statement
@@ -201,7 +201,7 @@ public class OneStatementPerLineInput {
    */
   int var1 = 5,
       var4 = 5; int var2 = 6,
-      var3 = 5; //violation
+      var3 = 5; //warn
 
   /**
    * Two statements on the same line
@@ -209,7 +209,7 @@ public class OneStatementPerLineInput {
    * are illegal.
    */
   int var6 = 5; int var7 = 6,
-      var8 = 5; //violation
+      var8 = 5; //warn
 
   /**
    * Two statements on the same line
@@ -221,7 +221,7 @@ public class OneStatementPerLineInput {
 
     ); toString (
 
-    ); //violation
+    ); //warn
   }
 
 
@@ -230,7 +230,7 @@ public class OneStatementPerLineInput {
    * of 2 statements on one line.
    */
   int var9 = 1, var10 = 5
-      ; int var11 = 2; //violation
+      ; int var11 = 2; //warn
 
 
   /**
@@ -320,6 +320,6 @@ public class OneStatementPerLineInput {
             k = 1
             ; n<5
             ;
-            n++, k--) { var1++; var2++; } //violation
+            n++, k--) { var1++; var2++; } //warn
     }
 }
