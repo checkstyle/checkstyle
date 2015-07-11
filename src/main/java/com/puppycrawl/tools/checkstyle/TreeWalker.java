@@ -584,13 +584,11 @@ public final class TreeWalker
      * @return DetailAST of comment node.
      */
     private static DetailAST createCommentAstFromToken(Token token) {
-        switch (token.getType()) {
-            case TokenTypes.SINGLE_LINE_COMMENT:
-                return createSlCommentNode(token);
-            case TokenTypes.BLOCK_COMMENT_BEGIN:
-                return createBlockCommentNode(token);
-            default:
-                throw new IllegalArgumentException("Unknown comment type");
+        if (token.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+            return createSlCommentNode(token);
+        }
+        else {
+            return createBlockCommentNode(token);
         }
     }
 
