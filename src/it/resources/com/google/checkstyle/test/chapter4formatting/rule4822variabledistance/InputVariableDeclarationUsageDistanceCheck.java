@@ -461,7 +461,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
     
     public void testIssue32_7() {
         String line = "abc";
-        writer.write(line);
+        otherWriter.write(line);
         line.charAt(1);
         builder.append(line);
         test(line, line, line);
@@ -777,7 +777,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
     	
     }
     
-    static class writer {
+    static class otherWriter {
 
 		public static void write(String line)
 		{

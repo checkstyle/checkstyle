@@ -43,7 +43,8 @@ public class PackageNameTest extends BaseCheckTestSupport{
     @Test
     public void badPackageNameTest() throws IOException, Exception {
         
-        String packagePath = "com.google.checkstyle.test.chapter5naming.rule521packageNames";
+        String packagePath =
+                "com.google.checkstyle.test.chapter5naming.rule521packageNamesCamelCase";
         String msg = getCheckMessage(checkConfig.getMessages(), msgKey, packagePath, format);
 
         final String[] expected = {
