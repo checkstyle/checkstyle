@@ -96,7 +96,7 @@ public abstract class AbstractSuperCheck
     private final Deque<MethodNode> methodStack = Lists.newLinkedList();
 
     @Override
-    public int[] getDefaultTokens() {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.METHOD_DEF,
             TokenTypes.LITERAL_SUPER,
@@ -104,11 +104,13 @@ public abstract class AbstractSuperCheck
     }
 
     @Override
-    public int[] getAcceptableTokens() {
-        return new int[] {
-            TokenTypes.METHOD_DEF,
-            TokenTypes.LITERAL_SUPER,
-        };
+    public int[] getDefaultTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getDefaultTokens();
     }
 
     /**
@@ -136,50 +138,44 @@ public abstract class AbstractSuperCheck
     /**
      *  Determines whether a 'super' literal is a call to the super method
      * for this check.
-     * @param ast the AST node of a 'super' literal.
+     * @param literalSuperAst the AST node of a 'super' literal.
      * @return true if ast is a call to the super method
      * for this check.
      */
-    private boolean isSuperCall(DetailAST ast) {
-        if (ast.getType() != TokenTypes.LITERAL_SUPER) {
+    private boolean isSuperCall(DetailAST literalSuperAst) {
+        if (literalSuperAst.getType() != TokenTypes.LITERAL_SUPER) {
             return false;
         }
         // dot operator?
-        DetailAST parent = ast.getParent();
-        if (parent == null || parent.getType() != TokenTypes.DOT) {
-            return false;
-        }
-
-        if (isSameNameMethod(ast)) {
-            return false;
-        }
-        if (isZeroParameters(parent)) {
+        DetailAST dotAst = literalSuperAst.getParent();
+        if (dotAst.getType() != TokenTypes.DOT
+            || isSameNameMethod(literalSuperAst)
+            || hasArguments(dotAst)) {
             return false;
         }
 
         // in an overriding method for this check?
-        while (parent != null) {
-            if (parent.getType() == TokenTypes.METHOD_DEF) {
-                return isOverridingMethod(parent);
+        while (dotAst != null) {
+            if (dotAst.getType() == TokenTypes.METHOD_DEF) {
+                return isOverridingMethod(dotAst);
             }
-            else if (parent.getType() == TokenTypes.CTOR_DEF
-                || parent.getType() == TokenTypes.INSTANCE_INIT) {
+            else if (dotAst.getType() == TokenTypes.CTOR_DEF
+                || dotAst.getType() == TokenTypes.INSTANCE_INIT) {
                 return false;
             }
-            parent = parent.getParent();
+            dotAst = dotAst.getParent();
         }
         return false;
     }
 
     /**
-     * is 0 parameters?
-     * @param parent parent AST
-     * @return tru if no parameters found
+     * Does method have any arguments.
+     * @param methodCallDotAst DOT DetailAST
+     * @return true if any parameters found
      */
-    private static boolean isZeroParameters(DetailAST parent) {
-
-        final DetailAST args = parent.getNextSibling();
-        return args == null || args.getType() != TokenTypes.ELIST || args.getChildCount() != 0;
+    private boolean hasArguments(DetailAST methodCallDotAst) {
+        final DetailAST argumentsList = methodCallDotAst.getNextSibling();
+        return argumentsList.getChildCount() > 0;
     }
 
     /**
