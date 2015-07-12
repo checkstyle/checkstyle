@@ -142,10 +142,10 @@
           <td></td>
         </tr>
         <tr>
-          <td><a href="http://www.sonarsource.org/">Sonar</a></td>
+          <td><a href="http://www.sonarqube.org/">SonarQube</a></td>
           <td>Freddy Mallet (initial author)</td>
-          <td><a href="http://www.sonarsource.org/">Sonar Home Page</a></td>
-          <td><a href="http://nemo.sonarsource.org/">Demo site</a></td>
+          <td><a href="http://www.sonarqube.org/">SonarQube Home Page</a></td>
+          <td><a href="http://nemo.sonarqube.org/">Demo site</a></td>
         </tr>
         <tr>
           <td><a href="http://www.eclipse.org">Eclipse/RAD/RDz</a></td>
@@ -286,6 +286,12 @@
           <td>Vincent Massol</td>
           <td>Checkstyle supported out of the box</td>
           <td><a href="http://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle.html">example report</a></td>
+        </tr>
+        <tr>
+          <td><a href="http://gradle.org/">Gradle</a></td>
+          <td>Hans Dockter (initial author)</td>
+          <td>Checkstyle supported out of the box</td>
+          <td><a href="https://docs.gradle.org/current/userguide/checkstyle_plugin.html">Gradle Checkstyle docs</a></td>
         </tr>
         <tr>
           <td><a href="http://qalab.sourceforge.net/">QALab</a></td>
