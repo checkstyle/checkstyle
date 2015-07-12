@@ -293,6 +293,21 @@ class MyClass {
 &lt;/module&gt;
         </source>
       </subsection>
+      <subsection name="ConstantName">
+        <p>
+          Property <code>format</code> in module <code>ConstantName</code>
+          is used to specify names to be allowed. The following configuration
+          apart from names allowed by default allows <code>log</code> or
+          <code>logger</code>:
+        </p>
+
+        <source>
+&lt;module name=&quot;ConstantName&quot;&gt;
+    &lt;property name=&quot;format&quot;
+              value=&quot;^log(ger)?|[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
 
       <subsection name="...">
         <p>
