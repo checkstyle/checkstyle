@@ -261,19 +261,15 @@ public final class ScopeUtils {
         // variable declaration?
         if (aAST.getType() == TokenTypes.VARIABLE_DEF) {
             final DetailAST parent = aAST.getParent();
-            if (parent != null) {
-                final int type = parent.getType();
-                return type == TokenTypes.SLIST
+            final int type = parent.getType();
+            return type == TokenTypes.SLIST
                     || type == TokenTypes.FOR_INIT
                     || type == TokenTypes.FOR_EACH_CLAUSE;
-            }
         }
         // catch parameter?
         else if (aAST.getType() == TokenTypes.PARAMETER_DEF) {
             final DetailAST parent = aAST.getParent();
-            if (parent != null) {
-                return parent.getType() == TokenTypes.LITERAL_CATCH;
-            }
+            return parent.getType() == TokenTypes.LITERAL_CATCH;
         }
         return false;
     }
