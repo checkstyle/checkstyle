@@ -75,12 +75,7 @@ public class JavadocVariableCheck
      * @throws org.apache.commons.beanutils.ConversionException if unable to create Pattern object.
      */
     public void setIgnoreNamePattern(String regexp) {
-        if (!(regexp == null || regexp.length() == 0)) {
-            ignoreNamePattern = Utils.createPattern(regexp);
-        }
-        else {
-            ignoreNamePattern = null;
-        }
+        ignoreNamePattern = Utils.createPattern(regexp);
     }
 
     @Override
