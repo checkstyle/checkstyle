@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.io.File;
 
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -32,9 +33,31 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.I
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.NO_PERIOD;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.EMPTY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.JAVADOC_MISSING;
+import static org.junit.Assert.assertArrayEquals;
 
 public class JavadocStyleCheckTest
     extends BaseCheckTestSupport {
+    @Test
+    public void testGetAcceptableTokens() {
+        JavadocStyleCheck javadocStyleCheck = new JavadocStyleCheck();
+
+        int[] actual = javadocStyleCheck.getAcceptableTokens();
+        int[] expected = new int[]{
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.PACKAGE_DEF,
+        };
+
+        assertArrayEquals(expected, actual);
+    }
+
     @Test
     public void testDefaultSettings()
         throws Exception {
