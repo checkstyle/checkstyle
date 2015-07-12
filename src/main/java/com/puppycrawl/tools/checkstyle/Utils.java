@@ -58,21 +58,15 @@ public final class Utils {
             }
 
             final String name = f.getName();
-            try {
-                final int tokenValue = f.getInt(name);
-                builder.put(name, tokenValue);
-                if (tokenValue > tempTokenValueToName.length - 1) {
-                    final String[] temp = new String[tokenValue + 1];
-                    System.arraycopy(tempTokenValueToName, 0,
-                            temp, 0, tempTokenValueToName.length);
-                    tempTokenValueToName = temp;
-                }
-                tempTokenValueToName[tokenValue] = name;
+            final int tokenValue = getTokenFieldValue(f, name);
+            builder.put(name, tokenValue);
+            if (tokenValue > tempTokenValueToName.length - 1) {
+                final String[] temp = new String[tokenValue + 1];
+                System.arraycopy(tempTokenValueToName, 0,
+                        temp, 0, tempTokenValueToName.length);
+                tempTokenValueToName = temp;
             }
-            catch (final IllegalArgumentException | IllegalAccessException e) {
-                throw new IllegalStateException(
-                        "Failed to instantiate collection of Java tokens", e);
-            }
+            tempTokenValueToName[tokenValue] = name;
         }
 
         TOKEN_NAME_TO_VALUE = builder.build();
@@ -367,6 +361,23 @@ public final class Utils {
         }
         catch (InstantiationException | IllegalAccessException | InvocationTargetException ex) {
             throw new IllegalStateException(ex);
+        }
+    }
+
+    /**
+     * That method exists as workaround for code-coverage 100% target to let test
+     * catch block (originally it was in static area).
+     * @param field token field
+     * @param name token name
+     * @return value of field
+     */
+    private static int getTokenFieldValue(Field field, String name) {
+        try {
+            return field.getInt(name);
+        }
+        catch (final IllegalArgumentException | IllegalAccessException e) {
+            throw new IllegalStateException(
+                    "Failed to instantiate collection of Java tokens", e);
         }
     }
 }

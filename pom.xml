@@ -1083,7 +1083,6 @@
             <regex><pattern>.*.PropertyCacheFile</pattern><branchRate>22</branchRate><lineRate>19</lineRate></regex>
             <regex><pattern>.*.checkstyle.ScopeUtils</pattern><branchRate>90</branchRate><lineRate>94</lineRate></regex>
             <regex><pattern>.*.TreeWalker</pattern><branchRate>94</branchRate><lineRate>92</lineRate></regex>
-            <regex><pattern>com.puppycrawl.tools.checkstyle.Utils</pattern><branchRate>85</branchRate><lineRate>93</lineRate></regex>
             <regex><pattern>.*.XMLLogger</pattern><branchRate>86</branchRate><lineRate>97</lineRate></regex>
 
 

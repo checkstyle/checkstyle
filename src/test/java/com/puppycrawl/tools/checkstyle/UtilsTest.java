@@ -19,22 +19,25 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import org.apache.commons.beanutils.ConversionException;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.Dictionary;
+
 import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
-import static com.puppycrawl.tools.checkstyle.Utils.baseClassname;
-import static com.puppycrawl.tools.checkstyle.Utils.relativizeAndNormalizePath;
-import static com.puppycrawl.tools.checkstyle.Utils.fileExtensionMatches;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-
-import java.lang.reflect.Constructor;
-import java.io.File;
-import java.io.IOException;
-import java.util.Dictionary;
-
-import org.apache.commons.beanutils.ConversionException;
-import org.junit.Test;
 
 public class UtilsTest {
 
@@ -74,34 +77,34 @@ public class UtilsTest {
     public void testFileExtensions() {
         final String[] fileExtensions = {"java"};
         File file = new File("file.pdf");
-        assertFalse(fileExtensionMatches(file, fileExtensions));
-        assertTrue(fileExtensionMatches(file, null));
+        assertFalse(Utils.fileExtensionMatches(file, fileExtensions));
+        assertTrue(Utils.fileExtensionMatches(file, null));
         file = new File("file.java");
-        assertTrue(fileExtensionMatches(file, fileExtensions));
+        assertTrue(Utils.fileExtensionMatches(file, fileExtensions));
         file = new File("file.");
-        assertTrue(fileExtensionMatches(file, ""));
+        assertTrue(Utils.fileExtensionMatches(file, ""));
     }
 
     @Test
     public void testBaseClassnameForCanonicalName() {
-        assertEquals("List", baseClassname("java.util.List"));
+        assertEquals("List", Utils.baseClassname("java.util.List"));
     }
 
     @Test
     public void testBaseClassnameForSimpleName() {
-        assertEquals("Set", baseClassname("Set"));
+        assertEquals("Set", Utils.baseClassname("Set"));
     }
 
     @Test
     public void testRelativeNormalizedPath() {
-        final String relativePath = relativizeAndNormalizePath("/home", "/home/test");
+        final String relativePath = Utils.relativizeAndNormalizePath("/home", "/home/test");
 
         assertEquals("test", relativePath);
     }
 
     @Test
     public void testRelativeNormalizedPathWithNullBaseDirectory() {
-        final String relativePath = relativizeAndNormalizePath(null, "/tmp");
+        final String relativePath = Utils.relativizeAndNormalizePath(null, "/tmp");
 
         assertEquals("/tmp", relativePath);
     }
@@ -112,7 +115,7 @@ public class UtilsTest {
         final String absoluteFilePath = sampleAbsolutePath + "/SampleFile.java";
         final String basePath = sampleAbsolutePath + PATH_DENORMALIZER;
 
-        final String relativePath = relativizeAndNormalizePath(basePath, absoluteFilePath);
+        final String relativePath = Utils.relativizeAndNormalizePath(basePath, absoluteFilePath);
 
         assertEquals("SampleFile.java", relativePath);
     }
@@ -167,4 +170,111 @@ public class UtilsTest {
             assertEquals(InstantiationException.class, expected.getCause().getClass());
         }
     }
+
+    @Test
+    public void testTokenValueIncorrect() throws NoSuchMethodException {
+        Integer id = Integer.MAX_VALUE - 1;
+        try {
+            Utils.getTokenName(id);
+            fail();
+        }
+        catch (IllegalArgumentException expected) {
+            assertEquals("given id " + id, expected.getMessage());
+        }
+    }
+
+    @Test
+    public void testTokenValueIncorrect2() throws NoSuchMethodException, IllegalAccessException {
+        Integer id = 0;
+        String[] originalValue = null;
+        Field fieldToken = null;
+        try {
+            // overwrite static field with new value
+            Field[] fields = Utils.class.getDeclaredFields();
+            for (Field field : fields) {
+                field.setAccessible(true);
+                if ("TOKEN_VALUE_TO_NAME".equals(field.getName())) {
+                    fieldToken = field;
+                    Field modifiersField = Field.class.getDeclaredField("modifiers");
+                    modifiersField.setAccessible(true);
+                    modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+                    originalValue = (String[]) field.get(null);
+                    field.set(null, new String[] {null});
+                }
+            }
+
+            Utils.getTokenName(id);
+            fail();
+        }
+        catch (IllegalArgumentException expected) {
+            // restoring original value, to let other tests pass
+            fieldToken.set(null, originalValue);
+
+            assertEquals("given id " + id, expected.getMessage());
+
+        }
+        catch (IllegalAccessException e) {
+            fail();
+        }
+        catch (NoSuchFieldException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void testTokenIdIncorrect() throws NoSuchMethodException {
+        String id = "NON_EXISTING_VALUE";
+        try {
+            Utils.getTokenId(id);
+            fail();
+        }
+        catch (IllegalArgumentException expected) {
+            assertEquals("given name " + id, expected.getMessage());
+        }
+    }
+
+    @Test
+    public void testShortDescriptionIncorrect() throws NoSuchMethodException {
+        String id = "NON_EXISTING_VALUE";
+        try {
+            Utils.getShortDescription(id);
+            fail();
+        }
+        catch (IllegalArgumentException expected) {
+            assertEquals("given name " + id, expected.getMessage());
+        }
+    }
+
+    @Test
+    public void testIsCommentType() throws NoSuchMethodException {
+        Assert.assertTrue(Utils.isCommentType(TokenTypes.SINGLE_LINE_COMMENT));
+        Assert.assertTrue(Utils.isCommentType(TokenTypes.BLOCK_COMMENT_BEGIN));
+        Assert.assertTrue(Utils.isCommentType(TokenTypes.BLOCK_COMMENT_END));
+        Assert.assertTrue(Utils.isCommentType(TokenTypes.COMMENT_CONTENT));
+    }
+
+    @Test
+    public void testGetTokenFieldValue() throws NoSuchMethodException {
+        Integer id = 0;
+        try {
+            // overwrite static field with new value
+            Method method = Utils.class.getDeclaredMethod("getTokenFieldValue",
+                    Field.class, String.class);
+            method.setAccessible(true);
+            method.invoke(null, Field.class.getDeclaredField("modifiers"), "smth_strange");
+
+            fail();
+        }
+        catch (InvocationTargetException expected) {
+            // in method we throw IllegalStateException,
+            // but JDK wrap that in InvocationTargetException
+            assertEquals(IllegalStateException.class, expected.getCause().getClass());
+            assertEquals("Failed to instantiate collection of Java tokens",
+                    expected.getCause().getMessage());
+        }
+        catch (Exception e) {
+            fail();
+        }
+    }
+
 }
