@@ -58,13 +58,18 @@ public class MultipleVariableDeclarationsCheck extends Check {
     public static final String MSG_MULTIPLE_COMMA = "multiple.variable.declarations.comma";
 
     @Override
-    public int[] getDefaultTokens() {
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     @Override
-    public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.VARIABLE_DEF};
+    public int[] getDefaultTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -78,13 +83,12 @@ public class MultipleVariableDeclarationsCheck extends Check {
 
         final boolean isCommaSeparated = nextNode.getType() == TokenTypes.COMMA;
 
-        if (nextNode.getType() == TokenTypes.COMMA
+        if (isCommaSeparated
             || nextNode.getType() == TokenTypes.SEMI) {
             nextNode = nextNode.getNextSibling();
         }
 
-        if (nextNode != null
-            && nextNode.getType() == TokenTypes.VARIABLE_DEF) {
+        if (nextNode.getType() == TokenTypes.VARIABLE_DEF) {
             final DetailAST firstNode = CheckUtils.getFirstNode(ast);
             if (isCommaSeparated) {
                 // Check if the multiple variable declarations are in a
