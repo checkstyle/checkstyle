@@ -188,15 +188,43 @@ public class InputEqualsAvoidNull {
 
         new String().equalsIgnoreCase("more cheese");
 
-
     }
 
 }
 
 class InputEqualsAvoidNullOutter {
     public class InputEqualsAvoidNullInner {
-	public boolean equals(Object o) {
-	    return true;
-	}
+    	public boolean equals(Object o) {
+    	    return true;
+    	}
+    }
+}
+
+class MyString {
+    public boolean equals() {
+        return true;
+    }
+    
+    public boolean equals(String s1) {
+        return true;
+    }
+    
+    public boolean equalsIgnoreCase() {
+        return true;
+    }
+    
+    public boolean equalsIgnoreCase(String s1) {
+        return true;
+    }
+    
+    private String pizza;
+    
+    public void main() {
+        MyString myString = new MyString();
+        myString.equals();
+        myString.equals("what");
+        myString.equalsIgnoreCase();
+        myString.equalsIgnoreCase("what");
+        myString.equals(this.pizza = "cold pizza");
     }
 }
