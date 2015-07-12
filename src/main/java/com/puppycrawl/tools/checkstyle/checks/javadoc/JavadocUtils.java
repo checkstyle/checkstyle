@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
@@ -62,25 +63,18 @@ public final class JavadocUtils {
 
             final String name = f.getName();
 
-            try {
-                final int tokenValue = f.getInt(name);
-                builder.put(name, tokenValue);
-                if (tokenValue > tempTokenValueToName.length - 1) {
-                    final String[] temp = new String[tokenValue + 1];
-                    System.arraycopy(tempTokenValueToName, 0, temp, 0, tempTokenValueToName.length);
-                    tempTokenValueToName = temp;
-                }
-                if (tokenValue == -1) {
-                    tempTokenValueToName[0] = name;
-                }
-                else {
-                    tempTokenValueToName[tokenValue] = name;
-                }
+            final int tokenValue = Utils.getIntFromField(f, name);
+            builder.put(name, tokenValue);
+            if (tokenValue > tempTokenValueToName.length - 1) {
+                final String[] temp = new String[tokenValue + 1];
+                System.arraycopy(tempTokenValueToName, 0, temp, 0, tempTokenValueToName.length);
+                tempTokenValueToName = temp;
             }
-            catch (IllegalAccessException ex) {
-                // rethrow as unchecked exception
-                throw new IllegalStateException(
-                    "Failed to instantiate collection of Javadoc tokens", ex);
+            if (tokenValue == -1) {
+                tempTokenValueToName[0] = name;
+            }
+            else {
+                tempTokenValueToName[tokenValue] = name;
             }
         }
 

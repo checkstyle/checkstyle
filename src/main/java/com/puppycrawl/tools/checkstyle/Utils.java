@@ -58,7 +58,7 @@ public final class Utils {
             }
 
             final String name = f.getName();
-            final int tokenValue = getTokenFieldValue(f, name);
+            final int tokenValue = getIntFromField(f, name);
             builder.put(name, tokenValue);
             if (tokenValue > tempTokenValueToName.length - 1) {
                 final String[] temp = new String[tokenValue + 1];
@@ -365,19 +365,21 @@ public final class Utils {
     }
 
     /**
-     * That method exists as workaround for code-coverage 100% target to let test
-     * catch block (originally it was in static area).
-     * @param field token field
-     * @param name token name
-     * @return value of field
+     * Gets the value of a static or instance field of type int or of another primitive type
+     * convertible to type int via a widening conversion. Does not throw any checked exceptions.
+     * @param field from which the int should be extracted
+     * @param object to extract the int value from
+     * @return the value of the field converted to type int
+     * @throws IllegalStateException if this Field object is enforcing Java language access control
+     *         and the underlying field is inaccessible
+     * @see Field#getInt(Object)
      */
-    private static int getTokenFieldValue(Field field, String name) {
+    public static int getIntFromField(Field field, Object object) {
         try {
-            return field.getInt(name);
+            return field.getInt(object);
         }
-        catch (final IllegalArgumentException | IllegalAccessException e) {
-            throw new IllegalStateException(
-                    "Failed to instantiate collection of Java tokens", e);
+        catch (final IllegalAccessException exception) {
+            throw new IllegalStateException(exception);
         }
     }
 }

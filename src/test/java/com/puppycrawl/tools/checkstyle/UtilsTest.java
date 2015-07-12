@@ -28,8 +28,6 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Dictionary;
 
@@ -172,6 +170,25 @@ public class UtilsTest {
     }
 
     @Test
+    public void testGetIntFromAccessibleField() throws NoSuchFieldException {
+        Field field = Integer.class.getField("MAX_VALUE");
+
+        assertEquals(Integer.MAX_VALUE, Utils.getIntFromField(field, 0));
+    }
+
+    @Test
+    public void testGetIntFromInaccessibleField() throws NoSuchFieldException {
+        Field field = Integer.class.getDeclaredField("value");
+
+        try {
+            Utils.getIntFromField(field, 0);
+        }
+        catch (IllegalStateException expected) {
+            // expected
+        }
+    }
+
+    @Test
     public void testTokenValueIncorrect() throws NoSuchMethodException {
         Integer id = Integer.MAX_VALUE - 1;
         try {
@@ -252,29 +269,4 @@ public class UtilsTest {
         Assert.assertTrue(Utils.isCommentType(TokenTypes.BLOCK_COMMENT_END));
         Assert.assertTrue(Utils.isCommentType(TokenTypes.COMMENT_CONTENT));
     }
-
-    @Test
-    public void testGetTokenFieldValue() throws NoSuchMethodException {
-        Integer id = 0;
-        try {
-            // overwrite static field with new value
-            Method method = Utils.class.getDeclaredMethod("getTokenFieldValue",
-                    Field.class, String.class);
-            method.setAccessible(true);
-            method.invoke(null, Field.class.getDeclaredField("modifiers"), "smth_strange");
-
-            fail();
-        }
-        catch (InvocationTargetException expected) {
-            // in method we throw IllegalStateException,
-            // but JDK wrap that in InvocationTargetException
-            assertEquals(IllegalStateException.class, expected.getCause().getClass());
-            assertEquals("Failed to instantiate collection of Java tokens",
-                    expected.getCause().getMessage());
-        }
-        catch (Exception e) {
-            fail();
-        }
-    }
-
 }
