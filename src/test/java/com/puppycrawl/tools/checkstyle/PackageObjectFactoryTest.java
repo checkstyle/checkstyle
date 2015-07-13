@@ -37,6 +37,12 @@ public class PackageObjectFactoryTest {
     private final PackageObjectFactory factory = new PackageObjectFactory(
             new HashSet<String>(), Thread.currentThread().getContextClassLoader());
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testCtorException()  throws CheckstyleException {
+        PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<String>(), null);
+    }
+
     @Test
     public void testMakeObjectFromName()
         throws CheckstyleException {
