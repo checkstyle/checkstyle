@@ -160,7 +160,7 @@ public class XMLLogger
      * @param value the value to escape.
      * @return the escaped value if necessary.
      */
-    public String encode(String value) {
+    public static String encode(String value) {
         final StringBuilder sb = new StringBuilder();
         for (int i = 0; i < value.length(); i++) {
             final char c = value.charAt(i);
@@ -199,7 +199,7 @@ public class XMLLogger
      * @param ent the possible entity to look for.
      * @return whether the given argument a character or entity reference
      */
-    public boolean isReference(String ent) {
+    public static boolean isReference(String ent) {
         if (ent.charAt(0) != '&' || !Utils.endsWithChar(ent, ';')) {
             return false;
         }

@@ -19,13 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import org.junit.Test;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -34,7 +33,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.regex.Pattern;
-import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Enter a description of class XMLLoggerTest.java.
@@ -55,6 +57,9 @@ public class XMLLoggerTest {
             {"&", "&amp;"},
             {"&lt;", "&lt;"},
             {"abc;", "abc;"},
+            {"&#0;", "&#0;"}, //reference
+            {"&#0", "&amp;#0"}, //not reference
+            {"&#X0;", "&amp;#X0;"}, //not reference
         };
         for (int i = 0; i < encodings.length; i++) {
             final String encoded = logger.encode(encodings[i][0]);
@@ -83,6 +88,7 @@ public class XMLLoggerTest {
             "&#X0;",
             "&#x;",
             "&#xg;",
+            "ref",
         };
         for (int i = 0; i < noReference.length; i++) {
             assertFalse("no reference: " + noReference[i],
@@ -155,6 +161,38 @@ public class XMLLoggerTest {
     }
 
     @Test
+    public void testAddErrorOnZeroColumns() throws IOException {
+        final XMLLogger logger = new XMLLogger(outStream, true);
+        logger.auditStarted(null);
+        final LocalizedMessage message =
+                new LocalizedMessage(1, 0,
+                        "messages.properties", "key", null, SeverityLevel.ERROR, null,
+                        this.getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        logger.addError(ev);
+        logger.auditFinished(null);
+        final String[] expectedLines = {
+            "<error line=\"1\" severity=\"error\" message=\"key\" source=\"com.puppycrawl.tools.checkstyle.XMLLoggerTest\"/>",
+        };
+        verifyLines(expectedLines);
+    }
+
+    @Test
+    public void testAddIgnored() throws IOException {
+        final XMLLogger logger = new XMLLogger(outStream, true);
+        logger.auditStarted(null);
+        final LocalizedMessage message =
+                new LocalizedMessage(1, 1,
+                        "messages.properties", "key", null, SeverityLevel.IGNORE, null,
+                        this.getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        logger.addError(ev);
+        logger.auditFinished(null);
+        final String[] expectedLines = {};
+        verifyLines(expectedLines);
+    }
+
+    @Test
     public void testAddException()
         throws IOException {
         final XMLLogger logger = new XMLLogger(outStream, true);
@@ -220,4 +258,5 @@ public class XMLLoggerTest {
             s.print("stackTrace");
         }
     }
+
 }
