@@ -44,4 +44,10 @@ public class IntMatchFilterTest {
         assertFalse("0 != this", filter.equals(this));
         assertFalse("0 != null", filter.equals(null));
     }
+
+    @Test
+    public void testToString() {
+        final IntFilter filter = new IntMatchFilter(6);
+        assertEquals("IntMatchFilter[6]", filter.toString());
+    }
 }
