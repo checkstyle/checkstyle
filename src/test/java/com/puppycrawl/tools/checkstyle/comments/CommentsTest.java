@@ -48,6 +48,8 @@ import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_NULL;
 
 import java.io.File;
 
+import com.puppycrawl.tools.checkstyle.api.Comment;
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -609,5 +611,11 @@ public class CommentsTest extends BaseCheckTestSupport {
         final String[] expected = {};
         verify(checkConfig, getPath("comments" + File.separator
                 + "InputCommentsTest_2.java"), expected);
+    }
+
+    @Test
+    public void testToString() throws Exception {
+        Comment comment = new Comment(new String[]{"value"}, 1, 2, 3);
+        Assert.assertEquals("Comment[2:1-2:3]", comment.toString());
     }
 }
