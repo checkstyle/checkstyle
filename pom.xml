@@ -1082,8 +1082,6 @@
             <regex><pattern>.*.PropertiesExpander</pattern><branchRate>50</branchRate><lineRate>83</lineRate></regex>
             <regex><pattern>.*.PropertyCacheFile</pattern><branchRate>22</branchRate><lineRate>19</lineRate></regex>
             <regex><pattern>.*.TreeWalker</pattern><branchRate>94</branchRate><lineRate>92</lineRate></regex>
-            <regex><pattern>.*.XMLLogger</pattern><branchRate>100</branchRate><lineRate>97</lineRate></regex>
-
 
             <regex><pattern>.*.api.AbstractFileSetCheck</pattern><branchRate>75</branchRate><lineRate>87</lineRate></regex>
             <regex><pattern>.*.api.AbstractLoader</pattern><branchRate>75</branchRate><lineRate>88</lineRate></regex>

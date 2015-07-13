@@ -63,8 +63,9 @@ public class XMLLogger
      * Sets the output to a defined stream.
      * @param os the stream to write logs to.
      * @param closeStream close oS in auditFinished
+     * @throws UnsupportedEncodingException is UTF-8 is not supported
      */
-    public XMLLogger(OutputStream os, boolean closeStream) {
+    public XMLLogger(OutputStream os, boolean closeStream) throws UnsupportedEncodingException {
         setOutputStream(os);
         this.closeStream = closeStream;
     }
@@ -72,16 +73,11 @@ public class XMLLogger
     /**
      * sets the OutputStream
      * @param oS the OutputStream to use
+     * @throws UnsupportedEncodingException is UTF-8 is not supported
      **/
-    private void setOutputStream(OutputStream oS) {
-        try {
-            final OutputStreamWriter osw = new OutputStreamWriter(oS, "UTF-8");
-            writer = new PrintWriter(osw);
-        }
-        catch (final UnsupportedEncodingException e) {
-            // unlikely to happen...
-            throw new ExceptionInInitializerError(e);
-        }
+    private void setOutputStream(OutputStream oS) throws UnsupportedEncodingException {
+        final OutputStreamWriter osw = new OutputStreamWriter(oS, "UTF-8");
+        writer = new PrintWriter(osw);
     }
 
     /** {@inheritDoc} */
