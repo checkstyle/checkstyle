@@ -19,8 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class SuppressionFilterTest {
@@ -32,4 +35,15 @@ public class SuppressionFilterTest {
                 .suppress(Warning.NONFINAL_FIELDS)
                 .verify();
     }
+
+    @Test
+    public void testAccept() throws CheckstyleException {
+        SuppressionFilter filter = new SuppressionFilter();
+        filter.setFile("src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_none.xml");
+
+        final AuditEvent ev = new AuditEvent(this, "ATest.java", null);
+
+        Assert.assertTrue(filter.accept(ev));
+    }
+
 }
