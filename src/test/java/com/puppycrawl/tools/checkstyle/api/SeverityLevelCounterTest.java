@@ -38,4 +38,12 @@ public class SeverityLevelCounterTest {
         Assert.assertTrue(counter.getCount() == 1);
     }
 
+    @Test
+    public void testAddExceptionWarning() {
+        final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.WARNING);
+        final AuditEvent event = new AuditEvent(this, "ATest.java", null);
+        Assert.assertTrue(counter.getCount() == 0);
+        counter.addException(event, new IllegalStateException());
+        Assert.assertTrue(counter.getCount() == 0);
+    }
 }
