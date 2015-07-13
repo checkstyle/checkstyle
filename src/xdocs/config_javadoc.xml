@@ -1117,12 +1117,57 @@ public boolean isSomething()
         </ul>
       </subsection>
 
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>tagImmediatelyBeforeFirstWord</td>
+            <td>whether the &lt;p&gt; tag should be placed immediately before the first word</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+        </table>
+      </subsection>
+
       <subsection name="Examples">
         <p>
           Default configuration:
         </p>
         <source>
 &lt;module name=&quot;JavadocParagraph&quot;/&gt;
+        </source>
+        <p>
+          To allows to place text of a paragraph not immediately after a &lt;p&gt; tag:
+        </p>
+        <source>
+&lt;module name=&quot;JavadocParagraph&quot;&gt;
+    &lt;property name=&quot;allowNewlineParagraph&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          In case of tagImmediatelyBeforeFirstWord set to false
+          the following example will not have any violations:
+        </p>
+        <source>
+/**
+ * Some Javadoc.
+ *
+ * &lt;p&gt;
+ * Some Javadoc.
+ *
+ * &lt;p&gt;  Some Javadoc.
+ *
+ * &lt;p&gt;
+ * &lt;pre&gt;
+ * Some preformatted Javadoc.
+ * &lt;/pre&gt;
+ *
+ *&#47;
         </source>
       </subsection>
 

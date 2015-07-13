@@ -11,7 +11,7 @@ class InputCorrectJavaDocParagraphCheck1 {
     /**
      * Some Javadoc.<P>  //warn
      *
-     * <p>  Some Javadoc.
+     * <p>  Some Javadoc. //warn
      *
      * @since 8.0
      */
@@ -27,8 +27,8 @@ class InputCorrectJavaDocParagraphCheck1 {
      */
     boolean emulated() {return false;}
     
-    /**<p>Some Javadoc.//warn
-     * <p>//warn
+    /**<p>Some Javadoc. //warn
+     * <p> //warn
      * <p><p> //warn
      * <p>/^WARN/   Some Javadoc.<p>*/ //warn
      class InnerInputCorrectJavaDocParagraphCheck {
@@ -40,10 +40,10 @@ class InputCorrectJavaDocParagraphCheck1 {
          */
         public static final byte NUL = 0;
            
-        /**<p>//warn
+        /**<p> //warn
          * /^WARN/ Some Javadoc.
          *
-         * <P>
+         * <P> //warn
          * /^WARN/
          * <p> //warn
          *  /^WARN/ Some Javadoc.<p> //warn
@@ -67,7 +67,7 @@ class InputCorrectJavaDocParagraphCheck1 {
         /**
          * /WARN/  Some Javadoc.<p> //warn
          *
-         *  <p>  Some Javadoc.
+         *  <p>  Some Javadoc. //warn
          *
          * @see <a href="http://code.google.com/webtoolkit/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
          *     Documentation about <p> GWT emulated source</a> //warn
