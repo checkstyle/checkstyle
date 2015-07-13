@@ -133,8 +133,8 @@ public class SuppressElement
     /** {@inheritDoc} */
     @Override
     public boolean accept(AuditEvent event) {
-        // file and check match?
-        if (isFileNameAndModuleMatching(event)) {
+        // reject if file or check module mismatch?
+        if (isFileNameAndModuleNotMatching(event)) {
             return true;
         }
 
@@ -149,14 +149,12 @@ public class SuppressElement
      * @param event event
      * @return true is matching
      */
-    private boolean isFileNameAndModuleMatching(AuditEvent event) {
+    private boolean isFileNameAndModuleNotMatching(AuditEvent event) {
         return event.getFileName() == null
                 || !fileRegexp.matcher(event.getFileName()).find()
                 || event.getLocalizedMessage() == null
-                || moduleId != null && !moduleId.equals(event
-                        .getModuleId())
-                || checkRegexp != null && !checkRegexp.matcher(
-                        event.getSourceName()).find();
+                || moduleId != null && !moduleId.equals(event.getModuleId())
+                || checkRegexp != null && !checkRegexp.matcher(event.getSourceName()).find();
     }
 
     @Override

@@ -1232,7 +1232,6 @@
             <regex><pattern>.*.checks.whitespace.WhitespaceAfterCheck</pattern><branchRate>86</branchRate><lineRate>90</lineRate></regex>
 
 
-            <regex><pattern>.*.filters.SuppressElement</pattern><branchRate>82</branchRate><lineRate>88</lineRate></regex>
             <regex><pattern>.*.filters.SuppressionCommentFilter</pattern><branchRate>83</branchRate><lineRate>93</lineRate></regex>
             <regex><pattern>.*.filters.SuppressionCommentFilter\$Tag</pattern><branchRate>96</branchRate><lineRate>94</lineRate></regex>
             <regex><pattern>.*.filters.SuppressionFilter</pattern><branchRate>100</branchRate><lineRate>58</lineRate></regex>
