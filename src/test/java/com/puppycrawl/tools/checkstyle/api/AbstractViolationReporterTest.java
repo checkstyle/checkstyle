@@ -54,6 +54,12 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testCustomId() throws Exception {
+        emptyCheck.setId("MyId");
+        Assert.assertEquals("MyId", emptyCheck.getId());
+    }
+
+    @Test
     public void testCustomMessage() throws Exception {
         DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
         config.addMessage("msgKey", "This is a custom message.");
