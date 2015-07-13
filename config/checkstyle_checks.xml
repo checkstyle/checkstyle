@@ -53,11 +53,14 @@
   </module>
 
   <module name="RegexpMultiline"/>
-
-  <!-- 
-  <module name="RegexpHeader"/>
+  <module name="RegexpHeader">
+    <property name="headerFile" value="${checkstyle.regexp.header.file}"/>
+    <property name="fileExtensions" value="java"/>
+  </module>
+  <!--
   <module name="UniqueProperties"/>
   -->
+
   <module name="TreeWalker">
     <property name="tabWidth" value="4"/>
 

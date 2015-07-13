@@ -19,15 +19,20 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
+import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import org.apache.commons.beanutils.ConversionException;
 import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.fail;
 
 /**
  *
  * @author richter
  */
-public class RegexpHeaderCheckTest {
+public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
 
     public RegexpHeaderCheckTest() {
     }
@@ -86,4 +91,33 @@ public class RegexpHeaderCheckTest {
         }
     }
 
+    @Test
+    public void testDefaultConfiguration() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RegexpHeaderCheck.class);
+        try {
+            createChecker(checkConfig);
+            final String[] expected = {
+            };
+            verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
+        }
+        catch (CheckstyleException ex) {
+            // Exception is not expected
+            fail();
+        }
+    }
+
+    @Test
+    public void testEmptyFilename() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", "");
+        try {
+            createChecker(checkConfig);
+            fail("Checker creation should not succeed with invalid headerFile");
+        }
+        catch (CheckstyleException ex) {
+            // expected exception
+        }
+    }
 }

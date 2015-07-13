@@ -104,6 +104,14 @@ line 5: ////////////////////////////////////////////////////////////////////
       </subsection>
 
       <subsection name="Example">
+          <p>
+              In default configuration the check does not rise any violations. Default values of properties are used.
+          </p>
+
+          <source>
+&lt;module name=&quot;Header&quot;/&gt;
+          </source>
+
         <p>
           To configure the check to use header file <code>&quot;java.header&quot;</code> and ignore lines <code>2</code>, <code>3</code>, and <code> 4</code> and only process Java files:
         </p>
@@ -269,6 +277,13 @@ line 6: ^\W*$
       </subsection>
 
       <subsection name="Example">
+          <p>
+              In default configuration the check does not rise any violations. Default values of properties are used.
+          </p>
+          <source>
+&lt;module name=&quot;RegexpHeader&quot;/&gt;
+          </source>
+
         <p>
           To configure the check to use header file <code>&quot;java.header&quot;</code> and <code>10</code> and <code>13</code> muli-lines:
         </p>

@@ -35,7 +35,9 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * Checks the header of the source against a header file that contains a
  * {@link java.util.regex.Pattern regular expression}
- * for each line of the source header.
+ * for each line of the source header. In default configuration,
+ * if header is not specified, the default value of header is set to null
+ * and the check does not rise any violations.
  *
  * @author Lars Kühne
  * @author o_sukhodolsky

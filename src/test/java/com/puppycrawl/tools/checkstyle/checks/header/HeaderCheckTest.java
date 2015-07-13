@@ -172,17 +172,18 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
     }
 
     @Test
-    public void testNoHeader()
-        throws Exception {
+    public void testNoHeader() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HeaderCheck.class);
-        // No header file specified
         try {
             createChecker(checkConfig);
-            fail();
+            final String[] expected = {
+            };
+            verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
         }
         catch (CheckstyleException ex) {
-            // expected exception
+            // Exception is not expected
+            fail();
         }
     }
 

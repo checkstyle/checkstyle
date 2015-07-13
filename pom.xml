@@ -747,6 +747,7 @@
               <dir>config</dir>
               <excludes>
                 <exclude>java.header</exclude>
+                <exclude>java_regexp.header</exclude>
               </excludes>
             </validationSet>
             <validationSet>
@@ -1154,9 +1155,9 @@
             <regex><pattern>.*.checks.coding.VariableDeclarationUsageDistanceCheck</pattern><branchRate>90</branchRate><lineRate>98</lineRate></regex>
 
 
-            <regex><pattern>.*.checks.header.AbstractHeaderCheck</pattern><branchRate>85</branchRate><lineRate>85</lineRate></regex>
-            <regex><pattern>.*.checks.header.HeaderCheck</pattern><branchRate>18</branchRate><lineRate>45</lineRate></regex>
-            <regex><pattern>.*.checks.header.RegexpHeaderCheck</pattern><branchRate>87</branchRate><lineRate>93</lineRate></regex>
+            <regex><pattern>.*.checks.header.AbstractHeaderCheck</pattern><branchRate>90</branchRate><lineRate>87</lineRate></regex>
+            <regex><pattern>.*.checks.header.HeaderCheck</pattern><branchRate>31</branchRate><lineRate>50</lineRate></regex>
+            <regex><pattern>.*.checks.header.RegexpHeaderCheck</pattern><branchRate>88</branchRate><lineRate>94</lineRate></regex>
 
 
             <regex><pattern>.*.checks.imports.CustomImportOrderCheck</pattern><branchRate>98</branchRate><lineRate>100</lineRate></regex>

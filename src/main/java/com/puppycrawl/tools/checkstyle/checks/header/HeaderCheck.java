@@ -25,6 +25,9 @@ import java.util.List;
 
 /**
  * Checks the header of the source against a fixed header file.
+ * In default configuration,if header is not specified,
+ * the default value of header is set to null
+ * and the check does not rise any violations.
  *
  * @author Lars Kühne
  */

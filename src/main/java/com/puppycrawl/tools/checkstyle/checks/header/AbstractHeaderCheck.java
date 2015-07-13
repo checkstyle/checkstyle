@@ -84,11 +84,13 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
     /**
      * Set the header file to check against.
      * @param fileName the file that contains the header to check against.
+     * @throws CheckstyleException if fileName is empty.
      */
-    public void setHeaderFile(String fileName) {
-        // Handle empty param
+    public void setHeaderFile(String fileName) throws CheckstyleException {
         if (StringUtils.isBlank(fileName)) {
-            return;
+            throw new CheckstyleException(
+                "property 'headerFile' is missing or invalid in module "
+                    + getConfiguration().getName());
         }
 
         filename = fileName;
@@ -229,9 +231,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
             loadHeaderFile();
         }
         if (readerLines.isEmpty()) {
-            throw new CheckstyleException(
-                    "property 'headerFile' is missing or invalid in module "
-                    + getConfiguration().getName());
+            setHeader(null);
         }
     }
 }
