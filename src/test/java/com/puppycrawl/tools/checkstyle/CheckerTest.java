@@ -133,26 +133,6 @@ public class CheckerTest {
 
         c.addFilter(f);
 
-        // Let's try fire some events
-        // we do not call filter in fireAuditStarted() (fix for 1080343)
-//         c.fireAuditStarted();
-//         assertTrue("Checker.fireAuditStarted() doesn't call filter", f.wasCalled());
-
-        // we do not call filter in fireAuditFinished() (fix for 1080343)
-//         f.resetFilter();
-//         c.fireAuditFinished();
-//         assertTrue("Checker.fireAuditFinished() doesn't call filter", f.wasCalled());
-
-        // we do not call filter in fireFileStarted() (fix for 1080343)
-//         f.resetFilter();
-//         c.fireFileStarted("Some File Name");
-//         assertTrue("Checker.fireFileStarted() doesn't call filter", f.wasCalled());
-
-        // we do not call filter in fireFileFinished() (fix for 1080343)
-//         f.resetFilter();
-//         c.fireFileFinished("Some File Name");
-//         assertTrue("Checker.fireFileFinished() doesn't call filter", f.wasCalled());
-
         f.resetFilter();
         final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
@@ -169,30 +149,6 @@ public class CheckerTest {
         c.addFilter(f);
         c.addFilter(f2);
         c.removeFilter(f);
-
-        // Let's try fire some events
-        // we do call filter in fireErrors() only (fix for 1080343)
-//      c.fireAuditStarted();
-//         assertTrue("Checker.fireAuditStarted() doesn't call filter", f2.wasCalled());
-//         assertFalse("Checker.fireAuditStarted() does call removed filter", f.wasCalled());
-
-        // we do call filter in fireErrors() only (fix for 1080343)
-//         f2.resetFilter();
-//         c.fireAuditFinished();
-//         assertTrue("Checker.fireAuditFinished() doesn't call filter", f2.wasCalled());
-//         assertFalse("Checker.fireAuditFinished() does call removed filter", f.wasCalled());
-
-        // we do call filter in fireErrors() only (fix for 1080343)
-//         f2.resetFilter();
-//         c.fireFileStarted("Some File Name");
-//         assertTrue("Checker.fireFileStarted() doesn't call filter", f2.wasCalled());
-//         assertFalse("Checker.fireFileStarted() does call removed filter", f.wasCalled());
-
-        // we do call filter in fireErrors() only (fix for 1080343)
-//         f2.resetFilter();
-//         c.fireFileFinished("Some File Name");
-//         assertTrue("Checker.fireFileFinished() doesn't call filter", f2.wasCalled());
-//         assertFalse("Checker.fireFileFinished() does call removed filter", f.wasCalled());
 
         f2.resetFilter();
         final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
