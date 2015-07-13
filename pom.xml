@@ -1094,7 +1094,6 @@
             <regex><pattern>.*.api.JavadocTagInfo</pattern><branchRate>25</branchRate><lineRate>77</lineRate></regex>
             <regex><pattern>.*.api.JavadocTagInfo\$.*</pattern><branchRate>0</branchRate><lineRate>8</lineRate></regex>
             <regex><pattern>.*.api.LocalizedMessage\$.*</pattern><branchRate>41</branchRate><lineRate>66</lineRate></regex>
-            <regex><pattern>.*.api.SeverityLevelCounter</pattern><branchRate>50</branchRate><lineRate>76</lineRate></regex>
             <regex><pattern>.*.api.TokenTypes</pattern><branchRate>62</branchRate><lineRate>80</lineRate></regex>
 
 
