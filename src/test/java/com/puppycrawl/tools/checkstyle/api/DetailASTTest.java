@@ -62,6 +62,49 @@ public class DetailASTTest {
     }
 
     @Test
+    public void testSetSiblingNull() {
+        final DetailAST root = new DetailAST();
+        final DetailAST firstLevelA = new DetailAST();
+        final DetailAST firstLevelB = new DetailAST();
+        final DetailAST secondLevelA = new DetailAST();
+
+        root.setFirstChild(firstLevelA);
+
+        assertEquals(1, root.getChildCount());
+
+        firstLevelA.setParent(root);
+        firstLevelA.addPreviousSibling(null);
+        firstLevelA.addNextSibling(null);
+
+        assertEquals(1, root.getChildCount());
+    }
+
+    @Test
+    public void testInsertSiblingBetween() {
+        final DetailAST root = new DetailAST();
+        final DetailAST firstLevelA = new DetailAST();
+        final DetailAST firstLevelB = new DetailAST();
+        final DetailAST firstLevelC = new DetailAST();
+
+        assertEquals(0, root.getChildCount());
+
+        root.setFirstChild(firstLevelA);
+        firstLevelA.setParent(root);
+
+        assertEquals(1, root.getChildCount());
+
+        firstLevelA.addNextSibling(firstLevelB);
+        firstLevelB.setParent(root);
+
+        assertEquals(firstLevelB, firstLevelA.getNextSibling());
+
+        firstLevelA.addNextSibling(firstLevelC);
+        firstLevelC.setParent(root);
+
+        assertEquals(firstLevelC, firstLevelA.getNextSibling());
+    }
+
+    @Test
     public void testTreeStructure() throws Exception {
         checkDir(new File("src/test/resources/com/puppycrawl/tools/checkstyle"));
     }
