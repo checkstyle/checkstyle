@@ -19,16 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_NOT_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_NOT_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_PRECEDED;
+
+import org.junit.Assert;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_PRECEDED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck
-.WS_NOT_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck
-.WS_NOT_PRECEDED;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class TypecastParenPadCheckTest
     extends BaseCheckTestSupport {
@@ -72,5 +73,17 @@ public class TypecastParenPadCheckTest
         };
         verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
                expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        TypecastParenPadCheck typecastParenPadCheckObj = new TypecastParenPadCheck();
+        int[] actual = typecastParenPadCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.RPAREN,
+            TokenTypes.TYPECAST,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 }
