@@ -82,8 +82,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
             if (textNode != null && textNode.getType() == JavadocTokenTypes.TEXT
                     && textNode.getChildren().length > 1) {
                 final DetailNode whitespace = JavadocUtils.getFirstChild(textNode);
-                if (whitespace.getType() == JavadocTokenTypes.WS
-                        && whitespace.getText().length() - 1 < offset) {
+                if (whitespace.getText().length() - 1 < offset) {
                     log(textNode.getLineNumber(), MSG_KEY, offset);
                 }
             }

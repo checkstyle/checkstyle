@@ -319,7 +319,10 @@ enum Foo1 {}
  * @since Some javadoc.
  *     Some javadoc.
  * @serialData Some javadoc.
- *   Some javadoc. // warn
+ *   Line below is empty on purpose. // warn
+ *
  * @author max
+ * @see {@link com.puppycrawl.tools.checkstyle.AllChecksPresentOnAvailableChecksPageTest
+ *   some description} // no warning, as this is just inline tag description
  */
 interface FooIn1 {}
