@@ -287,16 +287,6 @@ public class ImportOrderCheck
                 doVisitToken(ident, isStatic, isStaticAndNotLastImport);
                 break;
 
-            case ABOVE:
-                // previous non-static but current is static
-                doVisitToken(ident, isStatic, isStaticAndNotLastImport);
-                break;
-
-            case INFLOW:
-                // previous argument is useless here
-                doVisitToken(ident, isStatic, true);
-                break;
-
             case BOTTOM:
                 if (isStaticAndNotLastImport) {
                     lastGroup = Integer.MIN_VALUE;
@@ -305,8 +295,18 @@ public class ImportOrderCheck
                 doVisitToken(ident, isStatic, isNotStaticAndLastImport);
                 break;
 
+            case ABOVE:
+                // previous non-static but current is static
+                doVisitToken(ident, isStatic, isStaticAndNotLastImport);
+                break;
+
             case UNDER:
                 doVisitToken(ident, isStatic, isNotStaticAndLastImport);
+                break;
+
+            case INFLOW:
+                // previous argument is useless here
+                doVisitToken(ident, isStatic, true);
                 break;
 
             default:
