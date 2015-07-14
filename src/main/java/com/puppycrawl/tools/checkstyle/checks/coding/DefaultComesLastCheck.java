@@ -50,15 +50,20 @@ public class DefaultComesLastCheck extends Check {
     public static final String MSG_KEY = "default.comes.last";
 
     @Override
-    public int[] getDefaultTokens() {
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.LITERAL_DEFAULT,
         };
     }
 
     @Override
-    public int[] getAcceptableTokens() {
-        return getDefaultTokens();
+    public int[] getDefaultTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

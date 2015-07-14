@@ -36,6 +36,7 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
             createCheckConfig(DefaultComesLastCheck.class);
         final String[] expected = {
             "24:9: " + getCheckMessage(MSG_KEY),
+            "31:24: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig,
                getPath("coding" + File.separator + "InputDefaultComesLast.java"),
