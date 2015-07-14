@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.Set;
+
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-import java.util.Set;
 
 /**
  * <p>Checks that if a class defines a covariant method equals,
@@ -79,7 +80,7 @@ public class CovariantEqualsCheck extends Check {
             while (child != null) {
                 if (child.getType() == TokenTypes.METHOD_DEF
                         && CheckUtils.isEqualsMethod(child)) {
-                    if (hasObjectParameter(child)) {
+                    if (isFirstParameterObject(child)) {
                         hasEqualsObject = true;
                     }
                     else {
@@ -102,18 +103,13 @@ public class CovariantEqualsCheck extends Check {
     }
 
     /**
-     * Tests whether a method definition AST has exactly one
-     * parameter of type Object.
-     * @param ast the method definition AST to test.
+     * Tests whether a method's first parameter is an Object.
+     * @param methodDefAst the method definition AST to test.
      * Precondition: ast is a TokenTypes.METHOD_DEF node.
-     * @return true if ast has exactly one parameter of type Object.
+     * @return true if ast has first parameter of type Object.
      */
-    private boolean hasObjectParameter(DetailAST ast) {
-        // one parameter?
-        final DetailAST paramsNode = ast.findFirstToken(TokenTypes.PARAMETERS);
-        if (paramsNode.getChildCount() != 1) {
-            return false;
-        }
+    private static boolean isFirstParameterObject(DetailAST methodDefAst) {
+        final DetailAST paramsNode = methodDefAst.findFirstToken(TokenTypes.PARAMETERS);
 
         // parameter type "Object"?
         final DetailAST paramNode =
