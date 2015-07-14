@@ -265,11 +265,7 @@ public class AnnotationLocationCheck extends Check {
      */
     private static boolean hasNodeAfter(DetailAST annotation) {
         final int annotationLineNo = annotation.getLineNo();
-        DetailAST nextNode = annotation.getNextSibling();
-
-        if (nextNode == null) {
-            nextNode = annotation.getParent().getNextSibling();
-        }
+        final DetailAST nextNode = annotation.getNextSibling();
 
         return nextNode != null && annotationLineNo == nextNode.getLineNo();
     }
