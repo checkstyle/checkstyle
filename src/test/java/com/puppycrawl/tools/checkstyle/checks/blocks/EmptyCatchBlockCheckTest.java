@@ -19,10 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  *
@@ -55,7 +57,18 @@ public class EmptyCatchBlockCheckTest extends BaseCheckTestSupport {
             "195: Empty catch block.",
             "214: Empty catch block.",
             "230: Empty catch block.",
+            "239: Empty catch block.",
         };
         verify(checkConfig, getPath("InputEmptyCatchBlockCheck.java"), expected);
     }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        EmptyCatchBlockCheck constantNameCheckObj = new EmptyCatchBlockCheck();
+        int[] actual = constantNameCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {TokenTypes.LITERAL_CATCH };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
+    }
+
 }
