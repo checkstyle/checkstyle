@@ -1125,7 +1125,6 @@
 
             <regex><pattern>.*.checks.coding.AbstractIllegalMethodCheck</pattern><branchRate>100</branchRate><lineRate>93</lineRate></regex>
             <regex><pattern>.*.checks.coding.AbstractSuperCheck</pattern><branchRate>78</branchRate><lineRate>89</lineRate></regex>
-            <regex><pattern>.*.checks.coding.CovariantEqualsCheck</pattern><branchRate>95</branchRate><lineRate>96</lineRate></regex>
             <regex><pattern>.*.checks.coding.DeclarationOrderCheck</pattern><branchRate>82</branchRate><lineRate>93</lineRate></regex>
             <regex><pattern>.*.checks.coding.DefaultComesLastCheck</pattern><branchRate>87</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.coding.ExplicitInitializationCheck</pattern><branchRate>91</branchRate><lineRate>97</lineRate></regex>
