@@ -232,4 +232,13 @@ public class InputEmptyCatchBlockCheck
             //This is expected
         }
     }
+    
+    private void emptyMultilineComent() {
+        try {
+            throw new IOException();
+        } catch (IOException e) {
+            /*
+*/
+        }
+    }
 }
