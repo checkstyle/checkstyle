@@ -19,15 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.LINE_PREVIOUS;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.WS_NOT_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.WS_PRECEDED;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.LINE_PREVIOUS;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck
-.WS_NOT_PRECEDED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.WS_PRECEDED;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MethodParamPadCheckTest
     extends BaseCheckTestSupport {
@@ -113,5 +115,20 @@ public class MethodParamPadCheckTest
         };
         verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
                expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        MethodParamPadCheck methodParamPadCheckObj = new MethodParamPadCheck();
+        int[] actual = methodParamPadCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.CTOR_DEF,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.METHOD_CALL,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.SUPER_CTOR_CALL,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 }
