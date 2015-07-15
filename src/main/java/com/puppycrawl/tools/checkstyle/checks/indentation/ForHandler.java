@@ -78,14 +78,6 @@ public class ForHandler extends BlockParentHandler {
         lineWrap.checkIndentation();
     }
 
-    @Override
-    public IndentLevel suggestedChildLevel(AbstractExpressionHandler child) {
-        if (child instanceof ElseHandler) {
-            return getLevel();
-        }
-        return super.suggestedChildLevel(child);
-    }
-
     /**
      * Returns right parenthesis of for-loop statement.
      * @param literalForAst
