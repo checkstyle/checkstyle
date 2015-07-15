@@ -19,13 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.LINE_NEW;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.LINE_PREVIOUS;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.LINE_NEW;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.LINE_PREVIOUS;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class SeparatorWrapCheckTest
     extends BaseCheckTestSupport {
@@ -55,5 +58,17 @@ public class SeparatorWrapCheckTest
             "39:17: " + getCheckMessage(LINE_PREVIOUS, ","),
         };
         verify(checkConfig, getPath("whitespace/InputSeparatorWrap.java"), expected);
+    }
+
+    @Test
+    public void testGetDefaultTokens() {
+        SeparatorWrapCheck separatorWrapCheckObj = new SeparatorWrapCheck();
+        int[] actual = separatorWrapCheckObj.getDefaultTokens();
+        int[] expected = new int[] {
+            TokenTypes.DOT,
+            TokenTypes.COMMA,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 }
