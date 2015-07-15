@@ -1203,7 +1203,6 @@
             <regex><pattern>.*.checks.whitespace.AbstractParenPadCheck</pattern><branchRate>88</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.whitespace.EmptyForInitializerPadCheck</pattern><branchRate>91</branchRate><lineRate>93</lineRate></regex>
             <regex><pattern>.*.checks.whitespace.EmptyLineSeparatorCheck</pattern><branchRate>95</branchRate><lineRate>98</lineRate></regex>
-            <regex><pattern>.*.checks.whitespace.GenericWhitespaceCheck</pattern><branchRate>86</branchRate><lineRate>96</lineRate></regex>
             <regex><pattern>.*.checks.whitespace.NoWhitespaceAfterCheck</pattern><branchRate>94</branchRate><lineRate>98</lineRate></regex>
             <regex><pattern>.*.checks.whitespace.NoWhitespaceBeforeCheck</pattern><branchRate>90</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.whitespace.OperatorWrapCheck</pattern><branchRate>68</branchRate><lineRate>81</lineRate></regex>

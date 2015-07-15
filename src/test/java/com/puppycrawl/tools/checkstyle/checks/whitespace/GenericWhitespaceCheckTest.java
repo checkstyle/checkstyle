@@ -19,22 +19,25 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.google.common.collect.Maps;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_ILLEGAL_FOLLOW;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_NOT_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_PRECEDED;
 
 import java.io.File;
 import java.util.Map;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck
-.WS_ILLEGAL_FOLLOW;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck
-.WS_NOT_PRECEDED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_PRECEDED;
+import antlr.CommonHiddenStreamToken;
+
+import com.google.common.collect.Maps;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class GenericWhitespaceCheckTest
     extends BaseCheckTestSupport {
@@ -116,5 +119,25 @@ public class GenericWhitespaceCheckTest
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                 + "checkstyle/whitespace/"
                 + "InputGenericWhitespaceMethodRef.java").getCanonicalPath(), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        GenericWhitespaceCheck genericWhitespaceCheckObj = new GenericWhitespaceCheck();
+        int[] actual = genericWhitespaceCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.GENERIC_START,
+            TokenTypes.GENERIC_END,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWrongTokenType() {
+        GenericWhitespaceCheck genericWhitespaceCheckObj = new GenericWhitespaceCheck();
+        DetailAST ast = new DetailAST();
+        ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
+        genericWhitespaceCheckObj.visitToken(ast);
     }
 }
