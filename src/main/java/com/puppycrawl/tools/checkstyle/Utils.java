@@ -19,10 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import com.google.common.collect.ImmutableMap;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import org.apache.commons.beanutils.ConversionException;
-
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -32,6 +28,11 @@ import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+
+import org.apache.commons.beanutils.ConversionException;
+
+import com.google.common.collect.ImmutableMap;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Contains utility methods.
@@ -44,6 +45,9 @@ public final class Utils {
     private static final ImmutableMap<String, Integer> TOKEN_NAME_TO_VALUE;
     /** maps from a token value to name */
     private static final String[] TOKEN_VALUE_TO_NAME;
+
+    /** Array of all token IDs */
+    private static final int[] TOKEN_IDS;
 
     // initialise the constants
     static {
@@ -71,11 +75,27 @@ public final class Utils {
 
         TOKEN_NAME_TO_VALUE = builder.build();
         TOKEN_VALUE_TO_NAME = tempTokenValueToName;
+
+        final Integer[] ids = TOKEN_NAME_TO_VALUE.values().toArray(new Integer[0]);
+        TOKEN_IDS = new int[ids.length];
+        for (int i = 0; i < ids.length; i++) {
+            TOKEN_IDS[i] = ids[i].intValue();
+        }
     }
 
 
     /** stop instances being created **/
     private Utils() {
+    }
+
+    /**
+     * Get all token IDs that are available in TokenTypes.
+     * @return array of token IDs
+     */
+    public static int[] getAllTokenIds() {
+        final int[] safeCopy = new int[TOKEN_IDS.length];
+        System.arraycopy(TOKEN_IDS, 0, safeCopy, 0, TOKEN_IDS.length);
+        return safeCopy;
     }
 
     /**

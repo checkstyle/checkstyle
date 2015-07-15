@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck.MSG_KEY;
 
+import java.text.MessageFormat;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -36,6 +38,7 @@ public class IllegalTokenTextCheckTest
             createCheckConfig(IllegalTokenTextCheck.class);
         checkConfig.addAttribute("tokens", "STRING_LITERAL");
         checkConfig.addAttribute("format", "a href");
+        checkConfig.addAttribute("ignoreCase", "false");
         final String[] expected = {
             "24:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
@@ -53,6 +56,37 @@ public class IllegalTokenTextCheckTest
         final String[] expected = {
             "24:28: " + getCheckMessage(MSG_KEY, "a href"),
             "25:32: " + getCheckMessage(MSG_KEY, "a href"),
+        };
+        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+    }
+
+    @Test
+    public void testCustomMessage()
+        throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(IllegalTokenTextCheck.class);
+        checkConfig.addAttribute("tokens", "STRING_LITERAL");
+        checkConfig.addAttribute("format", "a href");
+
+        String customMessage = "My custom message";
+        checkConfig.addAttribute("message", customMessage);
+        final String[] expected = {
+            "24:28: " + MessageFormat.format(customMessage, "a href"),
+        };
+        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+    }
+
+    @Test
+    public void testNullCustomMessage()
+        throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(IllegalTokenTextCheck.class);
+        checkConfig.addAttribute("tokens", "STRING_LITERAL");
+        checkConfig.addAttribute("format", "a href");
+
+        checkConfig.addAttribute("message", null);
+        final String[] expected = {
+            "24:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }

@@ -23,7 +23,6 @@ import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.Set;
 
 /**
  * <p>
@@ -70,20 +69,12 @@ public class IllegalTokenCheck
 
     @Override
     public int[] getAcceptableTokens() {
-        // Any tokens set by property 'tokens' are acceptable
-        int[] tokensToCopy = getDefaultTokens();
-        final Set<String> tokenNames = getTokenNames();
-        if (!tokenNames.isEmpty()) {
-            tokensToCopy = new int[tokenNames.size()];
-            int i = 0;
-            for (String name : tokenNames) {
-                tokensToCopy[i] = Utils.getTokenId(name);
-                i++;
-            }
-        }
-        final int[] copy = new int[tokensToCopy.length];
-        System.arraycopy(tokensToCopy, 0, copy, 0, tokensToCopy.length);
-        return copy;
+        return Utils.getAllTokenIds();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return new int[0];
     }
 
     @Override

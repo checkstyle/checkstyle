@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.regex.Pattern;
+
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
-import java.util.Set;
-import java.util.regex.Pattern;
 
 /**
  * <p>
@@ -79,15 +79,12 @@ public class IllegalTokenTextCheck
 
     @Override
     public int[] getAcceptableTokens() {
-        // Any tokens set by property 'tokens' are acceptable
-        final Set<String> tokenNames = getTokenNames();
-        final int[] result = new int[tokenNames.size()];
-        int i = 0;
-        for (final String name : tokenNames) {
-            result[i] = Utils.getTokenId(name);
-            i++;
-        }
-        return result;
+        return Utils.getAllTokenIds();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return new int[0];
     }
 
     @Override
