@@ -62,4 +62,19 @@ class InputGenericWhitespaceCheck implements Comparable<InputGenericWhitespaceCh
 
     public static class IntEnumValueType3<E extends Enum<E>  & IntEnum> {
     }
+
+    public static class IntEnumValueType4<T extends Comparable<List<T>> & IntEnum> {
+    }
+
+    public void beforeAndAfter() {
+        List
+<
+Integer> x = new ArrayList<Integer
+>();
+        List
+        <Integer> y = new ArrayList<Integer
+        >();
+        Map<Class<?>, Integer> a = new HashMap<Class<?>, Integer>();
+        Map<Class<?>, Integer> b = (Map<Class<?>, Integer>) a;
+    }
 }
