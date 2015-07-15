@@ -19,14 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED;
+
+import org.junit.Assert;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck
-.MSG_MULTIPLE_LINES;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck
-.MSG_SHOULD_BE_SEPARATED;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class EmptyLineSeparatorCheckTest
     extends BaseCheckTestSupport {
@@ -109,9 +110,38 @@ public class EmptyLineSeparatorCheckTest
         DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowMultipleEmptyLines", "false");
         final String[] expected = {
-
+            "1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
         };
         verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorMultipleImportEmptyClass.java"), expected);
     }
 
+    @Test
+    public void testGetAcceptableTokens() {
+        EmptyLineSeparatorCheck emptyLineSeparatorCheckObj = new EmptyLineSeparatorCheck();
+        int[] actual = emptyLineSeparatorCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.VARIABLE_DEF,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testPrePreviousLineEmpiness() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        final String[] expected = {
+
+        };
+        verify(checkConfig, getPath("whitespace/InputPrePreviousLineEmptiness.java"), expected);
+    }
 }

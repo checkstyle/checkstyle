@@ -265,9 +265,7 @@ public class EmptyLineSeparatorCheck extends Check {
      * @param astType token Type
      */
     private void processImport(DetailAST ast, DetailAST nextToken, int astType) {
-        if (astType != nextToken.getType() && !hasEmptyLineAfter(ast)
-            || ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)
-                && ast.getPreviousSibling() == null) {
+        if (astType != nextToken.getType() && !hasEmptyLineAfter(ast)) {
             log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
         if (hasNotAllowedTwoEmptyLinesBefore(ast)) {
