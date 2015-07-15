@@ -115,13 +115,17 @@ public class GenericWhitespaceCheck extends Check {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.GENERIC_START) {
-            processStart(ast);
-            depth++;
-        }
-        else if (ast.getType() == TokenTypes.GENERIC_END) {
-            processEnd(ast);
-            depth--;
+        switch (ast.getType()) {
+            case TokenTypes.GENERIC_START:
+                processStart(ast);
+                depth++;
+                break;
+            case TokenTypes.GENERIC_END:
+                processEnd(ast);
+                depth--;
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown type " + ast);
         }
     }
 
@@ -134,7 +138,7 @@ public class GenericWhitespaceCheck extends Check {
         final int before = ast.getColumnNo() - 1;
         final int after = ast.getColumnNo() + 1;
 
-        if (0 <= before && Character.isWhitespace(line.charAt(before))
+        if (before >= 0 && Character.isWhitespace(line.charAt(before))
                 && !Utils.whitespaceBefore(before, line)) {
             log(ast.getLineNo(), before, WS_PRECEDED, ">");
         }
@@ -168,7 +172,7 @@ public class GenericWhitespaceCheck extends Check {
         //   should be whitespace if followed by & -+
         //
         final int indexOfAmp = line.indexOf('&', after);
-        if (indexOfAmp != -1
+        if (indexOfAmp >= 0
             && whitespaceBetween(after, indexOfAmp, line)) {
             if (indexOfAmp - after == 0) {
                 log(ast.getLineNo(), after, WS_NOT_PRECEDED, "&");
@@ -201,10 +205,9 @@ public class GenericWhitespaceCheck extends Check {
             }
         }
         else if (!Character.isWhitespace(charAfter)
-            && '(' != charAfter && ')' != charAfter
-            && ',' != charAfter && '[' != charAfter
-            && '.' != charAfter && ':' != charAfter
-            && !isAfterMethodReference(ast)) {
+            && charAfter != '(' && charAfter != ')'
+            && charAfter != ',' && charAfter != '['
+            && charAfter != '.' && charAfter != ':') {
             log(ast.getLineNo(), after, WS_ILLEGAL_FOLLOW, ">");
         }
     }
@@ -248,7 +251,7 @@ public class GenericWhitespaceCheck extends Check {
         //                 ^           ^
         //      ws reqd ---+           +--- whitespace NOT required
         //
-        if (0 <= before) {
+        if (before >= 0) {
             // Detect if the first case
             final DetailAST parent = ast.getParent();
             final DetailAST grandparent = parent.getParent();
