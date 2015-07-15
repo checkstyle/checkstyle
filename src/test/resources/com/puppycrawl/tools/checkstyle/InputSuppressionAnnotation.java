@@ -1,0 +1,14 @@
+////////////////////////////////////////////////////////////////////////////////
+// Test case file for checkstyle.
+////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle;
+
+//this file is added to achieve compilation of 
+//filters/InputSuppressionAnnotationFilter
+
+
+public @interface InputSuppressionAnnotation{   
+}
+
+
