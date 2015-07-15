@@ -133,7 +133,8 @@ public abstract class BaseCheckTestSupport
             final String expected = aMessageFileName + ":" + aExpected[i];
             String actual = lnr.readLine();
             assertEquals("error message " + i, expected, actual);
-            String parseInt = actual.substring(actual.indexOf(":") + 1);
+            String parseInt = removeDeviceFromPathOnWindows(actual);
+            parseInt = parseInt.substring(parseInt.indexOf(":") + 1);
             parseInt = parseInt.substring(0, parseInt.indexOf(":"));
             int lineNumber = Integer.parseInt(parseInt);
 			Integer integer = Arrays.asList(aWarnsExpected).contains(lineNumber) ? lineNumber : 0;
@@ -186,5 +187,13 @@ public abstract class BaseCheckTestSupport
            }
        }
        return null;
+   }
+
+   private static String removeDeviceFromPathOnWindows(String string) {
+       String os = System.getProperty("os.name", "Unix");
+       if (os.startsWith("Windows")) {
+           return string.substring(string.indexOf(":") + 1);
+       }
+       return string;
    }
 }
