@@ -19,15 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck.WS_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck.WS_NOT_FOLLOWED;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck
-.WS_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck
-.WS_NOT_FOLLOWED;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class EmptyForIteratorPadCheckTest
     extends BaseCheckTestSupport {
@@ -54,5 +55,16 @@ public class EmptyForIteratorPadCheckTest
             "23:31: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
         };
         verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        EmptyForIteratorPadCheck emptyForIteratorPadCheckObj = new EmptyForIteratorPadCheck();
+        int[] actual = emptyForIteratorPadCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.FOR_ITERATOR,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 }

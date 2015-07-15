@@ -1204,7 +1204,6 @@
 
             <regex><pattern>.*.checks.whitespace.AbstractParenPadCheck</pattern><branchRate>88</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.whitespace.EmptyForInitializerPadCheck</pattern><branchRate>91</branchRate><lineRate>93</lineRate></regex>
-            <regex><pattern>.*.checks.whitespace.EmptyForIteratorPadCheck</pattern><branchRate>100</branchRate><lineRate>92</lineRate></regex>
             <regex><pattern>.*.checks.whitespace.EmptyLineSeparatorCheck</pattern><branchRate>95</branchRate><lineRate>98</lineRate></regex>
             <regex><pattern>.*.checks.whitespace.GenericWhitespaceCheck</pattern><branchRate>86</branchRate><lineRate>96</lineRate></regex>
             <regex><pattern>.*.checks.whitespace.MethodParamPadCheck</pattern><branchRate>100</branchRate><lineRate>95</lineRate></regex>
