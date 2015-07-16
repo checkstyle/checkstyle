@@ -278,41 +278,44 @@ public class ImportOrderCheck
         final boolean isStaticAndNotLastImport = isStatic && !lastImportStatic;
         final boolean isNotStaticAndLastImport = !isStatic && lastImportStatic;
         final ImportOrderOption abstractOption = getAbstractOption();
-        switch (abstractOption) {
-            case TOP:
-                if (isNotStaticAndLastImport) {
-                    lastGroup = Integer.MIN_VALUE;
-                    lastImport = "";
-                }
-                doVisitToken(ident, isStatic, isStaticAndNotLastImport);
-                break;
 
-            case BOTTOM:
-                if (isStaticAndNotLastImport) {
-                    lastGroup = Integer.MIN_VALUE;
-                    lastImport = "";
-                }
-                doVisitToken(ident, isStatic, isNotStaticAndLastImport);
-                break;
+        // using set of IF instead of SWITCH to analyze Enum options to satisfy coverage.
+        // https://github.com/checkstyle/checkstyle/issues/1387
+        if (abstractOption == ImportOrderOption.TOP) {
 
-            case ABOVE:
-                // previous non-static but current is static
-                doVisitToken(ident, isStatic, isStaticAndNotLastImport);
-                break;
+            if (isNotStaticAndLastImport) {
+                lastGroup = Integer.MIN_VALUE;
+                lastImport = "";
+            }
+            doVisitToken(ident, isStatic, isStaticAndNotLastImport);
 
-            case UNDER:
-                doVisitToken(ident, isStatic, isNotStaticAndLastImport);
-                break;
+        }
+        else if (abstractOption == ImportOrderOption.BOTTOM) {
 
-            case INFLOW:
-                // previous argument is useless here
-                doVisitToken(ident, isStatic, true);
-                break;
+            if (isStaticAndNotLastImport) {
+                lastGroup = Integer.MIN_VALUE;
+                lastImport = "";
+            }
+            doVisitToken(ident, isStatic, isNotStaticAndLastImport);
 
-            default:
-                throw new IllegalStateException(
-                        "Unexpected option for static imports: " + abstractOption.toString());
+        }
+        else if (abstractOption == ImportOrderOption.ABOVE) {
+            // previous non-static but current is static
+            doVisitToken(ident, isStatic, isStaticAndNotLastImport);
 
+        }
+        else if (abstractOption == ImportOrderOption.UNDER) {
+            doVisitToken(ident, isStatic, isNotStaticAndLastImport);
+
+        }
+        else if (abstractOption == ImportOrderOption.INFLOW) {
+            // "previous" argument is useless here
+            doVisitToken(ident, isStatic, true);
+
+        }
+        else {
+            throw new IllegalStateException(
+                    "Unexpected option for static imports: " + abstractOption.toString());
         }
 
         lastImportLine = ast.findFirstToken(TokenTypes.SEMI).getLineNo();

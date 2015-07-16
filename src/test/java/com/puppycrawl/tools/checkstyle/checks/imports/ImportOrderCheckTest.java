@@ -25,11 +25,22 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MS
 import java.io.File;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.internal.util.reflection.Whitebox;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
+import antlr.CommonHiddenStreamToken;
+
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(ImportOrderOption.class)
 public class ImportOrderCheckTest extends BaseCheckTestSupport {
     @Test
     public void testDefault() throws Exception {
@@ -382,6 +393,53 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                 + "checkstyle/imports/"
                 + "InputImportOrder_MultiplePatternMatches.java").getCanonicalPath(), expected);
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void testVisitTokenSwitchReflection() throws Exception {
+        ImportOrderOption C = PowerMockito.mock(ImportOrderOption.class);
+        Whitebox.setInternalState(C, "name", "NEW_OPTION_FOR_UT");
+        Whitebox.setInternalState(C, "ordinal", 5);
+
+        DetailAST astImport = mockAST(TokenTypes.IMPORT, "import", "mockfile", 0, 0);
+        DetailAST astIdent = mockAST(TokenTypes.IDENT, "myTestImport", "mockfile", 0, 0);
+        astImport.addChild(astIdent);
+        DetailAST astSemi = mockAST(TokenTypes.SEMI, ";", "mockfile", 0, 0);
+        astIdent.addNextSibling(astSemi);
+
+        ImportOrderCheck check = new ImportOrderCheck() {
+            @Override
+            public ImportOrderOption getAbstractOption() {
+                ImportOrderOption C = PowerMockito.mock(ImportOrderOption.class);
+                Whitebox.setInternalState(C, "name", "NEW_OPTION_FOR_UT");
+                Whitebox.setInternalState(C, "ordinal", 5);
+                return C;
+                }
+        };
+        // expecting IllegalStateException
+        check.visitToken(astImport);
+    }
+
+    /**
+     * Creates MOCK lexical token and returns AST node for this token
+     * @param tokenType type of token
+     * @param tokenText text of token
+     * @param tokenFileName file name of token
+     * @param tokenRow token position in a file (row)
+     * @param tokenColumn token position in a file (column)
+     * @return AST node for the token
+     */
+    private static DetailAST mockAST(final int tokenType, final String tokenText,
+            final String tokenFileName, final int tokenRow, final int tokenColumn) {
+        CommonHiddenStreamToken tokenImportSemi = new CommonHiddenStreamToken();
+        tokenImportSemi.setType(tokenType);
+        tokenImportSemi.setText(tokenText);
+        tokenImportSemi.setLine(tokenRow);
+        tokenImportSemi.setColumn(tokenColumn);
+        tokenImportSemi.setFilename(tokenFileName);
+        DetailAST astSemi = new DetailAST();
+        astSemi.initialize(tokenImportSemi);
+        return astSemi;
     }
 
 }
