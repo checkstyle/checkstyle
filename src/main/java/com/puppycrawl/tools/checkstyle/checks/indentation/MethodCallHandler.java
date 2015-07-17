@@ -38,11 +38,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
      */
     public MethodCallHandler(IndentationCheck indentCheck,
         DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck,
-            ast.getType() == TokenTypes.METHOD_CALL
-                ? "method call" : "ctor call",
-            ast,
-            parent);
+        super(indentCheck, "method call", ast, parent);
     }
 
     @Override
@@ -52,30 +48,17 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         if (getParent() instanceof MethodCallHandler) {
             final MethodCallHandler container =
                     (MethodCallHandler) getParent();
-            if (container != null) {
-                if (areOnSameLine(container.getMainAst(), getMainAst())) {
-                    return container.getLevel();
-                }
-
-                // we should increase indentation only if this is the first
-                // chained method call which was moved to the next line
-                if (isChainedMethodCallWrapped()) {
-                    return container.getLevel();
-                }
-                else {
-                    return new IndentLevel(container.getLevel(), getBasicOffset());
-                }
+            if (areOnSameLine(container.getMainAst(), getMainAst())) {
+                return container.getLevel();
             }
-
-            // if we get here, we are the child of the left hand side (name
-            //  side) of a method call with no "containing" call, use
-            //  the first non-method call parent
-
-            AbstractExpressionHandler p = getParent();
-            while (p instanceof MethodCallHandler) {
-                p = p.getParent();
+            // we should increase indentation only if this is the first
+            // chained method call which was moved to the next line
+            if (isChainedMethodCallWrapped()) {
+                return container.getLevel();
             }
-            return p.suggestedChildLevel(this);
+            else {
+                return new IndentLevel(container.getLevel(), getBasicOffset());
+            }
         }
 
         // if our expression isn't first on the line, just use the start
@@ -100,15 +83,12 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         final DetailAST dot = main.getFirstChild();
         final DetailAST target = dot.getFirstChild();
 
-        if (dot.getType() == TokenTypes.DOT
-            && target.getType() == TokenTypes.METHOD_CALL) {
-            final DetailAST dot1 = target.getFirstChild();
-            final DetailAST target1 = dot1.getFirstChild();
+        final DetailAST dot1 = target.getFirstChild();
+        final DetailAST target1 = dot1.getFirstChild();
 
-            if (dot1.getType() == TokenTypes.DOT
-                && target1.getType() == TokenTypes.METHOD_CALL) {
-                result = true;
-            }
+        if (dot1.getType() == TokenTypes.DOT
+            && target1.getType() == TokenTypes.METHOD_CALL) {
+            result = true;
         }
         return result;
     }
@@ -126,14 +106,9 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         // call name
 
         DetailAST astNode = ast.getFirstChild();
-        while (astNode != null && astNode.getType() == TokenTypes.DOT) {
+        while (astNode.getType() == TokenTypes.DOT) {
             astNode = astNode.getFirstChild();
         }
-
-        if (astNode == null) {
-            astNode = ast;
-        }
-
         return astNode;
     }
 
@@ -157,8 +132,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
     @Override
     public void checkIndentation() {
         final DetailAST exprNode = getMainAst().getParent();
-        if (exprNode.getParent().getType() != TokenTypes.LCURLY
-            && exprNode.getParent().getType() != TokenTypes.SLIST) {
+        if (exprNode.getParent().getType() != TokenTypes.SLIST) {
             return;
         }
         final DetailAST methodName = getMainAst().getFirstChild();
@@ -197,13 +171,6 @@ public class MethodCallHandler extends AbstractExpressionHandler {
      * method calls are chained returns right paren for last call.
      */
     private static DetailAST getMethodCallLastNode(DetailAST firstNode) {
-        DetailAST lastNode;
-        if (firstNode.getNextSibling() == null) {
-            lastNode = firstNode.getLastChild();
-        }
-        else {
-            lastNode = firstNode.getNextSibling();
-        }
-        return lastNode;
+        return firstNode.getLastChild();
     }
 }

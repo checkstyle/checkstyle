@@ -1471,6 +1471,27 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testAnonymousClassInMethod() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "8");
+        checkConfig.addAttribute("basicOffset", "2");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "2");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("throwsIndent", "4");
+        checkConfig.addAttribute("arrayInitIndent", "2");
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_ERROR, "method def modifier", 8, 2),
+            "20: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 16, 4),
+            "21: " + getCheckMessage(MSG_ERROR_MULTI, "method def modifier", 24, "18, 20, 22"),
+            "23: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "method def", 32, "20, 22, 24"),
+            "24: " + getCheckMessage(MSG_ERROR_MULTI, "method def rcurly",  24, "18, 20, 22"),
+            "26: " + getCheckMessage(MSG_ERROR, "method def rcurly", 8, 2),
+        };
+        verifyWarns(checkConfig, getPath("indentation/InputAnonymousClassInMethod.java"), expected);
+    }
+
+    @Test
     public void testAnnotationDefinition() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         checkConfig.addAttribute("tabWidth", "4");
