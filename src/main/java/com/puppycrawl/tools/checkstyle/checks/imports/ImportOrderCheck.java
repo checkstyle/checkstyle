@@ -337,16 +337,14 @@ public class ImportOrderCheck
         final int groupIdx = getGroupNumber(name);
         final int line = ident.getLineNo();
 
-        if (groupIdx > lastGroup) {
-            // This check should be made more robust to handle
-            // comments and imports that span more than one line.
+        if (!beforeFirstImport && isAlphabeticallySortableStaticImport(isStatic)
+                || groupIdx == lastGroup) {
+            doVisitTokenInSameGroup(isStatic, previous, name, line);
+        }
+        else if (groupIdx > lastGroup) {
             if (!beforeFirstImport && separated && line - lastImportLine < 2) {
                 log(line, MSG_SEPARATION, name);
             }
-        }
-        else if (groupIdx == lastGroup || sortStaticImportsAlphabetically
-                 && isAlphabeticallySortableStaticImport(isStatic)) {
-            doVisitTokenInSameGroup(isStatic, previous, name, line);
         }
         else {
             log(line, MSG_ORDERING, name);
@@ -363,12 +361,9 @@ public class ImportOrderCheck
      * @return true if static imports should be sorted alphabetically.
      */
     private boolean isAlphabeticallySortableStaticImport(boolean isStatic) {
-        boolean result = false;
-        if (isStatic && (getAbstractOption() == ImportOrderOption.TOP
-                || getAbstractOption() == ImportOrderOption.BOTTOM)) {
-            result = true;
-        }
-        return result;
+        return isStatic && sortStaticImportsAlphabetically
+                && (getAbstractOption() == ImportOrderOption.TOP
+                    || getAbstractOption() == ImportOrderOption.BOTTOM);
     }
 
     /**

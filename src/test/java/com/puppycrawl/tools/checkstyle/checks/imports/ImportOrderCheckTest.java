@@ -442,4 +442,32 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         return astSemi;
     }
 
+    @Test
+    public void testEclipseDefaultPositive() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "java,javax,org,com");
+        checkConfig.addAttribute("ordered", "true");
+        checkConfig.addAttribute("separated", "true");
+        checkConfig.addAttribute("option", "top");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        final String[] expected = {};
+
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_EclipseDefaultPositive.java"), expected);
+    }
+
+    @Test
+    public void testEclipseDefaultNegative() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "java,javax,org,com");
+        checkConfig.addAttribute("ordered", "true");
+        checkConfig.addAttribute("separated", "true");
+        checkConfig.addAttribute("option", "top");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        final String[] expected = {
+            "12: " + getCheckMessage(MSG_SEPARATION, "javax.swing.JComponent"),
+            "17: " + getCheckMessage(MSG_ORDERING, "org.junit.Test"),
+            };
+
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_EclipseDefaultNegative.java"), expected);
+    }
 }
