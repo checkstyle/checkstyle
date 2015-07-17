@@ -26,8 +26,11 @@ install:
   - cmd: SET JAVA_OPTS=-XX:MaxPermSize=2g -Xmx4g
   - cmd: mvn --version
   - cmd: java -version
-build_script:
-  - mvn clean site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true
+build_script: >
+  mvn clean site 
+  -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true 
+  -DskipTests -DskipITs -Dcobertura.skip=true 
+  -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true
 test_script:
   - mvn clean verify
 cache:
