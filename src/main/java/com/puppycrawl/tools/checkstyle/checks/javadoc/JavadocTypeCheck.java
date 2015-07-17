@@ -24,9 +24,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.api.Scope;
-import com.puppycrawl.tools.checkstyle.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 import java.util.List;
@@ -36,6 +36,9 @@ import org.apache.commons.beanutils.ConversionException;
 
 /**
  * Checks the Javadoc of a type.
+ *
+ * <p>Does not perform checks for author and version tags for inner classes, as
+ * they should be redundant because of outer class.
  *
  * @author Oliver Burn
  * @author Michael Tamm
@@ -184,13 +187,15 @@ public class JavadocTypeCheck
             if (cmt == null) {
                 log(lineNo, JAVADOC_MISSING);
             }
-            else if (ScopeUtils.isOuterMostType(ast)) {
-                // don't check author/version for inner classes
+            else {
                 final List<JavadocTag> tags = getJavadocTags(cmt);
-                checkTag(lineNo, tags, JavadocTagInfo.AUTHOR.getName(),
-                         authorFormatPattern, authorFormat);
-                checkTag(lineNo, tags, JavadocTagInfo.VERSION.getName(),
-                         versionFormatPattern, versionFormat);
+                if (ScopeUtils.isOuterMostType(ast)) {
+                    // don't check author/version for inner classes
+                    checkTag(lineNo, tags, JavadocTagInfo.AUTHOR.getName(),
+                            authorFormatPattern, authorFormat);
+                    checkTag(lineNo, tags, JavadocTagInfo.VERSION.getName(),
+                            versionFormatPattern, versionFormat);
+                }
 
                 final List<String> typeParamNames =
                     CheckUtils.getTypeParameterNames(ast);

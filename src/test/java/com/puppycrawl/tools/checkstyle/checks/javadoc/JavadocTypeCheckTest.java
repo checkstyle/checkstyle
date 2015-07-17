@@ -319,6 +319,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "7:4: " + getCheckMessage(UNUSED_TAG, "@param", "<D123>"),
             "11: " + getCheckMessage(MISSING_TAG, "@param <C456>"),
+            "44:8: " + getCheckMessage(UNUSED_TAG, "@param", "<C>"),
+            "47: " + getCheckMessage(MISSING_TAG, "@param <B>"),
         };
         verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
     }
@@ -330,6 +332,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("allowMissingParamTags", "true");
         final String[] expected = {
             "7:4: " + getCheckMessage(UNUSED_TAG, "@param", "<D123>"),
+            "44:8: " + getCheckMessage(UNUSED_TAG, "@param", "<C>"),
         };
         verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
     }

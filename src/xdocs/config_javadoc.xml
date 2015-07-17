@@ -97,6 +97,10 @@
             regular expression</a>.
         </p>
         <p>
+          Does not perform checks for author and version tags for inner
+          classes, as they should be redundant because of outer class.
+        </p>
+        <p>
           Error messages about type parameters for which no param tags are
           present can be suppressed by defining property
           <code>allowMissingParamTags</code>.
