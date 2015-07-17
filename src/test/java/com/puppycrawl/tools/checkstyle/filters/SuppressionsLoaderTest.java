@@ -162,7 +162,7 @@ public class SuppressionsLoaderTest {
 
     private static boolean isInternetReachable() {
         try {
-            URL url = new URL("http://www.yahoo.com");
+            URL url = new URL("http://checkstyle.sourceforge.net/");
             HttpURLConnection urlConnect = (HttpURLConnection) url.openConnection();
             @SuppressWarnings("unused")
             Object objData = urlConnect.getContent();
