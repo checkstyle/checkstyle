@@ -17,11 +17,20 @@ matrix:
 
     # checkstyle (openjdk7, oraclejdk7 and oraclejdk8)
     - jdk: openjdk7
-      env: DESC="checkstyle" CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERAGE_CMD=""
+      env:
+        - DESC="checkstyle"
+        - CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
+        - COVERAGE_CMD=""
     - jdk: oraclejdk7
-      env: DESC="checkstyle" CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERAGE_CMD=""
+      env:
+        - DESC="checkstyle"
+        - CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
+        - COVERAGE_CMD=""
     - jdk: oraclejdk8
-      env: DESC="checkstyle" CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true" COVERAGE_CMD=""
+      env:
+        - DESC="checkstyle"
+        - CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
+        - COVERAGE_CMD=""
 
     # cobertura and coveralls (oraclejdk8)
     - jdk: oraclejdk8
@@ -40,26 +49,38 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="site"
-        - CMD="mvn clean site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true"
+        - CMD1="mvn clean site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -DskipITs "
+        - CMD2=" -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true"
+        - CMD=$CMD1$CMD2
         - COVERAGE_CMD=""
     # assembly (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="assembly"
-        - CMD="mvn clean install -Passembly -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true"
+        - CMD1="mvn clean install -Passembly -DskipTests -DskipITs -Dcobertura.skip=true"
+        - CMD2=" -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true"
+        - CMD=$CMD1$CMD2
         - COVERAGE_CMD=""
     # nemo.sonarqube.com (oraclejdk7)
     - jdk: oraclejdk7
       env:
         - DESC="nemo.sonarqube.com"
-        - CMD="mvn clean install cobertura:cobertura -Dcobertura.report.format=xml -Dmaven.test.failure.ignore=true -V -Dcheckstyle.skip=true -Dpmd.skip=true -Dcheckstyle.ant.skip=true"
+        - CMD1="mvn clean install cobertura:cobertura -Dcobertura.report.format=xml "
+        - CMD1=" -Dmaven.test.failure.ignore=true -V -Dcheckstyle.skip=true "
+        - CMD1=" -Dpmd.skip=true -Dcheckstyle.ant.skip=true"
+        - CMD=$CMD1$CMD2$CMD3
         - COVERAGE_CMD=""
 
     # NoErrorTest - Orekit (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="NoErrorTest - Orekit"
-        - CMD="git clone https://github.com/CS-SI/Orekit.git && cd Orekit && git checkout bc527a1 && sed -i 's/<orekit\.checkstyle\.version>6\.6</<orekit.checkstyle.version>6.9-SNAPSHOT</' pom.xml && cd .. && mvn clean install -Passembly -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd Orekit && mvn compile checkstyle:check"
+        - CMD1="git clone https://github.com/CS-SI/Orekit.git && cd Orekit && git checkout bc527a1 "
+        - CMD2=" && sed -i 's/<orekit\.checkstyle\.version>6\.6</<orekit.checkstyle.version>6.9-SNAPSHOT</' pom.xml "
+        - CMD3=" && cd .. && mvn clean install -Passembly -DskipTests -DskipITs -Dcobertura.skip=true "
+        - CMD4=" -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true "
+        - CMD5=" && cd Orekit && mvn compile checkstyle:check"
+        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5
         - COVERAGE_CMD=""
 
     # NoExceptiontest - Checkstyle, sevntu-checkstyle (oraclejdk8)
