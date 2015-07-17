@@ -124,7 +124,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @param ast Javadoc root node.
      * @return first sentence.
      */
-    private String getFirstSentence(DetailNode ast) {
+    private static String getFirstSentence(DetailNode ast) {
         final StringBuilder result = new StringBuilder();
         for (DetailNode child : ast.getChildren()) {
             if (child.getType() != JavadocTokenTypes.JAVADOC_INLINE_TAG
@@ -144,7 +144,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @param textNode node with javadoc text.
      * @return String with chars till first dot.
      */
-    private String getCharsTillDot(DetailNode textNode) {
+    private static String getCharsTillDot(DetailNode textNode) {
         final StringBuilder result = new StringBuilder();
         for (DetailNode child : textNode.getChildren()) {
             result.append(child.getText());

@@ -202,7 +202,7 @@ public class MagicNumberCheck extends Check {
      * @param constantDefAST constant ast
      * @return true if magic number is present
      */
-    private boolean isMagicNumberExists(DetailAST ast, DetailAST constantDefAST) {
+    private static boolean isMagicNumberExists(DetailAST ast, DetailAST constantDefAST) {
         boolean found = false;
         DetailAST astNode = ast.getParent();
         while (astNode != constantDefAST) {
@@ -222,7 +222,7 @@ public class MagicNumberCheck extends Check {
      * @return the constant def or null if ast is not
      * contained in a constant definition
      */
-    private DetailAST findContainingConstantDef(DetailAST ast) {
+    private static DetailAST findContainingConstantDef(DetailAST ast) {
         DetailAST varDefAST = ast;
         while (varDefAST != null
                 && varDefAST.getType() != TokenTypes.VARIABLE_DEF
@@ -284,7 +284,7 @@ public class MagicNumberCheck extends Check {
      * @return {@code true} if {@code ast} is in the scope of a valid hash
      * code method
      */
-    private boolean isInHashCodeMethod(DetailAST ast) {
+    private static boolean isInHashCodeMethod(DetailAST ast) {
         // if not in a code block, can't be in hashCode()
         if (!ScopeUtils.inCodeBlock(ast)) {
             return false;
@@ -339,7 +339,7 @@ public class MagicNumberCheck extends Check {
      *
      * @return {@code true} if {@code ast} is in the scope of field declaration
      */
-    private boolean isFieldDeclaration(DetailAST ast) {
+    private static boolean isFieldDeclaration(DetailAST ast) {
         DetailAST varDefAST = ast;
         while (varDefAST != null
                 && varDefAST.getType() != TokenTypes.VARIABLE_DEF) {

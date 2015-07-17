@@ -265,7 +265,7 @@ public class JavadocStyleCheck
      * @param comments the lines of Javadoc.
      * @return a comment text String.
      */
-    private String getCommentText(String... comments) {
+    private static String getCommentText(String... comments) {
         final StringBuffer buffer = new StringBuffer();
         for (final String line : comments) {
             final int textStart = findTextStart(line);
@@ -292,7 +292,7 @@ public class JavadocStyleCheck
      * @return the int index relative to 0 for the start of text
      *         or -1 if not found.
      */
-    private int findTextStart(String line) {
+    private static int findTextStart(String line) {
         int textStart = -1;
         for (int i = 0; i < line.length(); i++) {
             if (!Character.isWhitespace(line.charAt(i))) {
@@ -315,7 +315,7 @@ public class JavadocStyleCheck
      * Trims any trailing whitespace or the end of Javadoc comment string.
      * @param buffer the StringBuffer to trim.
      */
-    private void trimTail(StringBuffer buffer) {
+    private static void trimTail(StringBuffer buffer) {
         for (int i = buffer.length() - 1; i >= 0; i--) {
             if (Character.isWhitespace(buffer.charAt(i))) {
                 buffer.deleteCharAt(i);
@@ -447,7 +447,7 @@ public class JavadocStyleCheck
      * @param tag the HtmlTag to check.
      * @return <code>true</code> if the HtmlTag is a single tag.
      */
-    private boolean isSingleTag(HtmlTag tag) {
+    private static boolean isSingleTag(HtmlTag tag) {
         // If its a singleton tag (<p>, <br>, etc.), ignore it
         // Can't simply not put them on the stack, since singletons
         // like <dt> and <dd> (unhappily) may either be terminated
@@ -461,7 +461,7 @@ public class JavadocStyleCheck
      * @param tag the HtmlTag to check.
      * @return <code>true</code> if the HtmlTag is an allowed html tag.
      */
-    private boolean isAllowedTag(HtmlTag tag) {
+    private static boolean isAllowedTag(HtmlTag tag) {
         return ALLOWED_TAGS.contains(tag.getId().toLowerCase(Locale.ENGLISH));
     }
 
@@ -474,7 +474,7 @@ public class JavadocStyleCheck
      * @return <code>false</code> if a previous open tag was found
      *         for the token.
      */
-    private boolean isExtraHtml(String token, Deque<HtmlTag> htmlStack) {
+    private static boolean isExtraHtml(String token, Deque<HtmlTag> htmlStack) {
         boolean isExtra = true;
         for (final HtmlTag td : htmlStack) {
             // Loop, looking for tags that are closed.

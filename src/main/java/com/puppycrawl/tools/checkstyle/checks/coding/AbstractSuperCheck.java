@@ -175,7 +175,7 @@ public abstract class AbstractSuperCheck
      * @param parent parent AST
      * @return tru if no parameters found
      */
-    private boolean isZeroParameters(DetailAST parent) {
+    private static boolean isZeroParameters(DetailAST parent) {
 
         final DetailAST args = parent.getNextSibling();
         return args == null || args.getType() != TokenTypes.ELIST || args.getChildCount() != 0;

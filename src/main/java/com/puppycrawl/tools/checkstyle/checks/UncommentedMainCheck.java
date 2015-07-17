@@ -186,7 +186,7 @@ public class UncommentedMainCheck
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
-    private boolean checkName(DetailAST method) {
+    private static boolean checkName(DetailAST method) {
         final DetailAST ident = method.findFirstToken(TokenTypes.IDENT);
         return "main".equals(ident.getText());
     }
@@ -196,7 +196,7 @@ public class UncommentedMainCheck
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
-    private boolean checkModifiers(DetailAST method) {
+    private static boolean checkModifiers(DetailAST method) {
         final DetailAST modifiers =
             method.findFirstToken(TokenTypes.MODIFIERS);
 
@@ -209,7 +209,7 @@ public class UncommentedMainCheck
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
-    private boolean checkType(DetailAST method) {
+    private static boolean checkType(DetailAST method) {
         final DetailAST type =
             method.findFirstToken(TokenTypes.TYPE).getFirstChild();
         return type.getType() == TokenTypes.LITERAL_VOID;
@@ -220,7 +220,7 @@ public class UncommentedMainCheck
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
-    private boolean checkParams(DetailAST method) {
+    private static boolean checkParams(DetailAST method) {
         final DetailAST params = method.findFirstToken(TokenTypes.PARAMETERS);
         if (params.getChildCount() != 1) {
             return false;

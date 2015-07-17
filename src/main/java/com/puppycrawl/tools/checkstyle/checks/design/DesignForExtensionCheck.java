@@ -120,7 +120,7 @@ public class DesignForExtensionCheck extends Check {
      * @param ast modifier ast
      * @return tru in modifier is in checked ones
      */
-    private boolean isPrivateOrFinalOrAbstract(DetailAST ast) {
+    private static boolean isPrivateOrFinalOrAbstract(DetailAST ast) {
         // method is ok if it is private or abstract or final
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         return modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)
@@ -134,7 +134,7 @@ public class DesignForExtensionCheck extends Check {
      * @param classDef class ast
      * @return true if Check should make a violation
      */
-    private boolean hasDefaultOrExplNonPrivateCtor(DetailAST classDef) {
+    private static boolean hasDefaultOrExplNonPrivateCtor(DetailAST classDef) {
         // check if subclassing is prevented by having only private ctors
         final DetailAST objBlock = classDef.findFirstToken(TokenTypes.OBJBLOCK);
 
@@ -165,7 +165,7 @@ public class DesignForExtensionCheck extends Check {
      * @param ast the start node for searching
      * @return the CLASS_DEF node.
      */
-    private DetailAST findContainingClass(DetailAST ast) {
+    private static DetailAST findContainingClass(DetailAST ast) {
         DetailAST searchAST = ast;
         while (searchAST.getType() != TokenTypes.CLASS_DEF
                && searchAST.getType() != TokenTypes.ENUM_DEF) {

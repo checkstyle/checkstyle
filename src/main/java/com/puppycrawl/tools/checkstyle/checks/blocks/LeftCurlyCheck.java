@@ -237,7 +237,7 @@ public class LeftCurlyCheck
      * @param ast <code>DetailAST</code>.
      * @return <code>DetailAST</code>.
      */
-    private DetailAST skipAnnotationOnlyLines(DetailAST ast) {
+    private static DetailAST skipAnnotationOnlyLines(DetailAST ast) {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         if (modifiers == null) {
             return ast;
@@ -268,7 +268,7 @@ public class LeftCurlyCheck
      * @param modifiers <code>DetailAST</code>.
      * @return <code>DetailAST</code> or null if there are no annotations.
      */
-    private DetailAST findLastAnnotation(DetailAST modifiers) {
+    private static DetailAST findLastAnnotation(DetailAST modifiers) {
         DetailAST annot = modifiers.findFirstToken(TokenTypes.ANNOTATION);
         while (annot != null && annot.getNextSibling() != null
                && annot.getNextSibling().getType() == TokenTypes.ANNOTATION) {

@@ -89,7 +89,7 @@ public class MemberDefHandler extends AbstractExpressionHandler {
      * @param variableDef current variable_def.
      * @return true if variable_def node is array declaration.
      */
-    private boolean isArrayDeclaration(DetailAST variableDef) {
+    private static boolean isArrayDeclaration(DetailAST variableDef) {
         return variableDef.findFirstToken(TokenTypes.TYPE)
             .findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null;
     }

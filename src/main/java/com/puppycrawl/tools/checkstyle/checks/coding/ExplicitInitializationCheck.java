@@ -107,7 +107,7 @@ public class ExplicitInitializationCheck extends Check {
      * @param exprStart exprssion
      * @return true is literal is initialized by zero symbol
      */
-    private boolean isZeroChar(DetailAST exprStart) {
+    private static boolean isZeroChar(DetailAST exprStart) {
         return isZero(exprStart)
             || exprStart.getType() == TokenTypes.CHAR_LITERAL
             && "'\\0'".equals(exprStart.getText());
@@ -118,7 +118,7 @@ public class ExplicitInitializationCheck extends Check {
      * @param ast Variable def AST
      * @return true is that is a case that need to be skipped.
      */
-    private boolean isSkipCase(DetailAST ast) {
+    private static boolean isSkipCase(DetailAST ast) {
         // do not check local variables and
         // fields declared in interface/annotations
         if (ScopeUtils.isLocalVariableDef(ast)
@@ -141,7 +141,7 @@ public class ExplicitInitializationCheck extends Check {
      * @param type type to check.
      * @return true if it is an object type.
      */
-    private boolean isObjectType(DetailAST type) {
+    private static boolean isObjectType(DetailAST type) {
         final int objectType = type.getFirstChild().getType();
         return objectType == TokenTypes.IDENT || objectType == TokenTypes.DOT
                 || objectType == TokenTypes.ARRAY_DECLARATOR;
@@ -153,7 +153,7 @@ public class ExplicitInitializationCheck extends Check {
      * @return true if it's a numeric type.
      * @see TokenTypes
      */
-    private boolean isNumericType(int type) {
+    private static boolean isNumericType(int type) {
         return type == TokenTypes.LITERAL_BYTE
                 || type == TokenTypes.LITERAL_SHORT
                 || type == TokenTypes.LITERAL_INT
@@ -166,7 +166,7 @@ public class ExplicitInitializationCheck extends Check {
      * @param expr node to check.
      * @return true if given node contains numeric constant for zero.
      */
-    private boolean isZero(DetailAST expr) {
+    private static boolean isZero(DetailAST expr) {
         final int type = expr.getType();
         switch (type) {
             case TokenTypes.NUM_FLOAT:

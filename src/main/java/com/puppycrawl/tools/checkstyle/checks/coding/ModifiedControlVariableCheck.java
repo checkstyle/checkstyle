@@ -306,7 +306,7 @@ public final class ModifiedControlVariableCheck extends Check {
      * @param ast For Loop
      * @return Set of Variable Name which are managed by for
      */
-    private Set<String> getVariablesManagedByForLoop(DetailAST ast) {
+    private static Set<String> getVariablesManagedByForLoop(DetailAST ast) {
         final Set<String> initializedVariables = getForInitVariables(ast);
         final Set<String> iteratingVariables = getForIteratorVariables(ast);
 

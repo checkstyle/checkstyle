@@ -493,7 +493,7 @@ public class CustomImportOrderCheck extends Check {
      *        current group.
      * @return true, if the import is placed in the static group.
      */
-    private boolean matchesStaticImportGroup(boolean isStatic, String currentGroup) {
+    private static boolean matchesStaticImportGroup(boolean isStatic, String currentGroup) {
         return isStatic && STATIC_RULE_GROUP.equals(currentGroup);
     }
 

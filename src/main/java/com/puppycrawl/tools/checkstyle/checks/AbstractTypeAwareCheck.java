@@ -180,7 +180,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
      * @return true  if exception is unchecked
      *         false if exception is checked
      */
-    protected boolean isUnchecked(Class<?> exception) {
+    protected static boolean isUnchecked(Class<?> exception) {
         return isSubclass(exception, RuntimeException.class)
             || isSubclass(exception, Error.class);
     }
@@ -195,7 +195,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
      * @return true  if aChild is subclass of aParent
      *         false otherwise
      */
-    protected boolean isSubclass(Class<?> child, Class<?> parent) {
+    protected static boolean isSubclass(Class<?> child, Class<?> parent) {
         return parent != null && child != null
             &&  parent.isAssignableFrom(child);
     }

@@ -208,7 +208,7 @@ public class InnerAssignmentCheck
      * @param ast assignment AST
      * @return whether the context of the assignemt AST indicates the idiom
      */
-    private boolean isInWhileIdiom(DetailAST ast) {
+    private static boolean isInWhileIdiom(DetailAST ast) {
         if (!isComparison(ast.getParent())) {
             return false;
         }

@@ -73,7 +73,7 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
      * @param tagNode at-clause tag.
      * @return true, if at-clause tag is empty.
      */
-    private boolean isEmptyTag(DetailNode tagNode) {
+    private static boolean isEmptyTag(DetailNode tagNode) {
         final DetailNode tagDescription =
                 JavadocUtils.findFirstToken(tagNode, JavadocTokenTypes.DESCRIPTION);
         return tagDescription == null;

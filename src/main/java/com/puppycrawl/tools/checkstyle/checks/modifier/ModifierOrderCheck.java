@@ -133,7 +133,7 @@ public class ModifierOrderCheck
      * @return null if the order is correct, otherwise returns the offending
      * *       modifier AST.
      */
-    DetailAST checkOrderSuggestedByJLS(List<DetailAST> modifiers) {
+    static DetailAST checkOrderSuggestedByJLS(List<DetailAST> modifiers) {
         final Iterator<DetailAST> it = modifiers.iterator();
 
         //Speed past all initial annotations

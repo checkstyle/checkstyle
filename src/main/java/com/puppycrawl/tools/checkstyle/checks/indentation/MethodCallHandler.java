@@ -121,7 +121,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
      *
      * @return the first AST of the specified method call
      */
-    private DetailAST getFirstAst(DetailAST ast) {
+    private static DetailAST getFirstAst(DetailAST ast) {
         // walk down the first child part of the dots that make up a method
         // call name
 

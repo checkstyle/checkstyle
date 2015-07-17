@@ -141,14 +141,14 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
     /** {@inheritDoc} */
     @Override
     public void visitToken(final DetailAST ast) {
-        final DetailAST annotation = this.getSuppressWarnings(ast);
+        final DetailAST annotation = getSuppressWarnings(ast);
 
         if (annotation == null) {
             return;
         }
 
         final DetailAST warningHolder =
-            this.findWarningsHolder(annotation);
+            findWarningsHolder(annotation);
 
         final DetailAST token =
                 warningHolder.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
@@ -177,7 +177,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
                     //typical case
                     case TokenTypes.STRING_LITERAL:
                         final String warningText =
-                            this.removeQuotes(warning.getFirstChild().getText());
+                            removeQuotes(warning.getFirstChild().getText());
                         this.logMatch(warning.getLineNo(),
                                 warning.getColumnNo(), warningText);
                         break;
@@ -210,7 +210,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
      * @param ast the AST
      * @return the {@link SuppressWarnings SuppressWarnings} annotation
      */
-    private DetailAST getSuppressWarnings(DetailAST ast) {
+    private static DetailAST getSuppressWarnings(DetailAST ast) {
         final DetailAST annotation = AnnotationUtility.getAnnotation(
             ast, SuppressWarningsCheck.SUPPRESS_WARNINGS);
 
@@ -242,7 +242,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
      * @param annotation the annotation
      * @return a Token representing the expr.
      */
-    private DetailAST findWarningsHolder(final DetailAST annotation) {
+    private static DetailAST findWarningsHolder(final DetailAST annotation) {
         final DetailAST annValuePair =
             annotation.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
         final DetailAST annArrayInit;
@@ -275,7 +275,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
      * @param warning the warning string
      * @return the string without two quotes
      */
-    private String removeQuotes(final String warning) {
+    private static String removeQuotes(final String warning) {
         return warning.substring(1, warning.length() - 1);
     }
 
@@ -290,13 +290,13 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
     private void walkConditional(final DetailAST cond) {
         if (cond.getType() != TokenTypes.QUESTION) {
             final String warningText =
-                this.removeQuotes(cond.getText());
+                removeQuotes(cond.getText());
             this.logMatch(cond.getLineNo(), cond.getColumnNo(), warningText);
             return;
         }
 
-        this.walkConditional(this.getCondLeft(cond));
-        this.walkConditional(this.getCondRight(cond));
+        this.walkConditional(getCondLeft(cond));
+        this.walkConditional(getCondRight(cond));
     }
 
     /**
@@ -307,7 +307,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
      * @return either the value
      * or another conditional
      */
-    private DetailAST getCondLeft(final DetailAST cond) {
+    private static DetailAST getCondLeft(final DetailAST cond) {
         final DetailAST colon = cond.findFirstToken(TokenTypes.COLON);
         return colon.getPreviousSibling();
     }
@@ -320,7 +320,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
      * @return either the value
      * or another conditional
      */
-    private DetailAST getCondRight(final DetailAST cond) {
+    private static DetailAST getCondRight(final DetailAST cond) {
         final DetailAST colon = cond.findFirstToken(TokenTypes.COLON);
         return colon.getNextSibling();
     }

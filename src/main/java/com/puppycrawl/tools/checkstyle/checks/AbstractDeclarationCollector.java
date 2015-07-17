@@ -94,7 +94,7 @@ public abstract class AbstractDeclarationCollector extends Check {
      * @param frameStack Stack containing the FrameTree being built
      * @param ast AST to parse
      */
-    private void collectDeclarations(Deque<LexicalFrame> frameStack,
+    private static void collectDeclarations(Deque<LexicalFrame> frameStack,
         DetailAST ast) {
         final LexicalFrame frame = frameStack.peek();
         switch (ast.getType()) {
@@ -146,7 +146,7 @@ public abstract class AbstractDeclarationCollector extends Check {
      * @param ast variable token
      * @param frame current frame
      */
-    private void collectVariableDeclarations(DetailAST ast, LexicalFrame frame) {
+    private static void collectVariableDeclarations(DetailAST ast, LexicalFrame frame) {
         final String name =
                 ast.findFirstToken(TokenTypes.IDENT).getText();
         if (frame instanceof ClassFrame) {

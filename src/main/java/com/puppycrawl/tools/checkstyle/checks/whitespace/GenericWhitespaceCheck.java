@@ -217,7 +217,7 @@ public class GenericWhitespaceCheck extends Check {
      * @param ast ast
      * @return true if generic before a method ref
      */
-    private boolean isGenericBeforeMethod(DetailAST ast) {
+    private static boolean isGenericBeforeMethod(DetailAST ast) {
         return ast.getParent().getType() == TokenTypes.TYPE_ARGUMENTS
                 && ast.getParent().getParent().getType()
                     == TokenTypes.DOT

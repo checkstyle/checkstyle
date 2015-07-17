@@ -134,7 +134,7 @@ final class PropertyCacheFile {
             }
             finally {
                 if (out != null) {
-                    this.flushAndCloseOutStream(out);
+                    flushAndCloseOutStream(out);
                 }
             }
         }
@@ -144,7 +144,7 @@ final class PropertyCacheFile {
      * Flushes and closes output stream.
      * @param stream the output stream
      */
-    private void flushAndCloseOutStream(OutputStream stream) {
+    private static void flushAndCloseOutStream(OutputStream stream) {
         try {
             Flushables.flush(stream, false);
             Closeables.close(stream, false);
@@ -180,7 +180,7 @@ final class PropertyCacheFile {
      * @param configuration the GlobalProperties
      * @return the hashcode for <code>configuration</code>
      */
-    private String getConfigHashCode(Serializable configuration) {
+    private static String getConfigHashCode(Serializable configuration) {
         try {
             // im-memory serialization of Configuration
 
@@ -191,7 +191,7 @@ final class PropertyCacheFile {
                 oos.writeObject(configuration);
             }
             finally {
-                this.flushAndCloseOutStream(oos);
+                flushAndCloseOutStream(oos);
             }
 
             // Instead of hexEncoding baos.toByteArray() directly we

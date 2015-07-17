@@ -290,7 +290,7 @@ public class SuppressWarningsHolder
      * @param ast annotation token
      * @return list values
      */
-    private List<String> getAllAnnotationValues(DetailAST ast) {
+    private static List<String> getAllAnnotationValues(DetailAST ast) {
         // get values of annotation
         List<String> values = null;
         final DetailAST lparenAST = ast.findFirstToken(TokenTypes.LPAREN);
@@ -326,7 +326,7 @@ public class SuppressWarningsHolder
      * @param values list of values in the annotation
      * @return whether annotation is empty or contains some values
      */
-    private boolean isAnnotationEmpty(List<String> values) {
+    private static boolean isAnnotationEmpty(List<String> values) {
         return values == null;
     }
 
@@ -335,7 +335,7 @@ public class SuppressWarningsHolder
      * @param ast the AST node to get the child of
      * @return get target of annotation
      */
-    private DetailAST getAnnotationTarget(DetailAST ast) {
+    private static DetailAST getAnnotationTarget(DetailAST ast) {
         DetailAST targetAST = null;
         DetailAST parentAST = ast.getParent();
         if (parentAST != null) {

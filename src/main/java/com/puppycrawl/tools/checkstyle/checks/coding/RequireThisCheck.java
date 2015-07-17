@@ -193,7 +193,7 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
      * @param parentType token Type
      * @return true if token is related to Definition Tokens
      */
-    private boolean isDeclarationToken(int parentType) {
+    private static boolean isDeclarationToken(int parentType) {
         return parentType == TokenTypes.VARIABLE_DEF
             || parentType == TokenTypes.CTOR_DEF
             || parentType == TokenTypes.METHOD_DEF

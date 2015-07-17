@@ -384,7 +384,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
      *        Variable which distance is calculated for.
      * @return entry which contains expression with variable usage and distance.
      */
-    private Entry<DetailAST, Integer> calculateDistanceInSingleScope(
+    private static Entry<DetailAST, Integer> calculateDistanceInSingleScope(
             DetailAST semicolonAst, DetailAST variableIdentAst) {
         int dist = 0;
         boolean firstUsageFound = false;
@@ -453,7 +453,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
      *        Variable which distance is calculated for.
      * @return entry which contains expression with variable usage and distance.
      */
-    private Entry<DetailAST, Integer> calculateDistanceBetweenScopes(
+    private static Entry<DetailAST, Integer> calculateDistanceBetweenScopes(
             DetailAST ast, DetailAST variable) {
         int dist = 0;
         DetailAST currentScopeAst = ast;
@@ -543,7 +543,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
      *         (not in its declaration!) than return the first Ast node
      *         of this block, otherwise - null.
      */
-    private DetailAST getFirstNodeInsideForWhileDoWhileBlocks(
+    private static DetailAST getFirstNodeInsideForWhileDoWhileBlocks(
             DetailAST block, DetailAST variable) {
         DetailAST firstNodeInsideBlock = null;
 
@@ -591,7 +591,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
      *         (not in its declaration!) than return the first Ast node
      *         of this block, otherwise - null.
      */
-    private DetailAST getFirstNodeInsideIfBlock(
+    private static DetailAST getFirstNodeInsideIfBlock(
             DetailAST block, DetailAST variable) {
         DetailAST firstNodeInsideBlock = null;
 
@@ -652,7 +652,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
      *         (not in its declaration!) than return the first Ast node
      *         of this block, otherwise - null.
      */
-    private DetailAST getFirstNodeInsideSwitchBlock(
+    private static DetailAST getFirstNodeInsideSwitchBlock(
             DetailAST block, DetailAST variable) {
         DetailAST firstNodeInsideBlock = null;
 
@@ -758,7 +758,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
      * @return true if operator contains variable in its declaration, otherwise
      *         - false.
      */
-    private boolean isVariableInOperatorExpr(
+    private static boolean isVariableInOperatorExpr(
             DetailAST operator, DetailAST variable) {
         boolean isVarInOperatorDeclr = false;
         final DetailAST openingBracket =

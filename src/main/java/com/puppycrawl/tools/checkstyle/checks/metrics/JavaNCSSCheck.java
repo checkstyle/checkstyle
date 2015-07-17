@@ -287,7 +287,7 @@ public class JavaNCSSCheck extends Check {
      *            the AST
      * @return true if the token is countable
      */
-    private boolean isCountable(DetailAST ast) {
+    private static boolean isCountable(DetailAST ast) {
         boolean countable = true;
 
         final int tokenType = ast.getType();
@@ -309,7 +309,7 @@ public class JavaNCSSCheck extends Check {
      * @param ast the AST
      * @return true if the variable definition is countable, false otherwise
      */
-    private boolean isVariableDefCountable(DetailAST ast) {
+    private static boolean isVariableDefCountable(DetailAST ast) {
         boolean countable = false;
 
         //count variable defs only if they are direct child to a slist or
@@ -337,7 +337,7 @@ public class JavaNCSSCheck extends Check {
      * @param ast the AST
      * @return true if the expression is countable, false otherwise
      */
-    private boolean isExpressionCountable(DetailAST ast) {
+    private static boolean isExpressionCountable(DetailAST ast) {
         boolean countable = true;
 
         //count expressions only if they are direct child to a slist (method
