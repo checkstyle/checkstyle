@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.checkstyle.imports;
 
 import static java.lang.Math.abs;
-import static org.abego.treelayout.Configuration.AlignmentInLevel;
+import static org.antlr.v4.runtime.Recognizer.EOF;
 
 import org.*;
 

@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.imports;
 
-import org.abego.treelayout.*;
+import org.antlr.v4.*;
 
 import org.junit.*;
 

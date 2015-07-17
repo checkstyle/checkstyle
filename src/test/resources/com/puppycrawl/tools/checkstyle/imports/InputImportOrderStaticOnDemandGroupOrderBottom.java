@@ -5,7 +5,7 @@ import org.*;
 import java.util.Set;
 
 import static java.lang.Math.*;
-import static org.abego.treelayout.Configuration.*;
+import static org.antlr.v4.runtime.CommonToken.*;
 
 public class InputImportOrderStaticOnDemandGroupOrderBottom
 {

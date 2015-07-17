@@ -4,7 +4,7 @@ import java.util.AbstractMap; //indent:0 exp:0
 import java.util.Set; //indent:0 exp:0
 import java.util.concurrent.ConcurrentMap; //indent:0 exp:0
 
-import org.antlr.v4.runtime.misc.Nullable; //indent:0 exp:0
+import org.antlr.v4.runtime.misc.NotNull; //indent:0 exp:0
 
 import com.google.common.base.Equivalence; //indent:0 exp:0
 
@@ -106,13 +106,13 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
   enum EntryFactory { //indent:2 exp:2
     STRONG { //indent:4 exp:4
       <K, V> StrongEntry<K, V> newEntry( //indent:6 exp:6
-          Segment<K, V> segment, K key, int hash, @Nullable ReferenceEntry<K, V> next) { //indent:10 exp:>=10
+          Segment<K, V> segment, K key, int hash, @NotNull ReferenceEntry<K, V> next) { //indent:10 exp:>=10
         return new StrongEntry<K, V>(); //indent:8 exp:8
       } //indent:6 exp:6
     }, //indent:4 exp:4
     STRONG_ACCESS { //indent:4 exp:4
       <K, V> StrongAccessEntry<K, V> newEntry( //indent:6 exp:6
-          Segment<K, V> segment, K key, int hash, @Nullable ReferenceEntry<K, V> next) { //indent:10 exp:>=10
+          Segment<K, V> segment, K key, int hash, @NotNull ReferenceEntry<K, V> next) { //indent:10 exp:>=10
         return new StrongAccessEntry<K, V>(key, hash, next); //indent:8 exp:8
       } //indent:6 exp:6
 
@@ -125,7 +125,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
      }, //indent:5 exp:5
     STRONG_WRITE { //indent:4 exp:4
       <K, V> StrongEntry<K, V> newEntry( //indent:6 exp:6
-          Segment<K, V> segment, K key, int hash, @Nullable ReferenceEntry<K, V> next) { //indent:10 exp:>=10
+          Segment<K, V> segment, K key, int hash, @NotNull ReferenceEntry<K, V> next) { //indent:10 exp:>=10
         return new StrongEntry<K, V>(); //indent:8 exp:8
       } //indent:6 exp:6
 
@@ -136,7 +136,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
     }, //indent:4 exp:4
     STRONG_ACCESS_WRITE { //indent:4 exp:4
       <K, V> StrongEntry<K, V> newEntry( //indent:6 exp:6
-          Segment<K, V> segment, K key, int hash, @Nullable ReferenceEntry<K, V> next) { //indent:10 exp:>=10
+          Segment<K, V> segment, K key, int hash, @NotNull ReferenceEntry<K, V> next) { //indent:10 exp:>=10
         return new StrongEntry<K, V>(); //indent:8 exp:8
       } //indent:6 exp:6
 
@@ -148,13 +148,13 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
 
     WEAK { //indent:4 exp:4
       <K, V> StrongEntry<K, V> newEntry( //indent:6 exp:6
-          Segment<K, V> segment, K key, int hash, @Nullable ReferenceEntry<K, V> next) { //indent:10 exp:>=10
+          Segment<K, V> segment, K key, int hash, @NotNull ReferenceEntry<K, V> next) { //indent:10 exp:>=10
         return new StrongEntry<K, V>(); //indent:8 exp:8
       } //indent:6 exp:6
     }, //indent:4 exp:4
     WEAK_ACCESS { //indent:4 exp:4
       <K, V> StrongEntry<K, V> newEntry( //indent:6 exp:6
-          Segment<K, V> segment, K key, int hash, @Nullable ReferenceEntry<K, V> next) { //indent:10 exp:>=10
+          Segment<K, V> segment, K key, int hash, @NotNull ReferenceEntry<K, V> next) { //indent:10 exp:>=10
         return new StrongEntry<K, V>(); //indent:8 exp:8
       } //indent:6 exp:6
 
@@ -165,7 +165,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
     }, //indent:4 exp:4
     WEAK_WRITE { //indent:4 exp:4
       <K, V> StrongEntry<K, V> newEntry( //indent:6 exp:6
-          Segment<K, V> segment, K key, int hash, @Nullable ReferenceEntry<K, V> next) { //indent:10 exp:>=10
+          Segment<K, V> segment, K key, int hash, @NotNull ReferenceEntry<K, V> next) { //indent:10 exp:>=10
         return new StrongEntry<K, V>(); //indent:8 exp:8
       } //indent:6 exp:6
 
@@ -176,7 +176,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
     }, //indent:4 exp:4
     WEAK_ACCESS_WRITE { //indent:4 exp:4
       <K, V> StrongEntry<K, V> newEntry( //indent:6 exp:6
-          Segment<K, V> segment, K key, int hash, @Nullable ReferenceEntry<K, V> next) { //indent:10 exp:>=10
+          Segment<K, V> segment, K key, int hash, @NotNull ReferenceEntry<K, V> next) { //indent:10 exp:>=10
         return new StrongEntry<K, V>(); //indent:8 exp:8
       } //indent:6 exp:6
 

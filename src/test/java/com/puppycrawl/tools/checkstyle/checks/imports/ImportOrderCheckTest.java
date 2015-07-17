@@ -256,7 +256,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("option", "top");
         checkConfig.addAttribute("groups", "org, java");
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_ORDERING, "org.abego.treelayout.Configuration.AlignmentInLevel"),
+            "4: " + getCheckMessage(MSG_ORDERING, "org.antlr.v4.runtime.Recognizer.EOF"),
         };
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrderStaticGroupOrder.java"), expected);
     }
@@ -279,7 +279,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("option", "bottom");
         checkConfig.addAttribute("groups", "org, java");
         final String[] expected = {
-            "8: " + getCheckMessage(MSG_ORDERING, "org.abego.treelayout.Configuration.AlignmentInLevel"),
+            "8: " + getCheckMessage(MSG_ORDERING, "org.antlr.v4.runtime.Recognizer.EOF"),
         };
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrderStaticGroupOrderBottom.java"), expected);
     }
@@ -293,7 +293,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
         final String[] expected = {
             "7: " + getCheckMessage(MSG_ORDERING, "java.lang.Math.PI"),
-            "8: " + getCheckMessage(MSG_ORDERING, "org.abego.treelayout.Configuration.AlignmentInLevel"),
+            "8: " + getCheckMessage(MSG_ORDERING, "org.antlr.v4.runtime.Recognizer.EOF"),
         };
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrderStaticGroupOrderBottom.java"), expected);
     }
@@ -305,7 +305,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("option", "top");
         checkConfig.addAttribute("groups", "org, java");
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_ORDERING, "org.abego.treelayout.Configuration.*"),
+            "4: " + getCheckMessage(MSG_ORDERING, "org.antlr.v4.runtime.CommonToken.*"),
             "9: " + getCheckMessage(MSG_ORDERING, "org.junit.Test"),
         };
         verify(checkConfig, getPath("imports" + File.separator
@@ -333,7 +333,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("option", "bottom");
         checkConfig.addAttribute("groups", "org, java");
         final String[] expected = {
-            "8: " + getCheckMessage(MSG_ORDERING, "org.abego.treelayout.Configuration.*"),
+            "8: " + getCheckMessage(MSG_ORDERING, "org.antlr.v4.runtime.CommonToken.*"),
         };
         verify(checkConfig, getPath("imports" + File.separator
                  + "InputImportOrderStaticOnDemandGroupOrderBottom.java"), expected);
@@ -360,7 +360,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
         final String[] expected = {
             "7: " + getCheckMessage(MSG_ORDERING, "java.lang.Math.*"),
-            "8: " + getCheckMessage(MSG_ORDERING, "org.abego.treelayout.Configuration.*"),
+            "8: " + getCheckMessage(MSG_ORDERING, "org.antlr.v4.runtime.CommonToken.*"),
         };
         verify(checkConfig, getPath("imports" + File.separator
                  + "InputImportOrderStaticOnDemandGroupOrderBottom.java"), expected);

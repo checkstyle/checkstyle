@@ -167,7 +167,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <projectVersion>${project.version}</projectVersion>
-    <antlr4.version>4.5</antlr4.version>
+    <antlr4.version>4.5.1</antlr4.version>
     <maven.site.plugin.version>3.4</maven.site.plugin.version>
     <maven.findbugs.plugin.version>3.0.1</maven.findbugs.plugin.version>
     <tools.jar.version>1.7.0</tools.jar.version>
@@ -190,13 +190,6 @@
       <groupId>org.antlr</groupId>
       <artifactId>antlr4-runtime</artifactId>
       <version>${antlr4.version}</version>
-      <exclusions>
-        <exclusion>
-	  <!-- 1.0.2 version is excluded, we will use version 1.0.1 from antlr:antlr:2.7.7 -->
-          <groupId>org.abego.treelayout</groupId>
-          <artifactId>org.abego.treelayout.core</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>commons-beanutils</groupId>
