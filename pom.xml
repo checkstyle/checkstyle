@@ -1219,7 +1219,7 @@
 
             <regex><pattern>.*.filters.SuppressionCommentFilter</pattern><branchRate>83</branchRate><lineRate>93</lineRate></regex>
             <regex><pattern>.*.filters.SuppressionCommentFilter\$Tag</pattern><branchRate>96</branchRate><lineRate>94</lineRate></regex>
-            <regex><pattern>.*.filters.SuppressionsLoader</pattern><branchRate>68</branchRate><lineRate>77</lineRate></regex>
+            <regex><pattern>.*.filters.SuppressionsLoader</pattern><branchRate>63</branchRate><lineRate>77</lineRate></regex>
             <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter</pattern><branchRate>76</branchRate><lineRate>89</lineRate></regex>
             <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter\$Tag</pattern><branchRate>88</branchRate><lineRate>78</lineRate></regex>
 
