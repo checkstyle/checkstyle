@@ -102,7 +102,15 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="NoExceptionTest - Spring"
-        - CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#spring-framework/spring-framework/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && travis_wait ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+        - CMD1="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester"
+        - CMD2=" && sed -i 's/^guava/#guava/' projects-for-travis.properties "
+        - CMD3=" && sed -i 's/#spring-framework/spring-framework/' projects-for-travis.properties "
+        - CMD4=" && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh "
+        - CMD5=" && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
+        - CMD6=" -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true "
+        - CMD7=" && cd contribution/checkstyle-tester "
+        - CMD8=" && travis_wait ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
         - COVERAGE_CMD=""
     # NoExceptionTest - Hbase (oraclejdk8)
     - jdk: oraclejdk8
