@@ -13,7 +13,7 @@ import java.util.concurrent.*;
 import com.puppycrawl.tools.*;
 import com.*;
 
-import com.google.common.*;
+import com.google.common.base.*;
 import org.junit.*;
 
 public class InputCustomImportOrder2 {
