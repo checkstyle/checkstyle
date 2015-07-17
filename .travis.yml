@@ -66,8 +66,8 @@ matrix:
       env:
         - DESC="nemo.sonarqube.com"
         - CMD1="mvn clean install cobertura:cobertura -Dcobertura.report.format=xml "
-        - CMD1=" -Dmaven.test.failure.ignore=true -V -Dcheckstyle.skip=true "
-        - CMD1=" -Dpmd.skip=true -Dcheckstyle.ant.skip=true"
+        - CMD2=" -Dmaven.test.failure.ignore=true -V -Dcheckstyle.skip=true "
+        - CMD3=" -Dpmd.skip=true -Dcheckstyle.ant.skip=true"
         - CMD=$CMD1$CMD2$CMD3
         - COVERAGE_CMD=""
 
@@ -78,7 +78,7 @@ matrix:
         - CMD1="git clone https://github.com/CS-SI/Orekit.git && cd Orekit && git checkout bc527a1 "
         - CMD2=" && sed -i 's/<orekit\.checkstyle\.version>6\.6</<orekit.checkstyle.version>6.9-SNAPSHOT</' pom.xml "
         - CMD3=" && cd .. && mvn clean install -Passembly -DskipTests -DskipITs -Dcobertura.skip=true "
-        - CMD4=" -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true "
+        - CMD4="    -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true "
         - CMD5=" && cd Orekit && mvn compile checkstyle:check"
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5
         - COVERAGE_CMD=""
@@ -87,13 +87,30 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="NoExceptionTest - Checkstyle, sevntu-checkstyle"
-        - CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#checkstyle/checkstyle/' projects-for-travis.properties && sed -i 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+        - CMD1="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester "
+        - CMD2=" && sed -i 's/^guava/#guava/' projects-for-travis.properties "
+        - CMD3=" && sed -i 's/#checkstyle/checkstyle/' projects-for-travis.properties "
+        - CMD4=" && sed -i 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-travis.properties "
+        - CMD5=" && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh "
+        - CMD6=" && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
+        - CMD7="    -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true "
+        - CMD8=" && cd contribution/checkstyle-tester "
+        - CMD9=" && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9
         - COVERAGE_CMD=""
     # NoExceptiontest - Guava (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="NoExceptionTest - Guava"
-        - CMD="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester && sed -i 's/^guava/#guava/' projects-for-travis.properties && sed -i 's/#guava/guava/' projects-for-travis.properties && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh && cd ../../ && mvn clean install -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true && cd contribution/checkstyle-tester && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+        - CMD1="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester"
+        - CMD2=" && sed -i 's/^guava/#guava/' projects-for-travis.properties"
+        - CMD3=" && sed -i 's/#guava/guava/' projects-for-travis.properties"
+        - CMD4=" && sed -i 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh"
+        - CMD5=" && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true"
+        - CMD6="    -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true "
+        - CMD7=" && cd contribution/checkstyle-tester "
+        - CMD8=" && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
         - COVERAGE_CMD=""
     # NoExceptionTest - Hibernate ORM (oraclejdk8)
     - jdk: oraclejdk8
