@@ -244,7 +244,7 @@ public class SuppressWithNearbyCommentFilter
          * @param regexp the parsed expander.
          * @return the expanded string
          */
-        private String expandFrocomment(
+        private static String expandFrocomment(
             String comment,
             String string,
             Pattern regexp) {

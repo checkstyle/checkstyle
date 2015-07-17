@@ -167,7 +167,7 @@ public class EqualsAvoidNullCheck extends Check {
      * @param objCalledOn object AST
      * @return if it is string literal
      */
-    private boolean isStringLiteral(DetailAST objCalledOn) {
+    private static boolean isStringLiteral(DetailAST objCalledOn) {
         return objCalledOn.getType() == TokenTypes.STRING_LITERAL
                 || objCalledOn.getType() == TokenTypes.LITERAL_NEW
                 || objCalledOn.getType() == TokenTypes.DOT;
@@ -187,7 +187,7 @@ public class EqualsAvoidNullCheck extends Check {
      * @param expr the argument expression
      * @return - true if any child matches the set of tokens, false if not
      */
-    private boolean containsAllSafeTokens(final DetailAST expr) {
+    private static boolean containsAllSafeTokens(final DetailAST expr) {
         DetailAST arg = expr.getFirstChild();
 
         if (arg.branchContains(TokenTypes.METHOD_CALL)) {
@@ -214,7 +214,7 @@ public class EqualsAvoidNullCheck extends Check {
      * @param currentAST current token in the argument expression
      * @return the next relevant token
      */
-    private DetailAST skipVariableAssign(final DetailAST currentAST) {
+    private static DetailAST skipVariableAssign(final DetailAST currentAST) {
         if (currentAST.getType() == TokenTypes.ASSIGN
                 && currentAST.getFirstChild().getType() == TokenTypes.IDENT) {
             return currentAST.getFirstChild().getNextSibling();

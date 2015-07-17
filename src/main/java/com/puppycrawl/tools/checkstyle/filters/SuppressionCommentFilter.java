@@ -236,7 +236,7 @@ public class SuppressionCommentFilter
          * @param regexp the parsed expander.
          * @return the expanded string
          */
-        private String expandFromCoont(
+        private static String expandFromCoont(
             String comment,
             String string,
             Pattern regexp) {

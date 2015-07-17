@@ -134,7 +134,7 @@ class TagParser {
      * @param pos position to check.
      * @return <code>true</code> some HTML tag starts from given position.
      */
-    private boolean isTag(String[] javadocText, Point pos) {
+    private static boolean isTag(String[] javadocText, Point pos) {
         final int column = pos.getColumnNo() + 1;
         final String text = javadocText[pos.getLineNo()];
 
@@ -153,7 +153,7 @@ class TagParser {
      * @param tagStart start position of the tag
      * @return id for given tag
      */
-    private String getTagId(String[] javadocText, Point tagStart) {
+    private static String getTagId(String[] javadocText, Point tagStart) {
         int column = tagStart.getColumnNo() + 1;
         String text = javadocText[tagStart.getLineNo()];
         if (column >= text.length()) {
@@ -185,7 +185,7 @@ class TagParser {
      * @return <code>true</code> if HTML-comments
      *         starts form given position.
      */
-    private boolean isCommentTag(String[] text, Point pos) {
+    private static boolean isCommentTag(String[] text, Point pos) {
         return text[pos.getLineNo()].startsWith("<!--", pos.getColumnNo());
     }
 
@@ -195,7 +195,7 @@ class TagParser {
      * @param from start position of HTML-comments
      * @return position after HTML-comments
      */
-    private Point skipHtmlComment(String[] text, Point from) {
+    private static Point skipHtmlComment(String[] text, Point from) {
         Point to = from;
         to = findChar(text, '>', to);
         while (to.getLineNo() < text.length
@@ -213,7 +213,7 @@ class TagParser {
      * @param from position to start search
      * @return position of next occurrence of given character
      */
-    private Point findChar(String[] text, char character, Point from) {
+    private static Point findChar(String[] text, char character, Point from) {
         Point curr = new Point(from.getLineNo(), from.getColumnNo());
         while (curr.getLineNo() < text.length
                && text[curr.getLineNo()].charAt(curr.getColumnNo()) != character) {
@@ -230,7 +230,7 @@ class TagParser {
      * @param from location to search from
      * @return location of the next character.
      */
-    private Point getNextCharPos(String[] text, Point from) {
+    private static Point getNextCharPos(String[] text, Point from) {
         int line = from.getLineNo();
         int column = from.getColumnNo() + 1;
         while (line < text.length && column >= text[line].length()) {

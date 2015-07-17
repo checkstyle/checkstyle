@@ -154,7 +154,7 @@ public class OneTopLevelClassCheck extends Check {
      * @param typeDef type definition node.
      * @return true if a type has a public access level modifier.
      */
-    private boolean isPublic(DetailAST typeDef) {
+    private static boolean isPublic(DetailAST typeDef) {
         final DetailAST modifiers =
                 typeDef.findFirstToken(TokenTypes.MODIFIERS);
         return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null;

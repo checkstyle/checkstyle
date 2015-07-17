@@ -127,7 +127,7 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck {
      * @param ast class definition for check.
      * @return true if a given class declared as abstract.
      */
-    private boolean isAbstract(DetailAST ast) {
+    private static boolean isAbstract(DetailAST ast) {
         final DetailAST abstractAST = ast.findFirstToken(TokenTypes.MODIFIERS)
             .findFirstToken(TokenTypes.ABSTRACT);
 

@@ -227,7 +227,7 @@ public class UnusedImportsCheck extends Check {
      * @param cmt The javadoc block to parse
      * @return a set of classes referenced in the javadoc block
      */
-    private Set<String> processJavadoc(TextBlock cmt) {
+    private static Set<String> processJavadoc(TextBlock cmt) {
         final Set<String> references = new HashSet<>();
         // process all the @link type tags
         // INLINEs inside BLOCKs get hidden when using ALL
@@ -254,7 +254,7 @@ public class UnusedImportsCheck extends Check {
      * @param tagType The type of tags we're interested in
      * @return the list of tags
      */
-    private List<JavadocTag> getValidTags(TextBlock cmt,
+    private static List<JavadocTag> getValidTags(TextBlock cmt,
             JavadocUtils.JavadocTagType tagType) {
         return JavadocUtils.getJavadocTags(cmt, tagType).getValidTags();
     }
@@ -264,7 +264,7 @@ public class UnusedImportsCheck extends Check {
      * @param tag The javadoc tag to parse
      * @return A list of references found in this tag
      */
-    private Set<String> processJavadocTag(JavadocTag tag) {
+    private static Set<String> processJavadocTag(JavadocTag tag) {
         final Set<String> references = new HashSet<>();
         final String identifier = tag.getArg1().trim();
         for (Pattern pattern : new Pattern[]
@@ -281,7 +281,7 @@ public class UnusedImportsCheck extends Check {
      * @param pattern The Pattern used to extract the texts
      * @return A list of texts which matched the pattern
      */
-    private Set<String> matchPattern(String identifier, Pattern pattern) {
+    private static Set<String> matchPattern(String identifier, Pattern pattern) {
         final Set<String> references = new HashSet<>();
         final Matcher matcher = pattern.matcher(identifier);
         while (matcher.find()) {

@@ -372,7 +372,7 @@ public class WhitespaceAroundCheck extends Check {
      * @param nextChar next symbol
      * @return true is that is end of anon inner class
      */
-    private boolean isAnnonimousInnerClassEnd(int currentType, char nextChar) {
+    private static boolean isAnnonimousInnerClassEnd(int currentType, char nextChar) {
         return currentType == TokenTypes.RCURLY
             && (nextChar == ')'
                 || nextChar == ';'
@@ -458,7 +458,7 @@ public class WhitespaceAroundCheck extends Check {
      * @param parentType parent token
      * @return true is current token inside array initialization
      */
-    private boolean isArrayInitialization(int currentType, int parentType) {
+    private static boolean isArrayInitialization(int currentType, int parentType) {
         return (currentType == TokenTypes.RCURLY
                 || currentType == TokenTypes.LCURLY)
             && (parentType == TokenTypes.ARRAY_INIT
@@ -520,7 +520,7 @@ public class WhitespaceAroundCheck extends Check {
      *         empty block contained under a <code>match</code> token type
      *         node.
      */
-    private boolean isEmptyType(DetailAST ast, int parentType) {
+    private static boolean isEmptyType(DetailAST ast, int parentType) {
         final int type = ast.getType();
         return (type == TokenTypes.RCURLY || type == TokenTypes.LCURLY)
                 && parentType == TokenTypes.OBJBLOCK;
@@ -541,7 +541,7 @@ public class WhitespaceAroundCheck extends Check {
      *         empty block contained under a <code>match</code> token type
      *         node.
      */
-    private boolean isEmptyBlock(DetailAST ast, int parentType, int match) {
+    private static boolean isEmptyBlock(DetailAST ast, int parentType, int match) {
         final int type = ast.getType();
         if (type == TokenTypes.RCURLY) {
             final DetailAST grandParent = ast.getParent().getParent();

@@ -134,7 +134,7 @@ public class LineWrappingHandler {
      *            first node.
      * @return indentation of first node.
      */
-    private int getFirstNodeIndent(DetailAST node) {
+    private static int getFirstNodeIndent(DetailAST node) {
         int indentLevel = node.getColumnNo();
 
         if (node.getType() == TokenTypes.LITERAL_IF
@@ -191,7 +191,7 @@ public class LineWrappingHandler {
      * @param curNode current node.
      * @return next curNode node.
      */
-    private DetailAST getNextCurNode(DetailAST curNode) {
+    private static DetailAST getNextCurNode(DetailAST curNode) {
         DetailAST nodeToVisit = curNode.getFirstChild();
         DetailAST currentNode = curNode;
 
@@ -248,7 +248,7 @@ public class LineWrappingHandler {
      * @param atNode first at-clause node.
      * @return last annotation node.
      */
-    private DetailAST getLastAnnotationNode(DetailAST atNode) {
+    private static DetailAST getLastAnnotationNode(DetailAST atNode) {
         DetailAST lastAnnotation = atNode.getParent();
         while (lastAnnotation.getNextSibling() != null
                 && lastAnnotation.getNextSibling().getType() == TokenTypes.ANNOTATION) {

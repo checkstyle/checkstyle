@@ -281,7 +281,7 @@ public class UnnecessaryParenthesesCheck extends Check {
      * @return <code>true</code> if <code>ast</code> is surrounded by
      *         parentheses.
      */
-    private boolean isSurrounded(DetailAST ast) {
+    private static boolean isSurrounded(DetailAST ast) {
         // if previous sibling is left parenthesis,
         // next sibling can't be other than right parenthesis
         final DetailAST prev = ast.getPreviousSibling();
@@ -295,7 +295,7 @@ public class UnnecessaryParenthesesCheck extends Check {
      * @return <code>true</code> if the expression is surrounded by
      *         parentheses.
      */
-    private boolean isExprSurrounded(DetailAST ast) {
+    private static boolean isExprSurrounded(DetailAST ast) {
         return ast.getFirstChild().getType() == TokenTypes.LPAREN;
     }
 
@@ -306,7 +306,7 @@ public class UnnecessaryParenthesesCheck extends Check {
      * @return <code>true</code> if <code>type</code> was found in <code>
      *         tokens</code>.
      */
-    private boolean inTokenList(int type, int... tokens) {
+    private static boolean inTokenList(int type, int... tokens) {
         // NOTE: Given the small size of the two arrays searched, I'm not sure
         //       it's worth bothering with doing a binary search or using a
         //       HashMap to do the searches.
@@ -326,7 +326,7 @@ public class UnnecessaryParenthesesCheck extends Check {
      * @return the chopped string if <code>string</code> is longer than
      *         <code>MAX_QUOTED_LENGTH</code>; otherwise <code>string</code>.
      */
-    private String chopString(String string) {
+    private static String chopString(String string) {
         if (string.length() > MAX_QUOTED_LENGTH) {
             return string.substring(0, MAX_QUOTED_LENGTH) + "...\"";
         }

@@ -220,7 +220,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @param literal String literal.
      * @return true if literal has Unicode chars.
      */
-    private boolean hasUnicodeChar(String literal) {
+    private static boolean hasUnicodeChar(String literal) {
         return sUnicodeRegexp.matcher(literal).find();
     }
 
@@ -230,7 +230,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @param pattern RegExp for valid characters.
      * @return true, if String literal contains Unicode control chars.
      */
-    private boolean isOnlyUnicodeValidChars(String literal, Pattern pattern) {
+    private static boolean isOnlyUnicodeValidChars(String literal, Pattern pattern) {
         final int unicodeMatchesCounter =
                 countMatches(sUnicodeRegexp, literal);
         final int unicodeValidMatchesCouter =
@@ -278,7 +278,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @param target String literal.
      * @return count of regexp matchers.
      */
-    private int countMatches(Pattern pattern, String target) {
+    private static int countMatches(Pattern pattern, String target) {
         int matcherCounter = 0;
         final Matcher matcher = pattern.matcher(target);
         while (matcher.find()) {
@@ -292,7 +292,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @param ast current token.
      * @return variable definition.
      */
-    private DetailAST getVariableDef(DetailAST ast) {
+    private static DetailAST getVariableDef(DetailAST ast) {
         DetailAST result = ast.getParent();
         while (result != null
                 && result.getType() != TokenTypes.VARIABLE_DEF) {
@@ -306,7 +306,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @param ast current token.
      * @return semi token or null.
      */
-    private DetailAST getSemi(DetailAST ast) {
+    private static DetailAST getSemi(DetailAST ast) {
         DetailAST result = ast.getParent();
         while (result != null
                 && result.getLastChild().getType() != TokenTypes.SEMI) {

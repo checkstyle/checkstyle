@@ -88,7 +88,7 @@ public class HideUtilityClassConstructorCheck extends Check {
      * @param ast class definition for check.
      * @return true if a given class declared as abstract.
      */
-    private boolean isAbstract(DetailAST ast) {
+    private static boolean isAbstract(DetailAST ast) {
         return ast.findFirstToken(TokenTypes.MODIFIERS)
             .branchContains(TokenTypes.ABSTRACT);
     }
@@ -97,7 +97,7 @@ public class HideUtilityClassConstructorCheck extends Check {
      * @param ast class definition for check.
      * @return true if a given class declared as static.
      */
-    private boolean isStatic(DetailAST ast) {
+    private static boolean isStatic(DetailAST ast) {
         return ast.findFirstToken(TokenTypes.MODIFIERS)
             .branchContains(TokenTypes.LITERAL_STATIC);
     }

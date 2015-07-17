@@ -107,7 +107,7 @@ public class EqualsHashCodeCheck
      * @param firstChild the AST to check
      * @return true iff firstChild is a parameter of an Object type.
      */
-    private boolean isObjectParam(AST firstChild) {
+    private static boolean isObjectParam(AST firstChild) {
         final AST modifiers = firstChild.getFirstChild();
         final AST type = modifiers.getNextSibling();
         switch (type.getFirstChild().getType()) {

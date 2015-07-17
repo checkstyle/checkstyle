@@ -276,7 +276,7 @@ public class ParseTreeInfoPanel extends JPanel {
 
     }
 
-    private void showErrorDialog(final Component parent, final String msg) {
+    private static void showErrorDialog(final Component parent, final String msg) {
         final Runnable showError = new FrameShower(parent, msg);
         SwingUtilities.invokeLater(showError);
     }

@@ -130,7 +130,7 @@ public abstract class AbstractViolationReporter
      * @return name of a resource bundle that contains the messages
      * used by the module.
      */
-    String getMessageBundle(final String className) {
+    static String getMessageBundle(final String className) {
         final int endIndex = className.lastIndexOf('.');
         final String messages = "messages";
         if (endIndex < 0) {

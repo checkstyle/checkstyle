@@ -44,13 +44,13 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
     @Test
     public void testGetMessageBundleWithPackage() {
         assertEquals("com.mycompany.checks.messages",
-            emptyCheck.getMessageBundle("com.mycompany.checks.MyCoolCheck"));
+            AbstractViolationReporter.getMessageBundle("com.mycompany.checks.MyCoolCheck"));
     }
 
     @Test
     public void testGetMessageBundleWithoutPackage() {
         assertEquals("messages",
-            emptyCheck.getMessageBundle("MyCoolCheck"));
+            AbstractViolationReporter.getMessageBundle("MyCoolCheck"));
     }
 
     @Test

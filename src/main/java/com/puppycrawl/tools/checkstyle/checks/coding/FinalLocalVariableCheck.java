@@ -183,7 +183,7 @@ public class FinalLocalVariableCheck extends Check {
      * @param parentType token AST
      * @return true is token type is in arithmetic operator
      */
-    private boolean isAssignOperator(int parentType) {
+    private static boolean isAssignOperator(int parentType) {
         return TokenTypes.POST_DEC == parentType
                 || TokenTypes.DEC == parentType
                 || TokenTypes.POST_INC == parentType

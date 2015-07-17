@@ -329,7 +329,7 @@ public class EmptyLineSeparatorCheck extends Check {
      * @param token token.
      * @return true if token have empty line after.
      */
-    private boolean hasEmptyLineAfter(DetailAST token) {
+    private static boolean hasEmptyLineAfter(DetailAST token) {
         DetailAST lastToken = token.getLastChild().getLastChild();
         if (null == lastToken) {
             lastToken = token.getLastChild();
@@ -357,7 +357,7 @@ public class EmptyLineSeparatorCheck extends Check {
      * @param variableDef variable definition.
      * @return true variable definition is a type field.
      */
-    private boolean isTypeField(DetailAST variableDef) {
+    private static boolean isTypeField(DetailAST variableDef) {
         final int parentType = variableDef.getParent().getParent().getType();
         return parentType == TokenTypes.CLASS_DEF;
     }

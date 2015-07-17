@@ -402,7 +402,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * @param methodDef Some javadoc.
      * @return Some javadoc.
      */
-    private int getMethodsNumberOfLine(DetailAST methodDef) {
+    private static int getMethodsNumberOfLine(DetailAST methodDef) {
         int numberOfLines;
         final DetailAST lcurly = methodDef.getLastChild();
         final DetailAST rcurly = lcurly.getLastChild();
@@ -546,7 +546,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * @param ast the token of the method/constructor
      * @return the scope of the method/constructor
      */
-    private Scope calculateScope(final DetailAST ast) {
+    private static Scope calculateScope(final DetailAST ast) {
         final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
         final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
         return ScopeUtils.inInterfaceOrAnnotationBlock(ast) ? Scope.PUBLIC
@@ -560,7 +560,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * @param comment the Javadoc comment
      * @return the tags found
      */
-    private List<JavadocTag> getMethodTags(TextBlock comment) {
+    private static List<JavadocTag> getMethodTags(TextBlock comment) {
         final String[] lines = comment.getText();
         final List<JavadocTag> tags = Lists.newArrayList();
         int currentLine = comment.getStartLineNo() - 1;
@@ -665,7 +665,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * @param ast the method node.
      * @return the list of parameter nodes for ast.
      */
-    private List<DetailAST> getParameters(DetailAST ast) {
+    private static List<DetailAST> getParameters(DetailAST ast) {
         final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
         final List<DetailAST> retVal = Lists.newArrayList();
 
@@ -792,7 +792,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * @param ast the method node.
      * @return whether the method is a function.
      */
-    private boolean isFunction(DetailAST ast) {
+    private static boolean isFunction(DetailAST ast) {
         boolean retVal = false;
         if (ast.getType() == TokenTypes.METHOD_DEF) {
             final DetailAST typeAST = ast.findFirstToken(TokenTypes.TYPE);
@@ -933,7 +933,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * @param ast the AST to check with
      * @return whether the AST represents a setter method
      */
-    private boolean isSetterMethod(final DetailAST ast) {
+    private static boolean isSetterMethod(final DetailAST ast) {
         // Check have a method with exactly 7 children which are all that
         // is allowed in a proper setter method which does not throw any
         // exceptions.
@@ -982,7 +982,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * @param ast the AST to check with
      * @return whether the AST represents a getter method
      */
-    private boolean isGetterMethod(final DetailAST ast) {
+    private static boolean isGetterMethod(final DetailAST ast) {
         // Check have a method with exactly 7 children which are all that
         // is allowed in a proper getter method which does not throw any
         // exceptions.

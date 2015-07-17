@@ -182,7 +182,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @throws ConversionException if cannot convert string.
      */
     public void setElementStyle(final String style) {
-        this.style = this.getOption(ElementStyle.class, style);
+        this.style = getOption(ElementStyle.class, style);
     }
 
     /**
@@ -192,7 +192,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @throws ConversionException if cannot convert string.
      */
     public void setTrailingArrayComma(final String comma) {
-        this.comma = this.getOption(TrailingArrayComma.class, comma);
+        this.comma = getOption(TrailingArrayComma.class, comma);
     }
 
     /**
@@ -202,7 +202,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @throws ConversionException if cannot convert string.
      */
     public void setClosingParens(final String parens) {
-        this.parens = this.getOption(ClosingParens.class, parens);
+        this.parens = getOption(ClosingParens.class, parens);
     }
 
     /**
@@ -212,7 +212,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @param string the string representing the enum
      * @return the enum type
      */
-    private <T extends Enum<T>> T getOption(final Class<T> enuclass,
+    private static <T extends Enum<T>> T getOption(final Class<T> enuclass,
         final String string) {
         try {
             return Enum.valueOf(enuclass, string.trim().toUpperCase(Locale.ENGLISH));

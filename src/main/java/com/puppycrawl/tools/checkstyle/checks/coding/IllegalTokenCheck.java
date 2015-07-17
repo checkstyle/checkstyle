@@ -101,7 +101,7 @@ public class IllegalTokenCheck
      * @param ast node to be represented as string
      * @return string representation of AST node
      */
-    private String convertToString(DetailAST ast) {
+    private static String convertToString(DetailAST ast) {
         final String tokenText;
         if (ast.getType() == TokenTypes.LABELED_STAT) {
             tokenText = ast.getFirstChild().getText() + ast.getText();
