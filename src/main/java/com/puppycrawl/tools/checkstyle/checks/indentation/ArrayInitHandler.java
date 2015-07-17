@@ -49,11 +49,9 @@ public class ArrayInitHandler extends BlockParentHandler {
             // note: assumes new or assignment is line to align with
             return new IndentLevel(getLineStart(parentAST));
         }
-        else if (getParent() instanceof ArrayInitHandler) {
-            return ((ArrayInitHandler) getParent()).getChildrenExpectedLevel();
-        }
         else {
-            return getParent().getLevel();
+            // at this point getParent() is instance of ArrayInitHandler
+            return ((ArrayInitHandler) getParent()).getChildrenExpectedLevel();
         }
     }
 
