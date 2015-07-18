@@ -38,11 +38,13 @@ public class FallThroughCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "14:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "38:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "47:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "53:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "70:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "87:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "105:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "123:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "179:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "369:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "372:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "374:40: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -64,12 +66,14 @@ public class FallThroughCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "14:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "38:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "47:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "53:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "70:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "87:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "105:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "123:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "123:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "179:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "369:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "372:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "374:40: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -94,6 +98,7 @@ public class FallThroughCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "14:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "38:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "47:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "53:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "70:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "87:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -101,6 +106,7 @@ public class FallThroughCheckTest extends BaseCheckTestSupport {
             "123:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "145:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "170:11: " + getCheckMessage(MSG_FALL_THROUGH),
+            "179:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "186:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "204:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "222:11: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -137,5 +143,24 @@ public class FallThroughCheckTest extends BaseCheckTestSupport {
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
+    }
+
+    @Test
+    public void testFallThroughNoElse() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
+        final String[] expected = {
+            "20:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "35:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "39:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "46:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "60:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "67:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "80:21: " + getCheckMessage(MSG_FALL_THROUGH),
+            "86:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "88:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verify(checkConfig,
+            getPath("coding" + File.separator + "InputFallThrough2.java"),
+            expected);
     }
 }

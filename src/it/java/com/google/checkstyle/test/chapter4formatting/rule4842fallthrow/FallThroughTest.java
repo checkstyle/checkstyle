@@ -29,11 +29,13 @@ public class FallThroughTest extends BaseCheckTestSupport{
         final String[] expected = {
             "14:13: " + msg,
             "38:13: " + msg, 
+            "47:13: " + msg,
             "53:13: " + msg,
             "70:13: " + msg,
             "87:13: " + msg,
             "105:13: " + msg,
             "123:13: " + msg,
+            "179:11: " + msg,
             "369:11: " + msg,
             "372:11: " + msg,
             "374:41: " + msg,
