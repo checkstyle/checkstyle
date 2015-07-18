@@ -1,6 +1,8 @@
 version: '{build}'
 skip_tags: true
 clone_depth: 10
+init:
+  - git config --global core.autocrlf true
 environment:
   matrix:
     #- JAVA_HOME: C:\Program Files\Java\jdk1.7.0
@@ -22,9 +24,7 @@ install:
         [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\maven-bin.zip", "C:\maven")
       }
   - cmd: SET PATH=C:\maven\apache-maven-3.2.5\bin;%JAVA_HOME%\bin;%PATH%
-  - cmd: SET MAVEN_OPTS=-XX:MaxPermSize=2g -Xmx4g
-  - cmd: SET JAVA_OPTS=-XX:MaxPermSize=2g -Xmx4g
-  - cmd: git config --global core.autocrlf true
+  - cmd: git config --global core.autocrlf
   - cmd: mvn --version
   - cmd: java -version
 build_script: >
