@@ -416,4 +416,36 @@ public class InputFallThrough
             default: // violation - no fall through comment
         }
     }
+    
+    void nextedSwitches2() {
+        switch(hashCode()) {
+        case 1:
+            switch(hashCode()){}
+        case 2:
+            System.out.println();
+            break;
+        }
+    }
+    
+    void ifWithoutBreak() {
+        switch(hashCode()) {
+        case 1:
+            if (true) {
+                System.out.println();
+            }
+        case 2:
+            System.out.println();
+            break;
+        }
+    }
+    
+    void noCommentAtTheEnd() {
+        switch(hashCode()) {
+        case 1: System.out.println();
+
+        case 2:
+            System.out.println();
+            break;
+        }
+    }
 }

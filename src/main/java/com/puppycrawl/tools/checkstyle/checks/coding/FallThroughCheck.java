@@ -132,9 +132,7 @@ public class FallThroughCheck extends Check {
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST nextGroup = ast.getNextSibling();
-        final boolean isLastGroup =
-                nextGroup == null
-                 || nextGroup.getType() != TokenTypes.CASE_GROUP;
+        final boolean isLastGroup = nextGroup.getType() != TokenTypes.CASE_GROUP;
         if (isLastGroup && !checkLastGroup) {
             // we do not need to check last group
             return;
@@ -191,19 +189,14 @@ public class FallThroughCheck extends Check {
     /**
      * Checks if a given SLIST terminated by return, throw or,
      * if allowed break, continue.
-     * @param ast SLIST to check
+     * @param slistAst SLIST to check
      * @param useBreak should we consider break as terminator.
      * @param useContinue should we consider continue as terminator.
      * @return true if SLIST is terminated.
      */
-    private boolean checkSlist(final DetailAST ast, boolean useBreak,
+    private boolean checkSlist(final DetailAST slistAst, boolean useBreak,
                                boolean useContinue) {
-        DetailAST lastStmt = ast.getLastChild();
-        if (lastStmt == null) {
-            // if last case in switch is empty then slist is empty
-            // since this is a last case it is not a fall-through
-            return true;
-        }
+        DetailAST lastStmt = slistAst.getLastChild();
 
         if (lastStmt.getType() == TokenTypes.RCURLY) {
             lastStmt = lastStmt.getPreviousSibling();
@@ -286,15 +279,14 @@ public class FallThroughCheck extends Check {
     /**
      * Checks if a given switch terminated by return, throw or,
      * if allowed break, continue.
-     * @param ast loop to check
+     * @param literalSwitchAst loop to check
      * @param useContinue should we consider continue as terminator.
      * @return true if switch is terminated.
      */
-    private boolean checkSwitch(final DetailAST ast, boolean useContinue) {
-        DetailAST caseGroup = ast.findFirstToken(TokenTypes.CASE_GROUP);
+    private boolean checkSwitch(final DetailAST literalSwitchAst, boolean useContinue) {
+        DetailAST caseGroup = literalSwitchAst.findFirstToken(TokenTypes.CASE_GROUP);
         boolean isTerminated = caseGroup != null;
-        while (isTerminated && caseGroup != null
-               && caseGroup.getType() != TokenTypes.RCURLY) {
+        while (isTerminated && caseGroup.getType() != TokenTypes.RCURLY) {
             final DetailAST caseBody =
                 caseGroup.findFirstToken(TokenTypes.SLIST);
             isTerminated = caseBody != null && isTerminated(caseBody, false, useContinue);
