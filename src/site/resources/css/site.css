@@ -27,14 +27,14 @@ h4 {
 #bannerLeft img {
   float:left;
   position: relative;
-  top: 18px;
+  top: 0px;
   left: 40px;
 
 }
 
 #banner {
   border-bottom: 1px solid #fff;
-  background: url("../images/banner.jpg") repeat scroll 0 0 transparent;
+  background: url("../images/header-background.png") repeat scroll 0 0 transparent;
 }
 
 .section {
