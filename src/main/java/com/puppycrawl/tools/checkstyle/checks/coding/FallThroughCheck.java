@@ -223,7 +223,10 @@ public class FallThroughCheck extends Check {
 
         if (isTerminated && elseStmt != null) {
             isTerminated = isTerminated(elseStmt.getFirstChild(),
-                                        useBreak, useContinue);
+                useBreak, useContinue);
+        }
+        else if (elseStmt == null) {
+            isTerminated = false;
         }
         return isTerminated;
     }
