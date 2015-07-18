@@ -20,7 +20,8 @@ Documentation is available in HTML format, see http://checkstyle.sourceforge.net
 
 Continuous integration and Quality reports
 ======================
-Travis: [![][travis img]][travis]
+Travis (Linux build): [![][travis img]][travis]
+Appveyor (Windows build): [![][appveyor img]][appveyor]
 
 Quality reports: http://checkstyle.sourceforge.net/project-reports.html
 
