@@ -43,6 +43,7 @@ public class NoCloneCheckTest
             "39: " + getCheckMessage(MSG_KEY),
             "52: " + getCheckMessage(MSG_KEY),
             "60: " + getCheckMessage(MSG_KEY),
+            "98: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputClone.java"), expected);
     }
