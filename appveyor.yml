@@ -37,4 +37,4 @@ build_script: >
   -DskipTests -DskipITs -Dcobertura.skip=true 
   -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true
 test_script:
-  - rem mvn clean verify
+  - mvn clean verify -Dfindbugs.skip=true
