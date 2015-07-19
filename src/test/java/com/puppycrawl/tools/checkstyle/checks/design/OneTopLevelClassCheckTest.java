@@ -106,6 +106,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
             "58: " + getCheckMessage(MSG_KEY, "CloneWithTypeArgumentsAndNoSuper"),
             "67: " + getCheckMessage(MSG_KEY, "MyClassWithGenericSuperMethod"),
             "84: " + getCheckMessage(MSG_KEY, "AnotherClass"),
+            "97: " + getCheckMessage(MSG_KEY, "NativeTest"),
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputClone.java"), expected);
     }
