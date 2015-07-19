@@ -1381,6 +1381,17 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testInvalidImportIndent() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("basicOffset", "8");
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_CHILD_ERROR, "import", 2, 8),
+        };
+        verifyWarns(checkConfig, getPath("indentation/InputInvalidImportIndent.java"), expected);
+    }
+
+    @Test
     public void testValidAssignWithChecker() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
