@@ -188,35 +188,33 @@ public class NeedBracesCheck extends Check {
      */
     private static boolean isSingleLineStatement(DetailAST statement) {
         boolean result = false;
-        switch (statement.getType()) {
-            case TokenTypes.LITERAL_IF:
-                result = isSingleLineIf(statement);
-                break;
-            case TokenTypes.LITERAL_FOR:
-                result = isSingleLineFor(statement);
-                break;
-            case TokenTypes.LITERAL_DO:
-                result = isSingleLineDoWhile(statement);
-                break;
-            case TokenTypes.LITERAL_WHILE:
-                result = isSingleLineWhile(statement);
-                break;
-            case TokenTypes.LAMBDA:
-                result = isSingleLineLambda(statement);
-                break;
-            case TokenTypes.LITERAL_CASE:
-                result = isSingleLineCase(statement);
-                break;
-            case TokenTypes.LITERAL_DEFAULT:
-                result = isSingleLineDefault(statement);
-                break;
-            case TokenTypes.LITERAL_ELSE:
-                result = isSingleLineElse(statement);
-                break;
-            default:
-                final String exceptionMsg = statement.getText();
-                throw new IllegalArgumentException("Unsupported token: " + exceptionMsg);
+        final int type = statement.getType();
+
+        if (type == TokenTypes.LITERAL_IF) {
+            result = isSingleLineIf(statement);
         }
+        else if (type == TokenTypes.LITERAL_FOR) {
+            result = isSingleLineFor(statement);
+        }
+        else if (type == TokenTypes.LITERAL_DO) {
+            result = isSingleLineDoWhile(statement);
+        }
+        else if (type == TokenTypes.LITERAL_WHILE) {
+            result = isSingleLineWhile(statement);
+        }
+        else if (type == TokenTypes.LAMBDA) {
+            result = isSingleLineLambda(statement);
+        }
+        else if (type == TokenTypes.LITERAL_CASE) {
+            result = isSingleLineCase(statement);
+        }
+        else if (type == TokenTypes.LITERAL_DEFAULT) {
+            result = isSingleLineDefault(statement);
+        }
+        else {
+            result = isSingleLineElse(statement);
+        }
+
         return result;
     }
 
@@ -278,9 +276,7 @@ public class NeedBracesCheck extends Check {
         else if (literalFor.getParent().getType() == TokenTypes.SLIST
                 && literalFor.getLastChild().getType() != TokenTypes.SLIST) {
             final DetailAST block = literalFor.findFirstToken(TokenTypes.EXPR);
-            if (block != null) {
-                result = literalFor.getLineNo() == block.getLineNo();
-            }
+            result = literalFor.getLineNo() == block.getLineNo();
         }
         return result;
     }

@@ -80,6 +80,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tokens", "LAMBDA");
         checkConfig.addAttribute("allowSingleLineStatement", "true");
         final String[] expected = {
+            "7: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
         };
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/blocks/InputSingleLineLambda.java").getCanonicalPath(),
@@ -97,5 +98,33 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
             "72: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
         };
         verify(checkConfig, getPath("InputBracesSingleLineStatements.java"), expected);
+    }
+
+    @Test
+    public void testCycles() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(NeedBracesCheck.class);
+        checkConfig.addAttribute("tokens", "LITERAL_WHILE, LITERAL_DO, LITERAL_FOR");
+        checkConfig.addAttribute("allowSingleLineStatement", "true");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputNeedBracesCheckTest.java"), expected);
+    }
+
+    @Test
+    public void testConditions() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(NeedBracesCheck.class);
+        checkConfig.addAttribute("tokens", "LITERAL_ELSE, LITERAL_CASE, LITERAL_DEFAULT");
+        checkConfig.addAttribute("allowSingleLineStatement", "true");
+        final String[] expected = {
+            "29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "35: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "36: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "38: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "41: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "44: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "56: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+        };
+        verify(checkConfig, getPath("InputNeedBracesCheckTest.java"), expected);
     }
 }
