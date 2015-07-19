@@ -167,3 +167,13 @@ class bug1336737 { //indent:0 exp:0
         public String toString() { return c; } //indent:8 exp:8
     } //indent:4 exp:4
 } //indent:0 exp:0
+
+class AnonymousClassWithInitializer { //indent:0 exp:0
+    void create() { //indent:4 exp:4
+        new Object() { //indent:8 exp:8
+            { //indent:12 exp:12
+                new Object(); //indent:16 exp:16
+            } //indent:12 exp:12
+        }; //indent:8 exp:8
+    } //indent:4 exp:4
+} //indent:0 exp:0
