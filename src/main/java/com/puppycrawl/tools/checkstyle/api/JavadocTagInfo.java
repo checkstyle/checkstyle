@@ -110,7 +110,8 @@ public enum JavadocTagInfo {
                 || type == TokenTypes.INTERFACE_DEF
                 || type == TokenTypes.ENUM_DEF
                 || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.METHOD_DEF || type == TokenTypes.CTOR_DEF
+                || type == TokenTypes.METHOD_DEF
+                || type == TokenTypes.CTOR_DEF
                 || type == TokenTypes.VARIABLE_DEF
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
@@ -178,7 +179,8 @@ public enum JavadocTagInfo {
                 || type == TokenTypes.INTERFACE_DEF
                 || type == TokenTypes.ENUM_DEF
                 || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.METHOD_DEF || type == TokenTypes.CTOR_DEF
+                || type == TokenTypes.METHOD_DEF
+                || type == TokenTypes.CTOR_DEF
                 || type == TokenTypes.VARIABLE_DEF
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
@@ -197,7 +199,8 @@ public enum JavadocTagInfo {
                 || type == TokenTypes.INTERFACE_DEF
                 || type == TokenTypes.ENUM_DEF
                 || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.METHOD_DEF || type == TokenTypes.CTOR_DEF
+                || type == TokenTypes.METHOD_DEF
+                || type == TokenTypes.CTOR_DEF
                 || type == TokenTypes.VARIABLE_DEF
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
@@ -216,7 +219,8 @@ public enum JavadocTagInfo {
                 || type == TokenTypes.INTERFACE_DEF
                 || type == TokenTypes.ENUM_DEF
                 || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.METHOD_DEF || type == TokenTypes.CTOR_DEF
+                || type == TokenTypes.METHOD_DEF
+                || type == TokenTypes.CTOR_DEF
                 || type == TokenTypes.VARIABLE_DEF
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
@@ -248,8 +252,7 @@ public enum JavadocTagInfo {
             final DetailAST returnType = ast.findFirstToken(TokenTypes.TYPE);
 
             return type == TokenTypes.METHOD_DEF
-                && returnType.getFirstChild().getType()
-                != TokenTypes.LITERAL_VOID;
+                && returnType.getFirstChild().getType() != TokenTypes.LITERAL_VOID;
 
         }
     },
@@ -296,8 +299,7 @@ public enum JavadocTagInfo {
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int type = ast.getType();
-            final DetailAST methodNameAst = ast
-                .findFirstToken(TokenTypes.IDENT);
+            final DetailAST methodNameAst = ast.findFirstToken(TokenTypes.IDENT);
             final String methodName = methodNameAst.getText();
 
             return type == TokenTypes.METHOD_DEF
@@ -323,8 +325,7 @@ public enum JavadocTagInfo {
 
             return type == TokenTypes.VARIABLE_DEF
                 && varType.getType() == TokenTypes.ARRAY_DECLARATOR
-                && "ObjectStreafield"
-                    .equals(varType.getFirstChild().getText());
+                && "ObjectStreafield".equals(varType.getFirstChild().getText());
         }
     },
 
