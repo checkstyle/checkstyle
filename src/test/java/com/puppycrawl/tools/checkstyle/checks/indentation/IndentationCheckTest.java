@@ -1499,4 +1499,14 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         };
         verifyWarns(checkConfig, getPath("indentation/InputAnnotationDefinition.java"), expected);
     }
+
+    @Test
+    public void testPackageDeclaration() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_ERROR, "package def", 1, 0),
+        };
+        verifyWarns(checkConfig, getPath("indentation/InputPackageDeclaration.java"), expected);
+    }
 }
