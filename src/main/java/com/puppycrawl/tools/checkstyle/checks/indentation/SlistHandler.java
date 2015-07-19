@@ -63,15 +63,6 @@ public class SlistHandler extends BlockParentHandler {
     }
 
     @Override
-    protected DetailAST getNonlistChild() {
-        // blocks always have either block children or they are transparent
-        // and aren't checking children at all.  In the later case, the
-        // superclass will want to check single children, so when it
-        // does tell it we have none.
-        return null;
-    }
-
-    @Override
     protected DetailAST getListChild() {
         return getMainAst();
     }

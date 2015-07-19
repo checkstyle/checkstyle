@@ -1167,7 +1167,6 @@
             <regex><pattern>.*.checks.indentation.NewHandler</pattern><branchRate>83</branchRate><lineRate>77</lineRate></regex>
             <regex><pattern>.*.checks.indentation.ObjectBlockHandler</pattern><branchRate>75</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.indentation.PackageDefHandler</pattern><branchRate>50</branchRate><lineRate>85</lineRate></regex>
-            <regex><pattern>.*.checks.indentation.SlistHandler</pattern><branchRate>100</branchRate><lineRate>94</lineRate></regex>
             <regex><pattern>.*.checks.indentation.SynchronizedHandler</pattern><branchRate>100</branchRate><lineRate>100</lineRate></regex>
 
             <regex><pattern>.*.checks.javadoc.AbstractJavadocCheck</pattern><branchRate>90</branchRate><lineRate>93</lineRate></regex>
