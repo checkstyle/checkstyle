@@ -62,8 +62,8 @@ directory.
 [travis]:http://travis-ci.org/checkstyle/checkstyle
 [travis img]:https://secure.travis-ci.org/checkstyle/checkstyle.png
 
-[appveyor]:https://ci.appveyor.com/project/romani/checkstyle
-[appveyor img]:https://ci.appveyor.com/api/projects/status/dvsups9tbw64378v?svg=true
+[appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle
+[appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
 
 [sonar]:http://nemo.sonarqube.org/dashboard/index/com.puppycrawl.tools:checkstyle
 [sonar img]:https://dev.eclipse.org/sonar/images/logo.png?1400775536
