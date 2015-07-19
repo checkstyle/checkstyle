@@ -64,7 +64,7 @@ public enum JavadocTagInfo {
     /**
      * {@code @author}.
      */
-    AUTHOR("@author", "author", Type.BLOCK, true, true) {
+    AUTHOR("@author", "author", Type.BLOCK) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -80,7 +80,7 @@ public enum JavadocTagInfo {
     /**
      * {@code {@code}}.
      */
-    CODE("{@code}", "code", Type.INLINE, true, true) {
+    CODE("{@code}", "code", Type.INLINE) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -100,7 +100,7 @@ public enum JavadocTagInfo {
     /**
      * {@code {@docRoot}}.
      */
-    DOC_ROOT("{@docRoot}", "docRoot", Type.INLINE, true, true) {
+    DOC_ROOT("{@docRoot}", "docRoot", Type.INLINE) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -119,7 +119,7 @@ public enum JavadocTagInfo {
     /**
      * {@code @deprecated}.
      */
-    DEPRECATED("@deprecated", "deprecated", Type.BLOCK, false, false) {
+    DEPRECATED("@deprecated", "deprecated", Type.BLOCK) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -140,7 +140,7 @@ public enum JavadocTagInfo {
     /**
      * {@code @exception}.
      */
-    EXCEPTION("@exception", "exception", Type.BLOCK, false, false) {
+    EXCEPTION("@exception", "exception", Type.BLOCK) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -152,7 +152,7 @@ public enum JavadocTagInfo {
     /**
      * {@code {@inheritDoc}}.
      */
-    INHERIT_DOC("{@inheritDoc}", "inheritDoc", Type.INLINE, false, false) {
+    INHERIT_DOC("{@inheritDoc}", "inheritDoc", Type.INLINE) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -168,7 +168,7 @@ public enum JavadocTagInfo {
     /**
      * {@code {@link}}.
      */
-    LINK("{@link}", "link", Type.INLINE, true, true) {
+    LINK("{@link}", "link", Type.INLINE) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -187,7 +187,7 @@ public enum JavadocTagInfo {
     /**
      * {@code {@linkplain}}.
      */
-    LINKPLAIN("{@linkplain}", "linkplain", Type.INLINE, true, true) {
+    LINKPLAIN("{@linkplain}", "linkplain", Type.INLINE) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -206,7 +206,7 @@ public enum JavadocTagInfo {
     /**
      * {@code {@literal}}.
      */
-    LITERAL("{@literal}", "literal", Type.INLINE, true, true) {
+    LITERAL("{@literal}", "literal", Type.INLINE) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -225,7 +225,7 @@ public enum JavadocTagInfo {
     /**
      * {@code @param}.
      */
-    PARAM("@param", "param", Type.BLOCK, false, false) {
+    PARAM("@param", "param", Type.BLOCK) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -240,7 +240,7 @@ public enum JavadocTagInfo {
     /**
      * {@code @return}.
      */
-    RETURN("@return", "return", Type.BLOCK, false, false) {
+    RETURN("@return", "return", Type.BLOCK) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -257,7 +257,7 @@ public enum JavadocTagInfo {
     /**
      * {@code @see}.
      */
-    SEE("@see", "see", Type.BLOCK, true, true) {
+    SEE("@see", "see", Type.BLOCK) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -277,7 +277,7 @@ public enum JavadocTagInfo {
     /**
      * {@code @serial}.
      */
-    SERIAL("@serial", "serial", Type.BLOCK, true, false) {
+    SERIAL("@serial", "serial", Type.BLOCK) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -291,7 +291,7 @@ public enum JavadocTagInfo {
     /**
      * {@code @serialData}.
      */
-    SERIAL_DATA("@serialData", "serialData", Type.BLOCK, false, false) {
+    SERIAL_DATA("@serialData", "serialData", Type.BLOCK) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -314,7 +314,7 @@ public enum JavadocTagInfo {
     /**
      * {@code @serialField}.
      */
-    SERIAL_FIELD("@serialField", "serialField", Type.BLOCK, false, false) {
+    SERIAL_FIELD("@serialField", "serialField", Type.BLOCK) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -331,7 +331,7 @@ public enum JavadocTagInfo {
     /**
      * {@code @since}.
      */
-    SINCE("@since", "since", Type.BLOCK, true, true) {
+    SINCE("@since", "since", Type.BLOCK) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -351,7 +351,7 @@ public enum JavadocTagInfo {
     /**
      * {@code @throws}.
      */
-    THROWS("@throws", "throws", Type.BLOCK, false, false) {
+    THROWS("@throws", "throws", Type.BLOCK) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -364,7 +364,7 @@ public enum JavadocTagInfo {
     /**
      * {@code {@value}}.
      */
-    VALUE("{@value}", "value", Type.INLINE, true, true) {
+    VALUE("{@value}", "value", Type.INLINE) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -384,7 +384,7 @@ public enum JavadocTagInfo {
     /**
      * {@code @version}.
      */
-    VERSION("@version", "version", Type.BLOCK, true, true) {
+    VERSION("@version", "version", Type.BLOCK) {
         /** {@inheritDoc} */
         @Override
         public boolean isValidOn(final DetailAST ast) {
@@ -424,10 +424,6 @@ public enum JavadocTagInfo {
     private final String name;
     /** the tag type **/
     private final Type type;
-    /** if tag is valid in package.html **/
-    private final boolean validInPackageHtml;
-    /** if tag is valid in overview.html **/
-    private final boolean validInOverviewHtml;
 
     /**
      * Sets the various properties of a Javadoc tag.
@@ -435,19 +431,12 @@ public enum JavadocTagInfo {
      * @param text the tag text
      * @param name the tag name
      * @param type the type of tag
-     * @param validInPackageHtml whether the tag is valid
-     * in package.html file
-     * @param validInOverviewHtml whether the tag is valid
-     * in overview.html file
      */
     private JavadocTagInfo(final String text, final String name,
-        final Type type, final boolean validInPackageHtml,
-        final boolean validInOverviewHtml) {
+        final Type type) {
         this.text = text;
         this.name = name;
         this.type = type;
-        this.validInPackageHtml = validInPackageHtml;
-        this.validInOverviewHtml = validInOverviewHtml;
     }
 
     /**
@@ -470,24 +459,6 @@ public enum JavadocTagInfo {
      * @return true if tag is valid.
      */
     public abstract boolean isValidOn(DetailAST ast);
-
-    /**
-     * Checks if tag is valid in a package.html Javadoc file.
-     *
-     * @return true if tag is valid.
-     */
-    public boolean isValidInPackageHtml() {
-        return this.validInPackageHtml;
-    }
-
-    /**
-     * Checks if tag is valid in a overview.html Javadoc file.
-     *
-     * @return true if tag is valid.
-     */
-    public boolean isValidInOverviewHtml() {
-        return this.validInOverviewHtml;
-    }
 
     /**
      * Gets the tag text.
@@ -573,9 +544,7 @@ public enum JavadocTagInfo {
     @Override
     public String toString() {
         return "text [" + this.text + "] name [" + this.name
-            + "] type [" + this.type
-            + "] validInPackageHtml [" + this.validInPackageHtml
-            + "] validInOverviewHtml [" + this.validInOverviewHtml + "]";
+            + "] type [" + this.type;
     }
 
     /**
