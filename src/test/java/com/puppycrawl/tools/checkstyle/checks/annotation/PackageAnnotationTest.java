@@ -20,9 +20,12 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import java.io.File;
+
+import org.junit.Assert;
 import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class PackageAnnotationTest extends BaseCheckTestSupport {
     /**
@@ -38,5 +41,34 @@ public class PackageAnnotationTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "package-info.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        PackageAnnotationCheck constantNameCheckObj = new PackageAnnotationCheck();
+        int[] actual = constantNameCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {TokenTypes.PACKAGE_DEF };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testAnnotationnotInPackageInfo() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
+
+        final String[] expected = {};
+
+        verify(checkConfig, getPath("annotation" + File.separator + "InputPackageAnnotationCheckTest.java"), expected);
+    }
+
+    @Test
+    public void testWithoutAnnotation() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
+
+        final String[] expected = {
+            "0: Package annotations must be in the package-info.java info.",
+        };
+
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/annotation/InputPackageAnnotationCheckTest2.java").getCanonicalPath(), expected);
     }
 }
