@@ -93,3 +93,7 @@ class AnotherClass {
 	return null;
     }
 }
+
+class NativeTest {
+    public native Object clone();
+}
