@@ -108,7 +108,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      */
     protected boolean hasLabelBefore() {
         final DetailAST parent = getToplevelAST().getParent();
-        return parent != null && parent.getType() == TokenTypes.LABELED_STAT
+        return parent.getType() == TokenTypes.LABELED_STAT
             && parent.getLineNo() == getToplevelAST().getLineNo();
     }
 
@@ -146,10 +146,6 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      */
     protected DetailAST getRCurly() {
         final DetailAST slist = getMainAst().findFirstToken(TokenTypes.SLIST);
-        if (slist == null) {
-            return null;
-        }
-
         return slist.findFirstToken(TokenTypes.RCURLY);
     }
 
@@ -296,8 +292,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         // if we have multileveled expected level then we should
         // try to suggest single level to children using curlies'
         // levels.
-        if (getLevel().isMultiLevel() && hasCurlys()
-            && !areOnSameLine(getLCurly(), getRCurly())) {
+        if (getLevel().isMultiLevel() && hasCurlys()) {
             if (startsLine(getLCurly())) {
                 return new IndentLevel(expandedTabsColumnNo(getLCurly()) + getBasicOffset());
             }

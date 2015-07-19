@@ -451,6 +451,27 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testInvalidLabelWithWhileLoop() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "4");
+        final String[] expected = {
+            "18: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 9, "4, 8"),
+            "19: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 9, "8, 12"),
+            "19: " + getCheckMessage(MSG_ERROR_MULTI, "while", 9, "8, 12"),
+        };
+        verifyWarns(checkConfig, getPath("indentation/InputInvalidLabelWithWhileLoopIndent.java"),
+            expected);
+    }
+
+    @Test
     public void testValidLabel() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
@@ -1082,6 +1103,25 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "85: " + getCheckMessage(MSG_ERROR, "while rparen", 10, 8),
             "92: " + getCheckMessage(MSG_ERROR, "while rparen", 10, 8),
             "99: " + getCheckMessage(MSG_CHILD_ERROR, "while", 8, 12),
+        };
+        verifyWarns(checkConfig, fname, expected);
+    }
+
+    @Test
+    public void testInvalidInvalidAnonymousClass() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "4");
+        final String fname = getPath("indentation/InputInvalidAnonymousClassIndent.java");
+        final String[] expected = {
+            "28: " + getCheckMessage(MSG_ERROR_MULTI, "method def rcurly", 17, "12, 16"),
         };
         verifyWarns(checkConfig, fname, expected);
     }
