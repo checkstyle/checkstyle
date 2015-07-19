@@ -50,34 +50,7 @@ public class NewHandler extends AbstractExpressionHandler {
         }
 
         final DetailAST lparen = getMainAst().findFirstToken(TokenTypes.LPAREN);
-        final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
         checkLParen(lparen);
-
-        if (rparen == null || lparen == null
-            || rparen.getLineNo() == lparen.getLineNo()) {
-            return;
-        }
-
-        if (getMainAst().getType() != TokenTypes.OBJBLOCK) {
-            return;
-        }
-
-        // if this method name is on the same line as a containing
-        // method, don't indent, this allows expressions like:
-        //    method("my str" + method2(
-        //        "my str2"));
-        // as well as
-        //    method("my str" +
-        //        method2(
-        //            "my str2"));
-        //
-
-        checkExpressionSubtree(
-            getMainAst().findFirstToken(TokenTypes.ELIST),
-            new IndentLevel(getLevel(), getBasicOffset()),
-            false, true);
-
-        checkRParen(lparen, rparen);
     }
 
     @Override
