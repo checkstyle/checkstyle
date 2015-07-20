@@ -89,21 +89,13 @@ public class ObjectBlockHandler extends BlockParentHandler {
     }
 
     @Override
-    protected boolean rcurlyMustStart() {
-        return false;
-    }
-
-    @Override
     protected void checkRCurly() {
-        final DetailAST lcurly = getLCurly();
         final DetailAST rcurly = getRCurly();
         final int rcurlyPos = expandedTabsColumnNo(rcurly);
         final IndentLevel level = curlyLevel();
         level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndent());
 
-        if (!level.accept(rcurlyPos)
-            && (rcurlyMustStart() || startsLine(rcurly))
-                && !areOnSameLine(rcurly, lcurly)) {
+        if (!level.accept(rcurlyPos) && startsLine(rcurly)) {
             logError(rcurly, "rcurly", rcurlyPos, curlyLevel());
         }
     }
