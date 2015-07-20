@@ -189,4 +189,6 @@ int[] //indent:0 exp:8 warn
     private void indexTest() { //indent:4 exp:4
             getArray()[0] = 2; //indent:12 exp:8 warn
     } //indent:4 exp:4
+
+    /* package scope */ void methodWithCommentBefore() {} //indent:4 exp:4
 } //indent:0 exp:0
