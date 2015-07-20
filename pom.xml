@@ -1073,8 +1073,8 @@
            <haltOnFailure>true</haltOnFailure>
            <branchRate>100</branchRate>
            <lineRate>100</lineRate>
-           <totalBranchRate>85</totalBranchRate>
-           <totalLineRate>93</totalLineRate>
+           <totalBranchRate>89</totalBranchRate>
+           <totalLineRate>95</totalLineRate>
            <regexes>
             <regex><pattern>.*.Checker</pattern><branchRate>79</branchRate><lineRate>84</lineRate></regex>
             <regex><pattern>.*.ConfigurationLoader</pattern><branchRate>86</branchRate><lineRate>79</lineRate></regex>
