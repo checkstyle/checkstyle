@@ -99,14 +99,12 @@ public class ArrayInitHandler extends BlockParentHandler {
                     getIndentCheck().getLineWrappingIndentation());
 
         final int firstLine = getFirstLine(Integer.MAX_VALUE, getListChild());
-        if (hasCurlys() && firstLine == getLCurly().getLineNo()) {
-            final int lcurlyPos = expandedTabsColumnNo(getLCurly());
-            final int firstChildPos =
-                getNextFirstNonblankOnLineAfter(firstLine, lcurlyPos);
-            if (firstChildPos >= 0) {
-                expectedIndent.addAcceptedIndent(firstChildPos);
-                expectedIndent.addAcceptedIndent(lcurlyPos + getLineWrappingIndent());
-            }
+        final int lcurlyPos = expandedTabsColumnNo(getLCurly());
+        final int firstChildPos =
+            getNextFirstNonblankOnLineAfter(firstLine, lcurlyPos);
+        if (firstChildPos >= 0) {
+            expectedIndent.addAcceptedIndent(firstChildPos);
+            expectedIndent.addAcceptedIndent(lcurlyPos + getLineWrappingIndent());
         }
         return expectedIndent;
     }

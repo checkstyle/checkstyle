@@ -1152,7 +1152,6 @@
 
             <regex><pattern>.*.checks.imports.CustomImportOrderCheck</pattern><branchRate>98</branchRate><lineRate>100</lineRate></regex>
 
-            <regex><pattern>.*.checks.indentation.ArrayInitHandler</pattern><branchRate>87</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.indentation.ElseHandler</pattern><branchRate>75</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.indentation.AbstractExpressionHandler</pattern><branchRate>91</branchRate><lineRate>97</lineRate></regex>
             <regex><pattern>.*.checks.indentation.MethodCallLineWrapHandler</pattern><branchRate>0</branchRate><lineRate>0</lineRate></regex>
