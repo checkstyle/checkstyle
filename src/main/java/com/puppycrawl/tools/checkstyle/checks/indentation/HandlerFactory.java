@@ -144,10 +144,8 @@ public class HandlerFactory {
         AbstractExpressionHandler expHandler = null;
         final Constructor<?> handlerCtor =
             typeHandlers.get(ast.getType());
-        if (handlerCtor != null) {
-            expHandler = (AbstractExpressionHandler) Utils.invokeConstructor(
-                    handlerCtor, indentCheck, ast, parent);
-        }
+        expHandler = (AbstractExpressionHandler) Utils.invokeConstructor(
+                handlerCtor, indentCheck, ast, parent);
         return expHandler;
     }
 
@@ -164,10 +162,10 @@ public class HandlerFactory {
         DetailAST ast, AbstractExpressionHandler parent) {
         AbstractExpressionHandler theParent = parent;
         DetailAST astNode = ast.getFirstChild();
-        while (astNode != null && astNode.getType() == TokenTypes.DOT) {
+        while (astNode.getType() == TokenTypes.DOT) {
             astNode = astNode.getFirstChild();
         }
-        if (astNode != null && isHandledType(astNode.getType())) {
+        if (isHandledType(astNode.getType())) {
             theParent = getHandler(indentCheck, astNode, theParent);
             createdHandlers.put(astNode, theParent);
         }
