@@ -44,6 +44,8 @@ public class ParenPadCheckTest
             "232:27: " + getCheckMessage(WS_PRECEDED, ")"),
             "241:24: " + getCheckMessage(WS_FOLLOWED, "("),
             "241:30: " + getCheckMessage(WS_PRECEDED, ")"),
+            "276:18: " + getCheckMessage(WS_FOLLOWED, "("),
+            "276:23: " + getCheckMessage(WS_PRECEDED, ")"),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
@@ -82,6 +84,12 @@ public class ParenPadCheckTest
             "235:39: " + getCheckMessage(WS_NOT_PRECEDED, ")"),
             "252:21: " + getCheckMessage(WS_NOT_FOLLOWED, "("),
             "252:93: " + getCheckMessage(WS_NOT_PRECEDED, ")"),
+            "272:26: " + getCheckMessage(WS_NOT_FOLLOWED, "("),
+            "272:36: " + getCheckMessage(WS_NOT_PRECEDED, ")"),
+            "274:29: " + getCheckMessage(WS_NOT_FOLLOWED, "("),
+            "274:42: " + getCheckMessage(WS_NOT_PRECEDED, ")"),
+            "275:18: " + getCheckMessage(WS_NOT_FOLLOWED, "("),
+            "275:33: " + getCheckMessage(WS_NOT_PRECEDED, ")"),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }

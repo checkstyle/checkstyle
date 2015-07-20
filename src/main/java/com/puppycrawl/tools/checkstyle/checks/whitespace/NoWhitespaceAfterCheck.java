@@ -106,12 +106,7 @@ public class NoWhitespaceAfterCheck extends Check {
 
     @Override
     public void visitToken(DetailAST ast) {
-        DetailAST astNode = ast;
-        if (ast.getType() == TokenTypes.ARRAY_DECLARATOR
-                 || ast.getType() == TokenTypes.TYPECAST) {
-            astNode = getPreceded(ast);
-        }
-
+        final DetailAST astNode = getPreceded(ast);
         final String line = getLine(ast.getLineNo() - 1);
         final int after = getPositionAfter(astNode);
 
@@ -124,21 +119,21 @@ public class NoWhitespaceAfterCheck extends Check {
 
     /**
      * Gets possible place where redundant whitespace could be.
-     * @param arrayOrTypeCast {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}
-     *  or {@link TokenTypes#TYPECAST TYPECAST}.
+     * @param ast Node representing token.
      * @return possible place of redundant whitespace.
      */
-    private static DetailAST getPreceded(DetailAST arrayOrTypeCast) {
-        DetailAST preceded = arrayOrTypeCast;
-        switch (arrayOrTypeCast.getType()) {
+    private static DetailAST getPreceded(DetailAST ast) {
+        DetailAST preceded;
+
+        switch (ast.getType()) {
             case TokenTypes.TYPECAST:
-                preceded = arrayOrTypeCast.findFirstToken(TokenTypes.RPAREN);
+                preceded = ast.findFirstToken(TokenTypes.RPAREN);
                 break;
             case TokenTypes.ARRAY_DECLARATOR:
-                preceded = getArrayTypeOrIdentifier(arrayOrTypeCast);
+                preceded = getArrayTypeOrIdentifier(ast);
                 break;
             default:
-                throw new IllegalStateException(arrayOrTypeCast.toString());
+                preceded = ast;
         }
         return preceded;
     }

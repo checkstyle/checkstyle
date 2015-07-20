@@ -269,4 +269,10 @@ class SpecialCasesInForLoop
     public void testNullSemi() {
         return ;
     }
+    public void register(Object obj) { }
+
+    public void doSomething(String args[]) {
+        register(boolean[].class);
+        register( args );
+    }
 }
