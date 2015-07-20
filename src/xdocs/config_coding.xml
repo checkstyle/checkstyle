@@ -1564,9 +1564,8 @@ if (&quot;something&quot;.equals(x))
     <section name="SuperClone">
       <subsection name="Description">
         <p>
-          Checks that an overriding <code>clone()</code> method invokes
-          <code>super.clone()</code>. Does not check native methods, as
-          they have no possible java defined implementation.
+          Checks that an overriding <code>clone()</code> method
+          invokes <code>super.clone()</code>.
         </p>
 
         <p>
@@ -1600,9 +1599,8 @@ if (&quot;something&quot;.equals(x))
     <section name="SuperFinalize">
       <subsection name="Description">
         <p>
-          Checks that an overriding <code>finalize()</code> method invokes
-          <code>super.finalize()</code>. Does not check native methods, as
-          they have no possible java defined implementation.
+          Checks that an overriding <code>finalize()</code>
+          method invokes <code>super.finalize()</code>.
         </p>
 
         <p>

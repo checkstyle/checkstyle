@@ -229,9 +229,7 @@ public abstract class AbstractSuperCheck
         }
         final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
         final String name = nameAST.getText();
-        final DetailAST modifiersAST = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (!getMethodName().equals(name)
-                || modifiersAST.branchContains(TokenTypes.LITERAL_NATIVE)) {
+        if (!getMethodName().equals(name)) {
             return false;
         }
         final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);

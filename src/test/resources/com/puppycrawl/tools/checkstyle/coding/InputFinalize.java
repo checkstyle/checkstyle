@@ -51,7 +51,3 @@ class MyClassWithGenericSuperMethod1
 
     }
 }
-
-class TestNative {
-    public native void finalize();
-}
