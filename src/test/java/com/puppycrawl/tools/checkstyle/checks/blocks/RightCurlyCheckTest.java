@@ -46,7 +46,6 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
             "40:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
             "44:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
             "93:27: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
-            "97:54: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 54),
         };
         verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
@@ -60,9 +59,16 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
             "40:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
             "44:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
             "93:27: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
-            "97:54: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 54),
         };
         verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
+    }
+
+    @Test
+    public void testSameOmitOneLiners() throws Exception {
+        checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputRightCurlySameForOneLiners.java"), expected);
     }
 
     @Test
@@ -125,10 +131,6 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
     @Test
     public void testForceLineBreakBefore2() throws Exception {
         final String[] expected = {
-            "24:33: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 33),
-            "32:44: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 44),
-            "32:63: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 63),
-            "52:48: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 48),
         };
         verify(checkConfig, getPath("InputRightCurlyLineBreakBefore.java"), expected);
     }

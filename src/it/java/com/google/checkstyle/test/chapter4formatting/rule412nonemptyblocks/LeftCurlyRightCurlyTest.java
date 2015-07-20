@@ -112,4 +112,17 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(newCheckConfig, filePath, expected, warnList);
     }
+
+    @Test
+    public void rightCurlyTestSame() throws Exception {
+        DefaultConfiguration newCheckConfig = createCheckConfig(RightCurlyCheck.class);
+        newCheckConfig.addAttribute("option", RightCurlyOption.SAME.toString());
+
+        final String[] expected = {
+        };
+
+        String filePath = builder.getFilePath("RightCurlyInputSame");
+        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        verify(newCheckConfig, filePath, expected, warnList);
+    }
 }
