@@ -184,13 +184,15 @@ public class JavadocTypeCheck
             if (cmt == null) {
                 log(lineNo, JAVADOC_MISSING);
             }
-            else if (ScopeUtils.isOuterMostType(ast)) {
-                // don't check author/version for inner classes
+            else {
                 final List<JavadocTag> tags = getJavadocTags(cmt);
-                checkTag(lineNo, tags, JavadocTagInfo.AUTHOR.getName(),
-                         authorFormatPattern, authorFormat);
-                checkTag(lineNo, tags, JavadocTagInfo.VERSION.getName(),
-                         versionFormatPattern, versionFormat);
+                if (ScopeUtils.isOuterMostType(ast)) {
+                    // don't check author/version for inner classes
+                    checkTag(lineNo, tags, JavadocTagInfo.AUTHOR.getName(),
+                            authorFormatPattern, authorFormat);
+                    checkTag(lineNo, tags, JavadocTagInfo.VERSION.getName(),
+                            versionFormatPattern, versionFormat);
+                }
 
                 final List<String> typeParamNames =
                     CheckUtils.getTypeParameterNames(ast);
