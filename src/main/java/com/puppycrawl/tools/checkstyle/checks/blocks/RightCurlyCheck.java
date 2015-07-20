@@ -78,6 +78,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * @author o_sukhodolsky
  * @author maxvetrenko
  * @author Andrei Selkin
+ * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  */
 public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
     /**
@@ -199,7 +200,8 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
         String violation = "";
 
         if (bracePolicy == RightCurlyOption.SAME
-                && !hasLineBreakBefore(rcurly)) {
+                && !hasLineBreakBefore(rcurly)
+                && lcurly.getLineNo() != rcurly.getLineNo()) {
             violation = MSG_KEY_LINE_BREAK_BEFORE;
         }
         else if (shouldCheckLastRcurly) {
