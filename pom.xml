@@ -1156,7 +1156,6 @@
             <regex><pattern>.*.checks.indentation.ElseHandler</pattern><branchRate>75</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.indentation.AbstractExpressionHandler</pattern><branchRate>91</branchRate><lineRate>97</lineRate></regex>
             <regex><pattern>.*.checks.indentation.HandlerFactory</pattern><branchRate>81</branchRate><lineRate>100</lineRate></regex>
-            <regex><pattern>.*.checks.indentation.LineWrappingHandler</pattern><branchRate>87</branchRate><lineRate>95</lineRate></regex>
             <regex><pattern>.*.checks.indentation.MethodCallLineWrapHandler</pattern><branchRate>0</branchRate><lineRate>0</lineRate></regex>
             <regex><pattern>.*.checks.indentation.MethodDefHandler</pattern><branchRate>87</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.indentation.ObjectBlockHandler</pattern><branchRate>75</branchRate><lineRate>100</lineRate></regex>

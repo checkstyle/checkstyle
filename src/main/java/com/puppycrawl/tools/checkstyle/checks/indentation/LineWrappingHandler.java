@@ -114,13 +114,6 @@ public class LineWrappingHandler {
                     || currentType == TokenTypes.ARRAY_INIT) {
                 logWarningMessage(node, firstNodeIndent);
             }
-            else if (currentType == TokenTypes.LITERAL_IF) {
-                final DetailAST parent = node.getParent();
-
-                if (parent.getType() == TokenTypes.LITERAL_ELSE) {
-                    logWarningMessage(parent, currentIndent);
-                }
-            }
             else {
                 logWarningMessage(node, currentIndent);
             }
@@ -175,8 +168,7 @@ public class LineWrappingHandler {
                 final DetailAST firstTokenOnLine = result.get(curNode.getLineNo());
 
                 if (firstTokenOnLine == null
-                        || firstTokenOnLine != null
-                        && firstTokenOnLine.getColumnNo() >= curNode.getColumnNo()) {
+                    || firstTokenOnLine.getColumnNo() >= curNode.getColumnNo()) {
                     result.put(curNode.getLineNo(), curNode);
                 }
                 curNode = getNextCurNode(curNode);
@@ -195,7 +187,7 @@ public class LineWrappingHandler {
         DetailAST nodeToVisit = curNode.getFirstChild();
         DetailAST currentNode = curNode;
 
-        while (currentNode != null && nodeToVisit == null) {
+        while (nodeToVisit == null) {
             nodeToVisit = currentNode.getNextSibling();
             if (nodeToVisit == null) {
                 currentNode = currentNode.getParent();
@@ -218,15 +210,13 @@ public class LineWrappingHandler {
         final Collection<DetailAST> values = firstNodesOnLines.values();
         final DetailAST lastAnnotationNode = getLastAnnotationNode(atNode);
         final int lastAnnotationLine = lastAnnotationNode.getLineNo();
-        final int lastAnnotattionColumn = lastAnnotationNode.getColumnNo();
 
         final Iterator<DetailAST> itr = values.iterator();
-        while (itr.hasNext() && firstNodesOnLines.size() > 1) {
+        while (firstNodesOnLines.size() > 1) {
             final DetailAST node = itr.next();
 
             if (node.getLineNo() < lastAnnotationLine
-                    || node.getLineNo() == lastAnnotationLine
-                    && node.getColumnNo() <= lastAnnotattionColumn) {
+                    || node.getLineNo() == lastAnnotationLine) {
                 final DetailAST parentNode = node.getParent();
                 if (node.getType() == TokenTypes.AT
                         && parentNode.getParent().getType() == TokenTypes.MODIFIERS) {
