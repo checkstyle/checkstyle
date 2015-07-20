@@ -112,6 +112,10 @@ public class InputValidArrayInitIndent { //indent:0 exp:0
         func1(new int[] { //indent:8 exp:8
                 1, 2, 3 //indent:16 exp:16
         }); //indent:8 exp:8
+        for (String veryLongVariableName: new String[] //indent:8 exp:8
+        {"this is text", "this is text"}) { //indent:8 exp:8
+            if (hashCode() == 0) break; //indent:12 exp:12
+        } //indent:8 exp:8
     } //indent:4 exp:4
 
 } //indent:0 exp:0
