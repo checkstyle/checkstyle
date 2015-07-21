@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck.MSG_KEY_EXT;
+import static org.junit.Assert.fail;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -205,5 +206,26 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
+    }
+
+    @Test
+    public void testDefaultConfiguration() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(VariableDeclarationUsageDistanceCheck.class);
+        final String[] expected = {
+            "71: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 3),
+            "219: " + getCheckMessage(MSG_KEY_EXT, "t", 5, 3),
+            "479: " + getCheckMessage(MSG_KEY_EXT, "myOption", 7, 3),
+            "491: " + getCheckMessage(MSG_KEY_EXT, "myOption", 6, 3),
+            "542: " + getCheckMessage(MSG_KEY_EXT, "parentId", 4, 3),
+        };
+
+        try {
+            createChecker(checkConfig);
+            verify(checkConfig, getPath("coding/InputVariableDeclarationUsageDistanceCheck.java"), expected);
+        }
+        catch (Exception ex) {
+            //Exception is not expected
+            fail();
+        }
     }
 }
