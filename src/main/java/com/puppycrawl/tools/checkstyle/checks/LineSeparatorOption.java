@@ -51,7 +51,7 @@ public enum LineSeparatorOption {
      * Creates a new <code>LineSeparatorOption</code> instance.
      * @param sep the line separator, e.g. "\r\n"
      */
-    private LineSeparatorOption(String sep) {
+    LineSeparatorOption(String sep) {
         lineSeparator = sep.getBytes(StandardCharsets.US_ASCII);
     }
 
