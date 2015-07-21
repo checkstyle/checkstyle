@@ -153,13 +153,33 @@ public class MainTest {
                 "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 
+    /**
+     * Get canonical path of the file with drive letter
+     * in lowercase.
+     * Problem with using File method getCanonicalPath
+     * is that Checker when process files
+     * use File method getAbsolutePath to obtain their path
+     * ,which on Windows 8.1 returns drive letter in lowercase.
+     * On the other hand File method getCanonicalPath returns
+     * drive letter in uppercase ,what makes assertion fails with
+     * difference in drive letter case. To overcome this , this method
+     * normalize output of getAbsoluteFile which result is same as
+     * using File method getCanonicalPath but with lowercase drive
+     * letter.
+     * @param file file to get a canonical path
+     * @return canonical path of a file
+     */
+    private String getCanonicalPath(File file) {
+        return file.getAbsoluteFile().toPath().normalize().toString();
+    }
+
     @Test
     public void testExistingTargetFileXmlOutput()
             throws Exception {
         exit.expectSystemExitWithStatus(0);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() throws IOException {
-                String currentPath = new File(".").getCanonicalPath();
+                String currentPath = getCanonicalPath(new File("."));
                 String expectedPath = currentPath
                         + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
                         .replace("/", File.separator);
@@ -203,7 +223,7 @@ public class MainTest {
         exit.expectSystemExitWithStatus(0);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() throws IOException {
-                String currentPath = new File(".").getCanonicalPath();
+                String currentPath = getCanonicalPath(new File("."));
                 String expectedPath = currentPath
                     + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
                     .replace("/", File.separator);
@@ -227,7 +247,7 @@ public class MainTest {
         exit.expectSystemExitWithStatus(2);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() throws IOException {
-                String currentPath = new File(".").getCanonicalPath();
+                String currentPath = getCanonicalPath(new File("."));
                 String expectedPath = currentPath
                     + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
                     .replace("/", File.separator);
