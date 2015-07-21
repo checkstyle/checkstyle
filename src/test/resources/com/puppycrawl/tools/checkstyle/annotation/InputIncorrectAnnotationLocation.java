@@ -3,7 +3,7 @@ package com.puppycrawl.tools.checkstyle.annotation;
 
 
 
-@MyAnnotation2 @MyAnnotation1 //warn
+@MyAnnotation2 @com.puppycrawl.tools.checkstyle.annotation.MyAnnotation1 //warn
 (value = "")
 class InputIncorrectAnnotationLocation
 {
