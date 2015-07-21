@@ -28,9 +28,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks for redundant modifiers in interface and annotation definitions.
- * Also checks for redundant final modifiers on methods of final classes.
+ * Also checks for redundant final modifiers on methods of final classes
+ * and redundant enum constructor modifier.
  *
  * @author lkuehne
+ * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  */
 public class RedundantModifierCheck
     extends Check {
@@ -56,6 +58,7 @@ public class RedundantModifierCheck
             TokenTypes.VARIABLE_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
             TokenTypes.INTERFACE_DEF,
+            TokenTypes.CTOR_DEF,
         };
     }
 
@@ -71,29 +74,55 @@ public class RedundantModifierCheck
             TokenTypes.VARIABLE_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
             TokenTypes.INTERFACE_DEF,
+            TokenTypes.CTOR_DEF,
         };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         if (TokenTypes.INTERFACE_DEF == ast.getType()) {
-            final DetailAST modifiers =
-                ast.findFirstToken(TokenTypes.MODIFIERS);
-
-            for (final int tokenType : TOKENS_FOR_INTERFACE_MODIFIERS) {
-                final DetailAST modifier =
-                        modifiers.findFirstToken(tokenType);
-                if (modifier != null) {
-                    log(modifier.getLineNo(), modifier.getColumnNo(),
-                            MSG_KEY, modifier.getText());
-                }
-            }
+            checkInterfaceModifiers(ast);
+        }
+        else if (TokenTypes.CTOR_DEF == ast.getType()
+                && isEnumMember(ast)) {
+            checkEnumConstructorModifiers(ast);
         }
         else if (isInterfaceOrAnnotationMember(ast)) {
             processInterfaceOrAnnotation(ast);
         }
         else if (ast.getType() == TokenTypes.METHOD_DEF) {
             processMethods(ast);
+        }
+    }
+
+    /**
+     * Checks if interface has proper modifiers
+     * @param ast interface to check
+     */
+    private void checkInterfaceModifiers(DetailAST ast) {
+        final DetailAST modifiers =
+            ast.findFirstToken(TokenTypes.MODIFIERS);
+
+        for (final int tokenType : TOKENS_FOR_INTERFACE_MODIFIERS) {
+            final DetailAST modifier =
+                    modifiers.findFirstToken(tokenType);
+            if (modifier != null) {
+                log(modifier.getLineNo(), modifier.getColumnNo(),
+                        MSG_KEY, modifier.getText());
+            }
+        }
+    }
+
+    /**
+     * Check if enum constructor has proper modifiers
+     * @param ast constructor of enum
+     */
+    private void checkEnumConstructorModifiers(DetailAST ast) {
+        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modifier = modifiers.getFirstChild();
+        if (modifier != null) {
+            log(modifier.getLineNo(), modifier.getColumnNo(),
+                    MSG_KEY, modifier.getText());
         }
     }
 
@@ -159,6 +188,16 @@ public class RedundantModifierCheck
                 modifier = modifier.getNextSibling();
             }
         }
+    }
+
+    /**
+     * Checks if current AST node is member of Enum
+     * @param ast AST node
+     * @return true if it is an enum member
+     */
+    private boolean isEnumMember(DetailAST ast) {
+        final DetailAST parentTypeDef = ast.getParent().getParent();
+        return parentTypeDef.getType() == TokenTypes.ENUM_DEF;
     }
 
     /**
