@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck.MSG_KEY;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 
@@ -104,4 +105,25 @@ public class MultipleStringLiteralsCheckTest extends BaseCheckTestSupport {
         Assert.assertNotNull(check.getRequiredTokens());
     }
 
+    @Test
+    public void testDefaultConfiguration() throws Exception {
+        DefaultConfiguration checkConfig =
+            createCheckConfig(MultipleStringLiteralsCheck.class);
+        final String[] expected = {
+            "5:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+            "7:17: " + getCheckMessage(MSG_KEY, "\"DoubleString\"", 2),
+            "10:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
+        };
+
+        try {
+            createChecker(checkConfig);
+            verify(checkConfig,
+                getPath("coding" + File.separator + "InputMultipleStringLiterals.java"),
+                expected);
+        }
+        catch (Exception ex) {
+            // Exception is not expected
+            fail();
+        }
+    }
 }
