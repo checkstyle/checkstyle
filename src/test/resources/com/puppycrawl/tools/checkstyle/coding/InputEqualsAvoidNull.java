@@ -228,3 +228,13 @@ class MyString {
         myString.equals(this.pizza = "cold pizza");
     }
 }
+
+class SomeClass {
+    public static String staticTest = "";
+    public String fieldTest = "";
+
+    public void foo() {
+        SomeClass.staticTest.equals("123");
+        this.fieldTest.equals("123");
+    }
+}

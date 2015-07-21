@@ -64,6 +64,8 @@ public class EqualsAvoidNullCheckTest extends BaseCheckTestSupport {
             "79:27: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
             "225:24: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "227:34: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "237:36: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "238:30: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputEqualsAvoidNull.java"), expected);
     }
@@ -88,6 +90,8 @@ public class EqualsAvoidNullCheckTest extends BaseCheckTestSupport {
             "65:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "67:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "225:24: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "237:36: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "238:30: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputEqualsAvoidNull.java"), expected);
     }

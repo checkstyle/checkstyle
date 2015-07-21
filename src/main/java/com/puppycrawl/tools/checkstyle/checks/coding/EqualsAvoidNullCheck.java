@@ -124,13 +124,12 @@ public class EqualsAvoidNullCheck extends Check {
             return;
         }
 
-        final DetailAST objCalledOn = dot.getFirstChild();
+        final DetailAST objCalledOn = findObjectCalledOn(dot);
         if (isStringLiteral(objCalledOn)) {
             return;
         }
 
-
-        final DetailAST method = objCalledOn.getNextSibling();
+        final DetailAST method = dot.getFirstChild().getNextSibling();
         final DetailAST expr = dot.getNextSibling().getFirstChild();
 
         if ("equals".equals(method.getText())
@@ -148,6 +147,19 @@ public class EqualsAvoidNullCheck extends Check {
     }
 
     /**
+     * Finds the object which the method is called on.
+     * @param dot DOT ast.
+     * @return the object which the method is called on.
+     */
+    private static DetailAST findObjectCalledOn(DetailAST dot) {
+        DetailAST objCalledOn = dot.getFirstChild();
+        if (objCalledOn.getType() == TokenTypes.DOT) {
+            objCalledOn = objCalledOn.getLastChild();
+        }
+        return objCalledOn;
+    }
+
+    /**
      * Verify that method call has one argument.
      *
      * @param methodCall METHOD_CALL DetailAST
@@ -161,16 +173,12 @@ public class EqualsAvoidNullCheck extends Check {
     /**
      * checks for calling equals on String literal and
      * anon object which cannot be null
-     * Also, checks if calling using strange inner class
-     * syntax outter.inner.equals(otherObj) by looking
-     * for the dot operator which cannot be improved
      * @param objCalledOn object AST
      * @return if it is string literal
      */
     private static boolean isStringLiteral(DetailAST objCalledOn) {
         return objCalledOn.getType() == TokenTypes.STRING_LITERAL
-                || objCalledOn.getType() == TokenTypes.LITERAL_NEW
-                || objCalledOn.getType() == TokenTypes.DOT;
+                || objCalledOn.getType() == TokenTypes.LITERAL_NEW;
     }
 
     /**
