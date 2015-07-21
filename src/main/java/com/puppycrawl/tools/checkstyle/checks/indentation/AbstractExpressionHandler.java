@@ -196,8 +196,7 @@ public abstract class AbstractExpressionHandler {
      * @return true if they are, false otherwise
      */
     static boolean areOnSameLine(DetailAST ast1, DetailAST ast2) {
-        return ast1 != null && ast2 != null
-            && ast1.getLineNo() == ast2.getLineNo();
+        return ast1.getLineNo() == ast2.getLineNo();
     }
 
     /**
@@ -212,9 +211,7 @@ public abstract class AbstractExpressionHandler {
 
         while (child != null) {
             final DetailAST toTest = getFirstToken(child);
-            if (toTest.getLineNo() < first.getLineNo()
-                || toTest.getLineNo() == first.getLineNo()
-                    && toTest.getColumnNo() < first.getColumnNo()) {
+            if (toTest.getColumnNo() < first.getColumnNo()) {
                 first = toTest;
             }
             child = child.getNextSibling();
@@ -364,15 +361,12 @@ public abstract class AbstractExpressionHandler {
      * @return the start of the specified line
      */
     protected final int getLineStart(String line) {
-        for (int start = 0; start < line.length(); start++) {
-            final char c = line.charAt(start);
-
-            if (!Character.isWhitespace(c)) {
-                return Utils.lengthExpandedTabs(
-                    line, start, indentCheck.getIndentationTabWidth());
-            }
+        int index = 0;
+        while (Character.isWhitespace(line.charAt(index))) {
+            index++;
         }
-        return 0;
+        return Utils.lengthExpandedTabs(
+            line, index, indentCheck.getIndentationTabWidth());
     }
 
     /**
@@ -476,8 +470,7 @@ public abstract class AbstractExpressionHandler {
      */
     protected final void findSubtreeLines(LineSet lines, DetailAST tree,
         boolean allowNesting) {
-        if (getIndentCheck().getHandlerFactory().isHandledType(tree.getType())
-            || tree.getLineNo() < 0) {
+        if (getIndentCheck().getHandlerFactory().isHandledType(tree.getType())) {
             return;
         }
 
