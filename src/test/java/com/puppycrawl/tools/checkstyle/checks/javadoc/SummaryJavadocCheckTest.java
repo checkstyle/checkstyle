@@ -27,6 +27,7 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck
 .SUMMARY_FIRST_SENTENCE;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.SUMMARY_JAVADOC;
+import static org.junit.Assert.fail;
 
 public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
@@ -80,5 +81,24 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig, getPath("javadoc/InputSummaryJavadocCheckNoPeriod.java"), expected);
+    }
+
+    @Test
+    public void testDefaultConfiguration() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
+            "37: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
+            "69: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
+            "103: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
+        };
+
+        try {
+            createChecker(checkConfig);
+            verify(checkConfig, getPath("javadoc/InputIncorrectSummaryJavaDocCheck.java"), expected);
+        }
+        catch (Exception ex) {
+            //Exception is not expected
+            fail();
+        }
     }
 }
