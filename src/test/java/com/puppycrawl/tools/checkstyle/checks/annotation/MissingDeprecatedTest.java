@@ -116,4 +116,31 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
 
         verify(checkConfig, getPath("annotation" + File.separator + "GoodDeprecated.java"), expected);
     }
+
+    @Test
+    public void testTwoInJavadocWithoutAnnotation() throws Exception {
+
+        DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
+
+        final String[] expected = {
+            "7: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
+            "8: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "12: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+        };
+
+        verify(checkConfig, getPath("annotation" + File.separator + "InputMissingDeprecatedCheckTest1.java"), expected);
+    }
+
+    @Test
+    public void testEmptyJavadocLine() throws Exception {
+
+        DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
+
+        final String[] expected = {
+            "7: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
+            "11: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+        };
+
+        verify(checkConfig, getPath("annotation" + File.separator + "InputMissingDeprecatedCheckTest2.java"), expected);
+    }
 }
