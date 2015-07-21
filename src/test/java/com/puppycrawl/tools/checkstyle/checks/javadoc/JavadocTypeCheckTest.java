@@ -324,6 +324,17 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testTypeParametersInInnerClass() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(JavadocTypeCheck.class);
+        final String[] expected = {
+            "13:8: " + getCheckMessage(UNUSED_TAG, "@param", "<C>"),
+            "15: " + getCheckMessage(MISSING_TAG, "@param <B>"),
+        };
+        verify(checkConfig, getPath("InputTypeParamsTagsInnerClass.java"), expected);
+    }
+
+    @Test
     public void testAllowMissingTypeParameters() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
