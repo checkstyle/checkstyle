@@ -115,36 +115,11 @@ public class WhitespaceAfterCheck
         boolean followedByWhitespace = true;
 
         if (after < line.length()) {
-
             final char charAfter = line.charAt(after);
-            if (targetAST.getType() == TokenTypes.SEMI
-                && (charAfter == ';' || charAfter == ')')) {
-                followedByWhitespace = true;
-            }
-            else if (!Character.isWhitespace(charAfter) && !isEmptyForIterator(targetAST)) {
-                followedByWhitespace = false;
-            }
+            followedByWhitespace = Character.isWhitespace(charAfter)
+                || targetAST.getType() == TokenTypes.SEMI
+                    && (charAfter == ';' || charAfter == ')');
         }
-
         return followedByWhitespace;
-    }
-
-    /**
-     * check for empty FOR_ITERATOR.
-     * @param targetAST Ast token.
-     * @return true if iterator is empty.
-     */
-    private static boolean isEmptyForIterator(DetailAST targetAST) {
-
-        if (targetAST.getType() == TokenTypes.SEMI) {
-            final DetailAST sibling =
-                targetAST.getNextSibling();
-            if (sibling != null
-                && sibling.getType() == TokenTypes.FOR_ITERATOR
-                && sibling.getChildCount() == 0) {
-                return true;
-            }
-        }
-        return false;
     }
 }
