@@ -25,6 +25,7 @@ import java.text.NumberFormat;
 import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck.MSG_KEY;
+import static org.junit.Assert.fail;
 
 public class NPathComplexityCheckTest extends BaseCheckTestSupport {
     @Test
@@ -65,5 +66,22 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig, getPath("ComplexityOverflow.java"), expected);
+    }
+
+    @Test
+    public void testDefaultConfiguration() throws Exception {
+        DefaultConfiguration checkConfig =
+            createCheckConfig(NPathComplexityCheck.class);
+        String[] expected = {
+        };
+
+        try {
+            createChecker(checkConfig);
+            verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
+        }
+        catch (Exception ex) {
+            // Exception is not expected
+            fail();
+        }
     }
 }
