@@ -59,3 +59,19 @@ class goodCase<T extends Foo & Bar> {
 interface Bar {
 	
 }
+
+class Switch {
+    public void test(int i, int j) {
+        switch(j) {
+        case 7:
+            return;
+        }
+        switch(i) {
+        case 1:
+            break;
+        default:
+            ;
+        }
+        for (int k : new int[]{1,2,3}) {}
+    }
+}
