@@ -83,6 +83,16 @@ public class RedundantModifierTest
     }
 
     @Test
+    public void testEnumConstructorIsImplicitlyPrivate() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RedundantModifierCheck.class);
+        final String[] expected = {
+            "10:5: " + getCheckMessage(MSG_KEY, "private"),
+        };
+        verify(checkConfig, getPath("InputRedundantConstructorModifier.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
         int[] actual = redundantModifierCheckObj.getAcceptableTokens();
@@ -91,6 +101,7 @@ public class RedundantModifierTest
             TokenTypes.VARIABLE_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
             TokenTypes.INTERFACE_DEF,
+            TokenTypes.CTOR_DEF,
         };
         Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);

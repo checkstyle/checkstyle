@@ -433,7 +433,7 @@ public enum JavadocTagInfo {
      * @param name the tag name
      * @param type the type of tag
      */
-    private JavadocTagInfo(final String text, final String name,
+    JavadocTagInfo(final String text, final String name,
         final Type type) {
         this.text = text;
         this.name = name;
