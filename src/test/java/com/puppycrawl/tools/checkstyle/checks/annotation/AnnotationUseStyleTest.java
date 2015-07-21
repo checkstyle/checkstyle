@@ -27,10 +27,14 @@ import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseSty
 
 import java.io.File;
 
+import org.apache.commons.beanutils.ConversionException;
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 
 public class AnnotationUseStyleTest extends BaseCheckTestSupport {
     /**
@@ -211,4 +215,41 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport {
 
         verify(checkConfig, getPath("annotation" + File.separator + "AnnotationsUseStyleParams.java"), expected);
     }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        AnnotationUseStyleCheck constantNameCheckObj = new AnnotationUseStyleCheck();
+        int[] actual = constantNameCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {TokenTypes.ANNOTATION };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetOption() throws Exception {
+        AnnotationUseStyleCheck check = new AnnotationUseStyleCheck();
+        try {
+            check.setElementStyle("SHOULD_PRODUCE_ERROR");
+        }
+        catch (ConversionException ex) {
+            ex.getMessage().startsWith("unable to parse");
+            return;
+        }
+
+        Assert.fail();
+    }
+
+    @Test
+    public void testStyleNotInList() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(AnnotationUseStyleCheck.class);
+        checkConfig.addAttribute("closingParens", "ignore");
+        checkConfig.addAttribute("elementStyle", "COMPACT_NO_ARRAY");
+        checkConfig.addAttribute("trailingArrayComma", "ignore");
+        final String[] expected = {
+        };
+
+        verify(checkConfig, getPath("annotation" + File.separator + "InputAnnotationUseStyleCheckTest.java"), expected);
+
+    }
+
 }

@@ -258,19 +258,25 @@ public final class AnnotationUseStyleCheck extends Check {
      * @param annotation the annotation token
      */
     private void checkStyleType(final DetailAST annotation) {
-        if (ElementStyle.IGNORE == this.style
-            || this.style == null) {
-            return;
-        }
 
-        if (ElementStyle.COMPACT_NO_ARRAY == this.style) {
-            this.checkCompactNoArrayStyle(annotation);
-        }
-        else if (ElementStyle.COMPACT == this.style) {
-            this.checkCompactStyle(annotation);
-        }
-        else if (ElementStyle.EXPANDED == this.style) {
-            this.checkExpandedStyle(annotation);
+        switch (this.style) {
+
+            case COMPACT_NO_ARRAY: {
+                checkCompactNoArrayStyle(annotation);
+                break;
+            }
+
+            case COMPACT: {
+                checkCompactStyle(annotation);
+                break;
+            }
+
+            case EXPANDED: {
+                checkExpandedStyle(annotation);
+                break;
+            }
+            default:
+                break;
         }
     }
 
@@ -356,8 +362,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @param annotation the annotation token
      */
     private void checkTrailingComma(final DetailAST annotation) {
-        if (TrailingArrayComma.IGNORE == this.comma
-            || this.comma == null) {
+        if (TrailingArrayComma.IGNORE == this.comma) {
             return;
         }
 
@@ -413,8 +418,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @param ast the annotation token
      */
     private void checkCheckClosingParens(final DetailAST ast) {
-        if (ClosingParens.IGNORE == this.parens
-            || this.parens == null) {
+        if (ClosingParens.IGNORE == this.parens) {
             return;
         }
 
