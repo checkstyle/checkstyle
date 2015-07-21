@@ -271,7 +271,7 @@ public class AnnotationLocationCheck extends Check {
             nextNode = annotation.getParent().getNextSibling();
         }
 
-        return nextNode != null && annotationLineNo == nextNode.getLineNo();
+        return annotationLineNo == nextNode.getLineNo();
     }
 
     /**
