@@ -26,6 +26,7 @@ import org.junit.Test;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck
 .MSG_KEY;
+import static org.junit.Assert.fail;
 
 public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport {
     @Test
@@ -45,5 +46,24 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
         verify(checkConfig,
                getPath("metrics" + File.separator + "ClassCouplingCheckTestInput.java"),
                expected);
+    }
+
+    @Test
+    public void testDefaultConfiguration() throws Exception {
+        DefaultConfiguration checkConfig =
+            createCheckConfig(ClassDataAbstractionCouplingCheck.class);
+        String[] expected = {
+        };
+
+        try {
+            createChecker(checkConfig);
+            verify(checkConfig,
+                getPath("metrics" + File.separator + "ClassCouplingCheckTestInput.java"),
+                expected);
+        }
+        catch (Exception ex) {
+            //Exception is not expected
+            fail();
+        }
     }
 }
