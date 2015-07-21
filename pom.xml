@@ -1156,8 +1156,6 @@
 
             <regex><pattern>.*.checks.whitespace.AbstractParenPadCheck</pattern><branchRate>88</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.whitespace.NoWhitespaceAfterCheck</pattern><branchRate>94</branchRate><lineRate>98</lineRate></regex>
-            <regex><pattern>.*.checks.whitespace.NoWhitespaceBeforeCheck</pattern><branchRate>90</branchRate><lineRate>100</lineRate></regex>
-
 
             <regex><pattern>.*.filters.SuppressionCommentFilter</pattern><branchRate>83</branchRate><lineRate>93</lineRate></regex>
             <regex><pattern>.*.filters.SuppressionCommentFilter\$Tag</pattern><branchRate>96</branchRate><lineRate>94</lineRate></regex>

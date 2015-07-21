@@ -47,6 +47,8 @@ public class NoWhitespaceBeforeCheckTest
             "187:27: " + getCheckMessage(MSG_KEY, ";"),
             "195:26: " + getCheckMessage(MSG_KEY, ";"),
             "211:15: " + getCheckMessage(MSG_KEY, ";"),
+            "266:1: " + getCheckMessage(MSG_KEY, ";"),
+            "270:15: " + getCheckMessage(MSG_KEY, ";"),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
@@ -60,6 +62,7 @@ public class NoWhitespaceBeforeCheckTest
             "129:17: " + getCheckMessage(MSG_KEY, "."),
             "135:12: " + getCheckMessage(MSG_KEY, "."),
             "136:10: " + getCheckMessage(MSG_KEY, "."),
+            "264:1: " + getCheckMessage(MSG_KEY, "."),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
