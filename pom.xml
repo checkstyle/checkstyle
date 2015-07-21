@@ -1115,7 +1115,6 @@
             <regex><pattern>.*.checks.UniquePropertiesCheck\$.*</pattern><branchRate>75</branchRate><lineRate>90</lineRate></regex>
 
 
-            <regex><pattern>.*.checks.annotation.AnnotationLocationCheck</pattern><branchRate>75</branchRate><lineRate>78</lineRate></regex>
             <regex><pattern>.*.checks.annotation.AnnotationUseStyleCheck</pattern><branchRate>93</branchRate><lineRate>96</lineRate></regex>
             <regex><pattern>.*.checks.annotation.MissingDeprecatedCheck</pattern><branchRate>92</branchRate><lineRate>96</lineRate></regex>
             <regex><pattern>.*.checks.annotation.SuppressWarningsCheck</pattern><branchRate>79</branchRate><lineRate>96</lineRate></regex>
