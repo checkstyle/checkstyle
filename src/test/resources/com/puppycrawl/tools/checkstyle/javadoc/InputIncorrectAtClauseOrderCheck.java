@@ -1,5 +1,5 @@
 package com.puppycrawl.tools.checkstyle.javadoc;
-
+/** Javadoc for import */
 import java.io.Serializable;
 
 /**
@@ -287,4 +287,9 @@ enum Foo4 {}
  * @serialData Some javadoc.
  * @author max //warn
  */
-interface FooIn {}
+interface FooIn {
+    /**
+     * @value tag without specified order by default
+     */
+    int CONSTANT = 0;
+}
