@@ -260,5 +260,13 @@ class SpecialCasesInForLoop
                 public void run() {
                 }
             }};
+        runs[0]
+.
+ run()
+;
+    }
+
+    public void testNullSemi() {
+        return ;
     }
 }
