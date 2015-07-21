@@ -27,6 +27,7 @@ import org.junit.Test;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_CLASS;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_FILE;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_METHOD;
+import static org.junit.Assert.fail;
 
 /**
  * Testcase for the JavaNCSS-Check.
@@ -57,5 +58,22 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
 
         verify(checkConfig, getPath("metrics" + File.separator
                 + "JavaNCSSCheckTestInput.java"), expected);
+    }
+
+    @Test
+    public void testDefaultConfiguration() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(JavaNCSSCheck.class);
+        String[] expected = {
+        };
+
+        try {
+            createChecker(checkConfig);
+            verify(checkConfig, getPath("metrics" + File.separator
+                + "JavaNCSSCheckTestInput.java"), expected);
+        }
+        catch (Exception ex) {
+            // Exception is not expected
+            fail();
+        }
     }
 }
