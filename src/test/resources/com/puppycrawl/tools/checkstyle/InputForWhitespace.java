@@ -50,5 +50,9 @@ class InputForWhitespace
 
         for (; i < 2; i++ ) {
         }
+
+        for (
+        ;; ) {
+        }
     }
 }
