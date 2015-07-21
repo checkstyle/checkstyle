@@ -22,11 +22,13 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck.MSG_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck.MSG_PRECEDED;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class EmptyForInitializerPadCheckTest
     extends BaseCheckTestSupport {
@@ -52,5 +54,16 @@ public class EmptyForInitializerPadCheckTest
             "51:13: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
         };
         verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        EmptyForInitializerPadCheck emptyForInitializerPadCheckObj = new EmptyForInitializerPadCheck();
+        int[] actual = emptyForInitializerPadCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.FOR_INIT,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 }

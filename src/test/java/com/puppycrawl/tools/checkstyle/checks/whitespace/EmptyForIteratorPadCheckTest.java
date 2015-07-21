@@ -44,6 +44,7 @@ public class EmptyForIteratorPadCheckTest
         final String[] expected = {
             "27:31: " + getCheckMessage(WS_FOLLOWED, ";"),
             "43:32: " + getCheckMessage(WS_FOLLOWED, ";"),
+            "55:11: " + getCheckMessage(WS_FOLLOWED, ";"),
         };
         verify(checkConfig, getPath("InputForWhitespace.java"), expected);
     }
