@@ -36,6 +36,7 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCh
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_ORDER;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
     /**
@@ -421,4 +422,21 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
                 + "InputCustomImportOrder_NoImports.java").getCanonicalPath(), expected);
     }
 
+    @Test
+    public void testDefaultConfiguration() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(CustomImportOrderCheck.class);
+        String[] expected = {
+        };
+
+        try {
+            createChecker(checkConfig);
+            verify(checkConfig, getPath("imports" + File.separator
+                + "InputCustomImportOrder.java"), expected);
+        }
+        catch (Exception ex) {
+            // Exception is not expected
+            fail();
+        }
+    }
 }
