@@ -131,5 +131,10 @@ class InputCorrectSummaryJavaDocCheck {
          * @return Some Javadoc the customer ID.
          */
         int geId() {return 666;} 
+        
+        /**
+         * @return Sentence one. Sentence two.
+         */
+        String twoSentences() {return "Sentence one. Sentence two.";} 
     };
 }
