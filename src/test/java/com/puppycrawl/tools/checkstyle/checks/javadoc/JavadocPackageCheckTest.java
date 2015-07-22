@@ -24,6 +24,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import org.junit.Test;
 
+import java.io.File;
+
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck.MSG_LEGACY_PACKAGE_HTML;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck.MSG_PACKAGE_INFO;
 
@@ -47,6 +49,35 @@ public class JavadocPackageCheckTest
             createChecker(checkConfig),
             getSrcPath("checks/javadoc/BadCls.java"),
             getSrcPath("checks/javadoc/BadCls.java"),
+            expected);
+    }
+
+    @Test
+    public void testMissingWithAllowLegacy() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
+        checkConfig.addAttribute("allowLegacy", "true");
+        final String[] expected = {
+            "0: " + getCheckMessage(MSG_PACKAGE_INFO),
+        };
+        verify(
+            createChecker(checkConfig),
+            getSrcPath("checks/javadoc/BadCls.java"),
+            getSrcPath("checks/javadoc/BadCls.java"),
+            expected);
+    }
+
+    @Test
+    public void testWithMultipleFiles() throws Exception {
+        final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
+        final String path1 = getPath("javadoc/InputNoJavadoc.java");
+        final String path2 = getPath("javadoc/InputBadTag.java");
+        final String[] expected = {
+            "0: " + getCheckMessage(MSG_PACKAGE_INFO),
+        };
+        verify(
+            createChecker(checkConfig),
+            new File[] {new File(path1), new File(path2)},
+            path1,
             expected);
     }
 
