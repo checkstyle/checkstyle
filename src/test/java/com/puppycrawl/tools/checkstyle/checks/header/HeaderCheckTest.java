@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
+import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISMATCH;
+import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISSING;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -29,9 +31,6 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-
-import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISMATCH;
-import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISSING;
 
 public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Test

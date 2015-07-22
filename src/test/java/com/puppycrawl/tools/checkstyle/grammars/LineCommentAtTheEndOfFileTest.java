@@ -19,10 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.grammars;
 
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
-import org.junit.Test;
 
 /**
  * Checks that file can be parsed, when it ends on line-comment but without

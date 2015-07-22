@@ -21,13 +21,13 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck.MSG_KEY;
 
+import java.io.File;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
-import java.io.File;
 
 public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
     @Test

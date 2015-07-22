@@ -19,11 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import java.io.File;
 import java.util.List;
 import java.util.Set;
+
+import com.google.common.collect.Sets;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 
 /**
  * Checks that all packages have a package documentation. See the documentation

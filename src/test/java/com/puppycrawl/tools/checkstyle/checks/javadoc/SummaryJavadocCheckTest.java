@@ -19,15 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.SUMMARY_FIRST_SENTENCE;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.SUMMARY_JAVADOC;
+import static org.junit.Assert.fail;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck
-.SUMMARY_FIRST_SENTENCE;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.SUMMARY_JAVADOC;
-import static org.junit.Assert.fail;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;

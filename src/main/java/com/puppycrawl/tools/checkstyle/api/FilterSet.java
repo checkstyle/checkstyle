@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import com.google.common.collect.Sets;
-
 import java.util.Objects;
 import java.util.Set;
+
+import com.google.common.collect.Sets;
 
 /**
  * A filter set applies filters to AuditEvents.

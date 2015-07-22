@@ -19,8 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.google.common.collect.Lists;
 import java.util.List;
+
+import com.google.common.collect.Lists;
 
 /**
  * <p>

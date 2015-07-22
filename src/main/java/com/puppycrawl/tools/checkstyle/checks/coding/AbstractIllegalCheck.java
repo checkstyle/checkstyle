@@ -19,9 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.Set;
+
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
-import java.util.Set;
 
 /**
  * Support for checks that look for usage of illegal types.

@@ -19,16 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import com.google.common.collect.ImmutableMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Default implementation of the Configuration interface.

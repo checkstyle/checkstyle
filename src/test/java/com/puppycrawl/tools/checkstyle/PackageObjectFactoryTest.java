@@ -23,10 +23,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import java.util.HashSet;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
-import java.util.HashSet;
-import org.junit.Test;
 
 /**
  * Enter a description of class PackageObjectFactoryTest.java.

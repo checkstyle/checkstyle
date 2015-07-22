@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
+import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
     private DefaultConfiguration checkConfig;

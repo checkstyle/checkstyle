@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Represents a full identifier, including dots, with associated

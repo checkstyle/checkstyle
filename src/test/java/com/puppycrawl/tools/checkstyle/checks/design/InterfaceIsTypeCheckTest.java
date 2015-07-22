@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import static com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import org.junit.Test;
-
-import static com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
 
 public class InterfaceIsTypeCheckTest
     extends BaseCheckTestSupport {

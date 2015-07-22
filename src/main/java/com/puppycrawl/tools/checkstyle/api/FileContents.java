@@ -19,17 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import com.google.common.collect.ImmutableMap;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.puppycrawl.tools.checkstyle.grammars.CommentListener;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.puppycrawl.tools.checkstyle.grammars.CommentListener;
 
 /**
  * Represents the contents of a file.

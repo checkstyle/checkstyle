@@ -33,11 +33,11 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import antlr.CommonHiddenStreamToken;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(ImportOrderOption.class)

@@ -19,8 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class PropertiesExpanderTest {
 

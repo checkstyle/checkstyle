@@ -19,13 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import com.google.common.collect.ImmutableList;
+import java.util.Map;
 
 import com.google.common.collect.ImmutableCollection;
-
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.Context;
-import java.util.Map;
 
 /**
  * A default implementation of the Context interface.

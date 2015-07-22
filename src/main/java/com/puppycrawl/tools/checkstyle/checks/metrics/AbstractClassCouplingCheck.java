@@ -19,6 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Set;
+
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
@@ -26,9 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Set;
 
 /**
  * Base class for coupling calculation.

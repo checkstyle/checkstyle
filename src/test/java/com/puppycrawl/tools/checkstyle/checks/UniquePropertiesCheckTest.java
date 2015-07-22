@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.IO_EXCEPTION_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_KEY;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -35,9 +38,6 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-
-import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.IO_EXCEPTION_KEY;
-import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_KEY;
 
 /**
  * JUnit tests for Unique Properties check.

@@ -23,10 +23,11 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.SortedSet;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 /**
  * Tests to ensure that default messagebundle is determined correctly.

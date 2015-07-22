@@ -19,19 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
+import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_ANNOTATION_ORDER;
+import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_MODIFIER_ORDER;
+
 import java.io.File;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
-import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck
-.MSG_ANNOTATION_ORDER;
-import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck
-.MSG_MODIFIER_ORDER;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ModifierOrderCheckTest
     extends BaseCheckTestSupport {

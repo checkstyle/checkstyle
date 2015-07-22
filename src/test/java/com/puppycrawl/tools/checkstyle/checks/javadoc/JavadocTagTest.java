@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 public class JavadocTagTest {
     @Test

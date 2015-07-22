@@ -19,18 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import java.util.Arrays;
-
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import org.apache.commons.beanutils.ConversionException;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.collect.Lists;
-import org.apache.commons.lang3.StringUtils;
+import com.puppycrawl.tools.checkstyle.Utils;
 
 /**
  * Checks the header of the source against a header file that contains a

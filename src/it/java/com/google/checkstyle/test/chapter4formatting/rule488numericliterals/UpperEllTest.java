@@ -6,10 +6,10 @@ import java.io.IOException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Configuration; 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class UpperEllTest extends BaseCheckTestSupport{
     

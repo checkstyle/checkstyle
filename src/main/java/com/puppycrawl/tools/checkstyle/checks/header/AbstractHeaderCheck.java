@@ -35,14 +35,14 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import com.google.common.io.Closeables;
 import org.apache.commons.beanutils.ConversionException;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * Abstract super class for header checks.

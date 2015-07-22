@@ -19,24 +19,26 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.MISSING_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.TAG_FORMAT;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.WRITE_TAG;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import com.google.common.collect.Lists;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.util.Collections;
 import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.MISSING_TAG;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.TAG_FORMAT;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.WRITE_TAG;
+import com.google.common.collect.Lists;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 /**
  * @author Daniel Grenner

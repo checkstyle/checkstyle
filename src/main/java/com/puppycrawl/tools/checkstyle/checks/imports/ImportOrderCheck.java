@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * <ul>

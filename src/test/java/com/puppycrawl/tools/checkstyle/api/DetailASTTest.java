@@ -21,11 +21,14 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import com.puppycrawl.tools.checkstyle.TreeWalker;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.text.MessageFormat;
+
 import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.TreeWalker;
 
 /**
  * TestCase to check DetailAST.

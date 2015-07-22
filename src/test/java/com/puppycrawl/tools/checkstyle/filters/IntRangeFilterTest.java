@@ -23,8 +23,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.Test;
+
+import nl.jqno.equalsverifier.EqualsVerifier;
 
 /** Tests IntRangeFilter */
 public class IntRangeFilterTest {

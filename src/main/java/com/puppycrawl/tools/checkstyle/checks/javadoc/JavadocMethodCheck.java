@@ -19,22 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import antlr.collections.AST;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
-import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
-import com.puppycrawl.tools.checkstyle.api.Scope;
-import com.puppycrawl.tools.checkstyle.ScopeUtils;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.Utils;
-import com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
-import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -44,6 +28,22 @@ import java.util.ListIterator;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import antlr.collections.AST;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+import com.puppycrawl.tools.checkstyle.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.Utils;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
+import com.puppycrawl.tools.checkstyle.api.Scope;
+import com.puppycrawl.tools.checkstyle.api.TextBlock;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 
 /**
  * Checks the Javadoc of a method or constructor.

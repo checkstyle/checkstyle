@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import java.util.Set;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import java.util.Set;
+import com.google.common.collect.Sets;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * A factory for creating objects from package names and names.

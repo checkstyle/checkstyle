@@ -21,13 +21,14 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import java.io.File;
 
+import org.apache.commons.beanutils.ConversionException;
+import org.apache.commons.lang3.StringUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import org.apache.commons.beanutils.ConversionException;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * Check that controls what packages can be imported in each package. Useful

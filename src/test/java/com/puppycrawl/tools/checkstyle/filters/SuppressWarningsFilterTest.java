@@ -19,8 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import com.google.common.collect.Lists;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Locale;
 
+import org.junit.Test;
+
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -31,12 +36,6 @@ import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
-
-import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Locale;
 
 public class SuppressWarningsFilterTest
     extends BaseCheckTestSupport {

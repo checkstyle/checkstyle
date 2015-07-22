@@ -19,14 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-import java.io.File;
+import static com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck.MSG_KEY_NEED_BRACES;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import java.io.File;
 
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck.MSG_KEY_NEED_BRACES;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class NeedBracesCheckTest extends BaseCheckTestSupport {
     @Test

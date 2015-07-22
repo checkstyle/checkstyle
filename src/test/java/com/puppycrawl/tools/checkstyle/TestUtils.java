@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import org.junit.Assert;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
+
+import org.junit.Assert;
 
 public class TestUtils {
 

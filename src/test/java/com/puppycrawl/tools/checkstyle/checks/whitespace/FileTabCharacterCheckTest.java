@@ -19,15 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.CONTAINS_TAB;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.FILE_CONTAINS_TAB;
+
+import java.io.File;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import java.io.File;
-import org.junit.Test;
-
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.CONTAINS_TAB;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck
-.FILE_CONTAINS_TAB;
 
 public class FileTabCharacterCheckTest
     extends BaseCheckTestSupport {

@@ -19,17 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import com.google.common.io.Files;
-import org.junit.Assert;
-import org.junit.Test;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import java.io.File;
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.google.common.io.Files;
 
 public class AllChecksPresentOnAvailableChecksPageTest {
     private static final File JAVA_SOURCES_DIRECTORY = new File("src/main/java");

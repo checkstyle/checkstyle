@@ -20,18 +20,20 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static org.junit.Assert.assertTrue;
+
+import java.io.File;
+import java.util.List;
+import java.util.Locale;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import java.io.File;
-import java.util.List;
-import java.util.Locale;
-
 import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
-import org.junit.Test;
 
 public class FileSetCheckLifecycleTest
     extends BaseCheckTestSupport {

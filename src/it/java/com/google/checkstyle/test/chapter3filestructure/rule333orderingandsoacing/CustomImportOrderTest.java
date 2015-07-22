@@ -10,7 +10,6 @@ import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 
 public class CustomImportOrderTest extends BaseCheckTestSupport{

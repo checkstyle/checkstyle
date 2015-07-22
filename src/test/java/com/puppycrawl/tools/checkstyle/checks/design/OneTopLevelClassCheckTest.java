@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import static com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck.MSG_KEY;
+
 import java.io.File;
 
 import org.junit.Assert;
@@ -26,8 +28,6 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
-import static com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck.MSG_KEY;
 
 public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
 

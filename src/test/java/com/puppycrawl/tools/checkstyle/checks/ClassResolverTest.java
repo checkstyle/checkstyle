@@ -21,9 +21,12 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
-import com.google.common.collect.Sets;
+
 import java.util.Set;
+
 import org.junit.Test;
+
+import com.google.common.collect.Sets;
 
 public class ClassResolverTest {
     @Test

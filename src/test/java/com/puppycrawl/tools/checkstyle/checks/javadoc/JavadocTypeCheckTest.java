@@ -28,12 +28,12 @@ import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * @author Oliver.Burn

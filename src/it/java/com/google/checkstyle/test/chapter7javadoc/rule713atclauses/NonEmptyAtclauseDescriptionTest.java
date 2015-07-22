@@ -6,11 +6,11 @@ import java.io.IOException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Configuration; 
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck;
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
 
 public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport{
 

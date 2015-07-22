@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import com.google.common.collect.Sets;
-
 import java.util.Objects;
 import java.util.Set;
 import java.util.StringTokenizer;
+
+import com.google.common.collect.Sets;
 
 /**
  * <p>

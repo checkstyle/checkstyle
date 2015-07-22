@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
+import java.util.Iterator;
+import java.util.List;
+
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * <p>

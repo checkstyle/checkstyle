@@ -19,14 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import com.google.common.collect.Lists;
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.Filter;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
-import com.puppycrawl.tools.checkstyle.Utils;
-import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
 import java.lang.ref.WeakReference;
 import java.util.Collection;
 import java.util.Collections;
@@ -35,7 +27,17 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+
 import org.apache.commons.beanutils.ConversionException;
+
+import com.google.common.collect.Lists;
+import com.puppycrawl.tools.checkstyle.Utils;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.api.TextBlock;
+import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
 
 /**
  * <p>

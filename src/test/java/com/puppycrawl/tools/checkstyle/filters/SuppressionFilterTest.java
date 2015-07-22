@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
-import org.junit.Assert;
-import org.junit.Test;
 
 public class SuppressionFilterTest {
     @Test

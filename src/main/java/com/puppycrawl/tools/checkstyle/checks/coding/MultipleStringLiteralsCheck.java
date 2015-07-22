@@ -19,16 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.Utils;
 import java.util.BitSet;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.puppycrawl.tools.checkstyle.Utils;
+import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 
 /**

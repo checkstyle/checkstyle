@@ -2,7 +2,6 @@ package com.google.checkstyle.test.chapter3filestructure.rule331nowildcard;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;

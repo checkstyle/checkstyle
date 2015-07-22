@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import antlr.collections.AST;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;

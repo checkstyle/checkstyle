@@ -22,12 +22,14 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck.MSG_KEY;
 import static org.junit.Assert.fail;
 
+import org.junit.Test;
+
 import antlr.CommonHiddenStreamToken;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import org.junit.Test;
 
 public class ExecutableStatementCountCheckTest
     extends BaseCheckTestSupport {

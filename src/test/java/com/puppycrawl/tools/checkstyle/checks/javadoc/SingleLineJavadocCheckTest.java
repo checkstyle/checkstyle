@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck.MSG_KEY;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck.MSG_KEY;
 
 public class SingleLineJavadocCheckTest extends BaseCheckTestSupport {
     @Test

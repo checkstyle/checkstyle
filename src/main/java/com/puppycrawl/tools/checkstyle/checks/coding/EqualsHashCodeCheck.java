@@ -19,14 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.Map;
+import java.util.Set;
+
 import antlr.collections.AST;
+
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * <p>

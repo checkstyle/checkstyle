@@ -19,13 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import java.text.NumberFormat;
-import org.junit.Test;
-
 import static com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck.MSG_KEY;
 import static org.junit.Assert.fail;
+
+import java.text.NumberFormat;
+
+import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class NPathComplexityCheckTest extends BaseCheckTestSupport {
     @Test

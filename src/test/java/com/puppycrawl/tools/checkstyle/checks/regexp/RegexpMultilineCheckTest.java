@@ -19,20 +19,21 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
-import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.EMPTY;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.STACKOVERFLOW;
+
+import java.io.File;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import java.io.File;
-
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.EMPTY;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.STACKOVERFLOW;
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
+import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
     @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();

@@ -19,21 +19,21 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import antlr.CommonHiddenStreamToken;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import org.junit.Test;
-
-import java.io.File;
-
 import static com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+
+import java.io.File;
+
+import org.junit.Test;
+
+import antlr.CommonHiddenStreamToken;
+
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ThrowsCountCheckTest extends BaseCheckTestSupport {
     @Test

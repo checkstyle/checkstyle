@@ -19,8 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class AutomaticBeanTest {
     private static class TestBean extends AutomaticBean {

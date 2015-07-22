@@ -19,6 +19,19 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
+import java.util.SortedSet;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -35,18 +48,6 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
-import java.util.SortedSet;
 
 /**
  * This class provides the functionality to check a set of files.

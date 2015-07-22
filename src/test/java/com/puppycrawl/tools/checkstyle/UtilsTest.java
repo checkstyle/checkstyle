@@ -19,10 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import org.apache.commons.beanutils.ConversionException;
-import org.junit.Assert;
-import org.junit.Test;
+import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,11 +32,11 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Dictionary;
 
-import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import org.apache.commons.beanutils.ConversionException;
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class UtilsTest {
 

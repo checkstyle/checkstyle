@@ -22,9 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.regex.Pattern;
 
 import com.google.common.base.CharMatcher;
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.Utils;
 
 /**
  * <p>

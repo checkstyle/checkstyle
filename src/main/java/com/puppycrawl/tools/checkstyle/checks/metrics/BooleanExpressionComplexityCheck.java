@@ -19,13 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-
-import java.util.ArrayDeque;
-import java.util.Deque;
 
 /**
  * Restricts nested boolean operators (&amp;&amp;, ||, &amp;, | and ^) to

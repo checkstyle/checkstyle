@@ -19,9 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import java.io.File;
 import java.util.List;
+
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 
 /**
  * Checks to see if a file contains a tab character.

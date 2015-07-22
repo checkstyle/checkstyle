@@ -19,8 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import com.google.common.collect.Maps;
 import java.util.SortedMap;
+
+import com.google.common.collect.Maps;
 
 /**
  * Represents a set of lines.

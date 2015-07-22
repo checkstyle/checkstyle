@@ -23,13 +23,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
+
 import org.junit.Test;
+
+import com.google.common.collect.Sets;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 public class CheckerTest {
     @Test

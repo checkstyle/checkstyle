@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import com.google.common.collect.ImmutableMap;
-
 import java.io.Serializable;
+
+import com.google.common.collect.ImmutableMap;
 
 
 /**

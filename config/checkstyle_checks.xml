@@ -76,6 +76,14 @@
     <module name="ImportControl">
       <property name="file" value="${checkstyle.importcontrol.file}"/>
     </module>
+    <module name="ImportOrder">
+      <property name="groups" value="/^javax?\./,org"/>
+      <property name="ordered" value="true"/>
+      <property name="separated" value="true"/>
+      <property name="option" value="top"/>
+      <property name="sortStaticImportsAlphabetically" value="true"/>
+    </module>
+
     <module name="IllegalImport"/>
     <module name="IllegalInstantiation"/>
     <module name="IllegalThrows"/>
@@ -281,7 +289,6 @@
     <module name="HiddenField"/>
     <module name="IllegalToken"/>
     <module name="IllegalType"/>
-    <module name="ImportOrder"/>
     <module name="InnerTypeLast"/>
     <module name="JavadocParagraph"/>
     <module name="JavadocTagContinuationIndentation"/>

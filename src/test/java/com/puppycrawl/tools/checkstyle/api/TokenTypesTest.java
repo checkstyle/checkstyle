@@ -22,8 +22,9 @@ package com.puppycrawl.tools.checkstyle.api;
 import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
 import static org.junit.Assert.assertEquals;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.Utils;
 
 public class TokenTypesTest {
     @Test

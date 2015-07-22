@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static org.junit.Assert.assertNotNull;
 
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -33,6 +31,8 @@ import org.junit.Test;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.helpers.AttributesImpl;
+
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class ImportControlLoaderTest {
     @Test

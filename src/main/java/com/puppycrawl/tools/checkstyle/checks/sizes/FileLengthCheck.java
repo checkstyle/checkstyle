@@ -19,9 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import java.io.File;
 import java.util.List;
+
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 
 /**
  * <p>

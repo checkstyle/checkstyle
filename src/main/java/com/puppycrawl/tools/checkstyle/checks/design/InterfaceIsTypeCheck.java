@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Implements Bloch, Effective Java, Item 17 -

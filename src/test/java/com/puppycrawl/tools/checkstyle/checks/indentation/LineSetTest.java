@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 public class LineSetTest {
 

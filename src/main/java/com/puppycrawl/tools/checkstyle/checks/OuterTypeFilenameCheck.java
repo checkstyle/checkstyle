@@ -19,10 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.io.File;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.io.File;
 
 /**
  * Checks that the outer type name and the file name match.

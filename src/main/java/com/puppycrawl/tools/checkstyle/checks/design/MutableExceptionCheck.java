@@ -19,11 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
-import java.util.ArrayDeque;
-import java.util.Deque;
 
 /**
  * <p> Ensures that exceptions (classes with names conforming to some regular

@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
-
 import java.util.regex.Pattern;
+
+import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
 
 /**
  * Options for a detector.

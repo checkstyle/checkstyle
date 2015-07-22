@@ -19,13 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import java.io.File;
-import org.junit.Test;
-
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck.MSG_KEY;
 import static org.junit.Assert.fail;
+
+import java.io.File;
+
+import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
     @Test

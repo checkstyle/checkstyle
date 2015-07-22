@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import java.lang.reflect.Constructor;
+import java.util.Map;
+import java.util.Set;
+
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.lang.reflect.Constructor;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Factory for handlers. Looks up constructor via reflection.

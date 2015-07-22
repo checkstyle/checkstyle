@@ -21,16 +21,16 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
-import antlr.CommonHiddenStreamToken;
-
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import org.junit.Test;
+
+import antlr.CommonHiddenStreamToken;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class VisibilityModifierCheckTest
     extends BaseCheckTestSupport {

@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.LINE_NEW;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.LINE_PREVIOUS;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.LINE_NEW;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.LINE_PREVIOUS;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class OperatorWrapCheckTest
     extends BaseCheckTestSupport {

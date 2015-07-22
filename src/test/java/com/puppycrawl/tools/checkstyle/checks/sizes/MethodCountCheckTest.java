@@ -25,10 +25,12 @@ import static com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck.MSG_
 import static com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck.MSG_PROTECTED_METHODS;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck.MSG_PUBLIC_METHODS;
 import static org.junit.Assert.assertArrayEquals;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import org.junit.Test;
 
 public class MethodCountCheckTest extends BaseCheckTestSupport {
     @Test

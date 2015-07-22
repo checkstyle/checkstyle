@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.gui;
 
-import java.awt.*;
+import java.awt.EventQueue;
 import java.io.File;
 
 import javax.swing.JFrame;

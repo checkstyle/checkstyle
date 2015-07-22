@@ -19,10 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 
 public class JavadocNodeImplTest {
 

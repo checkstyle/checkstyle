@@ -3,9 +3,6 @@ package com.puppycrawl.tools.checkstyle;
 import static java.text.MessageFormat.format;
 import static org.junit.Assert.assertEquals;
 
-import com.google.common.collect.Lists;
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -19,6 +16,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
+
+import com.google.common.collect.Lists;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public abstract class BaseCheckTestSupport {
     /**

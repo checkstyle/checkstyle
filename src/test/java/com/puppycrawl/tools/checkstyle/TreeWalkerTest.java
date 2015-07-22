@@ -19,23 +19,23 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.Writer;
 
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
-import org.junit.rules.TemporaryFolder;
-
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 public class TreeWalkerTest extends BaseCheckTestSupport {
     @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();

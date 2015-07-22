@@ -19,10 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.gui;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import java.awt.Color;
 import java.util.List;
+
 import javax.swing.JTextArea;
+
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * Helper class to select a code.

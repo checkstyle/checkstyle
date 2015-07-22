@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import com.google.common.collect.Lists;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
 import java.util.StringTokenizer;
+
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.beanutils.ConvertUtilsBean;
@@ -40,6 +40,8 @@ import org.apache.commons.beanutils.converters.FloatConverter;
 import org.apache.commons.beanutils.converters.IntegerConverter;
 import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
+
+import com.google.common.collect.Lists;
 
 /**
  * A Java Bean that implements the component lifecycle interfaces by

@@ -10,13 +10,11 @@ import java.util.List;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
-import org.apache.commons.io.FileUtils;
-
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.Utils;
 
 public class ConfigurationBuilder extends BaseCheckTestSupport {
 

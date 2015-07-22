@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
-import org.junit.Test;
 
 public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport {
 

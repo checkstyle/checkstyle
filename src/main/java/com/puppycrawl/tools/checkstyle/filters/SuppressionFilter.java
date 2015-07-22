@@ -19,13 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import java.util.Objects;
+
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
-
-import java.util.Objects;
 
 /**
  * <p>

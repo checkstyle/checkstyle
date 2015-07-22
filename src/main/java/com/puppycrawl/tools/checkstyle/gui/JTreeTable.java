@@ -67,8 +67,8 @@ import java.awt.event.MouseEvent;
 import java.util.EventObject;
 import java.util.List;
 
-import javax.swing.Action;
 import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTree;

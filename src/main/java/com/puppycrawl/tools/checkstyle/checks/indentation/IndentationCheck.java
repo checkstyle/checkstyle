@@ -19,10 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import java.util.ArrayDeque;
 import java.util.Deque;
+
+import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * Checks correct indentation of Java Code.

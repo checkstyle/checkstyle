@@ -19,6 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static org.junit.Assert.assertEquals;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Locale;
+
+import org.junit.Test;
+
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -30,16 +39,7 @@ import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
-
-import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Locale;
-
 import nl.jqno.equalsverifier.EqualsVerifier;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 
 public class SuppressionCommentFilterTest
     extends BaseCheckTestSupport {

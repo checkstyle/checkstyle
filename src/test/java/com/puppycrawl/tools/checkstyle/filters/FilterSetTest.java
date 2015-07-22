@@ -22,10 +22,12 @@ package com.puppycrawl.tools.checkstyle.filters;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import com.puppycrawl.tools.checkstyle.api.FilterSet;
-import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.api.FilterSet;
+import nl.jqno.equalsverifier.EqualsVerifier;
+
 
 /** Tests SuppressElementFilter */
 public class FilterSetTest {

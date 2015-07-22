@@ -19,10 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import com.google.common.collect.Sets;
-import com.google.common.io.Closeables;
-import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,10 +28,17 @@ import java.util.Deque;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Set;
+
 import javax.xml.parsers.ParserConfigurationException;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+
+import com.google.common.collect.Sets;
+import com.google.common.io.Closeables;
+import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * Loads a list of package names from a package name XML file.

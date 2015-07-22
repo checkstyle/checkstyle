@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.Arrays;
+import java.util.Set;
+
 import antlr.collections.AST;
+
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-
-import java.util.Arrays;
-import java.util.Set;
 
 /**
  * <p>

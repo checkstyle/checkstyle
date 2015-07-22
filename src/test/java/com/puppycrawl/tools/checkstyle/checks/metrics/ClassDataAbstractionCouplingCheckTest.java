@@ -19,14 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck.MSG_KEY;
+import static org.junit.Assert.fail;
+
 import java.io.File;
+
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck
-.MSG_KEY;
-import static org.junit.Assert.fail;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport {
     @Test

@@ -21,10 +21,10 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import java.io.File;
 
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-
-import org.junit.Test;
 
 public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
     @Test

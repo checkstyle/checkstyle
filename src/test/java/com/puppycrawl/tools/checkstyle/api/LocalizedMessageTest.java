@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import nl.jqno.equalsverifier.EqualsVerifier;
-import org.junit.After;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Locale;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.After;
+import org.junit.Test;
+
+import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class LocalizedMessageTest {
 

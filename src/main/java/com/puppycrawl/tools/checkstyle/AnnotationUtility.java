@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * Contains utility methods designed to work with annotations.

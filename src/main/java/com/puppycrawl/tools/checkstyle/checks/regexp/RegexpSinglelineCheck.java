@@ -19,9 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import java.io.File;
 import java.util.List;
+
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 
 /**
  * Implementation of a check that looks for a single line in any file type.

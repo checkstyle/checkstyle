@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck.MSG_KEY;
+
 import java.io.File;
+
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck
-.MSG_KEY;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
     @Test

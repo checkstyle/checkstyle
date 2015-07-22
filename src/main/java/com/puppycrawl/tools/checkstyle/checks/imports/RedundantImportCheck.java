@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.util.Set;
+
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.Set;
 
 /**
  * <p>

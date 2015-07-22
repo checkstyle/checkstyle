@@ -19,21 +19,21 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.EMPTY;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.EXTRA_HTML;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.INCOMPLETE_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.JAVADOC_MISSING;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.NO_PERIOD;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.UNCLOSED_HTML;
+import static org.junit.Assert.assertArrayEquals;
+
 import java.io.File;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.EXTRA_HTML;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.UNCLOSED_HTML;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.INCOMPLETE_TAG;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.NO_PERIOD;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.EMPTY;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.JAVADOC_MISSING;
-import static org.junit.Assert.assertArrayEquals;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class JavadocStyleCheckTest
     extends BaseCheckTestSupport {

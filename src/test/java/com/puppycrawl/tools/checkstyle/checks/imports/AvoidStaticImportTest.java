@@ -19,15 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import static com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
+
+import java.io.File;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
-import java.io.File;
-import org.junit.Test;
-
-import static org.junit.Assert.assertArrayEquals;
-import static com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck.MSG_KEY;
 
 public class AvoidStaticImportTest
     extends BaseCheckTestSupport {

@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.puppycrawl.tools.checkstyle.api.DetailNode;
-
 import java.util.Arrays;
+
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 
 /**
  *

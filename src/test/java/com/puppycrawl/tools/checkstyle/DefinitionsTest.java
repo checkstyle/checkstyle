@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import org.junit.Test;
-
 import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
+
+import org.junit.Test;
 
 public class DefinitionsTest {
     @Test

@@ -20,8 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL;
-import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck
-    .MSG_EQUALS_IGNORE_CASE_AVOID_NULL;
+import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck.MSG_EQUALS_IGNORE_CASE_AVOID_NULL;
 
 import java.io.File;
 

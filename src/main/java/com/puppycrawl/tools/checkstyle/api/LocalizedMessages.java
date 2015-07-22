@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import com.google.common.collect.Sets;
-
 import java.util.Set;
 import java.util.SortedSet;
+
+import com.google.common.collect.Sets;
 
 /**
  * Collection of messages.

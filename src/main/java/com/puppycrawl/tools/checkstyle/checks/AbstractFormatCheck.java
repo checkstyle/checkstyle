@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
-
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 import org.apache.commons.beanutils.ConversionException;
+
+import com.puppycrawl.tools.checkstyle.api.Check;
 
 /**
  * <p> Abstract class for checks that verify strings using a

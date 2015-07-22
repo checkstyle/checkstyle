@@ -19,17 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_NOT_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_NOT_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_PRECEDED;
 
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_PRECEDED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck
-.WS_NOT_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck
-.WS_NOT_PRECEDED;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class ParenPadCheckTest
     extends BaseCheckTestSupport {

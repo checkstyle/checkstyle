@@ -22,10 +22,11 @@ package com.puppycrawl.tools.checkstyle.filters;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import org.junit.Test;
 
 /** Tests SeverityMatchFilter */
 public class SeverityMatchFilterTest {

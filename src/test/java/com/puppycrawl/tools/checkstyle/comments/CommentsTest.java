@@ -19,41 +19,41 @@
 
 package com.puppycrawl.tools.checkstyle.comments;
 
+import static com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATIONS;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_END;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.CLASS_DEF;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMENT_CONTENT;
+import static com.puppycrawl.tools.checkstyle.api.TokenTypes.DOT;
+import static com.puppycrawl.tools.checkstyle.api.TokenTypes.EXPR;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LCURLY;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_CLASS;
+import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_NULL;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_PROTECTED;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_PUBLIC;
+import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_RETURN;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LPAREN;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.METHOD_DEF;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK;
+import static com.puppycrawl.tools.checkstyle.api.TokenTypes.PACKAGE_DEF;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.PARAMETERS;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.RPAREN;
+import static com.puppycrawl.tools.checkstyle.api.TokenTypes.SEMI;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE;
-import static com.puppycrawl.tools.checkstyle.api.TokenTypes.PACKAGE_DEF;
-import static com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATIONS;
-import static com.puppycrawl.tools.checkstyle.api.TokenTypes.DOT;
-import static com.puppycrawl.tools.checkstyle.api.TokenTypes.SEMI;
-import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_RETURN;
-import static com.puppycrawl.tools.checkstyle.api.TokenTypes.EXPR;
-import static com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_NULL;
 
 import java.io.File;
 
-import com.puppycrawl.tools.checkstyle.api.Comment;
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 public class CommentsTest extends BaseCheckTestSupport {

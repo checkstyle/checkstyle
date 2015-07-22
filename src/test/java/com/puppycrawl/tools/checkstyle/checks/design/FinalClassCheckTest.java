@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import static com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import org.junit.Test;
-
-import static com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
 
 public class FinalClassCheckTest
     extends BaseCheckTestSupport {

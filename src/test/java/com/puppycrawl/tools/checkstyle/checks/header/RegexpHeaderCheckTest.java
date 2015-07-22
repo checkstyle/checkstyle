@@ -19,14 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import static org.junit.Assert.fail;
+
 import org.apache.commons.beanutils.ConversionException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.fail;
+import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  *

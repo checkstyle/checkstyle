@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.google.common.collect.Lists;
-
 import java.util.Deque;
 import java.util.List;
+
+import com.google.common.collect.Lists;
 
 /**
  * Represents the a tree of guards for controlling whether packages are allowed

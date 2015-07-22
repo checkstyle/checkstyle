@@ -19,13 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.puppycrawl.tools.checkstyle.api.DetailNode;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.PARSE_ERROR_MESSAGE_KEY;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.PARSE_ERROR_MESSAGE_KEY;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 
 public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
     public static class TempCheck extends AbstractJavadocCheck {

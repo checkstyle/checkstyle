@@ -10,8 +10,6 @@ import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
 
 public class WhitespaceAroundTest extends BaseCheckTestSupport{
 

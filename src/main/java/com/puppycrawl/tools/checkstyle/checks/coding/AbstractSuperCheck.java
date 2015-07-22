@@ -19,14 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.Deque;
+
 import antlr.collections.AST;
+
 import com.google.common.collect.Lists;
+import com.puppycrawl.tools.checkstyle.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
-import java.util.Deque;
 
 /**
  * <p>

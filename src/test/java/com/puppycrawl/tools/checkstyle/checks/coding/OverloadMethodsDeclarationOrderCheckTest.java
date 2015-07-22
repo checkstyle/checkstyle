@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck
-.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck.MSG_KEY;
 
 import org.junit.Assert;
 import org.junit.Test;

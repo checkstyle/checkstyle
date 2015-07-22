@@ -20,11 +20,14 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertEquals;
-import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
 import java.util.Arrays;
 import java.util.Set;
+
 import org.junit.Test;
+
+import com.google.common.collect.Sets;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * Enter a description of class PackageNamesLoaderTest.java.

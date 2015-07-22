@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.WS_NOT_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.WS_TYPECAST;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.WS_NOT_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.WS_TYPECAST;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class WhitespaceAfterCheckTest
     extends BaseCheckTestSupport {

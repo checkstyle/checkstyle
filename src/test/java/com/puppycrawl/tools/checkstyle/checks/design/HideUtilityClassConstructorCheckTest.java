@@ -19,16 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
+
 import java.io.File;
 
-import static com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck
-.MSG_KEY;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.Test;
 
-import static org.junit.Assert.assertArrayEquals;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class HideUtilityClassConstructorCheckTest
     extends BaseCheckTestSupport {

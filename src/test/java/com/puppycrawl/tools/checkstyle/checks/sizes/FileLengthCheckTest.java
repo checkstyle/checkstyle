@@ -19,16 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import static com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck.MSG_KEY;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+
+import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import org.junit.Test;
-
-import static com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck.MSG_KEY;
 
 public class FileLengthCheckTest
     extends BaseCheckTestSupport {

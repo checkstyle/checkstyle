@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Make sure that utility classes (classes that contain only static methods)

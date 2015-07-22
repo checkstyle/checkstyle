@@ -24,6 +24,7 @@ import java.util.BitSet;
 import antlr.CommonASTWithHiddenTokens;
 import antlr.Token;
 import antlr.collections.AST;
+
 import com.puppycrawl.tools.checkstyle.Utils;
 
 /**

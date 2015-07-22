@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.Utils;
 import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.ConversionException;
+
+import com.puppycrawl.tools.checkstyle.Utils;
+import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * Checks for long lines.

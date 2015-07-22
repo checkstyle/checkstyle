@@ -19,10 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import nl.jqno.equalsverifier.EqualsVerifier;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class LineColumnTest {
 

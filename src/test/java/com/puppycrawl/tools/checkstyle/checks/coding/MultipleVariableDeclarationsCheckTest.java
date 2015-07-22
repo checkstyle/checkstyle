@@ -19,10 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck
-.MSG_MULTIPLE;
-import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck
-.MSG_MULTIPLE_COMMA;
+import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck.MSG_MULTIPLE;
+import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck.MSG_MULTIPLE_COMMA;
 
 import java.io.File;
 

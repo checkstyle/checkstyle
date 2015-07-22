@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import java.util.List;
+
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;

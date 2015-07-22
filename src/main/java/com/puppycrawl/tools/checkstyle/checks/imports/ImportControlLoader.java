@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -29,10 +27,15 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.xml.parsers.ParserConfigurationException;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+
+import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * Responsible for loading the contents of an import control configuration file.
