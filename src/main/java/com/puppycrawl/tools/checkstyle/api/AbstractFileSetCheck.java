@@ -115,12 +115,12 @@ public abstract class AbstractFileSetCheck
      * Sets the file extensions that identify the files that pass the
      * filter of this FileSetCheck.
      * @param extensions the set of file extensions. A missing
-     * initial '.' character of an extension is automatically added.
+     *         initial '.' character of an extension is automatically added.
+     * @throws IllegalArgumentException is arument is null
      */
     public final void setFileExtensions(String... extensions) {
         if (extensions == null) {
-            fileExtensions = null;
-            return;
+            throw new IllegalArgumentException("Extensions array can not be null");
         }
 
         fileExtensions = new String[extensions.length];

@@ -161,6 +161,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
             }
             if (child instanceof FileSetCheck) {
                 final FileSetCheck fsc = (FileSetCheck) child;
+                fsc.init();
                 addFileSetCheck(fsc);
             }
             else if (child instanceof Filter) {
