@@ -27,7 +27,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CodingErrorAction;
@@ -35,7 +34,6 @@ import java.nio.charset.UnsupportedCharsetException;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -226,45 +224,6 @@ public final class FileText extends AbstractList<String> {
     }
 
     /**
-     * Get the binary contents of the file.
-     * The returned object must not be modified.
-     * @return a buffer containing the bytes making up the file
-     * @throws IOException if the bytes could not be read from the file
-     */
-    public ByteBuffer getBytes() throws IOException {
-        // We might decide to cache file bytes in the future.
-        if (file == null) {
-            return null;
-        }
-        if (file.length() > Integer.MAX_VALUE) {
-            throw new IOException("File too large.");
-        }
-        byte[] bytes = new byte[(int) file.length() + 1];
-        final FileInputStream stream = new FileInputStream(file);
-        try {
-            int fill = 0;
-            while (true) {
-                if (fill >= bytes.length) {
-                    // shouldn't happen, but it might nevertheless
-                    final byte[] newBytes = new byte[bytes.length * 2 + 1];
-                    System.arraycopy(bytes, 0, newBytes, 0, fill);
-                    bytes = newBytes;
-                }
-                final int len = stream.read(bytes, fill,
-                                            bytes.length - fill);
-                if (len == -1) {
-                    break;
-                }
-                fill += len;
-            }
-            return ByteBuffer.wrap(bytes, 0, fill).asReadOnlyBuffer();
-        }
-        finally {
-            Closeables.closeQuietly(stream);
-        }
-    }
-
-    /**
      * Retrieve the full text of the file.
      * @return the full text of the file
      */
@@ -296,10 +255,7 @@ public final class FileText extends AbstractList<String> {
                 lineBreaks[lineNo++] = matcher.end();
             }
             if (lineNo < lineBreaks.length) {
-                lineBreaks[lineNo++] = fullText.length();
-            }
-            if (lineNo != lineBreaks.length) {
-                throw new ConcurrentModificationException("Text changed.");
+                lineBreaks[lineNo] = fullText.length();
             }
             this.lineBreaks = lineBreaks;
         }
