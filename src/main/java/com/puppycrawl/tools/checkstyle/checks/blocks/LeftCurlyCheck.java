@@ -118,6 +118,14 @@ public class LeftCurlyCheck
         this.maxLineLength = maxLineLength;
     }
 
+    /**
+     * Sets whether check should ignore enums when left curly brace policy is EOL.
+     * @param ignoreEnums check's option for ignoring enums.
+     */
+    public void setIgnoreEnums(boolean ignoreEnums) {
+        this.ignoreEnums = ignoreEnums;
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

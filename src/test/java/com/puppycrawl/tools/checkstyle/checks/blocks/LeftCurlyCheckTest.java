@@ -223,4 +223,23 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("InputLeftCurlyLineBreakAfter.java"), expected);
     }
+
+    @Test
+    public void testIgnoreEnumsOptionTrue() throws Exception {
+        checkConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
+        checkConfig.addAttribute("ignoreEnums", "true");
+        final String[] expectedWhileTrue = {
+        };
+        verify(checkConfig, getPath("InputLeftCurlyEnums.java"), expectedWhileTrue);
+    }
+
+    @Test
+    public void testIgnoreEnumsOptionFalse() throws Exception {
+        checkConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
+        checkConfig.addAttribute("ignoreEnums", "false");
+        final String[] expectedWhileFalse = {
+            "4:17: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{"),
+        };
+        verify(checkConfig, getPath("InputLeftCurlyEnums.java"), expectedWhileFalse);
+    }
 }

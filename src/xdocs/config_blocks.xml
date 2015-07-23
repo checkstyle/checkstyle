@@ -250,7 +250,7 @@ try {
           </tr>
           <tr>
             <td>ignoreEnums</td>
-            <td>If true, Check will ignore enums</td>
+            <td>If true, Check will ignore enums when left curly brace policy is EOL</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td>true</td>
           </tr>
