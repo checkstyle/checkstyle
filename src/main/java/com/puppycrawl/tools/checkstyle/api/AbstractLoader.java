@@ -106,18 +106,10 @@ public abstract class AbstractLoader
                 this.getClass().getClassLoader();
             final InputStream dtdIS =
                 loader.getResourceAsStream(dtdResourceName);
-            if (dtdIS == null) {
-                throw new SAXException(
-                    "Unable to load internal dtd " + dtdResourceName);
-            }
+
             return new InputSource(dtdIS);
         }
         return super.resolveEntity(publicId, systemId);
-    }
-
-    @Override
-    public void warning(SAXParseException ex) throws SAXException {
-        throw ex;
     }
 
     @Override
