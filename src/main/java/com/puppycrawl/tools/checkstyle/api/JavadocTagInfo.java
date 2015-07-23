@@ -308,8 +308,7 @@ public enum JavadocTagInfo {
                     || "writeExternal".equals(methodName)
                     || "readExternal".equals(methodName)
                     || "writeReplace".equals(methodName)
-                    || "readResolve"
-                    .equals(methodName));
+                    || "readResolve".equals(methodName));
         }
     },
 
@@ -324,7 +323,7 @@ public enum JavadocTagInfo {
             final DetailAST varType = ast.findFirstToken(TokenTypes.TYPE);
 
             return type == TokenTypes.VARIABLE_DEF
-                && varType.getType() == TokenTypes.ARRAY_DECLARATOR
+                && varType.getFirstChild().getType() == TokenTypes.ARRAY_DECLARATOR
                 && "ObjectStreafield".equals(varType.getFirstChild().getText());
         }
     },
@@ -545,7 +544,7 @@ public enum JavadocTagInfo {
     @Override
     public String toString() {
         return "text [" + this.text + "] name [" + this.name
-            + "] type [" + this.type;
+            + "] type [" + this.type + "]";
     }
 
     /**
