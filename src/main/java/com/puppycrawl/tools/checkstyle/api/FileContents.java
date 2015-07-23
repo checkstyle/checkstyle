@@ -74,7 +74,8 @@ public final class FileContents implements CommentListener {
      * @deprecated Use {@link #FileContents(FileText)} instead
      *   in order to preserve the original line breaks where possible.
      */
-    @Deprecated public FileContents(String filename, String... lines) {
+    @Deprecated
+    public FileContents(String filename, String... lines) {
         this.fileName = filename;
         text = FileText.fromLines(new File(filename), Arrays.asList(lines));
     }
