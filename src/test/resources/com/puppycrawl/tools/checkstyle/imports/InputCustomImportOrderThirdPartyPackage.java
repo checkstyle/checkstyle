@@ -1,6 +1,5 @@
 package com.puppycrawl.tools.checkstyle.imports;
 
-import org.antlr.v4.*;
 
 import org.junit.*;
 
