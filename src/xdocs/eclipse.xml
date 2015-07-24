@@ -19,6 +19,13 @@
   </head>
 
   <body>
+    <section name="Content">
+      <macro name="toc">
+        <param name="fromDepth" value="1"/>
+        <param name="toDepth" value="1"/>
+      </macro>
+    </section>
+
     <section name="Import Checkstyle Project">
       <p>
         Select File > Import > Maven > Existing Maven Projects<br/><br/>
@@ -43,5 +50,19 @@
         and F8 (Resume)
       </p>
     </section>
+
+    <section name="Organize Imports">
+      <p>
+        One of the Checkstyle checks we run on our own code require sertain order of import
+        statements. Few changes in IDE settings are required to help your IDE do it automatically.<br/>
+        To change settings of "Organize Imports" feature (Kepler, Luna &amp; Mars, other versions 
+        are likely to work the same way), please go to Window -> Preferences in menu.<br/>
+        In Preferences window select Java->Code Style->Organize Imports (follow numbers on a picture).<br/>
+        Default configuration should look as following (you can also try Restore Defaults button):<br/><br/>
+        <img alt="Organize Imports settings in Eclipse" src="images/gui_screenshot_organize_imports_eclipse.jpg"/>
+        <br/><br/>
+      </p>
+    </section>
+
   </body>
 </document>
