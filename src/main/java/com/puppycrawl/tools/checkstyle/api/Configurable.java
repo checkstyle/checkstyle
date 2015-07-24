@@ -20,7 +20,11 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 /**
- * A component that can be configured.  The general idea of
+ * A component that can be configured.
+ * Note: Configuring of object mean copy user defined properties to object.
+ * Contextualizing is inheriting some properties from parent that are provided by user
+ * to parent object or created by parent object.
+ * The general idea of
  * Configuration/Configurable was taken from <a target="_top"
  * href="http://jakarta.apache.org/avalon/">Jakarta's Avalon framework</a>.
  * @author lkuehne
