@@ -191,7 +191,7 @@ public class InnerAssignmentCheck
         }
         final DetailAST expr = ast.getParent();
         final AST exprNext = expr.getNextSibling();
-        return exprNext != null && exprNext.getType() == TokenTypes.SEMI;
+        return exprNext.getType() == TokenTypes.SEMI;
     }
 
     /**
@@ -237,20 +237,26 @@ public class InnerAssignmentCheck
      * one of the allowed type paths
      */
     private static boolean isInContext(DetailAST ast, int[]... contextSet) {
+        boolean found = false;
         for (int[] element : contextSet) {
             DetailAST current = ast;
             final int len = element.length;
             for (int j = 0; j < len; j++) {
                 current = current.getParent();
                 final int expectedType = element[j];
-                if (current == null || current.getType() != expectedType) {
+                if (current.getType() != expectedType) {
+                    found = false;
                     break;
                 }
-                if (j == len - 1) {
-                    return true;
+                else {
+                    found = true;
                 }
             }
+
+            if (found) {
+                break;
+            }
         }
-        return false;
+        return found;
     }
 }
