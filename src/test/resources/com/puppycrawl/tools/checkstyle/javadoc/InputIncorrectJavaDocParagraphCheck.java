@@ -75,5 +75,13 @@ class InputInCorrectJavaDocParagraphCheck {
          *     Documentation about <p> GWT emulated source</a> //WARN
          */
         boolean emulated() {return false;}
+
+        /**
+         * Double newline.
+         *
+         *
+         * Some Javadoc. //DOUBLE WARN AT TWO PREVIOUS LINES
+         */
+         void doubleNewline() {}
     };
 }

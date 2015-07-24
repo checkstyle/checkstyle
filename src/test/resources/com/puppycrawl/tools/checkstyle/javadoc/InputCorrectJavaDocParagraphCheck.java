@@ -77,8 +77,8 @@ class InputCorrectJavaDocParagraphCheck {
          */
         public static final byte NUL = 0;
            
-        /**
-         * Some Javadoc.
+        /** 
+         * Some Javadoc with space at the end of first line.
          *
          * <p>Some Javadoc.
          *

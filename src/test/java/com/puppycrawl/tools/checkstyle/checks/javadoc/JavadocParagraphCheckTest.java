@@ -83,6 +83,8 @@ public class JavadocParagraphCheckTest extends BaseCheckTestSupport {
             "72: " + getCheckMessage(MSG_MISPLACED_TAG),
             "75: " + getCheckMessage(MSG_MISPLACED_TAG),
             "75: " + getCheckMessage(MSG_LINE_BEFORE),
+            "81: " + getCheckMessage(MSG_TAG_AFTER),
+            "82: " + getCheckMessage(MSG_TAG_AFTER),
         };
         verify(checkConfig, getPath("javadoc/InputIncorrectJavaDocParagraphCheck.java"), expected);
     }
@@ -108,6 +110,8 @@ public class JavadocParagraphCheckTest extends BaseCheckTestSupport {
             "62: " + getCheckMessage(MSG_TAG_AFTER),
             "70: " + getCheckMessage(MSG_LINE_BEFORE),
             "75: " + getCheckMessage(MSG_LINE_BEFORE),
+            "81: " + getCheckMessage(MSG_TAG_AFTER),
+            "82: " + getCheckMessage(MSG_TAG_AFTER),
         };
         verify(checkConfig, getPath("javadoc/InputIncorrectJavaDocParagraphCheck.java"), expected);
     }
