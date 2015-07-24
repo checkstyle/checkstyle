@@ -138,7 +138,7 @@ public class AutomaticBean
                 // figure out if the bean property really exists.
                 final PropertyDescriptor pd =
                     PropertyUtils.getPropertyDescriptor(this, key);
-                if (pd == null || pd.getWriteMethod() == null) {
+                if (pd == null) {
                     throw new CheckstyleException(
                         "Property '" + key + "' in module "
                         + configuration.getName()
@@ -253,12 +253,7 @@ public class AutomaticBean
     private static class RelaxedStringArrayConverter implements Converter {
         /** {@inheritDoc} */
         @Override
-        public Object convert(@SuppressWarnings("rawtypes") Class type,
-            Object value) {
-            if (null == type) {
-                throw new ConversionException("Cannot convert from null.");
-            }
-
+        public Object convert(@SuppressWarnings("rawtypes") Class type, Object value) {
             // Convert to a String and trim it for the tokenizer.
             final StringTokenizer st = new StringTokenizer(
                 value.toString().trim(), ",");

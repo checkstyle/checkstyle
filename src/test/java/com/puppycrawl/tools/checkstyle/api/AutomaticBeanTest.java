@@ -22,21 +22,66 @@ package com.puppycrawl.tools.checkstyle.api;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.DefaultContext;
 
 public class AutomaticBeanTest {
-    private static class TestBean extends AutomaticBean {
+
+    public class TestBean extends AutomaticBean {
+
+        private String wrong;
+
+        private int val;
+
+        public void setWrong(String wrong) {
+            this.wrong = wrong;
+        }
+
+        public void setIntVal(int val) {
+            this.val = val;
+        }
+
         public void setName(String name) {
+        }
+
+        /**
+         * just fore code coverage
+         * @param childConf a child of this component's Configuration
+         * @throws CheckstyleException
+         */
+        @Override
+        protected void setupChild(Configuration childConf) throws CheckstyleException {
+            super.setupChild(childConf);
         }
     }
 
     private final DefaultConfiguration conf = new DefaultConfiguration(
             "testConf");
 
-    private final TestBean testBean = new TestBean();
-
     @Test(expected = CheckstyleException.class)
     public void testNoSuchAttribute() throws CheckstyleException {
+        final TestBean testBean = new TestBean();
         conf.addAttribute("NonExisting", "doesn't matter");
         testBean.configure(conf);
+    }
+
+    @Test
+    public void testNoWrongSetterImplementation() throws CheckstyleException {
+        final TestBean testBean = new TestBean();
+        conf.addAttribute("wrong", "123");
+        testBean.configure(conf);
+    }
+
+    @Test
+    public void testSetupChild() throws CheckstyleException {
+        final TestBean testBean = new TestBean();
+        testBean.setupChild(null);
+    }
+
+    @Test
+    public void testContextualize1() throws CheckstyleException {
+        final TestBean testBean = new TestBean();
+        DefaultContext context = new DefaultContext();
+        context.add("val", 123f);
+        testBean.contextualize(context);
     }
 }
