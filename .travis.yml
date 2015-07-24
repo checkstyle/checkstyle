@@ -173,7 +173,7 @@ matrix:
         - CMD11="                  -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true "
         - CMD12="&& cd contribution/checkstyle-tester "
         - CMD13="&& ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
-        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10$CMD11$CMD12$CMD13
+        - CMD=$CMD01$CMD02$CMD03$CMD04$CMD05$CMD06$CMD07$CMD08$CMD09$CMD10$CMD11$CMD12$CMD13
         - COVERAGE_CMD=""
     # NoExceptionTest - Spring (oraclejdk8)
     - jdk: oraclejdk8
