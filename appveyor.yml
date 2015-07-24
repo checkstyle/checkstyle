@@ -30,10 +30,10 @@ cache:
 environment:
   matrix:
     #- JAVA_HOME: C:\Program Files\Java\jdk1.7.0
-    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
-      CMD_ARGS="verify"
-    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
-      CMD_ARGS="site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -DskipITs -Dcobertura.skip=true -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true"
+    - JAVA_HOME: "C:\Program Files\Java\jdk1.8.0"
+      CMD_ARGS: "verify"
+    - JAVA_HOME: "C:\Program Files\Java\jdk1.8.0"
+      CMD_ARGS: "site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -DskipITs -Dcobertura.skip=true -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true"
 
 build_script: off
 
