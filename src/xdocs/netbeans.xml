@@ -58,10 +58,10 @@
         One of the Checkstyle checks we run on our own code require sertain order of import
         statements. Few changes in IDE settings are required to help your IDE do it automatically.<br/>
         To change formatter settings please go to Tools->Options in menu.<br/>
-        On Options page go to Editor->Formatting->Java->Imports (follow numbers on a 
+        On Options page go to Editor->Formatting->Java->Imports (follow numbers on a
         picture) and apply settings highlighted:<br/><br/>
         <img alt="Organize Imports settings in NetBeans" src="images/gui_screenshot_organize_imports_netbeans.jpg"/>
-        <br/><br/>
+        <br/>
       </p>
     </section>
 
