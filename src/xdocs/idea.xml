@@ -19,6 +19,13 @@
   </head>
 
   <body>
+    <section name="Content">
+      <macro name="toc">
+        <param name="fromDepth" value="1"/>
+        <param name="toDepth" value="1"/>
+      </macro>
+    </section>
+
     <section name="Import Checkstyle Project">
       <p>
         If no project is currently open in IntelliJ IDEA, click Import Project on the
@@ -48,5 +55,18 @@
         F7 (Step Into), Alt+F9 (Run to Cursor)
       </p>
     </section>
+
+    <section name="Organize Imports">
+      <p>
+        One of the Checkstyle checks we run on our own code require sertain order of import
+        statements. Few changes in IDE settings are required to help your IDE do it automatically.<br/>
+        To change formatter settings please go to File->Settings in menu.<br/>
+        Then in the tree go to: Editor->Code Style->Java, open Import tab (follow numbers on a 
+        picture) and apply settings highlighted:<br/><br/>
+        <img alt="Organize Imports settings in IDEA" src="images/gui_screenshot_organize_imports_idea.jpg"/>
+        <br/><br/>
+      </p>
+    </section>
+
   </body>
 </document>
