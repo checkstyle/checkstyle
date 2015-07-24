@@ -295,7 +295,6 @@ public class JavadocTypeCheck
         for (int i = tags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = tags.get(i);
             if (tag.isParamTag()
-                && tag.getArg1() != null
                 && tag.getArg1().indexOf("<" + typeParamName + ">") == 0) {
                 found = true;
             }
@@ -319,28 +318,14 @@ public class JavadocTypeCheck
             final JavadocTag tag = tags.get(i);
             if (tag.isParamTag()) {
 
-                if (tag.getArg1() != null) {
-
-                    final Matcher matcher = pattern.matcher(tag.getArg1());
-                    String typeParamName = null;
-
-                    if (matcher.matches()) {
-                        typeParamName = matcher.group(1).trim();
-                        if (!typeParamNames.contains(typeParamName)) {
-                            log(tag.getLineNo(), tag.getColumnNo(),
-                                UNUSED_TAG,
-                                JavadocTagInfo.PARAM.getText(),
-                                "<" + typeParamName + ">");
-                        }
-                    }
-                    else {
-                        log(tag.getLineNo(), tag.getColumnNo(),
-                            UNUSED_TAG_GENERAL);
-                    }
-                }
-                else {
+                final Matcher matcher = pattern.matcher(tag.getArg1());
+                matcher.find();
+                final String typeParamName = matcher.group(1).trim();
+                if (!typeParamNames.contains(typeParamName)) {
                     log(tag.getLineNo(), tag.getColumnNo(),
-                        UNUSED_TAG_GENERAL);
+                        UNUSED_TAG,
+                        JavadocTagInfo.PARAM.getText(),
+                        "<" + typeParamName + ">");
                 }
             }
         }
