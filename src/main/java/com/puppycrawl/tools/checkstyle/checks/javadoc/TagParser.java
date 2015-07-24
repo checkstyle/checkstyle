@@ -113,7 +113,7 @@ class TagParser {
                         incompleteTag ? "" : getTagId(text, position);
                 // is this closed tag
                 final boolean closedTag =
-                        endTag.getLineNo() < nLines && endTag.getColumnNo() > 0
+                        endTag.getLineNo() < nLines
                          && text[endTag.getLineNo()]
                          .charAt(endTag.getColumnNo() - 1) == '/';
                 // add new tag
@@ -143,7 +143,6 @@ class TagParser {
         //identifier but is valid for generics
         return column < text.length()
                 && (Character.isJavaIdentifierStart(text.charAt(column))
-                    || Character.isJavaIdentifierPart(text.charAt(column))
                     || text.charAt(column) == '/')
                 || column >= text.length();
     }
@@ -199,8 +198,7 @@ class TagParser {
     private static Point skipHtmlComment(String[] text, Point from) {
         Point to = from;
         to = findChar(text, '>', to);
-        while (to.getLineNo() < text.length
-               && !text[to.getLineNo()]
+        while (!text[to.getLineNo()]
                .substring(0, to.getColumnNo() + 1).endsWith("-->")) {
             to = findChar(text, '>', getNextCharPos(text, to));
         }

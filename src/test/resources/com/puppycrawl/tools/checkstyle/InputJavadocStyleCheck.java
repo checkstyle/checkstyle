@@ -347,4 +347,13 @@ public class InputJavadocStyleCheck
             
         } 
 
+        /**
+         * Link to some page in two lines.
+         * <a
+         * href="someLink"/>
+         */
+        void tagInTwoLines() {
+            
+        } 
+
 }
