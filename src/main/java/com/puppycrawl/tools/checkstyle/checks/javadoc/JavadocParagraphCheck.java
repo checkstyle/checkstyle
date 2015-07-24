@@ -137,9 +137,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      */
     private void checkEmptyLine(DetailNode newline) {
         final DetailNode nearestToken = getNearestNode(newline);
-        if (!isLastEmptyLine(newline) && nearestToken != null
-                && nearestToken.getType() == JavadocTokenTypes.TEXT
-                && nearestToken.getChildren().length > 1) {
+        if (!isLastEmptyLine(newline) && nearestToken.getChildren().length > 1) {
             log(newline.getLineNumber(), MSG_TAG_AFTER);
         }
     }
@@ -168,8 +166,8 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      */
     private static DetailNode getNearestNode(DetailNode node) {
         DetailNode tag = JavadocUtils.getNextSibling(node);
-        while (tag != null && (tag.getType() == JavadocTokenTypes.LEADING_ASTERISK
-                || tag.getType() == JavadocTokenTypes.NEWLINE)) {
+        while (tag.getType() == JavadocTokenTypes.LEADING_ASTERISK
+                || tag.getType() == JavadocTokenTypes.NEWLINE) {
             tag = JavadocUtils.getNextSibling(tag);
         }
         return tag;
