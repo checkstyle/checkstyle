@@ -83,6 +83,12 @@
       <property name="option" value="top"/>
       <property name="sortStaticImportsAlphabetically" value="true"/>
     </module>
+    <module name="CustomImportOrder">
+      <property name="customImportOrderRules" value="STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS"/>
+      <property name="specialImportsRegExp" value="org"/>
+      <property name="sortImportsInGroupAlphabetically" value="true"/>
+      <property name="separateLineBetweenGroups" value="true"/>
+    </module>
 
     <module name="IllegalImport"/>
     <module name="IllegalInstantiation"/>
@@ -282,7 +288,6 @@
     <module name="BooleanExpressionComplexity"/>
     <module name="ClassDataAbstractionCoupling"/>
     <module name="ClassFanOutComplexity"/>
-    <module name="CustomImportOrder"/>
     <module name="DesignForExtension"/>
     <module name="ExecutableStatementCount"/>
     <module name="FinalParameters"/>
