@@ -75,7 +75,7 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="NoErrorTest - Orekit"
-        - CMD1="git clone https://github.com/CS-SI/Orekit.git && cd Orekit && git checkout bc527a1 "
+        - CMD1="git clone https://github.com/checkstyle/Orekit.git && cd Orekit "
         - CMD2=" && sed -i 's/<orekit\.checkstyle\.version>6\.6</<orekit.checkstyle.version>6.9-SNAPSHOT</' pom.xml "
         - CMD3=" && cd .. && mvn clean install -Passembly -DskipTests -DskipITs -Dcobertura.skip=true "
         - CMD4="    -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true "
