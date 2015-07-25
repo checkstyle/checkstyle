@@ -19,7 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
+import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISMATCH;
+import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISSING;
 import static org.junit.Assert.fail;
+
+import java.io.File;
+import java.net.URI;
 
 import org.apache.commons.beanutils.ConversionException;
 import org.junit.Assert;
@@ -94,8 +99,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(RegexpHeaderCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
         try {
             createChecker(checkConfig);
             final String[] expected = {
@@ -110,8 +114,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
 
     @Test
     public void testEmptyFilename() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(RegexpHeaderCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", "");
         try {
             createChecker(checkConfig);
@@ -120,5 +123,164 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
         catch (CheckstyleException ex) {
             // expected exception
         }
+    }
+
+    @Test
+    public void testRegexpHeader() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.header"));
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_MISMATCH, "// Created: 2002"),
+        };
+        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+    }
+
+    @Test
+    public void testRegexpHeaderURL() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RegexpHeaderCheck.class);
+        URI uri = new File(getPath("regexp.header")).toURI();
+        checkConfig.addAttribute("headerFile", uri.toString());
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_MISMATCH, "// Created: 2002"),
+        };
+        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+    }
+
+    @Test
+    public void testInlineRegexpHeader() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("header", "^/*$\\n// .*\\n// Created: 2002\\n^//.*\\n^//.*");
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_MISMATCH, "// Created: 2002"),
+        };
+        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+    }
+
+    @Test
+    public void testFailureForMultilineRegexp() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("header", "^(.*\\n.*)");
+        try {
+            createChecker(checkConfig);
+            fail("Checker creation should not succeed when regexp spans multiple lines");
+        }
+        catch (CheckstyleException ex) {
+            // expected exception
+        }
+    }
+
+    @Test
+    public void testRegexpHeaderIgnore() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.header1"));
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+    }
+
+    @Test
+    public void testRegexpHeaderMulti1() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
+        checkConfig.addAttribute("multiLines", "3, 6");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
+    }
+
+    @Test
+    public void testRegexpHeaderMulti2() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
+        checkConfig.addAttribute("multiLines", "3, 6");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputRegexpHeader2.java"), expected);
+    }
+
+    @Test
+    public void testRegexpHeaderMulti3() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
+        checkConfig.addAttribute("multiLines", "3, 7");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
+    }
+
+    @Test
+    public void testRegexpHeaderMulti4() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
+        checkConfig.addAttribute("multiLines", "3, 5, 6, 7");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputRegexpHeader3.java"), expected);
+    }
+
+    @Test
+    public void testRegexpHeaderMulti5() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
+        checkConfig.addAttribute("multiLines", "3");
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_MISSING),
+        };
+        verify(checkConfig, getPath("InputRegexpHeader4.java"), expected);
+    }
+
+    @Test
+    public void testRegexpHeaderMulti6() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp2.header4"));
+        checkConfig.addAttribute("multiLines", "8974382");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputRegexpHeader6.java"), expected);
+    }
+
+    @Test
+    public void testRegexpHeaderSmallHeader() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
+        checkConfig.addAttribute("multiLines", "3, 6");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputRegexpSmallHeader.java"), expected);
+    }
+
+    @Test
+    public void testEmptyMultiline()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
+        checkConfig.addAttribute("multiLines", "");
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_MISSING),
+        };
+        verify(checkConfig, getPath("InputRegexpSmallHeader.java"), expected);
+    }
+
+    @Test
+    public void testRegexpHeaderMulti52()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.header3"));
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_MISSING),
+        };
+        verify(checkConfig, getPath("InputRegexpHeader5.java"), expected);
     }
 }

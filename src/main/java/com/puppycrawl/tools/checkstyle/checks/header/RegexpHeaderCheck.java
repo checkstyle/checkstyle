@@ -56,7 +56,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
      * @param list comma separated list of line numbers to repeat in header.
      */
     public void setMultiLines(int... list) {
-        if (list == null || list.length == 0) {
+        if (list.length == 0) {
             multiLines = EMPTY_INT_ARRAY;
             return;
         }
