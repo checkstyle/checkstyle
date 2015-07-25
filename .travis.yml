@@ -7,25 +7,11 @@ install:
 matrix:
   fast_finish: true
   include:
-    # unit tests (openjdk7, oraclejdk7 and oraclejdk8)
-    - jdk: openjdk7
-      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD=""
-    - jdk: oraclejdk7
-      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD=""
+    # unit tests (oraclejdk8)
     - jdk: oraclejdk8
       env: DESC="tests" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD=""
 
-    # checkstyle (openjdk7, oraclejdk7 and oraclejdk8)
-    - jdk: openjdk7
-      env:
-        - DESC="checkstyle"
-        - CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
-        - COVERAGE_CMD=""
-    - jdk: oraclejdk7
-      env:
-        - DESC="checkstyle"
-        - CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
-        - COVERAGE_CMD=""
+    # checkstyle (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="checkstyle"
@@ -202,6 +188,23 @@ matrix:
         - CMD7="&& cd contribution/checkstyle-tester "
         - CMD8="&& travis_wait ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
+        - COVERAGE_CMD=""
+
+    # unit tests (openjdk7, oraclejdk7)
+    - jdk: openjdk7
+      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD=""
+    - jdk: oraclejdk7
+      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD=""
+    # checkstyle (openjdk7, oraclejdk7)
+    - jdk: openjdk7
+      env:
+        - DESC="checkstyle"
+        - CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
+        - COVERAGE_CMD=""
+    - jdk: oraclejdk7
+      env:
+        - DESC="checkstyle"
+        - CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
         - COVERAGE_CMD=""
 
 
