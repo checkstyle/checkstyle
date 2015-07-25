@@ -43,17 +43,87 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * like non static imports (@see {@link ImportOrderOption}</li>
  * </ul>
  *
+ * <pre>
+ * Properties:
+ * </pre>
+ * <table summary="Properties" border="1">
+ *   <tr><th>name</th><th>Description</th><th>type</th><th>default value</th></tr>
+ *   <tr><td>option</td><td>policy on the relative order between regular imports and static
+ *       imports</td><td>{@link ImportOrderOption}</td><td>under</td></tr>
+ *   <tr><td>groups</td><td>list of imports groups (every group identified either by a common
+ *       prefix string, or by a regular expression enclosed in forward slashes (e.g. /regexp/)</td>
+ *       <td>list of strings</td><td>empty list</td></tr>
+ *   <tr><td>ordered</td><td>whether imports within group should be sorted</td>
+ *       <td>Boolean</td><td>true</td></tr>
+ *   <tr><td>separated</td><td>whether imports groups should be separated by, at least,
+ *       one blank line</td><td>Boolean</td><td>false</td></tr>
+ *   <tr><td>caseSensitive</td><td>whether string comparison should be case sensitive or not.
+ *       Case sensitive sorting is in ASCII sort order</td><td>Boolean</td><td>true</td></tr>
+ *   <tr><td>sortStaticImportsAlphabetically</td><td>whether static imports grouped by top or
+ *       bottom option are sorted alphabetically or not</td><td>Boolean</td><td>false</td></tr>
+ * </table>
+ *
  * <p>
  * Example:
  * </p>
+ * <p>To configure the check so that it matches default Eclipse formatter configuration
+ *    (tested on Kepler, Luna and Mars):</p>
+ * <ul>
+ *     <li>group of static imports is on the top</li>
+ *     <li>groups of non-static imports: &quot;java&quot; then &quot;javax&quot;
+ *         packages first, then &quot;org&quot; and then all other imports</li>
+ *     <li>imports will be sorted in the groups</li>
+ *     <li>groups are separated by, at least, one blank line</li>
+ * </ul>
  *
  * <pre>
- *  &lt;module name=&quot;ImportOrder&quot;&gt;
- *    &lt;property name=&quot;groups&quot; value=&quot;java,javax&quot;/&gt;
+ * &lt;module name=&quot;ImportOrder&quot;&gt;
+ *    &lt;property name=&quot;groups&quot; value=&quot;/^javax?\./,org&quot;/&gt;
  *    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
- *    &lt;property name=&quot;caseSensitive&quot; value=&quot;false&quot;/&gt;
+ *    &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
  *    &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
- *  &lt;/module&gt;
+ *    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * <p>To configure the check so that it matches default IntelliJ IDEA formatter configuration
+ *    (tested on v14):</p>
+ * <ul>
+ *     <li>group of static imports is on the bottom</li>
+ *     <li>groups of non-static imports: all imports except of &quot;javax&quot; and
+ *         &quot;java&quot;, then &quot;javax&quot; and &quot;java&quot;</li>
+ *     <li>imports will be sorted in the groups</li>
+ *     <li>groups are separated by, at least, one blank line</li>
+ * </ul>
+ *
+ *         <p>
+ *         Note: &quot;separated&quot; option is disabled because IDEA default has blank line
+ *         between &quot;java&quot; and static imports, and no blank line between
+ *         &quot;javax&quot; and &quot;java&quot;
+ *         </p>
+ *
+ * <pre>
+ * &lt;module name=&quot;ImportOrder&quot;&gt;
+ *     &lt;property name=&quot;groups&quot; value=&quot;*,javax,java&quot;/&gt;
+ *     &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
+ *     &lt;property name=&quot;separated&quot; value=&quot;false&quot;/&gt;
+ *     &lt;property name=&quot;option&quot; value=&quot;bottom&quot;/&gt;
+ *     &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * <p>To configure the check so that it matches default NetBeans formatter configuration
+ *    (tested on v8):</p>
+ * <ul>
+ *     <li>groups of non-static imports are not defined, all imports will be sorted
+ *         as a one group</li>
+ *     <li>static imports are not separated, they will be sorted along with other imports</li>
+ * </ul>
+ *
+ * <pre>
+ * &lt;module name=&quot;ImportOrder&quot;&gt;
+ *     &lt;property name=&quot;option&quot; value=&quot;inflow&quot;/&gt;
+ * &lt;/module&gt;
  * </pre>
  *
  * <p>
@@ -70,18 +140,6 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * this wildcard group. The wildcard group position can be specified using the
  * {@code *} character.
  * </p>
- *
- * <p>
- * Defaults:
- * </p>
- * <ul>
- * <li>import groups: none</li>
- * <li>separation: false</li>
- * <li>ordered: true</li>
- * <li>case sensitive: true</li>
- * <li>static import: under</li>
- * <li>sort static imports alphabetically: false</li>
- * </ul>
  *
  * <p>
  * Check also has on option making it more flexible:
