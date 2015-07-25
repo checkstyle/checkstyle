@@ -1118,7 +1118,6 @@
 
             <regex><pattern>.*.checks.header.AbstractHeaderCheck</pattern><branchRate>90</branchRate><lineRate>87</lineRate></regex>
             <regex><pattern>.*.checks.header.HeaderCheck</pattern><branchRate>31</branchRate><lineRate>50</lineRate></regex>
-            <regex><pattern>.*.checks.header.RegexpHeaderCheck</pattern><branchRate>88</branchRate><lineRate>94</lineRate></regex>
 
 
             <regex><pattern>.*.checks.javadoc.AbstractJavadocCheck</pattern><branchRate>90</branchRate><lineRate>93</lineRate></regex>
