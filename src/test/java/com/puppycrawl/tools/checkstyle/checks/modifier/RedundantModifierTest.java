@@ -93,6 +93,17 @@ public class RedundantModifierTest
     }
 
     @Test
+    public void testInnerTypeInInterfaceIsImplicitlyStatic() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RedundantModifierCheck.class);
+        final String[] expected = {
+            "8:5: " + getCheckMessage(MSG_KEY, "static"),
+            "12:5: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verify(checkConfig, getPath("InputRedundantStaticModifierInInnerTypeOfInterface.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
         int[] actual = redundantModifierCheckObj.getAcceptableTokens();
@@ -102,6 +113,8 @@ public class RedundantModifierTest
             TokenTypes.ANNOTATION_FIELD_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CTOR_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
         };
         Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
