@@ -1135,8 +1135,6 @@
             <regex><pattern>.*.checks.header.RegexpHeaderCheck</pattern><branchRate>88</branchRate><lineRate>94</lineRate></regex>
 
 
-            <regex><pattern>.*.checks.imports.CustomImportOrderCheck</pattern><branchRate>98</branchRate><lineRate>100</lineRate></regex>
- 
             <regex><pattern>.*.checks.javadoc.AbstractJavadocCheck</pattern><branchRate>90</branchRate><lineRate>93</lineRate></regex>
             <regex><pattern>.*.checks.javadoc.AbstractJavadocCheck\$.*</pattern><branchRate>50</branchRate><lineRate>68</lineRate></regex>
             <regex><pattern>.*.checks.javadoc.AtclauseOrderCheck</pattern><branchRate>88</branchRate><lineRate>88</lineRate></regex>
