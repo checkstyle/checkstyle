@@ -393,6 +393,10 @@ class FooBar {
           regular imports and static imports (see
           <a href="property_types.html#importOrder">import orders</a>)</li>
          </ul>
+        <p>
+        <a href="#ImportOrder_Example">Examples section</a> contains examples that
+          work with default formatter configurations of Eclipse, IntelliJ IDEA and NetBeans
+        </p>
       </subsection>
 
       <subsection name="Properties">
@@ -453,22 +457,59 @@ class FooBar {
         </table>
       </subsection>
 
-      <subsection name="Example">
-        <p>To configure the check so that it requires that:</p>
+      <subsection name="Example" id="ImportOrder_Example">
+        <p>To configure the check so that it matches default Eclipse formatter configuration (tested on Kepler, Luna and Mars):</p>
         <ul>
-          <li>&quot;java&quot; and &quot;javax&quot; packages together first, then &quot;org&quot; and then all other imports</li>
+          <li>group of static imports is on the top</li>
+          <li>groups of non-static imports: &quot;java&quot; then &quot;javax&quot; packages first, then &quot;org&quot; and then all other imports</li>
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line</li>
-          <li>static imports are above each local groups</li>
         </ul>
 
         <source>
 &lt;module name=&quot;ImportOrder&quot;>
-    &lt;property name=&quot;groups&quot; value=&quot;/^javax?\./,org&quot;/>
-    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/>
-    &lt;property name=&quot;separated&quot; value=&quot;true&quot;/>
-    &lt;property name=&quot;option&quot; value=&quot;above&quot;/>
+    &lt;property name=&quot;groups&quot; value=&quot;/^javax?\./,org&quot;/&gt;
+    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
+    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
 &lt;/module>
+        </source>
+
+        <p>To configure the check so that it matches default IntelliJ IDEA formatter configuration (tested on v14):</p>
+        <ul>
+          <li>group of static imports is on the bottom</li>
+          <li>groups of non-static imports: all imports except of &quot;javax&quot; and &quot;java&quot;, then &quot;javax&quot; and &quot;java&quot;</li>
+          <li>imports will be sorted in the groups</li>
+          <li>groups are separated by, at least, one blank line</li>
+        </ul>
+
+        <p>
+        Note: &quot;separated&quot; option is disabled because IDEA default has blank line
+        between &quot;java&quot; and static imports, and no blank line between
+        &quot;javax&quot; and &quot;java&quot;
+        </p>
+
+        <source>
+&lt;module name=&quot;ImportOrder&quot;&gt;
+    &lt;property name=&quot;groups&quot; value=&quot;*,javax,java&quot;/&gt;
+    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;separated&quot; value=&quot;false&quot;/&gt;
+    &lt;property name=&quot;option&quot; value=&quot;bottom&quot;/&gt;
+    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>To configure the check so that it matches default NetBeans formatter configuration (tested on v8):</p>
+        <ul>
+          <li>groups of non-static imports are not defined, all imports will be sorted as a one group</li>
+          <li>static imports are not separated, they will be sorted along with other imports</li>
+        </ul>
+
+        <source>
+&lt;module name=&quot;ImportOrder&quot;&gt;
+    &lt;property name=&quot;option&quot; value=&quot;inflow&quot;/&gt;
+&lt;/module&gt;
         </source>
 
         <p>
@@ -477,10 +518,10 @@ class FooBar {
         </p>
 
         <source>
-&lt;module name=&quot;ImportOrder&quot;>
-    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/>
-    &lt;property name=&quot;option&quot; value=&quot;top&quot;/>
-&lt;/module>
+&lt;module name=&quot;ImportOrder&quot;&gt;
+    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+&lt;/module&gt;
         </source>
 
         <source>
@@ -572,7 +613,7 @@ public class SomeClass { ... }
 
         <source>
 &lt;module name=&quot;ImportControl&quot;>
-    &lt;property name=&quot;file&quot; value=&quot;import-control.xml&quot;/>
+    &lt;property name=&quot;file&quot; value=&quot;import-control.xml&quot;/&gt;
 &lt;/module>
         </source>
 
@@ -584,9 +625,9 @@ public class SomeClass { ... }
 
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;>
-    &lt;allow class=&quot;java\.awt\.I.*&quot; regex=&quot;true&quot;/>
+    &lt;allow class=&quot;java\.awt\.I.*&quot; regex=&quot;true&quot;/&gt;
     &lt;allow class=&quot;java\.io\.(File|InputStream)&quot; local-only=&quot;true&quot;
-        regex=&quot;true&quot;/>
+        regex=&quot;true&quot;/&gt;
 &lt;/import-control>
         </source>
 
@@ -616,6 +657,10 @@ public class SomeClass { ... }
           Checks that the groups of import declarations appear in the order specified
           by the user. If there is an import but its group is not specified in the
           configuration such an import should be placed at the end of the import list.
+        </p>
+        <p>
+          <a href="#CustomImportOrder_Example">Examples section</a> contains examples that
+          work with default formatter configurations of Eclipse, IntelliJ IDEA and NetBeans
         </p>
       </subsection>
 
@@ -720,7 +765,59 @@ public class SomeClass { ... }
         </table>
       </subsection>
 
-      <subsection name="Examples">
+      <subsection name="Examples" id="CustomImportOrder_Example">
+        <p>To configure the check so that it matches default Eclipse formatter configuration (tested on Kepler, Luna and Mars):</p>
+        <ul>
+          <li>group of static imports is on the top</li>
+          <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first, then &quot;org&quot; and then all other imports</li>
+          <li>imports will be sorted in the groups</li>
+          <li>groups are separated by, at least, one blank line</li>
+        </ul>
+        <source>
+&lt;module name=&quot;CustomImportOrder&quot;&gt;
+    &lt;property name=&quot;customImportOrderRules&quot;
+        value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS&quot;/&gt;
+    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;org&quot;/&gt;
+    &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>To configure the check so that it matches default IntelliJ IDEA formatter configuration (tested on v14):</p>
+        <ul>
+          <li>group of static imports is on the bottom</li>
+          <li>groups of non-static imports: all imports except of &quot;javax&quot; and &quot;java&quot;, then &quot;javax&quot; and &quot;java&quot;</li>
+          <li>imports will be sorted in the groups</li>
+          <li>groups are separated by, at least, one blank line</li>
+        </ul>
+
+        <p>
+        Note: &quot;separated&quot; option is disabled because IDEA default has blank line
+        between &quot;java&quot; and static imports, and no blank line between
+        &quot;javax&quot; and &quot;java&quot;
+        </p>
+
+        <source>
+&lt;module name=&quot;CustomImportOrder&quot;&gt;
+    &lt;property name=&quot;customImportOrderRules&quot;
+        value=&quot;THIRD_PARTY_PACKAGE###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE###STATIC&quot;/&gt;
+    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^javax\.&quot;/&gt;
+    &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;^java\.&quot;/&gt;
+    &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>To configure the check so that it matches default NetBeans formatter configuration (tested on v8):</p>
+        <ul>
+          <li>groups of non-static imports are not defined, all imports will be sorted as a one group</li>
+          <li>static imports are not separated, they will be sorted along with other imports</li>
+        </ul>
+
+        <source>
+&lt;module name=&quot;CustomImportOrder&quot;/&gt;
+        </source>
+
         <p>
           To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
           thirdPartyPackageRegExp and standardPackageRegExp options.
@@ -728,7 +825,7 @@ public class SomeClass { ... }
         <source>
 &lt;module name=&quot;CustomImportOrder&quot;&gt;
     &lt;property name=&quot;customImportOrderRules&quot;
-    value=&quot;STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE&quot;/&gt;
+        value=&quot;STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE&quot;/&gt;
     &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;com|org&quot;/&gt;
     &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;^(java|javax)\.&quot;/&gt;
 &lt;/module&gt;

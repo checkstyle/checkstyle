@@ -93,9 +93,93 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * <pre>
+ * Properties:
+ * </pre>
+ * <table summary="Properties" border="1">
+ *     <tr><th>name</th><th>Description</th><th>type</th><th>default value</th></tr>
+ *      <tr><td>customImportOrderRules</td><td>List of order declaration customizing by user.</td>
+ *          <td>string</td><td>null</td></tr>
+ *      <tr><td>standardPackageRegExp</td><td>RegExp for STANDARD_JAVA_PACKAGE group imports.</td>
+ *          <td>regular expression</td><td>^(java|javax)\.</td></tr>
+ *      <tr><td>thirdPartyPackageRegExp</td><td>RegExp for THIRDPARTY_PACKAGE group imports.</td>
+ *          <td>regular expression</td><td>.*</td></tr>
+ *      <tr><td>specialImportsRegExp</td><td>RegExp for SPECIAL_IMPORTS group imports.</td>
+ *          <td>regular expression</td><td>^$</td></tr>
+ *      <tr><td>samePackageMatchingDepth</td><td>Number of first domains for SAME_PACKAGE group.
+ *          </td><td>Integer</td><td>2</td></tr>
+ *      <tr><td>separateLineBetweenGroups</td><td>Force empty line separator between import groups.
+ *          </td><td>boolean</td><td>true</td></tr>
+ *      <tr><td>sortImportsInGroupAlphabetically</td><td>Force grouping alphabetically,
+ *          in ASCII sort order.</td><td>boolean</td><td>false</td></tr>
+ * </table>
+ *
+ * <pre>
  * For example:
  * </pre>
+ *        <p>To configure the check so that it matches default Eclipse formatter configuration
+ *        (tested on Kepler, Luna and Mars):</p>
+ *        <ul>
+ *          <li>group of static imports is on the top</li>
+ *          <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages
+ *          first, then &quot;org&quot; and then all other imports</li>
+ *          <li>imports will be sorted in the groups</li>
+ *          <li>groups are separated by, at least, one blank line</li>
+ *        </ul>
+ * <pre>
+ *        <code>
+ * &lt;module name=&quot;CustomImportOrder&quot;&gt;
+ *    &lt;property name=&quot;customImportOrderRules&quot;
+ *        value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS&quot;/&gt;
+ *    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;org&quot;/&gt;
+ *    &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
+ *    &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ *        </code>
+ * </pre>
  *
+ *        <p>To configure the check so that it matches default IntelliJ IDEA formatter
+ *        configuration (tested on v14):</p>
+ *        <ul>
+ *          <li>group of static imports is on the bottom</li>
+ *          <li>groups of non-static imports: all imports except of &quot;javax&quot;
+ *          and &quot;java&quot;, then &quot;javax&quot; and &quot;java&quot;</li>
+ *          <li>imports will be sorted in the groups</li>
+ *          <li>groups are separated by, at least, one blank line</li>
+ *        </ul>
+ *
+ *        <p>
+ *        Note: &quot;separated&quot; option is disabled because IDEA default has blank line
+ *        between &quot;java&quot; and static imports, and no blank line between
+ *        &quot;javax&quot; and &quot;java&quot;
+ *        </p>
+ *
+ * <pre>
+ *        <code>
+ * &lt;module name=&quot;CustomImportOrder&quot;&gt;
+ *    &lt;property name=&quot;customImportOrderRules&quot;
+ *        value=&quot;THIRD_PARTY_PACKAGE###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE
+ *        ###STATIC&quot;/&gt;
+ *    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^javax\.&quot;/&gt;
+ *    &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;^java\.&quot;/&gt;
+ *    &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
+ *    &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;false&quot;/&gt;
+ *&lt;/module&gt;
+ *        </code>
+ * </pre>
+ *
+ * <p>To configure the check so that it matches default NetBeans formatter
+ *    configuration (tested on v8):</p>
+ * <ul>
+ *     <li>groups of non-static imports are not defined, all imports will be sorted as a one
+ *         group</li>
+ *     <li>static imports are not separated, they will be sorted along with other imports</li>
+ * </ul>
+ *
+ *        <code>
+ *&lt;module name=&quot;CustomImportOrder&quot;/&gt;
+ *        </code>
+ * <p>To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
+ *         thirdPartyPackageRegExp and standardPackageRegExp options.</p>
  * <pre>
  * <code>
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
