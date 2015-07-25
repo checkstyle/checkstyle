@@ -28,7 +28,7 @@ cache:
   - C:\Users\appveyor\.m2
 
 matrix:
-  fast_finish: false
+  fast_finish: true
 
 environment:
   matrix:
