@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+
 /**
  * Checks for redundant modifiers in interface and annotation definitions.
  * Also checks for redundant final modifiers on methods of final classes
@@ -53,13 +54,7 @@ public class RedundantModifierCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.METHOD_DEF,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.ANNOTATION_FIELD_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.CTOR_DEF,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -75,6 +70,8 @@ public class RedundantModifierCheck
             TokenTypes.ANNOTATION_FIELD_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CTOR_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
         };
     }
 
@@ -206,9 +203,11 @@ public class RedundantModifierCheck
      * @return true or false
      */
     private static boolean isInterfaceOrAnnotationMember(DetailAST ast) {
-        final DetailAST parentTypeDef = ast.getParent().getParent();
-        return parentTypeDef.getType() == TokenTypes.INTERFACE_DEF
-               || parentTypeDef.getType() == TokenTypes.ANNOTATION_DEF;
+        final DetailAST parentTypeDef =
+                ast.getParent() != null ? ast.getParent().getParent() : null;
+        return parentTypeDef != null
+                && (parentTypeDef.getType() == TokenTypes.INTERFACE_DEF
+                    || parentTypeDef.getType() == TokenTypes.ANNOTATION_DEF);
     }
 
     /**
