@@ -1434,6 +1434,12 @@ import com.puppycrawl.tools.checkstyle.api.Check;
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td>false</td>
           </tr>
+          <tr>
+             <td>allowMultipleEmptyLines</td>
+             <td>Allow multiple empty lines between class members</td>
+             <td><a href="property_types.html#boolean">boolean</a></td>
+             <td>true</td>
+          </tr>
         </table>
       </subsection>
 
