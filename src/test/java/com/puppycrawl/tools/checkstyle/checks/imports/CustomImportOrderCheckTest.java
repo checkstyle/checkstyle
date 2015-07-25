@@ -208,6 +208,22 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testWithoutLineSeparator2() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("separateLineBetweenGroups", "false");
+        checkConfig.addAttribute("customImportOrderRules",
+                "STATIC###STANDARD_JAVA_PACKAGE");
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_LEX, "java.io.File.createTempFile"),
+        };
+
+        verify(checkConfig, getPath("imports" + File.separator
+                + "InputCustomImportOrder_NoSeparator.java"), expected);
+    }
+
+    @Test
     public void testNoValid() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);

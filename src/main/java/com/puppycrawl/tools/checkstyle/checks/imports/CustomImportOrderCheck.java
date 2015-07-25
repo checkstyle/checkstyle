@@ -370,7 +370,7 @@ public class CustomImportOrderCheck extends Check {
                 if (customImportOrderRules.size() > groupNumber + 1) {
                     final String nextGroup = getNextImportGroup(groupNumber + 1);
                     if (importGroup.equals(nextGroup)) {
-                        if (separateLineBetweenGroups && previousImport != null
+                        if (separateLineBetweenGroups
                                 && !hasEmptyLineBefore(importObject.getLineNumber())) {
                             log(importObject.getLineNumber(), MSG_LINE_SEPARATOR,
                                     fullImportIdent);
