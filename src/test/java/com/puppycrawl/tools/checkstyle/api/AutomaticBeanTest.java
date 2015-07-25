@@ -19,6 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.lang.reflect.InvocationTargetException;
+
+import org.apache.commons.beanutils.ConversionException;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -27,6 +34,8 @@ import com.puppycrawl.tools.checkstyle.DefaultContext;
 public class AutomaticBeanTest {
 
     public class TestBean extends AutomaticBean {
+
+        private String privateField;
 
         private String wrong;
 
@@ -40,11 +49,15 @@ public class AutomaticBeanTest {
             this.val = val;
         }
 
+        public void setExceptionalMethod(String val) {
+            throw new IllegalStateException("for UT");
+        }
+
         public void setName(String name) {
         }
 
         /**
-         * just fore code coverage
+         * just for code coverage
          * @param childConf a child of this component's Configuration
          * @throws CheckstyleException
          */
@@ -54,34 +67,68 @@ public class AutomaticBeanTest {
         }
     }
 
-    private final DefaultConfiguration conf = new DefaultConfiguration(
-            "testConf");
-
-    @Test(expected = CheckstyleException.class)
-    public void testNoSuchAttribute() throws CheckstyleException {
+    @Test
+    public void testConfigure_NoSuchAttribute() {
         final TestBean testBean = new TestBean();
+        final DefaultConfiguration conf = new DefaultConfiguration("testConf");
         conf.addAttribute("NonExisting", "doesn't matter");
-        testBean.configure(conf);
+        try {
+            testBean.configure(conf);
+        }
+        catch (CheckstyleException ex) {
+            assertNull(ex.getCause());
+            assertTrue(ex.getMessage().startsWith("Property '" + "NonExisting" + "' in module "));
+        }
     }
 
     @Test
-    public void testNoWrongSetterImplementation() throws CheckstyleException {
+    public void testConfigure_NoSuchAttribute2() {
         final TestBean testBean = new TestBean();
-        conf.addAttribute("wrong", "123");
-        testBean.configure(conf);
+        final DefaultConfiguration conf = new DefaultConfiguration("testConf");
+        conf.addAttribute("privateField", "doesn't matter");
+        try {
+            testBean.configure(conf);
+        }
+        catch (CheckstyleException ex) {
+            assertNull(ex.getCause());
+            assertTrue(ex.getMessage().startsWith("Property '" + "privateField" + "' in module "));
+        }
     }
 
     @Test
-    public void testSetupChild() throws CheckstyleException {
+    public void testSetupChildFromBaseClass() throws CheckstyleException {
         final TestBean testBean = new TestBean();
         testBean.setupChild(null);
     }
 
     @Test
-    public void testContextualize1() throws CheckstyleException {
+    public void testContextualize_InvocationTargetException() {
         final TestBean testBean = new TestBean();
         DefaultContext context = new DefaultContext();
-        context.add("val", 123f);
-        testBean.contextualize(context);
+        context.add("exceptionalMethod", 123f);
+        try {
+            testBean.contextualize(context);
+            fail();
+        }
+        catch (CheckstyleException ex) {
+            assertTrue(ex.getCause() instanceof InvocationTargetException);
+            assertTrue(ex.getMessage().startsWith("Cannot set property "));
+        }
     }
+
+    @Test
+    public void testContextualize_ConversionException() {
+        final TestBean testBean = new TestBean();
+        DefaultContext context = new DefaultContext();
+        context.add("intVal", "some string");
+        try {
+            testBean.contextualize(context);
+            fail();
+        }
+        catch (CheckstyleException ex) {
+            assertTrue(ex.getCause() instanceof ConversionException);
+            assertTrue(ex.getMessage().startsWith("illegal value "));
+        }
+    }
+
 }

@@ -125,45 +125,12 @@ public class AutomaticBean
         throws CheckstyleException {
         this.configuration = configuration;
 
-        final BeanUtilsBean beanUtils = createBeanUtilsBean();
-
         final String[] attributes = configuration.getAttributeNames();
 
         for (final String key : attributes) {
             final String value = configuration.getAttribute(key);
 
-            try {
-                // BeanUtilsBean.copyProperties silently ignores missing setters
-                // for key, so we have to go through great lengths here to
-                // figure out if the bean property really exists.
-                final PropertyDescriptor pd =
-                    PropertyUtils.getPropertyDescriptor(this, key);
-                if (pd == null) {
-                    throw new CheckstyleException(
-                        "Property '" + key + "' in module "
-                        + configuration.getName()
-                        + " does not exist, please check the documentation");
-                }
-
-                // finally we can set the bean property
-                beanUtils.copyProperty(this, key, value);
-            }
-            catch (final InvocationTargetException e) {
-                throw new CheckstyleException(
-                    "Cannot set property '" + key + "' in module "
-                    + configuration.getName() + " to '" + value
-                    + "': " + e.getTargetException().getMessage(), e);
-            }
-            catch (final IllegalAccessException | NoSuchMethodException e) {
-                throw new CheckstyleException(
-                    "cannot access " + key + " in "
-                    + this.getClass().getName(), e);
-            }
-            catch (final IllegalArgumentException | ConversionException e) {
-                throw new CheckstyleException(
-                    "illegal value '" + value + "' for property '" + key
-                    + "' of module " + configuration.getName(), e);
-            }
+            tryCopyProperty(configuration.getName(), key, value, true);
         }
 
         finishLocalSetup();
@@ -171,6 +138,53 @@ public class AutomaticBean
         final Configuration[] childConfigs = configuration.getChildren();
         for (final Configuration childConfig : childConfigs) {
             setupChild(childConfig);
+        }
+    }
+
+    /**
+     * recheck property and try to copy it
+     * @param moduleName name of the module/class
+     * @param key key of value
+     * @param value value
+     * @param recheck whether to check for property existence before copy
+     * @throws CheckstyleException then property defined incorrectly
+     */
+    private void tryCopyProperty(String moduleName, String key, Object value, boolean recheck)
+            throws CheckstyleException {
+
+        final BeanUtilsBean beanUtils = createBeanUtilsBean();
+
+        try {
+            if (recheck) {
+                // BeanUtilsBean.copyProperties silently ignores missing setters
+                // for key, so we have to go through great lengths here to
+                // figure out if the bean property really exists.
+                final PropertyDescriptor pd =
+                        PropertyUtils.getPropertyDescriptor(this, key);
+                if (pd == null) {
+                    throw new CheckstyleException(
+                            "Property '" + key + "' in module "
+                             + moduleName
+                             + " does not exist, please check the documentation");
+                }
+            }
+            // finally we can set the bean property
+            beanUtils.copyProperty(this, key, value);
+        }
+        catch (final InvocationTargetException | IllegalAccessException
+                | NoSuchMethodException e) {
+            // There is no way to catch IllegalAccessException | NoSuchMethodException
+            // as we do PropertyUtils.getPropertyDescriptor before beanUtils.copyProperty
+            // so we have to join these exceptions with InvocationTargetException
+            // to satisfy UTs coverage
+            throw new CheckstyleException(
+                "Cannot set property '" + key + "' to '" + value
+                + "' in module "  + moduleName, e);
+        }
+        catch (final IllegalArgumentException | ConversionException e) {
+            throw new CheckstyleException(
+                "illegal value '" + value + "' for property '" + key
+                + "' of module " + moduleName, e);
         }
     }
 
@@ -183,31 +197,13 @@ public class AutomaticBean
     @Override
     public final void contextualize(Context context)
         throws CheckstyleException {
-        final BeanUtilsBean beanUtils = createBeanUtilsBean();
 
         final Collection<String> attributes = context.getAttributeNames();
 
         for (final String key : attributes) {
             final Object value = context.get(key);
 
-            try {
-                beanUtils.copyProperty(this, key, value);
-            }
-            catch (final InvocationTargetException e) {
-                throw new CheckstyleException("cannot set property "
-                    + key + " to value " + value + " in bean "
-                    + this.getClass().getName(), e);
-            }
-            catch (final IllegalAccessException e) {
-                throw new CheckstyleException(
-                    "cannot access " + key + " in "
-                    + this.getClass().getName(), e);
-            }
-            catch (final IllegalArgumentException | ConversionException e) {
-                throw new CheckstyleException(
-                    "illegal value '" + value + "' for property '" + key
-                    + "' of bean " + this.getClass().getName(), e);
-            }
+            tryCopyProperty(this.getClass().getName(), key, value, false);
         }
     }
 
