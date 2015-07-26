@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.EMPTY;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_MINIMUM;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.STACKOVERFLOW;
 
 import java.io.File;
@@ -104,6 +105,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
     public void testCarriageReturn() throws Exception {
         final String illegal = "\\r";
         checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("maximum", "0");
         final String[] expected = {
             "1: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
             "3: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
@@ -146,7 +148,22 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         verify(checkConfig, file.getPath(), expected);
     }
 
-    private CharSequence makeLargeXYString() {
+    @Test
+    public void testMinimum() throws Exception {
+        final String illegal = "\\r";
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("minimum", "5");
+        final String[] expected = {
+            "0: " + getCheckMessage(REGEXP_MINIMUM, "5", illegal),
+        };
+
+        final File file = temporaryFolder.newFile();
+        Files.write("", file, Charsets.UTF_8);
+
+        verify(checkConfig, file.getPath(), expected);
+    }
+
+    private static CharSequence makeLargeXYString() {
         // now needs 10'000 or 100'000, as just 1000 is no longer enough today to provoke the StackOverflowError
         final int size = 100000;
         StringBuffer largeString = new StringBuffer(size);
