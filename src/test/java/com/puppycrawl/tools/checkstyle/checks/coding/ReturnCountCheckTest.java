@@ -23,10 +23,13 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG
 
 import java.io.File;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ReturnCountCheckTest extends BaseCheckTestSupport {
     @Test
@@ -101,5 +104,29 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
             + "checkstyle/coding/InputReturnCountLambda.java").getCanonicalPath(), expected);
+    }
+
+    @Test
+    public void testImproperToken() throws Exception {
+        ReturnCountCheck check = new ReturnCountCheck();
+
+        DetailAST classDefAst = new DetailAST();
+        classDefAst.setType(TokenTypes.CLASS_DEF);
+
+        try {
+            check.visitToken(classDefAst);
+            Assert.fail();
+        }
+        catch (IllegalStateException e) {
+            // it is OK
+        }
+
+        try {
+            check.leaveToken(classDefAst);
+            Assert.fail();
+        }
+        catch (IllegalStateException e) {
+            // it is OK
+        }
     }
 }
