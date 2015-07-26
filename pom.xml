@@ -1623,11 +1623,6 @@
                     <branchRate>81</branchRate>
                     <lineRate>83</lineRate>
                   </regex>
-                  <regex>
-                    <pattern>.*.checks.UniquePropertiesCheck\$.*</pattern>
-                    <branchRate>75</branchRate>
-                    <lineRate>90</lineRate>
-                  </regex>
 
                   <regex>
                     <pattern>.*.checks.coding.DeclarationOrderCheck</pattern>
