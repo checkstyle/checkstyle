@@ -52,6 +52,14 @@ class InputLeftCurlyAnnotations2 {
         List<String> l = new ArrayList();
         return "SomeString";
     }
+    
+    @Deprecated 
+    @SuppressWarnings({"unused", "unchecked", "static-access"}) public String toString2()
+    {
+        Integer i = this.X;
+        List<String> l = new ArrayList();
+        return "SomeString";
+    }
 }
 
 @Target(ElementType.TYPE)

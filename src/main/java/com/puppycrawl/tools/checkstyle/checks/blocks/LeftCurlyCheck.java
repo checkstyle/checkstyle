@@ -176,28 +176,26 @@ public class LeftCurlyCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST startToken;
-        final DetailAST brace;
+        DetailAST startToken = null;
+        DetailAST brace = null;
 
         switch (ast.getType()) {
-            case TokenTypes.CTOR_DEF :
-            case TokenTypes.METHOD_DEF :
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
                 startToken = skipAnnotationOnlyLines(ast);
                 brace = ast.findFirstToken(TokenTypes.SLIST);
                 break;
-
-            case TokenTypes.INTERFACE_DEF :
-            case TokenTypes.CLASS_DEF :
-            case TokenTypes.ANNOTATION_DEF :
-            case TokenTypes.ENUM_DEF :
-            case TokenTypes.ENUM_CONSTANT_DEF :
+            case TokenTypes.INTERFACE_DEF:
+            case TokenTypes.CLASS_DEF:
+            case TokenTypes.ANNOTATION_DEF:
+            case TokenTypes.ENUM_DEF:
+            case TokenTypes.ENUM_CONSTANT_DEF:
                 startToken = skipAnnotationOnlyLines(ast);
                 final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
                 brace = objBlock == null
-                    ? null
-                    : objBlock.getFirstChild();
+                        ? null
+                        : objBlock.getFirstChild();
                 break;
-
             case TokenTypes.LITERAL_WHILE:
             case TokenTypes.LITERAL_CATCH:
             case TokenTypes.LITERAL_SYNCHRONIZED:
@@ -205,32 +203,30 @@ public class LeftCurlyCheck
             case TokenTypes.LITERAL_TRY:
             case TokenTypes.LITERAL_FINALLY:
             case TokenTypes.LITERAL_DO:
-            case TokenTypes.LITERAL_IF :
-            case TokenTypes.STATIC_INIT :
+            case TokenTypes.LITERAL_IF:
+            case TokenTypes.STATIC_INIT:
                 startToken = ast;
                 brace = ast.findFirstToken(TokenTypes.SLIST);
                 break;
-
-            case TokenTypes.LITERAL_ELSE :
+            case TokenTypes.LITERAL_ELSE:
                 startToken = ast;
                 final DetailAST candidate = ast.getFirstChild();
-                brace =
-                    candidate.getType() == TokenTypes.SLIST
-                    ? candidate
-                    : null; // silently ignore
+                brace = candidate.getType() == TokenTypes.SLIST
+                        ? candidate
+                        : null; // silently ignore
                 break;
+            default:
+//                ATTENTION! We have default here, but we expect case TokenTypes.METHOD_DEF,
+//                TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE, TokenTypes.LITERAL_DO only.
+//                It has been done to improve coverage to 100%. I couldn't replace it with
+//                if-else-if block because code was ugly and didn't pass pmd check.
 
-            case TokenTypes.LITERAL_SWITCH :
                 startToken = ast;
                 brace = ast.findFirstToken(TokenTypes.LCURLY);
                 break;
-
-            default :
-                startToken = null;
-                brace = null;
         }
 
-        if (brace != null && startToken != null) {
+        if (brace != null) {
             verifyBrace(brace, startToken);
         }
     }
@@ -315,8 +311,7 @@ public class LeftCurlyCheck
 
                 validateEol(brace, braceLine, prevLineLen);
             }
-            else if (getAbstractOption() == LeftCurlyOption.NLOW
-                    && startToken.getLineNo() != brace.getLineNo()) {
+            else if (startToken.getLineNo() != brace.getLineNo()) {
 
                 validateNewLinePosion(brace, startToken, braceLine, prevLineLen);
 
