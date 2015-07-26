@@ -332,6 +332,24 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testAnnotationClosingParenthesisEndsInSameIndentationAsOpening() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        checkConfig.addAttribute("tabWidth", "4");
+
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_ERROR, ")", 16, 0),
+            "22: " + getCheckMessage(MSG_ERROR, ")",  8, 4),
+        };
+
+        verifyWarns(checkConfig,
+                getPath("InputAnnotationClosingParenthesisEndsInSameIndentationAsOpening.java"),
+                expected);
+    }
+
+    @Test
     public void testAnonClassesFromGuava() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
