@@ -27,9 +27,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.SortedSet;
 
 import org.junit.Before;
@@ -116,6 +120,23 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
         assertEquals("Message '" + message.getMessage()
                         + "' is not valid", message.getMessage(),
                 getCheckMessage(IO_EXCEPTION_KEY, fileName, getFileNotFoundDetail(file)));
+    }
+
+    @Test
+    public void testWrongKeyTypeInProperties() throws Exception {
+        Class<?> uniquePropertiesClass = Class
+                .forName("com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties");
+        Constructor<?> constructor = uniquePropertiesClass.getDeclaredConstructor();
+        constructor.setAccessible(true);
+        Object uniqueProperties = constructor.newInstance();
+        Method method = uniqueProperties.getClass().getDeclaredMethod("put", Object.class, Object.class);
+        Object result = method.invoke(uniqueProperties, new Integer(1), "value");
+        Map<Object, Object> table = new Hashtable<>();
+        Object expected = table.put(new Integer(1), "value");
+        assertEquals(expected, result);
+        Object result2 = method.invoke(uniqueProperties, new Integer(1), "value");
+        Object expected2 = table.put(new Integer(1), "value");
+        assertEquals(expected2, result2);
     }
 
     /**
