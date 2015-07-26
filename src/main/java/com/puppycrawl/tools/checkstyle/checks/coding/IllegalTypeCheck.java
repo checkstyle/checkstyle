@@ -251,7 +251,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
      */
     private void visitImport(DetailAST importAst) {
         if (!isStarImport(importAst)) {
-            final String canonicalName = getCanonicalName(importAst);
+            final String canonicalName = getImportedTypeCanonicalName(importAst);
             extendIllegalClassNamesWithShortName(canonicalName);
         }
     }
@@ -327,14 +327,12 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
      * @param importAst {@link TokenTypes#IMPORT Import}
      * @return Imported canonical type's name.
      */
-    private static String getCanonicalName(DetailAST importAst) {
+    private static String getImportedTypeCanonicalName(DetailAST importAst) {
         final StringBuilder canonicalNameBuilder = new StringBuilder();
         DetailAST toVisit = importAst;
         while (toVisit != null) {
             toVisit = getNextSubTreeNode(toVisit, importAst);
-            if (toVisit != null
-                   && (toVisit.getType() == TokenTypes.IDENT
-                      || toVisit.getType() == TokenTypes.STAR)) {
+            if (toVisit != null && toVisit.getType() == TokenTypes.IDENT) {
                 canonicalNameBuilder.append(toVisit.getText());
                 final DetailAST nextSubTreeNode = getNextSubTreeNode(toVisit, importAst);
                 if (nextSubTreeNode.getType() != TokenTypes.SEMI) {
@@ -390,15 +388,6 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
     }
 
     /**
-     * Get the list of illegal variable types.
-     * @return array of illegal variable types
-     */
-    public String[] getIllegalClassNames() {
-        return illegalClassNames.toArray(
-            new String[illegalClassNames.size()]);
-    }
-
-    /**
      * Set the list of ignore method names.
      * @param methodNames array of ignored method names
      */
@@ -408,30 +397,12 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
     }
 
     /**
-     * Get the list of ignored method names.
-     * @return array of ignored method names
-     */
-    public String[] getIgnoredMethodNames() {
-        return ignoredMethodNames.toArray(
-            new String[ignoredMethodNames.size()]);
-    }
-
-    /**
      * Set the list of legal abstract class names.
      * @param classNames array of legal abstract class names
      */
     public void setLegalAbstractClassNames(String... classNames) {
         legalAbstractClassNames.clear();
         Collections.addAll(legalAbstractClassNames, classNames);
-    }
-
-    /**
-     * Get the list of legal abstract class names.
-     * @return array of legal abstract class names
-     */
-    public String[] getLegalAbstractClassNames() {
-        return legalAbstractClassNames.toArray(
-            new String[legalAbstractClassNames.size()]);
     }
 
     /**

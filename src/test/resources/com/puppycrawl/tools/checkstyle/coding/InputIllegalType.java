@@ -18,4 +18,7 @@ public class InputIllegalType {
     static class SomeStaticClass {
         
     }
+    
+    InputIllegalType(Integer i) {}
+    private void table2(Integer i) {}
 }

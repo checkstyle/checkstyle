@@ -1112,7 +1112,6 @@
             <regex><pattern>.*.checks.coding.ExplicitInitializationCheck</pattern><branchRate>91</branchRate><lineRate>97</lineRate></regex>
             <regex><pattern>.*.checks.coding.FinalLocalVariableCheck</pattern><branchRate>83</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.coding.IllegalInstantiationCheck</pattern><branchRate>81</branchRate><lineRate>97</lineRate></regex>
-            <regex><pattern>.*.checks.coding.IllegalTypeCheck</pattern><branchRate>93</branchRate><lineRate>94</lineRate></regex>
             <regex><pattern>.*.checks.coding.ModifiedControlVariableCheck</pattern><branchRate>91</branchRate><lineRate>97</lineRate></regex>
             <regex><pattern>.*.checks.coding.OverloadMethodsDeclarationOrderCheck</pattern><branchRate>93</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.coding.ParameterAssignmentCheck</pattern><branchRate>80</branchRate><lineRate>96</lineRate></regex>

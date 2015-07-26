@@ -29,6 +29,8 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class IllegalTypeCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
@@ -167,5 +169,21 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
+    }
+
+    @Test
+    public void testImproperToken() throws Exception {
+        IllegalTypeCheck check = new IllegalTypeCheck();
+
+        DetailAST classDefAst = new DetailAST();
+        classDefAst.setType(TokenTypes.CLASS_DEF);
+
+        try {
+            check.visitToken(classDefAst);
+            Assert.fail();
+        }
+        catch (IllegalStateException e) {
+            // it is OK
+        }
     }
 }
