@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * lineWrappingIndentation parameter.
  *
  * @author maxvetrenko
- *
+ * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  */
 public class LineWrappingHandler {
 
@@ -222,11 +222,14 @@ public class LineWrappingHandler {
         while (firstNodesOnLines.size() > 1) {
             final DetailAST node = itr.next();
 
-            if (node.getLineNo() < lastAnnotationLine
-                    || node.getLineNo() == lastAnnotationLine) {
+            if (node.getLineNo() <= lastAnnotationLine) {
                 final DetailAST parentNode = node.getParent();
+                final boolean isCurrentNodeCloseAnnotationAloneInLine =
+                        node.getLineNo() == lastAnnotationLine
+                        && node.equals(lastAnnotationNode);
                 if (node.getType() == TokenTypes.AT
-                        && parentNode.getParent().getType() == TokenTypes.MODIFIERS) {
+                        && parentNode.getParent().getType() == TokenTypes.MODIFIERS
+                    || isCurrentNodeCloseAnnotationAloneInLine) {
                     logWarningMessage(node, firstNodeIndent);
                 }
                 else {
