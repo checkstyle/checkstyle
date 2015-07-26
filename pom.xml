@@ -1103,7 +1103,6 @@
 
 
             <regex><pattern>.*.checks.blocks.LeftCurlyCheck</pattern><branchRate>89</branchRate><lineRate>96</lineRate></regex>
-            <regex><pattern>.*.checks.blocks.RightCurlyCheck</pattern><branchRate>88</branchRate><lineRate>95</lineRate></regex>
 
 
             <regex><pattern>.*.checks.coding.AbstractIllegalMethodCheck</pattern><branchRate>100</branchRate><lineRate>93</lineRate></regex>
