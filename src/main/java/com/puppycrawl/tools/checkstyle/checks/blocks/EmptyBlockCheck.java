@@ -141,8 +141,7 @@ public class EmptyBlockCheck
                         ast.getText());
                 }
             }
-            else if (getAbstractOption() == BlockOption.TEXT
-                    && !hasText(leftCurly)) {
+            else if (!hasText(leftCurly)) {
                 log(leftCurly.getLineNo(),
                     leftCurly.getColumnNo(),
                     MSG_KEY_BLOCK_EMPTY,
@@ -161,35 +160,33 @@ public class EmptyBlockCheck
         final DetailAST rightCurly = slistAST.findFirstToken(TokenTypes.RCURLY);
         final DetailAST rcurlyAST = rightCurly != null
                 ? rightCurly : slistAST.getParent().findFirstToken(TokenTypes.RCURLY);
-        if (rcurlyAST != null) {
-            final int slistLineNo = slistAST.getLineNo();
-            final int slistColNo = slistAST.getColumnNo();
-            final int rcurlyLineNo = rcurlyAST.getLineNo();
-            final int rcurlyColNo = rcurlyAST.getColumnNo();
-            final String[] lines = getLines();
-            if (slistLineNo == rcurlyLineNo) {
-                // Handle braces on the same line
-                final String txt = lines[slistLineNo - 1]
+        final int slistLineNo = slistAST.getLineNo();
+        final int slistColNo = slistAST.getColumnNo();
+        final int rcurlyLineNo = rcurlyAST.getLineNo();
+        final int rcurlyColNo = rcurlyAST.getColumnNo();
+        final String[] lines = getLines();
+        if (slistLineNo == rcurlyLineNo) {
+            // Handle braces on the same line
+            final String txt = lines[slistLineNo - 1]
                     .substring(slistColNo + 1, rcurlyColNo);
-                if (StringUtils.isNotBlank(txt)) {
-                    retVal = true;
-                }
+            if (StringUtils.isNotBlank(txt)) {
+                retVal = true;
+            }
+        }
+        else {
+            // check only whitespace of first & last lines
+            if (lines[slistLineNo - 1]
+                    .substring(slistColNo + 1).trim().length() != 0
+                    || lines[rcurlyLineNo - 1]
+                            .substring(0, rcurlyColNo).trim().length() != 0) {
+                retVal = true;
             }
             else {
-                // check only whitespace of first & last lines
-                if (lines[slistLineNo - 1]
-                     .substring(slistColNo + 1).trim().length() != 0
-                    || lines[rcurlyLineNo - 1]
-                        .substring(0, rcurlyColNo).trim().length() != 0) {
-                    retVal = true;
-                }
-                else {
-                    // check if all lines are also only whitespace
-                    for (int i = slistLineNo; i < rcurlyLineNo - 1; i++) {
-                        if (lines[i].trim().length() > 0) {
-                            retVal = true;
-                            break;
-                        }
+                // check if all lines are also only whitespace
+                for (int i = slistLineNo; i < rcurlyLineNo - 1; i++) {
+                    if (lines[i].trim().length() > 0) {
+                        retVal = true;
+                        break;
                     }
                 }
             }

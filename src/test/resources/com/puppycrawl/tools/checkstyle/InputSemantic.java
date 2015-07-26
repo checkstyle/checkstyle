@@ -210,4 +210,13 @@ class InputSemantic
             }
         }
     }
+    
+    
+    static {
+       
+    int a = 0;}
+    
+    static {
+        
+    }
 }

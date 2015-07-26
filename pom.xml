@@ -1102,7 +1102,6 @@
             <regex><pattern>.*.checks.UniquePropertiesCheck\$.*</pattern><branchRate>75</branchRate><lineRate>90</lineRate></regex>
 
 
-            <regex><pattern>.*.checks.blocks.EmptyBlockCheck</pattern><branchRate>88</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.blocks.LeftCurlyCheck</pattern><branchRate>89</branchRate><lineRate>96</lineRate></regex>
             <regex><pattern>.*.checks.blocks.NeedBracesCheck</pattern><branchRate>80</branchRate><lineRate>97</lineRate></regex>
             <regex><pattern>.*.checks.blocks.RightCurlyCheck</pattern><branchRate>88</branchRate><lineRate>95</lineRate></regex>
