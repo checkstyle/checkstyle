@@ -269,4 +269,11 @@ class SpecialCasesInForLoop
     public void testNullSemi() {
         return ;
     }
+
+    public void parentheses() {
+        testNullSemi
+(
+)
+;
+    }
 }
