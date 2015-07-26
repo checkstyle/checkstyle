@@ -42,6 +42,7 @@ public class EmptyBlockCheckTest
             "178:5: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
             "206:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
             "208:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "219:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -57,6 +58,7 @@ public class EmptyBlockCheckTest
             "77:17: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "finally"),
             "178:5: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "INSTANCE_INIT"),
             "206:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "synchronized"),
+            "219:12: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "STATIC_INIT"),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -75,6 +77,7 @@ public class EmptyBlockCheckTest
             "178:5: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
             "206:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
             "208:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
+            "219:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
