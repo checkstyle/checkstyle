@@ -65,6 +65,17 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testSetDuplicatesTrue() throws Exception {
+        final String required = "Test case file";
+        final DefaultConfiguration checkConfig = createCheckConfig(RegexpCheck.class);
+        checkConfig.addAttribute("format", required);
+        checkConfig.addAttribute("duplicateLimit", "-1");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
+    }
+
+    @Test
     public void testRequiredNoDuplicatesFail() throws Exception {
         final String required = "Boolean x = new Boolean";
         final DefaultConfiguration checkConfig =
