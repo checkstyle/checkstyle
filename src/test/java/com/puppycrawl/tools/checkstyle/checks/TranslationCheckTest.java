@@ -22,11 +22,14 @@ package com.puppycrawl.tools.checkstyle.checks;
 import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Method;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
@@ -88,4 +91,39 @@ public class TranslationCheckTest
             getPath("app-dev.properties"),
             expected);
     }
+
+    @Test
+    public void testLogIOExceptionFileNotFound() throws Exception {
+        //I can't put wrong file here. Checkstyle fails before check started.
+        //I saw some usage of file or handling of wrong file in Checker, or somewhere
+        //in checks running part. So I had to do it with reflection to improve coverage.
+        TranslationCheck check = new TranslationCheck();
+        DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        check.configure(checkConfig);
+        Checker checker = createChecker(checkConfig);
+        check.setMessageDispatcher(checker);
+
+        Method loadKeys = check.getClass().getDeclaredMethod("loadKeys", File.class);
+        loadKeys.setAccessible(true);
+        loadKeys.invoke(check, new File(""));
+
+    }
+
+    @Test
+    public void testLogIOException() throws Exception {
+        //I can't put wrong file here. Checkstyle fails before check started.
+        //I saw some usage of file or handling of wrong file in Checker, or somewhere
+        //in checks running part. So I had to do it with reflection to improve coverage.
+        TranslationCheck check = new TranslationCheck();
+        DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        check.configure(checkConfig);
+        check.setMessageDispatcher(createChecker(checkConfig));
+
+        Method logIOException = check.getClass().getDeclaredMethod("logIOException",
+                IOException.class,
+                File.class);
+        logIOException.setAccessible(true);
+        logIOException.invoke(check, new IOException(), new File(""));
+    }
+
 }
