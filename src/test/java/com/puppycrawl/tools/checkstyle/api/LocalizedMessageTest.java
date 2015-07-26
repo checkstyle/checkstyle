@@ -20,11 +20,19 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.when;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLStreamHandler;
 import java.util.Locale;
 
 import org.junit.After;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
@@ -50,6 +58,60 @@ public class LocalizedMessageTest {
         LocalizedMessage.setLocale(Locale.ENGLISH);
 
         assertEquals("Empty statement.", localizedMessage.getMessage());
+    }
+
+    @Test
+    public void testBundleReload_UrlNull() throws IOException {
+        LocalizedMessage.UTF8Control cntrl = new LocalizedMessage.UTF8Control();
+        cntrl.newBundle("com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                Locale.ENGLISH, "java.class",
+                Thread.currentThread().getContextClassLoader(), true);
+    }
+
+    @Test
+    public void testBundleReload_UrlNotNull() throws IOException {
+
+        ClassLoader classloader = mock(ClassLoader.class);
+        String resource = "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";
+        String urlPath = "file:com/puppycrawl/tools/checkstyle/checks/coding/messages.properties";
+        final URLConnection mockConnection = Mockito.mock(URLConnection.class);
+        when(mockConnection.getInputStream()).thenReturn(
+                new ByteArrayInputStream(new byte[]{}));
+
+        URL url = getMockUrl(mockConnection);
+        when(classloader.getResource(resource)).thenReturn(url);
+
+        LocalizedMessage.UTF8Control cntrl = new LocalizedMessage.UTF8Control();
+        cntrl.newBundle("com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                Locale.ENGLISH, "java.class",
+                classloader, true);
+    }
+
+    @Test
+    public void testBundleReload_UrlNotNullStreamNull() throws IOException {
+
+        ClassLoader classloader = mock(ClassLoader.class);
+        String resource = "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";
+        String urlPath = "file:com/puppycrawl/tools/checkstyle/checks/coding/messages.properties";
+
+        URL url = getMockUrl(null);
+        when(classloader.getResource(resource)).thenReturn(url);
+
+        LocalizedMessage.UTF8Control cntrl = new LocalizedMessage.UTF8Control();
+        cntrl.newBundle("com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                Locale.ENGLISH, "java.class",
+                classloader, true);
+    }
+
+    public static URL getMockUrl(final URLConnection connection) throws IOException {
+        final URLStreamHandler handler = new URLStreamHandler() {
+            @Override
+            protected URLConnection openConnection(final URL arg0) throws IOException {
+                return connection;
+            }
+        };
+        final URL url = new URL("http://foo.bar", "foo.bar", 80, "", handler);
+        return url;
     }
 
     @Test

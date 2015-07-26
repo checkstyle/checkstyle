@@ -365,7 +365,7 @@ public final class LocalizedMessage
      *
      * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
      */
-    private static class UTF8Control extends Control {
+    protected static class UTF8Control extends Control {
         @Override
         public ResourceBundle newBundle(String aBaseName, Locale aLocale, String aFormat,
                  ClassLoader aLoader, boolean aReload) throws IOException {
@@ -388,10 +388,12 @@ public final class LocalizedMessage
                 stream = aLoader.getResourceAsStream(resourceName);
             }
             if (stream != null) {
-                try (Reader streamReader = new InputStreamReader(stream, "UTF-8")) {
+                final Reader streamReader = new InputStreamReader(stream, "UTF-8");
+                try {
                     // Only this line is changed to make it to read properties files as UTF-8.
                     bundle = new PropertyResourceBundle(streamReader);
-                } finally {
+                }
+                finally {
                     stream.close();
                 }
             }
