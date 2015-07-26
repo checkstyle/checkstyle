@@ -92,11 +92,8 @@ public final class PackageNamesLoader
                              Attributes atts)
         throws SAXException {
         if ("package".equals(qName)) {
-            //push package name
+            //push package name, name is mandatory attribute with not empty value by DTD
             final String name = atts.getValue("name");
-            if (name == null) {
-                throw new SAXException("missing package name");
-            }
             packageStack.push(name);
         }
     }
@@ -139,76 +136,43 @@ public final class PackageNamesLoader
      * @throws CheckstyleException if an error occurs.
      */
     public static Set<String> getPackageNames(ClassLoader classLoader)
-        throws CheckstyleException {
+            throws CheckstyleException {
 
-        Enumeration<URL> packageFiles = null;
+        Set<String> result;
         try {
-            packageFiles = classLoader.getResources(CHECKSTYLE_PACKAGES);
+            //create the loader outside the loop to prevent PackageObjectFactory
+            //being created anew for each file
+            final PackageNamesLoader namesLoader = new PackageNamesLoader();
+
+            final Enumeration<URL> packageFiles = classLoader.getResources(CHECKSTYLE_PACKAGES);
+
+            while (packageFiles.hasMoreElements()) {
+                final URL packageFile = packageFiles.nextElement();
+                InputStream stream = null;
+
+                try {
+                    stream = new BufferedInputStream(packageFile.openStream());
+                    final InputSource source = new InputSource(stream);
+                    namesLoader.parseInputSource(source);
+                }
+                catch (IOException e) {
+                    throw new CheckstyleException("unable to open " + packageFile, e);
+                }
+                finally {
+                    Closeables.closeQuietly(stream);
+                }
+            }
+
+            result = namesLoader.getPackageNames();
+
         }
         catch (IOException e) {
-            throw new CheckstyleException(
-                    "unable to get package file resources", e);
+            throw new CheckstyleException("unable to get package file resources", e);
+        }
+        catch (ParserConfigurationException | SAXException e) {
+            throw new CheckstyleException("unable to open one of package files", e);
         }
 
-        //create the loader outside the loop to prevent PackageObjectFactory
-        //being created anew for each file
-        final PackageNamesLoader namesLoader = newPackageNamesLoader();
-
-        while (packageFiles.hasMoreElements()) {
-            final URL packageFile = packageFiles.nextElement();
-            InputStream stream = null;
-
-            try {
-                stream = new BufferedInputStream(packageFile.openStream());
-                final InputSource source = new InputSource(stream);
-                loadPackageNamesSource(source, "default package names",
-                    namesLoader);
-            }
-            catch (IOException e) {
-                throw new CheckstyleException(
-                        "unable to open " + packageFile, e);
-            }
-            finally {
-                Closeables.closeQuietly(stream);
-            }
-        }
-        return namesLoader.getPackageNames();
-    }
-
-    /**
-     * Creates a PackageNamesLoader instance.
-     * @return the PackageNamesLoader
-     * @throws CheckstyleException if the creation failed
-     */
-    private static PackageNamesLoader newPackageNamesLoader()
-        throws CheckstyleException {
-        try {
-            return new PackageNamesLoader();
-        }
-        catch (final ParserConfigurationException | SAXException e) {
-            throw new CheckstyleException(
-                    "unable to create PackageNamesLoader - "
-                    + e.getMessage(), e);
-        }
-    }
-
-    /**
-     * Returns the list of package names in a specified source.
-     * @param source the source for the list.
-     * @param sourceName the name of the source.
-     * @param nameLoader the PackageNamesLoader instance
-     * @throws CheckstyleException if an error occurs.
-     */
-    private static void loadPackageNamesSource(
-            InputSource source, String sourceName,
-            PackageNamesLoader nameLoader)
-        throws CheckstyleException {
-        try {
-            nameLoader.parseInputSource(source);
-        }
-        catch (final SAXException | IOException e) {
-            throw new CheckstyleException("Unable to parse "
-                    + sourceName + " - " + e.getMessage(), e);
-        }
+        return result;
     }
 }

@@ -20,11 +20,29 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.when;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLStreamHandler;
 import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
+import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -72,4 +90,105 @@ public class PackageNamesLoaderTest {
             Sets.newHashSet(Arrays.asList(checkstylePackages));
         assertEquals("names set.", checkstylePackagesSet, pkgNames);
     }
+
+    @Test
+    public void testPackagesWithDots() throws Exception {
+
+        Constructor<PackageNamesLoader> constructor =
+                (Constructor<PackageNamesLoader>) PackageNamesLoader.class
+                        .getDeclaredConstructors()[0];
+        constructor.setAccessible(true);
+        PackageNamesLoader loader = constructor.newInstance();
+
+        Attributes attributes = mock(Attributes.class);
+        when(attributes.getValue("name")).thenReturn("coding.");
+        loader.startElement("", "", "package", attributes);
+        loader.endElement("", "", "package");
+
+        Field field = PackageNamesLoader.class.getDeclaredField("packageNames");
+        field.setAccessible(true);
+        LinkedHashSet<String> list = (LinkedHashSet<String>) field.get(loader);
+        Assert.assertEquals("coding.", list.iterator().next());
+    }
+
+    @Test
+    public void testPackagesWithSaxException() throws Exception {
+
+        final URLConnection mockConnection = Mockito.mock(URLConnection.class);
+        when(mockConnection.getInputStream()).thenReturn(
+                new ByteArrayInputStream(new byte[]{}));
+
+        URL url = getMockUrl(mockConnection);
+
+        Enumeration<URL> enumer = (Enumeration<URL>) mock(Enumeration.class);
+        when(enumer.hasMoreElements()).thenReturn(true);
+        when(enumer.nextElement()).thenReturn(url);
+
+        ClassLoader classLoader = mock(ClassLoader.class);
+        when(classLoader.getResources("checkstyle_packages.xml")).thenReturn(enumer);
+
+        try {
+            final Set<String> packageNames = PackageNamesLoader
+                    .getPackageNames(classLoader);
+            fail();
+        }
+        catch (CheckstyleException ex) {
+            assertTrue(ex.getCause() instanceof SAXException);
+        }
+    }
+
+    @Test
+    public void testPackagesWithIoException() throws Exception {
+
+        final URLConnection mockConnection = Mockito.mock(URLConnection.class);
+        when(mockConnection.getInputStream()).thenReturn(null);
+
+        URL url = getMockUrl(mockConnection);
+
+        Enumeration<URL> enumer = (Enumeration<URL>) mock(Enumeration.class);
+        when(enumer.hasMoreElements()).thenReturn(true);
+        when(enumer.nextElement()).thenReturn(url);
+
+        ClassLoader classLoader = mock(ClassLoader.class);
+        when(classLoader.getResources("checkstyle_packages.xml")).thenReturn(enumer);
+
+        try {
+            final Set<String> packageNames = PackageNamesLoader
+                    .getPackageNames(classLoader);
+            fail();
+        }
+        catch (CheckstyleException ex) {
+            assertTrue(ex.getCause() instanceof IOException);
+            assertNotEquals("unable to get package file resources", ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testPackagesWithIoException_getResources() throws Exception {
+
+        ClassLoader classLoader = mock(ClassLoader.class);
+        when(classLoader.getResources("checkstyle_packages.xml")).thenThrow(IOException.class);
+
+        try {
+            PackageNamesLoader.getPackageNames(classLoader);
+            fail();
+        }
+        catch (CheckstyleException ex) {
+            assertTrue(ex.getCause() instanceof IOException);
+            assertEquals("unable to get package file resources", ex.getMessage());
+        }
+    }
+
+    public static URL getMockUrl(final URLConnection connection) throws IOException {
+        final URLStreamHandler handler = new URLStreamHandler() {
+            @Override
+            protected URLConnection openConnection(final URL arg0) throws IOException {
+                return connection;
+            }
+        };
+        final URL url = new URL("http://foo.bar", "foo.bar", 80, "", handler);
+        return url;
+    }
+
+
 }
