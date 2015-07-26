@@ -23,11 +23,13 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_K
 import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_PREVIOUS;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
@@ -194,7 +196,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
             "35:34: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
             "38:41: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
             "44:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
-            "58:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
+            "66:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
         };
         verify(checkConfig, getPath("InputLeftCurlyAnnotations.java"), expected);
     }
@@ -241,5 +243,55 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
             "4:17: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{"),
         };
         verify(checkConfig, getPath("InputLeftCurlyEnums.java"), expectedWhileFalse);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        LeftCurlyCheck check = new LeftCurlyCheck();
+        int[] actual = check.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_CATCH,
+            TokenTypes.LITERAL_FINALLY,
+            TokenTypes.LITERAL_SYNCHRONIZED,
+            TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_DO,
+            TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_ELSE,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.STATIC_INIT, };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testFirstLine() throws Exception {
+        checkConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
+        checkConfig.addAttribute("maxLineLength", "100");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputLeftCurlyAllInOneLine.java"), expected);
+    }
+
+    @Test
+    public void testCoverageIncrease() throws Exception {
+        checkConfig.addAttribute("option", LeftCurlyOption.NLOW.toString());
+        checkConfig.addAttribute("maxLineLength", "10");
+        final String[] expected = {
+            "53:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
+            "58:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
+            "62:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
+            "67:12: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
+            "72:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{"),
+        };
+        verify(checkConfig, getPath("InputScopeInnerInterfaces2.java"), expected);
     }
 }
