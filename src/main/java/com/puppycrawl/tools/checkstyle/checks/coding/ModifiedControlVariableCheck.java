@@ -214,9 +214,8 @@ public final class ModifiedControlVariableCheck extends Check {
                 leaveForIter(ast.getParent());
                 break;
             case TokenTypes.FOR_EACH_CLAUSE:
-                final DetailAST paramDef =
-                    ast.findFirstToken(TokenTypes.VARIABLE_DEF);
-                if (shouldCheckEnhancedForLoopVariable(paramDef)) {
+                if (!skipEnhancedForLoopVariable) {
+                    final DetailAST paramDef = ast.findFirstToken(TokenTypes.VARIABLE_DEF);
                     leaveForEach(paramDef);
                 }
                 break;
@@ -280,8 +279,7 @@ public final class ModifiedControlVariableCheck extends Check {
         if (!getCurrentVariables().isEmpty()) {
             final DetailAST identAST = ast.getFirstChild();
 
-            if (identAST != null
-                && identAST.getType() == TokenTypes.IDENT
+            if (identAST.getType() == TokenTypes.IDENT
                 && getCurrentVariables().contains(identAST.getText())) {
                 log(ast.getLineNo(), ast.getColumnNo(),
                     MSG_KEY, identAST.getText());
@@ -311,16 +309,6 @@ public final class ModifiedControlVariableCheck extends Check {
         final Set<String> iteratingVariables = getForIteratorVariables(ast);
 
         return Sets.intersection(initializedVariables, iteratingVariables);
-    }
-
-    /**
-     * Determines whether enhanced for-loop variable should be checked or not.
-     * @param ast The ast to compare.
-     * @return true if enhanced for-loop variable should be checked.
-     */
-    private boolean shouldCheckEnhancedForLoopVariable(DetailAST ast) {
-        return !skipEnhancedForLoopVariable
-                || ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE;
     }
 
     /**
