@@ -24,10 +24,15 @@ import static org.junit.Assert.fail;
 
 import java.text.NumberFormat;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+import antlr.CommonHiddenStreamToken;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class NPathComplexityCheckTest extends BaseCheckTestSupport {
     @Test
@@ -85,5 +90,52 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
             // Exception is not expected
             fail();
         }
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
+        int[] actual = npathComplexityCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.LITERAL_DO,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_ELSE,
+            TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_CASE,
+            TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_CATCH,
+            TokenTypes.QUESTION,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
+        int[] actual = npathComplexityCheckObj.getRequiredTokens();
+        int[] expected = new int[] {
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.STATIC_INIT,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testDefaultHooks() {
+        NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
+        DetailAST ast = new DetailAST();
+        ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
+        npathComplexityCheckObj.visitToken(ast);
+        npathComplexityCheckObj.leaveToken(ast);
     }
 }
