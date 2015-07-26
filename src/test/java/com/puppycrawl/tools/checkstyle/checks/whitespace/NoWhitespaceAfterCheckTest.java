@@ -51,6 +51,7 @@ public class NoWhitespaceAfterCheckTest
             "129:24: " + getCheckMessage(MSG_KEY, "."),
             "132:11: " + getCheckMessage(MSG_KEY, "."),
             "136:12: " + getCheckMessage(MSG_KEY, "."),
+            "264:2: " + getCheckMessage(MSG_KEY, "."),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }

@@ -1156,7 +1156,6 @@
 
             <regex><pattern>.*.checks.whitespace.AbstractParenPadCheck</pattern><branchRate>88</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.whitespace.NoWhitespaceAfterCheck</pattern><branchRate>94</branchRate><lineRate>98</lineRate></regex>
-            <regex><pattern>.*.checks.whitespace.NoWhitespaceBeforeCheck</pattern><branchRate>90</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.whitespace.OperatorWrapCheck</pattern><branchRate>68</branchRate><lineRate>81</lineRate></regex>
 
 
