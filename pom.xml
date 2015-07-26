@@ -1634,11 +1634,6 @@
                     <branchRate>75</branchRate>
                     <lineRate>93</lineRate>
                   </regex>
-                  <regex>
-                    <pattern>.*.checks.TranslationCheck</pattern>
-                    <branchRate>81</branchRate>
-                    <lineRate>83</lineRate>
-                  </regex>
 
                   <regex>
                     <pattern>.*.checks.header.AbstractHeaderCheck</pattern>
