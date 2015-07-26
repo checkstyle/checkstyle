@@ -19,10 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport {
 
@@ -164,4 +166,14 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharactersCheck.java"), expected);
     }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        int[] actual = check.getAcceptableTokens();
+        int[] expected = new int[] {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
+    }
+
 }
