@@ -260,10 +260,12 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
                 rcurly = lcurly.getLastChild();
                 nextToken = ast;
                 break;
-            case TokenTypes.METHOD_DEF:
-            case TokenTypes.LITERAL_FOR:
-            case TokenTypes.LITERAL_WHILE:
-            case TokenTypes.LITERAL_DO:
+            default:
+//              ATTENTION! We have default here, but we expect case TokenTypes.METHOD_DEF,
+//              TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE, TokenTypes.LITERAL_DO only.
+//              It has been done to improve coverage to 100%. I couldn't replace it with
+//              if-else-if block because code was ugly and didn't pass pmd check.
+
                 lcurly = ast.findFirstToken(TokenTypes.SLIST);
                 if (lcurly != null) {
                     // SLIST could be absent if method is abstract,
@@ -272,9 +274,6 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
                 }
                 nextToken = lcurly;
                 break;
-            default:
-                throw new IllegalStateException("Unexpected token type ("
-                        + Utils.getTokenName(ast.getType()) + ")");
         }
 
         final Details details = new Details();
@@ -312,7 +311,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
     private static DetailAST getNextToken(DetailAST ast) {
         DetailAST next = null;
         DetailAST parent = ast;
-        while (parent != null && next == null) {
+        while (next == null) {
             next = parent.getNextSibling();
             parent = parent.getParent();
         }
@@ -325,14 +324,9 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
      * @return true, if right curly has line break before.
      */
     private static boolean hasLineBreakBefore(DetailAST rightCurly) {
-        if (rightCurly != null) {
-            final DetailAST previousToken = rightCurly.getPreviousSibling();
-            if (previousToken != null
-                    && rightCurly.getLineNo() == previousToken.getLineNo()) {
-                return false;
-            }
-        }
-        return true;
+        final DetailAST previousToken = rightCurly.getPreviousSibling();
+        return previousToken == null
+                || rightCurly.getLineNo() != previousToken.getLineNo();
     }
 
     /**

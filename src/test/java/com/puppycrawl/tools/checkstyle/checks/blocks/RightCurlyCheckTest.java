@@ -154,4 +154,22 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("InputRightCurlyAnnotations.java"), expected);
     }
+
+    @Test
+    public void testCatchWithoutFinally() throws Exception {
+        final String[] expected = {
+            "15:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}"),
+        };
+        verify(checkConfig, getPath("InputRightCurly.java"), expected);
+    }
+
+    @Test
+    public void testSingleLineClass() throws Exception {
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        checkConfig.addAttribute("tokens", "CLASS_DEF");
+        final String[] expected = {
+            "24:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}"),
+        };
+        verify(checkConfig, getPath("InputRightCurly.java"), expected);
+    }
 }
