@@ -117,7 +117,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * For example:
  * </pre>
  *        <p>To configure the check so that it matches default Eclipse formatter configuration
- *        (tested on Kepler, Luna and Mars):</p>
+ *        (tested on Kepler and Luna releases):</p>
  *        <ul>
  *          <li>group of static imports is on the top</li>
  *          <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages
@@ -125,6 +125,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *          <li>imports will be sorted in the groups</li>
  *          <li>groups are separated by, at least, one blank line</li>
  *        </ul>
+ * <p>Notes:</p>
+ * <ul>
+ *     <li>&quot;com&quot; package is not mentioned on configuration, because it is
+ *         ignored by Eclipse Kepler and Luna (looks like Eclipse defect)</li>
+ *     <li>configuration below doesn't work in all 100% cases due to inconsistent behavior
+ *         prior to Mars release, but covers most scenarios</li>
+ * </ul>
+ *
  * <pre>
  *        <code>
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
@@ -137,6 +145,29 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *        </code>
  * </pre>
  *
+ * <p>To configure the check so that it matches default Eclipse formatter
+ *    configuration (tested on Mars release):</p>
+ * <ul>
+ *     <li>group of static imports is on the top</li>
+ *     <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first,
+ *         then &quot;org&quot; and &quot;com&quot;, then all other imports as one group</li>
+ *     <li>imports will be sorted in the groups</li>
+ *     <li>groups are separated by, at least, one blank line</li>
+ * </ul>
+ *
+ * <pre>
+ *        <code>
+ *&lt;module name=&quot;CustomImportOrder&quot;&gt;
+ *    &lt;property name=&quot;customImportOrderRules&quot;
+ *        value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS
+ *        ###THIRD_PARTY_PACKAGE&quot;/&gt;
+ *    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;org&quot;/&gt;
+ *    &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;com&quot;/&gt;
+ *    &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
+ *    &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
+ *&lt;/module&gt;
+ *        </code>
+ * </pre>
  *        <p>To configure the check so that it matches default IntelliJ IDEA formatter
  *        configuration (tested on v14):</p>
  *        <ul>

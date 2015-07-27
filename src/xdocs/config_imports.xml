@@ -458,28 +458,59 @@ class FooBar {
       </subsection>
 
       <subsection name="Example" id="ImportOrder_Example">
-        <p>To configure the check so that it matches default Eclipse formatter configuration (tested on Kepler, Luna and Mars):</p>
+        <p>To configure the check so that it matches default Eclipse formatter configuration
+           (tested on Kepler and Luna releases):</p>
         <ul>
           <li>group of static imports is on the top</li>
-          <li>groups of non-static imports: &quot;java&quot; then &quot;javax&quot; packages first, then &quot;org&quot; and then all other imports</li>
+          <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first,
+              then &quot;org&quot; and then all other imports</li>
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line</li>
         </ul>
+        <p>Notes:</p>
+        <ul>
+          <li>&quot;com&quot; package is not mentioned on configuration, because it is
+              ignored by Eclipse Kepler and Luna (looks like Eclipse defect)</li>
+          <li>configuration below doesn't work in all 100% cases due to inconsistent behavior
+              prior to Mars release, but covers most scenarios</li>
+        </ul>
 
         <source>
-&lt;module name=&quot;ImportOrder&quot;>
+&lt;module name=&quot;ImportOrder&quot;&gt;
     &lt;property name=&quot;groups&quot; value=&quot;/^javax?\./,org&quot;/&gt;
     &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
     &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
     &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
     &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
-&lt;/module>
+&lt;/module&gt;
         </source>
 
-        <p>To configure the check so that it matches default IntelliJ IDEA formatter configuration (tested on v14):</p>
+        <p>To configure the check so that it matches default Eclipse formatter
+           configuration (tested on Mars release):</p>
+        <ul>
+          <li>group of static imports is on the top</li>
+          <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first,
+              then &quot;org&quot; and &quot;com&quot;, then all other imports as one group</li>
+          <li>imports will be sorted in the groups</li>
+          <li>groups are separated by, at least, one blank line</li>
+        </ul>
+
+        <source>
+&lt;module name=&quot;ImportOrder&quot;&gt;
+    &lt;property name=&quot;groups&quot; value=&quot;/^javax?\./,org,com&quot;/&gt;
+    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
+    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>To configure the check so that it matches default IntelliJ IDEA formatter
+           configuration (tested on v14):</p>
         <ul>
           <li>group of static imports is on the bottom</li>
-          <li>groups of non-static imports: all imports except of &quot;javax&quot; and &quot;java&quot;, then &quot;javax&quot; and &quot;java&quot;</li>
+          <li>groups of non-static imports: all imports except of &quot;javax&quot;
+              and &quot;java&quot;, then &quot;javax&quot; and &quot;java&quot;</li>
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line</li>
         </ul>
@@ -500,9 +531,11 @@ class FooBar {
 &lt;/module&gt;
         </source>
 
-        <p>To configure the check so that it matches default NetBeans formatter configuration (tested on v8):</p>
+        <p>To configure the check so that it matches default NetBeans formatter configuration
+           (tested on v8):</p>
         <ul>
-          <li>groups of non-static imports are not defined, all imports will be sorted as a one group</li>
+          <li>groups of non-static imports are not defined, all imports will be sorted as a one
+              group</li>
           <li>static imports are not separated, they will be sorted along with other imports</li>
         </ul>
 
@@ -561,7 +594,8 @@ public class SomeClass { ... }
 
         <p>
           The DTD for a import control XML document is at <a
-          href="http://www.puppycrawl.com/dtds/import_control_1_1.dtd">http://www.puppycrawl.com/dtds/import_control_1_1.dtd</a>. It
+          href="http://www.puppycrawl.com/dtds/import_control_1_1.dtd">
+          http://www.puppycrawl.com/dtds/import_control_1_1.dtd</a>. It
           contains documentation on each of the elements and attributes.
         </p>
 
@@ -612,9 +646,9 @@ public class SomeClass { ... }
         </p>
 
         <source>
-&lt;module name=&quot;ImportControl&quot;>
+&lt;module name=&quot;ImportControl&quot;&gt;
     &lt;property name=&quot;file&quot; value=&quot;import-control.xml&quot;/&gt;
-&lt;/module>
+&lt;/module&gt;
         </source>
 
         <p>
@@ -624,16 +658,17 @@ public class SomeClass { ... }
         </p>
 
         <source>
-&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
     &lt;allow class=&quot;java\.awt\.I.*&quot; regex=&quot;true&quot;/&gt;
     &lt;allow class=&quot;java\.io\.(File|InputStream)&quot; local-only=&quot;true&quot;
         regex=&quot;true&quot;/&gt;
-&lt;/import-control>
+&lt;/import-control&gt;
         </source>
 
         <p>
           For an example import control file, look at the file called <a
-          href="https://github.com/checkstyle/checkstyle/blob/master/config/import-control.xml">import-control.xml</a>
+          href="https://github.com/checkstyle/checkstyle/blob/master/config/import-control.xml">
+          import-control.xml</a>
           which is part of the Checkstyle distribution.
         </p>
       </subsection>
@@ -758,7 +793,9 @@ public class SomeClass { ... }
           </tr>
           <tr>
             <td>sortImportsInGroupAlphabetically</td>
-            <td>Force grouping alphabetically, in <a href="http://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.</td>
+            <td>Force grouping alphabetically, in
+                <a href="http://en.wikipedia.org/wiki/ASCII#Order">
+                   ASCII sort order</a>.</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><code>false</code></td>
           </tr>
@@ -766,12 +803,21 @@ public class SomeClass { ... }
       </subsection>
 
       <subsection name="Examples" id="CustomImportOrder_Example">
-        <p>To configure the check so that it matches default Eclipse formatter configuration (tested on Kepler, Luna and Mars):</p>
+        <p>To configure the check so that it matches default Eclipse formatter configuration
+           (tested on Kepler and Luna releases):</p>
         <ul>
           <li>group of static imports is on the top</li>
-          <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first, then &quot;org&quot; and then all other imports</li>
+          <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first,
+              then &quot;org&quot; and then all other imports</li>
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line</li>
+        </ul>
+        <p>Notes:</p>
+        <ul>
+          <li>&quot;com&quot; package is not mentioned on configuration, because it is
+              ignored by Eclipse Kepler and Luna (looks like Eclipse defect)</li>
+          <li>configuration below doesn't work in all 100% cases due to inconsistent behavior
+              prior to Mars release, but covers most scenarios</li>
         </ul>
         <source>
 &lt;module name=&quot;CustomImportOrder&quot;&gt;
@@ -783,10 +829,32 @@ public class SomeClass { ... }
 &lt;/module&gt;
         </source>
 
-        <p>To configure the check so that it matches default IntelliJ IDEA formatter configuration (tested on v14):</p>
+        <p>To configure the check so that it matches default Eclipse formatter configuration
+           (tested on Mars release):</p>
+        <ul>
+          <li>group of static imports is on the top</li>
+          <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first,
+              then &quot;org&quot; and &quot;com&quot;, then all other imports as one group</li>
+          <li>imports will be sorted in the groups</li>
+          <li>groups are separated by, at least, one blank line</li>
+        </ul>
+        <source>
+&lt;module name=&quot;CustomImportOrder&quot;&gt;
+    &lt;property name=&quot;customImportOrderRules&quot;
+        value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE&quot;/&gt;
+    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;org&quot;/&gt;
+    &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;com&quot;/&gt;
+    &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>To configure the check so that it matches default IntelliJ IDEA formatter configuration
+           (tested on v14):</p>
         <ul>
           <li>group of static imports is on the bottom</li>
-          <li>groups of non-static imports: all imports except of &quot;javax&quot; and &quot;java&quot;, then &quot;javax&quot; and &quot;java&quot;</li>
+          <li>groups of non-static imports: all imports except of &quot;javax&quot; and
+              &quot;java&quot;, then &quot;javax&quot; and &quot;java&quot;</li>
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line</li>
         </ul>
@@ -808,9 +876,11 @@ public class SomeClass { ... }
 &lt;/module&gt;
         </source>
 
-        <p>To configure the check so that it matches default NetBeans formatter configuration (tested on v8):</p>
+        <p>To configure the check so that it matches default NetBeans formatter configuration
+           (tested on v8):</p>
         <ul>
-          <li>groups of non-static imports are not defined, all imports will be sorted as a one group</li>
+          <li>groups of non-static imports are not defined, all imports will be sorted as a one
+              group</li>
           <li>static imports are not separated, they will be sorted along with other imports</li>
         </ul>
 
@@ -840,7 +910,8 @@ public class SomeClass { ... }
 &lt;/module&gt;
         </source>
         <p>
-          It is possible to enforce <a href="http://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>
+          It is possible to enforce <a href="http://en.wikipedia.org/wiki/ASCII#Order">
+          ASCII sort order</a>
           of imports in groups using the following configuration:
         </p>
        <source>
