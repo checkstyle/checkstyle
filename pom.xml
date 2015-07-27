@@ -212,6 +212,11 @@
       <version>1.9.6</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>com.fifesoft</groupId>
+      <artifactId>rsyntaxtextarea</artifactId>
+      <version>2.5.7</version>
+    </dependency>
 
     <!-- test scope stuff -->
     <dependency>
