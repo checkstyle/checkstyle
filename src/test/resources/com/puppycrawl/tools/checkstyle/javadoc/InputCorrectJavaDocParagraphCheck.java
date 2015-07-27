@@ -90,3 +90,10 @@ class InputCorrectJavaDocParagraphCheck {
         boolean emulated() {return false;}
     };
 }
+
+/*
+ *  This comment has paragraph without '<p>' tag.
+ *
+ *  It's fine, because this is plain comment.
+ */
+class ClassWithPlainComment {}

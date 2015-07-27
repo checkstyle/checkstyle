@@ -142,22 +142,20 @@ public final class JavadocUtils {
                 final Pattern tagPattern = Pattern.compile(".*?\\{@(\\p{Alpha}+)\\s+(.*?)\\}");
                 final Matcher tagMatcher = tagPattern.matcher(commentContents);
                 while (tagMatcher.find()) {
-                    if (tagMatcher.groupCount() == 2) {
-                        final String tagName = tagMatcher.group(1);
-                        final String tagValue = tagMatcher.group(2).trim();
-                        final int line = cmt.getStartLineNo() + i;
-                        int col = commentOffset + tagMatcher.start(1) - 1;
-                        if (i == 0) {
-                            col += cmt.getStartColNo();
-                        }
-                        if (JavadocTagInfo.isValidName(tagName)) {
-                            tags.add(new JavadocTag(line, col, tagName,
-                                    tagValue));
-                        }
-                        else {
-                            invalidTags.add(new InvalidJavadocTag(line, col,
-                                    tagName));
-                        }
+                    final String tagName = tagMatcher.group(1);
+                    final String tagValue = tagMatcher.group(2).trim();
+                    final int line = cmt.getStartLineNo() + i;
+                    int col = commentOffset + tagMatcher.start(1) - 1;
+                    if (i == 0) {
+                        col += cmt.getStartColNo();
+                    }
+                    if (JavadocTagInfo.isValidName(tagName)) {
+                        tags.add(new JavadocTag(line, col, tagName,
+                                tagValue));
+                    }
+                    else {
+                        invalidTags.add(new InvalidJavadocTag(line, col,
+                                tagName));
                     }
                     // else Error: Unexpected match count for inline Javadoc
                     // tag!
@@ -270,7 +268,7 @@ public final class JavadocUtils {
      */
     public static boolean branchContains(DetailNode node, int type) {
         DetailNode curNode = node;
-        while (curNode != null) {
+        while (true) {
 
             if (type == curNode.getType()) {
                 return true;
@@ -334,12 +332,10 @@ public final class JavadocUtils {
      */
     public static DetailNode getPreviousSibling(DetailNode node) {
         final DetailNode parent = node.getParent();
-        if (parent != null) {
-            final int previousSiblingIndex = node.getIndex() - 1;
-            final DetailNode[] children = parent.getChildren();
-            if (previousSiblingIndex >= 0) {
-                return children[previousSiblingIndex];
-            }
+        final int previousSiblingIndex = node.getIndex() - 1;
+        final DetailNode[] children = parent.getChildren();
+        if (previousSiblingIndex >= 0) {
+            return children[previousSiblingIndex];
         }
         return null;
     }
