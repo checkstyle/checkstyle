@@ -129,14 +129,16 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testNonExistingCacheFileDoesNotThrowException() throws Exception {
+    public void testDestroyNonExistingCache() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(new DefaultConfiguration("default config"));
         treeWalker.setCacheFile("/invalid");
-        treeWalker.finishLocalSetup();
         try {
             treeWalker.destroy();
-            fail();
+            // till
+            if (!System.getProperty("os.name").startsWith("Windows")) {
+                fail();
+            }
         }
         catch (IllegalStateException ex) {
             assertTrue(ex.getCause() instanceof IOException);
