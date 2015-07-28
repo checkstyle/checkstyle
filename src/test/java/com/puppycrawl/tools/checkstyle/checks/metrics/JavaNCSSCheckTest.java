@@ -26,10 +26,12 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Testcase for the JavaNCSS-Check.
@@ -47,7 +49,7 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("fileMaximum", "2");
 
         String[] expected = {
-            "2:1: " + getCheckMessage(MSG_FILE, 35, 2),
+            "2:1: " + getCheckMessage(MSG_FILE, 39, 2),
             "9:1: " + getCheckMessage(MSG_CLASS, 22, 1),
             "14:5: " + getCheckMessage(MSG_METHOD, 2, 0),
             "21:5: " + getCheckMessage(MSG_METHOD, 4, 0),
@@ -56,6 +58,10 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
             "49:5: " + getCheckMessage(MSG_CLASS, 2, 1),
             "56:1: " + getCheckMessage(MSG_CLASS, 10, 1),
             "61:5: " + getCheckMessage(MSG_METHOD, 8, 0),
+            "80:1: " + getCheckMessage(MSG_CLASS, 4, 1),
+            "81:5: " + getCheckMessage(MSG_METHOD, 1, 0),
+            "82:5: " + getCheckMessage(MSG_METHOD, 1, 0),
+            "83:5: " + getCheckMessage(MSG_METHOD, 1, 0),
         };
 
         verify(checkConfig, getPath("metrics" + File.separator
@@ -77,5 +83,81 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
             // Exception is not expected
             fail();
         }
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        JavaNCSSCheck javaNcssCheckObj = new JavaNCSSCheck();
+        int[] actual = javaNcssCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.CTOR_CALL,
+            TokenTypes.SUPER_CTOR_CALL,
+            TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_ELSE,
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.LITERAL_DO,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_BREAK,
+            TokenTypes.LITERAL_CONTINUE,
+            TokenTypes.LITERAL_RETURN,
+            TokenTypes.LITERAL_THROW,
+            TokenTypes.LITERAL_SYNCHRONIZED,
+            TokenTypes.LITERAL_CATCH,
+            TokenTypes.LITERAL_FINALLY,
+            TokenTypes.EXPR,
+            TokenTypes.LABELED_STAT,
+            TokenTypes.LITERAL_CASE,
+            TokenTypes.LITERAL_DEFAULT,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        JavaNCSSCheck javaNcssCheckObj = new JavaNCSSCheck();
+        int[] actual = javaNcssCheckObj.getRequiredTokens();
+        int[] expected = new int[] {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.CTOR_CALL,
+            TokenTypes.SUPER_CTOR_CALL,
+            TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_ELSE,
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.LITERAL_DO,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_BREAK,
+            TokenTypes.LITERAL_CONTINUE,
+            TokenTypes.LITERAL_RETURN,
+            TokenTypes.LITERAL_THROW,
+            TokenTypes.LITERAL_SYNCHRONIZED,
+            TokenTypes.LITERAL_CATCH,
+            TokenTypes.LITERAL_FINALLY,
+            TokenTypes.EXPR,
+            TokenTypes.LABELED_STAT,
+            TokenTypes.LITERAL_CASE,
+            TokenTypes.LITERAL_DEFAULT,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 }
