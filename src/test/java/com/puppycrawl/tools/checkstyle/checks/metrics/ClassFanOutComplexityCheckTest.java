@@ -24,10 +24,12 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
     @Test
@@ -74,5 +76,23 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
             //Exception is not expected
             fail();
         }
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        ClassFanOutComplexityCheck classFanOutComplexityCheckObj = new ClassFanOutComplexityCheck();
+        int[] actual = classFanOutComplexityCheckObj.getAcceptableTokens();
+        int[] expected = new int[] {
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.TYPE,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.LITERAL_THROWS,
+            TokenTypes.ANNOTATION_DEF,
+        };
+        Assert.assertNotNull(actual);
+        Assert.assertArrayEquals(expected, actual);
     }
 }

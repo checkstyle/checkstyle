@@ -1136,7 +1136,6 @@
             <regex><pattern>.*.checks.metrics.AbstractClassCouplingCheck\$.*</pattern><branchRate>78</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.metrics.AbstractComplexityCheck</pattern><branchRate>83</branchRate><lineRate>92</lineRate></regex>
             <regex><pattern>.*.checks.metrics.BooleanExpressionComplexityCheck</pattern><branchRate>74</branchRate><lineRate>80</lineRate></regex>
-            <regex><pattern>.*.checks.metrics.ClassFanOutComplexityCheck</pattern><branchRate>100</branchRate><lineRate>80</lineRate></regex>
             <regex><pattern>.*.checks.metrics.CyclomaticComplexityCheck</pattern><branchRate>85</branchRate><lineRate>80</lineRate></regex>
             <regex><pattern>.*.checks.metrics.JavaNCSSCheck</pattern><branchRate>87</branchRate><lineRate>97</lineRate></regex>
             <regex><pattern>.*.checks.metrics.NPathComplexityCheck</pattern><branchRate>100</branchRate><lineRate>90</lineRate></regex>
