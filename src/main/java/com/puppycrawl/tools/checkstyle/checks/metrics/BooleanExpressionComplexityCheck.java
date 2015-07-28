@@ -139,7 +139,7 @@ public final class BooleanExpressionComplexityCheck extends Check {
                 context.visitBooleanOperator();
                 break;
             default:
-                throw new IllegalStateException(ast.toString());
+                throw new IllegalArgumentException("Unknown type: " + ast);
         }
     }
 
@@ -186,7 +186,8 @@ public final class BooleanExpressionComplexityCheck extends Check {
      */
     private void visitMethodDef(DetailAST ast) {
         contextStack.push(context);
-        context = new Context(!CheckUtils.isEqualsMethod(ast));
+        final boolean check = !CheckUtils.isEqualsMethod(ast);
+        context = new Context(check);
     }
 
     /** Removes old context. */
@@ -197,7 +198,7 @@ public final class BooleanExpressionComplexityCheck extends Check {
     /** Creates and pushes new context. */
     private void visitExpr() {
         contextStack.push(context);
-        context = new Context(context == null || context.isChecking());
+        context = new Context(context.isChecking());
     }
 
     /**
