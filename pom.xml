@@ -1082,6 +1082,7 @@
             <regex><pattern>.*.DefaultLogger</pattern><branchRate>75</branchRate><lineRate>76</lineRate></regex>
             <regex><pattern>.*.Main</pattern><branchRate>80</branchRate><lineRate>90</lineRate></regex>
             <regex><pattern>.*.PackageNamesLoader</pattern><branchRate>78</branchRate><lineRate>72</lineRate></regex>
+            <!-- till https://github.com/checkstyle/checkstyle/issues/1496 -->
             <regex><pattern>.*.PropertyCacheFile</pattern><branchRate>87</branchRate><lineRate>98</lineRate></regex>
             <regex><pattern>.*.TreeWalker</pattern><branchRate>94</branchRate><lineRate>91</lineRate></regex>
 
