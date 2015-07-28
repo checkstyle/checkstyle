@@ -1124,7 +1124,6 @@
             <regex><pattern>.*.checks.javadoc.AbstractJavadocCheck\$.*</pattern><branchRate>50</branchRate><lineRate>68</lineRate></regex>
             <regex><pattern>.*.checks.javadoc.AtclauseOrderCheck</pattern><branchRate>88</branchRate><lineRate>88</lineRate></regex>
             <regex><pattern>.*.checks.javadoc.JavadocMethodCheck</pattern><branchRate>91</branchRate><lineRate>98</lineRate></regex>
-            <regex><pattern>.*.checks.javadoc.JavadocStyleCheck</pattern><branchRate>89</branchRate><lineRate>98</lineRate></regex>
             <regex><pattern>.*.checks.javadoc.WriteTagCheck</pattern><branchRate>100</branchRate><lineRate>91</lineRate></regex>
 
 

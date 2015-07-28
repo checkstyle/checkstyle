@@ -73,5 +73,10 @@ public class InputJavadocStyleCheckHtmlComment
     private void method5()
     { // JavadocStyle should not report any error for this method
     }
-    
+
+    /**
+     * Parameterized interface.
+     * @param <I>
+     */
+    interface Interface<I> {}
 }
