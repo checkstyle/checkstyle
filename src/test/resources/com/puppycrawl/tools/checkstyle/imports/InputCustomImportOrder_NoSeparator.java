@@ -1,4 +1,4 @@
-package java.util.concurrent;
+package com.puppycrawl.tools.checkstyle.imports;
 import static java.awt.Button.ABORT;
 import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile;
@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.StringTokenizer;
 import com.puppycrawl.tools.*;
 import com.*;
-import org.apache.*;
+import org.apache.commons.beanutils.*;
 
 public class InputCustomImportOrder_NoSeparator {
 }
