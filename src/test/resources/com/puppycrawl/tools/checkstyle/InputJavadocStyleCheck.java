@@ -354,6 +354,45 @@ public class InputJavadocStyleCheck
          */
         void tagInTwoLines() {
             
-        } 
+        }
 
+        /**
+         * This Javadoc contains unclosed tag.
+         * <code>unclosed 'code' tag<code>
+         */
+        private void unclosedTag() {}
+
+        void javadocLikeCommentInMethod() {
+            /**
+             * It pretends to be Javadoc without dot, but it's just comment in method
+             */
+            final int i = 0;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        private void inheritDoc() {}
+
+        /**
+         * <p><b>Note:<b> it's unterminated tag.</p>
+         */
+        private void unterminatedTag() {}
+
+        /**
+         * Javadoc without dot
+         */
+        public interface TestInterface {
+            /**
+             * Javadoc without dot
+             */
+            void method();
+        }
+
+        static class TestStaticClass {
+            /**
+             * Javadoc without dot
+             */
+            public int field;
+        }
 }

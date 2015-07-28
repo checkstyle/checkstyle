@@ -316,13 +316,12 @@ public class JavadocStyleCheck
      * @param buffer the StringBuffer to trim.
      */
     private static void trimTail(StringBuffer buffer) {
-        for (int i = buffer.length() - 1; i >= 0; i--) {
+        int i = buffer.length() - 1;
+        while (true) {
             if (Character.isWhitespace(buffer.charAt(i))) {
                 buffer.deleteCharAt(i);
             }
-            else if (i > 0
-                     && buffer.charAt(i - 1) == '*'
-                     && buffer.charAt(i) == '/') {
+            else if (buffer.charAt(i - 1) == '*') {
                 buffer.deleteCharAt(i);
                 buffer.deleteCharAt(i - 1);
                 i--;
@@ -334,6 +333,7 @@ public class JavadocStyleCheck
             else {
                 break;
             }
+            i--;
         }
     }
 
