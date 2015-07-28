@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck.MSG_KEY
 
 import java.io.File;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -48,5 +49,13 @@ public class NoCloneCheckTest
             "98: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputClone.java"), expected);
+    }
+
+    @Test
+    public void testTokensNotNull() {
+        NoCloneCheck check = new NoCloneCheck();
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertNotNull(check.getRequiredTokens());
     }
 }
