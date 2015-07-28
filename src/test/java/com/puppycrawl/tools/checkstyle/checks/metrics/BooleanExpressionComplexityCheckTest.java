@@ -25,8 +25,12 @@ import java.io.File;
 
 import org.junit.Test;
 
+import antlr.CommonHiddenStreamToken;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
     @Test
@@ -66,5 +70,13 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig, getPath("metrics" + File.separator + "InputBooleanExpressionComplexityNPE.java"), expected);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWrongToken() {
+        BooleanExpressionComplexityCheck booleanExpressionComplexityCheckObj = new BooleanExpressionComplexityCheck();
+        DetailAST ast = new DetailAST();
+        ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
+        booleanExpressionComplexityCheckObj.visitToken(ast);
     }
 }
