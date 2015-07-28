@@ -70,6 +70,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
             "4: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
+            "5: " + getCheckMessage(MSG_LEX, "java.awt.print.Paper.*", "java.io.File.createTempFile"),
             "8: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.awt.Button"),
             "9: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.awt.Frame"),
             "10: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.awt.Dialog"),
@@ -101,8 +102,12 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
             "4: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
+            "5: " + getCheckMessage(MSG_LEX, "java.awt.print.Paper.*", "java.io.File.createTempFile"),
             "10: " + getCheckMessage(MSG_LEX, "java.awt.Dialog", "java.awt.Frame"),
             "15: " + getCheckMessage(MSG_LEX, "java.io.File", "javax.swing.JTable"),
+            "16: " + getCheckMessage(MSG_LEX, "java.io.IOException", "javax.swing.JTable"),
+            "17: " + getCheckMessage(MSG_LEX, "java.io.InputStream", "javax.swing.JTable"),
+            "18: " + getCheckMessage(MSG_LEX, "java.io.Reader", "javax.swing.JTable"),
             "22: " + getCheckMessage(MSG_LEX, "com.google.common.collect.*", "com.puppycrawl.tools.*"),
         };
 
@@ -123,8 +128,12 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
             "4: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
+            "5: " + getCheckMessage(MSG_LEX, "java.awt.print.Paper.*", "java.io.File.createTempFile"),
             "10: " + getCheckMessage(MSG_LEX, "java.awt.Dialog", "java.awt.Frame"),
             "15: " + getCheckMessage(MSG_LEX, "java.io.File", "javax.swing.JTable"),
+            "16: " + getCheckMessage(MSG_LEX, "java.io.IOException", "javax.swing.JTable"),
+            "17: " + getCheckMessage(MSG_LEX, "java.io.InputStream", "javax.swing.JTable"),
+            "18: " + getCheckMessage(MSG_LEX, "java.io.Reader", "javax.swing.JTable"),
             "20: " + getCheckMessage(MSG_ORDER, SAME, THIRD, "com.puppycrawl.tools.*"),
             "22: " + getCheckMessage(MSG_NONGROUP_IMPORT, "com.google.common.collect.*"),
             "23: " + getCheckMessage(MSG_LINE_SEPARATOR, "org.junit.*"),
@@ -143,11 +152,15 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
                 "STANDARD_JAVA_PACKAGE");
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
+            "4: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
             "7: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STD, "java.util.List"),
             "8: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STD, "java.util.StringTokenizer"),
             "9: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STD, "java.util.*"),
             "10: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STD, "java.util.concurrent.AbstractExecutorService"),
             "11: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STD, "java.util.concurrent.*"),
+            "13: " + getCheckMessage(MSG_LEX, "com.puppycrawl.tools.*", "javax.swing.WindowConstants.*"),
+            "14: " + getCheckMessage(MSG_LEX, "com.*", "javax.swing.WindowConstants.*"),
+            "16: " + getCheckMessage(MSG_LEX, "com.google.common.base.*", "javax.swing.WindowConstants.*"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator
@@ -163,11 +176,14 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
                 "STATIC###SAME_PACKAGE(3)");
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
+            "5: " + getCheckMessage(MSG_LEX, "java.util.*", "java.util.StringTokenizer"),
             "6: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.concurrent.*"),
             "7: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STATIC, "java.awt.Button.ABORT"),
             "8: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STATIC, "javax.swing.WindowConstants.*"),
+            "9: " + getCheckMessage(MSG_LEX, "com.puppycrawl.tools.*", "java.util.StringTokenizer"),
             "10: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.concurrent.AbstractExecutorService"),
             "11: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STATIC, "java.io.File.createTempFile"),
+            "12: " + getCheckMessage(MSG_LEX, "com.*", "java.util.StringTokenizer"),
         };
 
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
@@ -185,11 +201,14 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
                 "STATIC###SAME_PACKAGE(3)");
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
+            "5: " + getCheckMessage(MSG_LEX, "java.util.*", "java.util.StringTokenizer"),
             "6: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.concurrent.*"),
             "7: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STATIC, "java.awt.Button.ABORT"),
             "8: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STATIC, "javax.swing.WindowConstants.*"),
+            "9: " + getCheckMessage(MSG_LEX, "com.puppycrawl.tools.*", "java.util.StringTokenizer"),
             "10: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.concurrent.AbstractExecutorService"),
             "11: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STATIC, "java.io.File.createTempFile"),
+            "12: " + getCheckMessage(MSG_LEX, "com.*", "java.util.StringTokenizer"),
         };
 
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
@@ -207,6 +226,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = {
             "4: " + getCheckMessage(MSG_LEX, "java.io.File.createTempFile", "javax.swing.WindowConstants.*"),
+            "8: " + getCheckMessage(MSG_LEX, "com.*", "com.puppycrawl.tools.*"),
         };
 
         verify(checkConfig, getPath("imports" + File.separator
@@ -508,4 +528,5 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
             fail();
         }
     }
+
 }

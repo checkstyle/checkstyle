@@ -460,24 +460,25 @@ public class CustomImportOrderCheck extends Check {
         final ImportDetails firstImport = importToGroupList.get(0);
         String currentGroup = getImportGroup(firstImport.isStaticImport(),
                 firstImport.getImportFullPath());
-        int groupNumber = customImportOrderRules.indexOf(currentGroup);
-        String previousImport = null;
+        int currentGroupNumber = customImportOrderRules.indexOf(currentGroup);
+        String previousImportFromCurrentGroup = null;
 
         for (ImportDetails importObject : importToGroupList) {
             final String importGroup = importObject.getImportGroup();
-            final String fullImportIdent = importObject.importFullPath;
+            final String fullImportIdent = importObject.getImportFullPath();
 
             if (!importGroup.equals(currentGroup)) {
-                if (customImportOrderRules.size() > groupNumber + 1) {
-                    final String nextGroup = getNextImportGroup(groupNumber + 1);
+                //not the last group, last one is always NON_GROUP
+                if (customImportOrderRules.size() > currentGroupNumber + 1) {
+                    final String nextGroup = getNextImportGroup(currentGroupNumber + 1);
                     if (importGroup.equals(nextGroup)) {
                         if (separateLineBetweenGroups
                                 && !hasEmptyLineBefore(importObject.getLineNumber())) {
-                            log(importObject.getLineNumber(), MSG_LINE_SEPARATOR,
-                                    fullImportIdent);
+                            log(importObject.getLineNumber(), MSG_LINE_SEPARATOR, fullImportIdent);
                         }
                         currentGroup = nextGroup;
-                        groupNumber = customImportOrderRules.indexOf(nextGroup);
+                        currentGroupNumber = customImportOrderRules.indexOf(nextGroup);
+                        previousImportFromCurrentGroup = fullImportIdent;
                     }
                     else {
                         logWrongImportGroupOrder(importObject.getLineNumber(),
@@ -489,14 +490,17 @@ public class CustomImportOrderCheck extends Check {
                             importGroup, currentGroup, fullImportIdent);
                 }
             }
-            else if (sortImportsInGroupAlphabetically
-                    && previousImport != null
-                    && matchesImportGroup(importObject.isStaticImport(),
-                            fullImportIdent, currentGroup)
-                    && compareImports(fullImportIdent, previousImport) < 0) {
-                log(importObject.getLineNumber(), MSG_LEX, fullImportIdent, previousImport);
+            else {
+                if (sortImportsInGroupAlphabetically
+                    && previousImportFromCurrentGroup != null
+                    && compareImports(fullImportIdent, previousImportFromCurrentGroup) < 0) {
+                    log(importObject.getLineNumber(), MSG_LEX,
+                            fullImportIdent, previousImportFromCurrentGroup);
+                }
+                else {
+                    previousImportFromCurrentGroup = fullImportIdent;
+                }
             }
-            previousImport = fullImportIdent;
         }
     }
 
