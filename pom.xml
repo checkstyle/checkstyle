@@ -1112,17 +1112,13 @@
             <regex><pattern>.*.checks.coding.SimplifyBooleanReturnCheck</pattern><branchRate>83</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.coding.VariableDeclarationUsageDistanceCheck</pattern><branchRate>90</branchRate><lineRate>98</lineRate></regex>
 
-
-            <regex><pattern>.*.checks.header.AbstractHeaderCheck</pattern><branchRate>90</branchRate><lineRate>87</lineRate></regex>
-            <regex><pattern>.*.checks.header.HeaderCheck</pattern><branchRate>31</branchRate><lineRate>50</lineRate></regex>
-
-
             <regex><pattern>.*.checks.javadoc.AbstractJavadocCheck</pattern><branchRate>90</branchRate><lineRate>93</lineRate></regex>
             <regex><pattern>.*.checks.javadoc.AbstractJavadocCheck\$.*</pattern><branchRate>50</branchRate><lineRate>68</lineRate></regex>
             <regex><pattern>.*.checks.javadoc.AtclauseOrderCheck</pattern><branchRate>88</branchRate><lineRate>88</lineRate></regex>
             <regex><pattern>.*.checks.javadoc.JavadocMethodCheck</pattern><branchRate>91</branchRate><lineRate>98</lineRate></regex>
             <regex><pattern>.*.checks.javadoc.WriteTagCheck</pattern><branchRate>100</branchRate><lineRate>91</lineRate></regex>
 
+            <regex><pattern>.*.checks.header.AbstractHeaderCheck</pattern><branchRate>90</branchRate><lineRate>87</lineRate></regex>
 
             <regex><pattern>.*.checks.metrics.AbstractClassCouplingCheck</pattern><branchRate>87</branchRate><lineRate>97</lineRate></regex>
             <regex><pattern>.*.checks.metrics.AbstractClassCouplingCheck\$.*</pattern><branchRate>78</branchRate><lineRate>100</lineRate></regex>
