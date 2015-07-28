@@ -114,3 +114,6 @@ enum FooType {
     }
 }
 
+@interface ClassPreamble {
+    String author();
+}
