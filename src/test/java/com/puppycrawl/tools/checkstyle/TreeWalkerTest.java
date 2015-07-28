@@ -25,7 +25,9 @@ import static org.junit.Assert.fail;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Writer;
+import java.util.Locale;
 
 import org.junit.Assert;
 import org.junit.Rule;
@@ -122,13 +124,95 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     public void testSettersForParameters() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.setTabWidth(1);
+        treeWalker.configure(new DefaultConfiguration("default config"));
         treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
     }
 
     @Test
-    public void testNonExistingCacheFileDoesNotThrowException() {
+    public void testNonExistingCacheFileDoesNotThrowException() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
+        treeWalker.configure(new DefaultConfiguration("default config"));
         treeWalker.setCacheFile("/invalid");
-        treeWalker.destroy();
+        treeWalker.finishLocalSetup();
+        try {
+            treeWalker.destroy();
+            fail();
+        }
+        catch (IllegalStateException ex) {
+            assertTrue(ex.getCause() instanceof IOException);
+        }
     }
+
+    @Test
+    public void testCacheFile() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
+
+        final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
+        treeWalkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+        treeWalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
+        checkerConfig.addAttribute("charset", "UTF-8");
+        checkerConfig.addChild(treeWalkerConfig);
+
+        final Checker checker = new Checker();
+        final Locale locale = Locale.ROOT;
+        checker.setLocaleCountry(locale.getCountry());
+        checker.setLocaleLanguage(locale.getLanguage());
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        checker.addListener(new BriefLogger(stream));
+
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = {
+        };
+
+        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+        // one more time to reuse cache
+        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+    }
+
+    @Test
+    public void testCacheFile_changeInConfig() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
+
+        final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
+        treeWalkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+        treeWalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
+        checkerConfig.addAttribute("charset", "UTF-8");
+        checkerConfig.addChild(treeWalkerConfig);
+
+        Checker checker = new Checker();
+        final Locale locale = Locale.ROOT;
+        checker.setLocaleCountry(locale.getCountry());
+        checker.setLocaleLanguage(locale.getLanguage());
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        checker.addListener(new BriefLogger(stream));
+
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = {
+        };
+
+        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+
+        // update Checker config
+        //checker.destroy();
+        //checker.configure(checkerConfig);
+
+        checker = new Checker();
+        checker.setLocaleCountry(locale.getCountry());
+        checker.setLocaleLanguage(locale.getLanguage());
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        checker.addListener(new BriefLogger(stream));
+        // here is diff with previous checker
+        checkerConfig.addAttribute("fileExtensions", "java,javax");
+
+        // one more time on updated config
+        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+    }
+
 }

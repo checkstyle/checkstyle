@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.AbstractMap.SimpleEntry;
@@ -103,7 +104,7 @@ public final class TreeWalker
     private int tabWidth = DEFAULT_TAB_WIDTH;
 
     /** cache file **/
-    private PropertyCacheFile cache = new PropertyCacheFile(null, null);
+    private PropertyCacheFile cache;
 
     /** class loader to resolve classes with. **/
     private ClassLoader classLoader;
@@ -130,6 +131,13 @@ public final class TreeWalker
     public void setCacheFile(String fileName) {
         final Configuration configuration = getConfiguration();
         cache = new PropertyCacheFile(configuration, fileName);
+
+        try {
+            cache.load();
+        }
+        catch (IOException e) {
+            throw new IllegalStateException("cache file load is failed", e);
+        }
     }
 
     /** @param classLoader class loader to resolve classes with. */
@@ -178,8 +186,9 @@ public final class TreeWalker
         // check if already checked and passed the file
         final String fileName = file.getPath();
         final long timestamp = file.lastModified();
-        if (cache.alreadyChecked(fileName, timestamp)
-                 || !Utils.fileExtensionMatches(file, getFileExtensions())) {
+        if (cache != null
+                && (cache.inCache(fileName, timestamp)
+                    || !Utils.fileExtensionMatches(file, getFileExtensions()))) {
             return;
         }
 
@@ -216,8 +225,8 @@ public final class TreeWalker
             getMessageCollector().add(createLocalizedMessage(ex.getMessage()));
         }
 
-        if (getMessageCollector().size() == 0) {
-            cache.checkedOk(fileName, timestamp);
+        if (cache != null && getMessageCollector().size() == 0) {
+            cache.put(fileName, timestamp);
         }
     }
 
@@ -466,7 +475,14 @@ public final class TreeWalker
         for (Check c : commentChecks) {
             c.destroy();
         }
-        cache.destroy();
+        if (cache != null) {
+            try {
+                cache.persist();
+            }
+            catch (IOException e) {
+                throw new IllegalStateException("Unable to persist cache file", e);
+            }
+        }
         super.destroy();
     }
 

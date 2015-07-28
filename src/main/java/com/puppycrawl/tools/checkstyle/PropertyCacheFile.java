@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -30,9 +30,6 @@ import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import com.google.common.io.Closeables;
 import com.google.common.io.Flushables;
@@ -51,8 +48,6 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
  * @author Oliver Burn
  */
 final class PropertyCacheFile {
-    /** Logger for PropertyCacheFile */
-    private static final Log LOG = LogFactory.getLog(PropertyCacheFile.class);
 
     /**
      * The property key to use for storing the hashcode of the
@@ -74,84 +69,87 @@ final class PropertyCacheFile {
     /** bit shift */
     private static final int SHIFT_4 = 4;
 
-    /** name of file to store details **/
-    private final String detailsFile;
     /** the details on files **/
     private final Properties details = new Properties();
+
+    /** configuration object **/
+    private Configuration config;
+
+    /** file name of cache **/
+    private String fileName;
 
     /**
      * Creates a new <code>PropertyCacheFile</code> instance.
      *
-     * @param currentConfig the current configuration, not null
+     * @param config the current configuration, not null
      * @param fileName the cache file
      */
-    PropertyCacheFile(Configuration currentConfig, String fileName) {
-        boolean setInActive = true;
-        if (fileName != null) {
-            FileInputStream inStream = null;
-            // get the current config so if the file isn't found
-            // the first time the hash will be added to output file
-            final String currentConfigHash = getConfigHashCode(currentConfig);
+    PropertyCacheFile(Configuration config, String fileName) {
+        if (config == null) {
+            throw new IllegalArgumentException("config can not be null");
+        }
+        if (fileName == null) {
+            throw new IllegalArgumentException("fileName can not be null");
+        }
+        this.config = config;
+        this.fileName = fileName;
+    }
+
+    /**
+     * load cached values from file
+     * @throws IOException when there is a problems with file read
+     */
+    void load() throws IOException {
+        FileInputStream inStream = null;
+        // get the current config so if the file isn't found
+        // the first time the hash will be added to output file
+        final String currentConfigHash = getConfigHashCode(config);
+        if (new File(fileName).exists()) {
             try {
                 inStream = new FileInputStream(fileName);
                 details.load(inStream);
-                final String cachedConfigHash =
-                    details.getProperty(CONFIG_HASH_KEY);
-                setInActive = false;
-                if (cachedConfigHash == null
-                    || !cachedConfigHash.equals(currentConfigHash)) {
+                final String cachedConfigHash = details.getProperty(CONFIG_HASH_KEY);
+                if (!currentConfigHash.equals(cachedConfigHash)) {
                     // Detected configuration change - clear cache
                     details.clear();
                     details.put(CONFIG_HASH_KEY, currentConfigHash);
                 }
             }
-            catch (final FileNotFoundException e) {
-                // Ignore, the cache does not exist
-                setInActive = false;
-                // put the hash in the file if the file is going to be created
-                details.put(CONFIG_HASH_KEY, currentConfigHash);
-            }
-            catch (final IOException e) {
-                LOG.debug("Unable to open cache file, ignoring.", e);
-            }
             finally {
                 Closeables.closeQuietly(inStream);
             }
         }
-        detailsFile = setInActive ? null : fileName;
+        else {
+            // put the hash in the file if the file is going to be created
+            details.put(CONFIG_HASH_KEY, currentConfigHash);
+        }
     }
 
-    /** Cleans up the object and updates the cache file. **/
-    void destroy() {
-        if (detailsFile != null) {
-            FileOutputStream out = null;
-            try {
-                out = new FileOutputStream(detailsFile);
-                details.store(out, null);
-            }
-            catch (final IOException e) {
-                LOG.debug("Unable to save cache file.", e);
-            }
-            finally {
-                if (out != null) {
-                    flushAndCloseOutStream(out);
-                }
-            }
+    /**
+     * Cleans up the object and updates the cache file.
+     * @throws IOException  when there is a problems with file save
+     */
+    void persist() throws IOException {
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(fileName);
+            details.store(out, null);
+        }
+        finally {
+            flushAndCloseOutStream(out);
         }
     }
 
     /**
      * Flushes and closes output stream.
      * @param stream the output stream
+     * @throws IOException  when there is a problems with file flush and close
      */
-    private static void flushAndCloseOutStream(OutputStream stream) {
-        try {
+    private static void flushAndCloseOutStream(OutputStream stream) throws IOException {
+        if (stream != null) {
             Flushables.flush(stream, false);
-            Closeables.close(stream, false);
         }
-        catch (final IOException ex) {
-            LOG.debug("Unable to flush and close output stream.", ex);
-        }
+        Closeables.close(stream, false);
     }
 
     /**
@@ -159,7 +157,7 @@ final class PropertyCacheFile {
      * @param timestamp the timestamp of the file to check
      * @return whether the specified file has already been checked ok
      */
-    boolean alreadyChecked(String fileName, long timestamp) {
+    boolean inCache(String fileName, long timestamp) {
         final String lastChecked = details.getProperty(fileName);
         return lastChecked != null
             && lastChecked.equals(Long.toString(timestamp));
@@ -170,17 +168,17 @@ final class PropertyCacheFile {
      * @param fileName name of the file that checked ok
      * @param timestamp the timestamp of the file
      */
-    void checkedOk(String fileName, long timestamp) {
+    void put(String fileName, long timestamp) {
         details.put(fileName, Long.toString(timestamp));
     }
 
     /**
      * Calculates the hashcode for a GlobalProperties.
      *
-     * @param configuration the GlobalProperties
-     * @return the hashcode for <code>configuration</code>
+     * @param object the GlobalProperties
+     * @return the hashcode for <code>object</code>
      */
-    private static String getConfigHashCode(Serializable configuration) {
+    private static String getConfigHashCode(Serializable object) {
         try {
             // im-memory serialization of Configuration
 
@@ -188,7 +186,7 @@ final class PropertyCacheFile {
             ObjectOutputStream oos = null;
             try {
                 oos = new ObjectOutputStream(baos);
-                oos.writeObject(configuration);
+                oos.writeObject(object);
             }
             finally {
                 flushAndCloseOutStream(oos);
