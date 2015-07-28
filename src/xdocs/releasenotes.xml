@@ -18,7 +18,17 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/ico" />
   </head>
 
+
   <body>
+    <section name="Release 6.8.2">
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+           Incorrect xml structure at google_checks.xml. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1275">#1275</a>
+        </li>
+      </ul>
+    </section>
+
     <section name="Release 6.8.1">
       <p>Bug fixes:</p>
       <ul>
