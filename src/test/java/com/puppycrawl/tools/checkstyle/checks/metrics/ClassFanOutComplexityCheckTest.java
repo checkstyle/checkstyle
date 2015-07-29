@@ -40,6 +40,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
 
         String[] expected = {
             "6:1: " + getCheckMessage(MSG_KEY, 3, 0),
+            "38:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
         verify(checkConfig,

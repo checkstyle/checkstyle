@@ -26,8 +26,12 @@ import java.io.File;
 
 import org.junit.Test;
 
+import antlr.CommonHiddenStreamToken;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport {
     @Test
@@ -66,5 +70,13 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
             //Exception is not expected
             fail();
         }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWrongToken() {
+        ClassDataAbstractionCouplingCheck classDataAbstractionCouplingCheckObj = new ClassDataAbstractionCouplingCheck();
+        DetailAST ast = new DetailAST();
+        ast.initialize(new CommonHiddenStreamToken(TokenTypes.CTOR_DEF, "ctor"));
+        classDataAbstractionCouplingCheckObj.visitToken(ast);
     }
 }

@@ -137,7 +137,7 @@ public abstract class AbstractClassCouplingCheck extends Check {
                 context.visitLiteralThrows(ast);
                 break;
             default:
-                throw new IllegalStateException(ast.toString());
+                throw new IllegalArgumentException("Unknown type: " + ast);
         }
     }
 
@@ -284,8 +284,7 @@ public abstract class AbstractClassCouplingCheck extends Check {
          * @return true if we should count this class.
          */
         private boolean isSignificant(String className) {
-            return className.length() > 0
-                    && !excludedClasses.contains(className)
+            return !excludedClasses.contains(className)
                     && !className.startsWith("java.lang.");
         }
     }
