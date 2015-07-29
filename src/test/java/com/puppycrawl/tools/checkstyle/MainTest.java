@@ -33,6 +33,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.Assertion;
@@ -378,6 +379,7 @@ public class MainTest {
                 "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 
+    @Ignore
     @Test
     public void testLoadProperties_IOException() throws Exception {
         Class[] param = new Class[1];
@@ -417,6 +419,7 @@ public class MainTest {
         }
     }
 
+    @Ignore
     @Test
     public void testExistingDirectoryWithViolations() throws Exception {
 
