@@ -38,6 +38,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 import com.google.common.collect.Lists;
+import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -117,7 +118,9 @@ public final class Main {
             if (errorCounter != 0 && !cliViolations) {
                 System.out.println(String.format("Checkstyle ends with %d errors.", errorCounter));
             }
-            System.exit(exitStatus);
+            if (exitStatus != 0) {
+                System.exit(exitStatus);
+            }
         }
     }
 
@@ -259,12 +262,17 @@ public final class Main {
             throws CheckstyleException {
         final Properties properties = new Properties();
 
-        try (FileInputStream fis = new FileInputStream(file)) {
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(file);
             properties.load(fis);
         }
         catch (final IOException e) {
             throw new CheckstyleException(String.format(
                     "Unable to load properties from file '%s'.", file.getAbsolutePath()), e);
+        }
+        finally {
+            Closeables.closeQuietly(fis);
         }
 
         return properties;
@@ -297,18 +305,17 @@ public final class Main {
 
         // setup a listener
         AuditListener listener = null;
-        switch (format) {
-            case "xml":
-                listener = new XMLLogger(out, closeOut);
-                break;
+        if ("xml".equals(format)) {
+            listener = new XMLLogger(out, closeOut);
 
-            case "plain":
-                listener = new DefaultLogger(out, closeOut);
-                break;
+        }
+        else if ("plain".equals(format)) {
+            listener = new DefaultLogger(out, closeOut);
 
-            default:
-                throw new IllegalStateException("Invalid output format. Found '" + format
-                        + "' but expected 'plain' or 'xml'.");
+        }
+        else {
+            throw new IllegalStateException("Invalid output format. Found '" + format
+                    + "' but expected 'plain' or 'xml'.");
         }
 
         return listener;
