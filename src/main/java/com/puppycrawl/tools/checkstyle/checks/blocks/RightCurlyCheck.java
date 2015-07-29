@@ -19,8 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import com.puppycrawl.tools.checkstyle.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
@@ -69,6 +71,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * @author lkuehne
  * @author o_sukhodolsky
  * @author maxvetrenko
+ * @author Andrei Selkin
  */
 public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
     /**
@@ -156,17 +159,6 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
         final DetailAST lcurly = details.lcurly;
 
         validate(details, rcurly, lcurly);
-
-        if (!shouldStartLine) {
-            return;
-        }
-        final boolean startsLine =
-                Utils.whitespaceBefore(rcurly.getColumnNo(),
-                        getLines()[rcurly.getLineNo() - 1]);
-
-        if (!startsLine && lcurly.getLineNo() != rcurly.getLineNo()) {
-            log(rcurly, MSG_KEY_LINE_NEW, "}");
-        }
     }
 
     /**
@@ -183,8 +175,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
                 && !hasLineBreakBefore(rcurly)) {
             log(rcurly, MSG_KEY_LINE_BREAK_BEFORE);
         }
-
-        if (shouldCheckLastRcurly) {
+        else if (shouldCheckLastRcurly) {
             if (rcurly.getLineNo() == nextToken.getLineNo()) {
                 log(rcurly, MSG_KEY_LINE_ALONE, "}");
             }
@@ -194,10 +185,62 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
             log(rcurly, MSG_KEY_LINE_SAME, "}");
         }
         else if (getAbstractOption() == RightCurlyOption.ALONE
-                && rcurly.getLineNo() == nextToken.getLineNo()
+                && !isAloneOnLine(details)
                 && !isEmptyBody(lcurly)) {
             log(rcurly, MSG_KEY_LINE_ALONE, "}");
         }
+        else if (getAbstractOption() == RightCurlyOption.ALONE_OR_SINGLELINE
+                && !isAloneOnLine(details)
+                && !isSingleLineBlock(details)
+                && !isAnonInnerClassInit(lcurly)
+                && !isEmptyBody(lcurly)) {
+            log(rcurly, MSG_KEY_LINE_ALONE, "}");
+        }
+        else if (shouldStartLine) {
+            final boolean startsLine =
+                Utils.whitespaceBefore(rcurly.getColumnNo(),
+                    getLines()[rcurly.getLineNo() - 1]);
+
+            if (!startsLine && lcurly.getLineNo() != rcurly.getLineNo()) {
+                log(rcurly, MSG_KEY_LINE_NEW, "}");
+            }
+        }
+    }
+
+    /**
+     * Checks whether right curly is alone on a line.
+     * @param details for validation.
+     * @return true if right curly is alone on a line.
+     */
+    private static boolean isAloneOnLine(Details details) {
+        final DetailAST rcurly = details.rcurly;
+        final DetailAST lcurly = details.lcurly;
+        final DetailAST nextToken = details.nextToken;
+        return rcurly.getLineNo() != lcurly.getLineNo()
+            && rcurly.getLineNo() != nextToken.getLineNo();
+    }
+
+    /**
+     * Checks whether block has a single-line format.
+     * @param details for validation.
+     * @return true if block has single-line format.
+     */
+    private static boolean isSingleLineBlock(Details details) {
+        final DetailAST rcurly = details.rcurly;
+        final DetailAST lcurly = details.lcurly;
+        final DetailAST nextToken = details.nextToken;
+        return rcurly.getLineNo() == lcurly.getLineNo()
+            && rcurly.getLineNo() != nextToken.getLineNo();
+    }
+
+    /**
+     * Checks wthether lcurly is in anonymous inner class initialization.
+     * @param lcurly left curly token.
+     * @return true if lcurly begins anonymous inner class initialization.
+     */
+    private static boolean isAnonInnerClassInit(DetailAST lcurly) {
+        final Scope surroundingScope = ScopeUtils.getSurroundingScope(lcurly);
+        return surroundingScope.ordinal() == Scope.ANONINNER.ordinal();
     }
 
     /**
@@ -258,7 +301,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
             case TokenTypes.INSTANCE_INIT:
                 lcurly = ast.findFirstToken(TokenTypes.SLIST);
                 rcurly = lcurly.getLastChild();
-                nextToken = ast;
+                nextToken = getNextToken(ast);
                 break;
             default:
 //              ATTENTION! We have default here, but we expect case TokenTypes.METHOD_DEF,
@@ -272,7 +315,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
                     // and code like "while(true);"
                     rcurly = lcurly.getLastChild();
                 }
-                nextToken = lcurly;
+                nextToken = getNextToken(ast);
                 break;
         }
 

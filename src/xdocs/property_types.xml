@@ -307,6 +307,25 @@
             </pre>
           </td>
         </tr>
+
+          <tr>
+              <td><code>alone_or_singleline</code></td>
+              <td>
+                  The brace must be alone on the line, yet
+                  single-line format of block is allowed.
+                  For example:
+                  <pre>
+    // Brace is alone on the line
+    try {
+    ...
+    }
+    finally {
+
+    // Single-line format of block
+    private int foo() { return 1; }
+                  </pre>
+              </td>
+          </tr>
       </table>
     </subsection>
 

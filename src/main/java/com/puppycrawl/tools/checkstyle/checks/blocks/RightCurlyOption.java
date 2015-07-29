@@ -25,9 +25,28 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
  * @author Oliver Burn
  */
 public enum RightCurlyOption {
+
     /**
-     * Represents the policy that the brace must be alone on the line. For
-     * example:
+     * Represents the policy that the brace must be alone on the line
+     * and allows single-line format of block.
+     * For example:
+     *
+     * <pre>
+     * //Brace is alone on the line
+     * try {
+     * ...
+     * }
+     * inally {
+     *
+     * // Single-line format of block
+     * private int foo() { return 1; }
+     * </pre>
+     **/
+    ALONE_OR_SINGLELINE,
+
+    /**
+     * Represents the policy that the brace must be alone on the line.
+     * For example:
      *
      * <pre>
      * try {
