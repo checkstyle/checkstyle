@@ -93,4 +93,17 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
+    public void testSetMessage() throws Exception {
+        final String illegal = "\\r";
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("minimum", "500");
+        checkConfig.addAttribute("message", "someMessage");
+        final String[] expected = {
+            "0: someMessage",
+        };
+
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
+    }
+
 }
