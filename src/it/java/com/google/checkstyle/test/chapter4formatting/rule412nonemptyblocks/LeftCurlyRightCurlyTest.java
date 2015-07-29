@@ -101,8 +101,11 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport{
         newCheckConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF");
         
         String checkMessageNew = getCheckMessage(RightCurlyCheck.class, "line.new", "}");
+        String checkMessageAlone = getCheckMessage(RightCurlyCheck.class, "line.alone", "}");
         final String[] expected = {
+            "97:5: " + checkMessageAlone,
             "97:6: " + checkMessageNew,
+            "108:5: " + checkMessageAlone,
             "108:6: " + checkMessageNew,
             "122:6: " + checkMessageNew,
         };
