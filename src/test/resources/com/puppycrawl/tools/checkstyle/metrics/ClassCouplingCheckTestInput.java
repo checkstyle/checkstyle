@@ -34,3 +34,10 @@ enum InnerEnum {
     private Set map1 = new HashSet();
     private Map map2;
 }
+
+class InputThrows {
+
+    public void get() throws NamingException, IllegalArgumentException {
+        new java.lang.ref.ReferenceQueue<Integer>();
+    }
+}
