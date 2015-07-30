@@ -125,20 +125,18 @@ public class SuppressWithNearbyCommentFilter
                     tagMessageRegexp = null;
                 }
                 int influence = 0;
-                if (filter.influenceFormat != null) {
-                    format = expandFrocomment(
-                        text, filter.influenceFormat, filter.commentRegexp);
-                    try {
-                        if (Utils.startsWithChar(format, '+')) {
-                            format = format.substring(1);
-                        }
-                        influence = Integer.parseInt(format);
+                format = expandFrocomment(
+                    text, filter.influenceFormat, filter.commentRegexp);
+                try {
+                    if (Utils.startsWithChar(format, '+')) {
+                        format = format.substring(1);
                     }
-                    catch (final NumberFormatException e) {
-                        throw new ConversionException(
-                            "unable to parse influence from '" + text
-                                + "' using " + filter.influenceFormat, e);
-                    }
+                    influence = Integer.parseInt(format);
+                }
+                catch (final NumberFormatException e) {
+                    throw new ConversionException(
+                        "unable to parse influence from '" + text
+                            + "' using " + filter.influenceFormat, e);
                 }
                 if (influence >= 0) {
                     firstLine = line;
@@ -317,15 +315,9 @@ public class SuppressWithNearbyCommentFilter
      * to defaults.
      */
     public SuppressWithNearbyCommentFilter() {
-        if (DEFAULT_COMMENT_FORMAT != null) {
-            setCommentFormat(DEFAULT_COMMENT_FORMAT);
-        }
-        if (DEFAULT_CHECK_FORMAT != null) {
-            setCheckFormat(DEFAULT_CHECK_FORMAT);
-        }
-        if (DEFAULT_INFLUENCE_FORMAT != null) {
-            setInfluenceFormat(DEFAULT_INFLUENCE_FORMAT);
-        }
+        setCommentFormat(DEFAULT_COMMENT_FORMAT);
+        setCheckFormat(DEFAULT_CHECK_FORMAT);
+        setInfluenceFormat(DEFAULT_INFLUENCE_FORMAT);
     }
 
     /**
@@ -354,33 +346,24 @@ public class SuppressWithNearbyCommentFilter
     /**
      * Set the format for a check.
      * @param format a <code>String</code> value
-     * @throws ConversionException if unable to create Pattern object
      */
-    public void setCheckFormat(String format) throws ConversionException {
+    public void setCheckFormat(String format) {
         checkFormat = format;
     }
 
     /**
      * Set the format for a message.
      * @param format a <code>String</code> value
-     * @throws ConversionException if unable to create Pattern object
      */
-    public void setMessageFormat(String format)
-        throws ConversionException {
-        Utils.createPattern(format);
+    public void setMessageFormat(String format) {
         messageFormat = format;
     }
 
     /**
      * Set the format for the influence of this check.
      * @param format a <code>String</code> value
-     * @throws ConversionException unable to parse format
      */
-    public void setInfluenceFormat(String format)
-        throws ConversionException {
-        if (!Utils.isPatternValid(format)) {
-            throw new ConversionException("Unable to parse format: " + format);
-        }
+    public void setInfluenceFormat(String format) {
         influenceFormat = format;
     }
 

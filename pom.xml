@@ -1120,8 +1120,6 @@
             <regex><pattern>.*.checks.regexp.MultilineDetector</pattern><branchRate>58</branchRate><lineRate>87</lineRate></regex>
 
             <regex><pattern>.*.filters.SuppressionsLoader</pattern><branchRate>63</branchRate><lineRate>77</lineRate></regex>
-            <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter</pattern><branchRate>76</branchRate><lineRate>89</lineRate></regex>
-            <regex><pattern>.*.filters.SuppressWithNearbyCommentFilter\$Tag</pattern><branchRate>88</branchRate><lineRate>78</lineRate></regex>
 
            </regexes>
           </check>

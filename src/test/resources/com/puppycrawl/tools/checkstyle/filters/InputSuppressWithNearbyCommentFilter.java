@@ -75,3 +75,8 @@ class InputSuppressWithNearbyCommentFilter
         }
     }
 }
+
+class Magic {
+    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int A2; /* SUPPRESS CHECKSTYLE MemberNameCheck ololo */
+    private int A1;
+}
