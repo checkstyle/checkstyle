@@ -631,10 +631,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             }
             else if (noargMultilineStart.find()) {
                 final String p1 = noargMultilineStart.group(1);
-                int col = noargMultilineStart.start(1) - 1;
-                if (i == 0) {
-                    col += comment.getStartColNo();
-                }
+                final int col = noargMultilineStart.start(1) - 1;
 
                 // Look for the rest of the comment if all we saw was
                 // the tag and the name. Stop when we see '*/' (end of
@@ -644,13 +641,12 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
                 while (remIndex < lines.length) {
                     final Matcher multilineCont = MATCH_JAVADOC_MULTILINE_CONT
                             .matcher(lines[remIndex]);
-                    if (multilineCont.find()) {
-                        remIndex = lines.length;
-                        final String lFin = multilineCont.group(1);
-                        if (!lFin.equals(NEXT_TAG)
-                            && !lFin.equals(END_JAVADOC)) {
-                            tags.add(new JavadocTag(currentLine, col, p1));
-                        }
+                    multilineCont.find();
+                    remIndex = lines.length;
+                    final String lFin = multilineCont.group(1);
+                    if (!lFin.equals(NEXT_TAG)
+                        && !lFin.equals(END_JAVADOC)) {
+                        tags.add(new JavadocTag(currentLine, col, p1));
                     }
                     remIndex++;
                 }
@@ -796,8 +792,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         boolean retVal = false;
         if (ast.getType() == TokenTypes.METHOD_DEF) {
             final DetailAST typeAST = ast.findFirstToken(TokenTypes.TYPE);
-            if (typeAST != null
-                && typeAST.findFirstToken(TokenTypes.LITERAL_VOID) == null) {
+            if (typeAST.findFirstToken(TokenTypes.LITERAL_VOID) == null) {
                 retVal = true;
             }
         }
@@ -958,8 +953,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
 
         // Check that is had only one parameter
         final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-        if (params == null
-                || params.getChildCount(TokenTypes.PARAMETER_DEF) != 1) {
+        if (params.getChildCount(TokenTypes.PARAMETER_DEF) != 1) {
             return false;
         }
 
@@ -973,8 +967,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         }
 
         final AST expr = slist.getFirstChild();
-        return expr.getType() == TokenTypes.EXPR
-                && expr.getFirstChild().getType() == TokenTypes.ASSIGN;
+        return expr.getFirstChild().getType() == TokenTypes.ASSIGN;
     }
 
     /**
@@ -1006,8 +999,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
 
         // Check that is had only one parameter
         final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-        if (params == null
-                || params.getChildCount(TokenTypes.PARAMETER_DEF) > 0) {
+        if (params.getChildCount(TokenTypes.PARAMETER_DEF) > 0) {
             return false;
         }
 
@@ -1020,8 +1012,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         }
 
         final AST expr = slist.getFirstChild();
-        return expr.getType() == TokenTypes.LITERAL_RETURN
-                && expr.getFirstChild().getType() == TokenTypes.EXPR;
+        return expr.getType() == TokenTypes.LITERAL_RETURN;
 
     }
 

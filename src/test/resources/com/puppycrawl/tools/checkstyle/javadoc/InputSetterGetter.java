@@ -51,4 +51,28 @@ public class InputSetterGetter
     }
     
     private void firePropertyChanged(){}
+
+    Object setObject(Object object) {
+        return new Object();
+    }
+
+    Object getNext() {
+        throw new UnsupportedOperationException();
+    }
+
+    public void setWithoutAssignment(Object object) {
+        object.notify();
+    }
+
+    InputSetterGetter() {}
+
+    public InputSetterGetter(Object object) throws Exception {}
+
 }
+
+interface TestInterface {
+    void setObject(Object object);
+
+    Object getObject();
+}
+

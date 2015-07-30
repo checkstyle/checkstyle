@@ -30,4 +30,35 @@ public class InputMissingJavadocTags {
     int missingThrows(int number) throws ThreadDeath {
         return number;
     }
+
+    /**
+     * Missing return, but {@inheritDoc} is present.
+     *
+     * @param number to return
+     * @throws java.util.NoSuchElementException sometimes
+     */
+    int missingReturnButInheritDocPresent(int number) throws java.util.NoSuchElementException {
+        return number;
+    }
+
+    /**
+     * Missing return in the middle.
+     *
+     * @param number to return
+     * @return
+     * @throws java.util.NoSuchElementException sometimes
+     */
+    private int missingReturnInTheMiddle(int number) {
+        return number;
+    }
+
+    /**
+     * Missing return at the end.
+     *
+     * @param number to return
+     * @return
+     */
+    private int missingReturnAtTheEnd(int number) {
+        return number;
+    }
 }

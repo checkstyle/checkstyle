@@ -59,5 +59,10 @@ public class TestGenerics <E extends java.lang.Exception,
          */
         public abstract String doStuff(T t) throws E2;
     }
+
+    /**
+     * @param <P> some parameter
+     */
+    public interface InvalidParameterInJavadoc<T> {}
 }
 
