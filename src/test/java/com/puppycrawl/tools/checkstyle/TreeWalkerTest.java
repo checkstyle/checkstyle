@@ -133,7 +133,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(new DefaultConfiguration("default config"));
         //https://support.microsoft.com/en-us/kb/177506
-        treeWalker.setCacheFile("/:invalid");
+        treeWalker.setCacheFile(File.separator + ":invalid");
         try {
             treeWalker.destroy();
             fail();
