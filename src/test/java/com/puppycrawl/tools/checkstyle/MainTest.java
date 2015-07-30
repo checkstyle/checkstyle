@@ -389,7 +389,8 @@ public class MainTest {
         Method method = Main.class.getDeclaredMethod("loadProperties", param);
         method.setAccessible(true);
         try {
-            method.invoke(null, new File(File.separator + "invalid"));
+            // https://support.microsoft.com/en-us/kb/177506
+            method.invoke(null, new File(File.separator + ":invalid"));
             fail();
         }
         catch (InvocationTargetException e) {
@@ -398,7 +399,7 @@ public class MainTest {
             // disk drive letter appear in message,
             // so we skip that drive letter for compatibility issues
             assertTrue(e.getCause().getMessage().startsWith("Unable to load properties from file '"));
-            assertTrue(e.getCause().getMessage().endsWith("invalid'."));
+            assertTrue(e.getCause().getMessage().endsWith(":invalid'."));
         }
         catch (Exception e) {
             fail();
