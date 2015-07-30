@@ -132,7 +132,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     public void testDestroyNonExistingCache() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(new DefaultConfiguration("default config"));
-        if (System.getProperty("os.name").toLowerCase().startsWith("windows")) {
+        if (System.getProperty("os.name").toLowerCase().startsWith("windows server")) {
             // https://support.microsoft.com/en-us/kb/177506 but this only for NTFS
             // WindowsServer 2012 use Resilient File System (ReFS), so any name is ok
             File file = new File(File.separator + ":invalid");
@@ -142,7 +142,15 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
             assertTrue(file.setWritable(false, false));
             treeWalker.setCacheFile(file.getAbsolutePath());
         }
+        else if (System.getProperty("os.name")
+                        .toLowerCase().startsWith("windows")) {
+            // https://support.microsoft.com/en-us/kb/177506 but this only for NTFS
+            // WindowsServer 2012 use Resilient File System (ReFS), so any name is ok
+            File file = new File(File.separator + ":invalid");
+            treeWalker.setCacheFile(file.getAbsolutePath());
+        }
         else {
+
             treeWalker.setCacheFile(File.separator + ":invalid");
         }
         try {
