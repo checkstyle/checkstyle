@@ -348,27 +348,18 @@ public class SuppressionCommentFilter
     /**
      * Set the format for a check.
      * @param format a <code>String</code> value
-     * @throws ConversionException if unable to create Pattern object
      */
-    public void setCheckFormat(String format)
-        throws ConversionException {
+    public void setCheckFormat(String format) {
         checkFormat = format;
-
     }
 
     /**
      * Set the format for a message.
      * @param format a <code>String</code> value
-     * @throws ConversionException unable to parse format
      */
-    public void setMessageFormat(String format)
-        throws ConversionException {
-        if (!Utils.isPatternValid(format)) {
-            throw new ConversionException("Unable to parse format: " + format);
-        }
+    public void setMessageFormat(String format) {
         messageFormat = format;
     }
-
 
     /**
      * Set whether to look in C++ comments.

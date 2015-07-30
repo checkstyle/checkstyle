@@ -80,4 +80,11 @@ class InputSuppressionCommentFilter
         }
     }
 
+    public void doit4() {
+        try {
+
+        /* CHECKSTYLE:OFF */} catch(Exception e) {/* CHECKSTYLE:ON */
+
+        }
+    }
 }
