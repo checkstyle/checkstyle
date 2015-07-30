@@ -30,7 +30,6 @@ import java.io.Writer;
 import java.util.Locale;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -129,13 +128,23 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
     }
 
-    @Ignore
     @Test
     public void testDestroyNonExistingCache() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(new DefaultConfiguration("default config"));
-        //https://support.microsoft.com/en-us/kb/177506
-        treeWalker.setCacheFile(File.separator + ":invalid");
+        if (System.getProperty("os.name").toLowerCase().startsWith("windows")) {
+            // https://support.microsoft.com/en-us/kb/177506 but this only for NTFS
+            // WindowsServer 2012 use Resilient File System (ReFS), so any name is ok
+            File file = new File(File.separator + ":invalid");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            assertTrue(file.setWritable(false, false));
+            treeWalker.setCacheFile(file.getAbsolutePath());
+        }
+        else {
+            treeWalker.setCacheFile(File.separator + ":invalid");
+        }
         try {
             treeWalker.destroy();
             fail("Exception did not happen");

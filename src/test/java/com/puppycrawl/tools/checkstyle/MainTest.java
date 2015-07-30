@@ -389,9 +389,19 @@ public class MainTest {
         Method method = Main.class.getDeclaredMethod("loadProperties", param);
         method.setAccessible(true);
         try {
-            // https://support.microsoft.com/en-us/kb/177506
-            method.invoke(null, new File(File.separator + ":invalid"));
-            fail();
+            if (System.getProperty("os.name").toLowerCase().startsWith("windows")) {
+                // https://support.microsoft.com/en-us/kb/177506 but this only for NTFS
+                // WindowsServer 2012 use Resilient File System (ReFS), so any name is ok
+                File file = new File(File.separator + ":invalid");
+                if (file.exists()) {
+                    file.delete();
+                }
+                method.invoke(null, new File(file.getAbsolutePath()));
+            }
+            else {
+                method.invoke(null, new File(File.separator + ":invalid"));
+            }
+            fail("Exception was expected");
         }
         catch (InvocationTargetException e) {
             assertTrue(e.getCause() instanceof CheckstyleException);
