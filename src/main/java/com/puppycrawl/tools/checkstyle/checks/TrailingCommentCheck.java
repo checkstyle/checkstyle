@@ -155,7 +155,7 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
                 comment = cppComments.get(lineNo);
                 lineBefore = line.substring(0, comment.getStartColNo());
             }
-            else if (cComments.containsKey(lineNo)) {
+            else {
                 final List<TextBlock> commentList = cComments.get(lineNo);
                 comment = commentList.get(commentList.size() - 1);
                 lineBefore = line.substring(0, comment.getStartColNo());
@@ -168,8 +168,7 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
                     }
                 }
             }
-            if (comment != null
-                && !blankLinePattern.matcher(lineBefore).find()
+            if (!blankLinePattern.matcher(lineBefore).find()
                 && !isLegalComment(comment)) {
                 log(lineNo.intValue(), MSG_KEY);
             }
