@@ -170,7 +170,7 @@ public final class Main {
             if (cmdLine.hasOption("o")) {
                 final String outputLocation = cmdLine.getOptionValue("o");
                 final File file = new File(outputLocation);
-                if (file.exists() && !(file.canRead() && file.canWrite())) {
+                if (file.exists() && !file.canWrite()) {
                     result.add(String.format("Permission denied : '%s'.", outputLocation));
                 }
             }

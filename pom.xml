@@ -1083,8 +1083,6 @@
             <regex><pattern>.*.PackageNamesLoader</pattern><branchRate>78</branchRate><lineRate>72</lineRate></regex>
             <!-- till https://github.com/checkstyle/checkstyle/issues/1496 -->
             <regex><pattern>.*.PropertyCacheFile</pattern><branchRate>87</branchRate><lineRate>98</lineRate></regex>
-            <!-- till https://github.com/checkstyle/checkstyle/issues/1510 -->
-            <regex><pattern>.*.Main</pattern><branchRate>93</branchRate><lineRate>96</lineRate></regex>
             <regex><pattern>.*.TreeWalker</pattern><branchRate>94</branchRate><lineRate>91</lineRate></regex>
 
             <regex><pattern>.*.checks.AbstractOptionCheck</pattern><branchRate>100</branchRate><lineRate>80</lineRate></regex>

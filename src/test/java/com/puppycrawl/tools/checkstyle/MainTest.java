@@ -33,7 +33,6 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.Assertion;
@@ -293,8 +292,8 @@ public class MainTest {
     public void testExistingTargetFilePlainOutputToFileWithoutRwPermissions()
             throws Exception {
         final File file = temporaryFolder.newFile("file.output");
-        file.setReadable(true, true);
-        file.setWritable(false, false);
+        assertTrue(file.setReadable(true, true));
+        assertTrue(file.setWritable(false, false));
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() throws IOException {
@@ -313,8 +312,12 @@ public class MainTest {
     public void testExistingTargetFilePlainOutputToFileWithoutReadAndRwPermissions()
             throws Exception {
         final File file = temporaryFolder.newFile("file.output");
-        file.setReadable(false, false);
-        file.setWritable(false, false);
+        // That works fine on Linux/Unix, but ....
+        // It's not possible to make a file unreadable in Windows NTFS for owner.
+        // http://stackoverflow.com/a/4354686
+        // https://github.com/google/google-oauth-java-client/issues/55#issuecomment-69403681
+        //assertTrue(file.setReadable(false, false));
+        assertTrue(file.setWritable(false, false));
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
             public void checkAssertion() throws IOException {
@@ -379,7 +382,6 @@ public class MainTest {
                 "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 
-    @Ignore
     @Test
     public void testLoadProperties_IOException() throws Exception {
         Class[] param = new Class[1];
@@ -392,8 +394,11 @@ public class MainTest {
         }
         catch (InvocationTargetException e) {
             assertTrue(e.getCause() instanceof CheckstyleException);
-            assertEquals("Unable to load properties from file '" + File.separator + "invalid'.",
-                    e.getCause().getMessage());
+            // We do separate validation for message as in Windows
+            // disk drive letter appear in message,
+            // so we skip that drive letter for compatibility issues
+            assertTrue(e.getCause().getMessage().startsWith("Unable to load properties from file '"));
+            assertTrue(e.getCause().getMessage().endsWith("invalid'."));
         }
         catch (Exception e) {
             fail();
@@ -419,23 +424,12 @@ public class MainTest {
         }
     }
 
-    @Ignore
     @Test
     public void testExistingDirectoryWithViolations() throws Exception {
 
         // we just reference there all violations
         final String[][] outputValues = new String[][]{
-            {"ClassCouplingCheckTestInput", "ClassCouplingCheckTestInput", "6:14"},
-            {"ClassCouplingCheckTestInput", "InnerClass", "7:19"},
-            {"ClassCouplingCheckTestInput", "AnotherInnerClass", "11:19"},
-            {"ClassCouplingCheckTestInput", "InnerEnum", "27:6"},
-            {"InputBooleanExpressionComplexityNPE", "InputBooleanExpressionComplexityNPE", "3:14"},
-            {"BooleanExpressionComplexityCheckTestInput",
-                "BooleanExpressionComplexityCheckTestInput", "3:14", },
-            {"BooleanExpressionComplexityCheckTestInput", "Settings", "53:19"},
-            {"JavaNCSSCheckTestInput", "JavaNCSSCheckTestInput", "9:14"},
-            {"JavaNCSSCheckTestInput", "TestInnerClass", "49:19"},
-            {"JavaNCSSCheckTestInput", "TestTopLevelNestedClass", "56:7"},
+            {"JavaNCSSCheckTestInput", "1", "84"},
         };
 
         exit.checkAssertionAfterwards(new Assertion() {
@@ -444,13 +438,13 @@ public class MainTest {
                 String expectedPath = currentPath
                         + "/src/test/resources/com/puppycrawl/tools/checkstyle/metrics/"
                         .replace("/", File.separator);
-                String format = "%s.java:%s: warning: Name '%s' must match pattern '^[a-z0-9]*$'.";
+                String format = "%s.java:%s: warning: File length is %s lines (max allowed is 80).";
                 StringBuilder sb = new StringBuilder();
                 sb.append("Starting audit..." + System.getProperty("line.separator"));
                 for (int i = 0; i < outputValues.length; i++) {
                     String line = String.format(format,
-                            expectedPath + outputValues[i][0], outputValues[i][2],
-                            outputValues[i][1]);
+                            expectedPath + outputValues[i][0], outputValues[i][1],
+                            outputValues[i][2]);
                     sb.append(line + System.getProperty("line.separator"));
                 }
                 sb.append("Audit done." + System.getProperty("line.separator"));
@@ -459,7 +453,7 @@ public class MainTest {
             }
         });
 
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname2.xml",
+        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-filelength.xml",
                 "src/test/resources/com/puppycrawl/tools/checkstyle/metrics/");
     }
 
