@@ -30,6 +30,7 @@ import java.io.Writer;
 import java.util.Locale;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -128,6 +129,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
     }
 
+    @Ignore
     @Test
     public void testDestroyNonExistingCache() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
@@ -136,7 +138,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         treeWalker.setCacheFile(File.separator + ":invalid");
         try {
             treeWalker.destroy();
-            fail();
+            fail("Exception did not happen");
         }
         catch (IllegalStateException ex) {
             assertTrue(ex.getCause() instanceof IOException);
