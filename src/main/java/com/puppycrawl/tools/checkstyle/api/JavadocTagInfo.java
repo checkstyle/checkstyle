@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.Arrays;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
@@ -61,6 +62,7 @@ import com.puppycrawl.tools.checkstyle.ScopeUtils;
  * @author Travis Schneeberger
  */
 public enum JavadocTagInfo {
+
     /**
      * {@code @author}.
      */
@@ -85,14 +87,7 @@ public enum JavadocTagInfo {
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int type = ast.getType();
-            return type == TokenTypes.PACKAGE_DEF
-                || type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.METHOD_DEF
-                || type == TokenTypes.CTOR_DEF
-                || type == TokenTypes.VARIABLE_DEF
+            return Arrays.binarySearch(DEF_TOKEN_TYPES, type) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
@@ -105,14 +100,7 @@ public enum JavadocTagInfo {
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int type = ast.getType();
-            return type == TokenTypes.PACKAGE_DEF
-                || type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.METHOD_DEF
-                || type == TokenTypes.CTOR_DEF
-                || type == TokenTypes.VARIABLE_DEF
+            return Arrays.binarySearch(DEF_TOKEN_TYPES, type) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
@@ -125,15 +113,7 @@ public enum JavadocTagInfo {
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int type = ast.getType();
-            return type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.METHOD_DEF
-                || type == TokenTypes.CTOR_DEF
-                || type == TokenTypes.ENUM_CONSTANT_DEF
-                || type == TokenTypes.ANNOTATION_FIELD_DEF
-                || type == TokenTypes.VARIABLE_DEF
+            return Arrays.binarySearch(DEF_TOKEN_TYPES_DEPRECATED, type) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
@@ -174,14 +154,7 @@ public enum JavadocTagInfo {
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int type = ast.getType();
-            return type == TokenTypes.PACKAGE_DEF
-                || type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.METHOD_DEF
-                || type == TokenTypes.CTOR_DEF
-                || type == TokenTypes.VARIABLE_DEF
+            return Arrays.binarySearch(DEF_TOKEN_TYPES, type) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
@@ -194,14 +167,7 @@ public enum JavadocTagInfo {
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int type = ast.getType();
-            return type == TokenTypes.PACKAGE_DEF
-                || type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.METHOD_DEF
-                || type == TokenTypes.CTOR_DEF
-                || type == TokenTypes.VARIABLE_DEF
+            return Arrays.binarySearch(DEF_TOKEN_TYPES, type) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
@@ -214,14 +180,7 @@ public enum JavadocTagInfo {
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int type = ast.getType();
-            return type == TokenTypes.PACKAGE_DEF
-                || type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.METHOD_DEF
-                || type == TokenTypes.CTOR_DEF
-                || type == TokenTypes.VARIABLE_DEF
+            return Arrays.binarySearch(DEF_TOKEN_TYPES, type) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
@@ -265,14 +224,7 @@ public enum JavadocTagInfo {
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int type = ast.getType();
-            return type == TokenTypes.PACKAGE_DEF
-                || type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.METHOD_DEF
-                || type == TokenTypes.CTOR_DEF
-                || type == TokenTypes.VARIABLE_DEF
+            return Arrays.binarySearch(DEF_TOKEN_TYPES, type) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
@@ -336,14 +288,7 @@ public enum JavadocTagInfo {
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int type = ast.getType();
-            return type == TokenTypes.PACKAGE_DEF
-                || type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.METHOD_DEF
-                || type == TokenTypes.CTOR_DEF
-                || type == TokenTypes.VARIABLE_DEF
+            return Arrays.binarySearch(DEF_TOKEN_TYPES, type) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
@@ -369,14 +314,7 @@ public enum JavadocTagInfo {
         @Override
         public boolean isValidOn(final DetailAST ast) {
             final int type = ast.getType();
-            return type == TokenTypes.PACKAGE_DEF
-                || type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.METHOD_DEF
-                || type == TokenTypes.CTOR_DEF
-                || type == TokenTypes.VARIABLE_DEF
+            return Arrays.binarySearch(DEF_TOKEN_TYPES, type) >= 0
                 && !ScopeUtils.isLocalVariableDef(ast);
         }
     },
@@ -395,6 +333,31 @@ public enum JavadocTagInfo {
                 || type == TokenTypes.ENUM_DEF
                 || type == TokenTypes.ANNOTATION_DEF;
         }
+    };
+
+    /** Default token types for DEPRECATED Javadoc tag.*/
+    private static final int[] DEF_TOKEN_TYPES_DEPRECATED = {
+        TokenTypes.CTOR_DEF,
+        TokenTypes.METHOD_DEF,
+        TokenTypes.VARIABLE_DEF,
+        TokenTypes.CLASS_DEF,
+        TokenTypes.INTERFACE_DEF,
+        TokenTypes.ENUM_DEF,
+        TokenTypes.ENUM_CONSTANT_DEF,
+        TokenTypes.ANNOTATION_DEF,
+        TokenTypes.ANNOTATION_FIELD_DEF,
+    };
+
+    /** Default token types.*/
+    private static final int[] DEF_TOKEN_TYPES = {
+        TokenTypes.CTOR_DEF,
+        TokenTypes.METHOD_DEF,
+        TokenTypes.VARIABLE_DEF,
+        TokenTypes.CLASS_DEF,
+        TokenTypes.INTERFACE_DEF,
+        TokenTypes.PACKAGE_DEF,
+        TokenTypes.ENUM_DEF,
+        TokenTypes.ANNOTATION_DEF,
     };
 
     /** holds tag text to tag enum mappings **/
@@ -416,6 +379,10 @@ public enum JavadocTagInfo {
 
         TEXT_TO_TAG = textToTagBuilder.build();
         NAME_TO_TAG = nameToTagBuilder.build();
+
+        //Arrays sorting for binary search
+        Arrays.sort(DEF_TOKEN_TYPES);
+        Arrays.sort(DEF_TOKEN_TYPES_DEPRECATED);
     }
 
     /** the tag text **/

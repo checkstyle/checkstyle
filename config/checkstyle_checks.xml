@@ -283,9 +283,12 @@
     <module name="AvoidEscapedUnicodeCharacters"/>
     <module name="AbstractClassName"/>
 
+    <module name="BooleanExpressionComplexity">
+      <property name="max" value="7"/>
+    </module>
+
 <!--
     <module name="AvoidInlineConditionals"/>
-    <module name="BooleanExpressionComplexity"/>
     <module name="ClassDataAbstractionCoupling"/>
     <module name="ClassFanOutComplexity"/>
     <module name="DesignForExtension"/>

@@ -520,24 +520,52 @@ public class VisibilityModifierCheck
     private boolean hasProperAccessModifier(DetailAST variableDef, String variableName) {
         boolean result = true;
 
-        final Set<String> mods = getModifiers(variableDef);
-        final String variableScope = getVisibilityScope(mods);
+
+        final String variableScope = getVisibilityScope(variableDef);
 
         if (!"private".equals(variableScope)) {
-            final DetailAST classDef = variableDef.getParent().getParent();
-            final Set<String> classModifiers = getModifiers(classDef);
-
             result =
-                mods.contains("static") && mods.contains("final")
+                isStaticFinalVariable(variableDef)
                 || isPackageAllowed() && "package".equals(variableScope)
                 || isProtectedAllowed() && "protected".equals(variableScope)
-                || "public".equals(variableScope)
-                   && getPublicMemberRegexp().matcher(variableName).find()
+                || isIgnoredPublicMember(variableName, variableScope)
                    || allowPublicImmutableFields
-                      && classModifiers.contains("final") && isImmutableField(variableDef);
+                      && isImmutableFieldDefinedInFinalClass(variableDef);
         }
 
         return result;
+    }
+
+    /**
+     * Checks whether variable has static final modifiers.
+     * @param variableDef Variable definition node.
+     * @return true of variable has static final modifiers.
+     */
+    private static boolean isStaticFinalVariable(DetailAST variableDef) {
+        final Set<String> modifiers = getModifiers(variableDef);
+        return modifiers.contains("static") && modifiers.contains("final");
+    }
+
+    /**
+     * Checks whether variable belongs to public members that should be ignored.
+     * @param variableName Variable's name.
+     * @param variableScope Variable's scope.
+     * @return true if variable belongs to public members that should be ignored.
+     */
+    private boolean isIgnoredPublicMember(String variableName, String variableScope) {
+        return "public".equals(variableScope)
+            && getPublicMemberRegexp().matcher(variableName).find();
+    }
+
+    /**
+     * Checks whether immutable field is defined in final class.
+     * @param variableDef Variable definition node.
+     * @return true if immutable field is defined in final class.
+     */
+    private boolean isImmutableFieldDefinedInFinalClass(DetailAST variableDef) {
+        final DetailAST classDef = variableDef.getParent().getParent();
+        final Set<String> classModifiers = getModifiers(classDef);
+        return classModifiers.contains("final") && isImmutableField(variableDef);
     }
 
     /**
@@ -560,11 +588,12 @@ public class VisibilityModifierCheck
     }
 
     /**
-     * Returns the visibility scope specified with a set of modifiers.
-     * @param modifiers the set of modifier Strings
+     * Returns the visibility scope for the variable.
+     * @param variableDef Variable definition node.
      * @return one of "public", "private", "protected", "package"
      */
-    private static String getVisibilityScope(Set<String> modifiers) {
+    private static String getVisibilityScope(DetailAST variableDef) {
+        final Set<String> modifiers = getModifiers(variableDef);
         String accessModifier = "package";
         for (final String modifier : EXPLICIT_MODS) {
             if (modifiers.contains(modifier)) {
