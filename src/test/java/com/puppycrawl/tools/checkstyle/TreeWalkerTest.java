@@ -34,7 +34,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
@@ -221,6 +223,24 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
 
         // one more time on updated config
         verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+    }
+
+    @Test
+    public void testForInvalidCheckImplementation() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(BadJavaDocCheck.class);
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = {
+        };
+
+        // nothing is expected
+        verify(checkConfig, pathToEmptyFile, expected);
+    }
+
+    public static class BadJavaDocCheck extends Check {
+        @Override
+        public int[] getDefaultTokens() {
+            return new int[]{TokenTypes.SINGLE_LINE_COMMENT};
+        }
     }
 
 }
