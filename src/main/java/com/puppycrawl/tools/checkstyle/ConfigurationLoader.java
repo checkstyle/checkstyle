@@ -109,6 +109,8 @@ public final class ConfigurationLoader {
         private static final String SEVERITY = "severity";
         /** name of the message element */
         private static final String MESSAGE = "message";
+        /** name of the message element */
+        private static final String METADATA = "metadata";
         /** name of the key attribute */
         private static final String KEY = "key";
 
@@ -173,6 +175,11 @@ public final class ConfigurationLoader {
                 //add to messages of configuration
                 final DefaultConfiguration top = configStack.peek();
                 top.addMessage(key, value);
+            }
+            else {
+                if (!qName.equals(METADATA)) {
+                    throw new IllegalStateException("Unknown name:" + qName + ".");
+                }
             }
         }
 
@@ -300,13 +307,10 @@ public final class ConfigurationLoader {
             final URL url = new URL(config);
             uri = url.toURI();
         }
-        catch (final MalformedURLException ex) {
+        catch (final URISyntaxException | MalformedURLException ex) {
             uri = null;
         }
-        catch (final URISyntaxException ex) {
-            // URL violating RFC 2396
-            uri = null;
-        }
+
         if (uri == null) {
             final File file = new File(config);
             if (file.exists()) {
@@ -323,7 +327,7 @@ public final class ConfigurationLoader {
                     uri = configUrl.toURI();
                 }
                 catch (final URISyntaxException e) {
-                    throw new CheckstyleException("unable to find " + config);
+                    throw new CheckstyleException("unable to find " + config, e);
                 }
             }
         }
@@ -379,21 +383,13 @@ public final class ConfigurationLoader {
             loader.parseInputSource(configSource);
             return loader.getConfiguration();
         }
-        catch (final ParserConfigurationException e) {
-            throw new CheckstyleException(
-                "unable to parse configuration stream", e);
-        }
         catch (final SAXParseException e) {
             throw new CheckstyleException("unable to parse configuration stream"
                     + " - " + e.getMessage() + ":" + e.getLineNumber()
                     + ":" + e.getColumnNumber(), e);
         }
-        catch (final SAXException e) {
-            throw new CheckstyleException("unable to parse configuration stream"
-                    + " - " + e.getMessage(), e);
-        }
-        catch (final IOException e) {
-            throw new CheckstyleException("unable to read from stream", e);
+        catch (final ParserConfigurationException | IOException | SAXException e) {
+            throw new CheckstyleException("unable to parse configuration stream", e);
         }
     }
 
