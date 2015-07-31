@@ -1077,7 +1077,6 @@
            <totalLineRate>95</totalLineRate>
            <regexes>
             <regex><pattern>.*.Checker</pattern><branchRate>79</branchRate><lineRate>84</lineRate></regex>
-            <regex><pattern>.*.DefaultLogger</pattern><branchRate>75</branchRate><lineRate>76</lineRate></regex>
             <regex><pattern>.*.PackageNamesLoader</pattern><branchRate>78</branchRate><lineRate>72</lineRate></regex>
             <regex><pattern>.*.TreeWalker</pattern><branchRate>94</branchRate><lineRate>91</lineRate></regex>
 
