@@ -262,6 +262,12 @@
       <version>1.6.2</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit</artifactId>
+      <version>4.0.1.201506240215-r</version>
+      <scope>test</scope>
+    </dependency>
 
     <dependency>
       <groupId>org.jacoco</groupId>
