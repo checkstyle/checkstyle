@@ -127,17 +127,14 @@ public final class TreeWalker
         this.tabWidth = tabWidth;
     }
 
-    /** @param fileName the cache file */
-    public void setCacheFile(String fileName) {
+    /** @param fileName the cache file
+     *  @throws IOException if there are some problems with file loading
+     */
+    public void setCacheFile(String fileName) throws IOException {
         final Configuration configuration = getConfiguration();
         cache = new PropertyCacheFile(configuration, fileName);
 
-        try {
-            cache.load();
-        }
-        catch (IOException e) {
-            throw new IllegalStateException("cache file load is failed", e);
-        }
+        cache.load();
     }
 
     /** @param classLoader class loader to resolve classes with. */
