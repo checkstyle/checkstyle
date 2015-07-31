@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import java.util.Arrays;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -28,6 +30,30 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author jrichard
  */
 public class SlistHandler extends BlockParentHandler {
+
+    /**
+     * Parent token types.
+     */
+    private static final int[] PARENT_TOKEN_TYPES = {
+        TokenTypes.CTOR_DEF,
+        TokenTypes.METHOD_DEF,
+        TokenTypes.STATIC_INIT,
+        TokenTypes.LITERAL_SYNCHRONIZED,
+        TokenTypes.LITERAL_IF,
+        TokenTypes.LITERAL_WHILE,
+        TokenTypes.LITERAL_DO,
+        TokenTypes.LITERAL_FOR,
+        TokenTypes.LITERAL_ELSE,
+        TokenTypes.LITERAL_TRY,
+        TokenTypes.LITERAL_CATCH,
+        TokenTypes.LITERAL_FINALLY,
+    };
+
+    static {
+        // Array sorting for binary search
+        Arrays.sort(PARENT_TOKEN_TYPES);
+    }
+
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
@@ -89,18 +115,7 @@ public class SlistHandler extends BlockParentHandler {
      */
     private boolean hasBlockParent() {
         final int parentType = getMainAst().getParent().getType();
-        return parentType == TokenTypes.LITERAL_IF
-            || parentType == TokenTypes.LITERAL_FOR
-            || parentType == TokenTypes.LITERAL_WHILE
-            || parentType == TokenTypes.LITERAL_DO
-            || parentType == TokenTypes.LITERAL_ELSE
-            || parentType == TokenTypes.LITERAL_TRY
-            || parentType == TokenTypes.LITERAL_CATCH
-            || parentType == TokenTypes.LITERAL_FINALLY
-            || parentType == TokenTypes.CTOR_DEF
-            || parentType == TokenTypes.METHOD_DEF
-            || parentType == TokenTypes.STATIC_INIT
-            || parentType == TokenTypes.LITERAL_SYNCHRONIZED;
+        return Arrays.binarySearch(PARENT_TOKEN_TYPES, parentType) >= 0;
     }
 
     @Override

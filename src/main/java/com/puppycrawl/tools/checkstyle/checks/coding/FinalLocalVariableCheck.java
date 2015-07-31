@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -79,11 +80,38 @@ public class FinalLocalVariableCheck extends Check {
      */
     public static final String MSG_KEY = "final.variable";
 
+    /**
+     * Assign operators types.
+     */
+    private static final int[] ASSIGN_OPERATOR_TYPES = {
+        TokenTypes.POST_INC,
+        TokenTypes.POST_DEC,
+        TokenTypes.ASSIGN,
+        TokenTypes.PLUS_ASSIGN,
+        TokenTypes.MINUS_ASSIGN,
+        TokenTypes.STAR_ASSIGN,
+        TokenTypes.DIV_ASSIGN,
+        TokenTypes.MOD_ASSIGN,
+        TokenTypes.SR_ASSIGN,
+        TokenTypes.BSR_ASSIGN,
+        TokenTypes.SL_ASSIGN,
+        TokenTypes.BAND_ASSIGN,
+        TokenTypes.BXOR_ASSIGN,
+        TokenTypes.BOR_ASSIGN,
+        TokenTypes.INC,
+        TokenTypes.DEC,
+    };
+
     /** Scope Stack */
     private final Deque<Map<String, DetailAST>> scopeStack = new ArrayDeque<>();
 
     /** Controls whether to check enhanced for-loop variable. */
     private boolean validateEnhancedForLoopVariable;
+
+    static {
+        // Array sorting for binary search
+        Arrays.sort(ASSIGN_OPERATOR_TYPES);
+    }
 
     /**
      * Whether to check enhanced for-loop variable or not.
@@ -186,22 +214,7 @@ public class FinalLocalVariableCheck extends Check {
      * @return true is token type is in arithmetic operator
      */
     private static boolean isAssignOperator(int parentType) {
-        return TokenTypes.POST_DEC == parentType
-                || TokenTypes.DEC == parentType
-                || TokenTypes.POST_INC == parentType
-                || TokenTypes.INC == parentType
-                || TokenTypes.ASSIGN == parentType
-                || TokenTypes.PLUS_ASSIGN == parentType
-                || TokenTypes.MINUS_ASSIGN == parentType
-                || TokenTypes.DIV_ASSIGN == parentType
-                || TokenTypes.STAR_ASSIGN == parentType
-                || TokenTypes.MOD_ASSIGN == parentType
-                || TokenTypes.SR_ASSIGN == parentType
-                || TokenTypes.BSR_ASSIGN == parentType
-                || TokenTypes.SL_ASSIGN == parentType
-                || TokenTypes.BXOR_ASSIGN == parentType
-                || TokenTypes.BOR_ASSIGN == parentType
-                || TokenTypes.BAND_ASSIGN == parentType;
+        return Arrays.binarySearch(ASSIGN_OPERATOR_TYPES, parentType) >= 0;
     }
 
     /**
