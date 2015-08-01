@@ -1108,7 +1108,6 @@
                   <regex><pattern>.*.checks.regexp.DetectorOptions</pattern><branchRate>100</branchRate><lineRate>96</lineRate></regex>
                   <regex><pattern>.*.checks.regexp.MultilineDetector</pattern><branchRate>58</branchRate><lineRate>87</lineRate></regex>
 
-                  <regex><pattern>.*.filters.SuppressionsLoader</pattern><branchRate>63</branchRate><lineRate>77</lineRate></regex>
                 </regexes>
               </check>
               <instrumentation>

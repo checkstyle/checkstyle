@@ -91,10 +91,6 @@ public final class SuppressionsLoader
         throws SAXException {
         if ("suppress".equals(qName)) {
             //add SuppressElement filter to the filter chain
-            final String files = atts.getValue("files");
-            if (files == null) {
-                throw new SAXException("missing files attribute");
-            }
             final String checks = atts.getValue("checks");
             final String modId = atts.getValue("id");
             if (checks == null && modId == null) {
@@ -102,6 +98,7 @@ public final class SuppressionsLoader
             }
             final SuppressElement suppress;
             try {
+                final String files = atts.getValue("files");
                 suppress = new SuppressElement(files);
                 if (modId != null) {
                     suppress.setModuleId(modId);
@@ -162,7 +159,7 @@ public final class SuppressionsLoader
                     uri = configUrl.toURI();
                 }
                 catch (final URISyntaxException e) {
-                    throw new CheckstyleException("unable to find " + filename);
+                    throw new CheckstyleException("unable to find " + filename, e);
                 }
             }
         }
@@ -189,10 +186,7 @@ public final class SuppressionsLoader
         catch (final FileNotFoundException e) {
             throw new CheckstyleException("unable to find " + sourceName, e);
         }
-        catch (final ParserConfigurationException e) {
-            throw new CheckstyleException("unable to parse " + sourceName, e);
-        }
-        catch (final SAXException e) {
+        catch (final ParserConfigurationException | SAXException e) {
             throw new CheckstyleException("unable to parse "
                     + sourceName + " - " + e.getMessage(), e);
         }
