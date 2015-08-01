@@ -49,7 +49,7 @@ class InputRightCurlyLineBreakBefore
     void method2()
     {
         boolean flag = false;
-		if (flag) { System.err.println("foo"); }
+        if (flag) { System.err.println("foo"); }
     }
 }
 

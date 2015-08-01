@@ -50,6 +50,10 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  *  {@link TokenTypes#INSTANCE_INIT INSTANCE_INIT}.
  * </p>
  * <p>
+ * <b>shouldStartLine</b> - does the check need to check
+ * if right curly starts line. Default value is <b>true</b>
+ * </p>
+ * <p>
  * An example of how to configure the check is:
  * </p>
  * <pre>
@@ -173,28 +177,28 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
 
         if (getAbstractOption() == RightCurlyOption.SAME
                 && !hasLineBreakBefore(rcurly)) {
-            log(rcurly, MSG_KEY_LINE_BREAK_BEFORE);
+            log(rcurly, MSG_KEY_LINE_BREAK_BEFORE, "}", rcurly.getColumnNo() + 1);
         }
         else if (shouldCheckLastRcurly) {
             if (rcurly.getLineNo() == nextToken.getLineNo()) {
-                log(rcurly, MSG_KEY_LINE_ALONE, "}");
+                log(rcurly, MSG_KEY_LINE_ALONE, "}", rcurly.getColumnNo() + 1);
             }
         }
         else if (getAbstractOption() == RightCurlyOption.SAME
                 && rcurly.getLineNo() != nextToken.getLineNo()) {
-            log(rcurly, MSG_KEY_LINE_SAME, "}");
+            log(rcurly, MSG_KEY_LINE_SAME, "}", rcurly.getColumnNo() + 1);
         }
         else if (getAbstractOption() == RightCurlyOption.ALONE
                 && !isAloneOnLine(details)
                 && !isEmptyBody(lcurly)) {
-            log(rcurly, MSG_KEY_LINE_ALONE, "}");
+            log(rcurly, MSG_KEY_LINE_ALONE, "}", rcurly.getColumnNo() + 1);
         }
         else if (getAbstractOption() == RightCurlyOption.ALONE_OR_SINGLELINE
                 && !isAloneOnLine(details)
                 && !isSingleLineBlock(details)
                 && !isAnonInnerClassInit(lcurly)
                 && !isEmptyBody(lcurly)) {
-            log(rcurly, MSG_KEY_LINE_ALONE, "}");
+            log(rcurly, MSG_KEY_LINE_ALONE, "}", rcurly.getColumnNo() + 1);
         }
         else if (shouldStartLine) {
             final boolean startsLine =
@@ -202,7 +206,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
                     getLines()[rcurly.getLineNo() - 1]);
 
             if (!startsLine && lcurly.getLineNo() != rcurly.getLineNo()) {
-                log(rcurly, MSG_KEY_LINE_NEW, "}");
+                log(rcurly, MSG_KEY_LINE_NEW, "}", rcurly.getColumnNo() + 1);
             }
         }
     }

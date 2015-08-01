@@ -285,7 +285,9 @@
         <tr>
           <td><code>same</code></td>
           <td>
-            The brace must be on the same line as the next statement. For
+            The brace must be on the same line as the next part of
+            a multi-block statement (one that directly contains
+            multiple blocks: if/else-if/else or try/catch/finally. For
             example:
             <pre>
     try {
@@ -304,6 +306,8 @@
         ...
     }
     finally {
+        ...
+    }
             </pre>
           </td>
         </tr>
@@ -317,9 +321,11 @@
                   <pre>
     // Brace is alone on the line
     try {
-    ...
+        ...
     }
     finally {
+        ...
+    }
 
     // Single-line format of block
     private int foo() { return 1; }

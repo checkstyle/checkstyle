@@ -303,8 +303,7 @@ public class LeftCurlyCheck
                 || braceLine.charAt(brace.getColumnNo() + 1) != '}') {
             if (getAbstractOption() == LeftCurlyOption.NL) {
                 if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
-                    log(brace.getLineNo(), brace.getColumnNo(),
-                        MSG_KEY_LINE_NEW, "{");
+                    log(brace, MSG_KEY_LINE_NEW, "{", brace.getColumnNo() + 1);
                 }
             }
             else if (getAbstractOption() == LeftCurlyOption.EOL) {
@@ -328,11 +327,10 @@ public class LeftCurlyCheck
     private void validateEol(DetailAST brace, String braceLine, int prevLineLen) {
         if (Utils.whitespaceBefore(brace.getColumnNo(), braceLine)
             && prevLineLen + 2 <= maxLineLength) {
-            log(brace.getLineNo(), brace.getColumnNo(),
-                MSG_KEY_LINE_PREVIOUS, "{");
+            log(brace, MSG_KEY_LINE_PREVIOUS, "{", brace.getColumnNo() + 1);
         }
         if (!hasLineBreakAfter(brace)) {
-            log(brace.getLineNo(), brace.getColumnNo(), MSG_KEY_LINE_BREAK_AFTER);
+            log(brace, MSG_KEY_LINE_BREAK_AFTER, "{", brace.getColumnNo() + 1);
         }
     }
 
@@ -348,17 +346,14 @@ public class LeftCurlyCheck
         // not on the same line
         if (startToken.getLineNo() + 1 == brace.getLineNo()) {
             if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
-                log(brace.getLineNo(), brace.getColumnNo(),
-                        MSG_KEY_LINE_NEW, "{");
+                log(brace, MSG_KEY_LINE_NEW, "{", brace.getColumnNo() + 1);
             }
             else if (prevLineLen + 2 <= maxLineLength) {
-                log(brace.getLineNo(), brace.getColumnNo(),
-                        MSG_KEY_LINE_PREVIOUS, "{");
+                log(brace, MSG_KEY_LINE_PREVIOUS, "{", brace.getColumnNo() + 1);
             }
         }
         else if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
-            log(brace.getLineNo(), brace.getColumnNo(),
-                    MSG_KEY_LINE_NEW, "{");
+            log(brace, MSG_KEY_LINE_NEW, "{", brace.getColumnNo() + 1);
         }
     }
 
