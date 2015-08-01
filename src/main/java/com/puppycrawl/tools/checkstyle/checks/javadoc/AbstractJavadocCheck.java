@@ -19,10 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +30,6 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
-import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -213,12 +209,6 @@ public abstract class AbstractJavadocCheck extends Check {
         try {
             parseTree = parseJavadocAsParseTree(javadocComment);
         }
-        catch (IOException e) {
-            // Antlr can not initiate its ANTLRInputStream
-            parseErrorMessage = new ParseErrorMessage(javadocCommentAst.getLineNo(),
-                    PARSE_ERROR_MESSAGE_KEY,
-                    javadocCommentAst.getColumnNo(), e.getMessage());
-        }
         catch (ParseCancellationException e) {
             // If syntax error occurs then message is printed by error listener
             // and parser throws this runtime exception to stop parsing.
@@ -355,7 +345,8 @@ public abstract class AbstractJavadocCheck extends Check {
         final ParseTree parent = node.getParent();
         final int childCount = parent.getChildCount();
 
-        for (int i = 0; i < childCount; i++) {
+        int i = 0;
+        while (true) {
             final ParseTree currentNode = parent.getChild(i);
             if (currentNode.equals(node)) {
                 if (i == childCount - 1) {
@@ -363,8 +354,8 @@ public abstract class AbstractJavadocCheck extends Check {
                 }
                 return parent.getChild(i + 1);
             }
+            i++;
         }
-        return null;
     }
 
     /**
@@ -442,12 +433,8 @@ public abstract class AbstractJavadocCheck extends Check {
      * @throws IOException
      *         errors in ANTLRInputStream
      */
-    private ParseTree parseJavadocAsParseTree(String blockComment)
-        throws IOException {
-        final Charset utf8Charset = Charset.forName("UTF-8");
-        final InputStream in = new ByteArrayInputStream(blockComment.getBytes(utf8Charset));
-
-        final ANTLRInputStream input = new ANTLRInputStream(in);
+    private ParseTree parseJavadocAsParseTree(String blockComment) {
+        final ANTLRInputStream input = new ANTLRInputStream(blockComment);
 
         final JavadocLexer lexer = new JavadocLexer(input);
 
@@ -493,10 +480,6 @@ public abstract class AbstractJavadocCheck extends Check {
     private void walk(DetailNode root) {
         final int[] defaultTokenTypes = getDefaultJavadocTokens();
 
-        if (defaultTokenTypes == null) {
-            return;
-        }
-
         DetailNode curNode = root;
         while (curNode != null) {
             final boolean waitsFor = Ints.contains(defaultTokenTypes, curNode.getType());
@@ -525,29 +508,24 @@ public abstract class AbstractJavadocCheck extends Check {
      */
     static class DescriptiveErrorListener extends BaseErrorListener {
         /**
-         * Parse error while token recognition.
-         */
-        private static final String JAVADOC_PARSE_TOKEN_ERROR = "javadoc.parse.token.error";
-
-        /**
-         * Parse error while rule recognition.
-         */
-        private static final String JAVADOC_PARSE_RULE_ERROR = "javadoc.parse.rule.error";
-
-        /**
          * Message key of error message. Missed close HTML tag breaks structure
          * of parse tree, so parser stops parsing and generates such error
          * message. This case is special because parser prints error like
          * {@code "no viable alternative at input 'b \n *\n'"} and it is not
          * clear that error is about missed close HTML tag.
          */
-        private static final String JAVADOC_MISSED_HTML_CLOSE = "javadoc.missed.html.close";
+        static final String JAVADOC_MISSED_HTML_CLOSE = "javadoc.missed.html.close";
 
         /**
          * Message key of error message.
          */
-        private static final String JAVADOC_WRONG_SINGLETON_TAG =
-                "javadoc.wrong.singleton.html.tag";
+        static final String JAVADOC_WRONG_SINGLETON_TAG =
+            "javadoc.wrong.singleton.html.tag";
+
+        /**
+         * Parse error while rule recognition.
+         */
+        private static final String JAVADOC_PARSE_RULE_ERROR = "javadoc.parse.rule.error";
 
         /**
          * Offset is line number of beginning of the Javadoc comment. Log
@@ -607,20 +585,13 @@ public abstract class AbstractJavadocCheck extends Check {
                 throw new ParseCancellationException();
             }
             else {
-                final RuleContext ruleContext = ex.getCtx();
-                if (ruleContext != null) {
-                    final int ruleIndex = ex.getCtx().getRuleIndex();
-                    final String ruleName = recognizer.getRuleNames()[ruleIndex];
-                    final String upperCaseRuleName = CaseFormat.UPPER_CAMEL.to(
-                            CaseFormat.UPPER_UNDERSCORE, ruleName);
+                final int ruleIndex = ex.getCtx().getRuleIndex();
+                final String ruleName = recognizer.getRuleNames()[ruleIndex];
+                final String upperCaseRuleName = CaseFormat.UPPER_CAMEL.to(
+                        CaseFormat.UPPER_UNDERSCORE, ruleName);
 
-                    errorMessage = new ParseErrorMessage(lineNumber,
-                            JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, upperCaseRuleName);
-                }
-                else {
-                    errorMessage = new ParseErrorMessage(lineNumber, JAVADOC_PARSE_TOKEN_ERROR,
-                            charPositionInLine, msg, charPositionInLine);
-                }
+                errorMessage = new ParseErrorMessage(lineNumber,
+                        JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, upperCaseRuleName);
             }
         }
     }

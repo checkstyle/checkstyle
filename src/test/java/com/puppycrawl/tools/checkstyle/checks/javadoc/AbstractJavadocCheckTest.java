@@ -19,12 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.DescriptiveErrorListener.JAVADOC_MISSED_HTML_CLOSE;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.DescriptiveErrorListener.JAVADOC_WRONG_SINGLETON_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.PARSE_ERROR_MESSAGE_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY;
 
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 
 public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
@@ -51,5 +56,40 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
                 + "while parsing HTML_TAG"),
         };
         verify(checkConfig, getPath("javadoc/InputTestNumberFomatException.java"), expected);
+    }
+
+    @Test
+    public void testCustomTag() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
+        final String[] expected = {
+            "4: " + getCheckMessage(UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY, 4, "null"),
+        };
+        verify(checkConfig, getPath("javadoc/InputCustomTag.java"), expected);
+    }
+
+    @Test
+    public void testParsingErrors() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
+        final String[] expected = {
+            "4: " + getCheckMessage(JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
+            "8: " + getCheckMessage(JAVADOC_WRONG_SINGLETON_TAG, 35, "img"),
+        };
+        verify(checkConfig, getPath("javadoc/InputParsingErrors.java"), expected);
+    }
+
+    @Test
+    public void testWithMultipleChecks() throws Exception {
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
+        final DefaultConfiguration checksConfig = createCheckConfig(TreeWalker.class);
+        checksConfig.addChild(createCheckConfig(AtclauseOrderCheck.class));
+        checksConfig.addChild(createCheckConfig(JavadocParagraphCheck.class));
+        checkerConfig.addChild(checksConfig);
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+
+        final String[] expected = {
+        };
+        verify(checker, getPath("javadoc/InputCorrectJavaDocParagraphCheck.java"), expected);
     }
 }
