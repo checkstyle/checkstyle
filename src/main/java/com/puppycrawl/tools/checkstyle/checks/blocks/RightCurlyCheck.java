@@ -160,55 +160,71 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
             return;
         }
 
-        final DetailAST lcurly = details.lcurly;
+        final String violation;
+        if (shouldStartLine) {
+            final String targetSourceLine = getLines()[rcurly.getLineNo() - 1];
+            violation = validate(details, getAbstractOption(), true, targetSourceLine);
+        }
+        else {
+            violation = validate(details, getAbstractOption(), false, "");
+        }
 
-        validate(details, rcurly, lcurly);
+        if (!violation.isEmpty()) {
+            log(rcurly, violation, "}", rcurly.getColumnNo() + 1);
+        }
     }
 
     /**
      * Does general validation.
-     * @param details details.
-     * @param rcurly right curly token.
-     * @param lcurly left curly token.
+     * @param details for validation.
+     * @param bracePolicy for placing the right curly brace.
+     * @param shouldStartLine do we need to check if right curly starts line.
+     * @param targetSourceLine line that we need to check if shouldStartLine is true.
+     * @return violation message or empty string
+     * if there was not violation durning validation.
      */
-    private void validate(Details details, DetailAST rcurly, DetailAST lcurly) {
+    private static String validate(Details details, RightCurlyOption bracePolicy,
+                                   boolean shouldStartLine, String targetSourceLine) {
+        final DetailAST rcurly = details.rcurly;
+        final DetailAST lcurly = details.lcurly;
         final DetailAST nextToken = details.nextToken;
         final boolean shouldCheckLastRcurly = details.shouldCheckLastRcurly;
+        String violation = "";
 
-        if (getAbstractOption() == RightCurlyOption.SAME
+        if (bracePolicy == RightCurlyOption.SAME
                 && !hasLineBreakBefore(rcurly)) {
-            log(rcurly, MSG_KEY_LINE_BREAK_BEFORE, "}", rcurly.getColumnNo() + 1);
+            violation = MSG_KEY_LINE_BREAK_BEFORE;
         }
         else if (shouldCheckLastRcurly) {
             if (rcurly.getLineNo() == nextToken.getLineNo()) {
-                log(rcurly, MSG_KEY_LINE_ALONE, "}", rcurly.getColumnNo() + 1);
+                violation = MSG_KEY_LINE_ALONE;
             }
         }
-        else if (getAbstractOption() == RightCurlyOption.SAME
+        else if (bracePolicy == RightCurlyOption.SAME
                 && rcurly.getLineNo() != nextToken.getLineNo()) {
-            log(rcurly, MSG_KEY_LINE_SAME, "}", rcurly.getColumnNo() + 1);
+            violation = MSG_KEY_LINE_SAME;
         }
-        else if (getAbstractOption() == RightCurlyOption.ALONE
+        else if (bracePolicy == RightCurlyOption.ALONE
                 && !isAloneOnLine(details)
                 && !isEmptyBody(lcurly)) {
-            log(rcurly, MSG_KEY_LINE_ALONE, "}", rcurly.getColumnNo() + 1);
+            violation = MSG_KEY_LINE_ALONE;
         }
-        else if (getAbstractOption() == RightCurlyOption.ALONE_OR_SINGLELINE
+        else if (bracePolicy == RightCurlyOption.ALONE_OR_SINGLELINE
                 && !isAloneOnLine(details)
                 && !isSingleLineBlock(details)
                 && !isAnonInnerClassInit(lcurly)
                 && !isEmptyBody(lcurly)) {
-            log(rcurly, MSG_KEY_LINE_ALONE, "}", rcurly.getColumnNo() + 1);
+            violation = MSG_KEY_LINE_ALONE;
         }
         else if (shouldStartLine) {
             final boolean startsLine =
-                Utils.whitespaceBefore(rcurly.getColumnNo(),
-                    getLines()[rcurly.getLineNo() - 1]);
+                Utils.whitespaceBefore(rcurly.getColumnNo(), targetSourceLine);
 
             if (!startsLine && lcurly.getLineNo() != rcurly.getLineNo()) {
-                log(rcurly, MSG_KEY_LINE_NEW, "}", rcurly.getColumnNo() + 1);
+                violation = MSG_KEY_LINE_NEW;
             }
         }
+        return violation;
     }
 
     /**
