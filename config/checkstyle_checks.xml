@@ -253,6 +253,7 @@
     <module name="NoClone"/>
     <module name="NoFinalizer"/>
     <module name="NoLineWrap"/>
+    <module name="NonEmptyAtclauseDescription"/>
     <module name="Regexp"/>
     <module name="RegexpSinglelineJava"/>
     <module name="RegexpSinglelineJava">
@@ -304,7 +305,6 @@
     <module name="MissingCtor"/>
     <module name="ModifiedControlVariable"/>
     <module name="MultipleStringLiterals"/>
-    <module name="NonEmptyAtclauseDescription"/>
     <module name="NPathComplexity"/>
     <module name="OneTopLevelClass"/>
     <module name="OverloadMethodsDeclarationOrder"/>

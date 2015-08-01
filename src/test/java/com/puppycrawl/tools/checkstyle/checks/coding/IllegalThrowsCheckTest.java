@@ -63,7 +63,6 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Test to validate the IllegalThrowsCheck with ignoredMethodNames attribute
-     * @throws Exception
      */
     @Test
     public void testIgnoreMethodNames() throws Exception {
@@ -80,7 +79,6 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Test to validate the IllegalThrowsCheck with both the attributes specified
-     * @throws Exception
      */
     @Test
     public void testIllegalClassNamesWithIgnoreMethodNames() throws Exception {
@@ -100,7 +98,6 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
     /**
      * Test to validate the IllegalThrowsCheck with <b>ignoreOverriddenMethods</b>
      * property.
-     * @throws Exception
      */
     @Test
     public void testIgnoreOverriddenMethods() throws Exception {
@@ -118,7 +115,6 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
     /**
      * Test to validate the IllegalThrowsCheck without <b>ignoreOverriddenMethods</b>
      * property.
-     * @throws Exception
      */
     @Test
     public void testNotIgnoreOverriddenMethods() throws Exception {

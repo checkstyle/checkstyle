@@ -39,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class AnnotationUseStyleTest extends BaseCheckTestSupport {
     /**
      * Test that annotation parens are always present.
-     * @throws Exception
      */
     @Test
     public void testParansAlways() throws Exception {
@@ -58,7 +57,6 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport {
 
     /**
      * Test that annotation parens are never present.
-     * @throws Exception
      */
     @Test
     public void testParansNever() throws Exception {

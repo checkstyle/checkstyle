@@ -31,8 +31,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class PackageAnnotationTest extends BaseCheckTestSupport {
     /**
      * This tests a package annotation that is in the package-info.java file.
-     *
-     * @throws Exception
      */
     @Test
     public void testGoodPackageAnnotation() throws Exception {
