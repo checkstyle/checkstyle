@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -101,10 +99,8 @@ public class WriteTagCheck
     /**
      * Sets the tag to check.
      * @param tag tag to check
-     * @throws ConversionException if unable to create Pattern object.
      */
-    public void setTag(String tag)
-        throws ConversionException {
+    public void setTag(String tag) {
         this.tag = tag;
         tagRE = Utils.createPattern(tag + "\\s*(.*$)");
     }
@@ -112,10 +108,8 @@ public class WriteTagCheck
     /**
      * Set the tag format.
      * @param format a <code>String</code> value
-     * @throws ConversionException if unable to create Pattern object
      */
-    public void setTagFormat(String format)
-        throws ConversionException {
+    public void setTagFormat(String format) {
         tagFormat = format;
         tagFormatRE = Utils.createPattern(format);
     }

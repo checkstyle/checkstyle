@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.regex.Pattern;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -65,10 +63,8 @@ public class UncommentedMainCheck
     /**
      * Set the excluded classes pattern.
      * @param excludedClasses a <code>String</code> value
-     * @throws ConversionException if unable to create Pattern object
      */
-    public void setExcludedClasses(String excludedClasses)
-        throws ConversionException {
+    public void setExcludedClasses(String excludedClasses) {
         this.excludedClasses = excludedClasses;
         excludedClassesPattern = Utils.createPattern(excludedClasses);
     }

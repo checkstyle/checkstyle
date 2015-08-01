@@ -24,8 +24,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -115,19 +113,16 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
 
     /**
      * Creates new instance of the check.
-     * @throws ConversionException unable to parse DEFAULT_FORMAT.
      */
-    public TrailingCommentCheck() throws ConversionException {
+    public TrailingCommentCheck() {
         super(DEFAULT_FORMAT);
     }
 
     /**
      * Sets patter for legal trailing comments.
      * @param format format to set.
-     * @throws ConversionException if unable to create Pattern object
      */
-    public void setLegalComment(final String format)
-        throws ConversionException {
+    public void setLegalComment(final String format) {
         legalComment = Utils.createPattern(format);
     }
 

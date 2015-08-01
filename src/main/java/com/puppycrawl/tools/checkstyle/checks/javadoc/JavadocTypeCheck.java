@@ -23,8 +23,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
@@ -123,10 +121,8 @@ public class JavadocTypeCheck
     /**
      * Set the author tag pattern.
      * @param format a <code>String</code> value
-     * @throws ConversionException if unable to create Pattern object.
      */
-    public void setAuthorFormat(String format)
-        throws ConversionException {
+    public void setAuthorFormat(String format) {
         authorFormat = format;
         authorFormatPattern = Utils.createPattern(format);
     }
@@ -134,10 +130,8 @@ public class JavadocTypeCheck
     /**
      * Set the version format pattern.
      * @param format a <code>String</code> value
-     * @throws ConversionException if unable to create Pattern object.
      */
-    public void setVersionFormat(String format)
-        throws ConversionException {
+    public void setVersionFormat(String format) {
         versionFormat = format;
         versionFormatPattern = Utils.createPattern(format);
     }

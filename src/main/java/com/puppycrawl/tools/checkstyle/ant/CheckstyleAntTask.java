@@ -244,7 +244,7 @@ public class CheckstyleAntTask extends Task {
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void execute() throws BuildException {
+    public void execute() {
         final long startTime = System.currentTimeMillis();
 
         try {
