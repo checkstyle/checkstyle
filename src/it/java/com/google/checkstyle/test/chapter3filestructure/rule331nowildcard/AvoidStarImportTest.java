@@ -37,4 +37,3 @@ public class AvoidStarImportTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-

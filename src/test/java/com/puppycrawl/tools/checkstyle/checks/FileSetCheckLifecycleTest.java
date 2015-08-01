@@ -101,7 +101,6 @@ public class FileSetCheckLifecycleTest
         checker.configure(dc);
         checker.addListener(new BriefLogger(stream));
 
-
         checker.addFileSetCheck(new TestFileSetCheck());
 
         final String[] expected = {

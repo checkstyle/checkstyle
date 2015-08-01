@@ -625,7 +625,6 @@ public final class JavadocTokenTypes {
      */
     public static final int INHERIT_DOC_LITERAL = JavadocParser.INHERIT_DOC_LITERAL;
 
-
     /**
      * '@linkplain' literal in {&#64;linkplain} Javadoc inline tag.
      * <p>
@@ -1220,7 +1219,6 @@ public final class JavadocTokenTypes {
      */
     public static final int FIELD_TYPE = JavadocParser.FIELD_TYPE;
 
-
     //--------------------------------------------------------------------------------------------//
     //------------------        HTML TAGS          -----------------------------------------------//
     //--------------------------------------------------------------------------------------------//
@@ -1318,7 +1316,6 @@ public final class JavadocTokenTypes {
     public static final int THEAD_HTML_TAG_NAME = JavadocParser.THEAD_HTML_TAG_NAME;
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
-
     /////////////////////// SINGLETON HTML TAGS  //////////////////////////////////////////////////
     public static final int SINGLETON_ELEMENT = JavadocParser.RULE_singletonElement + RULE_TYPES_OFFSET; // parent node for all singleton tags
 
@@ -1382,8 +1379,6 @@ public final class JavadocTokenTypes {
     public static final int TEXT = JavadocParser.RULE_text + RULE_TYPES_OFFSET; // CHAR and WS sequence
 
     public static final int EOF = JavadocParser.EOF; // end of file
-
-
 
     private JavadocTokenTypes() {
     }

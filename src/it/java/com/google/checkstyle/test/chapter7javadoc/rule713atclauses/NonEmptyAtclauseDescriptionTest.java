@@ -61,5 +61,3 @@ public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

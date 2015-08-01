@@ -247,7 +247,6 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
     @Override
     public abstract void setValueAt(Object value, Object node, int column);
 
-
     // Left to be implemented in the subclass:
 
     /*

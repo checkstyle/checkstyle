@@ -75,4 +75,3 @@ interface TestInterface {
 
     Object getObject();
 }
-

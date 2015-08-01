@@ -69,5 +69,3 @@ public class LocalVariableNameTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

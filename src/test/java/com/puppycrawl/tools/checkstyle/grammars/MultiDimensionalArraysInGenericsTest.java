@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 
-
 public class MultiDimensionalArraysInGenericsTest
     extends BaseCheckTestSupport {
     @Test

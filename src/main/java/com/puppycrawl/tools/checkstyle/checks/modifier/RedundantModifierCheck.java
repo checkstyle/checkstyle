@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-
 /**
  * Checks for redundant modifiers in interface and annotation definitions.
  * Also checks for redundant final modifiers on methods of final classes

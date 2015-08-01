@@ -199,4 +199,3 @@ public class TreeTableModelAdapter extends AbstractTableModel {
         });
     }
 }
-

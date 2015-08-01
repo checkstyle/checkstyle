@@ -309,7 +309,6 @@ public class JTreeTable extends JTable {
         }
     }
 
-
     /**
      * TreeTableCellEditor implementation. Component returned is the
      * JTree.
@@ -365,7 +364,6 @@ public class JTreeTable extends JTable {
             return false;
         }
     }
-
 
     /**
      * ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel

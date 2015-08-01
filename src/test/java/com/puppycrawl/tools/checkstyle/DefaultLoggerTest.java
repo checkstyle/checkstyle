@@ -27,7 +27,6 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 
-
 public class DefaultLoggerTest {
 
     @Test

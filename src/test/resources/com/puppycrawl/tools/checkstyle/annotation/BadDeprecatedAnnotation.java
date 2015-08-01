@@ -55,4 +55,3 @@ interface Foo1 {
      */
     int bleh();
 }
-

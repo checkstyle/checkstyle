@@ -83,5 +83,3 @@ public class EmptyBlockTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

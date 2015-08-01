@@ -230,7 +230,6 @@ public class TranslationCheck
         LOG.debug("IOException occured.", ex);
     }
 
-
     /**
      * Compares the key sets of the given property files (arranged in a map)
      * with the specified key set. All missing keys are reported.
@@ -262,7 +261,6 @@ public class TranslationCheck
             dispatcher.fireFileFinished(path);
         }
     }
-
 
     /**
      * Tests whether the given property files (arranged by their prefixes

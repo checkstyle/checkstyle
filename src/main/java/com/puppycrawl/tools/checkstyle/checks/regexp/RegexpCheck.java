@@ -278,4 +278,3 @@ public class RegexpCheck extends AbstractFormatCheck {
         }
     }
 }
-

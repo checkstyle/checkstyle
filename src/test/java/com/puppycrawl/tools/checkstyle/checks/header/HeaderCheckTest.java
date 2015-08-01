@@ -43,7 +43,6 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         verify(checkConfig, getPath("inputHeader.java"), expected);
     }
 
-
     @Test
     public void testNoHeader() throws Exception {
         final DefaultConfiguration checkConfig =

@@ -207,7 +207,6 @@ matrix:
         - CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
         - COVERAGE_CMD=""
 
-
 script: eval $CMD
 
 after_success:

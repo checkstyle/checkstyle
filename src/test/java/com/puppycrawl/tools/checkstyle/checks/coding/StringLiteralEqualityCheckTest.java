@@ -51,4 +51,3 @@ public class StringLiteralEqualityCheckTest
         Assert.assertNotNull(check.getRequiredTokens());
     }
 }
-

@@ -1231,7 +1231,6 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         verifyWarns(checkConfig, fname, expected);
     }
 
-
     @Test
     public void testValidWhileWithChecker()
         throws Exception {

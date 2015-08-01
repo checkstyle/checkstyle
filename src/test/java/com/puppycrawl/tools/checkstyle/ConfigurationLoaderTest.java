@@ -65,7 +65,6 @@ public class ConfigurationLoaderTest {
                 fName, new PropertiesExpander(props));
     }
 
-
     @Test
     public void testResourceLoadConfiguration() throws Exception {
         final Properties props = new Properties();
@@ -213,7 +212,6 @@ public class ConfigurationLoaderTest {
         assertTrue(((DefaultConfiguration) grandchildren[0]).getMessages()
             .containsKey("name.invalidPattern"));
     }
-
 
     private void verifyConfigNode(
         DefaultConfiguration config, String name, int childrenLength,
@@ -376,7 +374,6 @@ public class ConfigurationLoaderTest {
             }
 
             Object obj = constructor.newInstance(objParent);
-
 
             Class[] param = new Class[4];
             param[0] = String.class;

@@ -109,7 +109,6 @@
       </subsection>
     </section>
 
-
     <section name="MissingDeprecated">
       <subsection name="Description">
         <p> Verifies that both the java.lang.Deprecated annotation is
@@ -422,7 +421,6 @@
       </p>
 
       </subsection>
-
 
       <subsection name="Package">
         <p> com.puppycrawl.tools.checkstyle.checks </p>

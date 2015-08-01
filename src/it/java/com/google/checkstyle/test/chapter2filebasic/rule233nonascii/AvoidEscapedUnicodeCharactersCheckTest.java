@@ -42,5 +42,3 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

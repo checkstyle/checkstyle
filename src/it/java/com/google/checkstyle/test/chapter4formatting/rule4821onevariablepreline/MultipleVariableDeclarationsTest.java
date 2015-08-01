@@ -57,5 +57,3 @@ public class MultipleVariableDeclarationsTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

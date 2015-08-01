@@ -253,7 +253,6 @@ public class EmptyCatchBlockCheck extends Check {
         return !isMatchingVariableName && !isMatchingCommentContent;
     }
 
-
     /**
      * Checks if catch block is empty or contains only comments.
      * @param catchAst {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH}

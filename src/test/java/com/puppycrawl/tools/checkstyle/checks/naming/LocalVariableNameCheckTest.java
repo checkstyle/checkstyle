@@ -87,4 +87,3 @@ public class LocalVariableNameCheckTest
         verify(checkConfig, getPath("InputOneCharInintVarName.java"), expected);
     }
 }
-

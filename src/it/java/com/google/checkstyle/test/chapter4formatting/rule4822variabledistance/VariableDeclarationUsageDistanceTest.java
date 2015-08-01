@@ -42,5 +42,3 @@ public class VariableDeclarationUsageDistanceTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

@@ -239,7 +239,6 @@ public abstract class Check extends AbstractViolationReporter {
                 this.getCustomMessages().get(key)));
     }
 
-
     @Override
     public final void log(int lineNo, int colNo, String key,
             Object... args) {

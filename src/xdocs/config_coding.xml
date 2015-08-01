@@ -1520,7 +1520,6 @@ if (&quot;something&quot;.equals(x))
       </subsection>
     </section>
 
-
     <section name="NoClone">
       <subsection name="Description">
        <p>

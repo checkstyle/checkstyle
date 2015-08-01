@@ -109,7 +109,6 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
-
     @Test
     public void testMissingTag() throws Exception {
         checkConfig.addAttribute("tag", "@missingtag");

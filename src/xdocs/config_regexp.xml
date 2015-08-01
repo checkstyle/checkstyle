@@ -570,7 +570,6 @@
       </subsection>
     </section>
 
-
     <section name="RegexpMultiline">
       <subsection name="Description">
         <p>
@@ -656,7 +655,6 @@
         </p>
       </subsection>
     </section>
-
 
     <section name="RegexpSinglelineJava">
       <subsection name="Description">

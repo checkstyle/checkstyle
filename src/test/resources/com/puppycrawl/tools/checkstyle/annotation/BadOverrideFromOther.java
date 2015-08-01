@@ -65,4 +65,3 @@ enum Football2 implements IFoo2, IBar2 {
 
     }
 }
-

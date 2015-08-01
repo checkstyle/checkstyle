@@ -120,4 +120,3 @@ public class JavadocTag {
                 || JavadocTagInfo.EXCEPTION == tagInfo;
     }
 }
-

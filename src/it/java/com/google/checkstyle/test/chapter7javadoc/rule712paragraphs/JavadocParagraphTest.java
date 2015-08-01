@@ -81,5 +81,3 @@ public class JavadocParagraphTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

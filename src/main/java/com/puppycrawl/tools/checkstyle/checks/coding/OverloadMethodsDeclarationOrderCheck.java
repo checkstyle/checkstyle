@@ -55,7 +55,6 @@ public class OverloadMethodsDeclarationOrderCheck extends Check {
      */
     public static final String MSG_KEY = "overload.methods.declaration";
 
-
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

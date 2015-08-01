@@ -125,7 +125,6 @@ public class ModifierOrderCheck
         }
     }
 
-
     /**
      * Checks if the modifiers were added in the order suggested
      * in the Java language specification.

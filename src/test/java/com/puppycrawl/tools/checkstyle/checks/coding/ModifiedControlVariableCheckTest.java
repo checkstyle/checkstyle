@@ -78,7 +78,6 @@ public class ModifiedControlVariableCheckTest
         Assert.assertNotNull(check.getRequiredTokens());
     }
 
-
     @Test
     public void testImproperToken() throws Exception {
         ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();

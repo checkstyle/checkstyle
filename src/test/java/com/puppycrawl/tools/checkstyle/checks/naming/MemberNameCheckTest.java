@@ -251,4 +251,3 @@ public class MemberNameCheckTest
         Assert.assertArrayEquals(expected, actual);
     }
 }
-

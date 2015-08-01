@@ -83,7 +83,6 @@ public final class Utils {
         }
     }
 
-
     /** stop instances being created **/
     private Utils() {
     }

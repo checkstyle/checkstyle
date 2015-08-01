@@ -144,7 +144,6 @@ public class ParseTreeInfoPanel extends JPanel {
         }
     }
 
-
     private class FileDropListener implements FileDrop.Listener {
         private final JScrollPane mSp;
 
@@ -160,7 +159,6 @@ public class ParseTreeInfoPanel extends JPanel {
             mSp = aSp;
         }
     }
-
 
     public void openFile(File file, final Component parent) {
         if (file != null) {
@@ -324,4 +322,3 @@ public class ParseTreeInfoPanel extends JPanel {
         }
     }
 }
-

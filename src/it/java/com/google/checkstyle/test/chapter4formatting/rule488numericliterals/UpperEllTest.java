@@ -57,5 +57,3 @@ public class UpperEllTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

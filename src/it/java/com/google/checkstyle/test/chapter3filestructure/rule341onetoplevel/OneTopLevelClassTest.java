@@ -90,5 +90,3 @@ public class OneTopLevelClassTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

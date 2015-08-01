@@ -27,7 +27,6 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import antlr.collections.AST;
-
 import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.AnnotationUtility;
 import com.puppycrawl.tools.checkstyle.ScopeUtils;
@@ -519,7 +518,6 @@ public class VisibilityModifierCheck
      */
     private boolean hasProperAccessModifier(DetailAST variableDef, String variableName) {
         boolean result = true;
-
 
         final String variableScope = getVisibilityScope(variableDef);
 

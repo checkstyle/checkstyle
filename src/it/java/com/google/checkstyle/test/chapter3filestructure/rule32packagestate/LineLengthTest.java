@@ -42,5 +42,3 @@ public class LineLengthTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

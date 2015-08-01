@@ -96,6 +96,3 @@ public class MemberNameTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-
-

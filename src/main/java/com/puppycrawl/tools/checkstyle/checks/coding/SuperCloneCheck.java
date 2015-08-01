@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-
 /**
  * <p>
  * Checks that an overriding clone() method invokes super.clone().

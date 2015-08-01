@@ -249,7 +249,6 @@ public class SuppressWarningsHolder
 
             final DetailAST targetAST = getAnnotationTarget(ast);
 
-
             if (targetAST == null) {
                 log(ast.getLineNo(), MSG_KEY);
                 return;

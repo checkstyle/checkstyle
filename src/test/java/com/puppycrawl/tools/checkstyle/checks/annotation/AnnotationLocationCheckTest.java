@@ -135,5 +135,4 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
         verify(checkConfig, getPath("annotation/InputAnnotationLocationCheckTest2.java"), expected);
     }
 
-
 }

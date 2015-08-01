@@ -102,4 +102,3 @@ class StateX {
         return this.scaleX;
     }
 }
-

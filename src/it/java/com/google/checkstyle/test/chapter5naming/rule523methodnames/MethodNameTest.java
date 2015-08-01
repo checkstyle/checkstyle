@@ -60,5 +60,3 @@ public class MethodNameTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

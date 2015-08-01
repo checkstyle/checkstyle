@@ -165,7 +165,6 @@ public abstract class AbstractDeclarationCollector extends Check {
         }
     }
 
-
     /**
      * End parsing of the AST for declarations.
      *

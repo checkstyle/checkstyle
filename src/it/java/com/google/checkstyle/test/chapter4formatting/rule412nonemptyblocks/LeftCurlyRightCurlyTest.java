@@ -113,5 +113,3 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
         verify(newCheckConfig, filePath, expected, warnList);
     }
 }
-
-

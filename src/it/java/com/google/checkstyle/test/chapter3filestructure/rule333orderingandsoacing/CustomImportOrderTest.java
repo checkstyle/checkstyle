@@ -103,5 +103,3 @@ public class CustomImportOrderTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

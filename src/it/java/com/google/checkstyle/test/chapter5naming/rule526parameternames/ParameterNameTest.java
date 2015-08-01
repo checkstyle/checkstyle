@@ -30,7 +30,6 @@ public class ParameterNameTest extends BaseCheckTestSupport{
     @Test
     public void parameterNameTest() throws IOException, Exception {
 
-
         final String[] expected = {
             "8:21: " + getCheckMessage(checkConfig.getMessages(), msgKey, "$arg1", format),
             "9:21: " + getCheckMessage(checkConfig.getMessages(), msgKey, "ar$g2", format),
@@ -52,5 +51,3 @@ public class ParameterNameTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

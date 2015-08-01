@@ -68,5 +68,3 @@ public class TypeNameTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

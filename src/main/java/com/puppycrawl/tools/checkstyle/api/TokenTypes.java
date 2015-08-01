@@ -3010,7 +3010,6 @@ public final class TokenTypes {
     public static final int ANNOTATION_DEF =
         GeneratedJavaTokenTypes.ANNOTATION_DEF;
 
-
     /**
      * An annotation field declaration.  The notable children are modifiers,
      * field type, field name and an optional default value (a conditional

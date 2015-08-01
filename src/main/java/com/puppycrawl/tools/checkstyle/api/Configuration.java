@@ -23,7 +23,6 @@ import java.io.Serializable;
 
 import com.google.common.collect.ImmutableMap;
 
-
 /**
  * A Configuration is used to configure a Configurable component.  The general
  * idea of Configuration/Configurable was taken from <a target="_top"

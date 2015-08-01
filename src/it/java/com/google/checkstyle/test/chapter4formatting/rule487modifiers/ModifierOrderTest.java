@@ -91,5 +91,3 @@ public class ModifierOrderTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

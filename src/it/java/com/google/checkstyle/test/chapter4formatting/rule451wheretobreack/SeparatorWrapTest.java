@@ -35,5 +35,3 @@ public class SeparatorWrapTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-
