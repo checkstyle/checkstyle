@@ -266,7 +266,7 @@ public class JavadocStyleCheck
      * @return a comment text String.
      */
     private static String getCommentText(String... comments) {
-        final StringBuffer buffer = new StringBuffer();
+        final StringBuilder builder = new StringBuilder();
         for (final String line : comments) {
             final int textStart = findTextStart(line);
 
@@ -275,13 +275,13 @@ public class JavadocStyleCheck
                     //we have found the tag section
                     break;
                 }
-                buffer.append(line.substring(textStart));
-                trimTail(buffer);
-                buffer.append('\n');
+                builder.append(line.substring(textStart));
+                trimTail(builder);
+                builder.append('\n');
             }
         }
 
-        return buffer.toString().trim();
+        return builder.toString().trim();
     }
 
     /**
@@ -313,20 +313,20 @@ public class JavadocStyleCheck
 
     /**
      * Trims any trailing whitespace or the end of Javadoc comment string.
-     * @param buffer the StringBuffer to trim.
+     * @param builder the StringBuilder to trim.
      */
-    private static void trimTail(StringBuffer buffer) {
-        int i = buffer.length() - 1;
+    private static void trimTail(StringBuilder builder) {
+        int i = builder.length() - 1;
         while (true) {
-            if (Character.isWhitespace(buffer.charAt(i))) {
-                buffer.deleteCharAt(i);
+            if (Character.isWhitespace(builder.charAt(i))) {
+                builder.deleteCharAt(i);
             }
-            else if (buffer.charAt(i - 1) == '*') {
-                buffer.deleteCharAt(i);
-                buffer.deleteCharAt(i - 1);
+            else if (builder.charAt(i - 1) == '*') {
+                builder.deleteCharAt(i);
+                builder.deleteCharAt(i - 1);
                 i--;
-                while (buffer.charAt(i - 1) == '*') {
-                    buffer.deleteCharAt(i - 1);
+                while (builder.charAt(i - 1) == '*') {
+                    builder.deleteCharAt(i - 1);
                     i--;
                 }
             }
