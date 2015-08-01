@@ -733,10 +733,9 @@ public class VisibilityModifierCheck
      * @return short name of class.
      */
     private static String getClassShortName(String canonicalClassName) {
-        final String shortClassName = canonicalClassName
+        return canonicalClassName
                 .substring(canonicalClassName.lastIndexOf('.') + 1,
                 canonicalClassName.length());
-        return shortClassName;
     }
 
     /**
