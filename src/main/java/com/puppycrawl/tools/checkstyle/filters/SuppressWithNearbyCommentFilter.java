@@ -106,8 +106,7 @@ public class SuppressWithNearbyCommentFilter
          * @throws ConversionException if unable to parse expanded text.
          * on.
          */
-        public Tag(String text, int line, SuppressWithNearbyCommentFilter filter)
-            throws ConversionException {
+        public Tag(String text, int line, SuppressWithNearbyCommentFilter filter) {
             this.text = text;
 
             //Expand regexp for check and message
@@ -325,8 +324,7 @@ public class SuppressWithNearbyCommentFilter
      * @param format a <code>String</code> value.
      * @throws ConversionException if unable to create Pattern object.
      */
-    public void setCommentFormat(String format)
-        throws ConversionException {
+    public void setCommentFormat(String format) {
         commentRegexp = Utils.createPattern(format);
     }
 

@@ -100,8 +100,7 @@ public class SuppressionCommentFilter
          * @throws ConversionException if unable to parse expanded text.
          * on.
          */
-        public Tag(int line, int column, String text, boolean on, SuppressionCommentFilter filter)
-            throws ConversionException {
+        public Tag(int line, int column, String text, boolean on, SuppressionCommentFilter filter) {
             this.line = line;
             this.column = column;
             this.text = text;
@@ -317,8 +316,7 @@ public class SuppressionCommentFilter
      * @param format a <code>String</code> value.
      * @throws ConversionException if unable to create Pattern object.
      */
-    public void setOffCommentFormat(String format)
-        throws ConversionException {
+    public void setOffCommentFormat(String format) {
         offRegexp = Utils.createPattern(format);
     }
 
@@ -327,8 +325,7 @@ public class SuppressionCommentFilter
      * @param format a <code>String</code> value
      * @throws ConversionException if unable to create Pattern object.
      */
-    public void setOnCommentFormat(String format)
-        throws ConversionException {
+    public void setOnCommentFormat(String format) {
         onRegexp = Utils.createPattern(format);
     }
 

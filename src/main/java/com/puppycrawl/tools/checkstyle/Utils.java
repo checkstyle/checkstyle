@@ -215,8 +215,7 @@ public final class Utils {
      * @return a created regexp object
      * @throws ConversionException if unable to create Pattern object.
      **/
-    public static Pattern createPattern(String pattern)
-        throws ConversionException {
+    public static Pattern createPattern(String pattern) {
         try {
             return Pattern.compile(pattern);
         }

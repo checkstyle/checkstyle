@@ -58,7 +58,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
      * @param optionStr string to decode option from
      * @throws ConversionException if unable to decode
      */
-    public void setOption(String optionStr) throws ConversionException {
+    public void setOption(String optionStr) {
         try {
             option = Enum.valueOf(optionClass, optionStr.trim().toUpperCase(Locale.ENGLISH));
         }

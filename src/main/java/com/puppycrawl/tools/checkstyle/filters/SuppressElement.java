@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Filter;
@@ -75,10 +73,8 @@ public class SuppressElement
      * file name pattern. Must either call {@link #setColumns(String)} or
      * {@link #setModuleId(String)} before using this object.
      * @param files regular expression for names of filtered files.
-     * @throws ConversionException if unable to create Pattern object.
      */
-    public SuppressElement(String files)
-        throws ConversionException {
+    public SuppressElement(String files) {
         filePattern = files;
         fileRegexp = Pattern.compile(files);
     }
@@ -86,10 +82,8 @@ public class SuppressElement
     /**
      * Set the check class pattern.
      * @param checks regular expression for filtered check classes.
-     * @throws ConversionException if unable to create Pattern object
      */
-    public void setChecks(final String checks)
-        throws ConversionException {
+    public void setChecks(final String checks) {
         checkPattern = checks;
         checkRegexp = Utils.createPattern(checks);
     }

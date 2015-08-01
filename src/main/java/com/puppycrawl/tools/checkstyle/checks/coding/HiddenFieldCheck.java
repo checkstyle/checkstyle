@@ -23,8 +23,6 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.google.common.base.Objects;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.ScopeUtils;
@@ -462,10 +460,8 @@ public class HiddenFieldCheck
     /**
      * Set the ignore format to the specified regular expression.
      * @param format a <code>String</code> value
-     * @throws ConversionException if unable to create Pattern object
      */
-    public void setIgnoreFormat(String format)
-        throws ConversionException {
+    public void setIgnoreFormat(String format) {
         regexp = Utils.createPattern(format);
     }
 

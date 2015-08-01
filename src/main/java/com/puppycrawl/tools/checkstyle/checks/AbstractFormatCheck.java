@@ -49,8 +49,7 @@ public abstract class AbstractFormatCheck
      * @param defaultFormat default format
      * @throws ConversionException unable to parse defaultFormat
      */
-    public AbstractFormatCheck(String defaultFormat)
-        throws ConversionException {
+    public AbstractFormatCheck(String defaultFormat) {
         this(defaultFormat, 0);
     }
 
@@ -61,8 +60,7 @@ public abstract class AbstractFormatCheck
      * See {@link Pattern#compile(java.lang.String, int)}
      * @throws ConversionException unable to parse defaultFormat
      */
-    public AbstractFormatCheck(String defaultFormat, int compileFlags)
-        throws ConversionException {
+    public AbstractFormatCheck(String defaultFormat, int compileFlags) {
         updateRegexp(defaultFormat, compileFlags);
     }
 
@@ -71,8 +69,7 @@ public abstract class AbstractFormatCheck
      * @param format a <code>String</code> value
      * @throws ConversionException unable to parse format
      */
-    public final void setFormat(String format)
-        throws ConversionException {
+    public final void setFormat(String format) {
         updateRegexp(format, compileFlags);
     }
 

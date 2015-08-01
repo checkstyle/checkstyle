@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import java.util.regex.Pattern;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -131,10 +129,8 @@ public class LineLengthCheck extends Check {
     /**
      * Set the ignore pattern.
      * @param format a <code>String</code> value
-     * @throws ConversionException if unable to create Pattern object
      */
-    public void setIgnorePattern(String format)
-        throws ConversionException {
+    public void setIgnorePattern(String format) {
         ignorePattern = Utils.createPattern(format);
     }
 }
