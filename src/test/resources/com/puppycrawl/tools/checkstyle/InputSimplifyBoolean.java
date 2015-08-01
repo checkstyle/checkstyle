@@ -65,4 +65,24 @@ public class InputSimplifyBoolean
         }
         return false;
     }
+    
+    boolean a() {
+        boolean asd = false;
+        boolean dasa = true;
+        
+        if (asd) {
+            return true;
+        } else {
+            return dasa;
+        }
+    }
+
+    boolean b() {
+        boolean asd = false;
+
+        if(asd);
+        else;
+        
+        return true;
+    }
 }
