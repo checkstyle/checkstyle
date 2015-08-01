@@ -192,7 +192,7 @@ public class RedundantModifierCheck
      * @param ast AST node
      * @return true if it is an enum member
      */
-    private boolean isEnumMember(DetailAST ast) {
+    private static boolean isEnumMember(DetailAST ast) {
         final DetailAST parentTypeDef = ast.getParent().getParent();
         return parentTypeDef.getType() == TokenTypes.ENUM_DEF;
     }
