@@ -15,7 +15,7 @@ public class InputParameterAssignment {
     void foo2() {
         field = 0;
     }
-
+    @SuppressWarnings(value = "unchecked")
     void foo3(String field, int field1) {
         this.field = (field1 += field.length());
     }

@@ -199,7 +199,7 @@ public final class ParameterAssignmentCheck extends Check {
      * @param ast ident to check.
      */
     private void checkIdent(DetailAST ast) {
-        if (parameterNames != null && !parameterNames.isEmpty()) {
+        if (!parameterNames.isEmpty()) {
             final DetailAST identAST = ast.getFirstChild();
 
             if (identAST != null
