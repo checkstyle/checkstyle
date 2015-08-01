@@ -1101,7 +1101,6 @@
             <regex><pattern>.*.checks.coding.IllegalInstantiationCheck</pattern><branchRate>81</branchRate><lineRate>97</lineRate></regex>
             <regex><pattern>.*.checks.coding.ParameterAssignmentCheck</pattern><branchRate>80</branchRate><lineRate>96</lineRate></regex>
             <regex><pattern>.*.checks.coding.ReturnCountCheck</pattern><branchRate>55</branchRate><lineRate>74</lineRate></regex>
-            <regex><pattern>.*.checks.coding.SimplifyBooleanReturnCheck</pattern><branchRate>83</branchRate><lineRate>100</lineRate></regex>
             <regex><pattern>.*.checks.coding.VariableDeclarationUsageDistanceCheck</pattern><branchRate>90</branchRate><lineRate>98</lineRate></regex>
 
             <regex><pattern>.*.checks.javadoc.AbstractJavadocCheck</pattern><branchRate>90</branchRate><lineRate>93</lineRate></regex>
