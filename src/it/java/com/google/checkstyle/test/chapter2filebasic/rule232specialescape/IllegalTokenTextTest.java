@@ -101,5 +101,3 @@ public class IllegalTokenTextTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

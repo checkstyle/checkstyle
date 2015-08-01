@@ -28,7 +28,6 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-
 /** Tests SuppressElementFilter */
 public class FilterSetTest {
     private CSVFilter filter;

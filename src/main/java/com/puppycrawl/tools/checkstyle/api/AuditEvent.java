@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.EventObject;
 
-
 /**
  * Raw event for audit.
  * <p>

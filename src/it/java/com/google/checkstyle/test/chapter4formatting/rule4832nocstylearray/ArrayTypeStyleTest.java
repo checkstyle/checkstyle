@@ -42,5 +42,3 @@ public class ArrayTypeStyleTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

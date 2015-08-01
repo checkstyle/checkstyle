@@ -35,7 +35,6 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-
 public class AnnotationUseStyleTest extends BaseCheckTestSupport {
     /**
      * Test that annotation parens are always present.

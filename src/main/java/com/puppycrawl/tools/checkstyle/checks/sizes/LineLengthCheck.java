@@ -111,7 +111,6 @@ public class LineLengthCheck extends Check {
             final int realLength = Utils.lengthExpandedTabs(
                 line, line.length(), getTabWidth());
 
-
             if (realLength > max
                 && !ignorePattern.matcher(line).find()) {
                 log(i + 1, MSG_KEY, max, realLength);

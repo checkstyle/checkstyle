@@ -104,7 +104,6 @@ public class ClassResolver {
             return clazz;
         }
 
-
         // Giving up, the type is unknown, so load the class to generate an
         // exception
         return safeLoad(name);

@@ -229,7 +229,6 @@ public class IndentationCheck extends Check {
         return lineWrappingIndentation;
     }
 
-
     /**
      * Set the line-wrapping indentation level.
      *

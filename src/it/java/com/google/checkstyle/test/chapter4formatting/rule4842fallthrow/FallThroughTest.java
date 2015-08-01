@@ -48,5 +48,3 @@ public class FallThroughTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

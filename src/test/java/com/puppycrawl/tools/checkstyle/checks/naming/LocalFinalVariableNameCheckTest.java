@@ -80,4 +80,3 @@ public class LocalFinalVariableNameCheckTest
         Assert.assertArrayEquals(expected, actual);
     }
 }
-

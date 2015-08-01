@@ -103,4 +103,3 @@ class _Foo {}
 @interface MyAnnotation5 {}
 
 @interface MyAnnotation6 {}
-

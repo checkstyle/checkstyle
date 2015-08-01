@@ -53,7 +53,6 @@ public class AutomaticBean
     /** the configuration of this bean */
     private Configuration configuration;
 
-
     /**
      * Creates a BeanUtilsBean that is configured to use
      * type converters that throw a ConversionException

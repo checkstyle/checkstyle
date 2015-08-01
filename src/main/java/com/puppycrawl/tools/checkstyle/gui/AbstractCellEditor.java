@@ -57,7 +57,6 @@
  * maintenance of any nuclear facility.
  */
 
-
 package com.puppycrawl.tools.checkstyle.gui;
 
 import java.util.EventObject;

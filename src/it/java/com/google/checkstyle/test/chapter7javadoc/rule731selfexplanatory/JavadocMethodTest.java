@@ -37,5 +37,3 @@ public class JavadocMethodTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

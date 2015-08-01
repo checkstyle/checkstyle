@@ -91,5 +91,3 @@ public class PackageNameTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

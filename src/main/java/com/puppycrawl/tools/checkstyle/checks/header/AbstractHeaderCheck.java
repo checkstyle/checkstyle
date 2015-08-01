@@ -59,7 +59,6 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
     /** the lines of the header file. */
     private final List<String> readerLines = Lists.newArrayList();
 
-
     /**
      * Return the header lines to check against.
      * @return the header lines to check against.

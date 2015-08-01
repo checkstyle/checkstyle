@@ -145,7 +145,6 @@ public class JavadocTagInfoTest {
         assertFalse(JavadocTagInfo.SERIAL.isValidOn(ast));
     }
 
-
     @Test
     public void testException() {
         final DetailAST ast = new DetailAST();
@@ -323,7 +322,6 @@ public class JavadocTagInfoTest {
         catch (IllegalArgumentException ex) {
             assertEquals("the name [myname] is not a valid Javadoc tag name", ex.getMessage());
         }
-
 
         try {
             JavadocTagInfo.fromText(null);

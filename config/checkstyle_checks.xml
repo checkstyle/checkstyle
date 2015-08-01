@@ -53,6 +53,12 @@
   </module>
 
   <module name="RegexpMultiline"/>
+  <module name="RegexpMultiline">
+    <property name="format" value="\r?\n[\t ]*\r?\n[\t ]*\r?\n"/>
+    <property name="fileExtensions" value="java,xml,properties"/>
+    <property name="message" value="Unnecessary consecutive lines"/>
+  </module>
+
   <module name="RegexpHeader">
     <property name="headerFile" value="${checkstyle.regexp.header.file}"/>
     <property name="fileExtensions" value="java"/>

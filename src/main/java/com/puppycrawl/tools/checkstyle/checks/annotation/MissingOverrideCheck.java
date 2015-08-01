@@ -147,7 +147,6 @@ public final class MissingOverrideCheck extends Check {
         final TextBlock javadoc =
             this.getFileContents().getJavadocBefore(ast.getLineNo());
 
-
         final boolean containastag = containsJavadocTag(javadoc);
         if (containastag && !JavadocTagInfo.INHERIT_DOC.isValidOn(ast)) {
             this.log(ast.getLineNo(), MSG_KEY_TAG_NOT_VALID_ON,

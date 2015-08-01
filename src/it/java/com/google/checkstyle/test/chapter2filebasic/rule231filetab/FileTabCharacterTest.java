@@ -64,5 +64,3 @@ public class FileTabCharacterTest extends BaseCheckTestSupport{
         return checkConfig;
     }
 }
-
-

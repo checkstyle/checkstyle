@@ -86,7 +86,6 @@ public final class JavadocUtils {
     private JavadocUtils() {
     }
 
-
     /**
      * Gets validTags from a given piece of Javadoc.
      * @param cmt

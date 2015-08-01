@@ -61,5 +61,3 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

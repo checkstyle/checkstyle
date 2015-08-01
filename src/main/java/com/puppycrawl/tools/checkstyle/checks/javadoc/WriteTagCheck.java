@@ -206,7 +206,6 @@ public class WriteTagCheck
 
     }
 
-
     /**
      * Log a message.
      *

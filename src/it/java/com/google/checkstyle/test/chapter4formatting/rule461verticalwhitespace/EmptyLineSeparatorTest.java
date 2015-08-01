@@ -45,5 +45,3 @@ public class EmptyLineSeparatorTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

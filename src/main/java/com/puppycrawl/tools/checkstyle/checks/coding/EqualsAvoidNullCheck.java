@@ -129,7 +129,6 @@ public class EqualsAvoidNullCheck extends Check {
             return;
         }
 
-
         final DetailAST method = objCalledOn.getNextSibling();
         final DetailAST expr = dot.getNextSibling().getFirstChild();
 

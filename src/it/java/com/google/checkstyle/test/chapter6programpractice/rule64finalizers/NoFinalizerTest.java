@@ -61,5 +61,3 @@ public class NoFinalizerTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

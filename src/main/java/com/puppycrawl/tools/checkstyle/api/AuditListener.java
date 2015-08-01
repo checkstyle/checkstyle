@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.EventListener;
 
-
 /**
  * Listener in charge of receiving events from the Checker.
  * Typical events sequence is:

@@ -5,7 +5,6 @@
 [![][versioneye img]][versioneye]
 [![][sonar img]][sonar]
 
-
 Members chat: [![][gitter img]][gitter]
 Contributors chat: [![https://gitter.im/checkstyle/checkstyle](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/checkstyle/checkstyle?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -58,7 +57,6 @@ The software uses the Google Guava Libraries
 these packages are in the file named "LICENSE.apache20" in this
 directory.
 
-
 [travis]:http://travis-ci.org/checkstyle/checkstyle
 [travis img]:https://secure.travis-ci.org/checkstyle/checkstyle.png
 
@@ -70,7 +68,6 @@ directory.
 
 [coverage]:http://codecov.io/github/checkstyle/checkstyle?branch=master
 [coverage img]:http://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=master
-
 
 [license]:LICENSE
 [license img]:https://img.shields.io/badge/license-GNU%20LGPL%20v2.1-blue.svg

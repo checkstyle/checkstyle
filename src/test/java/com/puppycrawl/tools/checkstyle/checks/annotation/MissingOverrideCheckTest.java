@@ -244,4 +244,3 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
         Assert.assertArrayEquals(expectedTokens, actual);
     }
 }
-

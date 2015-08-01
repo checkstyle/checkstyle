@@ -73,5 +73,3 @@ public class NoLineWrapTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

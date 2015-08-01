@@ -61,5 +61,3 @@ public class AtclauseOrderTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

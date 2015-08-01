@@ -83,4 +83,3 @@ public class StaticVariableNameCheckTest
         Assert.assertArrayEquals(expected, actual);
     }
 }
-

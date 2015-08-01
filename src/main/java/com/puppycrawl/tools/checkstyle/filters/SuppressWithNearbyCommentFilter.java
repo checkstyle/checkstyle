@@ -365,7 +365,6 @@ public class SuppressWithNearbyCommentFilter
         influenceFormat = format;
     }
 
-
     /**
      * Set whether to look in C++ comments.
      * @param checkCPP <code>true</code> if C++ comments are checked.

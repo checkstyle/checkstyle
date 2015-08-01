@@ -73,7 +73,6 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         verify(checkConfig, file.getPath(), expected);
     }
 
-
     @Test
     public void testAcceptableTokens()
         throws Exception {

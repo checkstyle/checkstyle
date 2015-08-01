@@ -60,5 +60,3 @@ public class SingleLineJavadocTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

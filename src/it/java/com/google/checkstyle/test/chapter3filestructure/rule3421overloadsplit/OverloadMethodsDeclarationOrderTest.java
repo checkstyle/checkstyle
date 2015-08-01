@@ -41,5 +41,3 @@ public class OverloadMethodsDeclarationOrderTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

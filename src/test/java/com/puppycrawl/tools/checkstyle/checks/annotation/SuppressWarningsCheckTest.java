@@ -690,7 +690,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsExpanded.java"), expected);
     }
 
-
     /**
      * Tests SuppressWarnings unchecked, unused warning disabled on everything.
      */

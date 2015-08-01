@@ -95,7 +95,6 @@ public class AnonInnerLengthCheck extends Check {
         }
     }
 
-
     /**
      * @param length the maximum length of an anonymous inner class.
      */

@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-
 /**
  * A Component that needs context information from it's container(parent object) to work.
  * The container will create a Context object and pass it to this

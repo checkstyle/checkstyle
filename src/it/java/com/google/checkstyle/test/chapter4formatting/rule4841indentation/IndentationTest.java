@@ -105,5 +105,3 @@ public class IndentationTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

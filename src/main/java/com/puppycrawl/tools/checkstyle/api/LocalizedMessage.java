@@ -38,7 +38,6 @@ import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
 
-
 /**
  * Represents a message that can be localised. The translations come from
  * message.properties files. The underlying implementation uses

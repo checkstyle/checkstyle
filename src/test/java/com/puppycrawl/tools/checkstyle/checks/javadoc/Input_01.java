@@ -40,4 +40,3 @@ public class Input_01 {
         }
     }
 }
-

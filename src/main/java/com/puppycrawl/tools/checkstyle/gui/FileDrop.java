@@ -102,7 +102,6 @@ class FileDrop {
                 listener);
     }
 
-
     /**
      * Full constructor with a specified border and debugging optionally turned on.
      * With Debugging turned on, more status messages will be displayed to
@@ -125,7 +124,6 @@ class FileDrop {
         dropListener = new FileDropTargetListener(c, dragBorder, listener);
         makeDropTarget(c, recursive);
     }
-
 
     private void makeDropTarget(final Component c, boolean recursive)
             throws TooManyListenersException {
@@ -161,7 +159,6 @@ class FileDrop {
         }
     }
 
-
     /** Determine if the dragged data is a file list. */
     private static boolean isDragOk(final DropTargetDragEvent evt) {
         boolean ok = false;
@@ -179,7 +176,6 @@ class FileDrop {
         return ok;
     }
 
-
     /**
      * Removes the drag-and-drop hooks from the component and optionally
      * from the all children. You should call this if you add and remove
@@ -193,7 +189,6 @@ class FileDrop {
     static void remove(Component c) {
         remove(c, true);
     }
-
 
     /**
      * Removes the drag-and-drop hooks from the component and optionally
@@ -213,7 +208,6 @@ class FileDrop {
             }
         }
     }
-
 
     /**
      * Implement this inner interface to listen for when files are dropped. For example

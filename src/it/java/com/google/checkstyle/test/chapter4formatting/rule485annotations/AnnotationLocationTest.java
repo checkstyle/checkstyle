@@ -50,5 +50,3 @@ public class AnnotationLocationTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

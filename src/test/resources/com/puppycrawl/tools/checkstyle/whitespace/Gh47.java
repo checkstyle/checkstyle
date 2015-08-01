@@ -6,4 +6,3 @@ public class Gh47
 {
     public List<List<String>[]> listOfListOFArrays;
 }
-

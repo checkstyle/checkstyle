@@ -439,7 +439,6 @@
       </table>
     </subsection>
 
-
     <subsection name="elementStyle">
       <p>
         This property represents the policy for the styles for defining
@@ -496,7 +495,6 @@
       </table>
     </subsection>
 
-
     <subsection name="closingParens">
       <p>
         This property represents the policy for the styles for the ending
@@ -533,7 +531,6 @@
         </tr>
       </table>
     </subsection>
-
 
     <subsection name="trailingArrayComma">
       <p>

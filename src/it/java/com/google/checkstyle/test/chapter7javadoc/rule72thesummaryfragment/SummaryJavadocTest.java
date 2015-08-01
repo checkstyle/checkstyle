@@ -61,5 +61,3 @@ public class SummaryJavadocTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-
