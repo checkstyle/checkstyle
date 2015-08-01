@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
     /**
      * Tests SuppressWarnings with default regex.
-     * @throws Exception
      */
     @Test
     public void testSingleDefault() throws Exception {
@@ -54,7 +53,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings all warnings disabled on everything.
-     * @throws Exception
      */
     @Test
     public void testSingleAll() throws Exception {
@@ -97,7 +95,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings unchecked warning disabled on everything.
-     * @throws Exception
      */
     @Test
     public void testSingleNoUnchecked() throws Exception {
@@ -122,7 +119,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings unchecked warning disabled on certain tokens.
-     * @throws Exception
      */
     @Test
     public void testSingleNoUncheckedTokens() throws Exception {
@@ -145,7 +141,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings un* warning disabled on everything.
-     * @throws Exception
      */
     @Test
     public void testSingleNoUnWildcard() throws Exception {
@@ -179,7 +174,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings unchecked, unused warning disabled on everything.
-     * @throws Exception
      */
     @Test
     public void testSingleNoUncheckedUnused() throws Exception {
@@ -210,7 +204,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings *, unchecked, unused warning disabled on everything.
-     * @throws Exception
      */
     @Test
     public void testSingleNoUncheckedUnusedAll() throws Exception {
@@ -253,7 +246,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings with default regex.
-     * @throws Exception
      */
     @Test
     public void testCompactDefault() throws Exception {
@@ -283,7 +275,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings all warnings disabled on everything.
-     * @throws Exception
      */
     @Test
     public void testCompactAll() throws Exception {
@@ -345,7 +336,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings unchecked warning disabled on everything.
-     * @throws Exception
      */
     @Test
     public void testCompactNoUnchecked() throws Exception {
@@ -374,7 +364,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings unchecked warning disabled on certain tokens.
-     * @throws Exception
      */
     @Test
     public void testCompactNoUncheckedTokens() throws Exception {
@@ -394,7 +383,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings un* warning disabled on everything.
-     * @throws Exception
      */
     @Test
     public void testCompactNoUnWildcard() throws Exception {
@@ -437,7 +425,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings unchecked, unused warning disabled on everything.
-     * @throws Exception
      */
     @Test
     public void testCompactNoUncheckedUnused() throws Exception {
@@ -474,7 +461,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings *, unchecked, unused warning disabled on everything.
-     * @throws Exception
      */
     @Test
     public void testCompactNoUncheckedUnusedAll() throws Exception {
@@ -536,7 +522,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings with default regex.
-     * @throws Exception
      */
     @Test
     public void testExpandedDefault() throws Exception {
@@ -564,7 +549,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings all warnings disabled on everything.
-     * @throws Exception
      */
     @Test
     public void testExpandedAll() throws Exception {
@@ -623,7 +607,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings unchecked warning disabled on everything.
-     * @throws Exception
      */
     @Test
     public void testExpandedNoUnchecked() throws Exception {
@@ -652,7 +635,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings unchecked warning disabled on certain tokens.
-     * @throws Exception
      */
     @Test
     public void testExpandedNoUncheckedTokens() throws Exception {
@@ -672,7 +654,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings un* warning disabled on everything.
-     * @throws Exception
      */
     @Test
     public void testExpandedNoUnWildcard() throws Exception {
@@ -712,7 +693,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings unchecked, unused warning disabled on everything.
-     * @throws Exception
      */
     @Test
     public void testExpandedNoUncheckedUnused() throws Exception {
@@ -750,7 +730,6 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
     /**
      * Tests SuppressWarnings *, unchecked, unused warning disabled on everything.
-     * @throws Exception
      */
     @Test
     public void testExpandedNoUncheckedUnusedAll() throws Exception {

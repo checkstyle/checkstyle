@@ -59,7 +59,6 @@ public class AutomaticBeanTest {
         /**
          * just for code coverage
          * @param childConf a child of this component's Configuration
-         * @throws CheckstyleException
          */
         @Override
         protected void setupChild(Configuration childConf) throws CheckstyleException {

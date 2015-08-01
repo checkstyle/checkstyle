@@ -39,9 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
-    /**
-     * @throws Exception
-     */
     @Test
     public void testCustom() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -74,7 +71,6 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
     /**
      * Checks different group orderings and imports which are out of those ones
      * specified in the configuration.
-     * @throws Exception
      */
     @Test
     public void testGoogleStyleguideConfiguraiton() throws Exception {
@@ -97,7 +93,6 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
 
     /**
      * Checks different combinations for same_package group.
-     * @throws Exception
      */
     @Test
     public void testNonSpecifiedImports() throws Exception {
@@ -255,9 +250,6 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
                 + "DOMSource.java"), expected);
     }
 
-    /**
-     * @throws Exception
-     */
     @Test
     public void testDefaultPackage2() throws Exception {
         final DefaultConfiguration checkConfig =

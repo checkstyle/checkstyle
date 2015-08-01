@@ -53,8 +53,6 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
 
     /**
      * Tests the ordinal work of a check.
-     * @throws Exception
-     *             on error occurres
      */
     @Test
     public void testDefault() throws Exception {
@@ -73,8 +71,6 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
     /**
      * Tests the {@link UniquePropertiesCheck#getLineNumber(List, String)}
      * method return value
-     * @throws Exception
-     *             on error occurs
      */
     @Test
     public void testNotFoundKey() throws Exception {
@@ -91,8 +87,6 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
 
     /**
      * Tests IO exception, that can orrur during reading of properties file.
-     * @throws Exception
-     *             on error occurs
      */
     @Test
     public void testIOException() throws Exception {
@@ -118,10 +112,8 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
     /**
      * Method generates FileNotFound exception details. It tries to open file,
      * that does not exist.
-     * @param file
+     * @param file to be opened
      * @return detail message of {@link FileNotFoundException}
-     * @throws Exception
-     *             on file exists
      */
     private String getFileNotFoundDetail(File file) throws Exception {
         // Create exception to know detail message we should wait in
