@@ -318,6 +318,7 @@ public class ParseTreeInfoPanel extends JPanel {
         /**
          * display a frame
          */
+        @Override
         public void run() {
             JOptionPane.showMessageDialog(parent, msg);
         }

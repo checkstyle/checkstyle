@@ -85,6 +85,7 @@ public class Main {
         /**
          * display a frame
          */
+        @Override
         public void run() {
             frame.pack();
             frame.setVisible(true);
