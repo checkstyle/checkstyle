@@ -327,7 +327,8 @@ public class DescendantTokenCheck extends Check {
         final int[] result = new int[tokenNames.size()];
         int i = 0;
         for (String name : tokenNames) {
-            result[i++] = Utils.getTokenId(name);
+            result[i] = Utils.getTokenId(name);
+            i++;
         }
         return result;
     }
