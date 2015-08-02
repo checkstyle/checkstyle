@@ -244,7 +244,6 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @return true if trail comment is present after ast token.
      */
     private boolean hasTrailComment(DetailAST ast) {
-        boolean result = false;
         final DetailAST variableDef = getVariableDef(ast);
         DetailAST semi;
 
@@ -260,6 +259,7 @@ public class AvoidEscapedUnicodeCharactersCheck
             semi = getSemi(ast);
         }
 
+        boolean result = false;
         if (semi != null) {
             final int lineNo = semi.getLineNo();
             final String currentLine = getLine(lineNo - 1);

@@ -67,7 +67,6 @@ public final class Main {
         boolean cliViolations = false;
         // provide proper exit code based on results.
         final int exitWithCliViolation = -1;
-        final int exitWithCheckstyleException = -2;
         int exitStatus = 0;
 
         try {
@@ -109,6 +108,7 @@ public final class Main {
             printUsage();
         }
         catch (CheckstyleException e) {
+            final int exitWithCheckstyleException = -2;
             exitStatus = exitWithCheckstyleException;
             errorCounter = 1;
             System.out.println(e.getMessage());

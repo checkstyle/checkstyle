@@ -79,9 +79,8 @@ public class NewlineAtEndOfFileCheck
     @Override
     protected void processFiltered(File file, List<String> lines) {
         // Cannot use lines as the line separators have been removed!
-        RandomAccessFile randomAccessFile = null;
         try {
-            randomAccessFile = new RandomAccessFile(file, "r");
+            final RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
             boolean threw = true;
             try {
                 if (!endsWithNewline(randomAccessFile)) {

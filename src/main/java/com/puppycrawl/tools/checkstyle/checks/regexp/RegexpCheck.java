@@ -186,17 +186,14 @@ public class RegexpCheck extends AbstractFormatCheck {
 
     /** recursive method that finds the matches. */
     private void findMatch() {
-        int startLine;
-        boolean foundMatch;
-        boolean ignore = false;
 
-        foundMatch = matcher.find();
+        final boolean foundMatch = matcher.find();
         if (foundMatch) {
             final FileText text = getFileContents().getText();
             final LineColumn start = text.lineColumn(matcher.start());
-            startLine = start.getLine();
+            final int startLine = start.getLine();
 
-            ignore = isIgnore(startLine, text, start);
+            final boolean ignore = isIgnore(startLine, text, start);
 
             if (!ignore) {
                 matchCount++;
@@ -234,10 +231,6 @@ public class RegexpCheck extends AbstractFormatCheck {
      * @return true is that need to be ignored
      */
     private boolean isIgnore(int startLine, FileText text, LineColumn start) {
-        int startColumn;
-        boolean ignore = false;
-        int endLine;
-        int endColumn;
         final LineColumn end;
         if (matcher.end() == 0) {
             end = text.lineColumn(0);
@@ -245,9 +238,10 @@ public class RegexpCheck extends AbstractFormatCheck {
         else {
             end = text.lineColumn(matcher.end() - 1);
         }
-        startColumn = start.getColumn();
-        endLine = end.getLine();
-        endColumn = end.getColumn();
+        final int startColumn = start.getColumn();
+        final int endLine = end.getLine();
+        final int endColumn = end.getColumn();
+        boolean ignore = false;
         if (ignoreComments) {
             final FileContents theFileContents = getFileContents();
             ignore = theFileContents.hasIntersectionWithComment(startLine,

@@ -154,13 +154,11 @@ public class RedundantImportCheck
      * @return whether from the package
      */
     private static boolean fromPackage(String importName, String pkg) {
-        boolean retVal = false;
         // imports from unnamed package are not allowed:
         // http://docs.oracle.com/javase/specs/jls/se7/html/jls-7.html#jls-7.5
         // So '.' must be present in member name and we are not checking for it
         final int index = importName.lastIndexOf('.');
         final String front = importName.substring(0, index);
-        retVal = front.equals(pkg);
-        return retVal;
+        return front.equals(pkg);
     }
 }

@@ -351,8 +351,7 @@ public class JavadocStyleCheck
         final Deque<HtmlTag> htmlStack = new ArrayDeque<>();
         final String[] text = comment.getText();
 
-        TagParser parser = null;
-        parser = new TagParser(text, lineno);
+        final TagParser parser = new TagParser(text, lineno);
 
         while (parser.hasNextTag()) {
             final HtmlTag tag = parser.nextTag();
