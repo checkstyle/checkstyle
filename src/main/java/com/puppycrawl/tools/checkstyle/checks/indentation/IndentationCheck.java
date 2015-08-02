@@ -248,7 +248,7 @@ public class IndentationCheck extends Check {
      * @see java.text.MessageFormat
      */
     public void indentationLog(int line, String key, Object... args) {
-        super.log(line, key, args);
+        log(line, key, args);
     }
 
     /**
