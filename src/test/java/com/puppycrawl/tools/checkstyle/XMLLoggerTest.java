@@ -63,7 +63,7 @@ public class XMLLoggerTest {
             {"&#X0;", "&amp;#X0;"}, //not reference
         };
         for (int i = 0; i < encodings.length; i++) {
-            final String encoded = logger.encode(encodings[i][0]);
+            final String encoded = XMLLogger.encode(encodings[i][0]);
             assertEquals("\"" + encodings[i][0] + "\"", encodings[i][1], encoded);
         }
         outStream.close();
@@ -79,7 +79,7 @@ public class XMLLoggerTest {
         };
         for (int i = 0; i < reference.length; i++) {
             assertTrue("reference: " + reference[i],
-                       logger.isReference(reference[i]));
+                       XMLLogger.isReference(reference[i]));
         }
         final String[] noReference = {
             "&",
@@ -93,7 +93,7 @@ public class XMLLoggerTest {
         };
         for (int i = 0; i < noReference.length; i++) {
             assertFalse("no reference: " + noReference[i],
-                       logger.isReference(noReference[i]));
+                       XMLLogger.isReference(noReference[i]));
         }
 
         outStream.close();
