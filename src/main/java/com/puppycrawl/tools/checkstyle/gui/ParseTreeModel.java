@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Lars Kühne
  */
 public class ParseTreeModel extends AbstractTreeTableModel {
-    private static final String[] COLUMN_NAMES = new String[]{
+    private static final String[] COLUMN_NAMES = {
         "Tree", "Type", "Line", "Column", "Text"
     };
 

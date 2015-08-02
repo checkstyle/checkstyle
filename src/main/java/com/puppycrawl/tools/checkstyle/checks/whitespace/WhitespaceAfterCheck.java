@@ -94,7 +94,7 @@ public class WhitespaceAfterCheck
         }
         else {
             if (!isFollowedByWhitespace(ast, line)) {
-                final Object[] message = new Object[]{ast.getText()};
+                final Object[] message = {ast.getText()};
                 log(ast.getLineNo(),
                     ast.getColumnNo() + ast.getText().length(),
                     WS_NOT_FOLLOWED,

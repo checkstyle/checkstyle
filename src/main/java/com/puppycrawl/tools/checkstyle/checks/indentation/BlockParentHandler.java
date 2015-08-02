@@ -45,7 +45,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     /**
      * Children checked by parent handlers.
      */
-    private static final int[] CHECKED_CHILDREN = new int[] {
+    private static final int[] CHECKED_CHILDREN = {
         TokenTypes.VARIABLE_DEF,
         TokenTypes.EXPR,
         TokenTypes.OBJBLOCK,

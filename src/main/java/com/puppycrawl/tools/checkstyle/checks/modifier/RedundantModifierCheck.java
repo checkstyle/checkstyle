@@ -47,7 +47,7 @@ public class RedundantModifierCheck
     /**
      * An array of tokens for interface modifiers.
      */
-    private static final int[] TOKENS_FOR_INTERFACE_MODIFIERS = new int[] {
+    private static final int[] TOKENS_FOR_INTERFACE_MODIFIERS = {
         TokenTypes.LITERAL_STATIC,
         TokenTypes.ABSTRACT,
     };
