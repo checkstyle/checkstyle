@@ -140,7 +140,7 @@ public final class CheckUtils {
      * type. Returns 0 for types other than float, double, int, and long.
      * @param text the string to be parsed.
      * @param type the token type of the text. Should be a constant of
-     * {@link com.puppycrawl.tools.checkstyle.api.TokenTypes}.
+     * {@link TokenTypes}.
      * @return the double value represented by the string argument.
      */
     public static double parseDouble(String text, int type) {
@@ -229,7 +229,7 @@ public final class CheckUtils {
      * type. Returns 0 for types other than float, double, int, and long.
      * @param text the string to be parsed.
      * @param type the token type of the text. Should be a constant of
-     * {@link com.puppycrawl.tools.checkstyle.api.TokenTypes}.
+     * {@link TokenTypes}.
      * @return the float value represented by the string argument.
      */
     public static double parseFloat(String text, int type) {

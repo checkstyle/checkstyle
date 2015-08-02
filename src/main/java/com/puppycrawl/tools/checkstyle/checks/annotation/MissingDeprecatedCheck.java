@@ -33,14 +33,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * This class is used to verify that both the
- * {@link java.lang.Deprecated Deprecated} annotation
+ * {@link Deprecated Deprecated} annotation
  * and the deprecated javadoc tag are present when
  * either one is present.
  * </p>
  *
  * <p>
  * Both ways of flagging deprecation serve their own purpose.  The
- * {@link java.lang.Deprecated Deprecated} annotation is used for
+ * {@link Deprecated Deprecated} annotation is used for
  * compilers and development tools.  The deprecated javadoc tag is
  * used to document why something is deprecated and what, if any,
  * alternatives exist.

@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * The default allowable number of parameters is 7.
  * To change the number of allowable parameters, set property max.
  * Allows to ignore number of parameters for methods with
- * &#064;{@link java.lang.Override} annotation.
+ * &#064;{@link Override} annotation.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>
  * An example of how to configure the check to allow 10 parameters
- * and ignoring parameters for methods with &#064;{@link java.lang.Override}
+ * and ignoring parameters for methods with &#064;{@link Override}
  * annotation is:
  * </p>
  * <pre>
@@ -96,7 +96,7 @@ public class ParameterNumberCheck
 
     /**
      * Ignore number of parameters for methods with
-     * &#064;{@link java.lang.Override} annotation.
+     * &#064;{@link Override} annotation.
      * @param ignoreOverriddenMethods set ignore overridden methods
      */
     public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods) {

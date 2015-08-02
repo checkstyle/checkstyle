@@ -38,8 +38,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  &lt;/module&gt;
  * </pre>
  * @author Alexander Jesse
- * @see com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck
- * @see com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck
+ * @see AbstractNestedDepthCheck
+ * @see NestedIfDepthCheck
  */
 public final class NestedForDepthCheck extends AbstractNestedDepthCheck {
 

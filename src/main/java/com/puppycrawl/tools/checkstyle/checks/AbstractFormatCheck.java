@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 
 /**
  * <p> Abstract class for checks that verify strings using a
- * {@link java.util.regex.Pattern regular expression}.  It
+ * {@link Pattern regular expression}.  It
  * provides support for setting the regular
  * expression using the property name <code>format</code>.  </p>
  *
@@ -57,7 +57,7 @@ public abstract class AbstractFormatCheck
      * Creates a new <code>AbstractFormatCheck</code> instance.
      * @param defaultFormat default format
      * @param compileFlags the Pattern flags to compile the regexp with.
-     * See {@link Pattern#compile(java.lang.String, int)}
+     * See {@link Pattern#compile(String, int)}
      * @throws ConversionException unable to parse defaultFormat
      */
     public AbstractFormatCheck(String defaultFormat, int compileFlags) {
