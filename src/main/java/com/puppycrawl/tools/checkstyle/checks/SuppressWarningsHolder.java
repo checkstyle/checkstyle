@@ -184,7 +184,7 @@ public class SuppressWarningsHolder
                 registerAlias(sourceAlias.substring(0, index), sourceAlias
                     .substring(index + 1));
             }
-            else if (sourceAlias.length() > 0) {
+            else if (!sourceAlias.isEmpty()) {
                 throw new ConversionException(
                     "'=' expected in alias list item: " + sourceAlias);
             }

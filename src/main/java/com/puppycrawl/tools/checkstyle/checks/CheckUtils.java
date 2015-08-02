@@ -165,7 +165,7 @@ public final class CheckUtils {
                 if (Utils.endsWithChar(txt, 'L') || Utils.endsWithChar(txt, 'l')) {
                     txt = txt.substring(0, txt.length() - 1);
                 }
-                if (txt.length() > 0) {
+                if (!txt.isEmpty()) {
                     if (type == TokenTypes.NUM_INT) {
                         result = parseInt(txt, radix);
                     }

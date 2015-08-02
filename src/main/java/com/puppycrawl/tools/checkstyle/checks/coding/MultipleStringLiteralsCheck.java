@@ -94,7 +94,7 @@ public class MultipleStringLiteralsCheck extends Check {
      */
     public void setIgnoreStringsRegexp(String ignoreStringsRegexp) {
         if (ignoreStringsRegexp != null
-            && ignoreStringsRegexp.length() > 0) {
+            && !ignoreStringsRegexp.isEmpty()) {
             pattern = Utils.createPattern(ignoreStringsRegexp);
         }
         else {
