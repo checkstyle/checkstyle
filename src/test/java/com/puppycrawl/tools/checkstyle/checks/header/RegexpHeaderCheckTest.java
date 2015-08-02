@@ -40,9 +40,6 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  */
 public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
 
-    public RegexpHeaderCheckTest() {
-    }
-
     /**
      * Test of setHeader method, of class RegexpHeaderCheck.
      */
