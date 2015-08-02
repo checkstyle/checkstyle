@@ -227,9 +227,9 @@ public class EmptyCatchBlockCheck extends Check {
         else if (firstElementInBlock.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
             commentContent = firstElementInBlock.getFirstChild().getText();
             final String[] lines = commentContent.split(System.getProperty("line.separator"));
-            for (int i = 0; i < lines.length; i++) {
-                if (!lines[i].isEmpty()) {
-                    commentContent = lines[i];
+            for (String line : lines) {
+                if (!line.isEmpty()) {
+                    commentContent = line;
                     break;
                 }
             }

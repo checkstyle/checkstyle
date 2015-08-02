@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 import java.lang.ref.WeakReference;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -400,8 +399,7 @@ public class SuppressWithNearbyCommentFilter
             setFileContents(currentContents);
             tagSuppressions();
         }
-        for (final Iterator<Tag> iter = tags.iterator(); iter.hasNext();) {
-            final Tag tag = iter.next();
+        for (final Tag tag : tags) {
             if (tag.isMatch(event)) {
                 return false;
             }
