@@ -130,10 +130,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
             final URL url = new URL(filename);
             uri = url.toURI();
         }
-        catch (final MalformedURLException ex) {
-            uri = null;
-        }
-        catch (final URISyntaxException ex) {
+        catch (final MalformedURLException | URISyntaxException ex) {
             // URL violating RFC 2396
             uri = null;
         }
