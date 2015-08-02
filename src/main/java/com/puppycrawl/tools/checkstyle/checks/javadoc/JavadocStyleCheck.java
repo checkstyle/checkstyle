@@ -239,7 +239,7 @@ public class JavadocStyleCheck
     private void checkFirstSentence(final DetailAST ast, TextBlock comment) {
         final String commentText = getCommentText(comment.getText());
 
-        if (commentText.length() != 0
+        if (!commentText.isEmpty()
             && !getEndOfSentencePattern().matcher(commentText).find()
             && !("{@inheritDoc}".equals(commentText)
             && JavadocTagInfo.INHERIT_DOC.isValidOn(ast))) {
@@ -255,7 +255,7 @@ public class JavadocStyleCheck
     private void checkEmptyJavadoc(TextBlock comment) {
         final String commentText = getCommentText(comment.getText());
 
-        if (commentText.length() == 0) {
+        if (commentText.isEmpty()) {
             log(comment.getStartLineNo(), EMPTY);
         }
     }

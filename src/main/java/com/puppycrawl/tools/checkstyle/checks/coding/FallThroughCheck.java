@@ -349,7 +349,7 @@ public class FallThroughCheck extends Check {
          */
         final int startLineNo = currentCase.getLineNo();
         for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
-            if (lines[i].trim().length() != 0) {
+            if (!lines[i].trim().isEmpty()) {
                 return commentMatch(regExp, lines[i], i + 1);
             }
         }

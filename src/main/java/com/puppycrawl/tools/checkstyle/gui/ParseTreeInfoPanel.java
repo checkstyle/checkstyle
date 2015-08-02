@@ -92,7 +92,7 @@ public class ParseTreeInfoPanel extends JPanel {
         // insert the contents of the file to the text area
 
         // clean the text area before inserting the lines of the new file
-        if (jTextArea.getText().length() != 0) {
+        if (!jTextArea.getText().isEmpty()) {
             jTextArea.replaceRange("", 0, jTextArea.getText().length());
         }
 
@@ -185,7 +185,7 @@ public class ParseTreeInfoPanel extends JPanel {
                  }
 
                 //clean the text area before inserting the lines of the new file
-                if (jTextArea.getText().length() != 0) {
+                if (!jTextArea.getText().isEmpty()) {
                     jTextArea.replaceRange("", 0, jTextArea.getText()
                             .length());
                 }

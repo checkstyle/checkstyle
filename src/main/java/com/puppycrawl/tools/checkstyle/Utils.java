@@ -262,7 +262,7 @@ public final class Utils {
      * <code>String</code>; <code>false</code> otherwise.
      */
     public static boolean startsWithChar(String string, char prefix) {
-        return string.length() > 0 && string.charAt(0) == prefix;
+        return !string.isEmpty() && string.charAt(0) == prefix;
     }
 
     /**
@@ -278,7 +278,7 @@ public final class Utils {
      * <code>String</code>; <code>false</code> otherwise.
      */
     public static boolean endsWithChar(String string, char suffix) {
-        return string.length() > 0 && string.charAt(string.length() - 1) == suffix;
+        return !string.isEmpty() && string.charAt(string.length() - 1) == suffix;
     }
 
     /**
