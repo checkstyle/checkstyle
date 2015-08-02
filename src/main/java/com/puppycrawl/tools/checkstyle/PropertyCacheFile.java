@@ -73,10 +73,10 @@ final class PropertyCacheFile {
     private final Properties details = new Properties();
 
     /** configuration object **/
-    private Configuration config;
+    private final Configuration config;
 
     /** file name of cache **/
-    private String fileName;
+    private final String fileName;
 
     /**
      * Creates a new <code>PropertyCacheFile</code> instance.

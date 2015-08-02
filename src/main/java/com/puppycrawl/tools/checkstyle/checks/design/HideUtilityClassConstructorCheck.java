@@ -107,7 +107,7 @@ public class HideUtilityClassConstructorCheck extends Check {
      */
     private static class Details {
         /** class ast */
-        private DetailAST ast;
+        private final DetailAST ast;
         /** result of details gathering */
         private boolean hasMethodOrField;
         /** result of details gathering */

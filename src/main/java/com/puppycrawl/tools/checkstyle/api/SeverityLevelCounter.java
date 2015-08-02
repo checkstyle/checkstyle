@@ -27,7 +27,7 @@ package com.puppycrawl.tools.checkstyle.api;
  */
 public final class SeverityLevelCounter implements AuditListener {
     /** The severity level to watch out for. */
-    private SeverityLevel level;
+    private final SeverityLevel level;
 
     /** Keeps track of the number of counted events. */
     private int count;

@@ -53,7 +53,7 @@ public class XMLLogger
                                               "quot", };
 
     /** close output stream in auditFinished */
-    private boolean closeStream;
+    private final boolean closeStream;
 
     /** helper writer that allows easy encoding and printing */
     private PrintWriter writer;

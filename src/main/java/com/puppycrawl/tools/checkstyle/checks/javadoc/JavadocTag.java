@@ -29,7 +29,7 @@ public class JavadocTag {
     /** the line number of the tag **/
     private final int lineNo;
     /** the column number of the tag **/
-    private int columnNo;
+    private final int columnNo;
     /** an optional first argument. For example the parameter name. **/
     private final String arg1;
     /** the JavadocTagInfo representing this tag **/

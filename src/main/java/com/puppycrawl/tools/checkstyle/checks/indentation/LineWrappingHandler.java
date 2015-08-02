@@ -47,22 +47,22 @@ public class LineWrappingHandler {
     /**
      * Root node for current expression.
      */
-    private DetailAST firstNode;
+    private final DetailAST firstNode;
 
     /**
      * Last node for current expression.
      */
-    private DetailAST lastNode;
+    private final DetailAST lastNode;
 
     /**
      * User's value of line wrapping indentation.
      */
-    private int indentLevel;
+    private final int indentLevel;
 
     /**
      * Force strict condition in line wrapping case.
      */
-    private boolean forceStrictCondition;
+    private final boolean forceStrictCondition;
 
     /**
      * Sets values of class field, finds last node and calculates indentation level.

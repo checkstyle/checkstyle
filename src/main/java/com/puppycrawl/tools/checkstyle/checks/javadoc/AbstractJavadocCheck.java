@@ -636,17 +636,17 @@ public abstract class AbstractJavadocCheck extends Check {
         /**
          * Line number where parse error occurred.
          */
-        private int lineNumber;
+        private final int lineNumber;
 
         /**
          * Key for error message.
          */
-        private String messageKey;
+        private final String messageKey;
 
         /**
          * Error message arguments.
          */
-        private Object[] messageArguments;
+        private final Object[] messageArguments;
 
         /**
          * Initializes parse error message.

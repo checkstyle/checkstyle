@@ -74,7 +74,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class LocalVariableNameCheck
     extends AbstractNameCheck {
     /** Regexp for one-char loop variables. */
-    private static Pattern sSingleChar = Pattern.compile("^[a-z]$");
+    private static final Pattern SINGLE_CHAR = Pattern.compile("^[a-z]$");
 
     /**
      * Allow one character name for initialization expression in FOR loop.
@@ -111,7 +111,7 @@ public class LocalVariableNameCheck
         if (allowOneCharVarInForLoop && isForLoopVariable(ast)) {
             final String variableName =
                     ast.findFirstToken(TokenTypes.IDENT).getText();
-            return !sSingleChar.matcher(variableName).find();
+            return !SINGLE_CHAR.matcher(variableName).find();
         }
         final DetailAST modifiersAST =
             ast.findFirstToken(TokenTypes.MODIFIERS);
