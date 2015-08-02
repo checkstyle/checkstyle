@@ -249,7 +249,7 @@ public class ImportOrderCheck
             }
             else {
                 if (!Utils.endsWithChar(pkg, '.')) {
-                    pkg = pkg + ".";
+                    pkg += ".";
                 }
                 grp = Pattern.compile("^" + Pattern.quote(pkg));
             }
