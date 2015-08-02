@@ -292,7 +292,7 @@ public class VisibilityModifierCheck
             new ArrayList<>(DEFAULT_IGNORE_ANNOTATIONS);
 
     /** List of ignore annotations short names. */
-    private List<String> ignoreAnnotationShortNames =
+    private final List<String> ignoreAnnotationShortNames =
             getClassShortNames(DEFAULT_IGNORE_ANNOTATIONS);
 
     /** Allows immutable fields to be declared as public. */

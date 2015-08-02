@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  */
 public class RegexpSinglelineJavaCheck extends Check {
     /** The detection options to use. */
-    private DetectorOptions options = new DetectorOptions(0, this);
+    private final DetectorOptions options = new DetectorOptions(0, this);
     /** The detector to use. */
     private SinglelineDetector detector;
     /** The suppressor to use. */

@@ -324,7 +324,7 @@ public class CustomImportOrderCheck extends Check {
     private int samePackageMatchingDepth = 2;
 
     /** Contains objects with import attributes */
-    private List<ImportDetails> importToGroupList = new ArrayList<>();
+    private final List<ImportDetails> importToGroupList = new ArrayList<>();
 
     /**
      * Sets standardRegExp specified by user.
