@@ -240,10 +240,9 @@ public class InnerAssignmentCheck
         boolean found = false;
         for (int[] element : contextSet) {
             DetailAST current = ast;
-            final int len = element.length;
-            for (int j = 0; j < len; j++) {
+            for (int anElement : element) {
                 current = current.getParent();
-                final int expectedType = element[j];
+                final int expectedType = anElement;
                 if (current.getType() != expectedType) {
                     found = false;
                     break;
