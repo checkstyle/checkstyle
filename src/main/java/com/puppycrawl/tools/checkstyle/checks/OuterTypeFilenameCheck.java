@@ -95,7 +95,7 @@ public class OuterTypeFilenameCheck extends Check {
 
     @Override
     public void finishTree(DetailAST rootAST) {
-        if (!(validFirst || hasPublic) && wrongType != null) {
+        if (!validFirst && !hasPublic && wrongType != null) {
             log(wrongType.getLineNo(), "type.file.mismatch");
         }
     }
