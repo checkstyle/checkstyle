@@ -268,7 +268,7 @@ public final class ScopeUtils {
                     || type == TokenTypes.FOR_EACH_CLAUSE;
         }
         // catch parameter?
-        else if (aAST.getType() == TokenTypes.PARAMETER_DEF) {
+        if (aAST.getType() == TokenTypes.PARAMETER_DEF) {
             final DetailAST parent = aAST.getParent();
             return parent.getType() == TokenTypes.LITERAL_CATCH;
         }

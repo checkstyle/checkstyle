@@ -116,7 +116,7 @@ class PkgControl {
         if (retVal != AccessResult.UNKNOWN) {
             return retVal;
         }
-        else if (parent == null) {
+        if (parent == null) {
             // we are the top, so default to not allowed.
             return AccessResult.DISALLOWED;
         }

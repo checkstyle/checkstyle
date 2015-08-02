@@ -159,7 +159,7 @@ public abstract class AbstractSuperCheck
             if (dotAst.getType() == TokenTypes.METHOD_DEF) {
                 return isOverridingMethod(dotAst);
             }
-            else if (dotAst.getType() == TokenTypes.CTOR_DEF
+            if (dotAst.getType() == TokenTypes.CTOR_DEF
                 || dotAst.getType() == TokenTypes.INSTANCE_INIT) {
                 return false;
             }
