@@ -30,6 +30,7 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 import org.apache.commons.beanutils.ConversionException;
+import org.apache.commons.lang3.ArrayUtils;
 
 import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -75,12 +76,8 @@ public final class Utils {
 
         TOKEN_NAME_TO_VALUE = builder.build();
         TOKEN_VALUE_TO_NAME = tempTokenValueToName;
-
         final Integer[] ids = TOKEN_NAME_TO_VALUE.values().toArray(new Integer[0]);
-        TOKEN_IDS = new int[ids.length];
-        for (int i = 0; i < ids.length; i++) {
-            TOKEN_IDS[i] = ids[i];
-        }
+        TOKEN_IDS = ArrayUtils.toPrimitive(ids);
     }
 
 
