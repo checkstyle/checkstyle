@@ -153,7 +153,7 @@ public final class FileText extends AbstractList<String> {
         final ArrayList<String> lines = new ArrayList<>();
         final BufferedReader br =
             new BufferedReader(new StringReader(fullText));
-        for (;;) {
+        while (true) {
             final String l = br.readLine();
             if (null == l) {
                 break;
