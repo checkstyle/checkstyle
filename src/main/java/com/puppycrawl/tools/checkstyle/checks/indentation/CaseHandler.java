@@ -31,7 +31,7 @@ public class CaseHandler extends AbstractExpressionHandler {
     /**
      * The child elements of a case expression.
      */
-    private static final int[] CASE_CHILDREN = new int[] {
+    private static final int[] CASE_CHILDREN = {
         TokenTypes.LITERAL_CASE,
         TokenTypes.LITERAL_DEFAULT,
     };

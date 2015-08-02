@@ -111,7 +111,7 @@ public final class FileContents implements CommentListener {
      **/
     public void reportCppComment(int startLineNo, int startColNo) {
         final String line = line(startLineNo - 1);
-        final String[] txt = new String[] {line.substring(startColNo)};
+        final String[] txt = {line.substring(startColNo)};
         final Comment comment = new Comment(txt, startColNo, startLineNo,
                 line.length() - 1);
         cppComments.put(startLineNo, comment);

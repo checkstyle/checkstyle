@@ -31,7 +31,7 @@ public class LabelHandler extends AbstractExpressionHandler {
     /**
      * The types of expressions that are children of a label.
      */
-    private static final int[] LABEL_CHILDREN = new int[] {
+    private static final int[] LABEL_CHILDREN = {
         TokenTypes.IDENT,
     };
 
