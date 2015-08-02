@@ -1090,7 +1090,6 @@
                   <regex><pattern>.*.checks.AbstractDeclarationCollector</pattern><branchRate>94</branchRate><lineRate>100</lineRate></regex>
                   <regex><pattern>.*.checks.DescendantTokenCheck</pattern><branchRate>91</branchRate><lineRate>96</lineRate></regex>
                   <regex><pattern>.*.checks.NewlineAtEndOfFileCheck</pattern><branchRate>83</branchRate><lineRate>88</lineRate></regex>
-                  <regex><pattern>.*.checks.OuterTypeFilenameCheck</pattern><branchRate>71</branchRate><lineRate>92</lineRate></regex>
                   <regex><pattern>.*.checks.SuppressWarningsHolder</pattern><branchRate>75</branchRate><lineRate>93</lineRate></regex>
                   <regex><pattern>.*.checks.TrailingCommentCheck</pattern><branchRate>90</branchRate><lineRate>93</lineRate></regex>
                   <regex><pattern>.*.checks.TranslationCheck</pattern><branchRate>81</branchRate><lineRate>83</lineRate></regex>
