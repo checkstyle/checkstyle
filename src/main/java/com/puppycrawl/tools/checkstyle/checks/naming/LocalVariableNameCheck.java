@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that local, non-final variable names conform to a format specified
  * by the format property. A catch parameter is considered to be
  * a local variable. The format is a
- * {@link java.util.regex.Pattern regular expression}
+ * {@link Pattern regular expression}
  * and defaults to
  * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
  * </p>

@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 
 /**
- * This filter processes {@link com.puppycrawl.tools.checkstyle.api.AuditEvent}
+ * This filter processes {@link AuditEvent}
  * objects based on the criteria of file, check, module id, line, and
  * column. It rejects an AuditEvent if the following match:
  * <ul>

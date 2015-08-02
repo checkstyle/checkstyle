@@ -32,15 +32,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * This class is used to verify that the {@link java.lang.Override Override}
+ * This class is used to verify that the {@link Override Override}
  * annotation is present when the inheritDoc javadoc tag is present.
  * </p>
  *
  * <p>
- * Rationale: The {@link java.lang.Override Override} annotation helps
+ * Rationale: The {@link Override Override} annotation helps
  * compiler tools ensure that an override is actually occurring.  It is
  * quite easy to accidentally overload a method or hide a static method
- * and using the {@link java.lang.Override Override} annotation points
+ * and using the {@link Override Override} annotation points
  * out these problems.
  * </p>
  *

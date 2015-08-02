@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 /**
  * Represents the policy for checking import order statements.
  * @author David DIDIER
- * @see com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck
+ * @see ImportOrderCheck
  */
 public enum ImportOrderOption {
     /**

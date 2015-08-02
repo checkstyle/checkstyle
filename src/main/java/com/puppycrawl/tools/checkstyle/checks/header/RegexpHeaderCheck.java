@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.Utils;
 
 /**
  * Checks the header of the source against a header file that contains a
- * {@link java.util.regex.Pattern regular expression}
+ * {@link Pattern regular expression}
  * for each line of the source header. In default configuration,
  * if header is not specified, the default value of header is set to null
  * and the check does not rise any violations.
@@ -144,7 +144,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
 
     /**
      * Validates the {@code header} by compiling it with
-     * {@link Pattern#compile(java.lang.String) } and throws
+     * {@link Pattern#compile(String) } and throws
      * {@link PatternSyntaxException} if {@code header} isn't a valid pattern.
      * @param header the header value to validate and set (in that order)
      */

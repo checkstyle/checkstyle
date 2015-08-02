@@ -84,7 +84,7 @@ class FileDrop {
 
     /**
      * Constructs a {@link FileDrop} with a default light-blue border
-     * and, if <var>c</var> is a {@link java.awt.Container}, recursively
+     * and, if <var>c</var> is a {@link Container}, recursively
      * sets all elements contained within as drop targets, though only
      * the top level container will change borders.
      *
