@@ -23,10 +23,13 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCh
 
 import java.io.File;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class FinalLocalVariableCheckTest
     extends BaseCheckTestSupport {
@@ -144,5 +147,21 @@ public class FinalLocalVariableCheckTest
             "17:13: " + "Variable 'x' should be declared final.",
         };
         verify(checkConfig, getPath("coding/InputFinalLocalVariableNameShadowing.java"), expected);
+    }
+
+    @Test
+    public void testImproperToken() throws Exception {
+        FinalLocalVariableCheck check = new FinalLocalVariableCheck();
+
+        DetailAST lambdaAst = new DetailAST();
+        lambdaAst.setType(TokenTypes.LAMBDA);
+
+        try {
+            check.visitToken(lambdaAst);
+            Assert.fail();
+        }
+        catch (IllegalStateException e) {
+            // it is OK
+        }
     }
 }

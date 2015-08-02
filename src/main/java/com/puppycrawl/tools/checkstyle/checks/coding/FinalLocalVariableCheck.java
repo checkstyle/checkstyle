@@ -189,7 +189,7 @@ public class FinalLocalVariableCheck extends Check {
                 break;
             case TokenTypes.VARIABLE_DEF:
                 if (ast.getParent().getType() != TokenTypes.OBJBLOCK
-                        && isVariableInForInit(ast)
+                        && !isVariableInForInit(ast)
                         && shouldCheckEnhancedForLoopVariable(ast)
                         && !ast.branchContains(TokenTypes.FINAL)) {
                     insertVariable(ast);
@@ -205,6 +205,7 @@ public class FinalLocalVariableCheck extends Check {
                 break;
 
             default:
+                throw new IllegalStateException("Incorrect token type");
         }
     }
 
@@ -240,7 +241,7 @@ public class FinalLocalVariableCheck extends Check {
      * @return true if variable is defined in {@link TokenTypes#FOR_INIT for-loop init}
      */
     private static boolean isVariableInForInit(DetailAST variableDef) {
-        return variableDef.getParent().getType() != TokenTypes.FOR_INIT;
+        return variableDef.getParent().getType() == TokenTypes.FOR_INIT;
     }
 
     /**
