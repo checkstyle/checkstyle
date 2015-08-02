@@ -71,12 +71,12 @@ public class CovariantEqualsCheck extends Check {
     @Override
     public void visitToken(DetailAST ast) {
         equalsMethods.clear();
-        boolean hasEqualsObject = false;
 
         // examine method definitions for equals methods
         final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
         if (objBlock != null) {
             DetailAST child = objBlock.getFirstChild();
+            boolean hasEqualsObject = false;
             while (child != null) {
                 if (child.getType() == TokenTypes.METHOD_DEF
                         && CheckUtils.isEqualsMethod(child)) {

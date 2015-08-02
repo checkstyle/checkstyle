@@ -100,11 +100,11 @@ final class PropertyCacheFile {
      * @throws IOException when there is a problems with file read
      */
     void load() throws IOException {
-        FileInputStream inStream = null;
         // get the current config so if the file isn't found
         // the first time the hash will be added to output file
         final String currentConfigHash = getConfigHashCode(config);
         if (new File(fileName).exists()) {
+            FileInputStream inStream = null;
             try {
                 inStream = new FileInputStream(fileName);
                 details.load(inStream);

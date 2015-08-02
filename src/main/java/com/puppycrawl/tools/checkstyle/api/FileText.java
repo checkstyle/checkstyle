@@ -122,17 +122,16 @@ public final class FileText extends AbstractList<String> {
         }
         catch (final UnsupportedCharsetException ex) {
             final String message = "Unsupported charset: " + charsetName;
-            final UnsupportedEncodingException ex2;
-            ex2 = new UnsupportedEncodingException(message);
+            final UnsupportedEncodingException ex2 = new UnsupportedEncodingException(message);
             ex2.initCause(ex);
             throw ex2;
         }
 
-        final char[] chars = new char[READ_BUFFER_SIZE];
         final StringBuilder buf = new StringBuilder();
         final FileInputStream stream = new FileInputStream(file);
         final Reader reader = new InputStreamReader(stream, decoder);
         try {
+            final char[] chars = new char[READ_BUFFER_SIZE];
             while (true) {
                 final int len = reader.read(chars);
                 if (len < 0) {

@@ -143,12 +143,10 @@ public class HandlerFactory {
             return createMethodCallHandler(indentCheck, ast, parent);
         }
 
-        AbstractExpressionHandler expHandler = null;
         final Constructor<?> handlerCtor =
             typeHandlers.get(ast.getType());
-        expHandler = (AbstractExpressionHandler) Utils.invokeConstructor(
-                handlerCtor, indentCheck, ast, parent);
-        return expHandler;
+        return (AbstractExpressionHandler) Utils.invokeConstructor(
+            handlerCtor, indentCheck, ast, parent);
     }
 
     /**

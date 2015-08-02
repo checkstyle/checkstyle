@@ -372,7 +372,6 @@ public final class LocalizedMessage
             // The below is a copy of the default implementation.
             final String bundleName = toBundleName(aBaseName, aLocale);
             final String resourceName = toResourceName(bundleName, "properties");
-            ResourceBundle bundle = null;
             InputStream stream = null;
             if (aReload) {
                 final URL url = aLoader.getResource(resourceName);
@@ -387,6 +386,7 @@ public final class LocalizedMessage
             else {
                 stream = aLoader.getResourceAsStream(resourceName);
             }
+            ResourceBundle bundle = null;
             if (stream != null) {
                 final Reader streamReader = new InputStreamReader(stream, "UTF-8");
                 try {
