@@ -578,7 +578,7 @@ public final class TreeWalker
         if (ast1.getLineNo() > ast2.getLineNo()) {
             return true;
         }
-        else if (ast1.getLineNo() < ast2.getLineNo()) {
+        if (ast1.getLineNo() < ast2.getLineNo()) {
             return false;
         }
         else {
