@@ -115,7 +115,7 @@ public class JTreeTable extends JTable {
         tree = new TreeTableCellRenderer(treeTableModel);
 
         // Install a tableModel representing the visible rows in the tree.
-        super.setModel(new TreeTableModelAdapter(treeTableModel, tree));
+        setModel(new TreeTableModelAdapter(treeTableModel, tree));
 
         // Force the JTable and JTree to share their row selection models.
         final ListToTreeSelectionModelWrapper selectionWrapper = new
