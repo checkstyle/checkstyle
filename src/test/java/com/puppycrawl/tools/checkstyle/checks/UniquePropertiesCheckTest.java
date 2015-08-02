@@ -80,7 +80,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
         testStrings.add("0 = 0");
         testStrings.add("445");
         final int stringNumber =
-                check.getLineNumber(testStrings,
+                UniquePropertiesCheck.getLineNumber(testStrings,
                         "some key");
         Assert.assertEquals(stringNumber, 0);
     }
