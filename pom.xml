@@ -1097,7 +1097,6 @@
                   <regex><pattern>.*.checks.UniquePropertiesCheck\$.*</pattern><branchRate>75</branchRate><lineRate>90</lineRate></regex>
 
                   <regex><pattern>.*.checks.coding.DeclarationOrderCheck</pattern><branchRate>82</branchRate><lineRate>93</lineRate></regex>
-                  <regex><pattern>.*.checks.coding.FinalLocalVariableCheck</pattern><branchRate>96</branchRate><lineRate>100</lineRate></regex>
                   <regex><pattern>.*.checks.coding.IllegalInstantiationCheck</pattern><branchRate>81</branchRate><lineRate>97</lineRate></regex>
                   <regex><pattern>.*.checks.coding.ReturnCountCheck</pattern><branchRate>55</branchRate><lineRate>74</lineRate></regex>
                   <regex><pattern>.*.checks.coding.VariableDeclarationUsageDistanceCheck</pattern><branchRate>90</branchRate><lineRate>98</lineRate></regex>
