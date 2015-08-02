@@ -38,7 +38,6 @@ import java.util.Enumeration;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.xml.sax.Attributes;
@@ -108,7 +107,7 @@ public class PackageNamesLoaderTest {
         Field field = PackageNamesLoader.class.getDeclaredField("packageNames");
         field.setAccessible(true);
         LinkedHashSet<String> list = (LinkedHashSet<String>) field.get(loader);
-        Assert.assertEquals("coding.", list.iterator().next());
+        assertEquals("coding.", list.iterator().next());
     }
 
     @Test

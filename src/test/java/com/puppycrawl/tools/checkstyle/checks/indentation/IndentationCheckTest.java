@@ -34,7 +34,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -173,7 +172,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         final int tabWidth = Integer.parseInt(config.getAttribute("tabWidth"));
         Integer[] linesWithWarn =
                         getLinesWithWarnAndCheckComments(filePath, tabWidth);
-        Assert.assertEquals("Expected warning count in UT does not match warn"
+        assertEquals("Expected warning count in UT does not match warn"
                         + " comment count in input file", linesWithWarn.length
                         + warnCountCorrection,
                         expected.length);
