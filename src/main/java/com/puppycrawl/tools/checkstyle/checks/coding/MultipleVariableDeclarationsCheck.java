@@ -88,7 +88,8 @@ public class MultipleVariableDeclarationsCheck extends Check {
             nextNode = nextNode.getNextSibling();
         }
 
-        if (nextNode.getType() == TokenTypes.VARIABLE_DEF) {
+        if (nextNode != null
+                && nextNode.getType() == TokenTypes.VARIABLE_DEF) {
             final DetailAST firstNode = CheckUtils.getFirstNode(ast);
             if (isCommaSeparated) {
                 // Check if the multiple variable declarations are in a
