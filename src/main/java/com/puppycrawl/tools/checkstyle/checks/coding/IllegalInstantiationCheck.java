@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <p>
  * A simple example is the java.lang.Boolean class, to save memory and CPU
- * cycles it is preferable to use the predeifined constants TRUE and FALSE.
+ * cycles it is preferable to use the predefined constants TRUE and FALSE.
  * Constructor invocations should be replaced by calls to Boolean.valueOf().
  * </p>
  * <p>
@@ -189,30 +189,28 @@ public class IllegalInstantiationCheck
      * @param ast the "new" token
      */
     private void processLiteralNew(DetailAST ast) {
-        if (ast.getParent().getType() == TokenTypes.METHOD_REF) {
-            return;
+        if (ast.getParent().getType() != TokenTypes.METHOD_REF) {
+            instantiations.add(ast);
         }
-        instantiations.add(ast);
     }
 
     /**
      * Processes one of the collected "new" tokens when treewalking
      * has finished.
-     * @param ast the "new" token.
+     * @param newTokenAst the "new" token.
      */
-    private void postprocessLiteralNew(DetailAST ast) {
-        final DetailAST typeNameAST = ast.getFirstChild();
-        final AST nameSibling = typeNameAST.getNextSibling();
-        if (nameSibling != null
-                && nameSibling.getType() == TokenTypes.ARRAY_DECLARATOR) {
+    private void postprocessLiteralNew(DetailAST newTokenAst) {
+        final DetailAST typeNameAst = newTokenAst.getFirstChild();
+        final AST nameSibling = typeNameAst.getNextSibling();
+        if (nameSibling.getType() == TokenTypes.ARRAY_DECLARATOR) {
             // ast == "new Boolean[]"
             return;
         }
 
-        final FullIdent typeIdent = FullIdent.createFullIdent(typeNameAST);
+        final FullIdent typeIdent = FullIdent.createFullIdent(typeNameAst);
         final String typeName = typeIdent.getText();
-        final int lineNo = ast.getLineNo();
-        final int colNo = ast.getColumnNo();
+        final int lineNo = newTokenAst.getLineNo();
+        final int colNo = newTokenAst.getColumnNo();
         final String fqClassName = getIllegalInstantiation(typeName);
         if (fqClassName != null) {
             log(lineNo, colNo, MSG_KEY, fqClassName);
@@ -230,16 +228,14 @@ public class IllegalInstantiationCheck
             return className;
         }
 
-        final int clsNameLen = className.length();
         final int pkgNameLen = pkgName == null ? 0 : pkgName.length();
 
         for (String illegal : illegalClasses) {
 
-            final int illegalLen = illegal.length();
-            if (isStandardClass(className, clsNameLen, illegal, illegalLen)) {
+            if (isStandardClass(className, illegal)) {
                 return illegal;
             }
-            if (isSamePackage(className, clsNameLen, pkgNameLen, illegal, illegalLen)) {
+            if (isSamePackage(className, pkgNameLen, illegal)) {
                 return illegal;
             }
             final String importArg = checkImportStatements(className);
@@ -280,16 +276,13 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * check that type is of the sme package
+     * check that type is of the same package
      * @param className class name
-     * @param clsNameLen lengh of class name
      * @param pkgNameLen package name
      * @param illegal illegal value
-     * @param illegalLen illegal value length
      * @return true if type of the same package
      */
-    private boolean isSamePackage(String className, int clsNameLen, int pkgNameLen,
-                                  String illegal, int illegalLen) {
+    private boolean isSamePackage(String className, int pkgNameLen, String illegal) {
         // class from same package
 
         // the toplevel package (pkgName == null) is covered by the
@@ -298,7 +291,7 @@ public class IllegalInstantiationCheck
         // the test is the "no garbage" version of
         // illegal.equals(pkgName + "." + className)
         return pkgName != null
-                && clsNameLen == illegalLen - pkgNameLen - 1
+                && className.length() == illegal.length() - pkgNameLen - 1
                 && illegal.charAt(pkgNameLen) == '.'
                 && illegal.endsWith(className)
                 && illegal.startsWith(pkgName);
@@ -307,15 +300,12 @@ public class IllegalInstantiationCheck
     /**
      * is Standard Class
      * @param className class name
-     * @param clsNameLen class name length
      * @param illegal illegal value
-     * @param illegalLen illegal value length
      * @return true if type is standard
      */
-    private boolean isStandardClass(String className, int clsNameLen, String illegal,
-                                    int illegalLen) {
+    private boolean isStandardClass(String className, String illegal) {
         // class from java.lang
-        if (illegalLen - JAVA_LANG.length() == clsNameLen
+        if (illegal.length() - JAVA_LANG.length() == className.length()
             && illegal.endsWith(className)
             && illegal.startsWith(JAVA_LANG)) {
             // java.lang needs no import, but a class without import might
