@@ -79,7 +79,7 @@ public final class Utils {
         final Integer[] ids = TOKEN_NAME_TO_VALUE.values().toArray(new Integer[0]);
         TOKEN_IDS = new int[ids.length];
         for (int i = 0; i < ids.length; i++) {
-            TOKEN_IDS[i] = ids[i].intValue();
+            TOKEN_IDS[i] = ids[i];
         }
     }
 
@@ -308,7 +308,7 @@ public final class Utils {
         if (id == null) {
             throw new IllegalArgumentException("given name " + name);
         }
-        return id.intValue();
+        return id;
     }
 
     /**
