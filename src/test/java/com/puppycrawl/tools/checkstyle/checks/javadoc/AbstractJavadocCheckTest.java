@@ -37,7 +37,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
 
         @Override
         public int[] getDefaultJavadocTokens() {
-            return null;
+            return new int[] {};
         }
 
         @Override
