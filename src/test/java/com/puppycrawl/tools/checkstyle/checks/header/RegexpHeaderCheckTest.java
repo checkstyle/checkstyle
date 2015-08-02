@@ -27,7 +27,6 @@ import java.io.File;
 import java.net.URI;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
@@ -87,7 +86,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
         String header = "^/**\\n * Licensed to the Apache Software Foundation (ASF)";
         try {
             instance.setHeader(header);
-            Assert.fail(String.format("%s should have been thrown", ConversionException.class));
+            fail(String.format("%s should have been thrown", ConversionException.class));
         }
         catch (ConversionException ex) {
             // expected

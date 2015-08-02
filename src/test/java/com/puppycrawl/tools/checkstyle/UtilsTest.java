@@ -33,7 +33,6 @@ import java.lang.reflect.Modifier;
 import java.util.Dictionary;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -265,9 +264,9 @@ public class UtilsTest {
 
     @Test
     public void testIsCommentType() throws NoSuchMethodException {
-        Assert.assertTrue(Utils.isCommentType(TokenTypes.SINGLE_LINE_COMMENT));
-        Assert.assertTrue(Utils.isCommentType(TokenTypes.BLOCK_COMMENT_BEGIN));
-        Assert.assertTrue(Utils.isCommentType(TokenTypes.BLOCK_COMMENT_END));
-        Assert.assertTrue(Utils.isCommentType(TokenTypes.COMMENT_CONTENT));
+        assertTrue(Utils.isCommentType(TokenTypes.SINGLE_LINE_COMMENT));
+        assertTrue(Utils.isCommentType(TokenTypes.BLOCK_COMMENT_BEGIN));
+        assertTrue(Utils.isCommentType(TokenTypes.BLOCK_COMMENT_END));
+        assertTrue(Utils.isCommentType(TokenTypes.COMMENT_CONTENT));
     }
 }

@@ -29,7 +29,6 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Locale;
 
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -86,11 +85,11 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         };
         try {
             verify(checkConfig, getPath("InputHiddenField.java"), expected);
-            Assert.fail();
+            fail();
         }
         catch (CheckstyleException e) {
             String errorMsg = e.getMessage();
-            Assert.assertTrue(errorMsg.contains("cannot initialize module"
+            assertTrue(errorMsg.contains("cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.TreeWalker - Token \"IMPORT\""
                     + " was not found in Acceptable tokens list in check"
                     + " com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"));

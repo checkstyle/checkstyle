@@ -57,7 +57,7 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
     @Test
     public void testCustomId() throws Exception {
         emptyCheck.setId("MyId");
-        Assert.assertEquals("MyId", emptyCheck.getId());
+        assertEquals("MyId", emptyCheck.getId());
     }
 
     @Test
@@ -73,7 +73,7 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
 
         SortedSet<LocalizedMessage> messages = collector.getMessages();
         Assert.assertTrue(messages.size() == 1);
-        Assert.assertEquals("This is a custom message.", messages.first()
+        assertEquals("This is a custom message.", messages.first()
                 .getMessage());
     }
 
@@ -91,7 +91,7 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
         SortedSet<LocalizedMessage> messages = collector.getMessages();
         Assert.assertTrue(messages.size() == 1);
 
-        Assert.assertEquals("This is a custom message with TestParam.",
+        assertEquals("This is a custom message with TestParam.",
                 messages.first().getMessage());
     }
 
