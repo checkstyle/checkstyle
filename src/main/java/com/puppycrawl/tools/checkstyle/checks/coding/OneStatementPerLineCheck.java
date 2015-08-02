@@ -160,13 +160,7 @@ public final class OneStatementPerLineCheck extends Check {
     private static boolean isOnTheSameLine(DetailAST ast, int lastStatementEnd,
                                            int forStatementEnd) {
         final boolean onTheSameLine;
-        if (lastStatementEnd == ast.getLineNo()
-                && forStatementEnd != ast.getLineNo()) {
-            onTheSameLine = true;
-        }
-        else {
-            onTheSameLine = false;
-        }
+        onTheSameLine = lastStatementEnd == ast.getLineNo() && forStatementEnd != ast.getLineNo();
         return onTheSameLine;
     }
 
@@ -179,13 +173,8 @@ public final class OneStatementPerLineCheck extends Check {
         final boolean multiline;
         if (ast.getPreviousSibling() != null) {
             final DetailAST prevSibling = ast.getPreviousSibling();
-            if (prevSibling.getLineNo() != ast.getLineNo()
-                    && ast.getParent() != null) {
-                multiline = true;
-            }
-            else {
-                multiline = false;
-            }
+            multiline = prevSibling.getLineNo() != ast.getLineNo()
+                && ast.getParent() != null;
         }
         else {
             multiline = false;
