@@ -252,7 +252,8 @@ public final class FileText extends AbstractList<String> {
             int lineNo = 1;
             final Matcher matcher = LINE_TERMINATOR.matcher(fullText);
             while (matcher.find()) {
-                lineBreaks[lineNo++] = matcher.end();
+                lineBreaks[lineNo] = matcher.end();
+                lineNo++;
             }
             if (lineNo < lineBreaks.length) {
                 lineBreaks[lineNo] = fullText.length();

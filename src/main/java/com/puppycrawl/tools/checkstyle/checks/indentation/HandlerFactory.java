@@ -115,7 +115,8 @@ public class HandlerFactory {
         final int[] types = new int[typeSet.size()];
         int index = 0;
         for (final Integer val : typeSet) {
-            types[index++] = val;
+            types[index] = val;
+            index++;
         }
 
         return types;
