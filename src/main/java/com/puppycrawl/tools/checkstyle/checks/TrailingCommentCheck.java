@@ -148,7 +148,7 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
         lines.addAll(cComments.keySet());
 
         for (Integer lineNo : lines) {
-            final String line = getLines()[lineNo.intValue() - 1];
+            final String line = getLines()[lineNo - 1];
             String lineBefore = "";
             TextBlock comment = null;
             if (cppComments.containsKey(lineNo)) {

@@ -370,7 +370,7 @@ public final class JavadocUtils {
         if (id == null) {
             throw new IllegalArgumentException("Unknown javdoc token name. Given name " + name);
         }
-        return id.intValue();
+        return id;
     }
 
     /**

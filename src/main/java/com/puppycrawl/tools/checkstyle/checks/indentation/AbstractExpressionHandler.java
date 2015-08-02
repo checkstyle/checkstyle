@@ -312,7 +312,7 @@ public abstract class AbstractExpressionHandler {
             // checked by a child expression)
 
             if (col != null) {
-                checkSingleLine(i, col.intValue(), theLevel, false);
+                checkSingleLine(i, col, theLevel, false);
             }
         }
     }
@@ -479,7 +479,7 @@ public abstract class AbstractExpressionHandler {
         final Integer colNum = lines.getStartColumn(lineNum);
 
         final int thisLineColumn = expandedTabsColumnNo(tree);
-        if (colNum == null || thisLineColumn < colNum.intValue()) {
+        if (colNum == null || thisLineColumn < colNum) {
             lines.addLineAndCol(lineNum, thisLineColumn);
         }
 
