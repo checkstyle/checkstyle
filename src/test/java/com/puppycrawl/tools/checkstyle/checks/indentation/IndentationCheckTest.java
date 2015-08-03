@@ -27,6 +27,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -67,6 +68,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
 
     private static final Pattern NONSTRICT_LEVEL_COMMENT_REGEX =
                     Pattern.compile("//indent:\\d+ exp:>=(\\d+)( warn)?");
+
+    private static final String[] EMPTY_EXPECTED = {};
 
     private static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
             final int tabWidth)
@@ -1570,5 +1573,39 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "1: " + getCheckMessage(MSG_ERROR, "package def", 1, 0),
         };
         verifyWarns(checkConfig, getPath("indentation/InputPackageDeclaration.java"), expected);
+    }
+
+    @Test
+    public void testLambda1() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "2");
+        checkConfig.addAttribute("basicOffset", "2");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        final String[] expected = {
+            "45: " + getCheckMessage(MSG_ERROR, "block lcurly", 5, 4),
+            "46: " + getCheckMessage(MSG_ERROR, "block rcurly", 5, 4),
+            "49: " + getCheckMessage(MSG_ERROR, "lambda arguments", 9, 8),
+            "50: " + getCheckMessage(MSG_ERROR, "lambda", 11, 12),
+            "51: " + getCheckMessage(MSG_ERROR, "block lcurly", 9, 8),
+            "63: " + getCheckMessage(MSG_CHILD_ERROR, "block", 7, 6),
+            "64: " + getCheckMessage(MSG_ERROR, "block rcurly", 5, 4),
+            "174: " + getCheckMessage(MSG_CHILD_ERROR, "block", 9, 10),
+            "174: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 9, 10),
+            "175: " + getCheckMessage(MSG_CHILD_ERROR, "block", 11, 10),
+            "180: " + getCheckMessage(MSG_ERROR, "block rcurly", 7, 8),
+        };
+        verifyWarns(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/indentation/InputLambda1.java").getCanonicalPath(), expected, 1);
+    }
+
+    @Test
+    public void testLambda2() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        final String[] expected = EMPTY_EXPECTED;
+        verifyWarns(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/indentation/InputLambda2.java").getCanonicalPath(), expected, 0);
     }
 }
