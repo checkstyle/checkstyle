@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KEY_MAX;
 import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KEY_MIN;
 import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KEY_SUM_MAX;
+import static com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck.MSG_KEY_SUM_MIN;
 
 import java.io.File;
 
@@ -307,5 +308,52 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         verify(checkConfig,
                getPath("coding" + File.separator + "InputReturnFromFinallyCheck.java"),
                expected);
+    }
+
+    @Test
+    public void testWithSumLessThenMinDefMsg() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
+        checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
+        checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
+        checkConfig.addAttribute("minimumNumber", "3");
+        checkConfig.addAttribute("sumTokenCounts", "true");
+
+        String[] expected = {
+            "16:44: " + getCheckMessage(MSG_KEY_SUM_MIN, 0, 3, "EQUAL"),
+            "22:32: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "EQUAL"),
+            "22:50: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "EQUAL"),
+            "23:33: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "NOT_EQUAL"),
+            "23:51: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "NOT_EQUAL"),
+            "24:54: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "EQUAL"),
+            "24:77: " + getCheckMessage(MSG_KEY_SUM_MIN, 1, 3, "EQUAL"),
+        };
+
+        verify(checkConfig,
+                getPath("coding" + File.separator + "InputReturnFromFinallyCheck.java"),
+                expected);
+    }
+
+    @Test
+    public void testWithSumLessThenMinCustMsg() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
+        checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
+        checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
+        checkConfig.addAttribute("minimumNumber", "3");
+        checkConfig.addAttribute("sumTokenCounts", "true");
+        checkConfig.addAttribute("minimumMessage", "custom message");
+
+        String[] expected = {
+            "16:44: custom message",
+            "22:32: custom message",
+            "22:50: custom message",
+            "23:33: custom message",
+            "23:51: custom message",
+            "24:54: custom message",
+            "24:77: custom message",
+        };
+
+        verify(checkConfig,
+                getPath("coding" + File.separator + "InputReturnFromFinallyCheck.java"),
+                expected);
     }
 }
