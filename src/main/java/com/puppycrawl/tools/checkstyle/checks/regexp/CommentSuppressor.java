@@ -30,19 +30,21 @@ class CommentSuppressor implements MatchSuppressor {
     /** File contents to check for comments. */
     private FileContents currentContents;
 
+    /**
+     * Constructor for this suppressor.
+     *
+     * @param currentContents
+     *            content of checked file.
+     **/
+    public CommentSuppressor(FileContents currentContents) {
+        this.currentContents = currentContents;
+    }
+
     @Override
     public boolean shouldSuppress(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
-        return currentContents != null
-                && currentContents.hasIntersectionWithComment(startLineNo,
-                        startColNo, endLineNo, endColNo);
+        return currentContents
+                .hasIntersectionWithComment(startLineNo, startColNo, endLineNo, endColNo);
     }
 
-    /**
-     * Set the current file contents.
-     * @param currentContents the new contents.
-     */
-    public void setCurrentContents(FileContents currentContents) {
-        this.currentContents = currentContents;
-    }
 }

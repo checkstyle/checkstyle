@@ -34,8 +34,8 @@ public class RegexpSinglelineJavaCheck extends Check {
     private final DetectorOptions options = new DetectorOptions(0, this);
     /** The detector to use. */
     private SinglelineDetector detector;
-    /** The suppressor to use. */
-    private final CommentSuppressor suppressor = new CommentSuppressor();
+    /** Suppress comments. **/
+    private boolean ignoreComments;
 
     @Override
     public int[] getDefaultTokens() {
@@ -50,7 +50,14 @@ public class RegexpSinglelineJavaCheck extends Check {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        suppressor.setCurrentContents(getFileContents());
+
+        if (ignoreComments) {
+            options.setSuppressor(new CommentSuppressor(getFileContents()));
+        }
+        else {
+            options.setSuppressor(NeverSuppress.INSTANCE);
+        }
+
         detector.processLines(Arrays.asList(getLines()));
     }
 
@@ -99,11 +106,6 @@ public class RegexpSinglelineJavaCheck extends Check {
      * @param ignore whether to ignore comments when matching.
      */
     public void setIgnoreComments(boolean ignore) {
-        if (ignore) {
-            options.setSuppressor(suppressor);
-        }
-        else {
-            options.setSuppressor(NeverSuppress.INSTANCE);
-        }
+        this.ignoreComments = ignore;
     }
 }
