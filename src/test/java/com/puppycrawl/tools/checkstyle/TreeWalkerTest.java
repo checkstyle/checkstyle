@@ -234,10 +234,39 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         verify(checkConfig, pathToEmptyFile, expected);
     }
 
+    @Test
+    public void testRequiredTokenIsNotInDefaultTokens() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RequiredTokenIsNotInDefaultsCheck.class);
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = {
+        };
+
+        try {
+            verify(checkConfig, pathToEmptyFile, expected);
+            fail();
+        }
+        catch (CheckstyleException ignored) {
+            //expected
+        }
+    }
+
     public static class BadJavaDocCheck extends Check {
         @Override
         public int[] getDefaultTokens() {
             return new int[]{TokenTypes.SINGLE_LINE_COMMENT};
+        }
+    }
+
+    public static class RequiredTokenIsNotInDefaultsCheck extends Check {
+        @Override
+        public int[] getRequiredTokens() {
+            return new int[] {TokenTypes.ASSIGN};
+        }
+
+        @Override
+        public int[] getDefaultTokens() {
+            return new int[] {TokenTypes.ANNOTATION};
         }
     }
 
