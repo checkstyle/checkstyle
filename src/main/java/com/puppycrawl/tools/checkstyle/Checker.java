@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
@@ -261,12 +260,6 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
                 for (final FileSetCheck fsc : fileSetChecks) {
                     fileMessages.addAll(fsc.process(f, theText));
                 }
-            }
-            catch (final FileNotFoundException fnfe) {
-                LOG.debug("FileNotFoundException occured.", fnfe);
-                fileMessages.add(new LocalizedMessage(0,
-                        Definitions.CHECKSTYLE_BUNDLE, "general.fileNotFound", null,
-                        null, this.getClass(), null));
             }
             catch (final IOException ioe) {
                 LOG.debug("IOException occured.", ioe);

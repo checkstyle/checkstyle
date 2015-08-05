@@ -78,7 +78,7 @@ public class FileTabCharacterCheckTest
         final DefaultConfiguration checkConfig = createConfig(false);
         final String path = getPath("Claira");
         final String[] expected = {
-            "0: File not found!",
+            "0: Got an exception - " + path + " (No such file or directory)",
         };
         final File[] files = {
             new File(path),
