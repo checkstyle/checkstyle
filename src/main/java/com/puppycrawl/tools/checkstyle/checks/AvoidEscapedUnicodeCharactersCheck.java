@@ -117,12 +117,12 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /** Regular expression for trail comment */
     private static final Pattern COMMENT_REGEXP = Pattern.compile(";[ ]*//+"
-            + "[a-zA-Z0-9 ]*|;[ ]*/[*]{1}+[a-zA-Z0-9 ]*");
+            + "[a-zA-Z0-9 ]*|;[ ]*/[*]+[a-zA-Z0-9 ]*");
 
     /** Regular expression for all escaped chars */
     private static final Pattern ALL_ESCAPED_CHARS =
             Pattern.compile("^((\\\\u)[a-fA-F0-9]{4}"
-                    + "||\\\\b|\\\\t|\\\\n|\\\\f|\\\\r|\\\\|\\\"|\\\')+$");
+                    + "||\\\\b|\\\\t|\\\\n|\\\\f|\\\\r|\\\\|\"|\')+$");
 
     /** Regular expression for non-printable unicode chars */
     private static final Pattern NON_PRINTABLE_CHARS = Pattern.compile("\\\\u1680|\\\\u2028"
