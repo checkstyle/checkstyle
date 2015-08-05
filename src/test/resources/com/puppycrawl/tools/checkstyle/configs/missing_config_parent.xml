@@ -4,5 +4,6 @@
     "-//Puppy Crawl//DTD Check Configuration 1.1//EN"
     "http://www.puppycrawl.com/dtds/configuration_1_1.dtd">
 
+<!--suppress XmlWrongRootElement - wrong element used for test purposes -->
 <property name="tabWidth" value="4"/>
 
