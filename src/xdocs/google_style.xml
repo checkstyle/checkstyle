@@ -10,9 +10,9 @@
 
     <head>
         <title>Google's Style</title>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script type="text/javascript" src="js/anchors.js"></script>
-        <script type="text/javascript" src="js/google-analytics.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+        <script type="text/javascript" src="js/anchors.js"/>
+        <script type="text/javascript" src="js/google-analytics.js"/>
         <link rel="icon" href="images/favicon.png" type="image/x-icon" />
         <link rel="shortcut icon" href="images/favicon.ico" type="image/ico" />
     </head>
@@ -78,7 +78,7 @@
                                 </a>
                             </td>
                             <td>--</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -86,7 +86,7 @@
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s1.1-terminology">1.1 Terminology notes</a>
                             </td>
                             <td>--</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -105,7 +105,7 @@
                                 </a>
                             </td>
                             <td>↓</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -140,7 +140,7 @@
                                 alt="" />
                                 <a href="https://github.com/checkstyle/checkstyle/issues/265"> explanation</a>
                             </td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -227,7 +227,7 @@
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s3.1-copyright-statement">3.1 License or copyright information, if present</a>
                             </td>
                             <td>--</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -269,7 +269,7 @@
                                 </a>
                             </td>
                             <td>↓</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -351,7 +351,7 @@
                                 </a>
                             </td>
                             <td>↓</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -378,7 +378,7 @@
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s3.4.2-class-member-ordering">3.4.2 Class member ordering</a>
                             </td>
                             <td>--</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -407,7 +407,7 @@
                                 </a>
                             </td>
                             <td>--</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -417,7 +417,7 @@
                                 </a>
                             </td>
                             <td>↓</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -576,7 +576,7 @@
                                 </a>
                             </td>
                             <td>--</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -636,7 +636,7 @@
                                 </a>
                             </td>
                             <td>↓</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -695,7 +695,7 @@
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.6.3-horizontal-alignment">4.6.3 Horizontal alignment: never required</a>
                             </td>
                             <td>--</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -703,7 +703,7 @@
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.7-grouping-parentheses">4.7 Grouping parentheses: recommended</a>
                             </td>
                             <td>--</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -713,7 +713,7 @@
                                 </a>
                             </td>
                             <td>↓</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -721,7 +721,7 @@
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.8.1-enum-classes">4.8.1 Enum classes</a>
                             </td>
                             <td>--</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -729,7 +729,7 @@
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.8.2-variable-declarations">4.8.2 Variable declarations</a>
                             </td>
                             <td>↓</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -779,7 +779,7 @@
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.8.3-arrays">4.8.3 Arrays</a>
                             </td>
                             <td>↓</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -787,7 +787,7 @@
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.8.3.1-array-initializers">4.8.3.1 Array initializers: can be "block-like"</a>
                             </td>
                             <td>--</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -815,7 +815,7 @@
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.8.4-switch">4.8.4 Switch statements</a>
                             </td>
                             <td>--</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -901,7 +901,7 @@
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.8.6-comments">4.8.6 Comments</a>
                             </td>
                             <td>↓</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -914,7 +914,7 @@
                                     alt="" />
                                 future plan: <a href="https://github.com/checkstyle/checkstyle/issues/333">CommentIndentation</a> as after 6.0 release it is become possible.
                             </td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -963,7 +963,7 @@
                                 </a>
                             </td>
                             <td>↓</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -972,7 +972,7 @@
                             </td>
                             <td>"5.2 Rules of identifier type" already includes this rule.
                             </td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -982,7 +982,7 @@
                                 </a>
                             </td>
                             <td>↓</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -1053,7 +1053,7 @@
                                     alt="" />
                                 Every constant is a static final field, but not all static final fields are constants - impossible to check such rule.
                             </td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -1169,7 +1169,7 @@
                                 </a>
                             </td>
                             <td>↓</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -1186,7 +1186,7 @@
                                 open or
                                 look at another Class file.
                             </td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -1218,7 +1218,7 @@
                                     alt="" />
                                     Proper validation require parsing other files, sources are not always available.
                             </td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -1248,7 +1248,7 @@
                                 </a>
                             </td>
                             <td>↓</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -1258,7 +1258,7 @@
                                 </a>
                             </td>
                             <td>↓</td>
-                            <td></td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
