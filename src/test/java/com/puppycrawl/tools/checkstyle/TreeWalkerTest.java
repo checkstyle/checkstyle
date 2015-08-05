@@ -268,4 +268,36 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         lines.add(" class a {} ");
         treeWalker.processFiltered(file, lines);
     }
+
+    @Test
+    public void testProcessWithParserTrowable() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        treeWalker.configure(createCheckConfig(TypeNameCheck.class));
+        PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+        treeWalker.setModuleFactory(factory);
+        treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
+        treeWalker.setupChild(createCheckConfig(TypeNameCheck.class));
+        final File file = temporaryFolder.newFile("file.java");
+        ArrayList<String> lines = new ArrayList<>();
+        lines.add(" classD a {} ");
+
+        treeWalker.processFiltered(file, lines);
+    }
+
+    @Test
+    public void testProcessWithRecognitionException() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        treeWalker.configure(createCheckConfig(TypeNameCheck.class));
+        PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+        treeWalker.setModuleFactory(factory);
+        treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
+        treeWalker.setupChild(createCheckConfig(TypeNameCheck.class));
+        final File file = temporaryFolder.newFile("file.java");
+        ArrayList<String> lines = new ArrayList<>();
+        lines.add(" class a%$# {} ");
+
+        treeWalker.processFiltered(file, lines);
+    }
 }

@@ -210,9 +210,7 @@ public final class TreeWalker
             LOG.error(exceptionMsg);
             final RecognitionException re = tre.recog;
             String message = "TokenStreamRecognitionException occured";
-            if (re != null) {
-                message = re.getMessage();
-            }
+            message = re.getMessage();
             getMessageCollector().add(createLocalizedMessage(message));
         }
         // RecognitionException and any other (need to check if needed)
