@@ -27,6 +27,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Locale;
 
 import org.junit.Rule;
@@ -39,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 
 public class TreeWalkerTest extends BaseCheckTestSupport {
     @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
@@ -241,4 +244,28 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         }
     }
 
+    @Test
+    public void testProcessNonJavaFiles() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        treeWalker.setTabWidth(1);
+        treeWalker.configure(new DefaultConfiguration("default config"));
+        treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
+        File file = new File("src/main/resources/checkstyle_packages.xml");
+        treeWalker.processFiltered(file, new ArrayList<String>());
+    }
+
+    @Test
+    public void testWithCacheWithNoViolation() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        treeWalker.configure(createCheckConfig(TypeNameCheck.class));
+        PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+        treeWalker.setModuleFactory(factory);
+        treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
+        treeWalker.setupChild(createCheckConfig(TypeNameCheck.class));
+        final File file = temporaryFolder.newFile("file.java");
+        ArrayList<String> lines = new ArrayList<>();
+        lines.add(" class a {} ");
+        treeWalker.processFiltered(file, lines);
+    }
 }

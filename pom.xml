@@ -1078,9 +1078,8 @@
                 <totalBranchRate>89</totalBranchRate>
                 <totalLineRate>95</totalLineRate>
                 <regexes>
-                  <regex><pattern>.*.Checker</pattern><branchRate>79</branchRate><lineRate>84</lineRate></regex>
-                  <regex><pattern>.*.PackageNamesLoader</pattern><branchRate>78</branchRate><lineRate>72</lineRate></regex>
-                  <regex><pattern>.*.TreeWalker</pattern><branchRate>95</branchRate><lineRate>94</lineRate></regex>
+                  <regex><pattern>.*.Checker</pattern><branchRate>80</branchRate><lineRate>85</lineRate></regex>
+                  <regex><pattern>.*.TreeWalker</pattern><branchRate>97</branchRate><lineRate>94</lineRate></regex>
 
                   <regex><pattern>.*.checks.AbstractOptionCheck</pattern><branchRate>100</branchRate><lineRate>80</lineRate></regex>
                   <regex><pattern>.*.checks.AbstractTypeAwareCheck</pattern><branchRate>87</branchRate><lineRate>84</lineRate></regex>
