@@ -140,7 +140,7 @@ public class ConfigurationLoaderTest {
             assertTrue(
                 ex.getMessage().endsWith(
                     "Document root element \"property\", must match DOCTYPE "
-                        + "root \"module\".:7:38"));
+                        + "root \"module\".:8:38"));
         }
     }
 
