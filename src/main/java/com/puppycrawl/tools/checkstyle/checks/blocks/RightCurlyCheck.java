@@ -272,8 +272,8 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
         // Attempt to locate the tokens to do the check
         boolean shouldCheckLastRcurly = false;
         DetailAST rcurly = null;
-        DetailAST lcurly = null;
-        DetailAST nextToken = null;
+        DetailAST lcurly;
+        DetailAST nextToken;
 
         switch (ast.getType()) {
             case TokenTypes.LITERAL_TRY:

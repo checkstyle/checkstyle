@@ -364,7 +364,7 @@ public abstract class AbstractJavadocCheck extends Check {
      * @return token type from JavadocTokenTypes
      */
     private static int getTokenType(ParseTree node) {
-        int tokenType = Integer.MIN_VALUE;
+        int tokenType;
 
         if (node.getChildCount() == 0) {
             tokenType = ((TerminalNode) node).getSymbol().getType();
