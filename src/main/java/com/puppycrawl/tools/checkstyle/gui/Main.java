@@ -23,6 +23,7 @@ import java.awt.EventQueue;
 import java.io.File;
 
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
@@ -46,7 +47,7 @@ public class Main {
             final File f = new File(args[0]);
             panel.openFile(f, frame);
         }
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         Runnable runner = new FrameShower(frame);
         EventQueue.invokeLater(runner);
@@ -62,7 +63,7 @@ public class Main {
         frame.getContentPane().add(panel);
         panel.openAst(ast, frame);
         frame.setSize(1500, 800);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
 
