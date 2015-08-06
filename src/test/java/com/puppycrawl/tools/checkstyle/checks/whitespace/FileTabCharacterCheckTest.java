@@ -77,8 +77,14 @@ public class FileTabCharacterCheckTest
     public void testBadFile() throws Exception {
         final DefaultConfiguration checkConfig = createConfig(false);
         final String path = getPath("Claira");
+        String exceptionMessage = " (No such file or directory)";
+        if (System.getProperty("os.name")
+                .toLowerCase().startsWith("windows")) {
+            exceptionMessage = " (The system cannot find the file specified)";
+        }
+
         final String[] expected = {
-            "0: Got an exception - " + path + " (No such file or directory)",
+            "0: Got an exception - " + path + exceptionMessage,
         };
         final File[] files = {
             new File(path),
