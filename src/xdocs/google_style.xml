@@ -910,9 +910,16 @@
                             </td>
                             <td>
                                 <img
-                                    src=""
+                                    src="images/ok_green.png"
                                     alt="" />
-                                future plan: <a href="https://github.com/checkstyle/checkstyle/issues/333">CommentIndentation</a> as after 6.0 release it is become possible.
+                                <a href="config_misc.html#CommentsIndentation">CommentsIndentation</a>
+                            </td>
+                            <td>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L204">config</a>
+                                <br />
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4861blockcommentstyle/CommentsIndentationTest.java">test</a>
                             </td>
                             <td/>
                         </tr>

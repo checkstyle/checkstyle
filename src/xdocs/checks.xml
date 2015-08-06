@@ -119,6 +119,10 @@
         <td>Checks that constant names conform to a format specified by the format property.</td>
       </tr>
       <tr>
+        <td><a href="config_misc.html#CommentsIndentation">CommentsIndentation</a></td>
+        <td>Controls the indentation between comments and surrounding code.</td>
+      </tr>
+      <tr>
         <td><a href="config_coding.html#CovariantEquals">CovariantEquals</a></td>
         <td>
           Checks that if a class defines a covariant method equals, then
