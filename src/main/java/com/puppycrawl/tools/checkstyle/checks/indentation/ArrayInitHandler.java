@@ -50,8 +50,8 @@ public class ArrayInitHandler extends BlockParentHandler {
             return new IndentLevel(getLineStart(parentAST));
         }
         else {
-            // at this point getParent() is instance of ArrayInitHandler
-            return ((ArrayInitHandler) getParent()).getChildrenExpectedLevel();
+            // at this point getParent() is instance of BlockParentHandler
+            return ((BlockParentHandler) getParent()).getChildrenExpectedLevel();
         }
     }
 
