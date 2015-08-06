@@ -51,7 +51,7 @@ public class LineSet {
      * @return the starting column for the first line.
      */
     public int firstLineCol() {
-        final Object firstLineKey = lines.firstKey();
+        final Integer firstLineKey = lines.firstKey();
         return lines.get(firstLineKey);
     }
 
