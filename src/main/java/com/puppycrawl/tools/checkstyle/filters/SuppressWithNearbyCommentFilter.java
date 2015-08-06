@@ -124,7 +124,7 @@ public class SuppressWithNearbyCommentFilter
                 }
                 format = expandFrocomment(
                     text, filter.influenceFormat, filter.commentRegexp);
-                int influence = 0;
+                int influence;
                 try {
                     if (Utils.startsWithChar(format, '+')) {
                         format = format.substring(1);

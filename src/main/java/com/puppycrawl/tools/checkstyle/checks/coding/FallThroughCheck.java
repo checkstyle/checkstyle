@@ -238,7 +238,7 @@ public class FallThroughCheck extends Check {
      * @return true if loop is terminated.
      */
     private boolean checkLoop(final DetailAST ast) {
-        DetailAST loopBody = null;
+        DetailAST loopBody;
         if (ast.getType() == TokenTypes.LITERAL_DO) {
             final DetailAST lparen = ast.findFirstToken(TokenTypes.DO_WHILE);
             loopBody = lparen.getPreviousSibling();

@@ -339,7 +339,7 @@ public class JavaNCSSCheck extends Check {
      * @return true if the expression is countable, false otherwise
      */
     private static boolean isExpressionCountable(DetailAST ast) {
-        boolean countable = true;
+        boolean countable;
 
         //count expressions only if they are direct child to a slist (method
         // body, for loop...)

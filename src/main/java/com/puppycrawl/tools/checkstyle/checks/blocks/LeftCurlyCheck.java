@@ -176,8 +176,8 @@ public class LeftCurlyCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        DetailAST startToken = null;
-        DetailAST brace = null;
+        DetailAST startToken;
+        DetailAST brace;
 
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF:

@@ -209,7 +209,7 @@ public final class TreeWalker
                      fileName);
             LOG.error(exceptionMsg);
             final RecognitionException re = tre.recog;
-            String message = "TokenStreamRecognitionException occured";
+            String message;
             message = re.getMessage();
             getMessageCollector().add(createLocalizedMessage(message));
         }

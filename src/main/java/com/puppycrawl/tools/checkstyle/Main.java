@@ -292,8 +292,8 @@ public final class Main {
             throws UnsupportedEncodingException, FileNotFoundException {
 
         // setup the output stream
-        OutputStream out = null;
-        boolean closeOut = false;
+        OutputStream out;
+        boolean closeOut;
         if (outputLocation != null) {
             out = new FileOutputStream(outputLocation);
             closeOut = true;
@@ -304,7 +304,7 @@ public final class Main {
         }
 
         // setup a listener
-        AuditListener listener = null;
+        AuditListener listener;
         if ("xml".equals(format)) {
             listener = new XMLLogger(out, closeOut);
 
