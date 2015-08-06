@@ -59,27 +59,27 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class CommentsTest extends BaseCheckTestSupport {
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
-   /*
-    * +--CLASS_DEF [1,0]
-    *     |
-    *     +--MODIFIERS [1,0]
-    *         |
-    *         +--LITERAL_PUBLIC [1,0]
-    *     +--LITERAL_CLASS [1,7]
-    *     +--BLOCK_COMMENT_BEGIN [1,13]
-    *         |
-    *         +--COMMENT_CONTENT [1,15]
-    *         +--BLOCK_COMMENT_END [3,4]
-    *     +--IDENT [4,0]
-    *     +--OBJBLOCK [5,0]
-    *         |
-    *         +--LCURLY [5,0]
-    *             |
-    *             +--SINGLE_LINE_COMMENT [5,2]
-    *                 |
-    *                 +--COMMENT_CONTENT [5,4]
-    *         +--RCURLY [6,0]
-    */
+    /*
+     * +--CLASS_DEF [1,0]
+     *     |
+     *     +--MODIFIERS [1,0]
+     *         |
+     *         +--LITERAL_PUBLIC [1,0]
+     *     +--LITERAL_CLASS [1,7]
+     *     +--BLOCK_COMMENT_BEGIN [1,13]
+     *         |
+     *         +--COMMENT_CONTENT [1,15]
+     *         +--BLOCK_COMMENT_END [3,4]
+     *     +--IDENT [4,0]
+     *     +--OBJBLOCK [5,0]
+     *         |
+     *         +--LCURLY [5,0]
+     *             |
+     *             +--SINGLE_LINE_COMMENT [5,2]
+     *                 |
+     *                 +--COMMENT_CONTENT [5,4]
+     *         +--RCURLY [6,0]
+     */
     private static DetailAST buildInput_1() {
         DetailAST packageDef = new DetailAST();
         packageDef.setType(PACKAGE_DEF);

@@ -138,12 +138,12 @@ public class TranslationCheck
         return filePath.substring(0, cutoffIdx);
     }
 
-   /**
-    * Sets the separator used to determine the basename of a property file.
-    * This defaults to "_"
-    *
-    * @param basenameSeparator the basename separator
-    */
+    /**
+     * Sets the separator used to determine the basename of a property file.
+     * This defaults to "_"
+     *
+     * @param basenameSeparator the basename separator
+     */
     public void setBasenameSeparator(String basenameSeparator) {
         this.basenameSeparator = basenameSeparator;
     }

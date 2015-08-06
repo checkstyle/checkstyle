@@ -453,7 +453,7 @@ public class ImportOrderCheck
                 // previous non-static
                 !(lastImportStatic ^ isStatic)
                 &&
-                // and out of lexicographic order
+                        // and out of lexicographic order
                         compare(lastImport, name, caseSensitive) > 0
                 ||
                 // previous non-static but current is static (above)

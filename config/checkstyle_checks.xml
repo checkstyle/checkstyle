@@ -294,6 +294,8 @@
       <property name="max" value="7"/>
     </module>
 
+    <module name="CommentsIndentation"/>
+
 <!--
     <module name="AvoidInlineConditionals"/>
     <module name="ClassDataAbstractionCoupling"/>
