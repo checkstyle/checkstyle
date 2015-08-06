@@ -54,8 +54,8 @@ public class CodeSelector {
      * Set a selection position from AST line and Column
      */
     public void select() {
-        int start = lines2position.get(ast.getLineNo()) + ast.getColumnNo();
-        int end = findLastPosition(ast);
+        final int start = lines2position.get(ast.getLineNo()) + ast.getColumnNo();
+        final int end = findLastPosition(ast);
 
         editor.setSelectedTextColor(Color.blue);
         editor.requestFocusInWindow();

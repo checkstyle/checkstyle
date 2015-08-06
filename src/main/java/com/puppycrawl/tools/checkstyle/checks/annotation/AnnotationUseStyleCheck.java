@@ -260,21 +260,15 @@ public final class AnnotationUseStyleCheck extends Check {
     private void checkStyleType(final DetailAST annotation) {
 
         switch (this.style) {
-
-            case COMPACT_NO_ARRAY: {
+            case COMPACT_NO_ARRAY:
                 checkCompactNoArrayStyle(annotation);
                 break;
-            }
-
-            case COMPACT: {
+            case COMPACT:
                 checkCompactStyle(annotation);
                 break;
-            }
-
-            case EXPANDED: {
+            case EXPANDED:
                 checkExpandedStyle(annotation);
                 break;
-            }
             default:
                 break;
         }

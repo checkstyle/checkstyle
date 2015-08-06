@@ -98,24 +98,21 @@ public abstract class AbstractDeclarationCollector extends Check {
         DetailAST ast) {
         final LexicalFrame frame = frameStack.peek();
         switch (ast.getType()) {
-            case TokenTypes.VARIABLE_DEF :  {
+            case TokenTypes.VARIABLE_DEF :
                 collectVariableDeclarations(ast, frame);
                 break;
-            }
-            case TokenTypes.PARAMETER_DEF : {
-                final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
-                frame.addName(nameAST.getText());
+            case TokenTypes.PARAMETER_DEF :
+                final DetailAST parameterAST = ast.findFirstToken(TokenTypes.IDENT);
+                frame.addName(parameterAST.getText());
                 break;
-            }
             case TokenTypes.CLASS_DEF :
             case TokenTypes.INTERFACE_DEF :
             case TokenTypes.ENUM_DEF :
-            case TokenTypes.ANNOTATION_DEF : {
-                final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
-                frame.addName(nameAST.getText());
+            case TokenTypes.ANNOTATION_DEF :
+                final DetailAST classAST = ast.findFirstToken(TokenTypes.IDENT);
+                frame.addName(classAST.getText());
                 frameStack.addFirst(new ClassFrame(frame));
                 break;
-            }
             case TokenTypes.SLIST :
                 frameStack.addFirst(new BlockFrame(frame));
                 break;

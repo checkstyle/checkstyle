@@ -150,7 +150,7 @@ public class JTreeTable extends JTable {
                 public void actionPerformed(ActionEvent e) {
                     final TreePath selected = tree.getSelectionPath();
 
-                    DetailAST ast = (DetailAST) selected.getLastPathComponent();
+                    final DetailAST ast = (DetailAST) selected.getLastPathComponent();
                     new CodeSelector(ast, editor, lines2position).select();
 
                     if (tree.isExpanded(selected)) {
