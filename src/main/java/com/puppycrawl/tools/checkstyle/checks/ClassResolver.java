@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -46,8 +47,8 @@ public class ClassResolver {
     public ClassResolver(ClassLoader loader, String pkg, Set<String> imports) {
         this.loader = loader;
         this.pkg = pkg;
-        this.imports = imports;
-        imports.add("java.lang.*");
+        this.imports = new HashSet<>(imports);
+        this.imports.add("java.lang.*");
     }
 
     /**

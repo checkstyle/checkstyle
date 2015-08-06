@@ -658,7 +658,7 @@ public abstract class AbstractJavadocCheck extends Check {
         public ParseErrorMessage(int lineNumber, String messageKey, Object ... messageArguments) {
             this.lineNumber = lineNumber;
             this.messageKey = messageKey;
-            this.messageArguments = messageArguments;
+            this.messageArguments = messageArguments.clone();
         }
 
         public int getLineNumber() {

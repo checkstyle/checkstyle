@@ -86,6 +86,7 @@ import javax.swing.tree.TreeCellRenderer;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
+import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
@@ -475,6 +476,6 @@ public class JTreeTable extends JTable {
     }
 
     public void setLinePositionMap(List<Integer> lines2position) {
-        this.lines2position = lines2position;
+        this.lines2position = ImmutableList.copyOf(lines2position);
     }
 }

@@ -30,7 +30,7 @@ import java.util.Properties;
 public final class PropertiesExpander
     implements PropertyResolver {
     /** the underlying Properties object. */
-    private final Properties properties;
+    private final Properties properties = new Properties();
 
     /**
      * Creates a new PropertiesExpander.
@@ -42,7 +42,7 @@ public final class PropertiesExpander
         if (properties == null) {
             throw new IllegalArgumentException("cannot pass null");
         }
-        this.properties = properties;
+        this.properties.putAll(properties);
     }
 
     /** {@inheritDoc} */
