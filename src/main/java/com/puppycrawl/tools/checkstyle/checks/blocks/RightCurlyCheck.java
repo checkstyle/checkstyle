@@ -324,10 +324,10 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
                 nextToken = getNextToken(ast);
                 break;
             default:
-//              ATTENTION! We have default here, but we expect case TokenTypes.METHOD_DEF,
-//              TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE, TokenTypes.LITERAL_DO only.
-//              It has been done to improve coverage to 100%. I couldn't replace it with
-//              if-else-if block because code was ugly and didn't pass pmd check.
+                // ATTENTION! We have default here, but we expect case TokenTypes.METHOD_DEF,
+                // TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE, TokenTypes.LITERAL_DO only.
+                // It has been done to improve coverage to 100%. I couldn't replace it with
+                // if-else-if block because code was ugly and didn't pass pmd check.
 
                 lcurly = ast.findFirstToken(TokenTypes.SLIST);
                 if (lcurly != null) {

@@ -191,7 +191,7 @@ public class DescendantTokenCheck extends Check {
      */
     public static final String MSG_KEY_SUM_MAX = "descendant.token.sum.max";
 
-     /** minimum depth */
+    /** minimum depth */
     private int minimumDepth;
     /** maximum depth */
     private int maximumDepth = Integer.MAX_VALUE;
@@ -366,10 +366,10 @@ public class DescendantTokenCheck extends Check {
         this.maximumDepth = maximumDepth;
     }
 
-   /**
-    * Sets a minimum count for descendants.
-    * @param minimumNumber the minimum count for descendants.
-    */
+    /**
+     * Sets a minimum count for descendants.
+     * @param minimumNumber the minimum count for descendants.
+     */
     public void setMinimumNumber(int minimumNumber) {
         this.minimumNumber = minimumNumber;
     }

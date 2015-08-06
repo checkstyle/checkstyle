@@ -86,8 +86,6 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
     @Test
     public void testFalsePositive() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(AbstractClassNameCheck.class);
-//        checkConfig.addAttribute("ignoreName", "false");
-//        checkConfig.addAttribute("ignoreModifier", "false");
 
         final String[] expected = {
             "9:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
