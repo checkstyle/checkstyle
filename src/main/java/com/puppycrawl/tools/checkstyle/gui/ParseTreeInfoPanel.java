@@ -113,7 +113,7 @@ public class ParseTreeInfoPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            final JFileChooser fc = new JFileChooser( lastDirectory );
+            final JFileChooser fc = new JFileChooser(lastDirectory);
             final FileFilter filter = new JavaFileFilter();
             fc.setFileFilter(filter);
             final Component parent =
@@ -249,7 +249,7 @@ public class ParseTreeInfoPanel extends JPanel {
         setLayout(new BorderLayout());
 
         parseTreeModel = new ParseTreeModel(null);
-        JTreeTable treeTable = new JTreeTable(parseTreeModel);
+        final JTreeTable treeTable = new JTreeTable(parseTreeModel);
         final JScrollPane sp = new JScrollPane(treeTable);
         this.add(sp, BorderLayout.NORTH);
 

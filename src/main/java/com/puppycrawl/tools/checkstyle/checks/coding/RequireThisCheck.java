@@ -138,19 +138,17 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
             case TokenTypes.ANNOTATION_FIELD_DEF:
                 // no need to check annotations content
                 break;
-            case TokenTypes.METHOD_CALL: {
+            case TokenTypes.METHOD_CALL:
                 // let's check method calls
                 if (checkMethods && isClassMethod(ast.getText())) {
                     log(ast, "require.this.method", ast.getText());
                 }
                 break;
-            }
-            default: {
+            default:
                 if (checkFields) {
                     processField(ast, parentType);
                 }
                 break;
-            }
         }
     }
 

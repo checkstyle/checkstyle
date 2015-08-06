@@ -48,7 +48,7 @@ public class Main {
         }
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Runnable runner = new FrameShower(frame);
+        final Runnable runner = new FrameShower(frame);
         EventQueue.invokeLater(runner);
     }
 
@@ -57,7 +57,7 @@ public class Main {
      * @param ast
      */
     public static void displayAst(DetailAST ast) {
-        JFrame frame = new JFrame("CheckStyle");
+        final JFrame frame = new JFrame("CheckStyle");
         final ParseTreeInfoPanel panel = new ParseTreeInfoPanel();
         frame.getContentPane().add(panel);
         panel.openAst(ast, frame);

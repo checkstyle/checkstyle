@@ -130,10 +130,14 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
          */
         private final Multiset<String> duplicatedStrings = HashMultiset
                 .create();
+        /**
+         * Lock for this class to synchronize on
+         */
+        private final Object lock = new Object();
 
         @Override
         public Object put(Object key, Object value) {
-            synchronized (this) {
+            synchronized (lock) {
                 final Object oldValue = super.put(key, value);
                 if (oldValue != null && key instanceof String) {
                     final String keyString = (String) key;
