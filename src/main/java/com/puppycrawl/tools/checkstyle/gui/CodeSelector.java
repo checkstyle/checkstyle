@@ -24,6 +24,7 @@ import java.util.List;
 
 import javax.swing.JTextArea;
 
+import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
@@ -47,7 +48,7 @@ public class CodeSelector {
                         final List<Integer> lines2position) {
         this.ast = ast;
         this.editor = editor;
-        this.lines2position = lines2position;
+        this.lines2position = ImmutableList.copyOf(lines2position);
     }
 
     /**

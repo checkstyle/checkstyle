@@ -59,6 +59,7 @@ public class ClassResolverTest {
         }
 
         imps.add("java.text.ChoiceFormat");
+        cr = new ClassResolver(Thread.currentThread().getContextClassLoader(), null, imps);
         cr.resolve("ChoiceFormat", "");
 
         cr = new ClassResolver(Thread.currentThread().getContextClassLoader(),

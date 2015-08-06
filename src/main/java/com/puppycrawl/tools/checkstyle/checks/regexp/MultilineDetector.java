@@ -76,7 +76,7 @@ class MultilineDetector {
      * @param text the text to process
      */
     public void processLines(FileText text) {
-        this.text = text;
+        this.text = new FileText(text);
         resetState();
 
         if (!Strings.isNullOrEmpty(options.getFormat())) {

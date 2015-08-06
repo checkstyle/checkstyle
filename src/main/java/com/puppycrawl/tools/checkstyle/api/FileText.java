@@ -38,6 +38,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.google.common.io.Closeables;
 
 /**
@@ -184,6 +186,18 @@ public final class FileText extends AbstractList<String> {
         charset = null;
         fullText = buf.toString();
         this.lines = lines.toArray(new String[lines.size()]);
+    }
+
+    /**
+     * Copy constructor.
+     * @param fileText to make copy of
+     */
+    public FileText(FileText fileText) {
+        this.file = fileText.file;
+        this.charset = fileText.charset;
+        this.fullText = fileText.fullText;
+        this.lines = fileText.lines.clone();
+        this.lineBreaks = ArrayUtils.clone(fileText.lineBreaks);
     }
 
     /**

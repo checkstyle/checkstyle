@@ -87,7 +87,7 @@ public final class FileContents implements CommentListener {
      */
     public FileContents(FileText text) {
         fileName = text.getFile().toString();
-        this.text = text;
+        this.text = new FileText(text);
     }
 
     /** {@inheritDoc} */
