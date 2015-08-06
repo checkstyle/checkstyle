@@ -78,7 +78,7 @@
     <section name="Features">
       <p>
         Checkstyle can check many aspects of your source code.
-        It can find class design problems, method desig problems.
+        It can find class design problems, method design problems.
         It also have ability to check code layout and formatting issues.
       </p>
 
