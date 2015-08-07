@@ -308,7 +308,7 @@ public class SuppressionCommentFilter
     public SuppressionCommentFilter() {
         setOnCommentFormat(DEFAULT_ON_FORMAT);
         setOffCommentFormat(DEFAULT_OFF_FORMAT);
-        setCheckFormat(DEFAULT_CHECK_FORMAT);
+        checkFormat = DEFAULT_CHECK_FORMAT;
     }
 
     /**

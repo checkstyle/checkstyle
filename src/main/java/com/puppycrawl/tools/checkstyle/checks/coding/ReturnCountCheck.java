@@ -59,7 +59,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck {
     /** Creates new instance of the checks. */
     public ReturnCountCheck() {
         super("^equals$");
-        setMax(DEFAULT_MAX);
+        this.max = DEFAULT_MAX;
     }
 
     @Override

@@ -433,7 +433,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
      */
     @Deprecated
     public final void setClassloader(ClassLoader loader) {
-        setClassLoader(loader);
+        this.loader = loader;
     }
 
     /**

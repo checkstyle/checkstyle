@@ -153,7 +153,7 @@ public abstract class AbstractComplexityCheck
      * @param by the amount to increment by
      */
     protected final void incrementCurrentValue(BigInteger by) {
-        setCurrentValue(getCurrentValue().add(by));
+        currentValue = getCurrentValue().add(by);
     }
 
     /** Push the current value on the stack */

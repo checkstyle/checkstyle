@@ -38,7 +38,7 @@ public abstract class AbstractNestedDepthCheck extends Check {
      * @param max default allowed nesting depth.
      */
     public AbstractNestedDepthCheck(int max) {
-        setMax(max);
+        this.max = max;
     }
 
     @Override

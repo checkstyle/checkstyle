@@ -96,7 +96,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
             ((DetailAST) ast).setParent(parent);
         }
         if (ast != null) {
-            ((DetailAST) ast).setPreviousSibling(this);
+            ((DetailAST) ast).previousSibling = this;
         }
     }
 
@@ -111,7 +111,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
             final DetailAST previousSibling = this.getPreviousSibling();
 
             if (previousSibling != null) {
-                ast.setPreviousSibling(previousSibling);
+                ast.previousSibling = previousSibling;
                 previousSibling.setNextSibling(ast);
             }
             else if (parent != null) {
@@ -119,7 +119,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
             }
 
             ast.setNextSibling(this);
-            this.setPreviousSibling(ast);
+            this.previousSibling = ast;
         }
     }
 
@@ -135,10 +135,10 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
 
             if (nextSibling != null) {
                 ast.setNextSibling(nextSibling);
-                nextSibling.setPreviousSibling(ast);
+                nextSibling.previousSibling = ast;
             }
 
-            ast.setPreviousSibling(this);
+            ast.previousSibling = this;
             this.setNextSibling(ast);
         }
     }
@@ -188,7 +188,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
         final DetailAST nextSibling = getNextSibling();
         if (nextSibling != null) {
             nextSibling.setParent(parent);
-            nextSibling.setPreviousSibling(this);
+            nextSibling.previousSibling = this;
         }
     }
 

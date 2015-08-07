@@ -71,7 +71,7 @@ public final class ThrowsCountCheck extends Check {
 
     /** Creates new instance of the check. */
     public ThrowsCountCheck() {
-        setMax(DEFAULT_MAX);
+        this.max = DEFAULT_MAX;
     }
 
     @Override
