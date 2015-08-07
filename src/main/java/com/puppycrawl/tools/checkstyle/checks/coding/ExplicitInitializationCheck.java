@@ -173,7 +173,7 @@ public class ExplicitInitializationCheck extends Check {
             case TokenTypes.NUM_INT:
             case TokenTypes.NUM_LONG:
                 final String text = expr.getText();
-                return 0 == CheckUtils.parseFloat(text, type);
+                return 0.0 == CheckUtils.parseFloat(text, type);
             default:
                 return false;
         }
