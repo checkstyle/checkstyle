@@ -268,7 +268,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
                                                     getId(),
                                                     this.getClass(),
                                                     null);
-            throw new RuntimeException(msg.getMessage());
+            throw new IllegalStateException(msg.getMessage());
         }
 
         if (!suppressLoadErrors) {

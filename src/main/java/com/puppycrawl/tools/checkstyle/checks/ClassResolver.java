@@ -202,7 +202,7 @@ public class ClassResolver {
         catch (final ClassNotFoundException ex) {
             // we shouldn't get this exception here,
             // so this is unexpected runtime exception
-            throw new RuntimeException(ex);
+            throw new IllegalStateException(ex);
         }
 
         return null;

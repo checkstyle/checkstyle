@@ -726,7 +726,7 @@ public class CustomImportOrderCheck extends Check {
 
         }
         else {
-            throw new RuntimeException("Unexpected rule: " + ruleStr);
+            throw new IllegalStateException("Unexpected rule: " + ruleStr);
         }
     }
 
