@@ -149,11 +149,6 @@ public abstract class AbstractJavadocCheck extends Check {
     }
 
     @Override
-    public final void leaveToken(DetailAST ast) {
-        // No code by default, should be overridden only by demand at subclasses
-    }
-
-    @Override
     public final void visitToken(DetailAST blockCommentAst) {
         if (JavadocUtils.isJavadocComment(blockCommentAst)) {
             this.blockCommentAst = blockCommentAst;
