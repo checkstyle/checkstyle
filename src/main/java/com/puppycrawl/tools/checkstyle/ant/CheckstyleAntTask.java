@@ -403,12 +403,12 @@ public class CheckstyleAntTask extends Task {
         final Map<String, Object> antProps = this.getProject().getProperties();
         for (Map.Entry<String, Object> entry : antProps.entrySet()) {
             final String value = String.valueOf(entry.getValue());
-            retVal.put(entry.getKey(), value);
+            retVal.setProperty(entry.getKey(), value);
         }
 
         // override with properties specified in subelements
         for (Property p : overrideProps) {
-            retVal.put(p.getKey(), p.getValue());
+            retVal.setProperty(p.getKey(), p.getValue());
         }
 
         return retVal;
