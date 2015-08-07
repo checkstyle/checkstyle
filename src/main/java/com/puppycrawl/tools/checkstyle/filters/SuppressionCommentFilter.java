@@ -182,10 +182,10 @@ public class SuppressionCommentFilter
         @Override
         public int compareTo(Tag object) {
             if (line == object.line) {
-                return column - object.column;
+                return Integer.compare(column, object.column);
             }
 
-            return line - object.line;
+            return Integer.compare(line, object.line);
         }
 
         /** {@inheritDoc} */
