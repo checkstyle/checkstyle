@@ -352,13 +352,6 @@ public class VisibilityModifierCheck
     }
 
     /**
-     * @return the regexp for public members to ignore.
-     */
-    private Pattern getPublicMemberRegexp() {
-        return publicMemberPattern;
-    }
-
-    /**
      * Sets whether public immutable are allowed.
      * @param allow user's value.
      */
@@ -524,8 +517,8 @@ public class VisibilityModifierCheck
         if (!"private".equals(variableScope)) {
             result =
                 isStaticFinalVariable(variableDef)
-                || isPackageAllowed() && "package".equals(variableScope)
-                || isProtectedAllowed() && "protected".equals(variableScope)
+                || packageAllowed && "package".equals(variableScope)
+                || protectedAllowed && "protected".equals(variableScope)
                 || isIgnoredPublicMember(variableName, variableScope)
                    || allowPublicImmutableFields
                       && isImmutableFieldDefinedInFinalClass(variableDef);
@@ -552,7 +545,7 @@ public class VisibilityModifierCheck
      */
     private boolean isIgnoredPublicMember(String variableName, String variableScope) {
         return "public".equals(variableScope)
-            && getPublicMemberRegexp().matcher(variableName).find();
+            && publicMemberPattern.matcher(variableName).find();
     }
 
     /**

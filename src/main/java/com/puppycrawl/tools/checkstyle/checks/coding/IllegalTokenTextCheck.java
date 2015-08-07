@@ -91,7 +91,7 @@ public class IllegalTokenTextCheck
     public void visitToken(DetailAST ast) {
         final String text = ast.getText();
         if (getRegexp().matcher(text).find()) {
-            String message = getMessage();
+            String message = this.message;
             if ("".equals(message)) {
                 message = MSG_KEY;
             }

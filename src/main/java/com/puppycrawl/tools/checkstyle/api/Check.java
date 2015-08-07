@@ -168,7 +168,7 @@ public abstract class Check extends AbstractViolationReporter {
      * @return the file contents
      */
     public final String[] getLines() {
-        return getFileContents().getLines();
+        return fileContents.getLines();
     }
 
     /**
@@ -177,7 +177,7 @@ public abstract class Check extends AbstractViolationReporter {
      * @return the line from the file contents
      */
     public final String getLine(int index) {
-        return getFileContents().getLine(index);
+        return fileContents.getLine(index);
     }
 
     /**
@@ -243,7 +243,7 @@ public abstract class Check extends AbstractViolationReporter {
     public final void log(int lineNo, int colNo, String key,
             Object... args) {
         final int col = 1 + Utils.lengthExpandedTabs(
-            getLines()[lineNo - 1], colNo, getTabWidth());
+            getLines()[lineNo - 1], colNo, tabWidth);
         messages.add(
             new LocalizedMessage(
                 lineNo,

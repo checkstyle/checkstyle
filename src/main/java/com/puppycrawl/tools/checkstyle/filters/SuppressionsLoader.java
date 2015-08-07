@@ -178,7 +178,7 @@ public final class SuppressionsLoader
             final SuppressionsLoader suppressionsLoader =
                 new SuppressionsLoader();
             suppressionsLoader.parseInputSource(source);
-            return suppressionsLoader.getFilterChain();
+            return suppressionsLoader.filterChain;
         }
         catch (final FileNotFoundException e) {
             throw new CheckstyleException("unable to find " + sourceName, e);

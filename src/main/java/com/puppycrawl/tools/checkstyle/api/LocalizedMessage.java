@@ -346,14 +346,14 @@ public final class LocalizedMessage
     /** {@inheritDoc} */
     @Override
     public int compareTo(LocalizedMessage other) {
-        if (getLineNo() == other.getLineNo()) {
-            if (getColumnNo() == other.getColumnNo()) {
+        if (lineNo == other.lineNo) {
+            if (colNo == other.colNo) {
                 return getMessage().compareTo(other.getMessage());
             }
-            return getColumnNo() < other.getColumnNo() ? -1 : 1;
+            return colNo < other.colNo ? -1 : 1;
         }
 
-        return getLineNo() < other.getLineNo() ? -1 : 1;
+        return lineNo < other.lineNo ? -1 : 1;
     }
 
     /**

@@ -373,8 +373,8 @@ public enum JavadocTagInfo {
             new ImmutableMap.Builder<>();
 
         for (final JavadocTagInfo tag : JavadocTagInfo.values()) {
-            textToTagBuilder.put(tag.getText(), tag);
-            nameToTagBuilder.put(tag.getName(), tag);
+            textToTagBuilder.put(tag.text, tag);
+            nameToTagBuilder.put(tag.name, tag);
         }
 
         TEXT_TO_TAG = textToTagBuilder.build();

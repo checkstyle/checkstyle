@@ -262,8 +262,8 @@ public class SuppressWithNearbyCommentFilter
         /** {@inheritDoc} */
         @Override
         public final String toString() {
-            return "Tag[lines=[" + getFirstLine() + " to " + getLastLine()
-                + "]; text='" + getText() + "']";
+            return "Tag[lines=[" + firstLine + " to " + lastLine
+                + "]; text='" + text + "']";
         }
     }
 

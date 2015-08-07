@@ -181,7 +181,7 @@ public abstract class AbstractComplexityCheck
      * @param ast the token representing the method definition
      */
     private void leaveMethodDef(DetailAST ast) {
-        final BigInteger bigIntegerMax = BigInteger.valueOf(getMax());
+        final BigInteger bigIntegerMax = BigInteger.valueOf(max);
         if (currentValue.compareTo(bigIntegerMax) > 0) {
             log(ast, getMessageID(), currentValue, bigIntegerMax);
         }

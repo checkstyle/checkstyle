@@ -57,9 +57,9 @@ public class LineColumn implements Comparable<LineColumn> {
     /** {@inheritDoc} */
     @Override
     public int compareTo(LineColumn lineColumn) {
-        return this.getLine() != lineColumn.getLine()
-            ? this.getLine() - lineColumn.getLine()
-            : this.getColumn() - lineColumn.getColumn();
+        return line != lineColumn.line
+            ? line - lineColumn.line
+            : col - lineColumn.col;
     }
 
     /** {@inheritDoc} */

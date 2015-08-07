@@ -256,8 +256,8 @@ public class SuppressionCommentFilter
 
         @Override
         public final String toString() {
-            return "Tag[line=" + getLine() + "; col=" + getColumn()
-                + "; on=" + isOn() + "; text='" + getText() + "']";
+            return "Tag[line=" + line + "; col=" + column
+                + "; on=" + on + "; text='" + text + "']";
         }
     }
 

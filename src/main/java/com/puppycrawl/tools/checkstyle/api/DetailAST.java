@@ -108,7 +108,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
     public void addPreviousSibling(DetailAST ast) {
         if (ast != null) {
             ast.setParent(parent);
-            final DetailAST previousSibling = this.getPreviousSibling();
+            final DetailAST previousSibling = this.previousSibling;
 
             if (previousSibling != null) {
                 ast.setPreviousSibling(previousSibling);
