@@ -112,10 +112,10 @@ class PackageObjectFactory implements ModuleFactory {
         throws CheckstyleException {
         try {
             final Class<?> clazz = Class.forName(className, true, moduleClassLoader);
-            return clazz.newInstance();
+            return clazz.getDeclaredConstructor().newInstance();
         }
-        catch (final ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-            throw new CheckstyleException("Unable to find class for " + className, e);
+        catch (final ReflectiveOperationException exception) {
+            throw new CheckstyleException("Unable to find class for " + className, exception);
         }
     }
 
