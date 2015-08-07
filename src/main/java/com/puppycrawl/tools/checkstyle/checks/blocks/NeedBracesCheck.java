@@ -74,18 +74,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * To configure the Check to allow <code>case, default</code> single-line statements
  * without braces:
  * </p>
- * <p>
+ *
  * <pre>
  * &lt;module name=&quot;NeedBraces&quot;&gt;
  *     &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CASE, LITERAL_DEFAULT&quot;/&gt;
  *     &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * </p>
+ *
  * <p>
  * Such statements would be allowed:
  * </p>
- * <p>
+ *
  * <pre>
  * <code>
  * switch (num) {
@@ -95,7 +95,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </code>
  * </pre>
- * </p>
+ *
  *
  * @author Rick Giles
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>

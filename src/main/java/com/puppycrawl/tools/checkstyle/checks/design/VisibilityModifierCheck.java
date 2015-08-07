@@ -54,36 +54,37 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * which ignore variables in consideration, if user will provide short annotation name
  * that type will match to any named the same type without consideration of package,
  * list by default:
+ * </p>
  * <ul>
  * <li>org.junit.Rule</li>
  * <li>com.google.common.annotations.VisibleForTesting</li>
  * </ul>
- * </p>
  * <p>
  * For example such public field will be skipped by default value of list above:
  * </p>
- * <p>
- * <code>
- * <pre> @org.junit.Rule
+ *
+ * <pre>
+ * <code> @org.junit.Rule
  * public TemporaryFolder publicJUnitRule = new TemporaryFolder();
- * </pre>
  * </code>
- * </p>
+ * </pre>
+ *
  * <p>
  * <b>allowPublicImmutableFields</b> - which allows immutable fields be
  * declared as public if defined in final class. Default value is <b>true</b>
  * </p>
  * <p>
  * Field is known to be immutable if:
+ * </p>
  * <ul>
  * <li>It's declared as final</li>
  * <li>Has either a primitive type or instance of class user defined to be immutable
  * (such as String, ImmutableCollection from Guava and etc)</li>
  * </ul>
- * </p>
  * <p>
  * Classes known to be immutable are listed in <b>immutableClassCanonicalNames</b> by their
  * <b>canonical</b> names. List by default:
+ * </p>
  * <ul>
  * <li>java.lang.String</li>
  * <li>java.lang.Integer</li>
@@ -106,6 +107,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>java.net.Inet6Address</li>
  * <li>java.net.InetSocketAddress</li>
  * </ul>
+ * <p>
  * User can override this list via adding <b>canonical</b> class names to
  * <b>immutableClassCanonicalNames</b>, if user will provide short class name all
  * that type will match to any named the same type without consideration of package.
@@ -129,7 +131,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Default Check's configuration will pass the code below:
  * </p>
- * <p>
+ *
  * <pre>
  * <code>
  * public final class ImmutableClass
@@ -148,7 +150,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </code>
  * </pre>
- * </p>
+ *
  * <p>
  * To configure the Check passing fields of type com.google.common.collect.ImmutableSet and
  * java.util.List:
@@ -159,7 +161,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   com.google.common.collect.ImmutableSet&quot;/&gt;
  * &lt;/module&gt;
  * </p>
- * <p>
+ *
  * <pre>
  * <code>
  * public final class ImmutableClass
@@ -179,51 +181,53 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </code>
  * </pre>
- * </p>
+ *
  * <p>
  * To configure the Check passing fields annotated with
- * <pre>@com.annotation.CustomAnnotation</pre>:
  * </p>
+ * <pre>@com.annotation.CustomAnnotation</pre>:
+
  * <p>
  * &lt;module name=&quot;VisibilityModifier&quot;&gt;
  *   &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot; value=&quot;
  *   com.annotation.CustomAnnotation&quot;/&gt;
  * &lt;/module&gt;
  * </p>
- * <p>
- * <code>
- * <pre> @com.annotation.CustomAnnotation
+ *
+ * <pre>
+ * <code> @com.annotation.CustomAnnotation
  * String customAnnotated; // No warning
- * </pre>
- * <pre> @CustomAnnotation
- * String shortCustomAnnotated; // No warning
- * </pre>
  * </code>
- * </p>
+ * <code> @CustomAnnotation
+ * String shortCustomAnnotated; // No warning
+ * </code>
+ * </pre>
+ *
  * <p>
  * To configure the Check passing fields annotated with short annotation name
- * <pre>@CustomAnnotation</pre>:
  * </p>
+ * <pre>@CustomAnnotation</pre>:
+ *
  * <p>
  * &lt;module name=&quot;VisibilityModifier&quot;&gt;
  *   &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot;
  *   value=&quot;CustomAnnotation&quot;/&gt;
  * &lt;/module&gt;
  * </p>
- * <p>
- * <code>
- * <pre> @CustomAnnotation
+ *
+ * <pre>
+ * <code> @CustomAnnotation
  * String customAnnotated; // No warning
- * </pre>
- * <pre> @com.annotation.CustomAnnotation
+ * </code>
+ * <code> @com.annotation.CustomAnnotation
  * String customAnnotated1; // No warning
- * </pre>
- * <pre> @mypackage.annotation.CustomAnnotation
+ * </code>
+ * <code> @mypackage.annotation.CustomAnnotation
  * String customAnnotatedAnotherPackage; // another package but short name matches
  *                                       // so no violation
- * </pre>
  * </code>
- * </p>
+ * </pre>
+ *
  *
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */

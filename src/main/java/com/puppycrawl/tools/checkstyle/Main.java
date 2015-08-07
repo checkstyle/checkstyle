@@ -56,9 +56,8 @@ public final class Main {
     /**
      * Loops over the files specified checking them for errors. The exit code
      * is the number of errors found in all the files.
-     * @param args the command line arguments
+     * @param args the command line arguments.
      * @throws UnsupportedEncodingException if there is a problem to use UTF-8
-     * @throws CheckstyleException if there is a problem with parsing a property file
      * @throws FileNotFoundException if there is a problem with files access
      **/
     public static void main(String... args) throws UnsupportedEncodingException,

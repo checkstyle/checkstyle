@@ -69,6 +69,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * List list; //No violation here
  * </code>
  * </p>
+ * <p>
  * will be ok.
  * </p>
  * <p>
@@ -79,6 +80,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * </p>
  * <p>
  * In most cases it's justified to put following classes to <b>illegalClassNames</b>:
+ * </p>
  * <ul>
  * <li>GregorianCalendar</li>
  * <li>Hashtable</li>
@@ -86,6 +88,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * <li>LinkedList</li>
  * <li>Vector</li>
  * </ul>
+ * <p>
  * as methods that are differ from interface methods are rear used, so in most cases user will
  *  benefit from checking for them.
  * </p>

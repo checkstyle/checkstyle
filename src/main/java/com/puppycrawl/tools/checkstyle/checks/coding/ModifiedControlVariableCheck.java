@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Check for ensuring that for loop control variables are not modified
  * inside the for block. An example is:
- * <p>
+ *
  * <pre>
  * <code>
  * for (int i = 0; i &lt; 1; i++) {
@@ -43,29 +43,28 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </code>
  * </pre>
- * </p>
+ * <p>
  * Rationale: If the control variable is modified inside the loop
- * body, the program flow becomes more difficult to follow.<br/>
+ * body, the program flow becomes more difficult to follow.<br>
  * See <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14">
  * FOR statement</a> specification for more details.
- * </p>
- * Examples:
- * <p>
+ * <p>Examples:</p>
+ *
  * <pre>
  * &lt;module name=&quot;ModifiedControlVariable&quot;&gt;
  * &lt;/module&gt;
  * </pre>
- * </p>
+ *
  * Such loop would be supressed:
- * <p>
+ *
  * <pre>
  * <code>
- * for(int i=0;i < 10;) {
+ * for(int i=0; i &lt; 10;) {
  *     i++;
  * }
  * </code>
  * </pre>
- * </p>
+ *
  * <p>
  * By default, This Check validates
  *  <a href = "http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
@@ -84,7 +83,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  * <p>Example:</p>
- * <p>
+ *
  * <pre>
  * <code>
  * for (String line: lines) {
@@ -92,7 +91,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </code>
  * </pre>
- * </p>
+ *
  *
  * @author Daniel Grenner
  * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>

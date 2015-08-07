@@ -57,7 +57,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * to be located on the same line as target element. Default value is false.
  * </li>
  * </ul>
- * <br/>
+ * <br>
  * <p>
  * Example to allow single parameterless annotation on the same line:
  * </p>
@@ -75,7 +75,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    /&gt;
  * &lt;/module&gt;
  * </pre>
- * <br/>
+ * <br>
  * <p>
  * Example to allow multiple parameterized annotations on the same line:
  * </p>
@@ -93,7 +93,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    /&gt;
  * &lt;/module&gt;
  * </pre>
- * <br/>
+ * <br>
  * <p>
  * Example to allow multiple parameterless annotations on the same line:
  * </p>

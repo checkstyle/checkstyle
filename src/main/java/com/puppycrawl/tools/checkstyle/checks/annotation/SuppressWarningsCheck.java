@@ -57,12 +57,12 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * Limitations:  This check does not consider conditionals
  * inside the SuppressWarnings annotation. <br>
  * For example:
- * {@code @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")}
+ * {@code @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")}.
  * According to the above example, the "unused" warning is being suppressed
  * not the "unchecked" or "foo" warnings.  All of these warnings will be
  * considered and matched against regardless of what the conditional
  * evaluates to.
- * <br/>
+ * <br>
  * The check also does not support code like {@code @SuppressWarnings("un" + "used")},
  * {@code @SuppressWarnings((String) "unused")} or
  * {@code @SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})}.
