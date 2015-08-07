@@ -102,7 +102,7 @@ class MultilineDetector {
                         start.getColumn(), end.getLine(), end.getColumn())) {
                     currentMatches++;
                     if (currentMatches > options.getMaximum()) {
-                        if ("".equals(options.getMessage())) {
+                        if (options.getMessage().isEmpty()) {
                             options.getReporter().log(start.getLine(),
                                     REGEXP_EXCEEDED, matcher.pattern().toString());
                         }
@@ -128,7 +128,7 @@ class MultilineDetector {
     /** Perform processing at the end of a set of lines. */
     private void finish() {
         if (currentMatches < options.getMinimum()) {
-            if ("".equals(options.getMessage())) {
+            if (options.getMessage().isEmpty()) {
                 options.getReporter().log(0, REGEXP_MINIMUM,
                         options.getMinimum(), options.getFormat());
             }

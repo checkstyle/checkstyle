@@ -57,7 +57,7 @@ class SinglelineDetector {
     /** Perform processing at the end of a set of lines. */
     private void finish() {
         if (currentMatches < options.getMinimum()) {
-            if ("".equals(options.getMessage())) {
+            if (options.getMessage().isEmpty()) {
                 options.getReporter().log(0, "regexp.minimum",
                         options.getMinimum(), options.getFormat());
             }
@@ -106,7 +106,7 @@ class SinglelineDetector {
 
         currentMatches++;
         if (currentMatches > options.getMaximum()) {
-            if ("".equals(options.getMessage())) {
+            if (options.getMessage().isEmpty()) {
                 options.getReporter().log(lineno, "regexp.exceeded",
                         matcher.pattern().toString());
             }

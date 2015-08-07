@@ -162,7 +162,7 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
                 if (comment.getText().length == 1) {
                     final String lineAfter =
                         line.substring(comment.getEndColNo() + 1).trim();
-                    if (!"".equals(lineAfter)) {
+                    if (!lineAfter.isEmpty()) {
                         // do not check comment which doesn't end line
                         continue;
                     }
