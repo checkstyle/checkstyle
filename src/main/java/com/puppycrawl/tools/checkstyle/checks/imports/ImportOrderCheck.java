@@ -233,6 +233,7 @@ public class ImportOrderCheck
 
         for (int i = 0; i < packageGroups.length; i++) {
             String pkg = packageGroups[i];
+            final StringBuilder pkgBuilder = new StringBuilder(pkg);
             Pattern grp;
 
             // if the pkg name is the wildcard, make it match zero chars
@@ -249,9 +250,9 @@ public class ImportOrderCheck
             }
             else {
                 if (!Utils.endsWithChar(pkg, '.')) {
-                    pkg += ".";
+                    pkgBuilder.append('.');
                 }
-                grp = Pattern.compile("^" + Pattern.quote(pkg));
+                grp = Pattern.compile("^" + Pattern.quote(pkgBuilder.toString()));
             }
 
             groups[i] = grp;
