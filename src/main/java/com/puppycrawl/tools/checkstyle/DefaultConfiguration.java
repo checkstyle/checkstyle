@@ -114,7 +114,7 @@ public final class DefaultConfiguration implements Configuration {
             attributeMap.put(name, value);
         }
         else {
-            attributeMap.put(name, current + "," + value);
+            attributeMap.put(name, current + ',' + value);
         }
     }
 

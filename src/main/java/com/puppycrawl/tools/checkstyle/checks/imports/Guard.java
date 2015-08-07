@@ -106,7 +106,7 @@ class Guard {
             }
         }
         else {
-            pkgMatch = forImport.startsWith(pkgName + ".");
+            pkgMatch = forImport.startsWith(pkgName + '.');
             if (pkgMatch && exactMatch) {
                 pkgMatch = forImport.indexOf('.',
                         pkgName.length() + 1) == -1;

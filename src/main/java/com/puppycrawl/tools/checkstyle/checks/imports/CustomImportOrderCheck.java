@@ -749,7 +749,7 @@ public class CustomImportOrderCheck extends Check {
             builder.append(tokens.nextToken()).append('.');
             count--;
         }
-        return builder.append("*").toString();
+        return builder.append('*').toString();
     }
 
     /**

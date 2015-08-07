@@ -511,7 +511,7 @@ public enum JavadocTagInfo {
     @Override
     public String toString() {
         return "text [" + this.text + "] name [" + this.name
-            + "] type [" + this.type + "]";
+            + "] type [" + this.type + ']';
     }
 
     /**

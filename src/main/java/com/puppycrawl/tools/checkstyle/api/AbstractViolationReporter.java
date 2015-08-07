@@ -137,7 +137,7 @@ public abstract class AbstractViolationReporter
             return messages;
         }
         final String packageName = className.substring(0, endIndex);
-        return packageName + "." + messages;
+        return packageName + '.' + messages;
     }
 
     /**

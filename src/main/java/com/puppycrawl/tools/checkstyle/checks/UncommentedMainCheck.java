@@ -145,7 +145,7 @@ public class UncommentedMainCheck
         // have static methods
         if (classDepth == 0) {
             final DetailAST ident = classDef.findFirstToken(TokenTypes.IDENT);
-            currentClass = packageName.getText() + "." + ident.getText();
+            currentClass = packageName.getText() + '.' + ident.getText();
             classDepth++;
         }
     }

@@ -776,8 +776,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             for (DetailAST typeParam : typeParams) {
                 log(typeParam, MSG_EXCPECTED_TAG,
                     JavadocTagInfo.PARAM.getText(),
-                    "<" + typeParam.findFirstToken(TokenTypes.IDENT).getText()
-                    + ">");
+                    '<' + typeParam.findFirstToken(TokenTypes.IDENT).getText()
+                    + '>');
             }
         }
     }

@@ -104,7 +104,7 @@ public class Comment implements TextBlock {
 
     @Override
     public String toString() {
-        return "Comment[" + firstLine + ":" + firstCol + "-"
-            + lastLine + ":" + lastCol + "]";
+        return "Comment[" + firstLine + ':' + firstCol + '-'
+            + lastLine + ':' + lastCol + ']';
     }
 }

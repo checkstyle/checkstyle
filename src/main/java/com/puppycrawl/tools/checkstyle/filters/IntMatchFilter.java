@@ -43,7 +43,7 @@ class IntMatchFilter implements IntFilter {
 
     @Override
     public String toString() {
-        return "IntMatchFilter[" + matchValue + "]";
+        return "IntMatchFilter[" + matchValue + ']';
     }
 
     @Override

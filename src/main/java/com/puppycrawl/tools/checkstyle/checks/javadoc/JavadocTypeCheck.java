@@ -267,12 +267,12 @@ public class JavadocTypeCheck
             if (tag.getTagName().equals(tagName)) {
                 tagCount++;
                 if (!formatPattern.matcher(tag.getArg1()).find()) {
-                    log(lineNo, TAG_FORMAT, "@" + tagName, format);
+                    log(lineNo, TAG_FORMAT, '@' + tagName, format);
                 }
             }
         }
         if (tagCount == 0) {
-            log(lineNo, MISSING_TAG, "@" + tagName);
+            log(lineNo, MISSING_TAG, '@' + tagName);
         }
     }
 
@@ -289,13 +289,13 @@ public class JavadocTypeCheck
         for (int i = tags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = tags.get(i);
             if (tag.isParamTag()
-                && tag.getArg1().indexOf("<" + typeParamName + ">") == 0) {
+                && tag.getArg1().indexOf('<' + typeParamName + '>') == 0) {
                 found = true;
             }
         }
         if (!found) {
             log(lineNo, MISSING_TAG,
-                JavadocTagInfo.PARAM.getText() + " <" + typeParamName + ">");
+                JavadocTagInfo.PARAM.getText() + " <" + typeParamName + '>');
         }
     }
 
@@ -319,7 +319,7 @@ public class JavadocTypeCheck
                     log(tag.getLineNo(), tag.getColumnNo(),
                         UNUSED_TAG,
                         JavadocTagInfo.PARAM.getText(),
-                        "<" + typeParamName + ">");
+                        '<' + typeParamName + '>');
                 }
             }
         }

@@ -405,7 +405,7 @@ public class SuppressWarningsHolder
                 return ast.getText();
             }
             else if (ast.getType() == TokenTypes.DOT) {
-                return getIdentifier(ast.getFirstChild()) + "."
+                return getIdentifier(ast.getFirstChild()) + '.'
                     + getIdentifier(ast.getLastChild());
             }
         }

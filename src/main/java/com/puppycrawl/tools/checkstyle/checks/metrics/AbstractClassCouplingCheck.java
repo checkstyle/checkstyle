@@ -269,7 +269,7 @@ public abstract class AbstractClassCouplingCheck extends Check {
         /** Checks if coupling less than allowed or not. */
         public void checkCoupling() {
             referencedClassNames.remove(className);
-            referencedClassNames.remove(packageName + "." + className);
+            referencedClassNames.remove(packageName + '.' + className);
 
             if (referencedClassNames.size() > max) {
                 log(lineNo, columnNo, getLogMessageId(),

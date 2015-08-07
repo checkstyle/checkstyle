@@ -344,7 +344,7 @@ public class IllegalInstantiationCheck
         try {
             final ClassLoader classLoader = getClassLoader();
             if (classLoader != null) {
-                final String fqName = pkgName + "." + className;
+                final String fqName = pkgName + '.' + className;
                 classLoader.loadClass(fqName);
                 // no ClassNotFoundException, fqName is a known class
                 isSamePackage = true;
