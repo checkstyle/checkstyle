@@ -181,7 +181,7 @@ public class ParseTreeInfoPanel extends JPanel {
                  // insert the contents of the file to the text area
                  for (String element : sourceLines) {
                    getLines2position().add(jTextArea.getText().length());
-                   jTextArea.append(element + "\n");
+                   jTextArea.append(element + '\n');
                  }
 
                 //clean the text area before inserting the lines of the new file
@@ -192,7 +192,7 @@ public class ParseTreeInfoPanel extends JPanel {
 
                 // insert the contents of the file to the text area
                 for (final String element : sourceLines) {
-                    jTextArea.append(element + "\n");
+                    jTextArea.append(element + '\n');
                 }
 
                 // move back to the top of the file

@@ -178,7 +178,7 @@ public final class ConfigurationLoader {
             }
             else {
                 if (!qName.equals(METADATA)) {
-                    throw new IllegalStateException("Unknown name:" + qName + ".");
+                    throw new IllegalStateException("Unknown name:" + qName + '.');
                 }
             }
         }
@@ -385,8 +385,8 @@ public final class ConfigurationLoader {
         }
         catch (final SAXParseException e) {
             throw new CheckstyleException("unable to parse configuration stream"
-                    + " - " + e.getMessage() + ":" + e.getLineNumber()
-                    + ":" + e.getColumnNumber(), e);
+                    + " - " + e.getMessage() + ':' + e.getLineNumber()
+                    + ':' + e.getColumnNumber(), e);
         }
         catch (final ParserConfigurationException | IOException | SAXException e) {
             throw new CheckstyleException("unable to parse configuration stream", e);

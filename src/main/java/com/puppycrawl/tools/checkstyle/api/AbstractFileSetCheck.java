@@ -130,7 +130,7 @@ public abstract class AbstractFileSetCheck
                 fileExtensions[i] = extension;
             }
             else {
-                fileExtensions[i] = "." + extension;
+                fileExtensions[i] = '.' + extension;
             }
         }
     }

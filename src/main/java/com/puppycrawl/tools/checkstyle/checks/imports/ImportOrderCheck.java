@@ -251,7 +251,7 @@ public class ImportOrderCheck
                 if (!Utils.endsWithChar(pkg, '.')) {
                     pkg += ".";
                 }
-                grp = Pattern.compile("^" + Pattern.quote(pkg));
+                grp = Pattern.compile('^' + Pattern.quote(pkg));
             }
 
             groups[i] = grp;

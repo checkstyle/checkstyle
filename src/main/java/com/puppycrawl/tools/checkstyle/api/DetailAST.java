@@ -361,7 +361,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
 
     @Override
     public String toString() {
-        return super.toString() + "[" + getLineNo() + "x" + getColumnNo() + "]";
+        return super.toString() + '[' + getLineNo() + 'x' + getColumnNo() + ']';
     }
 
     @Override

@@ -57,7 +57,7 @@ class PkgControl {
      */
     PkgControl(final PkgControl parent, final String subPkg) {
         this.parent = parent;
-        fullPackage = parent.getFullPackage() + "." + subPkg;
+        fullPackage = parent.getFullPackage() + '.' + subPkg;
         parent.children.add(this);
     }
 

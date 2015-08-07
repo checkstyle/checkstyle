@@ -392,7 +392,7 @@ public class CheckstyleAntTask extends Task {
             }
             catch (final IOException e) {
                 throw new BuildException("Error loading Properties file '"
-                        + propertiesFile + "'", e, getLocation());
+                        + propertiesFile + '\'', e, getLocation());
             }
             finally {
                 Closeables.closeQuietly(inStream);

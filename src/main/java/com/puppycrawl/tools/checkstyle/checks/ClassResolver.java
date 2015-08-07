@@ -76,7 +76,7 @@ public class ClassResolver {
             // when checking for "DataException", it will match on
             // "SecurityDataException". This has been the cause of a very
             // difficult bug to resolve!
-            if (imp.endsWith("." + name)) {
+            if (imp.endsWith('.' + name)) {
                 clazz = resolveQualifiedName(imp);
                 if (clazz != null) {
                     return clazz;
@@ -87,7 +87,7 @@ public class ClassResolver {
 
         // See if in the package
         if (!"".equals(pkg)) {
-            clazz = resolveQualifiedName(pkg + "." + name);
+            clazz = resolveQualifiedName(pkg + '.' + name);
             if (clazz != null) {
                 return clazz;
             }
@@ -120,8 +120,8 @@ public class ClassResolver {
             throws ClassNotFoundException {
         Class<?> clazz = null;
         if (!"".equals(currentClass)) {
-            final String innerClass = (!"".equals(pkg) ? pkg + "." : "")
-                + currentClass + "$" + name;
+            final String innerClass = (!"".equals(pkg) ? pkg + '.' : "")
+                + currentClass + '$' + name;
             if (isLoadable(innerClass)) {
                 clazz = safeLoad(innerClass);
             }
@@ -193,7 +193,7 @@ public class ClassResolver {
             final int dot = name.lastIndexOf('.');
             if (dot != -1) {
                 final String innerName =
-                    name.substring(0, dot) + "$" + name.substring(dot + 1);
+                    name.substring(0, dot) + '$' + name.substring(dot + 1);
                 if (isLoadable(innerName)) {
                     return safeLoad(innerName);
                 }

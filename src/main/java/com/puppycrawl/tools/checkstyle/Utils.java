@@ -115,7 +115,7 @@ public final class Utils {
                     withDotExtensions[i] = extension;
                 }
                 else {
-                    withDotExtensions[i] = "." + extension;
+                    withDotExtensions[i] = '.' + extension;
                 }
             }
 

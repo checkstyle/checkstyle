@@ -97,7 +97,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      */
     protected static int getLineNumber(List<String> lines, String keyName) {
         final String keyPatternString =
-                "^" + keyName.replace(" ", "\\\\ ") + "[\\s:=].*$";
+            '^' + keyName.replace(" ", "\\\\ ") + "[\\s:=].*$";
         final Pattern keyPattern = Pattern.compile(keyPatternString);
         int lineNumber = 1;
         final Matcher matcher = keyPattern.matcher("");

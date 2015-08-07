@@ -121,16 +121,16 @@ public class XMLLogger
     @Override
     public void addError(AuditEvent evt) {
         if (SeverityLevel.IGNORE != evt.getSeverityLevel()) {
-            writer.print("<error" + " line=\"" + evt.getLine() + "\"");
+            writer.print("<error" + " line=\"" + evt.getLine() + '"');
             if (evt.getColumn() > 0) {
-                writer.print(" column=\"" + evt.getColumn() + "\"");
+                writer.print(" column=\"" + evt.getColumn() + '"');
             }
             writer.print(" severity=\""
                 + evt.getSeverityLevel().getName()
-                + "\"");
+                + '"');
             writer.print(" message=\""
                 + encode(evt.getMessage())
-                + "\"");
+                + '"');
             writer.println(" source=\""
                 + encode(evt.getSourceName())
                 + "\"/>");

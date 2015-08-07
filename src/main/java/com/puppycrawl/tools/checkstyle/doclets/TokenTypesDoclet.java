@@ -78,7 +78,7 @@ public final class TokenTypesDoclet {
                         final String message = "Should be only one tag.";
                         throw new IllegalArgumentException(message);
                     }
-                    ps.println(field.name() + "="
+                    ps.println(field.name() + '='
                         + field.firstSentenceTags()[0].text());
                 }
             }

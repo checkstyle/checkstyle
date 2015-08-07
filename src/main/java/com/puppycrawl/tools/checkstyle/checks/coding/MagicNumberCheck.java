@@ -292,11 +292,11 @@ public class MagicNumberCheck extends Check {
         DetailAST reportAST = ast;
         if (parent.getType() == TokenTypes.UNARY_MINUS) {
             reportAST = parent;
-            text = "-" + text;
+            text = '-' + text;
         }
         else if (parent.getType() == TokenTypes.UNARY_PLUS) {
             reportAST = parent;
-            text = "+" + text;
+            text = '+' + text;
         }
         log(reportAST.getLineNo(),
                 reportAST.getColumnNo(),

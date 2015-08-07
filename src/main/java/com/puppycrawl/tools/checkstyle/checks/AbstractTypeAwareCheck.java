@@ -461,7 +461,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
             return "RegularClass[name=" + getName()
                 + ", in class=" + surroundingClass
                 + ", loadable=" + loadable
-                + ", class=" + classObj + "]";
+                + ", class=" + classObj + ']';
         }
     }
 
@@ -488,7 +488,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
         @Override
         public String toString() {
             return "ClassAlias[alias " + getName()
-                + " for " + classInfo + "]";
+                + " for " + classInfo + ']';
         }
     }
 
@@ -542,8 +542,8 @@ public abstract class AbstractTypeAwareCheck extends Check {
 
         @Override
         public String toString() {
-            return "Token[" + getText() + "(" + getLineNo()
-                + "x" + getColumnNo() + ")]";
+            return "Token[" + getText() + '(' + getLineNo()
+                + 'x' + getColumnNo() + ")]";
         }
     }
 }

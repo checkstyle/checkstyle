@@ -94,6 +94,6 @@ public class LineSet {
 
     @Override
     public String toString() {
-        return "LineSet[firstLine=" + firstLine() + ", lastLine=" + lastLine() + "]";
+        return "LineSet[firstLine=" + firstLine() + ", lastLine=" + lastLine() + ']';
     }
 }

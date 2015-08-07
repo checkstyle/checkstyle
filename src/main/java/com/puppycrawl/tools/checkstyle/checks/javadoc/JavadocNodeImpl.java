@@ -137,7 +137,7 @@ public class JavadocNodeImpl implements DetailNode {
     @Override
     public String toString() {
         return JavadocUtils.getTokenName(getType())
-                + "[" + getLineNumber() + "x" + getColumnNumber() + "]";
+                + '[' + getLineNumber() + 'x' + getColumnNumber() + ']';
     }
 
 }

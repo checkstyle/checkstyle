@@ -377,7 +377,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
                 fileExtensions[i] = extension;
             }
             else {
-                fileExtensions[i] = "." + extension;
+                fileExtensions[i] = '.' + extension;
             }
         }
     }
@@ -455,7 +455,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     public void setCharset(String charset)
         throws UnsupportedEncodingException {
         if (!Charset.isSupported(charset)) {
-            final String message = "unsupported charset: '" + charset + "'";
+            final String message = "unsupported charset: '" + charset + '\'';
             throw new UnsupportedEncodingException(message);
         }
         this.charset = charset;
