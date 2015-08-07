@@ -278,7 +278,7 @@ class FileDrop {
                     evt.rejectDrop();
                 }
             }
-            catch (final IOException | UnsupportedFlavorException io) {
+            catch (final IOException | UnsupportedFlavorException ignored) {
                 evt.rejectDrop();
             }
             finally {

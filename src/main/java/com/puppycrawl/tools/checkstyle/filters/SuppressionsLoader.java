@@ -107,7 +107,7 @@ public final class SuppressionsLoader
                     suppress.setChecks(checks);
                 }
             }
-            catch (final PatternSyntaxException e) {
+            catch (final PatternSyntaxException ignored) {
                 throw new SAXException("invalid files or checks format");
             }
             final String lines = atts.getValue("lines");
@@ -136,7 +136,7 @@ public final class SuppressionsLoader
             final URL url = new URL(filename);
             uri = url.toURI();
         }
-        catch (final MalformedURLException | URISyntaxException ex) {
+        catch (final MalformedURLException | URISyntaxException ignored) {
             // URL violating RFC 2396
             uri = null;
         }

@@ -92,7 +92,7 @@ public class NewlineAtEndOfFileCheck
                 Closeables.close(randomAccessFile, threw);
             }
         }
-        catch (final IOException e) {
+        catch (final IOException ignored) {
             log(0, MSG_KEY_UNABLE_OPEN, file.getPath());
         }
     }
