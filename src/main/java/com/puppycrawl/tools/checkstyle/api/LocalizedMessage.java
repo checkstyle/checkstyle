@@ -252,7 +252,7 @@ public final class LocalizedMessage
             final String pattern = bundle.getString(key);
             return MessageFormat.format(pattern, args);
         }
-        catch (final MissingResourceException ex) {
+        catch (final MissingResourceException ignored) {
             // If the Check author didn't provide i18n resource bundles
             // and logs error messages directly, this will return
             // the author's original message

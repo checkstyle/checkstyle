@@ -133,7 +133,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
             try {
                 headerRegexps.add(Pattern.compile(line));
             }
-            catch (final PatternSyntaxException ex) {
+            catch (final PatternSyntaxException ignored) {
                 throw new ConversionException("line "
                         + (headerRegexps.size() + 1)
                         + " in header specification"

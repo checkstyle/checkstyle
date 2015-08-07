@@ -201,7 +201,7 @@ public final class Utils {
         try {
             Pattern.compile(pattern);
         }
-        catch (final PatternSyntaxException e) {
+        catch (final PatternSyntaxException ignored) {
             return false;
         }
         return true;

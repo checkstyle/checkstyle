@@ -276,7 +276,7 @@ public class ParseTreeInfoPanel extends JPanel {
         try {
             new FileDrop(sp, new FileDropListener(sp));
         }
-        catch (final TooManyListenersException ex) {
+        catch (final TooManyListenersException ignored) {
            showErrorDialog(null, "Cannot initialize Drag and Drop support");
         }
 

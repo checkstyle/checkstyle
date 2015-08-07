@@ -212,7 +212,7 @@ public class XMLLogger
                     ent.substring(prefixLength, ent.length() - 1), radix);
                 return true;
             }
-            catch (final NumberFormatException nfe) {
+            catch (final NumberFormatException ignored) {
                 return false;
             }
         }

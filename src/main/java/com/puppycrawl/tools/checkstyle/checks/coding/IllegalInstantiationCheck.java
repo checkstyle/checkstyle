@@ -350,7 +350,7 @@ public class IllegalInstantiationCheck
                 isSamePackage = true;
             }
         }
-        catch (final ClassNotFoundException ex) {
+        catch (final ClassNotFoundException ignored) {
             // not a class from the same package
             isSamePackage = false;
         }

@@ -135,7 +135,7 @@ class PackageObjectFactory implements ModuleFactory {
         try {
             return doMakeObject(name);
         }
-        catch (final CheckstyleException ex) {
+        catch (final CheckstyleException ignored) {
             //try again with suffix "Check"
             try {
                 return doMakeObject(name + "Check");

@@ -307,7 +307,7 @@ public final class ConfigurationLoader {
             final URL url = new URL(config);
             uri = url.toURI();
         }
-        catch (final URISyntaxException | MalformedURLException ex) {
+        catch (final URISyntaxException | MalformedURLException ignored) {
             uri = null;
         }
 

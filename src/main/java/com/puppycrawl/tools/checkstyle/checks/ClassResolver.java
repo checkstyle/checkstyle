@@ -159,7 +159,7 @@ public class ClassResolver {
             safeLoad(name);
             return true;
         }
-        catch (final ClassNotFoundException | NoClassDefFoundError e) {
+        catch (final ClassNotFoundException | NoClassDefFoundError ignored) {
             return false;
         }
     }

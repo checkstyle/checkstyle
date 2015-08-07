@@ -223,7 +223,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
         try {
             return getClassResolver().resolve(className, currentClass);
         }
-        catch (final ClassNotFoundException e) {
+        catch (final ClassNotFoundException ignored) {
             return null;
         }
     }
