@@ -165,11 +165,11 @@ public class SuppressElement
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        final SuppressElement that = (SuppressElement) o;
-        return Objects.equals(filePattern, that.filePattern)
-                && Objects.equals(checkPattern, that.checkPattern)
-                && Objects.equals(moduleId, that.moduleId)
-                && Objects.equals(linesCSV, that.linesCSV)
-                && Objects.equals(columnsCSV, that.columnsCSV);
+        final SuppressElement suppressElement = (SuppressElement) o;
+        return Objects.equals(filePattern, suppressElement.filePattern)
+                && Objects.equals(checkPattern, suppressElement.checkPattern)
+                && Objects.equals(moduleId, suppressElement.moduleId)
+                && Objects.equals(linesCSV, suppressElement.linesCSV)
+                && Objects.equals(columnsCSV, suppressElement.columnsCSV);
     }
 }

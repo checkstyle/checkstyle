@@ -210,16 +210,16 @@ public final class LocalizedMessage
         if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        final LocalizedMessage that = (LocalizedMessage) object;
-        return Objects.equals(lineNo, that.lineNo)
-                && Objects.equals(colNo, that.colNo)
-                && Objects.equals(severityLevel, that.severityLevel)
-                && Objects.equals(moduleId, that.moduleId)
-                && Objects.equals(key, that.key)
-                && Objects.equals(bundle, that.bundle)
-                && Objects.equals(sourceClass, that.sourceClass)
-                && Objects.equals(customMessage, that.customMessage)
-                && Arrays.equals(args, that.args);
+        final LocalizedMessage localizedMessage = (LocalizedMessage) object;
+        return Objects.equals(lineNo, localizedMessage.lineNo)
+                && Objects.equals(colNo, localizedMessage.colNo)
+                && Objects.equals(severityLevel, localizedMessage.severityLevel)
+                && Objects.equals(moduleId, localizedMessage.moduleId)
+                && Objects.equals(key, localizedMessage.key)
+                && Objects.equals(bundle, localizedMessage.bundle)
+                && Objects.equals(sourceClass, localizedMessage.sourceClass)
+                && Objects.equals(customMessage, localizedMessage.customMessage)
+                && Arrays.equals(args, localizedMessage.args);
     }
 
     @Override

@@ -135,9 +135,9 @@ public final class FileContents implements CommentListener {
      **/
     public void reportCComment(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
-        final String[] cc = extractCComment(startLineNo, startColNo,
+        final String[] cComment = extractCComment(startLineNo, startColNo,
                 endLineNo, endColNo);
-        final Comment comment = new Comment(cc, startColNo, endLineNo,
+        final Comment comment = new Comment(cComment, startColNo, endLineNo,
                 endColNo);
 
         // save the comment

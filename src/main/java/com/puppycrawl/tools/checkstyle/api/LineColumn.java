@@ -71,9 +71,9 @@ public class LineColumn implements Comparable<LineColumn> {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        final LineColumn that = (LineColumn) o;
-        return Objects.equals(line, that.line)
-                && Objects.equals(col, that.col);
+        final LineColumn lineColumn = (LineColumn) o;
+        return Objects.equals(line, lineColumn.line)
+                && Objects.equals(col, lineColumn.col);
     }
 
     /** {@inheritDoc} */

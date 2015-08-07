@@ -347,8 +347,8 @@ public class FinalLocalVariableCheck extends Check {
             case TokenTypes.INSTANCE_INIT:
             case TokenTypes.METHOD_DEF:
                 final Map<String, DetailAST> state = scopeStack.pop();
-                for (DetailAST var : state.values()) {
-                    log(var.getLineNo(), var.getColumnNo(), MSG_KEY, var
+                for (DetailAST node : state.values()) {
+                    log(node.getLineNo(), node.getColumnNo(), MSG_KEY, node
                         .getText());
                 }
                 break;
