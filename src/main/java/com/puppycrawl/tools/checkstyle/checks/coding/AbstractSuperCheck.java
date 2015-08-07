@@ -173,7 +173,7 @@ public abstract class AbstractSuperCheck
      * @param methodCallDotAst DOT DetailAST
      * @return true if any parameters found
      */
-    private boolean hasArguments(DetailAST methodCallDotAst) {
+    private static boolean hasArguments(DetailAST methodCallDotAst) {
         final DetailAST argumentsList = methodCallDotAst.getNextSibling();
         return argumentsList.getChildCount() > 0;
     }
