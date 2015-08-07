@@ -112,7 +112,7 @@ final class PropertyCacheFile {
                 if (!currentConfigHash.equals(cachedConfigHash)) {
                     // Detected configuration change - clear cache
                     details.clear();
-                    details.put(CONFIG_HASH_KEY, currentConfigHash);
+                    details.setProperty(CONFIG_HASH_KEY, currentConfigHash);
                 }
             }
             finally {
@@ -121,7 +121,7 @@ final class PropertyCacheFile {
         }
         else {
             // put the hash in the file if the file is going to be created
-            details.put(CONFIG_HASH_KEY, currentConfigHash);
+            details.setProperty(CONFIG_HASH_KEY, currentConfigHash);
         }
     }
 
@@ -169,7 +169,7 @@ final class PropertyCacheFile {
      * @param timestamp the timestamp of the file
      */
     void put(String fileName, long timestamp) {
-        details.put(fileName, Long.toString(timestamp));
+        details.setProperty(fileName, Long.toString(timestamp));
     }
 
     /**
