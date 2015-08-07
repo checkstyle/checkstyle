@@ -150,7 +150,7 @@ public abstract class AbstractExpressionHandler {
     protected final void logError(DetailAST ast, String subtypeName,
                                   int actualLevel, IndentLevel expectedLevel) {
         final String typeStr =
-                "".equals(subtypeName) ? "" : " " + subtypeName;
+            subtypeName.isEmpty() ? "" : " " + subtypeName;
         String messageKey = MSG_ERROR;
         if (expectedLevel.isMultiLevel()) {
             messageKey = MSG_ERROR_MULTI;

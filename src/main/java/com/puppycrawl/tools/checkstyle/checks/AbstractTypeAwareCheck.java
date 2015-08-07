@@ -335,7 +335,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
      */
     private void processClass(DetailAST ast) {
         final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
-        currentClass += ("".equals(currentClass) ? "" : "$")
+        currentClass += (currentClass.isEmpty() ? "" : "$")
             + ident.getText();
 
         processTypeParams(ast);

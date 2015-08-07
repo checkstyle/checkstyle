@@ -92,7 +92,7 @@ public class IllegalTokenTextCheck
         final String text = ast.getText();
         if (getRegexp().matcher(text).find()) {
             String message = getMessage();
-            if ("".equals(message)) {
+            if (message.isEmpty()) {
                 message = MSG_KEY;
             }
             log(

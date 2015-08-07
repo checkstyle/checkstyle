@@ -255,7 +255,7 @@ public class RegexpCheck extends AbstractFormatCheck {
      * @param lineNumber the line number the message relates to.
      */
     private void logMessage(int lineNumber) {
-        String msg = "".equals(getMessage()) ? getFormat() : message;
+        String msg = getMessage().isEmpty() ? getFormat() : message;
         if (errorCount >= errorLimit) {
             msg = ERROR_LIMIT_EXCEEDED_MESSAGE + msg;
         }

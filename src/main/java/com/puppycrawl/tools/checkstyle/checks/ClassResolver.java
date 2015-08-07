@@ -87,7 +87,7 @@ public class ClassResolver {
         }
 
         // See if in the package
-        if (!"".equals(pkg)) {
+        if (pkg != null && !pkg.isEmpty()) {
             clazz = resolveQualifiedName(pkg + "." + name);
             if (clazz != null) {
                 return clazz;
@@ -120,8 +120,8 @@ public class ClassResolver {
     private Class<?> resolveInnerClass(String name, String currentClass)
             throws ClassNotFoundException {
         Class<?> clazz = null;
-        if (!"".equals(currentClass)) {
-            final String innerClass = (!"".equals(pkg) ? pkg + "." : "")
+        if (!currentClass.isEmpty()) {
+            final String innerClass = (!pkg.isEmpty() ? pkg + "." : "")
                 + currentClass + "$" + name;
             if (isLoadable(innerClass)) {
                 clazz = safeLoad(innerClass);
