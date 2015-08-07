@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -197,7 +196,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     private boolean allowMissingPropertyJavadoc;
 
     /** List of annotations that could allow missed documentation. */
-    private List<String> allowedAnnotations = Arrays.asList("Override");
+    private List<String> allowedAnnotations = Collections.singletonList("Override");
 
     /** Method names that match this pattern do not require javadoc blocks. */
     private Pattern ignoreMethodNamesRegex;
