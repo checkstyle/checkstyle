@@ -205,8 +205,8 @@ public class JavaNCSSCheck extends Check {
         //check if token is countable
         if (isCountable(ast)) {
             //increment the stacked counters
-            for (final Counter c : counters) {
-                c.increment();
+            for (final Counter counter : counters) {
+                counter.increment();
             }
         }
     }

@@ -155,11 +155,11 @@ public final class FileText extends AbstractList<String> {
         final BufferedReader br =
             new BufferedReader(new StringReader(fullText));
         while (true) {
-            final String l = br.readLine();
-            if (null == l) {
+            final String line = br.readLine();
+            if (null == line) {
                 break;
             }
-            lines.add(l);
+            lines.add(line);
         }
         this.lines = lines.toArray(new String[lines.size()]);
     }

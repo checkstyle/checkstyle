@@ -320,7 +320,7 @@ public class JTreeTable extends JTable {
         public Component getTableCellEditorComponent(JTable table,
                 Object value,
                 boolean isSelected,
-                int r, int c) {
+                int row, int column) {
             return tree;
         }
 

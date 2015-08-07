@@ -437,12 +437,12 @@ public final class ConfigurationLoader {
         parsePropertyString(value, fragments, propertyRefs);
 
         final StringBuilder sb = new StringBuilder();
-        final Iterator<String> i = fragments.iterator();
-        final Iterator<String> j = propertyRefs.iterator();
-        while (i.hasNext()) {
-            String fragment = i.next();
+        final Iterator<String> fragmentsIterator = fragments.iterator();
+        final Iterator<String> propertyRefsIterator = propertyRefs.iterator();
+        while (fragmentsIterator.hasNext()) {
+            String fragment = fragmentsIterator.next();
             if (fragment == null) {
-                final String propertyName = j.next();
+                final String propertyName = propertyRefsIterator.next();
                 fragment = props.resolve(propertyName);
                 if (fragment == null) {
                     if (defaultValue != null) {

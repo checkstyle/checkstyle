@@ -53,17 +53,17 @@ public final class JavadocUtils {
 
         String[] tempTokenValueToName = new String[0];
 
-        for (final Field f : fields) {
+        for (final Field field : fields) {
 
             // Only process public int fields.
-            if (!Modifier.isPublic(f.getModifiers())
-                    || f.getType() != Integer.TYPE) {
+            if (!Modifier.isPublic(field.getModifiers())
+                    || field.getType() != Integer.TYPE) {
                 continue;
             }
 
-            final String name = f.getName();
+            final String name = field.getName();
 
-            final int tokenValue = Utils.getIntFromField(f, name);
+            final int tokenValue = Utils.getIntFromField(field, name);
             builder.put(name, tokenValue);
             if (tokenValue > tempTokenValueToName.length - 1) {
                 final String[] temp = new String[tokenValue + 1];
@@ -231,19 +231,21 @@ public final class JavadocUtils {
 
     /**
      * Returns the first child token that has a specified type.
-     * @param node
+     * @param detailNode
      *        Javadoc AST node
      * @param type
      *        the token type to match
      * @return the matching token, or null if no match
      */
-    public static DetailNode findFirstToken(DetailNode node, int type) {
+    public static DetailNode findFirstToken(DetailNode detailNode, int type) {
         DetailNode retVal = null;
-        for (DetailNode i = getFirstChild(node); i != null; i = getNextSibling(i)) {
-            if (i.getType() == type) {
-                retVal = i;
+        DetailNode node = getFirstChild(detailNode);
+        while (node != null) {
+            if (node.getType() == type) {
+                retVal = node;
                 break;
             }
+            node = getNextSibling(node);
         }
         return retVal;
     }

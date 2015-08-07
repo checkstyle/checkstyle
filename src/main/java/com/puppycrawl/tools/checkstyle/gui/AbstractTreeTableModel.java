@@ -109,13 +109,13 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
     }
 
     @Override
-    public void addTreeModelListener(TreeModelListener l) {
-        listenerList.add(TreeModelListener.class, l);
+    public void addTreeModelListener(TreeModelListener listener) {
+        listenerList.add(TreeModelListener.class, listener);
     }
 
     @Override
-    public void removeTreeModelListener(TreeModelListener l) {
-        listenerList.remove(TreeModelListener.class, l);
+    public void removeTreeModelListener(TreeModelListener listener) {
+        listenerList.remove(TreeModelListener.class, listener);
     }
 
     /*

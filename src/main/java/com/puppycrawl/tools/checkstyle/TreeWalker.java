@@ -170,12 +170,12 @@ public final class TreeWalker
             throw new CheckstyleException(
                 "TreeWalker is not allowed as a parent of " + name);
         }
-        final Check c = (Check) module;
-        c.contextualize(childContext);
-        c.configure(childConf);
-        c.init();
+        final Check check = (Check) module;
+        check.contextualize(childContext);
+        check.configure(childConf);
+        check.init();
 
-        registerCheck(c);
+        registerCheck(check);
     }
 
     @Override
@@ -345,9 +345,9 @@ public final class TreeWalker
             checks = ordinaryChecks;
         }
 
-        for (Check ch : checks) {
-            ch.setFileContents(contents);
-            ch.beginTree(rootAST);
+        for (Check check : checks) {
+            check.setFileContents(contents);
+            check.beginTree(rootAST);
         }
     }
 
@@ -366,8 +366,8 @@ public final class TreeWalker
             checks = ordinaryChecks;
         }
 
-        for (Check ch : checks) {
-            ch.finishTree(rootAST);
+        for (Check check : checks) {
+            check.finishTree(rootAST);
         }
     }
 
@@ -393,8 +393,8 @@ public final class TreeWalker
             visitors = tokenToOrdinaryChecks.get(tokenType);
         }
 
-        for (Check c : visitors) {
-            c.visitToken(ast);
+        for (Check check : visitors) {
+            check.visitToken(ast);
         }
     }
 
@@ -421,8 +421,8 @@ public final class TreeWalker
             visitors = tokenToOrdinaryChecks.get(tokenType);
         }
 
-        for (Check ch : visitors) {
-            ch.leaveToken(ast);
+        for (Check check : visitors) {
+            check.leaveToken(ast);
         }
     }
 
@@ -464,11 +464,11 @@ public final class TreeWalker
 
     @Override
     public void destroy() {
-        for (Check c : ordinaryChecks) {
-            c.destroy();
+        for (Check check : ordinaryChecks) {
+            check.destroy();
         }
-        for (Check c : commentChecks) {
-            c.destroy();
+        for (Check check : commentChecks) {
+            check.destroy();
         }
         if (cache != null) {
             try {

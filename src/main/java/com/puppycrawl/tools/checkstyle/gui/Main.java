@@ -43,8 +43,8 @@ public class Main {
         final ParseTreeInfoPanel panel = new ParseTreeInfoPanel();
         frame.getContentPane().add(panel);
         if (args.length >= 1) {
-            final File f = new File(args[0]);
-            panel.openFile(f, frame);
+            final File file = new File(args[0]);
+            panel.openFile(file, frame);
         }
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

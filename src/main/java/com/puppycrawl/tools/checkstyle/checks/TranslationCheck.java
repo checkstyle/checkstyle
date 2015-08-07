@@ -160,8 +160,8 @@ public class TranslationCheck
         List<File> propFiles, String basenameSeparator) {
         final Map<String, Set<File>> propFileMap = Maps.newHashMap();
 
-        for (final File f : propFiles) {
-            final String identifier = extractPropertyIdentifier(f,
+        for (final File file : propFiles) {
+            final String identifier = extractPropertyIdentifier(file,
                 basenameSeparator);
 
             Set<File> fileSet = propFileMap.get(identifier);
@@ -169,7 +169,7 @@ public class TranslationCheck
                 fileSet = Sets.newHashSet();
                 propFileMap.put(identifier, fileSet);
             }
-            fileSet.add(f);
+            fileSet.add(file);
         }
         return propFileMap;
     }
