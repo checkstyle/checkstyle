@@ -111,14 +111,14 @@ public class AbstractCellEditor implements CellEditor {
 
     /** @see CellEditor */
     @Override
-    public void addCellEditorListener(CellEditorListener l) {
-        listenerList.add(CellEditorListener.class, l);
+    public void addCellEditorListener(CellEditorListener listener) {
+        listenerList.add(CellEditorListener.class, listener);
     }
 
     /** @see CellEditor */
     @Override
-    public void removeCellEditorListener(CellEditorListener l) {
-        listenerList.remove(CellEditorListener.class, l);
+    public void removeCellEditorListener(CellEditorListener listener) {
+        listenerList.remove(CellEditorListener.class, listener);
     }
 
     /*

@@ -247,18 +247,18 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
         }
 
         // Process each file
-        for (final File f : files) {
-            if (!Utils.fileExtensionMatches(f, fileExtensions)) {
+        for (final File file : files) {
+            if (!Utils.fileExtensionMatches(file, fileExtensions)) {
                 continue;
             }
-            final String fileName = f.getAbsolutePath();
+            final String fileName = file.getAbsolutePath();
             fireFileStarted(fileName);
             final SortedSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
             try {
-                final FileText theText = new FileText(f.getAbsoluteFile(),
+                final FileText theText = new FileText(file.getAbsoluteFile(),
                         charset);
                 for (final FileSetCheck fsc : fileSetChecks) {
-                    fileMessages.addAll(fsc.process(f, theText));
+                    fileMessages.addAll(fsc.process(file, theText));
                 }
             }
             catch (final IOException ioe) {

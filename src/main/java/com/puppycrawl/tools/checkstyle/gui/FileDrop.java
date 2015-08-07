@@ -88,15 +88,15 @@ class FileDrop {
      * sets all elements contained within as drop targets, though only
      * the top level container will change borders.
      *
-     * @param c Component on which files will be dropped.
+     * @param component Component on which files will be dropped.
      * @param listener Listens for <tt>filesDropped</tt>.
      * @since 1.0
      */
     FileDrop(
-            final Component c,
+            final Component component,
             final Listener listener)
             throws TooManyListenersException {
-        this(   c, // Drop target
+        this(   component, // Drop target
                 BorderFactory.createMatteBorder(2, 2, 2, 2, DEFAULT_BORDER_COLOR), // Drag border
                 true, // Recursive
                 listener);
@@ -109,23 +109,23 @@ class FileDrop {
      * <tt>System.out</tt> or <tt>System.err</tt>. A <tt>null</tt> value for
      * the parameter <tt>out</tt> will result in no debugging output.
      *
-     * @param c Component on which files will be dropped.
+     * @param component Component on which files will be dropped.
      * @param dragBorder Border to use on <tt>JComponent</tt> when dragging occurs.
      * @param recursive Recursively set children as drop targets.
      * @param listener Listens for <tt>filesDropped</tt>.
      * @since 1.0
      */
     FileDrop(
-            final Component c,
+            final Component component,
             final Border dragBorder,
             final boolean recursive,
             final Listener listener)
             throws TooManyListenersException {
-        dropListener = new FileDropTargetListener(c, dragBorder, listener);
-        makeDropTarget(c, recursive);
+        dropListener = new FileDropTargetListener(component, dragBorder, listener);
+        makeDropTarget(component, recursive);
     }
 
-    private void makeDropTarget(final Component c, boolean recursive)
+    private void makeDropTarget(final Component component, boolean recursive)
             throws TooManyListenersException {
         // Make drop target
         final DropTarget dt = new DropTarget();
@@ -133,25 +133,25 @@ class FileDrop {
 
         // Listen for hierarchy changes and remove the
         // drop target when the parent gets cleared out.
-        c.addHierarchyListener(new HierarchyListener() {
+        component.addHierarchyListener(new HierarchyListener() {
             @Override
             public void hierarchyChanged(HierarchyEvent evt) {
-                final Component parent = c.getParent();
+                final Component parent = component.getParent();
                 if (parent == null) {
-                    c.setDropTarget(null);
+                    component.setDropTarget(null);
                 }
                 else {
-                    new DropTarget(c, dropListener);
+                    new DropTarget(component, dropListener);
                 }
             }
         });
 
-        if (c.getParent() != null) {
-            new DropTarget(c, dropListener);
+        if (component.getParent() != null) {
+            new DropTarget(component, dropListener);
         }
 
-        if (recursive && c instanceof Container) {
-            final Container cont = (Container) c;
+        if (recursive && component instanceof Container) {
+            final Container cont = (Container) component;
             final Component[] comps = cont.getComponents();
             for (Component element : comps) {
                 makeDropTarget(element, recursive);
@@ -183,11 +183,11 @@ class FileDrop {
      * This will recursively unregister all components contained within
      * <var>c</var> if <var>c</var> is a {@link Container}.
      *
-     * @param c The component to unregister as a drop target
+     * @param component The component to unregister as a drop target
      * @since 1.0
      */
-    static void remove(Component c) {
-        remove(c, true);
+    static void remove(Component component) {
+        remove(component, true);
     }
 
     /**
@@ -195,14 +195,14 @@ class FileDrop {
      * from the all children. You should call this if you add and remove
      * components after you've set up the drag-and-drop.
      *
-     * @param c The component to unregister
+     * @param component The component to unregister
      * @param recursive Recursively unregister components within a container
      * @since 1.0
      */
-    static void remove(Component c, boolean recursive) {
-        c.setDropTarget(null);
-        if (recursive && c instanceof Container) {
-            final Component[] comps = ((Container) c).getComponents();
+    static void remove(Component component, boolean recursive) {
+        component.setDropTarget(null);
+        if (recursive && component instanceof Container) {
+            final Component[] comps = ((Container) component).getComponents();
             for (Component element : comps) {
                 remove(element, recursive);
             }
