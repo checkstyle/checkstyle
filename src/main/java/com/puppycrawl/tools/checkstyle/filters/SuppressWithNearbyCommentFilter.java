@@ -179,10 +179,10 @@ public class SuppressWithNearbyCommentFilter
         @Override
         public int compareTo(Tag other) {
             if (firstLine == other.firstLine) {
-                return lastLine - other.lastLine;
+                return Integer.compare(lastLine, other.lastLine);
             }
 
-            return firstLine - other.firstLine;
+            return Integer.compare(firstLine, other.firstLine);
         }
 
         /** {@inheritDoc} */
