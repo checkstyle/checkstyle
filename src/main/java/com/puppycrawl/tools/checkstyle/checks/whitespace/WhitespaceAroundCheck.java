@@ -102,7 +102,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * for, while, do-while loops and constructor bodies.
  * For example:
  *
- * <p>
+ *
  * <pre><code>
  * public MyClass() {}      // empty constructor
  * public void func() {}    // empty method
@@ -119,25 +119,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * To configure the check to allow empty method blocks use
  *
- * <p>
+ *
  * <pre>   &lt;property name="allowEmptyMethods" value="true" /&gt;</pre>
  *
  * <p>
  * To configure the check to allow empty constructor blocks use
  *
- * <p>
+ *
  * <pre>   &lt;property name="allowEmptyConstructors" value="true" /&gt;</pre>
  *
  * <p>
  * To configure the check to allow empty type blocks use
  *
- * <p>
+ *
  * <pre>   &lt;property name="allowEmptyTypes" value="true" /&gt;</pre>
  *
  * <p>
  * To configure the check to allow empty loop blocks use
  *
- * <p>
+ *
  * <pre>   &lt;property name="allowEmptyLoops" value="true" /&gt;</pre>
  *
  *
@@ -148,7 +148,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * To configure the check to ignore the colon
  *
- * <p>
+ *
  * <pre>   &lt;property name="ignoreEnhancedForColon" value="true" /&gt;</pre>
  *
  *

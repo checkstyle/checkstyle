@@ -248,10 +248,11 @@ public final class Utils {
 
     /**
      * Tests if this string starts with the specified prefix.
-     * <p/>
+     * <p>
      * It is faster version of {@link String#startsWith(String)} optimized for one-character
      * prefixes at the expense of some readability. Suggested by SimplifyStartsWith PMD rule:
      * http://pmd.sourceforge.net/pmd-5.3.1/pmd-java/rules/java/optimizations.html#SimplifyStartsWith
+     * </p>
      *
      * @param string the <code>String</code> to check
      * @param prefix the prefix to find
@@ -264,10 +265,11 @@ public final class Utils {
 
     /**
      * Tests if this string ends with the specified suffix.
-     * <p/>
+     * <p>
      * It is faster version of {@link String#endsWith(String)} optimized for one-character
      * suffixes at the expense of some readability. Suggested by SimplifyStartsWith PMD rule:
      * http://pmd.sourceforge.net/pmd-5.3.1/pmd-java/rules/java/optimizations.html#SimplifyStartsWith
+     * </p>
      *
      * @param string the <code>String</code> to check
      * @param suffix the suffix to find

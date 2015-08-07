@@ -39,9 +39,9 @@ public class CodeSelector {
 
     /**
      * Constructor
-     * @param ast
-     * @param editor
-     * @param lines2position
+     * @param ast ast node.
+     * @param editor text area editor.
+     * @param lines2position list to map lines.
      */
     public CodeSelector(final DetailAST ast, final JTextArea editor,
                         final List<Integer> lines2position) {

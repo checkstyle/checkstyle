@@ -154,7 +154,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * To configure the Check allows static imports grouped to the <b>top</b>
  * being sorted alphabetically:
  * </p>
- * <p>
+ *
  * <pre>
  * <code>
  * import static java.lang.Math.abs;
@@ -167,7 +167,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * public class SomeClass { ... }
  * </code>
  * </pre>
- * </p>
+ *
  *
  * @author Bill Schneider
  * @author o_sukhodolsky

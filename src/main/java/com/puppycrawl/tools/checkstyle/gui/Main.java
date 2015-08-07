@@ -37,6 +37,7 @@ public class Main {
 
     /**
      * Entry point
+     * @param args the command line arguments.
      */
     public static void main(String... args) {
         frame = new JFrame("CheckStyle");
@@ -54,7 +55,7 @@ public class Main {
 
     /**
      * Method is used for testing inthe past
-     * @param ast
+     * @param ast tree to display
      */
     public static void displayAst(DetailAST ast) {
         JFrame frame = new JFrame("CheckStyle");

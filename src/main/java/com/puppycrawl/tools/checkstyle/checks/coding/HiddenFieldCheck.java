@@ -104,9 +104,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name="ignoreFormat" value="^test$"/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>
- * <code>
+ *
  * <pre>
+ * <code>
  * class SomeClass
  * {
  *     private List&lt;String&gt; test;
@@ -122,9 +122,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *         ...
  *     }
  * }
- * </pre>
  * </code>
- * </p>
+ * </pre>
+ *
  * @author Dmitri Priimak
  */
 public class HiddenFieldCheck

@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * number is a numeric literal that is not defined as a constant.
  * By default, -1, 0, 1, and 2 are not considered to be magic numbers.
  * </p>
- * <p>
+ *
  * Constant definition is any variable/field that has 'final' modifier.
  * It is fine to have one constant defining multiple numeric literals within one expression:
  * <pre>
@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * static final Border STANDARD_BORDER = BorderFactory.createEmptyBorder(3, 3, 3, 3);
  * static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);</code>
  * </pre>
- * </p>
+ *
  * <p>
  * Check have following options:
  * ignoreHashCodeMethod - ignore magic numbers in hashCode methods;

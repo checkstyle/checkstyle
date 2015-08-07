@@ -28,16 +28,16 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 
 /**
  * <p>
- * Checks that <a href="
- * http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
+ * Checks that <a href=
+ * "http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
  * Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
- * By default Check validate that first sentence is not empty:</p><br/>
+ * By default Check validate that first sentence is not empty:</p><br>
  * <pre>
  * &lt;module name=&quot;SummaryJavadocCheck&quot;/&gt;
  * </pre>
  * <p>
  * To ensure that summary do not contain phrase like "This method returns" , use following config:
- * <p>
+ *
  * <pre>
  * &lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
  *     &lt;property name=&quot;forbiddenSummaryFragments&quot;
@@ -46,13 +46,14 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * </pre>
  * <p>
  * To specify period symbol at the end of first javadoc sentence - use following config:
+ * </p>
  * <pre>
  * &lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
  *     &lt;property name=&quot;period&quot;
  *     value=&quot;period&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * </p>
+ *
  *
  * @author max
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
