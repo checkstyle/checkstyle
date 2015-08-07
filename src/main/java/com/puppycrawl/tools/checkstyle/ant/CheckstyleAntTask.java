@@ -283,13 +283,13 @@ public class CheckstyleAntTask extends Task {
         }
 
         // Create the checker
-        Checker c = null;
+        Checker checker = null;
         try {
-            c = createChecker();
+            checker = createChecker();
 
             final SeverityLevelCounter warningCounter =
                 new SeverityLevelCounter(SeverityLevel.WARNING);
-            c.addListener(warningCounter);
+            checker.addListener(warningCounter);
 
             // Process the files
             long startTime = System.currentTimeMillis();
@@ -303,7 +303,7 @@ public class CheckstyleAntTask extends Task {
             log("Using configuration " + configLocation, Project.MSG_VERBOSE);
 
             startTime = System.currentTimeMillis();
-            final int numErrs = c.process(files);
+            final int numErrs = checker.process(files);
             endTime = System.currentTimeMillis();
             log("To process the files took " + (endTime - startTime) + " ms.",
                 Project.MSG_VERBOSE);
@@ -326,8 +326,8 @@ public class CheckstyleAntTask extends Task {
             }
         }
         finally {
-            if (c != null) {
-                c.destroy();
+            if (checker != null) {
+                checker.destroy();
             }
         }
     }
@@ -337,7 +337,7 @@ public class CheckstyleAntTask extends Task {
      * @return new instance of <code>Checker</code>
      */
     private Checker createChecker() {
-        Checker c = null;
+        Checker checker = null;
         try {
             final Properties props = createOverridingProperties();
             final Configuration config =
@@ -355,15 +355,15 @@ public class CheckstyleAntTask extends Task {
                 Checker.class.getClassLoader();
             context.add("moduleClassLoader", moduleClassLoader);
 
-            c = new Checker();
+            checker = new Checker();
 
-            c.contextualize(context);
-            c.configure(config);
+            checker.contextualize(context);
+            checker.configure(config);
 
             // setup the listeners
             final AuditListener[] listeners = getListeners();
             for (AuditListener element : listeners) {
-                c.addListener(element);
+                checker.addListener(element);
             }
         }
         catch (final Exception e) {
@@ -371,7 +371,7 @@ public class CheckstyleAntTask extends Task {
                     + e.getMessage(), e);
         }
 
-        return c;
+        return checker;
     }
 
     /**
@@ -437,8 +437,8 @@ public class CheckstyleAntTask extends Task {
         }
         else {
             for (int i = 0; i < formatterCount; i++) {
-                final Formatter f = formatters.get(i);
-                listeners[i] = f.createListener(this);
+                final Formatter formatter = formatters.get(i);
+                listeners[i] = formatter.createListener(this);
             }
         }
         return listeners;

@@ -68,11 +68,11 @@ public class ParseTreeInfoPanel extends JPanel {
 
     private static class JavaFileFilter extends FileFilter {
         @Override
-        public boolean accept(File f) {
-            if (f == null) {
+        public boolean accept(File file) {
+            if (file == null) {
                 return false;
             }
-            return f.isDirectory() || f.getName().endsWith(".java");
+            return file.isDirectory() || file.getName().endsWith(".java");
         }
 
         @Override

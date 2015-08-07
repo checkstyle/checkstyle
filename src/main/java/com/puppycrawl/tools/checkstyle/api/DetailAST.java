@@ -327,8 +327,8 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
      */
     public int getChildCount(int type) {
         int count = 0;
-        for (AST i = getFirstChild(); i != null; i = i.getNextSibling()) {
-            if (i.getType() == type) {
+        for (AST ast = getFirstChild(); ast != null; ast = ast.getNextSibling()) {
+            if (ast.getType() == type) {
                 count++;
             }
         }
@@ -350,9 +350,9 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
      */
     public DetailAST findFirstToken(int type) {
         DetailAST retVal = null;
-        for (DetailAST i = getFirstChild(); i != null; i = i.getNextSibling()) {
-            if (i.getType() == type) {
-                retVal = i;
+        for (DetailAST ast = getFirstChild(); ast != null; ast = ast.getNextSibling()) {
+            if (ast.getType() == type) {
+                retVal = ast;
                 break;
             }
         }
