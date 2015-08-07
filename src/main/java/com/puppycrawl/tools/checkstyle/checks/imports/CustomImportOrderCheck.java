@@ -782,10 +782,10 @@ public class CustomImportOrderCheck extends Check {
          */
         public ImportDetails(String importFullPath,
                 int lineNumber, String importGroup, boolean staticImport) {
-            setImportFullPath(importFullPath);
-            setLineNumber(lineNumber);
-            setImportGroup(importGroup);
-            setStaticImport(staticImport);
+            this.importFullPath = importFullPath;
+            this.lineNumber = lineNumber;
+            this.importGroup = importGroup;
+            this.staticImport = staticImport;
         }
 
         /**

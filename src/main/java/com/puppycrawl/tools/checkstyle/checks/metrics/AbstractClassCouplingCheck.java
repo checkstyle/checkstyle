@@ -78,7 +78,7 @@ public abstract class AbstractClassCouplingCheck extends Check {
      * @param defaultMax default value for allowed complexity.
      */
     protected AbstractClassCouplingCheck(int defaultMax) {
-        setMax(defaultMax);
+        this.max = defaultMax;
     }
 
     @Override
