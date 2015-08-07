@@ -76,15 +76,6 @@ public final class PackageNamesLoader
         super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
     }
 
-    /**
-     * Returns the set of fully qualified package names this
-     * this loader processed.
-     * @return the set of package names
-     */
-    private Set<String> getPackageNames() {
-        return packageNames;
-    }
-
     @Override
     public void startElement(String namespaceURI,
                              String localName,
@@ -163,7 +154,7 @@ public final class PackageNamesLoader
                 }
             }
 
-            result = namesLoader.getPackageNames();
+            result = namesLoader.packageNames;
 
         }
         catch (IOException e) {

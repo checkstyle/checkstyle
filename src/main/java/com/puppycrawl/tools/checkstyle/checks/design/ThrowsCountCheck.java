@@ -136,9 +136,9 @@ public final class ThrowsCountCheck extends Check {
                 && !isOverriding(ast)) {
             // Account for all the commas!
             final int count = (ast.getChildCount() + 1) / 2;
-            if (count > getMax()) {
+            if (count > max) {
                 log(ast.getLineNo(),  ast.getColumnNo(), MSG_KEY,
-                    count, getMax());
+                    count, max);
             }
         }
     }

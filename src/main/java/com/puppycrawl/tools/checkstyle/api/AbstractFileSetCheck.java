@@ -73,12 +73,12 @@ public abstract class AbstractFileSetCheck
     @Override
     public final SortedSet<LocalizedMessage> process(File file,
                                                    List<String> lines) {
-        getMessageCollector().reset();
+        messages.reset();
         // Process only what interested in
         if (Utils.fileExtensionMatches(file, fileExtensions)) {
             processFiltered(file, lines);
         }
-        return getMessageCollector().getMessages();
+        return messages.getMessages();
     }
 
     /** {@inheritDoc} */
@@ -154,16 +154,16 @@ public abstract class AbstractFileSetCheck
     @Override
     public final void log(int lineNo, int colNo, String key,
             Object... args) {
-        getMessageCollector().add(
+        messages.add(
             new LocalizedMessage(lineNo,
-                                 colNo,
-                                 getMessageBundle(),
-                                 key,
-                                 args,
-                                 getSeverityLevel(),
-                                 getId(),
-                                 this.getClass(),
-                                 this.getCustomMessages().get(key)));
+                colNo,
+                getMessageBundle(),
+                key,
+                args,
+                getSeverityLevel(),
+                getId(),
+                this.getClass(),
+                this.getCustomMessages().get(key)));
     }
 
     /**
@@ -173,9 +173,9 @@ public abstract class AbstractFileSetCheck
      * @param fileName the audited file
      */
     protected final void fireErrors(String fileName) {
-        final SortedSet<LocalizedMessage> errors = getMessageCollector()
+        final SortedSet<LocalizedMessage> errors = messages
                 .getMessages();
-        getMessageCollector().reset();
+        messages.reset();
         getMessageDispatcher().fireErrors(fileName, errors);
     }
 }

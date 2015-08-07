@@ -57,7 +57,7 @@ class PkgControl {
      */
     PkgControl(final PkgControl parent, final String subPkg) {
         this.parent = parent;
-        fullPackage = parent.getFullPackage() + "." + subPkg;
+        fullPackage = parent.fullPackage + "." + subPkg;
         parent.children.add(this);
     }
 
@@ -85,7 +85,7 @@ class PkgControl {
         // Check if we are a match.
         // This algormithm should be improved to check for a trailing "."
         // or nothing following.
-        if (!forPkg.startsWith(getFullPackage())) {
+        if (!forPkg.startsWith(fullPackage)) {
             return null;
         }
 

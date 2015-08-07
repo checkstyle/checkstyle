@@ -86,9 +86,9 @@ public class ParseTreeInfoPanel extends JPanel {
         reloadAction.setEnabled(true);
 
         // clear for each new file
-        getLines2position().clear();
+        lines2position.clear();
         // starts line counting at 1
-        getLines2position().add(0);
+        lines2position.add(0);
         // insert the contents of the file to the text area
 
         // clean the text area before inserting the lines of the new file
@@ -175,12 +175,12 @@ public class ParseTreeInfoPanel extends JPanel {
                 final String[] sourceLines = text.toLinesArray();
 
                 // clear for each new file
-                 getLines2position().clear();
+                lines2position.clear();
                  // starts line counting at 1
-                 getLines2position().add(0);
+                lines2position.add(0);
                  // insert the contents of the file to the text area
                  for (String element : sourceLines) {
-                   getLines2position().add(jTextArea.getText().length());
+                     lines2position.add(jTextArea.getText().length());
                    jTextArea.append(element + "\n");
                  }
 
