@@ -209,16 +209,16 @@ public final class AnnotationUseStyleCheck extends Check {
      * Retrieves an {@link Enum Enum} type from a @{link String String}.
      * @param <T> the enum type
      * @param enuclass the enum class
-     * @param string the string representing the enum
+     * @param value the string representing the enum
      * @return the enum type
      */
     private static <T extends Enum<T>> T getOption(final Class<T> enuclass,
-        final String string) {
+        final String value) {
         try {
-            return Enum.valueOf(enuclass, string.trim().toUpperCase(Locale.ENGLISH));
+            return Enum.valueOf(enuclass, value.trim().toUpperCase(Locale.ENGLISH));
         }
         catch (final IllegalArgumentException iae) {
-            throw new ConversionException("unable to parse " + string, iae);
+            throw new ConversionException("unable to parse " + value, iae);
         }
     }
 

@@ -238,20 +238,20 @@ public class SuppressWithNearbyCommentFilter
         /**
          * Expand based on a matching comment.
          * @param comment the comment.
-         * @param string the string to expand.
+         * @param stringToExpand the string to expand.
          * @param regexp the parsed expander.
          * @return the expanded string
          */
         private static String expandFrocomment(
             String comment,
-            String string,
+            String stringToExpand,
             Pattern regexp) {
             final Matcher matcher = regexp.matcher(comment);
             // Match primarily for effect.
             if (!matcher.find()) {
-                return string;
+                return stringToExpand;
             }
-            String result = string;
+            String result = stringToExpand;
             for (int i = 0; i <= matcher.groupCount(); i++) {
                 // $n expands comment match like in Pattern.subst().
                 result = result.replaceAll("\\$" + i, matcher.group(i));

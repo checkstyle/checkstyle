@@ -63,8 +63,8 @@ class IntRangeFilter implements IntFilter {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        final IntRangeFilter that = (IntRangeFilter) o;
-        return Objects.equals(lowerBound, that.lowerBound)
-                && Objects.equals(upperBound, that.upperBound);
+        final IntRangeFilter intRangeFilter = (IntRangeFilter) o;
+        return Objects.equals(lowerBound, intRangeFilter.lowerBound)
+                && Objects.equals(upperBound, intRangeFilter.upperBound);
     }
 }

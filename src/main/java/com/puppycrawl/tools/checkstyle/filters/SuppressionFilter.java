@@ -64,8 +64,8 @@ public class SuppressionFilter
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        final SuppressionFilter that = (SuppressionFilter) obj;
-        return Objects.equals(filters, that.filters);
+        final SuppressionFilter suppressionFilter = (SuppressionFilter) obj;
+        return Objects.equals(filters, suppressionFilter.filters);
     }
 
     @Override

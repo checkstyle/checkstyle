@@ -322,14 +322,14 @@ public class UnnecessaryParenthesesCheck extends Check {
      * Returns the specified string chopped to <code>MAX_QUOTED_LENGTH</code>
      * plus an ellipsis (...) if the length of the string exceeds <code>
      * MAX_QUOTED_LENGTH</code>.
-     * @param string the string to potentially chop.
+     * @param value the string to potentially chop.
      * @return the chopped string if <code>string</code> is longer than
      *         <code>MAX_QUOTED_LENGTH</code>; otherwise <code>string</code>.
      */
-    private static String chopString(String string) {
-        if (string.length() > MAX_QUOTED_LENGTH) {
-            return string.substring(0, MAX_QUOTED_LENGTH) + "...\"";
+    private static String chopString(String value) {
+        if (value.length() > MAX_QUOTED_LENGTH) {
+            return value.substring(0, MAX_QUOTED_LENGTH) + "...\"";
         }
-        return string;
+        return value;
     }
 }

@@ -169,17 +169,17 @@ public final class Utils {
      * Returns the length of a String prefix with tabs expanded.
      * Each tab is counted as the number of characters is takes to
      * jump to the next tab stop.
-     * @param string the input String
+     * @param inputString the input String
      * @param toIdx index in string (exclusive) where the calculation stops
      * @param tabWidth the distance between tab stop position.
      * @return the length of string.substring(0, toIdx) with tabs expanded.
      */
-    public static int lengthExpandedTabs(String string,
+    public static int lengthExpandedTabs(String inputString,
                                          int toIdx,
                                          int tabWidth) {
         int len = 0;
         for (int idx = 0; idx < toIdx; idx++) {
-            if (string.charAt(idx) == '\t') {
+            if (inputString.charAt(idx) == '\t') {
                 len = (len / tabWidth + 1) * tabWidth;
             }
             else {
@@ -253,13 +253,13 @@ public final class Utils {
      * prefixes at the expense of some readability. Suggested by SimplifyStartsWith PMD rule:
      * http://pmd.sourceforge.net/pmd-5.3.1/pmd-java/rules/java/optimizations.html#SimplifyStartsWith
      *
-     * @param string the <code>String</code> to check
+     * @param value the <code>String</code> to check
      * @param prefix the prefix to find
      * @return <code>true</code> if the <code>char</code> is a prefix of the given
      * <code>String</code>; <code>false</code> otherwise.
      */
-    public static boolean startsWithChar(String string, char prefix) {
-        return !string.isEmpty() && string.charAt(0) == prefix;
+    public static boolean startsWithChar(String value, char prefix) {
+        return !value.isEmpty() && value.charAt(0) == prefix;
     }
 
     /**
@@ -269,13 +269,13 @@ public final class Utils {
      * suffixes at the expense of some readability. Suggested by SimplifyStartsWith PMD rule:
      * http://pmd.sourceforge.net/pmd-5.3.1/pmd-java/rules/java/optimizations.html#SimplifyStartsWith
      *
-     * @param string the <code>String</code> to check
+     * @param value the <code>String</code> to check
      * @param suffix the suffix to find
      * @return <code>true</code> if the <code>char</code> is a suffix of the given
      * <code>String</code>; <code>false</code> otherwise.
      */
-    public static boolean endsWithChar(String string, char suffix) {
-        return !string.isEmpty() && string.charAt(string.length() - 1) == suffix;
+    public static boolean endsWithChar(String value, char suffix) {
+        return !value.isEmpty() && value.charAt(value.length() - 1) == suffix;
     }
 
     /**
