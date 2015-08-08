@@ -159,7 +159,11 @@ class FileDrop {
         }
     }
 
-    /** Determine if the dragged data is a file list. */
+    /**
+     * Determine if the dragged data is a file list.
+     *
+     * @return True if the drag was ok
+     */
     private static boolean isDragOk(final DropTargetDragEvent evt) {
         boolean ok = false;
         final DataFlavor[] flavors = evt.getCurrentDataFlavors();
