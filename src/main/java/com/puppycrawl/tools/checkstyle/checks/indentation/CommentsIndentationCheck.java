@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * To configure the Check:
  * </p>
- * <p>
+ *
  * <pre>
  * <code>
  * &lt;module name=&quot;CommentsIndentation&quot;/module&gt;
@@ -59,7 +59,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * String str1 = "";
  * </code>
  * </pre>
- * </p>
+ *
  *
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
