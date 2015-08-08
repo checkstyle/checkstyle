@@ -247,8 +247,9 @@ public class AutomaticBean
      */
     private static class RelaxedStringArrayConverter implements Converter {
         /** {@inheritDoc} */
+        @SuppressWarnings({"unchecked", "rawtypes"})
         @Override
-        public Object convert(@SuppressWarnings("rawtypes") Class type, Object value) {
+        public Object convert(Class type, Object value) {
             // Convert to a String and trim it for the tokenizer.
             final StringTokenizer st = new StringTokenizer(
                 value.toString().trim(), ",");
