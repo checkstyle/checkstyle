@@ -174,7 +174,6 @@ public class SuppressWithNearbyCommentFilter
          * @return a negative number if this tag is before the other tag,
          * 0 if they are at the same position, and a positive number if this
          * tag is after the other tag.
-         * @see Comparable#compareTo(Object)
          */
         @Override
         public int compareTo(Tag other) {

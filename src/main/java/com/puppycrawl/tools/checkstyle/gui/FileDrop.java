@@ -83,7 +83,7 @@ class FileDrop {
             new Color(0f, 0f, 1f, 0.25f);
 
     /**
-     * Constructs a {@link FileDrop} with a default light-blue border
+     * Constructs a class with a default light-blue border
      * and, if <var>c</var> is a {@link Container}, recursively
      * sets all elements contained within as drop targets, though only
      * the top level container will change borders.
