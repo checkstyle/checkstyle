@@ -87,36 +87,36 @@ public class JavadocTag {
 
     /** @return whether the tag is an 'return' tag **/
     public boolean isReturnTag() {
-        return JavadocTagInfo.RETURN == tagInfo;
+        return tagInfo == JavadocTagInfo.RETURN;
     }
 
     /** @return whether the tag is an 'param' tag **/
     public boolean isParamTag() {
-        return JavadocTagInfo.PARAM == tagInfo;
+        return tagInfo == JavadocTagInfo.PARAM;
     }
 
     /** @return whether the tag is an 'throws' or 'exception' tag **/
     public boolean isThrowsTag() {
-        return JavadocTagInfo.THROWS == tagInfo
-            || JavadocTagInfo.EXCEPTION == tagInfo;
+        return tagInfo == JavadocTagInfo.THROWS
+            || tagInfo == JavadocTagInfo.EXCEPTION;
     }
 
     /** @return whether the tag is a 'see' or 'inheritDoc' tag **/
     public boolean isSeeOrInheritDocTag() {
-        return JavadocTagInfo.SEE == tagInfo || isInheritDocTag();
+        return tagInfo == JavadocTagInfo.SEE || isInheritDocTag();
     }
 
     /** @return whether the tag is a 'inheritDoc' tag **/
     public boolean isInheritDocTag() {
-        return JavadocTagInfo.INHERIT_DOC == tagInfo;
+        return tagInfo == JavadocTagInfo.INHERIT_DOC;
     }
 
     /** @return whether the tag can contain references to imported classes **/
     public boolean canReferenceImports() {
-        return JavadocTagInfo.SEE == tagInfo
-                || JavadocTagInfo.LINK == tagInfo
-                || JavadocTagInfo.LINKPLAIN == tagInfo
-                || JavadocTagInfo.THROWS == tagInfo
-                || JavadocTagInfo.EXCEPTION == tagInfo;
+        return tagInfo == JavadocTagInfo.SEE
+                || tagInfo == JavadocTagInfo.LINK
+                || tagInfo == JavadocTagInfo.LINKPLAIN
+                || tagInfo == JavadocTagInfo.THROWS
+                || tagInfo == JavadocTagInfo.EXCEPTION;
     }
 }

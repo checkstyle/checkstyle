@@ -76,10 +76,10 @@ public class RedundantModifierCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (TokenTypes.INTERFACE_DEF == ast.getType()) {
+        if (ast.getType() == TokenTypes.INTERFACE_DEF) {
             checkInterfaceModifiers(ast);
         }
-        else if (TokenTypes.CTOR_DEF == ast.getType()
+        else if (ast.getType() == TokenTypes.CTOR_DEF
                 && isEnumMember(ast)) {
             checkEnumConstructorModifiers(ast);
         }

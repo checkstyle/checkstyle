@@ -34,7 +34,7 @@ class CommentSuppressor implements MatchSuppressor {
     @Override
     public boolean shouldSuppress(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
-        return null != currentContents
+        return currentContents != null
                 && currentContents.hasIntersectionWithComment(startLineNo,
                         startColNo, endLineNo, endColNo);
     }

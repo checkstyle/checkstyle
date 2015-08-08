@@ -115,7 +115,7 @@ public final class LocalizedMessage
         this.lineNo = lineNo;
         this.colNo = colNo;
         this.key = key;
-        this.args = null == args ? null : args.clone();
+        this.args = args == null ? null : args.clone();
         this.bundle = bundle;
         this.severityLevel = severityLevel;
         this.moduleId = moduleId;

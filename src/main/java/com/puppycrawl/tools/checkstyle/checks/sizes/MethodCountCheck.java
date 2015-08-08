@@ -110,7 +110,7 @@ public final class MethodCountCheck extends Check {
          */
         int value(Scope scope) {
             final Integer value = counts.get(scope);
-            return null == value ? 0 : value;
+            return value == null ? 0 : value;
         }
 
         /** @return the total number of methods. */
@@ -158,21 +158,21 @@ public final class MethodCountCheck extends Check {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (TokenTypes.METHOD_DEF == ast.getType()) {
+        if (ast.getType() == TokenTypes.METHOD_DEF) {
             raiseCounter(ast);
         }
         else {
-            final boolean inInterface = TokenTypes.INTERFACE_DEF == ast.getType();
+            final boolean inInterface = ast.getType() == TokenTypes.INTERFACE_DEF;
             counters.push(new MethodCounter(inInterface));
         }
     }
 
     @Override
     public void leaveToken(DetailAST ast) {
-        if (TokenTypes.CLASS_DEF == ast.getType()
-            || TokenTypes.INTERFACE_DEF == ast.getType()
-            || TokenTypes.ENUM_CONSTANT_DEF == ast.getType()
-            || TokenTypes.ENUM_DEF == ast.getType()) {
+        if (ast.getType() == TokenTypes.CLASS_DEF
+            || ast.getType() == TokenTypes.INTERFACE_DEF
+            || ast.getType() == TokenTypes.ENUM_CONSTANT_DEF
+            || ast.getType() == TokenTypes.ENUM_DEF) {
             final MethodCounter counter = counters.pop();
             checkCounters(counter, ast);
         }

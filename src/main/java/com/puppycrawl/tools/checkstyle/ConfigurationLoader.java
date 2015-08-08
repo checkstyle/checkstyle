@@ -207,7 +207,7 @@ public final class ConfigurationLoader {
                 // omit this module if these should be omitted and the module
                 // has the severity 'ignore'
                 final boolean omitModule = omitIgnoredModules
-                    && SeverityLevel.IGNORE == level;
+                    && level == SeverityLevel.IGNORE;
 
                 if (omitModule && !configStack.isEmpty()) {
                     final DefaultConfiguration parentModule =

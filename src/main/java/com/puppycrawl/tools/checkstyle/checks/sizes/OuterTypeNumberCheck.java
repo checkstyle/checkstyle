@@ -69,7 +69,7 @@ public class OuterTypeNumberCheck extends Check {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (0 == currentDepth) {
+        if (currentDepth == 0) {
             outerNum++;
         }
         currentDepth++;
