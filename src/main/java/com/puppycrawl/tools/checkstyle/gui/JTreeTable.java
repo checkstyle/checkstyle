@@ -249,10 +249,8 @@ public class JTreeTable extends JTable {
                 // exception to be thrown if the border selection color is
                 // null.
                 // dtcr.setBorderSelectionColor(null);
-                dtcr.setTextSelectionColor(UIManager.getColor
-                        ("Table.selectionForeground"));
-                dtcr.setBackgroundSelectionColor(UIManager.getColor
-                        ("Table.selectionBackground"));
+                dtcr.setTextSelectionColor(UIManager.getColor("Table.selectionForeground"));
+                dtcr.setBackgroundSelectionColor(UIManager.getColor("Table.selectionBackground"));
             }
         }
 
@@ -383,8 +381,7 @@ public class JTreeTable extends JTable {
 
         public ListToTreeSelectionModelWrapper() {
             super();
-            getListSelectionModel().addListSelectionListener
-                    (createListSelectionListener());
+            getListSelectionModel().addListSelectionListener(createListSelectionListener());
         }
 
         /**
@@ -448,8 +445,7 @@ public class JTreeTable extends JTable {
                     if (min != -1 && max != -1) {
                         for (int counter = min; counter <= max; counter++) {
                             if (listSelectionModel.isSelectedIndex(counter)) {
-                                final TreePath selPath = tree.getPathForRow
-                                        (counter);
+                                final TreePath selPath = tree.getPathForRow(counter);
 
                                 if (selPath != null) {
                                     addSelectionPath(selPath);
