@@ -163,7 +163,7 @@ public class ParseTreeInfoPanel extends JPanel {
     public void openFile(File file, final Component parent) {
         if (file != null) {
             try {
-                Main.frame.setTitle("Checkstyle : " + file.getName());
+                Main.getFrame().setTitle("Checkstyle : " + file.getName());
                 final FileText text = new FileText(file.getAbsoluteFile(),
                                                    getEncoding());
                 final DetailAST parseTree = parseFile(text);
@@ -298,12 +298,12 @@ public class ParseTreeInfoPanel extends JPanel {
         /**
          * frame
          */
-        final Component parent;
+        private final Component parent;
 
         /**
          * frame
          */
-        final String msg;
+        private final String msg;
 
         /**
          * contstructor
