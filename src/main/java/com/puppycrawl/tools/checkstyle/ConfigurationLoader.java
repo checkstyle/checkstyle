@@ -158,7 +158,7 @@ public final class ConfigurationLoader {
                         overridePropsResolver, atts.getValue(DEFAULT));
                 }
                 catch (final CheckstyleException ex) {
-                    throw new SAXException(ex.getMessage());
+                    throw new SAXException(ex);
                 }
                 final String name = atts.getValue(NAME);
 
