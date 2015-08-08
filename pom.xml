@@ -789,7 +789,7 @@
         <version>2.10.3</version>
         <configuration>
           <source>1.7</source>
-          <failOnError>false</failOnError>
+          <failOnError>true</failOnError>
           <linksource>true</linksource>
         </configuration>
         <reportSets>
