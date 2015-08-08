@@ -33,7 +33,7 @@ public class Main {
     /**
      * Main frame
      */
-    static JFrame frame;
+    private static JFrame frame;
 
     /**
      * Entry point
@@ -67,6 +67,10 @@ public class Main {
         frame.setVisible(true);
     }
 
+    static JFrame getFrame() {
+        return frame;
+    }
+
     /**
      * http://findbugs.sourceforge.net/bugDescriptions.html#SW_SWING_METHODS_INVOKED_IN_SWING_THREAD
      */
@@ -74,7 +78,7 @@ public class Main {
         /**
          * frame
          */
-        final JFrame frame;
+        private final JFrame frame;
 
         /**
          * contstructor
