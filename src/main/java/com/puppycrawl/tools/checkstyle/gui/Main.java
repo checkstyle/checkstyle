@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 /**
  * Entry point for starting the checkstyle GUI.
  */
-public class Main {
+public final class Main {
     /**
      * Main frame
      */
