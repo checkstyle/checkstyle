@@ -36,7 +36,7 @@ public class Main {
     static JFrame frame;
 
     /**
-     * Entry point
+     * Entry point.
      * @param args the command line arguments.
      */
     public static void main(String... args) {
@@ -54,7 +54,7 @@ public class Main {
     }
 
     /**
-     * Method is used for testing inthe past
+     * Method is used for testing in the past.
      * @param ast tree to display
      */
     public static void displayAst(DetailAST ast) {

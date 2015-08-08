@@ -39,7 +39,7 @@ public class CodeSelector {
     private final List<Integer> lines2position;
 
     /**
-     * Constructor
+     * Constructor.
      * @param ast ast node.
      * @param editor text area editor.
      * @param lines2position list to map lines.
@@ -52,7 +52,7 @@ public class CodeSelector {
     }
 
     /**
-     * Set a selection position from AST line and Column
+     * Set a selection position from AST line and Column.
      */
     public void select() {
         final int start = lines2position.get(ast.getLineNo()) + ast.getColumnNo();

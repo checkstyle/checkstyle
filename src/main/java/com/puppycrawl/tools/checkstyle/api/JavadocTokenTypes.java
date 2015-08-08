@@ -724,7 +724,7 @@ public final class JavadocTokenTypes {
     public static final int VALUE_LITERAL = JavadocParser.VALUE_LITERAL;
 
     /**
-     * Parameter of these Javadoc tags:
+     * Parameter of the Javadoc tags listed below.
      * <ul>
      * <li>{@link #SEE_LITERAL @see}</li>
      * <li>{@link #LINK_LITERAL &#123;&#64;link&#125;}</li>
