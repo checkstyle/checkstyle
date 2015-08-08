@@ -411,11 +411,6 @@ public enum JavadocTagInfo {
      * given AST.
      *
      * <p>
-     * For example: Given a call to
-     * <code>JavadocTag.RETURN{@link #isValidOn(DetailAST)}</code>.
-     * </p>
-     *
-     * <p>
      * If passing in a DetailAST representing a non-void METHOD_DEF
      * <code> true </code> would be returned. If passing in a DetailAST
      * representing a CLASS_DEF <code> false </code> would be returned because
