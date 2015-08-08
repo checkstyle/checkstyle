@@ -331,7 +331,7 @@ public class EmptyLineSeparatorCheck extends Check {
      */
     private static boolean hasEmptyLineAfter(DetailAST token) {
         DetailAST lastToken = token.getLastChild().getLastChild();
-        if (null == lastToken) {
+        if (lastToken == null) {
             lastToken = token.getLastChild();
         }
         return token.getNextSibling().getLineNo() - lastToken.getLineNo() > 1;

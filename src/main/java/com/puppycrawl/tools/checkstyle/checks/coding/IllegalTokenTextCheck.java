@@ -109,7 +109,7 @@ public class IllegalTokenTextCheck
      *                 to report about violations.
      */
     public void setMessage(String message) {
-        this.message = null == message ? "" : message;
+        this.message = message == null ? "" : message;
     }
 
     /**

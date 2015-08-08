@@ -61,7 +61,7 @@ public class InnerTypeLastCheck extends Check {
         }
         else {
             DetailAST nextSibling = ast.getNextSibling();
-            while (null != nextSibling) {
+            while (nextSibling != null) {
                 if (!ScopeUtils.inCodeBlock(ast)
                     && (nextSibling.getType() == TokenTypes.VARIABLE_DEF
                         || nextSibling.getType() == TokenTypes.METHOD_DEF)) {
@@ -76,7 +76,7 @@ public class InnerTypeLastCheck extends Check {
     @Override
     public void leaveToken(DetailAST ast) {
         /** Is this a root class */
-        if (null == ast.getParent()) {
+        if (ast.getParent() == null) {
             rootClass = true;
         }
     }

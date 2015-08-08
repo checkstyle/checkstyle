@@ -100,7 +100,7 @@ public class DefaultLogger
     @Override
     public void addError(AuditEvent evt) {
         final SeverityLevel severityLevel = evt.getSeverityLevel();
-        if (SeverityLevel.IGNORE != severityLevel) {
+        if (severityLevel != SeverityLevel.IGNORE) {
 
             final String fileName = evt.getFileName();
             final String message = evt.getMessage();
@@ -114,7 +114,7 @@ public class DefaultLogger
             if (evt.getColumn() > 0) {
                 sb.append(':').append(evt.getColumn());
             }
-            if (SeverityLevel.WARNING == severityLevel) {
+            if (severityLevel == SeverityLevel.WARNING) {
                 sb.append(": warning");
             }
             sb.append(": ").append(message);

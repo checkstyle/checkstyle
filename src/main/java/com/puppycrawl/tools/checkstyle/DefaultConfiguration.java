@@ -110,7 +110,7 @@ public final class DefaultConfiguration implements Configuration {
      */
     public void addAttribute(String name, String value) {
         final String current = attributeMap.put(name, value);
-        if (null == current) {
+        if (current == null) {
             attributeMap.put(name, value);
         }
         else {

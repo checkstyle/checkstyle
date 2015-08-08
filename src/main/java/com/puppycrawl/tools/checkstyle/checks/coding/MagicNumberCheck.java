@@ -323,12 +323,12 @@ public class MagicNumberCheck extends Check {
 
         // find the method definition AST
         DetailAST methodDefAST = ast.getParent();
-        while (null != methodDefAST
-                && TokenTypes.METHOD_DEF != methodDefAST.getType()) {
+        while (methodDefAST != null
+                && methodDefAST.getType() != TokenTypes.METHOD_DEF) {
             methodDefAST = methodDefAST.getParent();
         }
 
-        if (null == methodDefAST) {
+        if (methodDefAST == null) {
             return false;
         }
 
@@ -344,7 +344,7 @@ public class MagicNumberCheck extends Check {
             methodDefAST.findFirstToken(TokenTypes.PARAMETERS);
         // we are in a 'public int hashCode()' method! The compiler will ensure
         // the method returns an 'int' and is public.
-        return 0 == paramAST.getChildCount();
+        return paramAST.getChildCount() == 0;
     }
 
     /**

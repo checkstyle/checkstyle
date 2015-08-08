@@ -393,12 +393,12 @@ public final class AnnotationUseStyleCheck extends Check {
         //comma can be null if array is empty
         final DetailAST comma = rCurly.getPreviousSibling();
 
-        if (TrailingArrayComma.ALWAYS == this.comma
+        if (this.comma == TrailingArrayComma.ALWAYS
             && (comma == null || comma.getType() != TokenTypes.COMMA)) {
             this.log(rCurly.getLineNo(),
                 rCurly.getColumnNo(), MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING);
         }
-        else if (TrailingArrayComma.NEVER == this.comma
+        else if (this.comma == TrailingArrayComma.NEVER
             && comma != null && comma.getType() == TokenTypes.COMMA) {
             this.log(comma.getLineNo(),
                 comma.getColumnNo(), MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT);

@@ -54,7 +54,7 @@ public final class SeverityLevelCounter implements AuditListener {
     /** {@inheritDoc} */
     @Override
     public void addException(AuditEvent evt, Throwable throwable) {
-        if (SeverityLevel.ERROR == level) {
+        if (level == SeverityLevel.ERROR) {
             count++;
         }
     }

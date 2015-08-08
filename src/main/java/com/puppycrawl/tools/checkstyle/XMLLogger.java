@@ -120,7 +120,7 @@ public class XMLLogger
     /** {@inheritDoc} */
     @Override
     public void addError(AuditEvent evt) {
-        if (SeverityLevel.IGNORE != evt.getSeverityLevel()) {
+        if (evt.getSeverityLevel() != SeverityLevel.IGNORE) {
             writer.print("<error" + " line=\"" + evt.getLine() + "\"");
             if (evt.getColumn() > 0) {
                 writer.print(" column=\"" + evt.getColumn() + "\"");

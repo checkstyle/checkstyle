@@ -147,7 +147,7 @@ public class GenericWhitespaceCheck extends Check {
 
             // Check if the last Generic, in which case must be a whitespace
             // or a '(),[.'.
-            if (1 == depth) {
+            if (depth == 1) {
                 processSingleGeneric(ast, line, after);
             }
             else {
@@ -255,9 +255,9 @@ public class GenericWhitespaceCheck extends Check {
             // Detect if the first case
             final DetailAST parent = ast.getParent();
             final DetailAST grandparent = parent.getParent();
-            if (TokenTypes.TYPE_PARAMETERS == parent.getType()
-                && (TokenTypes.CTOR_DEF == grandparent.getType()
-                    || TokenTypes.METHOD_DEF == grandparent.getType())) {
+            if (parent.getType() == TokenTypes.TYPE_PARAMETERS
+                && (grandparent.getType() == TokenTypes.CTOR_DEF
+                    || grandparent.getType() == TokenTypes.METHOD_DEF)) {
                 // Require whitespace
                 if (!Character.isWhitespace(line.charAt(before))) {
                     log(ast.getLineNo(), before, WS_NOT_PRECEDED, "<");
