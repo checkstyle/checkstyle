@@ -208,8 +208,8 @@ public class HiddenFieldCheck
     }
 
     /**
-     * Called to process tokens other than {@link TokenTypes.VARIABLE_DEF}
-     * and {@link TokenTypes.PARAMETER_DEF}
+     * Called to process tokens other than {@link TokenTypes#VARIABLE_DEF}
+     * and {@link TokenTypes#PARAMETER_DEF}
      *
      * @param ast token to process
      * @param type type of the token
