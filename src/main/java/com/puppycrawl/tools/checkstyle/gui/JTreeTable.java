@@ -301,7 +301,8 @@ public class JTreeTable extends JTable {
                 int row, int column) {
             if (isSelected) {
                 setBackground(table.getSelectionBackground());
-            } else {
+            }
+            else {
                 setBackground(table.getBackground());
             }
 
@@ -408,7 +409,8 @@ public class JTreeTable extends JTable {
                 updatingListSelectionModel = true;
                 try {
                     super.resetRowSelection();
-                } finally {
+                }
+                finally {
                     updatingListSelectionModel = false;
                 }
             }
@@ -453,7 +455,8 @@ public class JTreeTable extends JTable {
                             }
                         }
                     }
-                } finally {
+                }
+                finally {
                     updatingListSelectionModel = false;
                 }
             }
