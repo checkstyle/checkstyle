@@ -430,8 +430,6 @@ public abstract class AbstractJavadocCheck extends Check {
      * @param blockComment
      *        block comment content.
      * @return parse tree
-     * @throws IOException
-     *         errors in ANTLRInputStream
      */
     private ParseTree parseJavadocAsParseTree(String blockComment) {
         final ANTLRInputStream input = new ANTLRInputStream(blockComment);
