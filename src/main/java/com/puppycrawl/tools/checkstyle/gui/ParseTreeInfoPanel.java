@@ -23,6 +23,8 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
@@ -30,16 +32,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TooManyListenersException;
 
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.filechooser.FileFilter;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 
 import antlr.ANTLRException;
 
@@ -47,6 +46,9 @@ import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+import org.fife.ui.rtextarea.RTextScrollPane;
 
 /**
  * Displays information about a parse tree.
@@ -54,6 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * through a JFileChooser.
  *
  * @author Lars Kühne
+ * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  */
 public class ParseTreeInfoPanel extends JPanel {
     /** For Serialisation that will never happen. */
@@ -65,6 +68,7 @@ public class ParseTreeInfoPanel extends JPanel {
     private File currentFile;
     private final Action reloadAction;
     private final List<Integer>   lines2position  = new ArrayList<>();
+    private final JTextPane status;
 
     private static class JavaFileFilter extends FileFilter {
         @Override
@@ -260,18 +264,21 @@ public class ParseTreeInfoPanel extends JPanel {
         reloadAction.setEnabled(false);
         final JButton reloadButton = new JButton(reloadAction);
 
-        jTextArea = new JTextArea(20, 15);
-        jTextArea.setEditable(false);
+        jTextArea = createTextArea();
         treeTable.setEditor(jTextArea);
         treeTable.setLinePositionMap(lines2position);
 
-        final JScrollPane sp2 = new JScrollPane(jTextArea);
-        this.add(sp2, BorderLayout.CENTER);
+        final JPanel southBorderPanel = new JPanel(new GridLayout(2,1));
+        this.add(southBorderPanel, BorderLayout.SOUTH);
 
-        final JPanel p = new JPanel(new GridLayout(1,2));
-        this.add(p, BorderLayout.SOUTH);
-        p.add(fileSelectionButton);
-        p.add(reloadButton);
+        status = createStatusBar();
+        southBorderPanel.add(status);
+
+        final JPanel actionButtonPanel = new JPanel(new GridLayout(1,2));
+        actionButtonPanel.add(fileSelectionButton);
+        actionButtonPanel.add(reloadButton);
+
+        southBorderPanel.add(actionButtonPanel);
 
         try {
             new FileDrop(sp, new FileDropListener(sp));
@@ -280,6 +287,34 @@ public class ParseTreeInfoPanel extends JPanel {
            showErrorDialog(null, "Cannot initialize Drag and Drop support");
         }
 
+    }
+
+    private JTextPane createStatusBar() {
+        JTextPane statusBar = new JTextPane();
+        SimpleAttributeSet attribs = new SimpleAttributeSet();
+        StyleConstants.setAlignment(attribs, StyleConstants.ALIGN_RIGHT);
+        statusBar.setParagraphAttributes(attribs, true);
+        return statusBar;
+    }
+
+    private RSyntaxTextArea createTextArea() {
+        final RSyntaxTextArea rSyntaxTextArea = new RSyntaxTextArea(20,15);
+        rSyntaxTextArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+        rSyntaxTextArea.setEditable(false);
+        rSyntaxTextArea.setPopupMenu(null);
+
+        rSyntaxTextArea.addFocusListener(new TextAreaFocusListener(rSyntaxTextArea));
+        rSyntaxTextArea.addCaretListener(new TextAreaCaretListener());
+
+        RTextScrollPane scrollPane = new RTextScrollPane(rSyntaxTextArea);
+        this.add(scrollPane);
+        return rSyntaxTextArea;
+    }
+
+    private void updateStatus(int lineNumber, int columnNumber) {
+        String lineNumberFormat = String.format("%3s", lineNumber);
+        String columnNumberFormat = String.format("%2s", columnNumber);
+        status.setText("Line: " + lineNumberFormat + " Column: " + columnNumberFormat);
     }
 
     private static void showErrorDialog(final Component parent, final String msg) {
@@ -319,6 +354,47 @@ public class ParseTreeInfoPanel extends JPanel {
         @Override
         public void run() {
             JOptionPane.showMessageDialog(parent, msg);
+        }
+    }
+
+    private static class TextAreaFocusListener implements FocusListener {
+        private final JTextArea textArea;
+
+        public TextAreaFocusListener(JTextArea textArea) {
+            this.textArea = textArea;
+        }
+
+        @Override
+        public void focusGained(FocusEvent e) {
+            textArea.getCaret().setVisible(true); // fixing hiding caret after losing focus
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            // do nothing
+        }
+    }
+
+    private class TextAreaCaretListener implements CaretListener {
+        @Override
+        public void caretUpdate(CaretEvent e) {
+            JTextArea editArea = (JTextArea) e.getSource();
+            int linenum = 1;
+            int columnnum = 1;
+            try {
+                int caretpos = editArea.getCaretPosition();
+                linenum = editArea.getLineOfOffset(caretpos);
+
+                columnnum = caretpos - editArea.getLineStartOffset(linenum);
+
+                linenum += 1;
+            } catch (BadLocationException ex) {
+                // can't happen because location is taken from caret position,
+                // added statement to overcome PMD 'Avoid empty catch blocks'
+                return;
+            }
+
+            updateStatus(linenum, columnnum);
         }
     }
 }
