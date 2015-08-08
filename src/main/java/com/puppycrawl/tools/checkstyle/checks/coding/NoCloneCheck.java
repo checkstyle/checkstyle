@@ -123,8 +123,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  *
  * @author Travis Schneeberger
  * @see Object#clone()
- * @see Cloneable
- * @see CloneNotSupportedException
  */
 public class NoCloneCheck extends AbstractIllegalMethodCheck {
 
