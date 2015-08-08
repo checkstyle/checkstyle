@@ -823,7 +823,7 @@ public class CustomImportOrderCheck extends Check {
          * @param importFullPath
          *        import full path variable.
          */
-        public void setImportFullPath(String importFullPath) {
+        public final void setImportFullPath(String importFullPath) {
             this.importFullPath = importFullPath;
         }
 
@@ -840,7 +840,7 @@ public class CustomImportOrderCheck extends Check {
          * @param lineNumber
          *        import line number.
          */
-        public void setLineNumber(int lineNumber) {
+        public final void setLineNumber(int lineNumber) {
             this.lineNumber = lineNumber;
         }
 
@@ -857,7 +857,7 @@ public class CustomImportOrderCheck extends Check {
          * @param importGroup
          *        import group.
          */
-        public void setImportGroup(String importGroup) {
+        public final void setImportGroup(String importGroup) {
             this.importGroup = importGroup;
         }
 
@@ -874,7 +874,7 @@ public class CustomImportOrderCheck extends Check {
          * @param isStatic
          *        if import is static.
          */
-        public void setStaticImport(boolean isStatic) {
+        public final void setStaticImport(boolean isStatic) {
             this.staticImport = isStatic;
         }
     }

@@ -49,7 +49,7 @@ public class ParseTreeModel extends AbstractTreeTableModel {
         return (DetailAST) factory.create(TokenTypes.EOF, "ROOT");
     }
 
-    void setParseTree(DetailAST parseTree) {
+    final void setParseTree(DetailAST parseTree) {
         final DetailAST root = (DetailAST) getRoot();
         root.setFirstChild(parseTree);
         final Object[] path = {root};

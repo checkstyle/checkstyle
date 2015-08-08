@@ -129,7 +129,7 @@ public class LineLengthCheck extends Check {
      * Set the ignore pattern.
      * @param format a <code>String</code> value
      */
-    public void setIgnorePattern(String format) {
+    public final void setIgnorePattern(String format) {
         ignorePattern = Utils.createPattern(format);
     }
 }

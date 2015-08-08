@@ -144,7 +144,7 @@ public class TranslationCheck
      *
      * @param basenameSeparator the basename separator
      */
-    public void setBasenameSeparator(String basenameSeparator) {
+    public final void setBasenameSeparator(String basenameSeparator) {
         this.basenameSeparator = basenameSeparator;
     }
 

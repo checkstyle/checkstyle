@@ -91,7 +91,7 @@ public class MultipleStringLiteralsCheck extends Check {
      * @throws org.apache.commons.beanutils.ConversionException
      *         if unable to create Pattern object
      */
-    public void setIgnoreStringsRegexp(String ignoreStringsRegexp) {
+    public final void setIgnoreStringsRegexp(String ignoreStringsRegexp) {
         if (ignoreStringsRegexp != null
             && !ignoreStringsRegexp.isEmpty()) {
             pattern = Utils.createPattern(ignoreStringsRegexp);

@@ -69,7 +69,7 @@ class CSVFilter implements IntFilter {
      * Adds a IntFilter to the set.
      * @param filter the IntFilter to add.
      */
-    public void addFilter(IntFilter filter) {
+    public final void addFilter(IntFilter filter) {
         filters.add(filter);
     }
 

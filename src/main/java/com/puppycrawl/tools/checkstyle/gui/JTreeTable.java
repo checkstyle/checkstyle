@@ -202,7 +202,7 @@ public class JTreeTable extends JTable {
      * Overridden to pass the new rowHeight to the tree.
      */
     @Override
-    public void setRowHeight(int newRowHeight) {
+    public final void setRowHeight(int newRowHeight) {
         super.setRowHeight(newRowHeight);
         if (tree != null && tree.getRowHeight() != newRowHeight) {
             tree.setRowHeight(getRowHeight());
@@ -393,7 +393,7 @@ public class JTreeTable extends JTable {
          *
          * @return the list selection model
          */
-        ListSelectionModel getListSelectionModel() {
+        final ListSelectionModel getListSelectionModel() {
             return listSelectionModel;
         }
 
