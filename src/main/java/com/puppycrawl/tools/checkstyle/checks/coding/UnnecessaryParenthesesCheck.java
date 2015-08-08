@@ -253,8 +253,7 @@ public class UnnecessaryParenthesesCheck extends Check {
                 if (assignDepth >= 1) {
                     log(ast, MSG_ASSIGN);
                 }
-                else if (ast.getParent().getType()
-                    == TokenTypes.LITERAL_RETURN) {
+                else if (ast.getParent().getType() == TokenTypes.LITERAL_RETURN) {
                     log(ast, MSG_RETURN);
                 }
                 else {

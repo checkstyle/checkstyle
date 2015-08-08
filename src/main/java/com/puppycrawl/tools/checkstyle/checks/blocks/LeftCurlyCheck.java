@@ -259,8 +259,7 @@ public class LeftCurlyCheck
         }
         final int lastAnnotLineNumber = lastAnnot.getLineNo();
         while (lastAnnot.getPreviousSibling() != null
-               && lastAnnot.getPreviousSibling().getLineNo()
-                    == lastAnnotLineNumber) {
+               && lastAnnot.getPreviousSibling().getLineNo() == lastAnnotLineNumber) {
             lastAnnot = lastAnnot.getPreviousSibling();
         }
         return lastAnnot;

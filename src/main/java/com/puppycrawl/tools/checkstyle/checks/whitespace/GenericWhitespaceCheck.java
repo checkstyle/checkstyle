@@ -219,10 +219,8 @@ public class GenericWhitespaceCheck extends Check {
      */
     private static boolean isGenericBeforeMethod(DetailAST ast) {
         return ast.getParent().getType() == TokenTypes.TYPE_ARGUMENTS
-                && ast.getParent().getParent().getType()
-                    == TokenTypes.DOT
-                && ast.getParent().getParent().getParent().getType()
-                    == TokenTypes.METHOD_CALL
+                && ast.getParent().getParent().getType() == TokenTypes.DOT
+                && ast.getParent().getParent().getParent().getType() == TokenTypes.METHOD_CALL
                 || isAfterMethodReference(ast);
     }
 
