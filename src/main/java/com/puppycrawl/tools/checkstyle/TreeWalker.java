@@ -579,12 +579,7 @@ public final class TreeWalker
         if (ast1.getLineNo() < ast2.getLineNo()) {
             return false;
         }
-        else {
-            if (ast1.getColumnNo() > ast2.getColumnNo()) {
-                return true;
-            }
-        }
-        return false;
+        return ast1.getColumnNo() > ast2.getColumnNo();
     }
 
     /**
