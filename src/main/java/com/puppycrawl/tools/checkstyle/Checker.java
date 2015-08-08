@@ -113,10 +113,8 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     /**
      * Creates a new <code>Checker</code> instance.
      * The instance needs to be contextualized and configured.
-     *
-     * @throws CheckstyleException if an error occurs
      */
-    public Checker() throws CheckstyleException {
+    public Checker() {
         addListener(counter);
     }
 

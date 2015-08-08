@@ -417,13 +417,9 @@ public class CheckstyleAntTask extends Task {
     /**
      * Return the list of listeners set in this task.
      * @return the list of listeners.
-     * @throws ClassNotFoundException if an error occurs
-     * @throws InstantiationException if an error occurs
-     * @throws IllegalAccessException if an error occurs
      * @throws IOException if an error occurs
      */
-    private AuditListener[] getListeners() throws ClassNotFoundException,
-            InstantiationException, IllegalAccessException, IOException {
+    private AuditListener[] getListeners() throws IOException {
         final int formatterCount = Math.max(1, formatters.size());
 
         final AuditListener[] listeners = new AuditListener[formatterCount];
