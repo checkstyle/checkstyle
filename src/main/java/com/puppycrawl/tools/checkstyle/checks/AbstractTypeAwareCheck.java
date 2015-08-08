@@ -411,6 +411,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
     }
 
     /** Represents regular classes/enumes. */
+    @SuppressWarnings("deprecation")
     private static final class RegularClass extends AbstractClassInfo {
         /** name of surrounding class. */
         private final String surroundingClass;
