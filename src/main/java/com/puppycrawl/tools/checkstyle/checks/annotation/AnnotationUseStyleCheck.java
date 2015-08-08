@@ -436,7 +436,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * Defines the styles for defining elements in an annotation.
      * @author Travis Schneeberger
      */
-    public static enum ElementStyle {
+    public enum ElementStyle {
 
         /**
          * expanded example
@@ -473,7 +473,7 @@ public final class AnnotationUseStyleCheck extends Check {
      *
      * @author Travis Schneeberger
      */
-    public static enum TrailingArrayComma {
+    public enum TrailingArrayComma {
 
         /**
          * with comma example
@@ -501,7 +501,7 @@ public final class AnnotationUseStyleCheck extends Check {
      *
      * @author Travis Schneeberger
      */
-    public static enum ClosingParens {
+    public enum ClosingParens {
 
         /**
          * with parens example

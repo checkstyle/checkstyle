@@ -68,7 +68,7 @@ public final class TreeWalker
      * State of AST.
      * Indicates whether tree contains certain nodes.
      */
-    private static enum AstState {
+    private enum AstState {
         /**
          * Ordinary tree.
          */
