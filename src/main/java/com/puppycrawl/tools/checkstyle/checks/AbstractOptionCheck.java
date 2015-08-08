@@ -48,7 +48,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
      * @param optionClass the class for the option. Required due to a quirk
      *        in the Java language.
      */
-    public AbstractOptionCheck(T literalDefault, Class<T> optionClass) {
+    protected AbstractOptionCheck(T literalDefault, Class<T> optionClass) {
         option = literalDefault;
         this.optionClass = optionClass;
     }

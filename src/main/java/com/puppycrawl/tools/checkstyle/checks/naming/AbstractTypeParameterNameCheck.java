@@ -39,7 +39,7 @@ public abstract class AbstractTypeParameterNameCheck
      * Creates a new <code>AbstractTypeParameterNameCheck</code> instance.
      * @param format format to check with
      */
-    public AbstractTypeParameterNameCheck(String format) {
+    protected AbstractTypeParameterNameCheck(String format) {
         super(format);
     }
 

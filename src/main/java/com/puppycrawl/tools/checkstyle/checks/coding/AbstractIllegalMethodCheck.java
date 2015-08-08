@@ -39,7 +39,7 @@ public abstract class AbstractIllegalMethodCheck extends Check {
      * @param methodName name of the method to disallow.
      * @param errorKey the error key to report with.
      */
-    public AbstractIllegalMethodCheck(String methodName, String errorKey) {
+    protected AbstractIllegalMethodCheck(String methodName, String errorKey) {
         this.methodName = methodName;
         this.errorKey = errorKey;
     }
