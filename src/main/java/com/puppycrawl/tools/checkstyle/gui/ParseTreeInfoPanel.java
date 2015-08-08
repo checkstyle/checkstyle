@@ -268,7 +268,7 @@ public class ParseTreeInfoPanel extends JPanel {
         final JScrollPane sp2 = new JScrollPane(jTextArea);
         this.add(sp2, BorderLayout.CENTER);
 
-        final JPanel p = new JPanel(new GridLayout(1,2));
+        final JPanel p = new JPanel(new GridLayout(1, 2));
         this.add(p, BorderLayout.SOUTH);
         p.add(fileSelectionButton);
         p.add(reloadButton);
