@@ -201,7 +201,7 @@ public final class ModifiedControlVariableCheck extends Check {
                 checkIdent(ast);
                 break;
             default:
-                throw new IllegalStateException(ILLEGAL_TYPE_OF_TOKEN + ast.toString());
+                throw new IllegalStateException(ILLEGAL_TYPE_OF_TOKEN + ast);
         }
     }
 
@@ -244,7 +244,7 @@ public final class ModifiedControlVariableCheck extends Check {
                 //we need that Tokens only at visitToken()
                 break;
             default:
-                throw new IllegalStateException(ILLEGAL_TYPE_OF_TOKEN + ast.toString());
+                throw new IllegalStateException(ILLEGAL_TYPE_OF_TOKEN + ast);
         }
     }
 

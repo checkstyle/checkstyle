@@ -118,7 +118,7 @@ public class DefaultLogger
                 sb.append(": warning");
             }
             sb.append(": ").append(message);
-            errorWriter.println(sb.toString());
+            errorWriter.println(sb);
         }
     }
 

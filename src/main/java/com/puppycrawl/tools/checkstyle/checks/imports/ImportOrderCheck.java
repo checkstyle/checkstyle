@@ -375,7 +375,7 @@ public class ImportOrderCheck
         }
         else {
             throw new IllegalStateException(
-                    "Unexpected option for static imports: " + abstractOption.toString());
+                    "Unexpected option for static imports: " + abstractOption);
         }
 
         lastImportLine = ast.findFirstToken(TokenTypes.SEMI).getLineNo();
