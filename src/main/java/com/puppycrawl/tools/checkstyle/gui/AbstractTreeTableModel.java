@@ -62,7 +62,6 @@ package com.puppycrawl.tools.checkstyle.gui;
 import javax.swing.event.EventListenerList;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
-import javax.swing.tree.TreePath;
 
 /**
  * An abstract implementation of the TreeTableModel interface, handling
@@ -93,9 +92,6 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
     public boolean isLeaf(Object node) {
         return getChildCount(node) == 0;
     }
-
-    @Override
-    public abstract void valueForPathChanged(TreePath path, Object newValue);
 
     // This is not called in the JTree's default mode: use a naive implementation.
     @Override
@@ -243,9 +239,6 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
     public boolean isCellEditable(Object node, int column) {
         return getColumnClass(column) == TreeTableModel.class;
     }
-
-    @Override
-    public abstract void setValueAt(Object value, Object node, int column);
 
     // Left to be implemented in the subclass:
 
