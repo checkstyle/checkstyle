@@ -37,7 +37,7 @@ public abstract class AbstractNestedDepthCheck extends Check {
      * Creates new instance of checks.
      * @param max default allowed nesting depth.
      */
-    public AbstractNestedDepthCheck(int max) {
+    protected AbstractNestedDepthCheck(int max) {
         setMax(max);
     }
 

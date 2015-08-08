@@ -49,7 +49,7 @@ public abstract class AbstractFormatCheck
      * @param defaultFormat default format
      * @throws ConversionException unable to parse defaultFormat
      */
-    public AbstractFormatCheck(String defaultFormat) {
+    protected AbstractFormatCheck(String defaultFormat) {
         this(defaultFormat, 0);
     }
 
@@ -60,7 +60,7 @@ public abstract class AbstractFormatCheck
      * See {@link Pattern#compile(String, int)}
      * @throws ConversionException unable to parse defaultFormat
      */
-    public AbstractFormatCheck(String defaultFormat, int compileFlags) {
+    protected AbstractFormatCheck(String defaultFormat, int compileFlags) {
         updateRegexp(defaultFormat, compileFlags);
     }
 

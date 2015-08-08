@@ -39,7 +39,7 @@ public abstract class AbstractNameCheck
      * Creates a new <code>AbstractNameCheck</code> instance.
      * @param format format to check with
      */
-    public AbstractNameCheck(String format) {
+    protected AbstractNameCheck(String format) {
         super(format);
     }
 

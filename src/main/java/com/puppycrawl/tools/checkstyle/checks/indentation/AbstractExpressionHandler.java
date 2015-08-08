@@ -82,8 +82,8 @@ public abstract class AbstractExpressionHandler {
      * @param expr          the abstract syntax tree
      * @param parent        the parent handler
      */
-    public AbstractExpressionHandler(IndentationCheck indentCheck,
-            String typeName, DetailAST expr, AbstractExpressionHandler parent) {
+    protected AbstractExpressionHandler(IndentationCheck indentCheck, String typeName,
+            DetailAST expr, AbstractExpressionHandler parent) {
         this.indentCheck = indentCheck;
         this.typeName = typeName;
         mainAst = expr;

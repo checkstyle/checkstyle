@@ -65,7 +65,7 @@ public abstract class AbstractAccessControlNameCheck
      * @param format
      *                format to check with
      */
-    public AbstractAccessControlNameCheck(String format) {
+    protected AbstractAccessControlNameCheck(String format) {
         super(format);
     }
 
