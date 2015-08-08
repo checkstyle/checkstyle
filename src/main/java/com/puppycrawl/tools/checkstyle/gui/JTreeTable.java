@@ -105,7 +105,7 @@ public class JTreeTable extends JTable {
     /** For Serialisation that will never happen. */
     private static final long serialVersionUID = -8493693409423365387L;
     /** A subclass of JTree. */
-    protected TreeTableCellRenderer tree;
+    protected final TreeTableCellRenderer tree;
     private JTextArea editor;
     private List<Integer> lines2position;
 
