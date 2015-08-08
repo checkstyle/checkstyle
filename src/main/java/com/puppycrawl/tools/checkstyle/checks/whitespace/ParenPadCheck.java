@@ -147,7 +147,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     }
 
     /**
-     * Checks parens in {@link TokenTypes#FOR_LITERAL}.
+     * Checks parens in {@link TokenTypes#LITERAL_FOR}.
      * @param ast the token to check.
      */
     private void visitLiteralFor(DetailAST ast) {
