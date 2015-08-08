@@ -380,8 +380,7 @@ public class MagicNumberCheck extends Check {
         // contains variable declaration
         // and it is directly inside class declaration
         return varDefAST != null
-                && varDefAST.getParent().getParent().getType()
-                    == TokenTypes.CLASS_DEF;
+                && varDefAST.getParent().getParent().getType() == TokenTypes.CLASS_DEF;
     }
 
     /**

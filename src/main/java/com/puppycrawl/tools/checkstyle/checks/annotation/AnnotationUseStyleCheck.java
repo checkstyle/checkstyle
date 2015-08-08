@@ -365,10 +365,8 @@ public final class AnnotationUseStyleCheck extends Check {
         while (child != null) {
             DetailAST arrayInit = null;
 
-            if (child.getType()
-                == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
-                arrayInit =
-                    child.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
+            if (child.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
+                arrayInit = child.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
             }
             else if (child.getType() == TokenTypes.ANNOTATION_ARRAY_INIT) {
                 arrayInit = child;

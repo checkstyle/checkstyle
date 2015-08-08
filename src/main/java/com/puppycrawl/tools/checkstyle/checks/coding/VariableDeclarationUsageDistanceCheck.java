@@ -791,8 +791,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
                             final DetailAST firstNodeInsideElseBlock = elseBlock
                                 .getFirstChild();
 
-                            if (firstNodeInsideElseBlock.getType()
-                                == TokenTypes.LITERAL_IF) {
+                            if (firstNodeInsideElseBlock.getType() == TokenTypes.LITERAL_IF) {
                                 isVarInOperatorDeclr |=
                                     isVariableInOperatorExpr(
                                         firstNodeInsideElseBlock,
@@ -806,8 +805,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
                             .findFirstToken(TokenTypes.CASE_GROUP);
 
                         while (currentCaseBlock != null
-                            && currentCaseBlock.getType()
-                            == TokenTypes.CASE_GROUP) {
+                            && currentCaseBlock.getType() == TokenTypes.CASE_GROUP) {
                             final DetailAST firstNodeInsideCaseBlock =
                                 currentCaseBlock.getFirstChild();
 

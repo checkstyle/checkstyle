@@ -177,8 +177,8 @@ public class CommentsIndentationCheck extends Check {
 
                 if (parentBlock != null && parentBlock.getParent() != null
                     && parentBlock.getParent().getPreviousSibling() != null
-                    && parentBlock.getParent().getPreviousSibling().getType()
-                        == TokenTypes.LITERAL_CASE) {
+                    && parentBlock.getParent().getPreviousSibling()
+                        .getType() == TokenTypes.LITERAL_CASE) {
 
                     prevBlock = parentBlock.getParent().getPreviousSibling();
                     prevStmt = prevBlock;
