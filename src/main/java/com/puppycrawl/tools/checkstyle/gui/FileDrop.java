@@ -75,12 +75,11 @@ import javax.swing.border.Border;
  */
 class FileDrop {
 
+    /* Default border color */
+    private static final Color DEFAULT_BORDER_COLOR = new Color(0f, 0f, 1f, 0.25f);
+
     private transient Border normalBorder;
     private final transient DropTargetListener dropListener;
-
-    /* Default border color */
-    private static final Color DEFAULT_BORDER_COLOR =
-            new Color(0f, 0f, 1f, 0.25f);
 
     /**
      * Constructs a {@link FileDrop} with a default light-blue border
@@ -96,10 +95,10 @@ class FileDrop {
             final Component component,
             final Listener listener)
             throws TooManyListenersException {
-        this(   component, // Drop target
-                BorderFactory.createMatteBorder(2, 2, 2, 2, DEFAULT_BORDER_COLOR), // Drag border
-                true, // Recursive
-                listener);
+        this(component,
+             BorderFactory.createMatteBorder(2, 2, 2, 2, DEFAULT_BORDER_COLOR),
+             true,
+             listener);
     }
 
     /**

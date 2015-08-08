@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class ParseTreeModel extends AbstractTreeTableModel {
     private static final String[] COLUMN_NAMES = {
-        "Tree", "Type", "Line", "Column", "Text"
+        "Tree", "Type", "Line", "Column", "Text",
     };
 
     public ParseTreeModel(DetailAST parseTree) {
@@ -55,7 +55,7 @@ public class ParseTreeModel extends AbstractTreeTableModel {
         final Object[] path = {root};
         // no need to setup remaining info, as the call results in a
         // table structure changed event anyway - we just pass nulls
-        fireTreeStructureChanged(this, path, null, (Object[])null);
+        fireTreeStructureChanged(this, path, null, (Object[]) null);
     }
 
     @Override
