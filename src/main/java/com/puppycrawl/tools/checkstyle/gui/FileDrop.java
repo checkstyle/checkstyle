@@ -243,6 +243,12 @@ class FileDrop {
         private final Border dragBorder;
         private final Listener listener;
 
+        public FileDropTargetListener(Component component, Border dragBorder, Listener listener) {
+            this.component = component;
+            this.dragBorder = dragBorder;
+            this.listener = listener;
+        }
+
         @Override
         public void dragEnter(DropTargetDragEvent evt) {
             if (isDragOk(evt)) {
@@ -309,12 +315,6 @@ class FileDrop {
             else {
                 evt.rejectDrag();
             }
-        }
-
-        public FileDropTargetListener(Component component, Border dragBorder, Listener listener) {
-            this.component = component;
-            this.dragBorder = dragBorder;
-            this.listener = listener;
         }
     }
 

@@ -66,6 +66,46 @@ public class ParseTreeInfoPanel extends JPanel {
     private final Action reloadAction;
     private final List<Integer>   lines2position  = new ArrayList<>();
 
+    /**
+     * Create a new ParseTreeInfoPanel instance.
+     */
+    public ParseTreeInfoPanel() {
+        setLayout(new BorderLayout());
+
+        parseTreeModel = new ParseTreeModel(null);
+        final JTreeTable treeTable = new JTreeTable(parseTreeModel);
+        final JScrollPane sp = new JScrollPane(treeTable);
+        this.add(sp, BorderLayout.NORTH);
+
+        final JButton fileSelectionButton =
+            new JButton(new FileSelectionAction());
+
+        reloadAction = new ReloadAction();
+        reloadAction.setEnabled(false);
+        final JButton reloadButton = new JButton(reloadAction);
+
+        jTextArea = new JTextArea(20, 15);
+        jTextArea.setEditable(false);
+        treeTable.setEditor(jTextArea);
+        treeTable.setLinePositionMap(lines2position);
+
+        final JScrollPane sp2 = new JScrollPane(jTextArea);
+        this.add(sp2, BorderLayout.CENTER);
+
+        final JPanel p = new JPanel(new GridLayout(1, 2));
+        this.add(p, BorderLayout.SOUTH);
+        p.add(fileSelectionButton);
+        p.add(reloadButton);
+
+        try {
+            new FileDrop(sp, new FileDropListener(sp));
+        }
+        catch (final TooManyListenersException ignored) {
+           showErrorDialog(null, "Cannot initialize Drag and Drop support");
+        }
+
+    }
+
     public void openAst(DetailAST parseTree, final Component parent) {
         parseTreeModel.setParseTree(parseTree);
         reloadAction.setEnabled(true);
@@ -165,46 +205,6 @@ public class ParseTreeInfoPanel extends JPanel {
      */
     private static String getEncoding() {
         return System.getProperty("file.encoding", "UTF-8");
-    }
-
-    /**
-     * Create a new ParseTreeInfoPanel instance.
-     */
-    public ParseTreeInfoPanel() {
-        setLayout(new BorderLayout());
-
-        parseTreeModel = new ParseTreeModel(null);
-        final JTreeTable treeTable = new JTreeTable(parseTreeModel);
-        final JScrollPane sp = new JScrollPane(treeTable);
-        this.add(sp, BorderLayout.NORTH);
-
-        final JButton fileSelectionButton =
-            new JButton(new FileSelectionAction());
-
-        reloadAction = new ReloadAction();
-        reloadAction.setEnabled(false);
-        final JButton reloadButton = new JButton(reloadAction);
-
-        jTextArea = new JTextArea(20, 15);
-        jTextArea.setEditable(false);
-        treeTable.setEditor(jTextArea);
-        treeTable.setLinePositionMap(lines2position);
-
-        final JScrollPane sp2 = new JScrollPane(jTextArea);
-        this.add(sp2, BorderLayout.CENTER);
-
-        final JPanel p = new JPanel(new GridLayout(1, 2));
-        this.add(p, BorderLayout.SOUTH);
-        p.add(fileSelectionButton);
-        p.add(reloadButton);
-
-        try {
-            new FileDrop(sp, new FileDropListener(sp));
-        }
-        catch (final TooManyListenersException ignored) {
-           showErrorDialog(null, "Cannot initialize Drag and Drop support");
-        }
-
     }
 
     private static void showErrorDialog(final Component parent, final String msg) {
