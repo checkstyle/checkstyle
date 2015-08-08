@@ -66,21 +66,6 @@ public class ParseTreeInfoPanel extends JPanel {
     private final Action reloadAction;
     private final List<Integer>   lines2position  = new ArrayList<>();
 
-    private static class JavaFileFilter extends FileFilter {
-        @Override
-        public boolean accept(File file) {
-            if (file == null) {
-                return false;
-            }
-            return file.isDirectory() || file.getName().endsWith(".java");
-        }
-
-        @Override
-        public String getDescription() {
-            return "Java Source Code";
-        }
-    }
-
     public void openAst(DetailAST parseTree, final Component parent) {
         parseTreeModel.setParseTree(parseTree);
         reloadAction.setEnabled(true);
@@ -98,66 +83,6 @@ public class ParseTreeInfoPanel extends JPanel {
 
         // move back to the top of the file
         jTextArea.moveCaretPosition(0);
-    }
-
-    private class FileSelectionAction extends AbstractAction {
-        /**
-         *
-         */
-        private static final long serialVersionUID = -1926935338069418119L;
-
-        public FileSelectionAction() {
-            super("Select Java File");
-            putValue(Action.MNEMONIC_KEY, KeyEvent.VK_S);
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            final JFileChooser fc = new JFileChooser(lastDirectory);
-            final FileFilter filter = new JavaFileFilter();
-            fc.setFileFilter(filter);
-            final Component parent =
-                SwingUtilities.getRoot(ParseTreeInfoPanel.this);
-            fc.showDialog(parent, "Open");
-            final File file = fc.getSelectedFile();
-            openFile(file, parent);
-
-        }
-    }
-
-    private class ReloadAction extends AbstractAction {
-        /**
-         *
-         */
-        private static final long serialVersionUID = -1021880396046355863L;
-
-        public ReloadAction() {
-            super("Reload Java File");
-            putValue(Action.MNEMONIC_KEY, KeyEvent.VK_R);
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            final Component parent =
-                SwingUtilities.getRoot(ParseTreeInfoPanel.this);
-            openFile(currentFile, parent);
-        }
-    }
-
-    private class FileDropListener implements FileDrop.Listener {
-        private final JScrollPane mSp;
-
-        @Override
-        public void filesDropped(File... files) {
-            if (files != null && files.length > 0) {
-                final File file = files[0];
-                openFile(file, mSp);
-            }
-        }
-
-        public FileDropListener(JScrollPane aSp) {
-            mSp = aSp;
-        }
     }
 
     public void openFile(File file, final Component parent) {
@@ -319,6 +244,81 @@ public class ParseTreeInfoPanel extends JPanel {
         @Override
         public void run() {
             JOptionPane.showMessageDialog(parent, msg);
+        }
+    }
+
+    private static class JavaFileFilter extends FileFilter {
+        @Override
+        public boolean accept(File file) {
+            if (file == null) {
+                return false;
+            }
+            return file.isDirectory() || file.getName().endsWith(".java");
+        }
+
+        @Override
+        public String getDescription() {
+            return "Java Source Code";
+        }
+    }
+
+    private class FileSelectionAction extends AbstractAction {
+        /**
+         *
+         */
+        private static final long serialVersionUID = -1926935338069418119L;
+
+        public FileSelectionAction() {
+            super("Select Java File");
+            putValue(Action.MNEMONIC_KEY, KeyEvent.VK_S);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            final JFileChooser fc = new JFileChooser(lastDirectory);
+            final FileFilter filter = new JavaFileFilter();
+            fc.setFileFilter(filter);
+            final Component parent =
+                SwingUtilities.getRoot(ParseTreeInfoPanel.this);
+            fc.showDialog(parent, "Open");
+            final File file = fc.getSelectedFile();
+            openFile(file, parent);
+
+        }
+    }
+
+    private class ReloadAction extends AbstractAction {
+        /**
+         *
+         */
+        private static final long serialVersionUID = -1021880396046355863L;
+
+        public ReloadAction() {
+            super("Reload Java File");
+            putValue(Action.MNEMONIC_KEY, KeyEvent.VK_R);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            final Component parent =
+                SwingUtilities.getRoot(ParseTreeInfoPanel.this);
+            openFile(currentFile, parent);
+        }
+    }
+
+    private class FileDropListener implements FileDrop.Listener {
+        private final JScrollPane mSp;
+
+        @Override
+        public void filesDropped(File... files) {
+            if (files != null && files.length > 0) {
+                final File file = files[0];
+                openFile(file, mSp);
+            }
+        }
+
+        public FileDropListener(JScrollPane aSp) {
+            mSp = aSp;
         }
     }
 }

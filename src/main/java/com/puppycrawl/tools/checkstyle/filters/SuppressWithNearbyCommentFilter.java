@@ -78,193 +78,6 @@ import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
 public class SuppressWithNearbyCommentFilter
     extends AutomaticBean
     implements Filter {
-    /**
-     * A Tag holds a suppression comment and its location.
-     */
-    public static class Tag implements Comparable<Tag> {
-        /** The text of the tag. */
-        private final String text;
-
-        /** The first line where warnings may be suppressed. */
-        private final int firstLine;
-
-        /** The last line where warnings may be suppressed. */
-        private final int lastLine;
-
-        /** The parsed check regexp, expanded for the text of this tag. */
-        private final Pattern tagCheckRegexp;
-
-        /** The parsed message regexp, expanded for the text of this tag. */
-        private final Pattern tagMessageRegexp;
-
-        /**
-         * Constructs a tag.
-         * @param text the text of the suppression.
-         * @param line the line number.
-         * @param filter the {@code SuppressWithNearbyCommentFilter} with the context
-         * @throws ConversionException if unable to parse expanded text.
-         * on.
-         */
-        public Tag(String text, int line, SuppressWithNearbyCommentFilter filter) {
-            this.text = text;
-
-            //Expand regexp for check and message
-            //Does not intern Patterns with Utils.getPattern()
-            String format = "";
-            try {
-                format = expandFrocomment(text, filter.checkFormat, filter.commentRegexp);
-                tagCheckRegexp = Pattern.compile(format);
-                if (filter.messageFormat != null) {
-                    format = expandFrocomment(
-                         text, filter.messageFormat, filter.commentRegexp);
-                    tagMessageRegexp = Pattern.compile(format);
-                }
-                else {
-                    tagMessageRegexp = null;
-                }
-                format = expandFrocomment(
-                    text, filter.influenceFormat, filter.commentRegexp);
-                int influence;
-                try {
-                    if (Utils.startsWithChar(format, '+')) {
-                        format = format.substring(1);
-                    }
-                    influence = Integer.parseInt(format);
-                }
-                catch (final NumberFormatException e) {
-                    throw new ConversionException(
-                        "unable to parse influence from '" + text
-                            + "' using " + filter.influenceFormat, e);
-                }
-                if (influence >= 0) {
-                    firstLine = line;
-                    lastLine = line + influence;
-                }
-                else {
-                    firstLine = line + influence;
-                    lastLine = line;
-                }
-            }
-            catch (final PatternSyntaxException e) {
-                throw new ConversionException(
-                    "unable to parse expanded comment " + format,
-                    e);
-            }
-        }
-
-        /** @return the text of the tag. */
-        public String getText() {
-            return text;
-        }
-
-        /** @return the line number of the first suppressed line. */
-        public int getFirstLine() {
-            return firstLine;
-        }
-
-        /** @return the line number of the last suppressed line. */
-        public int getLastLine() {
-            return lastLine;
-        }
-
-        /**
-         * Compares the position of this tag in the file
-         * with the position of another tag.
-         * @param other the tag to compare with this one.
-         * @return a negative number if this tag is before the other tag,
-         * 0 if they are at the same position, and a positive number if this
-         * tag is after the other tag.
-         */
-        @Override
-        public int compareTo(Tag other) {
-            if (firstLine == other.firstLine) {
-                return Integer.compare(lastLine, other.lastLine);
-            }
-
-            return Integer.compare(firstLine, other.firstLine);
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (o == null || getClass() != o.getClass()) {
-                return false;
-            }
-            final Tag tag = (Tag) o;
-            return Objects.equals(firstLine, tag.firstLine)
-                    && Objects.equals(lastLine, tag.lastLine)
-                    && Objects.equals(text, tag.text)
-                    && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
-                    && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp);
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public int hashCode() {
-            return Objects.hash(text, firstLine, lastLine, tagCheckRegexp, tagMessageRegexp);
-        }
-
-        /**
-         * Determines whether the source of an audit event
-         * matches the text of this tag.
-         * @param event the <code>AuditEvent</code> to check.
-         * @return true if the source of event matches the text of this tag.
-         */
-        public boolean isMatch(AuditEvent event) {
-            final int line = event.getLine();
-            if (line < firstLine) {
-                return false;
-            }
-            if (line > lastLine) {
-                return false;
-            }
-            final Matcher tagMatcher =
-                tagCheckRegexp.matcher(event.getSourceName());
-            if (tagMatcher.find()) {
-                return true;
-            }
-            if (tagMessageRegexp != null) {
-                final Matcher messageMatcher =
-                    tagMessageRegexp.matcher(event.getMessage());
-                return messageMatcher.find();
-            }
-            return false;
-        }
-
-        /**
-         * Expand based on a matching comment.
-         * @param comment the comment.
-         * @param stringToExpand the string to expand.
-         * @param regexp the parsed expander.
-         * @return the expanded string
-         */
-        private static String expandFrocomment(
-            String comment,
-            String stringToExpand,
-            Pattern regexp) {
-            final Matcher matcher = regexp.matcher(comment);
-            // Match primarily for effect.
-            if (!matcher.find()) {
-                return stringToExpand;
-            }
-            String result = stringToExpand;
-            for (int i = 0; i <= matcher.groupCount(); i++) {
-                // $n expands comment match like in Pattern.subst().
-                result = result.replaceAll("\\$" + i, matcher.group(i));
-            }
-            return result;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        public final String toString() {
-            return "Tag[lines=[" + getFirstLine() + " to " + getLastLine()
-                + "]; text='" + getText() + "']";
-        }
-    }
 
     /** Format to turns checkstyle reporting off. */
     private static final String DEFAULT_COMMENT_FORMAT =
@@ -462,5 +275,193 @@ public class SuppressWithNearbyCommentFilter
     private void addTag(String text, int line) {
         final Tag tag = new Tag(text, line, this);
         tags.add(tag);
+    }
+
+    /**
+     * A Tag holds a suppression comment and its location.
+     */
+    public static class Tag implements Comparable<Tag> {
+        /** The text of the tag. */
+        private final String text;
+
+        /** The first line where warnings may be suppressed. */
+        private final int firstLine;
+
+        /** The last line where warnings may be suppressed. */
+        private final int lastLine;
+
+        /** The parsed check regexp, expanded for the text of this tag. */
+        private final Pattern tagCheckRegexp;
+
+        /** The parsed message regexp, expanded for the text of this tag. */
+        private final Pattern tagMessageRegexp;
+
+        /**
+         * Constructs a tag.
+         * @param text the text of the suppression.
+         * @param line the line number.
+         * @param filter the {@code SuppressWithNearbyCommentFilter} with the context
+         * @throws ConversionException if unable to parse expanded text.
+         * on.
+         */
+        public Tag(String text, int line, SuppressWithNearbyCommentFilter filter) {
+            this.text = text;
+
+            //Expand regexp for check and message
+            //Does not intern Patterns with Utils.getPattern()
+            String format = "";
+            try {
+                format = expandFrocomment(text, filter.checkFormat, filter.commentRegexp);
+                tagCheckRegexp = Pattern.compile(format);
+                if (filter.messageFormat != null) {
+                    format = expandFrocomment(
+                         text, filter.messageFormat, filter.commentRegexp);
+                    tagMessageRegexp = Pattern.compile(format);
+                }
+                else {
+                    tagMessageRegexp = null;
+                }
+                format = expandFrocomment(
+                    text, filter.influenceFormat, filter.commentRegexp);
+                int influence;
+                try {
+                    if (Utils.startsWithChar(format, '+')) {
+                        format = format.substring(1);
+                    }
+                    influence = Integer.parseInt(format);
+                }
+                catch (final NumberFormatException e) {
+                    throw new ConversionException(
+                        "unable to parse influence from '" + text
+                            + "' using " + filter.influenceFormat, e);
+                }
+                if (influence >= 0) {
+                    firstLine = line;
+                    lastLine = line + influence;
+                }
+                else {
+                    firstLine = line + influence;
+                    lastLine = line;
+                }
+            }
+            catch (final PatternSyntaxException e) {
+                throw new ConversionException(
+                    "unable to parse expanded comment " + format,
+                    e);
+            }
+        }
+
+        /** @return the text of the tag. */
+        public String getText() {
+            return text;
+        }
+
+        /** @return the line number of the first suppressed line. */
+        public int getFirstLine() {
+            return firstLine;
+        }
+
+        /** @return the line number of the last suppressed line. */
+        public int getLastLine() {
+            return lastLine;
+        }
+
+        /**
+         * Compares the position of this tag in the file
+         * with the position of another tag.
+         * @param other the tag to compare with this one.
+         * @return a negative number if this tag is before the other tag,
+         * 0 if they are at the same position, and a positive number if this
+         * tag is after the other tag.
+         */
+        @Override
+        public int compareTo(Tag other) {
+            if (firstLine == other.firstLine) {
+                return Integer.compare(lastLine, other.lastLine);
+            }
+
+            return Integer.compare(firstLine, other.firstLine);
+        }
+
+        /** {@inheritDoc} */
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            final Tag tag = (Tag) o;
+            return Objects.equals(firstLine, tag.firstLine)
+                    && Objects.equals(lastLine, tag.lastLine)
+                    && Objects.equals(text, tag.text)
+                    && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
+                    && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp);
+        }
+
+        /** {@inheritDoc} */
+        @Override
+        public int hashCode() {
+            return Objects.hash(text, firstLine, lastLine, tagCheckRegexp, tagMessageRegexp);
+        }
+
+        /**
+         * Determines whether the source of an audit event
+         * matches the text of this tag.
+         * @param event the <code>AuditEvent</code> to check.
+         * @return true if the source of event matches the text of this tag.
+         */
+        public boolean isMatch(AuditEvent event) {
+            final int line = event.getLine();
+            if (line < firstLine) {
+                return false;
+            }
+            if (line > lastLine) {
+                return false;
+            }
+            final Matcher tagMatcher =
+                tagCheckRegexp.matcher(event.getSourceName());
+            if (tagMatcher.find()) {
+                return true;
+            }
+            if (tagMessageRegexp != null) {
+                final Matcher messageMatcher =
+                    tagMessageRegexp.matcher(event.getMessage());
+                return messageMatcher.find();
+            }
+            return false;
+        }
+
+        /**
+         * Expand based on a matching comment.
+         * @param comment the comment.
+         * @param stringToExpand the string to expand.
+         * @param regexp the parsed expander.
+         * @return the expanded string
+         */
+        private static String expandFrocomment(
+            String comment,
+            String stringToExpand,
+            Pattern regexp) {
+            final Matcher matcher = regexp.matcher(comment);
+            // Match primarily for effect.
+            if (!matcher.find()) {
+                return stringToExpand;
+            }
+            String result = stringToExpand;
+            for (int i = 0; i <= matcher.groupCount(); i++) {
+                // $n expands comment match like in Pattern.subst().
+                result = result.replaceAll("\\$" + i, matcher.group(i));
+            }
+            return result;
+        }
+
+        /** {@inheritDoc} */
+        @Override
+        public final String toString() {
+            return "Tag[lines=[" + getFirstLine() + " to " + getLastLine()
+                + "]; text='" + getText() + "']";
+        }
     }
 }

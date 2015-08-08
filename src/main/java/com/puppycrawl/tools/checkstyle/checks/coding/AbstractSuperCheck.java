@@ -45,53 +45,6 @@ public abstract class AbstractSuperCheck
      */
     public static final String MSG_KEY = "missing.super.call";
 
-    /**
-     * Stack node for a method definition and a record of
-     * whether the method has a call to the super method.
-     * @author Rick Giles
-     */
-    private static class MethodNode {
-        /** method definition */
-        private final DetailAST method;
-
-        /** true if the overriding method calls the super method */
-        private boolean callingSuper;
-
-        /**
-         * Constructs a stack node for a method definition.
-         * @param ast AST for the method definition.
-         */
-        public MethodNode(DetailAST ast) {
-            method = ast;
-            callingSuper = false;
-        }
-
-        /**
-         * Records that the overriding method has a call to the super method.
-         */
-        public void setCallingSuper() {
-            callingSuper = true;
-        }
-
-        /**
-         * Determines whether the overriding method has a call to the super
-         * method.
-         * @return true if the overriding method has a call to the super
-         * method.
-         */
-        public boolean isCallingSuper() {
-            return callingSuper;
-        }
-
-        /**
-         * Returns the overriding method definition AST.
-         * @return the overriding method definition AST.
-         */
-        public DetailAST getMethod() {
-            return method;
-        }
-    }
-
     /** stack of methods */
     private final Deque<MethodNode> methodStack = Lists.newLinkedList();
 
@@ -233,5 +186,52 @@ public abstract class AbstractSuperCheck
         }
         final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
         return params.getChildCount() == 0;
+    }
+
+    /**
+     * Stack node for a method definition and a record of
+     * whether the method has a call to the super method.
+     * @author Rick Giles
+     */
+    private static class MethodNode {
+        /** method definition */
+        private final DetailAST method;
+
+        /** true if the overriding method calls the super method */
+        private boolean callingSuper;
+
+        /**
+         * Constructs a stack node for a method definition.
+         * @param ast AST for the method definition.
+         */
+        public MethodNode(DetailAST ast) {
+            method = ast;
+            callingSuper = false;
+        }
+
+        /**
+         * Records that the overriding method has a call to the super method.
+         */
+        public void setCallingSuper() {
+            callingSuper = true;
+        }
+
+        /**
+         * Determines whether the overriding method has a call to the super
+         * method.
+         * @return true if the overriding method has a call to the super
+         * method.
+         */
+        public boolean isCallingSuper() {
+            return callingSuper;
+        }
+
+        /**
+         * Returns the overriding method definition AST.
+         * @return the overriding method definition AST.
+         */
+        public DetailAST getMethod() {
+            return method;
+        }
     }
 }

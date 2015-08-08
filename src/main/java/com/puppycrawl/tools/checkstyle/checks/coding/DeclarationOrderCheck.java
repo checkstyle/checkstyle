@@ -107,17 +107,6 @@ public class DeclarationOrderCheck extends Check {
      */
     private final Deque<ScopeState> scopeStates = new ArrayDeque<>();
 
-    /**
-     * private class to encapsulate the state
-     */
-    private static class ScopeState {
-        /** The state the check is in */
-        private int currentScopeState = STATE_STATIC_VARIABLE_DEF;
-
-        /** The sub-state the check is in */
-        private Scope declarationAccess = Scope.PUBLIC;
-    }
-
     /** If true, ignores the check to constructors. */
     private boolean ignoreConstructors;
     /** If true, ignore the check to methods. */
@@ -288,5 +277,16 @@ public class DeclarationOrderCheck extends Check {
      */
     public void setIgnoreModifiers(boolean ignoreModifiers) {
         this.ignoreModifiers = ignoreModifiers;
+    }
+
+    /**
+     * private class to encapsulate the state
+     */
+    private static class ScopeState {
+        /** The state the check is in */
+        private int currentScopeState = STATE_STATIC_VARIABLE_DEF;
+
+        /** The sub-state the check is in */
+        private Scope declarationAccess = Scope.PUBLIC;
     }
 }

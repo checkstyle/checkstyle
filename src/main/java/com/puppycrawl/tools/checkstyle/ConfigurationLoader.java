@@ -89,136 +89,6 @@ public final class ConfigurationLoader {
     private static final String DTD_RESOURCE_NAME_1_3 =
         "com/puppycrawl/tools/checkstyle/configuration_1_3.dtd";
 
-    /**
-     * Implements the SAX document handler interfaces, so they do not
-     * appear in the public API of the ConfigurationLoader.
-     */
-    private final class InternalLoader
-        extends AbstractLoader {
-        /** module elements */
-        private static final String MODULE = "module";
-        /** name attribute */
-        private static final String NAME = "name";
-        /** property element */
-        private static final String PROPERTY = "property";
-        /** value attribute */
-        private static final String VALUE = "value";
-        /** default attribute */
-        private static final String DEFAULT = "default";
-        /** name of the severity property */
-        private static final String SEVERITY = "severity";
-        /** name of the message element */
-        private static final String MESSAGE = "message";
-        /** name of the message element */
-        private static final String METADATA = "metadata";
-        /** name of the key attribute */
-        private static final String KEY = "key";
-
-        /**
-         * Creates a new InternalLoader.
-         * @throws SAXException if an error occurs
-         * @throws ParserConfigurationException if an error occurs
-         */
-        public InternalLoader()
-            throws SAXException, ParserConfigurationException {
-            // super(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
-            super(createIdToResourceNameMap());
-        }
-
-        @Override
-        public void startElement(String namespaceURI,
-                                 String localName,
-                                 String qName,
-                                 Attributes atts)
-            throws SAXException {
-            if (qName.equals(MODULE)) {
-                //create configuration
-                final String name = atts.getValue(NAME);
-                final DefaultConfiguration conf =
-                    new DefaultConfiguration(name);
-
-                if (configuration == null) {
-                    configuration = conf;
-                }
-
-                //add configuration to it's parent
-                if (!configStack.isEmpty()) {
-                    final DefaultConfiguration top =
-                        configStack.peek();
-                    top.addChild(conf);
-                }
-
-                configStack.push(conf);
-            }
-            else if (qName.equals(PROPERTY)) {
-                //extract value and name
-                final String value;
-                try {
-                    value = replaceProperties(atts.getValue(VALUE),
-                        overridePropsResolver, atts.getValue(DEFAULT));
-                }
-                catch (final CheckstyleException ex) {
-                    throw new SAXException(ex);
-                }
-                final String name = atts.getValue(NAME);
-
-                //add to attributes of configuration
-                final DefaultConfiguration top =
-                    configStack.peek();
-                top.addAttribute(name, value);
-            }
-            else if (qName.equals(MESSAGE)) {
-                //extract key and value
-                final String key = atts.getValue(KEY);
-                final String value = atts.getValue(VALUE);
-
-                //add to messages of configuration
-                final DefaultConfiguration top = configStack.peek();
-                top.addMessage(key, value);
-            }
-            else {
-                if (!qName.equals(METADATA)) {
-                    throw new IllegalStateException("Unknown name:" + qName + ".");
-                }
-            }
-        }
-
-        @Override
-        public void endElement(String namespaceURI,
-                               String localName,
-                               String qName)
-            throws SAXException {
-            if (qName.equals(MODULE)) {
-
-                final Configuration recentModule =
-                    configStack.pop();
-
-                // remove modules with severity ignore if these modules should
-                // be omitted
-                SeverityLevel level = null;
-                try {
-                    final String severity = recentModule.getAttribute(SEVERITY);
-                    level = SeverityLevel.getInstance(severity);
-                }
-                catch (final CheckstyleException e) {
-                    LOG.debug("Severity not set, ignoring exception", e);
-                }
-
-                // omit this module if these should be omitted and the module
-                // has the severity 'ignore'
-                final boolean omitModule = omitIgnoredModules
-                    && level == SeverityLevel.IGNORE;
-
-                if (omitModule && !configStack.isEmpty()) {
-                    final DefaultConfiguration parentModule =
-                        configStack.peek();
-                    parentModule.removeChild(recentModule);
-                }
-            }
-        }
-
-    }
-
     /** the SAX document handler */
     private final InternalLoader saxHandler;
 
@@ -535,6 +405,135 @@ public final class ConfigurationLoader {
         //if there is any tail to the file, append it
         if (prev < value.length()) {
             fragments.add(value.substring(prev));
+        }
+    }
+
+    /**
+     * Implements the SAX document handler interfaces, so they do not
+     * appear in the public API of the ConfigurationLoader.
+     */
+    private final class InternalLoader
+        extends AbstractLoader {
+        /** module elements */
+        private static final String MODULE = "module";
+        /** name attribute */
+        private static final String NAME = "name";
+        /** property element */
+        private static final String PROPERTY = "property";
+        /** value attribute */
+        private static final String VALUE = "value";
+        /** default attribute */
+        private static final String DEFAULT = "default";
+        /** name of the severity property */
+        private static final String SEVERITY = "severity";
+        /** name of the message element */
+        private static final String MESSAGE = "message";
+        /** name of the message element */
+        private static final String METADATA = "metadata";
+        /** name of the key attribute */
+        private static final String KEY = "key";
+
+        /**
+         * Creates a new InternalLoader.
+         * @throws SAXException if an error occurs
+         * @throws ParserConfigurationException if an error occurs
+         */
+        public InternalLoader()
+            throws SAXException, ParserConfigurationException {
+            // super(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
+            super(createIdToResourceNameMap());
+        }
+
+        @Override
+        public void startElement(String namespaceURI,
+                                 String localName,
+                                 String qName,
+                                 Attributes atts)
+            throws SAXException {
+            if (qName.equals(MODULE)) {
+                //create configuration
+                final String name = atts.getValue(NAME);
+                final DefaultConfiguration conf =
+                    new DefaultConfiguration(name);
+
+                if (configuration == null) {
+                    configuration = conf;
+                }
+
+                //add configuration to it's parent
+                if (!configStack.isEmpty()) {
+                    final DefaultConfiguration top =
+                        configStack.peek();
+                    top.addChild(conf);
+                }
+
+                configStack.push(conf);
+            }
+            else if (qName.equals(PROPERTY)) {
+                //extract value and name
+                final String value;
+                try {
+                    value = replaceProperties(atts.getValue(VALUE),
+                        overridePropsResolver, atts.getValue(DEFAULT));
+                }
+                catch (final CheckstyleException ex) {
+                    throw new SAXException(ex);
+                }
+                final String name = atts.getValue(NAME);
+
+                //add to attributes of configuration
+                final DefaultConfiguration top =
+                    configStack.peek();
+                top.addAttribute(name, value);
+            }
+            else if (qName.equals(MESSAGE)) {
+                //extract key and value
+                final String key = atts.getValue(KEY);
+                final String value = atts.getValue(VALUE);
+
+                //add to messages of configuration
+                final DefaultConfiguration top = configStack.peek();
+                top.addMessage(key, value);
+            }
+            else {
+                if (!qName.equals(METADATA)) {
+                    throw new IllegalStateException("Unknown name:" + qName + ".");
+                }
+            }
+        }
+
+        @Override
+        public void endElement(String namespaceURI,
+                               String localName,
+                               String qName)
+            throws SAXException {
+            if (qName.equals(MODULE)) {
+
+                final Configuration recentModule =
+                    configStack.pop();
+
+                // remove modules with severity ignore if these modules should
+                // be omitted
+                SeverityLevel level = null;
+                try {
+                    final String severity = recentModule.getAttribute(SEVERITY);
+                    level = SeverityLevel.getInstance(severity);
+                }
+                catch (final CheckstyleException e) {
+                    LOG.debug("Severity not set, ignoring exception", e);
+                }
+
+                // omit this module if these should be omitted and the module
+                // has the severity 'ignore'
+                final boolean omitModule = omitIgnoredModules
+                    && level == SeverityLevel.IGNORE;
+
+                if (omitModule && !configStack.isEmpty()) {
+                    final DefaultConfiguration parentModule =
+                        configStack.peek();
+                    parentModule.removeChild(recentModule);
+                }
+            }
         }
     }
 }

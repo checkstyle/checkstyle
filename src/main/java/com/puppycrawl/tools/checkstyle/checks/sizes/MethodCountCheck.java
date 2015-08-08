@@ -68,57 +68,6 @@ public final class MethodCountCheck extends Check {
      */
     public static final String MSG_MANY_METHODS = "too.many.methods";
 
-    /**
-     * Marker class used to collect data about the number of methods per
-     * class. Objects of this class are used on the Stack to count the
-     * methods for each class and layer.
-     */
-    private static class MethodCounter {
-        /** Maintains the counts. */
-        private final Map<Scope, Integer> counts = new EnumMap<>(Scope.class);
-        /** indicated is an interface, in which case all methods are public */
-        private final boolean inInterface;
-        /** tracks the total. */
-        private int total;
-
-        /**
-         * Creates an interface.
-         * @param inInterface indicated if counter for an interface. In which
-         *        case, add all counts as public methods.
-         */
-        MethodCounter(boolean inInterface) {
-            this.inInterface = inInterface;
-        }
-
-        /**
-         * Increments to counter by one for the supplied scope.
-         * @param scope the scope counter to increment.
-         */
-        void increment(Scope scope) {
-            total++;
-            if (inInterface) {
-                counts.put(Scope.PUBLIC, 1 + value(Scope.PUBLIC));
-            }
-            else {
-                counts.put(scope, 1 + value(scope));
-            }
-        }
-
-        /**
-         * @param scope the scope counter to get the value of
-         * @return the value of a scope counter
-         */
-        int value(Scope scope) {
-            final Integer value = counts.get(scope);
-            return value == null ? 0 : value;
-        }
-
-        /** @return the total number of methods. */
-        int getTotal() {
-            return total;
-        }
-    }
-
     /** default maximum number of methods */
     private static final int DEFAULT_MAX_METHODS = 100;
     /** Maximum private methods. */
@@ -258,5 +207,56 @@ public final class MethodCountCheck extends Check {
      */
     public void setMaxTotal(int value) {
         maxTotal = value;
+    }
+
+    /**
+     * Marker class used to collect data about the number of methods per
+     * class. Objects of this class are used on the Stack to count the
+     * methods for each class and layer.
+     */
+    private static class MethodCounter {
+        /** Maintains the counts. */
+        private final Map<Scope, Integer> counts = new EnumMap<>(Scope.class);
+        /** indicated is an interface, in which case all methods are public */
+        private final boolean inInterface;
+        /** tracks the total. */
+        private int total;
+
+        /**
+         * Creates an interface.
+         * @param inInterface indicated if counter for an interface. In which
+         *        case, add all counts as public methods.
+         */
+        MethodCounter(boolean inInterface) {
+            this.inInterface = inInterface;
+        }
+
+        /**
+         * Increments to counter by one for the supplied scope.
+         * @param scope the scope counter to increment.
+         */
+        void increment(Scope scope) {
+            total++;
+            if (inInterface) {
+                counts.put(Scope.PUBLIC, 1 + value(Scope.PUBLIC));
+            }
+            else {
+                counts.put(scope, 1 + value(scope));
+            }
+        }
+
+        /**
+         * @param scope the scope counter to get the value of
+         * @return the value of a scope counter
+         */
+        int value(Scope scope) {
+            final Integer value = counts.get(scope);
+            return value == null ? 0 : value;
+        }
+
+        /** @return the total number of methods. */
+        int getTotal() {
+            return total;
+        }
     }
 }

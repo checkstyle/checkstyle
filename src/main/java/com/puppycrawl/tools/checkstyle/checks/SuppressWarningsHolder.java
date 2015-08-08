@@ -71,62 +71,6 @@ public class SuppressWarningsHolder
      */
     private static final ThreadLocal<List<Entry>> ENTRIES = new ThreadLocal<>();
 
-    /** records a particular suppression for a region of a file */
-    private static class Entry {
-        /** the source name of the suppressed check */
-        private final String checkName;
-        /** the suppression region for the check - first line */
-        private final int firstLine;
-        /** the suppression region for the check - first column */
-        private final int firstColumn;
-        /** the suppression region for the check - last line */
-        private final int lastLine;
-        /** the suppression region for the check - last column */
-        private final int lastColumn;
-
-        /**
-         * Constructs a new suppression region entry.
-         * @param checkName the source name of the suppressed check
-         * @param firstLine the first line of the suppression region
-         * @param firstColumn the first column of the suppression region
-         * @param lastLine the last line of the suppression region
-         * @param lastColumn the last column of the suppression region
-         */
-        public Entry(String checkName, int firstLine, int firstColumn,
-            int lastLine, int lastColumn) {
-            this.checkName = checkName;
-            this.firstLine = firstLine;
-            this.firstColumn = firstColumn;
-            this.lastLine = lastLine;
-            this.lastColumn = lastColumn;
-        }
-
-        /** @return the source name of the suppressed check */
-        public String getCheckName() {
-            return checkName;
-        }
-
-        /** @return the first line of the suppression region */
-        public int getFirstLine() {
-            return firstLine;
-        }
-
-        /** @return the first column of the suppression region */
-        public int getFirstColumn() {
-            return firstColumn;
-        }
-
-        /** @return the last line of the suppression region */
-        public int getLastLine() {
-            return lastLine;
-        }
-
-        /** @return the last column of the suppression region */
-        public int getLastColumn() {
-            return lastColumn;
-        }
-    }
-
     /**
      * Returns the default alias for the source name of a check, which is the
      * source name in lower case with any dotted prefix or "Check" suffix
@@ -466,5 +410,61 @@ public class SuppressWarningsHolder
         }
         throw new IllegalArgumentException(
             "Expression or annotation array initializer AST expected: " + ast);
+    }
+
+    /** records a particular suppression for a region of a file */
+    private static class Entry {
+        /** the source name of the suppressed check */
+        private final String checkName;
+        /** the suppression region for the check - first line */
+        private final int firstLine;
+        /** the suppression region for the check - first column */
+        private final int firstColumn;
+        /** the suppression region for the check - last line */
+        private final int lastLine;
+        /** the suppression region for the check - last column */
+        private final int lastColumn;
+
+        /**
+         * Constructs a new suppression region entry.
+         * @param checkName the source name of the suppressed check
+         * @param firstLine the first line of the suppression region
+         * @param firstColumn the first column of the suppression region
+         * @param lastLine the last line of the suppression region
+         * @param lastColumn the last column of the suppression region
+         */
+        public Entry(String checkName, int firstLine, int firstColumn,
+            int lastLine, int lastColumn) {
+            this.checkName = checkName;
+            this.firstLine = firstLine;
+            this.firstColumn = firstColumn;
+            this.lastLine = lastLine;
+            this.lastColumn = lastColumn;
+        }
+
+        /** @return the source name of the suppressed check */
+        public String getCheckName() {
+            return checkName;
+        }
+
+        /** @return the first line of the suppression region */
+        public int getFirstLine() {
+            return firstLine;
+        }
+
+        /** @return the first column of the suppression region */
+        public int getFirstColumn() {
+            return firstColumn;
+        }
+
+        /** @return the last line of the suppression region */
+        public int getLastLine() {
+            return lastLine;
+        }
+
+        /** @return the last column of the suppression region */
+        public int getLastColumn() {
+            return lastColumn;
+        }
     }
 }

@@ -216,6 +216,14 @@ public class JTreeTable extends JTable {
         return tree;
     }
 
+    public void setEditor(JTextArea mJTextArea) {
+         this.editor = mJTextArea;
+    }
+
+    public void setLinePositionMap(List<Integer> lines2position) {
+        this.lines2position = ImmutableList.copyOf(lines2position);
+    }
+
     /**
      * A TreeCellRenderer that displays a JTree.
      */
@@ -470,13 +478,5 @@ public class JTreeTable extends JTable {
                 updateSelectedPathsFromSelectedRows();
             }
         }
-    }
-
-    public void setEditor(JTextArea mJTextArea) {
-         this.editor = mJTextArea;
-    }
-
-    public void setLinePositionMap(List<Integer> lines2position) {
-        this.lines2position = ImmutableList.copyOf(lines2position);
     }
 }
