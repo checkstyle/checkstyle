@@ -80,7 +80,7 @@ public class IllegalImportCheck
      * Set the list of illegal packages.
      * @param from array of illegal packages
      */
-    public void setIllegalPkgs(String... from) {
+    public final void setIllegalPkgs(String... from) {
         illegalPkgs = from.clone();
     }
 
