@@ -91,45 +91,13 @@ public class TreeTableModelAdapter extends AbstractTableModel {
         this.tree = tree;
         this.treeTableModel = treeTableModel;
 
-        tree.addTreeExpansionListener(new TreeExpansionListener() {
-            // Don't use fireTableRowsInserted() here; the selection model
-            // would get updated twice.
-            @Override
-            public void treeExpanded(TreeExpansionEvent event) {
-                fireTableDataChanged();
-            }
-
-            @Override
-            public void treeCollapsed(TreeExpansionEvent event) {
-                fireTableDataChanged();
-            }
-        });
+        tree.addTreeExpansionListener(new UpdatingTreeExpansionListener());
 
         // Install a TreeModelListener that can update the table when
         // mTree changes. We use delayedFireTableDataChanged as we can
         // not be guaranteed the mTree will have finished processing
         // the event before us.
-        treeTableModel.addTreeModelListener(new TreeModelListener() {
-            @Override
-            public void treeNodesChanged(TreeModelEvent e) {
-                delayedFireTableDataChanged();
-            }
-
-            @Override
-            public void treeNodesInserted(TreeModelEvent e) {
-                delayedFireTableDataChanged();
-            }
-
-            @Override
-            public void treeNodesRemoved(TreeModelEvent e) {
-                delayedFireTableDataChanged();
-            }
-
-            @Override
-            public void treeStructureChanged(TreeModelEvent e) {
-                delayedFireTableDataChanged();
-            }
-        });
+        treeTableModel.addTreeModelListener(new UpdatingTreeModelListener());
     }
 
     // Wrappers, implementing TableModel interface.
@@ -197,5 +165,47 @@ public class TreeTableModelAdapter extends AbstractTableModel {
                 fireTableDataChanged();
             }
         });
+    }
+
+    /**
+     * TreeExpansionListener that can update the table when tree changes
+     */
+    private class UpdatingTreeExpansionListener implements TreeExpansionListener {
+        // Don't use fireTableRowsInserted() here; the selection model
+        // would get updated twice.
+        @Override
+        public void treeExpanded(TreeExpansionEvent event) {
+            fireTableDataChanged();
+        }
+
+        @Override
+        public void treeCollapsed(TreeExpansionEvent event) {
+            fireTableDataChanged();
+        }
+    }
+
+    /**
+     * TreeModelListener that can update the table when tree changes
+     */
+    private class UpdatingTreeModelListener implements TreeModelListener {
+        @Override
+        public void treeNodesChanged(TreeModelEvent e) {
+            delayedFireTableDataChanged();
+        }
+
+        @Override
+        public void treeNodesInserted(TreeModelEvent e) {
+            delayedFireTableDataChanged();
+        }
+
+        @Override
+        public void treeNodesRemoved(TreeModelEvent e) {
+            delayedFireTableDataChanged();
+        }
+
+        @Override
+        public void treeStructureChanged(TreeModelEvent e) {
+            delayedFireTableDataChanged();
+        }
     }
 }
