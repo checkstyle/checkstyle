@@ -78,10 +78,7 @@ class HtmlTag {
      * @return <code>true</code> is this is a close tag.
      */
     public boolean isCloseTag() {
-        if (position == text.length() - 1) {
-            return false;
-        }
-        return text.charAt(position + 1) == '/';
+        return position != text.length() - 1 && text.charAt(position + 1) == '/';
     }
 
     /**
