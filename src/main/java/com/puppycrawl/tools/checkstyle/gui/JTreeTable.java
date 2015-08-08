@@ -142,15 +142,11 @@ public class JTreeTable extends JTable {
         }
 
         final Action expand = new AbstractAction() {
-                /**
-             *
-             */
             private static final long serialVersionUID = -5859674518660156121L;
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     final TreePath selected = tree.getSelectionPath();
-
                     final DetailAST ast = (DetailAST) selected.getLastPathComponent();
                     new CodeSelector(ast, editor, lines2position).select();
 
