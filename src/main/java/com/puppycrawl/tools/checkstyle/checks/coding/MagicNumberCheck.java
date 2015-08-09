@@ -182,7 +182,6 @@ public class MagicNumberCheck extends Check {
      * Sort the allowedTokensBetweenMagicNumberAndConstDef array for binary search.
      */
     public MagicNumberCheck() {
-        super();
         Arrays.sort(constantWaiverParentToken);
     }
 

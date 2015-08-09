@@ -110,7 +110,6 @@ public class JTreeTable extends JTable {
     private List<Integer> lines2position;
 
     public JTreeTable(TreeTableModel treeTableModel) {
-        super();
 
         // Create the tree. It will be used as a renderer and editor.
         tree = new TreeTableCellRenderer(treeTableModel);
