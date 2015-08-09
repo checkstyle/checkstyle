@@ -27,6 +27,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.TooManyListenersException;
 
@@ -213,7 +214,7 @@ public class ParseTreeInfoPanel extends JPanel {
     }
 
     public List<Integer> getLines2position() {
-        return lines2position;
+        return Collections.unmodifiableList(lines2position);
     }
 
     /**

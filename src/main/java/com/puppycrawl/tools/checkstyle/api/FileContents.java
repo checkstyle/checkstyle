@@ -230,7 +230,7 @@ public final class FileContents implements CommentListener {
      * @return an object containing the full text of the file
      */
     public FileText getText() {
-        return text;
+        return new FileText(text);
     }
 
     /** @return the lines in the file */

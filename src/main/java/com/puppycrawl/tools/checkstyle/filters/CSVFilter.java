@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -78,7 +79,7 @@ class CSVFilter implements IntFilter {
      * @return the IntFilters of the filter set.
      */
     protected Set<IntFilter> getFilters() {
-        return filters;
+        return Collections.unmodifiableSet(filters);
     }
 
     /**
