@@ -219,7 +219,7 @@ public class CommentsIndentationCheck extends Check {
         }
         else {
             result = singleLineComment.getColumnNo() == nextStmt.getColumnNo()
-                | singleLineComment.getColumnNo() == prevStmt.getColumnNo();
+                || singleLineComment.getColumnNo() == prevStmt.getColumnNo();
         }
         return result;
     }
