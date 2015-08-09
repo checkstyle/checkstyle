@@ -55,10 +55,6 @@
     <!-- Methods that build fake AST are very long-->
     <suppress checks="MethodLength" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]comments[\\/]CommentsTest\.java"/>
 
-    <!-- False-positive while using @see -->
-    <suppress checks="UnusedImports" files="api[\\/]DetailNode\.java"/>
-    <suppress checks="UnusedImports" files="checks[\\/]javadoc[\\/]AbstractJavadocCheck\.java"/>
-
     <suppress checks="." files=".*JavadocTokenTypes\.java"/>
     <suppress checks="." files=".*ParseTreeBuilder\.java"/>
 </suppressions>

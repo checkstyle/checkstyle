@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
