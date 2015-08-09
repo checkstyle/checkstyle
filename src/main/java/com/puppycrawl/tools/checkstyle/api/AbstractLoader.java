@@ -106,7 +106,7 @@ public abstract class AbstractLoader
             final String dtdResourceName =
                     publicIdToResourceNameMap.get(publicId);
             final ClassLoader loader =
-                this.getClass().getClassLoader();
+                getClass().getClassLoader();
             final InputStream dtdIS =
                 loader.getResourceAsStream(dtdResourceName);
 

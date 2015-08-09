@@ -263,7 +263,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
                 LOG.debug("IOException occured.", ioe);
                 fileMessages.add(new LocalizedMessage(0,
                         Definitions.CHECKSTYLE_BUNDLE, "general.exception",
-                        new String[] {ioe.getMessage()}, null, this.getClass(),
+                        new String[] {ioe.getMessage()}, null, getClass(),
                         null));
             }
             fireErrors(fileName, fileMessages);

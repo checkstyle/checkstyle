@@ -221,7 +221,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
      *         if unable to create Pattern object.
      */
     public void setIgnoreVariablePattern(String ignorePattern) {
-        this.ignoreVariablePattern = Utils.createPattern(ignorePattern);
+        ignoreVariablePattern = Utils.createPattern(ignorePattern);
     }
 
     /**

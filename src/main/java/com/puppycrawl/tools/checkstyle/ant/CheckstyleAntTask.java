@@ -400,7 +400,7 @@ public class CheckstyleAntTask extends Task {
         }
 
         // override with Ant properties like ${basedir}
-        final Map<String, Object> antProps = this.getProject().getProperties();
+        final Map<String, Object> antProps = getProject().getProperties();
         for (Map.Entry<String, Object> entry : antProps.entrySet()) {
             final String value = String.valueOf(entry.getValue());
             retVal.setProperty(entry.getKey(), value);

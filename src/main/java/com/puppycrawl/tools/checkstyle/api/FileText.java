@@ -193,11 +193,11 @@ public final class FileText extends AbstractList<String> {
      * @param fileText to make copy of
      */
     public FileText(FileText fileText) {
-        this.file = fileText.file;
-        this.charset = fileText.charset;
-        this.fullText = fileText.fullText;
-        this.lines = fileText.lines.clone();
-        this.lineBreaks = ArrayUtils.clone(fileText.lineBreaks);
+        file = fileText.file;
+        charset = fileText.charset;
+        fullText = fileText.fullText;
+        lines = fileText.lines.clone();
+        lineBreaks = ArrayUtils.clone(fileText.lineBreaks);
     }
 
     /**

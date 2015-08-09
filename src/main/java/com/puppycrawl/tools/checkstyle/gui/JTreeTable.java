@@ -213,7 +213,7 @@ public class JTreeTable extends JTable {
     }
 
     public void setEditor(JTextArea mJTextArea) {
-        this.editor = mJTextArea;
+        editor = mJTextArea;
     }
 
     public void setLinePositionMap(List<Integer> lines2position) {

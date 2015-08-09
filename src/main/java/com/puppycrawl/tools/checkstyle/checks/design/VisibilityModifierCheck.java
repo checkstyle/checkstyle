@@ -367,7 +367,7 @@ public class VisibilityModifierCheck
      * @param allow user's value.
      */
     public void setAllowPublicImmutableFields(boolean allow) {
-        this.allowPublicImmutableFields = allow;
+        allowPublicImmutableFields = allow;
     }
 
     /**

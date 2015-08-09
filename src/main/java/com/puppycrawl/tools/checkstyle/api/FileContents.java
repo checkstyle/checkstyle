@@ -76,7 +76,7 @@ public final class FileContents implements CommentListener {
      */
     @Deprecated
     public FileContents(String filename, String... lines) {
-        this.fileName = filename;
+        fileName = filename;
         text = FileText.fromLines(new File(filename), Arrays.asList(lines));
     }
 
@@ -321,6 +321,6 @@ public final class FileContents implements CommentListener {
      * @return true if the package file.
      */
     public boolean inPackageInfo() {
-        return this.getFileName().endsWith("package-info.java");
+        return getFileName().endsWith("package-info.java");
     }
 }

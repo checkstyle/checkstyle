@@ -119,7 +119,7 @@ public final class MissingDeprecatedCheck extends Check {
     /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens() {
-        return this.getAcceptableTokens();
+        return getAcceptableTokens();
     }
 
     /** {@inheritDoc} */
@@ -142,16 +142,16 @@ public final class MissingDeprecatedCheck extends Check {
     @Override
     public void visitToken(final DetailAST ast) {
         final TextBlock javadoc =
-            this.getFileContents().getJavadocBefore(ast.getLineNo());
+            getFileContents().getJavadocBefore(ast.getLineNo());
 
         final boolean containsAnnotation =
             AnnotationUtility.containsAnnotation(ast, DEPRECATED)
             || AnnotationUtility.containsAnnotation(ast, FQ_DEPRECATED);
 
-        final boolean containsJavadocTag = this.containsJavadocTag(javadoc);
+        final boolean containsJavadocTag = containsJavadocTag(javadoc);
 
         if (containsAnnotation ^ containsJavadocTag) {
-            this.log(ast.getLineNo(), MSG_KEY_ANNOTATION_MISSING_DEPRECATED);
+            log(ast.getLineNo(), MSG_KEY_ANNOTATION_MISSING_DEPRECATED);
         }
     }
 
@@ -184,7 +184,7 @@ public final class MissingDeprecatedCheck extends Check {
 
             if (javadocNoargMatcher.find()) {
                 if (found) {
-                    this.log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
+                    log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
                         JavadocTagInfo.DEPRECATED.getText());
                 }
                 found = true;
@@ -224,15 +224,15 @@ public final class MissingDeprecatedCheck extends Check {
                 if (!lFin.equals(MissingDeprecatedCheck.NEXT_TAG)
                     && !lFin.equals(MissingDeprecatedCheck.END_JAVADOC)) {
                     if (foundBefore) {
-                        this.log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
+                        log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
                             JavadocTagInfo.DEPRECATED.getText());
                     }
                     found = true;
                 }
                 else {
-                    this.log(currentLine, MSG_KEY_JAVADOC_MISSING);
+                    log(currentLine, MSG_KEY_JAVADOC_MISSING);
                     if (foundBefore) {
-                        this.log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
+                        log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
                             JavadocTagInfo.DEPRECATED.getText());
                     }
                     found = true;

@@ -49,7 +49,7 @@ public class PackageAnnotationCheck extends Check {
     /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens() {
-        return this.getRequiredTokens();
+        return getRequiredTokens();
     }
 
     /** {@inheritDoc} */
@@ -63,7 +63,7 @@ public class PackageAnnotationCheck extends Check {
     /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens() {
-        return this.getRequiredTokens();
+        return getRequiredTokens();
     }
 
     /** {@inheritDoc} */
@@ -72,10 +72,10 @@ public class PackageAnnotationCheck extends Check {
         final boolean containsAnnotation =
             AnnotationUtility.containsAnnotation(ast);
         final boolean inPackageInfo =
-            this.getFileContents().inPackageInfo();
+            getFileContents().inPackageInfo();
 
         if (containsAnnotation && !inPackageInfo) {
-            this.log(ast.getLine(), "annotation.package.location");
+            log(ast.getLine(), "annotation.package.location");
         }
     }
 }

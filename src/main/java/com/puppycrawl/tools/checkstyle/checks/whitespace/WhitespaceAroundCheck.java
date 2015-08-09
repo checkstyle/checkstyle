@@ -445,7 +445,7 @@ public class WhitespaceAroundCheck extends Check {
                 return true;
             }
             else if (parentType == TokenTypes.FOR_EACH_CLAUSE
-                && this.ignoreEnhancedForColon) {
+                && ignoreEnhancedForColon) {
                 return true;
             }
         }

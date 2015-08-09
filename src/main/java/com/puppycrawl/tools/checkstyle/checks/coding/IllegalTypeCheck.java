@@ -417,6 +417,6 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
         for (String modifier : modifiers.split(",")) {
             modifiersList.add(Utils.getTokenId(modifier.trim()));
         }
-        this.memberModifiers = modifiersList;
+        memberModifiers = modifiersList;
     }
 }

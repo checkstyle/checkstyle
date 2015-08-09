@@ -121,7 +121,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
         for (String aSOrder : sOrder) {
             customOrder.add(aSOrder.trim());
         }
-        this.tagOrder = customOrder;
+        tagOrder = customOrder;
     }
 
     @Override

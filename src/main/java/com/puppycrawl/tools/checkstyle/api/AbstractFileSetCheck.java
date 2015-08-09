@@ -162,8 +162,8 @@ public abstract class AbstractFileSetCheck
                                  args,
                                  getSeverityLevel(),
                                  getId(),
-                                 this.getClass(),
-                                 this.getCustomMessages().get(key)));
+                                 getClass(),
+                                 getCustomMessages().get(key)));
     }
 
     /**

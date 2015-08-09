@@ -119,19 +119,19 @@ public final class MissingOverrideCheck extends Check {
      * @param compatibility compatibility or not
      */
     public void setJavaFiveCompatibility(final boolean compatibility) {
-        this.javaFiveCompatibility = compatibility;
+        javaFiveCompatibility = compatibility;
     }
 
     /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens() {
-        return this.getRequiredTokens();
+        return getRequiredTokens();
     }
 
     /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens() {
-        return this.getRequiredTokens();
+        return getRequiredTokens();
     }
 
     /** {@inheritDoc} */
@@ -145,16 +145,16 @@ public final class MissingOverrideCheck extends Check {
     @Override
     public void visitToken(final DetailAST ast) {
         final TextBlock javadoc =
-            this.getFileContents().getJavadocBefore(ast.getLineNo());
+            getFileContents().getJavadocBefore(ast.getLineNo());
 
         final boolean containastag = containsJavadocTag(javadoc);
         if (containastag && !JavadocTagInfo.INHERIT_DOC.isValidOn(ast)) {
-            this.log(ast.getLineNo(), MSG_KEY_TAG_NOT_VALID_ON,
+            log(ast.getLineNo(), MSG_KEY_TAG_NOT_VALID_ON,
                 JavadocTagInfo.INHERIT_DOC.getText());
             return;
         }
 
-        if (this.javaFiveCompatibility) {
+        if (javaFiveCompatibility) {
             final DetailAST defOrNew = ast.getParent().getParent();
 
             if (defOrNew.branchContains(TokenTypes.EXTENDS_CLAUSE)
@@ -167,7 +167,7 @@ public final class MissingOverrideCheck extends Check {
         if (containastag
             && !AnnotationUtility.containsAnnotation(ast, OVERRIDE)
             && !AnnotationUtility.containsAnnotation(ast, FQ_OVERRIDE)) {
-            this.log(ast.getLineNo(), MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
+            log(ast.getLineNo(), MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
         }
     }
 
