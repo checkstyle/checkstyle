@@ -34,9 +34,33 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Lars Kühne
  */
 public class ParseTreeModel extends AbstractTreeTableModel {
+
+    /**
+     * Names for the table columns.
+     */
     private static final String[] COLUMN_NAMES = {
         "Tree", "Type", "Line", "Column", "Text",
     };
+    /**
+     * Ordinal index for the 'Tree' column.
+     */
+    private static final int TREE_COLUMN_INDEX = 0;
+    /**
+     * Ordinal index for the 'Type' column.
+     */
+    private static final int TYPE_COLUMN_INDEX = 1;
+    /**
+     * Ordinal index for the 'Line' column.
+     */
+    private static final int LINE_COLUMN_INDEX = 2;
+    /**
+     * Ordinal index for the 'Column' column.
+     */
+    private static final int COLUMN_COLUMN_INDEX = 3;
+    /**
+     * Ordinal index for the 'Text' column.
+     */
+    private static final int TEXT_COLUMN_INDEX = 4;
 
     public ParseTreeModel(DetailAST parseTree) {
         super(createArtificialTreeRoot());
@@ -71,15 +95,15 @@ public class ParseTreeModel extends AbstractTreeTableModel {
     @Override
     public Class<?> getColumnClass(int column) {
         switch (column) {
-            case 0:
+            case TREE_COLUMN_INDEX:
                 return TreeTableModel.class;
-            case 1:
+            case TYPE_COLUMN_INDEX:
                 return String.class;
-            case 2:
+            case LINE_COLUMN_INDEX:
                 return Integer.class;
-            case 3:
+            case COLUMN_COLUMN_INDEX:
                 return Integer.class;
-            case 4:
+            case TEXT_COLUMN_INDEX:
                 return String.class;
             default:
                 return Object.class;
@@ -90,15 +114,15 @@ public class ParseTreeModel extends AbstractTreeTableModel {
     public Object getValueAt(Object node, int column) {
         final DetailAST ast = (DetailAST) node;
         switch (column) {
-            case 0:
+            case TREE_COLUMN_INDEX:
                 return null;
-            case 1:
+            case TYPE_COLUMN_INDEX:
                 return Utils.getTokenName(ast.getType());
-            case 2:
+            case LINE_COLUMN_INDEX:
                 return ast.getLineNo();
-            case 3:
+            case COLUMN_COLUMN_INDEX:
                 return ast.getColumnNo();
-            case 4:
+            case TEXT_COLUMN_INDEX:
                 return ast.getText();
             default:
                 return null;

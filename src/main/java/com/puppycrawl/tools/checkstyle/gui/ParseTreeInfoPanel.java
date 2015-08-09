@@ -84,7 +84,9 @@ public class ParseTreeInfoPanel extends JPanel {
         reloadAction.setEnabled(false);
         final JButton reloadButton = new JButton(reloadAction);
 
-        jTextArea = new JTextArea(20, 15);
+        final int rowsCount = 20;
+        final int columnsCount = 15;
+        jTextArea = new JTextArea(rowsCount, columnsCount);
         jTextArea.setEditable(false);
         treeTable.setEditor(jTextArea);
         treeTable.setLinePositionMap(lines2position);

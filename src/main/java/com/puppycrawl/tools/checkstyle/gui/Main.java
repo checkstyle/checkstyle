@@ -63,7 +63,10 @@ public final class Main {
         final ParseTreeInfoPanel panel = new ParseTreeInfoPanel();
         frame.getContentPane().add(panel);
         panel.openAst(ast, frame);
-        frame.setSize(1500, 800);
+
+        final int width = 1500;
+        final int height = 800;
+        frame.setSize(width, height);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
