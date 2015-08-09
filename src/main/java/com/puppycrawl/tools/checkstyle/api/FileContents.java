@@ -269,7 +269,7 @@ public final class FileContents implements CommentListener {
      **/
     public boolean lineIsBlank(int lineNo) {
         // possible improvement: avoid garbage creation in trim()
-        return "".equals(line(lineNo).trim());
+        return line(lineNo).trim().isEmpty();
     }
 
     /**
