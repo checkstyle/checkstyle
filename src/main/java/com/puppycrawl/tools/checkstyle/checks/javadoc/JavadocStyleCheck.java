@@ -365,13 +365,7 @@ public class JavadocStyleCheck
                 //do nothing
                 continue;
             }
-            if (!tag.isCloseTag()) {
-                //We only push html tags that are allowed
-                if (isAllowedTag(tag)) {
-                    htmlStack.push(tag);
-                }
-            }
-            else {
+            if (tag.isCloseTag()) {
                 // We have found a close tag.
                 if (isExtraHtml(tag.getId(), htmlStack)) {
                     // No corresponding open tag was found on the stack.
@@ -384,6 +378,12 @@ public class JavadocStyleCheck
                     // See if there are any unclosed tags that were opened
                     // after this one.
                     checkUnclosedTags(htmlStack, tag.getId());
+                }
+            }
+            else {
+                //We only push html tags that are allowed
+                if (isAllowedTag(tag)) {
+                    htmlStack.push(tag);
                 }
             }
         }

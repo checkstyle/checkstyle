@@ -250,7 +250,10 @@ public final class TreeWalker
         throws CheckstyleException {
         final int[] tokens;
         final Set<String> checkTokens = check.getTokenNames();
-        if (!checkTokens.isEmpty()) {
+        if (checkTokens.isEmpty()) {
+            tokens = check.getDefaultTokens();
+        }
+        else {
             tokens = check.getRequiredTokens();
 
             //register configured tokens
@@ -267,9 +270,6 @@ public final class TreeWalker
                                 + " in check " + check);
                 }
             }
-        }
-        else {
-            tokens = check.getDefaultTokens();
         }
         for (int element : tokens) {
             registerCheck(element, check);

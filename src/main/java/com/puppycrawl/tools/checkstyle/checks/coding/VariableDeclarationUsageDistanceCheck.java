@@ -342,11 +342,11 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
                         }
                         // differs from previous instance
                         else if (!instanceName.equals(initInstanceName)) {
-                            if (!initInstanceName.isEmpty()) {
-                                result = false;
+                            if (initInstanceName.isEmpty()) {
+                                initInstanceName = instanceName;
                             }
                             else {
-                                initInstanceName = instanceName;
+                                result = false;
                             }
                         }
                     }

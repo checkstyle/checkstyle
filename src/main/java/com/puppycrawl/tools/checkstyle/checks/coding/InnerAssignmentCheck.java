@@ -243,12 +243,12 @@ public class InnerAssignmentCheck
             for (int anElement : element) {
                 current = current.getParent();
                 final int expectedType = anElement;
-                if (current.getType() != expectedType) {
-                    found = false;
-                    break;
+                if (current.getType() == expectedType) {
+                    found = true;
                 }
                 else {
-                    found = true;
+                    found = false;
+                    break;
                 }
             }
 
