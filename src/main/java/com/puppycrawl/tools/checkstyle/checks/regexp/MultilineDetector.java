@@ -96,20 +96,15 @@ class MultilineDetector {
 
             while (foundMatch) {
                 final LineColumn start = text.lineColumn(matcher.start());
-                final LineColumn end = text.lineColumn(matcher.end());
-
-                if (!options.getSuppressor().shouldSuppress(start.getLine(),
-                        start.getColumn(), end.getLine(), end.getColumn())) {
-                    currentMatches++;
-                    if (currentMatches > options.getMaximum()) {
-                        if (options.getMessage().isEmpty()) {
-                            options.getReporter().log(start.getLine(),
-                                    REGEXP_EXCEEDED, matcher.pattern().toString());
-                        }
-                        else {
-                            options.getReporter()
-                                    .log(start.getLine(), options.getMessage());
-                        }
+                currentMatches++;
+                if (currentMatches > options.getMaximum()) {
+                    if (options.getMessage().isEmpty()) {
+                        options.getReporter().log(start.getLine(),
+                                REGEXP_EXCEEDED, matcher.pattern().toString());
+                    }
+                    else {
+                        options.getReporter()
+                                .log(start.getLine(), options.getMessage());
                     }
                 }
                 foundMatch = matcher.find();
