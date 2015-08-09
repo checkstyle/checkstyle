@@ -6,10 +6,10 @@
 <!--
 
     Checkstyle configuration that checks the Google coding conventions from:
-    
+
     -  Google Java Style
        https://google-styleguide.googlecode.com/svn-history/r130/trunk/javaguide.html
-       
+
     Checkstyle is very configurable. Be sure to read the documentation at
     http://checkstyle.sf.net (or in your downloaded distribution).
 
@@ -18,12 +18,12 @@
     To completely disable a check, just comment it out or delete it from the file.
 
     Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
-    
+
  -->
- 
+
 <module name = "Checker">
     <property name="charset" value="UTF-8"/>
-    
+
     <property name="severity" value="warning"/>
 
     <property name="fileExtensions" value="java, properties, xml"/>
@@ -32,7 +32,7 @@
         <module name="FileTabCharacter">
             <property name="eachLine" value="true"/>
         </module>
-    
+
     <module name="TreeWalker">
         <module name="OuterTypeFilename"/>
         <module name="IllegalTokenText">
