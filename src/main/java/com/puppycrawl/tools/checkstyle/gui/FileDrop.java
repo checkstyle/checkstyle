@@ -77,7 +77,7 @@ import javax.swing.border.Border;
 class FileDrop {
 
     /* Default border color */
-    private static final Color DEFAULT_BORDER_COLOR = new Color(0f, 0f, 1f, 0.25f);
+    private static final Color DEFAULT_BORDER_COLOR = new Color(0.0f, 0.0f, 1.0f, 0.25f);
 
     private transient Border normalBorder;
     private final transient DropTargetListener dropListener;
