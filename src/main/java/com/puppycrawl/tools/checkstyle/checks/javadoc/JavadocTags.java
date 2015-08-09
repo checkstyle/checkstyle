@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
@@ -50,7 +51,7 @@ public final class JavadocTags {
      *  @return validTags field
      */
     public List<JavadocTag> getValidTags() {
-        return validTags;
+        return Collections.unmodifiableList(validTags);
     }
 
     /**
@@ -58,6 +59,6 @@ public final class JavadocTags {
      *  @return invalidTags field
      */
     public List<InvalidJavadocTag> getInvalidTags() {
-        return invalidTags;
+        return Collections.unmodifiableList(invalidTags);
     }
 }

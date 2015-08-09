@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
@@ -56,7 +57,7 @@ public class FilterSet
      * @return the Filters of the filter set.
      */
     public Set<Filter> getFilters() {
-        return filters;
+        return Collections.unmodifiableSet(filters);
     }
 
     @Override

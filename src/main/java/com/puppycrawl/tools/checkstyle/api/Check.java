@@ -103,7 +103,7 @@ public abstract class Check extends AbstractViolationReporter {
      * @return the set of token names
      */
     public final Set<String> getTokenNames() {
-        return tokens;
+        return Collections.unmodifiableSet(tokens);
     }
 
     /**

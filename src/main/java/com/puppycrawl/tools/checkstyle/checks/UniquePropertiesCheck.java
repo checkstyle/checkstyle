@@ -28,6 +28,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.google.common.collect.HashMultiset;
+import com.google.common.collect.ImmutableMultiset;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multiset.Entry;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
@@ -148,7 +149,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
         }
 
         public Multiset<String> getDuplicatedStrings() {
-            return duplicatedStrings;
+            return ImmutableMultiset.copyOf(duplicatedStrings);
         }
     }
 }
