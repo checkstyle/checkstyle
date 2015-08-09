@@ -298,7 +298,7 @@ public class ImportOrderCheck
      * @param sortAlphabetically true or false.
      */
     public void setSortStaticImportsAlphabetically(boolean sortAlphabetically) {
-        this.sortStaticImportsAlphabetically = sortAlphabetically;
+        sortStaticImportsAlphabetically = sortAlphabetically;
     }
 
     @Override

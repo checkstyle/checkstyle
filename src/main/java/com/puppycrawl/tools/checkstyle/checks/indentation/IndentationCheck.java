@@ -199,7 +199,7 @@ public class IndentationCheck extends Check {
      * @return the throws indentation level
      */
     public int getThrowsIndent() {
-        return this.throwsIndentationAmount;
+        return throwsIndentationAmount;
     }
 
     /**
@@ -217,7 +217,7 @@ public class IndentationCheck extends Check {
      * @return the initialisation indentation level
      */
     public int getArrayInitIndent() {
-        return this.arrayInitIndentationAmount;
+        return arrayInitIndentationAmount;
     }
 
     /**

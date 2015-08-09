@@ -55,7 +55,7 @@ class IntMatchFilter implements IntFilter {
     public boolean equals(Object object) {
         if (object instanceof IntMatchFilter) {
             final IntMatchFilter other = (IntMatchFilter) object;
-            return this.matchValue == other.matchValue;
+            return matchValue == other.matchValue;
         }
         return false;
     }

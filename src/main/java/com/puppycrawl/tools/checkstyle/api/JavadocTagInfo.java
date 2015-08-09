@@ -427,7 +427,7 @@ public enum JavadocTagInfo {
      * @return the tag text
      */
     public String getText() {
-        return this.text;
+        return text;
     }
 
     /**
@@ -435,7 +435,7 @@ public enum JavadocTagInfo {
      * @return the tag name
      */
     public String getName() {
-        return this.name;
+        return name;
     }
 
     /**
@@ -443,7 +443,7 @@ public enum JavadocTagInfo {
      * @return the Tag type
      */
     public Type getType() {
-        return this.type;
+        return type;
     }
 
     /**
@@ -505,8 +505,8 @@ public enum JavadocTagInfo {
      */
     @Override
     public String toString() {
-        return "text [" + this.text + "] name [" + this.name
-            + "] type [" + this.type + "]";
+        return "text [" + text + "] name [" + name
+            + "] type [" + type + "]";
     }
 
     /**

@@ -118,7 +118,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
     /** {@inheritDoc} */
     @Override
     public final int[] getDefaultTokens() {
-        return this.getAcceptableTokens();
+        return getAcceptableTokens();
     }
 
     /** {@inheritDoc} */
@@ -165,7 +165,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
         //rare case with empty array ex: @SuppressWarnings({})
         if (warning == null) {
             //check to see if empty warnings are forbidden -- are by default
-            this.logMatch(warningHolder.getLineNo(),
+            logMatch(warningHolder.getLineNo(),
                 warningHolder.getColumnNo(), "");
             return;
         }
@@ -178,13 +178,13 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
                     case TokenTypes.STRING_LITERAL:
                         final String warningText =
                             removeQuotes(warning.getFirstChild().getText());
-                        this.logMatch(warning.getLineNo(),
+                        logMatch(warning.getLineNo(),
                                 warning.getColumnNo(), warningText);
                         break;
                     // conditional case
                     // ex: @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
                     case TokenTypes.QUESTION:
-                        this.walkConditional(fChild);
+                        walkConditional(fChild);
                         break;
                     // param in constant case
                     // ex: public static final String UNCHECKED = "unchecked";
@@ -229,9 +229,9 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
      */
     private void logMatch(final int lineNo,
         final int colNum, final String warningText) {
-        final Matcher matcher = this.getRegexp().matcher(warningText);
+        final Matcher matcher = getRegexp().matcher(warningText);
         if (matcher.matches()) {
-            this.log(lineNo, colNum,
+            log(lineNo, colNum,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, warningText);
         }
     }
@@ -291,12 +291,12 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
         if (cond.getType() != TokenTypes.QUESTION) {
             final String warningText =
                 removeQuotes(cond.getText());
-            this.logMatch(cond.getLineNo(), cond.getColumnNo(), warningText);
+            logMatch(cond.getLineNo(), cond.getColumnNo(), warningText);
             return;
         }
 
-        this.walkConditional(getCondLeft(cond));
-        this.walkConditional(getCondRight(cond));
+        walkConditional(getCondLeft(cond));
+        walkConditional(getCondRight(cond));
     }
 
     /**

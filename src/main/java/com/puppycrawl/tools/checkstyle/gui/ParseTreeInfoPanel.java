@@ -75,7 +75,7 @@ public class ParseTreeInfoPanel extends JPanel {
         parseTreeModel = new ParseTreeModel(null);
         final JTreeTable treeTable = new JTreeTable(parseTreeModel);
         final JScrollPane sp = new JScrollPane(treeTable);
-        this.add(sp, BorderLayout.NORTH);
+        add(sp, BorderLayout.NORTH);
 
         final JButton fileSelectionButton =
             new JButton(new FileSelectionAction());
@@ -90,10 +90,10 @@ public class ParseTreeInfoPanel extends JPanel {
         treeTable.setLinePositionMap(lines2position);
 
         final JScrollPane sp2 = new JScrollPane(jTextArea);
-        this.add(sp2, BorderLayout.CENTER);
+        add(sp2, BorderLayout.CENTER);
 
         final JPanel p = new JPanel(new GridLayout(1, 2));
-        this.add(p, BorderLayout.SOUTH);
+        add(p, BorderLayout.SOUTH);
         p.add(fileSelectionButton);
         p.add(reloadButton);
 

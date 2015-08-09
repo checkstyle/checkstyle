@@ -238,7 +238,7 @@ public final class TreeWalker
                 "general.exception",
                 new String[] {message },
                 getId(),
-                this.getClass(), null);
+                getClass(), null);
     }
 
     /**

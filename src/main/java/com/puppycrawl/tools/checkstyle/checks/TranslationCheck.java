@@ -223,7 +223,7 @@ public class TranslationCheck
                 key,
                 args,
                 getId(),
-                this.getClass(), null);
+                getClass(), null);
         final SortedSet<LocalizedMessage> messages = Sets.newTreeSet();
         messages.add(message);
         getMessageDispatcher().fireErrors(file.getPath(), messages);

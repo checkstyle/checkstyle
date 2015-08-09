@@ -111,7 +111,7 @@ public abstract class AbstractViolationReporter
      * used by this module.
      */
     protected String getMessageBundle() {
-        final String className = this.getClass().getName();
+        final String className = getClass().getName();
         return getMessageBundle(className);
     }
 

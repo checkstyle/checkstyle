@@ -110,7 +110,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @param value value to set.
      */
     public void setAllowNewlineParagraph(boolean value) {
-        this.tagImmediatelyBeforeFirstWord = value;
+        tagImmediatelyBeforeFirstWord = value;
     }
 
     @Override

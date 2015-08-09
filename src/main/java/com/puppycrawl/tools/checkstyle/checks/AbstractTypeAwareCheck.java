@@ -266,7 +266,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
                                                     values,
                                                     getSeverityLevel(),
                                                     getId(),
-                                                    this.getClass(),
+                                                    getClass(),
                                                     null);
             throw new IllegalStateException(msg.getMessage());
         }

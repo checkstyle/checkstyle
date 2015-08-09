@@ -202,7 +202,7 @@ public class AutomaticBean
         for (final String key : attributes) {
             final Object value = context.get(key);
 
-            tryCopyProperty(this.getClass().getName(), key, value, false);
+            tryCopyProperty(getClass().getName(), key, value, false);
         }
     }
 

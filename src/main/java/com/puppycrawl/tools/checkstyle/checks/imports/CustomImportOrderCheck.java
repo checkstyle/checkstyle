@@ -601,7 +601,7 @@ public class CustomImportOrderCheck extends Check {
     private boolean matchesSamePackageImportGroup(boolean isStatic,
         String importFullPath, String currentGroup) {
         final String importPathTrimmedToSamePackageDepth =
-                getFirstNDomainsFromIdent(this.samePackageMatchingDepth, importFullPath);
+                getFirstNDomainsFromIdent(samePackageMatchingDepth, importFullPath);
         return !isStatic && SAME_PACKAGE_RULE_GROUP.equals(currentGroup)
                 && samePackageDomainsRegExp.equals(importPathTrimmedToSamePackageDepth);
     }
@@ -875,7 +875,7 @@ public class CustomImportOrderCheck extends Check {
          *        if import is static.
          */
         public final void setStaticImport(boolean isStatic) {
-            this.staticImport = isStatic;
+            staticImport = isStatic;
         }
     }
 }

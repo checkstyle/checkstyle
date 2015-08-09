@@ -81,7 +81,7 @@ public abstract class AbstractDeclarationCollector extends Check {
             case TokenTypes.SLIST :
             case TokenTypes.METHOD_DEF :
             case TokenTypes.CTOR_DEF :
-                this.current = this.frames.get(ast);
+                current = frames.get(ast);
                 break;
             default :
                 // do nothing
@@ -178,7 +178,7 @@ public abstract class AbstractDeclarationCollector extends Check {
             case TokenTypes.SLIST :
             case TokenTypes.METHOD_DEF :
             case TokenTypes.CTOR_DEF :
-                this.frames.put(ast, frameStack.poll());
+                frames.put(ast, frameStack.poll());
                 break;
             default :
                 // do nothing

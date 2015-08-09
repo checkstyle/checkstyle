@@ -225,7 +225,7 @@ public final class AnnotationUseStyleCheck extends Check {
     /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens() {
-        return this.getRequiredTokens();
+        return getRequiredTokens();
     }
 
     /** {@inheritDoc} */
@@ -239,15 +239,15 @@ public final class AnnotationUseStyleCheck extends Check {
     /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens() {
-        return this.getRequiredTokens();
+        return getRequiredTokens();
     }
 
     /** {@inheritDoc} */
     @Override
     public void visitToken(final DetailAST ast) {
-        this.checkStyleType(ast);
-        this.checkCheckClosingParens(ast);
-        this.checkTrailingComma(ast);
+        checkStyleType(ast);
+        checkCheckClosingParens(ast);
+        checkTrailingComma(ast);
     }
 
     /**
@@ -259,7 +259,7 @@ public final class AnnotationUseStyleCheck extends Check {
      */
     private void checkStyleType(final DetailAST annotation) {
 
-        switch (this.style) {
+        switch (style) {
             case COMPACT_NO_ARRAY:
                 checkCompactNoArrayStyle(annotation);
                 break;
@@ -285,7 +285,7 @@ public final class AnnotationUseStyleCheck extends Check {
 
         if (valuePairCount == 0
             && annotation.branchContains(TokenTypes.EXPR)) {
-            this.log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
+            log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.EXPANDED);
         }
     }
@@ -307,7 +307,7 @@ public final class AnnotationUseStyleCheck extends Check {
         if (valuePairCount == 1
             && AnnotationUseStyleCheck.ANNOTATION_ELEMENT_SINGLE_NAME.equals(
                 valuePair.getFirstChild().getText())) {
-            this.log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
+            log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.COMPACT);
         }
     }
@@ -330,7 +330,7 @@ public final class AnnotationUseStyleCheck extends Check {
         //in compact style with one value
         if (arrayInit != null
             && arrayInit.getChildCount(TokenTypes.EXPR) == 1) {
-            this.log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
+            log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.COMPACT_NO_ARRAY);
         }
         //in expanded style with one value and the correct element name
@@ -343,7 +343,7 @@ public final class AnnotationUseStyleCheck extends Check {
                     .ANNOTATION_ELEMENT_SINGLE_NAME.equals(
                     valuePair.getFirstChild().getText())
                     && nestedArrayInit.getChildCount(TokenTypes.EXPR) == 1) {
-                this.log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
+                log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                     ElementStyle.COMPACT_NO_ARRAY);
             }
         }
@@ -356,7 +356,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @param annotation the annotation token
      */
     private void checkTrailingComma(final DetailAST annotation) {
-        if (TrailingArrayComma.IGNORE == this.comma) {
+        if (TrailingArrayComma.IGNORE == comma) {
             return;
         }
 
@@ -373,7 +373,7 @@ public final class AnnotationUseStyleCheck extends Check {
             }
 
             if (arrayInit != null) {
-                this.logCommaViolation(arrayInit);
+                logCommaViolation(arrayInit);
             }
             child = child.getNextSibling();
         }
@@ -393,12 +393,12 @@ public final class AnnotationUseStyleCheck extends Check {
 
         if (this.comma == TrailingArrayComma.ALWAYS
             && (comma == null || comma.getType() != TokenTypes.COMMA)) {
-            this.log(rCurly.getLineNo(),
+            log(rCurly.getLineNo(),
                 rCurly.getColumnNo(), MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING);
         }
         else if (this.comma == TrailingArrayComma.NEVER
             && comma != null && comma.getType() == TokenTypes.COMMA) {
-            this.log(comma.getLineNo(),
+            log(comma.getLineNo(),
                 comma.getColumnNo(), MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT);
         }
     }
@@ -410,23 +410,23 @@ public final class AnnotationUseStyleCheck extends Check {
      * @param ast the annotation token
      */
     private void checkCheckClosingParens(final DetailAST ast) {
-        if (ClosingParens.IGNORE == this.parens) {
+        if (ClosingParens.IGNORE == parens) {
             return;
         }
 
         final DetailAST paren = ast.getLastChild();
         final boolean parenExists = paren.getType() == TokenTypes.RPAREN;
 
-        if (ClosingParens.ALWAYS == this.parens
+        if (ClosingParens.ALWAYS == parens
             && !parenExists) {
-            this.log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_MISSING);
+            log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_MISSING);
         }
-        else if (ClosingParens.NEVER == this.parens
+        else if (ClosingParens.NEVER == parens
             && !ast.branchContains(TokenTypes.EXPR)
             && !ast.branchContains(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
             && !ast.branchContains(TokenTypes.ANNOTATION_ARRAY_INIT)
             && parenExists) {
-            this.log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_PRESENT);
+            log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_PRESENT);
         }
     }
 
