@@ -173,4 +173,29 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         return largeString;
     }
 
+    @Test
+    public void testSetMessage() throws Exception {
+        final String illegal = "\\n";
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("minimum", "500");
+        checkConfig.addAttribute("message", "someMessage");
+
+        String[] expected = new String[223];
+        for (int i = 0; i < 223; i++) {
+            expected[i] = i + ": someMessage";
+        }
+
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
+    }
+
+    @Test
+    public void testGoodLimit() throws Exception {
+        final String illegal = "^import";
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("maximum", "5000");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
+    }
+
 }
