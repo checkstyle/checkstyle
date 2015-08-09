@@ -36,6 +36,8 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.google.common.collect.Lists;
 import com.google.common.io.Closeables;
@@ -49,6 +51,8 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
  *
  **/
 public final class Main {
+
+    private static final Log LOG = LogFactory.getLog(Main.class);
     /** Don't create instance of this class, use {@link #main(String[])} method instead. */
     private Main() {
     }
@@ -74,7 +78,7 @@ public final class Main {
 
             // show version and exit if it is requested
             if (commandLine.hasOption("v")) {
-                System.out.println("Checkstyle version: "
+                LOG.info("Checkstyle version: "
                         + Main.class.getPackage().getImplementationVersion());
                 exitStatus = 0;
             }
@@ -93,7 +97,7 @@ public final class Main {
                     exitStatus = exitWithCliViolation;
                     errorCounter = 1;
                     for (String message : messages) {
-                        System.out.println(message);
+                        LOG.error(message);
                     }
                 }
             }
@@ -103,19 +107,19 @@ public final class Main {
             cliViolations = true;
             exitStatus = exitWithCliViolation;
             errorCounter = 1;
-            System.out.println(pex.getMessage());
+            LOG.error(pex.getMessage());
             printUsage();
         }
         catch (CheckstyleException e) {
             final int exitWithCheckstyleException = -2;
             exitStatus = exitWithCheckstyleException;
             errorCounter = 1;
-            System.out.println(e.getMessage());
+            LOG.error(e.getMessage());
         }
         finally {
             // return exit code base on validation of Checker
             if (errorCounter != 0 && !cliViolations) {
-                System.out.println(String.format("Checkstyle ends with %d errors.", errorCounter));
+                LOG.error(String.format("Checkstyle ends with %d errors.", errorCounter));
             }
             if (exitStatus != 0) {
                 System.exit(exitStatus);
