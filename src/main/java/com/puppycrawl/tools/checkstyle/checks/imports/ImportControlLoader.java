@@ -64,7 +64,6 @@ final class ImportControlLoader extends AbstractLoader {
     /** Used to hold the {@link PkgControl} objects. */
     private final Deque<PkgControl> stack = new ArrayDeque<>();
 
-    /** Initialise the map */
     static {
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
