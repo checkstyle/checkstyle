@@ -319,9 +319,9 @@ public final class JavadocUtils {
      * @return next sibling.
      */
     public static DetailNode getNextSibling(DetailNode node, int tokenType) {
-        DetailNode nextSibling = JavadocUtils.getNextSibling(node);
+        DetailNode nextSibling = getNextSibling(node);
         while (nextSibling != null && nextSibling.getType() != tokenType) {
-            nextSibling = JavadocUtils.getNextSibling(nextSibling);
+            nextSibling = getNextSibling(nextSibling);
         }
         return nextSibling;
     }
@@ -384,11 +384,11 @@ public final class JavadocUtils {
     public static String getTagName(DetailNode javadocTagSection) {
         String javadocTagName;
         if (javadocTagSection.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
-            javadocTagName = JavadocUtils.getNextSibling(
-                    JavadocUtils.getFirstChild(javadocTagSection)).getText();
+            javadocTagName = getNextSibling(
+                    getFirstChild(javadocTagSection)).getText();
         }
         else {
-            javadocTagName = JavadocUtils.getFirstChild(javadocTagSection).getText();
+            javadocTagName = getFirstChild(javadocTagSection).getText();
         }
         return javadocTagName;
     }

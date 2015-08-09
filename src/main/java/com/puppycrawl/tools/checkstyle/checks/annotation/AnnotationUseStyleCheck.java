@@ -305,7 +305,7 @@ public final class AnnotationUseStyleCheck extends Check {
                 TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
 
         if (valuePairCount == 1
-            && AnnotationUseStyleCheck.ANNOTATION_ELEMENT_SINGLE_NAME.equals(
+            && ANNOTATION_ELEMENT_SINGLE_NAME.equals(
                 valuePair.getFirstChild().getText())) {
             this.log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.COMPACT);
@@ -339,8 +339,7 @@ public final class AnnotationUseStyleCheck extends Check {
                 valuePair.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
 
             if (nestedArrayInit != null
-                && AnnotationUseStyleCheck
-                    .ANNOTATION_ELEMENT_SINGLE_NAME.equals(
+                && ANNOTATION_ELEMENT_SINGLE_NAME.equals(
                     valuePair.getFirstChild().getText())
                     && nestedArrayInit.getChildCount(TokenTypes.EXPR) == 1) {
                 this.log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,

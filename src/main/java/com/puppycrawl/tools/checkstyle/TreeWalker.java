@@ -194,7 +194,7 @@ public final class TreeWalker
         try {
             final FileText text = FileText.fromLines(file, lines);
             final FileContents contents = new FileContents(text);
-            final DetailAST rootAST = TreeWalker.parse(contents);
+            final DetailAST rootAST = parse(contents);
 
             getMessageCollector().reset();
 

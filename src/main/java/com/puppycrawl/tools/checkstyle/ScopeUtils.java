@@ -79,7 +79,7 @@ public final class ScopeUtils {
                 || type == TokenTypes.ENUM_DEF) {
                 final DetailAST mods =
                     token.findFirstToken(TokenTypes.MODIFIERS);
-                final Scope modScope = ScopeUtils.getScopeFromMods(mods);
+                final Scope modScope = getScopeFromMods(mods);
                 if (retVal == null || retVal.isIn(modScope)) {
                     retVal = modScope;
                 }

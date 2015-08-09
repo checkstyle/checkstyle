@@ -71,7 +71,7 @@ public final class AnnotationUtility {
         if (ast == null) {
             throw new IllegalArgumentException(THE_AST_IS_NULL);
         }
-        return AnnotationUtility.getAnnotation(ast, annotation) != null;
+        return getAnnotation(ast, annotation) != null;
     }
 
     /**
@@ -85,7 +85,7 @@ public final class AnnotationUtility {
         if (ast == null) {
             throw new IllegalArgumentException(THE_AST_IS_NULL);
         }
-        final DetailAST holder = AnnotationUtility.getAnnotationHolder(ast);
+        final DetailAST holder = getAnnotationHolder(ast);
         return holder != null && holder.branchContains(TokenTypes.ANNOTATION);
     }
 
@@ -152,7 +152,7 @@ public final class AnnotationUtility {
                     "the annotation is empty or spaces");
         }
 
-        final DetailAST holder = AnnotationUtility.getAnnotationHolder(ast);
+        final DetailAST holder = getAnnotationHolder(ast);
 
         for (DetailAST child = holder.getFirstChild();
             child != null; child = child.getNextSibling()) {

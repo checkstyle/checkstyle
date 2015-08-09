@@ -186,7 +186,7 @@ public final class MissingOverrideCheck extends Check {
 
         for (final String line : lines) {
             final Matcher matchInheritDoc =
-                MissingOverrideCheck.MATCH_INHERITDOC.matcher(line);
+                MATCH_INHERITDOC.matcher(line);
 
             if (matchInheritDoc.find()) {
                 return true;

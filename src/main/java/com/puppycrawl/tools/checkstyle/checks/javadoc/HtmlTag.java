@@ -119,7 +119,7 @@ class HtmlTag {
     public String toString() {
         final int startOfText = position;
         final int endOfText =
-            Math.min(startOfText + HtmlTag.MAX_TEXT_LEN, text.length());
+            Math.min(startOfText + MAX_TEXT_LEN, text.length());
         return text.substring(startOfText, endOfText);
     }
 }
