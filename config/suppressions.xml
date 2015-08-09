@@ -50,7 +50,10 @@
       -->
     <suppress checks="." files=".*[\\/]grammars[\\/]Generated[a-zA-Z]*\.java"/>
     <suppress checks="." files=".*[\\/]grammars[\\/]Generated[a-zA-Z]*\.java"/>
-    <suppress checks="." files=".*[\\/]checkstyle[\\/]gui[\\/]"/>
+
+    <!--Classes FileDrop, Main, ParseTreeInfoPanel from gui-package contain Magic Numbers.
+    The Check generates too many violations, fixing them will make code unmanageable.-->
+    <suppress checks="MagicNumber" files=".*[\\/]checkstyle[\\/]gui[\\/]"/>
 
     <!-- Methods that build fake AST are very long-->
     <suppress checks="MethodLength" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]comments[\\/]CommentsTest\.java"/>
