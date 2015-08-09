@@ -101,7 +101,7 @@ public class ParseTreeInfoPanel extends JPanel {
             new FileDrop(sp, new FileDropListener(sp));
         }
         catch (final TooManyListenersException ignored) {
-           showErrorDialog(null, "Cannot initialize Drag and Drop support");
+            showErrorDialog(null, "Cannot initialize Drag and Drop support");
         }
 
     }
@@ -140,14 +140,14 @@ public class ParseTreeInfoPanel extends JPanel {
                 final String[] sourceLines = text.toLinesArray();
 
                 // clear for each new file
-                 getLines2position().clear();
-                 // starts line counting at 1
-                 getLines2position().add(0);
-                 // insert the contents of the file to the text area
-                 for (String element : sourceLines) {
-                   getLines2position().add(jTextArea.getText().length());
-                   jTextArea.append(element + "\n");
-                 }
+                getLines2position().clear();
+                // starts line counting at 1
+                getLines2position().add(0);
+                // insert the contents of the file to the text area
+                for (String element : sourceLines) {
+                    getLines2position().add(jTextArea.getText().length());
+                    jTextArea.append(element + "\n");
+                }
 
                 //clean the text area before inserting the lines of the new file
                 if (!jTextArea.getText().isEmpty()) {
@@ -213,7 +213,7 @@ public class ParseTreeInfoPanel extends JPanel {
     }
 
     public List<Integer> getLines2position() {
-      return lines2position;
+        return lines2position;
     }
 
     /**
