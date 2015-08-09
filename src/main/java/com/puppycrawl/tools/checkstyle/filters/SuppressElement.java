@@ -42,13 +42,13 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
 public class SuppressElement
     implements Filter {
     /** the regexp to match file names against */
-    private final transient Pattern fileRegexp;
+    private final Pattern fileRegexp;
 
     /** the pattern for file names*/
     private final String filePattern;
 
     /** the regexp to match check names against */
-    private transient Pattern checkRegexp;
+    private Pattern checkRegexp;
 
     /** the pattern for check class names*/
     private String checkPattern;
@@ -57,13 +57,13 @@ public class SuppressElement
     private String moduleId;
 
     /** line number filter */
-    private transient CSVFilter lineFilter;
+    private CSVFilter lineFilter;
 
     /** CSV for line number filter */
     private String linesCSV;
 
     /** column number filter */
-    private transient CSVFilter columnFilter;
+    private CSVFilter columnFilter;
 
     /** CSV for column number filter */
     private String columnsCSV;

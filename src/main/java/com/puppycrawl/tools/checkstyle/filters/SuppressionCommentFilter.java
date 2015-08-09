@@ -310,10 +310,10 @@ public class SuppressionCommentFilter
         private final boolean on;
 
         /** The parsed check regexp, expanded for the text of this tag. */
-        private final transient Pattern tagCheckRegexp;
+        private final Pattern tagCheckRegexp;
 
         /** The parsed message regexp, expanded for the text of this tag. */
-        private transient Pattern tagMessageRegexp;
+        private Pattern tagMessageRegexp;
 
         /**
          * Constructs a tag.
