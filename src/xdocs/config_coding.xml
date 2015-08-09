@@ -935,7 +935,7 @@ class SomeClass
     <section name="MagicNumber">
       <subsection name="Description">
         <p>
-          Checks that there are no <a href="http://en.wikipedia.org/wiki/Magic_number_%28programming%29">
+          Checks that there are no <a href="https://en.wikipedia.org/wiki/Magic_number_%28programming%29">
           &quot;magic numbers&quot;</a> where a magic
           number is a numeric literal that is not defined as a constant.
           By default, -1, 0, 1, and 2 are not considered to be magic numbers.
@@ -2508,7 +2508,7 @@ case 5:
 
         <p>
           Rationale: <a
-          href="http://java.sun.com/docs/codeconv/html/CodeConventions.doc5.html#2991">
+          href="http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141270.html#2992">
           the Java code conventions chapter 6.1</a> recommends that
           declarations should be one per line/statement.
         </p>

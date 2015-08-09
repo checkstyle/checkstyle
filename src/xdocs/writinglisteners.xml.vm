@@ -235,11 +235,11 @@ Audit finished. Total errors: 1
         href="http://ant.apache.org/">ANT</a> listeners. The first
         listener, <code> CommonsLoggingListener</code>,
         hands off events to the <a
-        href="http://commons.apache.org/logging/">Apache
+        href="http://commons.apache.org/proper/commons-logging/">Apache
         Commons Logging</a> facade and the second, <code>MailLogger</code>, sends a report of an audit via
         e-mail. The discussion of these examples and how to use them is
         derived from material in <a
-        href="http://www.manning.com/hatcher/">&quot;Java Development
+        href="http://manning.com/hatcher/">&quot;Java Development
         with Ant&quot;</a> by Eric Hatcher and Steve Loughran, an
         excellent ANT book.
       </p>
@@ -249,7 +249,7 @@ Audit finished. Total errors: 1
 
       <p>
         <a
-        href="http://commons.apache.org/logging/">Apache
+        href="http://commons.apache.org/proper/commons-logging/">Apache
         Commons Logging</a> provides a facade for logging tools
         <a
         href="http://logging.apache.org/log4j/2.x/index.html">log4j</a>,
@@ -271,10 +271,10 @@ Audit finished. Total errors: 1
         in the classpath because that jar file contains all the Commons
         Logging classes.  The default Log under J2SE 1.4 is wrapper
         class <a
-        href="http://commons.apache.org/logging/apidocs/org/apache/commons/logging/impl/Jdk14Logger.html">Jdk14Logger</a>.
+        href="http://commons.apache.org/proper/commons-logging/apidocs/org/apache/commons/logging/impl/Jdk14Logger.html">Jdk14Logger</a>.
         Under earlier Java versions, the default Log is a simple wrapper
         class, <a
-        href="http://commons.apache.org/logging/apidocs/org/apache/commons/logging/impl/SimpleLog.html">SimpleLog</a>.
+        href="http://commons.apache.org/proper/commons-logging/apidocs/org/apache/commons/logging/impl/SimpleLog.html">SimpleLog</a>.
         Both default logging tools can be used directly from Commons
         Logging; if you need to use other tools such as log4j, then you
         must include the appropriate jar file(s) in the classpath.
@@ -283,7 +283,7 @@ Audit finished. Total errors: 1
       <p>
         Logging configuration details for Jakarta Commons Logging are in
         the <a
-        href="http://commons.apache.org/logging/">documentation</a>.
+        href="http://commons.apache.org/proper/commons-logging/">documentation</a>.
         As a simple example, assume that <code>log4j.jar</code> is in the classpath and the
         following <code>log4j.properties</code> file is
         in the current directory:
@@ -332,7 +332,7 @@ INFO  com.puppycrawl...Checker  - Audit finished.
         The source code for <code>CommonsLoggingListener</code> is in distribution
         directory <code>https://github.com/checkstyle/contribution/examples/listeners</code>.  This
         implementation uses the <a
-        href="http://java.sun.com/products/javamail">JavaMail API</a> as
+        href="http://www.oracle.com/technetwork/java/javamail/index.html">JavaMail API</a> as
         the mail system, and you must include appropriate jar files in
         the classpath.
       </p>

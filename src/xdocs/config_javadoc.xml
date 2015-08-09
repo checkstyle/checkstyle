@@ -655,8 +655,8 @@ public boolean isSomething()
 
         <p>
           These checks were patterned after the checks made by the <a
-          href="http://java.sun.com/j2se/javadoc/doccheck/index.html">DocCheck</a>
-          doclet available from Sun.
+          href="http://maven-doccheck.sourceforge.net/">DocCheck</a>
+          doclet available from Sun. Note: Original Sun's DocCheck tool does not exist anymore.
         </p>
       </subsection>
 

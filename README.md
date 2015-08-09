@@ -13,7 +13,7 @@ Contributors chat: [![https://gitter.im/checkstyle/checkstyle](https://badges.gi
 Checkstyle is a tool for
 checking Java source code for adherence to a Code Standard or set of validation rules (best practices).
 
-The latest version can be found at [SourceForge downloads](https://sourceforge.net/projects/checkstyle/files/checkstyle/) or at [Maven repo](http://repo1.maven.org/maven2/com/puppycrawl/tools/checkstyle/).
+The latest version can be found at [SourceForge downloads](http://sourceforge.net/projects/checkstyle/files/checkstyle/) or at [Maven repo](http://repo1.maven.org/maven2/com/puppycrawl/tools/checkstyle/).
 
 Documentation is available in HTML format, see http://checkstyle.sourceforge.net/checks.html.
 

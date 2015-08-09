@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.Utils;
 /**
  * An extension of the CommonAST that records the line and column
  * number.  The idea was taken from <a target="_top"
- * href="http://www.jguru.com/jguru/faq/view.jsp?EID=62654">Java Guru
+ * href="http://www.jguru.com/faq/view.jsp?EID=62654">Java Guru
  * FAQ: How can I include line numbers in automatically generated
  * ASTs?</a>.
  * @author Oliver Burn

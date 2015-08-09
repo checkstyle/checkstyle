@@ -31,7 +31,7 @@
         Each of these naming modules validates identifiers for particular code
         elements. Valid identifiers for a naming module are specified by its
         <code> format</code> property. The value of <code>format</code> is a <a
-        href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html">
+        href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/regex/Pattern.html">
         regular expression</a> for valid identifiers.  This is an example of a
         configuration of the <code>MemberName</code> module to
         ensure that member identifiers begin with
@@ -357,7 +357,7 @@ class MyClass {
       <p>
         The default value of <code>format</code> for module <code>PackageName</code> has been chosen to match the
         requirements in the <a
-        href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#40169">Java
+        href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.5.3">Java
         Language specification</a> and the Sun coding conventions. However
         both underscores and uppercase letters are rather uncommon, so most
         configurations should probably assign value <code>^[a-z]+(\.[a-z][a-z0-9]*)*$</code> to <code>format</code> for module <code>PackageName</code>, as in
@@ -376,7 +376,7 @@ class MyClass {
         <p>
          The Check validate abbreviations(consecutive capital letters)
          length in identifier name, it also allows to enforce camel case naming. Please read more at
-         <a href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s5.3-camel-case">
+         <a href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s5.3-camel-case">
          Google Style Guide</a>
          to get to know how to avoid long abbreviations in names.
         </p>

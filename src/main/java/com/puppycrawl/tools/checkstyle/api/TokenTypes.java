@@ -2797,7 +2797,7 @@ public final class TokenTypes {
      *     +--SEMI (;)
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #LITERAL_STATIC
      * @see #DOT
@@ -2869,7 +2869,7 @@ public final class TokenTypes {
      *         +--RCURLY (})
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #MODIFIERS
      * @see #ENUM
@@ -2939,7 +2939,7 @@ public final class TokenTypes {
      *         +--RCURLY (})
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #ANNOTATIONS
      * @see #MODIFIERS
@@ -2999,7 +2999,7 @@ public final class TokenTypes {
      *         +--RCURLY (})
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #MODIFIERS
      * @see #LITERAL_INTERFACE
@@ -3039,7 +3039,7 @@ public final class TokenTypes {
      *     +--SEMI (;)
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #MODIFIERS
      * @see #TYPE
@@ -3078,7 +3078,7 @@ public final class TokenTypes {
      *     +--SEMI (;)
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #ANNOTATION
      * @see #AT
@@ -3128,7 +3128,7 @@ public final class TokenTypes {
      *     +--RPAREN ())
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #MODIFIERS
      * @see #IDENT
@@ -3142,7 +3142,7 @@ public final class TokenTypes {
      * Its children are the name of the member, the assignment literal
      * and the (compile-time constant conditional expression) value.
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #ANNOTATION
      * @see #IDENT
@@ -3175,7 +3175,7 @@ public final class TokenTypes {
      *     +--RCURLY (})
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #ANNOTATION
      * @see #IDENT
@@ -3228,7 +3228,7 @@ public final class TokenTypes {
      *     +--RCURLY (})
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #GENERIC_START
      * @see #GENERIC_END
@@ -3259,7 +3259,7 @@ public final class TokenTypes {
      *         +--IDENT (Collection)
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #IDENT
      * @see #WILDCARD_TYPE
@@ -3333,7 +3333,7 @@ public final class TokenTypes {
      *         +--IDENT (List)
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #WILDCARD_TYPE
      * @see #TYPE_UPPER_BOUNDS
@@ -3345,7 +3345,7 @@ public final class TokenTypes {
     /**
      * The type that refers to all types. This node has no children.
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #TYPE_ARGUMENT
      * @see #TYPE_UPPER_BOUNDS
@@ -3359,7 +3359,7 @@ public final class TokenTypes {
      * This node has one child - the type that is being used for
      * the bounding.
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #TYPE_PARAMETER
      * @see #TYPE_ARGUMENT
@@ -3372,7 +3372,7 @@ public final class TokenTypes {
      * A lower bounds on a wildcard type argument. This node has one child
      *  - the type that is being used for the bounding.
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #TYPE_ARGUMENT
      * @see #WILDCARD_TYPE
@@ -3385,7 +3385,7 @@ public final class TokenTypes {
      * to the interface literal signifying the definition of an annotation
      * declaration.
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      */
     public static final int AT = GeneratedJavaTokenTypes.AT;
@@ -3394,7 +3394,7 @@ public final class TokenTypes {
      * A triple dot for variable-length parameters. This token only ever occurs
      * in a parameter declaration immediately after the type of the parameter.
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      */
     public static final int ELLIPSIS = GeneratedJavaTokenTypes.ELLIPSIS;

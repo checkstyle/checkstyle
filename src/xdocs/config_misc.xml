@@ -395,7 +395,7 @@ messages.properties: Key 'ok' missing.
           Checks that long constants are defined with an upper ell. That
           is <code>' L'</code> and not <code>'l'</code>. This is in accordance with the Java
           Language Specification, <a
-          href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282">
+          href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">
           Section 3.10.1</a>.
         </p>
 
@@ -1201,7 +1201,7 @@ d = e / f;        // Another comment for this line
           Restrict using <a href = "http://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.3">
           Unicode escapes</a> (e.g. \u221e).
           It is possible to allow using escapes for
-          <a href="http://en.wiktionary.org/wiki/Appendix:Control_characters"> non-printable(control) characters</a>.
+          <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters"> non-printable(control) characters</a>.
           Also, this check can be configured to allow using escapes
           if trail comment is present. By the option it is possible to
           allow using escapes if literal contains only them.

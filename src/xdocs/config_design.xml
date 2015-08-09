@@ -346,7 +346,7 @@ class SomeClass
           According to Bloch, an interface should describe a <em>type</em>.
           It is therefore inappropriate to define an interface that does not
           contain any methods but only constants. The Standard class <a
-          href="http://java.sun.com/j2se/1.4.1/docs/api/javax/swing/SwingConstants.html">javax.swing.SwingConstants</a>
+          href="http://docs.oracle.com/javase/8/docs/api/javax/swing/SwingConstants.html">javax.swing.SwingConstants</a>
           is an example of a class that would be flagged by this check.
         </p>
 

@@ -181,7 +181,7 @@
           Checks for imports from a set of illegal packages. By default, the
           check rejects all <code>sun.*</code> packages since
           programs that contain direct calls to the <code>sun.*</code> packages are <a
-          href="http://java.sun.com/products/jdk/faq/faq-sun-packages.html">"not guaranteed
+          href="http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html">"not guaranteed
           to work on all Java-compatible platforms"</a>. To reject other packages, set property <code> illegalPkgs</code> to a list of the illegal packages.
         </p>
       </subsection>
@@ -388,7 +388,7 @@ class FooBar {
           within each group are in lexicographic order</li>
           <li>sorts according to case: ensures that the comparison
           between imports is case sensitive, in
-          <a href="http://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a></li>
+          <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a></li>
           <li>groups static imports: ensures the relative order between
           regular imports and static imports (see
           <a href="property_types.html#importOrder">import orders</a>)</li>
@@ -442,7 +442,7 @@ class FooBar {
             <td>caseSensitive</td>
             <td>whether string comparison should be case sensitive or not.
               Case sensitive sorting is in
-              <a href="http://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>
+              <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
@@ -792,7 +792,7 @@ import java.util.regex.Matcher; //#8
           <tr>
             <td>sortImportsInGroupAlphabetically</td>
             <td>Force grouping alphabetically, in
-                <a href="http://en.wikipedia.org/wiki/ASCII#Order">
+                <a href="https://en.wikipedia.org/wiki/ASCII#Order">
                    ASCII sort order</a>.</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><code>false</code></td>
@@ -908,7 +908,7 @@ import java.util.regex.Matcher; //#8
 &lt;/module&gt;
         </source>
         <p>
-          It is possible to enforce <a href="http://en.wikipedia.org/wiki/ASCII#Order">
+          It is possible to enforce <a href="https://en.wikipedia.org/wiki/ASCII#Order">
           ASCII sort order</a>
           of imports in groups using the following configuration:
         </p>

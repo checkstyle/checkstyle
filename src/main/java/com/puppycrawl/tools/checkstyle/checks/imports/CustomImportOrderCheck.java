@@ -210,7 +210,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </code>
  * </pre>
  * <p>
- * It is possible to enforce <a href="http://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>
+ * It is possible to enforce
+ * <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>
  * of imports in groups using the following configuration:
  * </p>
  * <pre>

@@ -556,7 +556,7 @@
                                 <br />
                                 We can detect URL with protocol type as http://, https:// etc.
                                 <br />
-                                <a href="https://developers.google.com/eclipse/docs/gwt_jsni">JSNI</a>
+                                <a href="http://googlewebtoolkit.blogspot.com/2008/07/getting-to-really-know-gwt-part-1-jsni.html">JSNI</a>
                                 could not be detected right now, but might be possible after comments and
                                 javadoc support appear in Checkstyle
                             </td>

@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * "http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.3">
  * Unicode escapes</a> (e.g. \u221e).
  * It is possible to allow using escapes for
- * <a href="http://en.wiktionary.org/wiki/Appendix:Control_characters">
+ * <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters">
  * non-printable(control) characters</a>.
  * Also, this check can be configured to allow using escapes
  * if trail comment is present. By the option it is possible to

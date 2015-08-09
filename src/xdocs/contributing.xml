@@ -81,7 +81,7 @@
         do take this one step further and measure the coverage of our
         unit tests using
 
-        <a href="http://cobertura.sourceforge.net/">Cobertura</a>.
+        <a href="http://cobertura.github.io/cobertura/">Cobertura</a>.
 
         This means it is not sufficient to pass all tests, but the tests
         should ideally execute each line in the code, code coverage should be 100%. To generate the
@@ -125,8 +125,8 @@
       </p>
 
       <p>
-        Please use <a href="http://help.github.com/articles/using-pull-requests">Pull Request</a>
-        feature of <a href="http://github.com/">Github</a>.<br/>
+        Please use <a href="https://help.github.com/articles/using-pull-requests/">Pull Request</a>
+        feature of <a href="https://github.com/">Github</a>.<br/>
         Please provide wide description of update with detailed explanation of problem
         and how you propose to resolve it.
         <b>ATTENTION:</b> Please recheck that in your Pull Request there is ONLY your changes and all of them are rebased from most recent HEAD of our master branch.
