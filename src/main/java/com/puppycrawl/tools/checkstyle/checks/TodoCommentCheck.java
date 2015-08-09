@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * A check for 'TODO:' comments. To check for other patterns in Java comments, set
+ * A check for <code>TODO</code> comments. To check for other patterns in Java comments, set
  * property format.
  * </p>
  * <p>
