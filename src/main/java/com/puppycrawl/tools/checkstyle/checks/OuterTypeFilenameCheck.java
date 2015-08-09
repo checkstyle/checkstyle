@@ -74,20 +74,20 @@ public class OuterTypeFilenameCheck extends Check {
     @Override
     public void visitToken(DetailAST ast) {
         final String outerTypeName = ast.findFirstToken(TokenTypes.IDENT).getText();
-        if (!seenFirstToken) {
+        if (seenFirstToken) {
+            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+            if (modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
+                    && ast.getParent() == null) {
+                hasPublic = true;
+            }
+        }
+        else {
 
             if (fileName.equals(outerTypeName)) {
                 validFirst = true;
             }
             else {
                 wrongType = ast;
-            }
-        }
-        else {
-            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-            if (modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
-                    && ast.getParent() == null) {
-                hasPublic = true;
             }
         }
         seenFirstToken = true;

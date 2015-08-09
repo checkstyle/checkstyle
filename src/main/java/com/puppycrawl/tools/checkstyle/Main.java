@@ -82,19 +82,19 @@ public final class Main {
                 // return error is smth is wrong in arguments
                 final List<String> messages = validateCli(commandLine);
                 cliViolations = !messages.isEmpty();
-                if (!cliViolations) {
-                    // create config helper object
-                    final CliOptions config = convertCliToPojo(commandLine);
-                    // run Checker
-                    errorCounter = runCheckstyle(config);
-                    exitStatus = errorCounter;
-                }
-                else {
+                if (cliViolations) {
                     exitStatus = exitWithCliViolation;
                     errorCounter = 1;
                     for (String message : messages) {
                         System.out.println(message);
                     }
+                }
+                else {
+                    // create config helper object
+                    final CliOptions config = convertCliToPojo(commandLine);
+                    // run Checker
+                    errorCounter = runCheckstyle(config);
+                    exitStatus = errorCounter;
                 }
             }
         }
@@ -147,10 +147,7 @@ public final class Main {
     private static List<String> validateCli(CommandLine cmdLine) {
         final List<String> result = new ArrayList<>();
         // ensure a configuration file is specified
-        if (!cmdLine.hasOption("c")) {
-            result.add("Must specify a config XML file.");
-        }
-        else {
+        if (cmdLine.hasOption("c")) {
             // validate optional parameters
             if (cmdLine.hasOption("f")) {
                 final String format = cmdLine.getOptionValue("f");
@@ -177,6 +174,9 @@ public final class Main {
             if (files.isEmpty()) {
                 result.add("Must specify files to process, found 0.");
             }
+        }
+        else {
+            result.add("Must specify a config XML file.");
         }
 
         return result;

@@ -142,11 +142,11 @@ public class FallThroughCheck extends Check {
 
         if (slist != null && !isTerminated(slist, true, true)
             && !hasFallTruComment(ast, nextGroup)) {
-            if (!isLastGroup) {
-                log(nextGroup, MSG_FALL_THROUGH);
+            if (isLastGroup) {
+                log(ast, MSG_FALL_THROUGH_LAST);
             }
             else {
-                log(ast, MSG_FALL_THROUGH_LAST);
+                log(nextGroup, MSG_FALL_THROUGH);
             }
         }
     }

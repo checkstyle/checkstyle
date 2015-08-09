@@ -79,13 +79,13 @@ class MultilineDetector {
         this.text = new FileText(text);
         resetState();
 
-        if (!Strings.isNullOrEmpty(options.getFormat())) {
+        if (Strings.isNullOrEmpty(options.getFormat())) {
+            options.getReporter().log(0, EMPTY);
+        }
+        else {
             matcher = options.getPattern().matcher(text.getFullText());
             findMatch();
             finish();
-        }
-        else {
-            options.getReporter().log(0, EMPTY);
         }
     }
 

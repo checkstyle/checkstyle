@@ -44,11 +44,11 @@ public class MemberDefHandler extends AbstractExpressionHandler {
     @Override
     public void checkIndentation() {
         final DetailAST modifiersNode = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiersNode.getChildCount() != 0) {
-            checkModifiers();
+        if (modifiersNode.getChildCount() == 0) {
+            checkType();
         }
         else {
-            checkType();
+            checkModifiers();
         }
         final LineWrappingHandler lineWrap =
             new LineWrappingHandler(getIndentCheck(), getMainAst(),

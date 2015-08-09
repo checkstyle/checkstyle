@@ -130,13 +130,13 @@ public final class JavadocUtils {
                 final Matcher commentMatcher = commentPattern.matcher(s);
                 final String commentContents;
                 final int commentOffset; // offset including comment characters
-                if (!commentMatcher.find()) {
-                    commentContents = s; // No leading asterisks, still valid
-                    commentOffset = 0;
-                }
-                else {
+                if (commentMatcher.find()) {
                     commentContents = commentMatcher.group(1);
                     commentOffset = commentMatcher.start(1) - 1;
+                }
+                else {
+                    commentContents = s; // No leading asterisks, still valid
+                    commentOffset = 0;
                 }
                 final Pattern tagPattern = Pattern.compile(".*?\\{@(\\p{Alpha}+)\\s+(.*?)\\}");
                 final Matcher tagMatcher = tagPattern.matcher(commentContents);
