@@ -174,10 +174,8 @@ public final class MissingDeprecatedCheck extends Check {
             final String line = lines[i];
 
             final Matcher javadocNoargMatcher =
-                MissingDeprecatedCheck.MATCH_DEPRECATED.matcher(line);
-            final Matcher noargMultilineStart =
-                MissingDeprecatedCheck
-                    .MATCH_DEPRECATED_MULTILINE_START.matcher(line);
+                MATCH_DEPRECATED.matcher(line);
+            final Matcher noargMultilineStart = MATCH_DEPRECATED_MULTILINE_START.matcher(line);
 
             if (javadocNoargMatcher.find()) {
                 if (found) {
@@ -211,15 +209,13 @@ public final class MissingDeprecatedCheck extends Check {
         boolean found = false;
         for (int reindex = i + 1;
             reindex < lines.length; reindex++) {
-            final Matcher multilineCont =
-                MissingDeprecatedCheck.MATCH_DEPRECATED_MULTILINE_CONT
-                .matcher(lines[reindex]);
+            final Matcher multilineCont = MATCH_DEPRECATED_MULTILINE_CONT.matcher(lines[reindex]);
 
             if (multilineCont.find()) {
                 reindex = lines.length;
                 final String lFin = multilineCont.group(1);
-                if (!lFin.equals(MissingDeprecatedCheck.NEXT_TAG)
-                    && !lFin.equals(MissingDeprecatedCheck.END_JAVADOC)) {
+                if (!lFin.equals(NEXT_TAG)
+                    && !lFin.equals(END_JAVADOC)) {
                     if (foundBefore) {
                         log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
                             JavadocTagInfo.DEPRECATED.getText());
