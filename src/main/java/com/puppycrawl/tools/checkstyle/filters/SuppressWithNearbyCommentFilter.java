@@ -192,7 +192,6 @@ public class SuppressWithNearbyCommentFilter
         this.checkC = checkC;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean accept(AuditEvent event) {
         if (event.getLocalizedMessage() == null) {
@@ -383,7 +382,6 @@ public class SuppressWithNearbyCommentFilter
             return Integer.compare(firstLine, other.firstLine);
         }
 
-        /** {@inheritDoc} */
         @Override
         public boolean equals(Object o) {
             if (this == o) {
@@ -400,7 +398,6 @@ public class SuppressWithNearbyCommentFilter
                     && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp);
         }
 
-        /** {@inheritDoc} */
         @Override
         public int hashCode() {
             return Objects.hash(text, firstLine, lastLine, tagCheckRegexp, tagMessageRegexp);
@@ -457,7 +454,6 @@ public class SuppressWithNearbyCommentFilter
             return result;
         }
 
-        /** {@inheritDoc} */
         @Override
         public final String toString() {
             return "Tag[lines=[" + getFirstLine() + " to " + getLastLine()

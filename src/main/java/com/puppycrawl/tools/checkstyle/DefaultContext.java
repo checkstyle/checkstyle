@@ -34,13 +34,11 @@ public final class DefaultContext implements Context {
     /** stores the context entries */
     private final Map<String, Object> entries = Maps.newHashMap();
 
-    /** {@inheritDoc} */
     @Override
     public Object get(String key) {
         return entries.get(key);
     }
 
-    /** {@inheritDoc} */
     @Override
     public ImmutableCollection<String> getAttributeNames() {
         return ImmutableList.copyOf(entries.keySet());

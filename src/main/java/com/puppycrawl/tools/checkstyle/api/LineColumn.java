@@ -54,7 +54,6 @@ public class LineColumn implements Comparable<LineColumn> {
         return col;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int compareTo(LineColumn lineColumn) {
         return getLine() != lineColumn.getLine()
@@ -62,7 +61,6 @@ public class LineColumn implements Comparable<LineColumn> {
             : Integer.compare(getColumn(), lineColumn.getColumn());
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -76,7 +74,6 @@ public class LineColumn implements Comparable<LineColumn> {
                 && Objects.equals(col, lineColumn.col);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return Objects.hash(line, col);

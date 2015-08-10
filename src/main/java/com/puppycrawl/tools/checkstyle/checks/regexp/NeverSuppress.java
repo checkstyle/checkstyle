@@ -32,7 +32,6 @@ public final class NeverSuppress implements MatchSuppressor {
     private NeverSuppress() {
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean shouldSuppress(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {

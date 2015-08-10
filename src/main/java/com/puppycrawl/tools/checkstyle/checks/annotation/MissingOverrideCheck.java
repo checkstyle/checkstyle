@@ -122,26 +122,22 @@ public final class MissingOverrideCheck extends Check {
         javaFiveCompatibility = compatibility;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens() {
         return getRequiredTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens() {
         return new int[]
         {TokenTypes.METHOD_DEF, };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(final DetailAST ast) {
         final TextBlock javadoc =

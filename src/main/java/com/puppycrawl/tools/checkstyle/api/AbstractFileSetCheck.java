@@ -51,25 +51,21 @@ public abstract class AbstractFileSetCheck
      */
     protected abstract void processFiltered(File file, List<String> lines);
 
-    /** {@inheritDoc} */
     @Override
     public void init() {
         // No code by default, should be overridden only by demand at subclasses
     }
 
-    /** {@inheritDoc} */
     @Override
     public void destroy() {
         // No code by default, should be overridden only by demand at subclasses
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginProcessing(String charset) {
         // No code by default, should be overridden only by demand at subclasses
     }
 
-    /** {@inheritDoc} */
     @Override
     public final SortedSet<LocalizedMessage> process(File file,
                                                    List<String> lines) {
@@ -81,13 +77,11 @@ public abstract class AbstractFileSetCheck
         return getMessageCollector().getMessages();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void finishProcessing() {
         // No code by default, should be overridden only by demand at subclasses
     }
 
-    /** {@inheritDoc} */
     @Override
     public final void setMessageDispatcher(MessageDispatcher dispatcher) {
         this.dispatcher = dispatcher;

@@ -57,37 +57,31 @@ public class Comment implements TextBlock {
         this.lastCol = lastCol;
     }
 
-    /** {@inheritDoc} */
     @Override
     public final String[] getText() {
         return text.clone();
     }
 
-    /** {@inheritDoc} */
     @Override
     public final int getStartLineNo() {
         return firstLine;
     }
 
-    /** {@inheritDoc} */
     @Override
     public final int getEndLineNo() {
         return lastLine;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int getStartColNo() {
         return firstCol;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int getEndColNo() {
         return lastCol;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean intersects(int startLineNo, int startColNo,
                               int endLineNo, int endColNo) {

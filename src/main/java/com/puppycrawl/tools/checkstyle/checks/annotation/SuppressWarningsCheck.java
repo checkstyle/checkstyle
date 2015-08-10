@@ -115,13 +115,11 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
         super("^$|^\\s+$");
     }
 
-    /** {@inheritDoc} */
     @Override
     public final int[] getDefaultTokens() {
         return getAcceptableTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public final int[] getAcceptableTokens() {
         return new int[] {
@@ -138,7 +136,6 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(final DetailAST ast) {
         final DetailAST annotation = getSuppressWarnings(ast);

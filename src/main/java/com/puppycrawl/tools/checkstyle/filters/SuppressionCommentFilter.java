@@ -179,7 +179,6 @@ public class SuppressionCommentFilter
         this.checkC = checkC;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean accept(AuditEvent event) {
         if (event.getLocalizedMessage() == null) {
@@ -412,7 +411,6 @@ public class SuppressionCommentFilter
             return Integer.compare(line, object.line);
         }
 
-        /** {@inheritDoc} */
         @Override
         public boolean equals(Object o) {
             if (this == o) {
@@ -428,7 +426,6 @@ public class SuppressionCommentFilter
                     && Objects.equals(text, tag.text);
         }
 
-        /** {@inheritDoc} */
         @Override
         public int hashCode() {
             return Objects.hash(text, line, column, on);

@@ -82,7 +82,6 @@ public class FilterSet
         return Objects.hash(filters);
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean accept(AuditEvent event) {
         for (Filter filter : filters) {

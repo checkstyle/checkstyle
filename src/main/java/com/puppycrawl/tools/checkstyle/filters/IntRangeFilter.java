@@ -43,7 +43,6 @@ class IntRangeFilter implements IntFilter {
         this.upperBound = upperBound;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean accept(int intValue) {
         return lowerBound.compareTo(intValue) <= 0

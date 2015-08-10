@@ -57,14 +57,12 @@ public final class DefaultConfiguration implements Configuration {
         this.name = name;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String[] getAttributeNames() {
         final Set<String> keySet = attributeMap.keySet();
         return keySet.toArray(new String[keySet.size()]);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String getAttribute(String name) throws CheckstyleException {
         if (!attributeMap.containsKey(name)) {
@@ -74,14 +72,12 @@ public final class DefaultConfiguration implements Configuration {
         return attributeMap.get(name);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Configuration[] getChildren() {
         return children.toArray(
             new Configuration[children.size()]);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String getName() {
         return name;

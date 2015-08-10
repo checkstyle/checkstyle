@@ -80,7 +80,6 @@ public class XMLLogger
         writer = new PrintWriter(osw);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void auditStarted(AuditEvent evt) {
         writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
@@ -93,7 +92,6 @@ public class XMLLogger
         writer.println("<checkstyle version=\"" + version + "\">");
     }
 
-    /** {@inheritDoc} */
     @Override
     public void auditFinished(AuditEvent evt) {
         writer.println("</checkstyle>");
@@ -105,19 +103,16 @@ public class XMLLogger
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void fileStarted(AuditEvent evt) {
         writer.println("<file name=\"" + encode(evt.getFileName()) + "\">");
     }
 
-    /** {@inheritDoc} */
     @Override
     public void fileFinished(AuditEvent evt) {
         writer.println("</file>");
     }
 
-    /** {@inheritDoc} */
     @Override
     public void addError(AuditEvent evt) {
         if (evt.getSeverityLevel() != SeverityLevel.IGNORE) {
@@ -137,7 +132,6 @@ public class XMLLogger
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void addException(AuditEvent evt, Throwable throwable) {
         final StringWriter sw = new StringWriter();

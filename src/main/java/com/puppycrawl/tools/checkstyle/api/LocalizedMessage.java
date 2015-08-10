@@ -343,7 +343,6 @@ public final class LocalizedMessage
     // Interface Comparable methods
     ////////////////////////////////////////////////////////////////////////////
 
-    /** {@inheritDoc} */
     @Override
     public int compareTo(LocalizedMessage other) {
         if (getLineNo() == other.getLineNo()) {

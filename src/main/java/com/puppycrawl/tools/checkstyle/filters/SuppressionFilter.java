@@ -50,7 +50,6 @@ public class SuppressionFilter
         filters = SuppressionsLoader.loadSuppressions(fileName);
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean accept(AuditEvent event) {
         return filters.accept(event);
