@@ -565,8 +565,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
             if (currentNodeType == TokenTypes.SLIST) {
                 firstNodeInsideBlock = currentNode.getFirstChild();
             }
-            else if (currentNodeType != TokenTypes.VARIABLE_DEF
-                    && currentNodeType != TokenTypes.EXPR) {
+            else if (currentNodeType != TokenTypes.EXPR) {
                 firstNodeInsideBlock = currentNode;
             }
         }
