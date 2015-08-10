@@ -2090,6 +2090,10 @@ if (&quot;something&quot;.equals(x))
           <li> Constructors </li>
           <li> Methods </li>
         </ol>
+
+        <p>
+          Purpose of <b>ignore*</b> option is to ignore related violations, however it still impacts on other class members.
+        </p>
       </subsection>
 
       <subsection name="Properties">
@@ -2128,6 +2132,39 @@ if (&quot;something&quot;.equals(x))
         <source>
 &lt;module name=&quot;DeclarationOrder&quot;/&gt;
         </source>
+
+        <p>
+        For example:
+        <source>
+            class K {
+                int a;
+                void m(){}
+                K(){}  &lt;-- "Constructor definition in wrong order"
+                int b; &lt;-- "Instance variable definition in wrong order"
+            }
+        </source>
+        </p>
+        <p>
+        With <b>ignoreConstructors</b> option:
+        <source>
+            class K {
+                int a;
+                void m(){}
+                K(){}
+                int b; &lt;-- "Instance variable definition in wrong order"
+            }
+        </source>
+        </p>
+        <p>
+        With <b>ignoreConstructors</b> option and without a method definition in a source class:
+        <source>
+            class K {
+                int a;
+                K(){}
+                int b; &lt;-- "Instance variable definition in wrong order"
+            }
+        </source>
+        </p>
       </subsection>
 
       <subsection name="Package">

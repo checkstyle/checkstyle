@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that the parts of a class or interface declaration
  * appear in the order suggested by the
  * <a
- * href="http://www.oracle.com/technetwork/java/codeconvtoc-136057.html"
+ * href="http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852"
  * >Code Conventions for the Java Programming Language</a>.
  *
  *
@@ -47,6 +47,50 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li> Constructors </li>
  * <li> Methods </li>
  * </ol>
+ *
+ * <p>
+ * Available options:
+ * <ul>
+ * <li>ignoreModifiers</li>
+ * <li>ignoreConstructors</li>
+ * <li>ignoreMethods</li>
+ * </ul>
+ *
+ * <p>
+ * Purpose of <b>ignore*</b> option is to ignore related violations,
+ * however it still impacts on other class members.
+ *
+ * <p>
+ * For example:
+ * <pre><code>
+ *     class K {
+ *         int a;
+ *         void m(){}
+ *         K(){}  &lt;-- "Constructor definition in wrong order"
+ *         int b; &lt;-- "Instance variable definition in wrong order"
+ *     }
+ * </code></pre>
+ *
+ * <p>
+ * With <b>ignoreConstructors</b> option:
+ * <pre><code>
+ *     class K {
+ *         int a;
+ *         void m(){}
+ *         K(){}
+ *         int b; &lt;-- "Instance variable definition in wrong order"
+ *     }
+ * </code></pre>
+ *
+ * <p>
+ * With <b>ignoreConstructors</b> option and without a method definition in a source class:
+ * <pre><code>
+ *     class K {
+ *         int a;
+ *         K(){}
+ *         int b; &lt;-- "Instance variable definition in wrong order"
+ *     }
+ * </code></pre>
  *
  * <p>
  * An example of how to configure the check is:
