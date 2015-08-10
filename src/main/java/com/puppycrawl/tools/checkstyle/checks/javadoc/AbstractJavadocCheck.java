@@ -531,7 +531,7 @@ public abstract class AbstractJavadocCheck extends Check {
          */
         private ParseErrorMessage errorMessage;
 
-        public ParseErrorMessage getErrorMessage() {
+        private ParseErrorMessage getErrorMessage() {
             return errorMessage;
         }
 
