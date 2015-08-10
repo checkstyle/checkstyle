@@ -41,12 +41,12 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
 
-import antlr.ANTLRException;
-
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+
+import antlr.ANTLRException;
 
 /**
  * Displays information about a parse tree.
@@ -169,20 +169,6 @@ public class ParseTreeInfoPanel extends JPanel {
                         "Could not parse" + file + ": " + ex.getMessage());
             }
         }
-    }
-
-    /**
-     * Parses a file and returns the parse tree.
-     * @param fileName the file to parse
-     * @return the root node of the parse tree
-     * @throws IOException if the file cannot be opened
-     * @throws ANTLRException if the file is not a Java source
-     * @deprecated Use {@link #parseFile(FileText)} instead
-     */
-    @Deprecated
-    public static DetailAST parseFile(String fileName)
-        throws IOException, ANTLRException {
-        return parseFile(new FileText(new File(fileName), getEncoding()));
     }
 
     /**
