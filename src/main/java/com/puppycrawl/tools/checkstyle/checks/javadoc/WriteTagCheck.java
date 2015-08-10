@@ -107,7 +107,7 @@ public class WriteTagCheck
 
     /**
      * Set the tag format.
-     * @param format a <code>String</code> value
+     * @param format a {@code String} value
      */
     public void setTagFormat(String format) {
         tagFormat = format;
@@ -116,7 +116,7 @@ public class WriteTagCheck
 
     /**
      * Sets the tag severity level.  The string should be one of the names
-     * defined in the <code>SeverityLevel</code> class.
+     * defined in the {@code SeverityLevel} class.
      *
      * @param severity  The new severity level
      * @see SeverityLevel

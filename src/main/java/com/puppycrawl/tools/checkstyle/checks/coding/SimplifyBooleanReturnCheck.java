@@ -93,7 +93,7 @@ public class SimplifyBooleanReturnCheck
      * Returns if an AST is a return statment with a boolean literal
      * or a compound statement that contains only such a return statement.
      *
-     * Returns <code>true</code> iff ast represents
+     * Returns {@code true} iff ast represents
      * <br/>
      * <pre>
      * return true/false;
@@ -121,7 +121,7 @@ public class SimplifyBooleanReturnCheck
     /**
      * Returns if an AST is a return statment with a boolean literal.
      *
-     * Returns <code>true</code> iff ast represents
+     * Returns {@code true} iff ast represents
      * <br/>
      * <pre>
      * return true/false;

@@ -66,7 +66,7 @@ public final class SuppressionsLoader
     private final FilterSet filterChain = new FilterSet();
 
     /**
-     * Creates a new <code>SuppressionsLoader</code> instance.
+     * Creates a new {@code SuppressionsLoader} instance.
      * @throws ParserConfigurationException if an error occurs
      * @throws SAXException if an error occurs
      */

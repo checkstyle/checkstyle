@@ -27,8 +27,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks for imports from a set of illegal packages.
- * By default, the check rejects all <code>sun.*</code> packages
- * since programs that contain direct calls to the <code>sun.*</code> packages
+ * By default, the check rejects all {@code sun.*} packages
+ * since programs that contain direct calls to the {@code sun.*} packages
  * are <a href="http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html">
  * not 100% Pure Java</a>.
  * </p>
@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>
  * An example of how to configure the check so that it rejects packages
- * <code>java.io.*</code> and <code>java.sql.*</code> is
+ * {@code java.io.*} and {@code java.sql.*} is
  * </p>
  * <pre>
  * &lt;module name="IllegalImport"&gt;
@@ -115,7 +115,7 @@ public class IllegalImportCheck
     /**
      * Checks if an import is from a package that must not be used.
      * @param importText the argument of the import keyword
-     * @return if <code>importText</code> contains an illegal package prefix
+     * @return if {@code importText} contains an illegal package prefix
      */
     private boolean isIllegalImport(String importText) {
         for (String element : illegalPkgs) {

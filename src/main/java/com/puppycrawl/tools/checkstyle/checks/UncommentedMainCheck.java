@@ -62,7 +62,7 @@ public class UncommentedMainCheck
 
     /**
      * Set the excluded classes pattern.
-     * @param excludedClasses a <code>String</code> value
+     * @param excludedClasses a {@code String} value
      */
     public void setExcludedClasses(String excludedClasses) {
         this.excludedClasses = excludedClasses;
@@ -152,7 +152,7 @@ public class UncommentedMainCheck
 
     /**
      * Checks method definition if this is
-     * <code>public static void main(String[])</code>.
+     * {@code public static void main(String[])}.
      * @param method method definition node
      */
     private void visitMethodDef(DetailAST method) {
@@ -202,7 +202,7 @@ public class UncommentedMainCheck
     }
 
     /**
-     * Checks that return type is <code>void</code>.
+     * Checks that return type is {@code void}.
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
@@ -213,7 +213,7 @@ public class UncommentedMainCheck
     }
 
     /**
-     * Checks that method has only <code>String[]</code> param
+     * Checks that method has only {@code String[]} param
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */

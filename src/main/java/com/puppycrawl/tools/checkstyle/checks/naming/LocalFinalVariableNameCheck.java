@@ -51,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class LocalFinalVariableNameCheck
     extends AbstractNameCheck {
-    /** Creates a new <code>LocalFinalVariableNameCheck</code> instance. */
+    /** Creates a new {@code LocalFinalVariableNameCheck} instance. */
     public LocalFinalVariableNameCheck() {
         super("^[a-z][a-zA-Z0-9]*$");
     }

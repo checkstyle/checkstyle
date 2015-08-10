@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class LineWrappingHandler {
 
     /**
-     * The current instance of <code>IndentationCheck</code> class using this
+     * The current instance of {@code IndentationCheck} class using this
      * handler. This field used to get access to private fields of
      * IndentationCheck instance.
      */

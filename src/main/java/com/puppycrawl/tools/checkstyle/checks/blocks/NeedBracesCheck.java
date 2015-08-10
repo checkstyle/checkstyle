@@ -40,8 +40,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="NeedBraces"/&gt;
  * </pre>
- * <p> An example of how to configure the check for <code>if</code> and
- * <code>else</code> blocks is:
+ * <p> An example of how to configure the check for {@code if} and
+ * {@code else} blocks is:
  * </p>
  * <pre>
  * &lt;module name="NeedBraces"&gt;
@@ -51,27 +51,27 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Check has an option <b>allowSingleLineStatement</b> which allows single-line
  * statements without braces, e.g.:
  * <p>
- * <code>
+ * {@code
  * if (obj.isValid()) return true;
- * </code>
+ * }
  * </p>
  * <p>
- * <code>
+ * {@code
  * while (obj.isValid()) return true;
- * </code>
+ * }
  * </p>
  * <p>
- * <code>
+ * {@code
  * do this.notify(); while (o != null);
- * </code>
+ * }
  * </p>
  * <p>
- * <code>
+ * {@code
  * for (int i = 0; ; ) this.notify();
- * </code>
+ * }
  * </p>
  * <p>
- * To configure the Check to allow <code>case, default</code> single-line statements
+ * To configure the Check to allow {@code case, default} single-line statements
  * without braces:
  * </p>
  *
@@ -87,13 +87,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * <pre>
- * <code>
+ * {@code
  * switch (num) {
  *     case 1: counter++; break; // OK
  *     case 6: counter += 10; break; // OK
  *     default: counter = 100; break; // OK
  * }
- * </code>
+ * }
  * </pre>
  *
  *
@@ -220,9 +220,9 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current while statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * while (obj.isValid()) return true;
-     * </code>
+     * }
      * </p>
      * @param literalWhile {@link TokenTypes#LITERAL_WHILE while statement}.
      * @return true if current while statement is single-line statement.
@@ -329,10 +329,10 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current case statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * case 1: dosomeStuff(); break;
      * case 2: dosomeStuff(); break;
-     * </code>
+     * }
      * </p>
      * @param literalCase {@link TokenTypes#LITERAL_CASE case statement}.
      * @return true if current case statement is single-line statement.

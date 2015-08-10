@@ -33,7 +33,7 @@ class IntRangeFilter implements IntFilter {
     private final Integer upperBound;
 
     /**
-     * Constructs a <code>IntRangeFilter</code> with a
+     * Constructs a {@code IntRangeFilter} with a
      * lower bound and an upper bound for the range.
      * @param lowerBound the lower bound of the range.
      * @param upperBound the upper bound of the range.

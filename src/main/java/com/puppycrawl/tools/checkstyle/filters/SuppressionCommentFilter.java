@@ -118,7 +118,7 @@ public class SuppressionCommentFilter
 
     /**
      * Set the format for a comment that turns off reporting.
-     * @param format a <code>String</code> value.
+     * @param format a {@code String} value.
      * @throws ConversionException if unable to create Pattern object.
      */
     public final void setOffCommentFormat(String format) {
@@ -127,7 +127,7 @@ public class SuppressionCommentFilter
 
     /**
      * Set the format for a comment that turns on reporting.
-     * @param format a <code>String</code> value
+     * @param format a {@code String} value
      * @throws ConversionException if unable to create Pattern object.
      */
     public final void setOnCommentFormat(String format) {
@@ -149,7 +149,7 @@ public class SuppressionCommentFilter
 
     /**
      * Set the format for a check.
-     * @param format a <code>String</code> value
+     * @param format a {@code String} value
      */
     public final void setCheckFormat(String format) {
         checkFormat = format;
@@ -157,7 +157,7 @@ public class SuppressionCommentFilter
 
     /**
      * Set the format for a message.
-     * @param format a <code>String</code> value
+     * @param format a {@code String} value
      */
     public void setMessageFormat(String format) {
         messageFormat = format;
@@ -165,7 +165,7 @@ public class SuppressionCommentFilter
 
     /**
      * Set whether to look in C++ comments.
-     * @param checkCPP <code>true</code> if C++ comments are checked.
+     * @param checkCPP {@code true} if C++ comments are checked.
      */
     public void setCheckCPP(boolean checkCPP) {
         this.checkCPP = checkCPP;
@@ -173,7 +173,7 @@ public class SuppressionCommentFilter
 
     /**
      * Set whether to look in C comments.
-     * @param checkC <code>true</code> if C comments are checked.
+     * @param checkC {@code true} if C comments are checked.
      */
     public void setCheckC(boolean checkC) {
         this.checkC = checkC;
@@ -204,8 +204,8 @@ public class SuppressionCommentFilter
     /**
      * Finds the nearest comment text tag that matches an audit event.
      * The nearest tag is before the line and column of the event.
-     * @param event the <code>AuditEvent</code> to match.
-     * @return The <code>Tag</code> nearest event.
+     * @param event the {@code AuditEvent} to match.
+     * @return The {@code Tag} nearest event.
      */
     private Tag findNearestMatch(AuditEvent event) {
         Tag result = null;
@@ -279,11 +279,11 @@ public class SuppressionCommentFilter
     }
 
     /**
-     * Adds a <code>Tag</code> to the list of all tags.
+     * Adds a {@code Tag} to the list of all tags.
      * @param text the text of the tag.
      * @param line the line number of the tag.
      * @param column the column number of the tag.
-     * @param on <code>true</code> if the tag turns checkstyle reporting on.
+     * @param on {@code true} if the tag turns checkstyle reporting on.
      */
     private void addTag(String text, int line, int column, boolean on) {
         final Tag tag = new Tag(line, column, text, on, this);
@@ -320,7 +320,7 @@ public class SuppressionCommentFilter
          * @param line the line number.
          * @param column the column number.
          * @param text the text of the suppression.
-         * @param on <code>true</code> if the tag turns checkstyle reporting.
+         * @param on {@code true} if the tag turns checkstyle reporting.
          * @param filter the {@code SuppressionCommentFilter} with the context
          * @throws ConversionException if unable to parse expanded text.
          * on.
@@ -389,7 +389,7 @@ public class SuppressionCommentFilter
         /**
          * Determines whether the suppression turns checkstyle reporting on or
          * off.
-         * @return <code>true</code>if the suppression turns reporting on.
+         * @return {@code true}if the suppression turns reporting on.
          */
         public boolean isOn() {
             return on;
@@ -437,7 +437,7 @@ public class SuppressionCommentFilter
         /**
          * Determines whether the source of an audit event
          * matches the text of this tag.
-         * @param event the <code>AuditEvent</code> to check.
+         * @param event the {@code AuditEvent} to check.
          * @return true if the source of event matches the text of this tag.
          */
         public boolean isMatch(AuditEvent event) {

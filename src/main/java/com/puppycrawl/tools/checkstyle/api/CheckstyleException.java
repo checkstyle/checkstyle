@@ -29,16 +29,16 @@ public class CheckstyleException extends Exception {
     private static final long serialVersionUID = -3517342299748221108L;
 
     /**
-     * Creates a new <code>CheckstyleException</code> instance.
+     * Creates a new {@code CheckstyleException} instance.
      *
-     * @param message a <code>String</code> value
+     * @param message a {@code String} value
      */
     public CheckstyleException(String message) {
         super(message);
     }
 
     /**
-     * Creates a new <code>CheckstyleException</code> instance
+     * Creates a new {@code CheckstyleException} instance
      * that was caused by another exception.
      *
      * @param message a message that explains this exception

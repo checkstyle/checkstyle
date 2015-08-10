@@ -28,9 +28,9 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 /**
  * <p>
  * Checks if any class or object member explicitly initialized
- * to default for its type value (<code>null</code> for object
- * references, zero for numeric types and <code>char</code>
- * and <code>false</code> for <code>boolean</code>.
+ * to default for its type value ({@code null} for object
+ * references, zero for numeric types and {@code char}
+ * and {@code false} for {@code boolean}.
  * </p>
  * <p>
  * Rationale: each instance variable gets

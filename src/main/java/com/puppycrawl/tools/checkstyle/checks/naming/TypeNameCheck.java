@@ -54,7 +54,7 @@ public class TypeNameCheck
     public static final String DEFAULT_PATTERN = "^[A-Z][a-zA-Z0-9]*$";
 
     /**
-     * Creates a new <code>TypeNameCheck</code> instance.
+     * Creates a new {@code TypeNameCheck} instance.
      */
     public TypeNameCheck() {
         super(DEFAULT_PATTERN);

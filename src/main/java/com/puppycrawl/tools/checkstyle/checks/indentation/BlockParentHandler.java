@@ -311,9 +311,9 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     }
 
     /**
-     * A shortcut for <code>IndentationCheck</code> property.
+     * A shortcut for {@code IndentationCheck} property.
      * @return value of lineWrappingIndentation property
-     *         of <code>IndentationCheck</code>
+     *         of {@code IndentationCheck}
      */
     private int getLineWrappingIndent() {
         return getIndentCheck().getLineWrappingIndentation();

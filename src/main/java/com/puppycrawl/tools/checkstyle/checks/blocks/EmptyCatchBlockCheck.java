@@ -59,18 +59,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Such empty blocks would be both suppressed:<br>
  * </p>
  * <pre>
- * <code>
+ * {@code
  * try {
  *     throw new RuntimeException();
  * } catch (RuntimeException expected) {
  * }
- * </code>
- * <code>
+ * }
+ * {@code
  * try {
  *     throw new RuntimeException();
  * } catch (RuntimeException ignore) {
  * }
- * </code>
+ * }
  * </pre>
  * <p>
  * To configure the Check to suppress empty catch block if single-line comment inside
@@ -85,13 +85,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Such empty block would be suppressed:<br>
  * </p>
  * <pre>
- * <code>
+ * {@code
  * try {
  *     throw new RuntimeException();
  * } catch (RuntimeException e) {
  *     //This is expected
  * }
- * </code>
+ * }
  * </pre>
  * <p>
  * To configure the Check to suppress empty catch block if single-line comment inside
@@ -107,20 +107,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Such empty blocks would be both suppressed:<br>
  * </p>
  * <pre>
- * <code>
+ * {@code
  * try {
  *     throw new RuntimeException();
  * } catch (RuntimeException e) {
  *     //This is expected
  * }
- * </code>
- * <code>
+ * }
+ * {@code
  * try {
  *     throw new RuntimeException();
  * } catch (RuntimeException myException) {
  *
  * }
- * </code>
+ * }
  * </pre>
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */

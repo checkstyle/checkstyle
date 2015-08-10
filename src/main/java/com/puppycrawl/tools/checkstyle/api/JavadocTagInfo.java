@@ -412,8 +412,8 @@ public enum JavadocTagInfo {
      *
      * <p>
      * If passing in a DetailAST representing a non-void METHOD_DEF
-     * <code> true </code> would be returned. If passing in a DetailAST
-     * representing a CLASS_DEF <code> false </code> would be returned because
+     * {@code true } would be returned. If passing in a DetailAST
+     * representing a CLASS_DEF {@code false } would be returned because
      * CLASS_DEF's cannot return a value.
      * </p>
      *

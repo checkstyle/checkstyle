@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>
  * An example of how to configure the check for comments that contain
- * <code>TODO</code> or <code>FIXME</code>is:
+ * {@code TODO} or {@code FIXME}is:
  * </p>
  *
  * <pre>

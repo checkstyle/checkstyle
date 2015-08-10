@@ -25,7 +25,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks the style of array type definitions.
- * Some like Java-style: <code>public static void main(String[] args)</code>
+ * Some like Java-style: {@code public static void main(String[] args)}
  * and some like C-style: public static void main(String args[])
  *
  * By default the Check enforces Java style.

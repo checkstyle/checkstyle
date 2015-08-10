@@ -37,11 +37,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * inside the for block. An example is:
  *
  * <pre>
- * <code>
+ * {@code
  * for (int i = 0; i &lt; 1; i++) {
  *     i++;//violation
  * }
- * </code>
+ * }
  * </pre>
  * <p>
  * Rationale: If the control variable is modified inside the loop
@@ -58,11 +58,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Such loop would be supressed:
  *
  * <pre>
- * <code>
+ * {@code
  * for(int i=0; i &lt; 10;) {
  *     i++;
  * }
- * </code>
+ * }
  * </pre>
  *
  * <p>
@@ -85,11 +85,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>Example:</p>
  *
  * <pre>
- * <code>
+ * {@code
  * for (String line: lines) {
  *     line = line.trim();   // it will skip this violation
  * }
- * </code>
+ * }
  * </pre>
  *
  *

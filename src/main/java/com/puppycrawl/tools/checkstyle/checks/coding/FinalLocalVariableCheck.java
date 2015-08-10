@@ -64,11 +64,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>Example:</p>
  * <p>
- * <code>
+ * {@code
  * for (int number : myNumbers) { // violation
  *    System.out.println(number);
  * }
- * </code>
+ * }
  * </p>
  * @author k_gibbs, r_auckenthaler
  */
@@ -232,11 +232,11 @@ public class FinalLocalVariableCheck extends Check {
      * Checks if current variable is defined in
      *  {@link TokenTypes#FOR_INIT for-loop init}, e.g.:
      * <p>
-     * <code>
+     * {@code
      * for (int i = 0, j = 0; i < j; i++) { . . . }
-     * </code>
+     * }
      * </p>
-     * <code>i, j</code> are defined in {@link TokenTypes#FOR_INIT for-loop init}
+     * {@code i, j} are defined in {@link TokenTypes#FOR_INIT for-loop init}
      * @param variableDef variable definition node.
      * @return true if variable is defined in {@link TokenTypes#FOR_INIT for-loop init}
      */

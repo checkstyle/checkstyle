@@ -53,7 +53,7 @@ public class HeaderCheck extends AbstractHeaderCheck {
 
     /**
      * @param lineNo a line number
-     * @return if <code>lineNo</code> is one of the ignored header lines.
+     * @return if {@code lineNo} is one of the ignored header lines.
      */
     private boolean isIgnoreLine(int lineNo) {
         return Arrays.binarySearch(ignoreLines, lineNo) >= 0;

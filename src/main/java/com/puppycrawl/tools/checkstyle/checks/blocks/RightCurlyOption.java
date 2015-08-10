@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 /**
- * Represents the options for placing the right curly brace <code>'}'</code>.
+ * Represents the options for placing the right curly brace {@code '}'}.
  *
  * @author Oliver Burn
  */

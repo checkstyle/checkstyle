@@ -203,9 +203,9 @@ public class NoWhitespaceAfterCheck extends Check {
     /**
      * Gets array identifier, e.g.:
      * <p>
-     * <code>
+     * {@code
      * int[] someArray;
-     * </code>
+     * }
      * </p>
      * <p>
      * someArray is identifier.
@@ -262,14 +262,14 @@ public class NoWhitespaceAfterCheck extends Check {
     /**
      * Checks if current array is declared in C style, e.g.:
      * <p>
-     * <code>
+     * {@code
      * int array[] = { ... }; //C style
-     * </code>
+     * }
      * </p>
      * <p>
-     * <code>
+     * {@code
      * int[] array = { ... }; //Java style
-     * </code>
+     * }
      * </p>
      * @param arrayDeclaration {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}
      * @return true if array is declared in C style

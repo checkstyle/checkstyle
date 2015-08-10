@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * Checks for illegal token text.
  * </p>
  * <p> An example of how to configure the check to forbid String literals
- * containing <code>"a href"</code> is:
+ * containing {@code "a href"} is:
  * </p>
  * <pre>
  * &lt;module name="IllegalTokenText"&gt;

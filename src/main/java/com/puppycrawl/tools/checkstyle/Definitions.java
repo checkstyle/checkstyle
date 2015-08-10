@@ -29,7 +29,7 @@ public final class Definitions {
             "com.puppycrawl.tools.checkstyle.messages";
 
     /**
-     * Do no allow <code>Definitions</code> instances to be created.
+     * Do no allow {@code Definitions} instances to be created.
      **/
     private Definitions() {
     }

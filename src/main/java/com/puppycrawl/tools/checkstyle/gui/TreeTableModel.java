@@ -63,27 +63,27 @@ public interface TreeTableModel extends TreeModel {
 
     /**
      * @param column the column number
-     * @return the name for column number <code>column</code>.
+     * @return the name for column number {@code column}.
      */
     String getColumnName(int column);
 
     /**
      * @param column the column number
-     * @return the type for column number <code>column</code>.
+     * @return the type for column number {@code column}.
      */
     Class<?> getColumnClass(int column);
 
     /**
      * @param node the node
      * @param column the column number
-     * @return the value to be displayed for node <code>node</code>,
-     * at column number <code>column</code>.
+     * @return the value to be displayed for node {@code node},
+     * at column number {@code column}.
      */
     Object getValueAt(Object node, int column);
 
     /**
-     * Indicates whether the the value for node <code>node</code>,
-     * at column number <code>column</code> is editable.
+     * Indicates whether the the value for node {@code node},
+     * at column number {@code column} is editable.
      *
      * @param node the node.
      * @param column the column number
@@ -92,8 +92,8 @@ public interface TreeTableModel extends TreeModel {
     boolean isCellEditable(Object node, int column);
 
     /**
-     * Sets the value for node <code>node</code>,
-     * at column number <code>column</code>.
+     * Sets the value for node {@code node},
+     * at column number {@code column}.
      *
      * @param aValue the value to set
      * @param node the node to set the value on

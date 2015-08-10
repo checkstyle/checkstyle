@@ -79,7 +79,7 @@ final class PropertyCacheFile {
     private final String fileName;
 
     /**
-     * Creates a new <code>PropertyCacheFile</code> instance.
+     * Creates a new {@code PropertyCacheFile} instance.
      *
      * @param config the current configuration, not null
      * @param fileName the cache file
@@ -176,7 +176,7 @@ final class PropertyCacheFile {
      * Calculates the hashcode for a GlobalProperties.
      *
      * @param object the GlobalProperties
-     * @return the hashcode for <code>object</code>
+     * @return the hashcode for {@code object}
      */
     private static String getConfigHashCode(Serializable object) {
         try {
@@ -210,7 +210,7 @@ final class PropertyCacheFile {
     /**
      * Hex-encodes a byte array.
      * @param byteArray the byte array
-     * @return hex encoding of <code>byteArray</code>
+     * @return hex encoding of {@code byteArray}
      */
     private static String hexEncode(byte... byteArray) {
         final StringBuilder buf = new StringBuilder(2 * byteArray.length);

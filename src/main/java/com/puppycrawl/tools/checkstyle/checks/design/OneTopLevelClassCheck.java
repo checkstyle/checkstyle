@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * An example of code with violations:
  * </p>
- * <pre><code>
+ * <pre>{@code
  * public class Foo{
  *     //methods
  * }
@@ -48,11 +48,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * class Foo2{
  *     //methods
  * }
- * </code></pre>
+ * }</pre>
  * <p>
  * An example of code without top-level public type:
  * </p>
- * <pre><code>
+ * <pre>{@code
  * class Foo{ //top-level class
  *     //methods
  * }
@@ -60,7 +60,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * class Foo2{
  *     //methods
  * }
- * </code></pre>
+ * }</pre>
  * <p>
  * An example of check's configuration:
  * </p>
@@ -71,11 +71,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * An example of code without violations:
  * </p>
- * <pre><code>
+ * <pre>{@code
  * public class Foo{
  *     //methods
  * }
- * </code></pre>
+ * }</pre>
  *
  * <p> ATTENTION: This Check does not support customization of validated tokens,
  *  so do not use the "tokens" property.

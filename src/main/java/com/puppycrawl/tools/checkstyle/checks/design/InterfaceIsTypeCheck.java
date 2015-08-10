@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * <p>
  * The check can be configured to also disallow marker interfaces like
- * <code>java.io.Serializable</code>, that do not contain methods or
+ * {@code java.io.Serializable}, that do not contain methods or
  * constants at all.
  * </p>
  *

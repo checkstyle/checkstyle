@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class StaticVariableNameCheck
     extends AbstractAccessControlNameCheck {
-    /** Creates a new <code>StaticVariableNameCheck</code> instance. */
+    /** Creates a new {@code StaticVariableNameCheck} instance. */
     public StaticVariableNameCheck() {
         super("^[a-z][a-zA-Z0-9]*$");
     }

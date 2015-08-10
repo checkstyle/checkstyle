@@ -61,8 +61,8 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * </pre>
  * <p>
  * An example of how to configure the check with policy
- * {@link RightCurlyOption#ALONE} for <code>else</code> and
- * <code>{@link TokenTypes#METHOD_DEF METHOD_DEF}</code>tokens is:
+ * {@link RightCurlyOption#ALONE} for {@code else} and
+ * {@code {@link TokenTypes#METHOD_DEF METHOD_DEF}}tokens is:
  * </p>
  * <pre>
  * &lt;module name="RightCurly"&gt;

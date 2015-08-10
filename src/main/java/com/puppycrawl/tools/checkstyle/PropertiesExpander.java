@@ -23,7 +23,7 @@ import java.util.Properties;
 
 /**
  * Resolves external properties from an
- * underlying <code>Properties</code> object.
+ * underlying {@code Properties} object.
  *
  * @author lkuehne
  */

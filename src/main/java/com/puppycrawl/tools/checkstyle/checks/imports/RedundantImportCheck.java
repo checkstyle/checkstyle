@@ -35,8 +35,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *<ul>
  *  <li>It is a duplicate of another import. This is, when a class is imported
  *  more than once.</li>
- *  <li>The class non-statically imported is from the <code>java.lang</code>
- *  package. For example importing <code>java.lang.String</code>.</li>
+ *  <li>The class non-statically imported is from the {@code java.lang}
+ *  package. For example importing {@code java.lang.String}.</li>
  *  <li>The class non-statically imported is from the same package as the
  *  current package.</li>
  *</ul>

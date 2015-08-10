@@ -48,7 +48,7 @@ public abstract class AbstractViolationReporter
 
     /**
      * Sets the severity level.  The string should be one of the names
-     * defined in the <code>SeverityLevel</code> class.
+     * defined in the {@code SeverityLevel} class.
      *
      * @param severity  The new severity level
      * @see SeverityLevel

@@ -39,7 +39,7 @@ class CSVFilter implements IntFilter {
     private final Set<IntFilter> filters = Sets.newHashSet();
 
     /**
-     * Constructs a <code>CSVFilter</code> from a CSV, Comma-Separated Values,
+     * Constructs a {@code CSVFilter} from a CSV, Comma-Separated Values,
      * string. Each value is an integer, or a range of integers. A range of
      * integers is of the form integer-integer, such as 1-10.
      * Note: integers must be non-negative.

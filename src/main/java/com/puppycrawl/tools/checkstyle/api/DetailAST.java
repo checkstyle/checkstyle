@@ -314,7 +314,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
      * of the provided type.
      * @param type a TokenType
      * @return true if and only if this branch (including this node)
-     * contains a token of type <code>type</code>.
+     * contains a token of type {@code type}.
      */
     public boolean branchContains(int type) {
         return getBranchTokenTypes().get(type);

@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.TextBlock;
  * precede it is whitespace.
  * It doesn't check comments if they do not end line, i.e. it accept
  * the following:
- * <code>Thread.sleep( 10 &lt;some comment here&gt; );</code>
+ * {@code Thread.sleep( 10 &lt;some comment here&gt; );}
  * Format property is intended to deal with the "} // while" example.
  * </p>
  * <p>

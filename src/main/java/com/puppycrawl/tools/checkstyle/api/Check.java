@@ -219,7 +219,7 @@ public abstract class Check extends AbstractViolationReporter {
 
     /**
      * Set the tab width to report errors with.
-     * @param tabWidth an <code>int</code> value
+     * @param tabWidth an {@code int} value
      */
     public final void setTabWidth(int tabWidth) {
         this.tabWidth = tabWidth;

@@ -91,7 +91,7 @@ public class TranslationCheck
     private String basenameSeparator;
 
     /**
-     * Creates a new <code>TranslationCheck</code> instance.
+     * Creates a new {@code TranslationCheck} instance.
      */
     public TranslationCheck() {
         setFileExtensions("properties");

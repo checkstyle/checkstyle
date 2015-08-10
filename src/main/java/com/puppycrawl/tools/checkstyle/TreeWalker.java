@@ -116,7 +116,7 @@ public final class TreeWalker
     private ModuleFactory moduleFactory;
 
     /**
-     * Creates a new <code>TreeWalker</code> instance.
+     * Creates a new {@code TreeWalker} instance.
      */
     public TreeWalker() {
         setFileExtensions("java");

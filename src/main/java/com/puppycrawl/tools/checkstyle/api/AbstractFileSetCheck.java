@@ -168,7 +168,7 @@ public abstract class AbstractFileSetCheck
 
     /**
      * Notify all listeners about the errors in a file.
-     * Calls <code>MessageDispatcher.fireErrors()</code> with
+     * Calls {@code MessageDispatcher.fireErrors()} with
      * all logged errors and than clears errors' list.
      * @param fileName the audited file
      */

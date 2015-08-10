@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractDeclarationCollector;
  * <pre>
  * &lt;module name=&quot;RequireThis&quot;/&gt;
  * </pre>
- * An example of how to configure to check <code>this</code> qualifier for
+ * An example of how to configure to check {@code this} qualifier for
  * methods only:
  * <pre>
  * &lt;module name=&quot;RequireThis&quot;&gt;
@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractDeclarationCollector;
  * Non-static methods invoked on either this or a variable name seem to be
  * OK, likewise.</p>
  * <p>Much of the code for this check was cribbed from Rick Giles's
- * <code>HiddenFieldCheck</code>.</p>
+ * {@code HiddenFieldCheck}.</p>
  *
  * @author Stephen Bloch
  * @author o_sukhodolsky
@@ -126,7 +126,7 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
 
     /**
      * Checks if a given IDENT is method call or field name which
-     * require explicit <code>this</code> qualifier.
+     * require explicit {@code this} qualifier.
      *
      * @param ast IDENT to check.
      */

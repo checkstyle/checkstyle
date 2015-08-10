@@ -69,7 +69,7 @@ public class SuppressElement
     private String columnsCSV;
 
     /**
-     * Constructs a <code>SuppressElement</code> for a
+     * Constructs a {@code SuppressElement} for a
      * file name pattern. Must either call {@link #setColumns(String)} or
      * {@link #setModuleId(String)} before using this object.
      * @param files regular expression for names of filtered files.

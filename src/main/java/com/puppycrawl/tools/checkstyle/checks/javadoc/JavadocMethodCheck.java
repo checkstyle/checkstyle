@@ -243,7 +243,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     /**
      * Set the scope.
      *
-     * @param from a <code>String</code> value
+     * @param from a {@code String} value
      */
     public void setScope(String from) {
         scope = Scope.getInstance(from);
@@ -252,7 +252,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     /**
      * Set the excludeScope.
      *
-     * @param scope a <code>String</code> value
+     * @param scope a {@code String} value
      */
     public void setExcludeScope(String scope) {
         excludeScope = Scope.getInstance(scope);
@@ -262,7 +262,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * controls whether to allow documented exceptions that are not declared if
      * they are a subclass of java.lang.RuntimeException.
      *
-     * @param flag a <code>Boolean</code> value
+     * @param flag a {@code Boolean} value
      */
     public void setAllowUndeclaredRTE(boolean flag) {
         allowUndeclaredRTE = flag;
@@ -272,7 +272,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * controls whether to allow documented exception that are subclass of one
      * of declared exceptions.
      *
-     * @param flag a <code>Boolean</code> value
+     * @param flag a {@code Boolean} value
      */
     public void setAllowThrowsTagsForSubclasses(boolean flag) {
         allowThrowsTagsForSubclasses = flag;
@@ -282,7 +282,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * controls whether to allow a method which has parameters to omit matching
      * param tags in the javadoc. Defaults to false.
      *
-     * @param flag a <code>Boolean</code> value
+     * @param flag a {@code Boolean} value
      */
     public void setAllowMissingParamTags(boolean flag) {
         allowMissingParamTags = flag;
@@ -293,7 +293,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * exceptions to omit matching throws tags in the javadoc. Defaults to
      * false.
      *
-     * @param flag a <code>Boolean</code> value
+     * @param flag a {@code Boolean} value
      */
     public void setAllowMissingThrowsTags(boolean flag) {
         allowMissingThrowsTags = flag;
@@ -303,7 +303,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * controls whether to allow a method which returns non-void type to omit
      * the return tag in the javadoc. Defaults to false.
      *
-     * @param flag a <code>Boolean</code> value
+     * @param flag a {@code Boolean} value
      */
     public void setAllowMissingReturnTag(boolean flag) {
         allowMissingReturnTag = flag;
@@ -313,7 +313,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * Controls whether to ignore errors when there is no javadoc. Defaults to
      * false.
      *
-     * @param flag a <code>Boolean</code> value
+     * @param flag a {@code Boolean} value
      */
     public void setAllowMissingJavadoc(boolean flag) {
         allowMissingJavadoc = flag;
@@ -323,7 +323,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * Controls whether to ignore errors when there is no javadoc for a
      * property accessor (setter/getter methods). Defaults to false.
      *
-     * @param flag a <code>Boolean</code> value
+     * @param flag a {@code Boolean} value
      */
     public void setAllowMissingPropertyJavadoc(final boolean flag) {
         allowMissingPropertyJavadoc = flag;
@@ -426,9 +426,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * The JavadocMethodCheck is about to report a missing Javadoc.
      * This hook can be used by derived classes to allow a missing javadoc
      * in some situations.  The default implementation checks
-     * <code>allowMissingJavadoc</code> and
-     * <code>allowMissingPropertyJavadoc</code> properties, do not forget
-     * to call <code>super.isMissingJavadocAllowed(ast)</code> in case
+     * {@code allowMissingJavadoc} and
+     * {@code allowMissingPropertyJavadoc} properties, do not forget
+     * to call {@code super.isMissingJavadocAllowed(ast)} in case
      * you want to keep this logic.
      * @param ast the tree node for the method or constructor.
      * @return True if this method or constructor doesn't need Javadoc.
@@ -1023,7 +1023,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         private final AbstractClassInfo classInfo;
 
         /**
-         * Creates new instance for <code>FullIdent</code>.
+         * Creates new instance for {@code FullIdent}.
          *
          * @param classInfo clas info
          */

@@ -113,7 +113,7 @@ public class AutomaticBean
      * is called to allow completion of the bean's local setup,
      * after that the method {@link #setupChild setupChild}
      * is called for each {@link Configuration#getChildren child Configuration}
-     * of <code>configuration</code>.
+     * of {@code configuration}.
      *
      * @param configuration {@inheritDoc}
      * @throws CheckstyleException {@inheritDoc}

@@ -48,8 +48,8 @@ public final class TokenTypesDoclet {
 
     /**
      * The doclet's starter method.
-     * @param root <code>RootDoc</code> given to the doclet
-     * @return true if the given <code>RootDoc</code> is processed.
+     * @param root {@code RootDoc} given to the doclet
+     * @return true if the given {@code RootDoc} is processed.
      * @exception FileNotFoundException will be thrown if the doclet
      *            will be unable to write to the specified file.
      * @exception UnsupportedEncodingException will be thrown if the doclet

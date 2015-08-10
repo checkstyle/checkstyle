@@ -67,7 +67,7 @@ public final class FileContents implements CommentListener {
     private final Map<Integer, List<TextBlock>> clangComments = Maps.newHashMap();
 
     /**
-     * Creates a new <code>FileContents</code> instance.
+     * Creates a new {@code FileContents} instance.
      *
      * @param filename name of the file
      * @param lines the contents of the file
@@ -81,7 +81,7 @@ public final class FileContents implements CommentListener {
     }
 
     /**
-     * Creates a new <code>FileContents</code> instance.
+     * Creates a new {@code FileContents} instance.
      *
      * @param text the contents of the file
      */
@@ -197,9 +197,9 @@ public final class FileContents implements CommentListener {
 
     /**
      * Returns the Javadoc comment before the specified line.
-     * A return value of <code>null</code> means there is no such comment.
+     * A return value of {@code null} means there is no such comment.
      * @param lineNoBefore the line number to check before
-     * @return the Javadoc comment, or <code>null</code> if none
+     * @return the Javadoc comment, or {@code null} if none
      **/
     public TextBlock getJavadocBefore(int lineNoBefore) {
         // Lines start at 1 to the callers perspective, so need to take off 2

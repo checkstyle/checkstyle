@@ -76,7 +76,7 @@ public class EmptyBlockCheck
     public static final String MSG_KEY_BLOCK_EMPTY = "block.empty";
 
     /**
-     * Creates a new <code>EmptyBlockCheck</code> instance.
+     * Creates a new {@code EmptyBlockCheck} instance.
      */
     public EmptyBlockCheck() {
         super(BlockOption.STMT, BlockOption.class);
@@ -151,7 +151,7 @@ public class EmptyBlockCheck
     }
 
     /**
-     * @param slistAST a <code>DetailAST</code> value
+     * @param slistAST a {@code DetailAST} value
      * @return whether the SLIST token contains any text.
      */
     protected boolean hasText(final DetailAST slistAST) {

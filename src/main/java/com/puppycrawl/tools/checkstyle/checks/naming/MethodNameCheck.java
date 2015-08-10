@@ -93,7 +93,7 @@ public class MethodNameCheck
      */
     private boolean allowClassName;
 
-    /** Creates a new <code>MethodNameCheck</code> instance. */
+    /** Creates a new {@code MethodNameCheck} instance. */
     public MethodNameCheck() {
         super("^[a-z][a-zA-Z0-9]*$");
     }

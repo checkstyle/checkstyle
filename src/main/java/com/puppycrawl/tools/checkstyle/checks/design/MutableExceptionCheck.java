@@ -64,7 +64,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
 
     /**
      * Sets the format of extended class name to the specified regular expression.
-     * @param extendedClassNameFormat a <code>String</code> value
+     * @param extendedClassNameFormat a {@code String} value
      */
     public void setExtendedClassNameFormat(String extendedClassNameFormat) {
         this.extendedClassNameFormat = extendedClassNameFormat;

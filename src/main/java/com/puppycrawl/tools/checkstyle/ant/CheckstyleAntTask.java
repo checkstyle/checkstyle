@@ -333,8 +333,8 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
-     * Creates new instance of <code>Checker</code>.
-     * @return new instance of <code>Checker</code>
+     * Creates new instance of {@code Checker}.
+     * @return new instance of {@code Checker}
      */
     private Checker createChecker() {
         Checker checker;

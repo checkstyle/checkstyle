@@ -111,7 +111,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     private String charset = System.getProperty("file.encoding", "UTF-8");
 
     /**
-     * Creates a new <code>Checker</code> instance.
+     * Creates a new {@code Checker} instance.
      * The instance needs to be contextualized and configured.
      */
     public Checker() {
@@ -401,7 +401,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
 
     /**
      * Sets the severity level.  The string should be one of the names
-     * defined in the <code>SeverityLevel</code> class.
+     * defined in the {@code SeverityLevel} class.
      *
      * @param severity  The new severity level
      * @see SeverityLevel

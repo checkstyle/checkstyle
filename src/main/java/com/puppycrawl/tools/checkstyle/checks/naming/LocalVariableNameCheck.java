@@ -81,7 +81,7 @@ public class LocalVariableNameCheck
      */
     private boolean allowOneCharVarInForLoop;
 
-    /** Creates a new <code>LocalVariableNameCheck</code> instance. */
+    /** Creates a new {@code LocalVariableNameCheck} instance. */
     public LocalVariableNameCheck() {
         super("^[a-z][a-zA-Z0-9]*$");
     }

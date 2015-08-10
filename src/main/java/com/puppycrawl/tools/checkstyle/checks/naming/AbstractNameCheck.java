@@ -36,7 +36,7 @@ public abstract class AbstractNameCheck
     public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
 
     /**
-     * Creates a new <code>AbstractNameCheck</code> instance.
+     * Creates a new {@code AbstractNameCheck} instance.
      * @param format format to check with
      */
     protected AbstractNameCheck(String format) {

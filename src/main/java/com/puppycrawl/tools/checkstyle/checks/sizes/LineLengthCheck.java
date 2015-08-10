@@ -91,7 +91,7 @@ public class LineLengthCheck extends Check {
     private Pattern ignorePattern;
 
     /**
-     * Creates a new <code>LineLengthCheck</code> instance.
+     * Creates a new {@code LineLengthCheck} instance.
      */
     public LineLengthCheck() {
         setIgnorePattern("^$");
@@ -127,7 +127,7 @@ public class LineLengthCheck extends Check {
 
     /**
      * Set the ignore pattern.
-     * @param format a <code>String</code> value
+     * @param format a {@code String} value
      */
     public final void setIgnorePattern(String format) {
         ignorePattern = Utils.createPattern(format);

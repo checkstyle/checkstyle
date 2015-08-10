@@ -52,7 +52,7 @@ public final class ExecutableStatementCountCheck
     /** Current method context. */
     private Context context;
 
-    /** Constructs a <code>ExecutableStatementCountCheck</code>. */
+    /** Constructs a {@code ExecutableStatementCountCheck}. */
     public ExecutableStatementCountCheck() {
         setMax(DEFAULT_MAX);
     }

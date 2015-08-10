@@ -43,7 +43,7 @@ class PackageObjectFactory implements ModuleFactory {
     private final ClassLoader moduleClassLoader;
 
     /**
-     * Creates a new <code>PackageObjectFactory</code> instance.
+     * Creates a new {@code PackageObjectFactory} instance.
      * @param packageNames the list of package names to use
      * @param moduleClassLoader class loader used to load Checkstyle
      *          core and custom modules
@@ -74,7 +74,7 @@ class PackageObjectFactory implements ModuleFactory {
      * an instance of a classname obtained by concatenating the given
      * to a package name from a given list of package names.
      * @param name the name of a class.
-     * @return the <code>Object</code>
+     * @return the {@code Object}
      * @throws CheckstyleException if an error occurs.
      */
     private Object doMakeObject(String name)
@@ -105,7 +105,7 @@ class PackageObjectFactory implements ModuleFactory {
     /**
      * Creates a new instance of a named class.
      * @param className the name of the class to instantiate.
-     * @return the <code>Object</code> created by loader.
+     * @return the {@code Object} created by loader.
      * @throws CheckstyleException if an error occurs.
      */
     private Object createObject(String className)
@@ -126,7 +126,7 @@ class PackageObjectFactory implements ModuleFactory {
      * an instance of a classname obtained by concatenating the given name
      * to a package name from a given list of package names.
      * @param name the name of a class.
-     * @return the <code>Object</code> created by loader.
+     * @return the {@code Object} created by loader.
      * @throws CheckstyleException if an error occurs.
      */
     @Override

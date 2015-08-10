@@ -53,7 +53,7 @@ import javax.swing.border.Border;
  * it the target component and a <tt>Listener</tt> to receive notification
  * when file(s) have been dropped. Here is an example:
  * <p/>
- * <code><pre>
+ * {@code <pre>
  *      JPanel myPanel = new JPanel();
  *      new FileDrop( myPanel, new FileDrop.Listener()
  *      {   public void filesDropped( java.io.File[] files )
@@ -62,7 +62,7 @@ import javax.swing.border.Border;
  *              ...
  *          }   // end filesDropped
  *      }); // end FileDrop.Listener
- * </pre></code>
+ * </pre>}
  * <p/>
  * You can specify the border that will appear when files are being dragged by
  * calling the constructor with a <tt>javax.swing.border.Border</tt>. Only
