@@ -217,15 +217,23 @@ public class SuppressWarningsHolder
             final List<Entry> entries = ENTRIES.get();
             if (entries != null) {
                 for (String value : values) {
-                    // strip off the checkstyle-only prefix if present
-                    if (value.startsWith(CHECKSTYLE_PREFIX)) {
-                        value = value.substring(CHECKSTYLE_PREFIX.length());
-                    }
-                    entries.add(new Entry(value, firstLine, firstColumn,
-                        lastLine, lastColumn));
+                    entries.add(new Entry(stripOffCheckstylePrefix(value),
+                        firstLine, firstColumn, lastLine, lastColumn));
                 }
             }
         }
+    }
+
+    /**
+     * Strips off checkstyle-only prefix if present
+     * @param value to strip off prefix from
+     * @return stripped off value if it starts with checkstyle prefix otherwise original value
+     */
+    private static String stripOffCheckstylePrefix(String value) {
+        if (value.startsWith(CHECKSTYLE_PREFIX)) {
+            return value.substring(CHECKSTYLE_PREFIX.length());
+        }
+        return value;
     }
 
     /**
