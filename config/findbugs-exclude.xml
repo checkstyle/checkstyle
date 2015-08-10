@@ -97,4 +97,10 @@
       </Or>
       <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" />
     </Match>
+    <Match>
+        <!-- maxLineLength is deprecated since 6.10 release -->
+        <Class name="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck" />
+        <Field name="maxLineLength" />
+        <Bug pattern="URF_UNREAD_FIELD" />
+    </Match>
 </FindBugsFilter>

@@ -90,13 +90,17 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
             "12:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "17:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "24:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "27:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "31:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "39:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "41:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "46:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "49:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
             "53:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "65:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "69:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "77:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "80:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "84:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
         };
         verify(checkConfig, getPath("InputLeftCurlyMethod.java"), expected);
@@ -185,6 +189,9 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
             "10:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "14:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "21:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "27:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "50:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "58:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
         };
         verify(checkConfig, getPath("InputLeftCurlyAnnotations.java"), expected);
     }
@@ -284,8 +291,11 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     @Test
     public void testCoverageIncrease() throws Exception {
         checkConfig.addAttribute("option", LeftCurlyOption.NLOW.toString());
-        checkConfig.addAttribute("maxLineLength", "10");
         final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "21:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "30:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "39:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "53:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
             "58:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
             "62:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
