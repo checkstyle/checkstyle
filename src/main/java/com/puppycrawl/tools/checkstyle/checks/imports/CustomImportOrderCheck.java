@@ -287,25 +287,31 @@ public class CustomImportOrderCheck extends Check {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    public static final String MSG_NONGROUP_EXPECTED = "custom.import.order.nongroup.expected";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
     public static final String MSG_ORDER = "custom.import.order";
 
-    /** STATIC group name */
-    private static final String STATIC_RULE_GROUP = "STATIC";
+    /** STATIC group name. */
+    public static final String STATIC_RULE_GROUP = "STATIC";
 
-    /** SAME_PACKAGE group name */
-    private static final String SAME_PACKAGE_RULE_GROUP = "SAME_PACKAGE";
+    /** SAME_PACKAGE group name. */
+    public static final String SAME_PACKAGE_RULE_GROUP = "SAME_PACKAGE";
 
-    /** THIRD_PARTY_PACKAGE group name */
-    private static final String THIRD_PARTY_PACKAGE_RULE_GROUP = "THIRD_PARTY_PACKAGE";
+    /** THIRD_PARTY_PACKAGE group name. */
+    public static final String THIRD_PARTY_PACKAGE_RULE_GROUP = "THIRD_PARTY_PACKAGE";
 
-    /** STANDARD_JAVA_PACKAGE group name */
-    private static final String STANDARD_JAVA_PACKAGE_RULE_GROUP = "STANDARD_JAVA_PACKAGE";
+    /** STANDARD_JAVA_PACKAGE group name. */
+    public static final String STANDARD_JAVA_PACKAGE_RULE_GROUP = "STANDARD_JAVA_PACKAGE";
 
-    /** NON_GROUP group name */
-    private static final String SPECIAL_IMPORTS_RULE_GROUP = "SPECIAL_IMPORTS";
+    /** SPECIAL_IMPORTS group name. */
+    public static final String SPECIAL_IMPORTS_RULE_GROUP = "SPECIAL_IMPORTS";
 
-    /** NON_GROUP group name */
-    private static final String NON_GROUP_RULE_GROUP = "NON_GROUP";
+    /** NON_GROUP group name. */
+    private static final String NON_GROUP_RULE_GROUP = "NOT_ASSIGNED_TO_ANY_GROUP";
 
     /** RegExp for SAME_PACKAGE group imports */
     private String samePackageDomainsRegExp = "";
@@ -472,12 +478,12 @@ public class CustomImportOrderCheck extends Check {
                     }
                     else {
                         logWrongImportGroupOrder(importObject.getLineNumber(),
-                                importGroup);
+                                importGroup, nextGroup, fullImportIdent);
                     }
                 }
                 else {
                     logWrongImportGroupOrder(importObject.getLineNumber(),
-                            importGroup);
+                            importGroup, currentGroup, fullImportIdent);
                 }
             }
             else if (sortImportsInGroupAlphabetically
@@ -485,7 +491,7 @@ public class CustomImportOrderCheck extends Check {
                     && matchesImportGroup(importObject.isStaticImport(),
                             fullImportIdent, currentGroup)
                     && compareImports(fullImportIdent, previousImport) < 0) {
-                log(importObject.getLineNumber(), MSG_LEX, fullImportIdent);
+                log(importObject.getLineNumber(), MSG_LEX, fullImportIdent, previousImport);
             }
             previousImport = fullImportIdent;
         }
@@ -497,13 +503,21 @@ public class CustomImportOrderCheck extends Check {
      *        line number of current import current import.
      * @param importGroup
      *        import group.
+     * @param currentGroupNumber
+     *        current group number we are checking.
+     * @param fullImportIdent
+     *        full import name.
      */
-    private void logWrongImportGroupOrder(int currentImportLine, String importGroup) {
+    private void logWrongImportGroupOrder(int currentImportLine, String importGroup,
+            String currentGroupNumber, String fullImportIdent) {
         if (NON_GROUP_RULE_GROUP.equals(importGroup)) {
-            log(currentImportLine, MSG_NONGROUP_IMPORT);
+            log(currentImportLine, MSG_NONGROUP_IMPORT, fullImportIdent);
+        }
+        else if (NON_GROUP_RULE_GROUP.equals(currentGroupNumber)) {
+            log(currentImportLine, MSG_NONGROUP_EXPECTED, importGroup, fullImportIdent);
         }
         else {
-            log(currentImportLine, MSG_ORDER, importGroup);
+            log(currentImportLine, MSG_ORDER, importGroup, currentGroupNumber, fullImportIdent);
         }
     }
 
