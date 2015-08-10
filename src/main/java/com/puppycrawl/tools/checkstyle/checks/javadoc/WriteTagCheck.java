@@ -166,42 +166,42 @@ public class WriteTagCheck
      * Verifies that a type definition has a required tag.
      * @param lineNo the line number for the type definition.
      * @param comment the Javadoc comment for the type definition.
-     * @param tag the required tag name.
-     * @param tagRE regexp for the full tag.
+     * @param tagName the required tag name.
+     * @param tagRegexp regexp for the full tag.
      * @param formatRE regexp for the tag value.
      * @param format pattern for the tag value.
      */
     private void checkTag(
             int lineNo,
             String[] comment,
-            String tag,
-            Pattern tagRE,
+            String tagName,
+            Pattern tagRegexp,
             Pattern formatRE,
             String format) {
-        if (tagRE == null) {
+        if (tagRegexp == null) {
             return;
         }
 
         int tagCount = 0;
         for (int i = 0; i < comment.length; i++) {
             final String s = comment[i];
-            final Matcher matcher = tagRE.matcher(s);
+            final Matcher matcher = tagRegexp.matcher(s);
             if (matcher.find()) {
                 tagCount += 1;
                 final int contentStart = matcher.start(1);
                 final String content = s.substring(contentStart);
                 if (formatRE != null && !formatRE.matcher(content).find()) {
-                    log(lineNo + i - comment.length, TAG_FORMAT, tag,
+                    log(lineNo + i - comment.length, TAG_FORMAT, tagName,
                         format);
                 }
                 else {
-                    logTag(lineNo + i - comment.length, tag, content);
+                    logTag(lineNo + i - comment.length, tagName, content);
                 }
 
             }
         }
         if (tagCount == 0) {
-            log(lineNo, MISSING_TAG, tag);
+            log(lineNo, MISSING_TAG, tagName);
         }
 
     }
@@ -210,16 +210,16 @@ public class WriteTagCheck
      * Log a message.
      *
      * @param line the line number where the error was found
-     * @param tag the javadoc tag to be logged
+     * @param tagName the javadoc tag to be logged
      * @param tagValue the contents of the tag
      *
      * @see java.text.MessageFormat
      */
-    protected final void logTag(int line, String tag, String tagValue) {
+    protected final void logTag(int line, String tagName, String tagValue) {
         final String originalSeverity = getSeverity();
         setSeverity(tagSeverityLevel.getName());
 
-        log(line, WRITE_TAG, tag, tagValue);
+        log(line, WRITE_TAG, tagName, tagValue);
 
         setSeverity(originalSeverity);
     }

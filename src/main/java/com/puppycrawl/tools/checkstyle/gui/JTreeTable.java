@@ -63,7 +63,7 @@ public class JTreeTable extends JTable {
     /** A subclass of JTree. */
     protected final TreeTableCellRenderer tree;
     private JTextArea editor;
-    private List<Integer> lines2position;
+    private List<Integer> linePositionMap;
 
     public JTreeTable(TreeTableModel treeTableModel) {
 
@@ -103,7 +103,7 @@ public class JTreeTable extends JTable {
                 public void actionPerformed(ActionEvent e) {
                     final TreePath selected = tree.getSelectionPath();
                     final DetailAST ast = (DetailAST) selected.getLastPathComponent();
-                    new CodeSelector(ast, editor, lines2position).select();
+                    new CodeSelector(ast, editor, linePositionMap).select();
 
                     if (tree.isExpanded(selected)) {
                         tree.collapsePath(selected);
@@ -171,8 +171,8 @@ public class JTreeTable extends JTable {
         editor = mJTextArea;
     }
 
-    public void setLinePositionMap(List<Integer> lines2position) {
-        this.lines2position = ImmutableList.copyOf(lines2position);
+    public void setLinePositionMap(List<Integer> linePositionMap) {
+        this.linePositionMap = ImmutableList.copyOf(linePositionMap);
     }
 
     /**

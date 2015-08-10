@@ -374,19 +374,19 @@ public abstract class AbstractExpressionHandler {
      * Check the indent level of the children of the specified parent
      * expression.
      *
-     * @param parent             the parent whose children we are checking
+     * @param parentNode             the parent whose children we are checking
      * @param tokenTypes         the token types to check
      * @param startLevel         the starting indent level
      * @param firstLineMatches   whether or not the first line needs to match
      * @param allowNesting       whether or not nested children are allowed
      */
-    protected final void checkChildren(DetailAST parent,
+    protected final void checkChildren(DetailAST parentNode,
                                        int[] tokenTypes,
                                        IndentLevel startLevel,
                                        boolean firstLineMatches,
                                        boolean allowNesting) {
         Arrays.sort(tokenTypes);
-        for (DetailAST child = parent.getFirstChild();
+        for (DetailAST child = parentNode.getFirstChild();
                 child != null;
                 child = child.getNextSibling()) {
             if (Arrays.binarySearch(tokenTypes, child.getType()) >= 0) {
@@ -400,13 +400,13 @@ public abstract class AbstractExpressionHandler {
      * Check the indentation level for an expression subtree.
      *
      * @param tree               the expression subtree to check
-     * @param level              the indentation level
+     * @param indentLevel              the indentation level
      * @param firstLineMatches   whether or not the first line has to match
      * @param allowNesting       whether or not subtree nesting is allowed
      */
     protected final void checkExpressionSubtree(
         DetailAST tree,
-        IndentLevel level,
+        IndentLevel indentLevel,
         boolean firstLineMatches,
         boolean allowNesting
     ) {
@@ -418,7 +418,7 @@ public abstract class AbstractExpressionHandler {
         }
         findSubtreeLines(subtreeLines, tree, allowNesting);
 
-        checkLinesIndent(subtreeLines, level, firstLineMatches, firstLine);
+        checkLinesIndent(subtreeLines, indentLevel, firstLineMatches, firstLine);
     }
 
     /**

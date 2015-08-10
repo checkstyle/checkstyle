@@ -65,13 +65,13 @@ public class CodeSelector {
         editor.transferFocusBackward();
     }
 
-    private int findLastPosition(final DetailAST ast) {
-        if (ast.getChildCount() == 0) {
-            return lines2position.get(ast.getLineNo()) + ast.getColumnNo()
-                + ast.getText().length();
+    private int findLastPosition(final DetailAST astNode) {
+        if (astNode.getChildCount() == 0) {
+            return lines2position.get(astNode.getLineNo()) + astNode.getColumnNo()
+                + astNode.getText().length();
         }
         else {
-            return findLastPosition(ast.getLastChild());
+            return findLastPosition(astNode.getLastChild());
         }
     }
 }

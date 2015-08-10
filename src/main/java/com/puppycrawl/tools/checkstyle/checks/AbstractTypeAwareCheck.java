@@ -213,15 +213,15 @@ public abstract class AbstractTypeAwareCheck extends Check {
 
     /**
      * Attempts to resolve the Class for a specified name.
-     * @param className name of the class to resolve
-     * @param currentClass name of surrounding class.
+     * @param resolvableClassName name of the class to resolve
+     * @param currentClassName name of surrounding class.
      * @return the resolved class or {@code null}
      *          if unable to resolve the class.
      */
-    protected final Class<?> resolveClass(String className,
-            String currentClass) {
+    protected final Class<?> resolveClass(String resolvableClassName,
+            String currentClassName) {
         try {
-            return getClassResolver().resolve(className, currentClass);
+            return getClassResolver().resolve(resolvableClassName, currentClassName);
         }
         catch (final ClassNotFoundException ignored) {
             return null;
@@ -231,11 +231,11 @@ public abstract class AbstractTypeAwareCheck extends Check {
     /**
      * Tries to load class. Logs error if unable.
      * @param ident name of class which we try to load.
-     * @param currentClass name of surrounding class.
+     * @param currentClassName name of surrounding class.
      * @return {@code Class} for a ident.
      */
-    protected final Class<?> tryLoadClass(Token ident, String currentClass) {
-        final Class<?> clazz = resolveClass(ident.getText(), currentClass);
+    protected final Class<?> tryLoadClass(Token ident, String currentClassName) {
+        final Class<?> clazz = resolveClass(ident.getText(), currentClassName);
         if (clazz == null) {
             logLoadError(ident);
         }
@@ -450,11 +450,11 @@ public abstract class AbstractTypeAwareCheck extends Check {
 
         /**
          * Associates {@code Class} with an object.
-         * @param classObj {@code Class} to associate with.
+         * @param clazz {@code Class} to associate with.
          */
-        private void setClazz(Class<?> classObj) {
-            this.classObj = classObj;
-            loadable = classObj != null;
+        private void setClazz(Class<?> clazz) {
+            this.classObj = clazz;
+            loadable = clazz != null;
         }
 
         @Override

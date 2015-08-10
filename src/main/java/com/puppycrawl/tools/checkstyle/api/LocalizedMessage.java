@@ -238,9 +238,9 @@ public final class LocalizedMessage
     /** @return the translated message **/
     public String getMessage() {
 
-        final String customMessage = getCustomMessage();
-        if (customMessage != null) {
-            return customMessage;
+        final String message = getCustomMessage();
+        if (message != null) {
+            return message;
         }
 
         try {
@@ -248,8 +248,8 @@ public final class LocalizedMessage
             // the GlobalProperties object. This is because the class loader in
             // the GlobalProperties is specified by the user for resolving
             // custom classes.
-            final ResourceBundle bundle = getBundle(this.bundle);
-            final String pattern = bundle.getString(key);
+            final ResourceBundle resourceBundle = getBundle(this.bundle);
+            final String pattern = resourceBundle.getString(key);
             return MessageFormat.format(pattern, args);
         }
         catch (final MissingResourceException ignored) {
@@ -283,14 +283,14 @@ public final class LocalizedMessage
      */
     private ResourceBundle getBundle(String bundleName) {
         synchronized (BUNDLE_CACHE) {
-            ResourceBundle bundle = BUNDLE_CACHE
+            ResourceBundle resourceBundle = BUNDLE_CACHE
                     .get(bundleName);
-            if (bundle == null) {
-                bundle = ResourceBundle.getBundle(bundleName, sLocale,
+            if (resourceBundle == null) {
+                resourceBundle = ResourceBundle.getBundle(bundleName, sLocale,
                         sourceClass.getClassLoader(), new UTF8Control());
-                BUNDLE_CACHE.put(bundleName, bundle);
+                BUNDLE_CACHE.put(bundleName, resourceBundle);
             }
-            return bundle;
+            return resourceBundle;
         }
     }
 

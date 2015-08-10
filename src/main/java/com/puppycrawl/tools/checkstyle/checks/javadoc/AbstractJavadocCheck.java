@@ -148,12 +148,12 @@ public abstract class AbstractJavadocCheck extends Check {
     }
 
     @Override
-    public final void visitToken(DetailAST blockCommentAst) {
-        if (JavadocUtils.isJavadocComment(blockCommentAst)) {
-            this.blockCommentAst = blockCommentAst;
+    public final void visitToken(DetailAST blockCommentNode) {
+        if (JavadocUtils.isJavadocComment(blockCommentNode)) {
+            this.blockCommentAst = blockCommentNode;
 
-            final String treeCacheKey = blockCommentAst.getLineNo() + ":"
-                    + blockCommentAst.getColumnNo();
+            final String treeCacheKey = blockCommentNode.getLineNo() + ":"
+                    + blockCommentNode.getColumnNo();
 
             ParseStatus ps;
 
@@ -161,7 +161,7 @@ public abstract class AbstractJavadocCheck extends Check {
                 ps = TREE_CACHE.get(treeCacheKey);
             }
             else {
-                ps = parseJavadocAsDetailNode(blockCommentAst);
+                ps = parseJavadocAsDetailNode(blockCommentNode);
                 TREE_CACHE.put(treeCacheKey, ps);
             }
 

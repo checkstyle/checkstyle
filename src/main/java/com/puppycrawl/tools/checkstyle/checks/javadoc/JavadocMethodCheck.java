@@ -252,10 +252,10 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     /**
      * Set the excludeScope.
      *
-     * @param scope a {@code String} value
+     * @param excludeScope a {@code String} value
      */
-    public void setExcludeScope(String scope) {
-        excludeScope = Scope.getInstance(scope);
+    public void setExcludeScope(String excludeScope) {
+        this.excludeScope = Scope.getInstance(excludeScope);
     }
 
     /**
@@ -463,15 +463,15 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * Whether we should check this node.
      *
      * @param ast a given node.
-     * @param scope the scope of the node.
+     * @param nodeScope the scope of the node.
      * @return whether we should check a given node.
      */
-    private boolean shouldCheck(final DetailAST ast, final Scope scope) {
+    private boolean shouldCheck(final DetailAST ast, final Scope nodeScope) {
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
 
-        return scope.isIn(this.scope)
+        return nodeScope.isIn(this.scope)
                 && surroundingScope.isIn(this.scope)
-                && (excludeScope == null || !scope.isIn(excludeScope)
+                && (excludeScope == null || !nodeScope.isIn(excludeScope)
                     || !surroundingScope.isIn(excludeScope));
     }
 

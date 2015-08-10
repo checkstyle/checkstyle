@@ -210,10 +210,10 @@ public final class ExecutableStatementCountCheck
 
         /**
          * Increase count.
-         * @param count the count increment.
+         * @param addition the count increment.
          */
-        public void addCount(int count) {
-            this.count += count;
+        public void addCount(int addition) {
+            this.count += addition;
         }
 
         /**

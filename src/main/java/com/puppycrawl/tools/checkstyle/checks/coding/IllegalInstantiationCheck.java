@@ -349,11 +349,11 @@ public class IllegalInstantiationCheck
 
     /**
      * Sets the classes that are illegal to instantiate.
-     * @param classNames a comma seperate list of class names
+     * @param names a comma seperate list of class names
      */
-    public void setClasses(String classNames) {
+    public void setClasses(String names) {
         illegalClasses.clear();
-        final StringTokenizer tok = new StringTokenizer(classNames, ",");
+        final StringTokenizer tok = new StringTokenizer(names, ",");
         while (tok.hasMoreTokens()) {
             illegalClasses.add(tok.nextToken());
         }
