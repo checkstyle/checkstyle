@@ -125,7 +125,6 @@ public class SuppressElement
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean accept(AuditEvent event) {
         // reject if file or check module mismatch?

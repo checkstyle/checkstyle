@@ -45,7 +45,6 @@ public final class PropertiesExpander
         this.properties.putAll(properties);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String resolve(String propertyName) {
         return properties.getProperty(propertyName);

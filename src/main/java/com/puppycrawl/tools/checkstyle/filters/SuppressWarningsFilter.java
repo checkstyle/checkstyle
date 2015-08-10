@@ -32,7 +32,6 @@ import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
 public class SuppressWarningsFilter
     extends AutomaticBean
     implements Filter {
-    /** {@inheritDoc} */
     @Override
     public boolean accept(AuditEvent event) {
         return !SuppressWarningsHolder.isSuppressed(event.getSourceName(),

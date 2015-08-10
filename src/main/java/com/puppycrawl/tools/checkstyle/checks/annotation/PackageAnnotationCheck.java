@@ -46,13 +46,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class PackageAnnotationCheck extends Check {
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens() {
         return new int[] {
@@ -60,13 +58,11 @@ public class PackageAnnotationCheck extends Check {
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens() {
         return getRequiredTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(final DetailAST ast) {
         final boolean containsAnnotation =

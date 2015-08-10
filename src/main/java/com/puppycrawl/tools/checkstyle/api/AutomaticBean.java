@@ -115,8 +115,6 @@ public class AutomaticBean
      * is called for each {@link Configuration#getChildren child Configuration}
      * of <code>configuration</code>.
      *
-     * @param configuration {@inheritDoc}
-     * @throws CheckstyleException {@inheritDoc}
      * @see Configurable
      */
     @Override
@@ -189,8 +187,6 @@ public class AutomaticBean
 
     /**
      * Implements the Contextualizable interface using bean introspection.
-     * @param context {@inheritDoc}
-     * @throws CheckstyleException {@inheritDoc}
      * @see Contextualizable
      */
     @Override
@@ -246,7 +242,6 @@ public class AutomaticBean
      * with this characters.
      */
     private static class RelaxedStringArrayConverter implements Converter {
-        /** {@inheritDoc} */
         @SuppressWarnings({"unchecked", "rawtypes"})
         @Override
         public Object convert(Class type, Object value) {

@@ -94,7 +94,6 @@ public class DefaultLogger
     /**
      * Print an Emacs compliant line on the error stream.
      * If the column number is non zero, then also display it.
-     * @param evt {@inheritDoc}
      * @see AuditListener
      **/
     @Override
@@ -122,7 +121,6 @@ public class DefaultLogger
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void addException(AuditEvent evt, Throwable throwable) {
         synchronized (errorWriter) {
@@ -131,25 +129,21 @@ public class DefaultLogger
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void auditStarted(AuditEvent evt) {
         infoWriter.println("Starting audit...");
     }
 
-    /** {@inheritDoc} */
     @Override
     public void fileFinished(AuditEvent evt) {
         // No need to implement this method in this class
     }
 
-    /** {@inheritDoc} */
     @Override
     public void fileStarted(AuditEvent evt) {
         // No need to implement this method in this class
     }
 
-    /** {@inheritDoc} */
     @Override
     public void auditFinished(AuditEvent evt) {
         infoWriter.println("Audit done.");

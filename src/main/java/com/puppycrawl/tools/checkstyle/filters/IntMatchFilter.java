@@ -35,7 +35,6 @@ class IntMatchFilter implements IntFilter {
         this.matchValue = matchValue;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean accept(int intValue) {
         return matchValue == intValue;

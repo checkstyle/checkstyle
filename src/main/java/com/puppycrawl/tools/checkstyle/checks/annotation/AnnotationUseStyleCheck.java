@@ -222,13 +222,11 @@ public final class AnnotationUseStyleCheck extends Check {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens() {
         return new int[] {
@@ -236,13 +234,11 @@ public final class AnnotationUseStyleCheck extends Check {
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens() {
         return getRequiredTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(final DetailAST ast) {
         checkStyleType(ast);

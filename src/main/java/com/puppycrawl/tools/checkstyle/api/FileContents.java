@@ -90,14 +90,12 @@ public final class FileContents implements CommentListener {
         this.text = new FileText(text);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void reportSingleLineComment(String type, int startLineNo,
             int startColNo) {
         reportCppComment(startLineNo, startColNo);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void reportBlockComment(String type, int startLineNo,
             int startColNo, int endLineNo, int endColNo) {

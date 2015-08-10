@@ -116,13 +116,11 @@ public final class MissingDeprecatedCheck extends Check {
     /** Multiline finished at next Javadoc * */
     private static final String NEXT_TAG = "@";
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
@@ -138,7 +136,6 @@ public final class MissingDeprecatedCheck extends Check {
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(final DetailAST ast) {
         final TextBlock javadoc =
