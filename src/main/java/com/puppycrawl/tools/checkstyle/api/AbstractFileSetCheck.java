@@ -36,7 +36,7 @@ public abstract class AbstractFileSetCheck
     extends AbstractViolationReporter
     implements FileSetCheck {
     /** The dispatcher errors are fired to. */
-    private MessageDispatcher dispatcher;
+    private MessageDispatcher messageDispatcher;
 
     /** the file extensions that are accepted by this filter */
     private String[] fileExtensions = {};
@@ -83,8 +83,8 @@ public abstract class AbstractFileSetCheck
     }
 
     @Override
-    public final void setMessageDispatcher(MessageDispatcher dispatcher) {
-        this.dispatcher = dispatcher;
+    public final void setMessageDispatcher(MessageDispatcher messageDispatcher) {
+        this.messageDispatcher = messageDispatcher;
     }
 
     /**
@@ -94,7 +94,7 @@ public abstract class AbstractFileSetCheck
      * @return the current MessageDispatcher.
      */
     protected final MessageDispatcher getMessageDispatcher() {
-        return dispatcher;
+        return messageDispatcher;
     }
 
     /**

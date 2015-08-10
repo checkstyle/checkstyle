@@ -73,17 +73,17 @@ class MultilineDetector {
 
     /**
      * Processes an entire text file looking for matches.
-     * @param text the text to process
+     * @param fileText the text to process
      */
-    public void processLines(FileText text) {
-        this.text = new FileText(text);
+    public void processLines(FileText fileText) {
+        this.text = new FileText(fileText);
         resetState();
 
         if (Strings.isNullOrEmpty(options.getFormat())) {
             options.getReporter().log(0, EMPTY);
         }
         else {
-            matcher = options.getPattern().matcher(text.getFullText());
+            matcher = options.getPattern().matcher(fileText.getFullText());
             findMatch();
             finish();
         }

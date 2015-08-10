@@ -598,9 +598,9 @@ public class CheckstyleAntTask extends Task {
             this.value = value;
         }
 
-        /** @param value set the property value from a File */
-        public void setFile(File value) {
-            setValue(value.getAbsolutePath());
+        /** @param file set the property value from a File */
+        public void setFile(File file) {
+            setValue(file.getAbsolutePath());
         }
     }
 

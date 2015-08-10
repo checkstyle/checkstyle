@@ -52,7 +52,7 @@ public abstract class Check extends AbstractViolationReporter {
      * The class loader to load external classes. Not initialised as this must
      * be set by my creator.
      */
-    private ClassLoader loader;
+    private ClassLoader classLoader;
 
     public boolean isCommentNodesRequired() {
         return false;
@@ -198,10 +198,10 @@ public abstract class Check extends AbstractViolationReporter {
 
     /**
      * Set the class loader associated with the tree.
-     * @param loader the class loader
+     * @param classLoader the class loader
      */
-    public final void setClassLoader(ClassLoader loader) {
-        this.loader = loader;
+    public final void setClassLoader(ClassLoader classLoader) {
+        this.classLoader = classLoader;
     }
 
     /**
@@ -209,7 +209,7 @@ public abstract class Check extends AbstractViolationReporter {
      * @return the class loader
      */
     public final ClassLoader getClassLoader() {
-        return loader;
+        return classLoader;
     }
 
     /** @return the tab width to report errors with */

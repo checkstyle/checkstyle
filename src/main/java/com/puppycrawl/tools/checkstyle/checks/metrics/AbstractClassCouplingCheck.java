@@ -235,8 +235,8 @@ public abstract class AbstractClassCouplingCheck extends Check {
          * @param ast type to process.
          */
         public void visitType(DetailAST ast) {
-            final String className = CheckUtils.createFullType(ast).getText();
-            context.addReferencedClassName(className);
+            final String fullTypeName = CheckUtils.createFullType(ast).getText();
+            context.addReferencedClassName(fullTypeName);
         }
 
         /**
@@ -252,17 +252,17 @@ public abstract class AbstractClassCouplingCheck extends Check {
          * @param ast a node which represents referenced class.
          */
         private void addReferencedClassName(DetailAST ast) {
-            final String className = FullIdent.createFullIdent(ast).getText();
-            addReferencedClassName(className);
+            final String fullIdentName = FullIdent.createFullIdent(ast).getText();
+            addReferencedClassName(fullIdentName);
         }
 
         /**
          * Adds new referenced class.
-         * @param className class name of the referenced class.
+         * @param referencedClassName class name of the referenced class.
          */
-        private void addReferencedClassName(String className) {
-            if (isSignificant(className)) {
-                referencedClassNames.add(className);
+        private void addReferencedClassName(String referencedClassName) {
+            if (isSignificant(referencedClassName)) {
+                referencedClassNames.add(referencedClassName);
             }
         }
 
@@ -280,12 +280,12 @@ public abstract class AbstractClassCouplingCheck extends Check {
 
         /**
          * Checks if given class shouldn't be ignored and not from java.lang.
-         * @param className class to check.
+         * @param candidateClassName class to check.
          * @return true if we should count this class.
          */
-        private boolean isSignificant(String className) {
-            return !excludedClasses.contains(className)
-                    && !className.startsWith("java.lang.");
+        private boolean isSignificant(String candidateClassName) {
+            return !excludedClasses.contains(candidateClassName)
+                    && !candidateClassName.startsWith("java.lang.");
         }
     }
 }

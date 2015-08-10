@@ -153,23 +153,23 @@ final class PropertyCacheFile {
     }
 
     /**
-     * @param fileName the file to check
+     * @param uncheckedFileName the file to check
      * @param timestamp the timestamp of the file to check
      * @return whether the specified file has already been checked ok
      */
-    boolean inCache(String fileName, long timestamp) {
-        final String lastChecked = details.getProperty(fileName);
+    boolean inCache(String uncheckedFileName, long timestamp) {
+        final String lastChecked = details.getProperty(uncheckedFileName);
         return lastChecked != null
             && lastChecked.equals(Long.toString(timestamp));
     }
 
     /**
      * Records that a file checked ok.
-     * @param fileName name of the file that checked ok
+     * @param checkedFileName name of the file that checked ok
      * @param timestamp the timestamp of the file
      */
-    void put(String fileName, long timestamp) {
-        details.setProperty(fileName, Long.toString(timestamp));
+    void put(String checkedFileName, long timestamp) {
+        details.setProperty(checkedFileName, Long.toString(timestamp));
     }
 
     /**

@@ -45,11 +45,11 @@ public class AutomaticBeanTest {
             this.wrong = wrong;
         }
 
-        public void setIntVal(int val) {
+        public void setVal(int val) {
             this.val = val;
         }
 
-        public void setExceptionalMethod(String val) {
+        public void setExceptionalMethod(String value) {
             throw new IllegalStateException("for UT");
         }
 
@@ -119,7 +119,7 @@ public class AutomaticBeanTest {
     public void testContextualize_ConversionException() {
         final TestBean testBean = new TestBean();
         DefaultContext context = new DefaultContext();
-        context.add("intVal", "some string");
+        context.add("val", "some string");
         try {
             testBean.contextualize(context);
             fail();

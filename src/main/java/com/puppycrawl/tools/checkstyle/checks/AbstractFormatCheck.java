@@ -94,17 +94,17 @@ public abstract class AbstractFormatCheck
     /**
      * Updates the regular expression using the supplied format and compiler
      * flags. Will also update the member variables.
-     * @param format the format of the regular expression.
+     * @param regexpFormat the format of the regular expression.
      * @param compileFlagsParam the compiler flags to use.
      */
-    private void updateRegexp(String format, int compileFlagsParam) {
+    private void updateRegexp(String regexpFormat, int compileFlagsParam) {
         try {
-            regexp = Pattern.compile(format, compileFlagsParam);
-            this.format = format;
+            regexp = Pattern.compile(regexpFormat, compileFlagsParam);
+            this.format = regexpFormat;
             compileFlags |= compileFlagsParam;
         }
         catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + format, e);
+            throw new ConversionException("unable to parse " + regexpFormat, e);
         }
     }
 }

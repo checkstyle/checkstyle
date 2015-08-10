@@ -115,24 +115,26 @@ public class AutomaticBean
      * is called for each {@link Configuration#getChildren child Configuration}
      * of {@code configuration}.
      *
+     * @param config {@inheritDoc}
+     * @throws CheckstyleException {@inheritDoc}
      * @see Configurable
      */
     @Override
-    public final void configure(Configuration configuration)
+    public final void configure(Configuration config)
         throws CheckstyleException {
-        this.configuration = configuration;
+        this.configuration = config;
 
-        final String[] attributes = configuration.getAttributeNames();
+        final String[] attributes = config.getAttributeNames();
 
         for (final String key : attributes) {
-            final String value = configuration.getAttribute(key);
+            final String value = config.getAttribute(key);
 
-            tryCopyProperty(configuration.getName(), key, value, true);
+            tryCopyProperty(config.getName(), key, value, true);
         }
 
         finishLocalSetup();
 
-        final Configuration[] childConfigs = configuration.getChildren();
+        final Configuration[] childConfigs = config.getChildren();
         for (final Configuration childConfig : childConfigs) {
             setupChild(childConfig);
         }

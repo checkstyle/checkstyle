@@ -151,7 +151,7 @@ public final class FileText extends AbstractList<String> {
         // Use the BufferedReader to break down the lines as this
         // is about 30% faster than using the
         // LINE_TERMINATOR.split(fullText, -1) method
-        final ArrayList<String> lines = new ArrayList<>();
+        final ArrayList<String> textLines = new ArrayList<>();
         final BufferedReader br =
             new BufferedReader(new StringReader(fullText));
         while (true) {
@@ -159,9 +159,9 @@ public final class FileText extends AbstractList<String> {
             if (line == null) {
                 break;
             }
-            lines.add(line);
+            textLines.add(line);
         }
-        this.lines = lines.toArray(new String[lines.size()]);
+        this.lines = textLines.toArray(new String[textLines.size()]);
     }
 
     /**
@@ -260,18 +260,18 @@ public final class FileText extends AbstractList<String> {
      */
     private int[] findLineBreaks() {
         if (lineBreaks == null) {
-            final int[] lineBreaks = new int[size() + 1];
-            lineBreaks[0] = 0;
+            final int[] lineBreakPositions = new int[size() + 1];
+            lineBreakPositions[0] = 0;
             int lineNo = 1;
             final Matcher matcher = LINE_TERMINATOR.matcher(fullText);
             while (matcher.find()) {
-                lineBreaks[lineNo] = matcher.end();
+                lineBreakPositions[lineNo] = matcher.end();
                 lineNo++;
             }
-            if (lineNo < lineBreaks.length) {
-                lineBreaks[lineNo] = fullText.length();
+            if (lineNo < lineBreakPositions.length) {
+                lineBreakPositions[lineNo] = fullText.length();
             }
-            this.lineBreaks = lineBreaks;
+            this.lineBreaks = lineBreakPositions;
         }
         return lineBreaks;
     }
@@ -282,14 +282,14 @@ public final class FileText extends AbstractList<String> {
      * @return the line and column numbers of this character
      */
     public LineColumn lineColumn(int pos) {
-        final int[] lineBreaks = findLineBreaks();
-        int lineNo = Arrays.binarySearch(lineBreaks, pos);
+        final int[] lineBreakPositions = findLineBreaks();
+        int lineNo = Arrays.binarySearch(lineBreakPositions, pos);
         if (lineNo < 0) {
             // we have: lineNo = -(insertion point) - 1
             // we want: lineNo =  (insertion point) - 1
             lineNo = -lineNo - 2;
         }
-        final int startOfLine = lineBreaks[lineNo];
+        final int startOfLine = lineBreakPositions[lineNo];
         final int columnNo = pos - startOfLine;
         // now we have lineNo and columnNo, both starting at zero.
         return new LineColumn(lineNo + 1, columnNo);

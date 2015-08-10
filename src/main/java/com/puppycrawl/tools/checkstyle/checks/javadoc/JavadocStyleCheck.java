@@ -179,15 +179,15 @@ public class JavadocStyleCheck
                 ast.findFirstToken(TokenTypes.MODIFIERS));
         }
 
-        final Scope scope =
+        final Scope customScope =
             ScopeUtils.inInterfaceOrAnnotationBlock(ast)
             ? Scope.PUBLIC : declaredScope;
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
 
-        return scope.isIn(this.scope)
+        return customScope.isIn(this.scope)
             && (surroundingScope == null || surroundingScope.isIn(this.scope))
             && (excludeScope == null
-                || !scope.isIn(excludeScope)
+                || !customScope.isIn(excludeScope)
                 || surroundingScope != null
                 && !surroundingScope.isIn(excludeScope));
     }
@@ -499,10 +499,10 @@ public class JavadocStyleCheck
 
     /**
      * Set the excludeScope.
-     * @param scope a {@code String} value
+     * @param excludeScope a {@code String} value
      */
-    public void setExcludeScope(String scope) {
-        excludeScope = Scope.getInstance(scope);
+    public void setExcludeScope(String excludeScope) {
+        this.excludeScope = Scope.getInstance(excludeScope);
     }
 
     /**

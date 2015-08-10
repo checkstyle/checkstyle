@@ -59,13 +59,13 @@ public final class Main {
      * @param ast tree to display
      */
     public static void displayAst(DetailAST ast) {
-        final JFrame frame = new JFrame("CheckStyle");
+        final JFrame testFrame = new JFrame("CheckStyle");
         final ParseTreeInfoPanel panel = new ParseTreeInfoPanel();
-        frame.getContentPane().add(panel);
-        panel.openAst(ast, frame);
-        frame.setSize(1500, 800);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        testFrame.getContentPane().add(panel);
+        panel.openAst(ast, testFrame);
+        testFrame.setSize(1500, 800);
+        testFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        testFrame.setVisible(true);
     }
 
     static JFrame getFrame() {
