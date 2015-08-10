@@ -156,7 +156,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * </p>
  *
  * <pre>
- * <code>
+ * {@code
  * import static java.lang.Math.abs;
  * import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphabetical order
  *
@@ -165,7 +165,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * import java.util.Set;
  *
  * public class SomeClass { ... }
- * </code>
+ * }
  * </pre>
  *
  *
@@ -505,9 +505,9 @@ public class ImportOrderCheck
      *            the second string.
      * @param caseSensitive
      *            whether the comparison is case sensitive.
-     * @return the value <code>0</code> if string1 is equal to string2; a value
-     *         less than <code>0</code> if string1 is lexicographically less
-     *         than the string2; and a value greater than <code>0</code> if
+     * @return the value {@code 0} if string1 is equal to string2; a value
+     *         less than {@code 0} if string1 is lexicographically less
+     *         than the string2; and a value greater than {@code 0} if
      *         string1 is lexicographically greater than string2.
      */
     private static int compare(String string1, String string2,

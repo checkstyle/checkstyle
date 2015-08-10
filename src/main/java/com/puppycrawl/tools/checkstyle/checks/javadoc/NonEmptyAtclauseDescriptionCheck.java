@@ -24,14 +24,14 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 
 /**
  * Checks that the at-clause tag is followed by description .
- * Default configuration that will check <code>@param</code>, <code>@return</code>,
- * <code>@throws</code>, <code>@deprecated</code> to:
+ * Default configuration that will check {@code @param}, {@code @return},
+ * {@code @throws}, {@code @deprecated} to:
  * <pre>
  * &lt;module name=&quot;NonEmptyAtclauseDescription&quot;/&gt;
  * </pre>
  * <p>
- * To check non-empty at-clause description for tags <code>@throws</code>,
- * <code>@deprecated</code>, use following configuration:
+ * To check non-empty at-clause description for tags {@code @throws},
+ * {@code @deprecated}, use following configuration:
  * </p>
  * <pre>
  * &lt;module name=&quot;NonEmptyAtclauseDescription&quot;&gt;

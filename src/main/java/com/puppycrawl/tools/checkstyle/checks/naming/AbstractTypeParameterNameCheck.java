@@ -36,7 +36,7 @@ public abstract class AbstractTypeParameterNameCheck
     extends AbstractNameCheck {
 
     /**
-     * Creates a new <code>AbstractTypeParameterNameCheck</code> instance.
+     * Creates a new {@code AbstractTypeParameterNameCheck} instance.
      * @param format format to check with
      */
     protected AbstractTypeParameterNameCheck(String format) {
@@ -68,8 +68,8 @@ public abstract class AbstractTypeParameterNameCheck
      * This method must be overriden to specify the
      * location of the type parameter to check.
      *
-     * @return <code> TokenTypes.CLASS_DEF </code>
-     * or <code> TokenTypes.METHOD_DEF </code>
+     * @return {@code TokenTypes.CLASS_DEF }
+     * or {@code TokenTypes.METHOD_DEF }
      */
     protected abstract int getLocation();
 }

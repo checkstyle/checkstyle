@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>
  * The recognized relief comment can be configured with the property
- * <code>reliefPattern</code>. Default value of this regular expression
+ * {@code reliefPattern}. Default value of this regular expression
  * is "fallthru|fall through|fallthrough|falls through".
  * </p>
  * <p>
@@ -299,8 +299,8 @@ public class FallThroughCheck extends Check {
     }
 
     /**
-     * Determines if the fall through case between <code>currentCase</code> and
-     * <code>nextCase</code> is reliefed by a appropriate comment.
+     * Determines if the fall through case between {@code currentCase} and
+     * {@code nextCase} is reliefed by a appropriate comment.
      *
      * @param currentCase AST of the case that falls through to the next case.
      * @param nextCase AST of the next case.

@@ -106,7 +106,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  *
  * <pre>
- * <code>
+ * {@code
  * class SomeClass
  * {
  *     private List&lt;String&gt; test;
@@ -122,7 +122,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *         ...
  *     }
  * }
- * </code>
+ * }
  * </pre>
  *
  * @author Dmitri Priimak

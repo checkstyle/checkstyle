@@ -112,7 +112,7 @@ public class JavadocTypeCheck
 
     /**
      * Set the excludeScope.
-     * @param scope a <code>String</code> value
+     * @param scope a {@code String} value
      */
     public void setExcludeScope(String scope) {
         excludeScope = Scope.getInstance(scope);
@@ -120,7 +120,7 @@ public class JavadocTypeCheck
 
     /**
      * Set the author tag pattern.
-     * @param format a <code>String</code> value
+     * @param format a {@code String} value
      */
     public void setAuthorFormat(String format) {
         authorFormat = format;
@@ -129,7 +129,7 @@ public class JavadocTypeCheck
 
     /**
      * Set the version format pattern.
-     * @param format a <code>String</code> value
+     * @param format a {@code String} value
      */
     public void setVersionFormat(String format) {
         versionFormat = format;
@@ -140,7 +140,7 @@ public class JavadocTypeCheck
      * Controls whether to allow a type which has type parameters to
      * omit matching param tags in the javadoc. Defaults to false.
      *
-     * @param flag a <code>Boolean</code> value
+     * @param flag a {@code Boolean} value
      */
     public void setAllowMissingParamTags(boolean flag) {
         allowMissingParamTags = flag;
@@ -148,7 +148,7 @@ public class JavadocTypeCheck
 
     /**
      * Controls whether to flag errors for unknown tags. Defaults to false.
-     * @param flag a <code>Boolean</code> value
+     * @param flag a {@code Boolean} value
      */
     public void setAllowUnknownTags(boolean flag) {
         allowUnknownTags = flag;

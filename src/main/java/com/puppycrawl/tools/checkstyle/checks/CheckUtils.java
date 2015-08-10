@@ -115,9 +115,9 @@ public final class CheckUtils {
     }
 
     /**
-     * Creates <code>FullIdent</code> for given type node.
+     * Creates {@code FullIdent} for given type node.
      * @param typeAST a type node.
-     * @return <code>FullIdent</code> for given type.
+     * @return {@code FullIdent} for given type.
      */
     public static FullIdent createFullType(DetailAST typeAST) {
         final DetailAST arrayDeclAST =
@@ -129,7 +129,7 @@ public final class CheckUtils {
 
     /**
      * @param typeAST a type node (no array)
-     * @return <code>FullIdent</code> for given type.
+     * @return {@code FullIdent} for given type.
      */
     private static FullIdent createFullTypeNoArrays(DetailAST typeAST) {
         return FullIdent.createFullIdent(typeAST.getFirstChild());

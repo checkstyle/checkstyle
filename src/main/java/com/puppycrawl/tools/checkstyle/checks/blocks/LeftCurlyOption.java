@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 /**
- * Represents the options for placing the left curly brace <code>'{'</code>.
+ * Represents the options for placing the left curly brace {@code '&#123;'}.
  *
  * @author Oliver Burn
  */
@@ -38,8 +38,8 @@ public enum LeftCurlyOption {
     /**
      * Represents the policy that if the brace will fit on the first line of
      * the statement, taking into account maximum line length, then apply
-     * <code>EOL</code> rule. Otherwise apply the <code>NL</code>
-     * rule. <code>NLOW</code> is a mnemonic for "new line on wrap".
+     * {@code EOL} rule. Otherwise apply the {@code NL}
+     * rule. {@code NLOW} is a mnemonic for "new line on wrap".
      *
      * <p> For the example above Checkstyle will enforce:
      *

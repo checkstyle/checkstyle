@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 /**
  * <p>
  * Ensures that the names of abstract classes conforming to some
- * regular expression and check that <code>abstract</code> modifier exists.
+ * regular expression and check that {@code abstract} modifier exists.
  * </p>
  * <p>
  * Rationale: Abstract classes are convenience base class

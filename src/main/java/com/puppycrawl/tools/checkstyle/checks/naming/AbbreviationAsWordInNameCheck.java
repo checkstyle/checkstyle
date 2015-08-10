@@ -37,27 +37,27 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Google Style Guide</a> to get to know how to avoid long abbreviations in names.
  * </p>
  * <p>
- * Option <code>allowedAbbreviationLength</code> indicates on the allowed amount of capital
+ * Option {@code allowedAbbreviationLength} indicates on the allowed amount of capital
  * letters in abbreviations in the classes, interfaces,
  * variables and methods names. Default value is '3'.
  * </p>
  * <p>
- * Option <code>allowedAbbreviations</code> - list of abbreviations that
+ * Option {@code allowedAbbreviations} - list of abbreviations that
  * must be skipped for checking. Abbreviations should be separated by comma,
  * no spaces are allowed.
  * </p>
  * <p>
- * Option <code>ignoreFinal</code> allow to skip variables with <code>final</code> modifier.
- * Default value is <code>true</code>.
+ * Option {@code ignoreFinal} allow to skip variables with {@code final} modifier.
+ * Default value is {@code true}.
  * </p>
  * <p>
- * Option <code>ignoreStatic</code> allow to skip variables with <code>static</code> modifier.
- * Default value is <code>true</code>.
+ * Option {@code ignoreStatic} allow to skip variables with {@code static} modifier.
+ * Default value is {@code true}.
  * </p>
  * <p>
- * Option <code>ignoreOverriddenMethod</code> - Allows to
- * ignore methods tagged with <code>@Override</code> annotation
- * (that usually mean inherited name). Default value is <code>true</code>.
+ * Option {@code ignoreOverriddenMethod} - Allows to
+ * ignore methods tagged with {@code @Override} annotation
+ * (that usually mean inherited name). Default value is {@code true}.
  * </p>
  * Default configuration
  * <pre>

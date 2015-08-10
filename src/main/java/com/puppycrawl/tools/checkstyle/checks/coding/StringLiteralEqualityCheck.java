@@ -27,12 +27,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>Checks that string literals are not used with
- * <code>==</code> or <code>&#33;=</code>.
+ * {@code ==} or {@code &#33;=}.
  * </p>
  * <p>
  * Rationale: Novice Java programmers often use code like
- * <code>if (x == &quot;something&quot;)</code> when they mean
- * <code>if (&quot;something&quot;.equals(x))</code>.
+ * {@code if (x == &quot;something&quot;)} when they mean
+ * {@code if (&quot;something&quot;.equals(x))}.
  * </p>
  *
  * @author Lars K&uuml;hne

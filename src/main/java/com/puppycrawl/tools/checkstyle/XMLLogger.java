@@ -59,7 +59,7 @@ public class XMLLogger
     private PrintWriter writer;
 
     /**
-     * Creates a new <code>XMLLogger</code> instance.
+     * Creates a new {@code XMLLogger} instance.
      * Sets the output to a defined stream.
      * @param os the stream to write logs to.
      * @param closeStream close oS in auditFinished

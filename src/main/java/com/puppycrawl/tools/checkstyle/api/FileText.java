@@ -73,13 +73,13 @@ public final class FileText extends AbstractList<String> {
 
     /**
      * The name of the file.
-     * <code>null</code> if no file name is available for whatever reason.
+     * {@code null} if no file name is available for whatever reason.
      */
     private final File file;
 
     /**
      * The charset used to read the file.
-     * <code>null</code> if the file was reconstructed from a list of lines.
+     * {@code null} if the file was reconstructed from a list of lines.
      */
     private final Charset charset;
 
@@ -229,7 +229,7 @@ public final class FileText extends AbstractList<String> {
 
     /**
      * Get the character set which was used to read the file.
-     * Will be <code>null</code> for a file reconstructed from its lines.
+     * Will be {@code null} for a file reconstructed from its lines.
      * @return the charset used when the file was read
      */
     public Charset getCharset() {

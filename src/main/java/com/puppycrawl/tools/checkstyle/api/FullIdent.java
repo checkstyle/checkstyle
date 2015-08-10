@@ -29,7 +29,7 @@ import org.apache.commons.lang3.StringUtils;
  * position information.
  *
  * <p>
- * Identifiers such as <code>java.util.HashMap</code> are spread across
+ * Identifiers such as {@code java.util.HashMap} are spread across
  * multiple AST nodes in the syntax tree (three IDENT nodes, two DOT nodes).
  * A FullIdent represents the whole String (excluding any intermediate
  * whitespace), which is often easier to work with in Checks.
@@ -98,7 +98,7 @@ public final class FullIdent {
     /**
      * Creates a new FullIdent starting from the specified node.
      * @param ast the node to start from
-     * @return a <code>FullIdent</code> value
+     * @return a {@code FullIdent} value
      */
     public static FullIdent createFullIdent(DetailAST ast) {
         final FullIdent fi = new FullIdent();
@@ -109,7 +109,7 @@ public final class FullIdent {
     /**
      * Creates a new FullIdent starting from the child of the specified node.
      * @param ast the parent node from where to start from
-     * @return a <code>FullIdent</code> value
+     * @return a {@code FullIdent} value
      */
     public static FullIdent createFullIdentBelow(DetailAST ast) {
         return createFullIdent(ast.getFirstChild());

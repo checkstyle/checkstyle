@@ -132,7 +132,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Set the format for a comment that turns off reporting.
-     * @param format a <code>String</code> value.
+     * @param format a {@code String} value.
      * @throws ConversionException if unable to create Pattern object.
      */
     public final void setCommentFormat(String format) {
@@ -154,7 +154,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Set the format for a check.
-     * @param format a <code>String</code> value
+     * @param format a {@code String} value
      */
     public final void setCheckFormat(String format) {
         checkFormat = format;
@@ -162,7 +162,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Set the format for a message.
-     * @param format a <code>String</code> value
+     * @param format a {@code String} value
      */
     public void setMessageFormat(String format) {
         messageFormat = format;
@@ -170,7 +170,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Set the format for the influence of this check.
-     * @param format a <code>String</code> value
+     * @param format a {@code String} value
      */
     public final void setInfluenceFormat(String format) {
         influenceFormat = format;
@@ -178,7 +178,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Set whether to look in C++ comments.
-     * @param checkCPP <code>true</code> if C++ comments are checked.
+     * @param checkCPP {@code true} if C++ comments are checked.
      */
     public void setCheckCPP(boolean checkCPP) {
         this.checkCPP = checkCPP;
@@ -186,7 +186,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Set whether to look in C comments.
-     * @param checkC <code>true</code> if C comments are checked.
+     * @param checkC {@code true} if C comments are checked.
      */
     public void setCheckC(boolean checkC) {
         this.checkC = checkC;
@@ -268,7 +268,7 @@ public class SuppressWithNearbyCommentFilter
     }
 
     /**
-     * Adds a comment suppression <code>Tag</code> to the list of all tags.
+     * Adds a comment suppression {@code Tag} to the list of all tags.
      * @param text the text of the tag.
      * @param line the line number of the tag.
      */
@@ -409,7 +409,7 @@ public class SuppressWithNearbyCommentFilter
         /**
          * Determines whether the source of an audit event
          * matches the text of this tag.
-         * @param event the <code>AuditEvent</code> to check.
+         * @param event the {@code AuditEvent} to check.
          * @return true if the source of event matches the text of this tag.
          */
         public boolean isMatch(AuditEvent event) {

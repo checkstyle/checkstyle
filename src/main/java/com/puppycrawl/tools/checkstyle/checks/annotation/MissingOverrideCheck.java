@@ -57,10 +57,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * <p>
  * As a result of the aforementioned difference between Java 5 and Java 6, a
- * property called <code> javaFiveCompatibility </code> is available. This
+ * property called {@code javaFiveCompatibility } is available. This
  * property will only check classes, interfaces, etc. that do not contain the
  * extends or implements keyword or are not anonymous classes. This means it
- * only checks methods overridden from <code>java.lang.Object</code>
+ * only checks methods overridden from {@code java.lang.Object}
  *
  * <b>Java 5 Compatibility mode severely limits this check. It is recommended to
  * only use it on Java 5 source</b>

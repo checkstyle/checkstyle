@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * </pre>
  * <p>
  * An example of how to configure the check for package names that begin with
- * <code>com.puppycrawl.tools.checkstyle</code> is:
+ * {@code com.puppycrawl.tools.checkstyle} is:
  * </p>
  * <pre>
  * &lt;module name="PackageName"&gt;

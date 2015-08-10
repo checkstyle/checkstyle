@@ -67,7 +67,7 @@ public final class PackageNamesLoader
     private final Set<String> packageNames = Sets.newLinkedHashSet();
 
     /**
-     * Creates a new <code>PackageNamesLoader</code> instance.
+     * Creates a new {@code PackageNamesLoader} instance.
      * @throws ParserConfigurationException if an error occurs
      * @throws SAXException if an error occurs
      */

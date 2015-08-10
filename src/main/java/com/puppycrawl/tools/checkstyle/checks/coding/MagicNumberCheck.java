@@ -39,12 +39,12 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * Constant definition is any variable/field that has 'final' modifier.
  * It is fine to have one constant defining multiple numeric literals within one expression:
  * <pre>
- * <code>static final int SECONDS_PER_DAY = 24 * 60 * 60;
+ * {@code static final int SECONDS_PER_DAY = 24 * 60 * 60;
  * static final double SPECIAL_RATIO = 4.0 / 3.0;
  * static final double SPECIAL_SUM = 1 + Math.E;
  * static final double SPECIAL_DIFFERENCE = 4 - Math.PI;
  * static final Border STANDARD_BORDER = BorderFactory.createEmptyBorder(3, 3, 3, 3);
- * static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);</code>
+ * static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);}
  * </pre>
  *
  * <p>
@@ -62,7 +62,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * results is following violations:
  * </p>
  * <pre>
- * <code>
+ * {@code
  *   {@literal @}MyAnnotation(6) // violation
  *   class MyClass {
  *       private field = 7; // violation
@@ -72,7 +72,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  *          int j = j + 8; // violation
  *       }
  *   }
- * </code>
+ * }
  * </pre>
  * <p>
  * To configure the check so that it checks floating-point numbers
@@ -90,7 +90,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * results is following violations:
  * </p>
  * <pre>
- * <code>
+ * {@code
  *   {@literal @}MyAnnotation(6) // no violation
  *   class MyClass {
  *       private field = 7; // no violation
@@ -100,7 +100,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  *          int j = j + (int)0.5; // no violation
  *       }
  *   }
- * </code>
+ * }
  * </pre>
  * <p>
  * Config example of constantWaiverParentToken option:
@@ -115,7 +115,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * result is following violation:
  * </p>
  * <pre>
- * <code>
+ * {@code
  * class TestMethodCall {
  *     public void method2() {
  *         final TestMethodCall dummyObject = new TestMethodCall(62);    //violation
@@ -131,7 +131,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  *         final int x = (int)(3.4);    //ok as waiver is TYPECAST
  *     }
  * }
- * </code>
+ * }
  * </pre>
  * @author Rick Giles
  * @author Lars Kühne

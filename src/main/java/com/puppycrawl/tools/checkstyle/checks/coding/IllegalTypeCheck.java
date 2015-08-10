@@ -61,13 +61,13 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  *   corresponding declarations
  *  (of variables, methods or parameters). This helps to avoid ambiguous cases, e.g.:
  * <p>
- * <code>java.awt.List</code> was set as illegal class name, then, code like:
+ * {@code java.awt.List} was set as illegal class name, then, code like:
  * <p>
- * <code>
+ * {@code
  * import java.util.List;<br>
  * ...<br>
  * List list; //No violation here
- * </code>
+ * }
  * </p>
  * <p>
  * will be ok.

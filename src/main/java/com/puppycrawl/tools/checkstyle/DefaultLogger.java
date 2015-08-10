@@ -57,7 +57,7 @@ public class DefaultLogger
     private final boolean closeError;
 
     /**
-     * Creates a new <code>DefaultLogger</code> instance.
+     * Creates a new {@code DefaultLogger} instance.
      * @param os where to log infos and errors
      * @param closeStreamsAfterUse if oS should be closed in auditFinished()
      * @exception UnsupportedEncodingException if there is a problem to use UTF-8 encoding
@@ -69,11 +69,11 @@ public class DefaultLogger
     }
 
     /**
-     * Creates a new <code>DefaultLogger</code> instance.
+     * Creates a new {@code DefaultLogger} instance.
      *
-     * @param infoStream the <code>OutputStream</code> for info messages
+     * @param infoStream the {@code OutputStream} for info messages
      * @param closeInfoAfterUse auditFinished should close infoStream
-     * @param errorStream the <code>OutputStream</code> for error messages
+     * @param errorStream the {@code OutputStream} for error messages
      * @param closeErrorAfterUse auditFinished should close errorStream
      * @exception UnsupportedEncodingException if there is a problem to use UTF-8 encoding
      */

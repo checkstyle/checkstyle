@@ -343,7 +343,7 @@ public class JavadocStyleCheck
      * primarily copied from the DocCheck checkHtml method.
      *
      * @param ast the node with the Javadoc
-     * @param comment the <code>TextBlock</code> which represents
+     * @param comment the {@code TextBlock} which represents
      *                 the Javadoc comment.
      */
     private void checkHtml(final DetailAST ast, final TextBlock comment) {
@@ -444,7 +444,7 @@ public class JavadocStyleCheck
      * Determines if the HtmlTag is one which does not require a close tag.
      *
      * @param tag the HtmlTag to check.
-     * @return <code>true</code> if the HtmlTag is a single tag.
+     * @return {@code true} if the HtmlTag is a single tag.
      */
     private static boolean isSingleTag(HtmlTag tag) {
         // If its a singleton tag (<p>, <br>, etc.), ignore it
@@ -458,7 +458,7 @@ public class JavadocStyleCheck
      * Determines if the HtmlTag is one which is allowed in a javadoc.
      *
      * @param tag the HtmlTag to check.
-     * @return <code>true</code> if the HtmlTag is an allowed html tag.
+     * @return {@code true} if the HtmlTag is an allowed html tag.
      */
     private static boolean isAllowedTag(HtmlTag tag) {
         return ALLOWED_TAGS.contains(tag.getId().toLowerCase(Locale.ENGLISH));
@@ -470,7 +470,7 @@ public class JavadocStyleCheck
      *
      * @param token an HTML tag id for which a close was found.
      * @param htmlStack a Stack of previous open HTML tags.
-     * @return <code>false</code> if a previous open tag was found
+     * @return {@code false} if a previous open tag was found
      *         for the token.
      */
     private static boolean isExtraHtml(String token, Deque<HtmlTag> htmlStack) {
@@ -499,7 +499,7 @@ public class JavadocStyleCheck
 
     /**
      * Set the excludeScope.
-     * @param scope a <code>String</code> value
+     * @param scope a {@code String} value
      */
     public void setExcludeScope(String scope) {
         excludeScope = Scope.getInstance(scope);
@@ -528,7 +528,7 @@ public class JavadocStyleCheck
     /**
      * Sets the flag that determines if the first sentence is checked for
      * proper end of sentence punctuation.
-     * @param flag <code>true</code> if the first sentence is to be checked
+     * @param flag {@code true} if the first sentence is to be checked
      */
     public void setCheckFirstSentence(boolean flag) {
         checkingFirstSentence = flag;
@@ -536,7 +536,7 @@ public class JavadocStyleCheck
 
     /**
      * Sets the flag that determines if HTML checking is to be performed.
-     * @param flag <code>true</code> if HTML checking is to be performed.
+     * @param flag {@code true} if HTML checking is to be performed.
      */
     public void setCheckHtml(boolean flag) {
         checkingHtml = flag;
@@ -544,7 +544,7 @@ public class JavadocStyleCheck
 
     /**
      * Sets the flag that determines if empty Javadoc checking should be done.
-     * @param flag <code>true</code> if empty Javadoc checking should be done.
+     * @param flag {@code true} if empty Javadoc checking should be done.
      */
     public void setCheckEmptyJavadoc(boolean flag) {
         checkingEmptyJavadoc = flag;

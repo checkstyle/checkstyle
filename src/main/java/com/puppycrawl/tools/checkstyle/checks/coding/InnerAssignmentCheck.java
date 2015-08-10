@@ -30,10 +30,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks for assignments in subexpressions, such as in
- * <code>String s = Integer.toString(i = 2);</code>.
+ * {@code String s = Integer.toString(i = 2);}.
  * </p>
  * <p>
- * Rationale: With the exception of <code>for</code> iterators, all assignments
+ * Rationale: With the exception of {@code for} iterators, all assignments
  * should occur in their own toplevel statement to increase readability.
  * With inner assignments like the above it is difficult to see all places
  * where a variable is set.

@@ -103,9 +103,9 @@ public final class ConfigurationLoader {
     private final boolean omitIgnoredModules;
 
     /**
-     * Creates a new <code>ConfigurationLoader</code> instance.
+     * Creates a new {@code ConfigurationLoader} instance.
      * @param overrideProps resolver for overriding properties
-     * @param omitIgnoredModules <code>true</code> if ignored modules should be
+     * @param omitIgnoredModules {@code true} if ignored modules should be
      *         omitted
      * @throws ParserConfigurationException if an error occurs
      * @throws SAXException if an error occurs
@@ -163,8 +163,8 @@ public final class ConfigurationLoader {
      *
      * @param config location of config file, can be either a URL or a filename
      * @param overridePropsResolver overriding properties
-     * @param omitIgnoredModules <code>true</code> if modules with severity
-     *            'ignore' should be omitted, <code>false</code> otherwise
+     * @param omitIgnoredModules {@code true} if modules with severity
+     *            'ignore' should be omitted, {@code false} otherwise
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      */
@@ -212,8 +212,8 @@ public final class ConfigurationLoader {
      *
      * @param configStream the input stream to the Checkstyle configuration
      * @param overridePropsResolver overriding properties
-     * @param omitIgnoredModules <code>true</code> if modules with severity
-     *            'ignore' should be omitted, <code>false</code> otherwise
+     * @param omitIgnoredModules {@code true} if modules with severity
+     *            'ignore' should be omitted, {@code false} otherwise
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      *
@@ -238,8 +238,8 @@ public final class ConfigurationLoader {
      *
      * @param configSource the input stream to the Checkstyle configuration
      * @param overridePropsResolver overriding properties
-     * @param omitIgnoredModules <code>true</code> if modules with severity
-     *            'ignore' should be omitted, <code>false</code> otherwise
+     * @param omitIgnoredModules {@code true} if modules with severity
+     *            'ignore' should be omitted, {@code false} otherwise
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      */
@@ -272,24 +272,24 @@ public final class ConfigurationLoader {
     }
 
     /**
-     * Replaces <code>${xxx}</code> style constructions in the given value
+     * Replaces {@code ${xxx}} style constructions in the given value
      * with the string value of the corresponding data types.
      *
      * The method is package visible to facilitate testing.
      *
      * @param value The string to be scanned for property references.
-     *              May be <code>null</code>, in which case this
+     *              May be {@code null}, in which case this
      *              method returns immediately with no effect.
      * @param props Mapping (String to String) of property names to their
-     *              values. Must not be <code>null</code>.
+     *              values. Must not be {@code null}.
      * @param defaultValue default to use if one of the properties in value
      *              cannot be resolved from props.
      *
      * @return the original string with the properties replaced, or
-     *         <code>null</code> if the original string is <code>null</code>.
+     *         {@code null} if the original string is {@code null}.
      * @throws CheckstyleException if the string contains an opening
-     *                           <code>${</code> without a closing
-     *                           <code>}</code>
+     *                           {@code ${} without a closing
+     *                           {@code }}
      *
      * Code copied from ant -
      * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
@@ -329,21 +329,21 @@ public final class ConfigurationLoader {
     }
 
     /**
-     * Parses a string containing <code>${xxx}</code> style property
+     * Parses a string containing {@code ${xxx}} style property
      * references into two lists. The first list is a collection
      * of text fragments, while the other is a set of string property names.
-     * <code>null</code> entries in the first list indicate a property
+     * {@code null} entries in the first list indicate a property
      * reference from the second list.
      *
-     * @param value     Text to parse. Must not be <code>null</code>.
+     * @param value     Text to parse. Must not be {@code null}.
      * @param fragments List to add text fragments to.
-     *                  Must not be <code>null</code>.
+     *                  Must not be {@code null}.
      * @param propertyRefs List to add property names to.
-     *                     Must not be <code>null</code>.
+     *                     Must not be {@code null}.
      *
      * @throws CheckstyleException if the string contains an opening
-     *                           <code>${</code> without a closing
-     *                           <code>}</code>
+     *                           {@code ${} without a closing
+     *                           {@code }}
      * Code copied from ant -
      * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
      */

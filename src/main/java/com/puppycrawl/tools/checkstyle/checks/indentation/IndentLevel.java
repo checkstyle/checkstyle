@@ -73,7 +73,7 @@ public class IndentLevel {
 
     /**
      * @param indent indentation to check.
-     * @return true if <code>indent</code> less then minimal of
+     * @return true if {@code indent} less then minimal of
      *         acceptable indentation levels, false otherwise.
      */
     public boolean greaterThan(int indent) {

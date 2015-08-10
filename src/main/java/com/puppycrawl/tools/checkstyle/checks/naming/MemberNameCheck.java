@@ -51,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class MemberNameCheck
     extends AbstractAccessControlNameCheck {
-    /** Creates a new <code>MemberNameCheck</code> instance. */
+    /** Creates a new {@code MemberNameCheck} instance. */
     public MemberNameCheck() {
         super("^[a-z][a-zA-Z0-9]*$");
     }

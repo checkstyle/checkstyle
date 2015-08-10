@@ -232,14 +232,14 @@ public class LeftCurlyCheck
     }
 
     /**
-     * Skip lines that only contain <code>TokenTypes.ANNOTATION</code>s.
-     * If the received <code>DetailAST</code>
+     * Skip lines that only contain {@code TokenTypes.ANNOTATION}s.
+     * If the received {@code DetailAST}
      * has annotations within its modifiers then first token on the line
      * of the first token afer all annotations is return. This might be
      * an annotation.
-     * Otherwise, the received <code>DetailAST</code> is returned.
-     * @param ast <code>DetailAST</code>.
-     * @return <code>DetailAST</code>.
+     * Otherwise, the received {@code DetailAST} is returned.
+     * @param ast {@code DetailAST}.
+     * @return {@code DetailAST}.
      */
     private static DetailAST skipAnnotationOnlyLines(DetailAST ast) {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
@@ -266,10 +266,10 @@ public class LeftCurlyCheck
     }
 
     /**
-     * Find the last token of type <code>TokenTypes.ANNOTATION</code>
+     * Find the last token of type {@code TokenTypes.ANNOTATION}
      * under the given set of modifiers.
-     * @param modifiers <code>DetailAST</code>.
-     * @return <code>DetailAST</code> or null if there are no annotations.
+     * @param modifiers {@code DetailAST}.
+     * @return {@code DetailAST} or null if there are no annotations.
      */
     private static DetailAST findLastAnnotation(DetailAST modifiers) {
         DetailAST annot = modifiers.findFirstToken(TokenTypes.ANNOTATION);

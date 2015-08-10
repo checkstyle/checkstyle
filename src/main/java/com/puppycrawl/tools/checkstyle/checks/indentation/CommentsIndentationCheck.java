@@ -39,10 +39,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * <pre>
- * <code>
+ * {@code
  * &lt;module name=&quot;CommentsIndentation&quot;/module&gt;
- * </code>
- * <code>
+ * }
+ * {@code
  * /*
  *  * comment
  *  * some comment
@@ -57,7 +57,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * String str = "";
  *     // some comment Comment has incorrect indentation level 8, expected 4.
  * String str1 = "";
- * </code>
+ * }
  * </pre>
  *
  *
@@ -123,12 +123,12 @@ public class CommentsIndentationCheck extends Check {
     /**
      * Checks single line comment indentations over surrounding code, e.g.:
      * <p>
-     * <code>
+     * {@code
      * // some comment - this is ok
      * double d = 3.14;
      *     // some comment - this is <b>not</b> ok.
      * double d1 = 5.0;
-     * </code>
+     * }
      * </p>
      * @param singleLineComment {@link TokenTypes#SINGLE_LINE_COMMENT single line comment}.
      */
@@ -194,7 +194,7 @@ public class CommentsIndentationCheck extends Check {
      * e.g.:
      * <p>
      * <pre>
-     * <code>
+     * {@code
      * // some comment - same indentation level
      * int x = 10;
      *     // some comment - different indentation level
@@ -203,7 +203,7 @@ public class CommentsIndentationCheck extends Check {
      *  *
      *  *&#47;
      *  boolean bool = true; - same indentation level
-     * </code>
+     * }
      * </pre>
      * </p>
      * @param singleLineComment {@link TokenTypes#SINGLE_LINE_COMMENT single line comment}.
@@ -243,12 +243,12 @@ public class CommentsIndentationCheck extends Check {
     /**
      * Checks comment block indentations over surrounding code, e.g.:
      * <p>
-     * <code>
+     * {@code
      * /* some comment *&#47; - this is ok
      * double d = 3.14;
      *     /* some comment *&#47; - this is <b>not</b> ok.
      * double d1 = 5.0;
-     * </code>
+     * }
      * </p>
      * @param blockComment {@link TokenTypes#BLOCK_COMMENT_BEGIN block comment begin}.
      */
@@ -269,10 +269,10 @@ public class CommentsIndentationCheck extends Check {
     /**
      * Checks if current comment block is trailing comment, e.g.:
      * <p>
-     * <code>
+     * {@code
      * double d = 3.14; /* some comment *&#47;
      * /* some comment *&#47; double d = 18.5;
-     * </code>
+     * }
      * </p>
      * @param blockComment {@link TokenTypes#BLOCK_COMMENT_BEGIN block comment begin}.
      * @return true if current comment block is trailing comment.

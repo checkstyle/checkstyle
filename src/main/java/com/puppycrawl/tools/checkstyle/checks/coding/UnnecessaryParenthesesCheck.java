@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     int x = (a + b) + c;</pre>
  * <p>
  * In the above case, given that <em>a</em>, <em>b</em>, and <em>c</em> are
- * all <code>int</code> variables, the parentheses around <code>a + b</code>
+ * all {@code int} variables, the parentheses around {@code a + b}
  * are not needed.
  * </p>
  *
@@ -271,13 +271,13 @@ public class UnnecessaryParenthesesCheck extends Check {
     }
 
     /**
-     * Tests if the given <code>DetailAST</code> is surrounded by parentheses.
-     * In short, does <code>ast</code> have a previous sibling whose type is
-     * <code>TokenTypes.LPAREN</code> and a next sibling whose type is <code>
-     * TokenTypes.RPAREN</code>.
-     * @param ast the <code>DetailAST</code> to check if it is surrounded by
+     * Tests if the given {@code DetailAST} is surrounded by parentheses.
+     * In short, does {@code ast} have a previous sibling whose type is
+     * {@code TokenTypes.LPAREN} and a next sibling whose type is {@code
+     * TokenTypes.RPAREN}.
+     * @param ast the {@code DetailAST} to check if it is surrounded by
      *        parentheses.
-     * @return <code>true</code> if <code>ast</code> is surrounded by
+     * @return {@code true} if {@code ast} is surrounded by
      *         parentheses.
      */
     private static boolean isSurrounded(DetailAST ast) {
@@ -289,9 +289,9 @@ public class UnnecessaryParenthesesCheck extends Check {
 
     /**
      * Tests if the given expression node is surrounded by parentheses.
-     * @param ast a <code>DetailAST</code> whose type is
-     *        <code>TokenTypes.EXPR</code>.
-     * @return <code>true</code> if the expression is surrounded by
+     * @param ast a {@code DetailAST} whose type is
+     *        {@code TokenTypes.EXPR}.
+     * @return {@code true} if the expression is surrounded by
      *         parentheses.
      */
     private static boolean isExprSurrounded(DetailAST ast) {
@@ -302,8 +302,8 @@ public class UnnecessaryParenthesesCheck extends Check {
      * Check if the given token type can be found in an array of token types.
      * @param type the token type.
      * @param tokens an array of token types to search.
-     * @return <code>true</code> if <code>type</code> was found in <code>
-     *         tokens</code>.
+     * @return {@code true} if {@code type} was found in {@code
+     *         tokens}.
      */
     private static boolean inTokenList(int type, int... tokens) {
         // NOTE: Given the small size of the two arrays searched, I'm not sure
@@ -318,12 +318,12 @@ public class UnnecessaryParenthesesCheck extends Check {
     }
 
     /**
-     * Returns the specified string chopped to <code>MAX_QUOTED_LENGTH</code>
-     * plus an ellipsis (...) if the length of the string exceeds <code>
-     * MAX_QUOTED_LENGTH</code>.
+     * Returns the specified string chopped to {@code MAX_QUOTED_LENGTH}
+     * plus an ellipsis (...) if the length of the string exceeds {@code
+     * MAX_QUOTED_LENGTH}.
      * @param value the string to potentially chop.
-     * @return the chopped string if <code>string</code> is longer than
-     *         <code>MAX_QUOTED_LENGTH</code>; otherwise <code>string</code>.
+     * @return the chopped string if {@code string} is longer than
+     *         {@code MAX_QUOTED_LENGTH}; otherwise {@code string}.
      */
     private static String chopString(String value) {
         if (value.length() > MAX_QUOTED_LENGTH) {

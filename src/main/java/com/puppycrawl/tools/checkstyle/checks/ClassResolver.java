@@ -38,7 +38,7 @@ public class ClassResolver {
     private final ClassLoader loader;
 
     /**
-     * Creates a new <code>ClassResolver</code> instance.
+     * Creates a new {@code ClassResolver} instance.
      *
      * @param loader the ClassLoader to load classes with.
      * @param pkg the name of the package the class may belong to
@@ -168,7 +168,7 @@ public class ClassResolver {
      * Will load a specified class is such a way that it will NOT be
      * initialised.
      * @param name name of the class to load
-     * @return the <code>Class</code> for the specified class
+     * @return the {@code Class} for the specified class
      * @throws ClassNotFoundException if an error occurs
      * @throws NoClassDefFoundError if an error occurs
      */

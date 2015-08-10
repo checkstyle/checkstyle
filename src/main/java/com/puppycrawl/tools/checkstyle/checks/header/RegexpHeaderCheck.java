@@ -119,7 +119,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
 
     /**
      * @param lineNo a line number
-     * @return if <code>lineNo</code> is one of the repeat header lines.
+     * @return if {@code lineNo} is one of the repeat header lines.
      */
     private boolean isMultiLine(int lineNo) {
         return Arrays.binarySearch(multiLines, lineNo + 1) >= 0;

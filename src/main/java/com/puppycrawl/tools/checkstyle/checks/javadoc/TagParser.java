@@ -29,8 +29,8 @@ import com.google.common.collect.Lists;
  * from a single line of text. Just the beginning of the HTML tag
  * is located.  No attempt is made to parse out the complete tag,
  * particularly since some of the tag parameters could be located
- * on the following line of text.  The <code>hasNextTag</code> and
- * <code>nextTag</code> methods are used to iterate through the HTML
+ * on the following line of text.  The {@code hasNextTag} and
+ * {@code nextTag} methods are used to iterate through the HTML
  * tags or generic type identifiers that were found on the line of text.
  * </p>
  *
@@ -60,7 +60,7 @@ class TagParser {
 
     /**
      * Returns the next available HtmlTag.
-     * @return a HtmlTag or <code>null</code> if none available.
+     * @return a HtmlTag or {@code null} if none available.
      * @throws IndexOutOfBoundsException if there are no HtmlTags
      *         left to return.
      */
@@ -70,7 +70,7 @@ class TagParser {
 
     /**
      * Indicates if there are any more HtmlTag to retrieve.
-     * @return <code>true</code> if there are more tags.
+     * @return {@code true} if there are more tags.
      */
     public boolean hasNextTag() {
         return !tags.isEmpty();
@@ -133,7 +133,7 @@ class TagParser {
      * Checks if the given position is start one for HTML tag.
      * @param javadocText text of javadoc comments.
      * @param pos position to check.
-     * @return <code>true</code> some HTML tag starts from given position.
+     * @return {@code true} some HTML tag starts from given position.
      */
     private static boolean isTag(String[] javadocText, Point pos) {
         final int column = pos.getColumnNo() + 1;
@@ -182,7 +182,7 @@ class TagParser {
      * If this is a HTML-comments.
      * @param text text of javadoc comments
      * @param pos position to check
-     * @return <code>true</code> if HTML-comments
+     * @return {@code true} if HTML-comments
      *         starts form given position.
      */
     private static boolean isCommentTag(String[] text, Point pos) {
@@ -267,7 +267,7 @@ class TagParser {
         private final int column;
 
         /**
-         * Creates new <code>Point</code> instance.
+         * Creates new {@code Point} instance.
          * @param lineNo line number
          * @param columnNo column number
          */

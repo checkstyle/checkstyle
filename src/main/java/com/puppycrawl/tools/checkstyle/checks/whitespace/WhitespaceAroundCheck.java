@@ -103,7 +103,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * For example:
  *
  *
- * <pre><code>
+ * <pre>{@code
  * public MyClass() {}      // empty constructor
  * public void func() {}    // empty method
  * public interface Foo {} // empty interface
@@ -114,7 +114,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * for (int i = 1; i &gt; 1; i++) {} // empty for loop
  * do {} while (i = 1); // empty do-while loop
  * public @interface Beta {} // empty annotation type
- * </code></pre>
+ * }</pre>
  *
  * <p>
  * To configure the check to allow empty method blocks use
@@ -479,11 +479,11 @@ public class WhitespaceAroundCheck extends Check {
     }
 
     /**
-     * Test if the given <code>DetailAST</code> is part of an allowed empty
+     * Test if the given {@code DetailAST} is part of an allowed empty
      * constructor (ctor) block.
-     * @param ast the <code>DetailAST</code> to test.
-     * @param parentType the token type of <code>ast</code>'s parent.
-     * @return <code>true</code> if <code>ast</code> makes up part of an
+     * @param ast the {@code DetailAST} to test.
+     * @param parentType the token type of {@code ast}'s parent.
+     * @return {@code true} if {@code ast} makes up part of an
      *         allowed empty constructor block.
      */
     private boolean isEmptyCtorBlock(DetailAST ast, int parentType) {
@@ -508,16 +508,16 @@ public class WhitespaceAroundCheck extends Check {
     }
 
     /**
-     * Test if the given <code>DetailAST</code> is part of an empty block.
+     * Test if the given {@code DetailAST} is part of an empty block.
      * An example empty block might look like the following
      * <p>
      * <pre>   class Foo {}</pre>
      * </p>
      *
-     * @param ast ast the <code>DetailAST</code> to test.
-     * @param parentType the token type of <code>ast</code>'s parent.
-     * @return <code>true</code> if <code>ast</code> makes up part of an
-     *         empty block contained under a <code>match</code> token type
+     * @param ast ast the {@code DetailAST} to test.
+     * @param parentType the token type of {@code ast}'s parent.
+     * @return {@code true} if {@code ast} makes up part of an
+     *         empty block contained under a {@code match} token type
      *         node.
      */
     private static boolean isEmptyType(DetailAST ast, int parentType) {
@@ -527,18 +527,18 @@ public class WhitespaceAroundCheck extends Check {
     }
 
     /**
-     * Tests if a given <code>DetailAST</code> is part of an empty block.
+     * Tests if a given {@code DetailAST} is part of an empty block.
      * An example empty block might look like the following
      * <p>
      * <pre>   public void myMethod(int val) {}</pre>
      * </p>
      * In the above, the method body is an empty block ("{}").
      *
-     * @param ast the <code>DetailAST</code> to test.
-     * @param parentType the token type of <code>ast</code>'s parent.
+     * @param ast the {@code DetailAST} to test.
+     * @param parentType the token type of {@code ast}'s parent.
      * @param match the parent token type we're looking to match.
-     * @return <code>true</code> if <code>ast</code> makes up part of an
-     *         empty block contained under a <code>match</code> token type
+     * @return {@code true} if {@code ast} makes up part of an
+     *         empty block contained under a {@code match} token type
      *         node.
      */
     private static boolean isEmptyBlock(DetailAST ast, int parentType, int match) {

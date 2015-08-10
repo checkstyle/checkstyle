@@ -25,13 +25,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Check that the <code>default</code> is after all the <code>case</code>s
- * in a <code>switch</code> statement.
+ * Check that the {@code default} is after all the {@code case}s
+ * in a {@code switch} statement.
  * </p>
  * <p>
- * Rationale: Java allows <code>default</code> anywhere within the
- * <code>switch</code> statement. But if it comes after the last
- * <code>case</code> then it is more readable.
+ * Rationale: Java allows {@code default} anywhere within the
+ * {@code switch} statement. But if it comes after the last
+ * {@code case} then it is more readable.
  * </p>
  * <p>
  * An example of how to configure the check is:

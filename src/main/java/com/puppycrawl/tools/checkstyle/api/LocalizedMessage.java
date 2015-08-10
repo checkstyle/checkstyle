@@ -91,7 +91,7 @@ public final class LocalizedMessage
     private final String customMessage;
 
     /**
-     * Creates a new <code>LocalizedMessage</code> instance.
+     * Creates a new {@code LocalizedMessage} instance.
      *
      * @param lineNo line number associated with the message
      * @param colNo column number associated with the message
@@ -124,7 +124,7 @@ public final class LocalizedMessage
     }
 
     /**
-     * Creates a new <code>LocalizedMessage</code> instance.
+     * Creates a new {@code LocalizedMessage} instance.
      *
      * @param lineNo line number associated with the message
      * @param colNo column number associated with the message
@@ -155,7 +155,7 @@ public final class LocalizedMessage
     }
 
     /**
-     * Creates a new <code>LocalizedMessage</code> instance.
+     * Creates a new {@code LocalizedMessage} instance.
      *
      * @param lineNo line number associated with the message
      * @param bundle resource bundle name
@@ -179,7 +179,7 @@ public final class LocalizedMessage
     }
 
     /**
-     * Creates a new <code>LocalizedMessage</code> instance. The column number
+     * Creates a new {@code LocalizedMessage} instance. The column number
      * defaults to 0.
      *
      * @param lineNo line number associated with the message
@@ -262,7 +262,7 @@ public final class LocalizedMessage
 
     /**
      * Returns the formatted custom message if one is configured.
-     * @return the formatted custom message or <code>null</code>
+     * @return the formatted custom message or {@code null}
      *          if there is no custom message
      */
     private String getCustomMessage() {

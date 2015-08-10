@@ -38,18 +38,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * For example:
  *
  * <pre>
- *  <code>
+ *  {@code
  *    String nullString = null;
  *    nullString.equals(&quot;My_Sweet_String&quot;);
- *  </code>
+ *  }
  * </pre>
  * should be refactored to
  *
  * <pre>
- *  <code>
+ *  {@code
  *    String nullString = null;
  *    &quot;My_Sweet_String&quot;.equals(nullString);
- *  </code>
+ *  }
  * </pre>
  *
  *

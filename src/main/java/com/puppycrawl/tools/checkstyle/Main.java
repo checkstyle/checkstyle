@@ -282,7 +282,7 @@ public final class Main {
      *
      * @param format format of the audit listener
      * @param outputLocation the location of output
-     * @return a fresh new <code>AuditListener</code>
+     * @return a fresh new {@code AuditListener}
      * @exception UnsupportedEncodingException if there is problem to use UTf-8
      * @exception FileNotFoundException when provided output location is not found
      */

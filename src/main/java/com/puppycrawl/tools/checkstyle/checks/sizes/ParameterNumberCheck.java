@@ -51,14 +51,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * Java code that will be ignored:
  * <pre>
- * <code>
+ * {@code
  *
  *  &#064;Override
  *  public void needsLotsOfParameters(int a,
  *      int b, int c, int d, int e, int f, int g, int h) {
  *      ...
  *  }
- * </code>
+ * }
  * </pre>
  * @author Oliver Burn
  */

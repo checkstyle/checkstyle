@@ -33,12 +33,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p class="body">
  *
  * Examples of line-wrapped statements (bad case):
- * <pre><code> package com.puppycrawl.
+ * <pre>{@code package com.puppycrawl.
  *    tools.checkstyle.checks;
  *
  * import com.puppycrawl.tools.
  *    checkstyle.api.Check;
- * </code></pre>
+ * }</pre>
  *
  * <p>
  * To configure the check to force no line-wrapping
@@ -59,8 +59,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  *
  * Examples of not line-wrapped statements (good case):
- * <pre><code> import com.puppycrawl.tools.checkstyle.api.Check;
- * </code></pre>
+ * <pre>{@code import com.puppycrawl.tools.checkstyle.api.Check;
+ * }</pre>
  *
  * @author maxvetrenko
  */

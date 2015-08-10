@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 /**
  * <p>
  * Restricts the number of return statements in methods, constructors and lambda expressions
- * (2 by default). Ignores specified methods (<code>equals()</code> by default).
+ * (2 by default). Ignores specified methods ({@code equals()} by default).
  * </p>
  * <p>
  * Rationale: Too many return points can be indication that code is

@@ -40,20 +40,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * Example #1:
  * <pre>
- *      <code>int count;
+ *      {@code int count;
  *      a = a + b;
  *      b = a + a;
  *      count = b; // DECLARATION OF VARIABLE 'count'
- *                 // SHOULD BE HERE (distance = 3)</code>
+ *                 // SHOULD BE HERE (distance = 3)}
  * </pre>
  * Example #2:
  * <pre>
- *     <code>int count;
+ *     {@code int count;
  *     {
  *         a = a + b;
  *         count = b; // DECLARATION OF VARIABLE 'count'
  *                    // SHOULD BE HERE (distance = 2)
- *     }</code>
+ *     }}
  * </pre>
  *
  * <p>
@@ -105,7 +105,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * ATTENTION!! (Not supported cases)
  * <pre>
  * Case #1:
- * <code>{
+ * {@code {
  * int c;
  * int a = 3;
  * int b = 2;
@@ -113,7 +113,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     a = a + b;
  *     c = b;
  *     }
- * }</code>
+ * }}
  *
  * Distance for variable 'a' = 1;
  * Distance for variable 'b' = 1;
@@ -123,7 +123,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * and 'b' to move them into the block.
  * <pre>
  * Case #2:
- * <code>int sum = 0;
+ * {@code int sum = 0;
  * for (int i = 0; i &lt; 20; i++) {
  *     a++;
  *     b--;
@@ -131,7 +131,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     if (sum &gt; 10) {
  *         res = true;
  *     }
- * }</code>
+ * }}
  * Distance for variable 'sum' = 3.
  * </pre>
  * <p>

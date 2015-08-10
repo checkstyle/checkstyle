@@ -63,7 +63,7 @@ public class JavadocVariableCheck
 
     /**
      * Set the excludeScope.
-     * @param scope a <code>String</code> value
+     * @param scope a {@code String} value
      */
     public void setExcludeScope(String scope) {
         excludeScope = Scope.getInstance(scope);

@@ -43,7 +43,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
     private T option;
 
     /**
-     * Creates a new <code>AbstractOptionCheck</code> instance.
+     * Creates a new {@code AbstractOptionCheck} instance.
      * @param literalDefault the default option.
      * @param optionClass the class for the option. Required due to a quirk
      *        in the Java language.
@@ -68,7 +68,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
     }
 
     /**
-     * @return the <code>AbstractOption</code> set
+     * @return the {@code AbstractOption} set
      */
     public T getAbstractOption() {
         // WARNING!! Do not rename this method to getOption(). It breaks

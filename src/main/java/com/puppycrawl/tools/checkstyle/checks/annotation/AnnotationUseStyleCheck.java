@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </ul>
  * To not enforce an element style
  * a {@link ElementStyle#IGNORE IGNORE} type is provided.  The desired style
- * can be set through the <code>elementStyle</code> property.
+ * can be set through the {@code elementStyle} property.
  *
  *
  * <p>
@@ -68,7 +68,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * {@link ClosingParens#ALWAYS ALWAYS} type.  To never have ending parenthesis
  * use the {@link ClosingParens#NEVER NEVER} type. To not enforce a
  * closing parenthesis preference a {@link ClosingParens#IGNORE IGNORE} type is
- * provided. Set this through the <code>closingParens</code> property.
+ * provided. Set this through the {@code closingParens} property.
  *
  *
  * <p>
@@ -78,7 +78,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * type. To never have a trailing comma use the
  * {@link TrailingArrayComma#NEVER NEVER} type. To not enforce a trailing
  * array comma preference a {@link TrailingArrayComma#IGNORE IGNORE} type
- * is provided.  Set this through the <code>trailingArrayComma</code> property.
+ * is provided.  Set this through the {@code trailingArrayComma} property.
  *
  *
  * <p>

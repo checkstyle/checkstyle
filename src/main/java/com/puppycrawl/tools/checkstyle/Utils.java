@@ -256,10 +256,10 @@ public final class Utils {
      * http://pmd.sourceforge.net/pmd-5.3.1/pmd-java/rules/java/optimizations.html#SimplifyStartsWith
      * </p>
      *
-     * @param value the <code>String</code> to check
+     * @param value the {@code String} to check
      * @param prefix the prefix to find
-     * @return <code>true</code> if the <code>char</code> is a prefix of the given
-     * <code>String</code>; <code>false</code> otherwise.
+     * @return {@code true} if the {@code char} is a prefix of the given
+     * {@code String}; {@code false} otherwise.
      */
     public static boolean startsWithChar(String value, char prefix) {
         return !value.isEmpty() && value.charAt(0) == prefix;
@@ -273,10 +273,10 @@ public final class Utils {
      * http://pmd.sourceforge.net/pmd-5.3.1/pmd-java/rules/java/optimizations.html#SimplifyStartsWith
      * </p>
      *
-     * @param value the <code>String</code> to check
+     * @param value the {@code String} to check
      * @param suffix the suffix to find
-     * @return <code>true</code> if the <code>char</code> is a suffix of the given
-     * <code>String</code>; <code>false</code> otherwise.
+     * @return {@code true} if the {@code char} is a suffix of the given
+     * {@code String}; {@code false} otherwise.
      */
     public static boolean endsWithChar(String value, char suffix) {
         return !value.isEmpty() && value.charAt(value.length() - 1) == suffix;

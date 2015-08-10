@@ -40,9 +40,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * E.g.:
  * <p>
- * <code>
+ * {@code
  * private void foo(int x) { ... } //parameter is of primitive type
- * </code>
+ * }
  * </p>
  *
  * @author lkuehne

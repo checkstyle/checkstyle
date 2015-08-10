@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * <pre>
- * <code>
+ * {@code
  * package java.util.concurrent.locks;
  *
  * import java.io.File;
@@ -61,7 +61,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * import java.util.concurrent.locks.LockSupport; //#6
  * import java.util.regex.Pattern; //#7
  * import java.util.regex.Matcher; //#8
- * </code>
+ * }
  * </pre>
  *
  * <p>
@@ -133,7 +133,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *          <li>groups are separated by, at least, one blank line</li>
  *        </ul>
  * <pre>
- *        <code>
+ *        {@code
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
  *    &lt;property name=&quot;customImportOrderRules&quot;
  *        value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS&quot;/&gt;
@@ -141,7 +141,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
  *    &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
- *        </code>
+ *        }
  * </pre>
  *
  *        <p>To configure the check so that it matches default IntelliJ IDEA formatter
@@ -161,7 +161,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *        </p>
  *
  * <pre>
- *        <code>
+ *        {@code
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
  *    &lt;property name=&quot;customImportOrderRules&quot;
  *        value=&quot;THIRD_PARTY_PACKAGE###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE
@@ -171,7 +171,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
  *    &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;false&quot;/&gt;
  *&lt;/module&gt;
- *        </code>
+ *        }
  * </pre>
  *
  * <p>To configure the check so that it matches default NetBeans formatter
@@ -182,20 +182,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     <li>static imports are not separated, they will be sorted along with other imports</li>
  * </ul>
  *
- *        <code>
+ *        {@code
  *&lt;module name=&quot;CustomImportOrder&quot;/&gt;
- *        </code>
+ *        }
  * <p>To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
  *         thirdPartyPackageRegExp and standardPackageRegExp options.</p>
  * <pre>
- * <code>
+ * {@code
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
  *    &lt;property name=&quot;customImportOrderRules&quot;
  *    value=&quot;STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE&quot;/&gt;
  *    &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;com|org&quot;/&gt;
  *    &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;^(java|javax)\.&quot;/&gt;
  * &lt;/module&gt;
- * </code>
+ * }
  * </pre>
  * <p>
  * Also, this check can be configured to force empty line separator between
@@ -203,11 +203,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * <pre>
- * <code>
+ * {@code
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
  *    &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
- * </code>
+ * }
  * </pre>
  * <p>
  * It is possible to enforce
@@ -215,27 +215,27 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * of imports in groups using the following configuration:
  * </p>
  * <pre>
- * <code>&lt;module name=&quot;CustomImportOrder&quot;&gt;
+ * {@code &lt;module name=&quot;CustomImportOrder&quot;&gt;
  *    &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
- * </code>
+ * }
  * </pre>
  * <p>
  * Example of ASCII order:
  * </p>
  * <pre>
- * <code>import java.awt.Dialog;
+ * {@code import java.awt.Dialog;
  * import java.awt.Window;
  * import java.awt.color.ColorSpace;
  * import java.awt.Frame; // violation here - in ASCII order 'F' should go before 'c',
- *                        // as all uppercase come before lowercase letters</code>
+ *                        // as all uppercase come before lowercase letters}
  * </pre>
  * <p>
  * To force checking imports sequence such as:
  * </p>
  *
  * <pre>
- * <code>
+ * {@code
  * package com.puppycrawl.tools.checkstyle.imports;
  *
  * import com.google.common.annotations.GwtCompatible;
@@ -248,16 +248,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * import com.google.common.annotations.GwtCompatible; // violation here - should be in the
  *                                                     // THIRD_PARTY_PACKAGE group
- * import android.*;</code>
+ * import android.*;}
  * </pre>
  * configure as follows:
  * <pre>
- * <code>
+ * {@code
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
  *    &lt;property name=&quot;customImportOrderRules&quot;
  *    value=&quot;SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STATIC###SPECIAL_IMPORTS&quot;/&gt;
  *    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;android.*&quot;/&gt;
- * &lt;/module&gt;</code>
+ * &lt;/module&gt;}
  * </pre>
  *
  * @author maxvetrenko

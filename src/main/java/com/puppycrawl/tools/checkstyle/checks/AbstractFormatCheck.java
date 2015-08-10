@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
  * <p> Abstract class for checks that verify strings using a
  * {@link Pattern regular expression}.  It
  * provides support for setting the regular
- * expression using the property name <code>format</code>.  </p>
+ * expression using the property name {@code format}.  </p>
  *
  * @author Oliver Burn
  */

@@ -58,8 +58,8 @@ public enum Scope {
      * Checks if this scope is a subscope of another scope.
      * Example: PUBLIC is a subscope of PRIVATE.
      *
-     * @param scope a <code>Scope</code> value
-     * @return if <code>this</code> is a subscope of <code>scope</code>.
+     * @param scope a {@code Scope} value
+     * @return if {@code this} is a subscope of {@code scope}.
      */
     public boolean isIn(Scope scope) {
         return compareTo(scope) <= 0;
@@ -69,7 +69,7 @@ public enum Scope {
      * Scope factory method.
      *
      * @param scopeName scope name, such as "nothing", "public", etc.
-     * @return the <code>Scope</code> associated with <code>scopeName</code>
+     * @return the {@code Scope} associated with {@code scopeName}
      */
     public static Scope getInstance(String scopeName) {
         return valueOf(Scope.class, scopeName.trim().toUpperCase(Locale.ENGLISH));

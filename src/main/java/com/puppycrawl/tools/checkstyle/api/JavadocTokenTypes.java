@@ -82,7 +82,7 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example</b>
-     * <pre><code>&#64;param T The bar.</code></pre>
+     * <pre>{@code &#64;param T The bar.}</pre>
      * <b>Tree</b>
      * <pre>{@code
      *   |--JAVADOC_TAG[4x3] : [@param T The bar.]
@@ -117,17 +117,17 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>{&#64;link String}</code></pre>
+     * <pre>{@code {&#64;link String}}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_INLINE_TAG[4x3] : [{&#64;link String}]
+     * {@code |--JAVADOC_INLINE_TAG[4x3] : [{&#64;link String}]
      *        |--JAVADOC_INLINE_TAG_START[4x3] : [{]
      *        |--LINK_LITERAL[4x4] : [@link]
      *        |--WS[4x9] : [ ]
      *        |--REFERENCE[4x10] : [String]
      *            |--CLASS[4x10] : [String]
      *        |--JAVADOC_INLINE_TAG_END[4x16] : [}]
-     * </code>
+     * }
      * </pre>
      */
     public static final int JAVADOC_INLINE_TAG = JavadocParser.RULE_javadocInlineTag + RULE_TYPES_OFFSET;
@@ -139,7 +139,7 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@return true if file exists</code></pre>
+     * <pre>{@code @return true if file exists}</pre>
      * <b>Tree:</b>
      * <pre>{@code
      *   |--JAVADOC_TAG[4x3] : [@return true if file exists]
@@ -162,7 +162,7 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@deprecated it is deprecated method</code></pre>
+     * <pre>{@code @deprecated it is deprecated method}</pre>
      * <b>Tree:</b>
      * <pre>{@code
      *   |--JAVADOC_TAG[3x0] : [@deprecated it is deprecated method]
@@ -184,7 +184,7 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@since 3.4 RELEASE</code></pre>
+     * <pre>{@code @since 3.4 RELEASE}</pre>
      * <b>Tree:</b>
      * <pre>{@code
      *   |--JAVADOC_TAG[3x0] : [@since 3.4 RELEASE]
@@ -206,7 +206,7 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@serialData two values of Integer type</code></pre>
+     * <pre>{@code @serialData two values of Integer type}</pre>
      * <b>Tree:</b>
      * <pre>{@code
      *   |--JAVADOC_TAG[3x0] : [@serialData two values of Integer type ]
@@ -234,7 +234,7 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@serialField counter Integer objects counter</code></pre>
+     * <pre>{@code @serialField counter Integer objects counter}</pre>
      * <b>Tree:</b>
      * <pre>{@code
      *   |--JAVADOC_TAG[3x0] : [@serialField counter Integer objects counter]
@@ -288,7 +288,7 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@see org.apache.utils.Lists.Comparator#compare(Object)</code></pre>
+     * <pre>{@code @see org.apache.utils.Lists.Comparator#compare(Object)}</pre>
      * <b>Tree:</b>
      * <pre>{@code
      *   |--JAVADOC_TAG[3x0] : [@see org.apache.utils.Lists.Comparator#compare(Object)]
@@ -321,7 +321,7 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@serial include</code></pre>
+     * <pre>{@code @serial include}</pre>
      * <b>Tree:</b>
      * <pre>{@code
      *   |--JAVADOC_TAG[3x0] : [@serial include]
@@ -332,7 +332,7 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@serial serialized company name</code></pre>
+     * <pre>{@code @serial serialized company name}</pre>
      * <b>Tree:</b>
      * <pre>{@code
      *   |--JAVADOC_TAG[3x0] : [@serial serialized company name]
@@ -354,7 +354,7 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@version 1.3</code></pre>
+     * <pre>{@code @version 1.3}</pre>
      * <b>Tree:</b>
      * <pre>{@code
      *   |--JAVADOC_TAG[3x0] : [@version 1.3]
@@ -376,7 +376,7 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@exception SQLException if query is not correct</code></pre>
+     * <pre>{@code @exception SQLException if query is not correct}</pre>
      * <b>Tree:</b>
      * <pre>{@code
      *   |--JAVADOC_TAG[3x0] : [@exception SQLException if query is not correct]
@@ -400,7 +400,7 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@throws SQLException if query is not correct</code></pre>
+     * <pre>{@code @throws SQLException if query is not correct}</pre>
      * <b>Tree:</b>
      * <pre>{@code
      *   |--JAVADOC_TAG[3x0] : [@throws SQLException if query is not correct]
@@ -424,7 +424,7 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@author Baratali Izmailov</code></pre>
+     * <pre>{@code @author Baratali Izmailov}</pre>
      * <b>Tree:</b>
      * <pre>{@code
      *   |--JAVADOC_TAG[3x0] : [@author Baratali Izmailov]
@@ -446,7 +446,7 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@myJavadocTag some magic</code></pre>
+     * <pre>{@code @myJavadocTag some magic}</pre>
      * <b>Tree:</b>
      * <pre>{@code
      *   |--JAVADOC_TAG[3x0] : [@myJavadocTag some magic]
@@ -463,16 +463,16 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>{&#64;code Comparable&lt;E&gt;}</code></pre>
+     * <pre>{@code {&#64;code Comparable&lt;E&gt;}}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_INLINE_TAG[3x0] : [{&#64;code Comparable&lt;E&gt;}]
+     * {@code |--JAVADOC_INLINE_TAG[3x0] : [{&#64;code Comparable&lt;E&gt;}]
      *         |--JAVADOC_INLINE_TAG_START[3x0] : [{]
      *         |--CODE_LITERAL[3x1] : [@code]
      *         |--WS[3x6] : [ ]
      *         |--TEXT[3x7] : [Comparable&lt;E&gt;]
      *         |--JAVADOC_INLINE_TAG_END[3x21] : [}]
-     * </code></pre>
+     * }</pre>
      */
     public static final int JAVADOC_INLINE_TAG_START = JavadocParser.JAVADOC_INLINE_TAG_START;
 
@@ -481,16 +481,16 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>{&#64;code Comparable&lt;E&gt;}</code></pre>
+     * <pre>{@code {&#64;code Comparable&lt;E&gt;}}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_INLINE_TAG[3x0] : [{&#64;code Comparable&lt;E&gt;}]
+     * {@code |--JAVADOC_INLINE_TAG[3x0] : [{&#64;code Comparable&lt;E&gt;}]
      *         |--JAVADOC_INLINE_TAG_START[3x0] : [{]
      *         |--CODE_LITERAL[3x1] : [@code]
      *         |--WS[3x6] : [ ]
      *         |--TEXT[3x7] : [Comparable&lt;E&gt;]
      *         |--JAVADOC_INLINE_TAG_END[3x21] : [}]
-     * </code>
+     * }
      * </pre>
      */
     public static final int JAVADOC_INLINE_TAG_END = JavadocParser.JAVADOC_INLINE_TAG_END; // '}'
@@ -507,16 +507,16 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>{&#64;code Comparable&lt;E&gt;}</code></pre>
+     * <pre>{@code {&#64;code Comparable&lt;E&gt;}}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_INLINE_TAG[3x0] : [{&#64;code Comparable&lt;E&gt;}]
+     * {@code |--JAVADOC_INLINE_TAG[3x0] : [{&#64;code Comparable&lt;E&gt;}]
      *         |--JAVADOC_INLINE_TAG_START[3x0] : [{]
      *         |--CODE_LITERAL[3x1] : [@code]
      *         |--WS[3x6] : [ ]
      *         |--TEXT[3x7] : [Comparable&lt;E&gt;]
      *         |--JAVADOC_INLINE_TAG_END[3x21] : [}]
-     * </code>
+     * }
      * </pre>
      *
      * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDFHHBB">Oracle Docs</a>
@@ -535,29 +535,29 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>{&#64;docRoot}</code></pre>
+     * <pre>{@code {&#64;docRoot}}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;docRoot \n}]
+     * {@code  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;docRoot \n}]
      *            |--JAVADOC_INLINE_TAG_START[1x0] : [{]
      *            |--DOC_ROOT_LITERAL[1x1] : [@docRoot]
      *            |--JAVADOC_INLINE_TAG_END[2x0] : [}]
-     * </code>
+     * }
      * </pre>
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>{&#64;docRoot
-     *}</code></pre>
+     * <pre>{@code {&#64;docRoot
+     *}}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;docRoot \n}]
+     * {@code  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;docRoot \n}]
      *            |--JAVADOC_INLINE_TAG_START[1x0] : [{]
      *            |--DOC_ROOT_LITERAL[1x1] : [@docRoot]
      *            |--WS[1x9] : [ ]
      *            |--NEWLINE[1x10] : [\n]
      *            |--JAVADOC_INLINE_TAG_END[2x0] : [}]
-     * </code>
+     * }
      * </pre>
      *
      * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDBACBF">Oracle Docs</a>
@@ -571,10 +571,10 @@ public final class JavadocTokenTypes {
      * Such Javadoc inline tag can have one argument - {@link #REFERENCE}
      * </p>
      * <p><b>Example:</b></p>
-     * <pre><code>{&#64;link org.apache.utils.Lists.Comparator#compare(Object)}</code></pre>
+     * <pre>{@code {&#64;link org.apache.utils.Lists.Comparator#compare(Object)}}</pre>
      * <p><b>Tree:</b></p>
      * <pre>
-     * <code>|--JAVADOC_INLINE_TAG[1x0] : [{&#64;link org.apache.utils.Lists.Comparator#compare(Object)}]
+     * {@code |--JAVADOC_INLINE_TAG[1x0] : [{&#64;link org.apache.utils.Lists.Comparator#compare(Object)}]
      *        |--JAVADOC_INLINE_TAG_START[1x0] : [{]
      *        |--LINK_LITERAL[1x1] : [@link]
      *        |--WS[1x6] : [ ]
@@ -591,7 +591,7 @@ public final class JavadocTokenTypes {
      *                |--ARGUMENT[1x49] : [Object]
      *                |--RIGHT_BRACE[1x55] : [)]
      *        |--JAVADOC_INLINE_TAG_END[1x56] : [}]
-     * </code>
+     * }
      * </pre>
      *
      * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDIECH">Oracle Docs</a>
@@ -610,14 +610,14 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>{&#64;inheritDoc}</code></pre>
+     * <pre>{@code {&#64;inheritDoc}}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;inheritDoc}]
+     * {@code  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;inheritDoc}]
      *            |--JAVADOC_INLINE_TAG_START[1x0] : [{]
      *            |--INHERIT_DOC_LITERAL[1x1] : [@inheritDoc]
      *            |--JAVADOC_INLINE_TAG_END[1x12] : [}]
-     * </code>
+     * }
      * </pre>
      *
      * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGJCHC">Oracle Docs</a>
@@ -632,10 +632,10 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>{&#64;linkplain org.apache.utils.Lists.Comparator#compare(Object) compare}</code></pre>
+     * <pre>{@code {&#64;linkplain org.apache.utils.Lists.Comparator#compare(Object) compare}}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_INLINE_TAG[1x0] : [{&#64;linkplain org.apache.utils.Lists.Comparator#compare(Object) compare}]
+     * {@code |--JAVADOC_INLINE_TAG[1x0] : [{&#64;linkplain org.apache.utils.Lists.Comparator#compare(Object) compare}]
      *        |--JAVADOC_INLINE_TAG_START[1x0] : [{]
      *        |--LINKPLAIN_LITERAL[1x1] : [@linkplain]
      *        |--WS[1x11] : [ ]
@@ -654,7 +654,7 @@ public final class JavadocTokenTypes {
      *        |--DESCRIPTION[1x61] : [ compare]
      *            |--TEXT[1x61] : [ compare]
      *        |--JAVADOC_INLINE_TAG_END[1x69] : [}]
-     * </code>
+     * }
      * </pre>
      *
      * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGBICD">Oracle Docs</a>
@@ -674,16 +674,16 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>{&#64;literal #compare(Object)}</code></pre>
+     * <pre>{@code {&#64;literal #compare(Object)}}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_INLINE_TAG[1x0] : [{&#64;literal #compare(Object)}]
+     * {@code |--JAVADOC_INLINE_TAG[1x0] : [{&#64;literal #compare(Object)}]
      *        |--JAVADOC_INLINE_TAG_START[1x0] : [{]
      *        |--LITERAL_LITERAL[1x1] : [@literal]
      *        |--WS[1x9] : [ ]
      *        |--TEXT[1x10] : [#compare(Object)]
      *        |--JAVADOC_INLINE_TAG_END[1x27] : [}]
-     * </code>
+     * }
      * </pre>
      *
      * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCFJDG">Oracle Docs</a>
@@ -703,10 +703,10 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>{&#64;value Integer#MAX_VALUE}</code></pre>
+     * <pre>{@code {&#64;value Integer#MAX_VALUE}}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_INLINE_TAG[1x0] : [{&#64;value Integer#MAX_VALUE}]
+     * {@code |--JAVADOC_INLINE_TAG[1x0] : [{&#64;value Integer#MAX_VALUE}]
      *        |--JAVADOC_INLINE_TAG_START[1x0] : [{]
      *        |--VALUE_LITERAL[1x1] : [@value]
      *        |--WS[1x7] : [ ]
@@ -715,7 +715,7 @@ public final class JavadocTokenTypes {
      *            |--HASH[1x15] : [#]
      *            |--MEMBER[1x16] : [MAX_VALUE]
      *        |--JAVADOC_INLINE_TAG_END[1x25] : [}]
-     * </code>
+     * }
      * </pre>
      *
      * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDCDHH">Oracle Docs</a>
@@ -740,10 +740,10 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@see org.apache.utils.Lists.Comparator#compare(Object)</code></pre>
+     * <pre>{@code @see org.apache.utils.Lists.Comparator#compare(Object)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[3x0] : [@see org.apache.utils.Lists.Comparator#compare(Object)]
+     * {@code |--JAVADOC_TAG[3x0] : [@see org.apache.utils.Lists.Comparator#compare(Object)]
      *        |--SEE_LITERAL[3x0] : [@see]
      *        |--WS[3x4] : [ ]
      *        |--REFERENCE[3x5] : [org.apache.utils.Lists.Comparator#compare(Object)]
@@ -758,7 +758,7 @@ public final class JavadocTokenTypes {
      *                |--LEFT_BRACE[3x46] : [(]
      *                |--ARGUMENT[3x47] : [Object]
      *                |--RIGHT_BRACE[3x53] : [)]
-     * </code>
+     * }
      * </pre>
      */
     public static final int PACKAGE = JavadocParser.PACKAGE;
@@ -770,10 +770,10 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@see org.apache.utils.Lists.Comparator#compare(Object)</code></pre>
+     * <pre>{@code @see org.apache.utils.Lists.Comparator#compare(Object)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[3x0] : [@see org.apache.utils.Lists.Comparator#compare(Object)]
+     * {@code |--JAVADOC_TAG[3x0] : [@see org.apache.utils.Lists.Comparator#compare(Object)]
      *        |--SEE_LITERAL[3x0] : [@see]
      *        |--WS[3x4] : [ ]
      *        |--REFERENCE[3x5] : [org.apache.utils.Lists.Comparator#compare(Object)]
@@ -788,7 +788,7 @@ public final class JavadocTokenTypes {
      *                |--LEFT_BRACE[3x46] : [(]
      *                |--ARGUMENT[3x47] : [Object]
      *                |--RIGHT_BRACE[3x53] : [)]
-     * </code>
+     * }
      * </pre>
      */
     public static final int CLASS = JavadocParser.CLASS;
@@ -800,10 +800,10 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@see org.apache.utils.Lists.Comparator#compare(Object)</code></pre>
+     * <pre>{@code @see org.apache.utils.Lists.Comparator#compare(Object)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[3x0] : [@see org.apache.utils.Lists.Comparator#compare(Object)]
+     * {@code |--JAVADOC_TAG[3x0] : [@see org.apache.utils.Lists.Comparator#compare(Object)]
      *        |--SEE_LITERAL[3x0] : [@see]
      *        |--WS[3x4] : [ ]
      *        |--REFERENCE[3x5] : [org.apache.utils.Lists.Comparator#compare(Object)]
@@ -818,7 +818,7 @@ public final class JavadocTokenTypes {
      *                |--LEFT_BRACE[3x46] : [(]
      *                |--ARGUMENT[3x47] : [Object]
      *                |--RIGHT_BRACE[3x53] : [)]
-     * </code>
+     * }
      * </pre>
      */
     public static final int DOT = JavadocParser.DOT;
@@ -829,10 +829,10 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@see org.apache.utils.Lists.Comparator#compare(Object)</code></pre>
+     * <pre>{@code @see org.apache.utils.Lists.Comparator#compare(Object)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[3x0] : [@see org.apache.utils.Lists.Comparator#compare(Object)]
+     * {@code |--JAVADOC_TAG[3x0] : [@see org.apache.utils.Lists.Comparator#compare(Object)]
      *        |--SEE_LITERAL[3x0] : [@see]
      *        |--WS[3x4] : [ ]
      *        |--REFERENCE[3x5] : [org.apache.utils.Lists.Comparator#compare(Object)]
@@ -847,7 +847,7 @@ public final class JavadocTokenTypes {
      *                |--LEFT_BRACE[3x46] : [(]
      *                |--ARGUMENT[3x47] : [Object]
      *                |--RIGHT_BRACE[3x53] : [)]
-     * </code>
+     * }
      * </pre>
      */
     public static final int HASH = JavadocParser.HASH;
@@ -858,10 +858,10 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@see org.apache.utils.Lists.Comparator#compare(Object)</code></pre>
+     * <pre>{@code @see org.apache.utils.Lists.Comparator#compare(Object)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[3x0] : [@see org.apache.utils.Lists.Comparator#compare(Object)]
+     * {@code |--JAVADOC_TAG[3x0] : [@see org.apache.utils.Lists.Comparator#compare(Object)]
      *        |--SEE_LITERAL[3x0] : [@see]
      *        |--WS[3x4] : [ ]
      *        |--REFERENCE[3x5] : [org.apache.utils.Lists.Comparator#compare(Object)]
@@ -876,7 +876,7 @@ public final class JavadocTokenTypes {
      *                |--LEFT_BRACE[3x46] : [(]
      *                |--ARGUMENT[3x47] : [Object]
      *                |--RIGHT_BRACE[3x53] : [)]
-     * </code>
+     * }
      * </pre>
      */
     public static final int MEMBER = JavadocParser.MEMBER;
@@ -890,10 +890,10 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@see #method(Processor, String)</code></pre>
+     * <pre>{@code @see #method(Processor, String)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[1x0] : [@see #method(Processor, String)]
+     * {@code |--JAVADOC_TAG[1x0] : [@see #method(Processor, String)]
      *        |--SEE_LITERAL[1x0] : [@see]
      *        |--WS[1x4] : [ ]
      *        |--REFERENCE[1x5] : [#method(Processor, String)]
@@ -906,7 +906,7 @@ public final class JavadocTokenTypes {
      *                |--WS[1x23] : [ ]
      *                |--ARGUMENT[1x24] : [String]
      *                |--RIGHT_BRACE[1x30] : [)]
-     * </code>
+     * }
      * </pre>
      */
     public static final int PARAMETERS = JavadocParser.RULE_parameters + RULE_TYPES_OFFSET;
@@ -916,10 +916,10 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@see #method(Processor, String)</code></pre>
+     * <pre>{@code @see #method(Processor, String)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[1x0] : [@see #method(Processor, String)]
+     * {@code |--JAVADOC_TAG[1x0] : [@see #method(Processor, String)]
      *        |--SEE_LITERAL[1x0] : [@see]
      *        |--WS[1x4] : [ ]
      *        |--REFERENCE[1x5] : [#method(Processor, String)]
@@ -932,7 +932,7 @@ public final class JavadocTokenTypes {
      *                |--WS[1x23] : [ ]
      *                |--ARGUMENT[1x24] : [String]
      *                |--RIGHT_BRACE[1x30] : [)]
-     * </code>
+     * }
      * </pre>
      */
     public static final int LEFT_BRACE = JavadocParser.LEFT_BRACE;
@@ -942,10 +942,10 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@see #method(Processor, String)</code></pre>
+     * <pre>{@code @see #method(Processor, String)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[1x0] : [@see #method(Processor, String)]
+     * {@code |--JAVADOC_TAG[1x0] : [@see #method(Processor, String)]
      *        |--SEE_LITERAL[1x0] : [@see]
      *        |--WS[1x4] : [ ]
      *        |--REFERENCE[1x5] : [#method(Processor, String)]
@@ -958,7 +958,7 @@ public final class JavadocTokenTypes {
      *                |--WS[1x23] : [ ]
      *                |--ARGUMENT[1x24] : [String]
      *                |--RIGHT_BRACE[1x30] : [)]
-     * </code>
+     * }
      * </pre>
      */
     public static final int RIGHT_BRACE = JavadocParser.RIGHT_BRACE;
@@ -968,10 +968,10 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@see #method(Processor, String)</code></pre>
+     * <pre>{@code @see #method(Processor, String)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[1x0] : [@see #method(Processor, String)]
+     * {@code |--JAVADOC_TAG[1x0] : [@see #method(Processor, String)]
      *        |--SEE_LITERAL[1x0] : [@see]
      *        |--WS[1x4] : [ ]
      *        |--REFERENCE[1x5] : [#method(Processor, String)]
@@ -984,7 +984,7 @@ public final class JavadocTokenTypes {
      *                |--WS[1x23] : [ ]
      *                |--ARGUMENT[1x24] : [String]
      *                |--RIGHT_BRACE[1x30] : [)]
-     * </code>
+     * }
      * </pre>
      */
     public static final int ARGUMENT = JavadocParser.ARGUMENT;
@@ -994,10 +994,10 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@see #method(Processor, String)</code></pre>
+     * <pre>{@code @see #method(Processor, String)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[1x0] : [@see #method(Processor, String)]
+     * {@code |--JAVADOC_TAG[1x0] : [@see #method(Processor, String)]
      *        |--SEE_LITERAL[1x0] : [@see]
      *        |--WS[1x4] : [ ]
      *        |--REFERENCE[1x5] : [#method(Processor, String)]
@@ -1010,7 +1010,7 @@ public final class JavadocTokenTypes {
      *                |--WS[1x23] : [ ]
      *                |--ARGUMENT[1x24] : [String]
      *                |--RIGHT_BRACE[1x30] : [)]
-     * </code>
+     * }
      * </pre>
      *
      * @see #PARAMETERS
@@ -1025,14 +1025,14 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@see "Spring Framework"</code></pre>
+     * <pre>{@code @see "Spring Framework"}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[1x0] : [@see "Spring Framework"]
+     * {@code |--JAVADOC_TAG[1x0] : [@see "Spring Framework"]
      *        |--SEE_LITERAL[1x0] : [@see]
      *        |--WS[1x4] : [ ]
      *        |--STRING[1x5] : ["Spring Framework"]
-     * </code>
+     * }
      * </pre>
      *
      * @see #SEE_LITERAL
@@ -1052,10 +1052,10 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@throws IOException if &lt;b&gt;connection&lt;/b&gt; problems occur</code></pre>
+     * <pre>{@code @throws IOException if &lt;b&gt;connection&lt;/b&gt; problems occur}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[1x0] : [@throws IOException if &lt;b&gt;connection&lt;/b&gt; problems occur]
+     * {@code |--JAVADOC_TAG[1x0] : [@throws IOException if &lt;b&gt;connection&lt;/b&gt; problems occur]
      *        |--THROWS_LITERAL[1x0] : [@throws]
      *        |--WS[1x7] : [ ]
      *        |--CLASS_NAME[1x8] : [IOException]
@@ -1075,7 +1075,7 @@ public final class JavadocTokenTypes {
      *                        |--HTML_TAG_NAME[1x38] : [b]
      *                        |--CLOSE[1x39] : [&gt;]
      *            |--TEXT[1x40] : [ problems occur]
-     * </code>
+     * }
      * </pre>
      */
     public static final int DESCRIPTION = JavadocParser.RULE_description + RULE_TYPES_OFFSET;
@@ -1086,17 +1086,17 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@throws IOException connection problems</code></pre>
+     * <pre>{@code @throws IOException connection problems}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[1x0] : [@throws IOException connection problems]
+     * {@code |--JAVADOC_TAG[1x0] : [@throws IOException connection problems]
      *        |--THROWS_LITERAL[1x0] : [@throws]
      *        |--WS[1x7] : [ ]
      *        |--CLASS_NAME[1x8] : [IOException]
      *        |--WS[1x19] : [ ]
      *        |--DESCRIPTION[1x20] : [connection problems]
      *            |--TEXT[1x20] : [connection problems]
-     * </code>
+     * }
      * </pre>
      *
      * @see #EXCEPTION_LITERAL
@@ -1112,14 +1112,14 @@ public final class JavadocTokenTypes {
      * <pre>{@code @param T The bar.}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[4x3] : [@param T The bar.]
+     * {@code |--JAVADOC_TAG[4x3] : [@param T The bar.]
      *        |--PARAM_LITERAL[4x3] : [@param]
      *        |--WS[4x9] : [ ]
      *        |--PARAMETER_NAME[4x10] : [T]
      *        |--WS[4x11] : [ ]
      *        |--DESCRIPTION[4x12] : [The bar.]
      *            |--TEXT[4x12] : [The bar.]
-     * </code>
+     * }
      * </pre>
      *
      * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHJECF">Oracle Docs</a>
@@ -1133,14 +1133,14 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@serial exclude</code></pre>
+     * <pre>{@code @serial exclude}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[1x0] : [@serial exclude]
+     * {@code |--JAVADOC_TAG[1x0] : [@serial exclude]
      *        |--SERIAL_LITERAL[1x0] : [@serial]
      *        |--WS[1x7] : [ ]
      *        |--LITERAL_EXCLUDE[1x8] : [exclude]
-     * </code>
+     * }
      * </pre>
      *
      * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">Oracle Docs</a>
@@ -1154,14 +1154,14 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@serial include</code></pre>
+     * <pre>{@code @serial include}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[1x0] : [@serial include]
+     * {@code |--JAVADOC_TAG[1x0] : [@serial include]
      *        |--SERIAL_LITERAL[1x0] : [@serial]
      *        |--WS[1x7] : [ ]
      *        |--LITERAL_INCLUDE[1x8] : [include]
-     * </code>
+     * }
      * </pre>
      *
      * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">Oracle Docs</a>
@@ -1174,10 +1174,10 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@serialField counter Integer objects counter</code></pre>
+     * <pre>{@code @serialField counter Integer objects counter}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[3x0] : [@serialField counter Integer objects counter]
+     * {@code |--JAVADOC_TAG[3x0] : [@serialField counter Integer objects counter]
      *        |--SERIAL_FIELD_LITERAL[3x0] : [@serialField]
      *        |--WS[3x12] : [ ]
      *        |--FIELD_NAME[3x13] : [counter]
@@ -1186,7 +1186,7 @@ public final class JavadocTokenTypes {
      *        |--WS[3x28] : [ ]
      *        |--DESCRIPTION[3x29] : [objects counter]
      *            |--TEXT[3x29] : [objects counter]
-     * </code>
+     * }
      * </pre>
      *
      * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">Oracle Docs</a>
@@ -1199,10 +1199,10 @@ public final class JavadocTokenTypes {
      *
      * <p>
      * <b>Example:</b>
-     * <pre><code>@serialField counter Integer objects counter</code></pre>
+     * <pre>{@code @serialField counter Integer objects counter}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>|--JAVADOC_TAG[3x0] : [@serialField counter Integer objects counter]
+     * {@code |--JAVADOC_TAG[3x0] : [@serialField counter Integer objects counter]
      *        |--SERIAL_FIELD_LITERAL[3x0] : [@serialField]
      *        |--WS[3x12] : [ ]
      *        |--FIELD_NAME[3x13] : [counter]
@@ -1211,7 +1211,7 @@ public final class JavadocTokenTypes {
      *        |--WS[3x28] : [ ]
      *        |--DESCRIPTION[3x29] : [objects counter]
      *            |--TEXT[3x29] : [objects counter]
-     * </code>
+     * }
      * </pre>
      *
      * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDHDECF">Oracle Docs</a>

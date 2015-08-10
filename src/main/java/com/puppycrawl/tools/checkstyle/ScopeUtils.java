@@ -39,7 +39,7 @@ public final class ScopeUtils {
      * Returns the Scope specified by the modifier set.
      *
      * @param aMods root node of a modifier set
-     * @return a <code>Scope</code> value
+     * @return a {@code Scope} value
      */
     public static Scope getScopeFromMods(DetailAST aMods) {
         Scope retVal = Scope.PACKAGE; // default scope
@@ -98,7 +98,7 @@ public final class ScopeUtils {
      *
      * @param aAST the node to check if directly contained within an interface
      * block
-     * @return a <code>boolean</code> value
+     * @return a {@code boolean} value
      */
     public static boolean inInterfaceBlock(DetailAST aAST) {
         boolean retVal = false;
@@ -130,7 +130,7 @@ public final class ScopeUtils {
      *
      * @param aAST the node to check if directly contained within an annotation
      * block
-     * @return a <code>boolean</code> value
+     * @return a {@code boolean} value
      */
     public static boolean inAnnotationBlock(DetailAST aAST) {
         boolean retVal = false;
@@ -163,7 +163,7 @@ public final class ScopeUtils {
      *
      * @param aAST the node to check if directly contained within an interface
      * or annotation block
-     * @return a <code>boolean</code> value
+     * @return a {@code boolean} value
      */
     public static boolean inInterfaceOrAnnotationBlock(DetailAST aAST) {
         return inInterfaceBlock(aAST) || inAnnotationBlock(aAST);
@@ -174,7 +174,7 @@ public final class ScopeUtils {
      *
      * @param aAST the node to check if directly contained within an enum
      * block
-     * @return a <code>boolean</code> value
+     * @return a {@code boolean} value
      */
     public static boolean inEnumBlock(DetailAST aAST) {
         boolean retVal = false;
@@ -206,7 +206,7 @@ public final class ScopeUtils {
      * A code block is a method or constructor body, or a initialiser block.
      *
      * @param aAST the node to check
-     * @return a <code>boolean</code> value
+     * @return a {@code boolean} value
      */
     public static boolean inCodeBlock(DetailAST aAST) {
         boolean retVal = false;
@@ -232,7 +232,7 @@ public final class ScopeUtils {
      * Returns whether a node is contained in the outer most type block.
      *
      * @param aAST the node to check
-     * @return a <code>boolean</code> value
+     * @return a {@code boolean} value
      */
     public static boolean isOuterMostType(DetailAST aAST) {
         boolean retVal = true;

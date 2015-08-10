@@ -57,7 +57,7 @@ public abstract class AbstractExpressionHandler {
     public static final String MSG_CHILD_ERROR_MULTI = "indentation.child.error.multi";
 
     /**
-     * The instance of <code>IndentationCheck</code> using this handler.
+     * The instance of {@code IndentationCheck} using this handler.
      */
     private final IndentationCheck indentCheck;
 
@@ -541,17 +541,17 @@ public abstract class AbstractExpressionHandler {
     }
 
     /**
-     * A shortcut for <code>IndentationCheck</code> property.
-     * @return value of basicOffset property of <code>IndentationCheck</code>
+     * A shortcut for {@code IndentationCheck} property.
+     * @return value of basicOffset property of {@code IndentationCheck}
      */
     protected final int getBasicOffset() {
         return getIndentCheck().getBasicOffset();
     }
 
     /**
-     * A shortcut for <code>IndentationCheck</code> property.
+     * A shortcut for {@code IndentationCheck} property.
      * @return value of braceAdjustment property
-     *         of <code>IndentationCheck</code>
+     *         of {@code IndentationCheck}
      */
     protected final int getBraceAdjustment() {
         return getIndentCheck().getBraceAdjustment();

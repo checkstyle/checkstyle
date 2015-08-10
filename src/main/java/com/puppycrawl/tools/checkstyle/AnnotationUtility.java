@@ -91,7 +91,7 @@ public final class AnnotationUtility {
 
     /**
      * Gets the AST that holds a series of annotations for the
-     * potentially annotated AST.  Returns <code>null</code>
+     * potentially annotated AST.  Returns {@code null}
      * the passed in AST is not have an Annotation Holder.
      *
      * @param ast the current node

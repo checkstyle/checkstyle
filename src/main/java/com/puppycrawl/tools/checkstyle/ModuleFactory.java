@@ -24,8 +24,8 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 /**
  * A module factory creates Objects from a given name.
  * It's purpose is to map the shortnames like
- * <code>AvoidStarImport</code> to full classnames like
- * <code>com.puppycrawl.tools.checkstyle.checks.AvoidStarImportCheck</code>.
+ * {@code AvoidStarImport} to full classnames like
+ * {@code com.puppycrawl.tools.checkstyle.checks.AvoidStarImportCheck}.
  * A ModuleFactory can implement this name resolution by using naming
  * conventions, fallback strategies, etc.
  *

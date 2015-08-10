@@ -55,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class ConstantNameCheck
     extends AbstractAccessControlNameCheck {
-    /** Creates a new <code>ConstantNameCheck</code> instance. */
+    /** Creates a new {@code ConstantNameCheck} instance. */
     public ConstantNameCheck() {
         super("^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$");
     }

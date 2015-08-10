@@ -170,7 +170,7 @@ public final class MethodCountCheck extends Check {
     }
 
     /**
-     * Sets the maximum allowed <code>private</code> methods per type.
+     * Sets the maximum allowed {@code private} methods per type.
      * @param value the maximum allowed.
      */
     public void setMaxPrivate(int value) {
@@ -178,7 +178,7 @@ public final class MethodCountCheck extends Check {
     }
 
     /**
-     * Sets the maximum allowed <code>package</code> methods per type.
+     * Sets the maximum allowed {@code package} methods per type.
      * @param value the maximum allowed.
      */
     public void setMaxPackage(int value) {
@@ -186,7 +186,7 @@ public final class MethodCountCheck extends Check {
     }
 
     /**
-     * Sets the maximum allowed <code>protected</code> methods per type.
+     * Sets the maximum allowed {@code protected} methods per type.
      * @param value the maximum allowed.
      */
     public void setMaxProtected(int value) {
@@ -194,7 +194,7 @@ public final class MethodCountCheck extends Check {
     }
 
     /**
-     * Sets the maximum allowed <code>public</code> methods per type.
+     * Sets the maximum allowed {@code public} methods per type.
      * @param value the maximum allowed.
      */
     public void setMaxPublic(int value) {

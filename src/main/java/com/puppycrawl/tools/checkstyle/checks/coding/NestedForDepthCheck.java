@@ -23,7 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Check the number of nested <code>for</code> -statements. The maximum
+ * Check the number of nested {@code for} -statements. The maximum
  * number of nested layers can be configured. The default value is 1. Most of
  * the logic is implemented in the parent class. The code for the class is
  * copied from the NestedIfDepthCheck-class. The only difference is the

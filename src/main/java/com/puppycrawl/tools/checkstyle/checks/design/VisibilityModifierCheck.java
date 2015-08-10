@@ -64,9 +64,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * <pre>
- * <code> @org.junit.Rule
+ * {@code @org.junit.Rule
  * public TemporaryFolder publicJUnitRule = new TemporaryFolder();
- * </code>
+ * }
  * </pre>
  *
  * <p>
@@ -133,7 +133,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * <pre>
- * <code>
+ * {@code
  * public final class ImmutableClass
  * {
  *     public final int intValue; // No warning
@@ -148,7 +148,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *         this.notes = notes;
  *     }
  * }
- * </code>
+ * }
  * </pre>
  *
  * <p>
@@ -163,7 +163,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * <pre>
- * <code>
+ * {@code
  * public final class ImmutableClass
  * {
  *     public final ImmutableSet&lt;String&gt; includes; // No warning
@@ -179,7 +179,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *         this.notes = notes;
  *     }
  * }
- * </code>
+ * }
  * </pre>
  *
  * <p>
@@ -195,12 +195,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * <pre>
- * <code> @com.annotation.CustomAnnotation
+ * {@code @com.annotation.CustomAnnotation
  * String customAnnotated; // No warning
- * </code>
- * <code> @CustomAnnotation
+ * }
+ * {@code @CustomAnnotation
  * String shortCustomAnnotated; // No warning
- * </code>
+ * }
  * </pre>
  *
  * <p>
@@ -216,16 +216,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * <pre>
- * <code> @CustomAnnotation
+ * {@code @CustomAnnotation
  * String customAnnotated; // No warning
- * </code>
- * <code> @com.annotation.CustomAnnotation
+ * }
+ * {@code @com.annotation.CustomAnnotation
  * String customAnnotated1; // No warning
- * </code>
- * <code> @mypackage.annotation.CustomAnnotation
+ * }
+ * {@code @mypackage.annotation.CustomAnnotation
  * String customAnnotatedAnotherPackage; // another package but short name matches
  *                                       // so no violation
- * </code>
+ * }
  * </pre>
  *
  *
@@ -494,9 +494,9 @@ public class VisibilityModifierCheck
     /**
      * Checks if current import is star import. E.g.:
      * <p>
-     * <code>
+     * {@code
      * import java.util.*;
-     * </code>
+     * }
      * </p>
      * @param importAst {@link TokenTypes#IMPORT Import}
      * @return true if it is star import
