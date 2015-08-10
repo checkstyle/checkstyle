@@ -93,10 +93,18 @@ public class LeftCurlyCheck
      */
     public static final String MSG_KEY_LINE_BREAK_AFTER = "line.break.after";
 
-    /** default maximum line length */
+    /**
+     * Default maximum line length.
+     * @deprecated since 6.10 release, option maxLineLength is not required for the Check.
+     */
+    @Deprecated
     private static final int DEFAULT_MAX_LINE_LENGTH = 80;
 
-    /** maxLineLength **/
+    /**
+     * Maximum line length.
+     * @deprecated since 6.10 release, option is not required for the Check.
+     */
+    @Deprecated
     private int maxLineLength = DEFAULT_MAX_LINE_LENGTH;
 
     /** If true, Check will ignore enums*/
@@ -113,7 +121,9 @@ public class LeftCurlyCheck
      * Sets the maximum line length used in calculating the placement of the
      * left curly brace.
      * @param maxLineLength the max allowed line length
+     * @deprecated since 6.10 release, option is not required for the Check.
      */
+    @Deprecated
     public void setMaxLineLength(int maxLineLength) {
         this.maxLineLength = maxLineLength;
     }
@@ -290,13 +300,6 @@ public class LeftCurlyCheck
                              final DetailAST startToken) {
         final String braceLine = getLine(brace.getLineNo() - 1);
 
-        // calculate the previous line length without trailing whitespace. Need
-        // to handle the case where there is no previous line, cause the line
-        // being check is the first line in the file.
-        final int prevLineLen = brace.getLineNo() == 1
-            ? maxLineLength
-            : Utils.lengthMinusTrailingWhitespace(getLine(brace.getLineNo() - 2));
-
         // Check for being told to ignore, or have '{}' which is a special case
         if (braceLine.length() <= brace.getColumnNo() + 1
                 || braceLine.charAt(brace.getColumnNo() + 1) != '}') {
@@ -307,11 +310,11 @@ public class LeftCurlyCheck
             }
             else if (getAbstractOption() == LeftCurlyOption.EOL) {
 
-                validateEol(brace, braceLine, prevLineLen);
+                validateEol(brace, braceLine);
             }
             else if (startToken.getLineNo() != brace.getLineNo()) {
 
-                validateNewLinePosion(brace, startToken, braceLine, prevLineLen);
+                validateNewLinePosion(brace, startToken, braceLine);
 
             }
         }
@@ -321,11 +324,9 @@ public class LeftCurlyCheck
      * validate EOL case
      * @param brace brase AST
      * @param braceLine line content
-     * @param prevLineLen previous line length
      */
-    private void validateEol(DetailAST brace, String braceLine, int prevLineLen) {
-        if (Utils.whitespaceBefore(brace.getColumnNo(), braceLine)
-            && prevLineLen + 2 <= maxLineLength) {
+    private void validateEol(DetailAST brace, String braceLine) {
+        if (Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
             log(brace, MSG_KEY_LINE_PREVIOUS, "{", brace.getColumnNo() + 1);
         }
         if (!hasLineBreakAfter(brace)) {
@@ -338,16 +339,15 @@ public class LeftCurlyCheck
      * @param brace brace AST
      * @param startToken start Token
      * @param braceLine content of line with Brace
-     * @param prevLineLen previous Line length
      */
     private void validateNewLinePosion(DetailAST brace, DetailAST startToken,
-                                       String braceLine, int prevLineLen) {
+                                       String braceLine) {
         // not on the same line
         if (startToken.getLineNo() + 1 == brace.getLineNo()) {
             if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
                 log(brace, MSG_KEY_LINE_NEW, "{", brace.getColumnNo() + 1);
             }
-            else if (prevLineLen + 2 <= maxLineLength) {
+            else {
                 log(brace, MSG_KEY_LINE_PREVIOUS, "{", brace.getColumnNo() + 1);
             }
         }

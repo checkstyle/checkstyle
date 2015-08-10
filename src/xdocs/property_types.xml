@@ -248,8 +248,9 @@
         <tr>
           <td><code>nlow</code></td>
           <td>
-            If the brace will fit on the first line of the statement, taking
-            into account maximum line length, then apply <code>eol</code> rule. Otherwise apply the <code>nl</code> rule. <code>nlow</code> is a
+            If the brace will fit on the first line of the statement,
+            then apply <code>eol</code> rule. Otherwise apply the
+            <code>nl</code> rule. <code>nlow</code> is a
             mnemonic for "new line on wrap". For the example above Checkstyle
             will enforce:
             <pre>

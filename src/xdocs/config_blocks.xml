@@ -256,7 +256,9 @@ try {
           </tr>
           <tr>
             <td>maxLineLength</td>
-            <td>maximum number of characters in a line</td>
+            <td>maximum number of characters in a line. ATTENTION:
+                The option has been marked as <b>deprecated</b>
+                since checkstyle 6.10 release.</td>
             <td><a href="property_types.html#integer">integer</a></td>
             <td><code>80</code></td>
           </tr>
