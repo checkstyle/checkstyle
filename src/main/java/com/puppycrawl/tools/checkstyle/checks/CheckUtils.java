@@ -225,18 +225,6 @@ public final class CheckUtils {
     }
 
     /**
-     * Returns the value represented by the specified string of the specified
-     * type. Returns 0 for types other than float, double, int, and long.
-     * @param text the string to be parsed.
-     * @param type the token type of the text. Should be a constant of
-     * {@link TokenTypes}.
-     * @return the float value represented by the string argument.
-     */
-    public static double parseFloat(String text, int type) {
-        return (float) parseDouble(text, type);
-    }
-
-    /**
      * Finds sub-node for given node minimal (line, column) pair.
      * @param node the root of tree for search.
      * @return sub-node with minimal (line, column) pair.
