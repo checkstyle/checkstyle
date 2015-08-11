@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import java.io.Closeable;
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -399,6 +401,23 @@ public final class Utils {
         }
         catch (final IllegalAccessException exception) {
             throw new IllegalStateException(exception);
+        }
+    }
+
+    /**
+     * Closes a stream re-throwing IOException as IllegalStateException.
+     *
+     * @param closeable Closeable object
+     */
+    public static void close(Closeable closeable) {
+        if (closeable == null) {
+            return;
+        }
+        try {
+            closeable.close();
+        }
+        catch (IOException e) {
+            throw new IllegalStateException("Cannot close the stream", e);
         }
     }
 }

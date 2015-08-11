@@ -292,27 +292,30 @@ public final class Main {
 
         // setup the output stream
         OutputStream out;
-        boolean closeOut;
+        boolean closeOutputStream;
         if (outputLocation != null) {
             out = new FileOutputStream(outputLocation);
-            closeOut = true;
+            closeOutputStream = true;
         }
         else {
             out = System.out;
-            closeOut = false;
+            closeOutputStream = false;
         }
 
         // setup a listener
         AuditListener listener;
         if ("xml".equals(format)) {
-            listener = new XMLLogger(out, closeOut);
+            listener = new XMLLogger(out, closeOutputStream);
 
         }
         else if ("plain".equals(format)) {
-            listener = new DefaultLogger(out, closeOut);
+            listener = new DefaultLogger(out, closeOutputStream);
 
         }
         else {
+            if (closeOutputStream) {
+                Utils.close(out);
+            }
             throw new IllegalStateException("Invalid output format. Found '" + format
                     + "' but expected 'plain' or 'xml'.");
         }
