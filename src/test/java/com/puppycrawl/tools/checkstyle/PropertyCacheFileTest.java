@@ -101,7 +101,7 @@ public class PropertyCacheFileTest {
         when(MessageDigest.getInstance("SHA-1"))
                 .thenThrow(NoSuchAlgorithmException.class);
 
-        Class[] param = new Class[1];
+        Class<?>[] param = new Class<?>[1];
         param[0] = Serializable.class;
         Method method = PropertyCacheFile.class.getDeclaredMethod("getConfigHashCode", param);
         method.setAccessible(true);
