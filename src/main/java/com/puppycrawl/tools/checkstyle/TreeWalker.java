@@ -209,8 +209,7 @@ public final class TreeWalker
                      fileName);
             LOG.error(exceptionMsg);
             final RecognitionException re = tre.recog;
-            String message;
-            message = re.getMessage();
+            final String message = re.getMessage();
             getMessageCollector().add(createLocalizedMessage(message));
         }
         // RecognitionException and any other (need to check if needed)

@@ -159,8 +159,8 @@ public final class OneStatementPerLineCheck extends Check {
      */
     private static boolean isOnTheSameLine(DetailAST ast, int lastStatementEnd,
                                            int forStatementEnd) {
-        final boolean onTheSameLine;
-        onTheSameLine = lastStatementEnd == ast.getLineNo() && forStatementEnd != ast.getLineNo();
+        final boolean onTheSameLine =
+            lastStatementEnd == ast.getLineNo() && forStatementEnd != ast.getLineNo();
         return onTheSameLine;
     }
 
