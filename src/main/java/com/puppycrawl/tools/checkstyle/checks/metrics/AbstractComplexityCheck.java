@@ -51,7 +51,7 @@ public abstract class AbstractComplexityCheck
      * Creates an instance.
      * @param max the threshold of when to report an error
      */
-    public AbstractComplexityCheck(int max) {
+    protected AbstractComplexityCheck(int max) {
         this.max = max;
     }
 
