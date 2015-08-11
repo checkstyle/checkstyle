@@ -146,12 +146,11 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      */
     private void checkOrderInTagSection(DetailNode javadoc) {
         int indexOrderOfPreviousTag = 0;
-        int indexOrderOfCurrentTag;
 
         for (DetailNode node : javadoc.getChildren()) {
             if (node.getType() == JavadocTokenTypes.JAVADOC_TAG) {
                 final String tagText = JavadocUtils.getFirstChild(node).getText();
-                indexOrderOfCurrentTag = tagOrder.indexOf(tagText);
+                final int indexOrderOfCurrentTag = tagOrder.indexOf(tagText);
 
                 if (tagOrder.contains(tagText)
                         && indexOrderOfCurrentTag < indexOrderOfPreviousTag) {

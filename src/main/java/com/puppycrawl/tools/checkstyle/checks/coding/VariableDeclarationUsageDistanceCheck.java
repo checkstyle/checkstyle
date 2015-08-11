@@ -647,7 +647,6 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
      */
     private static DetailAST getFirstNodeInsideSwitchBlock(
             DetailAST block, DetailAST variable) {
-        DetailAST firstNodeInsideBlock = null;
 
         DetailAST currentNode = block
                 .findFirstToken(TokenTypes.CASE_GROUP);
@@ -669,6 +668,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
         // firstNodeInsideBlock = null, otherwise if variable usage exists
         // only inside one block, then get node from
         // variableUsageExpressions.
+        DetailAST firstNodeInsideBlock = null;
         if (variableUsageExpressions.size() == 1) {
             firstNodeInsideBlock = variableUsageExpressions.get(0);
         }
