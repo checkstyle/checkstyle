@@ -63,10 +63,10 @@ public class JavadocVariableCheck
 
     /**
      * Set the excludeScope.
-     * @param scope a {@code String} value
+     * @param excludeScope a {@code String} value
      */
-    public void setExcludeScope(String scope) {
-        excludeScope = Scope.getInstance(scope);
+    public void setExcludeScope(String excludeScope) {
+        this.excludeScope = Scope.getInstance(excludeScope);
     }
 
     /**
@@ -128,23 +128,23 @@ public class JavadocVariableCheck
             return false;
         }
 
-        final Scope scope;
+        final Scope customScope;
         if (ast.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
-            scope = Scope.PUBLIC;
+            customScope = Scope.PUBLIC;
         }
         else {
             final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
             final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
-            scope =
+            customScope =
                 ScopeUtils.inInterfaceOrAnnotationBlock(ast)
                     ? Scope.PUBLIC : declaredScope;
         }
 
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
 
-        return scope.isIn(this.scope) && surroundingScope.isIn(this.scope)
+        return customScope.isIn(this.scope) && surroundingScope.isIn(this.scope)
             && (excludeScope == null
-                || !scope.isIn(excludeScope)
+                || !customScope.isIn(excludeScope)
                 || !surroundingScope.isIn(excludeScope));
     }
 }

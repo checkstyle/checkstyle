@@ -91,14 +91,14 @@ public class IllegalTokenTextCheck
     public void visitToken(DetailAST ast) {
         final String text = ast.getText();
         if (getRegexp().matcher(text).find()) {
-            String message = getMessage();
-            if (message.isEmpty()) {
-                message = MSG_KEY;
+            String customMessage = getMessage();
+            if (customMessage.isEmpty()) {
+                customMessage = MSG_KEY;
             }
             log(
                 ast.getLineNo(),
                 ast.getColumnNo(),
-                message,
+                customMessage,
                 getFormat());
         }
     }

@@ -41,8 +41,7 @@ public class PackageObjectFactoryTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testCtorException()  throws CheckstyleException {
-        PackageObjectFactory factory = new PackageObjectFactory(
-                new HashSet<String>(), null);
+        new PackageObjectFactory(new HashSet<String>(), null);
     }
 
     @Test

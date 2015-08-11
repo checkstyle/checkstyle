@@ -68,13 +68,13 @@ public class JavaNCSSCheck extends Check {
     private static final int METHOD_MAX_NCSS = 50;
 
     /** maximum ncss for a complete source file */
-    private int fileMax = FILE_MAX_NCSS;
+    private int fileMaximum = FILE_MAX_NCSS;
 
     /** maximum ncss for a class */
-    private int classMax = CLASS_MAX_NCSS;
+    private int classMaximum = CLASS_MAX_NCSS;
 
     /** maximum ncss for a method */
-    private int methodMax = METHOD_MAX_NCSS;
+    private int methodMaximum = METHOD_MAX_NCSS;
 
     /** list containing the stacked counters */
     private Deque<Counter> counters;
@@ -222,9 +222,9 @@ public class JavaNCSSCheck extends Check {
             final Counter counter = counters.pop();
 
             final int count = counter.getCount();
-            if (count > methodMax) {
+            if (count > methodMaximum) {
                 log(ast.getLineNo(), ast.getColumnNo(), MSG_METHOD,
-                        count, methodMax);
+                        count, methodMaximum);
             }
         }
         else if (tokenType == TokenTypes.CLASS_DEF) {
@@ -232,9 +232,9 @@ public class JavaNCSSCheck extends Check {
             final Counter counter = counters.pop();
 
             final int count = counter.getCount();
-            if (count > classMax) {
+            if (count > classMaximum) {
                 log(ast.getLineNo(), ast.getColumnNo(), MSG_CLASS,
-                        count, classMax);
+                        count, classMaximum);
             }
         }
     }
@@ -245,40 +245,40 @@ public class JavaNCSSCheck extends Check {
         final Counter counter = counters.pop();
 
         final int count = counter.getCount();
-        if (count > fileMax) {
+        if (count > fileMaximum) {
             log(rootAST.getLineNo(), rootAST.getColumnNo(), MSG_FILE,
-                    count, fileMax);
+                    count, fileMaximum);
         }
     }
 
     /**
      * Sets the maximum ncss for a file.
      *
-     * @param fileMax
+     * @param fileMaximum
      *            the maximum ncss
      */
-    public void setFileMaximum(int fileMax) {
-        this.fileMax = fileMax;
+    public void setFileMaximum(int fileMaximum) {
+        this.fileMaximum = fileMaximum;
     }
 
     /**
      * Sets the maximum ncss for a class.
      *
-     * @param classMax
+     * @param classMaximum
      *            the maximum ncss
      */
-    public void setClassMaximum(int classMax) {
-        this.classMax = classMax;
+    public void setClassMaximum(int classMaximum) {
+        this.classMaximum = classMaximum;
     }
 
     /**
      * Sets the maximum ncss for a method.
      *
-     * @param methodMax
+     * @param methodMaximum
      *            the maximum ncss
      */
-    public void setMethodMaximum(int methodMax) {
-        this.methodMax = methodMax;
+    public void setMethodMaximum(int methodMaximum) {
+        this.methodMaximum = methodMaximum;
     }
 
     /**

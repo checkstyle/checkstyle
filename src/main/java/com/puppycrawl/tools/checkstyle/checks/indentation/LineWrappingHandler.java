@@ -96,14 +96,14 @@ public class LineWrappingHandler {
     public void checkIndentation() {
         final NavigableMap<Integer, DetailAST> firstNodesOnLines = collectFirstNodes();
 
-        final DetailAST firstNode = firstNodesOnLines.get(firstNodesOnLines.firstKey());
-        if (firstNode.getType() == TokenTypes.AT) {
-            checkAnnotationIndentation(firstNode, firstNodesOnLines);
+        final DetailAST firstLineNode = firstNodesOnLines.get(firstNodesOnLines.firstKey());
+        if (firstLineNode.getType() == TokenTypes.AT) {
+            checkAnnotationIndentation(firstLineNode, firstNodesOnLines);
         }
 
         // First node should be removed because it was already checked before.
         firstNodesOnLines.remove(firstNodesOnLines.firstKey());
-        final int firstNodeIndent = getFirstNodeIndent(firstNode);
+        final int firstNodeIndent = getFirstNodeIndent(firstLineNode);
         final int currentIndent = firstNodeIndent + indentLevel;
 
         for (DetailAST node : firstNodesOnLines.values()) {

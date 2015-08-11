@@ -166,14 +166,14 @@ public final class AnnotationUseStyleCheck extends Check {
     //has more than one option type.
 
     /** @see #setElementStyle(String) */
-    private ElementStyle style = ElementStyle.COMPACT_NO_ARRAY;
+    private ElementStyle elementStyle = ElementStyle.COMPACT_NO_ARRAY;
 
     //defaulting to NEVER because of the strange compiler behavior
     /** @see #setTrailingArrayComma(String) */
-    private TrailingArrayComma comma = TrailingArrayComma.NEVER;
+    private TrailingArrayComma trailingArrayComma = TrailingArrayComma.NEVER;
 
     /** @see #setClosingParens(String) */
-    private ClosingParens parens = ClosingParens.NEVER;
+    private ClosingParens closingParens = ClosingParens.NEVER;
 
     /**
      * Sets the ElementStyle from a string.
@@ -182,7 +182,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @throws ConversionException if cannot convert string.
      */
     public void setElementStyle(final String style) {
-        this.style = getOption(ElementStyle.class, style);
+        this.elementStyle = getOption(ElementStyle.class, style);
     }
 
     /**
@@ -192,7 +192,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @throws ConversionException if cannot convert string.
      */
     public void setTrailingArrayComma(final String comma) {
-        this.comma = getOption(TrailingArrayComma.class, comma);
+        this.trailingArrayComma = getOption(TrailingArrayComma.class, comma);
     }
 
     /**
@@ -202,7 +202,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @throws ConversionException if cannot convert string.
      */
     public void setClosingParens(final String parens) {
-        this.parens = getOption(ClosingParens.class, parens);
+        this.closingParens = getOption(ClosingParens.class, parens);
     }
 
     /**
@@ -255,7 +255,7 @@ public final class AnnotationUseStyleCheck extends Check {
      */
     private void checkStyleType(final DetailAST annotation) {
 
-        switch (style) {
+        switch (elementStyle) {
             case COMPACT_NO_ARRAY:
                 checkCompactNoArrayStyle(annotation);
                 break;
@@ -351,7 +351,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @param annotation the annotation token
      */
     private void checkTrailingComma(final DetailAST annotation) {
-        if (TrailingArrayComma.IGNORE == comma) {
+        if (TrailingArrayComma.IGNORE == trailingArrayComma) {
             return;
         }
 
@@ -386,12 +386,12 @@ public final class AnnotationUseStyleCheck extends Check {
         //comma can be null if array is empty
         final DetailAST comma = rCurly.getPreviousSibling();
 
-        if (this.comma == TrailingArrayComma.ALWAYS
+        if (this.trailingArrayComma == TrailingArrayComma.ALWAYS
             && (comma == null || comma.getType() != TokenTypes.COMMA)) {
             log(rCurly.getLineNo(),
                 rCurly.getColumnNo(), MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING);
         }
-        else if (this.comma == TrailingArrayComma.NEVER
+        else if (this.trailingArrayComma == TrailingArrayComma.NEVER
             && comma != null && comma.getType() == TokenTypes.COMMA) {
             log(comma.getLineNo(),
                 comma.getColumnNo(), MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT);
@@ -405,18 +405,18 @@ public final class AnnotationUseStyleCheck extends Check {
      * @param ast the annotation token
      */
     private void checkCheckClosingParens(final DetailAST ast) {
-        if (ClosingParens.IGNORE == parens) {
+        if (ClosingParens.IGNORE == closingParens) {
             return;
         }
 
         final DetailAST paren = ast.getLastChild();
         final boolean parenExists = paren.getType() == TokenTypes.RPAREN;
 
-        if (ClosingParens.ALWAYS == parens
+        if (ClosingParens.ALWAYS == closingParens
             && !parenExists) {
             log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_MISSING);
         }
-        else if (ClosingParens.NEVER == parens
+        else if (ClosingParens.NEVER == closingParens
             && !ast.branchContains(TokenTypes.EXPR)
             && !ast.branchContains(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
             && !ast.branchContains(TokenTypes.ANNOTATION_ARRAY_INIT)

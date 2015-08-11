@@ -78,12 +78,12 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      * @param tags to be ignored by check.
      */
     public void setIgnoredTags(String tags) {
-        final List<String> ignoredTags = new ArrayList<>();
+        final List<String> tagList = new ArrayList<>();
         final String[] sTags = tags.split(",");
         for (String sTag : sTags) {
-            ignoredTags.add(sTag.trim());
+            tagList.add(sTag.trim());
         }
-        this.ignoredTags = ignoredTags;
+        this.ignoredTags = tagList;
     }
 
     /**

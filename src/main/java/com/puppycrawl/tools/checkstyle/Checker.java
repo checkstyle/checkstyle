@@ -69,7 +69,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     private final List<FileSetCheck> fileSetChecks = Lists.newArrayList();
 
     /** class loader to resolve classes with. **/
-    private ClassLoader loader = Thread.currentThread()
+    private ClassLoader classLoader = Thread.currentThread()
             .getContextClassLoader();
 
     /** the basedir to strip off in filenames */
@@ -139,7 +139,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
 
         final DefaultContext context = new DefaultContext();
         context.add("charset", charset);
-        context.add("classLoader", loader);
+        context.add("classLoader", classLoader);
         context.add("moduleFactory", moduleFactory);
         context.add("severity", severityLevel.getName());
         context.add("basedir", basedir);
@@ -415,10 +415,10 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
      * Some Check implementations will use that classloader to improve the
      * quality of their reports, e.g. to load a class and then analyze it via
      * reflection.
-     * @param loader the new classloader
+     * @param classLoader the new classloader
      */
-    public final void setClassLoader(ClassLoader loader) {
-        this.loader = loader;
+    public final void setClassLoader(ClassLoader classLoader) {
+        this.classLoader = classLoader;
     }
 
     /**

@@ -297,6 +297,11 @@
     </module>
 
     <module name="CommentsIndentation"/>
+    <module name="HiddenField">
+        <property name="ignoreConstructorParameter" value="true"/>
+		<property name="ignoreSetter" value="true"/>
+        <property name="setterCanReturnItsClass" value="true"/>
+    </module>
 
 <!--
     <module name="AvoidInlineConditionals"/>
@@ -305,7 +310,6 @@
     <module name="DesignForExtension"/>
     <module name="ExecutableStatementCount"/>
     <module name="FinalParameters"/>
-    <module name="HiddenField"/>
     <module name="IllegalToken"/>
     <module name="IllegalType"/>
     <module name="InnerTypeLast"/>
