@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
@@ -92,7 +93,7 @@ public abstract class BaseCheckTestSupport
 
     protected static String getSrcPath(String aFilename) throws IOException
     {
-        
+
         return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + aFilename).getCanonicalPath();
     }
 
@@ -136,7 +137,7 @@ public abstract class BaseCheckTestSupport
             new ByteArrayInputStream(BAOS.toByteArray());
         final LineNumberReader lnr =
             new LineNumberReader(new InputStreamReader(bais));
-       
+
         for (int i = 0; i < aExpected.length; i++) {
             final String expected = aMessageFileName + ":" + aExpected[i];
             String actual = lnr.readLine();
@@ -161,7 +162,8 @@ public abstract class BaseCheckTestSupport
      * @param messageKey
      *            the key of message in 'messages.properties' file.
      */
-    public String getCheckMessage(Class aClass, String messageKey)
+    public String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
+            String messageKey)
     {
         Properties pr = new Properties();
         try {
@@ -178,10 +180,11 @@ public abstract class BaseCheckTestSupport
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments the arguments of message in 'messages.properties' file.
      */
-    public String getCheckMessage(Class aClass, String messageKey, Object ... arguments) {
+    public String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
+            String messageKey, Object ... arguments) {
         return format(getCheckMessage(aClass, messageKey), arguments);
     }
-    
+
     /**
      * Gets the check message 'as is' from appropriate 'messages.properties' file.
      * @param messageKey the key of message in 'messages.properties' file.
