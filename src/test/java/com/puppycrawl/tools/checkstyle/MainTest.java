@@ -33,6 +33,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.Assertion;
@@ -432,6 +433,27 @@ public class MainTest {
         }
         catch (Exception e) {
             fail();
+        }
+    }
+
+    @Test
+    public void testCreateListenerWithLocation_IllegalStateException() throws Exception {
+        Class<?>[] param = new Class<?>[1];
+        param[0] = File.class;
+        Method method = Main.class.getDeclaredMethod("createListener", String.class, String.class);
+        method.setAccessible(true);
+        String outDir = "myfolder123";
+        try {
+            method.invoke(null, "myformat", outDir);
+            fail();
+        }
+        catch (InvocationTargetException e) {
+            assertTrue(e.getCause() instanceof IllegalStateException);
+            assertTrue(e.getCause().getMessage().startsWith("Invalid output format. Found"));
+        }
+        finally {
+            // method creates output folder
+            FileUtils.deleteQuietly(new File(outDir));
         }
     }
 
