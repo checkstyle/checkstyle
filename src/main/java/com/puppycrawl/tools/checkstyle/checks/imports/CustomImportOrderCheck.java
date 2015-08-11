@@ -780,7 +780,7 @@ public class CustomImportOrderCheck extends Check {
      * group.
      * @author max
      */
-    static class ImportDetails {
+    private static class ImportDetails {
         /** Import full path */
         private String importFullPath;
 

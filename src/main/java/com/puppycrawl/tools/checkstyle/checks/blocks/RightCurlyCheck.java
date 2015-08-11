@@ -395,7 +395,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
     /**
      * Structure that contains all details for validation.
      */
-    static class Details {
+    private static class Details {
         /** Right curly. */
         private DetailAST rcurly;
         /** Left curly. */
