@@ -356,9 +356,9 @@ public class ConfigurationLoaderTest {
     public void testIncorrectTag() throws Exception {
         try {
             Class<?> aClassParent = ConfigurationLoader.class;
-            Constructor ctorParent = null;
-            Constructor[] parentConstructors = aClassParent.getDeclaredConstructors();
-            for (Constructor constr: parentConstructors) {
+            Constructor<?> ctorParent = null;
+            Constructor<?>[] parentConstructors = aClassParent.getDeclaredConstructors();
+            for (Constructor<?> constr: parentConstructors) {
                 constr.setAccessible(true);
                 ctorParent = constr;
             }
@@ -366,16 +366,16 @@ public class ConfigurationLoaderTest {
 
             Class<?> aClass = Class.forName("com.puppycrawl.tools.checkstyle."
                     + "ConfigurationLoader$InternalLoader");
-            Constructor constructor = null;
-            Constructor[] constructors = aClass.getDeclaredConstructors();
-            for (Constructor constr: constructors) {
+            Constructor<?> constructor = null;
+            Constructor<?>[] constructors = aClass.getDeclaredConstructors();
+            for (Constructor<?> constr: constructors) {
                 constr.setAccessible(true);
                 constructor = constr;
             }
 
             Object obj = constructor.newInstance(objParent);
 
-            Class[] param = new Class[4];
+            Class<?>[] param = new Class<?>[4];
             param[0] = String.class;
             param[1] = String.class;
             param[2] = String.class;

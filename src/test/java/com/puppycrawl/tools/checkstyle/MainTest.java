@@ -384,7 +384,7 @@ public class MainTest {
 
     @Test
     public void testLoadProperties_IOException() throws Exception {
-        Class[] param = new Class[1];
+        Class<?>[] param = new Class<?>[1];
         param[0] = File.class;
         Method method = Main.class.getDeclaredMethod("loadProperties", param);
         method.setAccessible(true);
@@ -418,7 +418,7 @@ public class MainTest {
 
     @Test
     public void testCreateListener_IllegalStateException() throws Exception {
-        Class[] param = new Class[1];
+        Class<?>[] param = new Class<?>[1];
         param[0] = File.class;
         Method method = Main.class.getDeclaredMethod("createListener", String.class, String.class);
         method.setAccessible(true);
@@ -470,7 +470,7 @@ public class MainTest {
 
     @Test
     public void testListFiles_notFile() throws Exception {
-        Class[] param = new Class[1];
+        Class<?>[] param = new Class<?>[1];
         param[0] = File.class;
         Method method = Main.class.getDeclaredMethod("listFiles", File.class);
         method.setAccessible(true);
@@ -486,7 +486,7 @@ public class MainTest {
 
     @Test
     public void testListFiles_DirectoryWithNull() throws Exception {
-        Class[] param = new Class[1];
+        Class<?>[] param = new Class<?>[1];
         param[0] = File.class;
         Method method = Main.class.getDeclaredMethod("listFiles", File.class);
         method.setAccessible(true);
