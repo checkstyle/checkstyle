@@ -458,7 +458,7 @@
           Use SHA-1 instead on non-standard SHA in PropertyCacheFile. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1251">#1251</a>
         </li>
         <li>
-          Add TravisCI build for assembly creation. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1204">#1204</a>
+          Add TravisCI build for assembly creation. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/1204">#1204</a>
         </li>
         <li>
           Provide additional regression test for ParenPad check. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1189">#1189</a>
@@ -1247,7 +1247,7 @@
           Fix for typos in documentation, fixes for Sonar violations, pom formatting, latest JUnit 4.12, .... . Author: Michal Kordas
         </li>
         <li>
-          <a href="https://github.com/checkstyle/google-style-config-test">google-style-config-test</a> project for Google style is introduces, google_style wiki was updated. Author: Max Vetrenko
+          <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/java/com/google/checkstyle/test">google-style-config-test</a> project for Google style is introduces, google_style wiki was updated. Author: Max Vetrenko
         </li>
         <li>
           New maven profile "assembly" for quick build without any report and checks has been created . Author: Ilja Dubinin
@@ -1313,7 +1313,7 @@
           Various documentation/spelling issues with AnnotationLocationCheck. Author: Roman Ivanov. <a href="https://github.com/checkstyle/checkstyle/issues/356">#356</a>
         </li>
         <li>
-          Multidimensional arrays can be parsed now. Author: Ilja Dubinin. <a href="https://github.com/checkstyle/checkstyle/pull/304">#304</a>
+          Multidimensional arrays can be parsed now. Author: Ilja Dubinin. <a href="https://github.com/checkstyle/checkstyle/issues/304">#304</a>
         </li>
       </ul>
       <p>Breaking backward compatibility:</p>
