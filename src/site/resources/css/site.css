@@ -27,7 +27,7 @@ h4 {
 #bannerLeft img {
   float:left;
   position: relative;
-  top: 0px;
+  top: 0;
   left: 40px;
 
 }
