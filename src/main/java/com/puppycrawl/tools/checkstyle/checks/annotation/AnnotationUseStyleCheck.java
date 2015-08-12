@@ -182,7 +182,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @throws ConversionException if cannot convert string.
      */
     public void setElementStyle(final String style) {
-        this.elementStyle = getOption(ElementStyle.class, style);
+        elementStyle = getOption(ElementStyle.class, style);
     }
 
     /**
@@ -192,7 +192,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @throws ConversionException if cannot convert string.
      */
     public void setTrailingArrayComma(final String comma) {
-        this.trailingArrayComma = getOption(TrailingArrayComma.class, comma);
+        trailingArrayComma = getOption(TrailingArrayComma.class, comma);
     }
 
     /**
@@ -202,7 +202,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @throws ConversionException if cannot convert string.
      */
     public void setClosingParens(final String parens) {
-        this.closingParens = getOption(ClosingParens.class, parens);
+        closingParens = getOption(ClosingParens.class, parens);
     }
 
     /**
@@ -386,12 +386,12 @@ public final class AnnotationUseStyleCheck extends Check {
         //comma can be null if array is empty
         final DetailAST comma = rCurly.getPreviousSibling();
 
-        if (this.trailingArrayComma == TrailingArrayComma.ALWAYS
+        if (trailingArrayComma == TrailingArrayComma.ALWAYS
             && (comma == null || comma.getType() != TokenTypes.COMMA)) {
             log(rCurly.getLineNo(),
                 rCurly.getColumnNo(), MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING);
         }
-        else if (this.trailingArrayComma == TrailingArrayComma.NEVER
+        else if (trailingArrayComma == TrailingArrayComma.NEVER
             && comma != null && comma.getType() == TokenTypes.COMMA) {
             log(comma.getLineNo(),
                 comma.getColumnNo(), MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT);
