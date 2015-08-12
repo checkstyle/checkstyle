@@ -52,6 +52,20 @@ public class ScopeUtilsTest {
     }
 
     @Test
+    public void testInEnumBlockWithEnum() throws ReflectiveOperationException {
+        DetailAST ast0 = new DetailAST();
+        ast0.setType(TokenTypes.OBJBLOCK);
+        DetailAST ast1 = new DetailAST();
+        ast1.setType(TokenTypes.ENUM_DEF);
+        ast0.addChild(ast1);
+        DetailAST ast2 = new DetailAST();
+        ast2.setType(TokenTypes.MODIFIERS);
+        ast1.addChild(ast2);
+
+        Assert.assertTrue(ScopeUtils.inEnumBlock(ast2));
+    }
+
+    @Test
     public void testInEnumBlockInInterface() throws ReflectiveOperationException {
         DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.INTERFACE_DEF);

@@ -43,20 +43,17 @@ public final class ScopeUtils {
      */
     public static Scope getScopeFromMods(DetailAST aMods) {
         Scope retVal = Scope.PACKAGE; // default scope
-        for (AST token = aMods.getFirstChild();
-            token != null;
-            token = token.getNextSibling()) {
+        for (AST token = aMods.getFirstChild(); token != null
+                && retVal == Scope.PACKAGE;
+                token = token.getNextSibling()) {
             if ("public".equals(token.getText())) {
                 retVal = Scope.PUBLIC;
-                break;
             }
             else if ("protected".equals(token.getText())) {
                 retVal = Scope.PROTECTED;
-                break;
             }
             else if ("private".equals(token.getText())) {
                 retVal = Scope.PRIVATE;
-                break;
             }
         }
         return retVal;
@@ -105,20 +102,19 @@ public final class ScopeUtils {
 
         // Loop up looking for a containing interface block
         for (DetailAST token = aAST.getParent();
-             token != null;
+             token != null && !retVal;
              token = token.getParent()) {
+
             final int type = token.getType();
-            if (type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.ANNOTATION_DEF) {
-                break; // in a class, enum or annotation
-            }
-            else if (type == TokenTypes.LITERAL_NEW) {
-                break; // inner implementation
-            }
-            else if (type == TokenTypes.INTERFACE_DEF) {
+
+            if (type == TokenTypes.INTERFACE_DEF) {
                 retVal = true;
-                break;
+            }
+            else if (type == TokenTypes.CLASS_DEF
+                || type == TokenTypes.ENUM_DEF
+                || type == TokenTypes.ANNOTATION_DEF
+                || type == TokenTypes.LITERAL_NEW) {
+                break; // in a class, enum or annotation
             }
         }
 
@@ -137,21 +133,19 @@ public final class ScopeUtils {
 
         // Loop up looking for a containing interface block
         for (DetailAST token = aAST.getParent();
-             token != null;
+             token != null && !retVal;
              token = token.getParent()) {
             final int type = token.getType();
-            if (type == TokenTypes.CLASS_DEF
+            if (type == TokenTypes.ANNOTATION_DEF) {
+                retVal = true;
+            }
+            else if (type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.INTERFACE_DEF) {
+                || type == TokenTypes.INTERFACE_DEF
+                || type == TokenTypes.LITERAL_NEW) {
                 break; // in a class, enum or interface
             }
-            else if (type == TokenTypes.LITERAL_NEW) {
-                break; // inner implementation
-            }
-            else if (type == TokenTypes.ANNOTATION_DEF) {
-                retVal = true;
-                break;
-            }
+
         }
 
         return retVal;
@@ -181,20 +175,17 @@ public final class ScopeUtils {
 
         // Loop up looking for a containing interface block
         for (DetailAST token = aAST.getParent();
-             token != null;
+             token != null && !retVal;
              token = token.getParent()) {
             final int type = token.getType();
-            if (type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.CLASS_DEF) {
-                break; // in an interface, annotation or class
-            }
-            else if (type == TokenTypes.LITERAL_NEW) {
-                break; // inner implementation, enums can't be inner classes
-            }
-            else if (type == TokenTypes.ENUM_DEF) {
+            if (type == TokenTypes.ENUM_DEF) {
                 retVal = true;
-                break;
+            }
+            else if (type == TokenTypes.INTERFACE_DEF
+                || type == TokenTypes.ANNOTATION_DEF
+                || type == TokenTypes.CLASS_DEF
+                || type == TokenTypes.LITERAL_NEW) {
+                break; // in an interface, annotation or class
             }
         }
 
