@@ -93,7 +93,7 @@ public class ObjectBlockHandler extends BlockParentHandler {
         final DetailAST rcurly = getRCurly();
         final int rcurlyPos = expandedTabsColumnNo(rcurly);
         final IndentLevel level = curlyLevel();
-        level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndent());
+        level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndentation());
 
         if (!level.accept(rcurlyPos) && startsLine(rcurly)) {
             logError(rcurly, "rcurly", rcurlyPos, curlyLevel());
@@ -105,7 +105,7 @@ public class ObjectBlockHandler extends BlockParentHandler {
      * @return value of lineWrappingIndentation property
      *         of {@code IndentationCheck}
      */
-    private int getLineWrappingIndent() {
+    private int getLineWrappingIndentation() {
         return getIndentCheck().getLineWrappingIndentation();
     }
 }

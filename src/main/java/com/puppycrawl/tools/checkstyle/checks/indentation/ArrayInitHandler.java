@@ -68,7 +68,7 @@ public class ArrayInitHandler extends BlockParentHandler {
     @Override
     protected IndentLevel curlyLevel() {
         final IndentLevel level = new IndentLevel(getLevel(), getBraceAdjustment());
-        level.addAcceptedIndent(level.getLastIndentLevel() + getLineWrappingIndent());
+        level.addAcceptedIndent(level.getLastIndentLevel() + getLineWrappingIndentation());
         return level;
     }
 
@@ -104,7 +104,7 @@ public class ArrayInitHandler extends BlockParentHandler {
             getNextFirstNonblankOnLineAfter(firstLine, lcurlyPos);
         if (firstChildPos >= 0) {
             expectedIndent.addAcceptedIndent(firstChildPos);
-            expectedIndent.addAcceptedIndent(lcurlyPos + getLineWrappingIndent());
+            expectedIndent.addAcceptedIndent(lcurlyPos + getLineWrappingIndentation());
         }
         return expectedIndent;
     }
@@ -134,7 +134,7 @@ public class ArrayInitHandler extends BlockParentHandler {
      * @return value of lineWrappingIndentation property
      *         of {@code IndentationCheck}
      */
-    private int getLineWrappingIndent() {
+    private int getLineWrappingIndentation() {
         return getIndentCheck().getLineWrappingIndentation();
     }
 }
