@@ -137,7 +137,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
         private final Object lock = new Object();
 
         @Override
-        public Object put(Object key, Object value) {
+        public synchronized Object put(Object key, Object value) {
             synchronized (lock) {
                 final Object oldValue = super.put(key, value);
                 if (oldValue != null && key instanceof String) {
