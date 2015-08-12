@@ -45,33 +45,6 @@ public class FileSetCheckLifecycleTest
         return dc;
     }
 
-    public static class TestFileSetCheck extends AbstractFileSetCheck {
-        private static boolean destroyed;
-        private static boolean fileContentAvailable;
-
-        @Override
-        public void destroy() {
-            destroyed = true;
-        }
-
-        public static boolean isDestroyed() {
-            return destroyed;
-        }
-
-        public static boolean isFileContentAvailable() {
-            return fileContentAvailable;
-        }
-
-        @Override
-        protected void processFiltered(File file, List<String> lines) {
-        }
-
-        @Override
-        public void finishProcessing() {
-            fileContentAvailable = FileContentsHolder.getContents() != null;
-        }
-    }
-
     @Test
     public void testTranslation() throws Exception {
         final Configuration checkConfig =
@@ -110,5 +83,32 @@ public class FileSetCheckLifecycleTest
 
         assertTrue("FileContent should be available during finishProcessing() call",
                 TestFileSetCheck.isFileContentAvailable());
+    }
+
+    public static class TestFileSetCheck extends AbstractFileSetCheck {
+        private static boolean destroyed;
+        private static boolean fileContentAvailable;
+
+        @Override
+        public void destroy() {
+            destroyed = true;
+        }
+
+        public static boolean isDestroyed() {
+            return destroyed;
+        }
+
+        public static boolean isFileContentAvailable() {
+            return fileContentAvailable;
+        }
+
+        @Override
+        protected void processFiltered(File file, List<String> lines) {
+        }
+
+        @Override
+        public void finishProcessing() {
+            fileContentAvailable = FileContentsHolder.getContents() != null;
+        }
     }
 }

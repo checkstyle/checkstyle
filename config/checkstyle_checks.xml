@@ -299,9 +299,10 @@
     <module name="CommentsIndentation"/>
     <module name="HiddenField">
         <property name="ignoreConstructorParameter" value="true"/>
-		<property name="ignoreSetter" value="true"/>
+        <property name="ignoreSetter" value="true"/>
         <property name="setterCanReturnItsClass" value="true"/>
     </module>
+    <module name="InnerTypeLast"/>
 
 <!--
     <module name="AvoidInlineConditionals"/>
@@ -312,7 +313,6 @@
     <module name="FinalParameters"/>
     <module name="IllegalToken"/>
     <module name="IllegalType"/>
-    <module name="InnerTypeLast"/>
     <module name="JavadocParagraph"/>
     <module name="JavadocTagContinuationIndentation"/>
     <module name="JavaNCSS"/>

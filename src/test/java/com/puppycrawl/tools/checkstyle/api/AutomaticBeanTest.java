@@ -33,39 +33,6 @@ import com.puppycrawl.tools.checkstyle.DefaultContext;
 
 public class AutomaticBeanTest {
 
-    public class TestBean extends AutomaticBean {
-
-        private String privateField;
-
-        private String wrong;
-
-        private int val;
-
-        public void setWrong(String wrong) {
-            this.wrong = wrong;
-        }
-
-        public void setVal(int val) {
-            this.val = val;
-        }
-
-        public void setExceptionalMethod(String value) {
-            throw new IllegalStateException("for UT");
-        }
-
-        public void setName(String name) {
-        }
-
-        /**
-         * just for code coverage
-         * @param childConf a child of this component's Configuration
-         */
-        @Override
-        protected void setupChild(Configuration childConf) throws CheckstyleException {
-            super.setupChild(childConf);
-        }
-    }
-
     @Test
     public void testConfigure_NoSuchAttribute() {
         final TestBean testBean = new TestBean();
@@ -130,4 +97,36 @@ public class AutomaticBeanTest {
         }
     }
 
+    public class TestBean extends AutomaticBean {
+
+        private String privateField;
+
+        private String wrong;
+
+        private int val;
+
+        public void setWrong(String wrong) {
+            this.wrong = wrong;
+        }
+
+        public void setVal(int val) {
+            this.val = val;
+        }
+
+        public void setExceptionalMethod(String value) {
+            throw new IllegalStateException("for UT");
+        }
+
+        public void setName(String name) {
+        }
+
+        /**
+         * just for code coverage
+         * @param childConf a child of this component's Configuration
+         */
+        @Override
+        protected void setupChild(Configuration childConf) throws CheckstyleException {
+            super.setupChild(childConf);
+        }
+    }
 }

@@ -33,19 +33,6 @@ import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 
 public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
-    public static class TempCheck extends AbstractJavadocCheck {
-
-        @Override
-        public int[] getDefaultJavadocTokens() {
-            return null;
-        }
-
-        @Override
-        public void visitJavadocToken(DetailNode ast) {
-            // do nothing
-        }
-
-    }
 
     @Test
     public void testNumberFormatException() throws Exception {
@@ -91,5 +78,18 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
         };
         verify(checker, getPath("javadoc/InputCorrectJavaDocParagraphCheck.java"), expected);
+    }
+
+    public static class TempCheck extends AbstractJavadocCheck {
+
+        @Override
+        public int[] getDefaultJavadocTokens() {
+            return null;
+        }
+
+        @Override
+        public void visitJavadocToken(DetailNode ast) {
+            // do nothing
+        }
     }
 }
