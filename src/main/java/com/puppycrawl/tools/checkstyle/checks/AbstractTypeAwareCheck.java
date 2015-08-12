@@ -453,7 +453,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
          * @param clazz {@code Class} to associate with.
          */
         private void setClazz(Class<?> clazz) {
-            this.classObj = clazz;
+            classObj = clazz;
             loadable = clazz != null;
         }
 

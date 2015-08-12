@@ -100,7 +100,7 @@ public abstract class AbstractFormatCheck
     private void updateRegexp(String regexpFormat, int compileFlagsParam) {
         try {
             regexp = Pattern.compile(regexpFormat, compileFlagsParam);
-            this.format = regexpFormat;
+            format = regexpFormat;
             compileFlags |= compileFlagsParam;
         }
         catch (final PatternSyntaxException e) {
