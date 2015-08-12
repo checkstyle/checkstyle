@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.util.Collections;
 import java.util.Set;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.Utils;
 
@@ -87,7 +89,7 @@ public abstract class Check extends AbstractViolationReporter {
      * @see TokenTypes
      */
     public int[] getRequiredTokens() {
-        return new int[] {};
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     /**

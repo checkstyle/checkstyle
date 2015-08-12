@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -97,7 +99,7 @@ public class CommentsIndentationCheck extends Check {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {};
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
