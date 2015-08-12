@@ -296,16 +296,16 @@ public class ParseTreeInfoPanel extends JPanel {
     private class FileDropListener implements FileDrop.Listener {
         private final JScrollPane mSp;
 
+        public FileDropListener(JScrollPane aSp) {
+            mSp = aSp;
+        }
+
         @Override
         public void filesDropped(File... files) {
             if (files != null && files.length > 0) {
                 final File file = files[0];
                 openFile(file, mSp);
             }
-        }
-
-        public FileDropListener(JScrollPane aSp) {
-            mSp = aSp;
         }
     }
 }
