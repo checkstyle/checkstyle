@@ -28,6 +28,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -93,7 +94,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     private final FilterSet filters = new FilterSet();
 
     /** the file extensions that are accepted */
-    private String[] fileExtensions = {};
+    private String[] fileExtensions = ArrayUtils.EMPTY_STRING_ARRAY;
 
     /**
      * The severity level of any violations found by submodules.

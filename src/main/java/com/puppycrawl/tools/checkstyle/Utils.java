@@ -56,7 +56,7 @@ public final class Utils {
         final ImmutableMap.Builder<String, Integer> builder =
                 ImmutableMap.builder();
         final Field[] fields = TokenTypes.class.getDeclaredFields();
-        String[] tempTokenValueToName = new String[0];
+        String[] tempTokenValueToName = ArrayUtils.EMPTY_STRING_ARRAY;
         for (final Field field : fields) {
             // Only process the int declarations.
             if (field.getType() != Integer.TYPE) {
