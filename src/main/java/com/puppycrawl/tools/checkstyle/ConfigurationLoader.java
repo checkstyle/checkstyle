@@ -505,8 +505,7 @@ public final class ConfigurationLoader {
         @Override
         public void endElement(String namespaceURI,
                                String localName,
-                               String qName)
-            throws SAXException {
+                               String qName) {
             if (qName.equals(MODULE)) {
 
                 final Configuration recentModule =

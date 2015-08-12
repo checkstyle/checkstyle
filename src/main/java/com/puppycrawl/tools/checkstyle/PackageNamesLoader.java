@@ -89,8 +89,7 @@ public final class PackageNamesLoader
     public void startElement(String namespaceURI,
                              String localName,
                              String qName,
-                             Attributes atts)
-        throws SAXException {
+                             Attributes atts) {
         if ("package".equals(qName)) {
             //push package name, name is mandatory attribute with not empty value by DTD
             final String name = atts.getValue("name");
