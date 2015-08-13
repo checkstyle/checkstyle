@@ -37,6 +37,13 @@ public final class Main {
     private static JFrame frame;
 
     /**
+     * Hidden constructor of the current utility class.
+     */
+    private Main() {
+        // no code
+    }
+
+    /**
      * Entry point.
      * @param args the command line arguments.
      */
