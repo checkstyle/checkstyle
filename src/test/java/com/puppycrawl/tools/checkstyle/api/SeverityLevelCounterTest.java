@@ -26,7 +26,7 @@ public class SeverityLevelCounterTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testCtorException() {
-        final SeverityLevelCounter o = new SeverityLevelCounter(null);
+        new SeverityLevelCounter(null);
     }
 
     @Test

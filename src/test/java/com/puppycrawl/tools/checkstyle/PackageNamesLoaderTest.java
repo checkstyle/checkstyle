@@ -127,8 +127,7 @@ public class PackageNamesLoaderTest {
         when(classLoader.getResources("checkstyle_packages.xml")).thenReturn(enumer);
 
         try {
-            final Set<String> packageNames = PackageNamesLoader
-                    .getPackageNames(classLoader);
+            PackageNamesLoader.getPackageNames(classLoader);
             fail();
         }
         catch (CheckstyleException ex) {
@@ -152,8 +151,7 @@ public class PackageNamesLoaderTest {
         when(classLoader.getResources("checkstyle_packages.xml")).thenReturn(enumer);
 
         try {
-            final Set<String> packageNames = PackageNamesLoader
-                    .getPackageNames(classLoader);
+            PackageNamesLoader.getPackageNames(classLoader);
             fail();
         }
         catch (CheckstyleException ex) {

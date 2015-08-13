@@ -73,7 +73,6 @@ public class LocalizedMessageTest {
 
         ClassLoader classloader = mock(ClassLoader.class);
         String resource = "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";
-        String urlPath = "file:com/puppycrawl/tools/checkstyle/checks/coding/messages.properties";
         final URLConnection mockConnection = Mockito.mock(URLConnection.class);
         when(mockConnection.getInputStream()).thenReturn(
                 new ByteArrayInputStream(new byte[]{}));
@@ -92,7 +91,6 @@ public class LocalizedMessageTest {
 
         ClassLoader classloader = mock(ClassLoader.class);
         String resource = "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";
-        String urlPath = "file:com/puppycrawl/tools/checkstyle/checks/coding/messages.properties";
 
         URL url = getMockUrl(null);
         when(classloader.getResource(resource)).thenReturn(url);

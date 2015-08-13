@@ -68,8 +68,6 @@ public class DetailASTTest {
     public void testSetSiblingNull() {
         final DetailAST root = new DetailAST();
         final DetailAST firstLevelA = new DetailAST();
-        final DetailAST firstLevelB = new DetailAST();
-        final DetailAST secondLevelA = new DetailAST();
 
         root.setFirstChild(firstLevelA);
 

@@ -14,9 +14,9 @@ import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck;
 
 public class NoLineWrapTest extends BaseCheckTestSupport{
-    
+
     static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException, IOException {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -24,29 +24,27 @@ public class NoLineWrapTest extends BaseCheckTestSupport{
 
     @Test
     public void badLineWrapTest() throws IOException, Exception {
-        
-        String msg = getCheckMessage(NoLineWrapCheck.class, "no.line.wrap", "import");
 
         final String[] expected = {
             "1: " + getCheckMessage(NoLineWrapCheck.class, "no.line.wrap", "package"),
-            "6: " + getCheckMessage(NoLineWrapCheck.class, "no.line.wrap", "import"),            
+            "6: " + getCheckMessage(NoLineWrapCheck.class, "no.line.wrap", "import"),
         };
 
         Configuration checkConfig = builder.getCheckConfig("NoLineWrap");
         String filePath = builder.getFilePath("NoLineWrap_Bad");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
-    
+
     @Test
     public void goodLineWrapTest() throws IOException, Exception {
-        
+
         final String[] expected = {};
-        
+
         Configuration checkConfig = builder.getCheckConfig("NoLineWrap");
         String filePath = builder.getFilePath("NoLineWrap_Good");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
@@ -68,7 +66,7 @@ public class NoLineWrapTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("LineLength");
         String filePath = builder.getFilePath("LineLengthInput2");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

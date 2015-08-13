@@ -25,7 +25,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
-import static org.powermock.api.support.membermodification.MemberMatcher.method;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,20 +57,20 @@ public class PropertyCacheFileTest {
         file.setReadable(true, false);
         file.setWritable(false, false);
 
-        PropertyCacheFile cache = new PropertyCacheFile(config, file.getAbsolutePath());
+        new PropertyCacheFile(config, file.getAbsolutePath());
     }
 
     @Test
     public void testCtor() throws IOException {
         try {
-            PropertyCacheFile cache = new PropertyCacheFile(null, "");
+            new PropertyCacheFile(null, "");
         }
         catch (IllegalArgumentException ex) {
             assertEquals("config can not be null", ex.getMessage());
         }
         try {
             Configuration config = new DefaultConfiguration("myname");
-            PropertyCacheFile cache = new PropertyCacheFile(config, null);
+            new PropertyCacheFile(config, null);
         }
         catch (IllegalArgumentException ex) {
             assertEquals("fileName can not be null", ex.getMessage());

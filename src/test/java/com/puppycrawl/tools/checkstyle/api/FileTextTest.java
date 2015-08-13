@@ -35,7 +35,7 @@ public class FileTextTest {
         // just to make UT coverage 100%
         String charsetName = "STRANGE_CHARSET";
         try {
-            FileText o = new FileText(new File("any name"), charsetName);
+            new FileText(new File("any name"), charsetName);
             fail();
         }
         catch (UnsupportedEncodingException e) {

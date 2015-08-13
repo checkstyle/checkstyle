@@ -13,9 +13,9 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
 
 public class VariableDeclarationUsageDistanceTest extends BaseCheckTestSupport{
-    
+
     static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException, IOException {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -23,8 +23,7 @@ public class VariableDeclarationUsageDistanceTest extends BaseCheckTestSupport{
 
     @Test
     public void arrayTypeStyleTest() throws IOException, Exception {
-        
-        String msg = "variable.declaration.usage.distance";
+
         String msgExt = "variable.declaration.usage.distance.extend";
         Class<VariableDeclarationUsageDistanceCheck> clazz = VariableDeclarationUsageDistanceCheck.class;
 
@@ -34,10 +33,10 @@ public class VariableDeclarationUsageDistanceTest extends BaseCheckTestSupport{
                 "479: " + getCheckMessage(clazz, msgExt, "myOption", 7, 3),
                 "491: " + getCheckMessage(clazz, msgExt, "myOption", 6, 3),
         };
-        
+
         Configuration checkConfig = builder.getCheckConfig("VariableDeclarationUsageDistance");
         String filePath = builder.getFilePath("InputVariableDeclarationUsageDistanceCheck");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

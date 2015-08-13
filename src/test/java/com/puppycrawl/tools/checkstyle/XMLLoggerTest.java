@@ -49,7 +49,7 @@ public class XMLLoggerTest {
     @Test
     public void testEncode()
         throws IOException {
-        final XMLLogger logger = new XMLLogger(outStream, false);
+        new XMLLogger(outStream, false);
         final String[][] encodings = {
             {"<", "&lt;"},
             {">", "&gt;"},
@@ -72,7 +72,7 @@ public class XMLLoggerTest {
     @Test
     public void testIsReference()
         throws IOException {
-        final XMLLogger logger = new XMLLogger(outStream, false);
+        new XMLLogger(outStream, false);
         final String[] reference = {
             "&#0;",
             "&#x0;",
