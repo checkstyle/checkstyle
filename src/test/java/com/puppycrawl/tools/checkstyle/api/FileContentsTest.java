@@ -30,6 +30,7 @@ import org.junit.Test;
 public class FileContentsTest {
 
     @Test
+    @SuppressWarnings("deprecation")
     public void testDeprecatedCtor() {
         // just to make UT coverage 100%
         FileContents o = new FileContents("filename.java", new String[]{"1", "2"});

@@ -477,6 +477,7 @@ public class ConfigurationLoaderTest {
     @Test
     public void testLoadConfiguration_Deprecated() throws CheckstyleException {
         try {
+            @SuppressWarnings("deprecation")
             final DefaultConfiguration config =
                     (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                             new FileInputStream(
