@@ -294,7 +294,7 @@ public class JavadocStyleCheck
      */
     private static int findTextStart(String line) {
         int textStart = -1;
-        for (int i = 0; i < line.length(); i++) {
+        for (int i = 0; i < line.length();) {
             if (!Character.isWhitespace(line.charAt(i))) {
                 if (line.regionMatches(i, "/**", 0, "/**".length())) {
                     i += 2;
@@ -307,6 +307,7 @@ public class JavadocStyleCheck
                     break;
                 }
             }
+            i++;
         }
         return textStart;
     }

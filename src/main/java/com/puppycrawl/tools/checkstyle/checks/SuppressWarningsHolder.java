@@ -217,11 +217,12 @@ public class SuppressWarningsHolder
             final List<Entry> entries = ENTRIES.get();
             if (entries != null) {
                 for (String value : values) {
+                    String checkName = value;
                     // strip off the checkstyle-only prefix if present
                     if (value.startsWith(CHECKSTYLE_PREFIX)) {
-                        value = value.substring(CHECKSTYLE_PREFIX.length());
+                        checkName = checkName.substring(CHECKSTYLE_PREFIX.length());
                     }
-                    entries.add(new Entry(value, firstLine, firstColumn,
+                    entries.add(new Entry(checkName, firstLine, firstColumn,
                         lastLine, lastColumn));
                 }
             }
