@@ -208,7 +208,7 @@ public final class MissingDeprecatedCheck extends Check {
 
         boolean found = false;
         for (int reindex = i + 1;
-            reindex < lines.length; reindex++) {
+            reindex < lines.length;) {
             final Matcher multilineCont = MATCH_DEPRECATED_MULTILINE_CONT.matcher(lines[reindex]);
 
             if (multilineCont.find()) {
@@ -231,6 +231,7 @@ public final class MissingDeprecatedCheck extends Check {
                     found = true;
                 }
             }
+            reindex++;
         }
         return found;
     }

@@ -303,6 +303,8 @@
         <property name="setterCanReturnItsClass" value="true"/>
     </module>
 
+    <module name="ModifiedControlVariable"/>
+
 <!--
     <module name="AvoidInlineConditionals"/>
     <module name="ClassDataAbstractionCoupling"/>
@@ -317,7 +319,6 @@
     <module name="JavadocTagContinuationIndentation"/>
     <module name="JavaNCSS"/>
     <module name="MissingCtor"/>
-    <module name="ModifiedControlVariable"/>
     <module name="MultipleStringLiterals"/>
     <module name="NPathComplexity"/>
     <module name="OneTopLevelClass"/>
