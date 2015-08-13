@@ -730,7 +730,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
 
             // Loop looking for matching param
             final Iterator<DetailAST> paramIt = params.iterator();
-            final String arg1 = tag.getArg1();
+            final String arg1 = tag.getFirstArg();
             while (paramIt.hasNext()) {
                 final DetailAST param = paramIt.next();
                 if (param.getText().equals(arg1)) {
@@ -857,8 +857,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             tagIt.remove();
 
             // Loop looking for matching throw
-            final String documentedEx = tag.getArg1();
-            final Token token = new Token(tag.getArg1(), tag.getLineNo(), tag
+            final String documentedEx = tag.getFirstArg();
+            final Token token = new Token(tag.getFirstArg(), tag.getLineNo(), tag
                     .getColumnNo());
             final AbstractClassInfo documentedCI = createClassInfo(token,
                     getCurrentClassName());
@@ -902,7 +902,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
                 if (reqd && validateThrows) {
                     log(tag.getLineNo(), tag.getColumnNo(),
                         MSG_UNUSED_TAG,
-                        JavadocTagInfo.THROWS.getText(), tag.getArg1());
+                        JavadocTagInfo.THROWS.getText(), tag.getFirstArg());
 
                 }
             }

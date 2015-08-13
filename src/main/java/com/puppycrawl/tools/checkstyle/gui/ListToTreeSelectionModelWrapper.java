@@ -39,10 +39,10 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
     /** Set to true when we are updating the ListSelectionModel. */
     protected boolean updatingListSelectionModel;
     /** JTreeTable to perform updates on */
-    private final JTreeTable jTreeTable;
+    private final JTreeTable treeTable;
 
     public ListToTreeSelectionModelWrapper(JTreeTable jTreeTable) {
-        this.jTreeTable = jTreeTable;
+        this.treeTable = jTreeTable;
         getListSelectionModel().addListSelectionListener(createListSelectionListener());
     }
 
@@ -122,7 +122,7 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
      */
     private void updateSelectedPathIfRowIsSelected(int counter) {
         if (listSelectionModel.isSelectedIndex(counter)) {
-            final TreePath selPath = jTreeTable.tree.getPathForRow(counter);
+            final TreePath selPath = treeTable.tree.getPathForRow(counter);
 
             if (selPath != null) {
                 addSelectionPath(selPath);

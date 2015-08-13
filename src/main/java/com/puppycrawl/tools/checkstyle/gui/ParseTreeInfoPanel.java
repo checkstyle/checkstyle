@@ -61,11 +61,11 @@ public class ParseTreeInfoPanel extends JPanel {
     private static final long serialVersionUID = -4243405131202059043L;
 
     private final transient ParseTreeModel parseTreeModel;
-    private final JTextArea jTextArea;
+    private final JTextArea textArea;
     private File lastDirectory;
     private File currentFile;
     private final Action reloadAction;
-    private final List<Integer>   lines2position  = new ArrayList<>();
+    private final List<Integer>   linesToPosition  = new ArrayList<>();
 
     /**
      * Create a new ParseTreeInfoPanel instance.
@@ -85,12 +85,12 @@ public class ParseTreeInfoPanel extends JPanel {
         reloadAction.setEnabled(false);
         final JButton reloadButton = new JButton(reloadAction);
 
-        jTextArea = new JTextArea(20, 15);
-        jTextArea.setEditable(false);
-        treeTable.setEditor(jTextArea);
-        treeTable.setLinePositionMap(lines2position);
+        textArea = new JTextArea(20, 15);
+        textArea.setEditable(false);
+        treeTable.setEditor(textArea);
+        treeTable.setLinePositionMap(linesToPosition);
 
-        final JScrollPane sp2 = new JScrollPane(jTextArea);
+        final JScrollPane sp2 = new JScrollPane(textArea);
         add(sp2, BorderLayout.CENTER);
 
         final JPanel p = new JPanel(new GridLayout(1, 2));
@@ -112,18 +112,18 @@ public class ParseTreeInfoPanel extends JPanel {
         reloadAction.setEnabled(true);
 
         // clear for each new file
-        getLines2position().clear();
+        getLinesToPosition().clear();
         // starts line counting at 1
-        getLines2position().add(0);
+        getLinesToPosition().add(0);
         // insert the contents of the file to the text area
 
         // clean the text area before inserting the lines of the new file
-        if (!jTextArea.getText().isEmpty()) {
-            jTextArea.replaceRange("", 0, jTextArea.getText().length());
+        if (!textArea.getText().isEmpty()) {
+            textArea.replaceRange("", 0, textArea.getText().length());
         }
 
         // move back to the top of the file
-        jTextArea.moveCaretPosition(0);
+        textArea.moveCaretPosition(0);
     }
 
     public void openFile(File file, final Component parent) {
@@ -141,28 +141,28 @@ public class ParseTreeInfoPanel extends JPanel {
                 final String[] sourceLines = text.toLinesArray();
 
                 // clear for each new file
-                getLines2position().clear();
+                getLinesToPosition().clear();
                 // starts line counting at 1
-                getLines2position().add(0);
+                getLinesToPosition().add(0);
                 // insert the contents of the file to the text area
                 for (String element : sourceLines) {
-                    getLines2position().add(jTextArea.getText().length());
-                    jTextArea.append(element + "\n");
+                    getLinesToPosition().add(textArea.getText().length());
+                    textArea.append(element + "\n");
                 }
 
                 //clean the text area before inserting the lines of the new file
-                if (!jTextArea.getText().isEmpty()) {
-                    jTextArea.replaceRange("", 0, jTextArea.getText()
+                if (!textArea.getText().isEmpty()) {
+                    textArea.replaceRange("", 0, textArea.getText()
                             .length());
                 }
 
                 // insert the contents of the file to the text area
                 for (final String element : sourceLines) {
-                    jTextArea.append(element + "\n");
+                    textArea.append(element + "\n");
                 }
 
                 // move back to the top of the file
-                jTextArea.moveCaretPosition(0);
+                textArea.moveCaretPosition(0);
             }
             catch (final IOException | ANTLRException ex) {
                 showErrorDialog(
@@ -199,8 +199,8 @@ public class ParseTreeInfoPanel extends JPanel {
         SwingUtilities.invokeLater(showError);
     }
 
-    public List<Integer> getLines2position() {
-        return Collections.unmodifiableList(lines2position);
+    public List<Integer> getLinesToPosition() {
+        return Collections.unmodifiableList(linesToPosition);
     }
 
     /**
@@ -294,17 +294,17 @@ public class ParseTreeInfoPanel extends JPanel {
     }
 
     private class FileDropListener implements FileDrop.Listener {
-        private final JScrollPane mSp;
+        private final JScrollPane scrollPane;
 
-        public FileDropListener(JScrollPane aSp) {
-            mSp = aSp;
+        public FileDropListener(JScrollPane scrollPane) {
+            this.scrollPane = scrollPane;
         }
 
         @Override
         public void filesDropped(File... files) {
             if (files != null && files.length > 0) {
                 final File file = files[0];
-                openFile(file, mSp);
+                openFile(file, scrollPane);
             }
         }
     }

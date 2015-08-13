@@ -218,7 +218,7 @@ public abstract class AbstractJavadocCheck extends Check {
         }
 
         if (parseErrorMessage == null) {
-            final DetailNode tree = convertParseTree2DetailNode(parseTree);
+            final DetailNode tree = convertParseTreeToDetailNode(parseTree);
             result.setTree(tree);
         }
         else {
@@ -234,7 +234,7 @@ public abstract class AbstractJavadocCheck extends Check {
      * @param parseTreeNode root node of ParseTree
      * @return root of DetailNode tree
      */
-    private DetailNode convertParseTree2DetailNode(ParseTree parseTreeNode) {
+    private DetailNode convertParseTreeToDetailNode(ParseTree parseTreeNode) {
         final JavadocNodeImpl rootJavadocNode = createJavadocNode(parseTreeNode, null, -1);
 
         int childCount = parseTreeNode.getChildCount();
