@@ -74,7 +74,7 @@ public class JavadocUtilsTest {
         final Comment comment = new Comment(text, 1, 1, text[0].length());
         final List<JavadocTag> tags = JavadocUtils.getJavadocTags(
             comment, JavadocUtils.JavadocTagType.ALL).getValidTags();
-        assertEquals("List link text", tags.get(0).getArg1());
+        assertEquals("List link text", tags.get(0).getFirstArg());
     }
 
     @Test
@@ -85,7 +85,7 @@ public class JavadocUtilsTest {
         final Comment comment = new Comment(text, 1, 1, text[0].length());
         final List<JavadocTag> tags = JavadocUtils.getJavadocTags(
             comment, JavadocUtils.JavadocTagType.ALL).getValidTags();
-        assertEquals("List#add(Object)", tags.get(0).getArg1());
+        assertEquals("List#add(Object)", tags.get(0).getFirstArg());
     }
 
     @Test

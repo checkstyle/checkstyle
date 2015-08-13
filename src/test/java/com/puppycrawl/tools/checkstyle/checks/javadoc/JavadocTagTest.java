@@ -26,10 +26,10 @@ import org.junit.Test;
 public class JavadocTagTest {
     @Test
     public void testToString() {
-        JavadocTag javadocTag = new JavadocTag(0, 1, "author", "arg1");
+        JavadocTag javadocTag = new JavadocTag(0, 1, "author", "firstArg");
 
         String result = javadocTag.toString();
 
-        assertEquals("JavadocTag{tag='author' lineNo=0, columnNo=1, arg1='arg1'}", result);
+        assertEquals("JavadocTag{tag='author' lineNo=0, columnNo=1, firstArg='firstArg'}", result);
     }
 }

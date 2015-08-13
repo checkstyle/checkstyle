@@ -266,7 +266,7 @@ public class JavadocTypeCheck
             final JavadocTag tag = tags.get(i);
             if (tag.getTagName().equals(tagName)) {
                 tagCount++;
-                if (!formatPattern.matcher(tag.getArg1()).find()) {
+                if (!formatPattern.matcher(tag.getFirstArg()).find()) {
                     log(lineNo, TAG_FORMAT, "@" + tagName, format);
                 }
             }
@@ -289,7 +289,7 @@ public class JavadocTypeCheck
         for (int i = tags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = tags.get(i);
             if (tag.isParamTag()
-                && tag.getArg1().indexOf("<" + typeParamName + ">") == 0) {
+                && tag.getFirstArg().indexOf("<" + typeParamName + ">") == 0) {
                 found = true;
             }
         }
@@ -312,7 +312,7 @@ public class JavadocTypeCheck
             final JavadocTag tag = tags.get(i);
             if (tag.isParamTag()) {
 
-                final Matcher matcher = pattern.matcher(tag.getArg1());
+                final Matcher matcher = pattern.matcher(tag.getFirstArg());
                 matcher.find();
                 final String typeParamName = matcher.group(1).trim();
                 if (!typeParamNames.contains(typeParamName)) {

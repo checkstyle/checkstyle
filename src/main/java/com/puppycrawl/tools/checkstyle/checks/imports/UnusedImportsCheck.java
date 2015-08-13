@@ -242,7 +242,7 @@ public class UnusedImportsCheck extends Check {
                 : getValidTags(cmt, JavadocUtils.JavadocTagType.BLOCK)) {
             if (tag.canReferenceImports()) {
                 references.addAll(
-                        matchPattern(tag.getArg1(), FIRST_CLASS_NAME));
+                        matchPattern(tag.getFirstArg(), FIRST_CLASS_NAME));
             }
         }
         return references;
@@ -266,7 +266,7 @@ public class UnusedImportsCheck extends Check {
      */
     private static Set<String> processJavadocTag(JavadocTag tag) {
         final Set<String> references = new HashSet<>();
-        final String identifier = tag.getArg1().trim();
+        final String identifier = tag.getFirstArg().trim();
         for (Pattern pattern : new Pattern[]
         {FIRST_CLASS_NAME, ARGUMENT_NAME}) {
             references.addAll(matchPattern(identifier, pattern));
