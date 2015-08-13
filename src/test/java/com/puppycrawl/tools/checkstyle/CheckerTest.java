@@ -181,6 +181,7 @@ public class CheckerTest {
         assertEquals(counter, 1); // comparing to 1 as there is only one legal file in input
     }
 
+    @SuppressWarnings("deprecation")
     @Test
     public void testSetters() throws Exception {
         // all  that is set by reflection, so just make code coverage be happy
