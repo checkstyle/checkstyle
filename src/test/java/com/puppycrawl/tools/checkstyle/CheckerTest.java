@@ -194,7 +194,7 @@ public class CheckerTest {
                 new HashSet<String>(), Thread.currentThread().getContextClassLoader());
         c.setModuleFactory(factory);
 
-        c.setFileExtensions(null);
+        c.setFileExtensions((String[]) null);
         c.setFileExtensions(new String[]{".java", "xml"});
 
         try {
