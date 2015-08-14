@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.DefaultContext;
 
 public class AutomaticBeanTest {
 
+    @SuppressWarnings("unused")
     public class TestBean extends AutomaticBean {
 
         private String privateField;
