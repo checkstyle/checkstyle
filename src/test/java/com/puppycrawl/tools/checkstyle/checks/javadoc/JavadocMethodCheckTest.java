@@ -472,13 +472,13 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     @Test
     public void test_1168408_1() throws Exception {
         final String[] expected = {};
-        verify(checkConfig, getSrcPath("checks/javadoc/Input_01.java"), expected);
+        verify(checkConfig, getPath("checks/javadoc/Input_01.java"), expected);
     }
 
     @Test
     public void test_1168408_2() throws Exception {
         final String[] expected = {};
-        verify(checkConfig, getSrcPath("checks/javadoc/Input_02.java"), expected);
+        verify(checkConfig, getPath("checks/javadoc/Input_02.java"), expected);
     }
 
     @Test
@@ -486,7 +486,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {};
-        verify(checkConfig, getSrcPath("checks/javadoc/Input_03.java"), expected);
+        verify(checkConfig, getPath("checks/javadoc/Input_03.java"), expected);
     }
 
     @Test
