@@ -567,13 +567,13 @@ public abstract class AbstractJavadocCheck extends Check {
                 errorMessage = new ParseErrorMessage(lineNumber,
                         JAVADOC_MISSED_HTML_CLOSE, charPositionInLine, token.getText());
 
-                throw new ParseCancellationException();
+                throw new ParseCancellationException(msg);
             }
             else if (JAVADOC_WRONG_SINGLETON_TAG.equals(msg)) {
                 errorMessage = new ParseErrorMessage(lineNumber,
                         JAVADOC_WRONG_SINGLETON_TAG, charPositionInLine, token.getText());
 
-                throw new ParseCancellationException();
+                throw new ParseCancellationException(msg);
             }
             else {
                 final int ruleIndex = ex.getCtx().getRuleIndex();
