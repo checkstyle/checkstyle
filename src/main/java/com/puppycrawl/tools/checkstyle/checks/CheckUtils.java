@@ -47,7 +47,6 @@ public final class CheckUtils {
 
     /** prevent instances */
     private CheckUtils() {
-        throw new UnsupportedOperationException();
     }
 
     /**
