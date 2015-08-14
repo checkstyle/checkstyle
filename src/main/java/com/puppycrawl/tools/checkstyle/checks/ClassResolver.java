@@ -121,7 +121,7 @@ public class ClassResolver {
             throws ClassNotFoundException {
         Class<?> clazz = null;
         if (!currentClass.isEmpty()) {
-            final String innerClass = (!pkg.isEmpty() ? pkg + "." : "")
+            final String innerClass = (pkg.isEmpty() ? "" : pkg + ".")
                 + currentClass + "$" + name;
             if (isLoadable(innerClass)) {
                 clazz = safeLoad(innerClass);
