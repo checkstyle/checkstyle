@@ -187,6 +187,7 @@ public class SuppressionsLoaderTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testUnableToFindSuppressions() throws Exception {
         mockStatic(SuppressionsLoader.class);
 
@@ -207,6 +208,7 @@ public class SuppressionsLoaderTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testUnableToReadSuppressions() throws Exception {
         mockStatic(SuppressionsLoader.class);
 
@@ -269,6 +271,7 @@ public class SuppressionsLoaderTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testloadSuppressionsURISyntaxException() throws Exception {
         mockStatic(SuppressionsLoader.class);
 
