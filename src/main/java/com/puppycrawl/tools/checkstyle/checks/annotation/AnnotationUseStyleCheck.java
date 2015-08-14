@@ -265,6 +265,7 @@ public final class AnnotationUseStyleCheck extends Check {
             case EXPANDED:
                 checkExpandedStyle(annotation);
                 break;
+            case IGNORE:
             default:
                 break;
         }
