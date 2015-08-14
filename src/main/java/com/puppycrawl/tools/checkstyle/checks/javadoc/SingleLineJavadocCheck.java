@@ -83,7 +83,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
         for (String sTag : sTags) {
             tagList.add(sTag.trim());
         }
-        this.ignoredTags = tagList;
+        ignoredTags = tagList;
     }
 
     /**

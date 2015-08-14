@@ -184,8 +184,8 @@ public class JavadocStyleCheck
             ? Scope.PUBLIC : declaredScope;
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
 
-        return customScope.isIn(this.scope)
-            && (surroundingScope == null || surroundingScope.isIn(this.scope))
+        return customScope.isIn(scope)
+            && (surroundingScope == null || surroundingScope.isIn(scope))
             && (excludeScope == null
                 || !customScope.isIn(excludeScope)
                 || surroundingScope != null

@@ -150,7 +150,7 @@ public abstract class AbstractJavadocCheck extends Check {
     @Override
     public final void visitToken(DetailAST blockCommentNode) {
         if (JavadocUtils.isJavadocComment(blockCommentNode)) {
-            this.blockCommentAst = blockCommentNode;
+            blockCommentAst = blockCommentNode;
 
             final String treeCacheKey = blockCommentNode.getLineNo() + ":"
                     + blockCommentNode.getColumnNo();

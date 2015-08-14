@@ -469,8 +469,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     private boolean shouldCheck(final DetailAST ast, final Scope nodeScope) {
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
 
-        return nodeScope.isIn(this.scope)
-                && surroundingScope.isIn(this.scope)
+        return nodeScope.isIn(scope)
+                && surroundingScope.isIn(scope)
                 && (excludeScope == null || !nodeScope.isIn(excludeScope)
                     || !surroundingScope.isIn(excludeScope));
     }
