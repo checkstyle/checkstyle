@@ -106,6 +106,6 @@ public class RegexpSinglelineJavaCheck extends Check {
      * @param ignore whether to ignore comments when matching.
      */
     public void setIgnoreComments(boolean ignore) {
-        this.ignoreComments = ignore;
+        ignoreComments = ignore;
     }
 }
