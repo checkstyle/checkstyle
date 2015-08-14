@@ -38,6 +38,15 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport {
 
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
+    @Test
+    public void testAllBlockComments() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(BlockCommentListenerCheck.class);
+        final String[] expected = {};
+        verify(checkConfig, getPath("comments" + File.separator
+                + "InputFullOfBlockComments.java"), expected);
+        Assert.assertTrue(allComments.isEmpty());
+    }
+
     public static class BlockCommentListenerCheck extends Check {
         @Override
         public boolean isCommentNodesRequired() {
@@ -74,15 +83,5 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport {
                 Assert.fail("Unexpected comment: " + commentContent);
             }
         }
-
-    }
-
-    @Test
-    public void testAllBlockComments() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(BlockCommentListenerCheck.class);
-        final String[] expected = {};
-        verify(checkConfig, getPath("comments" + File.separator
-                + "InputFullOfBlockComments.java"), expected);
-        Assert.assertTrue(allComments.isEmpty());
     }
 }

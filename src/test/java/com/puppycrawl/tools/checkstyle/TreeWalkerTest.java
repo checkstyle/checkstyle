@@ -237,13 +237,6 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         verify(checkConfig, pathToEmptyFile, expected);
     }
 
-    public static class BadJavaDocCheck extends Check {
-        @Override
-        public int[] getDefaultTokens() {
-            return new int[]{TokenTypes.SINGLE_LINE_COMMENT};
-        }
-    }
-
     @Test
     public void testProcessNonJavaFiles() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
@@ -299,5 +292,12 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         lines.add(" class a%$# {} ");
 
         treeWalker.processFiltered(file, lines);
+    }
+
+    public static class BadJavaDocCheck extends Check {
+        @Override
+        public int[] getDefaultTokens() {
+            return new int[]{TokenTypes.SINGLE_LINE_COMMENT};
+        }
     }
 }

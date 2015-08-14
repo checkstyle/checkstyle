@@ -37,6 +37,15 @@ public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
 
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
+    @Test
+    public void testAllBlockComments() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(SinglelineCommentListenerCheck.class);
+        final String[] expected = {};
+        verify(checkConfig, getPath("comments" + File.separator
+                + "InputFullOfSinglelineComments.java"), expected);
+        Assert.assertTrue(allComments.isEmpty());
+    }
+
     public static class SinglelineCommentListenerCheck extends Check {
         @Override
         public boolean isCommentNodesRequired() {
@@ -69,15 +78,5 @@ public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
                 Assert.fail("Unexpected comment: " + commentContent);
             }
         }
-
-    }
-
-    @Test
-    public void testAllBlockComments() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(SinglelineCommentListenerCheck.class);
-        final String[] expected = {};
-        verify(checkConfig, getPath("comments" + File.separator
-                + "InputFullOfSinglelineComments.java"), expected);
-        Assert.assertTrue(allComments.isEmpty());
     }
 }
