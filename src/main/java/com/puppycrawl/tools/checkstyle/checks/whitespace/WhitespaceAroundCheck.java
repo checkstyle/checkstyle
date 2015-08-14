@@ -295,7 +295,7 @@ public class WhitespaceAroundCheck extends Check {
 
     /**
      * Sets whether or not empty method bodies are allowed.
-     * @param allow <code>true</code> to allow empty method bodies.
+     * @param allow {@code true} to allow empty method bodies.
      */
     public void setAllowEmptyMethods(boolean allow) {
         allowEmptyMethods = allow;
@@ -303,7 +303,7 @@ public class WhitespaceAroundCheck extends Check {
 
     /**
      * Sets whether or not empty constructor bodies are allowed.
-     * @param allow <code>true</code> to allow empty constructor bodies.
+     * @param allow {@code true} to allow empty constructor bodies.
      */
     public void setAllowEmptyConstructors(boolean allow) {
         allowEmptyCtors = allow;
@@ -312,7 +312,7 @@ public class WhitespaceAroundCheck extends Check {
     /**
      * Sets whether or not to ignore the whitespace around the
      * colon in an enhanced for loop.
-     * @param ignore <code>true</code> to ignore enhanced for colon.
+     * @param ignore {@code true} to ignore enhanced for colon.
      */
     public void setIgnoreEnhancedForColon(boolean ignore) {
         ignoreEnhancedForColon = ignore;
@@ -320,7 +320,7 @@ public class WhitespaceAroundCheck extends Check {
 
     /**
      * Sets whether or not empty type bodies are allowed.
-     * @param allow <code>true</code> to allow empty type bodies.
+     * @param allow {@code true} to allow empty type bodies.
      */
     public void setAllowEmptyTypes(boolean allow) {
         allowEmptyTypes = allow;
@@ -328,7 +328,7 @@ public class WhitespaceAroundCheck extends Check {
 
     /**
      * Sets whether or not empty loop bodies are allowed.
-     * @param allow <code>true</code> to allow empty loops bodies.
+     * @param allow {@code true} to allow empty loops bodies.
      */
     public void setAllowEmptyLoops(boolean allow) {
         allowEmptyLoops = allow;
@@ -466,11 +466,11 @@ public class WhitespaceAroundCheck extends Check {
     }
 
     /**
-     * Test if the given <code>DetailAST</code> is part of an allowed empty
+     * Test if the given {@code DetailAST} is part of an allowed empty
      * method block.
-     * @param ast the <code>DetailAST</code> to test.
-     * @param parentType the token type of <code>ast</code>'s parent.
-     * @return <code>true</code> if <code>ast</code> makes up part of an
+     * @param ast the {@code DetailAST} to test.
+     * @param parentType the token type of {@code ast}'s parent.
+     * @return {@code true} if {@code ast} makes up part of an
      *         allowed empty method block.
      */
     private boolean isEmptyMethodBlock(DetailAST ast, int parentType) {
@@ -493,9 +493,9 @@ public class WhitespaceAroundCheck extends Check {
 
     /**
      *
-     * @param ast ast the <code>DetailAST</code> to test.
-     * @param parentType the token type of <code>ast</code>'s parent.
-     * @return <code>true</code> if <code>ast</code> makes up part of an
+     * @param ast ast the {@code DetailAST} to test.
+     * @param parentType the token type of {@code ast}'s parent.
+     * @return {@code true} if {@code ast} makes up part of an
      *         allowed empty loop block.
      */
     private boolean isEmptyLoop(DetailAST ast, int parentType) {

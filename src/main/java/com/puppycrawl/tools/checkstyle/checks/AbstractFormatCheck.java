@@ -44,7 +44,7 @@ public abstract class AbstractFormatCheck
     private String format;
 
     /**
-     * Creates a new <code>AbstractFormatCheck</code> instance. Defaults the
+     * Creates a new {@code AbstractFormatCheck} instance. Defaults the
      * compile flag to 0 (the default).
      * @param defaultFormat default format
      * @throws ConversionException unable to parse defaultFormat
@@ -54,7 +54,7 @@ public abstract class AbstractFormatCheck
     }
 
     /**
-     * Creates a new <code>AbstractFormatCheck</code> instance.
+     * Creates a new {@code AbstractFormatCheck} instance.
      * @param defaultFormat default format
      * @param compileFlags the Pattern flags to compile the regexp with.
      * See {@link Pattern#compile(String, int)}
@@ -66,7 +66,7 @@ public abstract class AbstractFormatCheck
 
     /**
      * Set the format to the specified regular expression.
-     * @param format a <code>String</code> value
+     * @param format a {@code String} value
      * @throws ConversionException unable to parse format
      */
     public final void setFormat(String format) {

@@ -70,7 +70,7 @@ public class IllegalImportCheck
     private String[] illegalPkgs;
 
     /**
-     * Creates a new <code>IllegalImportCheck</code> instance.
+     * Creates a new {@code IllegalImportCheck} instance.
      */
     public IllegalImportCheck() {
         setIllegalPkgs("sun");

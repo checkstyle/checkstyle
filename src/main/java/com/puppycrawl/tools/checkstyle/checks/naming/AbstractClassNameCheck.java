@@ -68,7 +68,7 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck {
     }
 
     /**
-     * Whether to ignore checking for the <code>abstract</code> modifier.
+     * Whether to ignore checking for the {@code abstract} modifier.
      * @param value new value
      */
     public void setIgnoreModifier(boolean value) {
