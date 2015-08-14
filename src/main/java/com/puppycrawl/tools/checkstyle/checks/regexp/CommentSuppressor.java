@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
  */
 class CommentSuppressor implements MatchSuppressor {
     /** File contents to check for comments. */
-    private FileContents currentContents;
+    private final FileContents currentContents;
 
     /**
      * Constructor for this suppressor.

@@ -312,7 +312,7 @@ public class SuppressionCommentFilter
         private final Pattern tagCheckRegexp;
 
         /** The parsed message regexp, expanded for the text of this tag. */
-        private Pattern tagMessageRegexp;
+        private final Pattern tagMessageRegexp;
 
         /**
          * Constructs a tag.
@@ -343,6 +343,9 @@ public class SuppressionCommentFilter
                             expandFromCoont(text, filter.messageFormat, filter.onRegexp);
                         tagMessageRegexp = Pattern.compile(format);
                     }
+                    else {
+                        tagMessageRegexp = null;
+                    }
                 }
                 else {
                     format =
@@ -355,6 +358,9 @@ public class SuppressionCommentFilter
                                 filter.messageFormat,
                                 filter.offRegexp);
                         tagMessageRegexp = Pattern.compile(format);
+                    }
+                    else {
+                        tagMessageRegexp = null;
                     }
                 }
             }
