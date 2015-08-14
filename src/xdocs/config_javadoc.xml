@@ -497,7 +497,7 @@ public boolean isSomething()
           To configure the check for ignoring methods named <code>foo(),foo1(),foo2()</code>, etc.:
         </p>
         <source>
-&lt;module name="JavadocMethodRegex"&gt;
+&lt;module name="JavadocMethod"&gt;
    &lt;property name="ignoreMethodNamesRegex" value="^foo.*$"/&gt;
 &lt;/module&gt;
         </source>
