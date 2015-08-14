@@ -10,11 +10,9 @@ import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck;
 
 public class ParameterNameTest extends BaseCheckTestSupport{
 
-	private Class<ParameterNameCheck> clazz = ParameterNameCheck.class;
 	private String msgKey = "name.invalidPattern";
 	private static String format;
 	private static ConfigurationBuilder builder;
@@ -46,7 +44,7 @@ public class ParameterNameTest extends BaseCheckTestSupport{
         };
 
         String filePath = builder.getFilePath("ParameterNameInput_Simple");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

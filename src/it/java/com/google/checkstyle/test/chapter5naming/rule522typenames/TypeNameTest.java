@@ -10,12 +10,11 @@ import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 
 public class TypeNameTest extends BaseCheckTestSupport{
-    
+
 	private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException, IOException {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -23,9 +22,8 @@ public class TypeNameTest extends BaseCheckTestSupport{
 
     @Test
     public void typeNameTest() throws IOException, Exception {
-        
+
         Configuration checkConfig = builder.getCheckConfig("TypeName");
-        Class<TypeNameCheck> clazz = TypeNameCheck.class;
         String msgKey = "name.invalidPattern";
         String format = "^[A-Z][a-zA-Z0-9]*$";
 
@@ -61,9 +59,9 @@ public class TypeNameTest extends BaseCheckTestSupport{
             "69:12: " + getCheckMessage(checkConfig.getMessages(), msgKey, "Annot$ation", format),
             "71:12: " + getCheckMessage(checkConfig.getMessages(), msgKey, "Annotation$", format),
         };
-        
+
         String filePath = builder.getFilePath("TypeNameInput");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

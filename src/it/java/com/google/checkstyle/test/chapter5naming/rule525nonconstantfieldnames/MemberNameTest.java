@@ -10,12 +10,10 @@ import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 
 public class MemberNameTest extends BaseCheckTestSupport{
-    
+
 	private static ConfigurationBuilder builder;
-	private Class<TypeNameCheck> clazz = TypeNameCheck.class;
 	private String msgKey = "name.invalidPattern";
 	private static Configuration checkConfig;
 	private static String format;
@@ -29,7 +27,7 @@ public class MemberNameTest extends BaseCheckTestSupport{
 
     @Test
     public void memberNameTest() throws IOException, Exception {
-        
+
         final String[] expected = {
             "5:16: " + getCheckMessage(checkConfig.getMessages(), msgKey, "mPublic", format),
             "6:19: " + getCheckMessage(checkConfig.getMessages(), msgKey, "mProtected", format),
@@ -47,14 +45,14 @@ public class MemberNameTest extends BaseCheckTestSupport{
         };
 
         String filePath = builder.getFilePath("MemberNameInput_Basic");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void simpleTest() throws IOException, Exception {
-        
+
         final String[] expected = {
             "12:17: " + getCheckMessage(checkConfig.getMessages(), msgKey, "bad$Static", format),
             "17:17: " + getCheckMessage(checkConfig.getMessages(), msgKey, "bad_Member", format),
@@ -91,7 +89,7 @@ public class MemberNameTest extends BaseCheckTestSupport{
         };
 
         String filePath = builder.getFilePath("MemberNameInput_Simple");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

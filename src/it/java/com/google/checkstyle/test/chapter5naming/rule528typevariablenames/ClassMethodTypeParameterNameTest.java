@@ -10,17 +10,14 @@ import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck;
-import com.puppycrawl.tools.checkstyle.checks.naming.MethodTypeParameterNameCheck;
 
 public class ClassMethodTypeParameterNameTest extends BaseCheckTestSupport{
 
     private static ConfigurationBuilder builder;
-    private Class<ClassTypeParameterNameCheck> clazz = ClassTypeParameterNameCheck.class;
     private String msgKey = "name.invalidPattern";
     private static Configuration checkConfig;
     private static String format;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException, IOException {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -38,7 +35,7 @@ public class ClassMethodTypeParameterNameTest extends BaseCheckTestSupport{
         };
 
         String filePath = builder.getFilePath("ClassTypeParameterNameInput");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
@@ -46,7 +43,6 @@ public class ClassMethodTypeParameterNameTest extends BaseCheckTestSupport{
     @Test
     public void testMethodDefault() throws IOException, Exception {
 
-        Class<MethodTypeParameterNameCheck> clazz = MethodTypeParameterNameCheck.class;
         Configuration checkConfig = builder.getCheckConfig("MethodTypeParameterName");
 
         final String[] expected = {
@@ -58,9 +54,9 @@ public class ClassMethodTypeParameterNameTest extends BaseCheckTestSupport{
             "42:14: " + getCheckMessage(checkConfig.getMessages(), msgKey, "EE", format),
         };
 
-        
+
         String filePath = builder.getFilePath("MethodTypeParameterNameInput");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
