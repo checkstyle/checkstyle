@@ -229,9 +229,9 @@ public class CommentsIndentationCheck extends Check {
     /**
      * Checks if current single line comment is trailing comment, e.g.:
      * <p>
-     * <code>
+     * {@code
      * double d = 3.14; // some comment
-     * </code>
+     * }
      * </p>
      * @param singleLineComment {@link TokenTypes#SINGLE_LINE_COMMENT single line comment}.
      * @return true if current single line comment is trailing comment.
