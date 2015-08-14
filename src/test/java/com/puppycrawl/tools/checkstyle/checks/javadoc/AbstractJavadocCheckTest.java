@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.DescriptiveErrorListener.JAVADOC_MISSED_HTML_CLOSE;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.DescriptiveErrorListener.JAVADOC_WRONG_SINGLETON_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.JAVADOC_MISSED_HTML_CLOSE;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.JAVADOC_WRONG_SINGLETON_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.PARSE_ERROR_MESSAGE_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY;
 

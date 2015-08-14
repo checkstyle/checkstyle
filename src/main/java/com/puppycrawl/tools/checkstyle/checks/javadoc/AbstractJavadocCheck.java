@@ -59,6 +59,19 @@ public abstract class AbstractJavadocCheck extends Check {
      */
     public static final String UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY =
             "javadoc.unrecognized.antlr.error";
+    /**
+     * Message key of error message. Missed close HTML tag breaks structure
+     * of parse tree, so parser stops parsing and generates such error
+     * message. This case is special because parser prints error like
+     * {@code "no viable alternative at input 'b \n *\n'"} and it is not
+     * clear that error is about missed close HTML tag.
+     */
+    static final String JAVADOC_MISSED_HTML_CLOSE = "javadoc.missed.html.close";
+    /**
+     * Message key of error message.
+     */
+    static final String JAVADOC_WRONG_SINGLETON_TAG =
+        "javadoc.wrong.singleton.html.tag";
 
     /**
      * key is "line:column"
@@ -498,21 +511,7 @@ public abstract class AbstractJavadocCheck extends Check {
     /**
      * Custom error listener for JavadocParser that prints user readable errors.
      */
-    static class DescriptiveErrorListener extends BaseErrorListener {
-        /**
-         * Message key of error message. Missed close HTML tag breaks structure
-         * of parse tree, so parser stops parsing and generates such error
-         * message. This case is special because parser prints error like
-         * {@code "no viable alternative at input 'b \n *\n'"} and it is not
-         * clear that error is about missed close HTML tag.
-         */
-        static final String JAVADOC_MISSED_HTML_CLOSE = "javadoc.missed.html.close";
-
-        /**
-         * Message key of error message.
-         */
-        static final String JAVADOC_WRONG_SINGLETON_TAG =
-            "javadoc.wrong.singleton.html.tag";
+    private static class DescriptiveErrorListener extends BaseErrorListener {
 
         /**
          * Parse error while rule recognition.
