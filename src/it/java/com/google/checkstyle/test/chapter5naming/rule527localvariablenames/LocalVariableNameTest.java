@@ -10,12 +10,10 @@ import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck;
 
 public class LocalVariableNameTest extends BaseCheckTestSupport{
 
 	private static ConfigurationBuilder builder;
-	private Class<LocalVariableNameCheck> clazz = LocalVariableNameCheck.class;
 	private String msgKey = "name.invalidPattern";
 	private static Configuration checkConfig;
 	private static String format;
@@ -49,7 +47,7 @@ public class LocalVariableNameTest extends BaseCheckTestSupport{
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
-    
+
     @Test
     public void oneCharTest() throws IOException, Exception {
 
@@ -64,7 +62,7 @@ public class LocalVariableNameTest extends BaseCheckTestSupport{
         };
 
         String filePath = builder.getFilePath("LocalVariableNameInput_OneCharVarName");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
