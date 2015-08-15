@@ -28,6 +28,8 @@ public class Input_1379666 {
      * Some exception class.
      */
     public static class BadStringFormat extends Exception {
+        private static final long serialVersionUID = 1L;
+
         /**
          * Some comment.
          * @param s string.
