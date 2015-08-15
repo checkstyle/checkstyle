@@ -48,8 +48,8 @@ public class JavadocPackageCheckTest
         };
         verify(
             createChecker(checkConfig),
-            getSrcPath("checks/javadoc/BadCls.java"),
-            getSrcPath("checks/javadoc/BadCls.java"),
+            getPath("checks/javadoc/BadCls.java"),
+            getPath("checks/javadoc/BadCls.java"),
             expected);
     }
 
@@ -62,8 +62,8 @@ public class JavadocPackageCheckTest
         };
         verify(
             createChecker(checkConfig),
-            getSrcPath("checks/javadoc/BadCls.java"),
-            getSrcPath("checks/javadoc/BadCls.java"),
+            getPath("checks/javadoc/BadCls.java"),
+            getPath("checks/javadoc/BadCls.java"),
             expected);
     }
 
