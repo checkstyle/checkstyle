@@ -105,6 +105,7 @@ public class LeftCurlyCheck
      * @deprecated since 6.10 release, option is not required for the Check.
      */
     @Deprecated
+    @SuppressWarnings("unused")
     private int maxLineLength = DEFAULT_MAX_LINE_LENGTH;
 
     /** If true, Check will ignore enums*/
