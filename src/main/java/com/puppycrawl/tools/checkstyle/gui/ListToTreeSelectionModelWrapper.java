@@ -37,7 +37,7 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
      */
     private static final long serialVersionUID = 2267930983939339510L;
     /** Set to true when we are updating the ListSelectionModel. */
-    protected boolean updatingListSelectionModel;
+    private boolean updatingListSelectionModel;
     /** JTreeTable to perform updates on */
     private final JTreeTable treeTable;
 
@@ -122,7 +122,7 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
      */
     private void updateSelectedPathIfRowIsSelected(int counter) {
         if (listSelectionModel.isSelectedIndex(counter)) {
-            final TreePath selPath = treeTable.tree.getPathForRow(counter);
+            final TreePath selPath = treeTable.getTree().getPathForRow(counter);
 
             if (selPath != null) {
                 addSelectionPath(selPath);
