@@ -173,6 +173,6 @@ public class ModifierOrderCheck
             }
         }
 
-        return modifier;
+        return null;
     }
 }
