@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -72,7 +74,7 @@ public class AvoidStaticImportCheck
     public static final String MSG_KEY = "import.avoidStatic";
 
     /** the classes/static members to exempt from this check. */
-    private String[] excludes = new String[0];
+    private String[] excludes = ArrayUtils.EMPTY_STRING_ARRAY;
 
     @Override
     public int[] getDefaultTokens() {
