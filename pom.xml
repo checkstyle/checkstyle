@@ -1680,11 +1680,6 @@
                 <totalLineRate>95</totalLineRate>
                 <regexes>
                   <regex>
-                    <pattern>.*.checks.ClassResolver</pattern>
-                    <branchRate>85</branchRate>
-                    <lineRate>93</lineRate>
-                  </regex>
-                  <regex>
                     <pattern>.*.checks.AbstractDeclarationCollector</pattern>
                     <branchRate>94</branchRate>
                     <lineRate>100</lineRate>
