@@ -777,10 +777,8 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
                 final DetailAST firstNodeInsideElseBlock = elseBlock.getFirstChild();
 
                 if (firstNodeInsideElseBlock.getType() == TokenTypes.LITERAL_IF) {
-                    isVarInOperatorDeclr |=
-                            isVariableInOperatorExpr(
-                                firstNodeInsideElseBlock,
-                                    variable);
+                    isVarInOperatorDeclr =
+                        isVariableInOperatorExpr(firstNodeInsideElseBlock, variable);
                 }
             }
         }

@@ -493,7 +493,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             // Check for inheritDoc
             boolean hasInheritDocTag = false;
             while (it.hasNext() && !hasInheritDocTag) {
-                hasInheritDocTag |= it.next().isInheritDocTag();
+                hasInheritDocTag = it.next().isInheritDocTag();
             }
 
             checkParamTags(tags, ast, !hasInheritDocTag);
