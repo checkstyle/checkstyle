@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck.MSG_KEY;
 import static org.junit.Assert.fail;
 
-import java.text.NumberFormat;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -65,8 +63,6 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("max", "0");
 
         final long largerThanMaxInt = 3486784401L;
-        // use i18n for number formatting so test wont fail in non-english environments
-        final String expectedComplexity = NumberFormat.getInstance().format(largerThanMaxInt);
 
         String[] expected = {
             "9:5: " + getCheckMessage(MSG_KEY, largerThanMaxInt, 0),
