@@ -450,6 +450,7 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testLoadConfiguration_URISyntaxException() throws CheckstyleException {
         mockStatic(ConfigurationLoader.class);
 

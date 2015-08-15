@@ -469,6 +469,7 @@ public class MainTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testListFiles_notFile() throws Exception {
         Class<?>[] param = new Class<?>[1];
         param[0] = File.class;
@@ -485,6 +486,7 @@ public class MainTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testListFiles_DirectoryWithNull() throws Exception {
         Class<?>[] param = new Class<?>[1];
         param[0] = File.class;
