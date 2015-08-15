@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,13 +31,7 @@ public class CheckUtilsTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        try {
-            assertUtilsClassHasPrivateConstructor(CheckUtils.class);
-            Assert.fail();
-        }
-        catch (InvocationTargetException ex) {
-            Assert.assertTrue(ex.getCause() instanceof UnsupportedOperationException);
-        }
+        assertUtilsClassHasPrivateConstructor(CheckUtils.class);
     }
 
     @Test
