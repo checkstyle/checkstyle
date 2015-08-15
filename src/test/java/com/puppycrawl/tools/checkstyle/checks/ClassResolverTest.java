@@ -19,51 +19,61 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.anyObject;
 
 import java.util.Set;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.google.common.collect.Sets;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({ ClassResolver.class, ClassResolverTest.class })
 public class ClassResolverTest {
     @Test
     public void testMisc() throws ClassNotFoundException {
-        final Set<String> imps = Sets.newHashSet();
-        imps.add("java.io.File");
-        imps.add("nothing.will.match.*");
-        imps.add("java.applet.*");
-        ClassResolver cr =
+        final Set<String> imports = Sets.newHashSet();
+        imports.add("java.io.File");
+        imports.add("nothing.will.match.*");
+        imports.add("java.applet.*");
+        ClassResolver classResolver =
             new ClassResolver(Thread.currentThread().getContextClassLoader(),
-                              null, imps);
-        assertNotNull(cr);
+                null, imports);
+        assertNotNull(classResolver);
         try {
-            cr.resolve("who.will.win.the.world.cup", "");
+            classResolver.resolve("who.will.win.the.world.cup", "");
             fail("Should not resolve class");
         }
         catch (ClassNotFoundException e) {
             // expected
         }
-        cr.resolve("java.lang.String", "");
-        cr.resolve("StringBuffer", "");
-        cr.resolve("AppletContext", "");
+        classResolver.resolve("java.lang.String", "");
+        classResolver.resolve("StringBuffer", "");
+        classResolver.resolve("AppletContext", "");
 
         try {
-            cr.resolve("ChoiceFormat", "");
+            classResolver.resolve("ChoiceFormat", "");
             fail();
         }
         catch (ClassNotFoundException e) {
             // expected
         }
 
-        imps.add("java.text.ChoiceFormat");
-        ClassResolver newClassResolver = new ClassResolver(Thread.currentThread().getContextClassLoader(), null, imps);
+        imports.add("java.text.ChoiceFormat");
+        ClassResolver newClassResolver = new ClassResolver(
+                Thread.currentThread().getContextClassLoader(), null, imports);
         newClassResolver.resolve("ChoiceFormat", "");
 
         ClassResolver javaUtilClassResolver = new ClassResolver(
-                Thread.currentThread().getContextClassLoader(), "java.util", imps);
+                Thread.currentThread().getContextClassLoader(), "java.util", imports);
         javaUtilClassResolver.resolve("List", "");
         try {
             javaUtilClassResolver.resolve("two.nil.england", "");
@@ -71,6 +81,73 @@ public class ClassResolverTest {
         }
         catch (ClassNotFoundException e) {
             // expected
+        }
+    }
+
+    @Test
+    public void testExistedImportCantBeResolved() throws Exception {
+        final Set<String> imports = Sets.newHashSet();
+        imports.add("java.applet.someClass");
+        ClassResolver classResolver = new ClassResolver(
+                Thread.currentThread().getContextClassLoader(),
+                "", imports);
+
+        try {
+            classResolver.resolve("someClass", "");
+            fail("Exception expected");
+        }
+        catch (ClassNotFoundException e) {
+            // expected
+            assertEquals("someClass", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testResolveInnerClass() throws Exception {
+        final Set<String> imports = Sets.newHashSet();
+        ClassResolver classResolver = new ClassResolver(
+                Thread.currentThread().getContextClassLoader(),
+                "java.util", imports);
+
+        Class<?> entry = classResolver.resolve("Entry", "Map");
+        assertEquals("java.util.Map$Entry", entry.getName());
+    }
+
+    @Test
+    public void testResolveInnerClassWithEmptyPackage() throws Exception {
+        final Set<String> imports = Sets.newHashSet();
+        ClassResolver classResolver = new ClassResolver(
+                Thread.currentThread().getContextClassLoader(),
+                "", imports);
+
+        try {
+            classResolver.resolve("Entry", "Map");
+        }
+        catch (ClassNotFoundException ex) {
+            assertEquals("Entry", ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testResolveQualifiedNameFails() throws Exception {
+        final Set<String> imports = Sets.newHashSet();
+        imports.add("java.applet.someClass");
+
+        ClassResolver classResolver = PowerMockito.spy(new ClassResolver(Thread
+                .currentThread().getContextClassLoader(), "", imports));
+
+        PowerMockito.doThrow(new ClassNotFoundException("excpected exception"))
+                .when(classResolver, "safeLoad", anyObject());
+        PowerMockito.doReturn(true).when(classResolver, "isLoadable", anyObject());
+
+        try {
+            classResolver.resolve("someClass", "");
+            fail("Exception expected");
+        }
+        catch (IllegalStateException e) {
+            // expected
+            assertTrue(e.getCause() instanceof ClassNotFoundException);
+            assertTrue(e.getMessage().endsWith("excpected exception"));
         }
     }
 }
