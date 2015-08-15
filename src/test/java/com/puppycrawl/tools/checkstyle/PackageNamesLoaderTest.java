@@ -91,11 +91,10 @@ public class PackageNamesLoaderTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testPackagesWithDots() throws Exception {
 
-        Constructor<PackageNamesLoader> constructor =
-                (Constructor<PackageNamesLoader>) PackageNamesLoader.class
-                        .getDeclaredConstructors()[0];
+        Constructor<PackageNamesLoader> constructor = PackageNamesLoader.class.getDeclaredConstructor();
         constructor.setAccessible(true);
         PackageNamesLoader loader = constructor.newInstance();
 
@@ -111,6 +110,7 @@ public class PackageNamesLoaderTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testPackagesWithSaxException() throws Exception {
 
         final URLConnection mockConnection = Mockito.mock(URLConnection.class);
@@ -136,6 +136,7 @@ public class PackageNamesLoaderTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testPackagesWithIoException() throws Exception {
 
         final URLConnection mockConnection = Mockito.mock(URLConnection.class);
@@ -161,6 +162,7 @@ public class PackageNamesLoaderTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testPackagesWithIoException_getResources() throws Exception {
 
         ClassLoader classLoader = mock(ClassLoader.class);
