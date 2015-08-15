@@ -29,7 +29,9 @@ import javax.swing.tree.TreeModel;
  * the TreeTableModel can return a value for each of the columns and
  * set that value if isCellEditable() returns true.
  *
- * <a href="http://docs.oracle.com/cd/E16162_01/apirefs.1112/e17493/oracle/ide/controls/TreeTableModel.html">Original&nbsp;Source&nbsp;Location</a>
+ * <a href=
+ * "http://docs.oracle.com/cd/E16162_01/apirefs.1112/e17493/oracle/ide/controls/TreeTableModel.html">
+ * Original&nbsp;Source&nbsp;Location</a>
  *
  * @author Philip Milne
  * @author Scott Violet
