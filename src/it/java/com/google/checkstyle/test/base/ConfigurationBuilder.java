@@ -20,7 +20,7 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 
 	private File ROOT;
 
-	private List<File> files = new ArrayList<File>();
+	private List<File> files = new ArrayList<>();
 
 	Configuration config;
 	
@@ -100,7 +100,7 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 
 	public Integer[] getLinesWithWarn(String aFileName) throws IOException {
 		int lineNumber = 1;
-	    List<Integer> result = new ArrayList<Integer>();
+	    List<Integer> result = new ArrayList<>();
 	    try(BufferedReader br = new BufferedReader(new FileReader(aFileName))) {
 	        for(String line; (line = br.readLine()) != null; ) {
 	            if (warnPattern.matcher(line).find()) {
