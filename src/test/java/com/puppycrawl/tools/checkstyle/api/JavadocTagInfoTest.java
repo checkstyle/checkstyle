@@ -303,7 +303,7 @@ public class JavadocTagInfoTest {
 
     @Test
     public void testCoverage() {
-        assertEquals(JavadocTagInfo.VERSION.getType(), JavadocTagInfo.Type.BLOCK);
+        assertEquals(JavadocTagInfo.Type.BLOCK, JavadocTagInfo.VERSION.getType());
 
         assertEquals("text [@version] name [version] type [BLOCK]", JavadocTagInfo.VERSION.toString());
 

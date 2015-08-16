@@ -90,7 +90,7 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
         }
         catch (IllegalArgumentException e) {
             final String msg = e.getMessage();
-            Assert.assertEquals(msg, "Unexpected token type: methodStub");
+            Assert.assertEquals("Unexpected token type: methodStub", msg);
         }
     }
 }
