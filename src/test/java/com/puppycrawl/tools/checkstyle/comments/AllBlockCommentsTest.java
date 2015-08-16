@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AllBlockCommentsTest extends BaseCheckTestSupport {
-    protected static final Set<String> allComments = Sets.newLinkedHashSet();
+    protected static final Set<String> ALL_COMMENTS = Sets.newLinkedHashSet();
 
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
@@ -44,7 +44,7 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport {
         final String[] expected = {};
         verify(checkConfig, getPath("comments" + File.separator
                 + "InputFullOfBlockComments.java"), expected);
-        Assert.assertTrue(allComments.isEmpty());
+        Assert.assertTrue(ALL_COMMENTS.isEmpty());
     }
 
     public static class BlockCommentListenerCheck extends Check {
@@ -65,7 +65,7 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport {
 
         @Override
         public void init() {
-            allComments.addAll(Arrays.asList("0", "1", "2", "3", "4", "5",
+            ALL_COMMENTS.addAll(Arrays.asList("0", "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10", "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
                     LINE_SEPARATOR + "21" + LINE_SEPARATOR,
@@ -79,7 +79,7 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport {
         @Override
         public void visitToken(DetailAST aAST) {
             String commentContent = aAST.getFirstChild().getText();
-            if (!allComments.remove(commentContent)) {
+            if (!ALL_COMMENTS.remove(commentContent)) {
                 Assert.fail("Unexpected comment: " + commentContent);
             }
         }
