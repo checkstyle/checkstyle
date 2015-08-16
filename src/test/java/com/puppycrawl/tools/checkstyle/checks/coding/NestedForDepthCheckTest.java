@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 /**
- * The unit-test for the <code>NestedForDepthCheck</code>-checkstyle enhancement.
+ * The unit-test for the {@code NestedForDepthCheck}-checkstyle enhancement.
  * @see com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck
  */
 public class NestedForDepthCheckTest extends BaseCheckTestSupport {
