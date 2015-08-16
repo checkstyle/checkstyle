@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespac
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_ILLEGAL_FOLLOW;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_PRECEDED;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 import java.util.Map;
@@ -51,6 +52,16 @@ public class GenericWhitespaceCheckTest
             entry.getValue();
         }
         //for (final Entry<Class<?>, Integer> entry : entrySet())
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        GenericWhitespaceCheck checkObj = new GenericWhitespaceCheck();
+        int[] expected = new int[] {
+            TokenTypes.GENERIC_START,
+            TokenTypes.GENERIC_END,
+        };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -130,7 +141,7 @@ public class GenericWhitespaceCheckTest
             TokenTypes.GENERIC_END,
         };
         Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test(expected = IllegalArgumentException.class)

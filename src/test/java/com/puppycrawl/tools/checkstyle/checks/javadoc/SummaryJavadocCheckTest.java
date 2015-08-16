@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.SUMMARY_FIRST_SENTENCE;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.SUMMARY_JAVADOC;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.fail;
 
 import org.junit.Before;
@@ -28,6 +29,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
@@ -35,6 +37,13 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(SummaryJavadocCheck.class);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        SummaryJavadocCheck checkObj = new SummaryJavadocCheck();
+        int[] expected = new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
     @Test

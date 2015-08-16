@@ -35,6 +35,18 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ImportControlCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        ImportControlCheck checkObj = new ImportControlCheck();
+        int[] expected = new int[] {
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
+        };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testOne() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);

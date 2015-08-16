@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_ANNOTATION_MISSING_DEPRECATED;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_JAVADOC_DUPLICATE_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_JAVADOC_MISSING;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
@@ -29,8 +30,27 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MissingDeprecatedTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        MissingDeprecatedCheck checkObj = new  MissingDeprecatedCheck();
+        int[] expected = new int[] {
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+        };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     /**
      * Tests that memebers that are only deprecated via javadoc are flagged.
      */

@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpress
 import static com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler.MSG_CHILD_ERROR_MULTI;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler.MSG_ERROR;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler.MSG_ERROR_MULTI;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
@@ -183,6 +184,22 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
                     String[] expected)
                     throws Exception {
         verifyWarns(config, filePath, expected, 0);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        IndentationCheck checkObj = new IndentationCheck();
+        final HandlerFactory handlerFactory = new HandlerFactory();
+        int[] expected = handlerFactory.getHandledTypes();
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        IndentationCheck checkObj = new IndentationCheck();
+        final HandlerFactory handlerFactory = new HandlerFactory();
+        int[] expected = handlerFactory.getHandledTypes();
+        assertArrayEquals(expected, checkObj.getAcceptableTokens());
     }
 
     @Test

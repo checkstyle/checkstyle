@@ -32,6 +32,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AvoidStaticImportTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokesn() {
+        AvoidStaticImportCheck checkObj = new AvoidStaticImportCheck();
+        int[] expected = new int[] {TokenTypes.STATIC_IMPORT};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testDefaultOperation()
         throws Exception {

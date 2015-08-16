@@ -19,12 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -43,6 +45,12 @@ public class FileSetCheckLifecycleTest
         final DefaultConfiguration dc = new DefaultConfiguration("root");
         dc.addChild(checkConfig);
         return dc;
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        FileContentsHolder checkObj = new FileContentsHolder();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test

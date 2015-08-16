@@ -20,7 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,6 +37,18 @@ public class TrailingCommentCheckTest extends BaseCheckTestSupport {
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(TrailingCommentCheck.class);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        TrailingCommentCheck checkObj = new TrailingCommentCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        TrailingCommentCheck checkObj = new TrailingCommentCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getAcceptableTokens());
     }
 
     @Test

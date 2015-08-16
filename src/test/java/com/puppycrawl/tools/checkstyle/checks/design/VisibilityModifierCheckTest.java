@@ -42,6 +42,16 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
+    public void testGetRequiredTokens() {
+        VisibilityModifierCheck checkObj = new VisibilityModifierCheck();
+        int[] expected = new int[] {
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.IMPORT,
+        };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
+    @Test
     public void testInner()
         throws Exception {
         final String[] expected = {

@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import static com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED;
+import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,6 +31,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AvoidNestedBlocksCheckTest
         extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        AvoidNestedBlocksCheck checkObj = new AvoidNestedBlocksCheck();
+        int[] expected = new int[] {TokenTypes.SLIST};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testStrictSettings()
         throws Exception {
@@ -65,7 +74,7 @@ public class AvoidNestedBlocksCheckTest
         int[] actual = constantNameCheckObj.getAcceptableTokens();
         int[] expected = new int[] {TokenTypes.SLIST };
         Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
 }

@@ -46,6 +46,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class JavadocTypeCheckTest extends BaseCheckTestSupport {
 
     @Test
+    public void testGetRequiredTokens() {
+        JavadocTypeCheck javadocTypeCheck = new JavadocTypeCheck();
+        int[] expected = new int[] {
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
+        };
+        assertArrayEquals(expected, javadocTypeCheck.getRequiredTokens());
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         JavadocTypeCheck javadocTypeCheck = new JavadocTypeCheck();
 

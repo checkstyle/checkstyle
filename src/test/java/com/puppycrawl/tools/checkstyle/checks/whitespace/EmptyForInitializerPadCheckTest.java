@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck.MSG_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck.MSG_PRECEDED;
+import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -37,6 +38,13 @@ public class EmptyForInitializerPadCheckTest
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(EmptyForInitializerPadCheck.class);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        EmptyForInitializerPadCheck checkObj = new EmptyForInitializerPadCheck();
+        int[] expected = new int[] {TokenTypes.FOR_INIT};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -64,6 +72,6 @@ public class EmptyForInitializerPadCheckTest
             TokenTypes.FOR_INIT,
         };
         Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 }

@@ -31,6 +31,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class TodoCommentCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        TodoCommentCheck checkObj = new TodoCommentCheck();
+        int[] expected = new int[] {TokenTypes.COMMENT_CONTENT};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =

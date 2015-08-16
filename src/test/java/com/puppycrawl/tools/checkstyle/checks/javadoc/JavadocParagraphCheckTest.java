@@ -23,12 +23,14 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphChe
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_MISPLACED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_REDUNDANT_PARAGRAPH;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_TAG_AFTER;
+import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class JavadocParagraphCheckTest extends BaseCheckTestSupport {
 
@@ -37,6 +39,13 @@ public class JavadocParagraphCheckTest extends BaseCheckTestSupport {
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(JavadocParagraphCheck.class);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        JavadocParagraphCheck checkObj = new JavadocParagraphCheck();
+        int[] expected = new int[] {TokenTypes.BLOCK_COMMENT_BEGIN};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
     @Test

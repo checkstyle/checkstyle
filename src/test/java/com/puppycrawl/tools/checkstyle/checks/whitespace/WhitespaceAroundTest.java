@@ -21,7 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck.WS_NOT_FOLLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck.WS_NOT_PRECEDED;
+import static org.junit.Assert.assertArrayEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,6 +39,12 @@ public class WhitespaceAroundTest
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(WhitespaceAroundCheck.class);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        WhitespaceAroundCheck checkObj = new WhitespaceAroundCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -274,6 +282,6 @@ public class WhitespaceAroundTest
             TokenTypes.WILDCARD_TYPE,
         };
         Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 }

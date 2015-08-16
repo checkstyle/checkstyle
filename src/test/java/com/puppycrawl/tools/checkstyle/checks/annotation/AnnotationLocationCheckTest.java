@@ -21,7 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION_ALONE;
+import static org.junit.Assert.assertArrayEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -30,6 +32,13 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        AnnotationLocationCheck checkObj = new AnnotationLocationCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testCorrect() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
@@ -88,7 +97,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
             TokenTypes.ANNOTATION_FIELD_DEF,
             };
         Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test

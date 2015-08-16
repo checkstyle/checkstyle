@@ -22,7 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_BREAK_AFTER;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_PREVIOUS;
+import static org.junit.Assert.assertArrayEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,6 +39,13 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(LeftCurlyCheck.class);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        LeftCurlyCheck checkObj = new LeftCurlyCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+
     }
 
     @Test
@@ -276,7 +285,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
             TokenTypes.LITERAL_FOR,
             TokenTypes.STATIC_INIT, };
         Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test

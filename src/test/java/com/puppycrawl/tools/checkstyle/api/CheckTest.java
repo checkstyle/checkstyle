@@ -26,6 +26,23 @@ import org.junit.Test;
 public class CheckTest {
 
     @Test
+    public void testGetRequiredTokens() {
+        Check check = new Check() {
+            @Override
+            public int[] getDefaultTokens() {
+                return ArrayUtils.EMPTY_INT_ARRAY;
+            }
+
+            @Override
+            public int[] getRequiredTokens() {
+                return super.getRequiredTokens();
+            }
+        };
+        // Eventually it will become clear abstract method
+        Assert.assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, check.getRequiredTokens());
+    }
+
+    @Test
     public void testGetAcceptable() {
         Check check = new Check() {
             @Override
@@ -35,16 +52,11 @@ public class CheckTest {
 
             @Override
             public int[] getAcceptableTokens() {
-                return  ArrayUtils.EMPTY_INT_ARRAY;
-            }
-
-            @Override
-            public int[] getRequiredTokens() {
-                return  ArrayUtils.EMPTY_INT_ARRAY;
+                return super.getAcceptableTokens();
             }
         };
         // Eventually it will become clear abstract method
-        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, check.getAcceptableTokens());
     }
 
     @Test

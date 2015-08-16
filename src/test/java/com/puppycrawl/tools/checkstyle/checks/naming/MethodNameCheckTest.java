@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -31,6 +32,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MethodNameCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        MethodNameCheck checkObj = new MethodNameCheck();
+        int[] expected = new int[] {TokenTypes.METHOD_DEF};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testDefault()
         throws Exception {
@@ -146,6 +155,6 @@ public class MethodNameCheckTest
             TokenTypes.METHOD_DEF,
         };
         Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 }

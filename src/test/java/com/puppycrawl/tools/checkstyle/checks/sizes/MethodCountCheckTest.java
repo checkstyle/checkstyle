@@ -33,6 +33,14 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MethodCountCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        MethodCountCheck checkObj = new MethodCountCheck();
+        int[] expected = new int[] {TokenTypes.METHOD_DEF};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testGetAcceptableTokens() {
         MethodCountCheck methodCountCheckObj =
