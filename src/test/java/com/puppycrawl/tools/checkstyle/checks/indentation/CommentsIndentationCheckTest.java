@@ -50,6 +50,7 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
             "28: " + getCheckMessage(MSG_KEY_BLOCK, 31, 16, 12),
             "50: " + getCheckMessage(MSG_KEY_SINGLE, 51, 27, 23),
             "51: " + getCheckMessage(MSG_KEY_BLOCK, 53, 23, 36),
+            "136: " + getCheckMessage(MSG_KEY_SINGLE, 137, 20, 16),
         };
         verify(checkConfig, getPath("comments" + File.separator
                  + "InputCommentsIndentationCheckSurroundingCode.java"), expected);
@@ -73,6 +74,7 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "13: " + getCheckMessage(MSG_KEY_SINGLE, 14, 14, 12),
             "50: " + getCheckMessage(MSG_KEY_SINGLE, 51, 27, 23),
+            "136: " + getCheckMessage(MSG_KEY_SINGLE, 137, 20, 16),
         };
         verify(checkConfig, getPath("comments" + File.separator
                  + "InputCommentsIndentationCheckSurroundingCode.java"), expected);
