@@ -30,9 +30,9 @@ public class IntMatchFilterTest {
     @Test
     public void testDecide() {
         final IntFilter filter = new IntMatchFilter(0);
-        assertFalse("less than", filter.accept(Integer.valueOf(-1)));
-        assertTrue("equal", filter.accept(Integer.valueOf(0)));
-        assertFalse("greater than", filter.accept(Integer.valueOf(1)));
+        assertFalse("less than", filter.accept(-1));
+        assertTrue("equal", filter.accept(0));
+        assertFalse("greater than", filter.accept(1));
     }
 
     @Test
