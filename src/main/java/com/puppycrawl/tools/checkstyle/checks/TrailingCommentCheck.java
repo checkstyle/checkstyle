@@ -134,6 +134,16 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         throw new IllegalStateException("visitToken() shouldn't be called.");
     }

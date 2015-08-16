@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -118,6 +119,11 @@ public class EmptyBlockCheck
             TokenTypes.LITERAL_DEFAULT,
             TokenTypes.ARRAY_INIT,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override

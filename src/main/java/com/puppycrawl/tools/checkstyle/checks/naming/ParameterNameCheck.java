@@ -59,12 +59,17 @@ public class ParameterNameCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.PARAMETER_DEF};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.PARAMETER_DEF};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

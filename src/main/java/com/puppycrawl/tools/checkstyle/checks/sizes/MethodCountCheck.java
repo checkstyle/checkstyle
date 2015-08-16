@@ -85,13 +85,7 @@ public final class MethodCountCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.METHOD_DEF,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -103,6 +97,11 @@ public final class MethodCountCheck extends Check {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.METHOD_DEF,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return new int[] {TokenTypes.METHOD_DEF};
     }
 
     @Override

@@ -160,12 +160,7 @@ public class DeclarationOrderCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.CTOR_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.MODIFIERS,
-            TokenTypes.OBJBLOCK,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -176,6 +171,11 @@ public class DeclarationOrderCheck extends Check {
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

@@ -132,6 +132,16 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
     public void visitJavadocToken(DetailNode ast) {
         final int parentType = getParentType(getBlockCommentAst());
 

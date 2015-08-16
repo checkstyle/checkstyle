@@ -90,12 +90,17 @@ public class ModifierOrderCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.MODIFIERS};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.MODIFIERS};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

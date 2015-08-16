@@ -137,6 +137,11 @@ public final class MissingDeprecatedCheck extends Check {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
     public void visitToken(final DetailAST ast) {
         final TextBlock javadoc =
             getFileContents().getJavadocBefore(ast.getLineNo());

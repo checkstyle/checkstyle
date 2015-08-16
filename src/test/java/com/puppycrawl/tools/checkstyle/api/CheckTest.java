@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,7 +30,17 @@ public class CheckTest {
         Check check = new Check() {
             @Override
             public int[] getDefaultTokens() {
-                return new int[0];
+                return ArrayUtils.EMPTY_INT_ARRAY;
+            }
+
+            @Override
+            public int[] getAcceptableTokens() {
+                return  ArrayUtils.EMPTY_INT_ARRAY;
+            }
+
+            @Override
+            public int[] getRequiredTokens() {
+                return  ArrayUtils.EMPTY_INT_ARRAY;
             }
         };
         // Eventually it will become clear abstract method
@@ -41,7 +52,17 @@ public class CheckTest {
         Check check = new Check() {
             @Override
             public int[] getDefaultTokens() {
-                return new int[0];
+                return  ArrayUtils.EMPTY_INT_ARRAY;
+            }
+
+            @Override
+            public int[] getAcceptableTokens() {
+                return  ArrayUtils.EMPTY_INT_ARRAY;
+            }
+
+            @Override
+            public int[] getRequiredTokens() {
+                return  ArrayUtils.EMPTY_INT_ARRAY;
             }
         };
         // Eventually it will become clear abstract method

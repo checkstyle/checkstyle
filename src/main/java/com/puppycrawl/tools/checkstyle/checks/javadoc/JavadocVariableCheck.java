@@ -80,10 +80,7 @@ public class JavadocVariableCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -91,6 +88,17 @@ public class JavadocVariableCheck
         return new int[] {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
+        };
+    }
+
+    /*
+     * Skipping enum values is requested.
+     * Checkstyle's issue #1669: https://github.com/checkstyle/checkstyle/issues/1669
+     */
+    @Override
+    public int[] getRequiredTokens() {
+        return new int[] {
+            TokenTypes.VARIABLE_DEF,
         };
     }
 

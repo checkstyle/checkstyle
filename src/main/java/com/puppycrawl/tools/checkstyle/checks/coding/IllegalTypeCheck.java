@@ -149,12 +149,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.PARAMETER_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.IMPORT,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -165,6 +160,11 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.IMPORT,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

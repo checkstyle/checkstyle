@@ -297,7 +297,18 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     public static class BadJavaDocCheck extends Check {
         @Override
         public int[] getDefaultTokens() {
+            return getAcceptableTokens();
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
             return new int[]{TokenTypes.SINGLE_LINE_COMMENT};
         }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return getAcceptableTokens();
+        }
     }
+
 }

@@ -221,6 +221,11 @@ public class DescendantTokenCheck extends Check {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         //reset counts
         Arrays.fill(counts, 0);

@@ -98,12 +98,17 @@ public class GenericWhitespaceCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.GENERIC_START, TokenTypes.GENERIC_END};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.GENERIC_START, TokenTypes.GENERIC_END};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

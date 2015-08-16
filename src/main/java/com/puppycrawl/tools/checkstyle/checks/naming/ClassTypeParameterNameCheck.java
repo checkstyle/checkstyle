@@ -54,6 +54,13 @@ public class ClassTypeParameterNameCheck
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return new int[] {
+            TokenTypes.TYPE_PARAMETER,
+        };
+    }
+
+    @Override
     protected final int getLocation() {
         return TokenTypes.CLASS_DEF;
     }

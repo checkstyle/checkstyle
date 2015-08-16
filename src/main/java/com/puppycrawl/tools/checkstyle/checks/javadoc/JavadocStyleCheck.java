@@ -112,18 +112,7 @@ public class JavadocStyleCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
-            TokenTypes.ANNOTATION_FIELD_DEF,
-            TokenTypes.PACKAGE_DEF,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -140,6 +129,11 @@ public class JavadocStyleCheck
             TokenTypes.ANNOTATION_FIELD_DEF,
             TokenTypes.PACKAGE_DEF,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

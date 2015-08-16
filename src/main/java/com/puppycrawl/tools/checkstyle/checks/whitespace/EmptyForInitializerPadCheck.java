@@ -70,14 +70,17 @@ public class EmptyForInitializerPadCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.FOR_INIT,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.FOR_INIT,
-        };
+        return new int[] {TokenTypes.FOR_INIT};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

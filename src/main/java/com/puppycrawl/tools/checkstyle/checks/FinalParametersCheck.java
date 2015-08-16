@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.Set;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -102,6 +104,11 @@ public class FinalParametersCheck extends Check {
             TokenTypes.LITERAL_CATCH,
             TokenTypes.FOR_EACH_CLAUSE,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
