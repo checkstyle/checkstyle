@@ -4,24 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class ConfigValidationTest extends BaseCheckTestSupport {
-
-    static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
-    }
-
     @Test
     public void testGoogleChecks() throws IOException, Exception {
+        ConfigurationBuilder builder = new ConfigurationBuilder(new File("src/it/"));
         final Configuration checkerConfig = builder.config;
         final Checker c = new Checker();
         c.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
