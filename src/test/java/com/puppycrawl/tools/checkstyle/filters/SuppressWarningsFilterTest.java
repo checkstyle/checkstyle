@@ -78,7 +78,7 @@ public class SuppressWarningsFilterTest
     }
 
     protected void verifySuppressed(Configuration aFilterConfig,
-        String[] aSuppressed) throws Exception {
+        String... aSuppressed) throws Exception {
         verify(createChecker(aFilterConfig),
             getPath("filters/InputSuppressWarningsFilter.java"),
             removeSuppressed(sAllMessages, aSuppressed));
@@ -116,7 +116,7 @@ public class SuppressWarningsFilterTest
         return checker;
     }
 
-    private static String[] removeSuppressed(String[] from, String[] remove) {
+    private static String[] removeSuppressed(String[] from, String... remove) {
         final Collection<String> coll =
             Lists.newArrayList(Arrays.asList(from));
         coll.removeAll(Arrays.asList(remove));

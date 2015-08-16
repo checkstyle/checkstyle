@@ -195,7 +195,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
     protected void verify(Checker c,
                           File[] processedFiles,
                           String messageFileName,
-                          String[] expected)
+                          String... expected)
         throws Exception {
         stream.flush();
         final List<File> theFiles = Lists.newArrayList();

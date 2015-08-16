@@ -90,12 +90,12 @@ public abstract class BaseCheckTestSupport {
         return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + filename).getCanonicalPath();
     }
 
-    protected void verify(Configuration aConfig, String fileName, String[] expected)
+    protected void verify(Configuration aConfig, String fileName, String... expected)
             throws Exception {
         verify(createChecker(aConfig), fileName, fileName, expected);
     }
 
-    protected void verify(Checker c, String fileName, String[] expected)
+    protected void verify(Checker c, String fileName, String... expected)
             throws Exception {
         verify(c, fileName, fileName, expected);
     }
@@ -103,7 +103,7 @@ public abstract class BaseCheckTestSupport {
     protected void verify(Checker c,
                           String processedFilename,
                           String messageFileName,
-                          String[] expected)
+                          String... expected)
             throws Exception {
         verify(c,
                 new File[]{new File(processedFilename)},
@@ -113,7 +113,7 @@ public abstract class BaseCheckTestSupport {
     protected void verify(Checker c,
                           File[] processedFiles,
                           String messageFileName,
-                          String[] expected)
+                          String... expected)
             throws Exception {
         stream.flush();
         final List<File> theFiles = Lists.newArrayList();

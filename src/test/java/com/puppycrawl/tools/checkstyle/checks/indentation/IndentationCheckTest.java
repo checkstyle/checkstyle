@@ -181,7 +181,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     }
 
     private void verifyWarns(Configuration config, String filePath,
-                    String[] expected)
+                    String... expected)
                     throws Exception {
         verifyWarns(config, filePath, expected, 0);
     }
