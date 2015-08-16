@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,6 +31,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class PackageNameCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        PackageNameCheck checkObj = new PackageNameCheck();
+        int[] expected = new int[] {TokenTypes.PACKAGE_DEF};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testSpecified()
         throws Exception {
@@ -63,6 +72,6 @@ public class PackageNameCheckTest
             TokenTypes.PACKAGE_DEF,
         };
         Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 }

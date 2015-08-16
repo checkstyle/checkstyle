@@ -48,6 +48,17 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
     private static final String SPECIAL = com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.SPECIAL_IMPORTS_RULE_GROUP;
 
     @Test
+    public void testGetRequiredTokens() {
+        CustomImportOrderCheck checkObj = new CustomImportOrderCheck();
+        int[] expected = new int[] {
+            TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
+            TokenTypes.PACKAGE_DEF,
+        };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
+    @Test
     public void testCustom() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);

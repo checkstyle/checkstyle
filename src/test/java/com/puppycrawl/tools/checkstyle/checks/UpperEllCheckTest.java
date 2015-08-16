@@ -31,6 +31,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class UpperEllCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        UpperEllCheck checkObj = new UpperEllCheck();
+        int[] expected = new int[] {TokenTypes.NUM_LONG};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testWithChecker()
         throws Exception {

@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_ANNOTATION_ORDER;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_MODIFIER_ORDER;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
@@ -33,6 +34,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ModifierOrderCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        ModifierOrderCheck checkObj = new ModifierOrderCheck();
+        int[] expected = new int[] {TokenTypes.MODIFIERS};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =

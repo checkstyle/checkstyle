@@ -19,14 +19,25 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static org.junit.Assert.assertArrayEquals;
+
 import java.io.File;
 
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        SuppressWarningsHolder checkObj = new SuppressWarningsHolder();
+        int[] expected = new int[] {TokenTypes.ANNOTATION};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testOnComplexAnnotations() throws Exception {
         Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);

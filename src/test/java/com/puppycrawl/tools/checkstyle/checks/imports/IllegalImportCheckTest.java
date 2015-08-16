@@ -31,6 +31,14 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class IllegalImportCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        IllegalImportCheck checkObj = new  IllegalImportCheck();
+        int[] expected = new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testWithSupplied()
         throws Exception {

@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static org.junit.Assert.assertArrayEquals;
+
 import java.io.File;
 
 import org.junit.Assert;
@@ -29,6 +31,18 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        OuterTypeFilenameCheck checkObj = new OuterTypeFilenameCheck();
+        int[] expected = new int[] {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
+        };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
 
     @Test
     public void testGood1() throws Exception {
@@ -57,7 +71,7 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
             TokenTypes.ANNOTATION_DEF,
         };
         Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test

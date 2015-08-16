@@ -30,6 +30,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ArrayTypeStyleCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        ArrayTypeStyleCheck checkObj = new ArrayTypeStyleCheck();
+        int[] expected = new int[] {TokenTypes.ARRAY_DECLARATOR};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testJavaStyle()
         throws Exception {

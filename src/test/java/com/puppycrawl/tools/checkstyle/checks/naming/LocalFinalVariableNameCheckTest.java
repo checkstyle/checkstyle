@@ -20,7 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static org.junit.Assert.assertArrayEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -30,6 +32,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class LocalFinalVariableNameCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        LocalFinalVariableNameCheck checkObj =
+            new LocalFinalVariableNameCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testDefault()
         throws Exception {
@@ -77,6 +87,6 @@ public class LocalFinalVariableNameCheckTest
             TokenTypes.PARAMETER_DEF,
         };
         Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 }

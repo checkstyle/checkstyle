@@ -34,6 +34,14 @@ public class HideUtilityClassConstructorCheckTest
     extends BaseCheckTestSupport {
 
     @Test
+    public void testGetRequiredTokens() {
+        HideUtilityClassConstructorCheck checkObj =
+            new HideUtilityClassConstructorCheck();
+        int[] expected = new int[] {TokenTypes.CLASS_DEF};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
+    @Test
     public void testUtilClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);

@@ -21,7 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.WS_NOT_FOLLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.WS_TYPECAST;
+import static org.junit.Assert.assertArrayEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,6 +37,12 @@ public class WhitespaceAfterCheckTest
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(WhitespaceAfterCheck.class);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        WhitespaceAfterCheck checkObj = new WhitespaceAfterCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test

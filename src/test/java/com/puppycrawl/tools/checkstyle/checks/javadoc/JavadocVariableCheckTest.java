@@ -35,6 +35,16 @@ public class JavadocVariableCheckTest
     extends BaseCheckTestSupport {
 
     @Test
+    public void testGetRequiredTokens() {
+        JavadocVariableCheck javadocVariableCheck = new JavadocVariableCheck();
+        int[] actual = javadocVariableCheck.getRequiredTokens();
+        int[] expected = new int[]{
+            TokenTypes.VARIABLE_DEF,
+        };
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         JavadocVariableCheck javadocVariableCheck = new JavadocVariableCheck();
 

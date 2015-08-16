@@ -20,14 +20,33 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class NonEmptyAtclauseDescriptionCheckTest
         extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetAcceptableTokens() {
+        NonEmptyAtclauseDescriptionCheck checkObj =
+            new NonEmptyAtclauseDescriptionCheck();
+        int[] expected = new int[] {TokenTypes.BLOCK_COMMENT_BEGIN};
+        assertArrayEquals(expected, checkObj.getAcceptableTokens());
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        NonEmptyAtclauseDescriptionCheck checkObj =
+            new NonEmptyAtclauseDescriptionCheck();
+        int[] expected = new int[] {TokenTypes.BLOCK_COMMENT_BEGIN};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testCheck()
             throws Exception {

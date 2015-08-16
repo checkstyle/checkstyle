@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -34,6 +35,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ConstantNameCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        ConstantNameCheck checkObj = new ConstantNameCheck();
+        int[] expected = new int[] {TokenTypes.VARIABLE_DEF};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testIllegalRegexp()
         throws Exception {

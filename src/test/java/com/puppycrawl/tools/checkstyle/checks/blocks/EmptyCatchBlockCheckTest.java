@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import static org.junit.Assert.assertArrayEquals;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -32,6 +34,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  */
 public class EmptyCatchBlockCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        EmptyCatchBlockCheck checkObj = new EmptyCatchBlockCheck();
+        int[] expected = new int[] {TokenTypes.LITERAL_CATCH};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -68,7 +78,7 @@ public class EmptyCatchBlockCheckTest extends BaseCheckTestSupport {
         int[] actual = constantNameCheckObj.getAcceptableTokens();
         int[] expected = new int[] {TokenTypes.LITERAL_CATCH };
         Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
 }

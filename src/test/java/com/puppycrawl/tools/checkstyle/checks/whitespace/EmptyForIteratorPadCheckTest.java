@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck.WS_FOLLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck.WS_NOT_FOLLOWED;
+import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -37,6 +38,13 @@ public class EmptyForIteratorPadCheckTest
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(EmptyForIteratorPadCheck.class);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        EmptyForIteratorPadCheck checkObj = new EmptyForIteratorPadCheck();
+        int[] expected = new int[] {TokenTypes.FOR_ITERATOR};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -66,6 +74,6 @@ public class EmptyForIteratorPadCheckTest
             TokenTypes.FOR_ITERATOR,
         };
         Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 }

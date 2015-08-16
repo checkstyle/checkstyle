@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
@@ -32,6 +33,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class StaticVariableNameCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        StaticVariableNameCheck checkObj = new StaticVariableNameCheck();
+        int[] excpected = new int[] {TokenTypes.VARIABLE_DEF};
+        assertArrayEquals(excpected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testSpecified()
         throws Exception {
@@ -80,6 +89,6 @@ public class StaticVariableNameCheckTest
             TokenTypes.VARIABLE_DEF,
         };
         Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 }
