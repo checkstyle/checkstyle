@@ -472,10 +472,10 @@ public class MainTest {
                 String format = "%s.java:%s: warning: File length is %s lines (max allowed is 80).";
                 StringBuilder sb = new StringBuilder();
                 sb.append("Starting audit..." + System.getProperty("line.separator"));
-                for (int i = 0; i < outputValues.length; i++) {
+                for (String[] outputValue : outputValues) {
                     String line = String.format(format,
-                            expectedPath + outputValues[i][0], outputValues[i][1],
-                            outputValues[i][2]);
+                            expectedPath + outputValue[0], outputValue[1],
+                            outputValue[2]);
                     sb.append(line + System.getProperty("line.separator"));
                 }
                 sb.append("Audit done." + System.getProperty("line.separator"));

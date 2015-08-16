@@ -225,11 +225,11 @@ public class ConfigurationLoaderTest {
         final String[] attNames = config.getAttributeNames();
         assertEquals("attributes.length", atts.size(), attNames.length);
 
-        for (int i = 0; i < attNames.length; i++) {
+        for (String attName : attNames) {
             assertEquals(
-                "attribute[" + attNames[i] + "]",
-                atts.get(attNames[i]),
-                config.getAttribute(attNames[i]));
+                "attribute[" + attName + "]",
+                atts.get(attName),
+                config.getAttribute(attName));
         }
     }
 
@@ -239,10 +239,10 @@ public class ConfigurationLoaderTest {
         final String[] testValues = {null, "", "a", "$a", "{a",
                                      "{a}", "a}", "$a}", "$", "a$b", };
         final Properties props = initProperties();
-        for (int i = 0; i < testValues.length; i++) {
+        for (String testValue : testValues) {
             final String value = ConfigurationLoader.replaceProperties(
-                testValues[i], new PropertiesExpander(props), null);
-            assertEquals("\"" + testValues[i] + "\"", value, testValues[i]);
+                testValue, new PropertiesExpander(props), null);
+            assertEquals("\"" + testValue + "\"", value, testValue);
         }
     }
 
@@ -290,11 +290,11 @@ public class ConfigurationLoaderTest {
             {"$$", "$"},
         };
         final Properties props = initProperties();
-        for (int i = 0; i < testValues.length; i++) {
+        for (String[] testValue : testValues) {
             final String value = ConfigurationLoader.replaceProperties(
-                testValues[i][0], new PropertiesExpander(props), null);
-            assertEquals("\"" + testValues[i][0] + "\"",
-                testValues[i][1], value);
+                testValue[0], new PropertiesExpander(props), null);
+            assertEquals("\"" + testValue[0] + "\"",
+                testValue[1], value);
         }
     }
 
