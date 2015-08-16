@@ -196,7 +196,7 @@ public class SuppressionCommentFilterTest
     }
 
     protected void verifySuppressed(Configuration aFilterConfig,
-                                    String[] aSuppressed)
+                                    String... aSuppressed)
         throws Exception {
         verify(createChecker(aFilterConfig),
                getPath("filters/InputSuppressionCommentFilter.java"),
@@ -227,7 +227,7 @@ public class SuppressionCommentFilterTest
         return checker;
     }
 
-    private static String[] removeSuppressed(String[] from, String[] remove) {
+    private static String[] removeSuppressed(String[] from, String... remove) {
         final Collection<String> coll =
             Lists.newArrayList(Arrays.asList(from));
         coll.removeAll(Arrays.asList(remove));

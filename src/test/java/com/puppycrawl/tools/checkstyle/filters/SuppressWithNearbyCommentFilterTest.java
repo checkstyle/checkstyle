@@ -196,7 +196,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     protected void verifySuppressed(Configuration filterConfig,
-                                    String[] suppressed)
+                                    String... suppressed)
         throws Exception {
         verify(createChecker(filterConfig),
                getPath("filters/InputSuppressWithNearbyCommentFilter.java"),
@@ -227,7 +227,7 @@ public class SuppressWithNearbyCommentFilterTest
         return checker;
     }
 
-    private static String[] removeSuppressed(String[] from, String[] remove) {
+    private static String[] removeSuppressed(String[] from, String... remove) {
         final Collection<String> coll =
             Lists.newArrayList(Arrays.asList(from));
         coll.removeAll(Arrays.asList(remove));

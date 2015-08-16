@@ -238,7 +238,7 @@ public class XMLLoggerTest {
      * Take into consideration checkstyle element (first and last lines).
      * @param expectedLines expected error report lines
      */
-    private void verifyLines(String[] expectedLines)
+    private void verifyLines(String... expectedLines)
         throws IOException {
         final String[] lines = getOutStreamLines();
         assertEquals("length.", expectedLines.length + 3, lines.length);
