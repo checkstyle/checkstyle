@@ -27,7 +27,6 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.TooManyListenersException;
 
@@ -112,9 +111,9 @@ public class ParseTreeInfoPanel extends JPanel {
         reloadAction.setEnabled(true);
 
         // clear for each new file
-        getLinesToPosition().clear();
+        clearLinesToPosition();
         // starts line counting at 1
-        getLinesToPosition().add(0);
+        addLineToPosition(0);
         // insert the contents of the file to the text area
 
         // clean the text area before inserting the lines of the new file
@@ -141,12 +140,12 @@ public class ParseTreeInfoPanel extends JPanel {
                 final String[] sourceLines = text.toLinesArray();
 
                 // clear for each new file
-                getLinesToPosition().clear();
+                clearLinesToPosition();
                 // starts line counting at 1
-                getLinesToPosition().add(0);
+                addLineToPosition(0);
                 // insert the contents of the file to the text area
                 for (String element : sourceLines) {
-                    getLinesToPosition().add(textArea.getText().length());
+                    addLineToPosition(textArea.getText().length());
                     textArea.append(element + "\n");
                 }
 
@@ -199,8 +198,12 @@ public class ParseTreeInfoPanel extends JPanel {
         SwingUtilities.invokeLater(showError);
     }
 
-    public List<Integer> getLinesToPosition() {
-        return Collections.unmodifiableList(linesToPosition);
+    void addLineToPosition(int value) {
+        linesToPosition.add(value);
+    }
+
+    void clearLinesToPosition() {
+        linesToPosition.clear();
     }
 
     /**
