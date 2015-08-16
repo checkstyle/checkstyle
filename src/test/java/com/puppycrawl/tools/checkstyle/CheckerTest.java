@@ -178,7 +178,7 @@ public class CheckerTest {
         final String[] fileExtensions = {"java", "xml", "properties"};
         c.setFileExtensions(fileExtensions);
         final int counter = c.process(files);
-        assertEquals(counter, 1); // comparing to 1 as there is only one legal file in input
+        assertEquals(1, counter); // comparing to 1 as there is only one legal file in input
     }
 
     @SuppressWarnings("deprecation")
