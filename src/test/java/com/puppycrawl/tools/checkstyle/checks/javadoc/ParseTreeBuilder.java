@@ -49,8 +49,11 @@ import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser.TrTagClose
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser.TrTagOpenContext;
 
 //@formatter:off
-public class ParseTreeBuilder {
+public final class ParseTreeBuilder {
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+
+    private ParseTreeBuilder() {
+    }
 
     public static ParseTree treeOneSimpleHtmlTag() {
         JavadocContext Rohae = new JavadocContext(null, 0);
