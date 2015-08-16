@@ -537,7 +537,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {};
-        verify(checkConfig, getSrcPath("checks/javadoc/Input_1379666.java"), expected);
+        verify(checkConfig, getPath("checks/javadoc/Input_1379666.java"), expected);
     }
 
     @Test
