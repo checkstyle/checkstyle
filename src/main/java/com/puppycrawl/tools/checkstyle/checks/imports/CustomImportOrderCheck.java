@@ -819,7 +819,7 @@ public class CustomImportOrderCheck extends Check {
          * @param staticImport
          *        if import is static.
          */
-        public ImportDetails(String importFullPath,
+        ImportDetails(String importFullPath,
                 int lineNumber, String importGroup, boolean staticImport) {
             this.importFullPath = importFullPath;
             this.lineNumber = lineNumber;

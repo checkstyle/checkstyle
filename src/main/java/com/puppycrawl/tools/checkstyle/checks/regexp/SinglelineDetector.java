@@ -36,7 +36,7 @@ class SinglelineDetector {
      * Creates an instance.
      * @param options the options to use.
      */
-    public SinglelineDetector(DetectorOptions options) {
+    SinglelineDetector(DetectorOptions options) {
         this.options = options;
     }
 
