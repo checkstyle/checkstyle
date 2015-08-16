@@ -19,7 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 public class DefaultConfigurationTest {
@@ -28,10 +29,10 @@ public class DefaultConfigurationTest {
     public void testRemoveChild() {
         DefaultConfiguration config = new DefaultConfiguration("Myconfig");
         DefaultConfiguration configChild = new DefaultConfiguration("childConfig");
-        Assert.assertTrue(config.getChildren().length == 0);
+        assertEquals(0, config.getChildren().length);
         config.addChild(configChild);
-        Assert.assertTrue(config.getChildren().length == 1);
+        assertEquals(1, config.getChildren().length);
         config.removeChild(configChild);
-        Assert.assertTrue(config.getChildren().length == 0);
+        assertEquals(0, config.getChildren().length);
     }
 }

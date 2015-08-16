@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 
@@ -240,7 +241,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
         int[] expectedTokens = {TokenTypes.METHOD_DEF };
         MissingOverrideCheck check = new MissingOverrideCheck();
         int[] actual = check.getAcceptableTokens();
-        Assert.assertTrue(actual.length == 1);
+        assertEquals(1, actual.length);
         Assert.assertArrayEquals(expectedTokens, actual);
     }
 }

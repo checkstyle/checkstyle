@@ -24,7 +24,6 @@ import static org.junit.Assert.assertEquals;
 import java.util.SortedSet;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -83,7 +82,7 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
         emptyCheck.log(0, "msgKey");
 
         SortedSet<LocalizedMessage> messages = collector.getMessages();
-        Assert.assertTrue(messages.size() == 1);
+        assertEquals(1, messages.size());
         assertEquals("This is a custom message.", messages.first()
                 .getMessage());
     }
@@ -100,7 +99,7 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
         emptyCheck.log(0, "msgKey", "TestParam");
 
         SortedSet<LocalizedMessage> messages = collector.getMessages();
-        Assert.assertTrue(messages.size() == 1);
+        assertEquals(1, messages.size());
 
         assertEquals("This is a custom message with TestParam.",
                 messages.first().getMessage());
@@ -118,7 +117,7 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
         emptyCheck.log(0, "msgKey", "TestParam");
 
         SortedSet<LocalizedMessage> messages = collector.getMessages();
-        Assert.assertTrue(messages.size() == 1);
+        assertEquals(1, messages.size());
 
         //we expect an exception here because of the bogus custom message
         //format
