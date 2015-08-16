@@ -157,6 +157,7 @@ public class UtilsTest {
         assertEquals("string", constructedString);
     }
 
+    @SuppressWarnings("rawtypes")
     @Test
     public void testInvokeConstructorThatFails() throws NoSuchMethodException {
         Constructor<Dictionary> constructor = Dictionary.class.getConstructor();
