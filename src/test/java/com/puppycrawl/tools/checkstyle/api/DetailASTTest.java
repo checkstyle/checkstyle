@@ -119,12 +119,12 @@ public class DetailASTTest {
                         && !file.getName().endsWith("InputGrammar.java");
                 }
             });
-        for (int i = 0; i < files.length; i++) {
-            if (files[i].isFile()) {
-                checkFile(files[i].getCanonicalPath());
+        for (File file : files) {
+            if (file.isFile()) {
+                checkFile(file.getCanonicalPath());
             }
-            else if (files[i].isDirectory()) {
-                checkDir(files[i]);
+            else if (file.isDirectory()) {
+                checkDir(file);
             }
         }
     }

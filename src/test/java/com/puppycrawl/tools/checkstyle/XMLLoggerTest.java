@@ -62,9 +62,9 @@ public class XMLLoggerTest {
             {"&#0", "&amp;#0"}, //not reference
             {"&#X0;", "&amp;#X0;"}, //not reference
         };
-        for (int i = 0; i < encodings.length; i++) {
-            final String encoded = XMLLogger.encode(encodings[i][0]);
-            assertEquals("\"" + encodings[i][0] + "\"", encodings[i][1], encoded);
+        for (String[] encoding : encodings) {
+            final String encoded = XMLLogger.encode(encoding[0]);
+            assertEquals("\"" + encoding[0] + "\"", encoding[1], encoded);
         }
         outStream.close();
     }
@@ -73,15 +73,15 @@ public class XMLLoggerTest {
     public void testIsReference()
         throws IOException {
         new XMLLogger(outStream, false);
-        final String[] reference = {
+        final String[] references = {
             "&#0;",
             "&#x0;",
         };
-        for (int i = 0; i < reference.length; i++) {
-            assertTrue("reference: " + reference[i],
-                       XMLLogger.isReference(reference[i]));
+        for (String reference : references) {
+            assertTrue("reference: " + reference,
+                    XMLLogger.isReference(reference));
         }
-        final String[] noReference = {
+        final String[] noReferences = {
             "&",
             "&;",
             "&#;",
@@ -91,9 +91,9 @@ public class XMLLoggerTest {
             "&#xg;",
             "ref",
         };
-        for (int i = 0; i < noReference.length; i++) {
-            assertFalse("no reference: " + noReference[i],
-                       XMLLogger.isReference(noReference[i]));
+        for (String noReference : noReferences) {
+            assertFalse("no reference: " + noReference,
+                    XMLLogger.isReference(noReference));
         }
 
         outStream.close();
