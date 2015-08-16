@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -67,26 +69,26 @@ public class FilterSetTest {
     @Test
     public void testGetFilters() {
         filter.addFilter(new IntMatchFilter(0));
-        assertTrue("size is the same", filter.getFilters().size() == 1);
+        assertEquals("size is the same", 1, filter.getFilters().size());
     }
 
     @Test
     public void testToString() {
         filter.addFilter(new IntMatchFilter(0));
-        assertTrue("toString works", filter.toString() != null);
+        assertNotNull("toString works", filter.toString());
     }
 
     @Test
     public void testGetFilters2() {
         FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new SeverityMatchFilter());
-        assertTrue("size is the same", filterSet.getFilters().size() == 1);
+        assertEquals("size is the same", 1, filterSet.getFilters().size());
     }
 
     @Test
     public void testToString2() {
         FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new SeverityMatchFilter());
-        assertTrue("size is the same", filterSet.toString() != null);
+        assertNotNull("size is the same", filterSet.toString());
     }
 }

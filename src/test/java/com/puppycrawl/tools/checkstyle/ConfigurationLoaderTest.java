@@ -416,7 +416,7 @@ public class ConfigurationLoaderTest {
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();
-        assertTrue(children[0].getChildren().length == 0);
+        assertEquals(0, children[0].getChildren().length);
     }
 
     @Test
@@ -429,7 +429,7 @@ public class ConfigurationLoaderTest {
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();
-        assertTrue(children.length == 0);
+        assertEquals(0, children.length);
     }
 
     @Test
@@ -441,7 +441,7 @@ public class ConfigurationLoaderTest {
                             new PropertiesExpander(new Properties()), true);
 
             final Configuration[] children = config.getChildren();
-            assertTrue(children[0].getChildren().length == 0);
+            assertEquals(0, children[0].getChildren().length);
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
@@ -487,7 +487,7 @@ public class ConfigurationLoaderTest {
                             new PropertiesExpander(new Properties()), true);
 
             final Configuration[] children = config.getChildren();
-            assertTrue(children[0].getChildren().length == 0);
+            assertEquals(0, children[0].getChildren().length);
         }
         catch (CheckstyleException ex) {
             fail("unexpected exception");
@@ -518,7 +518,7 @@ public class ConfigurationLoaderTest {
                             new PropertiesExpander(new Properties()), true);
 
             final Configuration[] children = config.getChildren();
-            assertTrue(children[0].getChildren().length == 0);
+            assertEquals(0, children[0].getChildren().length);
         }
         catch (CheckstyleException ex) {
             fail("unexpected exception");

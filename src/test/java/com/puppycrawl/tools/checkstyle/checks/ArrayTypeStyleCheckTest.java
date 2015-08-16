@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -70,7 +70,7 @@ public class ArrayTypeStyleCheckTest
         int[] expected = {TokenTypes.ARRAY_DECLARATOR };
         ArrayTypeStyleCheck check = new ArrayTypeStyleCheck();
         int[] actual = check.getAcceptableTokens();
-        assertTrue(actual.length == 1);
+        assertEquals(1, actual.length);
         assertArrayEquals(expected, actual);
     }
 }

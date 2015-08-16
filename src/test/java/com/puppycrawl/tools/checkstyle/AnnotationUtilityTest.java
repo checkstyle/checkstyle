@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
+import static org.junit.Assert.assertEquals;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -37,7 +38,7 @@ public class AnnotationUtilityTest {
             assertUtilsClassHasPrivateConstructor(AnnotationUtility.class);
         }
         catch (InvocationTargetException ex) {
-            Assert.assertTrue("do not instantiate.".equals(ex.getCause().getMessage()));
+            assertEquals("do not instantiate.", ex.getCause().getMessage());
         }
     }
 
@@ -48,7 +49,7 @@ public class AnnotationUtilityTest {
             Assert.fail();
         }
         catch (IllegalArgumentException ex) {
-            Assert.assertTrue("the ast is null".equals(ex.getMessage()));
+            assertEquals("the ast is null", ex.getMessage());
         }
     }
 
@@ -59,7 +60,7 @@ public class AnnotationUtilityTest {
             Assert.fail();
         }
         catch (IllegalArgumentException ex) {
-            Assert.assertTrue("the ast is null".equals(ex.getMessage()));
+            assertEquals("the ast is null", ex.getMessage());
         }
     }
 
@@ -100,7 +101,7 @@ public class AnnotationUtilityTest {
             Assert.fail();
         }
         catch (IllegalArgumentException ex) {
-            Assert.assertTrue("the ast is null".equals(ex.getMessage()));
+            assertEquals("the ast is null", ex.getMessage());
         }
     }
 
@@ -111,7 +112,7 @@ public class AnnotationUtilityTest {
             Assert.fail();
         }
         catch (IllegalArgumentException ex) {
-            Assert.assertTrue("the ast is null".equals(ex.getMessage()));
+            assertEquals("the ast is null", ex.getMessage());
         }
     }
 
@@ -122,7 +123,7 @@ public class AnnotationUtilityTest {
             Assert.fail();
         }
         catch (IllegalArgumentException ex) {
-            Assert.assertTrue("the annotation is null".equals(ex.getMessage()));
+            assertEquals("the annotation is null", ex.getMessage());
         }
     }
 
@@ -133,8 +134,7 @@ public class AnnotationUtilityTest {
             Assert.fail();
         }
         catch (IllegalArgumentException ex) {
-            Assert.assertTrue("the annotation is empty or spaces"
-                    .equals(ex.getMessage()));
+            assertEquals("the annotation is empty or spaces", ex.getMessage());
         }
     }
 }

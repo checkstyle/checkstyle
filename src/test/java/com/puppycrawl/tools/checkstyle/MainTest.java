@@ -502,7 +502,7 @@ public class MainTest {
         when(fileMock.isFile()).thenReturn(false);
 
         List<File> result = (List<File>) method.invoke(null, fileMock);
-        assertTrue(result.size() == 0);
+        assertEquals(0, result.size());
     }
 
     @Test
@@ -519,6 +519,6 @@ public class MainTest {
         when(fileMock.listFiles()).thenReturn(null);
 
         List<File> result = (List<File>) method.invoke(null, fileMock);
-        assertTrue(result.size() == 0);
+        assertEquals(0, result.size());
     }
 }
