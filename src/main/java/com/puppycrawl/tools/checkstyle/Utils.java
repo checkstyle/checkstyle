@@ -231,7 +231,13 @@ public final class Utils {
      */
     public static String baseClassname(String type) {
         final int i = type.lastIndexOf('.');
-        return i == -1 ? type : type.substring(i + 1);
+
+        if (i == -1) {
+            return type;
+        }
+        else {
+            return type.substring(i + 1);
+        }
     }
 
     /**

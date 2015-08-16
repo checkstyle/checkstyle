@@ -717,8 +717,12 @@ public class CustomImportOrderCheck extends Check {
      * @return full path or null.
      */
     private static String getFullImportIdent(DetailAST token) {
-        return token != null ? FullIdent.createFullIdent(token
-                .findFirstToken(TokenTypes.DOT)).getText() : "";
+        if (token == null) {
+            return "";
+        }
+        else {
+            return FullIdent.createFullIdent(token.findFirstToken(TokenTypes.DOT)).getText();
+        }
     }
 
     /**

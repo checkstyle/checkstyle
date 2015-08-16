@@ -129,8 +129,15 @@ public class EmptyBlockCheck
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST slistToken = ast.findFirstToken(TokenTypes.SLIST);
-        final DetailAST leftCurly = slistToken != null
-                ? slistToken : ast.findFirstToken(TokenTypes.LCURLY);
+        final DetailAST leftCurly;
+
+        if (slistToken == null) {
+            leftCurly = ast.findFirstToken(TokenTypes.LCURLY);
+        }
+        else {
+            leftCurly = slistToken;
+        }
+
         if (leftCurly != null) {
             if (getAbstractOption() == BlockOption.STMT) {
                 boolean emptyBlock;
@@ -164,8 +171,14 @@ public class EmptyBlockCheck
         boolean retVal = false;
 
         final DetailAST rightCurly = slistAST.findFirstToken(TokenTypes.RCURLY);
-        final DetailAST rcurlyAST = rightCurly != null
-                ? rightCurly : slistAST.getParent().findFirstToken(TokenTypes.RCURLY);
+        final DetailAST rcurlyAST;
+
+        if (rightCurly == null) {
+            rcurlyAST = slistAST.getParent().findFirstToken(TokenTypes.RCURLY);
+        }
+        else {
+            rcurlyAST = rightCurly;
+        }
         final int slistLineNo = slistAST.getLineNo();
         final int slistColNo = slistAST.getColumnNo();
         final int rcurlyLineNo = rcurlyAST.getLineNo();

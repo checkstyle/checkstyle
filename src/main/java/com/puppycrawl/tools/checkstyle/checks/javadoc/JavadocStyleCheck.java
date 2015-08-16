@@ -173,9 +173,14 @@ public class JavadocStyleCheck
                 ast.findFirstToken(TokenTypes.MODIFIERS));
         }
 
-        final Scope customScope =
-            ScopeUtils.inInterfaceOrAnnotationBlock(ast)
-            ? Scope.PUBLIC : declaredScope;
+        final Scope customScope;
+
+        if (ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
+            customScope = Scope.PUBLIC;
+        }
+        else {
+            customScope = declaredScope;
+        }
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
 
         return customScope.isIn(scope)

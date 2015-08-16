@@ -245,8 +245,14 @@ public class AnnotationLocationCheck extends Check {
      * @return Some javadoc.
      */
     private boolean isCorrectLocation(DetailAST annotation, boolean hasParams) {
-        final boolean allowingCondition = hasParams ? allowSamelineParameterizedAnnotation
-            : allowSamelineSingleParameterlessAnnotation;
+        final boolean allowingCondition;
+
+        if (hasParams) {
+            allowingCondition = allowSamelineParameterizedAnnotation;
+        }
+        else {
+            allowingCondition = allowSamelineSingleParameterlessAnnotation;
+        }
         return allowingCondition && !hasNodeBefore(annotation)
             || !allowingCondition && !hasNodeBeside(annotation)
             || allowSamelineMultipleAnnotations;

@@ -204,8 +204,11 @@ public class RedundantModifierCheck
      * @return true or false
      */
     private static boolean isInterfaceOrAnnotationMember(DetailAST ast) {
-        final DetailAST parentTypeDef =
-                ast.getParent() != null ? ast.getParent().getParent() : null;
+        DetailAST parentTypeDef = ast.getParent();
+
+        if (parentTypeDef != null) {
+            parentTypeDef = parentTypeDef.getParent();
+        }
         return parentTypeDef != null
                 && (parentTypeDef.getType() == TokenTypes.INTERFACE_DEF
                     || parentTypeDef.getType() == TokenTypes.ANNOTATION_DEF);

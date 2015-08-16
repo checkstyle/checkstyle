@@ -113,8 +113,15 @@ public class AvoidStarImportCheck
      */
     public void setExcludes(String... excludesParam) {
         excludes.clear();
+        final String suffix = ".*";
+
         for (final String exclude : excludesParam) {
-            excludes.add(exclude.endsWith(".*") ? exclude : exclude + ".*");
+            if (exclude.endsWith(suffix)) {
+                excludes.add(exclude);
+            }
+            else {
+                excludes.add(exclude + suffix);
+            }
         }
     }
 

@@ -217,9 +217,14 @@ public class JavadocTypeCheck
     private boolean shouldCheck(final DetailAST ast) {
         final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
         final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
-        final Scope customScope =
-            ScopeUtils.inInterfaceOrAnnotationBlock(ast)
-                ? Scope.PUBLIC : declaredScope;
+        final Scope customScope;
+
+        if (ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
+            customScope = Scope.PUBLIC;
+        }
+        else {
+            customScope = declaredScope;
+        }
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
 
         return customScope.isIn(scope)

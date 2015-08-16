@@ -147,7 +147,13 @@ public class JTreeTable extends JTable {
     @Override
     public int getEditingRow() {
         final Class<?> editingClass = getColumnClass(editingColumn);
-        return editingClass == TreeTableModel.class ? -1 : editingRow;
+
+        if (editingClass == TreeTableModel.class) {
+            return -1;
+        }
+        else {
+            return editingRow;
+        }
     }
 
     /**

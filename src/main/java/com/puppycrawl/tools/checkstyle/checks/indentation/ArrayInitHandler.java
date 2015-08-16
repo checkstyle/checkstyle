@@ -126,7 +126,12 @@ public class ArrayInitHandler extends BlockParentHandler {
             realColumnNo++;
         }
 
-        return realColumnNo == lineLength ? -1 : realColumnNo;
+        if (realColumnNo == lineLength) {
+            return -1;
+        }
+        else {
+            return realColumnNo;
+        }
     }
 
     /**

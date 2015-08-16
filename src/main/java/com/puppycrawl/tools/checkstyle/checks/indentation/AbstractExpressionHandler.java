@@ -149,8 +149,14 @@ public abstract class AbstractExpressionHandler {
      */
     protected final void logError(DetailAST ast, String subtypeName,
                                   int actualLevel, IndentLevel expectedLevel) {
-        final String typeStr =
-            subtypeName.isEmpty() ? "" : " " + subtypeName;
+        final String typeStr;
+
+        if (subtypeName.isEmpty()) {
+            typeStr = "";
+        }
+        else {
+            typeStr = " " + subtypeName;
+        }
         String messageKey = MSG_ERROR;
         if (expectedLevel.isMultiLevel()) {
             messageKey = MSG_ERROR_MULTI;
@@ -348,8 +354,8 @@ public abstract class AbstractExpressionHandler {
         // at the correct indention level; otherwise, it is an only an
         // error if this statement starts the line and it is less than
         // the correct indentation level
-        if (mustMatch ? !indentLevel.accept(start)
-            : colNum == start && indentLevel.greaterThan(start)) {
+        if (mustMatch && !indentLevel.accept(start)
+                || !mustMatch && colNum == start && indentLevel.greaterThan(start)) {
             logChildError(lineNum, start, indentLevel);
         }
     }

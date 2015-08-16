@@ -183,8 +183,11 @@ class DetectorOptions {
      * @return the pattern to use when matching.
      */
     public Pattern getPattern() {
-        final int options = isIgnoreCase() ? compileFlags
-                | Pattern.CASE_INSENSITIVE : compileFlags;
+        int options = compileFlags;
+
+        if (isIgnoreCase()) {
+            options |= Pattern.CASE_INSENSITIVE;
+        }
         return Pattern.compile(format, options);
     }
 }

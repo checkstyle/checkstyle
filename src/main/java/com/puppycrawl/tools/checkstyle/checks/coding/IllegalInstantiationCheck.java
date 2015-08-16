@@ -227,8 +227,14 @@ public class IllegalInstantiationCheck
         if (illegalClasses.contains(className)) {
             return className;
         }
+        final int pkgNameLen;
 
-        final int pkgNameLen = pkgName == null ? 0 : pkgName.length();
+        if (pkgName == null) {
+            pkgNameLen = 0;
+        }
+        else {
+            pkgNameLen = pkgName.length();
+        }
 
         for (String illegal : illegalClasses) {
 

@@ -111,7 +111,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
      * @param ast class definition node
      */
     private void visitClassDef(DetailAST ast) {
-        checkingStack.push(checking ? Boolean.TRUE : Boolean.FALSE);
+        checkingStack.push(checking);
         checking = isNamedAsException(ast) && isExtendedClassNamedAsException(ast);
     }
 
