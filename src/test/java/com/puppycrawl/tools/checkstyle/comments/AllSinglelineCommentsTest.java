@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
-    protected static final Set<String> allComments = Sets.newLinkedHashSet();
+    protected static final Set<String> ALL_COMMENTS = Sets.newLinkedHashSet();
 
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
@@ -43,7 +43,7 @@ public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
         final String[] expected = {};
         verify(checkConfig, getPath("comments" + File.separator
                 + "InputFullOfSinglelineComments.java"), expected);
-        Assert.assertTrue(allComments.isEmpty());
+        Assert.assertTrue(ALL_COMMENTS.isEmpty());
     }
 
     public static class SinglelineCommentListenerCheck extends Check {
@@ -71,15 +71,15 @@ public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
         public void init() {
             int lines = 63;
             for (int i = 0; i < lines; i++) {
-                allComments.add(i + LINE_SEPARATOR);
+                ALL_COMMENTS.add(i + LINE_SEPARATOR);
             }
-            allComments.add(String.valueOf(lines));
+            ALL_COMMENTS.add(String.valueOf(lines));
         }
 
         @Override
         public void visitToken(DetailAST aAST) {
             String commentContent = aAST.getFirstChild().getText();
-            if (!allComments.remove(commentContent)) {
+            if (!ALL_COMMENTS.remove(commentContent)) {
                 Assert.fail("Unexpected comment: " + commentContent);
             }
         }
