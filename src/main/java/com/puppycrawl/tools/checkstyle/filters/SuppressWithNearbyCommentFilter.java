@@ -126,8 +126,8 @@ public class SuppressWithNearbyCommentFilter
      */
     public SuppressWithNearbyCommentFilter() {
         setCommentFormat(DEFAULT_COMMENT_FORMAT);
-        setCheckFormat(DEFAULT_CHECK_FORMAT);
-        setInfluenceFormat(DEFAULT_INFLUENCE_FORMAT);
+        checkFormat = DEFAULT_CHECK_FORMAT;
+        influenceFormat = DEFAULT_INFLUENCE_FORMAT;
     }
 
     /**

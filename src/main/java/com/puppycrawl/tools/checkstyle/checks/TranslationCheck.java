@@ -95,7 +95,7 @@ public class TranslationCheck
      */
     public TranslationCheck() {
         setFileExtensions("properties");
-        setBasenameSeparator("_");
+        basenameSeparator = "_";
     }
 
     @Override
