@@ -33,6 +33,25 @@
       </p>
     </section>
 
+    <section name="Suppress Eclipse warnings on resource files">
+      <p>
+        Right click on Checkstyle project > Build Path > Configure Build Path...<br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_eclipse_build_path.png"/>
+      </p>
+      <p>
+        Set "Ignore optional compile problems" to "Yes" for following folders:
+      </p>
+      <ul>
+        <li>src/it/resources</li>
+        <li>src/main/resources</li>
+        <li>src/test/resources</li>
+        <li>target/generated-sources/antlr</li>
+      </ul>
+      <p>
+        <img alt="screenshot" src="images/gui_screenshot_eclipse_ignore_warnings.png"/>
+      </p>
+    </section>
+
     <section name="Debug">
       <p>
         Open the Check's source file by double click on it in a source tree as is shown:<br/><br/>
