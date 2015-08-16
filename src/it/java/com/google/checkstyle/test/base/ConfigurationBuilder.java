@@ -37,7 +37,7 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 		listFiles(files, ROOT, "java");
 	}
 
-	private Configuration getConfigurationFromXML(String aConfigName,
+	private static Configuration getConfigurationFromXML(String aConfigName,
 			Properties aProps) throws CheckstyleException {
 		try {
 			return ConfigurationLoader.loadConfiguration(aConfigName,

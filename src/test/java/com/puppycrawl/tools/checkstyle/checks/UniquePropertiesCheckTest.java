@@ -114,7 +114,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
      * @param file to be opened
      * @return detail message of {@link FileNotFoundException}
      */
-    private String getFileNotFoundDetail(File file) throws Exception {
+    private static String getFileNotFoundDetail(File file) throws Exception {
         // Create exception to know detail message we should wait in
         // LocalisedMessage
         try {

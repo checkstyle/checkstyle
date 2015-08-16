@@ -23,7 +23,7 @@ public class CompareTreesWithComments extends Check {
         Assert.assertTrue(isAstEquals(expectedTree, aRootAST));
     }
 
-    private boolean isAstEquals(DetailAST expected, DetailAST actual) {
+    private static boolean isAstEquals(DetailAST expected, DetailAST actual) {
         boolean result = false;
         if (expected == actual) {
             result = true;

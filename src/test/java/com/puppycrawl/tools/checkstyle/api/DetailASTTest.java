@@ -129,7 +129,7 @@ public class DetailASTTest {
         }
     }
 
-    private void checkFile(String filename) throws Exception {
+    private static void checkFile(String filename) throws Exception {
         final FileText text = new FileText(new File(filename),
                            System.getProperty("file.encoding", "UTF-8"));
         final FileContents contents = new FileContents(text);
@@ -139,7 +139,7 @@ public class DetailASTTest {
         }
     }
 
-    private void checkTree(final DetailAST node,
+    private static void checkTree(final DetailAST node,
                            final DetailAST parent,
                            final DetailAST prev,
                            final String filename,
