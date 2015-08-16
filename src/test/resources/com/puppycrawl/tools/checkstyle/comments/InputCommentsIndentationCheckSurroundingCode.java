@@ -126,4 +126,17 @@ public class InputCommentsIndentationCheckSurroundingCode
      * some javadoc
      */
     private static void l() {}
+    
+    private void foo32() {
+        if (true) {
+            switch(1) {
+            case 0:
+                
+            case 1:
+                    // initialize b
+                int b = 10;
+            }
+            
+        }
+    }
 } // The Check should not throw NPE here!
