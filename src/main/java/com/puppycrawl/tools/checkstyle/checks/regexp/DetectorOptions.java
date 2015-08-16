@@ -56,7 +56,7 @@ class DetectorOptions {
      * @param compileFlags the flags to create the regular expression with.
      * @param reporter used to report violations.
      */
-    public DetectorOptions(int compileFlags,
+    DetectorOptions(int compileFlags,
             AbstractViolationReporter reporter) {
         this.compileFlags = compileFlags;
         this.reporter = reporter;

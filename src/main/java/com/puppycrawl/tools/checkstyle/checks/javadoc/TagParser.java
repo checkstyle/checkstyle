@@ -54,7 +54,7 @@ class TagParser {
      * @param text the line of text to parse.
      * @param lineNo the source line number.
      */
-    public TagParser(String[] text, int lineNo) {
+    TagParser(String[] text, int lineNo) {
         parseTags(text, lineNo);
     }
 
@@ -271,7 +271,7 @@ class TagParser {
          * @param lineNo line number
          * @param columnNo column number
          */
-        public Point(int lineNo, int columnNo) {
+        Point(int lineNo, int columnNo) {
             line = lineNo;
             column = columnNo;
         }

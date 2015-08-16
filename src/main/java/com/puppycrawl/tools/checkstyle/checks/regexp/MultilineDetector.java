@@ -67,7 +67,7 @@ class MultilineDetector {
      * Creates an instance.
      * @param options the options to use.
      */
-    public MultilineDetector(DetectorOptions options) {
+    MultilineDetector(DetectorOptions options) {
         this.options = options;
     }
 

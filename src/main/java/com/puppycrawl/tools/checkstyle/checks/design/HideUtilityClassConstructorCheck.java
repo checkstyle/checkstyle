@@ -122,7 +122,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         /** c-tor
          * @param ast class ast
          * */
-        public Details(DetailAST ast) {
+        Details(DetailAST ast) {
             this.ast = ast;
         }
 
