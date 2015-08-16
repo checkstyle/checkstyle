@@ -396,6 +396,11 @@ public class VisibilityModifierCheck
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return getDefaultTokens();
+    }
+
+    @Override
     public void beginTree(DetailAST rootAst) {
         immutableClassShortNames.clear();
         final List<String> classShortNames =

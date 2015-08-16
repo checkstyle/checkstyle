@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -62,11 +64,7 @@ public class TypeNameCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.CLASS_DEF,
-                          TokenTypes.INTERFACE_DEF,
-                          TokenTypes.ENUM_DEF,
-                          TokenTypes.ANNOTATION_DEF,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -76,5 +74,10 @@ public class TypeNameCheck
                           TokenTypes.ENUM_DEF,
                           TokenTypes.ANNOTATION_DEF,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 }

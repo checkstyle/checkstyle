@@ -55,12 +55,17 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport {
 
         @Override
         public int[] getDefaultTokens() {
-            return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN};
+            return getAcceptableTokens();
         }
 
         @Override
         public int[] getAcceptableTokens() {
             return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN};
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return getAcceptableTokens();
         }
 
         @Override

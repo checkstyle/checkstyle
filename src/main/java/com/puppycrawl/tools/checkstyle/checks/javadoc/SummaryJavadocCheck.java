@@ -25,6 +25,7 @@ import com.google.common.base.CharMatcher;
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
@@ -103,6 +104,16 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         return new int[] {
             JavadocTokenTypes.JAVADOC,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

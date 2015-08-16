@@ -1,5 +1,6 @@
 package com.puppycrawl.tools.checkstyle.comments;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
@@ -15,7 +16,17 @@ public class CompareTreesWithComments extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[]{};
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override

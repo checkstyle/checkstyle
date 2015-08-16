@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -197,6 +199,11 @@ public class AnnotationLocationCheck extends Check {
             TokenTypes.DOT,
             TokenTypes.ANNOTATION_FIELD_DEF,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override

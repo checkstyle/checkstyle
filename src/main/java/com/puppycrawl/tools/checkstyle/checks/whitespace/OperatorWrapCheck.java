@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.puppycrawl.tools.checkstyle.Utils;
@@ -179,6 +180,11 @@ public class OperatorWrapCheck
             TokenTypes.BAND_ASSIGN,       // "&="
 
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override

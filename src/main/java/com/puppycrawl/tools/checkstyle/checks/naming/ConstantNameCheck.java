@@ -62,12 +62,17 @@ public class ConstantNameCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.VARIABLE_DEF};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.VARIABLE_DEF};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

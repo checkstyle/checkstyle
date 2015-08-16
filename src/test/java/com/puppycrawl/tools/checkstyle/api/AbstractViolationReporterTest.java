@@ -23,6 +23,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.SortedSet;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -38,7 +39,17 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
     private final Check emptyCheck = new Check() {
         @Override
         public int[] getDefaultTokens() {
-            return new int[0];
+            return ArrayUtils.EMPTY_INT_ARRAY;
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return ArrayUtils.EMPTY_INT_ARRAY;
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return ArrayUtils.EMPTY_INT_ARRAY;
         }
     };
 

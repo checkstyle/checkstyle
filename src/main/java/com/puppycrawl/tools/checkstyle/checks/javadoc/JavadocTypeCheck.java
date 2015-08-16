@@ -156,12 +156,7 @@ public class JavadocTypeCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.ANNOTATION_DEF,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -172,6 +167,11 @@ public class JavadocTypeCheck
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

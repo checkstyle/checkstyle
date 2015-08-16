@@ -192,12 +192,17 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

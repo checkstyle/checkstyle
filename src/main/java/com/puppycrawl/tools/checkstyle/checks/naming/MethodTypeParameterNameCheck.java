@@ -54,6 +54,13 @@ public class MethodTypeParameterNameCheck
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return new int[] {
+            TokenTypes.TYPE_PARAMETER,
+        };
+    }
+
+    @Override
     protected final int getLocation() {
         return TokenTypes.METHOD_DEF;
     }

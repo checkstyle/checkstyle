@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -96,13 +98,7 @@ public class MethodParamPadCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.CTOR_DEF,
-            TokenTypes.LITERAL_NEW,
-            TokenTypes.METHOD_CALL,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.SUPER_CTOR_CALL,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -114,6 +110,11 @@ public class MethodParamPadCheck
             TokenTypes.METHOD_DEF,
             TokenTypes.SUPER_CTOR_CALL,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override

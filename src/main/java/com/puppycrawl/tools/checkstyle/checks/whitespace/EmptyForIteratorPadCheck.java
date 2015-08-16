@@ -70,14 +70,17 @@ public class EmptyForIteratorPadCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.FOR_ITERATOR,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.FOR_ITERATOR,
-        };
+        return new int[] {TokenTypes.FOR_ITERATOR};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

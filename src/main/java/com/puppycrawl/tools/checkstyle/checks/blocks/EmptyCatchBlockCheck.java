@@ -174,9 +174,7 @@ public class EmptyCatchBlockCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.LITERAL_CATCH,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -184,6 +182,11 @@ public class EmptyCatchBlockCheck extends Check {
         return new int[] {
             TokenTypes.LITERAL_CATCH,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

@@ -25,6 +25,7 @@ import java.util.List;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks that a JavaDoc block can fit on a single line and doesn't
@@ -100,6 +101,16 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
         return new int[] {
             JavadocTokenTypes.JAVADOC,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

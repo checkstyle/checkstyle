@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
 
@@ -85,6 +86,16 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
         @Override
         public int[] getDefaultJavadocTokens() {
             return null;
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
         }
 
         @Override

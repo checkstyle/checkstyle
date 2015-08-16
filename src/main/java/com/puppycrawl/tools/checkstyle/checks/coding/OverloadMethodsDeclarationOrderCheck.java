@@ -57,9 +57,7 @@ public class OverloadMethodsDeclarationOrderCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.OBJBLOCK,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -67,6 +65,11 @@ public class OverloadMethodsDeclarationOrderCheck extends Check {
         return new int[] {
             TokenTypes.OBJBLOCK,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

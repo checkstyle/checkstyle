@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.Arrays;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -98,12 +100,17 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return makeAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return makeAcceptableTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
