@@ -61,7 +61,7 @@ public class PackageNamesLoaderTest {
         validatePackageNames(packageNames);
     }
 
-    private void validatePackageNames(Set<String> pkgNames) {
+    private static void validatePackageNames(Set<String> pkgNames) {
         final String[] checkstylePackages = {
             "com.puppycrawl.tools.checkstyle.",
             "com.puppycrawl.tools.checkstyle.checks.",

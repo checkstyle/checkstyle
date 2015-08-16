@@ -96,7 +96,7 @@ public class FileTabCharacterCheckTest
      * Creates a configuration that is functionally close to that in the docs.
      * @param verbose verbose mode
      */
-    private DefaultConfiguration createConfig(boolean verbose) {
+    private static DefaultConfiguration createConfig(boolean verbose) {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FileTabCharacterCheck.class);
         checkConfig.addAttribute("eachLine", Boolean.toString(verbose));
