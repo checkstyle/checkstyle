@@ -57,7 +57,7 @@ public final class BooleanExpressionComplexityCheck extends Check {
 
     /** Creates new instance of the check. */
     public BooleanExpressionComplexityCheck() {
-        setMax(DEFAULT_MAX);
+        max = DEFAULT_MAX;
     }
 
     @Override

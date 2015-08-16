@@ -802,10 +802,10 @@ public class CustomImportOrderCheck extends Check {
          */
         public ImportDetails(String importFullPath,
                 int lineNumber, String importGroup, boolean staticImport) {
-            setImportFullPath(importFullPath);
-            setLineNumber(lineNumber);
-            setImportGroup(importGroup);
-            setStaticImport(staticImport);
+            this.importFullPath = importFullPath;
+            this.lineNumber = lineNumber;
+            this.importGroup = importGroup;
+            this.staticImport = staticImport;
         }
 
         /**
@@ -817,29 +817,11 @@ public class CustomImportOrderCheck extends Check {
         }
 
         /**
-         * Set import full path variable.
-         * @param importFullPath
-         *        import full path variable.
-         */
-        public final void setImportFullPath(String importFullPath) {
-            this.importFullPath = importFullPath;
-        }
-
-        /**
          * Get import line number.
          * @return import line.
          */
         public int getLineNumber() {
             return lineNumber;
-        }
-
-        /**
-         * Set import line number.
-         * @param lineNumber
-         *        import line number.
-         */
-        public final void setLineNumber(int lineNumber) {
-            this.lineNumber = lineNumber;
         }
 
         /**
@@ -851,29 +833,11 @@ public class CustomImportOrderCheck extends Check {
         }
 
         /**
-         * Set import group.
-         * @param importGroup
-         *        import group.
-         */
-        public final void setImportGroup(String importGroup) {
-            this.importGroup = importGroup;
-        }
-
-        /**
          * Checks if import is static.
          * @return true, if import is static.
          */
         public boolean isStaticImport() {
             return staticImport;
-        }
-
-        /**
-         * Set true, if import is static
-         * @param isStatic
-         *        if import is static.
-         */
-        public final void setStaticImport(boolean isStatic) {
-            staticImport = isStatic;
         }
     }
 }
