@@ -251,7 +251,14 @@ public final class MethodCountCheck extends Check {
          */
         int value(Scope scope) {
             final Integer value = counts.get(scope);
-            return value == null ? 0 : value;
+            final int defaultValue = 0;
+
+            if (value == null) {
+                return defaultValue;
+            }
+            else {
+                return value;
+            }
         }
 
         /** @return the total number of methods. */

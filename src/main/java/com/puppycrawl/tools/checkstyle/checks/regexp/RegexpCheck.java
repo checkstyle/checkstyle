@@ -122,7 +122,12 @@ public class RegexpCheck extends AbstractFormatCheck {
      * @param message custom message which should be used in report.
      */
     public void setMessage(String message) {
-        this.message = message == null ? "" : message;
+        if (message == null) {
+            this.message = "";
+        }
+        else {
+            this.message = message;
+        }
     }
 
     /**
@@ -255,10 +260,19 @@ public class RegexpCheck extends AbstractFormatCheck {
      * @param lineNumber the line number the message relates to.
      */
     private void logMessage(int lineNumber) {
-        String msg = getMessage().isEmpty() ? getFormat() : message;
+        String msg;
+
+        if (getMessage().isEmpty()) {
+            msg = getFormat();
+        }
+        else {
+            msg = message;
+        }
+
         if (errorCount >= errorLimit) {
             msg = ERROR_LIMIT_EXCEEDED_MESSAGE + msg;
         }
+
         if (illegalPattern) {
             log(lineNumber, MSG_ILLEGAL_REGEXP, msg);
         }

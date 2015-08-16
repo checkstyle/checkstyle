@@ -115,7 +115,13 @@ public final class LocalizedMessage
         this.lineNo = lineNo;
         this.colNo = colNo;
         this.key = key;
-        this.args = args == null ? null : args.clone();
+
+        if (args == null) {
+            this.args = null;
+        }
+        else {
+            this.args = Arrays.copyOf(args, args.length);
+        }
         this.bundle = bundle;
         this.severityLevel = severityLevel;
         this.moduleId = moduleId;
@@ -349,10 +355,9 @@ public final class LocalizedMessage
             if (getColumnNo() == other.getColumnNo()) {
                 return getMessage().compareTo(other.getMessage());
             }
-            return getColumnNo() < other.getColumnNo() ? -1 : 1;
+            return Integer.compare(getColumnNo(), other.getColumnNo());
         }
-
-        return getLineNo() < other.getLineNo() ? -1 : 1;
+        return Integer.compare(getLineNo(), other.getLineNo());
     }
 
     /**

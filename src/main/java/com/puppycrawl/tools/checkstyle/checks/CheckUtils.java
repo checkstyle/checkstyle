@@ -121,9 +121,15 @@ public final class CheckUtils {
     public static FullIdent createFullType(DetailAST typeAST) {
         final DetailAST arrayDeclAST =
             typeAST.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
+        final FullIdent fullType;
 
-        return createFullTypeNoArrays(arrayDeclAST == null ? typeAST
-                                                           : arrayDeclAST);
+        if (arrayDeclAST == null) {
+            fullType = createFullTypeNoArrays(typeAST);
+        }
+        else {
+            fullType = createFullTypeNoArrays(arrayDeclAST);
+        }
+        return fullType;
     }
 
     /**

@@ -305,9 +305,9 @@
     <module name="InnerTypeLast"/>
 
     <module name="ModifiedControlVariable"/>
+    <module name="AvoidInlineConditionals"/>
 
 <!--
-    <module name="AvoidInlineConditionals"/>
     <module name="ClassDataAbstractionCoupling"/>
     <module name="ClassFanOutComplexity"/>
     <module name="DesignForExtension"/>

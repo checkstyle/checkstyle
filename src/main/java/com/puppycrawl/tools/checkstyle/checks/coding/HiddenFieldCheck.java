@@ -224,13 +224,15 @@ public class HiddenFieldCheck
         final boolean isStaticInnerType =
                 typeMods != null
                         && typeMods.branchContains(TokenTypes.LITERAL_STATIC);
+        final String frameName;
 
-        final FieldFrame frame =
-            new FieldFrame(currentFrame, isStaticInnerType,
-                    type == TokenTypes.CLASS_DEF || type == TokenTypes.ENUM_DEF
-                    ? ast.findFirstToken(TokenTypes.IDENT).getText()
-                    : null
-            );
+        if (type == TokenTypes.CLASS_DEF || type == TokenTypes.ENUM_DEF) {
+            frameName = ast.findFirstToken(TokenTypes.IDENT).getText();
+        }
+        else {
+            frameName = null;
+        }
+        final FieldFrame frame = new FieldFrame(currentFrame, isStaticInnerType, frameName);
 
         //add fields to container
         final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);

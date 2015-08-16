@@ -215,10 +215,14 @@ public final class Main {
     private static int runCheckstyle(CliOptions cliOptions)
             throws CheckstyleException, UnsupportedEncodingException, FileNotFoundException {
         // setup the properties
-        final Properties props =
-                cliOptions.propertiesLocation != null
-                        ? loadProperties(new File(cliOptions.propertiesLocation))
-                        : System.getProperties();
+        final Properties props;
+
+        if (cliOptions.propertiesLocation == null) {
+            props = System.getProperties();
+        }
+        else {
+            props = loadProperties(new File(cliOptions.propertiesLocation));
+        }
 
         // create a configuration
         final Configuration config = ConfigurationLoader.loadConfiguration(

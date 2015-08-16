@@ -86,9 +86,13 @@ public class DefaultLogger
         final Writer infoStreamWriter = new OutputStreamWriter(infoStream, "UTF-8");
         final Writer errorStreamWriter = new OutputStreamWriter(errorStream, "UTF-8");
         infoWriter = new PrintWriter(infoStreamWriter);
-        errorWriter = infoStream == errorStream
-            ? infoWriter
-            : new PrintWriter(errorStreamWriter);
+
+        if (infoStream == errorStream) {
+            errorWriter = infoWriter;
+        }
+        else {
+            errorWriter = new PrintWriter(errorStreamWriter);
+        }
     }
 
     /**

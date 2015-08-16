@@ -259,7 +259,12 @@ public final class JavadocUtils {
      * @return first child
      */
     public static DetailNode getFirstChild(DetailNode node) {
-        return node.getChildren().length > 0 ? node.getChildren()[0] : null;
+        DetailNode resultNode = null;
+
+        if (node.getChildren().length > 0) {
+            resultNode = node.getChildren()[0];
+        }
+        return resultNode;
     }
 
     /**

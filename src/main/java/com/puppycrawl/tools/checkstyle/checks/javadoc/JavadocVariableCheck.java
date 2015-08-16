@@ -135,9 +135,13 @@ public class JavadocVariableCheck
         else {
             final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
             final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
-            customScope =
-                ScopeUtils.inInterfaceOrAnnotationBlock(ast)
-                    ? Scope.PUBLIC : declaredScope;
+
+            if (ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
+                customScope = Scope.PUBLIC;
+            }
+            else {
+                customScope = declaredScope;
+            }
         }
 
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);

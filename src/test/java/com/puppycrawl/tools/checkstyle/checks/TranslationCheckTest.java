@@ -74,4 +74,18 @@ public class TranslationCheckTest
             expected);
     }
 
+    @Test
+    public void testOnePropertyFileSet() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final String[] expected = {
+        };
+        final File[] propertyFiles = new File[] {
+            new File(getPath("app-dev.properties")),
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath("app-dev.properties"),
+            expected);
+    }
 }
