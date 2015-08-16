@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -144,7 +145,7 @@ public class UtilsTest {
             fail();
         }
         catch (IllegalStateException expected) {
-            assertEquals(NoSuchMethodException.class, expected.getCause().getClass());
+            assertSame(NoSuchMethodException.class, expected.getCause().getClass());
         }
     }
 
@@ -167,7 +168,7 @@ public class UtilsTest {
             fail();
         }
         catch (IllegalStateException expected) {
-            assertEquals(InstantiationException.class, expected.getCause().getClass());
+            assertSame(InstantiationException.class, expected.getCause().getClass());
         }
     }
 
