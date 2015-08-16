@@ -202,7 +202,7 @@ public class XMLLoggerTest {
             new LocalizedMessage(1, 1,
                 "messages.properties", null, null, null, this.getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
-        logger.addException(ev, new TestThrowable());
+        logger.addException(ev, new TestException());
         logger.auditFinished(null);
         final String[] expectedLines = {
             "&lt;exception&gt;",
@@ -253,7 +253,7 @@ public class XMLLoggerTest {
         assertEquals("last line.", "</checkstyle>", lines[lines.length - 1]);
     }
 
-    private static class TestThrowable extends Exception {
+    private static class TestException extends Exception {
 
         private static final long serialVersionUID = 1L;
 
