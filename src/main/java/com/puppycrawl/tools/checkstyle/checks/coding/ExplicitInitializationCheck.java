@@ -173,7 +173,8 @@ public class ExplicitInitializationCheck extends Check {
             case TokenTypes.NUM_INT:
             case TokenTypes.NUM_LONG:
                 final String text = expr.getText();
-                return CheckUtils.parseDouble(text, type) == 0.0;
+                return Double.compare(
+                    CheckUtils.parseDouble(text, type), 0.0) == 0;
             default:
                 return false;
         }
