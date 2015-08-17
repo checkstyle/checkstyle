@@ -87,16 +87,16 @@ public class IndentationCheck extends Check {
     private int basicOffset = DEFAULT_INDENTATION;
 
     /** How much to indent a case label */
-    private int caseIndentationAmount = DEFAULT_INDENTATION;
+    private int caseIndent = DEFAULT_INDENTATION;
 
     /** How far brace should be indented when on next line */
     private int braceAdjustment;
 
     /** How far throws should be indented when on next line */
-    private int throwsIndentationAmount = DEFAULT_INDENTATION;
+    private int throwsIndent = DEFAULT_INDENTATION;
 
     /** How much to indent an array initialization when on next line */
-    private int arrayInitIndentationAmount = DEFAULT_INDENTATION;
+    private int arrayInitIndent = DEFAULT_INDENTATION;
 
     /** How far continuation line should be indented when line-wrapping is present */
     private int lineWrappingIndentation = DEFAULT_INDENTATION;
@@ -172,7 +172,7 @@ public class IndentationCheck extends Check {
      * @param amount   the case indentation level
      */
     public void setCaseIndent(int amount) {
-        caseIndentationAmount = amount;
+        caseIndent = amount;
     }
 
     /**
@@ -181,7 +181,7 @@ public class IndentationCheck extends Check {
      * @return the case indentation level
      */
     public int getCaseIndent() {
-        return caseIndentationAmount;
+        return caseIndent;
     }
 
     /**
@@ -190,7 +190,7 @@ public class IndentationCheck extends Check {
      * @param throwsIndent the throws indentation level
      */
     public void setThrowsIndent(int throwsIndent) {
-        throwsIndentationAmount = throwsIndent;
+        this.throwsIndent = throwsIndent;
     }
 
     /**
@@ -199,7 +199,7 @@ public class IndentationCheck extends Check {
      * @return the throws indentation level
      */
     public int getThrowsIndent() {
-        return throwsIndentationAmount;
+        return throwsIndent;
     }
 
     /**
@@ -208,7 +208,7 @@ public class IndentationCheck extends Check {
      * @param arrayInitIndent the array initialisation indentation level
      */
     public void setArrayInitIndent(int arrayInitIndent) {
-        arrayInitIndentationAmount = arrayInitIndent;
+        this.arrayInitIndent = arrayInitIndent;
     }
 
     /**
@@ -217,7 +217,7 @@ public class IndentationCheck extends Check {
      * @return the initialisation indentation level
      */
     public int getArrayInitIndent() {
-        return arrayInitIndentationAmount;
+        return arrayInitIndent;
     }
 
     /**
