@@ -107,8 +107,8 @@ class InputEmptyLineSeparatorCheck //warn
     }
 }
 
-class Class { //ok
-    private Class() {} //ok
+class Clazz { //ok
+    private Clazz() {} //ok
 } 
 class Class2{ //warn
     public int compareTo(InputEmptyLineSeparatorCheck aObject) //ok

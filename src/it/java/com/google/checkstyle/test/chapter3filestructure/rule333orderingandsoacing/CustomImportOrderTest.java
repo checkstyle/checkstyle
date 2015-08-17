@@ -22,8 +22,8 @@ public class CustomImportOrderTest extends BaseCheckTestSupport{
     String msgNongroup = "custom.import.order.nongroup.import";
 
     /** Shortcuts to make code more compact */
-    private static final String STD = com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.STANDARD_JAVA_PACKAGE_RULE_GROUP;
-    private static final String SPECIAL = com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.SPECIAL_IMPORTS_RULE_GROUP;
+    private static final String STD = CustomImportOrderCheck.STANDARD_JAVA_PACKAGE_RULE_GROUP;
+    private static final String SPECIAL = CustomImportOrderCheck.SPECIAL_IMPORTS_RULE_GROUP;
 
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException, IOException {

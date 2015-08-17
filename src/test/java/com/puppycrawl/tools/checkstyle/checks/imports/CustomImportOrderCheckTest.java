@@ -41,11 +41,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
     /** Shortcuts to make code more compact */
-    private static final String STATIC = com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.STATIC_RULE_GROUP;
-    private static final String SAME = com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.SAME_PACKAGE_RULE_GROUP;
-    private static final String THIRD = com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.THIRD_PARTY_PACKAGE_RULE_GROUP;
-    private static final String STD = com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.STANDARD_JAVA_PACKAGE_RULE_GROUP;
-    private static final String SPECIAL = com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.SPECIAL_IMPORTS_RULE_GROUP;
+    private static final String STATIC = CustomImportOrderCheck.STATIC_RULE_GROUP;
+    private static final String SAME = CustomImportOrderCheck.SAME_PACKAGE_RULE_GROUP;
+    private static final String THIRD = CustomImportOrderCheck.THIRD_PARTY_PACKAGE_RULE_GROUP;
+    private static final String STD = CustomImportOrderCheck.STANDARD_JAVA_PACKAGE_RULE_GROUP;
+    private static final String SPECIAL = CustomImportOrderCheck.SPECIAL_IMPORTS_RULE_GROUP;
 
     @Test
     public void testGetRequiredTokens() {
