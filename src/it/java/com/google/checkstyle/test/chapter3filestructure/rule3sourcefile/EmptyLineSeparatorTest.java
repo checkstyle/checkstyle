@@ -24,7 +24,7 @@ public class EmptyLineSeparatorTest extends BaseCheckTestSupport{
     @Test
     public void emptyLineSeparatorTest() throws IOException, Exception {
         
-        java.lang.Class<EmptyLineSeparatorCheck> clazz = EmptyLineSeparatorCheck.class;
+        Class<EmptyLineSeparatorCheck> clazz = EmptyLineSeparatorCheck.class;
         String messageKey = "empty.line.separator";
 
         final String[] expected = {
