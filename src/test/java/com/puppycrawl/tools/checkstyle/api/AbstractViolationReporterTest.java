@@ -35,22 +35,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
  * @author lkuehne
  */
 public class AbstractViolationReporterTest extends BaseCheckTestSupport {
-    private final Check emptyCheck = new Check() {
-        @Override
-        public int[] getDefaultTokens() {
-            return ArrayUtils.EMPTY_INT_ARRAY;
-        }
-
-        @Override
-        public int[] getAcceptableTokens() {
-            return ArrayUtils.EMPTY_INT_ARRAY;
-        }
-
-        @Override
-        public int[] getRequiredTokens() {
-            return ArrayUtils.EMPTY_INT_ARRAY;
-        }
-    };
+    private final Check emptyCheck = new EmptyCheck();
 
     @Test
     public void testGetMessageBundleWithPackage() {
@@ -122,5 +107,22 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
         //we expect an exception here because of the bogus custom message
         //format
         messages.first().getMessage();
+    }
+
+    private static class EmptyCheck extends Check {
+        @Override
+        public int[] getDefaultTokens() {
+            return ArrayUtils.EMPTY_INT_ARRAY;
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return ArrayUtils.EMPTY_INT_ARRAY;
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return ArrayUtils.EMPTY_INT_ARRAY;
+        }
     }
 }
