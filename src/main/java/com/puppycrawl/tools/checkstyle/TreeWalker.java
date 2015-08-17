@@ -266,7 +266,7 @@ public final class TreeWalker
                 else {
                     throw new CheckstyleException("Token \""
                         + token + "\" was not found in Acceptable tokens list"
-                                + " in check " + check);
+                                + " in check " + check.getClass().getName());
                 }
             }
         }

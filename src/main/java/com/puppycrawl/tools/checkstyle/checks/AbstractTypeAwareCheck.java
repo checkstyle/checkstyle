@@ -491,8 +491,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
 
         @Override
         public String toString() {
-            return "ClassAlias[alias " + getName()
-                + " for " + classInfo + "]";
+            return "ClassAlias[alias " + getName() + " for " + classInfo.getName() + "]";
         }
     }
 
