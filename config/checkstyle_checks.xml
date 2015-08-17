@@ -310,7 +310,6 @@
 <!--
     <module name="ClassDataAbstractionCoupling"/>
     <module name="ClassFanOutComplexity"/>
-    <module name="DesignForExtension"/>
     <module name="ExecutableStatementCount"/>
     <module name="FinalParameters"/>
     <module name="IllegalToken"/>
@@ -332,5 +331,11 @@
     <module name="VariableDeclarationUsageDistance"/>
     <module name="WriteTag"/>
 -->
+<!--
+    We should postpone DesignForExtension Check enforcement till next major release 
+    as it will seriously brake backward compatibility with existing usage of our library
+
+    <module name="DesignForExtension"/>
+-->  
   </module>
 </module>
