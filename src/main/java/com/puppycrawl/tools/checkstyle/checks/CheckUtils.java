@@ -45,6 +45,15 @@ public final class CheckUtils {
     /** hex radix */
     private static final int BASE_16 = 16;
 
+    /** Maximum children allowed in setter/getter */
+    private static final int SETTER_GETTER_MAX_CHILDREN = 7;
+
+    /** Maximum nodes allowed in a body of setter */
+    private static final int SETTER_BODY_SIZE = 3;
+
+    /** Maximum nodes allowed in a body of getter */
+    private static final int GETTER_BODY_SIZE = 2;
+
     /** prevent instances */
     private CheckUtils() {
     }
@@ -304,5 +313,98 @@ public final class CheckUtils {
         }
 
         return typeParams;
+    }
+
+    /**
+     * Returns whether an AST represents a setter method.
+     * @param ast the AST to check with
+     * @return whether the AST represents a setter method
+     */
+    public static boolean isSetterMethod(final DetailAST ast) {
+        // Check have a method with exactly 7 children which are all that
+        // is allowed in a proper setter method which does not throw any
+        // exceptions.
+        if (ast.getType() != TokenTypes.METHOD_DEF
+                || ast.getChildCount() != SETTER_GETTER_MAX_CHILDREN) {
+            return false;
+        }
+
+        // Should I handle only being in a class????
+
+        // Check the name matches format setX...
+        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+        final String name = type.getNextSibling().getText();
+        if (!name.matches("^set[A-Z].*")) { // Depends on JDK 1.4
+            return false;
+        }
+
+        // Check the return type is void
+        if (type.getChildCount(TokenTypes.LITERAL_VOID) == 0) {
+            return false;
+        }
+
+        // Check that is had only one parameter
+        final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
+        if (params.getChildCount(TokenTypes.PARAMETER_DEF) != 1) {
+            return false;
+        }
+
+        // Now verify that the body consists of:
+        // SLIST -> EXPR -> ASSIGN
+        // SEMI
+        // RCURLY
+        final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
+        if (slist == null || slist.getChildCount() != SETTER_BODY_SIZE) {
+            return false;
+        }
+
+        final DetailAST expr = slist.getFirstChild();
+        return expr.getFirstChild().getType() == TokenTypes.ASSIGN;
+    }
+
+    /**
+     * Returns whether an AST represents a getter method.
+     * @param ast the AST to check with
+     * @return whether the AST represents a getter method
+     */
+    public static boolean isGetterMethod(final DetailAST ast) {
+        // Check have a method with exactly 7 children which are all that
+        // is allowed in a proper getter method which does not throw any
+        // exceptions.
+        if (ast.getType() != TokenTypes.METHOD_DEF
+                || ast.getChildCount() != SETTER_GETTER_MAX_CHILDREN) {
+            return false;
+        }
+
+        // Check the name matches format of getX or isX. Technically I should
+        // check that the format isX is only used with a boolean type.
+        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+        final String name = type.getNextSibling().getText();
+        if (!name.matches("^(is|get)[A-Z].*")) { // Depends on JDK 1.4
+            return false;
+        }
+
+        // Check the return type is void
+        if (type.getChildCount(TokenTypes.LITERAL_VOID) > 0) {
+            return false;
+        }
+
+        // Check that is had only one parameter
+        final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
+        if (params.getChildCount(TokenTypes.PARAMETER_DEF) > 0) {
+            return false;
+        }
+
+        // Now verify that the body consists of:
+        // SLIST -> RETURN
+        // RCURLY
+        final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
+        if (slist == null || slist.getChildCount() != GETTER_BODY_SIZE) {
+            return false;
+        }
+
+        final DetailAST expr = slist.getFirstChild();
+        return expr.getType() == TokenTypes.LITERAL_RETURN;
+
     }
 }

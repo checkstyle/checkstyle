@@ -28,8 +28,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import antlr.collections.AST;
-
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.ScopeUtils;
@@ -128,12 +126,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     /** compiled regexp to match Javadoc tags with no argument and {} * */
     private static final Pattern MATCH_JAVADOC_NOARG_CURLY =
         Utils.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
-
-    /** Maximum children allowed * */
-    private static final int MAX_CHILDREN = 7;
-
-    /** Maximum children allowed * */
-    private static final int BODY_SIZE = 3;
 
     /** Default value of minimal amount of lines in method to demand documentation presence.*/
     private static final int DEFAULT_MIN_LINE_COUNT = -1;
@@ -436,7 +428,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     protected boolean isMissingJavadocAllowed(final DetailAST ast) {
         return allowMissingJavadoc
             || allowMissingPropertyJavadoc
-                && (isSetterMethod(ast) || isGetterMethod(ast))
+                && (CheckUtils.isSetterMethod(ast) || CheckUtils.isGetterMethod(ast))
             || matchesSkipRegex(ast);
     }
 
@@ -925,99 +917,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
                 }
             }
         }
-    }
-
-    /**
-     * Returns whether an AST represents a setter method.
-     * @param ast the AST to check with
-     * @return whether the AST represents a setter method
-     */
-    private static boolean isSetterMethod(final DetailAST ast) {
-        // Check have a method with exactly 7 children which are all that
-        // is allowed in a proper setter method which does not throw any
-        // exceptions.
-        if (ast.getType() != TokenTypes.METHOD_DEF
-                || ast.getChildCount() != MAX_CHILDREN) {
-            return false;
-        }
-
-        // Should I handle only being in a class????
-
-        // Check the name matches format setX...
-        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-        final String name = type.getNextSibling().getText();
-        if (!name.matches("^set[A-Z].*")) { // Depends on JDK 1.4
-            return false;
-        }
-
-        // Check the return type is void
-        if (type.getChildCount(TokenTypes.LITERAL_VOID) == 0) {
-            return false;
-        }
-
-        // Check that is had only one parameter
-        final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-        if (params.getChildCount(TokenTypes.PARAMETER_DEF) != 1) {
-            return false;
-        }
-
-        // Now verify that the body consists of:
-        // SLIST -> EXPR -> ASSIGN
-        // SEMI
-        // RCURLY
-        final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
-        if (slist == null || slist.getChildCount() != BODY_SIZE) {
-            return false;
-        }
-
-        final AST expr = slist.getFirstChild();
-        return expr.getFirstChild().getType() == TokenTypes.ASSIGN;
-    }
-
-    /**
-     * Returns whether an AST represents a getter method.
-     * @param ast the AST to check with
-     * @return whether the AST represents a getter method
-     */
-    private static boolean isGetterMethod(final DetailAST ast) {
-        // Check have a method with exactly 7 children which are all that
-        // is allowed in a proper getter method which does not throw any
-        // exceptions.
-        if (ast.getType() != TokenTypes.METHOD_DEF
-                || ast.getChildCount() != MAX_CHILDREN) {
-            return false;
-        }
-
-        // Check the name matches format of getX or isX. Technically I should
-        // check that the format isX is only used with a boolean type.
-        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-        final String name = type.getNextSibling().getText();
-        if (!name.matches("^(is|get)[A-Z].*")) { // Depends on JDK 1.4
-            return false;
-        }
-
-        // Check the return type is void
-        if (type.getChildCount(TokenTypes.LITERAL_VOID) > 0) {
-            return false;
-        }
-
-        // Check that is had only one parameter
-        final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-        if (params.getChildCount(TokenTypes.PARAMETER_DEF) > 0) {
-            return false;
-        }
-
-        // Now verify that the body consists of:
-        // SLIST -> RETURN
-        // RCURLY
-        final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
-        if (slist == null || slist.getChildCount() != 2) {
-            return false;
-        }
-
-        final AST expr = slist.getFirstChild();
-        return expr.getType() == TokenTypes.LITERAL_RETURN;
-
     }
 
     /** Stores useful information about declared exception. */
