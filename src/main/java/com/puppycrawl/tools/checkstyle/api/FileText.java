@@ -161,7 +161,7 @@ public final class FileText extends AbstractList<String> {
             }
             textLines.add(line);
         }
-        this.lines = textLines.toArray(new String[textLines.size()]);
+        lines = textLines.toArray(new String[textLines.size()]);
     }
 
     /**

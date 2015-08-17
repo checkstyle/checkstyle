@@ -280,7 +280,7 @@ public class SuppressionCommentFilterTest
         final LocalizedMessage message =
             new LocalizedMessage(1, 1,
                 "messages.properties", "key", null, SeverityLevel.ERROR, null,
-                this.getClass(), null);
+                    getClass(), null);
         final AuditEvent auditEvent = new AuditEvent(this, "Test.java", message);
         SuppressionCommentFilter filter = new SuppressionCommentFilter();
         Assert.assertTrue(filter.accept(auditEvent));
