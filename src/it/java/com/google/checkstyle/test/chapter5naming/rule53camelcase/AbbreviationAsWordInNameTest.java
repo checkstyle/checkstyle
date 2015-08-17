@@ -14,9 +14,9 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameChe
 
 public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport{
 
+    private static final String MSG_KEY = "abbreviation.as.word";
     private static ConfigurationBuilder builder;
     private Class<AbbreviationAsWordInNameCheck> clazz = AbbreviationAsWordInNameCheck.class;
-    private String msgKey = "abbreviation.as.word";
     private static Configuration checkConfig;
     
     @BeforeClass
@@ -29,7 +29,7 @@ public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport{
     public void abbreviationAsWordInNameTest() throws IOException, Exception {
 
         int maxCapitalCount = 1;
-        String msg = getCheckMessage(clazz, msgKey, maxCapitalCount);
+        String msg = getCheckMessage(clazz, MSG_KEY, maxCapitalCount);
 
         final String[] expected = {
             "50: " + msg,
