@@ -102,7 +102,11 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 		int lineNumber = 1;
 	    List<Integer> result = new ArrayList<>();
 	    try(BufferedReader br = new BufferedReader(new FileReader(aFileName))) {
-	        for(String line; (line = br.readLine()) != null; ) {
+	        while (true) {
+	            String line = br.readLine();
+	            if (line == null) {
+	                break;
+	            }
 	            if (warnPattern.matcher(line).find()) {
 	            	result.add(lineNumber);
 	            }
