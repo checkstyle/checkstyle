@@ -42,7 +42,7 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
     private final JTreeTable treeTable;
 
     public ListToTreeSelectionModelWrapper(JTreeTable jTreeTable) {
-        this.treeTable = jTreeTable;
+        treeTable = jTreeTable;
         getListSelectionModel().addListSelectionListener(createListSelectionListener());
     }
 

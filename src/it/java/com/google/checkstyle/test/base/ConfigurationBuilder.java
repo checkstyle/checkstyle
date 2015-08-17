@@ -32,7 +32,7 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 
 	public ConfigurationBuilder(File aROOT)
 			throws CheckstyleException, IOException {
-		this.ROOT = aROOT;
+		ROOT = aROOT;
 		config = getConfigurationFromXML(xmlName, System.getProperties());
 		listFiles(files, ROOT, "java");
 	}

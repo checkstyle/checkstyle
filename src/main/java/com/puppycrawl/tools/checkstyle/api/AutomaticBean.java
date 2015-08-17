@@ -122,7 +122,7 @@ public class AutomaticBean
     @Override
     public final void configure(Configuration config)
         throws CheckstyleException {
-        this.configuration = config;
+        configuration = config;
 
         final String[] attributes = config.getAttributeNames();
 

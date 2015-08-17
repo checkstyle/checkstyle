@@ -213,7 +213,7 @@ public final class ExecutableStatementCountCheck
          * @param addition the count increment.
          */
         public void addCount(int addition) {
-            this.count += addition;
+            count += addition;
         }
 
         /**

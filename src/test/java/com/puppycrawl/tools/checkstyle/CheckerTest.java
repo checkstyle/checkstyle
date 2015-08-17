@@ -186,8 +186,8 @@ public class CheckerTest {
     public void testSetters() throws Exception {
         // all  that is set by reflection, so just make code coverage be happy
         final Checker c = new Checker();
-        c.setClassLoader(this.getClass().getClassLoader());
-        c.setClassloader(this.getClass().getClassLoader());
+        c.setClassLoader(getClass().getClassLoader());
+        c.setClassloader(getClass().getClassLoader());
         c.setBasedir("some");
         c.setSeverity("ignore");
 
