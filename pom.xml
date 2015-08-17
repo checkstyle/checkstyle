@@ -173,6 +173,7 @@
     <maven.site.plugin.version>3.4</maven.site.plugin.version>
     <maven.findbugs.plugin.version>3.0.2</maven.findbugs.plugin.version>
     <maven.pmd.plugin.version>3.5</maven.pmd.plugin.version>
+    <maven.jacoco.plugin.version>0.7.5.201505241946</maven.jacoco.plugin.version>
     <tools.jar.version>1.7.0</tools.jar.version>
     <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
     <java.version>1.7</java.version>
@@ -248,6 +249,13 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.jacoco</groupId>
+      <artifactId>org.jacoco.agent</artifactId>
+      <version>${maven.jacoco.plugin.version}</version>
+      <scope>test</scope>
+      <classifier>runtime</classifier>
+    </dependency>
   </dependencies>
 
   <build>
@@ -605,6 +613,9 @@
         <version>2.18.1</version>
         <configuration>
           <argLine>-Duser.language=en -Duser.country=US -XX:-UseSplitVerifier</argLine>
+          <systemPropertyVariables>
+            <jacoco-agent.destfile>${project.build.directory}/jacoco/jacoco.exec</jacoco-agent.destfile>
+          </systemPropertyVariables>
           <additionalClasspathElements>
             <additionalClasspathElement>src/test/resources-noncompilable</additionalClasspathElement>
           </additionalClasspathElements>
@@ -834,6 +845,29 @@
           </formats>
           <check />
         </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${maven.jacoco.plugin.version}</version>
+        <configuration>
+            <dataFile>${project.build.directory}/jacoco/jacoco.exec</dataFile>
+          <excludes>
+            <exclude>com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask*.class</exclude>
+            <exclude>com/puppycrawl/tools/checkstyle/doclets/*.class</exclude>
+            <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
+            <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
+            <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
+          </excludes>
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>report</report>
+            </reports>
+          </reportSet>
+        </reportSets>
       </plugin>
 
       <plugin>
@@ -1077,6 +1111,230 @@
         </plugins>
       </build>
 
+    </profile>
+
+    <profile>
+      <id>jacoco-check</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>${maven.jacoco.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>default-instrument</id>
+                <goals>
+                  <goal>instrument</goal>
+                </goals>
+                <phase>test-compile</phase>
+              </execution>
+              <execution>
+                <id>default-restore-instrumented-classes</id>
+                <goals>
+                  <goal>restore-instrumented-classes</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>default-report</id>
+                <phase>site</phase>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>default-check</id>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+                <configuration>
+                  <dataFile>${project.build.directory}/jacoco/jacoco.exec</dataFile>
+                  <excludes>
+                    <exclude>com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask*.class</exclude>
+                    <exclude>com/puppycrawl/tools/checkstyle/doclets/*.class</exclude>
+                    <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
+                    <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
+                    <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
+                  </excludes>
+                  <rules>
+                    <rule>
+                      <element>BUNDLE</element>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.99</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.99</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>PACKAGE</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.99</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.97</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>PACKAGE</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.93</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.93</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.93</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.82</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.90</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.90</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.Main</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.92</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.84</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.PropertyCacheFile</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.97</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>1.00</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.TreeWalker.AstState</include></includes>
+                      <limits><limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.76</minimum></limit></limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.DefaultLogger</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.97</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>1.00</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks.TranslationCheck</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.82</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.81</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.88</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.76</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.88</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.94</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.74</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.83</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck.RegularClass</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.62</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.83</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck.Token</include></includes>
+                      <limits><limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.62</minimum></limit></limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks.ClassResolver</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.91</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.83</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck.ClassAlias</include></includes>
+                      <limits><limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.39</minimum></limit></limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.96</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>1.00</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck.AbstractClassInfo</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.69</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.50</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks.AbstractDeclarationCollector</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>1.00</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.94</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.UniqueProperties</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>1.00</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.75</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils</include></includes>
+                      <limits>
+                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.99</minimum></limit>
+                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.98</minimum></limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes><include>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils.JavadocTagType</include></includes>
+                      <limits><limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.81</minimum></limit></limits>
+                    </rule>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
 
     <profile>
