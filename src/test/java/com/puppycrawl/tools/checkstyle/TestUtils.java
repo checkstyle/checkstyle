@@ -24,7 +24,7 @@ import java.lang.reflect.Modifier;
 
 import org.junit.Assert;
 
-public class TestUtils {
+public final class TestUtils {
 
     private TestUtils() {
     }
