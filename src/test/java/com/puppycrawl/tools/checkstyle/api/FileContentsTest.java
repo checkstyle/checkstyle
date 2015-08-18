@@ -23,7 +23,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.Test;
 
@@ -41,7 +41,7 @@ public class FileContentsTest {
     public void testCppCommentNotIntersect() {
         // just to make UT coverage 100%
         FileContents o = new FileContents(
-                FileText.fromLines(new File("filename"), Arrays.asList("  //  ")));
+                FileText.fromLines(new File("filename"), Collections.singletonList("  //  ")));
         o.reportCppComment(1, 2);
         assertFalse(o.hasIntersectionWithComment(1, 0, 1, 1));
     }
@@ -50,7 +50,7 @@ public class FileContentsTest {
     public void testCppCommentIntersect() {
         // just to make UT coverage 100%
         FileContents o = new FileContents(
-                FileText.fromLines(new File("filename"), Arrays.asList("  //   ")));
+                FileText.fromLines(new File("filename"), Collections.singletonList("  //   ")));
         o.reportCppComment(1, 2);
         assertTrue(o.hasIntersectionWithComment(1, 5, 1, 6));
 
