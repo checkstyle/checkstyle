@@ -136,7 +136,7 @@ public class CommentsIndentationCheck extends Check {
      */
     private void visitSingleLineComment(DetailAST singleLineComment) {
         final DetailAST nextStatement = singleLineComment.getNextSibling();
-        final DetailAST prevStatement = getPreviousStmt(singleLineComment);
+        final DetailAST prevStatement = getPrevStatementFromSwitchBlock(singleLineComment);
 
         if (nextStatement != null
             && nextStatement.getType() != TokenTypes.RCURLY
@@ -149,45 +149,66 @@ public class CommentsIndentationCheck extends Check {
     }
 
     /**
-     * Gets previous case block from switch block.
+     * Gets comment's previous statement from switch block.
      * @param comment {@link TokenTypes#SINGLE_LINE_COMMENT single-line comment}.
-     * @return previous case block from switch.
+     * @return comment's previous statement or null if previous statement is absent.
      */
-    private static DetailAST getPreviousStmt(DetailAST comment) {
-        final DetailAST parentStatement = comment.getParent();
+    private static DetailAST getPrevStatementFromSwitchBlock(DetailAST comment) {
         DetailAST prevStmt = null;
+        final DetailAST parentStatement = comment.getParent();
         if (parentStatement != null) {
-            DetailAST prevBlock;
             if (parentStatement.getType() == TokenTypes.CASE_GROUP) {
-                prevBlock = parentStatement.getPreviousSibling();
-                if (prevBlock.getLastChild() != null) {
-                    DetailAST blockBody = prevBlock.getLastChild().getLastChild();
-                    if (blockBody.getPreviousSibling() != null) {
-                        blockBody = blockBody.getPreviousSibling();
-                    }
-                    if (blockBody.getType() == TokenTypes.EXPR) {
-                        prevStmt = blockBody.getFirstChild().getFirstChild();
-                    }
-                    else {
-                        prevStmt = blockBody;
-
-                    }
-                }
+                prevStmt = getPrevStatementWhenCommentIsUnderCase(parentStatement);
             }
             else {
-                final DetailAST parentBlock = parentStatement.getParent();
-
-                if (parentBlock != null && parentBlock.getParent() != null
-                    && parentBlock.getParent().getPreviousSibling() != null
-                    && parentBlock.getParent().getPreviousSibling()
-                        .getType() == TokenTypes.LITERAL_CASE) {
-
-                    prevBlock = parentBlock.getParent().getPreviousSibling();
-                    prevStmt = prevBlock;
-                }
+                prevStmt = getPrevCaseToken(parentStatement);
             }
         }
         return prevStmt;
+    }
+
+    /**
+     * Gets previous statement for comment which is placed immediatly under case.
+     * @param parentStatement comment's parent statement.
+     * @return comment's previous statement or null if previous statement is absent.
+     */
+    private static DetailAST getPrevStatementWhenCommentIsUnderCase(DetailAST parentStatement) {
+        DetailAST prevStmt = null;
+        final DetailAST prevBlock = parentStatement.getPreviousSibling();
+        if (prevBlock.getLastChild() != null) {
+            DetailAST blockBody = prevBlock.getLastChild().getLastChild();
+            if (blockBody.getPreviousSibling() != null) {
+                blockBody = blockBody.getPreviousSibling();
+            }
+            if (blockBody.getType() == TokenTypes.EXPR) {
+                prevStmt = blockBody.getFirstChild().getFirstChild();
+            }
+            else {
+                prevStmt = blockBody;
+            }
+        }
+        return prevStmt;
+    }
+
+    /**
+     * Gets previous case-token for comment.
+     * @param parentStatement comment's parent statement.
+     * @return previous case-token or null if previous case-token is absent.
+     */
+    private static DetailAST getPrevCaseToken(DetailAST parentStatement) {
+        final DetailAST prevCaseToken;
+        final DetailAST parentBlock = parentStatement.getParent();
+        if (parentBlock != null && parentBlock.getParent() != null
+            && parentBlock.getParent().getPreviousSibling() != null
+            && parentBlock.getParent().getPreviousSibling()
+                .getType() == TokenTypes.LITERAL_CASE) {
+
+            prevCaseToken = parentBlock.getParent().getPreviousSibling();
+        }
+        else {
+            prevCaseToken = null;
+        }
+        return prevCaseToken;
     }
 
     /**
@@ -256,7 +277,7 @@ public class CommentsIndentationCheck extends Check {
      */
     private void visitBlockComment(DetailAST blockComment) {
         final DetailAST nextStatement = blockComment.getNextSibling();
-        final DetailAST prevStatement = getPreviousStmt(blockComment);
+        final DetailAST prevStatement = getPrevStatementFromSwitchBlock(blockComment);
 
         if (nextStatement != null
             && nextStatement.getType() != TokenTypes.RCURLY
