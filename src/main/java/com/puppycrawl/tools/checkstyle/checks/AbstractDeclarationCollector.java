@@ -264,15 +264,15 @@ public abstract class AbstractDeclarationCollector extends Check {
          * @return whether it was found
          */
         LexicalFrame getIfContains(String nameToFind) {
+            LexicalFrame frame = null;
+
             if (contains(nameToFind)) {
-                return this;
+                frame = this;
             }
             else if (parent != null) {
-                return parent.getIfContains(nameToFind);
+                frame = parent.getIfContains(nameToFind);
             }
-            else {
-                return null;
-            }
+            return frame;
         }
     }
 

@@ -190,17 +190,20 @@ public class ClassResolver {
      * @return Class object for the given name or null.
      */
     private Class<?> resolveQualifiedName(final String name) {
+        Class<?> classObj = null;
         try {
             if (isLoadable(name)) {
-                return safeLoad(name);
+                classObj = safeLoad(name);
             }
-            //Perhaps it's fully-qualified inner class
-            final int dot = name.lastIndexOf('.');
-            if (dot != -1) {
-                final String innerName =
-                    name.substring(0, dot) + "$" + name.substring(dot + 1);
-                if (isLoadable(innerName)) {
-                    return safeLoad(innerName);
+            else {
+                //Perhaps it's fully-qualified inner class
+                final int dot = name.lastIndexOf('.');
+                if (dot != -1) {
+                    final String innerName =
+                        name.substring(0, dot) + "$" + name.substring(dot + 1);
+                    if (isLoadable(innerName)) {
+                        classObj = safeLoad(innerName);
+                    }
                 }
             }
         }
@@ -209,7 +212,6 @@ public class ClassResolver {
             // so this is unexpected runtime exception
             throw new IllegalStateException(ex);
         }
-
-        return null;
+        return classObj;
     }
 }

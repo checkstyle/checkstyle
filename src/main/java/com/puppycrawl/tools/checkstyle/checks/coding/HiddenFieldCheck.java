@@ -321,19 +321,24 @@ public class HiddenFieldCheck
      */
     private static boolean inStatic(DetailAST ast) {
         DetailAST parent = ast.getParent();
+        boolean inStatic = false;
+
         while (parent != null) {
-            switch (parent.getType()) {
-                case TokenTypes.STATIC_INIT:
-                    return true;
-                case TokenTypes.METHOD_DEF:
-                    final DetailAST mods =
-                        parent.findFirstToken(TokenTypes.MODIFIERS);
-                    return mods.branchContains(TokenTypes.LITERAL_STATIC);
-                default:
-                    parent = parent.getParent();
+            if (parent.getType() == TokenTypes.STATIC_INIT) {
+                inStatic = true;
+                break;
+            }
+            else if (parent.getType() == TokenTypes.METHOD_DEF) {
+                final DetailAST mods =
+                    parent.findFirstToken(TokenTypes.MODIFIERS);
+                inStatic = mods.branchContains(TokenTypes.LITERAL_STATIC);
+                break;
+            }
+            else {
+                parent = parent.getParent();
             }
         }
-        return false;
+        return inStatic;
     }
 
     /**

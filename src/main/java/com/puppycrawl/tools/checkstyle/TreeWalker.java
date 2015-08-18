@@ -574,13 +574,12 @@ public final class TreeWalker
      * @return true if position of ast1 is greater than position of ast2.
      */
     private static boolean isPositionGreater(DetailAST ast1, DetailAST ast2) {
-        if (ast1.getLineNo() > ast2.getLineNo()) {
-            return true;
+        if (ast1.getLineNo() == ast2.getLineNo()) {
+            return ast1.getColumnNo() > ast2.getColumnNo();
         }
-        if (ast1.getLineNo() < ast2.getLineNo()) {
-            return false;
+        else {
+            return ast1.getLineNo() > ast2.getLineNo();
         }
-        return ast1.getColumnNo() > ast2.getColumnNo();
     }
 
     /**

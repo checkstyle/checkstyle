@@ -243,27 +243,26 @@ public final class LocalizedMessage
 
     /** @return the translated message **/
     public String getMessage() {
+        String message = getCustomMessage();
 
-        final String message = getCustomMessage();
-        if (message != null) {
-            return message;
+        if (message == null) {
+            try {
+                // Important to use the default class loader, and not the one in
+                // the GlobalProperties object. This is because the class loader in
+                // the GlobalProperties is specified by the user for resolving
+                // custom classes.
+                final ResourceBundle resourceBundle = getBundle(this.bundle);
+                final String pattern = resourceBundle.getString(key);
+                message = MessageFormat.format(pattern, args);
+            }
+            catch (final MissingResourceException ignored) {
+                // If the Check author didn't provide i18n resource bundles
+                // and logs error messages directly, this will return
+                // the author's original message
+                message = MessageFormat.format(key, args);
+            }
         }
-
-        try {
-            // Important to use the default class loader, and not the one in
-            // the GlobalProperties object. This is because the class loader in
-            // the GlobalProperties is specified by the user for resolving
-            // custom classes.
-            final ResourceBundle resourceBundle = getBundle(this.bundle);
-            final String pattern = resourceBundle.getString(key);
-            return MessageFormat.format(pattern, args);
-        }
-        catch (final MissingResourceException ignored) {
-            // If the Check author didn't provide i18n resource bundles
-            // and logs error messages directly, this will return
-            // the author's original message
-            return MessageFormat.format(key, args);
-        }
+        return message;
     }
 
     /**
@@ -351,13 +350,17 @@ public final class LocalizedMessage
 
     @Override
     public int compareTo(LocalizedMessage other) {
+        int result = Integer.compare(getLineNo(), other.getLineNo());
+
         if (getLineNo() == other.getLineNo()) {
             if (getColumnNo() == other.getColumnNo()) {
-                return getMessage().compareTo(other.getMessage());
+                result = getMessage().compareTo(other.getMessage());
             }
-            return Integer.compare(getColumnNo(), other.getColumnNo());
+            else {
+                result = Integer.compare(getColumnNo(), other.getColumnNo());
+            }
         }
-        return Integer.compare(getLineNo(), other.getLineNo());
+        return result;
     }
 
     /**
