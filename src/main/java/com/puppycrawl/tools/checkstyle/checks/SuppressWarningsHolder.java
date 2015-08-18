@@ -377,19 +377,24 @@ public class SuppressWarningsHolder
     private static String getStringExpr(DetailAST ast) {
         if (ast != null && ast.getType() == TokenTypes.EXPR) {
             final DetailAST firstChild = ast.getFirstChild();
+            String expr = "";
+
             switch (firstChild.getType()) {
                 case TokenTypes.STRING_LITERAL:
                     // NOTE: escaped characters are not unescaped
                     final String quotedText = firstChild.getText();
-                    return quotedText.substring(1, quotedText.length() - 1);
+                    expr = quotedText.substring(1, quotedText.length() - 1);
+                    break;
                 case TokenTypes.IDENT:
-                    return firstChild.getText();
+                    expr = firstChild.getText();
+                    break;
                 case TokenTypes.DOT:
-                    return firstChild.getLastChild().getText();
+                    expr = firstChild.getLastChild().getText();
+                    break;
                 default:
                     // annotations with complex expressions cannot suppress warnings
-                    return "";
             }
+            return expr;
         }
         throw new IllegalArgumentException("Expression AST expected: " + ast);
     }

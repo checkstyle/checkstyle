@@ -133,19 +133,11 @@ public class InnerAssignmentCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (isInContext(ast, ALLOWED_ASSIGMENT_CONTEXT)) {
-            return;
+        if (!isInContext(ast, ALLOWED_ASSIGMENT_CONTEXT)
+                && !isInNoBraceControlStatement(ast)
+                && !isInWhileIdiom(ast)) {
+            log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
         }
-
-        if (isInNoBraceControlStatement(ast)) {
-            return;
-        }
-
-        if (isInWhileIdiom(ast)) {
-            return;
-        }
-
-        log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
     }
 
     /**

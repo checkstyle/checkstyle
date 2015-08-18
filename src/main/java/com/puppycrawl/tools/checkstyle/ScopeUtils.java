@@ -250,19 +250,20 @@ public final class ScopeUtils {
      * @return whether aAST is a local variable definition.
      */
     public static boolean isLocalVariableDef(DetailAST aAST) {
+        boolean localVariableDef = false;
         // variable declaration?
         if (aAST.getType() == TokenTypes.VARIABLE_DEF) {
             final DetailAST parent = aAST.getParent();
             final int type = parent.getType();
-            return type == TokenTypes.SLIST
+            localVariableDef = type == TokenTypes.SLIST
                     || type == TokenTypes.FOR_INIT
                     || type == TokenTypes.FOR_EACH_CLAUSE;
         }
         // catch parameter?
         if (aAST.getType() == TokenTypes.PARAMETER_DEF) {
             final DetailAST parent = aAST.getParent();
-            return parent.getType() == TokenTypes.LITERAL_CATCH;
+            localVariableDef = parent.getType() == TokenTypes.LITERAL_CATCH;
         }
-        return false;
+        return localVariableDef;
     }
 }

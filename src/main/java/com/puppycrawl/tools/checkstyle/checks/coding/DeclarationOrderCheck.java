@@ -186,34 +186,22 @@ public class DeclarationOrderCheck extends Check {
             case TokenTypes.OBJBLOCK:
                 scopeStates.push(new ScopeState());
                 break;
-
             case TokenTypes.CTOR_DEF:
-                if (parentType != TokenTypes.OBJBLOCK) {
-                    return;
+                if (parentType == TokenTypes.OBJBLOCK) {
+                    processConstructor(ast);
                 }
-
-                processConstructor(ast);
                 break;
-
             case TokenTypes.METHOD_DEF:
-
-                if (parentType != TokenTypes.OBJBLOCK) {
-                    return;
+                if (parentType == TokenTypes.OBJBLOCK) {
+                    processMethod(ast);
                 }
-
-                processMethod(ast);
                 break;
-
             case TokenTypes.MODIFIERS:
-                if (parentType != TokenTypes.VARIABLE_DEF
-                        || ast.getParent().getParent().getType()
-                        != TokenTypes.OBJBLOCK) {
-                    return;
+                if (parentType == TokenTypes.VARIABLE_DEF
+                        && ast.getParent().getParent().getType() == TokenTypes.OBJBLOCK) {
+                    processModifiers(ast);
                 }
-
-                processModifiers(ast);
                 break;
-
             default:
                 break;
         }
