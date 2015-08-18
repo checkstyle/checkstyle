@@ -95,21 +95,6 @@ public class LeftCurlyCheck
      */
     public static final String MSG_KEY_LINE_BREAK_AFTER = "line.break.after";
 
-    /**
-     * Default maximum line length.
-     * @deprecated since 6.10 release, option maxLineLength is not required for the Check.
-     */
-    @Deprecated
-    private static final int DEFAULT_MAX_LINE_LENGTH = 80;
-
-    /**
-     * Maximum line length.
-     * @deprecated since 6.10 release, option is not required for the Check.
-     */
-    @Deprecated
-    @SuppressWarnings("unused")
-    private int maxLineLength = DEFAULT_MAX_LINE_LENGTH;
-
     /** If true, Check will ignore enums*/
     private boolean ignoreEnums = true;
 
@@ -128,7 +113,7 @@ public class LeftCurlyCheck
      */
     @Deprecated
     public void setMaxLineLength(int maxLineLength) {
-        this.maxLineLength = maxLineLength;
+        // do nothing, option is deprecated
     }
 
     /**
