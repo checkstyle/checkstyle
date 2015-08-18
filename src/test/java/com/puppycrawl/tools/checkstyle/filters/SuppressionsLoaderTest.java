@@ -195,7 +195,6 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void testUnableToFindSuppressions() throws Exception {
         Class<SuppressionsLoader> loaderClass = SuppressionsLoader.class;
         Method loadSuppressions =
@@ -212,7 +211,6 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void testUnableToReadSuppressions() throws Exception {
         Class<SuppressionsLoader> loaderClass = SuppressionsLoader.class;
         Method loadSuppressions =
