@@ -147,7 +147,7 @@ public abstract class BaseCheckTestSupport
             parseInt = parseInt.substring(0, parseInt.indexOf(":"));
             int lineNumber = Integer.parseInt(parseInt);
 			Integer integer = Arrays.asList(aWarnsExpected).contains(lineNumber) ? lineNumber : 0;
-            assertEquals("error message " + i, (long) integer, (long) lineNumber);
+            assertEquals("error message " + i, (long) integer, lineNumber);
         }
 
         assertEquals("unexpected output: " + lnr.readLine(),
