@@ -389,18 +389,18 @@ public final class LocalizedMessage
             else {
                 stream = aLoader.getResourceAsStream(resourceName);
             }
-            ResourceBundle bundle = null;
+            ResourceBundle resourceBundle = null;
             if (stream != null) {
                 final Reader streamReader = new InputStreamReader(stream, "UTF-8");
                 try {
                     // Only this line is changed to make it to read properties files as UTF-8.
-                    bundle = new PropertyResourceBundle(streamReader);
+                    resourceBundle = new PropertyResourceBundle(streamReader);
                 }
                 finally {
                     stream.close();
                 }
             }
-            return bundle;
+            return resourceBundle;
         }
     }
 }

@@ -138,7 +138,7 @@ public class HiddenFieldCheck
     /** Stack of sets of field names,
      * one for each class of a set of nested classes.
      */
-    private FieldFrame currentFrame;
+    private FieldFrame frame;
 
     /** Pattern for names of variables and parameters to ignore. */
     private Pattern regexp;
@@ -190,7 +190,7 @@ public class HiddenFieldCheck
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        currentFrame = new FieldFrame(null, true, null);
+        frame = new FieldFrame(null, true, null);
     }
 
     @Override
@@ -232,7 +232,7 @@ public class HiddenFieldCheck
         else {
             frameName = null;
         }
-        final FieldFrame frame = new FieldFrame(currentFrame, isStaticInnerType, frameName);
+        final FieldFrame newFrame = new FieldFrame(frame, isStaticInnerType, frameName);
 
         //add fields to container
         final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
@@ -246,17 +246,17 @@ public class HiddenFieldCheck
                     final DetailAST mods =
                         child.findFirstToken(TokenTypes.MODIFIERS);
                     if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
-                        frame.addStaticField(name);
+                        newFrame.addStaticField(name);
                     }
                     else {
-                        frame.addInstanceField(name);
+                        newFrame.addInstanceField(name);
                     }
                 }
                 child = child.getNextSibling();
             }
         }
         // push container
-        currentFrame = frame;
+        frame = newFrame;
     }
 
     @Override
@@ -265,7 +265,7 @@ public class HiddenFieldCheck
             || ast.getType() == TokenTypes.ENUM_DEF
             || ast.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
             //pop
-            currentFrame = currentFrame.getParent();
+            frame = frame.getParent();
         }
     }
 
@@ -300,8 +300,8 @@ public class HiddenFieldCheck
      * @return true if static or instance field
      */
     private boolean isStaticOrOnstanceField(DetailAST ast, String name) {
-        return currentFrame.containsStaticField(name)
-            || !inStatic(ast) && currentFrame.containsInstanceField(name);
+        return frame.containsStaticField(name)
+                || !inStatic(ast) && frame.containsInstanceField(name);
     }
 
     /**
@@ -384,7 +384,7 @@ public class HiddenFieldCheck
             final DetailAST typeAST = aMethodAST.findFirstToken(TokenTypes.TYPE);
             final String returnType = typeAST.getFirstChild().getText();
             if (typeAST.branchContains(TokenTypes.LITERAL_VOID)
-                || setterCanReturnItsClass && currentFrame.embeddedIn(returnType)) {
+                    || setterCanReturnItsClass && frame.embeddedIn(returnType)) {
                 // this method has signature
                 //
                 //     void set${Name}(${anyType} ${name})
