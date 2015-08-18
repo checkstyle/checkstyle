@@ -228,7 +228,7 @@ class FileDrop {
      *
      * @since 1.0
      */
-    public interface Listener {
+    interface Listener {
         /**
          * This method is called when files have been successfully dropped.
          *

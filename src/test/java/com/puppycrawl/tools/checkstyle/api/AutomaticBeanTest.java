@@ -98,7 +98,7 @@ public class AutomaticBeanTest {
     }
 
     @SuppressWarnings("unused")
-    public static class TestBean extends AutomaticBean {
+    private static class TestBean extends AutomaticBean {
 
         private String privateField;
 

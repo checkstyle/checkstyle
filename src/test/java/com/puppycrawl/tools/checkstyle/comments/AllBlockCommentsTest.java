@@ -47,7 +47,7 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport {
         Assert.assertTrue(ALL_COMMENTS.isEmpty());
     }
 
-    public static class BlockCommentListenerCheck extends Check {
+    private static class BlockCommentListenerCheck extends Check {
         @Override
         public boolean isCommentNodesRequired() {
             return true;

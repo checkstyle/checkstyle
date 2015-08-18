@@ -81,7 +81,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
         verify(checker, getPath("javadoc/InputCorrectJavaDocParagraphCheck.java"), expected);
     }
 
-    public static class TempCheck extends AbstractJavadocCheck {
+    private static class TempCheck extends AbstractJavadocCheck {
 
         @Override
         public int[] getDefaultJavadocTokens() {

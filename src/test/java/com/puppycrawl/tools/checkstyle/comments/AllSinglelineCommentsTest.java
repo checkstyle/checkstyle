@@ -46,7 +46,7 @@ public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
         Assert.assertTrue(ALL_COMMENTS.isEmpty());
     }
 
-    public static class SinglelineCommentListenerCheck extends Check {
+    private static class SinglelineCommentListenerCheck extends Check {
         @Override
         public boolean isCommentNodesRequired() {
             return true;

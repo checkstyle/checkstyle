@@ -93,7 +93,7 @@ public class FileSetCheckLifecycleTest
                 TestFileSetCheck.isFileContentAvailable());
     }
 
-    public static class TestFileSetCheck extends AbstractFileSetCheck {
+    private static class TestFileSetCheck extends AbstractFileSetCheck {
         private static boolean destroyed;
         private static boolean fileContentAvailable;
 

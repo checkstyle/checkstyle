@@ -294,7 +294,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         treeWalker.processFiltered(file, lines);
     }
 
-    public static class BadJavaDocCheck extends Check {
+    private static class BadJavaDocCheck extends Check {
         @Override
         public int[] getDefaultTokens() {
             return getAcceptableTokens();
