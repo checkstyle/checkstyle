@@ -46,8 +46,8 @@ public abstract class BaseCheckTestSupport
         public void fileStarted(AuditEvent evt) {}
     }
 
-    protected final ByteArrayOutputStream BAOS = new ByteArrayOutputStream();
-    protected final PrintStream stream = new PrintStream(BAOS);
+    protected final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    protected final PrintStream stream = new PrintStream(baos);
     protected final Properties props = new Properties();
 
     public static DefaultConfiguration createCheckConfig(Class<?> aClazz)
@@ -134,7 +134,7 @@ public abstract class BaseCheckTestSupport
 
         // process each of the lines
         final ByteArrayInputStream bais =
-            new ByteArrayInputStream(BAOS.toByteArray());
+            new ByteArrayInputStream(baos.toByteArray());
         final LineNumberReader lnr =
             new LineNumberReader(new InputStreamReader(bais));
 

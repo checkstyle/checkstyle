@@ -204,7 +204,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
 
         // process each of the lines
         final ByteArrayInputStream bais =
-            new ByteArrayInputStream(BAOS.toByteArray());
+            new ByteArrayInputStream(baos.toByteArray());
         final LineNumberReader lnr =
             new LineNumberReader(new InputStreamReader(bais));
 
