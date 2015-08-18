@@ -115,7 +115,7 @@ public class AutomaticBeanTest {
         }
 
         public void setExceptionalMethod(String value) {
-            throw new IllegalStateException("for UT");
+            throw new IllegalStateException(wrong);
         }
 
         public void setName(String name) {

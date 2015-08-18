@@ -110,7 +110,7 @@ public class DetailASTTest {
         checkDir(new File("src/test/resources/com/puppycrawl/tools/checkstyle"));
     }
 
-    private void checkDir(File dir) throws Exception {
+    private static void checkDir(File dir) throws Exception {
         File[] files = dir.listFiles(new FileFilter() {
                 @Override
                 public boolean accept(File file) {
