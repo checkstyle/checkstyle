@@ -200,11 +200,11 @@ public abstract class BaseCheckTestSupport
        return null;
    }
 
-   private static String removeDeviceFromPathOnWindows(String string) {
+   private static String removeDeviceFromPathOnWindows(String path) {
        String os = System.getProperty("os.name", "Unix");
        if (os.startsWith("Windows")) {
-           return string.substring(string.indexOf(":") + 1);
+           return path.substring(path.indexOf(":") + 1);
        }
-       return string;
+       return path;
    }
 }
