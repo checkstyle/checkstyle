@@ -471,14 +471,14 @@ public class MainTest {
                         .replace("/", File.separator);
                 String format = "%s.java:%s: warning: File length is %s lines (max allowed is 80).";
                 StringBuilder sb = new StringBuilder();
-                sb.append("Starting audit..." + System.getProperty("line.separator"));
+                sb.append("Starting audit...").append(System.getProperty("line.separator"));
                 for (String[] outputValue : outputValues) {
                     String line = String.format(format,
                             expectedPath + outputValue[0], outputValue[1],
                             outputValue[2]);
-                    sb.append(line + System.getProperty("line.separator"));
+                    sb.append(line).append(System.getProperty("line.separator"));
                 }
-                sb.append("Audit done." + System.getProperty("line.separator"));
+                sb.append("Audit done.").append(System.getProperty("line.separator"));
                 assertEquals(sb.toString(), systemOut.getLog());
                 assertEquals("", systemErr.getLog());
             }
