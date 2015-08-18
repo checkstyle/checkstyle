@@ -56,7 +56,7 @@ public class FileTabCharacterTest extends BaseCheckTestSupport{
     /**
      * Creates a configuration that is functionally close to that in the docs.
      */
-    private DefaultConfiguration createConfig(boolean verbose)
+    private static DefaultConfiguration createConfig(boolean verbose)
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FileTabCharacterCheck.class);
