@@ -115,8 +115,6 @@ public class AutomaticBean
      * is called for each {@link Configuration#getChildren child Configuration}
      * of {@code configuration}.
      *
-     * @param config {@inheritDoc}
-     * @throws CheckstyleException {@inheritDoc}
      * @see Configurable
      */
     @Override
