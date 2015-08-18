@@ -64,6 +64,7 @@ public class MainTest {
             throws Exception {
 
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals("Checkstyle version: null" + System.lineSeparator(),
                         systemOut.getLog());
@@ -78,6 +79,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 String usage = String.format("Unrecognized option: -w%n"
                     + "usage: java com.puppycrawl.tools.checkstyle.Main [options] -c <config.xml>%n"
@@ -100,6 +102,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals("Must specify a config XML file." + System.lineSeparator(),
                         systemOut.getLog());
@@ -114,6 +117,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals("Must specify files to process, found 0." + System.lineSeparator(),
                         systemOut.getLog());
@@ -128,6 +132,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals(String.format("unable to find src/main/resources/non_existing_config.xml%n"
                                 + "Checkstyle ends with 1 errors.%n"),
@@ -143,6 +148,7 @@ public class MainTest {
     public void testNonExistingOutputFormat() throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals(String.format("Invalid output format. "
                         + "Found 'xmlp' but expected 'plain' or 'xml'.%n"), systemOut.getLog());
@@ -157,6 +163,7 @@ public class MainTest {
     public void testExistingTargetFile() throws Exception {
 
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals(String.format("Starting audit...%n"
                         + "Audit done.%n"), systemOut.getLog());
@@ -171,6 +178,7 @@ public class MainTest {
     public void testExistingTargetFileXmlOutput() throws Exception {
 
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() throws IOException {
                 String currentPath = new File(".").getCanonicalPath();
                 String expectedPath = currentPath
@@ -196,6 +204,7 @@ public class MainTest {
     public void testExistingTargetFilePlainOutput() throws Exception {
 
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals(String.format("Starting audit...%n"
                         + "Audit done.%n"), systemOut.getLog());
@@ -211,6 +220,7 @@ public class MainTest {
     public void testExistingTargetFileWithViolations() throws Exception {
 
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() throws IOException {
                 String currentPath = new File(".").getCanonicalPath();
                 String expectedPath = currentPath
@@ -235,6 +245,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(2);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() throws IOException {
                 String currentPath = new File(".").getCanonicalPath();
                 String expectedPath = currentPath
@@ -260,6 +271,7 @@ public class MainTest {
             throws Exception {
 
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals("", systemOut.getLog());
                 assertEquals("", systemErr.getLog());
@@ -276,6 +288,7 @@ public class MainTest {
             throws Exception {
         final File file = temporaryFolder.newFile("file.output");
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals("", systemOut.getLog());
                 assertEquals("", systemErr.getLog());
@@ -295,6 +308,7 @@ public class MainTest {
         assertTrue(file.setWritable(false, false));
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() throws IOException {
                 assertEquals("Permission denied : '" + file.getCanonicalPath() + "'."
                         + System.lineSeparator(), systemOut.getLog());
@@ -319,6 +333,7 @@ public class MainTest {
         assertTrue(file.setWritable(false, false));
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() throws IOException {
                 assertEquals("Permission denied : '" + file.getCanonicalPath() + "'."
                         + System.lineSeparator(), systemOut.getLog());
@@ -336,6 +351,7 @@ public class MainTest {
             throws Exception {
         //exit.expectSystemExitWithStatus(0);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals(String.format("Starting audit...%n"
                         + "Audit done.%n"), systemOut.getLog());
@@ -353,6 +369,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals("Could not find file 'nonexisting.properties'."
                         + System.lineSeparator(), systemOut.getLog());
@@ -370,6 +387,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals(String.format("unable to parse configuration stream - Content is not allowed in prolog.:7:1%n"
                         + "Checkstyle ends with 1 errors.%n"), systemOut.getLog());
@@ -464,7 +482,7 @@ public class MainTest {
         };
 
         exit.checkAssertionAfterwards(new Assertion() {
-            public void checkAssertion() throws IOException {
+            @Override public void checkAssertion() throws IOException {
                 String currentPath = new File(".").getCanonicalPath();
                 String expectedPath = currentPath
                         + "/src/test/resources/com/puppycrawl/tools/checkstyle/metrics/"
