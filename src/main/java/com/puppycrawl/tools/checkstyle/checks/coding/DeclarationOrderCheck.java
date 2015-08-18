@@ -62,35 +62,35 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * <p>
  * For example:
- * <pre><code>
+ * <pre>{@code
  *     class K {
  *         int a;
  *         void m(){}
  *         K(){}  &lt;-- "Constructor definition in wrong order"
  *         int b; &lt;-- "Instance variable definition in wrong order"
  *     }
- * </code></pre>
+ * }</pre>
  *
  * <p>
  * With <b>ignoreConstructors</b> option:
- * <pre><code>
+ * <pre>{@code
  *     class K {
  *         int a;
  *         void m(){}
  *         K(){}
  *         int b; &lt;-- "Instance variable definition in wrong order"
  *     }
- * </code></pre>
+ * }</pre>
  *
  * <p>
  * With <b>ignoreConstructors</b> option and without a method definition in a source class:
- * <pre><code>
+ * <pre>{@code
  *     class K {
  *         int a;
  *         K(){}
  *         int b; &lt;-- "Instance variable definition in wrong order"
  *     }
- * </code></pre>
+ * }</pre>
  *
  * <p>
  * An example of how to configure the check is:
