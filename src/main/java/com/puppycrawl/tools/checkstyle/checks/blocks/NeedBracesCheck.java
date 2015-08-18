@@ -180,14 +180,14 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * if (obj.isValid()) return true;
-     * </code>
+     * }
      * </p>
      * <p>
-     * <code>
+     * {@code
      * while (obj.isValid()) return true;
-     * </code>
+     * }
      * </p>
      * @param statement if, for, while, do-while, lambda, else, case, default statements.
      * @return true if current statement is single-line statement.
@@ -247,9 +247,9 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current do-while statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * do this.notify(); while (o != null);
-     * </code>
+     * }
      * </p>
      * @param literalDo {@link TokenTypes#LITERAL_DO do-while statement}.
      * @return true if current do-while statement is single-line statement.
@@ -267,9 +267,9 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current for statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * for (int i = 0; ; ) this.notify();
-     * </code>
+     * }
      * </p>
      * @param literalFor {@link TokenTypes#LITERAL_FOR for statement}.
      * @return true if current for statement is single-line statement.
@@ -290,9 +290,9 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current if statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * if (obj.isValid()) return true;
-     * </code>
+     * }
      * </p>
      * @param literalIf {@link TokenTypes#LITERAL_IF if statement}.
      * @return true if current if statement is single-line statement.
@@ -317,9 +317,9 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current lambda statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * Runnable r = () -> System.out.println("Hello, world!");
-     * </code>
+     * }
      * </p>
      * @param lambda {@link TokenTypes#LAMBDA lambda statement}.
      * @return true if current lambda statement is single-line statement.
@@ -361,9 +361,9 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current default statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * default: doSomeStuff();
-     * </code>
+     * }
      * </p>
      * @param literalDefault {@link TokenTypes#LITERAL_DEFAULT default statement}.
      * @return true if current default statement is single-line statement.
@@ -381,9 +381,9 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current else statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * else doSomeStuff();
-     * </code>
+     * }
      * </p>
      * @param literalElse {@link TokenTypes#LITERAL_ELSE else statement}.
      * @return true if current else statement is single-line statement.

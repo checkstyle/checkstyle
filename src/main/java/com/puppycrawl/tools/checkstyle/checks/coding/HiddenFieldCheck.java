@@ -461,7 +461,7 @@ public class HiddenFieldCheck
 
     /**
      * Set the ignore format to the specified regular expression.
-     * @param format a <code>String</code> value
+     * @param format a {@code String} value
      */
     public void setIgnoreFormat(String format) {
         regexp = Utils.createPattern(format);

@@ -262,9 +262,9 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
     /**
      * Checks if current import is star import. E.g.:
      * <p>
-     * <code>
+     * {@code
      * import java.util.*;
-     * </code>
+     * }
      * </p>
      * @param importAst {@link TokenTypes#IMPORT Import}
      * @return true if it is star import

@@ -37,9 +37,9 @@ public enum LeftCurlyOption {
 
     /**
      * Represents the policy that if the brace will fit on the first line of
-     * the statement, then apply <code>EOL</code> rule.
-     * Otherwise apply the <code>NL</code> rule.
-     * <code>NLOW</code> is a mnemonic for "new line on wrap".
+     * the statement, then apply {@code EOL} rule.
+     * Otherwise apply the {@code NL} rule.
+     * {@code NLOW} is a mnemonic for "new line on wrap".
      *
      * <p> For the example above Checkstyle will enforce:
      *
