@@ -80,7 +80,7 @@ public class CommentsTest extends BaseCheckTestSupport {
      *                 +--COMMENT_CONTENT [5,4]
      *         +--RCURLY [6,0]
      */
-    private static DetailAST buildInput_1() {
+    private static DetailAST buildInput1() {
         DetailAST packageDef = new DetailAST();
         packageDef.setType(PACKAGE_DEF);
         packageDef.setText("package");
@@ -296,7 +296,7 @@ public class CommentsTest extends BaseCheckTestSupport {
      *                     +--RCURLY [11,4]
      *         +--RCURLY [12,0]
      */
-    private static DetailAST buildInput_2() {
+    private static DetailAST buildInput2() {
         DetailAST packageDef = new DetailAST();
         packageDef.setType(PACKAGE_DEF);
         packageDef.setText("package");
@@ -598,7 +598,7 @@ public class CommentsTest extends BaseCheckTestSupport {
     @Test
     public void testCompareExpectedTreeWithInput_1() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(CompareTreesWithComments.class);
-        CompareTreesWithComments.expectedTree = buildInput_1();
+        CompareTreesWithComments.expectedTree = buildInput1();
         final String[] expected = {};
         verify(checkConfig, getPath("comments" + File.separator
                 + "InputCommentsTest_1.java"), expected);
@@ -607,7 +607,7 @@ public class CommentsTest extends BaseCheckTestSupport {
     @Test
     public void testCompareExpectedTreeWithInput_2() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(CompareTreesWithComments.class);
-        CompareTreesWithComments.expectedTree = buildInput_2();
+        CompareTreesWithComments.expectedTree = buildInput2();
         final String[] expected = {};
         verify(checkConfig, getPath("comments" + File.separator
                 + "InputCommentsTest_2.java"), expected);
