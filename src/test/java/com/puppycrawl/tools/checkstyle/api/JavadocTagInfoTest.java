@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -59,7 +60,7 @@ public class JavadocTagInfoTest {
             JavadocTagInfo.Type.INLINE,
         };
         JavadocTagInfo.Type[] actual = JavadocTagInfo.Type.values();
-        assertEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
