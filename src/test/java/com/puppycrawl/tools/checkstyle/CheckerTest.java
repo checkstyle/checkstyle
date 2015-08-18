@@ -42,8 +42,8 @@ public class CheckerTest {
     @Test
     public void testDestroy() throws Exception {
         final DebugChecker c = new DebugChecker();
-        final DebugAuditAdapter aa = new DebugAuditAdapter();
-        c.addListener(aa);
+        final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
+        c.addListener(auditAdapter);
         final DebugFilter f = new DebugFilter();
         c.addFilter(f);
 
@@ -60,68 +60,68 @@ public class CheckerTest {
                 new Object[] {"arg"}, null, getClass(), null));
         c.fireErrors("Some File Name", msgs);
 
-        assertFalse("Checker.destroy() doesn't remove listeners.", aa.wasCalled());
+        assertFalse("Checker.destroy() doesn't remove listeners.", auditAdapter.wasCalled());
         assertFalse("Checker.destroy() doesn't remove filters.", f.wasCalled());
     }
 
     @Test
     public void testAddListener() throws Exception {
         final DebugChecker c = new DebugChecker();
-        final DebugAuditAdapter aa = new DebugAuditAdapter();
-        c.addListener(aa);
+        final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
+        c.addListener(auditAdapter);
 
         // Let's try fire some events
         c.fireAuditStarted();
-        assertTrue("Checker.fireAuditStarted() doesn't call listener", aa.wasCalled());
+        assertTrue("Checker.fireAuditStarted() doesn't call listener", auditAdapter.wasCalled());
 
-        aa.resetListener();
+        auditAdapter.resetListener();
         c.fireAuditFinished();
-        assertTrue("Checker.fireAuditFinished() doesn't call listener", aa.wasCalled());
+        assertTrue("Checker.fireAuditFinished() doesn't call listener", auditAdapter.wasCalled());
 
-        aa.resetListener();
+        auditAdapter.resetListener();
         c.fireFileStarted("Some File Name");
-        assertTrue("Checker.fireFileStarted() doesn't call listener", aa.wasCalled());
+        assertTrue("Checker.fireFileStarted() doesn't call listener", auditAdapter.wasCalled());
 
-        aa.resetListener();
+        auditAdapter.resetListener();
         c.fireFileFinished("Some File Name");
-        assertTrue("Checker.fireFileFinished() doesn't call listener", aa.wasCalled());
+        assertTrue("Checker.fireFileFinished() doesn't call listener", auditAdapter.wasCalled());
 
-        aa.resetListener();
+        auditAdapter.resetListener();
         final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         c.fireErrors("Some File Name", msgs);
-        assertTrue("Checker.fireErrors() doesn't call listener", aa.wasCalled());
+        assertTrue("Checker.fireErrors() doesn't call listener", auditAdapter.wasCalled());
     }
 
     @Test
     public void testRemoveListener() throws Exception {
         final DebugChecker c = new DebugChecker();
-        final DebugAuditAdapter aa = new DebugAuditAdapter();
+        final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         final DebugAuditAdapter aa2 = new DebugAuditAdapter();
-        c.addListener(aa);
+        c.addListener(auditAdapter);
         c.addListener(aa2);
-        c.removeListener(aa);
+        c.removeListener(auditAdapter);
 
         // Let's try fire some events
         c.fireAuditStarted();
         assertTrue("Checker.fireAuditStarted() doesn't call listener", aa2.wasCalled());
-        assertFalse("Checker.fireAuditStarted() does call removed listener", aa.wasCalled());
+        assertFalse("Checker.fireAuditStarted() does call removed listener", auditAdapter.wasCalled());
 
         aa2.resetListener();
         c.fireAuditFinished();
         assertTrue("Checker.fireAuditFinished() doesn't call listener", aa2.wasCalled());
-        assertFalse("Checker.fireAuditFinished() does call removed listener", aa.wasCalled());
+        assertFalse("Checker.fireAuditFinished() does call removed listener", auditAdapter.wasCalled());
 
         aa2.resetListener();
         c.fireFileStarted("Some File Name");
         assertTrue("Checker.fireFileStarted() doesn't call listener", aa2.wasCalled());
-        assertFalse("Checker.fireFileStarted() does call removed listener", aa.wasCalled());
+        assertFalse("Checker.fireFileStarted() does call removed listener", auditAdapter.wasCalled());
 
         aa2.resetListener();
         c.fireFileFinished("Some File Name");
         assertTrue("Checker.fireFileFinished() doesn't call listener", aa2.wasCalled());
-        assertFalse("Checker.fireFileFinished() does call removed listener", aa.wasCalled());
+        assertFalse("Checker.fireFileFinished() does call removed listener", auditAdapter.wasCalled());
 
         aa2.resetListener();
         final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
@@ -129,7 +129,7 @@ public class CheckerTest {
                 new Object[] {"arg"}, null, getClass(), null));
         c.fireErrors("Some File Name", msgs);
         assertTrue("Checker.fireErrors() doesn't call listener", aa2.wasCalled());
-        assertFalse("Checker.fireErrors() does call removed listener", aa.wasCalled());
+        assertFalse("Checker.fireErrors() does call removed listener", auditAdapter.wasCalled());
 
     }
 
