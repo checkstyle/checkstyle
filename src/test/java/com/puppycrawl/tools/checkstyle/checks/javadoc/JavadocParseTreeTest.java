@@ -271,7 +271,7 @@ public class JavadocParseTreeTest {
         Assert.assertEquals(t1.toStringTree(parser), t2.toStringTree(parser));
     }
 
-    public static class FailOnErrorListener extends BaseErrorListener {
+    private static class FailOnErrorListener extends BaseErrorListener {
         @Override
         public void syntaxError(
                 Recognizer<?, ?> aRecognizer, Object aOffendingSymbol,
