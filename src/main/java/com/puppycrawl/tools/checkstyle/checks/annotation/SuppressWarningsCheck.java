@@ -186,13 +186,11 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
                                 warning.getColumnNo(), warningText);
                         break;
                     // conditional case
-                    // ex: @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
                     case TokenTypes.QUESTION:
                         walkConditional(fChild);
                         break;
                     // param in constant case
                     // ex: public static final String UNCHECKED = "unchecked";
-                    // @SuppressWarnings(UNCHECKED) or @SuppressWarnings(SomeClass.UNCHECKED)
                     case TokenTypes.IDENT:
                     case TokenTypes.DOT:
                         break;
