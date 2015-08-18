@@ -267,9 +267,9 @@ class TagParser {
      * @author o_sukholsky
      */
     private static final class Point {
-        /** line number. */
+        /** Line number. */
         private final int line;
-        /** column number.*/
+        /** Column number.*/
         private final int column;
 
         /**

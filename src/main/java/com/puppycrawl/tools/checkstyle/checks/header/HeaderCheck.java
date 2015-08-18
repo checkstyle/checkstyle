@@ -45,10 +45,10 @@ public class HeaderCheck extends AbstractHeaderCheck {
      */
     public static final String MSG_MISMATCH = "header.mismatch";
 
-    /** empty array to avoid instantiations. */
+    /** Empty array to avoid instantiations. */
     private static final int[] EMPTY_INT_ARRAY = new int[0];
 
-    /** the header lines to ignore in the check, sorted. */
+    /** The header lines to ignore in the check, sorted. */
     private int[] ignoreLines = EMPTY_INT_ARRAY;
 
     /**

@@ -45,7 +45,7 @@ public abstract class AbstractSuperCheck
      */
     public static final String MSG_KEY = "missing.super.call";
 
-    /** stack of methods */
+    /** Stack of methods */
     private final Deque<MethodNode> methodStack = Lists.newLinkedList();
 
     @Override
@@ -194,10 +194,10 @@ public abstract class AbstractSuperCheck
      * @author Rick Giles
      */
     private static class MethodNode {
-        /** method definition */
+        /** Method definition */
         private final DetailAST method;
 
-        /** true if the overriding method calls the super method */
+        /** True if the overriding method calls the super method */
         private boolean callingSuper;
 
         /**

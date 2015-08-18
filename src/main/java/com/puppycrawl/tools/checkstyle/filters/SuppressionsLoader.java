@@ -46,16 +46,16 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
  */
 public final class SuppressionsLoader
     extends AbstractLoader {
-    /** the public ID for the configuration dtd */
+    /** The public ID for the configuration dtd */
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Suppressions 1.0//EN";
-    /** the resource for the configuration dtd */
+    /** The resource for the configuration dtd */
     private static final String DTD_RESOURCE_NAME_1_0 =
         "com/puppycrawl/tools/checkstyle/suppressions_1_0.dtd";
-    /** the public ID for the configuration dtd */
+    /** The public ID for the configuration dtd */
     private static final String DTD_PUBLIC_ID_1_1 =
         "-//Puppy Crawl//DTD Suppressions 1.1//EN";
-    /** the resource for the configuration dtd */
+    /** The resource for the configuration dtd */
     private static final String DTD_RESOURCE_NAME_1_1 =
         "com/puppycrawl/tools/checkstyle/suppressions_1_1.dtd";
 

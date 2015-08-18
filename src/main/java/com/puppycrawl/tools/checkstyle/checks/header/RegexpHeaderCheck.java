@@ -42,13 +42,13 @@ import com.puppycrawl.tools.checkstyle.Utils;
  * @author o_sukhodolsky
  */
 public class RegexpHeaderCheck extends AbstractHeaderCheck {
-    /** empty array to avoid instantiations. */
+    /** Empty array to avoid instantiations. */
     private static final int[] EMPTY_INT_ARRAY = new int[0];
 
-    /** the compiled regular expressions */
+    /** The compiled regular expressions */
     private final List<Pattern> headerRegexps = Lists.newArrayList();
 
-    /** the header lines to repeat (0 or more) in the check, sorted. */
+    /** The header lines to repeat (0 or more) in the check, sorted. */
     private int[] multiLines = EMPTY_INT_ARRAY;
 
     /**

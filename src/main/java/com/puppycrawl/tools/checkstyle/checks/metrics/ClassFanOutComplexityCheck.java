@@ -37,7 +37,7 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
      */
     public static final String MSG_KEY = "classFanOutComplexity";
 
-    /** default value of max value. */
+    /** Default value of max value. */
     private static final int DEFAULT_MAX = 20;
 
     /** Creates new instance of this check. */

@@ -44,13 +44,13 @@ public class JavadocVariableCheck
      */
     public static final String JAVADOC_MISSING = "javadoc.missing";
 
-    /** the scope to check */
+    /** The scope to check */
     private Scope scope = Scope.PRIVATE;
 
-    /** the visibility scope where Javadoc comments shouldn't be checked **/
+    /** The visibility scope where Javadoc comments shouldn't be checked **/
     private Scope excludeScope;
 
-    /** the pattern to ignore variable name */
+    /** The pattern to ignore variable name */
     private Pattern ignoreNamePattern;
 
     /**

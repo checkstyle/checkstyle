@@ -25,19 +25,19 @@ package com.puppycrawl.tools.checkstyle.api;
  * @author o_sukhodolsky
  */
 public class Comment implements TextBlock {
-    /** text of the comment. */
+    /** Text of the comment. */
     private final String[] text;
 
-    /** number of first line of the comment. */
+    /** Number of first line of the comment. */
     private final int firstLine;
 
-    /** number of last line of the comment. */
+    /** Number of last line of the comment. */
     private final int lastLine;
 
-    /** number of first column of the comment. */
+    /** Number of first column of the comment. */
     private final int firstCol;
 
-    /** number of last column of the comment. */
+    /** Number of last column of the comment. */
     private final int lastCol;
 
     /**

@@ -56,10 +56,10 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck {
     /** Default format for abstract class names */
     private static final String DEFAULT_FORMAT = "^Abstract.+$";
 
-    /** whether to ignore checking the modifier */
+    /** Whether to ignore checking the modifier */
     private boolean ignoreModifier;
 
-    /** whether to ignore checking the name */
+    /** Whether to ignore checking the name */
     private boolean ignoreName;
 
     /** Creates new instance of the check. */

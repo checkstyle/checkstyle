@@ -72,11 +72,11 @@ public class RedundantImportCheck
      */
     public static final String MSG_DUPLICATE = "import.duplicate";
 
-    /** name of package in file */
+    /** Name of package in file */
     private String pkgName;
-    /** set of the imports */
+    /** Set of the imports */
     private final Set<FullIdent> imports = Sets.newHashSet();
-    /** set of static imports */
+    /** Set of static imports */
     private final Set<FullIdent> staticImports = Sets.newHashSet();
 
     @Override

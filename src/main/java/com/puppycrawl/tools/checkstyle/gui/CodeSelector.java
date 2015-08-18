@@ -33,9 +33,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class CodeSelector {
     /** DetailAST node*/
     private final DetailAST ast;
-    /** editor */
+    /** Editor */
     private final JTextArea editor;
-    /** mapping */
+    /** Mapping */
     private final List<Integer> lines2position;
 
     /**

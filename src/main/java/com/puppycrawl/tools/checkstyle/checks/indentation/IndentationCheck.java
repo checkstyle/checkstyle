@@ -83,22 +83,22 @@ public class IndentationCheck extends Check {
     /** Default indentation amount - based on Sun */
     private static final int DEFAULT_INDENTATION = 4;
 
-    /** how many tabs or spaces to use */
+    /** How many tabs or spaces to use */
     private int basicOffset = DEFAULT_INDENTATION;
 
-    /** how much to indent a case label */
+    /** How much to indent a case label */
     private int caseIndentationAmount = DEFAULT_INDENTATION;
 
-    /** how far brace should be indented when on next line */
+    /** How far brace should be indented when on next line */
     private int braceAdjustment;
 
-    /** how far throws should be indented when on next line */
+    /** How far throws should be indented when on next line */
     private int throwsIndentationAmount = DEFAULT_INDENTATION;
 
-    /** how much to indent an array initialization when on next line */
+    /** How much to indent an array initialization when on next line */
     private int arrayInitIndentationAmount = DEFAULT_INDENTATION;
 
-    /** how far continuation line should be indented when line-wrapping is present */
+    /** How far continuation line should be indented when line-wrapping is present */
     private int lineWrappingIndentation = DEFAULT_INDENTATION;
 
     /**
@@ -108,10 +108,10 @@ public class IndentationCheck extends Check {
      */
     private boolean forceStrictCondition;
 
-    /** handlers currently in use */
+    /** Handlers currently in use */
     private final Deque<AbstractExpressionHandler> handlers = new ArrayDeque<>();
 
-    /** factory from which handlers are distributed */
+    /** Factory from which handlers are distributed */
     private final HandlerFactory handlerFactory = new HandlerFactory();
 
     /**

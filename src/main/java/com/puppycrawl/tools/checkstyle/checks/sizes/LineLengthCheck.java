@@ -83,13 +83,13 @@ public class LineLengthCheck extends Check {
      */
     public static final String MSG_KEY = "maxLineLen";
 
-    /** default maximum number of columns in a line */
+    /** Default maximum number of columns in a line */
     private static final int DEFAULT_MAX_COLUMNS = 80;
 
-    /** the maximum number of columns in a line */
+    /** The maximum number of columns in a line */
     private int max = DEFAULT_MAX_COLUMNS;
 
-    /** the regexp when long lines are ignored */
+    /** The regexp when long lines are ignored */
     private Pattern ignorePattern;
 
     /**

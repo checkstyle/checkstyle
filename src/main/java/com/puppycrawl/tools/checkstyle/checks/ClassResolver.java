@@ -30,11 +30,11 @@ import java.util.Set;
  * @author Oliver Burn
  */
 public class ClassResolver {
-    /** name of the package to check if the class belongs to **/
+    /** Name of the package to check if the class belongs to **/
     private final String pkg;
-    /** set of imports to check against **/
+    /** Set of imports to check against **/
     private final Set<String> imports;
-    /** use to load classes **/
+    /** Use to load classes **/
     private final ClassLoader loader;
 
     /**

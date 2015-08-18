@@ -201,7 +201,7 @@ public class RegexpCheck extends AbstractFormatCheck {
         findMatch();
     }
 
-    /** recursive method that finds the matches. */
+    /** Recursive method that finds the matches. */
     private void findMatch() {
 
         final boolean foundMatch = matcher.find();

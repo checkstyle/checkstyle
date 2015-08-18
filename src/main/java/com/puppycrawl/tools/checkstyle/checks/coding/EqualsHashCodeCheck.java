@@ -59,10 +59,10 @@ public class EqualsHashCodeCheck
      */
     public static final String MSG_KEY = "equals.noHashCode";
 
-    /** maps OBJ_BLOCK to the method definition of equals() */
+    /** Maps OBJ_BLOCK to the method definition of equals() */
     private final Map<DetailAST, DetailAST> objBlockEquals = Maps.newHashMap();
 
-    /** the set of OBJ_BLOCKs that contain a definition of hashCode() */
+    /** The set of OBJ_BLOCKs that contain a definition of hashCode() */
     private final Set<DetailAST> objBlockWithHashCode = Sets.newHashSet();
 
     @Override

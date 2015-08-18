@@ -82,24 +82,24 @@ public class JavadocTypeCheck
      */
     public static final String UNUSED_TAG_GENERAL = "javadoc.unusedTagGeneral";
 
-    /** the scope to check for */
+    /** The scope to check for */
     private Scope scope = Scope.PRIVATE;
-    /** the visibility scope where Javadoc comments shouldn't be checked **/
+    /** The visibility scope where Javadoc comments shouldn't be checked **/
     private Scope excludeScope;
-    /** compiled regexp to match author tag content **/
+    /** Compiled regexp to match author tag content **/
     private Pattern authorFormatPattern;
-    /** compiled regexp to match version tag content **/
+    /** Compiled regexp to match version tag content **/
     private Pattern versionFormatPattern;
-    /** regexp to match author tag content */
+    /** Regexp to match author tag content */
     private String authorFormat;
-    /** regexp to match version tag content */
+    /** Regexp to match version tag content */
     private String versionFormat;
     /**
      * controls whether to ignore errors when a method has type parameters but
      * does not have matching param tags in the javadoc. Defaults to false.
      */
     private boolean allowMissingParamTags;
-    /** controls whether to flag errors for unknown tags. Defaults to false. */
+    /** Controls whether to flag errors for unknown tags. Defaults to false. */
     private boolean allowUnknownTags;
 
     /**

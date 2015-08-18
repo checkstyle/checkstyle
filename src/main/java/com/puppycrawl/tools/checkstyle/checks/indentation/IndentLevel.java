@@ -28,7 +28,7 @@ import java.util.BitSet;
  * @author o_sukhodolsky
  */
 public class IndentLevel {
-    /** set of acceptable indentation levels. */
+    /** Set of acceptable indentation levels. */
     private final BitSet levels = new BitSet();
 
     /**

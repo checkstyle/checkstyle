@@ -270,13 +270,13 @@ public class VisibilityModifierCheck
         "com.google.common.annotations.VisibleForTesting"
     );
 
-    /** contains explicit access modifiers. */
+    /** Contains explicit access modifiers. */
     private static final String[] EXPLICIT_MODS = {"public", "private", "protected"};
 
-    /** whether protected members are allowed */
+    /** Whether protected members are allowed */
     private boolean protectedAllowed;
 
-    /** whether package visible members are allowed */
+    /** Whether package visible members are allowed */
     private boolean packageAllowed;
 
     /**
@@ -288,7 +288,7 @@ public class VisibilityModifierCheck
      */
     private String publicMemberFormat = "^serialVersionUID$";
 
-    /** regexp for public members that should be ignored */
+    /** Regexp for public members that should be ignored */
     private Pattern publicMemberPattern = Pattern.compile(publicMemberFormat);
 
     /** List of ignore annotations canonical names. */

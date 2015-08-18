@@ -40,10 +40,10 @@ class HtmlTag {
     /** The comment line of text where this tag appears. */
     private final String text;
 
-    /** if this tag is self-closed. */
+    /** If this tag is self-closed. */
     private final boolean closedTag;
 
-    /** if the tag is incomplete. */
+    /** If the tag is incomplete. */
     private final boolean incomplete;
 
     /**

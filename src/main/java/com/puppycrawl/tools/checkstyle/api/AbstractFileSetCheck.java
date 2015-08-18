@@ -38,10 +38,10 @@ public abstract class AbstractFileSetCheck
     /** The dispatcher errors are fired to. */
     private MessageDispatcher messageDispatcher;
 
-    /** the file extensions that are accepted by this filter */
+    /** The file extensions that are accepted by this filter */
     private String[] fileExtensions = {};
 
-    /** collects the error messages */
+    /** Collects the error messages */
     private final LocalizedMessages messages = new LocalizedMessages();
 
     /**

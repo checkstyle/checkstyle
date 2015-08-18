@@ -49,7 +49,7 @@ public final class NestedForDepthCheck extends AbstractNestedDepthCheck {
      */
     public static final String MSG_KEY = "nested.for.depth";
 
-    /** default allowed nesting depth. */
+    /** Default allowed nesting depth. */
     private static final int DEFAULT_MAX = 1;
 
     /** Creates new check instance with default allowed nesting depth. */

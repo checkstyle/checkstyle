@@ -103,7 +103,7 @@ public class HiddenFieldCheckTest
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
 
-    /** tests ignoreFormat property */
+    /** Tests ignoreFormat property */
     @Test
     public void testIgnoreFormat()
         throws Exception {
@@ -144,7 +144,7 @@ public class HiddenFieldCheckTest
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
 
-    /** tests ignoreSetter property */
+    /** Tests ignoreSetter property */
     @Test
     public void testIgnoreSetter()
         throws Exception {
@@ -187,7 +187,7 @@ public class HiddenFieldCheckTest
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
 
-    /** tests ignoreSetter and setterCanReturnItsClass properties */
+    /** Tests ignoreSetter and setterCanReturnItsClass properties */
     @Test
     public void testIgnoreChainSetter()
         throws Exception {
@@ -229,7 +229,7 @@ public class HiddenFieldCheckTest
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
 
-    /** tests ignoreConstructorParameter property */
+    /** Tests ignoreConstructorParameter property */
     @Test
     public void testIgnoreConstructorParameter()
         throws Exception {

@@ -394,15 +394,15 @@ public final class Main {
 
     /** Helper structure to clear show what is required for Checker to run. **/
     private static class CliOptions {
-        /** properties file location */
+        /** Properties file location */
         private String propertiesLocation;
-        /** config file location */
+        /** Config file location */
         private String configLocation;
-        /** output format */
+        /** Output format */
         private String format;
-        /** output file location */
+        /** Output file location */
         private String outputLocation;
-        /** list of file to validate */
+        /** List of file to validate */
         private List<File> files;
     }
 }

@@ -167,7 +167,7 @@ public class MagicNumberCheck extends Check {
         TokenTypes.MINUS,
     };
 
-    /** the numbers to ignore in the check, sorted */
+    /** The numbers to ignore in the check, sorted */
     private double[] ignoreNumbers = {-1, 0, 1, 2};
 
     /** Whether to ignore magic numbers in a hash code method. */

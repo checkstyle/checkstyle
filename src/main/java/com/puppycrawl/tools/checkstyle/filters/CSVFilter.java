@@ -35,7 +35,7 @@ import com.google.common.collect.Sets;
  * @author o_sukhodolsky
  */
 class CSVFilter implements IntFilter {
-    /** filter set */
+    /** Filter set */
     private final Set<IntFilter> filters = Sets.newHashSet();
 
     /**

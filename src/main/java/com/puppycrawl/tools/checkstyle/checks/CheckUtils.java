@@ -36,13 +36,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class CheckUtils {
     // constants for parseDouble()
-    /** octal radix */
+    /** Octal radix */
     private static final int BASE_8 = 8;
 
-    /** decimal radix */
+    /** Decimal radix */
     private static final int BASE_10 = 10;
 
-    /** hex radix */
+    /** Hex radix */
     private static final int BASE_16 = 16;
 
     /** Maximum children allowed in setter/getter */
@@ -54,7 +54,7 @@ public final class CheckUtils {
     /** Maximum nodes allowed in a body of getter */
     private static final int GETTER_BODY_SIZE = 2;
 
-    /** prevent instances */
+    /** Prevent instances */
     private CheckUtils() {
     }
 

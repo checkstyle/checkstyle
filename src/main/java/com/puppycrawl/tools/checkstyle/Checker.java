@@ -59,26 +59,26 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     /** Logger for Checker */
     private static final Log LOG = LogFactory.getLog(Checker.class);
 
-    /** maintains error count */
+    /** Maintains error count */
     private final SeverityLevelCounter counter = new SeverityLevelCounter(
             SeverityLevel.ERROR);
 
-    /** vector of listeners */
+    /** Vector of listeners */
     private final List<AuditListener> listeners = Lists.newArrayList();
 
-    /** vector of fileset checks */
+    /** Vector of fileset checks */
     private final List<FileSetCheck> fileSetChecks = Lists.newArrayList();
 
-    /** class loader to resolve classes with. **/
+    /** Class loader to resolve classes with. **/
     private ClassLoader classLoader = Thread.currentThread()
             .getContextClassLoader();
 
-    /** the basedir to strip off in filenames */
+    /** The basedir to strip off in filenames */
     private String basedir;
 
-    /** locale country to report messages  **/
+    /** Locale country to report messages  **/
     private String localeCountry = Locale.getDefault().getCountry();
-    /** locale language to report messages  **/
+    /** Locale language to report messages  **/
     private String localeLanguage = Locale.getDefault().getLanguage();
 
     /** The factory for instantiating submodules */
@@ -87,13 +87,13 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     /** The classloader used for loading Checkstyle module classes. */
     private ClassLoader moduleClassLoader;
 
-    /** the context of all child components */
+    /** The context of all child components */
     private Context childContext;
 
     /** The audit event filters */
     private final FilterSet filters = new FilterSet();
 
-    /** the file extensions that are accepted */
+    /** The file extensions that are accepted */
     private String[] fileExtensions = ArrayUtils.EMPTY_STRING_ARRAY;
 
     /**
@@ -292,7 +292,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
         this.basedir = basedir;
     }
 
-    /** notify all listeners about the audit start */
+    /** Notify all listeners about the audit start */
     protected void fireAuditStarted() {
         final AuditEvent evt = new AuditEvent(this);
         for (final AuditListener listener : listeners) {
@@ -300,7 +300,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
         }
     }
 
-    /** notify all listeners about the audit end */
+    /** Notify all listeners about the audit end */
     protected void fireAuditFinished() {
         final AuditEvent evt = new AuditEvent(this);
         for (final AuditListener listener : listeners) {

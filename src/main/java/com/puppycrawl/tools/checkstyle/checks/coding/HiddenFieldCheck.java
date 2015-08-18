@@ -135,15 +135,15 @@ public class HiddenFieldCheck
      */
     public static final String MSG_KEY = "hidden.field";
 
-    /** stack of sets of field names,
+    /** Stack of sets of field names,
      * one for each class of a set of nested classes.
      */
     private FieldFrame currentFrame;
 
-    /** pattern for names of variables and parameters to ignore. */
+    /** Pattern for names of variables and parameters to ignore. */
     private Pattern regexp;
 
-    /** controls whether to check the parameter of a property setter method */
+    /** Controls whether to check the parameter of a property setter method */
     private boolean ignoreSetter;
 
     /**
@@ -154,10 +154,10 @@ public class HiddenFieldCheck
      */
     private boolean setterCanReturnItsClass;
 
-    /** controls whether to check the parameter of a constructor */
+    /** Controls whether to check the parameter of a constructor */
     private boolean ignoreConstructorParameter;
 
-    /** controls whether to check the parameter of abstract methods. */
+    /** Controls whether to check the parameter of abstract methods. */
     private boolean ignoreAbstractMethods;
 
     @Override
@@ -518,19 +518,19 @@ public class HiddenFieldCheck
      * @author Rick Giles
      */
     private static class FieldFrame {
-        /** name of the frame, such name of the class or enum declaration */
+        /** Name of the frame, such name of the class or enum declaration */
         private final String frameName;
 
-        /** is this a static inner type */
+        /** Is this a static inner type */
         private final boolean staticType;
 
-        /** parent frame. */
+        /** Parent frame. */
         private final FieldFrame parent;
 
-        /** set of instance field names */
+        /** Set of instance field names */
         private final Set<String> instanceFields = Sets.newHashSet();
 
-        /** set of static field names */
+        /** Set of static field names */
         private final Set<String> staticFields = Sets.newHashSet();
 
         /**

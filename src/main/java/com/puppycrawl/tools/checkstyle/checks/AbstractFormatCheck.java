@@ -36,11 +36,11 @@ import com.puppycrawl.tools.checkstyle.api.Check;
  */
 public abstract class AbstractFormatCheck
     extends Check {
-    /** the flags to create the regular expression with */
+    /** The flags to create the regular expression with */
     private int compileFlags;
-    /** the regexp to match against */
+    /** The regexp to match against */
     private Pattern regexp;
-    /** the format string of the regexp */
+    /** The format string of the regexp */
     private String format;
 
     /**

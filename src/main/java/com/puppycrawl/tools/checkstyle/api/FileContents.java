@@ -42,21 +42,21 @@ public final class FileContents implements CommentListener {
      * itself -- no code.
      */
     private static final String MATCH_SINGLELINE_COMMENT_PAT = "^\\s*//.*$";
-    /** compiled regexp to match a single-line comment line */
+    /** Compiled regexp to match a single-line comment line */
     private static final Pattern MATCH_SINGLELINE_COMMENT = Pattern
             .compile(MATCH_SINGLELINE_COMMENT_PAT);
 
-    /** the file name */
+    /** The file name */
     private final String fileName;
 
-    /** the text */
+    /** The text */
     private final FileText text;
 
-    /** map of the Javadoc comments indexed on the last line of the comment.
+    /** Map of the Javadoc comments indexed on the last line of the comment.
      * The hack is it assumes that there is only one Javadoc comment per line.
      */
     private final Map<Integer, TextBlock> javadocComments = Maps.newHashMap();
-    /** map of the C++ comments indexed on the first line of the comment. */
+    /** Map of the C++ comments indexed on the first line of the comment. */
     private final Map<Integer, TextBlock> cppComments =
         Maps.newHashMap();
 

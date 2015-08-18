@@ -42,7 +42,7 @@ public final class PackageDeclarationCheck extends Check {
     /** Line number used to log violation when no AST nodes are present in file. */
     private static final int DEFAULT_LINE_NUMBER = 1;
 
-    /** is package defined. */
+    /** Is package defined. */
     private boolean defined;
 
     @Override

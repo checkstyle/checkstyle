@@ -68,7 +68,7 @@ public final class MethodCountCheck extends Check {
      */
     public static final String MSG_MANY_METHODS = "too.many.methods";
 
-    /** default maximum number of methods */
+    /** Default maximum number of methods */
     private static final int DEFAULT_MAX_METHODS = 100;
     /** Maximum private methods. */
     private int maxPrivate = DEFAULT_MAX_METHODS;
@@ -216,9 +216,9 @@ public final class MethodCountCheck extends Check {
     private static class MethodCounter {
         /** Maintains the counts. */
         private final Map<Scope, Integer> counts = new EnumMap<>(Scope.class);
-        /** indicated is an interface, in which case all methods are public */
+        /** Indicated is an interface, in which case all methods are public */
         private final boolean inInterface;
-        /** tracks the total. */
+        /** Tracks the total. */
         private int total;
 
         /**

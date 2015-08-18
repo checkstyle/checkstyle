@@ -59,25 +59,25 @@ public class UnusedImportsCheck extends Check {
      */
     public static final String MSG_KEY = "import.unused";
 
-    /** regex to match class names. */
+    /** Regex to match class names. */
     private static final Pattern CLASS_NAME = Pattern.compile(
            "((:?[\\p{L}_$][\\p{L}\\p{N}_$]*\\.)*[\\p{L}_$][\\p{L}\\p{N}_$]*)");
-    /** regex to match the first class name. */
+    /** Regex to match the first class name. */
     private static final Pattern FIRST_CLASS_NAME = Pattern.compile(
            "^" + CLASS_NAME);
-    /** regex to match argument names. */
+    /** Regex to match argument names. */
     private static final Pattern ARGUMENT_NAME = Pattern.compile(
            "[(,]\\s*" + CLASS_NAME.pattern());
 
-    /** flag to indicate when time to start collecting references. */
+    /** Flag to indicate when time to start collecting references. */
     private boolean collect;
-    /** flag whether to process Javdoc comments. */
+    /** Flag whether to process Javdoc comments. */
     private boolean processingJavadoc;
 
-    /** set of the imports. */
+    /** Set of the imports. */
     private final Set<FullIdent> imports = Sets.newHashSet();
 
-    /** set of references - possibly to imports or other things. */
+    /** Set of references - possibly to imports or other things. */
     private final Set<String> referenced = Sets.newHashSet();
 
     public void setProcessJavadoc(boolean value) {

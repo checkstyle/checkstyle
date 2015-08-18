@@ -194,7 +194,7 @@ public class JTreeTable extends JTable {
         /** Last table/tree row asked to renderer. */
         private int visibleRow;
 
-        /** creates a new instance */
+        /** Creates a new instance */
         public TreeTableCellRenderer(TreeModel model) {
             super(model);
         }

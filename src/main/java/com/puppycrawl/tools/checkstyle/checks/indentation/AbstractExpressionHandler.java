@@ -61,16 +61,16 @@ public abstract class AbstractExpressionHandler {
      */
     private final IndentationCheck indentCheck;
 
-    /** the AST which is handled by this handler */
+    /** The AST which is handled by this handler */
     private final DetailAST mainAst;
 
-    /** name used during output to user */
+    /** Name used during output to user */
     private final String typeName;
 
-    /** containing AST handler */
+    /** Containing AST handler */
     private final AbstractExpressionHandler parent;
 
-    /** indentation amount for this handler */
+    /** Indentation amount for this handler */
     private IndentLevel level;
 
     /**

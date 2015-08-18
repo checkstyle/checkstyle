@@ -42,20 +42,20 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 public class XMLLogger
     extends AutomaticBean
     implements AuditListener {
-    /** decimal radix */
+    /** Decimal radix */
     private static final int BASE_10 = 10;
 
-    /** hex radix */
+    /** Hex radix */
     private static final int BASE_16 = 16;
 
-    /** some known entities to detect */
+    /** Some known entities to detect */
     private static final String[] ENTITIES = {"gt", "amp", "lt", "apos",
                                               "quot", };
 
-    /** close output stream in auditFinished */
+    /** Close output stream in auditFinished */
     private final boolean closeStream;
 
-    /** helper writer that allows easy encoding and printing */
+    /** Helper writer that allows easy encoding and printing */
     private PrintWriter writer;
 
     /**

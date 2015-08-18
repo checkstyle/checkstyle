@@ -29,7 +29,7 @@ import java.util.Properties;
  */
 public final class PropertiesExpander
     implements PropertyResolver {
-    /** the underlying Properties object. */
+    /** The underlying Properties object. */
     private final Properties properties = new Properties();
 
     /**

@@ -41,9 +41,9 @@ import com.puppycrawl.tools.checkstyle.api.TextBlock;
  * @author Lyle Hanson
  */
 public final class JavadocUtils {
-    /** maps from a token name to value */
+    /** Maps from a token name to value */
     private static final ImmutableMap<String, Integer> TOKEN_NAME_TO_VALUE;
-    /** maps from a token value to name */
+    /** Maps from a token value to name */
     private static final String[] TOKEN_VALUE_TO_NAME;
 
     // Using reflection gets all token names and values from JavadocTokenTypes class
@@ -84,7 +84,7 @@ public final class JavadocUtils {
         TOKEN_VALUE_TO_NAME = tempTokenValueToName;
     }
 
-    /** prevent instantiation */
+    /** Prevent instantiation */
     private JavadocUtils() {
     }
 
@@ -171,11 +171,11 @@ public final class JavadocUtils {
      * The type of Javadoc tag we want returned.
      */
     public enum JavadocTagType {
-        /** block type. */
+        /** Block type. */
         BLOCK,
-        /** inline type. */
+        /** Inline type. */
         INLINE,
-        /** all validTags. */
+        /** All validTags. */
         ALL
     }
 

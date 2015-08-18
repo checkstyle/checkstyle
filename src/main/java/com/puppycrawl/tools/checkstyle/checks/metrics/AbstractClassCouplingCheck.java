@@ -65,7 +65,7 @@ public abstract class AbstractClassCouplingCheck extends Check {
     private Set<String> excludedClasses = DEFAULT_EXCLUDED_CLASSES;
     /** Allowed complexity. */
     private int max;
-    /** package of the file we check. */
+    /** Package of the file we check. */
     private String packageName;
 
     /** Stack of contexts. */

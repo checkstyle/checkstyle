@@ -179,7 +179,7 @@ public class WhitespaceAroundCheck extends Check {
     private boolean allowEmptyTypes;
     /** Whether or not empty loops are allowed*/
     private boolean allowEmptyLoops;
-    /** whether or not to ignore a colon in a enhanced for loop */
+    /** Whether or not to ignore a colon in a enhanced for loop */
     private boolean ignoreEnhancedForColon = true;
 
     @Override

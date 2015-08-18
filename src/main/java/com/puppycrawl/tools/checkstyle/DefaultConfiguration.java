@@ -40,13 +40,13 @@ public final class DefaultConfiguration implements Configuration {
     /** The name of this configuration */
     private final String name;
 
-    /** the list of child Configurations */
+    /** The list of child Configurations */
     private final List<Configuration> children = Lists.newArrayList();
 
-    /** the map from attribute names to attribute values */
+    /** The map from attribute names to attribute values */
     private final Map<String, String> attributeMap = Maps.newHashMap();
 
-    /** the map containing custom messages. */
+    /** The map containing custom messages. */
     private final Map<String, String> messages = Maps.newHashMap();
 
     /**

@@ -96,18 +96,18 @@ public final class MissingDeprecatedCheck extends Check {
     /** {@link Deprecated Deprecated} annotation name */
     private static final String DEPRECATED = "Deprecated";
 
-    /** fully-qualified {@link Deprecated Deprecated} annotation name */
+    /** Fully-qualified {@link Deprecated Deprecated} annotation name */
     private static final String FQ_DEPRECATED = "java.lang." + DEPRECATED;
 
-    /** compiled regexp to match Javadoc tag with no argument * */
+    /** Compiled regexp to match Javadoc tag with no argument * */
     private static final Pattern MATCH_DEPRECATED =
         Utils.createPattern("@(deprecated)\\s+\\S");
 
-    /** compiled regexp to match first part of multilineJavadoc tags * */
+    /** Compiled regexp to match first part of multilineJavadoc tags * */
     private static final Pattern MATCH_DEPRECATED_MULTILINE_START =
         Utils.createPattern("@(deprecated)\\s*$");
 
-    /** compiled regexp to look for a continuation of the comment * */
+    /** Compiled regexp to look for a continuation of the comment * */
     private static final Pattern MATCH_DEPRECATED_MULTILINE_CONT =
         Utils.createPattern("(\\*/|@|[^\\s\\*])");
 

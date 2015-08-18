@@ -29,17 +29,17 @@ import java.util.Locale;
  * @author Mehmet Can Cömert
  */
 public enum Scope {
-    /** nothing scope. */
+    /** Nothing scope. */
     NOTHING,
-    /** public scope. */
+    /** Public scope. */
     PUBLIC,
-    /** protected scope. */
+    /** Protected scope. */
     PROTECTED,
-    /** package or default scope. */
+    /** Package or default scope. */
     PACKAGE,
-    /** private scope. */
+    /** Private scope. */
     PRIVATE,
-    /** anonymous inner scope. */
+    /** Anonymous inner scope. */
     ANONINNER;
 
     @Override

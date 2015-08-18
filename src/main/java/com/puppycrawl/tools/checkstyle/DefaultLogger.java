@@ -43,17 +43,17 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 public class DefaultLogger
     extends AutomaticBean
     implements AuditListener {
-    /** cushion for avoiding StringBuffer.expandCapacity */
+    /** Cushion for avoiding StringBuffer.expandCapacity */
     private static final int BUFFER_CUSHION = 12;
 
-    /** where to write info messages **/
+    /** Where to write info messages **/
     private final PrintWriter infoWriter;
-    /** close info stream after use */
+    /** Close info stream after use */
     private final boolean closeInfo;
 
-    /** where to write error messages **/
+    /** Where to write error messages **/
     private final PrintWriter errorWriter;
-    /** close error stream after use */
+    /** Close error stream after use */
     private final boolean closeError;
 
     /**

@@ -26,10 +26,10 @@ import java.util.Objects;
  * @author Rick Giles
  */
 class IntRangeFilter implements IntFilter {
-    /** lower bound of the range */
+    /** Lower bound of the range */
     private final Integer lowerBound;
 
-    /** upper bound of the range */
+    /** Upper bound of the range */
     private final Integer upperBound;
 
     /**

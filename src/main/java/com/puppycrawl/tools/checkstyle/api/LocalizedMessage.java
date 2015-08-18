@@ -51,7 +51,7 @@ public final class LocalizedMessage
     /** Required for serialization. */
     private static final long serialVersionUID = 5675176836184862150L;
 
-    /** the locale to localise messages to **/
+    /** The locale to localise messages to **/
     private static Locale sLocale = Locale.getDefault();
 
     /**
@@ -61,33 +61,33 @@ public final class LocalizedMessage
     private static final Map<String, ResourceBundle> BUNDLE_CACHE =
         Collections.synchronizedMap(new HashMap<String, ResourceBundle>());
 
-    /** the default severity level if one is not specified */
+    /** The default severity level if one is not specified */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
 
-    /** the line number **/
+    /** The line number **/
     private final int lineNo;
-    /** the column number **/
+    /** The column number **/
     private final int colNo;
 
-    /** the severity level **/
+    /** The severity level **/
     private final SeverityLevel severityLevel;
 
-    /** the id of the module generating the message. */
+    /** The id of the module generating the message. */
     private final String moduleId;
 
-    /** key for the message format **/
+    /** Key for the message format **/
     private final String key;
 
-    /** arguments for MessageFormat **/
+    /** Arguments for MessageFormat **/
     private final Object[] args;
 
-    /** name of the resource bundle to get messages from **/
+    /** Name of the resource bundle to get messages from **/
     private final String bundle;
 
-    /** class of the source for this LocalizedMessage */
+    /** Class of the source for this LocalizedMessage */
     private final Class<?> sourceClass;
 
-    /** a custom message overriding the default message from the bundle. */
+    /** A custom message overriding the default message from the bundle. */
     private final String customMessage;
 
     /**

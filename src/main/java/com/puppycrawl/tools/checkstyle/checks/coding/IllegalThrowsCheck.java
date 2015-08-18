@@ -62,10 +62,10 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck {
         "finalize",
     };
 
-    /** property for ignoring overridden methods. */
+    /** Property for ignoring overridden methods. */
     private boolean ignoreOverriddenMethods = true;
 
-    /** methods which should be ignored. */
+    /** Methods which should be ignored. */
     private final Set<String> ignoredMethodNames = Sets.newHashSet();
 
     /** Creates new instance of the check. */

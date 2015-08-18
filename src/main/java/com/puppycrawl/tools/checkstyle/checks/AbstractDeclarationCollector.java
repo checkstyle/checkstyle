@@ -244,14 +244,14 @@ public abstract class AbstractDeclarationCollector extends Check {
             varNames = Sets.newHashSet();
         }
 
-        /** add a name to the frame.
+        /** Add a name to the frame.
          * @param nameToAdd the name we're adding
          */
         void addName(String nameToAdd) {
             varNames.add(nameToAdd);
         }
 
-        /** check whether the frame contains a given name.
+        /** Check whether the frame contains a given name.
          * @param nameToFind the name we're looking for
          * @return whether it was found
          */
@@ -259,7 +259,7 @@ public abstract class AbstractDeclarationCollector extends Check {
             return varNames.contains(nameToFind);
         }
 
-        /** check whether the frame contains a given name.
+        /** Check whether the frame contains a given name.
          * @param nameToFind the name we're looking for
          * @return whether it was found
          */

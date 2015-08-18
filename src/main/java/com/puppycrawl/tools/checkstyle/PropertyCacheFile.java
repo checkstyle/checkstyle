@@ -57,25 +57,25 @@ final class PropertyCacheFile {
      */
     private static final String CONFIG_HASH_KEY = "configuration*?";
 
-    /** hex digits */
+    /** Hex digits */
     private static final char[] HEX_CHARS = {
         '0', '1', '2', '3', '4', '5', '6', '7',
         '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
     };
 
-    /** mask for last byte */
+    /** Mask for last byte */
     private static final int MASK_0X0F = 0x0F;
 
-    /** bit shift */
+    /** Bit shift */
     private static final int SHIFT_4 = 4;
 
-    /** the details on files **/
+    /** The details on files **/
     private final Properties details = new Properties();
 
-    /** configuration object **/
+    /** Configuration object **/
     private final Configuration config;
 
-    /** file name of cache **/
+    /** File name of cache **/
     private final String fileName;
 
     /**

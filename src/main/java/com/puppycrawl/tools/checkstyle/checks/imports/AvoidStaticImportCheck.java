@@ -73,7 +73,7 @@ public class AvoidStaticImportCheck
      */
     public static final String MSG_KEY = "import.avoidStatic";
 
-    /** the classes/static members to exempt from this check. */
+    /** The classes/static members to exempt from this check. */
     private String[] excludes = ArrayUtils.EMPTY_STRING_ARRAY;
 
     @Override

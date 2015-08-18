@@ -64,10 +64,10 @@ public class AnonInnerLengthCheck extends Check {
      */
     public static final String MSG_KEY = "maxLen.anonInner";
 
-    /** default maximum number of lines */
+    /** Default maximum number of lines */
     private static final int DEFAULT_MAX = 20;
 
-    /** maximum number of lines */
+    /** Maximum number of lines */
     private int max = DEFAULT_MAX;
 
     @Override

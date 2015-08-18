@@ -50,7 +50,7 @@ public final class InterfaceIsTypeCheck
      */
     public static final String MSG_KEY = "interface.type";
 
-    /** flag to control whether marker interfaces are allowed. */
+    /** Flag to control whether marker interfaces are allowed. */
     private boolean allowMarkerInterfaces = true;
 
     @Override

@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
 public class SuppressionFilter
     extends AutomaticBean
     implements Filter {
-    /** set of individual suppresses */
+    /** Set of individual suppresses */
     private FilterSet filters = new FilterSet();
 
     /**

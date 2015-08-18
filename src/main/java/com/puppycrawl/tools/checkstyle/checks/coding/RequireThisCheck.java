@@ -68,9 +68,9 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
      */
     public static final String MSG_VARIABLE = "require.this.variable";
 
-    /** whether we should check fields usage. */
+    /** Whether we should check fields usage. */
     private boolean checkFields = true;
-    /** whether we should check methods usage. */
+    /** Whether we should check methods usage. */
     private boolean checkMethods = true;
 
     /**

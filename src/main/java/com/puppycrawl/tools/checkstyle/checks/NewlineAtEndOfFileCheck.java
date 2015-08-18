@@ -73,7 +73,7 @@ public class NewlineAtEndOfFileCheck
      */
     public static final String MSG_KEY_NO_NEWLINE_EOF = "noNewlineAtEOF";
 
-    /** the line separator to check against. */
+    /** The line separator to check against. */
     private LineSeparatorOption lineSeparator = LineSeparatorOption.SYSTEM;
 
     @Override

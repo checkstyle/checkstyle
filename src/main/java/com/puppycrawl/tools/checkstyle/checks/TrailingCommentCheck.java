@@ -107,10 +107,10 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
      */
     public static final String MSG_KEY = "trailing.comments";
 
-    /** default format for allowed blank line. */
+    /** Default format for allowed blank line. */
     private static final String DEFAULT_FORMAT = "^[\\s\\}\\);]*$";
 
-    /** pattern for legal trailing comment. */
+    /** Pattern for legal trailing comment. */
     private Pattern legalComment;
 
     /**

@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Oliver Burn
  */
 public final class ScopeUtils {
-    /** prevent instantiation */
+    /** Prevent instantiation */
     private ScopeUtils() {
     }
 

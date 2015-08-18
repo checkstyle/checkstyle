@@ -72,13 +72,13 @@ public class AvoidStarImportCheck
      */
     public static final String MSG_KEY = "import.avoidStar";
 
-    /** the packages/classes to exempt from this check. */
+    /** The packages/classes to exempt from this check. */
     private final List<String> excludes = Lists.newArrayList();
 
-    /** whether to allow all class imports */
+    /** Whether to allow all class imports */
     private boolean allowClassImports;
 
-    /** whether to allow all static member imports */
+    /** Whether to allow all static member imports */
     private boolean allowStaticMemberImports;
 
     @Override

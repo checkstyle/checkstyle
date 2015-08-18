@@ -104,18 +104,18 @@ public class FinalClassCheck
         }
     }
 
-    /** maintains information about class' ctors */
+    /** Maintains information about class' ctors */
     private static final class ClassDesc {
-        /** is class declared as final */
+        /** Is class declared as final */
         private final boolean declaredAsFinal;
 
-        /** is class declared as abstract */
+        /** Is class declared as abstract */
         private final boolean declaredAsAbstract;
 
-        /** does class have non-provate ctors */
+        /** Does class have non-provate ctors */
         private boolean withNonPrivateCtor;
 
-        /** does class have private ctors */
+        /** Does class have private ctors */
         private boolean withPrivateCtor;
 
         /**
@@ -130,12 +130,12 @@ public class FinalClassCheck
             this.declaredAsAbstract = declaredAsAbstract;
         }
 
-        /** adds private ctor. */
+        /** Adds private ctor. */
         void reportPrivateCtor() {
             withPrivateCtor = true;
         }
 
-        /** adds non-private ctor. */
+        /** Adds non-private ctor. */
         void reportNonPrivateCtor() {
             withNonPrivateCtor = true;
         }

@@ -26,13 +26,13 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
  * @author Oliver Burn
  */
 public class JavadocTag {
-    /** the line number of the tag **/
+    /** The line number of the tag **/
     private final int lineNo;
-    /** the column number of the tag **/
+    /** The column number of the tag **/
     private final int columnNo;
-    /** an optional first argument. For example the parameter name. **/
+    /** An optional first argument. For example the parameter name. **/
     private final String firstArg;
-    /** the JavadocTagInfo representing this tag **/
+    /** The JavadocTagInfo representing this tag **/
     private final JavadocTagInfo tagInfo;
 
     /**

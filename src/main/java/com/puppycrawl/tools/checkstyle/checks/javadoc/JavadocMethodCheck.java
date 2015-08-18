@@ -100,15 +100,15 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      */
     public static final String MSG_DUPLICATE_TAG = "javadoc.duplicateTag";
 
-    /** compiled regexp to match Javadoc tags that take an argument * */
+    /** Compiled regexp to match Javadoc tags that take an argument * */
     private static final Pattern MATCH_JAVADOC_ARG =
         Utils.createPattern("@(throws|exception|param)\\s+(\\S+)\\s+\\S*");
 
-    /** compiled regexp to match first part of multilineJavadoc tags * */
+    /** Compiled regexp to match first part of multilineJavadoc tags * */
     private static final Pattern MATCH_JAVADOC_ARG_MULTILINE_START =
         Utils.createPattern("@(throws|exception|param)\\s+(\\S+)\\s*$");
 
-    /** compiled regexp to look for a continuation of the comment * */
+    /** Compiled regexp to look for a continuation of the comment * */
     private static final Pattern MATCH_JAVADOC_MULTILINE_CONT =
         Utils.createPattern("(\\*/|@|[^\\s\\*])");
 
@@ -117,23 +117,23 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     /** Multiline finished at next Javadoc * */
     private static final String NEXT_TAG = "@";
 
-    /** compiled regexp to match Javadoc tags with no argument * */
+    /** Compiled regexp to match Javadoc tags with no argument * */
     private static final Pattern MATCH_JAVADOC_NOARG =
         Utils.createPattern("@(return|see)\\s+\\S");
-    /** compiled regexp to match first part of multilineJavadoc tags * */
+    /** Compiled regexp to match first part of multilineJavadoc tags * */
     private static final Pattern MATCH_JAVADOC_NOARG_MULTILINE_START =
         Utils.createPattern("@(return|see)\\s*$");
-    /** compiled regexp to match Javadoc tags with no argument and {} * */
+    /** Compiled regexp to match Javadoc tags with no argument and {} * */
     private static final Pattern MATCH_JAVADOC_NOARG_CURLY =
         Utils.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
 
     /** Default value of minimal amount of lines in method to demand documentation presence.*/
     private static final int DEFAULT_MIN_LINE_COUNT = -1;
 
-    /** the visibility scope where Javadoc comments are checked * */
+    /** The visibility scope where Javadoc comments are checked * */
     private Scope scope = Scope.PRIVATE;
 
-    /** the visibility scope where Javadoc comments shouldn't be checked * */
+    /** The visibility scope where Javadoc comments shouldn't be checked * */
     private Scope excludeScope;
 
     /** Minimal amount of lines in method to demand documentation presence.*/
@@ -921,9 +921,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
 
     /** Stores useful information about declared exception. */
     private static class ExceptionInfo {
-        /** does the exception have throws tag associated with. */
+        /** Does the exception have throws tag associated with. */
         private boolean found;
-        /** class information associated with this exception. */
+        /** Class information associated with this exception. */
         private final AbstractClassInfo classInfo;
 
         /**

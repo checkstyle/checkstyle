@@ -36,10 +36,10 @@ class PackageObjectFactory implements ModuleFactory {
     /** Logger for PackageObjectFactory. */
     private static final Log LOG = LogFactory.getLog(PackageObjectFactory.class);
 
-    /** a list of package names to prepend to class names */
+    /** A list of package names to prepend to class names */
     private final Set<String> packages;
 
-    /** the class loader used to load Checkstyle core and custom modules. */
+    /** The class loader used to load Checkstyle core and custom modules. */
     private final ClassLoader moduleClassLoader;
 
     /**

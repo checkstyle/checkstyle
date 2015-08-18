@@ -40,14 +40,14 @@ import org.apache.commons.lang3.StringUtils;
  * @see TokenTypes#IDENT
  **/
 public final class FullIdent {
-    /** the list holding subsequent elements of identifier **/
+    /** The list holding subsequent elements of identifier **/
     private final List<String> elements = new ArrayList<>();
-    /** the line number **/
+    /** The line number **/
     private int lineNo;
-    /** the column number **/
+    /** The column number **/
     private int colNo;
 
-    /** hide default constructor */
+    /** Hide default constructor */
     private FullIdent() {
     }
 

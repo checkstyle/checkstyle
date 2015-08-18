@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author maxvetrenko
  */
 public class OuterTypeFilenameCheck extends Check {
-    /** indicates whether the first token has been seen in the file. */
+    /** Indicates whether the first token has been seen in the file. */
     private boolean seenFirstToken;
 
     /** Current file name*/

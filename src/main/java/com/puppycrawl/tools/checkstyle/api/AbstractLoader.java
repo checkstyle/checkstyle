@@ -51,9 +51,9 @@ import com.google.common.collect.Maps;
  */
 public abstract class AbstractLoader
     extends DefaultHandler {
-    /** maps public id to resolve to esource name for the DTD */
+    /** Maps public id to resolve to esource name for the DTD */
     private final Map<String, String> publicIdToResourceNameMap;
-    /** parser to read XML files **/
+    /** Parser to read XML files **/
     private final XMLReader parser;
 
     /**

@@ -56,7 +56,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
     /** Name of a charset to use for loading the header from a file. */
     private String charset = System.getProperty("file.encoding", "UTF-8");
 
-    /** the lines of the header file. */
+    /** The lines of the header file. */
     private final List<String> readerLines = Lists.newArrayList();
 
     /**

@@ -76,16 +76,16 @@ public class ParameterNumberCheck
     /** {@link Override Override} annotation name */
     private static final String OVERRIDE = "Override";
 
-    /** canonical {@link Override Override} annotation name */
+    /** Canonical {@link Override Override} annotation name */
     private static final String CANONICAL_OVERRIDE = "java.lang." + OVERRIDE;
 
-    /** default maximum number of allowed parameters */
+    /** Default maximum number of allowed parameters */
     private static final int DEFAULT_MAX_PARAMETERS = 7;
 
-    /** the maximum number of allowed parameters */
+    /** The maximum number of allowed parameters */
     private int max = DEFAULT_MAX_PARAMETERS;
 
-    /** ignore overridden methods */
+    /** Ignore overridden methods */
     private boolean ignoreOverriddenMethods;
 
     /**

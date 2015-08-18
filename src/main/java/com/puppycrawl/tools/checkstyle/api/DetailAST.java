@@ -40,19 +40,19 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
     /** For Serialisation that will never happen. */
     private static final long serialVersionUID = -2580884815577559874L;
 
-    /** constant to indicate if not calculated the child count */
+    /** Constant to indicate if not calculated the child count */
     private static final int NOT_INITIALIZED = Integer.MIN_VALUE;
 
-    /** the line number **/
+    /** The line number **/
     private int lineNo = NOT_INITIALIZED;
-    /** the column number **/
+    /** The column number **/
     private int columnNo = NOT_INITIALIZED;
 
-    /** number of children */
+    /** Number of children */
     private int childCount = NOT_INITIALIZED;
-    /** the parent token */
+    /** The parent token */
     private DetailAST parent;
-    /** previous sibling */
+    /** Previous sibling */
     private DetailAST previousSibling;
 
     /**

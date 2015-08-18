@@ -46,11 +46,11 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  */
 public final class PackageNamesLoader
     extends AbstractLoader {
-    /** the public ID for the configuration dtd */
+    /** The public ID for the configuration dtd */
     private static final String DTD_PUBLIC_ID =
         "-//Puppy Crawl//DTD Package Names 1.0//EN";
 
-    /** the resource for the configuration dtd */
+    /** The resource for the configuration dtd */
     private static final String DTD_RESOURCE_NAME =
         "com/puppycrawl/tools/checkstyle/packages_1_0.dtd";
 

@@ -190,7 +190,7 @@ public class ImportOrderCheck
      */
     public static final String MSG_ORDERING = "import.ordering";
 
-    /** the special wildcard that catches all remaining groups. */
+    /** The special wildcard that catches all remaining groups. */
     private static final String WILDCARD_GROUP_NAME = "*";
 
     /** List of import groups specified by the user. */

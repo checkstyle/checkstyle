@@ -76,16 +76,16 @@ public class IllegalInstantiationCheck
     /** Set of fully qualified classnames. E.g. "java.lang.Boolean" */
     private final Set<String> illegalClasses = Sets.newHashSet();
 
-    /** name of the package */
+    /** Name of the package */
     private String pkgName;
 
-    /** the imports for the file */
+    /** The imports for the file */
     private final Set<FullIdent> imports = Sets.newHashSet();
 
-    /** the class names defined in the file */
+    /** The class names defined in the file */
     private final Set<String> classNames = Sets.newHashSet();
 
-    /** the instantiations in the file */
+    /** The instantiations in the file */
     private final Set<DetailAST> instantiations = Sets.newHashSet();
 
     @Override

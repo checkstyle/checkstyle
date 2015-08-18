@@ -44,10 +44,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 @Deprecated
 public abstract class AbstractTypeAwareCheck extends Check {
-    /** imports details **/
+    /** Imports details **/
     private final Set<String> imports = Sets.newHashSet();
 
-    /** full identifier for package of the method **/
+    /** Full identifier for package of the method **/
     private FullIdent packageFullIdent;
 
     /** Name of current class. */
@@ -416,13 +416,13 @@ public abstract class AbstractTypeAwareCheck extends Check {
     /** Represents regular classes/enumes. */
     @SuppressWarnings("deprecation")
     private static final class RegularClass extends AbstractClassInfo {
-        /** name of surrounding class. */
+        /** Name of surrounding class. */
         private final String surroundingClass;
-        /** is class loadable. */
+        /** Is class loadable. */
         private boolean loadable = true;
         /** {@code Class} object of this class if it's loadable. */
         private Class<?> classObj;
-        /** the check we use to resolve classes. */
+        /** The check we use to resolve classes. */
         private final AbstractTypeAwareCheck check;
 
         /**
@@ -499,11 +499,11 @@ public abstract class AbstractTypeAwareCheck extends Check {
      * Represents text element with location in the text.
      */
     protected static class Token {
-        /** token's column number. */
+        /** Token's column number. */
         private final int column;
-        /** token's line number. */
+        /** Token's line number. */
         private final int line;
-        /** token's text. */
+        /** Token's text. */
         private final String text;
 
         /**
