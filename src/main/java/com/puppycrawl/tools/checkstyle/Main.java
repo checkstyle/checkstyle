@@ -49,6 +49,9 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
  *
  **/
 public final class Main {
+    /** Exit code returned when excecution finishes with {@link CheckstyleException}*/
+    private static final int EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE = -2;
+
     /** Don't create instance of this class, use {@link #main(String[])} method instead. */
     private Main() {
     }
@@ -107,8 +110,7 @@ public final class Main {
             printUsage();
         }
         catch (CheckstyleException e) {
-            final int exitWithCheckstyleException = -2;
-            exitStatus = exitWithCheckstyleException;
+            exitStatus = EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE;
             errorCounter = 1;
             System.out.println(e.getMessage());
         }

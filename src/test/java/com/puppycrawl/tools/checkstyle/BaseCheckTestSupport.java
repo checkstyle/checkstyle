@@ -49,9 +49,7 @@ public abstract class BaseCheckTestSupport {
     protected final Properties props = new Properties();
 
     public static DefaultConfiguration createCheckConfig(Class<?> clazz) {
-        final DefaultConfiguration checkConfig =
-                new DefaultConfiguration(clazz.getName());
-        return checkConfig;
+        return new DefaultConfiguration(clazz.getName());
     }
 
     protected Checker createChecker(Configuration checkConfig)
