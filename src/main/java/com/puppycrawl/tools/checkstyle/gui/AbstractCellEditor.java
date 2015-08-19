@@ -38,6 +38,10 @@ import javax.swing.event.EventListenerList;
  * @author Philip Milne
  */
 public class AbstractCellEditor implements CellEditor {
+
+    /**
+     * A list of event listeners for the cell editor.
+     */
     private final EventListenerList listenerList = new EventListenerList();
 
     /** @see CellEditor */
@@ -82,9 +86,9 @@ public class AbstractCellEditor implements CellEditor {
         listenerList.remove(CellEditorListener.class, listener);
     }
 
-    /*
-     * Notify all listeners that have registered interest for
-     * notification on this event type.
+    /**
+     * Notifies all listeners that have registered interest for
+     * 'editing stopped' event.
      * @see EventListenerList
      */
     protected void fireEditingStopped() {
@@ -99,9 +103,9 @@ public class AbstractCellEditor implements CellEditor {
         }
     }
 
-    /*
-     * Notify all listeners that have registered interest for
-     * notification on this event type.
+    /**
+     * Notifies all listeners that have registered interest for
+     * 'editing canceled' event.
      * @see EventListenerList
      */
     protected void fireEditingCanceled() {

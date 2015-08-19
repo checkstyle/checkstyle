@@ -34,9 +34,22 @@ import javax.swing.event.TreeModelListener;
  * @author Philip Milne
  */
 public abstract class AbstractTreeTableModel implements TreeTableModel {
+
+    /**
+     * The root node of the tree table model.
+     */
     private final Object root;
+
+    /**
+     * A list of event listeners for the tree model.
+     */
     private final EventListenerList listenerList = new EventListenerList();
 
+    /**
+     * Initializes the root node for the tree table model.
+     *
+     * @param root Root node.
+     */
     protected AbstractTreeTableModel(Object root) {
         this.root = root;
     }
@@ -76,9 +89,9 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
         listenerList.remove(TreeModelListener.class, listener);
     }
 
-    /*
-     * Notify all listeners that have registered interest for
-     * notification on this event type.  The event instance
+    /**
+     * Notifies all listeners that have registered interest for
+     * 'tree nodes changed' event.  The event instance
      * is lazily created using the parameters passed into
      * the fire method.
      * @see EventListenerList
@@ -103,9 +116,9 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
         }
     }
 
-    /*
+    /**
      * Notify all listeners that have registered interest for
-     * notification on this event type.  The event instance
+     * 'tree nodes inserted' event.  The event instance
      * is lazily created using the parameters passed into
      * the fire method.
      * @see EventListenerList
@@ -130,9 +143,9 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
         }
     }
 
-    /*
+    /**
      * Notify all listeners that have registered interest for
-     * notification on this event type.  The event instance
+     * 'tree nodes removed' event.  The event instance
      * is lazily created using the parameters passed into
      * the fire method.
      * @see EventListenerList
@@ -157,9 +170,9 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
         }
     }
 
-    /*
+    /**
      * Notify all listeners that have registered interest for
-     * notification on this event type.  The event instance
+     * 'tree structure changed' event.  The event instance
      * is lazily created using the parameters passed into
      * the fire method.
      * @see EventListenerList
@@ -201,14 +214,4 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
     public boolean isCellEditable(Object node, int column) {
         return getColumnClass(column) == TreeTableModel.class;
     }
-
-    // Left to be implemented in the subclass:
-
-    /*
-     *   public Object getChild(Object parent, int index)
-     *   public int getChildCount(Object parent)
-     *   public int getColumnCount()
-     *   public String getColumnName(Object node, int column)
-     *   public Object getValueAt(Object node, int column)
-     */
 }

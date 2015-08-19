@@ -75,6 +75,9 @@ public final class Main {
         testFrame.setVisible(true);
     }
 
+    /**
+     * @return Main GUI's frame.
+     */
     static JFrame getFrame() {
         return frame;
     }

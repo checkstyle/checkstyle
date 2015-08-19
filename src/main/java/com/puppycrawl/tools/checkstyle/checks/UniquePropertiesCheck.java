@@ -77,7 +77,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
         }
 
         for (Entry<String> duplication : properties
-                .getDuplicatedStrings().entrySet()) {
+                .getDuplicatedKeys().entrySet()) {
             final String keyName = duplication.getElement();
             final int lineNumber = getLineNumber(lines, keyName);
             // Number of occurrences is number of duplications + 1
@@ -129,7 +129,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
          * Multiset, holding duplicated keys. Keys are added here only if they
          * already exist in Properties' inner map.
          */
-        private final Multiset<String> duplicatedStrings = HashMultiset
+        private final Multiset<String> duplicatedKeys = HashMultiset
                 .create();
 
         @Override
@@ -137,13 +137,18 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
             final Object oldValue = super.put(key, value);
             if (oldValue != null && key instanceof String) {
                 final String keyString = (String) key;
-                duplicatedStrings.add(keyString);
+                duplicatedKeys.add(keyString);
             }
             return oldValue;
         }
 
-        public Multiset<String> getDuplicatedStrings() {
-            return ImmutableMultiset.copyOf(duplicatedStrings);
+        /**
+         * Retrieves a collections of duplicated properties keys.
+         *
+         * @return A collection of duplicated keys.
+         */
+        public Multiset<String> getDuplicatedKeys() {
+            return ImmutableMultiset.copyOf(duplicatedKeys);
         }
     }
 }

@@ -1274,31 +1274,73 @@ public final class JavadocTokenTypes {
     //------------------        HTML TAGS          -----------------------------------------------//
     //--------------------------------------------------------------------------------------------//
 
+    /**
+     * Parent node for all html tags.
+     */
     public static final int HTML_ELEMENT = JavadocParser.RULE_htmlElement
-            + RULE_TYPES_OFFSET; // parent node for all html tags
+            + RULE_TYPES_OFFSET;
+
+    /**
+     * Open html tag: {@code <XXX>}.
+     */
     public static final int HTML_ELEMENT_OPEN = JavadocParser.RULE_htmlElementOpen
             + RULE_TYPES_OFFSET
-            + RULE_TYPES_OFFSET; // <XXX>
+            + RULE_TYPES_OFFSET;
+
+    /**
+     * Close html tag: {@code </XXX>}.
+     */
     public static final int HTML_ELEMENT_CLOSE = JavadocParser.RULE_htmlElementClose
-            + RULE_TYPES_OFFSET; // </XXX>
+            + RULE_TYPES_OFFSET;
 
-    public static final int HTML_TAG = JavadocParser.RULE_htmlTag
-            + RULE_TYPES_OFFSET; // non-special HTML tag
-    public static final int HTML_TAG_NAME = JavadocParser
-            .HTML_TAG_NAME; // identifier inside HTML tag: tag name or attribute name
+    /**
+     * Non-special HTML tag.
+     */
+    public static final int HTML_TAG = JavadocParser.RULE_htmlTag + RULE_TYPES_OFFSET;
 
-    // html tag attribute. Parent node for: HTML_TAG_IDENT, EQUALS, ATTR_VALUE
+    /**
+     * Identifier inside HTML tag: tag name or attribute name.
+     */
+    public static final int HTML_TAG_NAME = JavadocParser.HTML_TAG_NAME;
+
+    /**
+     * Html tag attribute. Parent node for: {@code HTML_TAG_IDENT, EQUALS, ATTR_VALUE}.
+     */
     public static final int ATTRIBUTE = JavadocParser.RULE_attribute
             + RULE_TYPES_OFFSET
             + RULE_TYPES_OFFSET;
 
     // HTML tag components
-    public static final int OPEN = JavadocParser.OPEN; // '<'
-    public static final int SLASH = JavadocParser.SLASH; // '/'
-    public static final int CLOSE = JavadocParser.CLOSE; // '>'
-    public static final int SLASH_CLOSE = JavadocParser.SLASH_CLOSE; // '/>'
-    public static final int EQUALS = JavadocParser.EQUALS; // '='
-    public static final int ATTR_VALUE = JavadocParser.ATTR_VALUE; // attribute value
+
+    /**
+     * Open html tag component: {@code '<'}.
+     */
+    public static final int OPEN = JavadocParser.OPEN;
+
+    /**
+     * Slash html tag component: {@code '/'}.
+     */
+    public static final int SLASH = JavadocParser.SLASH;
+
+    /**
+     * Close html tag component: {@code '>'}.
+     */
+    public static final int CLOSE = JavadocParser.CLOSE;
+
+    /**
+     * Slash close html tag component: {@code '/>'}.
+     */
+    public static final int SLASH_CLOSE = JavadocParser.SLASH_CLOSE;
+
+    /**
+     * Equals html tag component: {@code '='}.
+     */
+    public static final int EQUALS = JavadocParser.EQUALS;
+
+    /**
+     * Attribute value html tag component.
+     */
+    public static final int ATTR_VALUE = JavadocParser.ATTR_VALUE;
 
     /////////////////////// HTML TAGS WITH OPTIONAL CLOSE TAG /////////////////////////////////////
     public static final int PARAGRAPH = JavadocParser.RULE_paragraph + RULE_TYPES_OFFSET;

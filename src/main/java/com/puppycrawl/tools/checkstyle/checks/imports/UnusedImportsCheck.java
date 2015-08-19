@@ -80,6 +80,11 @@ public class UnusedImportsCheck extends Check {
     /** Set of references - possibly to imports or other things. */
     private final Set<String> referenced = Sets.newHashSet();
 
+    /**
+     * Sets whether to process JavaDoc or not.
+     *
+     * @param value Flag for processing JavaDoc.
+     */
     public void setProcessJavadoc(boolean value) {
         processingJavadoc = value;
     }

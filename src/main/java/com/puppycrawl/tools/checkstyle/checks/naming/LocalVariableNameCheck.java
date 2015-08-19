@@ -88,6 +88,11 @@ public class LocalVariableNameCheck
         super("^[a-z][a-zA-Z0-9]*$");
     }
 
+    /**
+     * Sets whether to allow one character name in FOR loop or not.
+     *
+     * @param allow Flag for allowing or not one character name in FOR loop.
+     */
     public final void setAllowOneCharVarInForLoop(boolean allow) {
         allowOneCharVarInForLoop = allow;
     }
