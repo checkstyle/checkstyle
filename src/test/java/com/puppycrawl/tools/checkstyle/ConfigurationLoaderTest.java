@@ -210,7 +210,7 @@ public class ConfigurationLoaderTest {
         final Configuration[] children = config.getChildren();
         final Configuration[] grandchildren = children[0].getChildren();
 
-        assertTrue(((DefaultConfiguration) grandchildren[0]).getMessages()
+        assertTrue(grandchildren[0].getMessages()
             .containsKey("name.invalidPattern"));
     }
 

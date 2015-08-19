@@ -350,7 +350,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
         }
 
         String expected = "";
-        assertEquals(expected, (String) actual);
+        assertEquals(expected, actual);
     }
 
     @Test
