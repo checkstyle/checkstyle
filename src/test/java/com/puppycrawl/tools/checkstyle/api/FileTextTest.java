@@ -53,7 +53,7 @@ public class FileTextTest {
                      + "checkstyle/imports/import-control_complete.xml"), charsetName);
             assertEquals(o.getCharset().name(), charsetName);
         }
-        catch (UnsupportedEncodingException e) {
+        catch (UnsupportedEncodingException ignored) {
             fail();
         }
 

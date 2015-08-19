@@ -88,7 +88,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
             instance.setHeader(header);
             fail(String.format("%s should have been thrown", ConversionException.class));
         }
-        catch (ConversionException ex) {
+        catch (ConversionException ignored) {
             // expected
         }
     }
@@ -102,7 +102,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
             };
             verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException ignored) {
             // Exception is not expected
             fail();
         }
@@ -116,7 +116,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
             createChecker(checkConfig);
             fail("Checker creation should not succeed with invalid headerFile");
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException ignored) {
             // expected exception
         }
     }
@@ -164,7 +164,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
             createChecker(checkConfig);
             fail("Checker creation should not succeed when regexp spans multiple lines");
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException ignored) {
             // expected exception
         }
     }

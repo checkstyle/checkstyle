@@ -186,7 +186,7 @@ public class UtilsTest {
         try {
             Utils.getIntFromField(field, 0);
         }
-        catch (IllegalStateException expected) {
+        catch (IllegalStateException ignored) {
             // expected
         }
     }
@@ -233,10 +233,10 @@ public class UtilsTest {
             assertEquals("given id " + id, expected.getMessage());
 
         }
-        catch (IllegalAccessException e) {
+        catch (IllegalAccessException ignored) {
             fail();
         }
-        catch (NoSuchFieldException e) {
+        catch (NoSuchFieldException ignored) {
             fail();
         }
     }

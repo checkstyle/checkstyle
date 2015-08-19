@@ -79,7 +79,7 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
             verify(checkConfig, getPath("metrics" + File.separator
                 + "JavaNCSSCheckTestInput.java"), expected);
         }
-        catch (Exception ex) {
+        catch (Exception ignored) {
             // Exception is not expected
             fail();
         }

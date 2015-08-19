@@ -105,7 +105,7 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
             createChecker(checkConfig);
             verify(checkConfig, getPath("javadoc/InputIncorrectSummaryJavaDocCheck.java"), expected);
         }
-        catch (Exception ex) {
+        catch (Exception ignored) {
             //Exception is not expected
             fail();
         }

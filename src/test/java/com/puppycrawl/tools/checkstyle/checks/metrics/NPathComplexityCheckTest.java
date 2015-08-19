@@ -82,7 +82,7 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
             createChecker(checkConfig);
             verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
         }
-        catch (Exception ex) {
+        catch (Exception ignored) {
             // Exception is not expected
             fail();
         }

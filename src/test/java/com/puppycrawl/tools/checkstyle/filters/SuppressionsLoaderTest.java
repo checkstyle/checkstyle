@@ -188,7 +188,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
             @SuppressWarnings("unused")
             Object objData = urlConnect.getContent();
         }
-        catch (IOException e) {
+        catch (IOException ignored) {
             return false;
         }
         return true;

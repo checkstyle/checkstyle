@@ -504,7 +504,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
             verify(checkConfig, getPath("imports" + File.separator
                 + "InputCustomImportOrder.java"), expected);
         }
-        catch (Exception ex) {
+        catch (Exception ignored) {
             // Exception is not expected
             fail();
         }
