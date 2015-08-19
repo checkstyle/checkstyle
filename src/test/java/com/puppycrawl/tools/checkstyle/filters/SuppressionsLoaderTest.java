@@ -185,8 +185,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         try {
             URL url = new URL("http://checkstyle.sourceforge.net/");
             HttpURLConnection urlConnect = (HttpURLConnection) url.openConnection();
-            @SuppressWarnings("unused")
-            Object objData = urlConnect.getContent();
+            urlConnect.getContent();
         }
         catch (IOException e) {
             return false;
