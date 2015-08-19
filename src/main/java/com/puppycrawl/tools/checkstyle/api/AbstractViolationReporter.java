@@ -125,7 +125,7 @@ public abstract class AbstractViolationReporter
     }
 
     /**
-     * for unit tests, especially with a class with no package name.
+     * For unit tests, especially with a class with no package name.
      * @param className class name of the module.
      * @return name of a resource bundle that contains the messages
      * used by the module.

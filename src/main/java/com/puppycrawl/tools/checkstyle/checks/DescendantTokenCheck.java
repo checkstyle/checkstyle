@@ -240,7 +240,7 @@ public class DescendantTokenCheck extends Check {
     }
 
     /**
-     * log violations for each Token
+     * Log violations for each Token
      * @param ast token
      */
     private void logAsSeparated(DetailAST ast) {
@@ -279,7 +279,7 @@ public class DescendantTokenCheck extends Check {
     }
 
     /**
-     * log validation as one violation
+     * Log validation as one violation
      * @param ast curent token
      */
     private void logAsTotal(DetailAST ast) {

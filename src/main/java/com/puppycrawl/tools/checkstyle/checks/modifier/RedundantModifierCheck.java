@@ -125,7 +125,7 @@ public class RedundantModifierCheck
     }
 
     /**
-     * do validation of interface of annotation
+     * Do validation of interface of annotation
      * @param ast token AST
      */
     private void processInterfaceOrAnnotation(DetailAST ast) {
@@ -153,7 +153,7 @@ public class RedundantModifierCheck
     }
 
     /**
-     * process validation ofMethods
+     * Process validation ofMethods
      * @param ast method AST
      */
     private void processMethods(DetailAST ast) {

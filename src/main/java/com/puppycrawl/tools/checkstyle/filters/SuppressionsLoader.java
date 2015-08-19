@@ -60,7 +60,7 @@ public final class SuppressionsLoader
         "com/puppycrawl/tools/checkstyle/suppressions_1_1.dtd";
 
     /**
-     * the filter chain to return in getAFilterChain(),
+     * The filter chain to return in getAFilterChain(),
      * configured during parsing
      */
     private final FilterSet filterChain = new FilterSet();

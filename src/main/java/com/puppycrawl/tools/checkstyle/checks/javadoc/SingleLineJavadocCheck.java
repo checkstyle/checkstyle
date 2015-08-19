@@ -66,7 +66,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
     public static final String MSG_KEY = "singleline.javadoc";
 
     /**
-     * allows to specify a list of tags to be ignored by check.
+     * Allows to specify a list of tags to be ignored by check.
      */
     private List<String> ignoredTags = new ArrayList<>();
 

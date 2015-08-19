@@ -86,7 +86,7 @@ public final class AuditEvent
     }
 
     /**
-     * return the line number on the source file where the event occurred.
+     * Return the line number on the source file where the event occurred.
      * This may be 0 if there is no relation to a file content.
      * @return an integer representing the line number in the file source code.
      */
@@ -95,7 +95,7 @@ public final class AuditEvent
     }
 
     /**
-     * return the message associated to the event.
+     * Return the message associated to the event.
      * @return the event message
      */
     public String getMessage() {

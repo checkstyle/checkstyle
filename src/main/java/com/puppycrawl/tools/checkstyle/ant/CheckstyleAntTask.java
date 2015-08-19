@@ -99,7 +99,7 @@ public class CheckstyleAntTask extends Task {
     private int maxWarnings = Integer.MAX_VALUE;
 
     /**
-     * whether to omit ignored modules - some modules may log tove
+     * Whether to omit ignored modules - some modules may log tove
      * their severity depending on their configuration (e.g. WriteTag) so
      * need to be included
      */
@@ -441,7 +441,7 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
-     * returns the list of files (full path name) to process.
+     * Returns the list of files (full path name) to process.
      * @return the list of files included via the filesets.
      */
     protected List<File> scanFileSets() {

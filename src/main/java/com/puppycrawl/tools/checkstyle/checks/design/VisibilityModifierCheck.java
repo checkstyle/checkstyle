@@ -280,7 +280,7 @@ public class VisibilityModifierCheck
     private boolean packageAllowed;
 
     /**
-     * pattern for public members that should be ignored.  Note:
+     * Pattern for public members that should be ignored.  Note:
      * Earlier versions of checkstyle used ^f[A-Z][a-zA-Z0-9]*$ as the
      * default to allow CMP for EJB 1.1 with the default settings.
      * With EJB 2.0 it is not longer necessary to have public access

@@ -122,7 +122,7 @@ public class AutomaticBeanTest {
         }
 
         /**
-         * just for code coverage
+         * Just for code coverage
          * @param childConf a child of this component's Configuration
          */
         @Override

@@ -103,7 +103,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
     private static final String SUPPRESS_WARNINGS = "SuppressWarnings";
 
     /**
-     * fully-qualified {@link SuppressWarnings SuppressWarnings}
+     * Fully-qualified {@link SuppressWarnings SuppressWarnings}
      * annotation name
      */
     private static final String FQ_SUPPRESS_WARNINGS =

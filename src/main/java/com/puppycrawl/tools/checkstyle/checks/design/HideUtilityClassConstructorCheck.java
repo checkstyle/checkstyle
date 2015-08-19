@@ -132,7 +132,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         * getter
+         * Getter
          * @return boolean
          */
         public boolean isHasMethodOrField() {
@@ -140,7 +140,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         * getter
+         * Getter
          * @return boolean
          */
         public boolean isHasNonStaticMethodOrField() {
@@ -148,7 +148,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         * getter
+         * Getter
          * @return boolean
          */
         public boolean isHasNonPrivateStaticMethodOrField() {
@@ -156,7 +156,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         * getter
+         * Getter
          * @return boolean
          */
         public boolean isHasDefaultCtor() {
@@ -164,7 +164,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         * getter
+         * Getter
          * @return boolean
          */
         public boolean isHasPublicCtor() {
@@ -172,7 +172,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         *  main method to gather statistics
+         *  Main method to gather statistics
          */
         public void invoke() {
             final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);

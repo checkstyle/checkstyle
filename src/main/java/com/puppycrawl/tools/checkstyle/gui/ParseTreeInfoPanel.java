@@ -207,21 +207,21 @@ public class ParseTreeInfoPanel extends JPanel {
     }
 
     /**
-     * http://findbugs.sourceforge.net/bugDescriptions.html#SW_SWING_METHODS_INVOKED_IN_SWING_THREAD
+     * Http://findbugs.sourceforge.net/bugDescriptions.html#SW_SWING_METHODS_INVOKED_IN_SWING_THREAD
      */
     private static class FrameShower implements Runnable {
         /**
-         * frame
+         * Frame
          */
         private final Component parent;
 
         /**
-         * frame
+         * Frame
          */
         private final String msg;
 
         /**
-         * contstructor
+         * Contstructor
          */
         public FrameShower(Component parent, final String msg) {
             this.parent = parent;
@@ -229,7 +229,7 @@ public class ParseTreeInfoPanel extends JPanel {
         }
 
         /**
-         * display a frame
+         * Display a frame
          */
         @Override
         public void run() {

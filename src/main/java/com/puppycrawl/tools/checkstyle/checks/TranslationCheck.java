@@ -212,7 +212,7 @@ public class TranslationCheck
     }
 
     /**
-     * helper method to log an io exception.
+     * Helper method to log an io exception.
      * @param ex the exception that occured
      * @param file the file that could not be processed
      */

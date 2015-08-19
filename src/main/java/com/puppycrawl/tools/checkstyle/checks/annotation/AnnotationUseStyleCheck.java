@@ -156,7 +156,7 @@ public final class AnnotationUseStyleCheck extends Check {
         "annotation.trailing.comma.present";
 
     /**
-     * the element name used to receive special linguistic support
+     * The element name used to receive special linguistic support
      * for annotation use.
      */
     private static final String ANNOTATION_ELEMENT_SINGLE_NAME =
@@ -376,7 +376,7 @@ public final class AnnotationUseStyleCheck extends Check {
     }
 
     /**
-     * logs a trailing array comma violation if one exists.
+     * Logs a trailing array comma violation if one exists.
      *
      * @param ast the array init
      * {@link TokenTypes#ANNOTATION_ARRAY_INIT ANNOTATION_ARRAY_INIT}.
@@ -433,14 +433,14 @@ public final class AnnotationUseStyleCheck extends Check {
     public enum ElementStyle {
 
         /**
-         * expanded example
+         * Expanded example
          *
          * <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>.
          */
         EXPANDED,
 
         /**
-         * compact example
+         * Compact example
          *
          * <pre>@SuppressWarnings({"unchecked","unused",})</pre>
          * <br>or<br>
@@ -449,14 +449,14 @@ public final class AnnotationUseStyleCheck extends Check {
         COMPACT,
 
         /**
-         * compact example.]
+         * Compact example.]
          *
          * <pre>@SuppressWarnings("unchecked")</pre>.
          */
         COMPACT_NO_ARRAY,
 
         /**
-         * mixed styles.
+         * Mixed styles.
          */
         IGNORE,
     }
@@ -470,21 +470,21 @@ public final class AnnotationUseStyleCheck extends Check {
     public enum TrailingArrayComma {
 
         /**
-         * with comma example
+         * With comma example
          *
          * <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>.
          */
         ALWAYS,
 
         /**
-         * without comma example
+         * Without comma example
          *
          * <pre>@SuppressWarnings(value={"unchecked","unused"})</pre>.
          */
         NEVER,
 
         /**
-         * mixed styles.
+         * Mixed styles.
          */
         IGNORE,
     }
@@ -498,21 +498,21 @@ public final class AnnotationUseStyleCheck extends Check {
     public enum ClosingParens {
 
         /**
-         * with parens example
+         * With parens example
          *
          * <pre>@Deprecated()</pre>.
          */
         ALWAYS,
 
         /**
-         * without parens example
+         * Without parens example
          *
          * <pre>@Deprecated</pre>.
          */
         NEVER,
 
         /**
-         * mixed styles.
+         * Mixed styles.
          */
         IGNORE,
     }

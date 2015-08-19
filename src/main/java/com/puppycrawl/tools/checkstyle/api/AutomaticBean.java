@@ -139,7 +139,7 @@ public class AutomaticBean
     }
 
     /**
-     * recheck property and try to copy it
+     * Recheck property and try to copy it
      * @param moduleName name of the module/class
      * @param key key of value
      * @param value value

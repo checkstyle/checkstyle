@@ -111,7 +111,7 @@ public class WhitespaceAfterCheck
     }
 
     /**
-     * checks whether token is followed by a whitespace.
+     * Checks whether token is followed by a whitespace.
      * @param targetAST Ast token.
      * @param line The line associated with the ast token.
      * @return true if ast token is followed by a whitespace.

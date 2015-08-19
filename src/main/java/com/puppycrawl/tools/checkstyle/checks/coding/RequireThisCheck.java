@@ -153,7 +153,7 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
     }
 
     /**
-     * process validation of Field
+     * Process validation of Field
      * @param ast field definition ast token
      * @param parentType type of the parrent
      */
@@ -187,7 +187,7 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
     }
 
     /**
-     * check that token is related to Definition tokens
+     * Check that token is related to Definition tokens
      * @param parentType token Type
      * @return true if token is related to Definition Tokens
      */

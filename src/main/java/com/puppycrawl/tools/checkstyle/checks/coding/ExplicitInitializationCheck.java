@@ -102,7 +102,7 @@ public class ExplicitInitializationCheck extends Check {
     }
 
     /**
-     * examin Char literal for initializing to default value
+     * Examin Char literal for initializing to default value
      * @param exprStart exprssion
      * @return true is literal is initialized by zero symbol
      */
@@ -113,7 +113,7 @@ public class ExplicitInitializationCheck extends Check {
     }
 
     /**
-     * chekc for cases that should be skipped: no assignment, local variable, final variables
+     * Chekc for cases that should be skipped: no assignment, local variable, final variables
      * @param ast Variable def AST
      * @return true is that is a case that need to be skipped.
      */

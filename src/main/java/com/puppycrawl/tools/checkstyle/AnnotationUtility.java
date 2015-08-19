@@ -38,7 +38,7 @@ public final class AnnotationUtility {
     private static final String THE_AST_IS_NULL = "the ast is null";
 
     /**
-     * private utility constructor.
+     * Private utility constructor.
      * @throws UnsupportedOperationException if called
      */
     private AnnotationUtility() {

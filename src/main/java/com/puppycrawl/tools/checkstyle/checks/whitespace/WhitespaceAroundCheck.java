@@ -388,7 +388,7 @@ public class WhitespaceAroundCheck extends Check {
     }
 
     /**
-     * is ast is not a target of Check
+     * Is ast is not a target of Check
      * @param ast ast
      * @param currentType type of ast
      * @return true is ok to skip validation
@@ -427,7 +427,7 @@ public class WhitespaceAroundCheck extends Check {
     }
 
     /**
-     * is empty block
+     * Is empty block
      * @param ast ast
      * @param parentType parent
      * @return true is block is empty
@@ -439,7 +439,7 @@ public class WhitespaceAroundCheck extends Check {
     }
 
     /**
-     * we do not want to check colon for cases and defaults
+     * We do not want to check colon for cases and defaults
      * @param currentType current
      * @param parentType parent
      * @return true is cur token in colon of case or default tokens
@@ -460,7 +460,7 @@ public class WhitespaceAroundCheck extends Check {
     }
 
     /**
-     * is array initialization
+     * Is array initialization
      * @param currentType curret token
      * @param parentType parent token
      * @return true is current token inside array initialization
