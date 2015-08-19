@@ -339,7 +339,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     }
 
     /**
-     * notify all listeners about the errors in a file.
+     * Notify all listeners about the errors in a file.
      *
      * @param fileName the audited file
      * @param errors the audit errors from the file

@@ -139,7 +139,7 @@ public abstract class AbstractDeclarationCollector extends Check {
     }
 
     /**
-     * collect Variable Declarations
+     * Collect Variable Declarations
      * @param ast variable token
      * @param frame current frame
      */
@@ -235,7 +235,7 @@ public abstract class AbstractDeclarationCollector extends Check {
         private final LexicalFrame parent;
 
         /**
-         * constructor -- invokable only via super() from subclasses
+         * Constructor -- invokable only via super() from subclasses
          *
          * @param parent parent frame
          */

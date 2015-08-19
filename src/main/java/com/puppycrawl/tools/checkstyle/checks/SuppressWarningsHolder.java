@@ -66,7 +66,7 @@ public class SuppressWarningsHolder
     private static final Map<String, String> CHECK_ALIAS_MAP = new HashMap<>();
 
     /**
-     * a thread-local holder for the list of suppression entries for the last
+     * A thread-local holder for the list of suppression entries for the last
      * file parsed
      */
     private static final ThreadLocal<List<Entry>> ENTRIES = new ThreadLocal<>();
@@ -240,7 +240,7 @@ public class SuppressWarningsHolder
     }
 
     /**
-     * get all annotation values
+     * Get all annotation values
      * @param ast annotation token
      * @return list values
      */
@@ -285,7 +285,7 @@ public class SuppressWarningsHolder
     }
 
     /**
-     * get target of annotation
+     * Get target of annotation
      * @param ast the AST node to get the child of
      * @return get target of annotation
      */

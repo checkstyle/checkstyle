@@ -147,7 +147,7 @@ public class HiddenFieldCheck
     private boolean ignoreSetter;
 
     /**
-     * if ignoreSetter is set to true then this variable controls what
+     * If ignoreSetter is set to true then this variable controls what
      * the setter method can return By default setter must return void.
      * However, is this variable is set to true then setter can also
      * return class in which is declared.
@@ -294,7 +294,7 @@ public class HiddenFieldCheck
     }
 
     /**
-     * check for static or instance field.
+     * Check for static or instance field.
      * @param ast token
      * @param name identifier of token
      * @return true if static or instance field
@@ -305,7 +305,7 @@ public class HiddenFieldCheck
     }
 
     /**
-     * check name by regExp
+     * Check name by regExp
      * @param name string value to check
      * @return true is regexp is matching
      */

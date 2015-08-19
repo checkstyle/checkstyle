@@ -89,7 +89,7 @@ public class MethodNameCheck
     private static final String CANONICAL_OVERRIDE = "java.lang." + OVERRIDE;
 
     /**
-     * for allowing method name to be the same as the class name.
+     * For allowing method name to be the same as the class name.
      */
     private boolean allowClassName;
 

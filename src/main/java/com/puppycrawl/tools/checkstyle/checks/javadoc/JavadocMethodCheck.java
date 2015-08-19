@@ -140,7 +140,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     private int minLineCount = DEFAULT_MIN_LINE_COUNT;
 
     /**
-     * controls whether to allow documented exceptions that are not declared if
+     * Controls whether to allow documented exceptions that are not declared if
      * they are a subclass of java.lang.RuntimeException.
      */
     private boolean allowUndeclaredRTE;
@@ -151,26 +151,26 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     private boolean validateThrows;
 
     /**
-     * controls whether to allow documented exceptions that are subclass of one
+     * Controls whether to allow documented exceptions that are subclass of one
      * of declared exception. Defaults to false (backward compatibility).
      */
     private boolean allowThrowsTagsForSubclasses;
 
     /**
-     * controls whether to ignore errors when a method has parameters but does
+     * Controls whether to ignore errors when a method has parameters but does
      * not have matching param tags in the javadoc. Defaults to false.
      */
     private boolean allowMissingParamTags;
 
     /**
-     * controls whether to ignore errors when a method declares that it throws
+     * Controls whether to ignore errors when a method declares that it throws
      * exceptions but does not have matching throws tags in the javadoc.
      * Defaults to false.
      */
     private boolean allowMissingThrowsTags;
 
     /**
-     * controls whether to ignore errors when a method returns non-void type
+     * Controls whether to ignore errors when a method returns non-void type
      * but does not have a return tag in the javadoc. Defaults to false.
      */
     private boolean allowMissingReturnTag;
@@ -251,7 +251,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     }
 
     /**
-     * controls whether to allow documented exceptions that are not declared if
+     * Controls whether to allow documented exceptions that are not declared if
      * they are a subclass of java.lang.RuntimeException.
      *
      * @param flag a {@code Boolean} value
@@ -261,7 +261,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     }
 
     /**
-     * controls whether to allow documented exception that are subclass of one
+     * Controls whether to allow documented exception that are subclass of one
      * of declared exceptions.
      *
      * @param flag a {@code Boolean} value
@@ -271,7 +271,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     }
 
     /**
-     * controls whether to allow a method which has parameters to omit matching
+     * Controls whether to allow a method which has parameters to omit matching
      * param tags in the javadoc. Defaults to false.
      *
      * @param flag a {@code Boolean} value
@@ -281,7 +281,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     }
 
     /**
-     * controls whether to allow a method which declares that it throws
+     * Controls whether to allow a method which declares that it throws
      * exceptions to omit matching throws tags in the javadoc. Defaults to
      * false.
      *
@@ -292,7 +292,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     }
 
     /**
-     * controls whether to allow a method which returns non-void type to omit
+     * Controls whether to allow a method which returns non-void type to omit
      * the return tag in the javadoc. Defaults to false.
      *
      * @param flag a {@code Boolean} value

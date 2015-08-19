@@ -71,7 +71,7 @@ public class XMLLogger
     }
 
     /**
-     * sets the OutputStream
+     * Sets the OutputStream
      * @param oS the OutputStream to use
      * @throws UnsupportedEncodingException is UTF-8 is not supported
      **/

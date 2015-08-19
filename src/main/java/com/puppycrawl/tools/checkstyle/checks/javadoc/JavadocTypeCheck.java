@@ -95,7 +95,7 @@ public class JavadocTypeCheck
     /** Regexp to match version tag content */
     private String versionFormat;
     /**
-     * controls whether to ignore errors when a method has type parameters but
+     * Controls whether to ignore errors when a method has type parameters but
      * does not have matching param tags in the javadoc. Defaults to false.
      */
     private boolean allowMissingParamTags;

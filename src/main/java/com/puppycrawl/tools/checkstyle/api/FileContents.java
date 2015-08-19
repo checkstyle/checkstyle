@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.grammars.CommentListener;
  */
 public final class FileContents implements CommentListener {
     /**
-     * the pattern to match a single line comment containing only the comment
+     * The pattern to match a single line comment containing only the comment
      * itself -- no code.
      */
     private static final String MATCH_SINGLELINE_COMMENT_PAT = "^\\s*//.*$";
@@ -61,7 +61,7 @@ public final class FileContents implements CommentListener {
         Maps.newHashMap();
 
     /**
-     * map of the C comments indexed on the first line of the comment to a list
+     * Map of the C comments indexed on the first line of the comment to a list
      * of comments on that line
      */
     private final Map<Integer, List<TextBlock>> clangComments = Maps.newHashMap();

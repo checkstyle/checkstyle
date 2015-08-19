@@ -428,7 +428,7 @@ public enum JavadocTagInfo {
     }
 
     /**
-     * returns a JavadocTag from the tag text.
+     * Returns a JavadocTag from the tag text.
      * @param text String representing the tag text
      * @return Returns a JavadocTag type from a String representing the tag
      * @throws NullPointerException if the text is null
@@ -450,7 +450,7 @@ public enum JavadocTagInfo {
     }
 
     /**
-     * returns a JavadocTag from the tag name.
+     * Returns a JavadocTag from the tag name.
      * @param name String name of the tag
      * @return Returns a JavadocTag type from a String representing the tag
      * @throws NullPointerException if the text is null

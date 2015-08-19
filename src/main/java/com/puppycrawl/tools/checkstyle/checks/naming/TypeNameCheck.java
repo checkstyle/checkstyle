@@ -51,7 +51,7 @@ public class TypeNameCheck
     extends AbstractAccessControlNameCheck {
 
     /**
-     * default pattern for type name.
+     * Default pattern for type name.
      */
     public static final String DEFAULT_PATTERN = "^[A-Z][a-zA-Z0-9]*$";
 

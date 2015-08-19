@@ -238,7 +238,7 @@ public class EmptyLineSeparatorCheck extends Check {
     }
 
     /**
-     * process Package
+     * Process Package
      * @param ast token
      * @param nextToken next token
      */
@@ -255,7 +255,7 @@ public class EmptyLineSeparatorCheck extends Check {
     }
 
     /**
-     * process Import
+     * Process Import
      * @param ast token
      * @param nextToken next token
      * @param astType token Type
@@ -270,7 +270,7 @@ public class EmptyLineSeparatorCheck extends Check {
     }
 
     /**
-     * process Variable
+     * Process Variable
      * @param ast token
      * @param nextToken next Token
      */

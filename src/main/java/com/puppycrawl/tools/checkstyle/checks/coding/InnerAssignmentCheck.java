@@ -51,7 +51,7 @@ public class InnerAssignmentCheck
     public static final String MSG_KEY = "assignment.inner.avoid";
 
     /**
-     * list of allowed AST types from an assignement AST node
+     * List of allowed AST types from an assignement AST node
      * towards the root.
      */
     private static final int[][] ALLOWED_ASSIGMENT_CONTEXT = {
@@ -68,7 +68,7 @@ public class InnerAssignmentCheck
     };
 
     /**
-     * list of allowed AST types from an assignement AST node
+     * List of allowed AST types from an assignement AST node
      * towards the root.
      */
     private static final int[][] CONTROL_CONTEXT = {
@@ -80,7 +80,7 @@ public class InnerAssignmentCheck
     };
 
     /**
-     * list of allowed AST types from a comparison node (above an assignement)
+     * List of allowed AST types from a comparison node (above an assignement)
      * towards the root.
      */
     private static final int[][] ALLOWED_ASSIGMENT_IN_COMPARISON_CONTEXT = {

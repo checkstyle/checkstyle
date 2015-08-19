@@ -253,7 +253,7 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * check import statements
+     * Check import statements
      * @param className name of the class
      * @return value of illegal instatiated type
      */
@@ -282,7 +282,7 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * check that type is of the same package
+     * Check that type is of the same package
      * @param className class name
      * @param pkgNameLen package name
      * @param illegal illegal value
@@ -304,7 +304,7 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * is Standard Class
+     * Is Standard Class
      * @param className class name
      * @param illegal illegal value
      * @return true if type is standard
@@ -331,7 +331,7 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * is class of the same package
+     * Is class of the same package
      * @param className class name
      * @return true if same package class
      */

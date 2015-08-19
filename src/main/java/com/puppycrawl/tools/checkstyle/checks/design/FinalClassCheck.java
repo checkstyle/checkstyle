@@ -119,7 +119,7 @@ public class FinalClassCheck
         private boolean withPrivateCtor;
 
         /**
-         *  create a new ClassDesc instance.
+         *  Create a new ClassDesc instance.
          *  @param declaredAsFinal indicates if the
          *         class declared as final
          *  @param declaredAsAbstract indicates if the
@@ -141,7 +141,7 @@ public class FinalClassCheck
         }
 
         /**
-         *  does class have private ctors.
+         *  Does class have private ctors.
          *  @return true if class has private ctors
          */
         boolean isWithPrivateCtor() {
@@ -149,7 +149,7 @@ public class FinalClassCheck
         }
 
         /**
-         *  does class have non-private ctors.
+         *  Does class have non-private ctors.
          *  @return true if class has non-private ctors
          */
         boolean isWithNonPrivateCtor() {
@@ -157,7 +157,7 @@ public class FinalClassCheck
         }
 
         /**
-         *  is class declared as final.
+         *  Is class declared as final.
          *  @return true if class is declared as final
          */
         boolean isDeclaredAsFinal() {
@@ -165,7 +165,7 @@ public class FinalClassCheck
         }
 
         /**
-         *  is class declared as abstract.
+         *  Is class declared as abstract.
          *  @return true if class is declared as final
          */
         boolean isDeclaredAsAbstract() {

@@ -158,7 +158,7 @@ public class EqualsAvoidNullCheck extends Check {
     }
 
     /**
-     * checks for calling equals on String literal and
+     * Checks for calling equals on String literal and
      * anon object which cannot be null
      * Also, checks if calling using strange inner class
      * syntax outter.inner.equals(otherObj) by looking

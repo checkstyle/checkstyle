@@ -80,23 +80,23 @@ public final class Main {
     }
 
     /**
-     * http://findbugs.sourceforge.net/bugDescriptions.html#SW_SWING_METHODS_INVOKED_IN_SWING_THREAD
+     * Http://findbugs.sourceforge.net/bugDescriptions.html#SW_SWING_METHODS_INVOKED_IN_SWING_THREAD
      */
     private static class FrameShower implements Runnable {
         /**
-         * frame
+         * Frame
          */
         private final JFrame frame;
 
         /**
-         * contstructor
+         * Contstructor
          */
         public FrameShower(JFrame frame) {
             this.frame = frame;
         }
 
         /**
-         * display a frame
+         * Display a frame
          */
         @Override
         public void run() {

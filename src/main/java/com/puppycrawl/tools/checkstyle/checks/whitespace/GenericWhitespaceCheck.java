@@ -162,7 +162,7 @@ public class GenericWhitespaceCheck extends Check {
     }
 
     /**
-     * process Nested generics
+     * Process Nested generics
      * @param ast token
      * @param line line content
      * @param after position after
@@ -192,7 +192,7 @@ public class GenericWhitespaceCheck extends Check {
     }
 
     /**
-     * process Single-generic
+     * Process Single-generic
      * @param ast token
      * @param line line content
      * @param after position after
@@ -218,7 +218,7 @@ public class GenericWhitespaceCheck extends Check {
     }
 
     /**
-     * is generic before method reference
+     * Is generic before method reference
      * @param ast ast
      * @return true if generic before a method ref
      */

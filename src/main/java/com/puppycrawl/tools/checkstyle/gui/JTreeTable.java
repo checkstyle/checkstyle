@@ -200,7 +200,7 @@ public class JTreeTable extends JTable {
         }
 
         /**
-         * updateUI is overridden to set the colors of the Tree's renderer
+         * UpdateUI is overridden to set the colors of the Tree's renderer
          * to match that of the table.
          */
         @Override

@@ -210,7 +210,7 @@ public class FinalLocalVariableCheck extends Check {
     }
 
     /**
-     * is Arithmetic operator
+     * Is Arithmetic operator
      * @param parentType token AST
      * @return true is token type is in arithmetic operator
      */

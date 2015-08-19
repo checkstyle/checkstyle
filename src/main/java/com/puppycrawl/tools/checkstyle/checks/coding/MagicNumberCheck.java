@@ -234,7 +234,7 @@ public class MagicNumberCheck extends Check {
     }
 
     /**
-     * is magic number some where at ast tree
+     * Is magic number some where at ast tree
      * @param ast ast token
      * @param constantDefAST constant ast
      * @return true if magic number is present
@@ -390,7 +390,7 @@ public class MagicNumberCheck extends Check {
     }
 
     /**
-     * sets the tokens which are allowed between Magic Number and defined Object.
+     * Sets the tokens which are allowed between Magic Number and defined Object.
      * @param tokens The string representation of the tokens interested in
      */
     public void setConstantWaiverParentToken(String... tokens) {
