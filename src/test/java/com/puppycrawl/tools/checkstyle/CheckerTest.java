@@ -196,7 +196,7 @@ public class CheckerTest {
         c.setModuleFactory(factory);
 
         c.setFileExtensions((String[]) null);
-        c.setFileExtensions(new String[]{".java", "xml"});
+        c.setFileExtensions(".java", "xml");
 
         try {
             c.setCharset("UNKNOW-CHARSET");
