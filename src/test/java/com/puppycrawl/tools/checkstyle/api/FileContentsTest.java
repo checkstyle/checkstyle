@@ -33,7 +33,7 @@ public class FileContentsTest {
     @SuppressWarnings("deprecation")
     public void testDeprecatedCtor() {
         // just to make UT coverage 100%
-        FileContents o = new FileContents("filename.java", new String[]{"1", "2"});
+        FileContents o = new FileContents("filename.java", "1", "2");
         o.getFilename();
     }
 
