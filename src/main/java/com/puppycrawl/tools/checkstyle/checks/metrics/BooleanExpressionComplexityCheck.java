@@ -124,13 +124,13 @@ public final class BooleanExpressionComplexityCheck extends Check {
                 visitExpr();
                 break;
             case TokenTypes.BOR:
-                if (!isPipeOperator(ast) && !isPassedInParameter(ast)) {
+                if (!isPipeOperator(ast) && isNotPassedInParameter(ast)) {
                     context.visitBooleanOperator();
                 }
                 break;
             case TokenTypes.BAND:
             case TokenTypes.BXOR:
-                if (!isPassedInParameter(ast)) {
+                if (isNotPassedInParameter(ast)) {
                     context.visitBooleanOperator();
                 }
                 break;
@@ -144,13 +144,13 @@ public final class BooleanExpressionComplexityCheck extends Check {
     }
 
     /**
-     * Checks if logical operator is part of constructor or method call.
+     * Checks that logical operator is not part of constructor or method call.
      * @param logicalOperator logical operator
-     * @return true if logical operator is part of constructor or method call
+     * @return true if logical operator is not part of constructor or method call
      */
-    private static boolean isPassedInParameter(DetailAST logicalOperator) {
-        return logicalOperator.getParent().getType() == TokenTypes.EXPR
-            && logicalOperator.getParent().getParent().getType() == TokenTypes.ELIST;
+    private static boolean isNotPassedInParameter(DetailAST logicalOperator) {
+        return logicalOperator.getParent().getType() != TokenTypes.EXPR
+                || logicalOperator.getParent().getParent().getType() != TokenTypes.ELIST;
     }
 
     /**

@@ -141,7 +141,7 @@ public class CommentsIndentationCheck extends Check {
         if (nextStatement != null
             && nextStatement.getType() != TokenTypes.RCURLY
             && !isTrailingSingleLineComment(singleLineComment)
-            && !areSameLevelIndented(singleLineComment, prevStatement, nextStatement)) {
+            && areNotSameLevelIndented(singleLineComment, prevStatement, nextStatement)) {
 
             log(singleLineComment.getLineNo(), MSG_KEY_SINGLE, nextStatement.getLineNo(),
                 singleLineComment.getColumnNo(), nextStatement.getColumnNo());
@@ -192,7 +192,7 @@ public class CommentsIndentationCheck extends Check {
 
     /**
      * Checks if comment and next code statement
-     * (or previous code stmt like <b>case</b> in switch block) are indented at the same level,
+     * (or previous code stmt like <b>case</b> in switch block) are not indented at the same level,
      * e.g.:
      * <p>
      * <pre>
@@ -211,10 +211,10 @@ public class CommentsIndentationCheck extends Check {
      * @param singleLineComment {@link TokenTypes#SINGLE_LINE_COMMENT single line comment}.
      * @param prevStmt previous code statement.
      * @param nextStmt next code statement.
-     * @return true if comment and next code statement are indented at the same level.
+     * @return true if comment and next code statement are not indented at the same level.
      */
-    private static boolean areSameLevelIndented(DetailAST singleLineComment,
-                                                DetailAST prevStmt, DetailAST nextStmt) {
+    private static boolean areNotSameLevelIndented(DetailAST singleLineComment,
+            DetailAST prevStmt, DetailAST nextStmt) {
         boolean result;
         if (prevStmt == null) {
             result = singleLineComment.getColumnNo() == nextStmt.getColumnNo();
@@ -223,7 +223,7 @@ public class CommentsIndentationCheck extends Check {
             result = singleLineComment.getColumnNo() == nextStmt.getColumnNo()
                 || singleLineComment.getColumnNo() == prevStmt.getColumnNo();
         }
-        return result;
+        return !result;
     }
 
     /**
@@ -261,7 +261,7 @@ public class CommentsIndentationCheck extends Check {
         if (nextStatement != null
             && nextStatement.getType() != TokenTypes.RCURLY
             && !isTrailingBlockComment(blockComment)
-            && !areSameLevelIndented(blockComment, prevStatement, nextStatement)) {
+            && areNotSameLevelIndented(blockComment, prevStatement, nextStatement)) {
 
             log(blockComment.getLineNo(), MSG_KEY_BLOCK, nextStatement.getLineNo(),
                 blockComment.getColumnNo(), nextStatement.getColumnNo());

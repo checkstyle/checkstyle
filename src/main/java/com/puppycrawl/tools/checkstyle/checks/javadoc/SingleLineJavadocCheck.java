@@ -146,7 +146,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
     private boolean hasJavadocTags(DetailNode javadocRoot) {
         final DetailNode javadocTagSection =
                 JavadocUtils.findFirstToken(javadocRoot, JavadocTokenTypes.JAVADOC_TAG);
-        return javadocTagSection != null && !isTagIgnored(javadocTagSection);
+        return javadocTagSection != null && isTagNotIgnored(javadocTagSection);
     }
 
     /**
@@ -163,7 +163,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
                 JavadocUtils.findFirstToken(javadocRoot, JavadocTokenTypes.JAVADOC_INLINE_TAG);
         boolean foundTag = false;
         while (javadocTagSection != null) {
-            if (!isTagIgnored(javadocTagSection)) {
+            if (isTagNotIgnored(javadocTagSection)) {
                 foundTag = true;
                 break;
             }
@@ -174,12 +174,12 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Checks if list of ignored tags contains javadocTagSection's javadoc tag.
+     * Checks if list of ignored tags doesn't contain javadocTagSection's javadoc tag.
      *
      * @param javadocTagSection to check javadoc tag in.
-     * @return true, if ignoredTags contains javadocTagSection's javadoc tag.
+     * @return true, if ignoredTags doesn't contain javadocTagSection's javadoc tag.
      */
-    private boolean isTagIgnored(DetailNode javadocTagSection) {
-        return ignoredTags.contains(JavadocUtils.getTagName(javadocTagSection));
+    private boolean isTagNotIgnored(DetailNode javadocTagSection) {
+        return !ignoredTags.contains(JavadocUtils.getTagName(javadocTagSection));
     }
 }

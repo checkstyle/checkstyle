@@ -214,15 +214,15 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
             violation = MSG_KEY_LINE_SAME;
         }
         else if (bracePolicy == RightCurlyOption.ALONE
-                && !isAloneOnLine(details)
-                && !isEmptyBody(lcurly)) {
+                && isNotAloneOnLine(details)
+                && isNotEmptyBody(lcurly)) {
             violation = MSG_KEY_LINE_ALONE;
         }
         else if (bracePolicy == RightCurlyOption.ALONE_OR_SINGLELINE
-                && !isAloneOnLine(details)
+                && isNotAloneOnLine(details)
                 && !isSingleLineBlock(details)
                 && !isAnonInnerClassInit(lcurly)
-                && !isEmptyBody(lcurly)) {
+                && isNotEmptyBody(lcurly)) {
             violation = MSG_KEY_LINE_ALONE;
         }
         else if (shouldStartLine) {
@@ -237,16 +237,16 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
     }
 
     /**
-     * Checks whether right curly is alone on a line.
+     * Checks whether right curly is not alone on a line.
      * @param details for validation.
-     * @return true if right curly is alone on a line.
+     * @return true if right curly is not alone on a line.
      */
-    private static boolean isAloneOnLine(Details details) {
+    private static boolean isNotAloneOnLine(Details details) {
         final DetailAST rcurly = details.rcurly;
         final DetailAST lcurly = details.lcurly;
         final DetailAST nextToken = details.nextToken;
-        return rcurly.getLineNo() != lcurly.getLineNo()
-            && rcurly.getLineNo() != nextToken.getLineNo();
+        return rcurly.getLineNo() == lcurly.getLineNo()
+                || rcurly.getLineNo() == nextToken.getLineNo();
     }
 
     /**
@@ -358,11 +358,11 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
     }
 
     /**
-     * Checks if definition body is empty.
+     * Checks if definition body is not empty.
      * @param lcurly left curly.
-     * @return true if definition body is empty.
+     * @return true if definition body is not empty.
      */
-    private static boolean isEmptyBody(DetailAST lcurly) {
+    private static boolean isNotEmptyBody(DetailAST lcurly) {
         boolean result = false;
         if (lcurly.getParent().getType() == TokenTypes.OBJBLOCK) {
             if (lcurly.getNextSibling().getType() == TokenTypes.RCURLY) {
@@ -372,7 +372,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
         else if (lcurly.getFirstChild().getType() == TokenTypes.RCURLY) {
             result = true;
         }
-        return result;
+        return !result;
     }
 
     /**
