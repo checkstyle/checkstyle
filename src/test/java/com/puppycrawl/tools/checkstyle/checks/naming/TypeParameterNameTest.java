@@ -24,7 +24,6 @@ import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -166,7 +165,6 @@ public class TypeParameterNameTest
         int[] expected = new int[] {
             TokenTypes.TYPE_PARAMETER,
         };
-        Assert.assertNotNull(actual);
         assertArrayEquals(expected, actual);
     }
 }

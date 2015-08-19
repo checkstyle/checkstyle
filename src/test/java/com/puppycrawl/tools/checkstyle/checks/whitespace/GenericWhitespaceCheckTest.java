@@ -28,7 +28,6 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.util.Map;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -140,7 +139,6 @@ public class GenericWhitespaceCheckTest
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
         };
-        Assert.assertNotNull(actual);
         assertArrayEquals(expected, actual);
     }
 

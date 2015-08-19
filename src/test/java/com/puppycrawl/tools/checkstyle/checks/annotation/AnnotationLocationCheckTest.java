@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocati
 import static org.junit.Assert.assertArrayEquals;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -96,7 +95,6 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
             TokenTypes.DOT,
             TokenTypes.ANNOTATION_FIELD_DEF,
             };
-        Assert.assertNotNull(actual);
         assertArrayEquals(expected, actual);
     }
 

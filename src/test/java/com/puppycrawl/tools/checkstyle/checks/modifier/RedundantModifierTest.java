@@ -116,7 +116,6 @@ public class RedundantModifierTest
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
         };
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 
@@ -125,7 +124,6 @@ public class RedundantModifierTest
         RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
         int[] actual = redundantModifierCheckObj.getRequiredTokens();
         int[] expected = new int[] {};
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 }

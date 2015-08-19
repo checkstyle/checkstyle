@@ -81,8 +81,8 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     public void testSetHeader() {
         // check invalid header passes
         RegexpHeaderCheck instance = new RegexpHeaderCheck();
-        String header = "^/**\\n * Licensed to the Apache Software Foundation (ASF)";
         try {
+            String header = "^/**\\n * Licensed to the Apache Software Foundation (ASF)";
             instance.setHeader(header);
             fail(String.format("%s should have been thrown", ConversionException.class));
         }

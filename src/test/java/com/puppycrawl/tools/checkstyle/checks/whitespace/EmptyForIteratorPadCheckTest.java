@@ -23,7 +23,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIterator
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck.WS_NOT_FOLLOWED;
 import static org.junit.Assert.assertArrayEquals;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -73,7 +72,6 @@ public class EmptyForIteratorPadCheckTest
         int[] expected = new int[] {
             TokenTypes.FOR_ITERATOR,
         };
-        Assert.assertNotNull(actual);
         assertArrayEquals(expected, actual);
     }
 }

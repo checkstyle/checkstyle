@@ -72,12 +72,12 @@ public class LocalizedMessageTest {
     public void testBundleReload_UrlNotNull() throws IOException {
 
         ClassLoader classloader = mock(ClassLoader.class);
-        String resource = "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";
         final URLConnection mockConnection = Mockito.mock(URLConnection.class);
         when(mockConnection.getInputStream()).thenReturn(
                 new ByteArrayInputStream(new byte[]{}));
 
         URL url = getMockUrl(mockConnection);
+        String resource = "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";
         when(classloader.getResource(resource)).thenReturn(url);
 
         LocalizedMessage.UTF8Control cntrl = new LocalizedMessage.UTF8Control();

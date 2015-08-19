@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static org.junit.Assert.assertArrayEquals;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -185,7 +184,6 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
         AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
         int[] actual = check.getAcceptableTokens();
         int[] expected = new int[] {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL };
-        Assert.assertNotNull(actual);
         assertArrayEquals(expected, actual);
     }
 

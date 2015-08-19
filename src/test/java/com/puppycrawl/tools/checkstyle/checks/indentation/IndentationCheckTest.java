@@ -68,9 +68,9 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     protected static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
                     final int tabWidth)
                     throws IOException {
-        int lineNumber = 1;
         List<Integer> result = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(aFileName))) {
+            int lineNumber = 1;
             for (String line = br.readLine(); line != null; line = br.readLine()) {
                 Matcher match = LINE_WITH_COMMENT_REGEX.matcher(line);
                 if (match.matches()) {
@@ -126,9 +126,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         final int indentInComment = getIndentFromComment(comment);
         final boolean isWarnComment = isWarnComment(comment);
 
-        Matcher match;
-
-        match = MULTILEVEL_COMMENT_REGEX.matcher(comment);
+        Matcher match = MULTILEVEL_COMMENT_REGEX.matcher(comment);
         if (match.matches()) {
             final String[] levels = match.group(1).split(",");
             final String indentInCommentStr = String.valueOf(indentInComment);

@@ -100,10 +100,10 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 	}
 
 	public Integer[] getLinesWithWarn(String aFileName) throws IOException {
-		int lineNumber = 1;
-	    List<Integer> result = new ArrayList<>();
+		List<Integer> result = new ArrayList<>();
 	    try(BufferedReader br = new BufferedReader(new FileReader(aFileName))) {
-	        while (true) {
+			int lineNumber = 1;
+			while (true) {
 	            String line = br.readLine();
 	            if (line == null) {
 	                break;

@@ -58,8 +58,8 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
     public void testMessageProperty()
         throws Exception {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
-        final String message = "Bad line :(";
         checkConfig.addAttribute("format", illegal);
+        final String message = "Bad line :(";
         checkConfig.addAttribute("message", message);
         final String[] expected = {
             "69: " + message,
