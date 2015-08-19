@@ -58,6 +58,8 @@ public final class SuppressionsLoader
     /** The resource for the configuration dtd */
     private static final String DTD_RESOURCE_NAME_1_1 =
         "com/puppycrawl/tools/checkstyle/suppressions_1_1.dtd";
+    /** File search error message **/
+    private static final String UNABLE_TO_FIND_ERROR_MESSAGE = "Unable to find: ";
 
     /**
      * the filter chain to return in getAFilterChain(),
@@ -151,12 +153,12 @@ public final class SuppressionsLoader
                     final URL configUrl = SuppressionsLoader.class
                             .getResource(filename);
                     if (configUrl == null) {
-                        throw new CheckstyleException("unable to find " + filename);
+                        throw new CheckstyleException(UNABLE_TO_FIND_ERROR_MESSAGE + filename);
                     }
                     uri = configUrl.toURI();
                 }
                 catch (final URISyntaxException e) {
-                    throw new CheckstyleException("unable to find " + filename, e);
+                    throw new CheckstyleException(UNABLE_TO_FIND_ERROR_MESSAGE + filename, e);
                 }
             }
         }
@@ -181,17 +183,17 @@ public final class SuppressionsLoader
             return suppressionsLoader.getFilterChain();
         }
         catch (final FileNotFoundException e) {
-            throw new CheckstyleException("unable to find " + sourceName, e);
+            throw new CheckstyleException(UNABLE_TO_FIND_ERROR_MESSAGE + sourceName, e);
         }
         catch (final ParserConfigurationException | SAXException e) {
-            throw new CheckstyleException("unable to parse "
+            throw new CheckstyleException("Unable to parse "
                     + sourceName + " - " + e.getMessage(), e);
         }
         catch (final IOException e) {
-            throw new CheckstyleException("unable to read " + sourceName, e);
+            throw new CheckstyleException("Unable to read " + sourceName, e);
         }
         catch (final NumberFormatException e) {
-            throw new CheckstyleException("number format exception "
+            throw new CheckstyleException("Number format exception "
                 + sourceName + " - " + e.getMessage(), e);
         }
     }
