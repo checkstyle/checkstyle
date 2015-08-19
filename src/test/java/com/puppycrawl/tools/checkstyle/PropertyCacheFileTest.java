@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 public class PropertyCacheFileTest {
 
     @Rule
-    public TemporaryFolder temporaryFolder = new TemporaryFolder();
+    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
     @Test
     public void testNonAccessibleFile() throws IOException {

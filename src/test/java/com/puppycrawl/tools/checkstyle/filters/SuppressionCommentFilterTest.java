@@ -49,7 +49,7 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class SuppressionCommentFilterTest
     extends BaseCheckTestSupport {
-    private static String[] sAllMessages = {
+    private static final String[] sAllMessages = {
         "13:17: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "16:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "19:17: Name 'K' must match pattern '^[a-z][a-zA-Z0-9]*$'.",

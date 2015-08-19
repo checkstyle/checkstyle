@@ -15,7 +15,7 @@ public class PackageNameTest extends BaseCheckTestSupport{
 
 	private static ConfigurationBuilder builder;
 	private static Configuration checkConfig;
-	private String msgKey = "name.invalidPattern";
+	private final String msgKey = "name.invalidPattern";
 	private static String format;
 
 

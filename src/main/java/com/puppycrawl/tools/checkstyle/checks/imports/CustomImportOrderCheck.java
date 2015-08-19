@@ -798,16 +798,16 @@ public class CustomImportOrderCheck extends Check {
      */
     private static class ImportDetails {
         /** Import full path */
-        private String importFullPath;
+        private final String importFullPath;
 
         /** Import line number */
-        private int lineNumber;
+        private final int lineNumber;
 
         /** Import group */
-        private String importGroup;
+        private final String importGroup;
 
         /** Is static import */
-        private boolean staticImport;
+        private final boolean staticImport;
 
         /**
          * @param importFullPath

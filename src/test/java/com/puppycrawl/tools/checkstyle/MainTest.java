@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class MainTest {
     @Rule
-    public TemporaryFolder temporaryFolder = new TemporaryFolder();
+    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
     @Rule
