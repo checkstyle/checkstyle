@@ -600,7 +600,7 @@ public class CheckstyleAntTask extends Task {
 
         /** @param file set the property value from a File */
         public void setFile(File file) {
-            setValue(file.getAbsolutePath());
+            value = file.getAbsolutePath();
         }
     }
 

@@ -59,7 +59,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
     /** Creates new instance of the check. */
     public MutableExceptionCheck() {
         super(DEFAULT_FORMAT);
-        setExtendedClassNameFormat(DEFAULT_FORMAT);
+        extendedClassNameFormat = DEFAULT_FORMAT;
     }
 
     /**
