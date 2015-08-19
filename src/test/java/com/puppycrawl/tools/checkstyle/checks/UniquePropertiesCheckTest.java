@@ -131,7 +131,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
         try {
             final InputStream stream = new FileInputStream(file);
             stream.close();
-            throw new Exception("File " + file.getPath() + " should not exist");
+            throw new IllegalStateException("File " + file.getPath() + " should not exist");
         }
         catch (FileNotFoundException ex) {
             return ex.getLocalizedMessage();
