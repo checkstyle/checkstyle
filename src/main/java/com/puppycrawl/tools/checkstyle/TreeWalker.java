@@ -376,24 +376,12 @@ public final class TreeWalker
      * @param astState state of AST.
      */
     private void notifyVisit(DetailAST ast, AstState astState) {
-        Collection<Check> visitors;
-        final String tokenType = Utils.getTokenName(ast.getType());
+        final Collection<Check> visitors = getListOfChecks(ast, astState);
 
-        if (astState == AstState.WITH_COMMENTS) {
-            if (!tokenToCommentChecks.containsKey(tokenType)) {
-                return;
+        if (visitors != null) {
+            for (Check check : visitors) {
+                check.visitToken(ast);
             }
-            visitors = tokenToCommentChecks.get(tokenType);
-        }
-        else {
-            if (!tokenToOrdinaryChecks.containsKey(tokenType)) {
-                return;
-            }
-            visitors = tokenToOrdinaryChecks.get(tokenType);
-        }
-
-        for (Check check : visitors) {
-            check.visitToken(ast);
         }
     }
 
@@ -404,25 +392,39 @@ public final class TreeWalker
      * @param astState state of AST.
      */
     private void notifyLeave(DetailAST ast, AstState astState) {
-        Collection<Check> visitors;
+        final Collection<Check> visitors = getListOfChecks(ast, astState);
+
+        if (visitors != null) {
+            for (Check check : visitors) {
+                check.leaveToken(ast);
+            }
+        }
+    }
+
+    /**
+     * Method returns list of checks
+     *
+     * @param ast
+     *            the node to notify for
+     * @param astState
+     *            state of AST.
+     * @return list of visitors
+     */
+    private Collection<Check> getListOfChecks(DetailAST ast, AstState astState) {
+        Collection<Check> visitors = null;
         final String tokenType = Utils.getTokenName(ast.getType());
 
         if (astState == AstState.WITH_COMMENTS) {
-            if (!tokenToCommentChecks.containsKey(tokenType)) {
-                return;
+            if (tokenToCommentChecks.containsKey(tokenType)) {
+                visitors = tokenToCommentChecks.get(tokenType);
             }
-            visitors = tokenToCommentChecks.get(tokenType);
         }
         else {
-            if (!tokenToOrdinaryChecks.containsKey(tokenType)) {
-                return;
+            if (tokenToOrdinaryChecks.containsKey(tokenType)) {
+                visitors = tokenToOrdinaryChecks.get(tokenType);
             }
-            visitors = tokenToOrdinaryChecks.get(tokenType);
         }
-
-        for (Check check : visitors) {
-            check.leaveToken(ast);
-        }
+        return visitors;
     }
 
     /**
