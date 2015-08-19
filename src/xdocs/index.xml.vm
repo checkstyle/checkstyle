@@ -11,9 +11,9 @@
 
   <head>
     <title>Checkstyle ${projectVersion}</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="js/anchors.js"></script>
-    <script type="text/javascript" src="js/google-analytics.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript" src="js/anchors.js"/>
+    <script type="text/javascript" src="js/google-analytics.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" href="images/favicon.ico" type="image/ico" />
   </head>
@@ -130,15 +130,15 @@
         </tr>
         <tr>
           <td><a href="https://www.scm-manager.org/">SCM-Manager</a></td>
-          <td></td>
+          <td/>
           <td><a href="http://plugins.scm-manager.org/scm-plugin-backend/page/index.html">SCM-Manager Plugin Page</a></td>
-          <td></td>
+          <td/>
         </tr>
         <tr>
           <td><a href="http://www.jgrasp.org/">jGRASP</a></td>
           <td>Larry Barowski</td>
           <td><a href="http://www.jgrasp.org/">jGRASP Home Page</a></td>
-          <td></td>
+          <td/>
         </tr>
         <tr>
           <td><a href="http://www.sonarqube.org/">SonarQube</a></td>
@@ -184,7 +184,7 @@
             href="http://www.mvmsoft.de/content/plugins/checkclipse/checkclipse.htm">Checklipse
             Home Page</a>
           </td>
-          <td></td>
+          <td/>
         </tr>
         <tr>
           <td><a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a></td>
@@ -210,7 +210,7 @@
             <a href="http://jetstyle.sourceforge.net/">JetStyle
             Project Page</a>
           </td>
-          <td></td>
+          <td/>
         </tr>
         <tr>
           <td><a href="https://netbeans.org/">NetBeans</a></td>
@@ -229,18 +229,18 @@
           <td>
             <a href="http://nbcheckstyle.sourceforge.net">nbCheckStyle</a>
           </td>
-          <td></td>
+          <td/>
         </tr>
         <tr>
           <td><a href="https://netbeans.org/">NetBeans</a></td>
-          <td></td>
+          <td/>
           <td>
             <a href="https://java.net/projects/sqe/">Software Quality Environment (SQE)</a>
           </td>
-          <td></td>
+          <td/>
         </tr>
         <tr>
-          <td></td>
+          <td/>
           <td><a href="http://jcoderz.github.io/">jCoderZ</a></td>
           <td>
             <a href="http://jcoderz.github.io/">fawkeZ</a>
@@ -252,26 +252,26 @@
           <td>Rick Giles</td>
           <td><a href="http://bluejcheckstyle.sourceforge.net/">bluejcheckstyle
             home page</a></td>
-          <td></td>
+          <td/>
         </tr>
         <tr>
           <td><a href="http://tide.olympe.in/">tIDE</a></td>
-          <td></td>
+          <td/>
           <td>Built in</td>
-          <td></td>
+          <td/>
         </tr>
         <tr>
           <td><a href="http://jdee.sourceforge.net/">Emacs JDE</a></td>
           <td>Markus Mohnen</td>
           <td>Part of the standard JDEE distribution</td>
-          <td></td>
+          <td/>
         </tr>
         <tr>
           <td><a href="http://www.jedit.org/">jEdit</a></td>
           <td>Todd Papaioannou</td>
           <td><a
               href="http://plugins.jedit.org/plugins/?CheckStylePlugin">JEdit CheckStylePlugin</a></td>
-          <td></td>
+          <td/>
         </tr>
         <tr>
           <td><a href="http://www.vim.org">Vim editor</a></td>
@@ -300,13 +300,13 @@
         </tr>
         <tr>
           <td><a href="http://www.jarchitect.com/">JArchitect</a></td>
-          <td></td>
+          <td/>
           <td><a href="http://www.jarchitect.com/">JArchitect Home Page</a></td>
           <td>Imports XML result files from CheckStyle.</td>
         </tr>
         <tr>
           <td><a href="https://wiki.jenkins-ci.org/display/JENKINS/Checkstyle+Plugin">Jenkins Checkstyle plug-in</a></td>
-          <td></td>
+          <td/>
           <td><a href="https://wiki.jenkins-ci.org/display/JENKINS/Checkstyle+Plugin">Jenkins Checkstyle plug-in Home Page</a></td>
           <td>This plug-in is supported by the Static Analysis Collector plug-in that collects different analysis results and shows the results in aggregated trend graphs.</td>
         </tr>
