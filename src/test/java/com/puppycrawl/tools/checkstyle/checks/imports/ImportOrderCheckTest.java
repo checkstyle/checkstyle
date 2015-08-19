@@ -422,10 +422,10 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         ImportOrderCheck check = new ImportOrderCheck() {
             @Override
             public ImportOrderOption getAbstractOption() {
-                ImportOrderOption C = PowerMockito.mock(ImportOrderOption.class);
-                Whitebox.setInternalState(C, "name", "NEW_OPTION_FOR_UT");
-                Whitebox.setInternalState(C, "ordinal", 5);
-                return C;
+                ImportOrderOption importOrderOption = PowerMockito.mock(ImportOrderOption.class);
+                Whitebox.setInternalState(importOrderOption, "name", "NEW_OPTION_FOR_UT");
+                Whitebox.setInternalState(importOrderOption, "ordinal", 5);
+                return importOrderOption;
                 }
         };
         // expecting IllegalStateException
