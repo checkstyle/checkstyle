@@ -1,7 +1,6 @@
 package com.puppycrawl.tools.checkstyle.grammars;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.apache.commons.lang3.SystemUtils;
 import org.junit.Assume;
@@ -18,7 +17,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 public class GeneratedJava14LexerTest
     extends BaseCheckTestSupport {
     @Test
-    public void testUnexpectedChar() throws IOException, Exception {
+    public void testUnexpectedChar() throws Exception {
         Assume.assumeFalse(SystemUtils.IS_OS_WINDOWS); // Encoding problems can occur in Windows
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
@@ -29,7 +28,7 @@ public class GeneratedJava14LexerTest
     }
     
     @Test
-    public void testSemicolonBetweenImports() throws IOException, Exception {
+    public void testSemicolonBetweenImports() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         final String[] expected = {

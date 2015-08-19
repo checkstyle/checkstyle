@@ -1,7 +1,6 @@
 package com.google.checkstyle.test.base;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import org.junit.Test;
@@ -11,7 +10,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class ConfigValidationTest extends BaseCheckTestSupport {
     @Test
-    public void testGoogleChecks() throws IOException, Exception {
+    public void testGoogleChecks() throws Exception {
         ConfigurationBuilder builder = new ConfigurationBuilder(new File("src/it/"));
         final Configuration checkerConfig = builder.config;
         final Checker c = new Checker();
