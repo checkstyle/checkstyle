@@ -313,11 +313,10 @@ public abstract class AbstractTypeAwareCheck extends Check {
              child != null;
              child = child.getNextSibling()) {
             if (child.getType() == TokenTypes.TYPE_PARAMETER) {
-                final DetailAST param = child;
                 final String alias =
-                    param.findFirstToken(TokenTypes.IDENT).getText();
+                    child.findFirstToken(TokenTypes.IDENT).getText();
                 final DetailAST bounds =
-                    param.findFirstToken(TokenTypes.TYPE_UPPER_BOUNDS);
+                    child.findFirstToken(TokenTypes.TYPE_UPPER_BOUNDS);
                 if (bounds != null) {
                     final FullIdent name =
                         FullIdent.createFullIdentBelow(bounds);

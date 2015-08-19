@@ -185,8 +185,7 @@ public class PackageNamesLoaderTest {
                 return connection;
             }
         };
-        final URL url = new URL("http://foo.bar", "foo.bar", 80, "", handler);
-        return url;
+        return new URL("http://foo.bar", "foo.bar", 80, "", handler);
     }
 
 }
