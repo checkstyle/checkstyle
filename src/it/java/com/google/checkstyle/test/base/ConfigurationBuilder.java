@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 import java.util.regex.Pattern;
@@ -95,7 +96,7 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 	}
 
 	public List<File> getFiles() {
-            return files;
+            return Collections.unmodifiableList(files);
 	}
 
 	public Integer[] getLinesWithWarn(String aFileName) throws IOException {
