@@ -31,7 +31,6 @@ import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.regex.PatternSyntaxException;
 
 import org.junit.Assume;
 import org.junit.Rule;
@@ -118,7 +117,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
 
     @Test
     public void testMultipleSuppression()
-        throws CheckstyleException, PatternSyntaxException {
+        throws CheckstyleException {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(
                     "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_multiple.xml");

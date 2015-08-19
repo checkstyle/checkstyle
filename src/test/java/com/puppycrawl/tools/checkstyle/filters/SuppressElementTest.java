@@ -23,8 +23,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.regex.PatternSyntaxException;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,8 +36,7 @@ public class SuppressElementTest {
     private SuppressElement filter;
 
     @Before
-    public void setUp()
-        throws PatternSyntaxException {
+    public void setUp() {
         filter = new SuppressElement("Test");
         filter.setChecks("Test");
     }
@@ -162,7 +159,7 @@ public class SuppressElementTest {
     }
 
     @Test
-    public void testEquals() throws PatternSyntaxException {
+    public void testEquals() {
         final SuppressElement filter2 = new SuppressElement("Test");
         filter2.setChecks("Test");
         assertEquals("filter, filter2", filter, filter2);
