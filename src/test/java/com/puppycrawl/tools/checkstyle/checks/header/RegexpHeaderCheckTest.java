@@ -59,7 +59,6 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
         // check null passes
         RegexpHeaderCheck instance = new RegexpHeaderCheck();
         // check empty string passes
-        instance = new RegexpHeaderCheck();
         String header = "";
         instance.setHeader(header);
     }
@@ -71,7 +70,6 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     public void testSetHeaderSimple() {
         RegexpHeaderCheck instance = new RegexpHeaderCheck();
         // check valid header passes
-        instance = new RegexpHeaderCheck();
         String header = "abc.*";
         instance.setHeader(header);
     }
