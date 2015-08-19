@@ -227,7 +227,7 @@ public class EmptyLineSeparatorCheck extends Check {
                     processPackage(ast, nextToken);
                     break;
                 default:
-                    if (nextToken.getType() != TokenTypes.RCURLY && !hasEmptyLineAfter(ast)) {
+                    if (nextToken.getType() != TokenTypes.RCURLY && hasNoEmptyLineAfter(ast)) {
                         log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
                     }
                     if (hasNotAllowedTwoEmptyLinesBefore(ast)) {
@@ -246,7 +246,7 @@ public class EmptyLineSeparatorCheck extends Check {
         if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
             log(ast.getLineNo(), MSG_SHOULD_BE_SEPARATED, ast.getText());
         }
-        if (!hasEmptyLineAfter(ast)) {
+        if (hasNoEmptyLineAfter(ast)) {
             log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
         if (hasNotAllowedTwoEmptyLinesBefore(ast)) {
@@ -261,7 +261,7 @@ public class EmptyLineSeparatorCheck extends Check {
      * @param astType token Type
      */
     private void processImport(DetailAST ast, DetailAST nextToken, int astType) {
-        if (astType != nextToken.getType() && !hasEmptyLineAfter(ast)) {
+        if (astType != nextToken.getType() && hasNoEmptyLineAfter(ast)) {
             log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
         if (hasNotAllowedTwoEmptyLinesBefore(ast)) {
@@ -275,7 +275,7 @@ public class EmptyLineSeparatorCheck extends Check {
      * @param nextToken next Token
      */
     private void processVariableDef(DetailAST ast, DetailAST nextToken) {
-        if (isTypeField(ast) && !hasEmptyLineAfter(ast)) {
+        if (isTypeField(ast) && hasNoEmptyLineAfter(ast)) {
             if (allowNoEmptyLineBetweenFields
                 && nextToken.getType() != TokenTypes.VARIABLE_DEF
                 && nextToken.getType() != TokenTypes.RCURLY) {
@@ -321,16 +321,16 @@ public class EmptyLineSeparatorCheck extends Check {
     }
 
     /**
-     * Checks if token have empty line after.
+     * Checks if token have no empty line after.
      * @param token token.
-     * @return true if token have empty line after.
+     * @return true if token have no empty line after.
      */
-    private static boolean hasEmptyLineAfter(DetailAST token) {
+    private static boolean hasNoEmptyLineAfter(DetailAST token) {
         DetailAST lastToken = token.getLastChild().getLastChild();
         if (lastToken == null) {
             lastToken = token.getLastChild();
         }
-        return token.getNextSibling().getLineNo() - lastToken.getLineNo() > 1;
+        return token.getNextSibling().getLineNo() - lastToken.getLineNo() <= 1;
     }
 
     /**

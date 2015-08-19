@@ -93,14 +93,14 @@ public class WhitespaceAfterCheck
         final String line = getLine(ast.getLineNo() - 1);
         if (ast.getType() == TokenTypes.TYPECAST) {
             final DetailAST targetAST = ast.findFirstToken(TokenTypes.RPAREN);
-            if (!isFollowedByWhitespace(targetAST, line)) {
+            if (isNotFollowedByWhitespace(targetAST, line)) {
                 log(targetAST.getLineNo(),
                     targetAST.getColumnNo() + targetAST.getText().length(),
                     WS_TYPECAST);
             }
         }
         else {
-            if (!isFollowedByWhitespace(ast, line)) {
+            if (isNotFollowedByWhitespace(ast, line)) {
                 final Object[] message = {ast.getText()};
                 log(ast.getLineNo(),
                     ast.getColumnNo() + ast.getText().length(),
@@ -111,12 +111,12 @@ public class WhitespaceAfterCheck
     }
 
     /**
-     * checks whether token is followed by a whitespace.
+     * checks whether token is not followed by a whitespace.
      * @param targetAST Ast token.
      * @param line The line associated with the ast token.
-     * @return true if ast token is followed by a whitespace.
+     * @return true if ast token is not followed by a whitespace.
      */
-    private static boolean isFollowedByWhitespace(DetailAST targetAST, String line) {
+    private static boolean isNotFollowedByWhitespace(DetailAST targetAST, String line) {
         final int after =
             targetAST.getColumnNo() + targetAST.getText().length();
         boolean followedByWhitespace = true;
@@ -127,6 +127,6 @@ public class WhitespaceAfterCheck
                 || targetAST.getType() == TokenTypes.SEMI
                     && (charAfter == ';' || charAfter == ')');
         }
-        return followedByWhitespace;
+        return !followedByWhitespace;
     }
 }
