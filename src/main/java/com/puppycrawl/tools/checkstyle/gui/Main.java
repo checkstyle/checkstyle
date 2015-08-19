@@ -69,7 +69,7 @@ public final class Main {
         final JFrame testFrame = new JFrame("CheckStyle");
         final ParseTreeInfoPanel panel = new ParseTreeInfoPanel();
         testFrame.getContentPane().add(panel);
-        panel.openAst(ast, testFrame);
+        panel.openAst(ast);
         testFrame.setSize(1500, 800);
         testFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         testFrame.setVisible(true);
