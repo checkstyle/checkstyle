@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED;
 import static org.junit.Assert.assertArrayEquals;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -73,7 +72,6 @@ public class AvoidNestedBlocksCheckTest
         AvoidNestedBlocksCheck constantNameCheckObj = new AvoidNestedBlocksCheck();
         int[] actual = constantNameCheckObj.getAcceptableTokens();
         int[] expected = new int[] {TokenTypes.SLIST };
-        Assert.assertNotNull(actual);
         assertArrayEquals(expected, actual);
     }
 

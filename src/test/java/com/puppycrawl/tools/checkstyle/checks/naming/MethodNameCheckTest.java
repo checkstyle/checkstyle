@@ -23,7 +23,6 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MS
 import static com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -154,7 +153,6 @@ public class MethodNameCheckTest
         int[] expected = new int[] {
             TokenTypes.METHOD_DEF,
         };
-        Assert.assertNotNull(actual);
         assertArrayEquals(expected, actual);
     }
 }

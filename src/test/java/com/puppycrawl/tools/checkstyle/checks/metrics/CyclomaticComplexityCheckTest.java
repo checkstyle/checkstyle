@@ -72,7 +72,6 @@ public class CyclomaticComplexityCheckTest
             TokenTypes.LAND,
             TokenTypes.LOR,
         };
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 }

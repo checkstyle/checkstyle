@@ -83,7 +83,6 @@ public class TypecastParenPadCheckTest
             TokenTypes.RPAREN,
             TokenTypes.TYPECAST,
         };
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 }

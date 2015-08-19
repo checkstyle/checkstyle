@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAround
 import static org.junit.Assert.assertArrayEquals;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -281,7 +280,6 @@ public class WhitespaceAroundTest
             TokenTypes.TYPE_EXTENSION_AND,
             TokenTypes.WILDCARD_TYPE,
         };
-        Assert.assertNotNull(actual);
         assertArrayEquals(expected, actual);
     }
 }

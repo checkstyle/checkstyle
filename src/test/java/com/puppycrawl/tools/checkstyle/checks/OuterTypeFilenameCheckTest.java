@@ -23,7 +23,6 @@ import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -70,7 +69,6 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
         };
-        Assert.assertNotNull(actual);
         assertArrayEquals(expected, actual);
     }
 

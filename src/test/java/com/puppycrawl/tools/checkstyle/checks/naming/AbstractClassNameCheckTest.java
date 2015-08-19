@@ -102,7 +102,6 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
         int[] expected = new int[] {
             TokenTypes.CLASS_DEF,
         };
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 
@@ -113,7 +112,6 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
         int[] expected = new int[] {
             TokenTypes.CLASS_DEF,
         };
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 }

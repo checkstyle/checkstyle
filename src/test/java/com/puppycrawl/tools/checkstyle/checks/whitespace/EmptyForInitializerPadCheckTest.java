@@ -72,7 +72,6 @@ public class EmptyForInitializerPadCheckTest
         int[] expected = new int[] {
             TokenTypes.FOR_INIT,
         };
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 
