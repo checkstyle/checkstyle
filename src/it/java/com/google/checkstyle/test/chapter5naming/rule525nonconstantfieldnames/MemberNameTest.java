@@ -14,7 +14,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 public class MemberNameTest extends BaseCheckTestSupport{
 
 	private static ConfigurationBuilder builder;
-	private String msgKey = "name.invalidPattern";
+	private final String msgKey = "name.invalidPattern";
 	private static Configuration checkConfig;
 	private static String format;
 

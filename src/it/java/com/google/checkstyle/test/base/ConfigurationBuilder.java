@@ -19,17 +19,17 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class ConfigurationBuilder extends BaseCheckTestSupport {
 
-	private File root;
+	private final File root;
 
-	private List<File> files = new ArrayList<>();
+	private final List<File> files = new ArrayList<>();
 
 	Configuration config;
 	
 	URL url;
 	
-	String xmlName = "/google_checks.xml";
+	final String xmlName = "/google_checks.xml";
 	
-	Pattern warnPattern = Utils.createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]warn[*]/");
+	final Pattern warnPattern = Utils.createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]warn[*]/");
 
 	public ConfigurationBuilder(File aROOT)
 			throws CheckstyleException, IOException {

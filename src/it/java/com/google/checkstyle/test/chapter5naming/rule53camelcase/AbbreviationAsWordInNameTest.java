@@ -16,7 +16,7 @@ public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport{
 
     private static final String MSG_KEY = "abbreviation.as.word";
     private static ConfigurationBuilder builder;
-    private Class<AbbreviationAsWordInNameCheck> clazz = AbbreviationAsWordInNameCheck.class;
+    private final Class<AbbreviationAsWordInNameCheck> clazz = AbbreviationAsWordInNameCheck.class;
     private static Configuration checkConfig;
     
     @BeforeClass

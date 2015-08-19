@@ -15,10 +15,10 @@ import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 public class CustomImportOrderTest extends BaseCheckTestSupport{
 
     static ConfigurationBuilder builder;
-    Class<CustomImportOrderCheck> clazz = CustomImportOrderCheck.class;
-    String msgSeparator = "custom.import.order.line.separator";
-    String msgLex = "custom.import.order.lex";
-    String msgOrder = "custom.import.order";
+    final Class<CustomImportOrderCheck> clazz = CustomImportOrderCheck.class;
+    final String msgSeparator = "custom.import.order.line.separator";
+    final String msgLex = "custom.import.order.lex";
+    final String msgOrder = "custom.import.order";
     String msgNongroup = "custom.import.order.nongroup.import";
 
     /** Shortcuts to make code more compact */
