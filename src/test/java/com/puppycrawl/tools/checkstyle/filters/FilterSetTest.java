@@ -73,12 +73,6 @@ public class FilterSetTest {
     }
 
     @Test
-    public void testToString() {
-        filter.addFilter(new IntMatchFilter(0));
-        assertNotNull("toString works", filter.toString());
-    }
-
-    @Test
     public void testGetFilters2() {
         FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new SeverityMatchFilter());
