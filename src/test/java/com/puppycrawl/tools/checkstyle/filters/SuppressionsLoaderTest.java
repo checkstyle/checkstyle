@@ -90,7 +90,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
             catch (CheckstyleException ex) {
                 // for some reason Travis CI failed some times(unstable) on reading this file
                 if (attemptCount < attemptLimit
-                        && ex.getMessage().contains("unable to read")) {
+                        && ex.getMessage().contains("Unable to read")) {
                     attemptCount++;
                     // wait for bad/disconnection time to pass
                     Thread.sleep(1000);
@@ -149,7 +149,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         }
         catch (CheckstyleException ex) {
             assertEquals(
-                "unable to parse " + fn + " - Attribute \"files\" is required and must be specified for element type \"suppress\".",
+                "Unable to parse " + fn + " - Attribute \"files\" is required and must be specified for element type \"suppress\".",
                 ex.getMessage());
         }
     }
@@ -162,7 +162,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         }
         catch (CheckstyleException ex) {
             assertEquals(
-                "unable to parse " + fn + " - Attribute \"checks\" is required and must be specified for element type \"suppress\".",
+                "Unable to parse " + fn + " - Attribute \"checks\" is required and must be specified for element type \"suppress\".",
                 ex.getMessage());
         }
     }
@@ -176,7 +176,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         catch (CheckstyleException ex) {
             assertTrue(
                 ex.getMessage(),
-                ex.getMessage().startsWith("number format exception " + fn + " - "));
+                ex.getMessage().startsWith("Number format exception " + fn + " - "));
         }
     }
 
@@ -203,7 +203,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         InputSource inputSource = new InputSource(sourceName);
 
         thrown.expect(CheckstyleException.class);
-        thrown.expectMessage("unable to find " + sourceName);
+        thrown.expectMessage("Unable to find: " + sourceName);
 
         loadSuppressions.invoke(loaderClass, inputSource, sourceName);
     }
@@ -219,7 +219,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         InputSource inputSource = new InputSource();
 
         thrown.expect(CheckstyleException.class);
-        thrown.expectMessage("unable to read " + sourceName);
+        thrown.expectMessage("Unable to read " + sourceName);
 
         loadSuppressions.invoke(loaderClass, inputSource, sourceName);
     }
@@ -232,7 +232,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         }
         catch (CheckstyleException ex) {
             assertEquals(
-                "unable to parse " + fn + " - missing checks and id attribute",
+                "Unable to parse " + fn + " - missing checks and id attribute",
                 ex.getMessage());
         }
     }
@@ -251,7 +251,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         }
         catch (CheckstyleException ex) {
             assertEquals(
-                "unable to parse " + fn + " - invalid files or checks format",
+                "Unable to parse " + fn + " - invalid files or checks format",
                 ex.getMessage());
         }
     }
@@ -282,7 +282,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         }
         catch (CheckstyleException ex) {
             assertTrue(ex.getCause() instanceof  URISyntaxException);
-            assertEquals("unable to find " + fileName, ex.getMessage());
+            assertEquals("Unable to find: " + fileName, ex.getMessage());
         }
     }
 }
