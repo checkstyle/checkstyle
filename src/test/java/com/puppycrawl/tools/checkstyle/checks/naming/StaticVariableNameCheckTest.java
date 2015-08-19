@@ -24,7 +24,6 @@ import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -88,7 +87,6 @@ public class StaticVariableNameCheckTest
         int[] expected = new int[] {
             TokenTypes.VARIABLE_DEF,
         };
-        Assert.assertNotNull(actual);
         assertArrayEquals(expected, actual);
     }
 }

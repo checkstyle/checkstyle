@@ -26,7 +26,6 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -295,7 +294,6 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
             TokenTypes.LITERAL_ELSE,
             TokenTypes.LITERAL_FOR,
             TokenTypes.STATIC_INIT, };
-        Assert.assertNotNull(actual);
         assertArrayEquals(expected, actual);
     }
 

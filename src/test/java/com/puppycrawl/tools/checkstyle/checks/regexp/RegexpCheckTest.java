@@ -128,13 +128,13 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
     @Test
     public void testIllegalFailAboveErrorLimit() throws Exception {
         final String illegal = "^import";
-        final String error = "The error limit has been exceeded, "
-            + "the check is aborting, there may be more unreported errors.";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("errorLimit", "3");
+        final String error = "The error limit has been exceeded, "
+                + "the check is aborting, there may be more unreported errors.";
         final String[] expected = {
             "7: " + getCheckMessage(MSG_ILLEGAL_REGEXP, illegal),
             "8: " + getCheckMessage(MSG_ILLEGAL_REGEXP, illegal),
@@ -147,11 +147,11 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
     public void testMessagePropertyGood()
         throws Exception {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
-        final String message = "Bad line :(";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
+        final String message = "Bad line :(";
         checkConfig.addAttribute("message", message);
         final String[] expected = {
             "69: " + getCheckMessage(MSG_ILLEGAL_REGEXP, message),

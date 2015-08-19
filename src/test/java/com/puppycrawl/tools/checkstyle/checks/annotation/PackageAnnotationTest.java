@@ -47,7 +47,6 @@ public class PackageAnnotationTest extends BaseCheckTestSupport {
         PackageAnnotationCheck constantNameCheckObj = new PackageAnnotationCheck();
         int[] actual = constantNameCheckObj.getAcceptableTokens();
         int[] expected = new int[] {TokenTypes.PACKAGE_DEF };
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 

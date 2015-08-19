@@ -487,9 +487,9 @@ public class MainTest {
                 String expectedPath = currentPath
                         + "/src/test/resources/com/puppycrawl/tools/checkstyle/metrics/"
                         .replace("/", File.separator);
-                String format = "%s.java:%s: warning: File length is %s lines (max allowed is 80).";
                 StringBuilder sb = new StringBuilder();
                 sb.append("Starting audit..." + System.getProperty("line.separator"));
+                String format = "%s.java:%s: warning: File length is %s lines (max allowed is 80).";
                 for (String[] outputValue : outputValues) {
                     String line = String.format(format,
                             expectedPath + outputValue[0], outputValue[1],

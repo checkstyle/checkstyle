@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import static org.junit.Assert.assertArrayEquals;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -77,7 +76,6 @@ public class EmptyCatchBlockCheckTest extends BaseCheckTestSupport {
         EmptyCatchBlockCheck constantNameCheckObj = new EmptyCatchBlockCheck();
         int[] actual = constantNameCheckObj.getAcceptableTokens();
         int[] expected = new int[] {TokenTypes.LITERAL_CATCH };
-        Assert.assertNotNull(actual);
         assertArrayEquals(expected, actual);
     }
 

@@ -23,7 +23,6 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MS
 import static org.junit.Assert.assertArrayEquals;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -86,7 +85,6 @@ public class LocalFinalVariableNameCheckTest
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
         };
-        Assert.assertNotNull(actual);
         assertArrayEquals(expected, actual);
     }
 }
