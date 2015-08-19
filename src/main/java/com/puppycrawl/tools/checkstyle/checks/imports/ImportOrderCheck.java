@@ -341,14 +341,14 @@ public class ImportOrderCheck
         }
 
         final boolean isStaticAndNotLastImport = isStatic && !lastImportStatic;
-        final boolean isNotStaticAndLastImport = !isStatic && lastImportStatic;
+        final boolean isLastImportAndNonStatic = lastImportStatic && !isStatic;
         final ImportOrderOption abstractOption = getAbstractOption();
 
         // using set of IF instead of SWITCH to analyze Enum options to satisfy coverage.
         // https://github.com/checkstyle/checkstyle/issues/1387
         if (abstractOption == ImportOrderOption.TOP) {
 
-            if (isNotStaticAndLastImport) {
+            if (isLastImportAndNonStatic) {
                 lastGroup = Integer.MIN_VALUE;
                 lastImport = "";
             }
@@ -361,7 +361,7 @@ public class ImportOrderCheck
                 lastGroup = Integer.MIN_VALUE;
                 lastImport = "";
             }
-            doVisitToken(ident, isStatic, isNotStaticAndLastImport);
+            doVisitToken(ident, isStatic, isLastImportAndNonStatic);
 
         }
         else if (abstractOption == ImportOrderOption.ABOVE) {
@@ -370,7 +370,7 @@ public class ImportOrderCheck
 
         }
         else if (abstractOption == ImportOrderOption.UNDER) {
-            doVisitToken(ident, isStatic, isNotStaticAndLastImport);
+            doVisitToken(ident, isStatic, isLastImportAndNonStatic);
 
         }
         else if (abstractOption == ImportOrderOption.INFLOW) {
