@@ -40,7 +40,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
     /** Since I cannot get this by going <tt>T.class</tt>. */
     private final Class<T> optionClass;
     /** The policy to enforce */
-    private T option;
+    private T abstractOption;
 
     /**
      * Creates a new {@code AbstractOptionCheck} instance.
@@ -49,7 +49,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
      *        in the Java language.
      */
     protected AbstractOptionCheck(T literalDefault, Class<T> optionClass) {
-        option = literalDefault;
+        abstractOption = literalDefault;
         this.optionClass = optionClass;
     }
 
@@ -60,10 +60,11 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
      */
     public void setOption(String optionStr) {
         try {
-            option = Enum.valueOf(optionClass, optionStr.trim().toUpperCase(Locale.ENGLISH));
+            abstractOption =
+                    Enum.valueOf(optionClass, optionStr.trim().toUpperCase(Locale.ENGLISH));
         }
         catch (IllegalArgumentException iae) {
-            throw new ConversionException("unable to parse " + option, iae);
+            throw new ConversionException("unable to parse " + abstractOption, iae);
         }
     }
 
@@ -73,6 +74,6 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
     public T getAbstractOption() {
         // WARNING!! Do not rename this method to getOption(). It breaks
         // BeanUtils, which will silently not call setOption. Very annoying!
-        return option;
+        return abstractOption;
     }
 }
