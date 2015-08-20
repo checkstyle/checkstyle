@@ -69,9 +69,9 @@ public class ImportControlLoaderTest {
                 }
             };
         try {
-            Class<?> c = Class.forName(
+            Class<?> clazz = Class.forName(
                     "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader");
-            Method privateMethod = c.getDeclaredMethod("safeGet", Attributes.class, String.class);
+            Method privateMethod = clazz.getDeclaredMethod("safeGet", Attributes.class, String.class);
             privateMethod.setAccessible(true);
             privateMethod.invoke(null, attr, "you_cannot_find_me");
         }
@@ -89,9 +89,9 @@ public class ImportControlLoaderTest {
     public void testLoadThrowsException() throws InvocationTargetException {
         InputSource source = new InputSource();
         try {
-            Class<?> c = Class.forName(
+            Class<?> clazz = Class.forName(
                     "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader");
-            Method privateMethod = c.getDeclaredMethod("load", InputSource.class, URI.class);
+            Method privateMethod = clazz.getDeclaredMethod("load", InputSource.class, URI.class);
             privateMethod.setAccessible(true);
             privateMethod.invoke(null, source, new File(
                     "src/test/resources/com/puppycrawl/tools/checkstyle/imports/import-control_complete.xml").toURI());

@@ -192,7 +192,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
     }
 
     @Override
-    protected void verify(Checker c,
+    protected void verify(Checker checker,
                           File[] processedFiles,
                           String messageFileName,
                           String... expected)
@@ -200,7 +200,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
         stream.flush();
         final List<File> theFiles = Lists.newArrayList();
         Collections.addAll(theFiles, processedFiles);
-        final int errs = c.process(theFiles);
+        final int errs = checker.process(theFiles);
 
         // process each of the lines
         final ByteArrayInputStream bais =
@@ -217,6 +217,6 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
         assertTrue("unexpected output: " + lnr.readLine(),
                    expected.length >= errs);
 
-        c.destroy();
+        checker.destroy();
     }
 }
