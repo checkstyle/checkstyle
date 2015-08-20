@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitiali
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -72,7 +71,7 @@ public class EmptyForInitializerPadCheckTest
         int[] expected = new int[] {
             TokenTypes.FOR_INIT,
         };
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
     /* Additional test for jacoco, since valueOf()

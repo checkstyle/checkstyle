@@ -78,7 +78,7 @@ public class ModifierOrderCheckTest
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
         Assert.assertNotSame(unexpectedEmptyArray, actual);
         Assert.assertNotSame(unexpectedArray, actual);
         Assert.assertNotNull(actual);
@@ -94,7 +94,7 @@ public class ModifierOrderCheckTest
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
         Assert.assertNotSame(unexpectedEmptyArray, actual);
         Assert.assertNotSame(unexpectedArray, actual);
         Assert.assertNotNull(actual);

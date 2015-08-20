@@ -32,7 +32,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.SortedSet;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -92,7 +91,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
         final int stringNumber =
                 UniquePropertiesCheck.getLineNumber(testStrings,
                         "some key");
-        Assert.assertEquals(0, stringNumber);
+        assertEquals(0, stringNumber);
     }
 
     /**
@@ -107,15 +106,15 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
         final File file = new File(fileName);
         final SortedSet<LocalizedMessage> messages =
                 check.process(file, Collections.<String>emptyList());
-        Assert.assertEquals("Wrong messages count: " + messages.size(),
+        assertEquals("Wrong messages count: " + messages.size(),
                 1, messages.size());
         final LocalizedMessage message = messages.iterator().next();
         final String retrievedMessage = messages.iterator().next().getKey();
-        Assert.assertEquals("Message key '" + retrievedMessage
-                + "' is not valid", "unable.open.cause",
+        assertEquals("Message key '" + retrievedMessage
+                        + "' is not valid", "unable.open.cause",
                 retrievedMessage);
-        Assert.assertEquals("Message '" + message.getMessage()
-                + "' is not valid", message.getMessage(),
+        assertEquals("Message '" + message.getMessage()
+                        + "' is not valid", message.getMessage(),
                 getCheckMessage(IO_EXCEPTION_KEY, fileName, getFileNotFoundDetail(file)));
     }
 

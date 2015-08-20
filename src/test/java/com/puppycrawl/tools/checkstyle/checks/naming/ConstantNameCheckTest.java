@@ -156,6 +156,6 @@ public class ConstantNameCheckTest
             TokenTypes.VARIABLE_DEF,
         };
         Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 }
