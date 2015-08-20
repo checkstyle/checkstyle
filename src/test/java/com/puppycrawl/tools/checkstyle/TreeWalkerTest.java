@@ -136,7 +136,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(new DefaultConfiguration("default config"));
         if (System.getProperty("os.name")
-                        .toLowerCase().startsWith("windows")) {
+                        .toLowerCase(Locale.ENGLISH).startsWith("windows")) {
             // https://support.microsoft.com/en-us/kb/177506 but this only for NTFS
             // WindowsServer 2012 use Resilient File System (ReFS), so any name is ok
             File file = new File("C\\:invalid");

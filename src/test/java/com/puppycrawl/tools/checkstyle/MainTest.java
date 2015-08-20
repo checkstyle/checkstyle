@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import org.apache.commons.io.FileUtils;
@@ -406,7 +407,7 @@ public class MainTest {
         Method method = Main.class.getDeclaredMethod("loadProperties", param);
         method.setAccessible(true);
         try {
-            if (System.getProperty("os.name").toLowerCase().startsWith("windows")) {
+            if (System.getProperty("os.name").toLowerCase(Locale.ENGLISH).startsWith("windows")) {
                 // https://support.microsoft.com/en-us/kb/177506 but this only for NTFS
                 // WindowsServer 2012 use Resilient File System (ReFS), so any name is ok
                 File file = new File(File.separator + ":invalid");
