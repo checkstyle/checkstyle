@@ -252,7 +252,7 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport {
     public void testGetAcceptableTokens() {
         AnnotationUseStyleCheck constantNameCheckObj = new AnnotationUseStyleCheck();
         int[] actual = constantNameCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {TokenTypes.ANNOTATION };
+        int[] expected = {TokenTypes.ANNOTATION };
         Assert.assertArrayEquals(expected, actual);
     }
 

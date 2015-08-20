@@ -38,7 +38,7 @@ public class ModifierOrderCheckTest
     @Test
     public void testGetRequiredTokens() {
         ModifierOrderCheck checkObj = new ModifierOrderCheck();
-        int[] expected = new int[] {TokenTypes.MODIFIERS};
+        int[] expected = {TokenTypes.MODIFIERS};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -72,9 +72,9 @@ public class ModifierOrderCheckTest
     public void testGetDefaultTokens() {
         ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
         int[] actual = modifierOrderCheckObj.getDefaultTokens();
-        int[] expected = new int[] {TokenTypes.MODIFIERS};
-        int[] unexpectedEmptyArray = new int[] {};
-        int[] unexpectedArray = new int[] {
+        int[] expected = {TokenTypes.MODIFIERS};
+        int[] unexpectedEmptyArray = {};
+        int[] unexpectedArray = {
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };
@@ -88,9 +88,9 @@ public class ModifierOrderCheckTest
     public void testGetAcceptableTokens() {
         ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
         int[] actual = modifierOrderCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {TokenTypes.MODIFIERS};
-        int[] unexpectedEmptyArray = new int[] {};
-        int[] unexpectedArray = new int[] {
+        int[] expected = {TokenTypes.MODIFIERS};
+        int[] unexpectedEmptyArray = {};
+        int[] unexpectedArray = {
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };

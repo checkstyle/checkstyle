@@ -144,7 +144,7 @@ public class DetailASTTest {
                            final DetailAST prev,
                            final String filename,
                            final DetailAST root) {
-        Object[] params = new Object[] {
+        Object[] params = {
             node, parent, prev, filename, root,
         };
         String msg = MessageFormat.format(

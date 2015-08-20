@@ -37,7 +37,7 @@ public class HideUtilityClassConstructorCheckTest
     public void testGetRequiredTokens() {
         HideUtilityClassConstructorCheck checkObj =
             new HideUtilityClassConstructorCheck();
-        int[] expected = new int[] {TokenTypes.CLASS_DEF};
+        int[] expected = {TokenTypes.CLASS_DEF};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 

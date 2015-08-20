@@ -92,7 +92,7 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
     public void testGetAcceptableTokens() {
         NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
         int[] actual = npathComplexityCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.STATIC_INIT,
@@ -116,7 +116,7 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
     public void testGetRequiredTokens() {
         NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
         int[] actual = npathComplexityCheckObj.getRequiredTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.INSTANCE_INIT,

@@ -106,7 +106,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
         UnusedImportsCheck testCheckObject =
                 new UnusedImportsCheck();
         int[] actual = testCheckObject.getRequiredTokens();
-        int[] expected = new int[]{
+        int[] expected = {
             TokenTypes.IDENT,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
@@ -131,7 +131,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
         UnusedImportsCheck testCheckObject =
                 new UnusedImportsCheck();
         int[] actual = testCheckObject.getAcceptableTokens();
-        int[] expected = new int[]{
+        int[] expected = {
             TokenTypes.IDENT,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,

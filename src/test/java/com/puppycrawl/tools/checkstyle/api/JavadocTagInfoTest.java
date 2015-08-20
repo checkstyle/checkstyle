@@ -55,7 +55,7 @@ public class JavadocTagInfoTest {
      */
     @Test
     public void testTypeValues() {
-        JavadocTagInfo.Type[] expected = new JavadocTagInfo.Type[] {
+        JavadocTagInfo.Type[] expected = {
             JavadocTagInfo.Type.BLOCK,
             JavadocTagInfo.Type.INLINE,
         };
@@ -67,7 +67,7 @@ public class JavadocTagInfoTest {
     public void testAuthor() {
         final DetailAST ast = new DetailAST();
 
-        int[] validTypes = new int[] {
+        int[] validTypes = {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
@@ -85,7 +85,7 @@ public class JavadocTagInfoTest {
 
     @Test
     public void testOthers() {
-        JavadocTagInfo[] tags = new JavadocTagInfo[] {
+        JavadocTagInfo[] tags = {
             JavadocTagInfo.CODE,
             JavadocTagInfo.DOC_ROOT,
             JavadocTagInfo.LINK,
@@ -102,7 +102,7 @@ public class JavadocTagInfoTest {
             final DetailAST ast = new DetailAST();
             ast.setParent(astParent);
 
-            int[] validTypes = new int[] {
+            int[] validTypes = {
                 TokenTypes.PACKAGE_DEF,
                 TokenTypes.CLASS_DEF,
                 TokenTypes.INTERFACE_DEF,
@@ -133,7 +133,7 @@ public class JavadocTagInfoTest {
         astParent.setType(TokenTypes.LITERAL_CATCH);
         ast.setParent(astParent);
 
-        int[] validTypes = new int[] {
+        int[] validTypes = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -164,7 +164,7 @@ public class JavadocTagInfoTest {
         astParent.setType(TokenTypes.LITERAL_CATCH);
         ast.setParent(astParent);
 
-        int[] validTypes = new int[] {
+        int[] validTypes = {
             TokenTypes.VARIABLE_DEF,
         };
         for (int type: validTypes) {
@@ -184,7 +184,7 @@ public class JavadocTagInfoTest {
     public void testException() {
         final DetailAST ast = new DetailAST();
 
-        int[] validTypes = new int[] {
+        int[] validTypes = {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
         };
@@ -201,7 +201,7 @@ public class JavadocTagInfoTest {
     public void testThrows() {
         final DetailAST ast = new DetailAST();
 
-        int[] validTypes = new int[] {
+        int[] validTypes = {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
         };
@@ -218,7 +218,7 @@ public class JavadocTagInfoTest {
     public void testVersions() {
         final DetailAST ast = new DetailAST();
 
-        int[] validTypes = new int[] {
+        int[] validTypes = {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
@@ -238,7 +238,7 @@ public class JavadocTagInfoTest {
     public void testParam() {
         final DetailAST ast = new DetailAST();
 
-        int[] validTypes = new int[] {
+        int[] validTypes = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.METHOD_DEF,
@@ -263,7 +263,7 @@ public class JavadocTagInfoTest {
         astChild2.setType(TokenTypes.LITERAL_INT);
         astChild.setFirstChild(astChild2);
 
-        int[] validTypes = new int[] {
+        int[] validTypes = {
             TokenTypes.METHOD_DEF,
         };
         for (int type: validTypes) {
@@ -289,7 +289,7 @@ public class JavadocTagInfoTest {
         astChild2.setText("ObjectStreafield");
         astChild.setFirstChild(astChild2);
 
-        int[] validTypes = new int[] {
+        int[] validTypes = {
             TokenTypes.VARIABLE_DEF,
         };
         for (int type: validTypes) {
@@ -316,7 +316,7 @@ public class JavadocTagInfoTest {
         astChild.setText("writeObject");
         ast.setFirstChild(astChild);
 
-        String[] validNames = new String[] {
+        String[] validNames = {
             "writeObject",
             "readObject",
             "writeExternal",

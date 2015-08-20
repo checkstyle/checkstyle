@@ -35,7 +35,7 @@ public class JavadocTagContinuationIndentationCheckTest
     public void testGetRequiredTokens() {
         JavadocTagContinuationIndentationCheck checkObj =
             new JavadocTagContinuationIndentationCheck();
-        int[] expected = new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
+        int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 

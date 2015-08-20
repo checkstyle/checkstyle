@@ -126,7 +126,7 @@ public class EmptyLineSeparatorCheckTest
     public void testGetAcceptableTokens() {
         EmptyLineSeparatorCheck emptyLineSeparatorCheckObj = new EmptyLineSeparatorCheck();
         int[] actual = emptyLineSeparatorCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
             TokenTypes.CLASS_DEF,

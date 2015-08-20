@@ -65,7 +65,7 @@ public class ScopeTest {
 
     @Test
     public void testMixedCaseSpacesWithDifferentLocales() {
-        Locale[] differentLocales = new Locale[] {new Locale("TR", "tr") };
+        Locale[] differentLocales = {new Locale("TR", "tr") };
         Locale defaultLocale = Locale.getDefault();
         try {
             for (Locale differentLocale : differentLocales) {

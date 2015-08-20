@@ -35,7 +35,7 @@ public class IllegalImportCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         IllegalImportCheck checkObj = new  IllegalImportCheck();
-        int[] expected = new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -72,7 +72,7 @@ public class IllegalImportCheckTest extends BaseCheckTestSupport {
         IllegalImportCheck testCheckObject =
                 new IllegalImportCheck();
         int[] actual = testCheckObject.getAcceptableTokens();
-        int[] expected = new int[]{TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
 
         assertArrayEquals(expected, actual);
     }

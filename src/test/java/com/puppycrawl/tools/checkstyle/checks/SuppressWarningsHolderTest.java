@@ -34,7 +34,7 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         SuppressWarningsHolder checkObj = new SuppressWarningsHolder();
-        int[] expected = new int[] {TokenTypes.ANNOTATION};
+        int[] expected = {TokenTypes.ANNOTATION};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 

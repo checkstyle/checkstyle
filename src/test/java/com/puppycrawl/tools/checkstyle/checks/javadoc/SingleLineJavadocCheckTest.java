@@ -33,14 +33,14 @@ public class SingleLineJavadocCheckTest extends BaseCheckTestSupport {
     @Test
     public void testAcceptableTokens() {
         SingleLineJavadocCheck checkObj = new SingleLineJavadocCheck();
-        int[] expected = new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
+        int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
         assertArrayEquals(expected, checkObj.getAcceptableTokens());
     }
 
     @Test
     public void testGetRequiredTokens() {
         SingleLineJavadocCheck checkObj = new SingleLineJavadocCheck();
-        int[] expected = new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
+        int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 

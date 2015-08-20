@@ -474,7 +474,7 @@ public class MainTest {
     public void testExistingDirectoryWithViolations() throws Exception {
 
         // we just reference there all violations
-        final String[][] outputValues = new String[][]{
+        final String[][] outputValues = {
             {"JavaNCSSCheckTestInput", "1", "84"},
         };
 

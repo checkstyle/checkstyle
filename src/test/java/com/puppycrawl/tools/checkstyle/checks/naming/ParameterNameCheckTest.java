@@ -34,7 +34,7 @@ public class ParameterNameCheckTest
     @Test
     public void testGetRequiredTokens() {
         ParameterNameCheck checkObj = new ParameterNameCheck();
-        int[] expected = new int[] {TokenTypes.PARAMETER_DEF};
+        int[] expected = {TokenTypes.PARAMETER_DEF};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -80,7 +80,7 @@ public class ParameterNameCheckTest
     public void testGetAcceptableTokens() {
         ParameterNameCheck parameterNameCheckObj = new ParameterNameCheck();
         int[] actual = parameterNameCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.PARAMETER_DEF,
         };
         assertArrayEquals(expected, actual);

@@ -50,7 +50,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         CustomImportOrderCheck checkObj = new CustomImportOrderCheck();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
             TokenTypes.PACKAGE_DEF,
@@ -322,7 +322,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
         CustomImportOrderCheck testCheckObject =
                 new CustomImportOrderCheck();
         int[] actual = testCheckObject.getAcceptableTokens();
-        int[] expected = new int[]{
+        int[] expected = {
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
             TokenTypes.PACKAGE_DEF,

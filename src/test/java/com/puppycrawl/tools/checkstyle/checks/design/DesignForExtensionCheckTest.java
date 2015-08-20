@@ -34,7 +34,7 @@ public class DesignForExtensionCheckTest
     @Test
     public void testGetRequiredTokens() {
         DesignForExtensionCheck checkObj = new DesignForExtensionCheck();
-        int[] expected = new int[] {TokenTypes.METHOD_DEF};
+        int[] expected = {TokenTypes.METHOD_DEF};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
