@@ -69,8 +69,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testLoadFromURL()
-        throws CheckstyleException, InterruptedException {
+    public void testLoadFromURL() throws Exception {
         boolean online = isInternetReachable();
 
         Assume.assumeTrue(online);

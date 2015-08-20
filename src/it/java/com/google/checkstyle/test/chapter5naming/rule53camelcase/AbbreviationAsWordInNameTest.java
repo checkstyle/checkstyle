@@ -26,7 +26,7 @@ public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void abbreviationAsWordInNameTest() throws IOException, Exception {
+    public void abbreviationAsWordInNameTest() throws Exception {
 
         int maxCapitalCount = 1;
         String msg = getCheckMessage(clazz, MSG_KEY, maxCapitalCount);

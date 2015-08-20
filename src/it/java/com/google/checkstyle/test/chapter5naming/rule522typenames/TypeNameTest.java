@@ -21,7 +21,7 @@ public class TypeNameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void typeNameTest() throws IOException, Exception {
+    public void typeNameTest() throws Exception {
 
         Configuration checkConfig = builder.getCheckConfig("TypeName");
         String msgKey = "name.invalidPattern";
