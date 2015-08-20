@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
 
 public class SuppressWarningsFilterTest
     extends BaseCheckTestSupport {
-    private static final String[] sAllMessages = {
+    private static final String[] ALL_MESSAGES = {
         "22:45: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "24:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "25:17: Name 'K' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -81,7 +81,7 @@ public class SuppressWarningsFilterTest
         String... aSuppressed) throws Exception {
         verify(createChecker(aFilterConfig),
             getPath("filters/InputSuppressWarningsFilter.java"),
-            removeSuppressed(sAllMessages, aSuppressed));
+            removeSuppressed(ALL_MESSAGES, aSuppressed));
     }
 
     @Override
