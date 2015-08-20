@@ -57,7 +57,7 @@ public class AvoidNestedBlocksCheckTest
         throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidNestedBlocksCheck.class);
-        checkConfig.addAttribute("allowInSwitchCase", Boolean.TRUE.toString());
+        checkConfig.addAttribute("allowInSwitchCase", "true");
 
         final String[] expected = {
             "22:9: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
