@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import static org.apache.commons.lang3.ArrayUtils.EMPTY_BYTE_ARRAY;
+import static org.apache.commons.lang3.ArrayUtils.EMPTY_OBJECT_ARRAY;
 import static org.junit.Assert.assertEquals;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
@@ -74,7 +76,7 @@ public class LocalizedMessageTest {
         ClassLoader classloader = mock(ClassLoader.class);
         final URLConnection mockConnection = Mockito.mock(URLConnection.class);
         when(mockConnection.getInputStream()).thenReturn(
-                new ByteArrayInputStream(new byte[]{}));
+                new ByteArrayInputStream(EMPTY_BYTE_ARRAY));
 
         URL url = getMockUrl(mockConnection);
         String resource = "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";
@@ -139,7 +141,7 @@ public class LocalizedMessageTest {
 
     private static LocalizedMessage createSampleLocalizedMessage() {
         return new LocalizedMessage(0, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
-                "empty.statement", new Object[]{}, "module", LocalizedMessage.class, null);
+                "empty.statement", EMPTY_OBJECT_ARRAY, "module", LocalizedMessage.class, null);
     }
 
     @After
