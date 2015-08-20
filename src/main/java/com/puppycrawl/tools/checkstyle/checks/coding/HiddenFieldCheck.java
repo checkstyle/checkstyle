@@ -23,7 +23,6 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import com.google.common.base.Objects;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.Utils;
@@ -619,7 +618,7 @@ public class HiddenFieldCheck
         private boolean embeddedIn(String classOrEnumName) {
             FieldFrame currentFrame = this;
             while (currentFrame != null) {
-                if (Objects.equal(currentFrame.frameName, classOrEnumName)) {
+                if (java.util.Objects.equals(currentFrame.frameName, classOrEnumName)) {
                     return true;
                 }
                 currentFrame = currentFrame.parent;
