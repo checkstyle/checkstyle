@@ -54,7 +54,7 @@ public final class ExecutableStatementCountCheck
 
     /** Constructs a {@code ExecutableStatementCountCheck}. */
     public ExecutableStatementCountCheck() {
-        setMax(DEFAULT_MAX);
+        this.max = DEFAULT_MAX;
     }
 
     @Override
