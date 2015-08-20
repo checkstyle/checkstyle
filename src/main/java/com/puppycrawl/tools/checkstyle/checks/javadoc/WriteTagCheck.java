@@ -164,8 +164,7 @@ public class WriteTagCheck
             log(lineNo, MISSING_TAG, tag);
         }
         else {
-            checkTag(lineNo, cmt.getText(), tag, tagRE, tagFormatRE,
-                tagFormat);
+            checkTag(lineNo, cmt.getText());
         }
     }
 
@@ -173,42 +172,30 @@ public class WriteTagCheck
      * Verifies that a type definition has a required tag.
      * @param lineNo the line number for the type definition.
      * @param comment the Javadoc comment for the type definition.
-     * @param tagName the required tag name.
-     * @param tagRegexp regexp for the full tag.
-     * @param formatRE regexp for the tag value.
-     * @param format pattern for the tag value.
      */
-    private void checkTag(
-            int lineNo,
-            String[] comment,
-            String tagName,
-            Pattern tagRegexp,
-            Pattern formatRE,
-            String format) {
-        if (tagRegexp == null) {
+    private void checkTag(int lineNo, String... comment) {
+        if (tagRE == null) {
             return;
         }
 
         int tagCount = 0;
         for (int i = 0; i < comment.length; i++) {
             final String s = comment[i];
-            final Matcher matcher = tagRegexp.matcher(s);
+            final Matcher matcher = tagRE.matcher(s);
             if (matcher.find()) {
                 tagCount += 1;
                 final int contentStart = matcher.start(1);
                 final String content = s.substring(contentStart);
-                if (formatRE != null && !formatRE.matcher(content).find()) {
-                    log(lineNo + i - comment.length, TAG_FORMAT, tagName,
-                        format);
+                if (tagFormatRE != null && !tagFormatRE.matcher(content).find()) {
+                    log(lineNo + i - comment.length, TAG_FORMAT, tag, tagFormat);
                 }
                 else {
-                    logTag(lineNo + i - comment.length, tagName, content);
+                    logTag(lineNo + i - comment.length, tag, content);
                 }
-
             }
         }
         if (tagCount == 0) {
-            log(lineNo, MISSING_TAG, tagName);
+            log(lineNo, MISSING_TAG, tag);
         }
 
     }
