@@ -66,7 +66,9 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
     public void initialize(Token tok) {
         super.initialize(tok);
         lineNo = tok.getLine();
-        columnNo = tok.getColumn() - 1; // expect columns to start @ 0
+
+        // expect columns to start @ 0
+        columnNo = tok.getColumn() - 1;
     }
 
     @Override

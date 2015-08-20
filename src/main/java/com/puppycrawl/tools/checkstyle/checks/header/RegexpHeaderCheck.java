@@ -88,7 +88,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
                 if (!isMatch) {
                     log(i + 1, "header.mismatch", getHeaderLines().get(
                             headerLineNo));
-                    break; // stop checking
+                    break;
                 }
                 if (!isMultiLine(headerLineNo)) {
                     headerLineNo++;

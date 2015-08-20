@@ -195,7 +195,9 @@ public class XMLLogger
         }
 
         if (ent.charAt(1) == '#') {
-            int prefixLength = 2; // "&#"
+            // prefix is "&#"
+            int prefixLength = 2;
+
             int radix = BASE_10;
             if (ent.charAt(2) == 'x') {
                 prefixLength++;

@@ -69,7 +69,8 @@ public class IllegalTokenTextCheck
      * Instantiates a new instance.
      */
     public IllegalTokenTextCheck() {
-        super("$^"); // the empty language
+        // the empty language
+        super("$^");
     }
 
     @Override

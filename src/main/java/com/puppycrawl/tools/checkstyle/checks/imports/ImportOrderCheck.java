@@ -239,7 +239,8 @@ public class ImportOrderCheck
             // if the pkg name is the wildcard, make it match zero chars
             // from any name, so it will always be used as last resort.
             if (WILDCARD_GROUP_NAME.equals(pkg)) {
-                grp = Pattern.compile(""); // matches any package
+                // matches any package
+                grp = Pattern.compile("");
             }
             else if (Utils.startsWithChar(pkg, '/')) {
                 if (!Utils.endsWithChar(pkg, '/')) {

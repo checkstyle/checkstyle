@@ -334,7 +334,9 @@ public final class CheckUtils {
         // Check the name matches format setX...
         final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
         final String name = type.getNextSibling().getText();
-        if (!name.matches("^set[A-Z].*")) { // Depends on JDK 1.4
+
+        // Depends on JDK 1.4
+        if (!name.matches("^set[A-Z].*")) {
             return false;
         }
 
@@ -380,7 +382,9 @@ public final class CheckUtils {
         // check that the format isX is only used with a boolean type.
         final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
         final String name = type.getNextSibling().getText();
-        if (!name.matches("^(is|get)[A-Z].*")) { // Depends on JDK 1.4
+
+        // Depends on JDK 1.4
+        if (!name.matches("^(is|get)[A-Z].*")) {
             return false;
         }
 

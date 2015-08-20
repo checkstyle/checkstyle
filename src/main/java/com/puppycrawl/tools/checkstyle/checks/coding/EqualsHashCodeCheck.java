@@ -104,7 +104,7 @@ public class EqualsHashCodeCheck
         else if (type.getFirstChild().getType() == TokenTypes.LITERAL_INT
                 && "hashCode".equals(methodName.getText())
                 && modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
-                && parameters.getFirstChild() == null) { // no params
+                && parameters.getFirstChild() == null) {
             objBlockWithHashCode.add(ast.getParent());
         }
     }

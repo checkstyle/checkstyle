@@ -78,7 +78,9 @@ class Guard {
         this.regExp = regExp;
         pkgName = null;
         this.className = className;
-        exactMatch = true; // not used.
+
+        // not used
+        exactMatch = true;
     }
 
     /**

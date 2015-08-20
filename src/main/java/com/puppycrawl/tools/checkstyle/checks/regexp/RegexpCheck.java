@@ -116,7 +116,8 @@ public class RegexpCheck extends AbstractFormatCheck {
      * Instantiates an new RegexpCheck.
      */
     public RegexpCheck() {
-        super("$^", Pattern.MULTILINE); // the empty language
+        // the empty language
+        super("$^", Pattern.MULTILINE);
     }
 
     /**

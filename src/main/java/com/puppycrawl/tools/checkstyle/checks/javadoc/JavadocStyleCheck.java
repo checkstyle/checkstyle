@@ -389,7 +389,8 @@ public class JavadocStyleCheck
         }
 
         // Identify any tags left on the stack.
-        String lastFound = ""; // Skip multiples, like <b>...<b>
+        // Skip multiples, like <b>...<b>
+        String lastFound = "";
         final List<String> typeParameters = CheckUtils.getTypeParameterNames(ast);
         for (final HtmlTag htag : htmlStack) {
             if (!isSingleTag(htag)
@@ -426,7 +427,8 @@ public class JavadocStyleCheck
         }
 
         // Output the unterminated tags, if any
-        String lastFound = ""; // Skip multiples, like <b>..<b>
+        // Skip multiples, like <b>..<b>
+        String lastFound = "";
         for (final HtmlTag htag : unclosedTags) {
             lastOpenTag = htag;
             if (lastOpenTag.getId().equals(lastFound)) {

@@ -48,7 +48,7 @@ public abstract class Check extends AbstractViolationReporter {
     private LocalizedMessages messages;
 
     /** The tab width for column reporting */
-    private int tabWidth = DEFAULT_TAB_WIDTH; // meaningful default
+    private int tabWidth = DEFAULT_TAB_WIDTH;
 
     /**
      * The class loader to load external classes. Not initialised as this must

@@ -101,7 +101,7 @@ class SinglelineDetector {
                 // check if the expression is on the rest of the line
                 checkLine(lineno, line, matcher, endCol);
             }
-            return; // end processing here
+            return;
         }
 
         currentMatches++;
