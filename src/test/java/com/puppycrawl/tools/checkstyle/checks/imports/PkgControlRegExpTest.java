@@ -30,7 +30,7 @@ public class PkgControlRegExpTest {
     private final PkgControl pcCommon = new PkgControl(pcRoot, "common");
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         pcRoot.addGuard(new Guard(false, false, ".*\\.(spring|lui)framework", false, true));
         pcRoot.addGuard(new Guard(false, false, "org\\.hibernate", false, true));
         pcRoot.addGuard(new Guard(true, false, "org\\.(apache|lui)\\.commons", false, true));
