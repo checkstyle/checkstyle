@@ -345,7 +345,6 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
             actual = m.invoke(t, (DetailAST) null);
         }
         catch (Exception e) {
-            e.printStackTrace();
             actual = null;
         }
 
