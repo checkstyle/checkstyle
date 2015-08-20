@@ -233,10 +233,7 @@ public class UtilsTest {
             assertEquals("given id " + id, expected.getMessage());
 
         }
-        catch (IllegalAccessException e) {
-            fail();
-        }
-        catch (NoSuchFieldException e) {
+        catch (IllegalAccessException | NoSuchFieldException e) {
             fail();
         }
     }
