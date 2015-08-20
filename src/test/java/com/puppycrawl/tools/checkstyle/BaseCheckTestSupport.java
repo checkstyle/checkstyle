@@ -55,16 +55,16 @@ public abstract class BaseCheckTestSupport {
     protected Checker createChecker(Configuration checkConfig)
             throws Exception {
         final DefaultConfiguration dc = createCheckerConfig(checkConfig);
-        final Checker c = new Checker();
+        final Checker checker = new Checker();
         // make sure the tests always run with default error messages (language-invariant)
         // so the tests don't fail in supported locales like German
         final Locale locale = Locale.ROOT;
-        c.setLocaleCountry(locale.getCountry());
-        c.setLocaleLanguage(locale.getLanguage());
-        c.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        c.configure(dc);
-        c.addListener(new BriefLogger(stream));
-        return c;
+        checker.setLocaleCountry(locale.getCountry());
+        checker.setLocaleLanguage(locale.getLanguage());
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(dc);
+        checker.addListener(new BriefLogger(stream));
+        return checker;
     }
 
     protected DefaultConfiguration createCheckerConfig(Configuration config) {
@@ -93,22 +93,22 @@ public abstract class BaseCheckTestSupport {
         verify(createChecker(aConfig), fileName, fileName, expected);
     }
 
-    protected void verify(Checker c, String fileName, String... expected)
+    protected void verify(Checker checker, String fileName, String... expected)
             throws Exception {
-        verify(c, fileName, fileName, expected);
+        verify(checker, fileName, fileName, expected);
     }
 
-    protected void verify(Checker c,
+    protected void verify(Checker checker,
                           String processedFilename,
                           String messageFileName,
                           String... expected)
             throws Exception {
-        verify(c,
+        verify(checker,
                 new File[]{new File(processedFilename)},
                 messageFileName, expected);
     }
 
-    protected void verify(Checker c,
+    protected void verify(Checker checker,
                           File[] processedFiles,
                           String messageFileName,
                           String... expected)
@@ -116,7 +116,7 @@ public abstract class BaseCheckTestSupport {
         stream.flush();
         final List<File> theFiles = Lists.newArrayList();
         Collections.addAll(theFiles, processedFiles);
-        final int errs = c.process(theFiles);
+        final int errs = checker.process(theFiles);
 
         // process each of the lines
         final ByteArrayInputStream bais =
@@ -132,7 +132,7 @@ public abstract class BaseCheckTestSupport {
 
         assertEquals("unexpected output: " + lnr.readLine(),
                 expected.length, errs);
-        c.destroy();
+        checker.destroy();
     }
 
     /**

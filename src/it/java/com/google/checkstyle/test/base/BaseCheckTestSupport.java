@@ -61,16 +61,16 @@ public abstract class BaseCheckTestSupport
         throws Exception
     {
         final DefaultConfiguration dc = createCheckerConfig(aCheckConfig);
-        final Checker c = new Checker();
+        final Checker checker = new Checker();
         // make sure the tests always run with english error messages
         // so the tests don't fail in supported locales like german
         final Locale locale = Locale.ENGLISH;
-        c.setLocaleCountry(locale.getCountry());
-        c.setLocaleLanguage(locale.getLanguage());
-        c.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        c.configure(dc);
-        c.addListener(new BriefLogger(stream));
-        return c;
+        checker.setLocaleCountry(locale.getCountry());
+        checker.setLocaleLanguage(locale.getLanguage());
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(dc);
+        checker.addListener(new BriefLogger(stream));
+        return checker;
     }
 
     protected DefaultConfiguration createCheckerConfig(Configuration aConfig)
