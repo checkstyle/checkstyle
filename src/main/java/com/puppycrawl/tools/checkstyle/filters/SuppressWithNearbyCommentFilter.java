@@ -195,7 +195,8 @@ public class SuppressWithNearbyCommentFilter
     @Override
     public boolean accept(AuditEvent event) {
         if (event.getLocalizedMessage() == null) {
-            return true;        // A special event.
+            // A special event
+            return true;
         }
 
         // Lazy update. If the first event for the current file, update file

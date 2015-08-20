@@ -42,7 +42,8 @@ public final class ScopeUtils {
      * @return a {@code Scope} value
      */
     public static Scope getScopeFromMods(DetailAST aMods) {
-        Scope retVal = Scope.PACKAGE; // default scope
+        // default scope
+        Scope retVal = Scope.PACKAGE;
         for (AST token = aMods.getFirstChild(); token != null
                 && retVal == Scope.PACKAGE;
                 token = token.getNextSibling()) {
@@ -83,7 +84,8 @@ public final class ScopeUtils {
             }
             else if (type == TokenTypes.LITERAL_NEW) {
                 retVal = Scope.ANONINNER;
-                break; //because Scope.ANONINNER is not in any other Scope
+                // because Scope.ANONINNER is not in any other Scope
+                break;
             }
         }
 
@@ -114,7 +116,7 @@ public final class ScopeUtils {
                 || type == TokenTypes.ENUM_DEF
                 || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.LITERAL_NEW) {
-                break; // in a class, enum or annotation
+                break;
             }
         }
 
@@ -143,7 +145,7 @@ public final class ScopeUtils {
                 || type == TokenTypes.ENUM_DEF
                 || type == TokenTypes.INTERFACE_DEF
                 || type == TokenTypes.LITERAL_NEW) {
-                break; // in a class, enum or interface
+                break;
             }
 
         }
@@ -185,7 +187,7 @@ public final class ScopeUtils {
                 || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.LITERAL_NEW) {
-                break; // in an interface, annotation or class
+                break;
             }
         }
 

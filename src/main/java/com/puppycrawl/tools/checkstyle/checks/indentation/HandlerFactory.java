@@ -88,8 +88,10 @@ public class HandlerFactory {
     private void register(int type, Class<?> handlerClass) {
         final Constructor<?> ctor = Utils.getConstructor(handlerClass,
                 IndentationCheck.class,
-                DetailAST.class, // current AST
-                AbstractExpressionHandler.class // parent
+                // current AST
+                DetailAST.class,
+                // parent
+                AbstractExpressionHandler.class
         );
         typeHandlers.put(type, ctor);
     }

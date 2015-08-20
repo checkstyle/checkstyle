@@ -78,7 +78,7 @@ public class HideUtilityClassConstructorCheck extends Check {
 
         // figure out if class extends java.lang.object directly
         // keep it simple for now and get a 99% solution
-        final boolean extendsJLO = // J.Lo even made it into in our sources :-)
+        final boolean extendsJLO =
             ast.findFirstToken(TokenTypes.EXTENDS_CLAUSE) == null;
 
         final boolean isUtilClass = extendsJLO && hasMethodOrField

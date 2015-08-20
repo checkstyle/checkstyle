@@ -517,7 +517,7 @@ public final class JavadocTokenTypes {
      * }
      * </pre>
      */
-    public static final int JAVADOC_INLINE_TAG_END = JavadocParser.JAVADOC_INLINE_TAG_END; // '}'
+    public static final int JAVADOC_INLINE_TAG_END = JavadocParser.JAVADOC_INLINE_TAG_END;
 
     /**
      * '@code' literal in {&#64;code} Javadoc inline tag.
@@ -1423,11 +1423,17 @@ public final class JavadocTokenTypes {
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /////////////////////// SINGLETON HTML TAGS  //////////////////////////////////////////////////
+    /**
+     * Parent node for all singleton html tags.
+     */
     public static final int SINGLETON_ELEMENT = JavadocParser.RULE_singletonElement
-            + RULE_TYPES_OFFSET; // parent node for all singleton tags
+            + RULE_TYPES_OFFSET;
 
+    /**
+     * Non-special singleton html tag.
+     */
     public static final int SINGLETON_TAG = JavadocParser.RULE_singletonTag
-            + RULE_TYPES_OFFSET; // non-special singleton tag
+            + RULE_TYPES_OFFSET;
 
     public static final int AREA_TAG = JavadocParser.RULE_areaTag + RULE_TYPES_OFFSET;
     public static final int AREA_HTML_TAG_NAME = JavadocParser.AREA_HTML_TAG_NAME;
@@ -1469,27 +1475,55 @@ public final class JavadocTokenTypes {
     public static final int PARAM_HTML_TAG_NAME = JavadocParser.PARAM_HTML_TAG_NAME;
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
-    // HTML comments
     public static final int HTML_COMMENT = JavadocParser.RULE_htmlComment
             + RULE_TYPES_OFFSET
             + RULE_TYPES_OFFSET;
-    public static final int HTML_COMMENT_START = JavadocParser.HTML_COMMENT_START; // <!---
-    public static final int HTML_COMMENT_END = JavadocParser.HTML_COMMENT_END; // -->
 
-    public static final int CDATA = JavadocParser.CDATA; // '<![CDATA[...]]>'
+    /**
+     * HTML comment start symbol '&lt;!--'.
+     */
+    public static final int HTML_COMMENT_START = JavadocParser.HTML_COMMENT_START;
+
+    /**
+     * HTML comment end symbol '--&gt;'.
+     */
+    public static final int HTML_COMMENT_END = JavadocParser.HTML_COMMENT_END;
+
+    /**
+     * &lt;![CDATA[...]]&gt; block.
+     */
+    public static final int CDATA = JavadocParser.CDATA;
 
     //--------------------------------------------------------------------------------------------//
     //------------------        OTHER          ---------------------------------------------------//
     //--------------------------------------------------------------------------------------------//
 
     public static final int LEADING_ASTERISK = JavadocParser.LEADING_ASTERISK;
-    public static final int NEWLINE = JavadocParser.NEWLINE; // \n
-    public static final int CHAR = JavadocParser.CHAR; // any symbol
-    public static final int WS = JavadocParser.WS; // whitespace, \t
-    public static final int TEXT = JavadocParser.RULE_text
-            + RULE_TYPES_OFFSET; // CHAR and WS sequence
 
-    public static final int EOF = JavadocParser.EOF; // end of file
+    /**
+     * Newline symbol - '\n'.
+     */
+    public static final int NEWLINE = JavadocParser.NEWLINE;
+
+    /**
+     * Any other symbol.
+     */
+    public static final int CHAR = JavadocParser.CHAR;
+
+    /**
+     * Whitespace or tab ('\t') symbol.
+     */
+    public static final int WS = JavadocParser.WS;
+
+    /**
+     * CHAR and WS sequence.
+     */
+    public static final int TEXT = JavadocParser.RULE_text + RULE_TYPES_OFFSET;
+
+    /**
+     * End Of File symbol
+     */
+    public static final int EOF = JavadocParser.EOF;
 
     private JavadocTokenTypes() {
     }

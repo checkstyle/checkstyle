@@ -117,7 +117,8 @@ public class MethodNameCheck
     public void visitToken(DetailAST ast) {
         if (!AnnotationUtility.containsAnnotation(ast, OVERRIDE)
             && !AnnotationUtility.containsAnnotation(ast, CANONICAL_OVERRIDE)) {
-            super.visitToken(ast); // Will check the name against the format.
+            // Will check the name against the format.
+            super.visitToken(ast);
         }
 
         if (!allowClassName) {

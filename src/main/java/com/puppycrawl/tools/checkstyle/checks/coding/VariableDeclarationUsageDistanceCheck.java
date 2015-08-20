@@ -354,7 +354,8 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
                             }
                         }
                     }
-                    else { // is not method call
+                    else {
+                        // is not method call
                         result = false;
                     }
                     break;
@@ -416,7 +417,8 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
                             if (isVariableInOperatorExpr(currentAst, variableIdentAst)) {
                                 dist++;
                             }
-                            else { // variable usage is in inner scope
+                            else {
+                                // variable usage is in inner scope
                                 // reset counters, because we can't determine distance
                                 dist = 0;
                             }

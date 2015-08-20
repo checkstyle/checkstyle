@@ -524,7 +524,7 @@ public final class TreeWalker
 
             CommonHiddenStreamToken tokenBefore = curNode.getHiddenBefore();
             DetailAST currentSibling = curNode;
-            while (tokenBefore != null) { // threat multiple comments
+            while (tokenBefore != null) {
                 final DetailAST newCommentNode =
                          createCommentAstFromToken(tokenBefore);
 
