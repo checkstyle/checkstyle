@@ -72,7 +72,7 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 				absoluteRootPath.lastIndexOf("src"));
 		for (File file : files) {
 			if (file.toString().endsWith(aFileName+".java")) {
-				return rootPath + file.toString();
+				return rootPath + file;
 			}
 		}
 		return null;
