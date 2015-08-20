@@ -25,7 +25,6 @@ import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URI;
-import java.net.URISyntaxException;
 
 import org.junit.Test;
 import org.xml.sax.Attributes;
@@ -44,7 +43,7 @@ public class ImportControlLoaderTest {
     }
 
     @Test(expected = CheckstyleException.class)
-    public void testWrongFormatURI() throws CheckstyleException, URISyntaxException {
+    public void testWrongFormatURI() throws Exception {
         final PkgControl root =
                 ImportControlLoader.load(
                         new URI("aaa://src/test/resources/com/puppycrawl/tools/checkstyle/imports/import-control_complete.xml"));
@@ -52,7 +51,7 @@ public class ImportControlLoaderTest {
     }
 
     @Test
-    public void testExtraElementInConfig() throws CheckstyleException, URISyntaxException {
+    public void testExtraElementInConfig() throws Exception {
         final PkgControl root =
                 ImportControlLoader.load(new File(
                         "src/test/resources/com/puppycrawl/tools/checkstyle/imports/import-control_WithNewElement.xml").toURI());

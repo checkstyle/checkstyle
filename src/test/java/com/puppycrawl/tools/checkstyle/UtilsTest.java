@@ -204,7 +204,7 @@ public class UtilsTest {
     }
 
     @Test
-    public void testTokenValueIncorrect2() throws NoSuchMethodException, IllegalAccessException {
+    public void testTokenValueIncorrect2() throws Exception {
         Integer id = 0;
         String[] originalValue = null;
         Field fieldToken = null;
