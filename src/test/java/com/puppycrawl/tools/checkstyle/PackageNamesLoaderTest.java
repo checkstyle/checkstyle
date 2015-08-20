@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static org.apache.commons.lang3.ArrayUtils.EMPTY_BYTE_ARRAY;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
@@ -115,7 +116,7 @@ public class PackageNamesLoaderTest {
 
         final URLConnection mockConnection = Mockito.mock(URLConnection.class);
         when(mockConnection.getInputStream()).thenReturn(
-                new ByteArrayInputStream(new byte[]{}));
+                new ByteArrayInputStream(EMPTY_BYTE_ARRAY));
 
         URL url = getMockUrl(mockConnection);
 
