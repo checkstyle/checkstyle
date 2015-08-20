@@ -1281,14 +1281,14 @@ public final class JavadocTokenTypes {
             + RULE_TYPES_OFFSET;
 
     /**
-     * Open html tag: {@code <XXX>}.
+     * Open html tag: &lt;XXX&gt;.
      */
     public static final int HTML_ELEMENT_OPEN = JavadocParser.RULE_htmlElementOpen
             + RULE_TYPES_OFFSET
             + RULE_TYPES_OFFSET;
 
     /**
-     * Close html tag: {@code </XXX>}.
+     * Close html tag: &lt;XXX&gt;.
      */
     public static final int HTML_ELEMENT_CLOSE = JavadocParser.RULE_htmlElementClose
             + RULE_TYPES_OFFSET;
