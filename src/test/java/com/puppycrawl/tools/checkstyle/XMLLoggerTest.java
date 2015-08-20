@@ -253,7 +253,7 @@ public class XMLLoggerTest {
         assertEquals("last line.", "</checkstyle>", lines[lines.length - 1]);
     }
 
-    private static class TestException extends Exception {
+    private static class TestException extends RuntimeException {
 
         private static final long serialVersionUID = 1L;
 
