@@ -42,7 +42,7 @@ public abstract class AbstractFileSetCheck
     private String[] fileExtensions = {};
 
     /** Collects the error messages */
-    private final LocalizedMessages messages = new LocalizedMessages();
+    private final LocalizedMessages messageCollector = new LocalizedMessages();
 
     /**
      * Called to process a file that matches the specified file extensions.
@@ -137,7 +137,7 @@ public abstract class AbstractFileSetCheck
      * @return the collector for localized messages.
      */
     protected final LocalizedMessages getMessageCollector() {
-        return messages;
+        return messageCollector;
     }
 
     @Override
