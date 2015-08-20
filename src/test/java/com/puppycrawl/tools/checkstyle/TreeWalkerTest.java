@@ -287,7 +287,41 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         treeWalker.processFiltered(file, lines);
     }
 
-    private static class BadJavaDocCheck extends Check {
+    @Test
+    public void testRequiredTokenIsNotInDefaultTokens() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RequiredTokenIsNotInDefaultsCheck.class);
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = {
+        };
+
+        try {
+            verify(checkConfig, pathToEmptyFile, expected);
+            fail();
+        }
+        catch (CheckstyleException ignored) {
+            //expected
+        }
+    }
+
+    @Test
+    public void testRequiredTokenIsEmptyIntArray() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RequiredTokenIsEmptyIntArray.class);
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = {
+        };
+
+        try {
+            verify(checkConfig, pathToEmptyFile, expected);
+        }
+        catch (CheckstyleException ignored) {
+            // unexpected
+            fail();
+        }
+    }
+
+    public static class BadJavaDocCheck extends Check {
         @Override
         public int[] getDefaultTokens() {
             return getAcceptableTokens();
@@ -301,6 +335,40 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         @Override
         public int[] getRequiredTokens() {
             return getAcceptableTokens();
+        }
+    }
+
+    public static class RequiredTokenIsNotInDefaultsCheck extends Check {
+        @Override
+        public int[] getRequiredTokens() {
+            return new int[] {TokenTypes.ASSIGN};
+        }
+
+        @Override
+        public int[] getDefaultTokens() {
+            return new int[] {TokenTypes.ANNOTATION};
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return ArrayUtils.EMPTY_INT_ARRAY;
+        }
+    }
+
+    public static class RequiredTokenIsEmptyIntArray extends Check {
+        @Override
+        public int[] getRequiredTokens() {
+            return ArrayUtils.EMPTY_INT_ARRAY;
+        }
+
+        @Override
+        public int[] getDefaultTokens() {
+            return new int[] {TokenTypes.ANNOTATION};
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return ArrayUtils.EMPTY_INT_ARRAY;
         }
     }
 

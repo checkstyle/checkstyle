@@ -247,6 +247,7 @@ public final class TreeWalker
      */
     private void registerCheck(Check check)
         throws CheckstyleException {
+        validateDefaultTokens(check);
         final int[] tokens;
         final Set<String> checkTokens = check.getTokenNames();
         if (checkTokens.isEmpty()) {
@@ -278,6 +279,24 @@ public final class TreeWalker
         }
         else {
             ordinaryChecks.add(check);
+        }
+    }
+
+    /**
+     * Validates that check's required tokens are subset of default tokens.
+     * @param check to validate
+     * @throws CheckstyleException when validation of default tokens fails
+     */
+    private static void validateDefaultTokens(Check check) throws CheckstyleException {
+        final int[] defaultTokens = check.getDefaultTokens();
+        if (check.getRequiredTokens().length != 0) {
+            Arrays.sort(defaultTokens);
+            for (final int token : check.getRequiredTokens()) {
+                if (Arrays.binarySearch(defaultTokens, token) < 0) {
+                    throw new CheckstyleException("Token \"" + token + "\" from required tokens was"
+                        + " not found in default tokens list in check " + check);
+                }
+            }
         }
     }
 
