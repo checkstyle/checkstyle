@@ -306,6 +306,7 @@
 
     <module name="ModifiedControlVariable"/>
     <module name="AvoidInlineConditionals"/>
+    <module name="IllegalType"/>
 
 <!--
     <module name="ClassDataAbstractionCoupling"/>
@@ -313,7 +314,6 @@
     <module name="ExecutableStatementCount"/>
     <module name="FinalParameters"/>
     <module name="IllegalToken"/>
-    <module name="IllegalType"/>
     <module name="JavadocParagraph"/>
     <module name="JavadocTagContinuationIndentation"/>
     <module name="JavaNCSS"/>
