@@ -60,4 +60,7 @@
 
     <suppress checks="." files=".*JavadocTokenTypes\.java"/>
     <suppress checks="." files=".*ParseTreeBuilder\.java"/>
+
+    <!-- Should be solved after fixing https://github.com/checkstyle/checkstyle/issues/1805 -->
+    <suppress checks="IllegalType" files=".*[\\/]src[\\/]test[\\/]|(AbstractTypeAwareCheck|TryHandler|SlistHandler|PrimordialHandler|MethodCallHandler|MemberDefHandler|IndentationCheck|IfHandler|HandlerFactory|CaseHandler|BlockParentHandler|AbstractExpressionHandler|JavadocMethodCheck|DetectorOptions)\.java"/>
 </suppressions>
