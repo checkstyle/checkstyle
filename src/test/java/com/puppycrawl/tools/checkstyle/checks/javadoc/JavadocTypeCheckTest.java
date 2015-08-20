@@ -48,7 +48,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         JavadocTypeCheck javadocTypeCheck = new JavadocTypeCheck();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
@@ -62,7 +62,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
         JavadocTypeCheck javadocTypeCheck = new JavadocTypeCheck();
 
         int[] actual = javadocTypeCheck.getAcceptableTokens();
-        int[] expected = new int[]{
+        int[] expected = {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,

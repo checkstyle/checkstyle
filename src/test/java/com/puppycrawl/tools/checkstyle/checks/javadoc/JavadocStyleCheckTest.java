@@ -42,7 +42,7 @@ public class JavadocStyleCheckTest
     public void testGetRequiredTokens() {
         JavadocStyleCheck javadocStyleCheck = new JavadocStyleCheck();
         int[] actual = javadocStyleCheck.getRequiredTokens();
-        int[] expected = new int[]{
+        int[] expected = {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ANNOTATION_DEF,
@@ -62,7 +62,7 @@ public class JavadocStyleCheckTest
         JavadocStyleCheck javadocStyleCheck = new JavadocStyleCheck();
 
         int[] actual = javadocStyleCheck.getAcceptableTokens();
-        int[] expected = new int[]{
+        int[] expected = {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ANNOTATION_DEF,

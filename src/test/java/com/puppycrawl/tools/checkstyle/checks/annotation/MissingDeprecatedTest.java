@@ -37,7 +37,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         MissingDeprecatedCheck checkObj = new  MissingDeprecatedCheck();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ANNOTATION_DEF,

@@ -56,7 +56,7 @@ public class GenericWhitespaceCheckTest
     @Test
     public void testGetRequiredTokens() {
         GenericWhitespaceCheck checkObj = new GenericWhitespaceCheck();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
         };
@@ -135,7 +135,7 @@ public class GenericWhitespaceCheckTest
     public void testGetAcceptableTokens() {
         GenericWhitespaceCheck genericWhitespaceCheckObj = new GenericWhitespaceCheck();
         int[] actual = genericWhitespaceCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
         };

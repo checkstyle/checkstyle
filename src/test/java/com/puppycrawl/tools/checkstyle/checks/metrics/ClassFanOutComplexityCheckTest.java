@@ -83,7 +83,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
     public void testGetAcceptableTokens() {
         ClassFanOutComplexityCheck classFanOutComplexityCheckObj = new ClassFanOutComplexityCheck();
         int[] actual = classFanOutComplexityCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,

@@ -45,7 +45,7 @@ public class JavadocTagTest {
     public void testJavadocTagTypeValues() {
         JavadocUtils.JavadocTagType[] enumConstants =
             JavadocUtils.JavadocTagType.values();
-        JavadocUtils.JavadocTagType[] expected = new JavadocUtils.JavadocTagType[] {
+        JavadocUtils.JavadocTagType[] expected = {
             JavadocUtils.JavadocTagType.BLOCK,
             JavadocUtils.JavadocTagType.INLINE,
             JavadocUtils.JavadocTagType.ALL,

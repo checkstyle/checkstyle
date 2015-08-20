@@ -89,7 +89,7 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
     public void testGetAcceptableTokens() {
         JavaNCSSCheck javaNcssCheckObj = new JavaNCSSCheck();
         int[] actual = javaNcssCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.METHOD_DEF,
@@ -127,7 +127,7 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
     public void testGetRequiredTokens() {
         JavaNCSSCheck javaNcssCheckObj = new JavaNCSSCheck();
         int[] actual = javaNcssCheckObj.getRequiredTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.METHOD_DEF,

@@ -35,7 +35,7 @@ public class InnerTypeLastCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         InnerTypeLastCheck checkObj = new InnerTypeLastCheck();
-        int[] expected = new int[] {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+        int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 

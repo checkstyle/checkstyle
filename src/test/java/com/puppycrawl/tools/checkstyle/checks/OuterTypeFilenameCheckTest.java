@@ -34,7 +34,7 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         OuterTypeFilenameCheck checkObj = new OuterTypeFilenameCheck();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -63,7 +63,7 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
     public void testGetAcceptableTokens() {
         OuterTypeFilenameCheck check = new OuterTypeFilenameCheck();
         int[] actual = check.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,

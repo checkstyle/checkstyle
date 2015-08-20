@@ -78,7 +78,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
     public void testGetAcceptableTokens() {
         AnnotationLocationCheck constantNameCheckObj = new AnnotationLocationCheck();
         int[] actual = constantNameCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,

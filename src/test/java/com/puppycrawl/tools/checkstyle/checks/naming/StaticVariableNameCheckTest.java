@@ -36,7 +36,7 @@ public class StaticVariableNameCheckTest
     @Test
     public void testGetRequiredTokens() {
         StaticVariableNameCheck checkObj = new StaticVariableNameCheck();
-        int[] excpected = new int[] {TokenTypes.VARIABLE_DEF};
+        int[] excpected = {TokenTypes.VARIABLE_DEF};
         assertArrayEquals(excpected, checkObj.getRequiredTokens());
     }
 
@@ -84,7 +84,7 @@ public class StaticVariableNameCheckTest
     public void testGetAcceptableTokens() {
         StaticVariableNameCheck staticVariableNameCheckObj = new StaticVariableNameCheck();
         int[] actual = staticVariableNameCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.VARIABLE_DEF,
         };
         assertArrayEquals(expected, actual);

@@ -275,7 +275,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     public void testGetAcceptableTokens() {
         LeftCurlyCheck check = new LeftCurlyCheck();
         int[] actual = check.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ANNOTATION_DEF,

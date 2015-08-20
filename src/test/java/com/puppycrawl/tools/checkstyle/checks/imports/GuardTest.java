@@ -44,7 +44,7 @@ public class GuardTest {
     @Test
     public void testAccessResultValues() {
         AccessResult[] actual = AccessResult.values();
-        AccessResult[] expected = new AccessResult[] {
+        AccessResult[] expected = {
             AccessResult.ALLOWED,
             AccessResult.DISALLOWED,
             AccessResult.UNKNOWN,

@@ -37,7 +37,7 @@ public class TypeParameterNameTest
     public void testGetInterfaceRequiredTokens() {
         InterfaceTypeParameterNameCheck checkObj =
             new InterfaceTypeParameterNameCheck();
-        int[] expected = new int[] {TokenTypes.TYPE_PARAMETER};
+        int[] expected = {TokenTypes.TYPE_PARAMETER};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -45,7 +45,7 @@ public class TypeParameterNameTest
     public void testGetMethodRequiredTokens() {
         MethodTypeParameterNameCheck checkObj =
             new MethodTypeParameterNameCheck();
-        int[] expected = new int[] {TokenTypes.TYPE_PARAMETER};
+        int[] expected = {TokenTypes.TYPE_PARAMETER};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -53,7 +53,7 @@ public class TypeParameterNameTest
     public void testGetClassRequiredTokens() {
         ClassTypeParameterNameCheck checkObj =
             new ClassTypeParameterNameCheck();
-        int[] expected = new int[] {TokenTypes.TYPE_PARAMETER};
+        int[] expected = {TokenTypes.TYPE_PARAMETER};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -162,7 +162,7 @@ public class TypeParameterNameTest
     public void testGetAcceptableTokens() {
         AbstractTypeParameterNameCheck typeParameterNameCheckObj = new ClassTypeParameterNameCheck();
         int[] actual = typeParameterNameCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.TYPE_PARAMETER,
         };
         assertArrayEquals(expected, actual);

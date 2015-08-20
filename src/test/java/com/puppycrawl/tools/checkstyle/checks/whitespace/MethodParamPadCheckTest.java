@@ -128,7 +128,7 @@ public class MethodParamPadCheckTest
     public void testGetAcceptableTokens() {
         MethodParamPadCheck methodParamPadCheckObj = new MethodParamPadCheck();
         int[] actual = methodParamPadCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.CTOR_DEF,
             TokenTypes.LITERAL_NEW,
             TokenTypes.METHOD_CALL,

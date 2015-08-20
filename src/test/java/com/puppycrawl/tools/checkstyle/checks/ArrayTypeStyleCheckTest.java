@@ -34,7 +34,7 @@ public class ArrayTypeStyleCheckTest
     @Test
     public void testGetRequiredTokens() {
         ArrayTypeStyleCheck checkObj = new ArrayTypeStyleCheck();
-        int[] expected = new int[] {TokenTypes.ARRAY_DECLARATOR};
+        int[] expected = {TokenTypes.ARRAY_DECLARATOR};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 

@@ -44,7 +44,7 @@ public class EmptyForInitializerPadCheckTest
     @Test
     public void testGetRequiredTokens() {
         EmptyForInitializerPadCheck checkObj = new EmptyForInitializerPadCheck();
-        int[] expected = new int[] {TokenTypes.FOR_INIT};
+        int[] expected = {TokenTypes.FOR_INIT};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -69,7 +69,7 @@ public class EmptyForInitializerPadCheckTest
     public void testGetAcceptableTokens() {
         EmptyForInitializerPadCheck emptyForInitializerPadCheckObj = new EmptyForInitializerPadCheck();
         int[] actual = emptyForInitializerPadCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.FOR_INIT,
         };
         Assert.assertArrayEquals(expected, actual);

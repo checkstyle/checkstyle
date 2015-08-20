@@ -35,7 +35,7 @@ public class UpperEllCheckTest
     @Test
     public void testGetRequiredTokens() {
         UpperEllCheck checkObj = new UpperEllCheck();
-        int[] expected = new int[] {TokenTypes.NUM_LONG};
+        int[] expected = {TokenTypes.NUM_LONG};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 

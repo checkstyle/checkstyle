@@ -35,7 +35,7 @@ public class TodoCommentCheckTest
     @Test
     public void testGetRequiredTokens() {
         TodoCommentCheck checkObj = new TodoCommentCheck();
-        int[] expected = new int[] {TokenTypes.COMMENT_CONTENT};
+        int[] expected = {TokenTypes.COMMENT_CONTENT};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 

@@ -45,7 +45,7 @@ public class TranslationCheckTest
         final String[] expected = {
             "0: " + getCheckMessage(MSG_KEY, "only.english"),
         };
-        final File[] propertyFiles = new File[] {
+        final File[] propertyFiles = {
             new File(getPath("messages_test_de.properties")),
             new File(getPath("messages_test.properties")),
         };
@@ -63,7 +63,7 @@ public class TranslationCheckTest
         final String[] expected = {
             "0: " + getCheckMessage(MSG_KEY, "only.english"),
         };
-        final File[] propertyFiles = new File[] {
+        final File[] propertyFiles = {
             new File(getPath("app-dev.properties")),
             new File(getPath("app-stage.properties")),
         };
@@ -79,7 +79,7 @@ public class TranslationCheckTest
         final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
         final String[] expected = {
         };
-        final File[] propertyFiles = new File[] {
+        final File[] propertyFiles = {
             new File(getPath("app-dev.properties")),
         };
         verify(

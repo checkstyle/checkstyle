@@ -44,7 +44,7 @@ public class JavadocParagraphCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         JavadocParagraphCheck checkObj = new JavadocParagraphCheck();
-        int[] expected = new int[] {TokenTypes.BLOCK_COMMENT_BEGIN};
+        int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 

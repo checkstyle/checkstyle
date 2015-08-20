@@ -37,7 +37,7 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         MethodCountCheck checkObj = new MethodCountCheck();
-        int[] expected = new int[] {TokenTypes.METHOD_DEF};
+        int[] expected = {TokenTypes.METHOD_DEF};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 

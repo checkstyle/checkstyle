@@ -35,7 +35,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
     public void testGetRequiredTokens() {
         AvoidEscapedUnicodeCharactersCheck checkObj =
             new AvoidEscapedUnicodeCharactersCheck();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
         };
@@ -183,7 +183,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
     public void testGetAcceptableTokens() {
         AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
         int[] actual = check.getAcceptableTokens();
-        int[] expected = new int[] {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL };
+        int[] expected = {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL };
         assertArrayEquals(expected, actual);
     }
 

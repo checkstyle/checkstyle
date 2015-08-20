@@ -33,7 +33,7 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         OuterTypeNumberCheck checkObj = new OuterTypeNumberCheck();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,

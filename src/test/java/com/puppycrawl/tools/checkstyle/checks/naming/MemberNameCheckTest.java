@@ -36,7 +36,7 @@ public class MemberNameCheckTest
     @Test
     public void testGetRequiredTokens() {
         MemberNameCheck checkObj = new MemberNameCheck();
-        int[] expected = new int[] {TokenTypes.VARIABLE_DEF};
+        int[] expected = {TokenTypes.VARIABLE_DEF};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -252,7 +252,7 @@ public class MemberNameCheckTest
     public void testGetAcceptableTokens() {
         MemberNameCheck memberNameCheckObj = new MemberNameCheck();
         int[] actual = memberNameCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.VARIABLE_DEF,
         };
         assertArrayEquals(expected, actual);

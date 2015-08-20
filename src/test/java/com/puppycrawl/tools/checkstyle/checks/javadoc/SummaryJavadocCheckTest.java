@@ -42,7 +42,7 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         SummaryJavadocCheck checkObj = new SummaryJavadocCheck();
-        int[] expected = new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
+        int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 

@@ -44,7 +44,7 @@ public class VisibilityModifierCheckTest
     @Test
     public void testGetRequiredTokens() {
         VisibilityModifierCheck checkObj = new VisibilityModifierCheck();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.IMPORT,
         };

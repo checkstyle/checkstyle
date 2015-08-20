@@ -227,7 +227,7 @@ public class WhitespaceAroundTest
     public void testGetAcceptableTokens() {
         WhitespaceAroundCheck whitespaceAroundCheckObj = new WhitespaceAroundCheck();
         int[] actual = whitespaceAroundCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.ASSIGN,
             TokenTypes.BAND,
             TokenTypes.BAND_ASSIGN,
