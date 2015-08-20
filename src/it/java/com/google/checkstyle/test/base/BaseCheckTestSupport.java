@@ -40,10 +40,6 @@ public abstract class BaseCheckTestSupport
         }
         @Override
         public void auditStarted(AuditEvent evt) {}
-        @Override
-        public void fileFinished(AuditEvent evt) {}
-        @Override
-        public void fileStarted(AuditEvent evt) {}
     }
 
     protected final ByteArrayOutputStream baos = new ByteArrayOutputStream();
