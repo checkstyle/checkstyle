@@ -69,7 +69,7 @@ public class ConfigurationLoaderTest {
     @Test
     public void testResourceLoadConfiguration() throws Exception {
         final Properties props = new Properties();
-        props.put("checkstyle.basedir", "basedir");
+        props.setProperty("checkstyle.basedir", "basedir");
 
         // load config that's only found in the classpath
         final DefaultConfiguration config = (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
@@ -77,8 +77,8 @@ public class ConfigurationLoaderTest {
 
         //verify the root, and property substitution
         final Properties atts = new Properties();
-        atts.put("tabWidth", "4");
-        atts.put("basedir", "basedir");
+        atts.setProperty("tabWidth", "4");
+        atts.setProperty("basedir", "basedir");
         verifyConfigNode(config, "Checker", 3, atts);
     }
 
@@ -148,7 +148,7 @@ public class ConfigurationLoaderTest {
     @Test
     public void testCheckstyleChecks() throws Exception {
         final Properties props = new Properties();
-        props.put("checkstyle.basedir", "basedir");
+        props.setProperty("checkstyle.basedir", "basedir");
 
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
@@ -156,8 +156,8 @@ public class ConfigurationLoaderTest {
 
         //verify the root, and property substitution
         final Properties atts = new Properties();
-        atts.put("tabWidth", "4");
-        atts.put("basedir", "basedir");
+        atts.setProperty("tabWidth", "4");
+        atts.setProperty("basedir", "basedir");
         verifyConfigNode(config, "Checker", 3, atts);
 
         //verify children
@@ -167,7 +167,7 @@ public class ConfigurationLoaderTest {
             (DefaultConfiguration) children[1], "JavadocPackage", 0, atts);
         verifyConfigNode(
             (DefaultConfiguration) children[2], "Translation", 0, atts);
-        atts.put("testName", "testValue");
+        atts.setProperty("testName", "testValue");
         verifyConfigNode(
             (DefaultConfiguration) children[0],
             "TreeWalker",
@@ -182,15 +182,15 @@ public class ConfigurationLoaderTest {
             "AvoidStarImport",
             0,
             atts);
-        atts.put("format", "System.out.println");
+        atts.setProperty("format", "System.out.println");
         verifyConfigNode(
             (DefaultConfiguration) grandchildren[grandchildren.length - 1],
             "GenericIllegalRegexp",
             0,
             atts);
         atts.clear();
-        atts.put("tokens", "DOT");
-        atts.put("allowLineBreaks", "true");
+        atts.setProperty("tokens", "DOT");
+        atts.setProperty("allowLineBreaks", "true");
         verifyConfigNode(
             (DefaultConfiguration) grandchildren[6],
             "NoWhitespaceAfter",
@@ -201,7 +201,7 @@ public class ConfigurationLoaderTest {
     @Test
     public void testCustomMessages() throws CheckstyleException {
         final Properties props = new Properties();
-        props.put("checkstyle.basedir", "basedir");
+        props.setProperty("checkstyle.basedir", "basedir");
 
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
@@ -229,7 +229,7 @@ public class ConfigurationLoaderTest {
         for (String attName : attNames) {
             assertEquals(
                 "attribute[" + attName + "]",
-                atts.get(attName),
+                atts.getProperty(attName),
                 config.getAttribute(attName));
         }
     }
@@ -301,45 +301,45 @@ public class ConfigurationLoaderTest {
 
     private static Properties initProperties() {
         final Properties props = new Properties();
-        props.put("a", "A");
-        props.put("b", "B");
+        props.setProperty("a", "A");
+        props.setProperty("b", "B");
         return props;
     }
 
     @Test
     public void testExternalEntity() throws Exception {
         final Properties props = new Properties();
-        props.put("checkstyle.basedir", "basedir");
+        props.setProperty("checkstyle.basedir", "basedir");
 
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
                 "including.xml", props);
 
         final Properties atts = new Properties();
-        atts.put("tabWidth", "4");
-        atts.put("basedir", "basedir");
+        atts.setProperty("tabWidth", "4");
+        atts.setProperty("basedir", "basedir");
         verifyConfigNode(config, "Checker", 2, atts);
     }
 
     @Test
     public void testExternalEntitySubdir() throws Exception {
         final Properties props = new Properties();
-        props.put("checkstyle.basedir", "basedir");
+        props.setProperty("checkstyle.basedir", "basedir");
 
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
                 "subdir/including.xml", props);
 
         final Properties atts = new Properties();
-        atts.put("tabWidth", "4");
-        atts.put("basedir", "basedir");
+        atts.setProperty("tabWidth", "4");
+        atts.setProperty("basedir", "basedir");
         verifyConfigNode(config, "Checker", 2, atts);
     }
 
     @Test
     public void testExternalEntityFromURI() throws Exception {
         final Properties props = new Properties();
-        props.put("checkstyle.basedir", "basedir");
+        props.setProperty("checkstyle.basedir", "basedir");
 
         final File file = new File(
                 "src/test/resources/com/puppycrawl/tools/checkstyle/configs/subdir/including.xml");
@@ -348,8 +348,8 @@ public class ConfigurationLoaderTest {
                     file.toURI().toString(), new PropertiesExpander(props));
 
         final Properties atts = new Properties();
-        atts.put("tabWidth", "4");
-        atts.put("basedir", "basedir");
+        atts.setProperty("tabWidth", "4");
+        atts.setProperty("basedir", "basedir");
         verifyConfigNode(config, "Checker", 2, atts);
     }
 
