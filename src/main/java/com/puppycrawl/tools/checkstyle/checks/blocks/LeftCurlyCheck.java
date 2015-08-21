@@ -328,11 +328,11 @@ public class LeftCurlyCheck
                                        String braceLine) {
         // not on the same line
         if (startToken.getLineNo() + 1 == brace.getLineNo()) {
-            if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
-                log(brace, MSG_KEY_LINE_NEW, "{", brace.getColumnNo() + 1);
+            if (Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
+                log(brace, MSG_KEY_LINE_PREVIOUS, "{", brace.getColumnNo() + 1);
             }
             else {
-                log(brace, MSG_KEY_LINE_PREVIOUS, "{", brace.getColumnNo() + 1);
+                log(brace, MSG_KEY_LINE_NEW, "{", brace.getColumnNo() + 1);
             }
         }
         else if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
