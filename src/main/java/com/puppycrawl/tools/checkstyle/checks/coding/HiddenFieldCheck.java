@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -610,7 +611,7 @@ public class HiddenFieldCheck
         private boolean embeddedIn(String classOrEnumName) {
             FieldFrame currentFrame = this;
             while (currentFrame != null) {
-                if (java.util.Objects.equals(currentFrame.frameName, classOrEnumName)) {
+                if (Objects.equals(currentFrame.frameName, classOrEnumName)) {
                     return true;
                 }
                 currentFrame = currentFrame.parent;

@@ -420,7 +420,7 @@ public enum JavadocTagInfo {
     }
 
     /**
-     * Gets the Tag type defined by {@link JavadocTagInfo.Type Type}.
+     * Gets the Tag type defined by {@link Type Type}.
      * @return the Tag type
      */
     public Type getType() {

@@ -274,7 +274,7 @@ public final class FileText extends AbstractList<String> {
             if (lineNo < lineBreakPositions.length) {
                 lineBreakPositions[lineNo] = fullText.length();
             }
-            this.lineBreaks = lineBreakPositions;
+            lineBreaks = lineBreakPositions;
         }
         return lineBreaks;
     }
