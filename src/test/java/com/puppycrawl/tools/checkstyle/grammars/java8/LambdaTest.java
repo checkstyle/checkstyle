@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.grammars.java8;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -34,7 +35,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest1.java").getCanonicalPath(),
                 expected);
@@ -46,7 +47,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest2.java").getCanonicalPath(),
                 expected);
@@ -58,7 +59,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest3.java").getCanonicalPath(),
                 expected);
@@ -70,7 +71,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest4.java").getCanonicalPath(),
                 expected);
@@ -82,7 +83,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest5.java").getCanonicalPath(),
                 expected);
@@ -94,7 +95,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest6.java").getCanonicalPath(),
                 expected);
@@ -106,7 +107,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest7.java").getCanonicalPath(),
                 expected);
@@ -118,7 +119,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest8.java").getCanonicalPath(),
                 expected);
@@ -130,7 +131,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest9.java").getCanonicalPath(),
                 expected);
@@ -142,7 +143,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest10.java").getCanonicalPath(),
                 expected);
@@ -154,7 +155,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest11.java").getCanonicalPath(),
                 expected);
@@ -166,7 +167,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest12.java").getCanonicalPath(),
                 expected);
@@ -178,7 +179,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest13.java").getCanonicalPath(),
                 expected);
@@ -190,7 +191,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest14.java").getCanonicalPath(),
                 expected);
@@ -202,7 +203,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest15.java").getCanonicalPath(),
                 expected);
@@ -214,7 +215,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest16.java").getCanonicalPath(),
                 expected);
@@ -226,7 +227,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest17.java").getCanonicalPath(),
                 expected);
@@ -238,7 +239,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/grammars/java8/InputLambdaTest18.java").getCanonicalPath(),
                 expected);

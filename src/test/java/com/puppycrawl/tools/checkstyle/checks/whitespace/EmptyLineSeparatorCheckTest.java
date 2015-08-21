@@ -95,9 +95,7 @@ public class EmptyLineSeparatorCheckTest
     public void testFormerArrayIndexOutOfBounds() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowMultipleEmptyLines", "false");
-        final String[] expected = {
-
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorFormerException.java"), expected);
     }
 
@@ -106,9 +104,7 @@ public class EmptyLineSeparatorCheckTest
         DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowMultipleEmptyLines", "false");
         checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "true");
-        final String[] expected = {
-
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorMultipleFieldsInClass.java"), expected);
     }
 
@@ -145,9 +141,7 @@ public class EmptyLineSeparatorCheckTest
     public void testPrePreviousLineEmpiness() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowMultipleEmptyLines", "false");
-        final String[] expected = {
-
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("whitespace/InputPrePreviousLineEmptiness.java"), expected);
     }
 }

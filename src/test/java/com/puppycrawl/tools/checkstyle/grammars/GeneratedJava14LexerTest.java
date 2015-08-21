@@ -2,6 +2,7 @@ package com.puppycrawl.tools.checkstyle.grammars;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.junit.Assume;
 import org.junit.Test;
@@ -31,9 +32,7 @@ public class GeneratedJava14LexerTest
     public void testSemicolonBetweenImports() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {
-
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                 + "checkstyle/grammars/SemicolonBetweenImports.java").getCanonicalPath(), expected);
     }

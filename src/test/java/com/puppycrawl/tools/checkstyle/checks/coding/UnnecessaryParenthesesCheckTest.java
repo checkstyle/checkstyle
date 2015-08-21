@@ -28,6 +28,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthes
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -101,7 +102,7 @@ public class UnnecessaryParenthesesCheckTest extends BaseCheckTestSupport {
     @Test
     public void test15Extensions() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(UnnecessaryParenthesesCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("Input15Extensions.java"), expected);
     }
 

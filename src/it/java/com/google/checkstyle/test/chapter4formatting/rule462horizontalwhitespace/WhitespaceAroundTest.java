@@ -3,6 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -90,7 +91,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport{
     @Test
     public void whitespaceAroundEmptyTypesCyclesTest() throws IOException, Exception {
         
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("WhitespaceAround");
         String filePath = builder.getFilePath("WhitespaceAroundnput_EmptyTypesAndCycles");

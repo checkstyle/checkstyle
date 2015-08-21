@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -36,8 +37,7 @@ public class PackageAnnotationTest extends BaseCheckTestSupport {
     public void testGoodPackageAnnotation() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "package-info.java"), expected);
     }
@@ -54,7 +54,7 @@ public class PackageAnnotationTest extends BaseCheckTestSupport {
     public void testAnnotationnotInPackageInfo() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
 
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "InputPackageAnnotationCheckTest.java"), expected);
     }

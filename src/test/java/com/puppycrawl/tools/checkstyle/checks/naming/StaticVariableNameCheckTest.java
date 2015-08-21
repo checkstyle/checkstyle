@@ -24,6 +24,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -62,8 +63,7 @@ public class StaticVariableNameCheckTest
             createCheckConfig(StaticVariableNameCheck.class);
         checkConfig.addAttribute("format", "^s[A-Z][a-zA-Z0-9]*$");
         checkConfig.addAttribute("applyToPrivate", "false"); // allow method names and class names to equal
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
@@ -72,8 +72,7 @@ public class StaticVariableNameCheckTest
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(StaticVariableNameCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 new File("src/test/resources/com/puppycrawl/tools/"
                         + "checkstyle/naming/InputStaticVariableName.java").getCanonicalPath(),

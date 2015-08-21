@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck.MSG_KEY;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -54,8 +55,7 @@ public class ModifiedControlVariableCheckTest
             createCheckConfig(ModifiedControlVariableCheck.class);
         checkConfig.addAttribute("skipEnhancedForLoopVariable", "true");
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("coding/InputModifiedControlVariableEnhancedForLoopVariable.java"), expected);
     }
 

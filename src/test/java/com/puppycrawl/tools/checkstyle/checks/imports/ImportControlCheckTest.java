@@ -27,6 +27,7 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -104,7 +105,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
     public void testUnknown() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file", "unknown-file");
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         try {
             verify(checkConfig, getPath("imports" + File.separator
                     + "InputImportControl.java"), expected);
@@ -120,7 +121,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file",
                 "src/test/resources/com/puppycrawl/tools/checkstyle/imports/import-control_broken.xml");
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         try {
             verify(checkConfig, getPath("imports" + File.separator
                     + "InputImportControl.java"), expected);
@@ -176,7 +177,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file",
                 "aaa://src");
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("imports" + File.separator
                 + "InputImportControl.java"), expected);
     }

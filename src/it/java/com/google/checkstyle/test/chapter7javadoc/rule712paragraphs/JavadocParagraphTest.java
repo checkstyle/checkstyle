@@ -3,6 +3,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule712paragraphs;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -24,8 +25,7 @@ public class JavadocParagraphTest extends BaseCheckTestSupport{
     @Test
     public void javadocParagraphCorrectTest() throws Exception {
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("JavadocParagraph");
         String filePath = builder.getFilePath("InputCorrectJavadocParagraphCheck");

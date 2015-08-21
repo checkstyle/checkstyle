@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -108,7 +109,7 @@ public class JavadocPackageCheckTest
     public void testHtmlAllowed() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         checkConfig.addAttribute("allowLegacy", "true");
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
             getPath("javadoc/pkghtml/Ignored.java"),
             getPath("javadoc/pkghtml/package-info.java"), expected);
@@ -117,7 +118,7 @@ public class JavadocPackageCheckTest
     @Test
     public void testAnnotation() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
             getPath("javadoc/pkginfo/annotation/package-info.java"),
             getPath("javadoc/pkginfo/annotation/package-info.java"), expected);

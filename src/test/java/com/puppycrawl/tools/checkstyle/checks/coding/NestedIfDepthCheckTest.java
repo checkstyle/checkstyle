@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck.MSG_KEY;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -48,8 +49,7 @@ public class NestedIfDepthCheckTest extends BaseCheckTestSupport {
             createCheckConfig(NestedIfDepthCheck.class);
         checkConfig.addAttribute("max", "2");
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("coding/InputNestedIfDepth.java"), expected);
     }

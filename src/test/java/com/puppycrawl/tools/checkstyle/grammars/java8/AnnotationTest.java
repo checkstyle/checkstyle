@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.grammars.java8;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -34,7 +35,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 getPath("grammars/java8/InputAnnotationsTest1.java"), expected);
 
@@ -45,7 +46,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/grammars/java8/"
@@ -58,7 +59,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                   new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/grammars/java8/"
@@ -71,7 +72,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                   new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/grammars/java8/"
@@ -84,7 +85,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                   new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/grammars/java8/"
@@ -97,7 +98,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                   new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/grammars/java8/"
@@ -110,7 +111,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                   new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/grammars/java8/"
@@ -123,7 +124,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                   new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/grammars/java8/"
@@ -136,7 +137,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                   new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/grammars/java8/"
@@ -149,7 +150,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                   new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/grammars/java8/"

@@ -301,8 +301,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     public void testFirstLine() throws Exception {
         checkConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
         checkConfig.addAttribute("maxLineLength", "100");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLeftCurlyAllInOneLine.java"), expected);
     }
 

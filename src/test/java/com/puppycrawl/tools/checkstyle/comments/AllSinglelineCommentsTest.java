@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.comments;
 import java.io.File;
 import java.util.Set;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -40,7 +41,7 @@ public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
     @Test
     public void testAllBlockComments() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SinglelineCommentListenerCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("comments" + File.separator
                 + "InputFullOfSinglelineComments.java"), expected);
         Assert.assertTrue(ALL_COMMENTS.isEmpty());

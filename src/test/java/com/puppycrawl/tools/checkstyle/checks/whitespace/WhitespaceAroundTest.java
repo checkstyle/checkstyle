@@ -144,8 +144,7 @@ public class WhitespaceAroundTest
 
     @Test
     public void test1322879And1649038() throws Exception {
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
                expected);
     }
@@ -217,7 +216,7 @@ public class WhitespaceAroundTest
     @Test
     public void allowEmptyMethods() throws Exception {
         checkConfig.addAttribute("allowEmptyMethods", "true");
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                getPath("whitespace/InputWhitespaceAround.java"),
                expected);

@@ -118,8 +118,7 @@ public class MethodParamPadCheckTest
     @Test
     public void test1322879() throws Exception {
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
                expected);
     }

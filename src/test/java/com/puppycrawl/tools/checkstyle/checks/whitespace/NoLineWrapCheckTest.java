@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck.MSG_KEY;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -31,7 +32,7 @@ public class NoLineWrapCheckTest
     @Test
     public void testCaseWithoutLineWrapping() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(NoLineWrapCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("whitespace/NoLineWrapGoodInput.java"), expected);
     }
 

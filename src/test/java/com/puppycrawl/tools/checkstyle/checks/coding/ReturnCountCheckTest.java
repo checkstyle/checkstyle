@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -100,8 +101,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
     public void testWithReturnOnlyAsTokens() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_RETURN");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
             + "checkstyle/coding/InputReturnCountLambda.java").getCanonicalPath(), expected);
     }

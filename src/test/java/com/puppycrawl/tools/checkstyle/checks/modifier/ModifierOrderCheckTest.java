@@ -25,6 +25,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -62,8 +63,7 @@ public class ModifierOrderCheckTest
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ModifierOrderCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools"
                   + "/checkstyle/InputModifier2.java").getCanonicalPath(), expected);
     }

@@ -3,6 +3,7 @@ package com.google.checkstyle.test.chapter5naming.rule521packagenames;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -30,7 +31,7 @@ public class PackageNameTest extends BaseCheckTestSupport{
     public void goodPackageNameTest() throws Exception {
 
 
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         String filePath = builder.getFilePath("PackageNameInputGood");
 

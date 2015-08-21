@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiation
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -61,7 +62,7 @@ public class IllegalInstantiationCheckTest
     public void testJava8() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(IllegalInstantiationCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
                           + "coding/InputIllegalInstantiationCheckTest2.java").getCanonicalPath(),
@@ -108,7 +109,7 @@ public class IllegalInstantiationCheckTest
         checkConfig.addAttribute(
                 "classes",
                 "jjva.lang.Boolean,java.lang*Boolean");
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
                           + "coding/InputIllegalInstantiationCheckLang.java").getCanonicalPath(),

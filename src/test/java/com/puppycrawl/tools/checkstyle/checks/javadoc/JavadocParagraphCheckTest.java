@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphChe
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_TAG_AFTER;
 import static org.junit.Assert.assertArrayEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,7 +51,7 @@ public class JavadocParagraphCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("javadoc/InputCorrectJavaDocParagraphCheck.java"), expected);
     }

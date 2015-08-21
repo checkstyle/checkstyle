@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPad
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_PRECEDED;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -136,8 +137,7 @@ public class ParenPadCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParenPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("whitespace/ParenPadWithSpace.java"),
                expected);
     }

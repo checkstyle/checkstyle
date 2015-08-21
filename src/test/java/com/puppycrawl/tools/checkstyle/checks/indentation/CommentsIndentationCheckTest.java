@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndenta
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -60,8 +61,7 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
     public void testNpe() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(CommentsIndentationCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("comments" + File.separator
                  + "InputCommentsIndentationTestNpe.java"), expected);
     }

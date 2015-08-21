@@ -44,8 +44,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
         checkConfig.addAttribute("format", required);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
@@ -68,8 +67,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
             createCheckConfig(RegexpCheck.class);
         checkConfig.addAttribute("format", required);
         checkConfig.addAttribute("duplicateLimit", "0");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
@@ -79,8 +77,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpCheck.class);
         checkConfig.addAttribute("format", required);
         checkConfig.addAttribute("duplicateLimit", "-1");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
@@ -104,8 +101,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
             createCheckConfig(RegexpCheck.class);
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
@@ -217,8 +213,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -246,8 +241,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -274,8 +268,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -287,8 +280,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -300,8 +292,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -342,16 +333,14 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
     @Test
     public void testOnFileStartingWithEmptyLine() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputStartingWithEmptyLine.java"), expected);
     }
 }

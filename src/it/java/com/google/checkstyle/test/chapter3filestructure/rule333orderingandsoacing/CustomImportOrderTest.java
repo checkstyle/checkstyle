@@ -3,6 +3,7 @@ package com.google.checkstyle.test.chapter3filestructure.rule333orderingandsoaci
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -97,8 +98,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport{
     @Test
     public void validTest() throws IOException, Exception {
         
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         
         Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
         String filePath = builder.getFilePath("CustomImportOrderValidInput");
