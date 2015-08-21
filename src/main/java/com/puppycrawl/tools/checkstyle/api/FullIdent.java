@@ -45,7 +45,7 @@ public final class FullIdent {
     /** The line number **/
     private int lineNo;
     /** The column number **/
-    private int colNo;
+    private int columnNo;
 
     /** Hide default constructor */
     private FullIdent() {
@@ -63,7 +63,7 @@ public final class FullIdent {
 
     /** @return the column number **/
     public int getColumnNo() {
-        return colNo;
+        return columnNo;
     }
 
     /**
@@ -87,11 +87,11 @@ public final class FullIdent {
         else if (ast.getLineNo() > 0) {
             lineNo = Math.min(lineNo, ast.getLineNo());
         }
-        if (colNo == 0) {
-            colNo = ast.getColumnNo();
+        if (columnNo == 0) {
+            columnNo = ast.getColumnNo();
         }
         else if (ast.getColumnNo() > 0) {
-            colNo = Math.min(colNo, ast.getColumnNo());
+            columnNo = Math.min(columnNo, ast.getColumnNo());
         }
     }
 

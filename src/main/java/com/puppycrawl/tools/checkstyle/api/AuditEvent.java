@@ -45,7 +45,7 @@ public final class AuditEvent
     /** Filename event associated with **/
     private final String fileName;
     /** Message associated with the event **/
-    private final LocalizedMessage message;
+    private final LocalizedMessage localizedMessage;
 
     /**
      * Creates a new instance.
@@ -69,12 +69,12 @@ public final class AuditEvent
      *
      * @param src source of the event
      * @param fileName file associated with the event
-     * @param message the actual message
+     * @param localizedMessage the actual message
      */
-    public AuditEvent(Object src, String fileName, LocalizedMessage message) {
+    public AuditEvent(Object src, String fileName, LocalizedMessage localizedMessage) {
         super(src);
         this.fileName = fileName;
-        this.message = message;
+        this.localizedMessage = localizedMessage;
     }
 
     /**
@@ -91,7 +91,7 @@ public final class AuditEvent
      * @return an integer representing the line number in the file source code.
      */
     public int getLine() {
-        return message.getLineNo();
+        return localizedMessage.getLineNo();
     }
 
     /**
@@ -99,21 +99,21 @@ public final class AuditEvent
      * @return the event message
      */
     public String getMessage() {
-        return message.getMessage();
+        return localizedMessage.getMessage();
     }
 
     /** @return the column associated with the message **/
     public int getColumn() {
-        return message.getColumnNo();
+        return localizedMessage.getColumnNo();
     }
 
     /** @return the audit event severity level **/
     public SeverityLevel getSeverityLevel() {
-        if (message == null) {
+        if (localizedMessage == null) {
             return SeverityLevel.INFO;
         }
         else {
-            return message.getSeverityLevel();
+            return localizedMessage.getSeverityLevel();
         }
     }
 
@@ -122,16 +122,16 @@ public final class AuditEvent
      *         null.
      */
     public String getModuleId() {
-        return message.getModuleId();
+        return localizedMessage.getModuleId();
     }
 
     /** @return the name of the source for the message **/
     public String getSourceName() {
-        return message.getSourceName();
+        return localizedMessage.getSourceName();
     }
 
     /** @return the localized message **/
     public LocalizedMessage getLocalizedMessage() {
-        return message;
+        return localizedMessage;
     }
 }

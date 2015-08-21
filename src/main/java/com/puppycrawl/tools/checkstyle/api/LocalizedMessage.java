@@ -67,7 +67,7 @@ public final class LocalizedMessage
     /** The line number **/
     private final int lineNo;
     /** The column number **/
-    private final int colNo;
+    private final int columnNo;
 
     /** The severity level **/
     private final SeverityLevel severityLevel;
@@ -94,7 +94,7 @@ public final class LocalizedMessage
      * Creates a new {@code LocalizedMessage} instance.
      *
      * @param lineNo line number associated with the message
-     * @param colNo column number associated with the message
+     * @param columnNo column number associated with the message
      * @param bundle resource bundle name
      * @param key the key to locate the translation
      * @param args arguments for the translation
@@ -104,7 +104,7 @@ public final class LocalizedMessage
      * @param customMessage optional custom message overriding the default
      */
     public LocalizedMessage(int lineNo,
-                            int colNo,
+                            int columnNo,
                             String bundle,
                             String key,
                             Object[] args,
@@ -113,7 +113,7 @@ public final class LocalizedMessage
                             Class<?> sourceClass,
                             String customMessage) {
         this.lineNo = lineNo;
-        this.colNo = colNo;
+        this.columnNo = columnNo;
         this.key = key;
 
         if (args == null) {
@@ -133,7 +133,7 @@ public final class LocalizedMessage
      * Creates a new {@code LocalizedMessage} instance.
      *
      * @param lineNo line number associated with the message
-     * @param colNo column number associated with the message
+     * @param columnNo column number associated with the message
      * @param bundle resource bundle name
      * @param key the key to locate the translation
      * @param args arguments for the translation
@@ -142,7 +142,7 @@ public final class LocalizedMessage
      * @param customMessage optional custom message overriding the default
      */
     public LocalizedMessage(int lineNo,
-                            int colNo,
+                            int columnNo,
                             String bundle,
                             String key,
                             Object[] args,
@@ -150,7 +150,7 @@ public final class LocalizedMessage
                             Class<?> sourceClass,
                             String customMessage) {
         this(lineNo,
-             colNo,
+                columnNo,
              bundle,
              key,
              args,
@@ -218,7 +218,7 @@ public final class LocalizedMessage
         }
         final LocalizedMessage localizedMessage = (LocalizedMessage) object;
         return Objects.equals(lineNo, localizedMessage.lineNo)
-                && Objects.equals(colNo, localizedMessage.colNo)
+                && Objects.equals(columnNo, localizedMessage.columnNo)
                 && Objects.equals(severityLevel, localizedMessage.severityLevel)
                 && Objects.equals(moduleId, localizedMessage.moduleId)
                 && Objects.equals(key, localizedMessage.key)
@@ -230,7 +230,7 @@ public final class LocalizedMessage
 
     @Override
     public int hashCode() {
-        return Objects.hash(lineNo, colNo, severityLevel, moduleId, key, bundle, sourceClass,
+        return Objects.hash(lineNo, columnNo, severityLevel, moduleId, key, bundle, sourceClass,
                 customMessage, Arrays.hashCode(args));
     }
 
@@ -306,7 +306,7 @@ public final class LocalizedMessage
 
     /** @return the column number **/
     public int getColumnNo() {
-        return colNo;
+        return columnNo;
     }
 
     /** @return the severity level **/
