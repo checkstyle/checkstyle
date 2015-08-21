@@ -37,7 +37,7 @@ import javax.swing.event.EventListenerList;
  *
  * @author Philip Milne
  */
-public class AbstractCellEditor implements CellEditor {
+public abstract class AbstractCellEditor implements CellEditor {
 
     /**
      * A list of event listeners for the cell editor.
