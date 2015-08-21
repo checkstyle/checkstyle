@@ -77,14 +77,6 @@ public final class SuppressionsLoader
         super(createIdToResourceNameMap());
     }
 
-    /**
-     * Returns the loaded filter chain.
-     * @return the loaded filter chain.
-     */
-    public FilterSet getFilterChain() {
-        return filterChain;
-    }
-
     @Override
     public void startElement(String namespaceURI,
                              String localName,
@@ -180,7 +172,7 @@ public final class SuppressionsLoader
             final SuppressionsLoader suppressionsLoader =
                 new SuppressionsLoader();
             suppressionsLoader.parseInputSource(source);
-            return suppressionsLoader.getFilterChain();
+            return suppressionsLoader.filterChain;
         }
         catch (final FileNotFoundException e) {
             throw new CheckstyleException(UNABLE_TO_FIND_ERROR_MESSAGE + sourceName, e);

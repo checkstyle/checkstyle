@@ -94,14 +94,6 @@ public final class ThrowsCountCheck extends Check {
     }
 
     /**
-     * Getter for max property.
-     * @return maximum allowed throws statements.
-     */
-    public int getMax() {
-        return max;
-    }
-
-    /**
      * Sets whether private methods must be ignored.
      * @param ignorePrivateMethods whether private methods must be ignored.
      */
@@ -136,9 +128,9 @@ public final class ThrowsCountCheck extends Check {
                 && !isOverriding(ast)) {
             // Account for all the commas!
             final int count = (ast.getChildCount() + 1) / 2;
-            if (count > getMax()) {
+            if (count > max) {
                 log(ast.getLineNo(),  ast.getColumnNo(), MSG_KEY,
-                    count, getMax());
+                    count, max);
             }
         }
     }

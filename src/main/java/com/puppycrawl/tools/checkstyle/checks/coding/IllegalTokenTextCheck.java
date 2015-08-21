@@ -92,7 +92,7 @@ public class IllegalTokenTextCheck
     public void visitToken(DetailAST ast) {
         final String text = ast.getText();
         if (getRegexp().matcher(text).find()) {
-            String customMessage = getMessage();
+            String customMessage = message;
             if (customMessage.isEmpty()) {
                 customMessage = MSG_KEY;
             }
@@ -116,15 +116,6 @@ public class IllegalTokenTextCheck
         else {
             this.message = message;
         }
-    }
-
-    /**
-     * Getter for message property.
-     * @return custom message which should be used
-     * to report about violations.
-     */
-    public String getMessage() {
-        return message;
     }
 
     /**

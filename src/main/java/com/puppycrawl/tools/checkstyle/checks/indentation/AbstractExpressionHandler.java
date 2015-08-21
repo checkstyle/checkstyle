@@ -477,7 +477,7 @@ public abstract class AbstractExpressionHandler {
      */
     protected final void findSubtreeLines(LineSet lines, DetailAST tree,
         boolean allowNesting) {
-        if (getIndentCheck().getHandlerFactory().isHandledType(tree.getType())) {
+        if (indentCheck.getHandlerFactory().isHandledType(tree.getType())) {
             return;
         }
 
@@ -551,7 +551,7 @@ public abstract class AbstractExpressionHandler {
      * @return value of basicOffset property of {@code IndentationCheck}
      */
     protected final int getBasicOffset() {
-        return getIndentCheck().getBasicOffset();
+        return indentCheck.getBasicOffset();
     }
 
     /**
@@ -560,7 +560,7 @@ public abstract class AbstractExpressionHandler {
      *         of {@code IndentationCheck}
      */
     protected final int getBraceAdjustment() {
-        return getIndentCheck().getBraceAdjustment();
+        return indentCheck.getBraceAdjustment();
     }
 
     /**

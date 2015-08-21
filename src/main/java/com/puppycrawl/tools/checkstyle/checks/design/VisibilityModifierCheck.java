@@ -309,11 +309,6 @@ public class VisibilityModifierCheck
     private final List<String> immutableClassShortNames =
             getClassShortNames(DEFAULT_IMMUTABLE_TYPES);
 
-    /** @return whether protected members are allowed */
-    public boolean isProtectedAllowed() {
-        return protectedAllowed;
-    }
-
     /**
      * Set the list of ignore annotations.
      * @param annotationNames array of ignore annotations canonical names.
@@ -328,11 +323,6 @@ public class VisibilityModifierCheck
      */
     public void setProtectedAllowed(boolean protectedAllowed) {
         this.protectedAllowed = protectedAllowed;
-    }
-
-    /** @return whether package visible members are allowed */
-    public boolean isPackageAllowed() {
-        return packageAllowed;
     }
 
     /**
@@ -353,13 +343,6 @@ public class VisibilityModifierCheck
     public void setPublicMemberPattern(String pattern) {
         publicMemberPattern = Utils.createPattern(pattern);
         publicMemberFormat = pattern;
-    }
-
-    /**
-     * @return the regexp for public members to ignore.
-     */
-    private Pattern getPublicMemberRegexp() {
-        return publicMemberPattern;
     }
 
     /**
@@ -533,8 +516,8 @@ public class VisibilityModifierCheck
         if (!"private".equals(variableScope)) {
             result =
                 isStaticFinalVariable(variableDef)
-                || isPackageAllowed() && "package".equals(variableScope)
-                || isProtectedAllowed() && "protected".equals(variableScope)
+                || packageAllowed && "package".equals(variableScope)
+                || protectedAllowed && "protected".equals(variableScope)
                 || isIgnoredPublicMember(variableName, variableScope)
                    || allowPublicImmutableFields
                       && isImmutableFieldDefinedInFinalClass(variableDef);
@@ -561,7 +544,7 @@ public class VisibilityModifierCheck
      */
     private boolean isIgnoredPublicMember(String variableName, String variableScope) {
         return "public".equals(variableScope)
-            && getPublicMemberRegexp().matcher(variableName).find();
+            && publicMemberPattern.matcher(variableName).find();
     }
 
     /**

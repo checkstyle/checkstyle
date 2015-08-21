@@ -134,17 +134,6 @@ public class RegexpCheck extends AbstractFormatCheck {
     }
 
     /**
-     * Getter for message property.
-     * I'm not sure if this gets used by anything outside,
-     * I just included it because GenericIllegalRegexp had it,
-     * it's being used in logMessage() so it's covered in EMMA.
-     * @return custom message to be used in report.
-     */
-    public String getMessage() {
-        return message;
-    }
-
-    /**
      * Sets if matches within comments should be ignored.
      * @param ignoreComments True if comments should be ignored.
      */
@@ -275,7 +264,7 @@ public class RegexpCheck extends AbstractFormatCheck {
     private void logMessage(int lineNumber) {
         String msg;
 
-        if (getMessage().isEmpty()) {
+        if (message.isEmpty()) {
             msg = getFormat();
         }
         else {

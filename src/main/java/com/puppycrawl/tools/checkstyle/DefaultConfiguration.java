@@ -67,7 +67,7 @@ public final class DefaultConfiguration implements Configuration {
     public String getAttribute(String attributeName) throws CheckstyleException {
         if (!attributeMap.containsKey(attributeName)) {
             throw new CheckstyleException(
-                    "missing key '" + attributeName + "' in " + getName());
+                    "missing key '" + attributeName + "' in " + name);
         }
         return attributeMap.get(attributeName);
     }

@@ -321,7 +321,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
                     final FullIdent name =
                         FullIdent.createFullIdentBelow(bounds);
                     final AbstractClassInfo ci =
-                        createClassInfo(new Token(name), getCurrentClassName());
+                        createClassInfo(new Token(name), currentClassName);
                     paramsMap.put(alias, ci);
                 }
             }
@@ -436,14 +436,10 @@ public abstract class AbstractTypeAwareCheck extends Check {
             this.surroundingClass = surroundingClass;
             this.check = check;
         }
-        /** @return if class is loadable ot not. */
-        private boolean isLoadable() {
-            return loadable;
-        }
 
         @Override
         public Class<?> getClazz() {
-            if (isLoadable() && classObj == null) {
+            if (loadable && classObj == null) {
                 setClazz(check.tryLoadClass(getName(), surroundingClass));
             }
             return classObj;
@@ -543,8 +539,8 @@ public abstract class AbstractTypeAwareCheck extends Check {
 
         @Override
         public String toString() {
-            return "Token[" + getText() + "(" + getLineNo()
-                + "x" + getColumnNo() + ")]";
+            return "Token[" + text + "(" + lineNo
+                + "x" + columnNo + ")]";
         }
     }
 }

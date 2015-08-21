@@ -550,14 +550,6 @@ public class HiddenFieldCheck
         }
 
         /**
-         * Is this frame for static inner type.
-         * @return is this field frame for static inner type.
-         */
-        boolean isStaticType() {
-            return staticType;
-        }
-
-        /**
          * Adds an instance field to this FieldFrame.
          * @param field  the name of the instance field.
          */
@@ -581,7 +573,7 @@ public class HiddenFieldCheck
         public boolean containsInstanceField(String field) {
             return instanceFields.contains(field)
                     || parent != null
-                    && !isStaticType()
+                    && !staticType
                     && parent.containsInstanceField(field);
 
         }
