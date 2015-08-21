@@ -30,10 +30,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class ArrayInitHandler extends BlockParentHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
-     * astract syntax tree, and parent handler.
+     * abstract syntax tree, and parent handler.
      *
      * @param indentCheck   the indentation check
-     * @param ast           the astract syntax tree
+     * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
     public ArrayInitHandler(IndentationCheck indentCheck,
@@ -101,7 +101,7 @@ public class ArrayInitHandler extends BlockParentHandler {
         final int firstLine = getFirstLine(Integer.MAX_VALUE, getListChild());
         final int lcurlyPos = expandedTabsColumnNo(getLCurly());
         final int firstChildPos =
-            getNextFirstNonblankOnLineAfter(firstLine, lcurlyPos);
+            getNextFirstNonBlankOnLineAfter(firstLine, lcurlyPos);
         if (firstChildPos >= 0) {
             expectedIndent.addAcceptedIndent(firstChildPos);
             expectedIndent.addAcceptedIndent(lcurlyPos + getLineWrappingIndentation());
@@ -117,7 +117,7 @@ public class ArrayInitHandler extends BlockParentHandler {
      *         specified column on specified line or -1 if
      *         such char doesn't exist.
      */
-    private int getNextFirstNonblankOnLineAfter(int lineNo, int columnNo) {
+    private int getNextFirstNonBlankOnLineAfter(int lineNo, int columnNo) {
         int realColumnNo = columnNo + 1;
         final String line = getIndentCheck().getLines()[lineNo - 1];
         final int lineLength = line.length();

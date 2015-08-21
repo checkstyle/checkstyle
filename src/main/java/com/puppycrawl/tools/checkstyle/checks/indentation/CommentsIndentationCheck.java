@@ -168,7 +168,7 @@ public class CommentsIndentationCheck extends Check {
     }
 
     /**
-     * Gets previous statement for comment which is placed immediatly under case.
+     * Gets previous statement for comment which is placed immediately under case.
      * @param parentStatement comment's parent statement.
      * @return comment's previous statement or null if previous statement is absent.
      */

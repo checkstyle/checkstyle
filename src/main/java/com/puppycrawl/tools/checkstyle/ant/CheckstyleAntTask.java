@@ -90,7 +90,7 @@ public class CheckstyleAntTask extends Task {
     private final List<Property> overrideProps = Lists.newArrayList();
 
     /** The name of the properties file */
-    private File propertiesFile;
+    private File properties;
 
     /** The maximum number of errors that are tolerated. */
     private int maxErrors;
@@ -236,7 +236,7 @@ public class CheckstyleAntTask extends Task {
      * @param props the properties File to use
      */
     public void setProperties(File props) {
-        propertiesFile = props;
+        properties = props;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -384,15 +384,15 @@ public class CheckstyleAntTask extends Task {
         final Properties retVal = new Properties();
 
         // Load the properties file if specified
-        if (propertiesFile != null) {
+        if (properties != null) {
             FileInputStream inStream = null;
             try {
-                inStream = new FileInputStream(propertiesFile);
+                inStream = new FileInputStream(properties);
                 retVal.load(inStream);
             }
             catch (final IOException e) {
                 throw new BuildException("Error loading Properties file '"
-                        + propertiesFile + "'", e, getLocation());
+                        + properties + "'", e, getLocation());
             }
             finally {
                 Closeables.closeQuietly(inStream);

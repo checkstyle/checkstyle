@@ -23,7 +23,7 @@ import java.util.BitSet;
 
 /**
  * Encapsulates representation of notion of expected indentation levels.
- * Provide a way to have multiple accaptable levels.
+ * Provide a way to have multiple acceptable levels.
  *
  * @author o_sukhodolsky
  */
@@ -32,8 +32,8 @@ public class IndentLevel {
     private final BitSet levels = new BitSet();
 
     /**
-     * Creates new instance with one accaptable indentation level.
-     * @param indent accaptable indentation level.
+     * Creates new instance with one acceptable indentation level.
+     * @param indent acceptable indentation level.
      */
     public IndentLevel(int indent) {
         levels.set(indent);
@@ -54,8 +54,8 @@ public class IndentLevel {
     }
 
     /**
-     * Checks wether we have more than one level.
-     * @return wether we have more than one level.
+     * Checks whether we have more than one level.
+     * @return whether we have more than one level.
      */
     public final boolean isMultiLevel() {
         return levels.cardinality() > 1;

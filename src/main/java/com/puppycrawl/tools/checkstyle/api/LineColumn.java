@@ -32,16 +32,16 @@ public class LineColumn implements Comparable<LineColumn> {
     private final int line;
 
     /** The zero-based column number */
-    private final int col;
+    private final int column;
 
     /**
      * Constructs a new pair of line and column numbers.
      * @param line the one-based line number
-     * @param col the zero-based column number
+     * @param column the zero-based column number
      */
-    public LineColumn(int line, int col) {
+    public LineColumn(int line, int column) {
         this.line = line;
-        this.col = col;
+        this.column = column;
     }
 
     /** @return the one-based line number */
@@ -51,7 +51,7 @@ public class LineColumn implements Comparable<LineColumn> {
 
     /** @return the zero-based column number */
     public int getColumn() {
-        return col;
+        return column;
     }
 
     @Override
@@ -74,11 +74,11 @@ public class LineColumn implements Comparable<LineColumn> {
         }
         final LineColumn lineColumn = (LineColumn) o;
         return Objects.equals(line, lineColumn.line)
-                && Objects.equals(col, lineColumn.col);
+                && Objects.equals(column, lineColumn.column);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(line, col);
+        return Objects.hash(line, column);
     }
 }

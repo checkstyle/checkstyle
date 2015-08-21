@@ -29,16 +29,16 @@ public class Comment implements TextBlock {
     private final String[] text;
 
     /** Number of first line of the comment. */
-    private final int firstLine;
+    private final int startLineNo;
 
     /** Number of last line of the comment. */
-    private final int lastLine;
+    private final int endLineNo;
 
     /** Number of first column of the comment. */
-    private final int firstCol;
+    private final int startColNo;
 
     /** Number of last column of the comment. */
-    private final int lastCol;
+    private final int endColNo;
 
     /**
      * Creates new instance.
@@ -51,10 +51,10 @@ public class Comment implements TextBlock {
             final int lastLine, final int lastCol) {
         this.text = new String[text.length];
         System.arraycopy(text, 0, this.text, 0, this.text.length);
-        firstLine = lastLine - this.text.length + 1;
-        this.lastLine = lastLine;
-        this.firstCol = firstCol;
-        this.lastCol = lastCol;
+        startLineNo = lastLine - this.text.length + 1;
+        this.endLineNo = lastLine;
+        this.startColNo = firstCol;
+        this.endColNo = lastCol;
     }
 
     @Override
@@ -64,41 +64,41 @@ public class Comment implements TextBlock {
 
     @Override
     public final int getStartLineNo() {
-        return firstLine;
+        return startLineNo;
     }
 
     @Override
     public final int getEndLineNo() {
-        return lastLine;
+        return endLineNo;
     }
 
     @Override
     public int getStartColNo() {
-        return firstCol;
+        return startColNo;
     }
 
     @Override
     public int getEndColNo() {
-        return lastCol;
+        return endColNo;
     }
 
     @Override
-    public boolean intersects(int startLineNo, int startColNo,
-                              int endLineNo, int endColNo) {
+    public boolean intersects(int startLine, int startCol,
+                              int endLine, int endCol) {
         // compute a single number for start and end
         // to simplify conditional logic
         final long multiplier = Integer.MAX_VALUE;
-        final long thisStart = firstLine * multiplier + firstCol;
-        final long thisEnd = lastLine * multiplier + lastCol;
-        final long inStart = startLineNo * multiplier + startColNo;
-        final long inEnd = endLineNo * multiplier + endColNo;
+        final long thisStart = startLineNo * multiplier + startColNo;
+        final long thisEnd = endLineNo * multiplier + endColNo;
+        final long inStart = startLine * multiplier + startCol;
+        final long inEnd = endLine * multiplier + endCol;
 
         return !(thisEnd < inStart || inEnd < thisStart);
     }
 
     @Override
     public String toString() {
-        return "Comment[" + firstLine + ":" + firstCol + "-"
-            + lastLine + ":" + lastCol + "]";
+        return "Comment[" + startLineNo + ":" + startColNo + "-"
+            + endLineNo + ":" + endColNo + "]";
     }
 }
