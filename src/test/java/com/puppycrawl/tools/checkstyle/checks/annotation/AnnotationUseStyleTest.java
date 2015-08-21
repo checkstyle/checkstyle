@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseSty
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
@@ -263,7 +264,7 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport {
             check.setElementStyle("SHOULD_PRODUCE_ERROR");
         }
         catch (ConversionException ex) {
-            ex.getMessage().startsWith("unable to parse");
+            assertTrue(ex.getMessage().startsWith("unable to parse"));
             return;
         }
 

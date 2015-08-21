@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -85,7 +86,7 @@ public class TrailingCommentCheckTest extends BaseCheckTestSupport {
             Assert.fail();
         }
         catch (IllegalStateException ex) {
-            "visitToken() shouldn't be called.".equals(ex.getMessage());
+            assertEquals("visitToken() shouldn't be called.", ex.getMessage());
         }
     }
 }

@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck.MSG_KEY;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -102,7 +103,7 @@ public class UncommentedMainCheckTest
             Assert.fail();
         }
         catch (IllegalStateException ex) {
-            ast.toString().equals(ex.getMessage());
+            assertEquals(ast.toString(), ex.getMessage());
         }
 
     }
