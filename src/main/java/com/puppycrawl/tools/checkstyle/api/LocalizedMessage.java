@@ -251,7 +251,7 @@ public final class LocalizedMessage
                 // the GlobalProperties object. This is because the class loader in
                 // the GlobalProperties is specified by the user for resolving
                 // custom classes.
-                final ResourceBundle resourceBundle = getBundle(this.bundle);
+                final ResourceBundle resourceBundle = getBundle(bundle);
                 final String pattern = resourceBundle.getString(key);
                 message = MessageFormat.format(pattern, args);
             }
