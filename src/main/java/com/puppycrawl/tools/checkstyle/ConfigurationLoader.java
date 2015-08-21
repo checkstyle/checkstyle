@@ -251,7 +251,7 @@ public final class ConfigurationLoader {
                 new ConfigurationLoader(overridePropsResolver,
                                         omitIgnoredModules);
             loader.parseInputSource(configSource);
-            return loader.getConfiguration();
+            return loader.configuration;
         }
         catch (final SAXParseException e) {
             throw new CheckstyleException("unable to parse configuration stream"
@@ -261,14 +261,6 @@ public final class ConfigurationLoader {
         catch (final ParserConfigurationException | IOException | SAXException e) {
             throw new CheckstyleException("unable to parse configuration stream", e);
         }
-    }
-
-    /**
-     * Returns the configuration in the last file parsed.
-     * @return Configuration object
-     */
-    private Configuration getConfiguration() {
-        return configuration;
     }
 
     /**

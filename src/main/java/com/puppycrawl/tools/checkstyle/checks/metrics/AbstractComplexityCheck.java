@@ -70,11 +70,6 @@ public abstract class AbstractComplexityCheck
         };
     }
 
-    /** @return the maximum threshold allowed */
-    public final int getMax() {
-        return max;
-    }
-
     /**
      * Set the maximum threshold allowed.
      *
@@ -153,7 +148,7 @@ public abstract class AbstractComplexityCheck
      * @param by the amount to increment by
      */
     protected final void incrementCurrentValue(BigInteger by) {
-        currentValue = getCurrentValue().add(by);
+        currentValue = currentValue.add(by);
     }
 
     /** Push the current value on the stack */
@@ -181,7 +176,7 @@ public abstract class AbstractComplexityCheck
      * @param ast the token representing the method definition
      */
     private void leaveMethodDef(DetailAST ast) {
-        final BigInteger bigIntegerMax = BigInteger.valueOf(getMax());
+        final BigInteger bigIntegerMax = BigInteger.valueOf(max);
         if (currentValue.compareTo(bigIntegerMax) > 0) {
             log(ast, getMessageID(), currentValue, bigIntegerMax);
         }

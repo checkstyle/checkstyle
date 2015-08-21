@@ -351,21 +351,6 @@ public class SuppressWithNearbyCommentFilter
             }
         }
 
-        /** @return the text of the tag. */
-        public String getText() {
-            return text;
-        }
-
-        /** @return the line number of the first suppressed line. */
-        public int getFirstLine() {
-            return firstLine;
-        }
-
-        /** @return the line number of the last suppressed line. */
-        public int getLastLine() {
-            return lastLine;
-        }
-
         /**
          * Compares the position of this tag in the file
          * with the position of another tag.
@@ -457,8 +442,8 @@ public class SuppressWithNearbyCommentFilter
 
         @Override
         public final String toString() {
-            return "Tag[lines=[" + getFirstLine() + " to " + getLastLine()
-                + "]; text='" + getText() + "']";
+            return "Tag[lines=[" + firstLine + " to " + lastLine
+                + "]; text='" + text + "']";
         }
     }
 }

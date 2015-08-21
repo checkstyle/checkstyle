@@ -372,11 +372,6 @@ public class SuppressionCommentFilter
             }
         }
 
-        /** @return the text of the tag. */
-        public String getText() {
-            return text;
-        }
-
         /** @return the line number of the tag in the source file. */
         public int getLine() {
             return line;
@@ -484,8 +479,8 @@ public class SuppressionCommentFilter
 
         @Override
         public final String toString() {
-            return "Tag[line=" + getLine() + "; col=" + getColumn()
-                + "; on=" + isOn() + "; text='" + getText() + "']";
+            return "Tag[line=" + line + "; col=" + column
+                + "; on=" + on + "; text='" + text + "']";
         }
     }
 }

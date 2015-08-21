@@ -171,21 +171,13 @@ class DetectorOptions {
     }
 
     /**
-     * Whether to ignore case when matching.
-     * @return whether to ignore case when matching.
-     */
-    public boolean isIgnoreCase() {
-        return ignoreCase;
-    }
-
-    /**
      * The pattern to use when matching.
      * @return the pattern to use when matching.
      */
     public Pattern getPattern() {
         int options = compileFlags;
 
-        if (isIgnoreCase()) {
+        if (ignoreCase) {
             options |= Pattern.CASE_INSENSITIVE;
         }
         return Pattern.compile(format, options);
