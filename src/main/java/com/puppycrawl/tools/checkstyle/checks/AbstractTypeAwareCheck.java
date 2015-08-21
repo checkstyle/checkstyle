@@ -429,7 +429,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
          * @param surroundingClass name of current surrounding class.
          * @param check the check we use to load class.
          */
-        public RegularClass(final Token name,
+        RegularClass(final Token name,
                              final String surroundingClass,
                              final AbstractTypeAwareCheck check) {
             super(name);

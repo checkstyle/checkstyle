@@ -187,7 +187,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck {
          * Creates new method context.
          * @param checking should we check this method or not.
          */
-        public Context(boolean checking) {
+        Context(boolean checking) {
             this.checking = checking;
             count = 0;
         }

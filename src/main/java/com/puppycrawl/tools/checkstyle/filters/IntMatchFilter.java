@@ -31,7 +31,7 @@ class IntMatchFilter implements IntFilter {
      * Constructs a MatchFilter for an int.
      * @param matchValue the matching int.
      */
-    public IntMatchFilter(int matchValue) {
+    IntMatchFilter(int matchValue) {
         this.matchValue = matchValue;
     }
 

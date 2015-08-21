@@ -543,7 +543,7 @@ public class HiddenFieldCheck
          * @param staticType is this a static inner type (class or enum).
          * @param frameName name associated with the frame, which can be a
          */
-        public FieldFrame(FieldFrame parent, boolean staticType, String frameName) {
+        FieldFrame(FieldFrame parent, boolean staticType, String frameName) {
             this.parent = parent;
             this.staticType = staticType;
             this.frameName = frameName;

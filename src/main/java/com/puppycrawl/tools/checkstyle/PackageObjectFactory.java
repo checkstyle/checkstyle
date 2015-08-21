@@ -49,7 +49,7 @@ class PackageObjectFactory implements ModuleFactory {
      * @param moduleClassLoader class loader used to load Checkstyle
      *          core and custom modules
      */
-    public PackageObjectFactory(Set<String> packageNames,
+    PackageObjectFactory(Set<String> packageNames,
             ClassLoader moduleClassLoader) {
         if (moduleClassLoader == null) {
             throw new IllegalArgumentException(
