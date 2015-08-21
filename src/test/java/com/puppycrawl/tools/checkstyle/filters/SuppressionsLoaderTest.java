@@ -214,10 +214,10 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
             loaderClass.getDeclaredMethod("loadSuppressions", InputSource.class, String.class);
         loadSuppressions.setAccessible(true);
 
-        String sourceName = "suppressions_none.xml";
         InputSource inputSource = new InputSource();
 
         thrown.expect(CheckstyleException.class);
+        String sourceName = "suppressions_none.xml";
         thrown.expectMessage("Unable to read " + sourceName);
 
         loadSuppressions.invoke(loaderClass, inputSource, sourceName);
@@ -269,10 +269,10 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
     @SuppressWarnings("unchecked")
     public void testloadSuppressionsURISyntaxException() throws Exception {
         URL configUrl = mock(URL.class);
-        String fileName = "suppressions_none.xml";
 
         when(configUrl.toURI()).thenThrow(URISyntaxException.class);
         mockStatic(SuppressionsLoader.class, Mockito.CALLS_REAL_METHODS);
+        String fileName = "suppressions_none.xml";
         when(SuppressionsLoader.class.getResource(fileName)).thenReturn(configUrl);
 
         try {

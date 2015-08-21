@@ -250,10 +250,9 @@ public final class MethodCountCheck extends Check {
          */
         int value(Scope scope) {
             final Integer value = counts.get(scope);
-            final int defaultValue = 0;
 
             if (value == null) {
-                return defaultValue;
+                return 0;
             }
             else {
                 return value;

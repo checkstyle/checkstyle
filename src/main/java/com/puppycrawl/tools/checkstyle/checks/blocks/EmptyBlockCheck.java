@@ -168,8 +168,6 @@ public class EmptyBlockCheck
      * @return whether the SLIST token contains any text.
      */
     protected boolean hasText(final DetailAST slistAST) {
-        boolean retVal = false;
-
         final DetailAST rightCurly = slistAST.findFirstToken(TokenTypes.RCURLY);
         final DetailAST rcurlyAST;
 
@@ -184,6 +182,7 @@ public class EmptyBlockCheck
         final int rcurlyLineNo = rcurlyAST.getLineNo();
         final int rcurlyColNo = rcurlyAST.getColumnNo();
         final String[] lines = getLines();
+        boolean retVal = false;
         if (slistLineNo == rcurlyLineNo) {
             // Handle braces on the same line
             final String txt = lines[slistLineNo - 1]
