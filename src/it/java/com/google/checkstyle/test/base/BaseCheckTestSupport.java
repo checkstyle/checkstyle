@@ -48,9 +48,7 @@ public abstract class BaseCheckTestSupport
 
     public static DefaultConfiguration createCheckConfig(Class<?> aClazz)
     {
-        final DefaultConfiguration checkConfig =
-            new DefaultConfiguration(aClazz.getName());
-        return checkConfig;
+        return new DefaultConfiguration(aClazz.getName());
     }
 
     protected Checker createChecker(Configuration aCheckConfig)

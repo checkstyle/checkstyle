@@ -226,8 +226,7 @@ public class InnerAssignmentCheck
             DetailAST current = ast;
             for (int anElement : element) {
                 current = current.getParent();
-                final int expectedType = anElement;
-                if (current.getType() == expectedType) {
+                if (current.getType() == anElement) {
                     found = true;
                 }
                 else {
