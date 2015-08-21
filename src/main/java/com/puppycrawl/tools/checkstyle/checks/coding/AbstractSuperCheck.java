@@ -204,7 +204,7 @@ public abstract class AbstractSuperCheck
          * Constructs a stack node for a method definition.
          * @param ast AST for the method definition.
          */
-        public MethodNode(DetailAST ast) {
+        MethodNode(DetailAST ast) {
             method = ast;
             callingSuper = false;
         }

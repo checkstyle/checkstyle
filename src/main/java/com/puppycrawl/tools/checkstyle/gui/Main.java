@@ -94,7 +94,7 @@ public final class Main {
         /**
          * Contstructor
          */
-        public FrameShower(JFrame frame) {
+        FrameShower(JFrame frame) {
             this.frame = frame;
         }
 

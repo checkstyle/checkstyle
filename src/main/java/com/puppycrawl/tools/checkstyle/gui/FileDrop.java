@@ -245,7 +245,7 @@ class FileDrop {
         private final Border dragBorder;
         private final Listener listener;
 
-        public FileDropTargetListener(Component component, Border dragBorder, Listener listener) {
+        FileDropTargetListener(Component component, Border dragBorder, Listener listener) {
             this.component = component;
             this.dragBorder = dragBorder;
             this.listener = listener;

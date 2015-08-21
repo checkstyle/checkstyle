@@ -38,7 +38,7 @@ class IntRangeFilter implements IntFilter {
      * @param lowerBound the lower bound of the range.
      * @param upperBound the upper bound of the range.
      */
-    public IntRangeFilter(int lowerBound, int upperBound) {
+    IntRangeFilter(int lowerBound, int upperBound) {
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
     }

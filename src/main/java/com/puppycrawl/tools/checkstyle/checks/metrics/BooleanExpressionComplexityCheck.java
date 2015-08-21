@@ -229,7 +229,7 @@ public final class BooleanExpressionComplexityCheck extends Check {
          * Creates new instance.
          * @param checking should we check in current context or not.
          */
-        public Context(boolean checking) {
+        Context(boolean checking) {
             this.checking = checking;
             count = 0;
         }

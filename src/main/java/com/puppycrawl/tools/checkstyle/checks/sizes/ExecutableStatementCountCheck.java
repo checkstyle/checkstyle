@@ -203,7 +203,7 @@ public final class ExecutableStatementCountCheck
          * Creates new member context.
          * @param ast member AST node.
          */
-        public Context(DetailAST ast) {
+        Context(DetailAST ast) {
             this.ast = ast;
             count = 0;
         }

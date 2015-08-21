@@ -210,7 +210,7 @@ public abstract class AbstractClassCouplingCheck extends Check {
          * @param lineNo line of class definition.
          * @param columnNo column of class definition.
          */
-        public Context(String className, int lineNo, int columnNo) {
+        Context(String className, int lineNo, int columnNo) {
             this.className = className;
             this.lineNo = lineNo;
             this.columnNo = columnNo;

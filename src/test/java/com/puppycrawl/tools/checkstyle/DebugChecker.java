@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 class DebugChecker extends Checker {
-    public DebugChecker() {
+    DebugChecker() {
     }
 
     @Override
