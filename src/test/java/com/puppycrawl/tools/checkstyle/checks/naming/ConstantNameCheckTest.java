@@ -25,6 +25,7 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -110,8 +111,7 @@ public class ConstantNameCheckTest
         throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ConstantNameCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("naming" + File.separator + "InputConstantNames.java"), expected);
     }
 
@@ -140,8 +140,7 @@ public class ConstantNameCheckTest
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ConstantNameCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/InputStaticModifierInInterface.java").getCanonicalPath(),

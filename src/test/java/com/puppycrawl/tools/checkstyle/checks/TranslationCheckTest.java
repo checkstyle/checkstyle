@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -77,8 +78,7 @@ public class TranslationCheckTest
     @Test
     public void testOnePropertyFileSet() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         final File[] propertyFiles = {
             new File(getPath("app-dev.properties")),
         };

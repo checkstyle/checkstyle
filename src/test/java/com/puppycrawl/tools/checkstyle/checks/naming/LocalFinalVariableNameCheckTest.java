@@ -73,7 +73,7 @@ public class LocalFinalVariableNameCheckTest
         throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(LocalFinalVariableNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputInner.java"), expected);
     }
 

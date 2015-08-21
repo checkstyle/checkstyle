@@ -93,8 +93,7 @@ public class WhitespaceAfterCheckTest
 
     @Test
     public void test1322879() throws Exception {
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
                expected);
     }

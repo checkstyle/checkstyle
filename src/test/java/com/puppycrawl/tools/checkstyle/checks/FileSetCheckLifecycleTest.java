@@ -57,8 +57,7 @@ public class FileSetCheckLifecycleTest
     public void testTranslation() throws Exception {
         final Configuration checkConfig =
             createCheckConfig(TestFileSetCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
 
         assertTrue("destroy() not called by Checker", TestFileSetCheck.isDestroyed());
@@ -84,8 +83,7 @@ public class FileSetCheckLifecycleTest
 
         checker.addFileSetCheck(new TestFileSetCheck());
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checker, getPath("InputScopeAnonInner.java"), expected);
 

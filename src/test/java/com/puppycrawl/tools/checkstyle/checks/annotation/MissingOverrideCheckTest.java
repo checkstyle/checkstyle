@@ -25,6 +25,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -100,8 +101,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "BadOverrideFromOther.java"), expected);
     }
@@ -131,8 +131,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     public void testBadAnnonOverrideJ5Compat() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "BadAnnonOverride.java"), expected);
     }
@@ -160,8 +159,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "false");
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "GoodOverrideFromObject.java"), expected);
     }
@@ -175,8 +173,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "GoodOverrideFromObject.java"), expected);
     }
@@ -188,8 +185,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGoodOverrideFromOther() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "GoodOverrideFromOther.java"), expected);
     }
@@ -203,8 +199,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "GoodOverrideFromOther.java"), expected);
     }
@@ -216,8 +211,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGoodAnnonOverride() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "GoodAnnonOverride.java"), expected);
     }
@@ -230,8 +224,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     public void testGoodAnnonOverrideJ5Compat() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "GoodAnnonOverride.java"), expected);
     }

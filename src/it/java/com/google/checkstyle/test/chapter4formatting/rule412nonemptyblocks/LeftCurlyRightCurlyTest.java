@@ -7,6 +7,7 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -118,8 +119,7 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
         DefaultConfiguration newCheckConfig = createCheckConfig(RightCurlyCheck.class);
         newCheckConfig.addAttribute("option", RightCurlyOption.SAME.toString());
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         String filePath = builder.getFilePath("RightCurlyInputSame");
         Integer[] warnList = builder.getLinesWithWarn(filePath);

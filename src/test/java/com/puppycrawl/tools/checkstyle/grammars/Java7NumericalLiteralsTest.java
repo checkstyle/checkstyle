@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.grammars;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -36,7 +37,7 @@ public class Java7NumericalLiteralsTest
         throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("grammars/InputJava7NumericalLiterals.java"), expected);
     }
 }

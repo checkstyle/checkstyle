@@ -67,8 +67,7 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport {
             createCheckConfig(MethodLengthCheck.class);
         checkConfig.addAttribute("max", "19");
         checkConfig.addAttribute("countEmpty", "false");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
@@ -76,8 +75,7 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport {
     public void testAbstract() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodLengthCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputModifier.java"), expected);
     }
 }

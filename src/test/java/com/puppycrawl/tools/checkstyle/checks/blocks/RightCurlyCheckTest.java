@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_SAME;
 import static org.junit.Assert.assertEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -77,8 +78,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
     @Test
     public void testSameOmitOneLiners() throws Exception {
         checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRightCurlySameForOneLiners.java"), expected);
     }
 
@@ -141,8 +141,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testForceLineBreakBefore2() throws Exception {
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRightCurlyLineBreakBefore.java"), expected);
     }
 
@@ -150,8 +149,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
     public void testNPE() throws Exception {
         checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRightCurlyEmptyAbstractMethod.java"), expected);
     }
 

@@ -3,6 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -43,8 +44,7 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport
     public void testNoViolations() throws IOException, Exception
     {
         
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("EmptyCatchBlock");
         String filePath = builder.getFilePath("EmptyCatchBlockNoViolationsInput");

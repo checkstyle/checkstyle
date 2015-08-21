@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -80,7 +81,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
     public void testGenerics() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RequireThisCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("Input15Extensions.java"), expected);
     }
 

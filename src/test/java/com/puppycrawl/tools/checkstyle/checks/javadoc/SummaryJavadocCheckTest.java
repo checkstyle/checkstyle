@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.fail;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,8 +51,7 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     public void testCorrect() throws Exception {
         checkConfig.addAttribute("forbiddenSummaryFragments",
                 "^@return the *|^This method returns *|^A [{]@code [a-zA-Z0-9]+[}]( is a )");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("javadoc/InputCorrectSummaryJavaDocCheck.java"), expected);
     }
@@ -86,8 +86,7 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     @Test
     public void testNoPeriod() throws Exception {
         checkConfig.addAttribute("period", "");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("javadoc/InputSummaryJavadocCheckNoPeriod.java"), expected);
     }

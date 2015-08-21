@@ -28,6 +28,7 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.util.Map;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -100,22 +101,20 @@ public class GenericWhitespaceCheckTest
 
     @Test
     public void testGh47() throws Exception {
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("whitespace/Gh47.java"), expected);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final String[] expected = {
-
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("whitespace/"
                 + "InputGenericWhitespaceInnerClassCheck.java"), expected);
     }
 
     @Test
     public void testMethodReferences() throws Exception {
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                 + "checkstyle/grammars/java8/"
                 + "InputMethodReferencesTest3.java").getCanonicalPath(), expected);

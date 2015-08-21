@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Locale;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -70,8 +71,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final BufferedWriter writer = new BufferedWriter(new FileWriter(file));
         writer.write(content);
         writer.close();
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, file.getPath(), expected);
     }
 
@@ -82,9 +82,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
             createCheckConfig(HiddenFieldCheck.class);
         checkConfig.addAttribute("tokens", "VARIABLE_DEF, ENUM_DEF, CLASS_DEF, METHOD_DEF,"
                 + "IMPORT");
-        final String[] expected = {
-
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         try {
             verify(checkConfig, getPath("InputHiddenField.java"), expected);
             fail();
@@ -102,8 +100,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     public void testOnEmptyFile() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, pathToEmptyFile, expected);
     }
@@ -111,8 +108,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     @Test
     public void testWithCheckNotHavingTreeWalkerAsParent() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         try {
             verify(checkConfig, temporaryFolder.newFile().getPath(), expected);
@@ -175,8 +171,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         checker.addListener(new BriefLogger(stream));
 
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
         // one more time to reuse cache
@@ -204,8 +199,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         checker.addListener(new BriefLogger(stream));
 
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
 
@@ -230,8 +224,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     public void testForInvalidCheckImplementation() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(BadJavaDocCheck.class);
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         // nothing is expected
         verify(checkConfig, pathToEmptyFile, expected);

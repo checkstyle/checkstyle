@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISM
 import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISSING;
 import static org.junit.Assert.fail;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
@@ -49,8 +50,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
                 createCheckConfig(HeaderCheck.class);
         try {
             createChecker(checkConfig);
-            final String[] expected = {
-            };
+            final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
             verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
         }
         catch (CheckstyleException ex) {
@@ -121,8 +121,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
                 createCheckConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("configs/java.header"));
         checkConfig.addAttribute("ignoreLines", "2");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("configs/java2.header"), expected);
     }
 

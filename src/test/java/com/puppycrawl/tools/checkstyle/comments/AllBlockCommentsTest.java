@@ -23,6 +23,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Set;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -41,7 +42,7 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport {
     @Test
     public void testAllBlockComments() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(BlockCommentListenerCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("comments" + File.separator
                 + "InputFullOfBlockComments.java"), expected);
         Assert.assertTrue(ALL_COMMENTS.isEmpty());

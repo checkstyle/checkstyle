@@ -3,6 +3,7 @@ package com.google.checkstyle.test.chapter3filestructure.rule341onetoplevel;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -46,7 +47,7 @@ public class OneTopLevelClassTest extends BaseCheckTestSupport{
     @Test
     public void goodTest() throws IOException, Exception {
         
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         
         Configuration checkConfig = builder.getCheckConfig("OneTopLevelClass");
         String filePath = builder.getFilePath("OneTopLevelClassInputGood");

@@ -83,7 +83,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreCase", "false");
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
@@ -93,8 +93,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         final String illegal = "don't use trailing comments";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -116,8 +115,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         final String illegal = "c-style 1";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -138,8 +136,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         final String illegal = "c-style 2";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -148,8 +145,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         final String illegal = "Let's check multi-line comments";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -158,8 +154,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         final String illegal = "long ms /";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -191,8 +186,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         final String illegal = "long ms  ";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -202,8 +196,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         final String illegal = "\\s+$";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -213,8 +206,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", required);
         checkConfig.addAttribute("minimum", "1");
         checkConfig.addAttribute("maximum", "1000");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
@@ -224,8 +216,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", required);
         checkConfig.addAttribute("minimum", "1");
         checkConfig.addAttribute("maximum", "1000");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 

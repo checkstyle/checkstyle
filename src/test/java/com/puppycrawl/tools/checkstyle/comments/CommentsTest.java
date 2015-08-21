@@ -48,6 +48,7 @@ import static com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -599,7 +600,7 @@ public class CommentsTest extends BaseCheckTestSupport {
     public void testCompareExpectedTreeWithInput_1() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(CompareTreesWithComments.class);
         CompareTreesWithComments.expectedTree = buildInput1();
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("comments" + File.separator
                 + "InputCommentsTest_1.java"), expected);
     }
@@ -608,7 +609,7 @@ public class CommentsTest extends BaseCheckTestSupport {
     public void testCompareExpectedTreeWithInput_2() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(CompareTreesWithComments.class);
         CompareTreesWithComments.expectedTree = buildInput2();
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("comments" + File.separator
                 + "InputCommentsTest_2.java"), expected);
     }

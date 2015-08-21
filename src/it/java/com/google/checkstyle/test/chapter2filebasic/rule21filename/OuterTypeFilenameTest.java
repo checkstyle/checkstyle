@@ -3,6 +3,7 @@ package com.google.checkstyle.test.chapter2filebasic.rule21filename;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -24,7 +25,7 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport{
     @Test
     public void outerTypeFilenameTest_1() throws IOException, Exception {
 
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("OuterTypeFilename");
         String filePath = builder.getFilePath("OuterTypeFilenameInput_1");
@@ -36,7 +37,7 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport{
     @Test
     public void outerTypeFilenameTest_2() throws IOException, Exception {
 
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("OuterTypeFilename");
         String filePath = builder.getFilePath("OuterTypeFilenameInput_2");
