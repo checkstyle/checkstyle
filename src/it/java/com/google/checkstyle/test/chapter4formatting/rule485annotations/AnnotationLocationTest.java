@@ -25,11 +25,11 @@ public class AnnotationLocationTest extends BaseCheckTestSupport{
     public void annotationTest() throws Exception {
         
         Class<AnnotationLocationCheck> clazz = AnnotationLocationCheck.class;
-        String msgLocation = "annotation.location";
-        String msgLocationAlone = "annotation.location.alone";
         getCheckMessage(clazz, "annotation.location.alone");
         Configuration checkConfig = builder.getCheckConfig("AnnotationLocation");
 
+        String msgLocationAlone = "annotation.location.alone";
+        String msgLocation = "annotation.location";
         final String[] expected = {
             "3: " + getCheckMessage(clazz, msgLocationAlone, "MyAnnotation1"),
             "20: " + getCheckMessage(clazz, msgLocation, "MyAnnotation1", "8", "4"),
