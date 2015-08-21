@@ -73,7 +73,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
                 getPath("metrics" + File.separator + "ClassCouplingCheckTestInput.java"),
                 expected);
         }
-        catch (Exception ex) {
+        catch (Exception ignored) {
             //Exception is not expected
             fail();
         }

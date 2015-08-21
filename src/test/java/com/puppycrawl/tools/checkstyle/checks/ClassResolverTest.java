@@ -43,7 +43,7 @@ public class ClassResolverTest {
             cr.resolve("who.will.win.the.world.cup", "");
             fail("Should not resolve class");
         }
-        catch (ClassNotFoundException e) {
+        catch (ClassNotFoundException ignored) {
             // expected
         }
         cr.resolve("java.lang.String", "");
@@ -54,7 +54,7 @@ public class ClassResolverTest {
             cr.resolve("ChoiceFormat", "");
             fail();
         }
-        catch (ClassNotFoundException e) {
+        catch (ClassNotFoundException ignored) {
             // expected
         }
 
@@ -69,7 +69,7 @@ public class ClassResolverTest {
             cr.resolve("two.nil.england", "");
             fail();
         }
-        catch (ClassNotFoundException e) {
+        catch (ClassNotFoundException ignored) {
             // expected
         }
     }

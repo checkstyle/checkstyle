@@ -74,7 +74,7 @@ public class FileLengthCheckTest
             createChecker(checkConfig);
             fail("Should indicate illegal args");
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException ignored) {
             // Expected Exception because of illegal argument for "max"
         }
     }

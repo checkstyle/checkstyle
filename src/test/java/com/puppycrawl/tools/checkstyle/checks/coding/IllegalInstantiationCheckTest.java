@@ -175,7 +175,7 @@ public class IllegalInstantiationCheckTest
             check.visitToken(lambdaAst);
             Assert.fail();
         }
-        catch (IllegalArgumentException e) {
+        catch (IllegalArgumentException ignored) {
             // it is OK
         }
     }

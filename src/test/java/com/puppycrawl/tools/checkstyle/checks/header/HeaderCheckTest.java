@@ -53,7 +53,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
             };
             verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException ignored) {
             // Exception is not expected
             fail();
         }
@@ -68,7 +68,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
             createChecker(checkConfig);
             fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException ignored) {
             // expected exception
         }
     }
@@ -83,7 +83,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
             createChecker(checkConfig);
             fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException ignored) {
             // expected exception
         }
     }
@@ -97,7 +97,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
             createChecker(checkConfig);
             fail("Checker creation should not succeed with invalid headerFile");
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException ignored) {
             // expected exception
         }
     }

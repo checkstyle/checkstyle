@@ -113,7 +113,7 @@ public class PropertyCacheFileTest {
             assertTrue(e.getCause().getCause() instanceof NoSuchAlgorithmException);
             assertEquals("Unable to calculate hashcode.", e.getCause().getMessage());
         }
-        catch (Exception e) {
+        catch (Exception ignored) {
             fail();
         }
     }

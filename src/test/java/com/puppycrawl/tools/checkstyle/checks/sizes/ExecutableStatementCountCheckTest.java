@@ -153,7 +153,7 @@ public class ExecutableStatementCountCheckTest
             createChecker(checkConfig);
             verify(checkConfig, getPath("ExecutableStatementCountInput.java"), expected);
         }
-        catch (Exception ex) {
+        catch (Exception ignored) {
             //Exception is not expected
             fail();
         }

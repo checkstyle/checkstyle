@@ -186,7 +186,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
             HttpURLConnection urlConnect = (HttpURLConnection) url.openConnection();
             urlConnect.getContent();
         }
-        catch (IOException e) {
+        catch (IOException ignored) {
             return false;
         }
         return true;

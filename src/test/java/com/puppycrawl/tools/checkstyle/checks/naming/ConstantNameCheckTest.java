@@ -53,7 +53,7 @@ public class ConstantNameCheckTest
             createChecker(checkConfig);
             fail();
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException ignored) {
             // expected exception
         }
     }

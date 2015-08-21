@@ -117,7 +117,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
             check.visitToken(classDefAst);
             Assert.fail();
         }
-        catch (IllegalStateException e) {
+        catch (IllegalStateException ignored) {
             // it is OK
         }
 
@@ -125,7 +125,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
             check.leaveToken(classDefAst);
             Assert.fail();
         }
-        catch (IllegalStateException e) {
+        catch (IllegalStateException ignored) {
             // it is OK
         }
     }

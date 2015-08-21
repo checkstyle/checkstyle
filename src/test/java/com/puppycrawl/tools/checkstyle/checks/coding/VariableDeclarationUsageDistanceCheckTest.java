@@ -232,7 +232,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             createChecker(checkConfig);
             verify(checkConfig, getPath("coding/InputVariableDeclarationUsageDistanceCheck.java"), expected);
         }
-        catch (Exception ex) {
+        catch (Exception ignored) {
             //Exception is not expected
             fail();
         }

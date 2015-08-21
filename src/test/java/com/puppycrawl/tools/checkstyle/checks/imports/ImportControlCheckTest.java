@@ -110,7 +110,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
                     + "InputImportControl.java"), expected);
             fail("should fail");
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException ignored) {
             //donothng
         }
     }
@@ -126,7 +126,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
                     + "InputImportControl.java"), expected);
             fail("should fail");
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException ignored) {
             //donothing
         }
     }
