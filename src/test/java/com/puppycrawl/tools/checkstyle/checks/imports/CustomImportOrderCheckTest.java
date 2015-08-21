@@ -339,7 +339,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
         try {
             Class<?> clazz = Class.forName(
                     "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck");
-            Object t = clazz.newInstance();
+            Object t = clazz.getConstructor().newInstance();
             Method method = clazz.getDeclaredMethod("getFullImportIdent", DetailAST.class);
             method.setAccessible(true);
             actual = method.invoke(t, (DetailAST) null);
