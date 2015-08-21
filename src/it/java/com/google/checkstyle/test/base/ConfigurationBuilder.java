@@ -82,8 +82,8 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 			final String extension) {
 		if (folder.canRead()) {
 			if (folder.isDirectory()) {
-				for (final File f : folder.listFiles()) {
-					listFiles(files, f, extension);
+				for (final File file : folder.listFiles()) {
+					listFiles(files, file, extension);
 				}
 			} else if (folder.toString().endsWith("." + extension)) {
 				files.add(folder);
