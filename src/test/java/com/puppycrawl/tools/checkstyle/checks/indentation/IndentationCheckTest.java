@@ -324,7 +324,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testAnnotatins() throws Exception {
+    public void testAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -388,7 +388,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testLables() throws Exception {
+    public void testLabels() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("arrayInitIndent", "4");

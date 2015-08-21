@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   <LI>template method to get the rcurly</LI>
  *   <LI>if curlys aren't present, then template method to get expressions
  *       is called</LI>
- *   <LI>now all the repetitous code which checks for BOL, if curlys are on
+ *   <LI>now all the repetitious code which checks for BOL, if curlys are on
  *       same line, etc. can be collapsed into the superclass</LI>
  * </UL>
  *
@@ -70,7 +70,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     }
 
     /**
-     * Returns array of token types which should be checked among childrens.
+     * Returns array of token types which should be checked among children.
      * @return array of token types to check.
      */
     protected int[] getCheckedChildren() {
@@ -244,7 +244,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     /**
      * Get the right parenthesis portion of the expression we are handling.
      *
-     * @return the right parenthis expression
+     * @return the right parenthesis expression
      */
     protected DetailAST getRParen() {
         return getMainAst().findFirstToken(TokenTypes.RPAREN);
@@ -253,7 +253,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     /**
      * Get the left parenthesis portion of the expression we are handling.
      *
-     * @return the left parenthis expression
+     * @return the left parenthesis expression
      */
     protected DetailAST getLParen() {
         return getMainAst().findFirstToken(TokenTypes.LPAREN);
@@ -262,7 +262,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     @Override
     public void checkIndentation() {
         checkToplevelToken();
-        // seperate to allow for eventual configuration
+        // separate to allow for eventual configuration
         checkLParen(getLParen());
         checkRParen(getLParen(), getRParen());
         if (hasCurlys()) {

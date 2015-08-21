@@ -61,7 +61,7 @@ public class SynchronizedHandler extends BlockParentHandler {
     }
 
     /**
-     * Check identation of expression we synchronized on
+     * Check indentation of expression we synchronized on
      */
     private void checkSynchronizedExpr() {
         final DetailAST syncAst = getMainAst().findFirstToken(TokenTypes.LPAREN)

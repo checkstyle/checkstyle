@@ -207,9 +207,9 @@ public abstract class AbstractExpressionHandler {
     }
 
     /**
-     * Searchs in given sub-tree (including given node) for the token
+     * Searches in given sub-tree (including given node) for the token
      * which represents first symbol for this sub-tree in file.
-     * @param ast a root of sub-tree in which the search shoul be performed.
+     * @param ast a root of sub-tree in which the search should be performed.
      * @return a token which occurs first in the file.
      */
     static DetailAST getFirstToken(DetailAST ast) {
@@ -275,7 +275,7 @@ public abstract class AbstractExpressionHandler {
      * @param lines              the set of lines to check
      * @param indentLevel        the indentation level
      * @param firstLineMatches   whether or not the first line has to match
-     * @param firstLine          firstline of whole expression
+     * @param firstLine          first line of whole expression
      */
     private void checkLinesIndent(LineSet lines,
                                   IndentLevel indentLevel,
