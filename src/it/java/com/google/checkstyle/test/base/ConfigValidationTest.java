@@ -1,5 +1,6 @@
 package com.google.checkstyle.test.base;
 
+import static org.apache.commons.lang3.ArrayUtils.EMPTY_INTEGER_OBJECT_ARRAY;
 import static org.apache.commons.lang3.ArrayUtils.EMPTY_STRING_ARRAY;
 
 import java.io.File;
@@ -24,6 +25,7 @@ public class ConfigValidationTest extends BaseCheckTestSupport {
         
         //runs over all input files;
         //as severity level is "warning", no errors expected
-        verify(checker, files.toArray(new File[files.size()]), "", EMPTY_STRING_ARRAY, null);
+        verify(checker, files.toArray(new File[files.size()]), "",
+                EMPTY_STRING_ARRAY, EMPTY_INTEGER_OBJECT_ARRAY);
     }
 }
