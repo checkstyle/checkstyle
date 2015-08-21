@@ -22,7 +22,7 @@ public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void noFinalizerBasicTest() throws IOException, Exception {
+    public void noFinalizerBasicTest() throws Exception {
         
         String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
 
@@ -38,7 +38,7 @@ public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport{
     }
     
     @Test
-    public void noFinalizerExtendedTest() throws IOException, Exception {
+    public void noFinalizerExtendedTest() throws Exception {
         
         String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
 

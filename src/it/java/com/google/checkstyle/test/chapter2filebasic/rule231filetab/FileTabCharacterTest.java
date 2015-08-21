@@ -32,7 +32,7 @@ public class FileTabCharacterTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void fileTabTest() throws IOException, Exception {
+    public void fileTabTest() throws Exception {
 
         final DefaultConfiguration checkConfig = createConfig(true);
         final String[] expected = {

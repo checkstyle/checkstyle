@@ -26,7 +26,7 @@ public class LocalVariableNameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void localVariableNameTest() throws IOException, Exception {
+    public void localVariableNameTest() throws Exception {
 
         final String[] expected = {
             "26:13: " + getCheckMessage(checkConfig.getMessages(), msgKey, "a", format),
@@ -49,7 +49,7 @@ public class LocalVariableNameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void oneCharTest() throws IOException, Exception {
+    public void oneCharTest() throws Exception {
 
         final String[] expected = {
             "15:13: " + getCheckMessage(checkConfig.getMessages(), msgKey, "i", format),

@@ -26,7 +26,7 @@ public class MemberNameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void memberNameTest() throws IOException, Exception {
+    public void memberNameTest() throws Exception {
 
         final String[] expected = {
             "5:16: " + getCheckMessage(checkConfig.getMessages(), msgKey, "mPublic", format),
@@ -51,7 +51,7 @@ public class MemberNameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void simpleTest() throws IOException, Exception {
+    public void simpleTest() throws Exception {
 
         final String[] expected = {
             "12:17: " + getCheckMessage(checkConfig.getMessages(), msgKey, "bad$Static", format),

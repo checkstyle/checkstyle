@@ -21,7 +21,7 @@ public class MethodNameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void methodNameTest() throws IOException, Exception {
+    public void methodNameTest() throws Exception {
         
         Configuration checkConfig = builder.getCheckConfig("MethodName");
         String msgKey = "name.invalidPattern";

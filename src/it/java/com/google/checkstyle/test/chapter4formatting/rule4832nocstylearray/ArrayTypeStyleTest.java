@@ -22,7 +22,7 @@ public class ArrayTypeStyleTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void arrayTypeStyleTest() throws IOException, Exception {
+    public void arrayTypeStyleTest() throws Exception {
         
         String msg = getCheckMessage(ArrayTypeStyleCheck.class, "array.type.style");
 

@@ -22,7 +22,7 @@ public class AnnotationLocationTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void annotationTest() throws IOException, Exception {
+    public void annotationTest() throws Exception {
         
         Class<AnnotationLocationCheck> clazz = AnnotationLocationCheck.class;
         String msgLocation = "annotation.location";

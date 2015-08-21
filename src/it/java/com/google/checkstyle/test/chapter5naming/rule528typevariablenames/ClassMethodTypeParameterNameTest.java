@@ -26,7 +26,7 @@ public class ClassMethodTypeParameterNameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void testClassDefault() throws IOException, Exception {
+    public void testClassDefault() throws Exception {
 
         final String[] expected = {
             "5:31: " + getCheckMessage(checkConfig.getMessages(), msgKey, "t", format),
@@ -41,7 +41,7 @@ public class ClassMethodTypeParameterNameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void testMethodDefault() throws IOException, Exception {
+    public void testMethodDefault() throws Exception {
 
         Configuration checkConfig = builder.getCheckConfig("MethodTypeParameterName");
 

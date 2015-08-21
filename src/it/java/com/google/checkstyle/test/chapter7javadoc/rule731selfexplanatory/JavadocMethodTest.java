@@ -22,7 +22,7 @@ public class JavadocMethodTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void javadocMethodTest() throws IOException, Exception {
+    public void javadocMethodTest() throws Exception {
 
         String msg = getCheckMessage(JavadocMethodCheck.class, "javadoc.missing");
 

@@ -22,7 +22,7 @@ public class VariableDeclarationUsageDistanceTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void arrayTypeStyleTest() throws IOException, Exception {
+    public void arrayTypeStyleTest() throws Exception {
 
         String msgExt = "variable.declaration.usage.distance.extend";
         Class<VariableDeclarationUsageDistanceCheck> clazz = VariableDeclarationUsageDistanceCheck.class;

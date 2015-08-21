@@ -22,7 +22,7 @@ public class MethodParamPadTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void operatorWrapTest() throws IOException, Exception {
+    public void operatorWrapTest() throws Exception {
         
         Class<MethodParamPadCheck> clazz = MethodParamPadCheck.class;
         String messageKey = "line.previous";

@@ -22,7 +22,7 @@ public class IndentationTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void correctClassTest() throws IOException, Exception {
+    public void correctClassTest() throws Exception {
 
         final String[] expected = {};
 
@@ -34,7 +34,7 @@ public class IndentationTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void correctFieldTest() throws IOException, Exception {
+    public void correctFieldTest() throws Exception {
 
         final String[] expected = {};
 
@@ -46,7 +46,7 @@ public class IndentationTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void correctForTest() throws IOException, Exception {
+    public void correctForTest() throws Exception {
 
         final String[] expected = {};
 
@@ -58,7 +58,7 @@ public class IndentationTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void correctIfTest() throws IOException, Exception {
+    public void correctIfTest() throws Exception {
 
         final String[] expected = {};
 
@@ -70,7 +70,7 @@ public class IndentationTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void correctTest() throws IOException, Exception {
+    public void correctTest() throws Exception {
 
         final String[] expected = {};
 
@@ -82,7 +82,7 @@ public class IndentationTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void correctReturnTest() throws IOException, Exception {
+    public void correctReturnTest() throws Exception {
 
         final String[] expected = {};
 
@@ -94,7 +94,7 @@ public class IndentationTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void correctWhileTest() throws IOException, Exception {
+    public void correctWhileTest() throws Exception {
 
         final String[] expected = {};
 

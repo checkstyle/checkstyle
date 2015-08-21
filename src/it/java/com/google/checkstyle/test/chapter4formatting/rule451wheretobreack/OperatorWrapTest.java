@@ -24,7 +24,7 @@ public class OperatorWrapTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void operatorWrapTest() throws IOException, Exception {
+    public void operatorWrapTest() throws Exception {
         
         Class<OperatorWrapCheck> clazz = OperatorWrapCheck.class;
         String messageKey = "line.new";

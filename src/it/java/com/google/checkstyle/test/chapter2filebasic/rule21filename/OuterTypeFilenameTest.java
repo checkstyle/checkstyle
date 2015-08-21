@@ -22,7 +22,7 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void outerTypeFilenameTest_1() throws IOException, Exception {
+    public void outerTypeFilenameTest_1() throws Exception {
 
         final String[] expected = {};
 
@@ -34,7 +34,7 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void outerTypeFilenameTest_2() throws IOException, Exception {
+    public void outerTypeFilenameTest_2() throws Exception {
 
         final String[] expected = {};
 
@@ -46,7 +46,7 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void outerTypeFilenameTest_3() throws IOException, Exception {
+    public void outerTypeFilenameTest_3() throws Exception {
 
         final String[] expected = {
             "3: " + getCheckMessage(OuterTypeFilenameCheck.class, "type.file.mismatch"),

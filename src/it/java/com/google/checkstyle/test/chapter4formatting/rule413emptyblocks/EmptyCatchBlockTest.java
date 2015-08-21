@@ -23,7 +23,7 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void emptyBlockTestCatch() throws IOException, Exception
+    public void emptyBlockTestCatch() throws Exception
     {
         
         final String[] expected = {
@@ -40,7 +40,7 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testNoViolations() throws IOException, Exception
+    public void testNoViolations() throws Exception
     {
         
         final String[] expected = {
@@ -54,7 +54,7 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testViolationsByComment() throws IOException, Exception
+    public void testViolationsByComment() throws Exception
     {
         
         final String[] expected = {
@@ -70,7 +70,7 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testViolationsByVariableName() throws IOException, Exception
+    public void testViolationsByVariableName() throws Exception
     {
         final String[] expected = {
             "19: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
