@@ -22,7 +22,7 @@ public class SeparatorWrapTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void separatorWrapTest() throws IOException, Exception {
+    public void separatorWrapTest() throws Exception {
 
         final String[] expected = {
             "28:30: " + getCheckMessage(SeparatorWrapCheck.class, "line.new", "."),

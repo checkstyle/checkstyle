@@ -22,7 +22,7 @@ public class JavadocParagraphTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void javadocParagraphCorrectTest() throws IOException, Exception {
+    public void javadocParagraphCorrectTest() throws Exception {
 
         final String[] expected = {
         };
@@ -35,7 +35,7 @@ public class JavadocParagraphTest extends BaseCheckTestSupport{
     }
     
     @Test
-    public void javadocParagraphIncorrectTest() throws IOException, Exception {
+    public void javadocParagraphIncorrectTest() throws Exception {
 
         String msgBefore = getCheckMessage(JavadocParagraphCheck.class, "javadoc.paragraph.line.before");
         String msgRed = getCheckMessage(JavadocParagraphCheck.class, "javadoc.paragraph.redundant.paragraph");

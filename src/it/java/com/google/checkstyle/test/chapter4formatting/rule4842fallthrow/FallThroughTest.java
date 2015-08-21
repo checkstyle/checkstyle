@@ -22,7 +22,7 @@ public class FallThroughTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void fallThroughTest() throws IOException, Exception {
+    public void fallThroughTest() throws Exception {
 
         String msg = getCheckMessage(FallThroughCheck.class, "fall.through");
                      

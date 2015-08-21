@@ -27,7 +27,7 @@ public class PackageNameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void goodPackageNameTest() throws IOException, Exception {
+    public void goodPackageNameTest() throws Exception {
 
 
         final String[] expected = {};
@@ -39,7 +39,7 @@ public class PackageNameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void badPackageNameTest() throws IOException, Exception {
+    public void badPackageNameTest() throws Exception {
 
         String packagePath =
                 "com.google.checkstyle.test.chapter5naming.rule521packageNamesCamelCase";
@@ -56,7 +56,7 @@ public class PackageNameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void badPackageName2Test() throws IOException, Exception {
+    public void badPackageName2Test() throws Exception {
 
 
         String packagePath = "com.google.checkstyle.test.chapter5naming.rule521_packagenames";
@@ -73,7 +73,7 @@ public class PackageNameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void badPackageName3Test() throws IOException, Exception {
+    public void badPackageName3Test() throws Exception {
 
 
         String packagePath = "com.google.checkstyle.test.chapter5naming.rule521$packagenames";

@@ -26,7 +26,7 @@ public class ParameterNameTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void parameterNameTest() throws IOException, Exception {
+    public void parameterNameTest() throws Exception {
 
         final String[] expected = {
             "8:21: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "$arg1", format),

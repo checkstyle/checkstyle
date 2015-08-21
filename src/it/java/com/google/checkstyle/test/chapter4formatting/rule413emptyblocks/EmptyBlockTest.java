@@ -22,7 +22,7 @@ public class EmptyBlockTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void emptyBlockTest() throws IOException, Exception {
+    public void emptyBlockTest() throws Exception {
         
         final String[] expected = {
             "19:21: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "if"),
@@ -68,7 +68,7 @@ public class EmptyBlockTest extends BaseCheckTestSupport{
     }
     
     @Test
-    public void emptyBlockTestCatch() throws IOException, Exception {
+    public void emptyBlockTestCatch() throws Exception {
         
         final String[] expected = {
             "29:17: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "finally"),

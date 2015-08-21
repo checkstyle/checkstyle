@@ -22,7 +22,7 @@ public class ModifierOrderTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void modifierOrderTest() throws IOException, Exception {
+    public void modifierOrderTest() throws Exception {
         
         Class<ModifierOrderCheck> clazz = ModifierOrderCheck.class;
         String msgMod = "mod.order";

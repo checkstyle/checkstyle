@@ -22,7 +22,7 @@ public class NeedBracesTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void needBracesTest() throws IOException, Exception {
+    public void needBracesTest() throws Exception {
         
         Class<NeedBracesCheck> clazz = NeedBracesCheck.class;
         String messageKey = "needBraces";

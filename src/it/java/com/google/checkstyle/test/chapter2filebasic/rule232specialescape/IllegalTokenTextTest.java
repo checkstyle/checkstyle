@@ -18,12 +18,12 @@ public class IllegalTokenTextTest extends BaseCheckTestSupport{
     
     @BeforeClass
     public static void setConfigurationBuilder()
-    		throws CheckstyleException, MalformedURLException, IOException {
+    		throws CheckstyleException, IOException {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 
     @Test
-    public void illegalTokensTest() throws IOException, Exception {
+    public void illegalTokensTest() throws Exception {
         
         final String[] expected = {
             "17:27: Avoid using corresponding octal or Unicode escape.",

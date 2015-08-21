@@ -23,7 +23,7 @@ public class SingleLineJavadocTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void singleLineJavadocTest() throws IOException, Exception {
+    public void singleLineJavadocTest() throws Exception {
         
         String msg = getCheckMessage(SingleLineJavadocCheck.class, "singleline.javadoc");
 
@@ -46,7 +46,7 @@ public class SingleLineJavadocTest extends BaseCheckTestSupport{
     }
 
     @Test(expected = Exception.class)
-    public void customInlineTagTest() throws IOException, Exception{
+    public void customInlineTagTest() throws Exception{
         String msg = getCheckMessage(SingleLineJavadocCheck.class, "singleline.javadoc");
         
         Configuration checkConfig = builder.getCheckConfig("SingleLineJavadocCheck");
