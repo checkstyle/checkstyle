@@ -25,7 +25,7 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 
 	private final List<File> files = new ArrayList<>();
 
-	Configuration config;
+	final Configuration config;
 
 	URL url;
 
