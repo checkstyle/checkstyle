@@ -14,9 +14,9 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class PackageNameTest extends BaseCheckTestSupport{
 
+	private static final String MSG_KEY = "name.invalidPattern";
 	private static ConfigurationBuilder builder;
 	private static Configuration checkConfig;
-	private final String msgKey = "name.invalidPattern";
 	private static String format;
 
 
@@ -44,7 +44,7 @@ public class PackageNameTest extends BaseCheckTestSupport{
 
         String packagePath =
                 "com.google.checkstyle.test.chapter5naming.rule521packageNamesCamelCase";
-        String msg = getCheckMessage(checkConfig.getMessages(), msgKey, packagePath, format);
+        String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
 
         final String[] expected = {
             "1:9: " + msg,
@@ -61,7 +61,7 @@ public class PackageNameTest extends BaseCheckTestSupport{
 
 
         String packagePath = "com.google.checkstyle.test.chapter5naming.rule521_packagenames";
-        String msg = getCheckMessage(checkConfig.getMessages(), msgKey, packagePath, format);
+        String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
 
         final String[] expected = {
             "1:9: " + msg,
@@ -78,7 +78,7 @@ public class PackageNameTest extends BaseCheckTestSupport{
 
 
         String packagePath = "com.google.checkstyle.test.chapter5naming.rule521$packagenames";
-        String msg = getCheckMessage(checkConfig.getMessages(), msgKey, packagePath, format);
+        String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
 
         final String[] expected = {
             "1:9: " + msg,
