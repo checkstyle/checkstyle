@@ -85,14 +85,6 @@ public final class ExecutableStatementCountCheck
     }
 
     /**
-     * Gets the maximum threshold.
-     * @return the maximum threshold.
-     */
-    public int getMax() {
-        return max;
-    }
-
-    /**
      * Sets the maximum threshold.
      * @param max the maximum threshold.
      */
@@ -156,9 +148,9 @@ public final class ExecutableStatementCountCheck
      */
     private void leaveMemberDef(DetailAST ast) {
         final int count = context.getCount();
-        if (count > getMax()) {
+        if (count > max) {
             log(ast.getLineNo(), ast.getColumnNo(),
-                    MSG_KEY, count, getMax());
+                    MSG_KEY, count, max);
         }
         context = contextStack.pop();
     }

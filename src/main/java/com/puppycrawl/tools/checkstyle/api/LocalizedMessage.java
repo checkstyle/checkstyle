@@ -350,14 +350,14 @@ public final class LocalizedMessage
 
     @Override
     public int compareTo(LocalizedMessage other) {
-        int result = Integer.compare(getLineNo(), other.getLineNo());
+        int result = Integer.compare(lineNo, other.lineNo);
 
-        if (getLineNo() == other.getLineNo()) {
-            if (getColumnNo() == other.getColumnNo()) {
+        if (lineNo == other.lineNo) {
+            if (columnNo == other.columnNo) {
                 result = getMessage().compareTo(other.getMessage());
             }
             else {
-                result = Integer.compare(getColumnNo(), other.getColumnNo());
+                result = Integer.compare(columnNo, other.columnNo);
             }
         }
         return result;
