@@ -39,7 +39,6 @@ public abstract class BaseCheckTestSupport {
 
     protected final ByteArrayOutputStream baos = new ByteArrayOutputStream();
     protected final PrintStream stream = new PrintStream(baos);
-    protected final Properties props = new Properties();
 
     public static DefaultConfiguration createCheckConfig(Class<?> clazz) {
         return new DefaultConfiguration(clazz.getName());

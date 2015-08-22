@@ -7,7 +7,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 public class CompareTreesWithComments extends Check {
-    protected static DetailAST expectedTree;
+    static DetailAST expectedTree;
 
     @Override
     public boolean isCommentNodesRequired() {
