@@ -69,12 +69,12 @@ public abstract class AbstractFileSetCheck
     @Override
     public final SortedSet<LocalizedMessage> process(File file,
                                                    List<String> lines) {
-        getMessageCollector().reset();
+        messageCollector.reset();
         // Process only what interested in
         if (Utils.fileExtensionMatches(file, fileExtensions)) {
             processFiltered(file, lines);
         }
-        return getMessageCollector().getMessages();
+        return messageCollector.getMessages();
     }
 
     @Override
@@ -148,16 +148,16 @@ public abstract class AbstractFileSetCheck
     @Override
     public final void log(int lineNo, int colNo, String key,
             Object... args) {
-        getMessageCollector().add(
-            new LocalizedMessage(lineNo,
-                                 colNo,
-                                 getMessageBundle(),
-                                 key,
-                                 args,
-                                 getSeverityLevel(),
-                                 getId(),
-                                 getClass(),
-                                 getCustomMessages().get(key)));
+        messageCollector.add(
+                new LocalizedMessage(lineNo,
+                        colNo,
+                        getMessageBundle(),
+                        key,
+                        args,
+                        getSeverityLevel(),
+                        getId(),
+                        getClass(),
+                        getCustomMessages().get(key)));
     }
 
     /**
@@ -167,9 +167,9 @@ public abstract class AbstractFileSetCheck
      * @param fileName the audited file
      */
     protected final void fireErrors(String fileName) {
-        final SortedSet<LocalizedMessage> errors = getMessageCollector()
+        final SortedSet<LocalizedMessage> errors = messageCollector
                 .getMessages();
-        getMessageCollector().reset();
+        messageCollector.reset();
         getMessageDispatcher().fireErrors(fileName, errors);
     }
 }
