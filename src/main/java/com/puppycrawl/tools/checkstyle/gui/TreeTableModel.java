@@ -71,14 +71,4 @@ public interface TreeTableModel extends TreeModel {
      * @return true if editable
      */
     boolean isCellEditable(Object node, int column);
-
-    /**
-     * Sets the value for node {@code node},
-     * at column number {@code column}.
-     *
-     * @param aValue the value to set
-     * @param node the node to set the value on
-     * @param column the column number
-     */
-    void setValueAt(Object aValue, Object node, int column);
 }

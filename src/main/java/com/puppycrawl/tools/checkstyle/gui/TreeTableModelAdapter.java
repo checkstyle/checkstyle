@@ -98,11 +98,6 @@ public class TreeTableModelAdapter extends AbstractTableModel {
         return treeTableModel.isCellEditable(nodeForRow(row), column);
     }
 
-    @Override
-    public void setValueAt(Object value, int row, int column) {
-        treeTableModel.setValueAt(value, nodeForRow(row), column);
-    }
-
     /**
      * Invokes fireTableDataChanged after all the pending events have been
      * processed. SwingUtilities.invokeLater is used to handle this.
