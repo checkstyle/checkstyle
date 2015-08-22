@@ -163,7 +163,7 @@ public class ClassResolver {
             safeLoad(name);
             return true;
         }
-        catch (final ClassNotFoundException | NoClassDefFoundError ignored) {
+        catch (final ClassNotFoundException ignored) {
             return false;
         }
     }
@@ -174,10 +174,8 @@ public class ClassResolver {
      * @param name name of the class to load
      * @return the {@code Class} for the specified class
      * @throws ClassNotFoundException if an error occurs
-     * @throws NoClassDefFoundError if an error occurs
      */
-    public Class<?> safeLoad(String name)
-        throws ClassNotFoundException, NoClassDefFoundError {
+    public Class<?> safeLoad(String name) throws ClassNotFoundException {
         // The next line will load the class using the specified class
         // loader. The magic is having the "false" parameter. This means the
         // class will not be initialised. Very, very important.
