@@ -172,7 +172,7 @@ public class WhitespaceAroundCheck extends Check {
     public static final String WS_NOT_FOLLOWED = "ws.notFollowed";
 
     /** Whether or not empty constructor bodies are allowed. */
-    private boolean allowEmptyCtors;
+    private boolean allowEmptyConstructors;
     /** Whether or not empty method bodies are allowed. */
     private boolean allowEmptyMethods;
     /** Whether or not empty classes, enums and interfaces are allowed*/
@@ -313,7 +313,7 @@ public class WhitespaceAroundCheck extends Check {
      * @param allow {@code true} to allow empty constructor bodies.
      */
     public void setAllowEmptyConstructors(boolean allow) {
-        allowEmptyCtors = allow;
+        allowEmptyConstructors = allow;
     }
 
     /**
@@ -494,7 +494,7 @@ public class WhitespaceAroundCheck extends Check {
      *         allowed empty constructor block.
      */
     private boolean isEmptyCtorBlock(DetailAST ast, int parentType) {
-        return allowEmptyCtors
+        return allowEmptyConstructors
             && isEmptyBlock(ast, parentType, TokenTypes.CTOR_DEF);
     }
 
