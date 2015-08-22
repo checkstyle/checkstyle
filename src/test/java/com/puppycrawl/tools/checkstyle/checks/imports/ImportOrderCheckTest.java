@@ -409,9 +409,9 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
 
     @Test(expected = IllegalStateException.class)
     public void testVisitTokenSwitchReflection() throws Exception {
-        ImportOrderOption C = PowerMockito.mock(ImportOrderOption.class);
-        Whitebox.setInternalState(C, "name", "NEW_OPTION_FOR_UT");
-        Whitebox.setInternalState(C, "ordinal", 5);
+        ImportOrderOption importOrderOptionMock = PowerMockito.mock(ImportOrderOption.class);
+        Whitebox.setInternalState(importOrderOptionMock, "name", "NEW_OPTION_FOR_UT");
+        Whitebox.setInternalState(importOrderOptionMock, "ordinal", 5);
 
         DetailAST astImport = mockAST(TokenTypes.IMPORT, "import", "mockfile", 0, 0);
         DetailAST astIdent = mockAST(TokenTypes.IDENT, "myTestImport", "mockfile", 0, 0);
