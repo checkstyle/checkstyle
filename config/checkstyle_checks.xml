@@ -307,6 +307,7 @@
     <module name="ModifiedControlVariable"/>
     <module name="AvoidInlineConditionals"/>
     <module name="IllegalType"/>
+    <module name="TrailingComment"/>
 
 <!--
     <module name="ClassDataAbstractionCoupling"/>
@@ -323,7 +324,6 @@
     <module name="OneTopLevelClass"/>
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="PackageDeclaration"/>
-    <module name="TrailingComment"/>
     <module name="RequireThis"/>
     <module name="ReturnCount"/>
     <module name="SingleLineJavadoc"/>
