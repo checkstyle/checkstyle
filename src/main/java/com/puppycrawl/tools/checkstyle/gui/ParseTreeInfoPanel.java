@@ -63,7 +63,7 @@ public class ParseTreeInfoPanel extends JPanel {
     private final JTextArea textArea;
     private File lastDirectory;
     private File currentFile;
-    private final Action reloadAction;
+    private final ReloadAction reloadAction;
     private final List<Integer>   linesToPosition  = new ArrayList<>();
 
     /**
