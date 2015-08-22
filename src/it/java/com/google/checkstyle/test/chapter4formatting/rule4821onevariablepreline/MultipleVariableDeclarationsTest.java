@@ -22,7 +22,7 @@ public class MultipleVariableDeclarationsTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void multipleVariableDeclarationsTest() throws IOException, Exception {
+    public void multipleVariableDeclarationsTest() throws Exception {
         
         String msgComma = getCheckMessage(MultipleVariableDeclarationsCheck.class, "multiple.variable.declarations.comma");
         String msg = getCheckMessage(MultipleVariableDeclarationsCheck.class, "multiple.variable.declarations");

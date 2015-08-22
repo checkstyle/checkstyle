@@ -22,7 +22,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void whitespaceAroundBasicTest() throws IOException, Exception {
+    public void whitespaceAroundBasicTest() throws Exception {
         
         Configuration checkConfig = builder.getCheckConfig("WhitespaceAround");
         String msgPreceded = "ws.notPreceded";
@@ -58,7 +58,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport{
     }
     
     @Test
-    public void whitespaceAroundGenericsTest() throws IOException, Exception {
+    public void whitespaceAroundGenericsTest() throws Exception {
         
         String msgPreceded = "ws.preceded";
         String msgFollowed = "ws.followed";
@@ -89,7 +89,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
     @Test
-    public void whitespaceAroundEmptyTypesCyclesTest() throws IOException, Exception {
+    public void whitespaceAroundEmptyTypesCyclesTest() throws Exception {
         
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
@@ -101,8 +101,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport{
     }
     
     @Test
-    public void genericWhitespaceTest() throws IOException, Exception
-    {
+    public void genericWhitespaceTest() throws Exception {
         String msgPreceded = "ws.preceded";
         String msgFollowed = "ws.followed";
         String msgNotPreceded = "ws.notPreceded";

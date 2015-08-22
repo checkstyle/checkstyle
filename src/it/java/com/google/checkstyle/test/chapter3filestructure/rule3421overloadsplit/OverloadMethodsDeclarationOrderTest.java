@@ -22,7 +22,7 @@ public class OverloadMethodsDeclarationOrderTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void overloadMethodsTest() throws IOException, Exception {
+    public void overloadMethodsTest() throws Exception {
         
         Class<OverloadMethodsDeclarationOrderCheck> clazz = OverloadMethodsDeclarationOrderCheck.class;
         String messageKey = "overload.methods.declaration";
