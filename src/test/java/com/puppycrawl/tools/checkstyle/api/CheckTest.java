@@ -33,10 +33,6 @@ public class CheckTest {
                 return ArrayUtils.EMPTY_INT_ARRAY;
             }
 
-            @Override
-            public int[] getRequiredTokens() {
-                return super.getRequiredTokens();
-            }
         };
         // Eventually it will become clear abstract method
         Assert.assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, check.getRequiredTokens());
@@ -50,10 +46,6 @@ public class CheckTest {
                 return ArrayUtils.EMPTY_INT_ARRAY;
             }
 
-            @Override
-            public int[] getAcceptableTokens() {
-                return super.getAcceptableTokens();
-            }
         };
         // Eventually it will become clear abstract method
         Assert.assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, check.getAcceptableTokens());

@@ -106,11 +106,6 @@ public class ParseTreeModel extends AbstractTreeTableModel {
     }
 
     @Override
-    public void setValueAt(Object aValue, Object node, int column) {
-        // No code, tree is read-only
-    }
-
-    @Override
     public Object getChild(Object parent, int index) {
         final DetailAST ast = (DetailAST) parent;
         int i = 0;

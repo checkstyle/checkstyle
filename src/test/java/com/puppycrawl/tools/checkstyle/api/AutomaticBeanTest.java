@@ -117,16 +117,5 @@ public class AutomaticBeanTest {
             throw new IllegalStateException(privateField);
         }
 
-        public void setName(String name) {
-        }
-
-        /**
-         * Just for code coverage
-         * @param childConf a child of this component's Configuration
-         */
-        @Override
-        protected void setupChild(Configuration childConf) throws CheckstyleException {
-            super.setupChild(childConf);
-        }
     }
 }
