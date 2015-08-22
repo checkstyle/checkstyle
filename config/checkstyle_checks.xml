@@ -59,6 +59,17 @@
     <property name="message" value="Unnecessary consecutive lines"/>
   </module>
 
+  <module name="RegexpSingleline">
+      <property name="format" value="/\*\* +\p{javaLowerCase}"/>
+      <property name="fileExtensions" value="java"/>
+      <property name="message" value="First sentence in a comment should start with a capital letter"/>
+  </module>
+  <module name="RegexpMultiline">
+      <property name="format" value="/\*\*\W+\* +\p{javaLowerCase}"/>
+      <property name="fileExtensions" value="java"/>
+      <property name="message" value="First sentence in a comment should start with a capital letter"/>
+  </module>
+
   <module name="RegexpHeader">
     <property name="headerFile" value="${checkstyle.regexp.header.file}"/>
     <property name="fileExtensions" value="java"/>
