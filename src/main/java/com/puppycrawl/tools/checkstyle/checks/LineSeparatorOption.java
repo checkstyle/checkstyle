@@ -38,8 +38,11 @@ public enum LineSeparatorOption {
     /** Unix-style line separators. **/
     LF("\n"),
 
-    /** Matches CR, LF and CRLF line separators. **/
-    LF_CR_CRLF("##"), // only the length is used - the actual value is ignored
+    /**
+     * Matches CR, LF and CRLF line separators.
+     * Only the length is used - the actual value is ignored.
+     */
+    LF_CR_CRLF("##"),
 
     /** System default line separators. **/
     SYSTEM(System.getProperty("line.separator"));

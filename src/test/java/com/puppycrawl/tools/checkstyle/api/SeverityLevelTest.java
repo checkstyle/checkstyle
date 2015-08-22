@@ -49,7 +49,8 @@ public class SeverityLevelTest {
         assertEquals("info", o.toString());
         assertEquals("info", o.getName());
 
-        SeverityLevel.getInstance("unknown"); // will fail
+        // will fail
+        SeverityLevel.getInstance("unknown");
     }
 
     @Test

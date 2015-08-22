@@ -50,7 +50,8 @@ public class ScopeTest {
         assertEquals("public", o.toString());
         assertEquals("public", o.getName());
 
-        Scope.getInstance("unknown"); // will fail
+        // will fail
+        Scope.getInstance("unknown");
     }
 
     @Test
