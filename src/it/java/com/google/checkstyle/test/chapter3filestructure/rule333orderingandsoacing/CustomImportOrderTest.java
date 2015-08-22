@@ -15,11 +15,11 @@ import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 
 public class CustomImportOrderTest extends BaseCheckTestSupport{
 
+    private static final String MSG_SEPARATOR = "custom.import.order.line.separator";
+    private static final String MSG_LEX = "custom.import.order.lex";
+    private static final String MSG_ORDER = "custom.import.order";
     static ConfigurationBuilder builder;
     final Class<CustomImportOrderCheck> clazz = CustomImportOrderCheck.class;
-    final String msgSeparator = "custom.import.order.line.separator";
-    final String msgLex = "custom.import.order.lex";
-    final String msgOrder = "custom.import.order";
     String msgNongroup = "custom.import.order.nongroup.import";
 
     /** Shortcuts to make code more compact */
@@ -35,17 +35,17 @@ public class CustomImportOrderTest extends BaseCheckTestSupport{
     public void customImportTest_1() throws IOException, Exception {
         
         final String[] expected = {
-            "4: " + getCheckMessage(clazz, msgLex, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
-            "7: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.awt.Button"),
-            "8: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.awt.Frame"),
-            "9: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.awt.Dialog"),
-            "10: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.awt.event.ActionEvent"),
-            "11: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "javax.swing.JComponent"),
-            "12: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "javax.swing.JTable"),
-            "13: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.io.File"),
-            "14: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.io.IOException"),
-            "15: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.io.InputStream"),
-            "16: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.io.Reader"),
+            "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
+            "7: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.awt.Button"),
+            "8: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.awt.Frame"),
+            "9: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.awt.Dialog"),
+            "10: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.awt.event.ActionEvent"),
+            "11: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "javax.swing.JComponent"),
+            "12: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "javax.swing.JTable"),
+            "13: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.io.File"),
+            "14: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.io.IOException"),
+            "15: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.io.InputStream"),
+            "16: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.io.Reader"),
         };
         
         Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
@@ -59,14 +59,14 @@ public class CustomImportOrderTest extends BaseCheckTestSupport{
     public void customImportTest_2() throws IOException, Exception {
         
         final String[] expected = {
-            "4: " + getCheckMessage(clazz, msgLex, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
-            "7: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.util.List"),
-            "8: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.util.StringTokenizer"),
-            "9: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.util.*"),
-            "10: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.util.concurrent.AbstractExecutorService"),
-            "11: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.util.concurrent.*"),
-            "14: " + getCheckMessage(clazz, msgSeparator, "com.sun.xml.internal.xsom.impl.scd.Iterators"),
-            "16: " + getCheckMessage(clazz, msgOrder, SPECIAL, STD, "com.google.common.reflect.*"),
+            "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
+            "7: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.List"),
+            "8: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.StringTokenizer"),
+            "9: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.*"),
+            "10: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.concurrent.AbstractExecutorService"),
+            "11: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.concurrent.*"),
+            "14: " + getCheckMessage(clazz, MSG_SEPARATOR, "com.sun.xml.internal.xsom.impl.scd.Iterators"),
+            "16: " + getCheckMessage(clazz, MSG_ORDER, SPECIAL, STD, "com.google.common.reflect.*"),
         };
 
         Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
@@ -80,13 +80,13 @@ public class CustomImportOrderTest extends BaseCheckTestSupport{
     public void customImportTest_3() throws IOException, Exception {
         
         final String[] expected = {
-                "4: " + getCheckMessage(clazz, msgLex, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
-                "8: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.util.StringTokenizer"),
-                "9: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.util.*"),
-                "10: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.util.concurrent.AbstractExecutorService"),
-                "11: " + getCheckMessage(clazz, msgOrder, STD, SPECIAL, "java.util.concurrent.*"),
-                "14: " + getCheckMessage(clazz, msgSeparator, "com.sun.xml.internal.xsom.impl.scd.Iterators"),
-                "16: " + getCheckMessage(clazz, msgOrder, SPECIAL, STD, "com.google.common.reflect.*"),
+                "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
+                "8: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.StringTokenizer"),
+                "9: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.*"),
+                "10: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.concurrent.AbstractExecutorService"),
+                "11: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.concurrent.*"),
+                "14: " + getCheckMessage(clazz, MSG_SEPARATOR, "com.sun.xml.internal.xsom.impl.scd.Iterators"),
+                "16: " + getCheckMessage(clazz, MSG_ORDER, SPECIAL, STD, "com.google.common.reflect.*"),
         };
 
         Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
