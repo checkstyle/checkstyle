@@ -98,17 +98,17 @@ public class JavadocStyleCheck
      * Indicates if the first sentence should be checked for proper end of
      * sentence punctuation.
      */
-    private boolean checkingFirstSentence = true;
+    private boolean checkFirstSentence = true;
 
     /**
      * Indicates if the HTML within the comment should be checked.
      */
-    private boolean checkingHtml = true;
+    private boolean checkHtml = true;
 
     /**
      * Indicates if empty javadoc statements should be checked.
      */
-    private boolean checkingEmptyJavadoc;
+    private boolean checkEmptyJavadoc;
 
     @Override
     public int[] getDefaultTokens() {
@@ -197,8 +197,8 @@ public class JavadocStyleCheck
      * @param ast the AST of the element being documented
      * @param comment the source lines that make up the Javadoc comment.
      *
-     * @see #checkFirstSentence(DetailAST, TextBlock)
-     * @see #checkHtml(DetailAST, TextBlock)
+     * @see #checkFirstSentenceEnding(DetailAST, TextBlock)
+     * @see #checkHtmlTags(DetailAST, TextBlock)
      */
     private void checkComment(final DetailAST ast, final TextBlock comment) {
         if (comment == null) {
@@ -212,16 +212,16 @@ public class JavadocStyleCheck
             return;
         }
 
-        if (checkingFirstSentence) {
-            checkFirstSentence(ast, comment);
+        if (checkFirstSentence) {
+            checkFirstSentenceEnding(ast, comment);
         }
 
-        if (checkingHtml) {
-            checkHtml(ast, comment);
+        if (checkHtml) {
+            checkHtmlTags(ast, comment);
         }
 
-        if (checkingEmptyJavadoc) {
-            checkEmptyJavadoc(comment);
+        if (checkEmptyJavadoc) {
+            checkJavadocIsNotEmpty(comment);
         }
     }
 
@@ -235,7 +235,7 @@ public class JavadocStyleCheck
      * @param ast the current node
      * @param comment the source lines that make up the Javadoc comment.
      */
-    private void checkFirstSentence(final DetailAST ast, TextBlock comment) {
+    private void checkFirstSentenceEnding(final DetailAST ast, TextBlock comment) {
         final String commentText = getCommentText(comment.getText());
 
         if (!commentText.isEmpty()
@@ -251,7 +251,7 @@ public class JavadocStyleCheck
      *
      * @param comment the source lines that make up the Javadoc comment.
      */
-    private void checkEmptyJavadoc(TextBlock comment) {
+    private void checkJavadocIsNotEmpty(TextBlock comment) {
         final String commentText = getCommentText(comment.getText());
 
         if (commentText.isEmpty()) {
@@ -346,7 +346,7 @@ public class JavadocStyleCheck
      * @param comment the {@code TextBlock} which represents
      *                 the Javadoc comment.
      */
-    private void checkHtml(final DetailAST ast, final TextBlock comment) {
+    private void checkHtmlTags(final DetailAST ast, final TextBlock comment) {
         final int lineno = comment.getStartLineNo();
         final Deque<HtmlTag> htmlStack = new ArrayDeque<>();
         final String[] text = comment.getText();
@@ -533,7 +533,7 @@ public class JavadocStyleCheck
      * @param flag {@code true} if the first sentence is to be checked
      */
     public void setCheckFirstSentence(boolean flag) {
-        checkingFirstSentence = flag;
+        checkFirstSentence = flag;
     }
 
     /**
@@ -541,7 +541,7 @@ public class JavadocStyleCheck
      * @param flag {@code true} if HTML checking is to be performed.
      */
     public void setCheckHtml(boolean flag) {
-        checkingHtml = flag;
+        checkHtml = flag;
     }
 
     /**
@@ -549,6 +549,6 @@ public class JavadocStyleCheck
      * @param flag {@code true} if empty Javadoc checking should be done.
      */
     public void setCheckEmptyJavadoc(boolean flag) {
-        checkingEmptyJavadoc = flag;
+        checkEmptyJavadoc = flag;
     }
 }

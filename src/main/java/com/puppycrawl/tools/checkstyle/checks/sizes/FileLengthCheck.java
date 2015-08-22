@@ -66,12 +66,12 @@ public class FileLengthCheck extends AbstractFileSetCheck {
     private static final int DEFAULT_MAX_LINES = 2000;
 
     /** The maximum number of lines */
-    private int maxFileLength = DEFAULT_MAX_LINES;
+    private int max = DEFAULT_MAX_LINES;
 
     @Override
     protected void processFiltered(File file, List<String> lines) {
-        if (lines.size() > maxFileLength) {
-            log(1, MSG_KEY, lines.size(), maxFileLength);
+        if (lines.size() > max) {
+            log(1, MSG_KEY, lines.size(), max);
         }
     }
 
@@ -79,7 +79,7 @@ public class FileLengthCheck extends AbstractFileSetCheck {
      * @param length the maximum length of a Java source file
      */
     public void setMax(int length) {
-        maxFileLength = length;
+        max = length;
     }
 
 }
