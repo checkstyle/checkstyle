@@ -15,29 +15,29 @@ public class ClassMethodTypeParameterNameTest extends BaseCheckTestSupport{
 
     private static ConfigurationBuilder builder;
     private final String msgKey = "name.invalidPattern";
-    private static Configuration checkConfig;
+    private static Configuration configuration;
     private static String format;
 
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException, IOException {
         builder = new ConfigurationBuilder(new File("src/it/"));
-        checkConfig = builder.getCheckConfig("ClassTypeParameterName");
-        format = checkConfig.getAttribute("format");
+        configuration = builder.getCheckConfig("ClassTypeParameterName");
+        format = configuration.getAttribute("format");
     }
 
     @Test
     public void testClassDefault() throws Exception {
 
         final String[] expected = {
-            "5:31: " + getCheckMessage(checkConfig.getMessages(), msgKey, "t", format),
-            "13:14: " + getCheckMessage(checkConfig.getMessages(), msgKey, "foo", format),
-            "27:24: " + getCheckMessage(checkConfig.getMessages(), msgKey, "$foo", format),
+            "5:31: " + getCheckMessage(configuration.getMessages(), msgKey, "t", format),
+            "13:14: " + getCheckMessage(configuration.getMessages(), msgKey, "foo", format),
+            "27:24: " + getCheckMessage(configuration.getMessages(), msgKey, "$foo", format),
         };
 
         String filePath = builder.getFilePath("ClassTypeParameterNameInput");
 
         Integer[] warnList = builder.getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+        verify(configuration, filePath, expected, warnList);
     }
 
     @Test
