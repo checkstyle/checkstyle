@@ -22,7 +22,7 @@ public class EmptyLineSeparatorTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void emptyLineSeparatorTest() throws IOException, Exception {
+    public void emptyLineSeparatorTest() throws Exception {
         
         Class<EmptyLineSeparatorCheck> clazz = EmptyLineSeparatorCheck.class;
         String messageKey = "empty.line.separator";
