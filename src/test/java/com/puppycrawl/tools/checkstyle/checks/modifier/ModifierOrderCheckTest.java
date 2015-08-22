@@ -73,7 +73,7 @@ public class ModifierOrderCheckTest
         ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
         int[] actual = modifierOrderCheckObj.getDefaultTokens();
         int[] expected = {TokenTypes.MODIFIERS};
-        int[] unexpectedEmptyArray = {};
+        int[] unexpectedEmptyArray = ArrayUtils.EMPTY_INT_ARRAY;
         int[] unexpectedArray = {
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
@@ -89,7 +89,7 @@ public class ModifierOrderCheckTest
         ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
         int[] actual = modifierOrderCheckObj.getAcceptableTokens();
         int[] expected = {TokenTypes.MODIFIERS};
-        int[] unexpectedEmptyArray = {};
+        int[] unexpectedEmptyArray = ArrayUtils.EMPTY_INT_ARRAY;
         int[] unexpectedArray = {
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,

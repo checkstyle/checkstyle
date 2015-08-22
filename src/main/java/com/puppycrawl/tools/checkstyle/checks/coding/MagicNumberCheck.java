@@ -408,7 +408,7 @@ public class MagicNumberCheck extends Check {
      */
     public void setIgnoreNumbers(double... list) {
         if (list.length == 0) {
-            ignoreNumbers = new double[0];
+            ignoreNumbers = ArrayUtils.EMPTY_DOUBLE_ARRAY;
         }
         else {
             ignoreNumbers = new double[list.length];

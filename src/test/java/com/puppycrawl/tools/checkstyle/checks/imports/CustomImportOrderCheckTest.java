@@ -494,8 +494,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
     public void testDefaultConfiguration() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(CustomImportOrderCheck.class);
-        String[] expected = {
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         try {
             createChecker(checkConfig);

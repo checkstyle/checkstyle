@@ -26,6 +26,7 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -71,8 +72,7 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
     @Test
     public void testDefaultConfiguration() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(JavaNCSSCheck.class);
-        String[] expected = {
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         try {
             createChecker(checkConfig);

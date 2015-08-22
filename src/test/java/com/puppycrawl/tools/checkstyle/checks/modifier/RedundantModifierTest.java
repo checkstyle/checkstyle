@@ -123,7 +123,7 @@ public class RedundantModifierTest
     public void testGetRequiredTokens() {
         RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
         int[] actual = redundantModifierCheckObj.getRequiredTokens();
-        int[] expected = {};
+        int[] expected = ArrayUtils.EMPTY_INT_ARRAY;
         Assert.assertArrayEquals(expected, actual);
     }
 }

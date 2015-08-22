@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.Set;
 import java.util.StringTokenizer;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import antlr.collections.AST;
 
 import com.google.common.collect.Sets;
@@ -101,7 +103,7 @@ public class IllegalInstantiationCheck
     @Override
     public int[] getAcceptableTokens() {
         // Return an empty array to not allow user to change configuration.
-        return new int[] {};
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
