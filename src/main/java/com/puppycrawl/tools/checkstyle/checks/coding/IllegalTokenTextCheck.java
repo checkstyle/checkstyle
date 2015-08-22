@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
@@ -75,7 +77,7 @@ public class IllegalTokenTextCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[0];
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -85,7 +87,7 @@ public class IllegalTokenTextCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[0];
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override

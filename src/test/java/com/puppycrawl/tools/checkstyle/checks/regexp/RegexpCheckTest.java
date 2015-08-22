@@ -200,7 +200,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
             createCheckConfig(RegexpCheck.class);
         checkConfigFalse.addAttribute("format", illegalFalse);
         checkConfigFalse.addAttribute("illegalPattern", "true");
-        final String[] expectedFalse = {};
+        final String[] expectedFalse = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfigFalse, getPath("InputSemantic.java"), expectedFalse);
     }
 

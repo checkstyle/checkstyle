@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarnings
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -788,9 +789,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
     public void testUncheckedInConstant() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
 
-        String[] expected = {
-
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator
                 + "SuppressWarningsConstants.java"), expected);
@@ -800,8 +799,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
     public void testValuePairAnnotation() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(SuppressWarningsCheck.class);
 
-        String[] expected = {
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator
                 + "SuppressWarningsValuePair.java"), expected);

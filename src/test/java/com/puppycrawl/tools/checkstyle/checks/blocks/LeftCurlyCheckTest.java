@@ -256,8 +256,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     public void testIgnoreEnumsOptionTrue() throws Exception {
         checkConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
         checkConfig.addAttribute("ignoreEnums", "true");
-        final String[] expectedWhileTrue = {
-        };
+        final String[] expectedWhileTrue = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLeftCurlyEnums.java"), expectedWhileTrue);
     }
 

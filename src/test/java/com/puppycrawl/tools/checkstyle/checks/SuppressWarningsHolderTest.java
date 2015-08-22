@@ -43,8 +43,7 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
     public void testOnComplexAnnotations() throws Exception {
         Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
 
-        String[] expected = {
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputSuppressWarningsHolder.java"), expected);
     }
