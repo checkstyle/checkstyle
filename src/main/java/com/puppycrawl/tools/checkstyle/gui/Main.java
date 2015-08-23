@@ -31,14 +31,14 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * Entry point for starting the checkstyle GUI.
  */
 public final class Main {
-    /**
-     * Main frame
-     */
+
+    /** Frame's name. */
+    private static final String FRAME_NAME = "CheckStyle";
+
+    /** Main frame. */
     private static JFrame frame;
 
-    /**
-     * Hidden constructor of the current utility class.
-     */
+    /** Hidden constructor of the current utility class. */
     private Main() {
         // no code
     }
@@ -48,7 +48,7 @@ public final class Main {
      * @param args the command line arguments.
      */
     public static void main(String... args) {
-        frame = new JFrame("CheckStyle");
+        frame = new JFrame(FRAME_NAME);
         final ParseTreeInfoPanel panel = new ParseTreeInfoPanel();
         frame.getContentPane().add(panel);
         if (args.length >= 1) {
@@ -66,7 +66,7 @@ public final class Main {
      * @param ast tree to display
      */
     public static void displayAst(DetailAST ast) {
-        final JFrame testFrame = new JFrame("CheckStyle");
+        final JFrame testFrame = new JFrame(FRAME_NAME);
         final ParseTreeInfoPanel panel = new ParseTreeInfoPanel();
         testFrame.getContentPane().add(panel);
         panel.openAst(ast);
