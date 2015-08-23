@@ -6,9 +6,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 class DebugChecker extends Checker {
-    DebugChecker() {
-    }
-
     @Override
     public void fireAuditFinished() {
         super.fireAuditFinished();
