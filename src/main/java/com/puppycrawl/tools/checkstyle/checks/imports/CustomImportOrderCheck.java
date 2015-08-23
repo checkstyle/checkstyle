@@ -684,8 +684,9 @@ public class CustomImportOrderCheck extends Check {
      */
     private static int compareImports(String import1, String import2) {
         int result = 0;
-        final String[] import1Tokens = import1.split("\\.");
-        final String[] import2Tokens = import2.split("\\.");
+        final String separator = "\\.";
+        final String[] import1Tokens = import1.split(separator);
+        final String[] import2Tokens = import2.split(separator);
         for (int i = 0; i < import1Tokens.length && i != import2Tokens.length; i++) {
             final String import1Token = import1Tokens[i];
             final String import2Token = import2Tokens[i];

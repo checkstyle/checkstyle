@@ -61,6 +61,15 @@ final class ImportControlLoader extends AbstractLoader {
     /** The map to lookup the resource name by the id */
     private static final Map<String, String> DTD_RESOURCE_BY_ID = new HashMap<>();
 
+    /** Name for attribute 'pkg'. */
+    private static final String PKG_ATTRIBUTE_NAME = "pkg";
+
+    /** Qualified name for element 'subpackage'. */
+    private static final String SUBPACKAGE_ELEMENT_NAME = "subpackage";
+
+    /** Qualified name for element 'allow'. */
+    private static final String ALLOW_ELEMENT_NAME = "allow";
+
     /** Used to hold the {@link PkgControl} objects. */
     private final Deque<PkgControl> stack = new ArrayDeque<>();
 
@@ -85,20 +94,20 @@ final class ImportControlLoader extends AbstractLoader {
                              final Attributes atts)
         throws SAXException {
         if ("import-control".equals(qName)) {
-            final String pkg = safeGet(atts, "pkg");
+            final String pkg = safeGet(atts, PKG_ATTRIBUTE_NAME);
             stack.push(new PkgControl(pkg));
         }
-        else if ("subpackage".equals(qName)) {
+        else if (SUBPACKAGE_ELEMENT_NAME.equals(qName)) {
             final String name = safeGet(atts, "name");
             stack.push(new PkgControl(stack.peek(), name));
         }
-        else if ("allow".equals(qName) || "disallow".equals(qName)) {
+        else if (ALLOW_ELEMENT_NAME.equals(qName) || "disallow".equals(qName)) {
             // Need to handle either "pkg" or "class" attribute.
             // May have "exact-match" for "pkg"
             // May have "local-only"
-            final boolean isAllow = "allow".equals(qName);
+            final boolean isAllow = ALLOW_ELEMENT_NAME.equals(qName);
             final boolean isLocalOnly = atts.getValue("local-only") != null;
-            final String pkg = atts.getValue("pkg");
+            final String pkg = atts.getValue(PKG_ATTRIBUTE_NAME);
             final boolean regex = atts.getValue("regex") != null;
             final Guard g;
             if (pkg != null) {
@@ -121,7 +130,7 @@ final class ImportControlLoader extends AbstractLoader {
     @Override
     public void endElement(final String namespaceURI, final String localName,
         final String qName) {
-        if ("subpackage".equals(qName)) {
+        if (SUBPACKAGE_ELEMENT_NAME.equals(qName)) {
             stack.pop();
         }
     }

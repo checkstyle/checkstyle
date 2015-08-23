@@ -46,6 +46,10 @@ public final class JavadocUtils {
     /** Maps from a token value to name */
     private static final String[] TOKEN_VALUE_TO_NAME;
 
+    /** Exception message for unknown JavaDoc token id. */
+    private static final String UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE = "Unknown javdoc"
+            + " token id. Given id: ";
+
     // Using reflection gets all token names and values from JavadocTokenTypes class
     // and saves to TOKEN_NAME_TO_VALUE and TOKEN_VALUE_TO_NAME collections.
     static {
@@ -363,11 +367,11 @@ public final class JavadocUtils {
             return "EOF";
         }
         if (iD > TOKEN_VALUE_TO_NAME.length - 1) {
-            throw new IllegalArgumentException("Unknown javdoc token id. Given id: " + iD);
+            throw new IllegalArgumentException(UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE + iD);
         }
         final String name = TOKEN_VALUE_TO_NAME[iD];
         if (name == null) {
-            throw new IllegalArgumentException("Unknown javdoc token id. Given id: " + iD);
+            throw new IllegalArgumentException(UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE + iD);
         }
         return name;
     }

@@ -60,6 +60,9 @@ public final class PackageNamesLoader
     private static final String CHECKSTYLE_PACKAGES =
         "checkstyle_packages.xml";
 
+    /** Qualified name for element 'package'. */
+    private static final String PACKAGE_ELEMENT_NAME = "package";
+
     /** The temporary stack of package name parts */
     private final Deque<String> packageStack = new ArrayDeque<>();
 
@@ -81,7 +84,7 @@ public final class PackageNamesLoader
                              String localName,
                              String qName,
                              Attributes atts) {
-        if ("package".equals(qName)) {
+        if (PACKAGE_ELEMENT_NAME.equals(qName)) {
             //push package name, name is mandatory attribute with not empty value by DTD
             final String name = atts.getValue("name");
             packageStack.push(name);
@@ -109,7 +112,7 @@ public final class PackageNamesLoader
     public void endElement(String namespaceURI,
                            String localName,
                            String qName) {
-        if ("package".equals(qName)) {
+        if (PACKAGE_ELEMENT_NAME.equals(qName)) {
 
             packageNames.add(getPackageName());
             packageStack.pop();
