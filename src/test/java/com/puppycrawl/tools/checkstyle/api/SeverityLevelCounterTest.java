@@ -35,7 +35,7 @@ public class SeverityLevelCounterTest {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.ERROR);
         final AuditEvent event = new AuditEvent(this, "ATest.java", null);
         assertEquals(0, counter.getCount());
-        counter.addException(event, new IllegalStateException());
+        counter.addException(event, new IllegalStateException("Test IllegalStateException"));
         assertEquals(1, counter.getCount());
     }
 
@@ -44,7 +44,7 @@ public class SeverityLevelCounterTest {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.WARNING);
         final AuditEvent event = new AuditEvent(this, "ATest.java", null);
         assertEquals(0, counter.getCount());
-        counter.addException(event, new IllegalStateException());
+        counter.addException(event, new IllegalStateException("Test IllegalStateException"));
         assertEquals(0, counter.getCount());
     }
 }

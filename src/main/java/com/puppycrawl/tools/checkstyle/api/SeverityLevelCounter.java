@@ -38,7 +38,7 @@ public final class SeverityLevelCounter implements AuditListener {
      */
     public SeverityLevelCounter(SeverityLevel level) {
         if (level == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("'level' cannot be null");
         }
         this.level = level;
     }
