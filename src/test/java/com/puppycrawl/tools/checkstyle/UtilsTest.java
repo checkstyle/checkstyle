@@ -288,7 +288,7 @@ public class UtilsTest {
 
             @Override
             public void close() throws IOException {
-                throw new IOException();
+                throw new IOException("Test IOException");
             }
         });
     }

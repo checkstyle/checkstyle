@@ -154,7 +154,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
                     || indentInComment < expectedMinimalIndent && isWarnComment;
         }
 
-        throw new IllegalArgumentException();
+        throw new IllegalStateException();
     }
 
     private static int getLineStart(String line, final int tabWidth) {
