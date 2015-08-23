@@ -1523,7 +1523,7 @@ public final class JavadocTokenTypes {
     public static final int TEXT = JavadocParser.RULE_text + RULE_TYPES_OFFSET;
 
     /**
-     * End Of File symbol
+     * End Of File symbol.
      */
     public static final int EOF = Recognizer.EOF;
 
