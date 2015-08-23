@@ -430,14 +430,14 @@ public final class ConfigurationLoader {
         }
 
         @Override
-        public void startElement(String namespaceURI,
+        public void startElement(String uri,
                                  String localName,
                                  String qName,
-                                 Attributes atts)
+                                 Attributes attributes)
             throws SAXException {
             if (qName.equals(MODULE)) {
                 //create configuration
-                final String name = atts.getValue(NAME);
+                final String name = attributes.getValue(NAME);
                 final DefaultConfiguration conf =
                     new DefaultConfiguration(name);
 
@@ -458,13 +458,13 @@ public final class ConfigurationLoader {
                 //extract value and name
                 final String value;
                 try {
-                    value = replaceProperties(atts.getValue(VALUE),
-                        overridePropsResolver, atts.getValue(DEFAULT));
+                    value = replaceProperties(attributes.getValue(VALUE),
+                        overridePropsResolver, attributes.getValue(DEFAULT));
                 }
                 catch (final CheckstyleException ex) {
                     throw new SAXException(ex);
                 }
-                final String name = atts.getValue(NAME);
+                final String name = attributes.getValue(NAME);
 
                 //add to attributes of configuration
                 final DefaultConfiguration top =
@@ -473,8 +473,8 @@ public final class ConfigurationLoader {
             }
             else if (qName.equals(MESSAGE)) {
                 //extract key and value
-                final String key = atts.getValue(KEY);
-                final String value = atts.getValue(VALUE);
+                final String key = attributes.getValue(KEY);
+                final String value = attributes.getValue(VALUE);
 
                 //add to messages of configuration
                 final DefaultConfiguration top = configStack.peek();
@@ -488,7 +488,7 @@ public final class ConfigurationLoader {
         }
 
         @Override
-        public void endElement(String namespaceURI,
+        public void endElement(String uri,
                                String localName,
                                String qName) {
             if (qName.equals(MODULE)) {

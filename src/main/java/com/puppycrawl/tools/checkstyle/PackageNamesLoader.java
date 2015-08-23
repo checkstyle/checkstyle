@@ -77,13 +77,13 @@ public final class PackageNamesLoader
     }
 
     @Override
-    public void startElement(String namespaceURI,
+    public void startElement(String uri,
                              String localName,
                              String qName,
-                             Attributes atts) {
+                             Attributes attributes) {
         if ("package".equals(qName)) {
             //push package name, name is mandatory attribute with not empty value by DTD
-            final String name = atts.getValue("name");
+            final String name = attributes.getValue("name");
             packageStack.push(name);
         }
     }
@@ -106,7 +106,7 @@ public final class PackageNamesLoader
     }
 
     @Override
-    public void endElement(String namespaceURI,
+    public void endElement(String uri,
                            String localName,
                            String qName) {
         if ("package".equals(qName)) {

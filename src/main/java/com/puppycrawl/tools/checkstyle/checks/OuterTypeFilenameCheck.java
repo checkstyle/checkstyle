@@ -65,7 +65,7 @@ public class OuterTypeFilenameCheck extends Check {
     }
 
     @Override
-    public void beginTree(DetailAST ast) {
+    public void beginTree(DetailAST rootAST) {
         fileName = getFileName();
         seenFirstToken = false;
         validFirst = false;

@@ -46,7 +46,7 @@ public final class PropertiesExpander
     }
 
     @Override
-    public String resolve(String propertyName) {
-        return properties.getProperty(propertyName);
+    public String resolve(String name) {
+        return properties.getProperty(name);
     }
 }
