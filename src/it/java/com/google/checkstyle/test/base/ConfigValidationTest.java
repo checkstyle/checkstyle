@@ -15,7 +15,7 @@ public class ConfigValidationTest extends BaseCheckTestSupport {
     @Test
     public void testGoogleChecks() throws Exception {
         ConfigurationBuilder builder = new ConfigurationBuilder(new File("src/it/"));
-        final Configuration checkerConfig = builder.config;
+        final Configuration checkerConfig = builder.getConfiguration();
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);

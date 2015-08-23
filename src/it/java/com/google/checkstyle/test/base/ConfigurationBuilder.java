@@ -25,16 +25,16 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 
 	private final List<File> files = new ArrayList<>();
 
-	final Configuration config;
+	private final Configuration configuration;
 
-	URL url;
+	private final Pattern warnPattern = Utils.createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]warn[*]/");
 
-	final Pattern warnPattern = Utils.createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]warn[*]/");
+	private URL url;
 
 	public ConfigurationBuilder(File aROOT)
 			throws CheckstyleException {
 		root = aROOT;
-		config = getConfigurationFromXML(XML_NAME, System.getProperties());
+		configuration = getConfigurationFromXML(XML_NAME, System.getProperties());
 		listFiles(files, root, "java");
 	}
 
@@ -51,8 +51,12 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 		}
 	}
 
+	Configuration getConfiguration() {
+		return configuration;
+	}
+
 	public Configuration getCheckConfig(String aCheckName) {
-		for (Configuration currentConfig : config.getChildren()) {
+		for (Configuration currentConfig : getConfiguration().getChildren()) {
 			if ("TreeWalker".equals(currentConfig.getName())) {
 				for (Configuration checkConfig : currentConfig.getChildren()) {
 					if (aCheckName.equals(checkConfig.getName())) {
