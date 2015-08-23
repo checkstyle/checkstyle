@@ -53,6 +53,12 @@ public final class Utils {
     /** Array of all token IDs */
     private static final int[] TOKEN_IDS;
 
+    /** Prefix for exception when getting token by given id. */
+    private static final String TOKEN_ID_EXCEPTION_PREFIX = "given id ";
+
+    /** Prefix for exception when getting token by given name. */
+    private static final String TOKEN_NAME_EXCEPTION_PREFIX = "given name ";
+
     // initialise the constants
     static {
         final ImmutableMap.Builder<String, Integer> builder =
@@ -297,11 +303,11 @@ public final class Utils {
      */
     public static String getTokenName(int iD) {
         if (iD > TOKEN_VALUE_TO_NAME.length - 1) {
-            throw new IllegalArgumentException("given id " + iD);
+            throw new IllegalArgumentException(TOKEN_ID_EXCEPTION_PREFIX + iD);
         }
         final String name = TOKEN_VALUE_TO_NAME[iD];
         if (name == null) {
-            throw new IllegalArgumentException("given id " + iD);
+            throw new IllegalArgumentException(TOKEN_ID_EXCEPTION_PREFIX + iD);
         }
         return name;
     }
@@ -314,7 +320,7 @@ public final class Utils {
     public static int getTokenId(String name) {
         final Integer id = TOKEN_NAME_TO_VALUE.get(name);
         if (id == null) {
-            throw new IllegalArgumentException("given name " + name);
+            throw new IllegalArgumentException(TOKEN_NAME_EXCEPTION_PREFIX + name);
         }
         return id;
     }
@@ -326,7 +332,7 @@ public final class Utils {
      */
     public static String getShortDescription(String name) {
         if (!TOKEN_NAME_TO_VALUE.containsKey(name)) {
-            throw new IllegalArgumentException("given name " + name);
+            throw new IllegalArgumentException(TOKEN_NAME_EXCEPTION_PREFIX + name);
         }
 
         final String tokentypes =

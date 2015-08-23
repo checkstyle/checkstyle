@@ -270,8 +270,30 @@ public class VisibilityModifierCheck
         "com.google.common.annotations.VisibleForTesting"
     );
 
+    /** Name for 'public' access modifier. */
+    private static final String PUBLIC_ACCESS_MODIFIER = "public";
+
+    /** Name for 'private' access modifier. */
+    private static final String PRIVATE_ACCESS_MODIFIER = "private";
+
+    /** Name for 'protected' access modifier. */
+    private static final String PROTECTED_ACCESS_MODIFIER = "protected";
+
+    /** Name for implicit 'package' access modifier. */
+    private static final String PACKAGE_ACCESS_MODIFIER = "package";
+
+    /** Name for 'static' keyword. */
+    private static final String STATIC_KEYWORD = "static";
+
+    /** Name for 'final' keyword. */
+    private static final String FINAL_KEYWORD = "final";
+
     /** Contains explicit access modifiers. */
-    private static final String[] EXPLICIT_MODS = {"public", "private", "protected"};
+    private static final String[] EXPLICIT_MODS = {
+        PUBLIC_ACCESS_MODIFIER,
+        PRIVATE_ACCESS_MODIFIER,
+        PROTECTED_ACCESS_MODIFIER,
+    };
 
     /** Whether protected members are allowed */
     private boolean protectedAllowed;
@@ -513,11 +535,11 @@ public class VisibilityModifierCheck
 
         final String variableScope = getVisibilityScope(variableDef);
 
-        if (!"private".equals(variableScope)) {
+        if (!PRIVATE_ACCESS_MODIFIER.equals(variableScope)) {
             result =
                 isStaticFinalVariable(variableDef)
-                || packageAllowed && "package".equals(variableScope)
-                || protectedAllowed && "protected".equals(variableScope)
+                || packageAllowed && PACKAGE_ACCESS_MODIFIER.equals(variableScope)
+                || protectedAllowed && PROTECTED_ACCESS_MODIFIER.equals(variableScope)
                 || isIgnoredPublicMember(variableName, variableScope)
                    || allowPublicImmutableFields
                       && isImmutableFieldDefinedInFinalClass(variableDef);
@@ -533,7 +555,8 @@ public class VisibilityModifierCheck
      */
     private static boolean isStaticFinalVariable(DetailAST variableDef) {
         final Set<String> modifiers = getModifiers(variableDef);
-        return modifiers.contains("static") && modifiers.contains("final");
+        return modifiers.contains(STATIC_KEYWORD)
+                && modifiers.contains(FINAL_KEYWORD);
     }
 
     /**
@@ -543,7 +566,7 @@ public class VisibilityModifierCheck
      * @return true if variable belongs to public members that should be ignored.
      */
     private boolean isIgnoredPublicMember(String variableName, String variableScope) {
-        return "public".equals(variableScope)
+        return PUBLIC_ACCESS_MODIFIER.equals(variableScope)
             && publicMemberPattern.matcher(variableName).find();
     }
 
@@ -555,7 +578,7 @@ public class VisibilityModifierCheck
     private boolean isImmutableFieldDefinedInFinalClass(DetailAST variableDef) {
         final DetailAST classDef = variableDef.getParent().getParent();
         final Set<String> classModifiers = getModifiers(classDef);
-        return classModifiers.contains("final") && isImmutableField(variableDef);
+        return classModifiers.contains(FINAL_KEYWORD) && isImmutableField(variableDef);
     }
 
     /**
@@ -584,7 +607,7 @@ public class VisibilityModifierCheck
      */
     private static String getVisibilityScope(DetailAST variableDef) {
         final Set<String> modifiers = getModifiers(variableDef);
-        String accessModifier = "package";
+        String accessModifier = PACKAGE_ACCESS_MODIFIER;
         for (final String modifier : EXPLICIT_MODS) {
             if (modifiers.contains(modifier)) {
                 accessModifier = modifier;

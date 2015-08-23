@@ -46,6 +46,9 @@ public class DefaultLogger
     /** Cushion for avoiding StringBuffer.expandCapacity */
     private static final int BUFFER_CUSHION = 12;
 
+    /** Encoding name. */
+    private static final String UTF8_CHARSET_NAME = "UTF-8";
+
     /** Where to write info messages **/
     private final PrintWriter infoWriter;
     /** Close info stream after use */
@@ -83,8 +86,8 @@ public class DefaultLogger
                          boolean closeErrorAfterUse) throws UnsupportedEncodingException {
         closeInfo = closeInfoAfterUse;
         closeError = closeErrorAfterUse;
-        final Writer infoStreamWriter = new OutputStreamWriter(infoStream, "UTF-8");
-        final Writer errorStreamWriter = new OutputStreamWriter(errorStream, "UTF-8");
+        final Writer infoStreamWriter = new OutputStreamWriter(infoStream, UTF8_CHARSET_NAME);
+        final Writer errorStreamWriter = new OutputStreamWriter(errorStream, UTF8_CHARSET_NAME);
         infoWriter = new PrintWriter(infoStreamWriter);
 
         if (infoStream == errorStream) {
