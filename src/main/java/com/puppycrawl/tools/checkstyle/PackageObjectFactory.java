@@ -37,6 +37,12 @@ class PackageObjectFactory implements ModuleFactory {
     /** Logger for PackageObjectFactory. */
     private static final Log LOG = LogFactory.getLog(PackageObjectFactory.class);
 
+    /** Log message when ignoring exception. */
+    private static final String IGNORING_EXCEPTION_MESSAGE = "Keep looking, ignoring exception";
+
+    /** Exception message when it is unable to create a class instance. */
+    private static final String UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE = "Unable to instantiate ";
+
     /** A list of package names to prepend to class names */
     private final Set<String> packages;
 
@@ -85,7 +91,7 @@ class PackageObjectFactory implements ModuleFactory {
             return createObject(name);
         }
         catch (final CheckstyleException ex) {
-            LOG.debug("Keep looking, ignoring exception", ex);
+            LOG.debug(IGNORING_EXCEPTION_MESSAGE, ex);
         }
 
         //now try packages
@@ -96,11 +102,11 @@ class PackageObjectFactory implements ModuleFactory {
                 return createObject(className);
             }
             catch (final CheckstyleException ex) {
-                LOG.debug("Keep looking, ignoring exception", ex);
+                LOG.debug(IGNORING_EXCEPTION_MESSAGE, ex);
             }
         }
 
-        throw new CheckstyleException("Unable to instantiate " + name);
+        throw new CheckstyleException(UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE + name);
     }
 
     /**
@@ -145,7 +151,7 @@ class PackageObjectFactory implements ModuleFactory {
             }
             catch (final CheckstyleException ex2) {
                 throw new CheckstyleException(
-                    "Unable to instantiate " + name, ex2);
+                    UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE + name, ex2);
             }
         }
     }

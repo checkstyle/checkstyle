@@ -141,7 +141,7 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
             case TokenTypes.METHOD_CALL:
                 // let's check method calls
                 if (checkMethods && isClassMethod(ast.getText())) {
-                    log(ast, "require.this.method", ast.getText());
+                    log(ast, MSG_METHOD, ast.getText());
                 }
                 break;
             default:
@@ -182,7 +182,7 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
 
         final String name = ast.getText();
         if (isClassField(name)) {
-            log(ast, "require.this.variable", name);
+            log(ast, MSG_VARIABLE, name);
         }
     }
 

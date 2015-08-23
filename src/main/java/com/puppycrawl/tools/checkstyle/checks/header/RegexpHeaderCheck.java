@@ -45,6 +45,18 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     /** Empty array to avoid instantiations. */
     private static final int[] EMPTY_INT_ARRAY = new int[0];
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    private static final String MSG_HEADER_MISSING = "header.missing";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    private static final String MSG_HEADER_MISMATCH = "header.mismatch";
+
     /** The compiled regular expressions */
     private final List<Pattern> headerRegexps = Lists.newArrayList();
 
@@ -72,7 +84,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
         final int fileSize = lines.size();
 
         if (headerSize - multiLines.length > fileSize) {
-            log(1, "header.missing");
+            log(1, MSG_HEADER_MISSING);
         }
         else {
             int headerLineNo = 0;
@@ -86,7 +98,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
                             || isMatch(line, headerLineNo);
                 }
                 if (!isMatch) {
-                    log(i + 1, "header.mismatch", getHeaderLines().get(
+                    log(i + 1, MSG_HEADER_MISMATCH, getHeaderLines().get(
                             headerLineNo));
                     break;
                 }
@@ -99,7 +111,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
                 // header isn't completed
                 for (; headerLineNo < headerSize; headerLineNo++) {
                     if (!isMultiLine(headerLineNo)) {
-                        log(1, "header.missing");
+                        log(1, MSG_HEADER_MISSING);
                         break;
                     }
                 }

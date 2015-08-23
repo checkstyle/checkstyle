@@ -89,6 +89,13 @@ public final class ConfigurationLoader {
     private static final String DTD_RESOURCE_NAME_1_3 =
         "com/puppycrawl/tools/checkstyle/configuration_1_3.dtd";
 
+    /** Prefix for the exception when unable to find resource. */
+    private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "unable to find ";
+
+    /** Prefix for the exception when unable to parse resource. */
+    private static final String UNABLE_TO_PARSE_EXCEPTION_PREFIX = "unable to parse"
+            + " configuration stream";
+
     /** The SAX document handler */
     private final InternalLoader saxHandler;
 
@@ -192,12 +199,12 @@ public final class ConfigurationLoader {
                     final URL configUrl = ConfigurationLoader.class
                             .getResource(config);
                     if (configUrl == null) {
-                        throw new CheckstyleException("unable to find " + config);
+                        throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + config);
                     }
                     uri = configUrl.toURI();
                 }
                 catch (final URISyntaxException e) {
-                    throw new CheckstyleException("unable to find " + config, e);
+                    throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + config, e);
                 }
             }
         }
@@ -254,12 +261,12 @@ public final class ConfigurationLoader {
             return loader.configuration;
         }
         catch (final SAXParseException e) {
-            throw new CheckstyleException("unable to parse configuration stream"
+            throw new CheckstyleException(UNABLE_TO_PARSE_EXCEPTION_PREFIX
                     + " - " + e.getMessage() + ":" + e.getLineNumber()
                     + ":" + e.getColumnNumber(), e);
         }
         catch (final ParserConfigurationException | IOException | SAXException e) {
-            throw new CheckstyleException("unable to parse configuration stream", e);
+            throw new CheckstyleException(UNABLE_TO_PARSE_EXCEPTION_PREFIX, e);
         }
     }
 

@@ -52,6 +52,27 @@ public final class Main {
     /** Exit code returned when excecution finishes with {@link CheckstyleException}*/
     private static final int EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE = -2;
 
+    /** Name for the option 'v'. */
+    private static final String OPTION_V_NAME = "v";
+
+    /** Name for the option 'c'. */
+    private static final String OPTION_C_NAME = "c";
+
+    /** Name for the option 'f'. */
+    private static final String OPTION_F_NAME = "f";
+
+    /** Name for the option 'p'. */
+    private static final String OPTION_P_NAME = "p";
+
+    /** Name for the option 'o'. */
+    private static final String OPTION_O_NAME = "o";
+
+    /** Name for 'xml' format. */
+    private static final String XML_FORMAT_NAME = "xml";
+
+    /** Name for 'plain' format. */
+    private static final String PLAIN_FORMAT_NAME = "plain";
+
     /** Don't create instance of this class, use {@link #main(String[])} method instead. */
     private Main() {
     }
@@ -76,7 +97,7 @@ public final class Main {
             final CommandLine commandLine = parseCli(args);
 
             // show version and exit if it is requested
-            if (commandLine.hasOption("v")) {
+            if (commandLine.hasOption(OPTION_V_NAME)) {
                 System.out.println("Checkstyle version: "
                         + Main.class.getPackage().getImplementationVersion());
                 exitStatus = 0;
@@ -149,24 +170,25 @@ public final class Main {
     private static List<String> validateCli(CommandLine cmdLine) {
         final List<String> result = new ArrayList<>();
         // ensure a configuration file is specified
-        if (cmdLine.hasOption("c")) {
+        if (cmdLine.hasOption(OPTION_C_NAME)) {
             // validate optional parameters
-            if (cmdLine.hasOption("f")) {
-                final String format = cmdLine.getOptionValue("f");
-                if (!"plain".equals(format) && !"xml".equals(format)) {
+            if (cmdLine.hasOption(OPTION_F_NAME)) {
+                final String format = cmdLine.getOptionValue(OPTION_F_NAME);
+                if (!PLAIN_FORMAT_NAME.equals(format) && !XML_FORMAT_NAME.equals(format)) {
                     result.add(String.format("Invalid output format."
-                            + " Found '%s' but expected 'plain' or 'xml'.", format));
+                            + " Found '%s' but expected '%s' or '%s'.",
+                            format, PLAIN_FORMAT_NAME, XML_FORMAT_NAME));
                 }
             }
-            if (cmdLine.hasOption("p")) {
-                final String propertiesLocation = cmdLine.getOptionValue("p");
+            if (cmdLine.hasOption(OPTION_P_NAME)) {
+                final String propertiesLocation = cmdLine.getOptionValue(OPTION_P_NAME);
                 final File file = new File(propertiesLocation);
                 if (!file.exists()) {
                     result.add(String.format("Could not find file '%s'.", propertiesLocation));
                 }
             }
-            if (cmdLine.hasOption("o")) {
-                final String outputLocation = cmdLine.getOptionValue("o");
+            if (cmdLine.hasOption(OPTION_O_NAME)) {
+                final String outputLocation = cmdLine.getOptionValue(OPTION_O_NAME);
                 final File file = new File(outputLocation);
                 if (file.exists() && !file.canWrite()) {
                     result.add(String.format("Permission denied : '%s'.", outputLocation));
@@ -191,13 +213,13 @@ public final class Main {
      */
     private static CliOptions convertCliToPojo(CommandLine cmdLine) {
         final CliOptions conf = new CliOptions();
-        conf.format = cmdLine.getOptionValue("f");
+        conf.format = cmdLine.getOptionValue(OPTION_F_NAME);
         if (conf.format == null) {
-            conf.format = "plain";
+            conf.format = PLAIN_FORMAT_NAME;
         }
-        conf.outputLocation = cmdLine.getOptionValue("o");
-        conf.configLocation = cmdLine.getOptionValue("c");
-        conf.propertiesLocation = cmdLine.getOptionValue("p");
+        conf.outputLocation = cmdLine.getOptionValue(OPTION_O_NAME);
+        conf.configLocation = cmdLine.getOptionValue(OPTION_C_NAME);
+        conf.propertiesLocation = cmdLine.getOptionValue(OPTION_P_NAME);
         conf.files = getFilesToProcess(cmdLine.getArgs());
         return conf;
     }
@@ -310,11 +332,11 @@ public final class Main {
 
         // setup a listener
         AuditListener listener;
-        if ("xml".equals(format)) {
+        if (XML_FORMAT_NAME.equals(format)) {
             listener = new XMLLogger(out, closeOutputStream);
 
         }
-        else if ("plain".equals(format)) {
+        else if (PLAIN_FORMAT_NAME.equals(format)) {
             listener = new DefaultLogger(out, closeOutputStream);
 
         }
@@ -322,8 +344,9 @@ public final class Main {
             if (closeOutputStream) {
                 Utils.close(out);
             }
-            throw new IllegalStateException("Invalid output format. Found '" + format
-                    + "' but expected 'plain' or 'xml'.");
+            throw new IllegalStateException(String.format(
+                    "Invalid output format. Found '%s' but expected '%s' or '%s'.",
+                    format, PLAIN_FORMAT_NAME, XML_FORMAT_NAME));
         }
 
         return listener;
@@ -386,11 +409,13 @@ public final class Main {
      */
     private static Options buildOptions() {
         final Options options = new Options();
-        options.addOption("c", true, "Sets the check configuration file to use.");
-        options.addOption("o", true, "Sets the output file. Defaults to stdout");
-        options.addOption("p", true, "Loads the properties file");
-        options.addOption("f", true, "Sets the output format. (plain|xml). Defaults to plain");
-        options.addOption("v", false, "Print product version and exit");
+        options.addOption(OPTION_C_NAME, true, "Sets the check configuration file to use.");
+        options.addOption(OPTION_O_NAME, true, "Sets the output file. Defaults to stdout");
+        options.addOption(OPTION_P_NAME, true, "Loads the properties file");
+        options.addOption(OPTION_F_NAME, true, String.format(
+                "Sets the output format. (%s|%s). Defaults to %s",
+                PLAIN_FORMAT_NAME, XML_FORMAT_NAME, PLAIN_FORMAT_NAME));
+        options.addOption(OPTION_V_NAME, false, "Print product version and exit");
         return options;
     }
 
