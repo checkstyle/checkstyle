@@ -123,7 +123,7 @@ public class ExecutableStatementCountCheckTest
     }
 
     @Test(expected = IllegalStateException.class)
-    public void testVisitTokenWhithWrongTokenType() {
+    public void testVisitTokenWithWrongTokenType() {
         ExecutableStatementCountCheck checkObj =
             new ExecutableStatementCountCheck();
         DetailAST ast = new DetailAST();

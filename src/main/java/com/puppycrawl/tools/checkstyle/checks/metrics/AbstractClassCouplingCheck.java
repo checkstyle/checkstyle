@@ -185,7 +185,7 @@ public abstract class AbstractClassCouplingCheck extends Check {
     }
 
     /**
-     * Incapsulates information about class coupling.
+     * Encapsulates information about class coupling.
      *
      * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
      * @author o_sukhodolsky

@@ -46,10 +46,10 @@ class SinglelineDetector {
      */
     public void processLines(List<String> lines) {
         resetState();
-        int lineno = 0;
+        int lineNo = 0;
         for (String line : lines) {
-            lineno++;
-            checkLine(lineno, line, options.getPattern().matcher(line), 0);
+            lineNo++;
+            checkLine(lineNo, line, options.getPattern().matcher(line), 0);
         }
         finish();
     }

@@ -313,7 +313,7 @@ public class JavaNCSSCheck extends Check {
     private static boolean isVariableDefCountable(DetailAST ast) {
         boolean countable = false;
 
-        //count variable defs only if they are direct child to a slist or
+        //count variable definitions only if they are direct child to a slist or
         // object block
         final int parentType = ast.getParent().getType();
 
@@ -323,7 +323,7 @@ public class JavaNCSSCheck extends Check {
 
             //is countable if no previous sibling is found or
             //the sibling is no COMMA.
-            //This is done because multiple assignment on one line are countes
+            //This is done because multiple assignment on one line are counted
             // as 1
             countable = prevSibling == null
                     || prevSibling.getType() != TokenTypes.COMMA;

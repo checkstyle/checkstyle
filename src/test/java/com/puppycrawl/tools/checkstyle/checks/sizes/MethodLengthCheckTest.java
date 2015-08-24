@@ -62,7 +62,7 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testcountEmpty() throws Exception {
+    public void testCountEmpty() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodLengthCheck.class);
         checkConfig.addAttribute("max", "19");
