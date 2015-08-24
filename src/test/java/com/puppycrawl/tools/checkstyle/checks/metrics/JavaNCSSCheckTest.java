@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Testcase for the JavaNCSS-Check.
+ * Test case for the JavaNCSS-Check.
  *
  * @author Lars Ködderitzsch
  */

@@ -62,7 +62,7 @@ public class EmptyForIteratorPadCheck
     public static final String WS_NOT_FOLLOWED = "ws.notFollowed";
 
     /**
-     * Sets the paren pad otion to nospace.
+     * Sets the paren pad option to nospace.
      */
     public EmptyForIteratorPadCheck() {
         super(PadOption.NOSPACE, PadOption.class);

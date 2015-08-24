@@ -133,7 +133,7 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
-     * Sets the maximum number of warings allowed. Default is
+     * Sets the maximum number of warnings allowed. Default is
      * {@link Integer#MAX_VALUE}.
      * @param maxWarnings the maximum number of warnings allowed.
      */
@@ -142,7 +142,7 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
-     * Adds uset of files (nested fileset attribute).
+     * Adds set of files (nested fileset attribute).
      * @param fS the file set to add
      */
     public void addFileset(FileSet fS) {
@@ -167,7 +167,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Set the class path.
-     * @param classpath the path to locate cluses
+     * @param classpath the path to locate classes
      */
     public void setClasspath(Path classpath) {
         if (this.classpath == null) {
@@ -186,7 +186,7 @@ public class CheckstyleAntTask extends Task {
         createClasspath().setRefid(classpathRef);
     }
 
-    /** @return a created path for locating cluses */
+    /** @return a created path for locating classes */
     public Path createClasspath() {
         if (classpath == null) {
             classpath = new Path(getProject());
@@ -606,17 +606,17 @@ public class CheckstyleAntTask extends Task {
 
     /** Represents a custom listener. */
     public static class Listener {
-        /** Classname of the listener class */
-        private String classname;
+        /** Class name of the listener class */
+        private String className;
 
-        /** @return the classname */
+        /** @return the class name */
         public String getClassname() {
-            return classname;
+            return className;
         }
 
-        /** @param classname set the classname */
-        public void setClassname(String classname) {
-            this.classname = classname;
+        /** @param name set the class name */
+        public void setClassname(String name) {
+            className = name;
         }
     }
 }
