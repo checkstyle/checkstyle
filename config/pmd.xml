@@ -21,8 +21,8 @@
     <properties>
       <property name="showClassesComplexity" value="false"/>
       <property name="reportLevel" value="11"/>
-      <!-- validateCli is not reasonbale to split as incapsulation of logic will be damaged
-           getDetails - huge Switch, it has to be monolitic
+      <!-- validateCli is not reasonable to split as encapsulation of logic will be damaged
+           getDetails - huge Switch, it has to be monolithic
            JavadocMethodCheck, JavadocStyleCheck, JavadocUtils.getJavadocTags() - deprecated
            FinalLocalVariableCheck.visitToken() - it is just big switch , not could be done
            GenericWhitespaceCheck.processSingleGeneric() - it contains a lot of similar to each other and very simple condition
@@ -36,7 +36,7 @@
       <!-- JavadocMethodCheck - deprecated
            WhitespaceAroundCheck.isNotRelevantSituation - npath = 216, but additional extraction
                                 of expression to separate method does not make sense as it will
-                                damage incapsulation of that check.
+                                damage encapsulation of that check.
       -->
       <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='isNotRelevantSituation' and ../../..[@Image='WhitespaceAroundCheck']] | //MethodDeclaration[@Name='validateCli' and ../../..[@Image='Main']] | //ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck' or @Image='JavadocStyleCheck']"/>
     </properties>
@@ -144,7 +144,7 @@
     <exclude name="PreserveStackTrace"/>
     <!-- we will use our own declaration order logic -->
     <exclude name="FieldDeclarationsShouldBeAtStartOfClass"/>
-    <!-- too much alarms of Checks, we will never move logic out of Check, each Check is independed logic contianer -->
+    <!-- too much alarms of Checks, we will never move logic out of Check, each Check is independent logic container -->
     <exclude name="GodClass"/>
   </rule>
 
