@@ -130,8 +130,6 @@
   </rule>
 
   <rule ref="rulesets/java/design.xml">
-    <!-- this produce false positives on gui.Main -->
-    <exclude name="UseUtilityClass"/>
     <!-- till #974-->
     <exclude name="ConfusingTernary"/>
     <!-- extra final modifier does not make code more secure in that cases-->
