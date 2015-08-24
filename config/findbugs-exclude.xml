@@ -5,12 +5,12 @@
       <Package name="~com\.puppycrawl\.tools\.checkstyle\.grammars.*" />
     </Match>
     <Match>
-      <!-- We are not aware of encoding of files that user has, so using user encodin is ok -->
+      <!-- We are not aware of encoding of files that user has, so using user encoding is ok -->
       <Class name="com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption" />
       <Bug pattern="DM_DEFAULT_ENCODING" />
     </Match>
     <Match>
-      <!-- Looks like catch Exception and throw BuidException is normal practice in ANT, so we follow their style -->
+      <!-- Looks like catch Exception and throw BuildException is normal practice in ANT, so we follow their style -->
       <!-- Example: https://git-wip-us.apache.org/repos/asf?p=ant.git;a=blob;f=src/main/org/apache/tools/ant/taskdefs/Checksum.java;h=7a94ca098baf241b175a6bab3dda092aed835ada;hb=HEAD#l574 -->
       <Class name="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask" />
       <Method name="createChecker" />
@@ -23,7 +23,7 @@
       <Bug pattern="REC_CATCH_EXCEPTION" />
     </Match>
     <Match>
-      <!-- Deprecated code, code will be removed afer swithing to use JavaDoc AST tree -->
+      <!-- Deprecated code, code will be removed after switching to use JavaDoc AST tree -->
       <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils" />
       <Bug pattern="REC_CATCH_EXCEPTION" />
     </Match>
@@ -33,13 +33,13 @@
       <Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS" />
     </Match>
     <Match>
-      <!-- false-postive, as Map will return null if key is not found -->
+      <!-- false-positive, as Map will return null if key is not found -->
       <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler" />
       <Method name="collectFirstNodes" />
       <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
     </Match>
     <Match>
-      <!-- it is ok here, as business meaning of that cases is not the same, it is ocasional similarity -->
+      <!-- it is ok here, as business meaning of that cases is not the same, it is occasional similarity -->
       <Class name="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck" />
       <Method name="visitToken" />
       <Bug pattern="DB_DUPLICATE_SWITCH_CLAUSES" />
@@ -89,7 +89,7 @@
         <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck" />
         <!-- createJavadocNode is private and can not be launched without visitToken-->
         <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck" />
-        <!-- has only one public method and all nitialized inthat method-->
+        <!-- has only one public method and all initialized in that method-->
         <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector" />
         <!-- beginProcessing() is kind of c-tor -->
         <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck" />
