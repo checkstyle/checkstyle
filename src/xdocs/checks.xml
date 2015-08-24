@@ -238,7 +238,7 @@
       <tr>
         <td><a href="config_design.html#FinalClass">FinalClass</a></td>
         <td>
-          Checks that class which has only private ctors
+          Checks that class which has only private constructors
         is declared as final.</td>
       </tr>
       <tr>

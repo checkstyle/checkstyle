@@ -482,7 +482,7 @@ java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar \
         This means that you cannot implement some of the code inspection
         features that are available in advanced IDEs like <a
         href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a>,
-        <a href="http://findbugs.sourceforge.net/">Findbug</a>,
+        <a href="http://findbugs.sourceforge.net/">FindBugs</a>,
         <a href="http://pmd.sourceforge.net/">PMD</a>,
         <a href="http://www.sonarqube.org/">Sonarqube</a>. 
       </p>
@@ -560,7 +560,7 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
       </p>
       <p>
         There are virtually no limits what you can do in
-        FileSetChecks, but please do not be creazy.
+        FileSetChecks, but please do not be crazy.
       </p>
 
     </section>
