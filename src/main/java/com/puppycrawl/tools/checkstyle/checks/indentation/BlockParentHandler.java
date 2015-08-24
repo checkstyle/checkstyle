@@ -270,7 +270,10 @@ public class BlockParentHandler extends AbstractExpressionHandler {
             checkRCurly();
         }
         final DetailAST listChild = getListChild();
-        if (listChild != null) {
+        if (listChild == null) {
+            checkNonlistChild();
+        }
+        else {
             // NOTE: switch statements usually don't have curlys
             if (!hasCurlys() || !areOnSameLine(getLCurly(), getRCurly())) {
                 checkChildren(listChild,
@@ -279,9 +282,6 @@ public class BlockParentHandler extends AbstractExpressionHandler {
                               true,
                               childrenMayNest());
             }
-        }
-        else {
-            checkNonlistChild();
         }
     }
 

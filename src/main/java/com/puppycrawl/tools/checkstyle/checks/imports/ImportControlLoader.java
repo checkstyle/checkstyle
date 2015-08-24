@@ -101,16 +101,16 @@ final class ImportControlLoader extends AbstractLoader {
             final String pkg = atts.getValue("pkg");
             final boolean regex = atts.getValue("regex") != null;
             final Guard g;
-            if (pkg != null) {
-                final boolean exactMatch =
-                        atts.getValue("exact-match") != null;
-                g = new Guard(isAllow, isLocalOnly, pkg, exactMatch, regex);
-            }
-            else {
+            if (pkg == null) {
                 // handle class names which can be normal class names or regular
                 // expressions
                 final String clazz = safeGet(atts, "class");
                 g = new Guard(isAllow, isLocalOnly, clazz, regex);
+            }
+            else {
+                final boolean exactMatch =
+                    atts.getValue("exact-match") != null;
+                g = new Guard(isAllow, isLocalOnly, pkg, exactMatch, regex);
             }
 
             final PkgControl pc = stack.peek();

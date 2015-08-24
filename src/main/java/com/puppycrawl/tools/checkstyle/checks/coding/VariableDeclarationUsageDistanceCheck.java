@@ -517,11 +517,11 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
                         exprWithVariableUsage = blockWithVariableUsage.getFirstChild();
                 }
                 currentScopeAst = exprWithVariableUsage;
-                if (exprWithVariableUsage != null) {
-                    variableUsageAst = exprWithVariableUsage;
+                if (exprWithVariableUsage == null) {
+                    variableUsageAst = blockWithVariableUsage;
                 }
                 else {
-                    variableUsageAst = blockWithVariableUsage;
+                    variableUsageAst = exprWithVariableUsage;
                 }
             }
             // If variable usage exists in different scopes, then distance =

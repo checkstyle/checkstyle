@@ -301,14 +301,14 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
                 break;
             case TokenTypes.LITERAL_IF:
                 nextToken = ast.findFirstToken(TokenTypes.LITERAL_ELSE);
-                if (nextToken != null) {
-                    lcurly = nextToken.getPreviousSibling();
-                    rcurly = lcurly.getLastChild();
-                }
-                else {
+                if (nextToken == null) {
                     shouldCheckLastRcurly = true;
                     nextToken = getNextToken(ast);
                     lcurly = ast.getLastChild();
+                    rcurly = lcurly.getLastChild();
+                }
+                else {
+                    lcurly = nextToken.getPreviousSibling();
                     rcurly = lcurly.getLastChild();
                 }
                 break;
