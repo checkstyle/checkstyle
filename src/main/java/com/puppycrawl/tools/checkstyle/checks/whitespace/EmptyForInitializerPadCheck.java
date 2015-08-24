@@ -62,7 +62,7 @@ public class EmptyForInitializerPadCheck
     public static final String MSG_NOT_PRECEDED = "ws.notPreceded";
 
     /**
-     * Sets the paren pad otion to nospace.
+     * Sets the paren pad option to nospace.
      */
     public EmptyForInitializerPadCheck() {
         super(PadOption.NOSPACE, PadOption.class);

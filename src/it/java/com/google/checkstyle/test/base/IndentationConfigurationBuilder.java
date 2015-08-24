@@ -40,10 +40,10 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder
     private static final Pattern MULTILEVEL_COMMENT_REGEX =
                     Pattern.compile("//indent:\\d+ exp:(\\d+(,\\d+)+?)( warn)?");
 
-    private static final Pattern SINGLELEVEL_COMMENT_REGEX =
+    private static final Pattern SINGLE_LEVEL_COMMENT_REGEX =
                     Pattern.compile("//indent:\\d+ exp:(\\d+)( warn)?");
 
-    private static final Pattern NONSTRICT_LEVEL_COMMENT_REGEX =
+    private static final Pattern NON_STRICT_LEVEL_COMMENT_REGEX =
                     Pattern.compile("//indent:\\d+ exp:>=(\\d+)( warn)?");
 
     protected static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
@@ -123,7 +123,7 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder
                     || !containsActualLevel && isWarnComment;
         }
 
-        match = SINGLELEVEL_COMMENT_REGEX.matcher(comment);
+        match = SINGLE_LEVEL_COMMENT_REGEX.matcher(comment);
         if (match.matches()) {
             final int expectedLevel = Integer.parseInt(match.group(1));
 
@@ -131,7 +131,7 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder
                     || expectedLevel != indentInComment && isWarnComment;
         }
 
-        match = NONSTRICT_LEVEL_COMMENT_REGEX.matcher(comment);
+        match = NON_STRICT_LEVEL_COMMENT_REGEX.matcher(comment);
         if (match.matches()) {
             final int expectedMinimalIndent = Integer.parseInt(match.group(1));
 

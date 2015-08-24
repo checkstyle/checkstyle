@@ -33,7 +33,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     private String warningMessage;
 
     @Test
-    public void testTypeNamesForThreePermitedCapitalLetters() throws Exception {
+    public void testTypeNamesForThreePermittedCapitalLetters() throws Exception {
 
         final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 3;
@@ -54,7 +54,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testTypeNamesForFourPermitedCapitalLetters() throws Exception {
+    public void testTypeNamesForFourPermittedCapitalLetters() throws Exception {
 
         final int expectedCapitalCount = 4;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
@@ -72,7 +72,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testTypeNamesForFivePermitedCapitalLetters() throws Exception {
+    public void testTypeNamesForFivePermittedCapitalLetters() throws Exception {
 
         final int expectedCapitalCount = 5;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
@@ -225,7 +225,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testTypeNamesForThreePermitedCapitalLettersWithOverridenMethod() throws Exception {
+    public void testTypeNamesForThreePermittedCapitalLettersWithOverridenMethod() throws Exception {
 
         final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 3;
@@ -244,7 +244,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testTypeNamesForZeroPermitedCapitalLetter() throws Exception {
+    public void testTypeNamesForZeroPermittedCapitalLetter() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 0;

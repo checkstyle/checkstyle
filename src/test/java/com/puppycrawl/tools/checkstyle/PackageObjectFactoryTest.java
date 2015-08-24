@@ -63,7 +63,7 @@ public class PackageObjectFactoryTest {
     }
 
     @Test
-    public void testMakeObectFromList()
+    public void testMakeObjectFromList()
         throws CheckstyleException {
         factory.addPackage("com.");
         final Checker checker =
@@ -73,10 +73,10 @@ public class PackageObjectFactoryTest {
     }
 
     @Test
-    public void testMakeObectNoClass() {
+    public void testMakeObjectNoClass() {
         try {
             factory.createModule("NoClass");
-            fail("Instantiated non-existant class");
+            fail("Instantiated non-existent class");
         }
         catch (CheckstyleException ex) {
             assertEquals("CheckstyleException.message",

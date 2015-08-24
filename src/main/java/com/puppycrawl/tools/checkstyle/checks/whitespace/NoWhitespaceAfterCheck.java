@@ -29,8 +29,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Checks that there is no whitespace after a token.
  * More specifically, it checks that it is not followed by whitespace,
- * or (if linebreaks are allowed) all characters on the line after are
- * whitespace. To forbid linebreaks afer a token, set property
+ * or (if line breaks are allowed) all characters on the line after are
+ * whitespace. To forbid line breaks after a token, set property
  * allowLineBreaks to false.
  * </p>
   * <p> By default the check will check the following operators:
@@ -51,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="NoWhitespaceAfter"/&gt;
  * </pre>
- * <p> An example of how to configure the check to forbid linebreaks after
+ * <p> An example of how to configure the check to forbid line breaks after
  * a {@link TokenTypes#DOT DOT} token is:
  * </p>
  * <pre>
