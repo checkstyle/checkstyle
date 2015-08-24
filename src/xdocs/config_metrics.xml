@@ -316,7 +316,7 @@
             Do not be ashamed to have complexity level 15 or even higher,
             but keep it below 20 to catch really bad designed code automatically.
             <br/>Please use Suppression to avoid violations on cases that could not be split in few
-            methods without damanging readability of code or incapsulation.
+            methods without damaging readability of code or encapsulation.
             <br/>
         </p>
       </subsection>
@@ -427,7 +427,7 @@ class CC {
           avoid problem of Cyclomatic complexity metric like nesting level within a function.
         </p>
         <p>
-          Metic wsa described at <a href="http://dl.acm.org/citation.cfm?id=42379">"NPATH: a measure of execution pathcomplexity and its applications"</a>. If you need detaled description of algorithm, please read that article,
+          Metric was described at <a href="http://dl.acm.org/citation.cfm?id=42379">"NPATH: a measure of execution pathcomplexity and its applications"</a>. If you need detaled description of algorithm, please read that article,
           it is well written and have number of examples and details.
         </p>
 
