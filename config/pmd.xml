@@ -160,12 +160,6 @@
       <property name="problemDepth" value="4"/>
     </properties>
   </rule>
-  <rule ref="rulesets/java/design.xml/SwitchDensity">
-    <properties>
-      <!-- till #973 -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='DeclarationOrderCheck']"/>
-    </properties>
-  </rule>
 
   <rule ref="rulesets/java/design.xml/SingularField">
     <properties>
