@@ -463,7 +463,7 @@
                   <version>1.6</version>
                 </requireJavaVersion>
                 <!-- we can not use this as it require
-                compilation on 1.6 only, due to dependecy to 'tools'
+                compilation on 1.6 only, due to dependency to 'tools'
                 <enforceBytecodeVersion>
                   <maxJdkVersion>1.6</maxJdkVersion>
                 </enforceBytecodeVersion>
@@ -473,7 +473,7 @@
           </execution>
         </executions>
         <!-- we can not use this as it require
-        compilation on 1.6 only, due to dependecy to 'tool'
+        compilation on 1.6 only, due to dependency to 'tool'
         <dependencies>
           <dependency>
             <groupId>org.codehaus.mojo</groupId>
@@ -555,7 +555,7 @@
             </configuration>
           </execution>
           <execution>
-            <id>add-ittest-source</id>
+            <id>add-it-test-source</id>
             <phase>process-resources</phase>
             <goals>
               <goal>add-test-source</goal>
@@ -567,7 +567,7 @@
             </configuration>
           </execution>
           <execution>
-            <id>add-ittest-resource</id>
+            <id>add-it-test-resource</id>
             <phase>process-resources</phase>
             <goals>
               <goal>add-test-source</goal>
@@ -970,10 +970,10 @@
             <excludedLink>http://search.maven.org/*</excludedLink>
             <excludedLink>http://junit.org</excludedLink>
             <excludedLink>http://sonar-plugins.codehaus.org/maven-report</excludedLink>
-            <!-- Excluded due to checkstyle's issue #549 until https://issues.apache.org/jira/browse/MJAVADOC-428
+            <!-- Excluded due to Checkstyle's issue #549 until https://issues.apache.org/jira/browse/MJAVADOC-428
             and http://jira.codehaus.org/browse/DOXIA-525 and http://jira.codehaus.org/browse/MLINKCHECK-21 will be fixed -->
             <excludedLink>**/com/puppycrawl/**</excludedLink>
-            <!-- Excluded due to checkstyle's issue #549 until https://issues.apache.org/jira/browse/MJAVADOC-428 will be fixed -->
+            <!-- Excluded due to Checkstyle's issue #549 until https://issues.apache.org/jira/browse/MJAVADOC-428 will be fixed -->
             <excludedLink>http://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers.DefaultHandler.html?*</excludedLink>
             <!-- Excluded due to Maven Enforcer Plugin's issue #234: https://issues.apache.org/jira/browse/MENFORCER-234-->
             <excludedLink>http://maven.apache.org/enforcer/maven-enforcer-plugin</excludedLink>
@@ -1019,7 +1019,7 @@
   <profiles>
 
     <!-- Bring in tools.jar for platforms which provide it
-    that is required for javadoc docklets that are in use -->
+    that is required for javadoc doclets that are in use -->
     <profile>
       <id>default-tools.jar-oracle</id>
       <activation>
@@ -1408,11 +1408,11 @@
 
   </profiles>
 
-  <!-- that repositories are required for tesing plugin's snapshot version -->
+  <!-- that repositories are required for testing plugin's snapshot version -->
   <pluginRepositories>
     <pluginRepository>
       <id>nexus-snapshot</id>
-      <name>Oficial Maven Apache Repo</name>
+      <name>Official Maven Apache Repo</name>
       <url>https://nexus.codehaus.org/content/repositories/snapshots/</url>
     </pluginRepository>
   </pluginRepositories>
