@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.Utils;
@@ -53,6 +54,15 @@ public final class CheckUtils {
 
     /** Maximum nodes allowed in a body of getter */
     private static final int GETTER_BODY_SIZE = 2;
+
+    /** Pattern matching underscore characters ('_') */
+    private static final Pattern UNDERSCORE_PATTERN = Pattern.compile("_");
+
+    /** Pattern matching names of setter methods */
+    private static final Pattern SETTER_PATTERN = Pattern.compile("^set[A-Z].*");
+
+    /** Pattern matching names of getter methods */
+    private static final Pattern GETTER_PATTERN = Pattern.compile("^(is|get)[A-Z].*");
 
     /** Prevent instances */
     private CheckUtils() {
@@ -158,7 +168,7 @@ public final class CheckUtils {
      * @return the double value represented by the string argument.
      */
     public static double parseDouble(String text, int type) {
-        String txt = text.replaceAll("_", "");
+        String txt = UNDERSCORE_PATTERN.matcher(text).replaceAll("");
         double result = 0;
         switch (type) {
             case TokenTypes.NUM_FLOAT:
@@ -336,7 +346,7 @@ public final class CheckUtils {
         final String name = type.getNextSibling().getText();
 
         // Depends on JDK 1.4
-        if (!name.matches("^set[A-Z].*")) {
+        if (!SETTER_PATTERN.matcher(name).matches()) {
             return false;
         }
 
@@ -384,7 +394,7 @@ public final class CheckUtils {
         final String name = type.getNextSibling().getText();
 
         // Depends on JDK 1.4
-        if (!name.matches("^(is|get)[A-Z].*")) {
+        if (!GETTER_PATTERN.matcher(name).matches()) {
             return false;
         }
 
