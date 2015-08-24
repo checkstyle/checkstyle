@@ -21,21 +21,34 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 
 import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISSING;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.anyObject;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({ HeaderCheck.class, HeaderCheckTest.class, AbstractHeaderCheck.class })
 public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
 
     @Test
     public void testStaticHeader() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(HeaderCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("configs/java.header"));
         checkConfig.addAttribute("ignoreLines", "");
         final String[] expected = {
@@ -46,8 +59,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
 
     @Test
     public void testNoHeader() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(HeaderCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
         try {
             createChecker(checkConfig);
             final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
@@ -61,8 +73,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
 
     @Test
     public void testNonExistingHeaderFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(HeaderCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("nonExisting.file"));
         try {
             createChecker(checkConfig);
@@ -75,8 +86,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
 
     @Test
     public void testInvalidCharset() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(HeaderCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("config/java.header"));
         checkConfig.addAttribute("charset", "XSO-8859-1");
         try {
@@ -90,8 +100,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
 
     @Test
     public void testEmptyFilename() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(HeaderCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", "");
         try {
             createChecker(checkConfig);
@@ -104,8 +113,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
 
     @Test
     public void testNotMatch() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(HeaderCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("configs/java.header"));
         checkConfig.addAttribute("ignoreLines", "");
         final String[] expected = {
@@ -117,12 +125,61 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
 
     @Test
     public void testIgnore() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(HeaderCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("configs/java.header"));
         checkConfig.addAttribute("ignoreLines", "2");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("configs/java2.header"), expected);
     }
 
+    @Test
+    public void testSetHeaderTwice() {
+        HeaderCheck check = new HeaderCheck();
+        check.setHeader("Header");
+        try {
+            check.setHeader("Header2");
+            fail();
+        }
+        catch (ConversionException ex) {
+            assertEquals("header has already been set - "
+                    + "set either header or headerFile, not both", ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testIoExceptionWhenLoadingHeader() throws Exception {
+        HeaderCheck check = PowerMockito.spy(new HeaderCheck());
+        PowerMockito.doThrow(new IOException("excpected exception")).when(check, "loadHeader",
+                anyObject());
+
+        try {
+            check.setHeader("header");
+            fail("Exception expected");
+        }
+        catch (ConversionException ex) {
+            assertTrue(ex.getCause() instanceof IOException);
+            assertEquals("unable to load header", ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testIoExceptionWhenLoadingHeaderFile() throws Exception {
+        HeaderCheck check = PowerMockito.spy(new HeaderCheck());
+        PowerMockito.doThrow(new IOException("excpected exception")).when(check, "loadHeader",
+                anyObject());
+
+        check.setHeaderFile(getPath("InputRegexpHeader1.java"));
+
+        Method loadHeaderFile = AbstractHeaderCheck.class.getDeclaredMethod("loadHeaderFile");
+        loadHeaderFile.setAccessible(true);
+        try {
+            loadHeaderFile.invoke(check);
+            fail("Exception expected");
+        }
+        catch (InvocationTargetException ex) {
+            assertTrue(ex.getCause() instanceof CheckstyleException);
+            assertEquals("unable to load header file "
+                    + getPath("InputRegexpHeader1.java"), ex.getCause().getMessage());
+        }
+    }
 }
