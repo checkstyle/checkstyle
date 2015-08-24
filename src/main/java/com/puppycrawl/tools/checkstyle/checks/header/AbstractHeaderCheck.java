@@ -34,6 +34,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.lang3.StringUtils;
@@ -50,6 +51,8 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * @author o_sukhosolsky
  */
 public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
+    /** Pattern to detect occurrences of '\n' in text */
+    private static final Pattern ESCAPED_LINE_FEED_PATTERN = Pattern.compile("\\\\n");
     /** The file that contains the header to check against. */
     private String filename;
 
@@ -181,7 +184,8 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
 
         checkHeaderNotInitialized();
 
-        final String headerExpandedNewLines = header.replaceAll("\\\\n", "\n");
+        final String headerExpandedNewLines = ESCAPED_LINE_FEED_PATTERN
+                .matcher(header).replaceAll("\n");
 
         final Reader headerReader = new StringReader(headerExpandedNewLines);
         try {
