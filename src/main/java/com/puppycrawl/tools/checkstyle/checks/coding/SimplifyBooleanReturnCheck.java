@@ -45,7 +45,7 @@ public class SimplifyBooleanReturnCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_KEY = "simplify.boolreturn";
+    public static final String MSG_KEY = "simplify.boolReturn";
 
     @Override
     public int[] getAcceptableTokens() {

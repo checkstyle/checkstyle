@@ -54,16 +54,16 @@ public class JavadocStyleCheck
     public static final String EMPTY = "javadoc.empty";
 
     /** Message property key for the Unclosed HTML message. */
-    public static final String NO_PERIOD = "javadoc.noperiod";
+    public static final String NO_PERIOD = "javadoc.noPeriod";
 
     /** Message property key for the Unclosed HTML message. */
     public static final String INCOMPLETE_TAG = "javadoc.incompleteTag";
 
     /** Message property key for the Unclosed HTML message. */
-    public static final String UNCLOSED_HTML = "javadoc.unclosedhtml";
+    public static final String UNCLOSED_HTML = "javadoc.unclosedHtml";
 
     /** Message property key for the Extra HTML message. */
-    public static final String EXTRA_HTML = "javadoc.extrahtml";
+    public static final String EXTRA_HTML = "javadoc.extraHtml";
 
     /** HTML tags that do not require a close tag. */
     private static final Set<String> SINGLE_TAGS = ImmutableSortedSet.of(
