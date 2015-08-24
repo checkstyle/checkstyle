@@ -449,7 +449,7 @@ public class VisibilityModifierCheck
      */
     private boolean hasIgnoreAnnotation(DetailAST variableDef) {
         final DetailAST firstIgnoreAnnotation =
-                 containsMatchingAnnotation(variableDef);
+                 findMatchingAnnotation(variableDef);
         return firstIgnoreAnnotation != null;
     }
 
@@ -751,7 +751,7 @@ public class VisibilityModifierCheck
      * @return the AST representing the first such annotation or null if
      *         no such annotation was found
      */
-    private DetailAST containsMatchingAnnotation(DetailAST variableDef) {
+    private DetailAST findMatchingAnnotation(DetailAST variableDef) {
         DetailAST matchingAnnotation = null;
 
         final DetailAST holder = AnnotationUtility.getAnnotationHolder(variableDef);
