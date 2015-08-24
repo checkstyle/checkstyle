@@ -330,7 +330,7 @@ public class AbbreviationAsWordInNameCheck extends Check {
      * @param str name
      * @param beginIndex begin index
      * @param endIndex end index
-     * @return true is abbreviation is bigger that requierd and not in ignore list
+     * @return true is abbreviation is bigger that required and not in ignore list
      */
     private String getAbbreviationIfIllegal(String str, int beginIndex, int endIndex) {
         String result = null;

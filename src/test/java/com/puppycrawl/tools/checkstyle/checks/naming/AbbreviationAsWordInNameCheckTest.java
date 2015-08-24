@@ -225,7 +225,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testTypeNamesForThreePermittedCapitalLettersWithOverridenMethod() throws Exception {
+    public void testTypeNamesForThreePermitedCapitalLettersWithOverriddenMethod() throws Exception {
 
         final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 3;

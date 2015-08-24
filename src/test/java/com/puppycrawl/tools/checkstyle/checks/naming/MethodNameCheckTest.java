@@ -138,7 +138,7 @@ public class MethodNameCheckTest
     }
 
     @Test
-    public void testOverridenMethods() throws Exception {
+    public void testOverriddenMethods() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodNameCheck.class);
 

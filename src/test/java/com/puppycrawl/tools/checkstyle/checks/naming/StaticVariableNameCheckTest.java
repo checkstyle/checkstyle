@@ -37,8 +37,8 @@ public class StaticVariableNameCheckTest
     @Test
     public void testGetRequiredTokens() {
         StaticVariableNameCheck checkObj = new StaticVariableNameCheck();
-        int[] excpected = {TokenTypes.VARIABLE_DEF};
-        assertArrayEquals(excpected, checkObj.getRequiredTokens());
+        int[] expected = {TokenTypes.VARIABLE_DEF};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
     @Test

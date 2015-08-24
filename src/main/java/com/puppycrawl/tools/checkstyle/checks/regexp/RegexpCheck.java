@@ -221,7 +221,7 @@ public class RegexpCheck extends AbstractFormatCheck {
     }
 
     /**
-     * Check if we can stop valiation
+     * Check if we can stop validation
      * @param ignore flag
      * @return true is we can continue
      */
@@ -234,7 +234,7 @@ public class RegexpCheck extends AbstractFormatCheck {
      * Detect ignore situation
      * @param startLine position of line
      * @param text file text
-     * @param start line colun
+     * @param start line column
      * @return true is that need to be ignored
      */
     private boolean isIgnore(int startLine, FileText text, LineColumn start) {

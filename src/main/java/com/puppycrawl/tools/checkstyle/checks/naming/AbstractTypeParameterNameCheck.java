@@ -65,7 +65,7 @@ public abstract class AbstractTypeParameterNameCheck
     }
 
     /**
-     * This method must be overriden to specify the
+     * This method must be overridden to specify the
      * location of the type parameter to check.
      *
      * @return {@code TokenTypes.CLASS_DEF }
