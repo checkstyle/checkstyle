@@ -1678,12 +1678,6 @@
                     <branchRate>75</branchRate>
                     <lineRate>93</lineRate>
                   </regex>
-
-                  <regex>
-                    <pattern>.*.checks.header.AbstractHeaderCheck</pattern>
-                    <branchRate>90</branchRate>
-                    <lineRate>87</lineRate>
-                  </regex>
                 </regexes>
               </check>
               <instrumentation>
