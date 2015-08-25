@@ -67,7 +67,6 @@ public class IntRangeFilterTest {
         assertFalse("[0,2] != [0,1]", filter.equals(filter3));
         assertFalse("[0,2] != [1,2]", filter.equals(filter4));
         assertFalse("[0,2] != this", filter.equals(this));
-        assertFalse("[0,2] != null", filter.equals(null));
     }
 
     @Test
