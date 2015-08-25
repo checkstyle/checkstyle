@@ -297,7 +297,8 @@ public final class TreeWalker
             for (final int token : check.getRequiredTokens()) {
                 if (Arrays.binarySearch(defaultTokens, token) < 0) {
                     final String message = String.format("Token \"%s\" from required tokens was"
-                            + " not found in default tokens list in check %s", token, check);
+                            + " not found in default tokens list in check %s",
+                            token, check.getClass().getName());
                     throw new CheckstyleException(message);
                 }
             }
