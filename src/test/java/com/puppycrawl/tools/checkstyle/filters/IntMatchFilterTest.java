@@ -45,7 +45,6 @@ public class IntMatchFilterTest {
         assertEquals("0", filter, filter2);
         assertFalse("0 != 1", filter.equals(filter3));
         assertFalse("0 != this", filter.equals(this));
-        assertFalse("0 != null", filter.equals(null));
     }
 
     @Test
