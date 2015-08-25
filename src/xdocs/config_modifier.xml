@@ -104,6 +104,7 @@
             inner <code>interface</code> declarations that are declared
             as <code>static</code>.
           </li>
+          <li>class constructors</li>
         </ol>
         <p>
           Rationale: The Java Language Specification strongly
@@ -132,6 +133,40 @@
           Final classes by definition cannot be extended so the <code>final</code>
           modifier on the method of a final class is redundant.
         </p>
+
+        <p>
+          Public modifier for constructors in non-public non-protected classes
+          is always obsolete:
+        </p>
+
+        <source>
+          public class PublicClass {
+            public PublicClass() {} // OK
+          }
+
+          class PackagePrivateClass {
+            public PackagePrivateClass() {} // violation expected
+          }
+        </source>
+
+        <p>For non-public protected classes public modifier is not obsolete,
+          removing public from this example will make code not compiling:
+        </p>
+
+        <source>
+          package a;
+          public class ClassWithProtectedInnerClass {
+            protected class ProtectedClass {
+              public ProtectedClass () {}
+            }
+          }
+
+          package b;
+          import a.ClassWithProtectedInnerClass;
+          public class ClassExtending extends ClassWithProtectedInnerClass {
+            ProtectedClass pc = new ProtectedClass();
+          }
+        </source>
       </subsection>
 
       <subsection name="Properties">

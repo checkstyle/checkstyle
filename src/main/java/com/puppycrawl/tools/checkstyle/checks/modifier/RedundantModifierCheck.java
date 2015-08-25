@@ -30,8 +30,47 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks for redundant modifiers in interface and annotation definitions.
+ * Checks for non public class constructor and enum constructor redundant modifier.
  * Also checks for redundant final modifiers on methods of final classes
- * and redundant enum constructor modifier.
+ *
+ * <p>Examples:</p>
+ *
+ * <pre>
+ * {@code
+ * public class PublicClass {
+ *     public PublicClass() {} // OK
+ * }
+ *
+ * class PackagePrivateClass {
+ *     public PackagePrivateClass() {} // violation expected
+ * }
+ * }
+ * </pre>
+ *
+ * <pre>
+ * {@code
+ * package a;
+ * public class ClassWithProtectedInnerClass {
+ *     protected class ProtectedClass {
+ *         public ProtectedClass () {} // OK
+ *     }
+ * }
+ * }
+ * </pre>
+ * <p>
+ * in this example is no violation because removing public from
+ * ProtectedClass constructor modifier will make this example
+ * not compiling:
+ * </p>
+ * <pre>
+ * {@code
+ * package b;
+ * import a.ClassWithProtectedInnerClass;
+ * public class ClassExtending extends ClassWithProtectedInnerClass {
+ *     ProtectedClass pc = new ProtectedClass();
+ * }
+ * }
+ * </pre>
  *
  * @author lkuehne
  * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
@@ -81,9 +120,13 @@ public class RedundantModifierCheck
         if (ast.getType() == TokenTypes.INTERFACE_DEF) {
             checkInterfaceModifiers(ast);
         }
-        else if (ast.getType() == TokenTypes.CTOR_DEF
-                && isEnumMember(ast)) {
-            checkEnumConstructorModifiers(ast);
+        else if (ast.getType() == TokenTypes.CTOR_DEF) {
+            if (isEnumMember(ast)) {
+                checkEnumConstructorModifiers(ast);
+            }
+            else {
+                checkClassContructorModifiers(ast);
+            }
         }
         else if (isInterfaceOrAnnotationMember(ast)) {
             processInterfaceOrAnnotation(ast);
@@ -186,6 +229,56 @@ public class RedundantModifierCheck
                 modifier = modifier.getNextSibling();
             }
         }
+    }
+
+    /**
+     * Check if class constructor has proper modifiers
+     * @param classCtorAst class constructor ast
+     */
+    private void checkClassContructorModifiers(DetailAST classCtorAst) {
+        final DetailAST classDef = classCtorAst.getParent().getParent();
+        if (!isClassPublic(classDef) && !isClassProtected(classDef)) {
+            checkForRedundantPublicModifier(classCtorAst);
+        }
+    }
+
+    /**
+     * Checks if given ast has redundant public modifier
+     * @param ast ast
+     */
+    private void checkForRedundantPublicModifier(DetailAST ast) {
+        final DetailAST astModifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+        DetailAST astModifier = astModifiers.getFirstChild();
+        while (astModifier != null) {
+            if (astModifier.getType() == TokenTypes.LITERAL_PUBLIC) {
+                log(astModifier.getLineNo(), astModifier.getColumnNo(),
+                        MSG_KEY, astModifier.getText());
+            }
+
+            astModifier = astModifier.getNextSibling();
+        }
+    }
+
+    /**
+     * Checks if given class ast has protected modifier
+     * @param classDef class ast
+     * @return true if class is protected, false otherwise
+     */
+    private static boolean isClassProtected(DetailAST classDef) {
+        final DetailAST classModifiers =
+                classDef.findFirstToken(TokenTypes.MODIFIERS);
+        return classModifiers.branchContains(TokenTypes.LITERAL_PROTECTED);
+    }
+
+    /**
+     * Checks if given class ast has public modifier
+     * @param classDef class ast
+     * @return true if class is public, false otherwise
+     */
+    private static boolean isClassPublic(DetailAST classDef) {
+        final DetailAST classModifiers =
+                classDef.findFirstToken(TokenTypes.MODIFIERS);
+        return classModifiers.branchContains(TokenTypes.LITERAL_PUBLIC);
     }
 
     /**
