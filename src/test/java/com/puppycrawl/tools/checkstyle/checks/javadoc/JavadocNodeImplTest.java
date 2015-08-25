@@ -38,4 +38,14 @@ public class JavadocNodeImplTest {
 
         assertEquals("CODE_LITERAL[1x2]", result);
     }
+
+    @Test
+    public void testGetColumnNumber() {
+        JavadocNodeImpl javadocNode = new JavadocNodeImpl();
+        javadocNode.setColumnNumber(1);
+
+        int result = javadocNode.getColumnNumber();
+
+        assertEquals(1, result);
+    }
 }

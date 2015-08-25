@@ -139,7 +139,7 @@ public final class FullIdent {
 
     @Override
     public String toString() {
-        return getText() + "[" + getLineNo() + "x" + getColumnNo() + "]";
+        return getText() + "[" + lineNo + "x" + columnNo + "]";
     }
 
 }

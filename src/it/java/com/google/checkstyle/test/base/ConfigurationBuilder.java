@@ -56,7 +56,7 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 	}
 
 	public Configuration getCheckConfig(String aCheckName) {
-		for (Configuration currentConfig : getConfiguration().getChildren()) {
+		for (Configuration currentConfig : configuration.getChildren()) {
 			if ("TreeWalker".equals(currentConfig.getName())) {
 				for (Configuration checkConfig : currentConfig.getChildren()) {
 					if (aCheckName.equals(checkConfig.getName())) {
