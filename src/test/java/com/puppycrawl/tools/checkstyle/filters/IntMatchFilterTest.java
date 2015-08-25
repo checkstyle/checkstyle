@@ -25,6 +25,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+
 /** Tests IntMatchFilter */
 public class IntMatchFilterTest {
     @Test
@@ -44,6 +46,11 @@ public class IntMatchFilterTest {
         assertFalse("0 != 1", filter.equals(filter3));
         assertFalse("0 != this", filter.equals(this));
         assertFalse("0 != null", filter.equals(null));
+    }
+
+    @Test
+    public void testEqualsAndHashCode() {
+        EqualsVerifier.forClass(IntMatchFilter.class).verify();
     }
 
     @Test
