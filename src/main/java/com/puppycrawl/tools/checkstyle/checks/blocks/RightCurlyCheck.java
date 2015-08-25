@@ -341,7 +341,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
                 lcurly = ast.findFirstToken(TokenTypes.SLIST);
                 if (lcurly != null) {
                     // SLIST could be absent if method is abstract,
-                    // and code like "while(true);"
+                    // or in cases of loops without body for example
                     rcurly = lcurly.getLastChild();
                 }
                 nextToken = getNextToken(ast);
