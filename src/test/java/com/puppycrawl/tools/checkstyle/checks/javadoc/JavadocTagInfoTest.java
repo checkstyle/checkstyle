@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.api;
+package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -25,7 +25,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.lang.reflect.Method;
+
 import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class JavadocTagInfoTest {
 
@@ -84,7 +89,7 @@ public class JavadocTagInfoTest {
     }
 
     @Test
-    public void testOthers() {
+    public void testOthers() throws ReflectiveOperationException {
         JavadocTagInfo[] tags = {
             JavadocTagInfo.CODE,
             JavadocTagInfo.DOC_ROOT,
@@ -100,7 +105,9 @@ public class JavadocTagInfoTest {
             astParent.setType(TokenTypes.LITERAL_CATCH);
 
             final DetailAST ast = new DetailAST();
-            ast.setParent(astParent);
+            Method setParent = ast.getClass().getDeclaredMethod("setParent", DetailAST.class);
+            setParent.setAccessible(true);
+            setParent.invoke(ast, astParent);
 
             int[] validTypes = {
                 TokenTypes.PACKAGE_DEF,
@@ -127,11 +134,13 @@ public class JavadocTagInfoTest {
     }
 
     @Test
-    public void testDeprecated() {
+    public void testDeprecated() throws ReflectiveOperationException {
         final DetailAST ast = new DetailAST();
         DetailAST astParent = new DetailAST();
         astParent.setType(TokenTypes.LITERAL_CATCH);
-        ast.setParent(astParent);
+        Method setParent = ast.getClass().getDeclaredMethod("setParent", DetailAST.class);
+        setParent.setAccessible(true);
+        setParent.invoke(ast, astParent);
 
         int[] validTypes = {
             TokenTypes.CLASS_DEF,
@@ -158,11 +167,13 @@ public class JavadocTagInfoTest {
     }
 
     @Test
-    public void testSerial() {
+    public void testSerial() throws ReflectiveOperationException {
         final DetailAST ast = new DetailAST();
         DetailAST astParent = new DetailAST();
         astParent.setType(TokenTypes.LITERAL_CATCH);
-        ast.setParent(astParent);
+        Method setParent = ast.getClass().getDeclaredMethod("setParent", DetailAST.class);
+        setParent.setAccessible(true);
+        setParent.invoke(ast, astParent);
 
         int[] validTypes = {
             TokenTypes.VARIABLE_DEF,
