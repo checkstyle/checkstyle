@@ -44,7 +44,7 @@ class HtmlTag {
     private final boolean closedTag;
 
     /** If the tag is incomplete. */
-    private final boolean incomplete;
+    private final boolean incompleteTag;
 
     /**
      * Construct the HtmlTag.
@@ -62,7 +62,7 @@ class HtmlTag {
         this.position = position;
         this.text = text;
         this.closedTag = closedTag;
-        this.incomplete = incomplete;
+        this.incompleteTag = incomplete;
     }
 
     /**
@@ -94,7 +94,7 @@ class HtmlTag {
      * @return {@code true} if the tag is incomplete.
      */
     public boolean isIncompleteTag() {
-        return incomplete;
+        return incompleteTag;
     }
 
     /**

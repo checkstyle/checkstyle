@@ -72,7 +72,7 @@ public class UnusedImportsCheck extends Check {
     /** Flag to indicate when time to start collecting references. */
     private boolean collect;
     /** Flag whether to process Javdoc comments. */
-    private boolean processingJavadoc;
+    private boolean processJavadoc;
 
     /** Set of the imports. */
     private final Set<FullIdent> imports = Sets.newHashSet();
@@ -86,7 +86,7 @@ public class UnusedImportsCheck extends Check {
      * @param value Flag for processing JavaDoc.
      */
     public void setProcessJavadoc(boolean value) {
-        processingJavadoc = value;
+        processJavadoc = value;
     }
 
     @Override
@@ -168,8 +168,8 @@ public class UnusedImportsCheck extends Check {
         }
         else {
             collect = true;
-            if (processingJavadoc) {
-                processJavadoc(ast);
+            if (processJavadoc) {
+                collectReferecesFromJavadoc(ast);
             }
         }
     }
@@ -217,12 +217,12 @@ public class UnusedImportsCheck extends Check {
      * Collects references made in Javadoc comments.
      * @param ast node to inspect for Javadoc
      */
-    private void processJavadoc(DetailAST ast) {
+    private void collectReferecesFromJavadoc(DetailAST ast) {
         final FileContents contents = getFileContents();
         final int lineNo = ast.getLineNo();
         final TextBlock cmt = contents.getJavadocBefore(lineNo);
         if (cmt != null) {
-            referenced.addAll(processJavadoc(cmt));
+            referenced.addAll(collectReferecesFromJavadoc(cmt));
         }
     }
 
@@ -232,7 +232,7 @@ public class UnusedImportsCheck extends Check {
      * @param cmt The javadoc block to parse
      * @return a set of classes referenced in the javadoc block
      */
-    private static Set<String> processJavadoc(TextBlock cmt) {
+    private static Set<String> collectReferecesFromJavadoc(TextBlock cmt) {
         final Set<String> references = new HashSet<>();
         // process all the @link type tags
         // INLINEs inside BLOCKs get hidden when using ALL

@@ -268,9 +268,9 @@ class TagParser {
      */
     private static final class Point {
         /** Line number. */
-        private final int line;
+        private final int lineNo;
         /** Column number.*/
-        private final int column;
+        private final int columnNo;
 
         /**
          * Creates new {@code Point} instance.
@@ -278,8 +278,8 @@ class TagParser {
          * @param columnNo column number
          */
         Point(int lineNo, int columnNo) {
-            line = lineNo;
-            column = columnNo;
+            this.lineNo = lineNo;
+            this.columnNo = columnNo;
         }
 
         /**
@@ -287,7 +287,7 @@ class TagParser {
          * @return line number of the position.
          */
         public int getLineNo() {
-            return line;
+            return lineNo;
         }
 
         /**
@@ -295,7 +295,7 @@ class TagParser {
          * @return column number of the position.
          */
         public int getColumnNo() {
-            return column;
+            return columnNo;
         }
     }
 }

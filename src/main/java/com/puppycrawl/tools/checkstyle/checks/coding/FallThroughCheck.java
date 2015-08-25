@@ -82,7 +82,7 @@ public class FallThroughCheck extends Check {
     public static final String MSG_FALL_THROUGH_LAST = "fall.through.last";
 
     /** Do we need to check last case group. */
-    private boolean checkLastGroup;
+    private boolean checkLastCaseGroup;
 
     /** Relief pattern to allow fall throught to the next case branch. */
     private String reliefPattern = "fallthru|falls? ?through";
@@ -120,7 +120,7 @@ public class FallThroughCheck extends Check {
      * @param value new value of the property.
      */
     public void setCheckLastCaseGroup(boolean value) {
-        checkLastGroup = value;
+        checkLastCaseGroup = value;
     }
 
     @Override
@@ -133,7 +133,7 @@ public class FallThroughCheck extends Check {
     public void visitToken(DetailAST ast) {
         final DetailAST nextGroup = ast.getNextSibling();
         final boolean isLastGroup = nextGroup.getType() != TokenTypes.CASE_GROUP;
-        if (isLastGroup && !checkLastGroup) {
+        if (isLastGroup && !checkLastCaseGroup) {
             // we do not need to check last group
             return;
         }
