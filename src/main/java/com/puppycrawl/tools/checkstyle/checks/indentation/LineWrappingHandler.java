@@ -38,6 +38,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class LineWrappingHandler {
 
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    private static final String MSG_INDENTATION_ERROR = "indentation.error";
+
+    /**
      * The current instance of {@code IndentationCheck} class using this
      * handler. This field used to get access to private fields of
      * IndentationCheck instance.
@@ -259,14 +265,14 @@ public class LineWrappingHandler {
         if (forceStrictCondition) {
             if (currentNode.getColumnNo() != currentIndent) {
                 indentCheck.indentationLog(currentNode.getLineNo(),
-                        "indentation.error", currentNode.getText(),
+                        MSG_INDENTATION_ERROR, currentNode.getText(),
                         currentNode.getColumnNo(), currentIndent);
             }
         }
         else {
             if (currentNode.getColumnNo() < currentIndent) {
                 indentCheck.indentationLog(currentNode.getLineNo(),
-                        "indentation.error", currentNode.getText(),
+                        MSG_INDENTATION_ERROR, currentNode.getText(),
                         currentNode.getColumnNo(), currentIndent);
             }
         }

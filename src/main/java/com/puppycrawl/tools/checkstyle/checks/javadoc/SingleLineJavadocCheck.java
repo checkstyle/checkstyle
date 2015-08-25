@@ -117,7 +117,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
     public void visitJavadocToken(DetailNode ast) {
         if (isSingleLineJavadoc(getBlockCommentAst())
                 && (hasJavadocTags(ast) || !ignoreInlineTags && hasJavadocInlineTags(ast))) {
-            log(ast.getLineNumber(), "singleline.javadoc");
+            log(ast.getLineNumber(), MSG_KEY);
         }
     }
 
