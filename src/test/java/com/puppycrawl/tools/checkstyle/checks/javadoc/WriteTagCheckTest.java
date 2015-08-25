@@ -29,6 +29,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 
@@ -204,7 +205,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
         final ByteArrayInputStream bais =
             new ByteArrayInputStream(baos.toByteArray());
         final LineNumberReader lnr =
-            new LineNumberReader(new InputStreamReader(bais));
+            new LineNumberReader(new InputStreamReader(bais, StandardCharsets.UTF_8));
 
         for (int i = 0; i < expected.length; i++) {
             final String expectedResult = messageFileName + ":" + expected[i];
