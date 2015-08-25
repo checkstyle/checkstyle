@@ -93,6 +93,12 @@ public class GenericWhitespaceCheck extends Check {
      */
     public static final String WS_ILLEGAL_FOLLOW = "ws.illegalFollow";
 
+    /** Open angle bracket literal. */
+    private static final String OPEN_ANGLE_BRACKET = "<";
+
+    /** Close angle bracket literal. */
+    private static final String CLOSE_ANGLE_BRACKET = ">";
+
     /** Used to count the depth of a Generic expression. */
     private int depth;
 
@@ -145,7 +151,7 @@ public class GenericWhitespaceCheck extends Check {
 
         if (before >= 0 && Character.isWhitespace(line.charAt(before))
                 && !Utils.whitespaceBefore(before, line)) {
-            log(ast.getLineNo(), before, WS_PRECEDED, ">");
+            log(ast.getLineNo(), before, WS_PRECEDED, CLOSE_ANGLE_BRACKET);
         }
 
         if (after < line.length()) {
@@ -183,11 +189,11 @@ public class GenericWhitespaceCheck extends Check {
                 log(ast.getLineNo(), after, WS_NOT_PRECEDED, "&");
             }
             else if (indexOfAmp - after != 1) {
-                log(ast.getLineNo(), after, WS_FOLLOWED, ">");
+                log(ast.getLineNo(), after, WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
         }
         else if (line.charAt(after) == ' ') {
-            log(ast.getLineNo(), after, WS_FOLLOWED, ">");
+            log(ast.getLineNo(), after, WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
         }
     }
 
@@ -206,14 +212,14 @@ public class GenericWhitespaceCheck extends Check {
         //                        +--- whitespace not allowed
         if (isGenericBeforeMethod(ast)) {
             if (Character.isWhitespace(charAfter)) {
-                log(ast.getLineNo(), after, WS_FOLLOWED, ">");
+                log(ast.getLineNo(), after, WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
         }
         else if (!Character.isWhitespace(charAfter)
             && charAfter != '(' && charAfter != ')'
             && charAfter != ',' && charAfter != '['
             && charAfter != '.' && charAfter != ':') {
-            log(ast.getLineNo(), after, WS_ILLEGAL_FOLLOW, ">");
+            log(ast.getLineNo(), after, WS_ILLEGAL_FOLLOW, CLOSE_ANGLE_BRACKET);
         }
     }
 
@@ -263,19 +269,19 @@ public class GenericWhitespaceCheck extends Check {
                     || grandparent.getType() == TokenTypes.METHOD_DEF)) {
                 // Require whitespace
                 if (!Character.isWhitespace(line.charAt(before))) {
-                    log(ast.getLineNo(), before, WS_NOT_PRECEDED, "<");
+                    log(ast.getLineNo(), before, WS_NOT_PRECEDED, OPEN_ANGLE_BRACKET);
                 }
             }
             // Whitespace not required
             else if (Character.isWhitespace(line.charAt(before))
                 && !Utils.whitespaceBefore(before, line)) {
-                log(ast.getLineNo(), before, WS_PRECEDED, "<");
+                log(ast.getLineNo(), before, WS_PRECEDED, OPEN_ANGLE_BRACKET);
             }
         }
 
         if (after < line.length()
                 && Character.isWhitespace(line.charAt(after))) {
-            log(ast.getLineNo(), after, WS_FOLLOWED, "<");
+            log(ast.getLineNo(), after, WS_FOLLOWED, OPEN_ANGLE_BRACKET);
         }
     }
 

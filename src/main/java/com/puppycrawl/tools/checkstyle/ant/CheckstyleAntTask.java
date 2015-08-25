@@ -65,6 +65,9 @@ public class CheckstyleAntTask extends Task {
     /** Poor man's enum for an plain formatter */
     private static final String E_PLAIN = "plain";
 
+    /** Suffix for time string. */
+    private static final String TIME_SUFFIX = " ms.";
+
     /** Class path to locate class files */
     private Path classpath;
 
@@ -252,7 +255,7 @@ public class CheckstyleAntTask extends Task {
         }
         finally {
             final long endTime = System.currentTimeMillis();
-            log("Total execution took " + (endTime - startTime) + " ms.",
+            log("Total execution took " + (endTime - startTime) + TIME_SUFFIX,
                 Project.MSG_VERBOSE);
         }
     }
@@ -295,7 +298,7 @@ public class CheckstyleAntTask extends Task {
             long startTime = System.currentTimeMillis();
             final List<File> files = scanFileSets();
             long endTime = System.currentTimeMillis();
-            log("To locate the files took " + (endTime - startTime) + " ms.",
+            log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
                 Project.MSG_VERBOSE);
 
             log("Running Checkstyle " + version + " on " + files.size()
@@ -305,7 +308,7 @@ public class CheckstyleAntTask extends Task {
             startTime = System.currentTimeMillis();
             final int numErrs = checker.process(files);
             endTime = System.currentTimeMillis();
-            log("To process the files took " + (endTime - startTime) + " ms.",
+            log("To process the files took " + (endTime - startTime) + TIME_SUFFIX,
                 Project.MSG_VERBOSE);
             final int numWarnings = warningCounter.getCount();
             final boolean ok = numErrs <= maxErrors

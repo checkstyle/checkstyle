@@ -82,6 +82,12 @@ public class JavadocTypeCheck
      */
     public static final String UNUSED_TAG_GENERAL = "javadoc.unusedTagGeneral";
 
+    /** Open angle bracket literal. */
+    private static final String OPEN_ANGLE_BRACKET = "<";
+
+    /** Close angle bracket literal. */
+    private static final String CLOSE_ANGLE_BRACKET = ">";
+
     /** The scope to check for */
     private Scope scope = Scope.PRIVATE;
     /** The visibility scope where Javadoc comments shouldn't be checked **/
@@ -267,17 +273,18 @@ public class JavadocTypeCheck
         }
 
         int tagCount = 0;
+        final String tagPrefix = "@";
         for (int i = tags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = tags.get(i);
             if (tag.getTagName().equals(tagName)) {
                 tagCount++;
                 if (!formatPattern.matcher(tag.getFirstArg()).find()) {
-                    log(lineNo, TAG_FORMAT, "@" + tagName, format);
+                    log(lineNo, TAG_FORMAT, tagPrefix + tagName, format);
                 }
             }
         }
         if (tagCount == 0) {
-            log(lineNo, MISSING_TAG, "@" + tagName);
+            log(lineNo, MISSING_TAG, tagPrefix + tagName);
         }
     }
 
@@ -294,13 +301,14 @@ public class JavadocTypeCheck
         for (int i = tags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = tags.get(i);
             if (tag.isParamTag()
-                && tag.getFirstArg().indexOf("<" + typeParamName + ">") == 0) {
+                && tag.getFirstArg().indexOf(OPEN_ANGLE_BRACKET
+                        + typeParamName + CLOSE_ANGLE_BRACKET) == 0) {
                 found = true;
             }
         }
         if (!found) {
-            log(lineNo, MISSING_TAG,
-                JavadocTagInfo.PARAM.getText() + " <" + typeParamName + ">");
+            log(lineNo, MISSING_TAG, JavadocTagInfo.PARAM.getText()
+                + " " + OPEN_ANGLE_BRACKET + typeParamName + CLOSE_ANGLE_BRACKET);
         }
     }
 
@@ -324,7 +332,7 @@ public class JavadocTypeCheck
                     log(tag.getLineNo(), tag.getColumnNo(),
                         UNUSED_TAG,
                         JavadocTagInfo.PARAM.getText(),
-                        "<" + typeParamName + ">");
+                        OPEN_ANGLE_BRACKET + typeParamName + CLOSE_ANGLE_BRACKET);
                 }
             }
         }

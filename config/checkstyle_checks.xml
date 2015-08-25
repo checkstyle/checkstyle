@@ -319,6 +319,7 @@
     <module name="AvoidInlineConditionals"/>
     <module name="IllegalType"/>
     <module name="TrailingComment"/>
+    <module name="MultipleStringLiterals"/>
 
 <!--
     <module name="ClassDataAbstractionCoupling"/>
@@ -330,7 +331,6 @@
     <module name="JavadocTagContinuationIndentation"/>
     <module name="JavaNCSS"/>
     <module name="MissingCtor"/>
-    <module name="MultipleStringLiterals"/>
     <module name="NPathComplexity"/>
     <module name="OneTopLevelClass"/>
     <module name="OverloadMethodsDeclarationOrder"/>

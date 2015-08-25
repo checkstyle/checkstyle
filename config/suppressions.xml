@@ -67,4 +67,7 @@
     <!-- Till https://github.com/checkstyle/checkstyle/issues/1854 -->
     <suppress checks="TrailingComment" files="(InnerAssignmentCheck\.java|OperatorWrapCheck\.java|XMLLoggerTest\.java|AbbreviationAsWordInNameCheckTest\.java)"/>
 
+    <!-- Fixing these cases will decrease code readability -->
+    <suppress checks="MultipleStringLiterals" files="JavadocStyleCheck\.java|AbstractTypeAwareCheck\.java|XMLLogger\.java"/>
+    <suppress checks="MultipleStringLiterals" files=".*[\\/]src[\\/]test[\\/]"/>
 </suppressions>

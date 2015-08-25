@@ -37,6 +37,10 @@ import com.puppycrawl.tools.checkstyle.api.Check;
  */
 public abstract class AbstractOptionCheck<T extends Enum<T>>
     extends Check {
+
+    /** Semicolon literal. */
+    protected static final String SEMICOLON = ";";
+
     /** Since I cannot get this by going <tt>T.class</tt>. */
     private final Class<T> optionClass;
     /** The policy to enforce */

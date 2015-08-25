@@ -73,6 +73,9 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     public static final String SUMMARY_JAVADOC = "summary.javaDoc";
 
+    /** Period literal. */
+    private static final String PERIOD = ".";
+
     /**
      * Regular expression for forbidden summary fragments.
      */
@@ -81,7 +84,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /**
      * Period symbol at the end of first javadoc sentence.
      */
-    private String period = ".";
+    private String period = PERIOD;
 
     /**
      * Sets custom value of regular expression for forbidden summary fragments.
@@ -138,9 +141,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private static String getFirstSentence(DetailNode ast) {
         final StringBuilder result = new StringBuilder();
+        final String periodSuffix = PERIOD + ' ';
         for (DetailNode child : ast.getChildren()) {
             if (child.getType() != JavadocTokenTypes.JAVADOC_INLINE_TAG
-                && child.getText().contains(". ")) {
+                && child.getText().contains(periodSuffix)) {
                 result.append(getCharsTillDot(child));
                 break;
             }
@@ -160,7 +164,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         final StringBuilder result = new StringBuilder();
         for (DetailNode child : textNode.getChildren()) {
             result.append(child.getText());
-            if (".".equals(child.getText())
+            if (PERIOD.equals(child.getText())
                 && JavadocUtils.getNextSibling(child).getType() == JavadocTokenTypes.WS) {
                 break;
             }

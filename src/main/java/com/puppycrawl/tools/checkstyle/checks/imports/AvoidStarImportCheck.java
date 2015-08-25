@@ -72,6 +72,9 @@ public class AvoidStarImportCheck
      */
     public static final String MSG_KEY = "import.avoidStar";
 
+    /** Suffix for the star import. */
+    private static final String STAR_IMPORT_SUFFIX = ".*";
+
     /** The packages/classes to exempt from this check. */
     private final List<String> excludes = Lists.newArrayList();
 
@@ -113,14 +116,13 @@ public class AvoidStarImportCheck
      */
     public void setExcludes(String... excludesParam) {
         excludes.clear();
-        final String suffix = ".*";
 
         for (final String exclude : excludesParam) {
-            if (exclude.endsWith(suffix)) {
+            if (exclude.endsWith(STAR_IMPORT_SUFFIX)) {
                 excludes.add(exclude);
             }
             else {
-                excludes.add(exclude + suffix);
+                excludes.add(exclude + STAR_IMPORT_SUFFIX);
             }
         }
     }
@@ -163,7 +165,7 @@ public class AvoidStarImportCheck
     private void logsStarredImportViolation(DetailAST startingDot) {
         final FullIdent name = FullIdent.createFullIdent(startingDot);
         final String importText = name.getText();
-        if (importText.endsWith(".*") && !excludes.contains(importText)) {
+        if (importText.endsWith(STAR_IMPORT_SUFFIX) && !excludes.contains(importText)) {
             log(startingDot.getLineNo(), MSG_KEY, importText);
         }
     }

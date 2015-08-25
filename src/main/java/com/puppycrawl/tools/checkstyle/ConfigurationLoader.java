@@ -96,6 +96,9 @@ public final class ConfigurationLoader {
     private static final String UNABLE_TO_PARSE_EXCEPTION_PREFIX = "unable to parse"
             + " configuration stream";
 
+    /** Dollar sign literal. */
+    private static final char DOLLAR_SIGN = '$';
+
     /** The SAX document handler */
     private final InternalLoader saxHandler;
 
@@ -261,9 +264,9 @@ public final class ConfigurationLoader {
             return loader.configuration;
         }
         catch (final SAXParseException e) {
-            throw new CheckstyleException(UNABLE_TO_PARSE_EXCEPTION_PREFIX
-                    + " - " + e.getMessage() + ":" + e.getLineNumber()
-                    + ":" + e.getColumnNumber(), e);
+            final String message = String.format("%s - %s:%s:%s", UNABLE_TO_PARSE_EXCEPTION_PREFIX,
+                    e.getMessage(), e.getLineNumber(), e.getColumnNumber());
+            throw new CheckstyleException(message, e);
         }
         catch (final ParserConfigurationException | IOException | SAXException e) {
             throw new CheckstyleException(UNABLE_TO_PARSE_EXCEPTION_PREFIX, e);
@@ -352,7 +355,7 @@ public final class ConfigurationLoader {
         throws CheckstyleException {
         int prev = 0;
         //search for the next instance of $ from the 'prev' position
-        int pos = value.indexOf('$', prev);
+        int pos = value.indexOf(DOLLAR_SIGN, prev);
         while (pos >= 0) {
 
             //if there was any text before this, add it as a fragment
@@ -362,13 +365,13 @@ public final class ConfigurationLoader {
             //if we are at the end of the string, we tack on a $
             //then move past it
             if (pos == value.length() - 1) {
-                fragments.add("$");
+                fragments.add(String.valueOf(DOLLAR_SIGN));
                 prev = pos + 1;
             }
             else if (value.charAt(pos + 1) != '{') {
-                if (value.charAt(pos + 1) == '$') {
+                if (value.charAt(pos + 1) == DOLLAR_SIGN) {
                     //backwards compatibility two $ map to one mode
-                    fragments.add("$");
+                    fragments.add(String.valueOf(DOLLAR_SIGN));
                     prev = pos + 2;
                 }
                 else {
@@ -392,7 +395,7 @@ public final class ConfigurationLoader {
             }
 
             //search for the next instance of $ from the 'prev' position
-            pos = value.indexOf('$', prev);
+            pos = value.indexOf(DOLLAR_SIGN, prev);
         }
         //no more $ signs found
         //if there is any tail to the file, append it

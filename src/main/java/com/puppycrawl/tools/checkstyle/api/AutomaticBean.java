@@ -159,10 +159,9 @@ public class AutomaticBean
                 final PropertyDescriptor pd =
                         PropertyUtils.getPropertyDescriptor(this, key);
                 if (pd == null) {
-                    throw new CheckstyleException(
-                            "Property '" + key + "' in module "
-                             + moduleName
-                             + " does not exist, please check the documentation");
+                    final String message = String.format("Property '%s' in module %s does not "
+                            + "exist, please check the documentation", key, moduleName);
+                    throw new CheckstyleException(message);
                 }
             }
             // finally we can set the bean property
@@ -174,14 +173,14 @@ public class AutomaticBean
             // as we do PropertyUtils.getPropertyDescriptor before beanUtils.copyProperty
             // so we have to join these exceptions with InvocationTargetException
             // to satisfy UTs coverage
-            throw new CheckstyleException(
-                "Cannot set property '" + key + "' to '" + value
-                + "' in module "  + moduleName, e);
+            final String message = String.format("Cannot set property '%s' to '%s' in module %s",
+                    key, value, moduleName);
+            throw new CheckstyleException(message, e);
         }
         catch (final IllegalArgumentException | ConversionException e) {
-            throw new CheckstyleException(
-                "illegal value '" + value + "' for property '" + key
-                + "' of module " + moduleName, e);
+            final String message = String.format("illegal value '%s' for property '%s' of "
+                    + "module %s", value, key, moduleName);
+            throw new CheckstyleException(message, e);
         }
     }
 

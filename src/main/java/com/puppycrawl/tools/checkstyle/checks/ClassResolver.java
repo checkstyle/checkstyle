@@ -30,6 +30,12 @@ import java.util.Set;
  * @author Oliver Burn
  */
 public class ClassResolver {
+
+    /** Period literal. */
+    private static final String PERIOD = ".";
+    /** Dollar sign literal. */
+    private static final String DOLLAR_SIGN = "$";
+
     /** Name of the package to check if the class belongs to **/
     private final String pkg;
     /** Set of imports to check against **/
@@ -77,7 +83,7 @@ public class ClassResolver {
             // when checking for "DataException", it will match on
             // "SecurityDataException". This has been the cause of a very
             // difficult bug to resolve!
-            if (imp.endsWith("." + name)) {
+            if (imp.endsWith(PERIOD + name)) {
                 clazz = resolveQualifiedName(imp);
                 if (clazz != null) {
                     return clazz;
@@ -88,7 +94,7 @@ public class ClassResolver {
 
         // See if in the package
         if (pkg != null && !pkg.isEmpty()) {
-            clazz = resolveQualifiedName(pkg + "." + name);
+            clazz = resolveQualifiedName(pkg + PERIOD + name);
             if (clazz != null) {
                 return clazz;
             }
@@ -121,10 +127,10 @@ public class ClassResolver {
             throws ClassNotFoundException {
         Class<?> clazz = null;
         if (!currentClass.isEmpty()) {
-            String innerClass = currentClass + "$" + name;
+            String innerClass = currentClass + DOLLAR_SIGN + name;
 
             if (!pkg.isEmpty()) {
-                innerClass = pkg + "." + innerClass;
+                innerClass = pkg + PERIOD + innerClass;
             }
 
             if (isLoadable(innerClass)) {
@@ -198,7 +204,7 @@ public class ClassResolver {
                 final int dot = name.lastIndexOf('.');
                 if (dot != -1) {
                     final String innerName =
-                        name.substring(0, dot) + "$" + name.substring(dot + 1);
+                        name.substring(0, dot) + DOLLAR_SIGN + name.substring(dot + 1);
                     if (isLoadable(innerName)) {
                         classObj = safeLoad(innerName);
                     }

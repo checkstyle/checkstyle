@@ -265,9 +265,10 @@ public final class TreeWalker
                     registerCheck(token, check);
                 }
                 else {
-                    throw new CheckstyleException("Token \""
-                        + token + "\" was not found in Acceptable tokens list"
-                                + " in check " + check.getClass().getName());
+                    final String message = String.format("Token \"%s\" was not found in "
+                            + "Acceptable tokens list in check %s",
+                            token, check.getClass().getName());
+                    throw new CheckstyleException(message);
                 }
             }
         }
@@ -293,8 +294,9 @@ public final class TreeWalker
             Arrays.sort(defaultTokens);
             for (final int token : check.getRequiredTokens()) {
                 if (Arrays.binarySearch(defaultTokens, token) < 0) {
-                    throw new CheckstyleException("Token \"" + token + "\" from required tokens was"
-                        + " not found in default tokens list in check " + check);
+                    final String message = String.format("Token \"%s\" from required tokens was"
+                            + " not found in default tokens list in check %s", token, check);
+                    throw new CheckstyleException(message);
                 }
             }
         }

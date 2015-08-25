@@ -69,6 +69,9 @@ public class UnusedImportsCheck extends Check {
     private static final Pattern ARGUMENT_NAME = Pattern.compile(
            "[(,]\\s*" + CLASS_NAME.pattern());
 
+    /** Suffix for the star import. */
+    private static final String STAR_IMPORT_SUFFIX = ".*";
+
     /** Flag to indicate when time to start collecting references. */
     private boolean collect;
     /** Flag whether to process Javdoc comments. */
@@ -195,7 +198,7 @@ public class UnusedImportsCheck extends Check {
      */
     private void processImport(DetailAST ast) {
         final FullIdent name = FullIdent.createFullIdentBelow(ast);
-        if (!name.getText().endsWith(".*")) {
+        if (!name.getText().endsWith(STAR_IMPORT_SUFFIX)) {
             imports.add(name);
         }
     }
@@ -208,7 +211,7 @@ public class UnusedImportsCheck extends Check {
         final FullIdent name =
             FullIdent.createFullIdent(
                 ast.getFirstChild().getNextSibling());
-        if (!name.getText().endsWith(".*")) {
+        if (!name.getText().endsWith(STAR_IMPORT_SUFFIX)) {
             imports.add(name);
         }
     }

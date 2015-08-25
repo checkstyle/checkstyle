@@ -94,11 +94,11 @@ public class EmptyForIteratorPadCheck
             if (after < line.length()) {
                 if (getAbstractOption() == PadOption.NOSPACE
                     && Character.isWhitespace(line.charAt(after))) {
-                    log(semi.getLineNo(), after, WS_FOLLOWED, ";");
+                    log(semi.getLineNo(), after, WS_FOLLOWED, SEMICOLON);
                 }
                 else if (getAbstractOption() == PadOption.SPACE
                          && !Character.isWhitespace(line.charAt(after))) {
-                    log(semi.getLineNo(), after, WS_NOT_FOLLOWED, ";");
+                    log(semi.getLineNo(), after, WS_NOT_FOLLOWED, SEMICOLON);
                 }
             }
         }

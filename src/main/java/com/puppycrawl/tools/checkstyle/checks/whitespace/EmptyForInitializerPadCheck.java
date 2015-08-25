@@ -96,11 +96,11 @@ public class EmptyForInitializerPadCheck
                 final PadOption option = getAbstractOption();
                 if (option == PadOption.NOSPACE
                     && Character.isWhitespace(line.charAt(before))) {
-                    log(semi.getLineNo(), before, MSG_PRECEDED, ";");
+                    log(semi.getLineNo(), before, MSG_PRECEDED, SEMICOLON);
                 }
                 else if (option == PadOption.SPACE
                          && !Character.isWhitespace(line.charAt(before))) {
-                    log(semi.getLineNo(), before, MSG_NOT_PRECEDED, ";");
+                    log(semi.getLineNo(), before, MSG_NOT_PRECEDED, SEMICOLON);
                 }
             }
         }

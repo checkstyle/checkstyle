@@ -98,7 +98,8 @@ public class Comment implements TextBlock {
 
     @Override
     public String toString() {
-        return "Comment[" + startLineNo + ":" + startColNo + "-"
-            + endLineNo + ":" + endColNo + "]";
+        final String separator = ":";
+        return "Comment[" + startLineNo + separator + startColNo + "-"
+            + endLineNo + separator + endColNo + "]";
     }
 }

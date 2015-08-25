@@ -178,15 +178,17 @@ public final class SuppressionsLoader
             throw new CheckstyleException(UNABLE_TO_FIND_ERROR_MESSAGE + sourceName, e);
         }
         catch (final ParserConfigurationException | SAXException e) {
-            throw new CheckstyleException("Unable to parse "
-                    + sourceName + " - " + e.getMessage(), e);
+            final String message = String.format("Unable to parse %s - %s",
+                    sourceName, e.getMessage());
+            throw new CheckstyleException(message, e);
         }
         catch (final IOException e) {
             throw new CheckstyleException("Unable to read " + sourceName, e);
         }
         catch (final NumberFormatException e) {
-            throw new CheckstyleException("Number format exception "
-                + sourceName + " - " + e.getMessage(), e);
+            final String message = String.format("Number format exception %s - %s",
+                    sourceName, e.getMessage());
+            throw new CheckstyleException(message, e);
         }
     }
 
