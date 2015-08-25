@@ -257,7 +257,7 @@ public final class FileContents implements CommentListener {
      */
     @Deprecated
     public String getFilename() {
-        return getFileName();
+        return fileName;
     }
 
     /**
@@ -319,6 +319,6 @@ public final class FileContents implements CommentListener {
      * @return true if the package file.
      */
     public boolean inPackageInfo() {
-        return getFileName().endsWith("package-info.java");
+        return fileName.endsWith("package-info.java");
     }
 }

@@ -56,11 +56,11 @@ public class LineColumn implements Comparable<LineColumn> {
 
     @Override
     public int compareTo(LineColumn lineColumn) {
-        if (getLine() == lineColumn.getLine()) {
-            return Integer.compare(getColumn(), lineColumn.getColumn());
+        if (line == lineColumn.line) {
+            return Integer.compare(column, lineColumn.column);
         }
         else {
-            return Integer.compare(getLine(), lineColumn.getLine());
+            return Integer.compare(line, lineColumn.line);
         }
     }
 
