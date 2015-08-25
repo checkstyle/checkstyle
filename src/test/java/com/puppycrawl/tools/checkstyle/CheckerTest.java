@@ -47,7 +47,8 @@ public class CheckerTest {
         final DebugFilter filter = new DebugFilter();
         checker.addFilter(filter);
 
-        checker.destroy(); // should remove al listeners and filters
+        // should remove al listeners and filters
+        checker.destroy();
 
         // Let's try fire some events
         checker.fireAuditStarted();
@@ -178,7 +179,9 @@ public class CheckerTest {
         final String[] fileExtensions = {"java", "xml", "properties"};
         checker.setFileExtensions(fileExtensions);
         final int counter = checker.process(files);
-        assertEquals(1, counter); // comparing to 1 as there is only one legal file in input
+
+        // comparing to 1 as there is only one legal file in input
+        assertEquals(1, counter);
     }
 
     @SuppressWarnings("deprecation")

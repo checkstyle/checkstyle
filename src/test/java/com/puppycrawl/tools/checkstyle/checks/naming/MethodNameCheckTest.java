@@ -83,7 +83,9 @@ public class MethodNameCheckTest
     public void testMethodEqClassAllow() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodNameCheck.class);
-        checkConfig.addAttribute("allowClassName", "true"); //allow method names and class names to equal
+
+        // allow method names and class names to equal
+        checkConfig.addAttribute("allowClassName", "true");
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -104,8 +106,12 @@ public class MethodNameCheckTest
     public void testAccessTuning() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodNameCheck.class);
-        checkConfig.addAttribute("allowClassName", "true"); //allow method names and class names to equal
-        checkConfig.addAttribute("applyToPrivate", "false"); //allow method names and class names to equal
+
+        // allow method names and class names to equal
+        checkConfig.addAttribute("allowClassName", "true");
+
+        // allow method names and class names to equal
+        checkConfig.addAttribute("applyToPrivate", "false");
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 

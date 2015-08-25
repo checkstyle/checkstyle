@@ -97,8 +97,10 @@ public class AvoidStaticImportTest
         throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStaticImportCheck.class);
+
+        // should NOT mask anything
         checkConfig.addAttribute(
-            "excludes", //should NOT mask anything
+            "excludes",
             "java.io.File.listRoots.listRoots, javax.swing.WindowConstants, javax.swing.*,"
             + "sun.net.ftpclient.FtpClient.*FtpClient, sun.net.ftpclient.FtpClientjunk, java.io.File.listRootsmorejunk");
         final String[] expected = {
@@ -118,8 +120,10 @@ public class AvoidStaticImportTest
         throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStaticImportCheck.class);
+
+        // should mask com.puppycrawl.tools.checkstyle.imports.InputAvoidStaticImportNestedClass.InnerClass.one
         checkConfig.addAttribute(
-            "excludes", //should mask com.puppycrawl.tools.checkstyle.imports.InputAvoidStaticImportNestedClass.InnerClass.one
+            "excludes",
             "com.puppycrawl.tools.checkstyle.imports.InputAvoidStaticImportNestedClass.InnerClass.*");
         final String[] expected = {
             "23: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),

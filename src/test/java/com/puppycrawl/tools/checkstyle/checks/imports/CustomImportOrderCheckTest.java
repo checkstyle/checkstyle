@@ -458,7 +458,9 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
     public void testUnsupportedRule() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(CustomImportOrderCheck.class);
-        checkConfig.addAttribute("customImportOrderRules", "SAME_PACKAGE(3)###UNSUPPORTED_RULE"); //#AAA##BBBB###CCCC####DDDD
+
+        // #AAA##BBBB###CCCC####DDDD
+        checkConfig.addAttribute("customImportOrderRules", "SAME_PACKAGE(3)###UNSUPPORTED_RULE");
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
