@@ -104,6 +104,17 @@ public class RedundantModifierTest
     }
 
     @Test
+    public void testNotPublicClassConstructorHasNotPublicModifier() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RedundantModifierCheck.class);
+
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verify(checkConfig, getPath("InputRedundantPublicModifierInNotPublicClass.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
         int[] actual = redundantModifierCheckObj.getAcceptableTokens();
