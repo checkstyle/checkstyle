@@ -22,7 +22,7 @@ public class MissingSwitchDefaultTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void missingSwitchDefaultTest() throws IOException, Exception {
+    public void missingSwitchDefaultTest() throws Exception {
         
         String msg = getCheckMessage(MissingSwitchDefaultCheck.class, "missing.switch.default");
 
