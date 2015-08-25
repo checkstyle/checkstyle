@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCh
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -57,8 +58,7 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
     public void testCorrectFile() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
 
-        String[] expected = {
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("coding/InputPackageDeclaration.java"), expected);
     }

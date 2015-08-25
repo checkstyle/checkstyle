@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -186,7 +188,7 @@ public class UnnecessaryParenthesesCheck extends Check {
     @Override
     public int[] getRequiredTokens() {
         // Check can work with any of acceptable tokens
-        return new int[] {};
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override

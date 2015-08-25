@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck.M
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -104,9 +105,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
         DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
 
-        String[] expected = {
-
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("coding" + File.separator
                 + "InputIllegalThrowsCheckIgnoreOverriddenMethods.java"), expected);

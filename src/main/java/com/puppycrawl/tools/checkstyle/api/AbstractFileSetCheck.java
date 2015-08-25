@@ -24,6 +24,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.SortedSet;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.Utils;
 
 /**
@@ -39,7 +41,7 @@ public abstract class AbstractFileSetCheck
     private MessageDispatcher messageDispatcher;
 
     /** The file extensions that are accepted by this filter */
-    private String[] fileExtensions = {};
+    private String[] fileExtensions = ArrayUtils.EMPTY_STRING_ARRAY;
 
     /** Collects the error messages */
     private final LocalizedMessages messageCollector = new LocalizedMessages();

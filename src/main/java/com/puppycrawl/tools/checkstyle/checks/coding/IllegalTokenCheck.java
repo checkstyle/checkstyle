@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -74,7 +76,7 @@ public class IllegalTokenCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[0];
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override

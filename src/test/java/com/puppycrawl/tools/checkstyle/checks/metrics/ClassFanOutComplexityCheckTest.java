@@ -24,6 +24,7 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -54,8 +55,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
 
         checkConfig.addAttribute("max", "0");
 
-        String[] expected = {
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("Input15Extensions.java"), expected);
     }
@@ -64,8 +64,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
     public void testDefaultConfiguration() throws Exception {
         DefaultConfiguration checkConfig =
             createCheckConfig(ClassFanOutComplexityCheck.class);
-        String[] expected = {
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         try {
             createChecker(checkConfig);

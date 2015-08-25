@@ -557,9 +557,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     @Test
     public void testSkipCertainMethods() throws Exception {
         checkConfig.addAttribute("ignoreMethodNamesRegex", "^foo.*$");
-        String[] expected = {
-
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("javadoc/InputJavadocMethodIgnoreNameRegex.java"), expected);
     }
 
