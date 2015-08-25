@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.util.Collections;
 import java.util.Set;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.Utils;
 
@@ -70,17 +72,25 @@ public abstract class Check extends AbstractViolationReporter {
      * The configurable token set.
      * Used to protect Checks against malicious users who specify an
      * unacceptable token set in the configuration file.
+     * The default implementation returns the check's default tokens.
      * @return the token set this check is designed for.
      * @see TokenTypes
      */
-    public abstract int[] getAcceptableTokens();
+    public int[] getAcceptableTokens() {
+        final int[] defaultTokens = getDefaultTokens();
+        final int[] copy = new int[defaultTokens.length];
+        System.arraycopy(defaultTokens, 0, copy, 0, defaultTokens.length);
+        return copy;
+    }
 
     /**
      * The tokens that this check must be registered for.
      * @return the token set this must be registered for.
      * @see TokenTypes
      */
-    public abstract int[] getRequiredTokens();
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
 
     /**
      * Adds a set of tokens the check is interested in.
