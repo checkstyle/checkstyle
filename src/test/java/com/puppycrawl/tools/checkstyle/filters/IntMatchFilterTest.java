@@ -38,16 +38,6 @@ public class IntMatchFilterTest {
     }
 
     @Test
-    public void testEquals() {
-        final IntFilter filter = new IntMatchFilter(0);
-        final IntFilter filter2 = new IntMatchFilter(0);
-        final IntFilter filter3 = new IntMatchFilter(1);
-        assertEquals("0", filter, filter2);
-        assertFalse("0 != 1", filter.equals(filter3));
-        assertFalse("0 != this", filter.equals(this));
-    }
-
-    @Test
     public void testEqualsAndHashCode() {
         EqualsVerifier.forClass(IntMatchFilter.class).verify();
     }

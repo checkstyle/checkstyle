@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -55,18 +54,6 @@ public class IntRangeFilterTest {
         assertFalse("out", filter.accept(5));
         assertFalse("out", filter.accept(10));
         assertFalse("out", filter.accept(11));
-    }
-
-    @Test
-    public void testEquals() {
-        final IntFilter filter = new IntRangeFilter(0, 2);
-        final IntFilter filter2 = new IntRangeFilter(0, 2);
-        final IntFilter filter3 = new IntRangeFilter(0, 1);
-        final IntFilter filter4 = new IntRangeFilter(1, 2);
-        assertEquals("[0,2] == [0,2]", filter, filter2);
-        assertFalse("[0,2] != [0,1]", filter.equals(filter3));
-        assertFalse("[0,2] != [1,2]", filter.equals(filter4));
-        assertFalse("[0,2] != this", filter.equals(this));
     }
 
     @Test
