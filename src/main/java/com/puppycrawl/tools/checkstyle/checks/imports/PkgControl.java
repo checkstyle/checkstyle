@@ -82,23 +82,23 @@ class PkgControl {
      * @return the finest match, or null if no match at all.
      */
     PkgControl locateFinest(final String forPkg) {
+        PkgControl finestMatch = null;
         // Check if we are a match.
-        // This algormithm should be improved to check for a trailing "."
+        // This algorithm should be improved to check for a trailing "."
         // or nothing following.
-        if (!forPkg.startsWith(fullPackage)) {
-            return null;
-        }
-
-        // Check if any of the children match.
-        for (PkgControl pc : children) {
-            final PkgControl match = pc.locateFinest(forPkg);
-            if (match != null) {
-                return match;
+        if (forPkg.startsWith(fullPackage)) {
+            // If there won't be match so I am the best there is.
+            finestMatch = this;
+            // Check if any of the children match.
+            for (PkgControl pc : children) {
+                final PkgControl match = pc.locateFinest(forPkg);
+                if (match != null) {
+                    finestMatch = match;
+                    break;
+                }
             }
         }
-
-        // No match so I am the best there is.
-        return this;
+        return finestMatch;
     }
 
     /**
@@ -112,16 +112,19 @@ class PkgControl {
      * @return an {@link AccessResult}.
      */
     AccessResult checkAccess(final String forImport, final String inPkg) {
+        AccessResult result;
         final AccessResult retVal = localCheckAccess(forImport, inPkg);
         if (retVal != AccessResult.UNKNOWN) {
-            return retVal;
+            result = retVal;
         }
-        if (parent == null) {
+        else if (parent == null) {
             // we are the top, so default to not allowed.
-            return AccessResult.DISALLOWED;
+            result = AccessResult.DISALLOWED;
         }
-
-        return parent.checkAccess(forImport, inPkg);
+        else {
+            result = parent.checkAccess(forImport, inPkg);
+        }
+        return result;
     }
 
     /**
