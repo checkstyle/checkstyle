@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -122,7 +122,7 @@ public class SuppressionCommentFilter
      * @throws ConversionException if unable to create Pattern object.
      */
     public final void setOffCommentFormat(String format) {
-        offRegexp = Utils.createPattern(format);
+        offRegexp = CommonUtils.createPattern(format);
     }
 
     /**
@@ -131,7 +131,7 @@ public class SuppressionCommentFilter
      * @throws ConversionException if unable to create Pattern object.
      */
     public final void setOnCommentFormat(String format) {
-        onRegexp = Utils.createPattern(format);
+        onRegexp = CommonUtils.createPattern(format);
     }
 
     /** @return the FileContents for this filter. */

@@ -55,7 +55,8 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
@@ -186,7 +187,7 @@ public final class TreeWalker
         final long timestamp = file.lastModified();
         if (cache != null
                 && (cache.inCache(fileName, timestamp)
-                    || !Utils.fileExtensionMatches(file, getFileExtensions()))) {
+                    || !CommonUtils.fileExtensionMatches(file, getFileExtensions()))) {
             return;
         }
 
@@ -261,7 +262,7 @@ public final class TreeWalker
             final int[] acceptableTokens = check.getAcceptableTokens();
             Arrays.sort(acceptableTokens);
             for (String token : checkTokens) {
-                final int tokenId = Utils.getTokenId(token);
+                final int tokenId = TokenUtils.getTokenId(token);
                 if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
                     registerCheck(token, check);
                 }
@@ -309,7 +310,7 @@ public final class TreeWalker
      * @param check the check to register
      */
     private void registerCheck(int tokenID, Check check) {
-        registerCheck(Utils.getTokenName(tokenID), check);
+        registerCheck(TokenUtils.getTokenName(tokenID), check);
     }
 
     /**
@@ -321,7 +322,7 @@ public final class TreeWalker
         if (check.isCommentNodesRequired()) {
             tokenToCommentChecks.put(token, check);
         }
-        else if (Utils.isCommentType(token)) {
+        else if (TokenUtils.isCommentType(token)) {
             final String message = String.format("Check '%s' waits for comment type "
                     + "token ('%s') and should override 'isCommentNodesRequred()' "
                     + "method to return 'true'", check.getClass().getName(), token);
@@ -434,7 +435,7 @@ public final class TreeWalker
      */
     private Collection<Check> getListOfChecks(DetailAST ast, AstState astState) {
         Collection<Check> visitors = null;
-        final String tokenType = Utils.getTokenName(ast.getType());
+        final String tokenType = TokenUtils.getTokenName(ast.getType());
 
         if (astState == AstState.WITH_COMMENTS) {
             if (tokenToCommentChecks.containsKey(tokenType)) {

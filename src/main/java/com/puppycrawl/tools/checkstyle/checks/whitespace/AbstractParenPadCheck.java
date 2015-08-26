@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>Abstract class for checking the padding of parentheses. That is whether a
@@ -100,7 +100,7 @@ abstract class AbstractParenPadCheck
         if (before >= 0) {
             if (getAbstractOption() == PadOption.NOSPACE
                 && Character.isWhitespace(line.charAt(before))
-                && !Utils.whitespaceBefore(before, line)) {
+                && !CommonUtils.whitespaceBefore(before, line)) {
                 log(ast.getLineNo(), before, WS_PRECEDED, CLOSE_PARENTHESIS);
             }
             else if (getAbstractOption() == PadOption.SPACE

@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -136,7 +136,7 @@ public class SuppressWithNearbyCommentFilter
      * @throws ConversionException if unable to create Pattern object.
      */
     public final void setCommentFormat(String format) {
-        commentRegexp = Utils.createPattern(format);
+        commentRegexp = CommonUtils.createPattern(format);
     }
 
     /** @return the FileContents for this filter. */
@@ -325,7 +325,7 @@ public class SuppressWithNearbyCommentFilter
                     text, filter.influenceFormat, filter.commentRegexp);
                 int influence;
                 try {
-                    if (Utils.startsWithChar(format, '+')) {
+                    if (CommonUtils.startsWithChar(format, '+')) {
                         format = format.substring(1);
                     }
                     influence = Integer.parseInt(format);

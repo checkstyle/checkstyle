@@ -185,7 +185,7 @@ public final class CheckUtils {
                     radix = BASE_8;
                     txt = txt.substring(1);
                 }
-                if (Utils.endsWithChar(txt, 'L') || Utils.endsWithChar(txt, 'l')) {
+                if (CommonUtils.endsWithChar(txt, 'L') || CommonUtils.endsWithChar(txt, 'l')) {
                     txt = txt.substring(0, txt.length() - 1);
                 }
                 if (!txt.isEmpty()) {

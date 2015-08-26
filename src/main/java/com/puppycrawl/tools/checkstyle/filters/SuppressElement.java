@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Filter;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * This filter processes {@link AuditEvent}
@@ -85,7 +85,7 @@ public class SuppressElement
      */
     public void setChecks(final String checks) {
         checkPattern = checks;
-        checkRegexp = Utils.createPattern(checks);
+        checkRegexp = CommonUtils.createPattern(checks);
     }
 
     /**

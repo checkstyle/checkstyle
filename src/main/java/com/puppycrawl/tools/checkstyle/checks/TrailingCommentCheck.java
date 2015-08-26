@@ -29,7 +29,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -125,7 +125,7 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
      * @param format format to set.
      */
     public void setLegalComment(final String format) {
-        legalComment = Utils.createPattern(format);
+        legalComment = CommonUtils.createPattern(format);
     }
 
     @Override

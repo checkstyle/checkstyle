@@ -26,7 +26,7 @@ import java.util.SortedSet;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Provides common functionality for many FileSetChecks.
@@ -73,7 +73,7 @@ public abstract class AbstractFileSetCheck
                                                    List<String> lines) {
         messageCollector.reset();
         // Process only what interested in
-        if (Utils.fileExtensionMatches(file, fileExtensions)) {
+        if (CommonUtils.fileExtensionMatches(file, fileExtensions)) {
             processFiltered(file, lines);
         }
         return messageCollector.getMessages();
@@ -122,7 +122,7 @@ public abstract class AbstractFileSetCheck
         fileExtensions = new String[extensions.length];
         for (int i = 0; i < extensions.length; i++) {
             final String extension = extensions[i];
-            if (Utils.startsWithChar(extension, '.')) {
+            if (CommonUtils.startsWithChar(extension, '.')) {
                 fileExtensions[i] = extension;
             }
             else {

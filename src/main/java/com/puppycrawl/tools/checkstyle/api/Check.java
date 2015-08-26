@@ -25,7 +25,7 @@ import java.util.Set;
 import org.apache.commons.lang3.ArrayUtils;
 
 import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * The base class for checks.
@@ -244,7 +244,7 @@ public abstract class Check extends AbstractViolationReporter {
     @Override
     public final void log(int lineNo, int colNo, String key,
             Object... args) {
-        final int col = 1 + Utils.lengthExpandedTabs(
+        final int col = 1 + CommonUtils.lengthExpandedTabs(
             getLines()[lineNo - 1], colNo, tabWidth);
         messages.add(
             new LocalizedMessage(

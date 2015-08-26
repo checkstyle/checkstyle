@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * <p>
@@ -109,7 +109,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
         final List<Integer> customTarget = new ArrayList<>();
         final String[] sTarget = target.split(COMMA_SEPARATOR);
         for (String aSTarget : sTarget) {
-            customTarget.add(Utils.getTokenId(aSTarget.trim()));
+            customTarget.add(TokenUtils.getTokenId(aSTarget.trim()));
         }
         this.target = customTarget;
     }

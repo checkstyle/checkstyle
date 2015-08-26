@@ -25,8 +25,8 @@ import com.google.common.base.CharMatcher;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * <p>
@@ -85,7 +85,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /**
      * Regular expression for forbidden summary fragments.
      */
-    private Pattern forbiddenSummaryFragments = Utils.createPattern("^$");
+    private Pattern forbiddenSummaryFragments = CommonUtils.createPattern("^$");
 
     /**
      * Period symbol at the end of first javadoc sentence.
@@ -97,7 +97,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @param pattern user's value.
      */
     public void setForbiddenSummaryFragments(String pattern) {
-        forbiddenSummaryFragments = Utils.createPattern(pattern);
+        forbiddenSummaryFragments = CommonUtils.createPattern(pattern);
     }
 
     /**

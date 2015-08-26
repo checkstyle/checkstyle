@@ -28,8 +28,8 @@ import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * <p>Checks that a local variable or a parameter does not shadow
@@ -469,7 +469,7 @@ public class HiddenFieldCheck
      * @param format a {@code String} value
      */
     public void setIgnoreFormat(String format) {
-        regexp = Utils.createPattern(format);
+        regexp = CommonUtils.createPattern(format);
     }
 
     /**

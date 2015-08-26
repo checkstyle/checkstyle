@@ -25,7 +25,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -213,7 +213,7 @@ public class OperatorWrapCheck
             log(lineNo, colNo, LINE_NEW, text);
         }
         else if (wOp == WrapOption.EOL
-                  && Utils.whitespaceBefore(colNo - 1, currentLine)) {
+                && CommonUtils.whitespaceBefore(colNo - 1, currentLine)) {
             log(lineNo, colNo, LINE_PREVIOUS, text);
         }
     }

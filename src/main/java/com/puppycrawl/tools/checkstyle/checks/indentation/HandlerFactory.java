@@ -26,7 +26,7 @@ import java.util.Set;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Factory for handlers. Looks up constructor via reflection.
@@ -86,7 +86,7 @@ public class HandlerFactory {
      *                the handler to register
      */
     private void register(int type, Class<?> handlerClass) {
-        final Constructor<?> ctor = Utils.getConstructor(handlerClass,
+        final Constructor<?> ctor = CommonUtils.getConstructor(handlerClass,
                 IndentationCheck.class,
                 // current AST
                 DetailAST.class,
@@ -147,7 +147,7 @@ public class HandlerFactory {
 
         final Constructor<?> handlerCtor =
             typeHandlers.get(ast.getType());
-        return (AbstractExpressionHandler) Utils.invokeConstructor(
+        return (AbstractExpressionHandler) CommonUtils.invokeConstructor(
             handlerCtor, indentCheck, ast, parent);
     }
 

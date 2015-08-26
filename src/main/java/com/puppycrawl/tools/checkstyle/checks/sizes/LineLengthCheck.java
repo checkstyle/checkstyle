@@ -25,7 +25,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Checks for long lines.
@@ -120,7 +120,7 @@ public class LineLengthCheck extends Check {
         for (int i = 0; i < lines.length; i++) {
 
             final String line = lines[i];
-            final int realLength = Utils.lengthExpandedTabs(
+            final int realLength = CommonUtils.lengthExpandedTabs(
                 line, line.length(), getTabWidth());
 
             if (realLength > max
@@ -142,6 +142,6 @@ public class LineLengthCheck extends Check {
      * @param format a {@code String} value
      */
     public final void setIgnorePattern(String format) {
-        ignorePattern = Utils.createPattern(format);
+        ignorePattern = CommonUtils.createPattern(format);
     }
 }

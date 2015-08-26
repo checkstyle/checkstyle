@@ -11,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class IndentationConfigurationBuilder extends ConfigurationBuilder
 {
@@ -146,7 +146,7 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder
     {
         for (int index = 0; index < line.length(); ++index) {
             if (!Character.isWhitespace(line.charAt(index))) {
-                return Utils.lengthExpandedTabs(line, index, tabWidth);
+                return CommonUtils.lengthExpandedTabs(line, index, tabWidth);
             }
         }
         return 0;

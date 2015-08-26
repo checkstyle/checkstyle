@@ -22,8 +22,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * Checks that:
@@ -269,6 +269,6 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         final DetailNode nextSibling = JavadocUtils.getNextSibling(tag);
         return nextSibling.getType() == JavadocTokenTypes.NEWLINE
                 || nextSibling.getType() == JavadocTokenTypes.EOF
-                || Utils.startsWithChar(nextSibling.getText(), ' ');
+                || CommonUtils.startsWithChar(nextSibling.getText(), ' ');
     }
 }

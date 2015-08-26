@@ -41,7 +41,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  *
@@ -160,7 +160,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     private static int getLineStart(String line, final int tabWidth) {
         for (int index = 0; index < line.length(); ++index) {
             if (!Character.isWhitespace(line.charAt(index))) {
-                return Utils.lengthExpandedTabs(line, index, tabWidth);
+                return CommonUtils.lengthExpandedTabs(line, index, tabWidth);
             }
         }
         return 0;

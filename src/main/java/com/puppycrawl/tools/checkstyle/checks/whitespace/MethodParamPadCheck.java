@@ -24,7 +24,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -132,7 +132,7 @@ public class MethodParamPadCheck
         }
 
         final String line = getLines()[parenAST.getLineNo() - 1];
-        if (Utils.whitespaceBefore(parenAST.getColumnNo(), line)) {
+        if (CommonUtils.whitespaceBefore(parenAST.getColumnNo(), line)) {
             if (!allowLineBreaks) {
                 log(parenAST, LINE_PREVIOUS, parenAST.getText());
             }

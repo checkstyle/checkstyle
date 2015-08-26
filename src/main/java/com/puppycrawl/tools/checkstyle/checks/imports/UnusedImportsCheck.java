@@ -33,8 +33,8 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * <p>
@@ -103,7 +103,7 @@ public class UnusedImportsCheck extends Check {
     public void finishTree(DetailAST rootAST) {
         // loop over all the imports to see if referenced.
         for (final FullIdent imp : imports) {
-            if (!referenced.contains(Utils.baseClassname(imp.getText()))) {
+            if (!referenced.contains(CommonUtils.baseClassname(imp.getText()))) {
                 log(imp.getLineNo(),
                     imp.getColumnNo(),
                     MSG_KEY, imp.getText());

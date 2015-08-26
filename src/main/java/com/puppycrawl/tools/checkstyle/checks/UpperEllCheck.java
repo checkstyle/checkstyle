@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>Checks that long constants are defined with an upper ell.
@@ -72,7 +72,7 @@ public class UpperEllCheck extends Check {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (Utils.endsWithChar(ast.getText(), 'l')) {
+        if (CommonUtils.endsWithChar(ast.getText(), 'l')) {
             log(ast.getLineNo(),
                 ast.getColumnNo() + ast.getText().length() - 1,
                 MSG_KEY);

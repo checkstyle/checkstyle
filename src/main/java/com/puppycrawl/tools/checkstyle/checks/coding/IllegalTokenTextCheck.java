@@ -25,7 +25,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * <p>
@@ -82,7 +82,7 @@ public class IllegalTokenTextCheck
 
     @Override
     public int[] getAcceptableTokens() {
-        return Utils.getAllTokenIds();
+        return TokenUtils.getAllTokenIds();
     }
 
     @Override

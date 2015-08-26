@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * <p>
@@ -54,7 +54,7 @@ public class MissingSwitchDefaultCheck extends DescendantTokenCheck {
 
     /** Creates new instance of the check. */
     public MissingSwitchDefaultCheck() {
-        setLimitedTokens(Utils.getTokenName(TokenTypes.LITERAL_DEFAULT));
+        setLimitedTokens(TokenUtils.getTokenName(TokenTypes.LITERAL_DEFAULT));
         setMinimumNumber(1);
         setMaximumDepth(2);
         setMinimumMessage(MSG_KEY);

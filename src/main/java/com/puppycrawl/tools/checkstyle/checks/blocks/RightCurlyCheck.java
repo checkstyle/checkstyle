@@ -26,8 +26,8 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * <p>
@@ -227,7 +227,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
         }
         else if (shouldStartLine) {
             final boolean startsLine =
-                Utils.whitespaceBefore(rcurly.getColumnNo(), targetSourceLine);
+                    CommonUtils.whitespaceBefore(rcurly.getColumnNo(), targetSourceLine);
 
             if (!startsLine && lcurly.getLineNo() != rcurly.getLineNo()) {
                 violation = MSG_KEY_LINE_NEW;

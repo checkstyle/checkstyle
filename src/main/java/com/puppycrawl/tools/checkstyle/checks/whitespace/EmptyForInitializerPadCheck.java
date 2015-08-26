@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>Checks the padding of an empty for initializer; that is whether a
@@ -92,7 +92,7 @@ public class EmptyForInitializerPadCheck
             final String line = getLines()[semiLineIdx];
             final int before = semi.getColumnNo() - 1;
             //don't check if semi at beginning of line
-            if (!Utils.whitespaceBefore(before, line)) {
+            if (!CommonUtils.whitespaceBefore(before, line)) {
                 final PadOption option = getAbstractOption();
                 if (option == PadOption.NOSPACE
                     && Character.isWhitespace(line.charAt(before))) {

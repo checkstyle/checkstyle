@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -351,7 +351,7 @@ public class CustomImportOrderCheck extends Check {
      *         if unable to create Pattern object.
      */
     public final void setStandardPackageRegExp(String regexp) {
-        standardPackageRegExp = Utils.createPattern(regexp);
+        standardPackageRegExp = CommonUtils.createPattern(regexp);
     }
 
     /**
@@ -362,7 +362,7 @@ public class CustomImportOrderCheck extends Check {
      *         if unable to create Pattern object.
      */
     public final void setThirdPartyPackageRegExp(String regexp) {
-        thirdPartyPackageRegExp = Utils.createPattern(regexp);
+        thirdPartyPackageRegExp = CommonUtils.createPattern(regexp);
     }
 
     /**
@@ -373,7 +373,7 @@ public class CustomImportOrderCheck extends Check {
      *         if unable to create Pattern object.
      */
     public final void setSpecialImportsRegExp(String regexp) {
-        specialImportsRegExp = Utils.createPattern(regexp);
+        specialImportsRegExp = CommonUtils.createPattern(regexp);
     }
 
     /**
