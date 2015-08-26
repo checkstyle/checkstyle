@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.io.File;
+import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -31,6 +32,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author maxvetrenko
  */
 public class OuterTypeFilenameCheck extends Check {
+    /** Pattern matching any file extension with dot included */
+    private static final Pattern FILE_EXTENSION_PATTERN = Pattern.compile("\\.[^\\.]*$");
+
     /** Indicates whether the first token has been seen in the file. */
     private boolean seenFirstToken;
 
@@ -109,7 +113,7 @@ public class OuterTypeFilenameCheck extends Check {
     private String getFileName() {
         String fname = getFileContents().getFileName();
         fname = fname.substring(fname.lastIndexOf(File.separatorChar) + 1);
-        fname = fname.replaceAll("\\.[^\\.]*$", "");
+        fname = FILE_EXTENSION_PATTERN.matcher(fname).replaceAll("");
         return fname;
     }
 }

@@ -51,6 +51,11 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     public static final String IO_EXCEPTION_KEY = "unable.open.cause";
 
     /**
+     * Pattern matching single space.
+     */
+    private static final Pattern SPACE_PATTERN = Pattern.compile(" ");
+
+    /**
      * Construct the check with default values.
      */
     public UniquePropertiesCheck() {
@@ -97,8 +102,8 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      *         file, 0 is returned
      */
     protected static int getLineNumber(List<String> lines, String keyName) {
-        final String keyPatternString =
-                "^" + keyName.replace(" ", "\\\\ ") + "[\\s:=].*$";
+        final String keyPatternString = "^" + SPACE_PATTERN.matcher(keyName)
+                        .replaceAll(Matcher.quoteReplacement("\\\\ ")) + "[\\s:=].*$";
         final Pattern keyPattern = Pattern.compile(keyPatternString);
         int lineNumber = 1;
         final Matcher matcher = keyPattern.matcher("");
