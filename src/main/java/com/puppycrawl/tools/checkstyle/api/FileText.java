@@ -190,7 +190,7 @@ public final class FileText extends AbstractList<String> {
      * @return File's text
      * @throws IOException Unable to open or read the file
      */
-    private String readFile(final File inputFile, final CharsetDecoder decoder)
+    private static String readFile(final File inputFile, final CharsetDecoder decoder)
             throws IOException {
         final StringBuilder buf = new StringBuilder();
         final FileInputStream stream = new FileInputStream(inputFile);
