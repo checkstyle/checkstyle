@@ -29,7 +29,7 @@ import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.collect.Lists;
-import com.puppycrawl.tools.checkstyle.Utils;
+import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * Checks the header of the source against a header file that contains a

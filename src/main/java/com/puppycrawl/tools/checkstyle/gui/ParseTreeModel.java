@@ -24,9 +24,9 @@ import javax.swing.tree.TreePath;
 import antlr.ASTFactory;
 import antlr.collections.AST;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * The model that backs the parse tree in the GUI.

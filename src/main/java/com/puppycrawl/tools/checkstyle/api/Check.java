@@ -25,7 +25,7 @@ import java.util.Set;
 import org.apache.commons.lang3.ArrayUtils;
 
 import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.Utils;
+import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * The base class for checks.

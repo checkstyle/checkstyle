@@ -21,10 +21,10 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import com.puppycrawl.tools.checkstyle.AnnotationUtility;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
 
 /**
  * <p>

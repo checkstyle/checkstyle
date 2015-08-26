@@ -24,6 +24,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
+
 public class JavadocTagTest {
 
     /* Additional test for jacoco, since valueOf()

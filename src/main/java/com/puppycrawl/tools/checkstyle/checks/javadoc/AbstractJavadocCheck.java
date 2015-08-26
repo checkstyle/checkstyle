@@ -43,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer;
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 /**
  * Base class for Checks that process Javadoc comments.

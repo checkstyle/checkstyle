@@ -23,10 +23,10 @@ import java.util.Arrays;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
-import com.puppycrawl.tools.checkstyle.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
  * This enum defines the various Javadoc tags and there properties.

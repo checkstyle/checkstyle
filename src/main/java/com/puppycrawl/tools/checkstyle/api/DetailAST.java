@@ -24,7 +24,8 @@ import java.util.BitSet;
 import antlr.CommonASTWithHiddenTokens;
 import antlr.Token;
 import antlr.collections.AST;
-import com.puppycrawl.tools.checkstyle.Utils;
+
+import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * An extension of the CommonAST that records the line and column

@@ -22,9 +22,9 @@ package com.puppycrawl.tools.checkstyle.filters;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * This filter processes {@link AuditEvent}

@@ -27,6 +27,7 @@ import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 
 /**
  * Check that method/constructor/catch/foreach parameters are final.

@@ -55,6 +55,7 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
+import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
