@@ -311,18 +311,18 @@ public class SuppressWithNearbyCommentFilter
             //Does not intern Patterns with Utils.getPattern()
             String format = "";
             try {
-                format = expandFrocomment(text, filter.checkFormat, filter.commentRegexp);
+                format = expandFromComment(text, filter.checkFormat, filter.commentRegexp);
                 tagCheckRegexp = Pattern.compile(format);
                 if (filter.messageFormat != null) {
-                    format = expandFrocomment(
-                         text, filter.messageFormat, filter.commentRegexp);
+                    format = expandFromComment(
+                            text, filter.messageFormat, filter.commentRegexp);
                     tagMessageRegexp = Pattern.compile(format);
                 }
                 else {
                     tagMessageRegexp = null;
                 }
-                format = expandFrocomment(
-                    text, filter.influenceFormat, filter.commentRegexp);
+                format = expandFromComment(
+                        text, filter.influenceFormat, filter.commentRegexp);
                 int influence;
                 try {
                     if (CommonUtils.startsWithChar(format, '+')) {
@@ -423,7 +423,7 @@ public class SuppressWithNearbyCommentFilter
          * @param regexp the parsed expander.
          * @return the expanded string
          */
-        private static String expandFrocomment(
+        private static String expandFromComment(
             String comment,
             String stringToExpand,
             Pattern regexp) {
