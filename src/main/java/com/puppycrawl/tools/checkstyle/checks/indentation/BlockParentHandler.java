@@ -93,10 +93,10 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         final DetailAST toplevel = getToplevelAST();
 
         if (toplevel == null
-            || getLevel().accept(expandedTabsColumnNo(toplevel)) || hasLabelBefore()) {
+            || getLevel().isAcceptable(expandedTabsColumnNo(toplevel)) || hasLabelBefore()) {
             return;
         }
-        if (!toplevelMustStartLine() && !startsLine(toplevel)) {
+        if (!shouldTopLevelStartLine() && !startsLine(toplevel)) {
             return;
         }
         logError(toplevel, "", expandedTabsColumnNo(toplevel));
@@ -117,7 +117,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return true
      */
-    protected boolean toplevelMustStartLine() {
+    protected boolean shouldTopLevelStartLine() {
         return true;
     }
 
@@ -158,7 +158,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         final DetailAST lcurly = getLCurly();
         final int lcurlyPos = expandedTabsColumnNo(lcurly);
 
-        if (curlyLevel().accept(lcurlyPos) || !startsLine(lcurly)) {
+        if (curlyLevel().isAcceptable(lcurlyPos) || !startsLine(lcurly)) {
             return;
         }
 
@@ -179,7 +179,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return true
      */
-    protected boolean rcurlyMustStart() {
+    protected boolean shouldStartWithRCurly() {
         return true;
     }
 
@@ -188,7 +188,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return false
      */
-    protected boolean childrenMayNest() {
+    protected boolean canChildrenBeNested() {
         return false;
     }
 
@@ -202,8 +202,8 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         final DetailAST rcurly = getRCurly();
         final int rcurlyPos = expandedTabsColumnNo(rcurly);
 
-        if (curlyLevel().accept(rcurlyPos)
-            || !rcurlyMustStart() && !startsLine(rcurly)
+        if (curlyLevel().isAcceptable(rcurlyPos)
+            || !shouldStartWithRCurly() && !startsLine(rcurly)
             || areOnSameLine(rcurly, lcurly)) {
             return;
         }
@@ -277,7 +277,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
                               getCheckedChildren(),
                               getChildrenExpectedLevel(),
                               true,
-                              childrenMayNest());
+                              canChildrenBeNested());
             }
         }
         else {

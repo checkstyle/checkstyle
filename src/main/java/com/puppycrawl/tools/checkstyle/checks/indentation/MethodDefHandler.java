@@ -52,7 +52,7 @@ public class MethodDefHandler extends BlockParentHandler {
     protected void checkModifiers() {
         final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
         if (startsLine(modifier)
-            && !getLevel().accept(expandedTabsColumnNo(modifier))) {
+            && !getLevel().isAcceptable(expandedTabsColumnNo(modifier))) {
             logError(modifier, "modifier", expandedTabsColumnNo(modifier));
         }
     }

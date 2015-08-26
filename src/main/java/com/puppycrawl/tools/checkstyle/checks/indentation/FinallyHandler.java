@@ -41,7 +41,7 @@ public class FinallyHandler extends BlockParentHandler {
     }
 
     @Override
-    protected boolean toplevelMustStartLine() {
+    protected boolean shouldTopLevelStartLine() {
         return false;
     }
 }

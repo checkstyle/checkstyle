@@ -95,7 +95,7 @@ public class ObjectBlockHandler extends BlockParentHandler {
         final IndentLevel level = curlyLevel();
         level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndentation());
 
-        if (!level.accept(rcurlyPos) && startsLine(rcurly)) {
+        if (!level.isAcceptable(rcurlyPos) && startsLine(rcurly)) {
             logError(rcurly, "rcurly", rcurlyPos, curlyLevel());
         }
     }
