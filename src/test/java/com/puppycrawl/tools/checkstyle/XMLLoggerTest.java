@@ -29,6 +29,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -220,7 +221,7 @@ public class XMLLoggerTest {
         final ByteArrayInputStream inStream =
             new ByteArrayInputStream(bytes);
         final BufferedReader reader =
-            new BufferedReader(new InputStreamReader(inStream));
+            new BufferedReader(new InputStreamReader(inStream, StandardCharsets.UTF_8));
         final List<String> lineList = Lists.newArrayList();
         while (true) {
             final String line = reader.readLine();
