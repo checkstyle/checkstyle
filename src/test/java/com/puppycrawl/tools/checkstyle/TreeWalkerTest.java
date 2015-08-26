@@ -292,8 +292,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RequiredTokenIsNotInDefaultsCheck.class);
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         try {
             verify(checkConfig, pathToEmptyFile, expected);
@@ -309,8 +308,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RequiredTokenIsEmptyIntArray.class);
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         try {
             verify(checkConfig, pathToEmptyFile, expected);
