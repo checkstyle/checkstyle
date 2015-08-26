@@ -313,6 +313,9 @@ public class CustomImportOrderCheck extends Check {
     /** NON_GROUP group name. */
     private static final String NON_GROUP_RULE_GROUP = "NOT_ASSIGNED_TO_ANY_GROUP";
 
+    /** Pattern used to separate groups of imports */
+    private static final Pattern GROUP_SEPARATOR_PATTERN = Pattern.compile("\\s*###\\s*");
+
     /** RegExp for SAME_PACKAGE group imports */
     private String samePackageDomainsRegExp = "";
 
@@ -399,8 +402,7 @@ public class CustomImportOrderCheck extends Check {
      */
     public final void setCustomImportOrderRules(final String inputCustomImportOrder) {
         customImportOrderRules.clear();
-        for (String currentState : inputCustomImportOrder
-                .split("\\s*###\\s*")) {
+        for (String currentState : GROUP_SEPARATOR_PATTERN.split(inputCustomImportOrder)) {
             addRuleastoList(currentState);
         }
         customImportOrderRules.add(NON_GROUP_RULE_GROUP);

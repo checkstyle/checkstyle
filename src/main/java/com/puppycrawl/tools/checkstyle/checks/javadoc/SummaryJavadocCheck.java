@@ -72,6 +72,11 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * file.
      */
     public static final String SUMMARY_JAVADOC = "summary.javaDoc";
+    /**
+     * This regexp is used to convert multiline javdoc to single line without stars.
+     */
+    private static final Pattern JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN =
+            Pattern.compile("\n[ ]+(\\*)|^[ ]+(\\*)");
 
     /** Period literal. */
     private static final String PERIOD = ".";
@@ -178,8 +183,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return true, if first sentence contains forbidden summary fragment.
      */
     private boolean containsForbiddenFragment(String firstSentence) {
-        // This regexp is used to convert multiline javdoc to single line without stars.
-        String javadocText = firstSentence.replaceAll("\n[ ]+(\\*)|^[ ]+(\\*)", " ");
+        String javadocText = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN
+                .matcher(firstSentence).replaceAll(" ");
         javadocText = CharMatcher.WHITESPACE.trimAndCollapseFrom(javadocText, ' ');
         return forbiddenSummaryFragments.matcher(javadocText).find();
     }
