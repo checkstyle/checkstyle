@@ -70,4 +70,7 @@
     <!-- Fixing these cases will decrease code readability -->
     <suppress checks="MultipleStringLiterals" files="JavadocStyleCheck\.java|AbstractTypeAwareCheck\.java|XMLLogger\.java"/>
     <suppress checks="MultipleStringLiterals" files=".*[\\/]src[\\/]test[\\/]"/>
+
+    <!-- There are a lot of setters/getters in the Check. A small number of methods is left for Check's logics -->
+    <suppress checks="MethodCount" files="[\\/]JavadocMethodCheck.java$"/>
 </suppressions>
