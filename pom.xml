@@ -846,7 +846,7 @@
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>${maven.jacoco.plugin.version}</version>
         <configuration>
-            <dataFile>${project.build.directory}/jacoco/jacoco.exec</dataFile>
+          <dataFile>${project.build.directory}/jacoco/jacoco.exec</dataFile>
           <excludes>
             <exclude>com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask*.class</exclude>
             <exclude>com/puppycrawl/tools/checkstyle/doclets/*.class</exclude>
