@@ -289,20 +289,21 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      * @return indentation level expected for children
      */
     protected IndentLevel getChildrenExpectedLevel() {
+        IndentLevel indentLevel = new IndentLevel(getLevel(), getBasicOffset());
         // if we have multileveled expected level then we should
         // try to suggest single level to children using curlies'
         // levels.
         if (getLevel().isMultiLevel() && hasCurlys()) {
             if (startsLine(getLCurly())) {
-                return new IndentLevel(expandedTabsColumnNo(getLCurly()) + getBasicOffset());
+                indentLevel = new IndentLevel(expandedTabsColumnNo(getLCurly()) + getBasicOffset());
             }
             else if (startsLine(getRCurly())) {
                 final IndentLevel level = new IndentLevel(curlyLevel(), getBasicOffset());
                 level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndent());
-                return level;
+                indentLevel = level;
             }
         }
-        return new IndentLevel(getLevel(), getBasicOffset());
+        return indentLevel;
     }
 
     @Override
