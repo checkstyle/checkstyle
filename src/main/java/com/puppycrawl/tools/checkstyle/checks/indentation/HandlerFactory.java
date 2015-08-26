@@ -135,20 +135,21 @@ public class HandlerFactory {
      */
     public AbstractExpressionHandler getHandler(IndentationCheck indentCheck,
         DetailAST ast, AbstractExpressionHandler parent) {
+        AbstractExpressionHandler resultHandler;
         final AbstractExpressionHandler handler =
             createdHandlers.get(ast);
         if (handler != null) {
-            return handler;
+            resultHandler = handler;
         }
-
-        if (ast.getType() == TokenTypes.METHOD_CALL) {
-            return createMethodCallHandler(indentCheck, ast, parent);
+        else if (ast.getType() == TokenTypes.METHOD_CALL) {
+            resultHandler = createMethodCallHandler(indentCheck, ast, parent);
         }
-
-        final Constructor<?> handlerCtor =
-            typeHandlers.get(ast.getType());
-        return (AbstractExpressionHandler) CommonUtils.invokeConstructor(
-            handlerCtor, indentCheck, ast, parent);
+        else {
+            final Constructor<?> handlerCtor = typeHandlers.get(ast.getType());
+            resultHandler = (AbstractExpressionHandler) CommonUtils.invokeConstructor(
+                handlerCtor, indentCheck, ast, parent);
+        }
+        return resultHandler;
     }
 
     /**
