@@ -24,7 +24,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * This Check controls the indentation between comments and surrounding code.
@@ -260,7 +260,7 @@ public class CommentsIndentationCheck extends Check {
     private boolean isTrailingSingleLineComment(DetailAST singleLineComment) {
         final String targetSourceLine = getLine(singleLineComment.getLineNo() - 1);
         final int commentColumnNo = singleLineComment.getColumnNo();
-        return !Utils.whitespaceBefore(commentColumnNo, targetSourceLine);
+        return !CommonUtils.whitespaceBefore(commentColumnNo, targetSourceLine);
     }
 
     /**
@@ -303,7 +303,7 @@ public class CommentsIndentationCheck extends Check {
     private boolean isTrailingBlockComment(DetailAST blockComment) {
         final String commentLine = getLine(blockComment.getLineNo() - 1);
         final int commentColumnNo = blockComment.getColumnNo();
-        return !Utils.whitespaceBefore(commentColumnNo, commentLine)
+        return !CommonUtils.whitespaceBefore(commentColumnNo, commentLine)
             || blockComment.getNextSibling().getLineNo() == blockComment.getLineNo();
     }
 }

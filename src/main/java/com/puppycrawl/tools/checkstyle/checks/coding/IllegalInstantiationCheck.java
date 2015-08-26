@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -274,7 +274,7 @@ public class IllegalInstantiationCheck
                 }
             }
             else {
-                if (Utils.baseClassname(importArg).equals(className)
+                if (CommonUtils.baseClassname(importArg).equals(className)
                     && illegalClasses.contains(importArg)) {
                     return importArg;
                 }

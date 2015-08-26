@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * <p>
@@ -415,7 +415,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
     public void setMemberModifiers(String modifiers) {
         final List<Integer> modifiersList = new ArrayList<>();
         for (String modifier : modifiers.split(",")) {
-            modifiersList.add(Utils.getTokenId(modifier.trim()));
+            modifiersList.add(TokenUtils.getTokenId(modifier.trim()));
         }
         memberModifiers = modifiersList;
     }

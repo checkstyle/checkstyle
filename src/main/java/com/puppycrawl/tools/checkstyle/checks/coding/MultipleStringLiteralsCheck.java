@@ -29,7 +29,8 @@ import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * Checks for multiple occurrences of the same string literal within a
@@ -94,7 +95,7 @@ public class MultipleStringLiteralsCheck extends Check {
     public final void setIgnoreStringsRegexp(String ignoreStringsRegexp) {
         if (ignoreStringsRegexp != null
             && !ignoreStringsRegexp.isEmpty()) {
-            pattern = Utils.createPattern(ignoreStringsRegexp);
+            pattern = CommonUtils.createPattern(ignoreStringsRegexp);
         }
         else {
             pattern = null;
@@ -108,7 +109,7 @@ public class MultipleStringLiteralsCheck extends Check {
     public final void setIgnoreOccurrenceContext(String... strRep) {
         ignoreOccurrenceContext.clear();
         for (final String s : strRep) {
-            final int type = Utils.getTokenId(s);
+            final int type = TokenUtils.getTokenId(s);
             ignoreOccurrenceContext.set(type);
         }
     }

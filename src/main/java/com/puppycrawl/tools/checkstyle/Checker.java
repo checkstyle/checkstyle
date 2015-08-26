@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -248,7 +248,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
 
         // Process each file
         for (final File file : files) {
-            if (!Utils.fileExtensionMatches(file, fileExtensions)) {
+            if (!CommonUtils.fileExtensionMatches(file, fileExtensions)) {
                 continue;
             }
             final String fileName = file.getAbsolutePath();
@@ -317,7 +317,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
      */
     @Override
     public void fireFileStarted(String fileName) {
-        final String stripped = Utils.relativizeAndNormalizePath(basedir, fileName);
+        final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
         for (final AuditListener listener : listeners) {
             listener.fileStarted(evt);
@@ -332,7 +332,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
      */
     @Override
     public void fireFileFinished(String fileName) {
-        final String stripped = Utils.relativizeAndNormalizePath(basedir, fileName);
+        final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
         for (final AuditListener listener : listeners) {
             listener.fileFinished(evt);
@@ -347,7 +347,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
      */
     @Override
     public void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {
-        final String stripped = Utils.relativizeAndNormalizePath(basedir, fileName);
+        final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);
         for (final LocalizedMessage element : errors) {
             final AuditEvent evt = new AuditEvent(this, stripped, element);
             if (filters.accept(evt)) {
@@ -373,7 +373,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
         fileExtensions = new String[extensions.length];
         for (int i = 0; i < extensions.length; i++) {
             final String extension = extensions[i];
-            if (Utils.startsWithChar(extension, '.')) {
+            if (CommonUtils.startsWithChar(extension, '.')) {
                 fileExtensions[i] = extension;
             }
             else {

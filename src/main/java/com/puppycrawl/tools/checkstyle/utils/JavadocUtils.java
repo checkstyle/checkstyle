@@ -71,7 +71,7 @@ public final class JavadocUtils {
 
             final String name = field.getName();
 
-            final int tokenValue = Utils.getIntFromField(field, name);
+            final int tokenValue = TokenUtils.getIntFromField(field, name);
             builder.put(name, tokenValue);
             if (tokenValue > tempTokenValueToName.length - 1) {
                 final String[] temp = new String[tokenValue + 1];

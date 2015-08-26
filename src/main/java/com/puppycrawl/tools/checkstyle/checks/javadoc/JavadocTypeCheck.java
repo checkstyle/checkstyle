@@ -30,9 +30,9 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * Checks the Javadoc of a type.
@@ -130,7 +130,7 @@ public class JavadocTypeCheck
      */
     public void setAuthorFormat(String format) {
         authorFormat = format;
-        authorFormatPattern = Utils.createPattern(format);
+        authorFormatPattern = CommonUtils.createPattern(format);
     }
 
     /**
@@ -139,7 +139,7 @@ public class JavadocTypeCheck
      */
     public void setVersionFormat(String format) {
         versionFormat = format;
-        versionFormatPattern = Utils.createPattern(format);
+        versionFormatPattern = CommonUtils.createPattern(format);
     }
 
     /**

@@ -39,7 +39,7 @@ import com.google.common.collect.Sets;
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Loads a list of package names from a package name XML file.
@@ -102,7 +102,7 @@ public final class PackageNamesLoader
         while (iterator.hasNext()) {
             final String subPackage = iterator.next();
             buf.append(subPackage);
-            if (!Utils.endsWithChar(subPackage, '.')) {
+            if (!CommonUtils.endsWithChar(subPackage, '.')) {
                 buf.append('.');
             }
         }

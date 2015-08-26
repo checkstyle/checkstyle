@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -150,7 +150,7 @@ public class GenericWhitespaceCheck extends Check {
         final int after = ast.getColumnNo() + 1;
 
         if (before >= 0 && Character.isWhitespace(line.charAt(before))
-                && !Utils.whitespaceBefore(before, line)) {
+                && !CommonUtils.whitespaceBefore(before, line)) {
             log(ast.getLineNo(), before, WS_PRECEDED, CLOSE_ANGLE_BRACKET);
         }
 
@@ -274,7 +274,7 @@ public class GenericWhitespaceCheck extends Check {
             }
             // Whitespace not required
             else if (Character.isWhitespace(line.charAt(before))
-                && !Utils.whitespaceBefore(before, line)) {
+                && !CommonUtils.whitespaceBefore(before, line)) {
                 log(ast.getLineNo(), before, WS_PRECEDED, OPEN_ANGLE_BRACKET);
             }
         }

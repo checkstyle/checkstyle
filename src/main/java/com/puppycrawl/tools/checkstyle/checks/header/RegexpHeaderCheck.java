@@ -29,7 +29,7 @@ import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.collect.Lists;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Checks the header of the source against a header file that contains a
@@ -165,7 +165,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
         if (StringUtils.isBlank(header)) {
             return;
         }
-        if (!Utils.isPatternValid(header)) {
+        if (!CommonUtils.isPatternValid(header)) {
             throw new ConversionException("Unable to parse format: " + header);
         }
         super.setHeader(header);

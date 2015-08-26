@@ -24,13 +24,13 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 public class TokenTypesTest {
     @Test
     public void testGetShortDescription() {
         assertEquals("short description for EQUAL",
-                "The <code>==</code> (equal) operator.", Utils
+                "The <code>==</code> (equal) operator.", TokenUtils
                         .getShortDescription("EQUAL"));
     }
 

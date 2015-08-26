@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * <p>
@@ -396,7 +396,7 @@ public class MagicNumberCheck extends Check {
     public void setConstantWaiverParentToken(String... tokens) {
         constantWaiverParentToken = new int[tokens.length];
         for (int i = 0; i < tokens.length; i++) {
-            constantWaiverParentToken[i] = Utils.getTokenId(tokens[i]);
+            constantWaiverParentToken[i] = TokenUtils.getTokenId(tokens[i]);
         }
         Arrays.sort(constantWaiverParentToken);
     }

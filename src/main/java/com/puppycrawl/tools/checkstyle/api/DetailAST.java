@@ -25,7 +25,7 @@ import antlr.CommonASTWithHiddenTokens;
 import antlr.Token;
 import antlr.collections.AST;
 
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * An extension of the CommonAST that records the line and column
@@ -203,7 +203,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
             DetailAST child = getFirstChild();
             while (child != null) {
                 // comment node can't be start of any java statement/definition
-                if (Utils.isCommentType(child.getType())) {
+                if (TokenUtils.isCommentType(child.getType())) {
                     child = child.getNextSibling();
                 }
                 else {
@@ -214,7 +214,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
             DetailAST sibling = getNextSibling();
             while (sibling != null) {
                 // comment node can't be start of any java statement/definition
-                if (Utils.isCommentType(sibling.getType())) {
+                if (TokenUtils.isCommentType(sibling.getType())) {
                     sibling = sibling.getNextSibling();
                 }
                 else {
@@ -242,7 +242,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
             DetailAST child = getFirstChild();
             while (child != null) {
                 // comment node can't be start of any java statement/definition
-                if (Utils.isCommentType(child.getType())) {
+                if (TokenUtils.isCommentType(child.getType())) {
                     child = child.getNextSibling();
                 }
                 else {
@@ -253,7 +253,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
             DetailAST sibling = getNextSibling();
             while (sibling != null) {
                 // comment node can't be start of any java statement/definition
-                if (Utils.isCommentType(sibling.getType())) {
+                if (TokenUtils.isCommentType(sibling.getType())) {
                     sibling = sibling.getNextSibling();
                 }
                 else {

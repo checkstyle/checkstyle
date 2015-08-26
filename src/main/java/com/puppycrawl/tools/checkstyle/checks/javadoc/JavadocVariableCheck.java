@@ -27,8 +27,8 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * Checks that a variable has Javadoc comment.
@@ -75,7 +75,7 @@ public class JavadocVariableCheck
      * @throws org.apache.commons.beanutils.ConversionException if unable to create Pattern object.
      */
     public void setIgnoreNamePattern(String regexp) {
-        ignoreNamePattern = Utils.createPattern(regexp);
+        ignoreNamePattern = CommonUtils.createPattern(regexp);
     }
 
     @Override

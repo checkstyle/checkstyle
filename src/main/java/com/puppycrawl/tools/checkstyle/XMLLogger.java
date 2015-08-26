@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Simple XML logger.
@@ -191,7 +191,7 @@ public class XMLLogger
      * @return whether the given argument a character or entity reference
      */
     public static boolean isReference(String ent) {
-        if (ent.charAt(0) != '&' || !Utils.endsWithChar(ent, ';')) {
+        if (ent.charAt(0) != '&' || !CommonUtils.endsWithChar(ent, ';')) {
             return false;
         }
 

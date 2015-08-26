@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <ul>
@@ -242,15 +242,15 @@ public class ImportOrderCheck
                 // matches any package
                 grp = Pattern.compile("");
             }
-            else if (Utils.startsWithChar(pkg, '/')) {
-                if (!Utils.endsWithChar(pkg, '/')) {
+            else if (CommonUtils.startsWithChar(pkg, '/')) {
+                if (!CommonUtils.endsWithChar(pkg, '/')) {
                     throw new IllegalArgumentException("Invalid group");
                 }
                 pkg = pkg.substring(1, pkg.length() - 1);
                 grp = Pattern.compile(pkg);
             }
             else {
-                if (!Utils.endsWithChar(pkg, '.')) {
+                if (!CommonUtils.endsWithChar(pkg, '.')) {
                     pkgBuilder.append('.');
                 }
                 grp = Pattern.compile("^" + Pattern.quote(pkgBuilder.toString()));

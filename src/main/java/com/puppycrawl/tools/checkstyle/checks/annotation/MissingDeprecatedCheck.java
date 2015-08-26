@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -101,15 +101,15 @@ public final class MissingDeprecatedCheck extends Check {
 
     /** Compiled regexp to match Javadoc tag with no argument * */
     private static final Pattern MATCH_DEPRECATED =
-        Utils.createPattern("@(deprecated)\\s+\\S");
+            CommonUtils.createPattern("@(deprecated)\\s+\\S");
 
     /** Compiled regexp to match first part of multilineJavadoc tags * */
     private static final Pattern MATCH_DEPRECATED_MULTILINE_START =
-        Utils.createPattern("@(deprecated)\\s*$");
+            CommonUtils.createPattern("@(deprecated)\\s*$");
 
     /** Compiled regexp to look for a continuation of the comment * */
     private static final Pattern MATCH_DEPRECATED_MULTILINE_CONT =
-        Utils.createPattern("(\\*/|@|[^\\s\\*])");
+            CommonUtils.createPattern("(\\*/|@|[^\\s\\*])");
 
     /** Multiline finished at end of comment * */
     private static final String END_JAVADOC = "*/";

@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -221,7 +221,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
      *         if unable to create Pattern object.
      */
     public void setIgnoreVariablePattern(String ignorePattern) {
-        ignoreVariablePattern = Utils.createPattern(ignorePattern);
+        ignoreVariablePattern = CommonUtils.createPattern(ignorePattern);
     }
 
     /**

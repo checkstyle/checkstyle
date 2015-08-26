@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -84,7 +84,7 @@ public class TodoCommentCheck
      */
     public void setFormat(String format) {
         this.format = format;
-        regexp = Utils.createPattern(format);
+        regexp = CommonUtils.createPattern(format);
     }
 
     @Override

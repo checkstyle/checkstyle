@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -104,7 +104,7 @@ public class WriteTagCheck
      */
     public void setTag(String tag) {
         this.tag = tag;
-        tagRE = Utils.createPattern(tag + "\\s*(.*$)");
+        tagRE = CommonUtils.createPattern(tag + "\\s*(.*$)");
     }
 
     /**
@@ -113,7 +113,7 @@ public class WriteTagCheck
      */
     public void setTagFormat(String format) {
         tagFormat = format;
-        tagFormatRE = Utils.createPattern(format);
+        tagFormatRE = CommonUtils.createPattern(format);
     }
 
     /**

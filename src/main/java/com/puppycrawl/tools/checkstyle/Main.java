@@ -42,7 +42,7 @@ import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.utils.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Wrapper command line program for the Checker.
@@ -343,7 +343,7 @@ public final class Main {
         }
         else {
             if (closeOutputStream) {
-                Utils.close(out);
+                CommonUtils.close(out);
             }
             throw new IllegalStateException(String.format(
                     "Invalid output format. Found '%s' but expected '%s' or '%s'.",
