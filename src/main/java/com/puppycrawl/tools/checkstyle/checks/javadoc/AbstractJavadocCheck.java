@@ -248,43 +248,18 @@ public abstract class AbstractJavadocCheck extends Check {
      * @return root of DetailNode tree
      */
     private DetailNode convertParseTreeToDetailNode(ParseTree parseTreeNode) {
-        final JavadocNodeImpl rootJavadocNode = createJavadocNode(parseTreeNode, null, -1);
-
-        int childCount = parseTreeNode.getChildCount();
-        JavadocNodeImpl[] children = new JavadocNodeImpl[childCount];
-
-        for (int i = 0; i < childCount; i++) {
-            final JavadocNodeImpl child = createJavadocNode(parseTreeNode.getChild(i),
-                    rootJavadocNode, i);
-            children[i] = child;
-        }
-        rootJavadocNode.setChildren(children);
+        final JavadocNodeImpl rootJavadocNode = createRootJavadocNode(parseTreeNode);
 
         JavadocNodeImpl currentJavadocParent = rootJavadocNode;
         ParseTree parseTreeParent = parseTreeNode;
 
         while (currentJavadocParent != null) {
-            children = (JavadocNodeImpl[]) currentJavadocParent.getChildren();
-            childCount = children.length;
+            final JavadocNodeImpl[] children =
+                    (JavadocNodeImpl[]) currentJavadocParent.getChildren();
 
-            for (int i = 0; i < childCount; i++) {
-                final JavadocNodeImpl currentJavadocNode = children[i];
-                final ParseTree currentParseTreeNodeChild = parseTreeParent.getChild(i);
+            insertChildrenNodes(children, parseTreeParent);
 
-                final JavadocNodeImpl[] subChildren =
-                        new JavadocNodeImpl[currentJavadocNode.getChildren().length];
-
-                for (int j = 0; j < subChildren.length; j++) {
-                    final JavadocNodeImpl child =
-                            createJavadocNode(currentParseTreeNodeChild.getChild(j),
-                                    currentJavadocNode, j);
-
-                    subChildren[j] = child;
-                }
-                currentJavadocNode.setChildren(subChildren);
-            }
-
-            if (childCount > 0) {
+            if (children.length > 0) {
                 currentJavadocParent = children[0];
                 parseTreeParent = parseTreeParent.getChild(0);
             }
@@ -316,6 +291,61 @@ public abstract class AbstractJavadocCheck extends Check {
             }
         }
 
+        return rootJavadocNode;
+    }
+
+    /**
+     * Creates child nodes for each node from 'nodes' array.
+     * @param parseTreeParent original ParseTree parent node
+     * @param nodes array of JavadocNodeImpl nodes
+     */
+    private void insertChildrenNodes(final JavadocNodeImpl[] nodes, ParseTree parseTreeParent) {
+        for (int i = 0; i < nodes.length; i++) {
+            final JavadocNodeImpl currentJavadocNode = nodes[i];
+            final ParseTree currentParseTreeNodeChild = parseTreeParent.getChild(i);
+            final JavadocNodeImpl[] subChildren =
+                    createChildrenNodes(currentJavadocNode, currentParseTreeNodeChild);
+            currentJavadocNode.setChildren(subChildren);
+        }
+    }
+
+    /**
+     * Creates children Javadoc nodes base on ParseTree node's children.
+     * @param parentJavadocNode node that will be parent for created children
+     * @param parseTreeNode original ParseTree node
+     * @return array of Javadoc nodes
+     */
+    private JavadocNodeImpl[]
+            createChildrenNodes(JavadocNodeImpl parentJavadocNode, ParseTree parseTreeNode) {
+        final JavadocNodeImpl[] children =
+                new JavadocNodeImpl[parseTreeNode.getChildCount()];
+
+        for (int j = 0; j < children.length; j++) {
+            final JavadocNodeImpl child =
+                    createJavadocNode(parseTreeNode.getChild(j), parentJavadocNode, j);
+
+            children[j] = child;
+        }
+        return children;
+    }
+
+    /**
+     * Creates root JavadocNodeImpl node base on ParseTree root node.
+     * @param parseTreeNode ParseTree root node
+     * @return root Javadoc node
+     */
+    private JavadocNodeImpl createRootJavadocNode(ParseTree parseTreeNode) {
+        final JavadocNodeImpl rootJavadocNode = createJavadocNode(parseTreeNode, null, -1);
+
+        final int childCount = parseTreeNode.getChildCount();
+        final JavadocNodeImpl[] children = new JavadocNodeImpl[childCount];
+
+        for (int i = 0; i < childCount; i++) {
+            final JavadocNodeImpl child = createJavadocNode(parseTreeNode.getChild(i),
+                    rootJavadocNode, i);
+            children[i] = child;
+        }
+        rootJavadocNode.setChildren(children);
         return rootJavadocNode;
     }
 
