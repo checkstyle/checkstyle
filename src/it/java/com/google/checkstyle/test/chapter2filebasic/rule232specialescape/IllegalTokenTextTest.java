@@ -17,7 +17,7 @@ public class IllegalTokenTextTest extends BaseCheckTestSupport{
     
     @BeforeClass
     public static void setConfigurationBuilder()
-    		throws CheckstyleException, IOException {
+    		throws CheckstyleException {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 

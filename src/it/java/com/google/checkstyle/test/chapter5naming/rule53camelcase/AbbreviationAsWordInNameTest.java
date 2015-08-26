@@ -20,7 +20,7 @@ public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport{
     private static Configuration checkConfig;
     
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() throws CheckstyleException {
         builder = new ConfigurationBuilder(new File("src/it/"));
         checkConfig = builder.getCheckConfig("AbbreviationAsWordInName");
     }

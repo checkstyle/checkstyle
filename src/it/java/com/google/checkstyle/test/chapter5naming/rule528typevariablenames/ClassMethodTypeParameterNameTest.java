@@ -19,7 +19,7 @@ public class ClassMethodTypeParameterNameTest extends BaseCheckTestSupport{
     private static String format;
 
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() throws CheckstyleException {
         builder = new ConfigurationBuilder(new File("src/it/"));
         configuration = builder.getCheckConfig("ClassTypeParameterName");
         format = configuration.getAttribute("format");
