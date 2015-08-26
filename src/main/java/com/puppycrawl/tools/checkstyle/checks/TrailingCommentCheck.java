@@ -194,21 +194,23 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
      * @return true if the comment if legal.
      */
     private boolean isLegalComment(final TextBlock comment) {
-        if (legalComment == null) {
-            return false;
-        }
+        boolean legal;
+
         // multi-line comment can not be legal
-        if (comment.getStartLineNo() != comment.getEndLineNo()) {
-            return false;
+        if (legalComment == null || comment.getStartLineNo() != comment.getEndLineNo()) {
+            legal = false;
         }
-        String commentText = comment.getText()[0];
-        // remove chars which start comment
-        commentText = commentText.substring(2);
-        // if this is a C-style comment we need to remove its end
-        if (commentText.endsWith("*/")) {
-            commentText = commentText.substring(0, commentText.length() - 2);
+        else {
+            String commentText = comment.getText()[0];
+            // remove chars which start comment
+            commentText = commentText.substring(2);
+            // if this is a C-style comment we need to remove its end
+            if (commentText.endsWith("*/")) {
+                commentText = commentText.substring(0, commentText.length() - 2);
+            }
+            commentText = commentText.trim();
+            legal = legalComment.matcher(commentText).find();
         }
-        commentText = commentText.trim();
-        return legalComment.matcher(commentText).find();
+        return legal;
     }
 }
