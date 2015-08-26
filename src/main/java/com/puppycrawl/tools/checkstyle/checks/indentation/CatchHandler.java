@@ -42,7 +42,7 @@ public class CatchHandler extends BlockParentHandler {
     }
 
     @Override
-    protected boolean toplevelMustStartLine() {
+    protected boolean shouldTopLevelStartLine() {
         return false;
     }
 

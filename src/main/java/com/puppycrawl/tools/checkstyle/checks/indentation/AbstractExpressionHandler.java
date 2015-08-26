@@ -332,7 +332,7 @@ public abstract class AbstractExpressionHandler {
     private void checkSingleLine(int lineNum, IndentLevel indentLevel) {
         final String line = indentCheck.getLine(lineNum - 1);
         final int start = getLineStart(line);
-        if (indentLevel.greaterThan(start)) {
+        if (indentLevel.isGreaterThan(start)) {
             logChildError(lineNum, start, indentLevel);
         }
     }
@@ -354,8 +354,8 @@ public abstract class AbstractExpressionHandler {
         // at the correct indention level; otherwise, it is an only an
         // error if this statement starts the line and it is less than
         // the correct indentation level
-        if (mustMatch && !indentLevel.accept(start)
-                || !mustMatch && colNum == start && indentLevel.greaterThan(start)) {
+        if (mustMatch && !indentLevel.isAcceptable(start)
+                || !mustMatch && colNum == start && indentLevel.isGreaterThan(start)) {
             logChildError(lineNum, start, indentLevel);
         }
     }
@@ -507,7 +507,7 @@ public abstract class AbstractExpressionHandler {
              modifier != null;
              modifier = modifier.getNextSibling()) {
             if (startsLine(modifier)
-                && !getLevel().accept(expandedTabsColumnNo(modifier))) {
+                && !getLevel().isAcceptable(expandedTabsColumnNo(modifier))) {
                 logError(modifier, "modifier",
                     expandedTabsColumnNo(modifier));
             }
@@ -577,7 +577,7 @@ public abstract class AbstractExpressionHandler {
         // the rcurly can either be at the correct indentation,
         // or not first on the line ...
         final int rparenLevel = expandedTabsColumnNo(rparen);
-        if (getLevel().accept(rparenLevel) || !startsLine(rparen)) {
+        if (getLevel().isAcceptable(rparenLevel) || !startsLine(rparen)) {
             return;
         }
 
@@ -598,7 +598,7 @@ public abstract class AbstractExpressionHandler {
         // the rcurly can either be at the correct indentation, or on the
         // same line as the lcurly
         if (lparen == null
-            || getLevel().accept(expandedTabsColumnNo(lparen))
+            || getLevel().isAcceptable(expandedTabsColumnNo(lparen))
             || !startsLine(lparen)) {
             return;
         }

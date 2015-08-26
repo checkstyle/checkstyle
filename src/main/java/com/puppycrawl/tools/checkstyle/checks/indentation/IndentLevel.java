@@ -67,7 +67,7 @@ public class IndentLevel {
      * @return true if given indentation is acceptable,
      *         false otherwise.
      */
-    public boolean accept(int indent) {
+    public boolean isAcceptable(int indent) {
         return levels.get(indent);
     }
 
@@ -76,7 +76,7 @@ public class IndentLevel {
      * @return true if {@code indent} less then minimal of
      *         acceptable indentation levels, false otherwise.
      */
-    public boolean greaterThan(int indent) {
+    public boolean isGreaterThan(int indent) {
         return levels.nextSetBit(0) > indent;
     }
 

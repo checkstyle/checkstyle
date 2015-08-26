@@ -78,12 +78,12 @@ public class ArrayInitHandler extends BlockParentHandler {
     }
 
     @Override
-    protected boolean rcurlyMustStart() {
+    protected boolean shouldStartWithRCurly() {
         return false;
     }
 
     @Override
-    protected boolean childrenMayNest() {
+    protected boolean canChildrenBeNested() {
         return true;
     }
 
