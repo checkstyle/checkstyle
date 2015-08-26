@@ -43,34 +43,39 @@ public class MethodCallHandler extends AbstractExpressionHandler {
 
     @Override
     protected IndentLevel getLevelImpl() {
+        IndentLevel indentLevel;
         // if inside a method call's params, this could be part of
         // an expression, so get the previous line's start
         if (getParent() instanceof MethodCallHandler) {
             final MethodCallHandler container =
                     (MethodCallHandler) getParent();
             if (areOnSameLine(container.getMainAst(), getMainAst())) {
-                return container.getLevel();
+                indentLevel = container.getLevel();
             }
             // we should increase indentation only if this is the first
             // chained method call which was moved to the next line
-            if (isChainedMethodCallWrapped()) {
-                return container.getLevel();
+            else if (isChainedMethodCallWrapped()) {
+                indentLevel = container.getLevel();
             }
             else {
-                return new IndentLevel(container.getLevel(), getBasicOffset());
+                indentLevel = new IndentLevel(container.getLevel(), getBasicOffset());
             }
         }
-
-        // if our expression isn't first on the line, just use the start
-        // of the line
-        final LineSet lines = new LineSet();
-        findSubtreeLines(lines, getMainAst().getFirstChild(), true);
-        final int firstCol = lines.firstLineCol();
-        final int lineStart = getLineStart(getFirstAst(getMainAst()));
-        if (lineStart != firstCol) {
-            return new IndentLevel(lineStart);
+        else {
+            // if our expression isn't first on the line, just use the start
+            // of the line
+            final LineSet lines = new LineSet();
+            findSubtreeLines(lines, getMainAst().getFirstChild(), true);
+            final int firstCol = lines.firstLineCol();
+            final int lineStart = getLineStart(getFirstAst(getMainAst()));
+            if (lineStart != firstCol) {
+                indentLevel = new IndentLevel(lineStart);
+            }
+            else {
+                indentLevel = super.getLevelImpl();
+            }
         }
-        return super.getLevelImpl();
+        return indentLevel;
     }
 
     /**
