@@ -324,13 +324,13 @@ public final class ModifiedControlVariableCheck extends Check {
      */
     private void leaveForDef(DetailAST ast) {
         final DetailAST forInitAST = ast.findFirstToken(TokenTypes.FOR_INIT);
-        if (forInitAST != null) {
-            final Set<String> variablesManagedByForLoop = getVariablesManagedByForLoop(ast);
-            popCurrentVariables(variablesManagedByForLoop.size());
-        }
-        else {
+        if (forInitAST == null) {
             // this is for-each loop, just pop veriables
             getCurrentVariables().pop();
+        }
+        else {
+            final Set<String> variablesManagedByForLoop = getVariablesManagedByForLoop(ast);
+            popCurrentVariables(variablesManagedByForLoop.size());
         }
     }
 

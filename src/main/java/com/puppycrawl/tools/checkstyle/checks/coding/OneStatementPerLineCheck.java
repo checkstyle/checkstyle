@@ -169,13 +169,13 @@ public final class OneStatementPerLineCheck extends Check {
      */
     private static boolean isMultilineStatement(DetailAST ast) {
         final boolean multiline;
-        if (ast.getPreviousSibling() != null) {
+        if (ast.getPreviousSibling() == null) {
+            multiline = false;
+        }
+        else {
             final DetailAST prevSibling = ast.getPreviousSibling();
             multiline = prevSibling.getLineNo() != ast.getLineNo()
                 && ast.getParent() != null;
-        }
-        else {
-            multiline = false;
         }
         return multiline;
     }

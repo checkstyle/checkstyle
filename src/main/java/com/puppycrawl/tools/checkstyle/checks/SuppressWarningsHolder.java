@@ -214,13 +214,13 @@ public class SuppressWarningsHolder
             final DetailAST nextAST = targetAST.getNextSibling();
             final int lastLine;
             final int lastColumn;
-            if (nextAST != null) {
-                lastLine = nextAST.getLineNo();
-                lastColumn = nextAST.getColumnNo() - 1;
-            }
-            else {
+            if (nextAST == null) {
                 lastLine = Integer.MAX_VALUE;
                 lastColumn = Integer.MAX_VALUE;
+            }
+            else {
+                lastLine = nextAST.getLineNo();
+                lastColumn = nextAST.getColumnNo() - 1;
             }
 
             // add suppression entries for listed checks

@@ -339,29 +339,29 @@ public class SuppressionCommentFilter
                     format =
                         expandFromCoont(text, filter.checkFormat, filter.onRegexp);
                     tagCheckRegexp = Pattern.compile(format);
-                    if (filter.messageFormat != null) {
+                    if (filter.messageFormat == null) {
+                        tagMessageRegexp = null;
+                    }
+                    else {
                         format =
                             expandFromCoont(text, filter.messageFormat, filter.onRegexp);
                         tagMessageRegexp = Pattern.compile(format);
-                    }
-                    else {
-                        tagMessageRegexp = null;
                     }
                 }
                 else {
                     format =
                         expandFromCoont(text, filter.checkFormat, filter.offRegexp);
                     tagCheckRegexp = Pattern.compile(format);
-                    if (filter.messageFormat != null) {
+                    if (filter.messageFormat == null) {
+                        tagMessageRegexp = null;
+                    }
+                    else {
                         format =
                             expandFromCoont(
                                 text,
                                 filter.messageFormat,
                                 filter.offRegexp);
                         tagMessageRegexp = Pattern.compile(format);
-                    }
-                    else {
-                        tagMessageRegexp = null;
                     }
                 }
             }

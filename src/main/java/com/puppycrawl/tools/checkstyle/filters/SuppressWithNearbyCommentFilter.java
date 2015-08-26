@@ -313,13 +313,13 @@ public class SuppressWithNearbyCommentFilter
             try {
                 format = expandFrocomment(text, filter.checkFormat, filter.commentRegexp);
                 tagCheckRegexp = Pattern.compile(format);
-                if (filter.messageFormat != null) {
-                    format = expandFrocomment(
-                         text, filter.messageFormat, filter.commentRegexp);
-                    tagMessageRegexp = Pattern.compile(format);
+                if (filter.messageFormat == null) {
+                    tagMessageRegexp = null;
                 }
                 else {
-                    tagMessageRegexp = null;
+                    format = expandFrocomment(
+                        text, filter.messageFormat, filter.commentRegexp);
+                    tagMessageRegexp = Pattern.compile(format);
                 }
                 format = expandFrocomment(
                     text, filter.influenceFormat, filter.commentRegexp);

@@ -92,12 +92,11 @@ public class MultipleStringLiteralsCheck extends Check {
      *         if unable to create Pattern object
      */
     public final void setIgnoreStringsRegexp(String ignoreStringsRegexp) {
-        if (ignoreStringsRegexp != null
-            && !ignoreStringsRegexp.isEmpty()) {
-            pattern = Utils.createPattern(ignoreStringsRegexp);
+        if (ignoreStringsRegexp == null || ignoreStringsRegexp.isEmpty()) {
+            pattern = null;
         }
         else {
-            pattern = null;
+            pattern = Utils.createPattern(ignoreStringsRegexp);
         }
     }
 

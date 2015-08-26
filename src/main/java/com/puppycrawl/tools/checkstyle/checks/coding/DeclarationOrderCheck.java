@@ -248,7 +248,16 @@ public class DeclarationOrderCheck extends Check {
     private void processModifiers(DetailAST ast) {
 
         final ScopeState state = scopeStates.peek();
-        if (ast.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
+        if (ast.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+            if (state.currentScopeState > STATE_INSTANCE_VARIABLE_DEF) {
+                log(ast, MSG_INSTANCE);
+            }
+            else if (state.currentScopeState == STATE_STATIC_VARIABLE_DEF) {
+                state.declarationAccess = Scope.PUBLIC;
+                state.currentScopeState = STATE_INSTANCE_VARIABLE_DEF;
+            }
+        }
+        else {
             if (state.currentScopeState > STATE_STATIC_VARIABLE_DEF) {
                 if (!ignoreModifiers
                     || state.currentScopeState > STATE_INSTANCE_VARIABLE_DEF) {
@@ -257,15 +266,6 @@ public class DeclarationOrderCheck extends Check {
             }
             else {
                 state.currentScopeState = STATE_STATIC_VARIABLE_DEF;
-            }
-        }
-        else {
-            if (state.currentScopeState > STATE_INSTANCE_VARIABLE_DEF) {
-                log(ast, MSG_INSTANCE);
-            }
-            else if (state.currentScopeState == STATE_STATIC_VARIABLE_DEF) {
-                state.declarationAccess = Scope.PUBLIC;
-                state.currentScopeState = STATE_INSTANCE_VARIABLE_DEF;
             }
         }
 
