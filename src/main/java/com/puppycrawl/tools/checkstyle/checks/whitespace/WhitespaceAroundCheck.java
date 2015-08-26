@@ -366,7 +366,7 @@ public class WhitespaceAroundCheck extends Check {
             // Check for "return;"
             && !(currentType == TokenTypes.LITERAL_RETURN
                 && ast.getFirstChild().getType() == TokenTypes.SEMI)
-            && !isAnnonimousInnerClassEnd(currentType, nextChar)) {
+            && !isAnonymousInnerClassEnd(currentType, nextChar)) {
 
             log(ast.getLineNo(), ast.getColumnNo() + ast.getText().length(),
                     WS_NOT_FOLLOWED, ast.getText());
@@ -379,7 +379,7 @@ public class WhitespaceAroundCheck extends Check {
      * @param nextChar next symbol
      * @return true is that is end of anon inner class
      */
-    private static boolean isAnnonimousInnerClassEnd(int currentType, char nextChar) {
+    private static boolean isAnonymousInnerClassEnd(int currentType, char nextChar) {
         return currentType == TokenTypes.RCURLY
             && (nextChar == ')'
                 || nextChar == ';'
@@ -417,7 +417,7 @@ public class WhitespaceAroundCheck extends Check {
             return true;
         }
 
-        // Checks if empty methods, ctors or loops are allowed.
+        // Checks if empty methods, constructors or loops are allowed.
         if (isEmptyBlock(ast, parentType)) {
             return true;
         }
@@ -461,7 +461,7 @@ public class WhitespaceAroundCheck extends Check {
 
     /**
      * Is array initialization
-     * @param currentType curret token
+     * @param currentType current token
      * @param parentType parent token
      * @return true is current token inside array initialization
      */

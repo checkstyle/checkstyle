@@ -267,7 +267,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void testloadSuppressionsURISyntaxException() throws Exception {
+    public void testLoadSuppressionsURISyntaxException() throws Exception {
         URL configUrl = mock(URL.class);
 
         when(configUrl.toURI()).thenThrow(URISyntaxException.class);

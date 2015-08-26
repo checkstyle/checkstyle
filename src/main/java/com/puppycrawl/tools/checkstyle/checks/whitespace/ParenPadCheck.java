@@ -159,7 +159,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
      */
     private void visitLiteralFor(DetailAST ast) {
         DetailAST parenAst = ast.findFirstToken(TokenTypes.LPAREN);
-        if (!isPreceedsEmptyForInit(parenAst)) {
+        if (!isPrecedingEmptyForInit(parenAst)) {
             processLeft(parenAst);
         }
         parenAst = ast.findFirstToken(TokenTypes.RPAREN);
@@ -269,9 +269,9 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
      * @param ast the token to check
-     * @return whether a token preceeds an empty for initializer
+     * @return whether a token precedes an empty for initializer
      */
-    private static boolean isPreceedsEmptyForInit(DetailAST ast) {
+    private static boolean isPrecedingEmptyForInit(DetailAST ast) {
         boolean result = false;
         final DetailAST parent = ast.getParent();
         //Only traditional for statements are examined, not for-each statements

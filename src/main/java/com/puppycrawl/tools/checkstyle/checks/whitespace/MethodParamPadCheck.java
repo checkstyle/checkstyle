@@ -151,9 +151,9 @@ public class MethodParamPadCheck
     }
 
     /**
-     * Control whether whitespace is flagged at linebreaks.
+     * Control whether whitespace is flagged at line breaks.
      * @param allowLineBreaks whether whitespace should be
-     * flagged at linebreaks.
+     * flagged at line breaks.
      */
     public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;

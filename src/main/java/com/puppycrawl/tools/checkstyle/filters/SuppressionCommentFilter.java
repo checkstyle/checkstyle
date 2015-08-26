@@ -106,7 +106,7 @@ public class SuppressionCommentFilter
     private WeakReference<FileContents> fileContentsReference = new WeakReference<>(null);
 
     /**
-     * Constructs a SuppressionCoontFilter.
+     * Constructs a SuppressionCommentFilter.
      * Initializes comment on, comment off, and check formats
      * to defaults.
      */
@@ -233,10 +233,10 @@ public class SuppressionCommentFilter
             tagSuppressions(contents.getCppComments().values());
         }
         if (checkC) {
-            final Collection<List<TextBlock>> cCoonts = contents
+            final Collection<List<TextBlock>> cComments = contents
                     .getCComments().values();
-            for (List<TextBlock> eleont : cCoonts) {
-                tagSuppressions(eleont);
+            for (List<TextBlock> element : cComments) {
+                tagSuppressions(element);
             }
         }
         Collections.sort(tags);
@@ -292,7 +292,7 @@ public class SuppressionCommentFilter
 
     /**
      * A Tag holds a suppression comment and its location, and determines
-     * whether the supression turns checkstyle reporting on or off.
+     * whether the suppression turns checkstyle reporting on or off.
      * @author Rick Giles
      */
     public static class Tag

@@ -178,7 +178,7 @@ public class NoWhitespaceAfterCheck extends Check {
             typeOrIdent = arrayDeclarator.getParent().getFirstChild();
         }
         else if (isMultiDimensionalArray(arrayDeclarator)) {
-            if (isCstyleMultiDimensionalArrayDeclaration(arrayDeclarator)) {
+            if (isCStyleMultiDimensionalArrayDeclaration(arrayDeclarator)) {
                 if (arrayDeclarator.getParent().getType() != TokenTypes.ARRAY_DECLARATOR) {
                     typeOrIdent = getArrayIdentifier(arrayDeclarator);
                 }
@@ -192,7 +192,7 @@ public class NoWhitespaceAfterCheck extends Check {
             }
         }
         else {
-            if (isCstyleArrayDeclaration(arrayDeclarator)) {
+            if (isCStyleArrayDeclaration(arrayDeclarator)) {
                 typeOrIdent = getArrayIdentifier(arrayDeclarator);
             }
             else {
@@ -258,9 +258,9 @@ public class NoWhitespaceAfterCheck extends Check {
     }
 
     /**
-     * Control whether whitespace is flagged at linebreaks.
+     * Control whether whitespace is flagged at line breaks.
      * @param allowLineBreaks whether whitespace should be
-     * flagged at linebreaks.
+     * flagged at line breaks.
      */
     public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;
@@ -281,7 +281,7 @@ public class NoWhitespaceAfterCheck extends Check {
      * @param arrayDeclaration {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}
      * @return true if array is declared in C style
      */
-    private static boolean isCstyleArrayDeclaration(DetailAST arrayDeclaration) {
+    private static boolean isCStyleArrayDeclaration(DetailAST arrayDeclaration) {
         boolean result = false;
         final DetailAST identifier = getArrayIdentifier(arrayDeclaration);
         if (identifier != null) {
@@ -298,13 +298,13 @@ public class NoWhitespaceAfterCheck extends Check {
      * @param arrayDeclaration {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}
      * @return true if multidimensional array is declared in C style.
      */
-    private static boolean isCstyleMultiDimensionalArrayDeclaration(DetailAST arrayDeclaration) {
+    private static boolean isCStyleMultiDimensionalArrayDeclaration(DetailAST arrayDeclaration) {
         boolean result = false;
         DetailAST parentArrayDeclaration = arrayDeclaration;
         while (parentArrayDeclaration != null) {
             if (parentArrayDeclaration.getParent() != null
                     && parentArrayDeclaration.getParent().getType() == TokenTypes.TYPE) {
-                result = isCstyleArrayDeclaration(parentArrayDeclaration);
+                result = isCStyleArrayDeclaration(parentArrayDeclaration);
             }
             parentArrayDeclaration = parentArrayDeclaration.getParent();
         }

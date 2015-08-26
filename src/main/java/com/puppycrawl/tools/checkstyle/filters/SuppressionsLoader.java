@@ -118,7 +118,7 @@ public final class SuppressionsLoader
 
     /**
      * Returns the suppression filters in a specified file.
-     * @param filename name of the suppresssions file.
+     * @param filename name of the suppressions file.
      * @return the filter chain of suppression elements specified in the file.
      * @throws CheckstyleException if an error occurs.
      */

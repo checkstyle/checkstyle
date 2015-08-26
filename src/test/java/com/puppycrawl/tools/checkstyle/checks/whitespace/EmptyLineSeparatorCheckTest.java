@@ -138,7 +138,7 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
-    public void testPrePreviousLineEmpiness() throws Exception {
+    public void testPrePreviousLineEmptiness() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowMultipleEmptyLines", "false");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
