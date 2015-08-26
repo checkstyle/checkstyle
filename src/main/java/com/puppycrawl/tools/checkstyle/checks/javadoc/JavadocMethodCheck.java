@@ -559,6 +559,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         final String[] lines = comment.getText();
         final List<JavadocTag> tags = Lists.newArrayList();
         int currentLine = comment.getStartLineNo() - 1;
+        final int startColumnNumber = comment.getStartColNo();
 
         for (int i = 0; i < lines.length; i++) {
             currentLine++;
@@ -574,79 +575,102 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
                 MATCH_JAVADOC_NOARG_MULTILINE_START.matcher(lines[i]);
 
             if (javadocArgMatcher.find()) {
-                int col = javadocArgMatcher.start(1) - 1;
-                if (i == 0) {
-                    col += comment.getStartColNo();
-                }
-                tags.add(new JavadocTag(currentLine, col, javadocArgMatcher
-                        .group(1), javadocArgMatcher.group(2)));
+                final int col = calculateTagColumn(javadocArgMatcher, i, startColumnNumber);
+                tags.add(new JavadocTag(currentLine, col, javadocArgMatcher.group(1),
+                        javadocArgMatcher.group(2)));
             }
             else if (javadocNoargMatcher.find()) {
-                int col = javadocNoargMatcher.start(1) - 1;
-                if (i == 0) {
-                    col += comment.getStartColNo();
-                }
-                tags.add(new JavadocTag(currentLine, col, javadocNoargMatcher
-                        .group(1)));
+                final int col = calculateTagColumn(javadocNoargMatcher, i, startColumnNumber);
+                tags.add(new JavadocTag(currentLine, col, javadocNoargMatcher.group(1)));
             }
             else if (noargCurlyMatcher.find()) {
-                int col = noargCurlyMatcher.start(1) - 1;
-                if (i == 0) {
-                    col += comment.getStartColNo();
-                }
-                tags.add(new JavadocTag(currentLine, col, noargCurlyMatcher
-                        .group(1)));
+                final int col = calculateTagColumn(noargCurlyMatcher, i, startColumnNumber);
+                tags.add(new JavadocTag(currentLine, col, noargCurlyMatcher.group(1)));
             }
             else if (argMultilineStart.find()) {
-                final String p1 = argMultilineStart.group(1);
-                final String p2 = argMultilineStart.group(2);
-                int col = argMultilineStart.start(1) - 1;
-                if (i == 0) {
-                    col += comment.getStartColNo();
-                }
-
-                // Look for the rest of the comment if all we saw was
-                // the tag and the name. Stop when we see '*/' (end of
-                // Javadoc), '@' (start of next tag), or anything that's
-                // not whitespace or '*' characters.
-                int remIndex = i + 1;
-                while (remIndex < lines.length) {
-                    final Matcher multilineCont = MATCH_JAVADOC_MULTILINE_CONT
-                            .matcher(lines[remIndex]);
-                    if (multilineCont.find()) {
-                        remIndex = lines.length;
-                        final String lFin = multilineCont.group(1);
-                        if (!lFin.equals(NEXT_TAG)
-                            && !lFin.equals(END_JAVADOC)) {
-                            tags.add(new JavadocTag(currentLine, col, p1, p2));
-                        }
-                    }
-                    remIndex++;
-                }
+                final int col = calculateTagColumn(argMultilineStart, i, startColumnNumber);
+                tags.addAll(getMultilineArgTags(argMultilineStart, col, lines, i, currentLine));
             }
             else if (noargMultilineStart.find()) {
-                final String p1 = noargMultilineStart.group(1);
-                final int col = noargMultilineStart.start(1) - 1;
-
-                // Look for the rest of the comment if all we saw was
-                // the tag and the name. Stop when we see '*/' (end of
-                // Javadoc), '@' (start of next tag), or anything that's
-                // not whitespace or '*' characters.
-                int remIndex = i + 1;
-                while (remIndex < lines.length) {
-                    final Matcher multilineCont = MATCH_JAVADOC_MULTILINE_CONT
-                            .matcher(lines[remIndex]);
-                    multilineCont.find();
-                    remIndex = lines.length;
-                    final String lFin = multilineCont.group(1);
-                    if (!lFin.equals(NEXT_TAG)
-                        && !lFin.equals(END_JAVADOC)) {
-                        tags.add(new JavadocTag(currentLine, col, p1));
-                    }
-                    remIndex++;
-                }
+                tags.addAll(getMultilineNoArgTags(noargMultilineStart, lines, i, currentLine));
             }
         }
+        return tags;
+    }
+
+    /**
+     * Calculates column number using Javadoc tag matcher.
+     * @param javadocTagMatcher found javadoc tag matcher
+     * @param lineNumber line number of Javadoc tag in comment
+     * @param startColumnNumber column number of Javadoc comment beginning
+     * @return column number
+     */
+    private static int calculateTagColumn(Matcher javadocTagMatcher,
+            int lineNumber, int startColumnNumber) {
+        int col = javadocTagMatcher.start(1) - 1;
+        if (lineNumber == 0) {
+            col += startColumnNumber;
+        }
+        return col;
+    }
+
+    /**
+     * Gets multiline Javadoc tags with arguments.
+     * @param argMultilineStart javadoc tag Matcher
+     * @param column column number of Javadoc tag
+     * @param lines comment text lines
+     * @param lineIndex line number that contains the javadoc tag
+     * @param tagLine javadoc tag line number in file
+     * @return javadoc tags with arguments
+     */
+    private static List<JavadocTag> getMultilineArgTags(final Matcher argMultilineStart,
+            final int column, final String[] lines, final int lineIndex, final int tagLine) {
+        final List<JavadocTag> tags = new ArrayList<>();
+        final String p1 = argMultilineStart.group(1);
+        final String p2 = argMultilineStart.group(2);
+        int remIndex = lineIndex + 1;
+        while (remIndex < lines.length) {
+            final Matcher multilineCont = MATCH_JAVADOC_MULTILINE_CONT.matcher(lines[remIndex]);
+            if (multilineCont.find()) {
+                remIndex = lines.length;
+                final String lFin = multilineCont.group(1);
+                if (!lFin.equals(NEXT_TAG)
+                    && !lFin.equals(END_JAVADOC)) {
+                    tags.add(new JavadocTag(tagLine, column, p1, p2));
+                }
+            }
+            remIndex++;
+        }
+        return tags;
+    }
+
+    /**
+     * Gets multiline Javadoc tags with no arguments.
+     * @param noargMultilineStart javadoc tag Matcher
+     * @param lines comment text lines
+     * @param lineIndex line number that contains the javadoc tag
+     * @param tagLine javadoc tag line number in file
+     * @return javadoc tags with no arguments
+     */
+    private static List<JavadocTag> getMultilineNoArgTags(final Matcher noargMultilineStart,
+            final String[] lines, final int lineIndex, final int tagLine) {
+        final String p1 = noargMultilineStart.group(1);
+        final int col = noargMultilineStart.start(1) - 1;
+        final List<JavadocTag> tags = new ArrayList<>();
+        int remIndex = lineIndex + 1;
+        while (remIndex < lines.length) {
+            final Matcher multilineCont = MATCH_JAVADOC_MULTILINE_CONT
+                    .matcher(lines[remIndex]);
+            multilineCont.find();
+            remIndex = lines.length;
+            final String lFin = multilineCont.group(1);
+            if (!lFin.equals(NEXT_TAG)
+                && !lFin.equals(END_JAVADOC)) {
+                tags.add(new JavadocTag(tagLine, col, p1));
+            }
+            remIndex++;
+        }
+
         return tags;
     }
 
@@ -849,7 +873,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             if (!tag.isThrowsTag()) {
                 continue;
             }
-
             tagIt.remove();
 
             // Loop looking for matching throw
@@ -858,7 +881,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
                     .getColumnNo());
             final AbstractClassInfo documentedCI = createClassInfo(token,
                     getCurrentClassName());
-
             final boolean found = foundThrows.contains(documentedEx)
                     || isInThrows(throwsList, documentedCI, foundThrows);
 
@@ -877,7 +899,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
                 }
             }
         }
-
         // Now dump out all throws without tags :- unless
         // the user has chosen to suppress these problems
         if (!allowMissingThrowsTags && reportExpectedTags) {
