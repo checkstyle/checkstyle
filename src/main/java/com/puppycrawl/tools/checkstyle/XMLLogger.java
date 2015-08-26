@@ -191,11 +191,12 @@ public class XMLLogger
      * @return whether the given argument a character or entity reference
      */
     public static boolean isReference(String ent) {
-        if (ent.charAt(0) != '&' || !CommonUtils.endsWithChar(ent, ';')) {
-            return false;
-        }
+        boolean reference = false;
 
-        if (ent.charAt(1) == '#') {
+        if (ent.charAt(0) != '&' || !CommonUtils.endsWithChar(ent, ';')) {
+            reference = false;
+        }
+        else if (ent.charAt(1) == '#') {
             // prefix is "&#"
             int prefixLength = 2;
 
@@ -207,19 +208,21 @@ public class XMLLogger
             try {
                 Integer.parseInt(
                     ent.substring(prefixLength, ent.length() - 1), radix);
-                return true;
+                reference = true;
             }
             catch (final NumberFormatException ignored) {
-                return false;
+                reference = false;
             }
         }
-
-        final String name = ent.substring(1, ent.length() - 1);
-        for (String element : ENTITIES) {
-            if (name.equals(element)) {
-                return true;
+        else {
+            final String name = ent.substring(1, ent.length() - 1);
+            for (String element : ENTITIES) {
+                if (name.equals(element)) {
+                    reference = true;
+                    break;
+                }
             }
         }
-        return false;
+        return reference;
     }
 }
