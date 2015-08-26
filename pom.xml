@@ -1163,173 +1163,393 @@
                     <rule>
                       <element>BUNDLE</element>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.99</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.99</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.99</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.99</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>PACKAGE</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.99</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.97</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.99</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.97</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>PACKAGE</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.93</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.93</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.93</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.93</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.93</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.82</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.93</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.82</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.90</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.90</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.90</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.90</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.Main</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.Main</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.92</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.84</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.92</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.84</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.PropertyCacheFile</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.PropertyCacheFile</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.97</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>1.00</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.97</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>1.00</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.TreeWalker.AstState</include></includes>
-                      <limits><limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.76</minimum></limit></limits>
-                    </rule>
-                    <rule>
-                      <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.DefaultLogger</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.TreeWalker.AstState</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.97</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>1.00</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.76</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks.TranslationCheck</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.DefaultLogger</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.82</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.81</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.97</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>1.00</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks.TranslationCheck</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.88</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.76</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.82</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.81</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.88</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.94</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.88</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.76</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.74</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.83</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.88</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.94</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck.RegularClass</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.62</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.83</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.74</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.83</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck.Token</include></includes>
-                      <limits><limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.62</minimum></limit></limits>
-                    </rule>
-                    <rule>
-                      <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks.ClassResolver</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck.RegularClass</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.91</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.83</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.62</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.83</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck.ClassAlias</include></includes>
-                      <limits><limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.39</minimum></limit></limits>
-                    </rule>
-                    <rule>
-                      <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck.Token</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.96</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>1.00</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.62</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck.AbstractClassInfo</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks.ClassResolver</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.69</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.50</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.91</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.83</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks.AbstractDeclarationCollector</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck.ClassAlias</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>1.00</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.94</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.39</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.UniqueProperties</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>1.00</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.75</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.96</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>1.00</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils</include></includes>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck.AbstractClassInfo</include>
+                      </includes>
                       <limits>
-                        <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.99</minimum></limit>
-                        <limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.98</minimum></limit>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.69</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.50</minimum>
+                        </limit>
                       </limits>
                     </rule>
                     <rule>
                       <element>CLASS</element>
-                      <includes><include>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils.JavadocTagType</include></includes>
-                      <limits><limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.81</minimum></limit></limits>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks.AbstractDeclarationCollector</include>
+                      </includes>
+                      <limits>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>1.00</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.94</minimum>
+                        </limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.UniqueProperties</include>
+                      </includes>
+                      <limits>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>1.00</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.75</minimum>
+                        </limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils</include>
+                      </includes>
+                      <limits>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.99</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.98</minimum>
+                        </limit>
+                      </limits>
+                    </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils.JavadocTagType</include>
+                      </includes>
+                      <limits>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.81</minimum>
+                        </limit>
+                      </limits>
                     </rule>
                   </rules>
                 </configuration>
