@@ -174,20 +174,21 @@ public final class MissingOverrideCheck extends Check {
      * @return true if contains the tag
      */
     private static boolean containsJavadocTag(final TextBlock javadoc) {
-        if (javadoc == null) {
-            return false;
-        }
+        boolean javadocTag = false;
 
-        final String[] lines = javadoc.getText();
+        if (javadoc != null) {
+            final String[] lines = javadoc.getText();
 
-        for (final String line : lines) {
-            final Matcher matchInheritDoc =
-                MATCH_INHERITDOC.matcher(line);
+            for (final String line : lines) {
+                final Matcher matchInheritDoc =
+                    MATCH_INHERITDOC.matcher(line);
 
-            if (matchInheritDoc.find()) {
-                return true;
+                if (matchInheritDoc.find()) {
+                    javadocTag = true;
+                    break;
+                }
             }
         }
-        return false;
+        return javadocTag;
     }
 }
