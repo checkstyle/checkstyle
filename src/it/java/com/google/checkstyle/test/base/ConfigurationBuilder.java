@@ -31,8 +31,7 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 
 	private URL url;
 
-	public ConfigurationBuilder(File aROOT)
-			throws CheckstyleException {
+	public ConfigurationBuilder(File aROOT) {
 		root = aROOT;
 		configuration = getConfigurationFromXML(XML_NAME, System.getProperties());
 		listFiles(files, root, "java");

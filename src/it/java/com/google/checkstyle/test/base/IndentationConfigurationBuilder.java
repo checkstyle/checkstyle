@@ -18,8 +18,7 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder
     private static final int TAB_WIDTH = 4;
 
     public IndentationConfigurationBuilder(File aROOT)
-        throws CheckstyleException, IOException
-    {
+        throws CheckstyleException {
         super(aROOT);
     }
 

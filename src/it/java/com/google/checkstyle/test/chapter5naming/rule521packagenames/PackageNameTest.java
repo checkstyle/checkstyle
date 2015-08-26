@@ -21,7 +21,7 @@ public class PackageNameTest extends BaseCheckTestSupport{
 
 
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() throws CheckstyleException {
         builder = new ConfigurationBuilder(new File("src/it/"));
         checkConfig = builder.getCheckConfig("PackageName");
         format = checkConfig.getAttribute("format");

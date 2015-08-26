@@ -17,7 +17,7 @@ public class JavadocTagContinuationIndentationTest extends BaseCheckTestSupport{
     static ConfigurationBuilder builder;
 
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() throws CheckstyleException {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 
