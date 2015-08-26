@@ -32,6 +32,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.google.common.collect.Lists;
@@ -105,7 +106,7 @@ public class XMLLoggerTest {
         final XMLLogger logger = new XMLLogger(outStream, true);
         logger.auditStarted(null);
         logger.auditFinished(null);
-        final String[] expectedLines = {};
+        final String[] expectedLines = ArrayUtils.EMPTY_STRING_ARRAY;
         verifyLines(expectedLines);
     }
 
@@ -116,7 +117,7 @@ public class XMLLoggerTest {
         logger.auditStarted(null);
         logger.auditFinished(null);
         outStream.close();
-        final String[] expectedLines = {};
+        final String[] expectedLines = ArrayUtils.EMPTY_STRING_ARRAY;
         verifyLines(expectedLines);
     }
 
@@ -189,7 +190,7 @@ public class XMLLoggerTest {
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
         logger.addError(ev);
         logger.auditFinished(null);
-        final String[] expectedLines = {};
+        final String[] expectedLines = ArrayUtils.EMPTY_STRING_ARRAY;
         verifyLines(expectedLines);
     }
 

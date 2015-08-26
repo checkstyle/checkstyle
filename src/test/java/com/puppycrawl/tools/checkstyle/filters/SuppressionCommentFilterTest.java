@@ -27,6 +27,7 @@ import java.util.Collection;
 import java.util.Locale;
 
 import org.apache.commons.beanutils.ConversionException;
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -72,8 +73,7 @@ public class SuppressionCommentFilterTest
     @Test
     public void testNone() throws Exception {
         final DefaultConfiguration filterConfig = null;
-        final String[] suppressed = {
-        };
+        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
 
@@ -253,8 +253,7 @@ public class SuppressionCommentFilterTest
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("checkFormat", "e[l");
-        final String[] suppressed = {
-        };
+        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
 
@@ -263,8 +262,7 @@ public class SuppressionCommentFilterTest
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("messageFormat", "e[l");
-        final String[] suppressed = {
-        };
+        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
 

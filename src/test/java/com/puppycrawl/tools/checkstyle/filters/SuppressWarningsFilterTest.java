@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.google.common.collect.Lists;
@@ -55,7 +56,7 @@ public class SuppressWarningsFilterTest
     @Test
     public void testNone() throws Exception {
         final DefaultConfiguration filterConfig = null;
-        final String[] suppressed = {};
+        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
 

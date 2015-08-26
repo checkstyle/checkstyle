@@ -24,6 +24,7 @@ import java.lang.reflect.Modifier;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.google.common.collect.ImmutableSet;
@@ -40,7 +41,7 @@ public class AllChecksWithDefaultConfigTest extends BaseCheckTestSupport {
         final Set<Class<?>> checkstyleChecks = getCheckstyleChecks();
         final String inputFilePath = "src/test/resources-noncompilable/"
             + "com/puppycrawl/tools/checkstyle/InputDefaultConfig.java";
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         for (Class<?> check : checkstyleChecks) {
             final DefaultConfiguration checkConfig = createCheckConfig(check);
