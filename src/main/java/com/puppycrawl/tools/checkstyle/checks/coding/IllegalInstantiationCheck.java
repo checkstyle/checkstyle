@@ -260,6 +260,7 @@ public class IllegalInstantiationCheck
      * @return value of illegal instatiated type
      */
     private String checkImportStatements(String className) {
+        String illegalType = null;
         // import statements
         for (FullIdent importLineText : imports) {
             final String importArg = importLineText.getText();
@@ -270,17 +271,19 @@ public class IllegalInstantiationCheck
                 // assume that illegalInsts only contain existing classes
                 // or else we might create a false alarm here
                 if (illegalClasses.contains(fqClass)) {
-                    return fqClass;
+                    illegalType = fqClass;
+                    break;
                 }
             }
             else {
                 if (Utils.baseClassname(importArg).equals(className)
                     && illegalClasses.contains(importArg)) {
-                    return importArg;
+                    illegalType = importArg;
+                    break;
                 }
             }
         }
-        return null;
+        return illegalType;
     }
 
     /**
