@@ -66,9 +66,8 @@ public interface TreeTableModel extends TreeModel {
      * Indicates whether the the value for node {@code node},
      * at column number {@code column} is editable.
      *
-     * @param node the node.
      * @param column the column number
      * @return true if editable
      */
-    boolean isCellEditable(Object node, int column);
+    boolean isCellEditable(int column);
 }

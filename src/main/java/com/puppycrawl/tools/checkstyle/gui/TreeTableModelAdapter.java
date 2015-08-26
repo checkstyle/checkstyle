@@ -95,7 +95,7 @@ public class TreeTableModelAdapter extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int row, int column) {
-        return treeTableModel.isCellEditable(nodeForRow(row), column);
+        return treeTableModel.isCellEditable(column);
     }
 
     /**
