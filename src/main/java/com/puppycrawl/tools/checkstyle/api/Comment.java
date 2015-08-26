@@ -52,9 +52,9 @@ public class Comment implements TextBlock {
         this.text = new String[text.length];
         System.arraycopy(text, 0, this.text, 0, this.text.length);
         startLineNo = lastLine - this.text.length + 1;
-        this.endLineNo = lastLine;
-        this.startColNo = firstCol;
-        this.endColNo = lastCol;
+        endLineNo = lastLine;
+        startColNo = firstCol;
+        endColNo = lastCol;
     }
 
     @Override
