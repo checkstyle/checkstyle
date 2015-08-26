@@ -119,9 +119,12 @@ public class AvoidStaticImportCheck
      * @return true if except false if not
      */
     private boolean isExempt(String classOrStaticMember) {
+        boolean exempt = false;
+
         for (String exclude : excludes) {
             if (classOrStaticMember.equals(exclude)) {
-                return true;
+                exempt = true;
+                break;
             }
             else if (exclude.endsWith(".*")) {
                 //this section allows explicit imports
@@ -136,11 +139,12 @@ public class AvoidStaticImportCheck
                             excludeMinusDotStar.length() + 1);
                     //if it contains a dot then it is not a member but a package
                     if (member.indexOf('.') == -1) {
-                        return true;
+                        exempt = true;
+                        break;
                     }
                 }
             }
         }
-        return false;
+        return exempt;
     }
 }
