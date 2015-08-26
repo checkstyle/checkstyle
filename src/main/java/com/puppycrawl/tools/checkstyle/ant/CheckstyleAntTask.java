@@ -294,43 +294,53 @@ public class CheckstyleAntTask extends Task {
                 new SeverityLevelCounter(SeverityLevel.WARNING);
             checker.addListener(warningCounter);
 
-            // Process the files
-            long startTime = System.currentTimeMillis();
-            final List<File> files = scanFileSets();
-            long endTime = System.currentTimeMillis();
-            log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
-                Project.MSG_VERBOSE);
-
-            log("Running Checkstyle " + version + " on " + files.size()
-                    + " files", Project.MSG_INFO);
-            log("Using configuration " + configLocation, Project.MSG_VERBOSE);
-
-            startTime = System.currentTimeMillis();
-            final int numErrs = checker.process(files);
-            endTime = System.currentTimeMillis();
-            log("To process the files took " + (endTime - startTime) + TIME_SUFFIX,
-                Project.MSG_VERBOSE);
-            final int numWarnings = warningCounter.getCount();
-            final boolean ok = numErrs <= maxErrors
-                    && numWarnings <= maxWarnings;
-
-            // Handle the return status
-            if (!ok) {
-                final String failureMsg =
-                        "Got " + numErrs + " errors and " + numWarnings
-                                + " warnings.";
-                if (failureProperty != null) {
-                    getProject().setProperty(failureProperty, failureMsg);
-                }
-
-                if (failOnViolation) {
-                    throw new BuildException(failureMsg, getLocation());
-                }
-            }
+            processFiles(checker, warningCounter, version);
         }
         finally {
             if (checker != null) {
                 checker.destroy();
+            }
+        }
+    }
+
+    /**
+     * Scans and processes files by means given checker.
+     * @param checker Checker to process files
+     * @param warningCounter Checker's counter of warnings
+     * @param checkstyleVersion Checkstyle compile version
+     */
+    private void processFiles(Checker checker, final SeverityLevelCounter warningCounter,
+            final String checkstyleVersion) {
+        long startTime = System.currentTimeMillis();
+        final List<File> files = scanFileSets();
+        long endTime = System.currentTimeMillis();
+        log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
+            Project.MSG_VERBOSE);
+
+        log("Running Checkstyle " + checkstyleVersion + " on " + files.size()
+                + " files", Project.MSG_INFO);
+        log("Using configuration " + configLocation, Project.MSG_VERBOSE);
+
+        startTime = System.currentTimeMillis();
+        final int numErrs = checker.process(files);
+        endTime = System.currentTimeMillis();
+        log("To process the files took " + (endTime - startTime) + TIME_SUFFIX,
+            Project.MSG_VERBOSE);
+        final int numWarnings = warningCounter.getCount();
+        final boolean ok = numErrs <= maxErrors
+                && numWarnings <= maxWarnings;
+
+        // Handle the return status
+        if (!ok) {
+            final String failureMsg =
+                    "Got " + numErrs + " errors and " + numWarnings
+                            + " warnings.";
+            if (failureProperty != null) {
+                getProject().setProperty(failureProperty, failureMsg);
+            }
+
+            if (failOnViolation) {
+                throw new BuildException(failureMsg, getLocation());
             }
         }
     }
