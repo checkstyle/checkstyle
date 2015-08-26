@@ -15,7 +15,6 @@ public class ClassMethodTypeParameterNameTest extends BaseCheckTestSupport{
 
     private static final String MSG_KEY = "name.invalidPattern";
     private static ConfigurationBuilder builder;
-    private final String msgKey = "name.invalidPattern";
     private static Configuration configuration;
     private static String format;
 
