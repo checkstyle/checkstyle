@@ -48,6 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * This class provides the functionality to check a set of files.

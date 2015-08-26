@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
+import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * <p>

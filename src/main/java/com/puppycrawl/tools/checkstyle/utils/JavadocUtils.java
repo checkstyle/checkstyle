@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.utils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -29,11 +29,14 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
 
 /**
  * Contains utility methods for working with Javadoc.

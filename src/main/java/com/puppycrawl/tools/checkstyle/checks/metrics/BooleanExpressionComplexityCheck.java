@@ -25,7 +25,7 @@ import java.util.Deque;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 
 /**
  * Restricts nested boolean operators (&amp;&amp;, ||, &amp;, | and ^) to

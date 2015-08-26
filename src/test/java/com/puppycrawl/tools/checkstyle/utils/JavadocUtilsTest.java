@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
 import static org.junit.Assert.assertEquals;
@@ -33,6 +33,10 @@ import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
 
 public class JavadocUtilsTest {
 

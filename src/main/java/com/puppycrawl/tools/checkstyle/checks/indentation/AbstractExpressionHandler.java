@@ -21,9 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import java.util.Arrays;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * Abstract base class for all handlers.

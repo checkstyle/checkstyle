@@ -21,10 +21,10 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
+import com.puppycrawl.tools.checkstyle.utils.Utils;
 
 /**
  * <p>

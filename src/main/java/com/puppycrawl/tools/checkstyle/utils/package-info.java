@@ -17,25 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.api;
-
-import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
-import com.puppycrawl.tools.checkstyle.utils.Utils;
-
-public class TokenTypesTest {
-    @Test
-    public void testGetShortDescription() {
-        assertEquals("short description for EQUAL",
-                "The <code>==</code> (equal) operator.", Utils
-                        .getShortDescription("EQUAL"));
-    }
-
-    @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertUtilsClassHasPrivateConstructor(TokenTypes.class);
-    }
-}
+/**
+ * Contains utils classes for checkstyle.
+ */
+package com.puppycrawl.tools.checkstyle.utils;
