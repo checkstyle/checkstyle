@@ -440,17 +440,18 @@ public class SuppressionCommentFilter
          * @return true if the source of event matches the text of this tag.
          */
         public boolean isMatch(AuditEvent event) {
-            final Matcher tagMatcher =
-                tagCheckRegexp.matcher(event.getSourceName());
+            boolean match = false;
+            final Matcher tagMatcher = tagCheckRegexp.matcher(event.getSourceName());
             if (tagMatcher.find()) {
                 if (tagMessageRegexp != null) {
-                    final Matcher messageMatcher =
-                            tagMessageRegexp.matcher(event.getMessage());
-                    return messageMatcher.find();
+                    final Matcher messageMatcher = tagMessageRegexp.matcher(event.getMessage());
+                    match = messageMatcher.find();
                 }
-                return true;
+                else {
+                    match = true;
+                }
             }
-            return false;
+            return match;
         }
 
         /**
