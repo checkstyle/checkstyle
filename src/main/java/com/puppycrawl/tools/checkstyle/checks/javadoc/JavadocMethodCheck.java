@@ -858,35 +858,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
                     .getColumnNo());
             final AbstractClassInfo documentedCI = createClassInfo(token,
                     getCurrentClassName());
-            boolean found = foundThrows.contains(documentedEx);
 
-            // First look for matches on the exception name
-            ListIterator<ExceptionInfo> throwIt = throwsList.listIterator();
-            while (!found && throwIt.hasNext()) {
-                final ExceptionInfo ei = throwIt.next();
-
-                if (ei.getName().getText().equals(
-                        documentedCI.getName().getText())) {
-                    found = true;
-                    ei.setFound();
-                    foundThrows.add(documentedEx);
-                }
-            }
-
-            // Now match on the exception type
-            throwIt = throwsList.listIterator();
-            while (!found && throwIt.hasNext()) {
-                final ExceptionInfo ei = throwIt.next();
-
-                if (documentedCI.getClazz() == ei.getClazz()) {
-                    found = true;
-                    ei.setFound();
-                    foundThrows.add(documentedEx);
-                }
-                else if (allowThrowsTagsForSubclasses) {
-                    found = isSubclass(documentedCI.getClazz(), ei.getClazz());
-                }
-            }
+            final boolean found = foundThrows.contains(documentedEx)
+                    || isInThrows(throwsList, documentedCI, foundThrows);
 
             // Handle extra JavadocTag.
             if (!found) {
@@ -916,6 +890,53 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
                 }
             }
         }
+    }
+
+    /**
+     * Verifies that documented exception is in throws.
+     *
+     * @param throwsList list of throws
+     * @param documentedCI documented exception class info
+     * @param foundThrows previously found throws
+     * @return true if documented exception is in throws.
+     */
+    private boolean isInThrows(List<ExceptionInfo> throwsList,
+            AbstractClassInfo documentedCI, Set<String> foundThrows) {
+        boolean found = false;
+        ExceptionInfo foundException = null;
+
+        // First look for matches on the exception name
+        ListIterator<ExceptionInfo> throwIt = throwsList.listIterator();
+        while (!found && throwIt.hasNext()) {
+            final ExceptionInfo ei = throwIt.next();
+
+            if (ei.getName().getText().equals(
+                    documentedCI.getName().getText())) {
+                found = true;
+                foundException = ei;
+            }
+        }
+
+        // Now match on the exception type
+        throwIt = throwsList.listIterator();
+        while (!found && throwIt.hasNext()) {
+            final ExceptionInfo ei = throwIt.next();
+
+            if (documentedCI.getClazz() == ei.getClazz()) {
+                found = true;
+                foundException = ei;
+            }
+            else if (allowThrowsTagsForSubclasses) {
+                found = isSubclass(documentedCI.getClazz(), ei.getClazz());
+            }
+        }
+
+        if (foundException != null) {
+            foundException.setFound();
+            foundThrows.add(documentedCI.getName().getText());
+        }
+
+        return found;
     }
 
     /** Stores useful information about declared exception. */
