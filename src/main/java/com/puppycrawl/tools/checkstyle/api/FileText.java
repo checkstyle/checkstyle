@@ -129,24 +129,7 @@ public final class FileText extends AbstractList<String> {
             throw ex2;
         }
 
-        final StringBuilder buf = new StringBuilder();
-        final FileInputStream stream = new FileInputStream(file);
-        final Reader reader = new InputStreamReader(stream, decoder);
-        try {
-            final char[] chars = new char[READ_BUFFER_SIZE];
-            while (true) {
-                final int len = reader.read(chars);
-                if (len < 0) {
-                    break;
-                }
-                buf.append(chars, 0, len);
-            }
-        }
-        finally {
-            Closeables.closeQuietly(reader);
-        }
-        // buf.trimToSize(); // could be used instead of toString().
-        fullText = buf.toString();
+        fullText = readFile(file, decoder);
 
         // Use the BufferedReader to break down the lines as this
         // is about 30% faster than using the
@@ -198,6 +181,34 @@ public final class FileText extends AbstractList<String> {
         fullText = fileText.fullText;
         lines = fileText.lines.clone();
         lineBreaks = ArrayUtils.clone(fileText.lineBreaks);
+    }
+
+    /**
+     * Reads file using specific decoder and returns all its content as a String.
+     * @param inputFile File to read
+     * @param decoder Charset decoder
+     * @return File's text
+     * @throws IOException Unable to open or read the file
+     */
+    private String readFile(final File inputFile, final CharsetDecoder decoder)
+            throws IOException {
+        final StringBuilder buf = new StringBuilder();
+        final FileInputStream stream = new FileInputStream(inputFile);
+        final Reader reader = new InputStreamReader(stream, decoder);
+        try {
+            final char[] chars = new char[READ_BUFFER_SIZE];
+            while (true) {
+                final int len = reader.read(chars);
+                if (len < 0) {
+                    break;
+                }
+                buf.append(chars, 0, len);
+            }
+        }
+        finally {
+            Closeables.closeQuietly(reader);
+        }
+        return buf.toString();
     }
 
     /**
