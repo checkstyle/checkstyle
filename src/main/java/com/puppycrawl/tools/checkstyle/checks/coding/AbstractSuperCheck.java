@@ -89,36 +89,50 @@ public abstract class AbstractSuperCheck
     }
 
     /**
-     *  Determines whether a 'super' literal is a call to the super method
+     * Determines whether a 'super' literal is a call to the super method
      * for this check.
      * @param literalSuperAst the AST node of a 'super' literal.
      * @return true if ast is a call to the super method
      * for this check.
      */
     private boolean isSuperCall(DetailAST literalSuperAst) {
-        if (literalSuperAst.getType() != TokenTypes.LITERAL_SUPER) {
-            return false;
-        }
-        // dot operator?
-        DetailAST dotAst = literalSuperAst.getParent();
-        if (dotAst.getType() != TokenTypes.DOT
-            || isSameNameMethod(literalSuperAst)
-            || hasArguments(dotAst)) {
-            return false;
-        }
+        boolean superCall = false;
 
-        // in an overriding method for this check?
+        if (literalSuperAst.getType() == TokenTypes.LITERAL_SUPER) {
+            // dot operator?
+            final DetailAST dotAst = literalSuperAst.getParent();
+
+            if (dotAst.getType() == TokenTypes.DOT
+                && !isSameNameMethod(literalSuperAst)
+                && !hasArguments(dotAst)) {
+                superCall = isSuperCallInOverridingMethod(dotAst);
+            }
+        }
+        return superCall;
+    }
+
+    /**
+     * Determines whether a super call in overriding method.
+     *
+     * @param ast The AST node of a 'dot operator' in 'super' call.
+     * @return true if super call in overriding method.
+     */
+    private boolean isSuperCallInOverridingMethod(DetailAST ast) {
+        boolean inOverridingMethod = false;
+        DetailAST dotAst = ast;
+
         while (dotAst != null) {
             if (dotAst.getType() == TokenTypes.METHOD_DEF) {
-                return isOverridingMethod(dotAst);
+                inOverridingMethod = isOverridingMethod(dotAst);
+                break;
             }
             if (dotAst.getType() == TokenTypes.CTOR_DEF
                 || dotAst.getType() == TokenTypes.INSTANCE_INIT) {
-                return false;
+                break;
             }
             dotAst = dotAst.getParent();
         }
-        return false;
+        return inOverridingMethod;
     }
 
     /**
@@ -173,19 +187,21 @@ public abstract class AbstractSuperCheck
      * @return true if the method of ast is a method for this check.
      */
     private boolean isOverridingMethod(DetailAST ast) {
-        if (ast.getType() != TokenTypes.METHOD_DEF
-            || ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
-            return false;
+        boolean overridingMethod = false;
+
+        if (ast.getType() == TokenTypes.METHOD_DEF
+                && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
+            final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
+            final String name = nameAST.getText();
+            final DetailAST modifiersAST = ast.findFirstToken(TokenTypes.MODIFIERS);
+
+            if (getMethodName().equals(name)
+                    && !modifiersAST.branchContains(TokenTypes.LITERAL_NATIVE)) {
+                final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
+                overridingMethod = params.getChildCount() == 0;
+            }
         }
-        final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
-        final String name = nameAST.getText();
-        final DetailAST modifiersAST = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (!getMethodName().equals(name)
-                || modifiersAST.branchContains(TokenTypes.LITERAL_NATIVE)) {
-            return false;
-        }
-        final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-        return params.getChildCount() == 0;
+        return overridingMethod;
     }
 
     /**
