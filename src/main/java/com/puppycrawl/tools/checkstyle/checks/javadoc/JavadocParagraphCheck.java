@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * </ul>
  *
  * <p>
- * The check can be specified by option tagImmediatelyBeforeFirstWord,
+ * The check can be specified by option allowNewlineParagraph,
  * which says whether the &lt;p&gt; tag should be placed immediately before
  * the first word.
  *
@@ -50,13 +50,13 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * To allow newlines and spaces immediately after the &lt;p&gt; tag:
  * <pre>
  * &lt;module name=&quot;JavadocParagraph&quot;&gt;
- *      &lt;property name=&quot;tagImmediatelyBeforeFirstWord&quot;
+ *      &lt;property name=&quot;allowNewlineParagraph&quot;
  *                   value==&quot;false&quot;/&gt;
  * &lt;/module&quot;&gt;
  * </pre>
  *
  * <p>
- * In case of tagImmediatelyBeforeFirstWord set to false
+ * In case of allowNewlineParagraph set to false
  * the following example will not have any violations:
  * <pre>
  *   /**
@@ -105,14 +105,14 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     /**
      * Whether the &lt;p&gt; tag should be placed immediately before the first word.
      */
-    private boolean tagImmediatelyBeforeFirstWord = true;
+    private boolean allowNewlineParagraph = true;
 
     /**
-     * Sets tagImmediatelyBeforeFirstWord.
+     * Sets allowNewlineParagraph.
      * @param value value to set.
      */
     public void setAllowNewlineParagraph(boolean value) {
-        tagImmediatelyBeforeFirstWord = value;
+        allowNewlineParagraph = value;
     }
 
     @Override
@@ -167,7 +167,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         else if (newLine == null || tag.getLineNumber() - newLine.getLineNumber() != 1) {
             log(tag.getLineNumber(), MSG_LINE_BEFORE);
         }
-        if (tagImmediatelyBeforeFirstWord && isImmediatelyFollowedByText(tag)) {
+        if (allowNewlineParagraph && isImmediatelyFollowedByText(tag)) {
             log(tag.getLineNumber(), MSG_MISPLACED_TAG);
         }
     }

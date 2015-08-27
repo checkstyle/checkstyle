@@ -372,13 +372,13 @@ public class JavaNCSSCheck extends Check {
      */
     private static class Counter {
         /** The counters internal integer */
-        private int ivCount;
+        private int count;
 
         /**
          * Increments the counter.
          */
         public void increment() {
-            ivCount++;
+            count++;
         }
 
         /**
@@ -387,7 +387,7 @@ public class JavaNCSSCheck extends Check {
          * @return the counter
          */
         public int getCount() {
-            return ivCount;
+            return count;
         }
     }
 }
