@@ -62,7 +62,7 @@ class HtmlTag {
         this.position = position;
         this.text = text;
         this.closedTag = closedTag;
-        this.incompleteTag = incomplete;
+        incompleteTag = incomplete;
     }
 
     /**
