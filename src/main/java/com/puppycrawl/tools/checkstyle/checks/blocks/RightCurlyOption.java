@@ -36,7 +36,7 @@ public enum RightCurlyOption {
      * try {
      * ...
      * }
-     * inally {
+     * finally {
      *
      * // Single-line format of block
      * private int foo() { return 1; }

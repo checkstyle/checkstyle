@@ -214,14 +214,14 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
             }
             readerLines.add(line);
         }
-        postprocessHeaderLines();
+        postProcessHeaderLines();
     }
 
     /**
      * Hook method for post processing header lines.
      * This implementation does nothing.
      */
-    protected void postprocessHeaderLines() {
+    protected void postProcessHeaderLines() {
         // No code by default
     }
 

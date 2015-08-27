@@ -81,18 +81,18 @@ public final class SuppressionsLoader
     public void startElement(String namespaceURI,
                              String localName,
                              String qName,
-                             Attributes atts)
+                             Attributes attributes)
         throws SAXException {
         if ("suppress".equals(qName)) {
             //add SuppressElement filter to the filter chain
-            final String checks = atts.getValue("checks");
-            final String modId = atts.getValue("id");
+            final String checks = attributes.getValue("checks");
+            final String modId = attributes.getValue("id");
             if (checks == null && modId == null) {
                 throw new SAXException("missing checks and id attribute");
             }
             final SuppressElement suppress;
             try {
-                final String files = atts.getValue("files");
+                final String files = attributes.getValue("files");
                 suppress = new SuppressElement(files);
                 if (modId != null) {
                     suppress.setModuleId(modId);
@@ -104,11 +104,11 @@ public final class SuppressionsLoader
             catch (final PatternSyntaxException ignored) {
                 throw new SAXException("invalid files or checks format");
             }
-            final String lines = atts.getValue("lines");
+            final String lines = attributes.getValue("lines");
             if (lines != null) {
                 suppress.setLines(lines);
             }
-            final String columns = atts.getValue("columns");
+            final String columns = attributes.getValue("columns");
             if (columns != null) {
                 suppress.setColumns(columns);
             }
