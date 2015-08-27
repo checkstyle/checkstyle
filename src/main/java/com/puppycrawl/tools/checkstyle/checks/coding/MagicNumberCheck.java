@@ -266,26 +266,25 @@ public class MagicNumberCheck extends Check {
                 && varDefAST.getType() != TokenTypes.ENUM_CONSTANT_DEF) {
             varDefAST = varDefAST.getParent();
         }
+        DetailAST constantDef = null;
 
         // no containing variable definition?
-        if (varDefAST == null) {
-            return null;
-        }
+        if (varDefAST != null) {
+            // implicit constant?
+            if (ScopeUtils.isInInterfaceOrAnnotationBlock(varDefAST)
+                    || varDefAST.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+                constantDef = varDefAST;
+            }
+            else {
+                // explicit constant
+                final DetailAST modifiersAST = varDefAST.findFirstToken(TokenTypes.MODIFIERS);
 
-        // implicit constant?
-        if (ScopeUtils.isInInterfaceOrAnnotationBlock(varDefAST)
-            || varDefAST.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
-            return varDefAST;
+                if (modifiersAST.branchContains(TokenTypes.FINAL)) {
+                    constantDef = varDefAST;
+                }
+            }
         }
-
-        // explicit constant
-        final DetailAST modifiersAST =
-                varDefAST.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiersAST.branchContains(TokenTypes.FINAL)) {
-            return varDefAST;
-        }
-
-        return null;
+        return constantDef;
     }
 
     /**
@@ -322,35 +321,31 @@ public class MagicNumberCheck extends Check {
      * code method
      */
     private static boolean isInHashCodeMethod(DetailAST ast) {
+        boolean inHashCodeMethod = false;
+
         // if not in a code block, can't be in hashCode()
-        if (!ScopeUtils.isInCodeBlock(ast)) {
-            return false;
-        }
+        if (ScopeUtils.isInCodeBlock(ast)) {
+            // find the method definition AST
+            DetailAST methodDefAST = ast.getParent();
+            while (methodDefAST != null
+                    && methodDefAST.getType() != TokenTypes.METHOD_DEF) {
+                methodDefAST = methodDefAST.getParent();
+            }
 
-        // find the method definition AST
-        DetailAST methodDefAST = ast.getParent();
-        while (methodDefAST != null
-                && methodDefAST.getType() != TokenTypes.METHOD_DEF) {
-            methodDefAST = methodDefAST.getParent();
-        }
+            if (methodDefAST != null) {
+                // Check for 'hashCode' name.
+                final DetailAST identAST = methodDefAST.findFirstToken(TokenTypes.IDENT);
 
-        if (methodDefAST == null) {
-            return false;
+                if ("hashCode".equals(identAST.getText())) {
+                    // Check for no arguments.
+                    final DetailAST paramAST = methodDefAST.findFirstToken(TokenTypes.PARAMETERS);
+                    // we are in a 'public int hashCode()' method! The compiler will ensure
+                    // the method returns an 'int' and is public.
+                    inHashCodeMethod = paramAST.getChildCount() == 0;
+                }
+            }
         }
-
-        // Check for 'hashCode' name.
-        final DetailAST identAST =
-            methodDefAST.findFirstToken(TokenTypes.IDENT);
-        if (!"hashCode".equals(identAST.getText())) {
-            return false;
-        }
-
-        // Check for no arguments.
-        final DetailAST paramAST =
-            methodDefAST.findFirstToken(TokenTypes.PARAMETERS);
-        // we are in a 'public int hashCode()' method! The compiler will ensure
-        // the method returns an 'int' and is public.
-        return paramAST.getChildCount() == 0;
+        return inHashCodeMethod;
     }
 
     /**
