@@ -66,7 +66,7 @@ public class ArrayTrailingCommaCheck extends Check {
     public void visitToken(DetailAST arrayInit) {
         final DetailAST rcurly = arrayInit.findFirstToken(TokenTypes.RCURLY);
 
-        // if curlys are on the same line
+        // if curlies are on the same line
         // or array is empty then check nothing
         if (arrayInit.getLineNo() == rcurly.getLineNo()
             || arrayInit.getChildCount() == 1) {

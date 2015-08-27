@@ -102,8 +102,8 @@ public class ExplicitInitializationCheck extends Check {
     }
 
     /**
-     * Examin Char literal for initializing to default value
-     * @param exprStart exprssion
+     * Examine char literal for initializing to default value
+     * @param exprStart expression
      * @return true is literal is initialized by zero symbol
      */
     private static boolean isZeroChar(DetailAST exprStart) {
@@ -113,7 +113,7 @@ public class ExplicitInitializationCheck extends Check {
     }
 
     /**
-     * Chekc for cases that should be skipped: no assignment, local variable, final variables
+     * Chekck for cases that should be skipped: no assignment, local variable, final variables
      * @param ast Variable def AST
      * @return true is that is a case that need to be skipped.
      */
@@ -136,7 +136,7 @@ public class ExplicitInitializationCheck extends Check {
     }
 
     /**
-     * Determines if a giiven type is an object type.
+     * Determines if a given type is an object type.
      * @param type type to check.
      * @return true if it is an object type.
      */

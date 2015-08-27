@@ -227,14 +227,14 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
 
     /**
      * Checks type of parameters.
-     * @param paradef parameter list for check.
+     * @param parameterDef parameter list for check.
      */
-    private void visitParameterDef(DetailAST paradef) {
-        final DetailAST grandParentAST = paradef.getParent().getParent();
+    private void visitParameterDef(DetailAST parameterDef) {
+        final DetailAST grandParentAST = parameterDef.getParent().getParent();
 
         if (grandParentAST.getType() == TokenTypes.METHOD_DEF
             && isCheckedMethod(grandParentAST)) {
-            checkClassName(paradef);
+            checkClassName(parameterDef);
         }
     }
 

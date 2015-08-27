@@ -283,7 +283,7 @@ public class HiddenFieldCheck
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();
 
-            if (isStaticOrOnstanceField(ast, name)
+            if (isStaticOrInstanceField(ast, name)
                 && !isMatchingRegexp(name)
                 && !isIgnoredSetterParam(ast, name)
                 && !isIgnoredConstructorParam(ast)
@@ -299,7 +299,7 @@ public class HiddenFieldCheck
      * @param name identifier of token
      * @return true if static or instance field
      */
-    private boolean isStaticOrOnstanceField(DetailAST ast, String name) {
+    private boolean isStaticOrInstanceField(DetailAST ast, String name) {
         return frame.containsStaticField(name)
                 || !isInStatic(ast) && frame.containsInstanceField(name);
     }
@@ -448,7 +448,7 @@ public class HiddenFieldCheck
      * abstract method.
      * @param ast the AST to check.
      * @return true if ast should be ignored because check property
-     * ignoreAbstactMethods is true and ast is a parameter of abstract
+     * ignoreAbstractMethods is true and ast is a parameter of abstract
      * methods.
      */
     private boolean isIgnoredParamOfAbstractMethod(DetailAST ast) {
