@@ -160,7 +160,7 @@ public class DefaultLogger
     /**
      * Flushes the output streams and closes them if needed.
      */
-    protected void closeStreams() {
+    private void closeStreams() {
         infoWriter.flush();
         if (closeInfo) {
             infoWriter.close();

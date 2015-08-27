@@ -41,7 +41,7 @@ public abstract class BaseCheckTestSupport {
     protected final ByteArrayOutputStream baos = new ByteArrayOutputStream();
     protected final PrintStream stream = new PrintStream(baos);
 
-    public static DefaultConfiguration createCheckConfig(Class<?> clazz) {
+    protected static DefaultConfiguration createCheckConfig(Class<?> clazz) {
         return new DefaultConfiguration(clazz.getName());
     }
 
@@ -135,7 +135,7 @@ public abstract class BaseCheckTestSupport {
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments  the arguments of message in 'messages.properties' file.
      */
-    public String getCheckMessage(String messageKey, Object... arguments) {
+    protected String getCheckMessage(String messageKey, Object... arguments) {
         Properties pr = new Properties();
         try {
             pr.load(getClass().getResourceAsStream("messages.properties"));

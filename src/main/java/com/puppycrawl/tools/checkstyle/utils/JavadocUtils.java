@@ -236,7 +236,7 @@ public final class JavadocUtils {
      *        block comment AST.
      * @return content of block comment.
      */
-    public static String getBlockCommentContent(DetailAST blockCommentBegin) {
+    private static String getBlockCommentContent(DetailAST blockCommentBegin) {
         final DetailAST commentContent = blockCommentBegin.getFirstChild();
         return commentContent.getText();
     }

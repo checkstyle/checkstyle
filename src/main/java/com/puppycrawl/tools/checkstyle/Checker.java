@@ -294,7 +294,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     }
 
     /** Notify all listeners about the audit start */
-    protected void fireAuditStarted() {
+    void fireAuditStarted() {
         final AuditEvent evt = new AuditEvent(this);
         for (final AuditListener listener : listeners) {
             listener.auditStarted(evt);
@@ -302,7 +302,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     }
 
     /** Notify all listeners about the audit end */
-    protected void fireAuditFinished() {
+    void fireAuditFinished() {
         final AuditEvent evt = new AuditEvent(this);
         for (final AuditListener listener : listeners) {
             listener.auditFinished(evt);
