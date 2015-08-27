@@ -91,27 +91,23 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.IDENT,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.PARAMETER_DEF,
-            TokenTypes.SLIST,
-            TokenTypes.VARIABLE_DEF,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.SLIST,
             TokenTypes.IDENT,
         };
     }
