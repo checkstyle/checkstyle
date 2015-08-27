@@ -746,7 +746,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
 
             tagIt.remove();
 
-            boolean found = false;
+            boolean found;
             final String arg1 = tag.getFirstArg();
             found = removeMatchingParam(params, arg1);
 
