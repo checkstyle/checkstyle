@@ -226,32 +226,36 @@ public class IllegalInstantiationCheck
      * or null if instantiation of className is OK
      */
     private String getIllegalInstantiation(String className) {
-        if (illegalClasses.contains(className)) {
-            return className;
-        }
-        final int pkgNameLen;
+        String fullClassName = null;
 
-        if (pkgName == null) {
-            pkgNameLen = 0;
+        if (illegalClasses.contains(className)) {
+            fullClassName = className;
         }
         else {
-            pkgNameLen = pkgName.length();
-        }
+            final int pkgNameLen;
 
-        for (String illegal : illegalClasses) {
+            if (pkgName == null) {
+                pkgNameLen = 0;
+            }
+            else {
+                pkgNameLen = pkgName.length();
+            }
 
-            if (isStandardClass(className, illegal)) {
-                return illegal;
-            }
-            if (isSamePackage(className, pkgNameLen, illegal)) {
-                return illegal;
-            }
-            final String importArg = checkImportStatements(className);
-            if (importArg != null) {
-                return importArg;
+            for (String illegal : illegalClasses) {
+                if (isStandardClass(className, illegal)
+                        || isSamePackage(className, pkgNameLen, illegal)) {
+                    fullClassName = illegal;
+                }
+                else {
+                    fullClassName = checkImportStatements(className);
+                }
+
+                if (fullClassName != null) {
+                    break;
+                }
             }
         }
-        return null;
+        return fullClassName;
     }
 
     /**
