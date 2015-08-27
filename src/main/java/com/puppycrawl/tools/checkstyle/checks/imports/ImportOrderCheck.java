@@ -193,8 +193,11 @@ public class ImportOrderCheck
     /** The special wildcard that catches all remaining groups. */
     private static final String WILDCARD_GROUP_NAME = "*";
 
+    /** Empty array of pattern type needed to initlialize check */
+    private static final Pattern[] EMPTY_PATTERN_ARRAY = new Pattern[0];
+
     /** List of import groups specified by the user. */
-    private Pattern[] groups = new Pattern[0];
+    private Pattern[] groups = EMPTY_PATTERN_ARRAY;
     /** Require imports in group be separated. */
     private boolean separated;
     /** Require imports in group. */
