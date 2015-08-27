@@ -197,32 +197,21 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
 
     /** @return the line number **/
     public int getLineNo() {
+        int resultNo = -1;
+
         if (lineNo == NOT_INITIALIZED) {
             // an inner AST that has been initialized
             // with initialize(String text)
-            DetailAST child = getFirstChild();
-            while (child != null) {
-                // comment node can't be start of any java statement/definition
-                if (TokenUtils.isCommentType(child.getType())) {
-                    child = child.getNextSibling();
-                }
-                else {
-                    return child.getLineNo();
-                }
-            }
+            resultNo = findLineNo(getFirstChild());
 
-            DetailAST sibling = getNextSibling();
-            while (sibling != null) {
-                // comment node can't be start of any java statement/definition
-                if (TokenUtils.isCommentType(sibling.getType())) {
-                    sibling = sibling.getNextSibling();
-                }
-                else {
-                    return sibling.getLineNo();
-                }
+            if (resultNo < 0) {
+                resultNo = findLineNo(getNextSibling());
             }
         }
-        return lineNo;
+        if (resultNo < 0) {
+            resultNo = lineNo;
+        }
+        return resultNo;
     }
 
     /**
@@ -236,32 +225,21 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
 
     /** @return the column number **/
     public int getColumnNo() {
+        int resultNo = -1;
+
         if (columnNo == NOT_INITIALIZED) {
             // an inner AST that has been initialized
             // with initialize(String text)
-            DetailAST child = getFirstChild();
-            while (child != null) {
-                // comment node can't be start of any java statement/definition
-                if (TokenUtils.isCommentType(child.getType())) {
-                    child = child.getNextSibling();
-                }
-                else {
-                    return child.getColumnNo();
-                }
-            }
+            resultNo = findColumnNo(getFirstChild());
 
-            DetailAST sibling = getNextSibling();
-            while (sibling != null) {
-                // comment node can't be start of any java statement/definition
-                if (TokenUtils.isCommentType(sibling.getType())) {
-                    sibling = sibling.getNextSibling();
-                }
-                else {
-                    return sibling.getColumnNo();
-                }
+            if (resultNo < 0) {
+                resultNo = findColumnNo(getNextSibling());
             }
         }
-        return columnNo;
+        if (resultNo < 0) {
+            resultNo = columnNo;
+        }
+        return resultNo;
     }
 
     /**
@@ -280,6 +258,50 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
             ast = ast.getNextSibling();
         }
         return ast;
+    }
+
+    /**
+     * Finds column number in the first non-comment node.
+     *
+     * @param ast DetailAST node.
+     * @return Column number if non-comment node exists, -1 otherwise.
+     */
+    private int findColumnNo(DetailAST ast) {
+        int resultNo = -1;
+        DetailAST node = ast;
+        while (node != null) {
+            // comment node can't be start of any java statement/definition
+            if (TokenUtils.isCommentType(node.getType())) {
+                node = node.getNextSibling();
+            }
+            else {
+                resultNo = node.getColumnNo();
+                break;
+            }
+        }
+        return resultNo;
+    }
+
+    /**
+     * Finds line number in the first non-comment node.
+     *
+     * @param ast DetailAST node.
+     * @return Line number if non-comment node exists, -1 otherwise.
+     */
+    private int findLineNo(DetailAST ast) {
+        int resultNo = -1;
+        DetailAST node = ast;
+        while (node != null) {
+            // comment node can't be start of any java statement/definition
+            if (TokenUtils.isCommentType(node.getType())) {
+                node = node.getNextSibling();
+            }
+            else {
+                resultNo = node.getLineNo();
+                break;
+            }
+        }
+        return resultNo;
     }
 
     /**
