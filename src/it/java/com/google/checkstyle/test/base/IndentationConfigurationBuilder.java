@@ -10,15 +10,13 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class IndentationConfigurationBuilder extends ConfigurationBuilder
 {
     private static final int TAB_WIDTH = 4;
 
-    public IndentationConfigurationBuilder(File aROOT)
-        throws CheckstyleException {
+    public IndentationConfigurationBuilder(File aROOT) {
         super(aROOT);
     }
 

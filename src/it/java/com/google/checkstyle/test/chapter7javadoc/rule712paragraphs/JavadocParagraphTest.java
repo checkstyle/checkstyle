@@ -1,7 +1,6 @@
 package com.google.checkstyle.test.chapter7javadoc.rule712paragraphs;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
@@ -9,7 +8,6 @@ import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
 
@@ -18,7 +16,7 @@ public class JavadocParagraphTest extends BaseCheckTestSupport{
     private static ConfigurationBuilder builder;
 
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
+    public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 

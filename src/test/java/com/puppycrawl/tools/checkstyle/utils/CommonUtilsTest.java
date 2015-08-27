@@ -175,7 +175,7 @@ public class CommonUtilsTest {
         CommonUtils.close(new Closeable() {
 
             @Override
-            public void close() throws IOException {
+            public void close() {
             }
         });
     }
