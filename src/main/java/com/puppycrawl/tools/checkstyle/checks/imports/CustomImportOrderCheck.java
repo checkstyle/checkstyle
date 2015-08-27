@@ -95,7 +95,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * Use the separator '###' between rules.
  * </p>
  * <p>
- * To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
+ * To set Regexps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
  * thirdPartyPackageRegExp and standardPackageRegExp options.
  * </p>
  *
@@ -185,7 +185,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *        {@code
  *&lt;module name=&quot;CustomImportOrder&quot;/&gt;
  *        }
- * <p>To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
+ * <p>To set Regexps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
  *         thirdPartyPackageRegExp and standardPackageRegExp options.</p>
  * <pre>
  * {@code
@@ -403,7 +403,7 @@ public class CustomImportOrderCheck extends Check {
     public final void setCustomImportOrderRules(final String inputCustomImportOrder) {
         customImportOrderRules.clear();
         for (String currentState : GROUP_SEPARATOR_PATTERN.split(inputCustomImportOrder)) {
-            addRuleastoList(currentState);
+            addRulesToList(currentState);
         }
         customImportOrderRules.add(NON_GROUP_RULE_GROUP);
     }
@@ -590,7 +590,7 @@ public class CustomImportOrderCheck extends Check {
         return matchesStaticImportGroup(isStatic, currentGroup)
                 || matchesSamePackageImportGroup(isStatic, importPath, currentGroup)
                 || matchesSpecialImportsGroup(isStatic, importPath, currentGroup)
-                || matchesStandartImportGroup(isStatic, importPath, currentGroup)
+                || matchesStandardImportGroup(isStatic, importPath, currentGroup)
                 || matchesThirdPartyImportGroup(isStatic, importPath, currentGroup);
     }
 
@@ -634,7 +634,7 @@ public class CustomImportOrderCheck extends Check {
      *        current group.
      * @return true, if the import is placed in the standard group.
      */
-    private boolean matchesStandartImportGroup(boolean isStatic,
+    private boolean matchesStandardImportGroup(boolean isStatic,
         String currentImport, String currentGroup) {
         return !isStatic && STANDARD_JAVA_PACKAGE_RULE_GROUP.equals(currentGroup)
                 && standardPackageRegExp.matcher(currentImport).find();
@@ -733,7 +733,7 @@ public class CustomImportOrderCheck extends Check {
      * @param ruleStr
      *        String with rule.
      */
-    private void addRuleastoList(String ruleStr) {
+    private void addRulesToList(String ruleStr) {
         if (STATIC_RULE_GROUP.equals(ruleStr)
                 || THIRD_PARTY_PACKAGE_RULE_GROUP.equals(ruleStr)
                 || STANDARD_JAVA_PACKAGE_RULE_GROUP.equals(ruleStr)

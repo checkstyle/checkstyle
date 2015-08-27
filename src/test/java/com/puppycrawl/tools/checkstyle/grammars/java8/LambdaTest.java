@@ -91,7 +91,7 @@ public class LambdaTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testWithOneArgWIthoutTypeOneLineBody()
+    public void testWithOneArgWithoutTypeOneLineBody()
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
@@ -103,7 +103,7 @@ public class LambdaTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testWithOneArgWIthoutTypeFullBody()
+    public void testWithOneArgWithoutTypeFullBody()
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
@@ -139,7 +139,7 @@ public class LambdaTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testWithOneArgWIthoutParenthesesWithoutTypeOneLineBody()
+    public void testWithOneArgWithoutParenthesesWithoutTypeOneLineBody()
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
@@ -151,7 +151,7 @@ public class LambdaTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testWithOneArgWIthoutParenthesesWithoutTypeFullBody()
+    public void testWithOneArgWithoutParenthesesWithoutTypeFullBody()
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);

@@ -91,14 +91,14 @@ final class ImportControlLoader extends AbstractLoader {
     public void startElement(final String namespaceURI,
                              final String locqName,
                              final String qName,
-                             final Attributes atts)
+                             final Attributes attributes)
         throws SAXException {
         if ("import-control".equals(qName)) {
-            final String pkg = safeGet(atts, PKG_ATTRIBUTE_NAME);
+            final String pkg = safeGet(attributes, PKG_ATTRIBUTE_NAME);
             stack.push(new PkgControl(pkg));
         }
         else if (SUBPACKAGE_ELEMENT_NAME.equals(qName)) {
-            final String name = safeGet(atts, "name");
+            final String name = safeGet(attributes, "name");
             stack.push(new PkgControl(stack.peek(), name));
         }
         else if (ALLOW_ELEMENT_NAME.equals(qName) || "disallow".equals(qName)) {
@@ -106,19 +106,19 @@ final class ImportControlLoader extends AbstractLoader {
             // May have "exact-match" for "pkg"
             // May have "local-only"
             final boolean isAllow = ALLOW_ELEMENT_NAME.equals(qName);
-            final boolean isLocalOnly = atts.getValue("local-only") != null;
-            final String pkg = atts.getValue(PKG_ATTRIBUTE_NAME);
-            final boolean regex = atts.getValue("regex") != null;
+            final boolean isLocalOnly = attributes.getValue("local-only") != null;
+            final String pkg = attributes.getValue(PKG_ATTRIBUTE_NAME);
+            final boolean regex = attributes.getValue("regex") != null;
             final Guard g;
             if (pkg != null) {
                 final boolean exactMatch =
-                        atts.getValue("exact-match") != null;
+                        attributes.getValue("exact-match") != null;
                 g = new Guard(isAllow, isLocalOnly, pkg, exactMatch, regex);
             }
             else {
                 // handle class names which can be normal class names or regular
                 // expressions
-                final String clazz = safeGet(atts, "class");
+                final String clazz = safeGet(attributes, "class");
                 g = new Guard(isAllow, isLocalOnly, clazz, regex);
             }
 
@@ -189,14 +189,14 @@ final class ImportControlLoader extends AbstractLoader {
     /**
      * Utility to safely get an attribute. If it does not exist an exception
      * is thrown.
-     * @param atts collect to get attribute from.
+     * @param attributes collect to get attribute from.
      * @param name name of the attribute to get.
      * @return the value of the attribute.
      * @throws SAXException if the attribute does not exist.
      */
-    private static String safeGet(final Attributes atts, final String name)
+    private static String safeGet(final Attributes attributes, final String name)
         throws SAXException {
-        final String retVal = atts.getValue(name);
+        final String retVal = attributes.getValue(name);
         if (retVal == null) {
             throw new SAXException("missing attribute " + name);
         }
