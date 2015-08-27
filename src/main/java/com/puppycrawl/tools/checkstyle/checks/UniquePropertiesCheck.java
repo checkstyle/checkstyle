@@ -44,7 +44,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     /**
      * Localization key for check violation.
      */
-    public static final String MSG_KEY = "properties.duplicateproperty";
+    public static final String MSG_KEY = "properties.duplicate.property";
     /**
      * Localization key for IO exception occurred on file open.
      */
