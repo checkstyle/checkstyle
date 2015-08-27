@@ -1,7 +1,6 @@
 package com.google.checkstyle.test.chapter3filestructure.rule333orderingandsoacing;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
@@ -9,7 +8,6 @@ import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 
@@ -27,7 +25,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport{
     private static final String SPECIAL = CustomImportOrderCheck.SPECIAL_IMPORTS_RULE_GROUP;
 
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
+    public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 

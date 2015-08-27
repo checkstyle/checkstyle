@@ -1,7 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
@@ -18,7 +17,7 @@ public class IndentationTest extends BaseCheckTestSupport{
     static ConfigurationBuilder builder;
 
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() throws CheckstyleException {
         builder = new IndentationConfigurationBuilder(new File("src/it/"));
     }
 
