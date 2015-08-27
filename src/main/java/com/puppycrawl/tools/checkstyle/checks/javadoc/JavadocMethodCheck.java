@@ -797,7 +797,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * @param paramName name of parameter
      * @return true if parameter found and removed
      */
-    private boolean removeMatchingParam(List<DetailAST> params, String paramName) {
+    private static boolean removeMatchingParam(List<DetailAST> params, String paramName) {
         boolean found = false;
         final Iterator<DetailAST> paramIt = params.iterator();
         while (paramIt.hasNext()) {
