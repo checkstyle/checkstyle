@@ -226,40 +226,43 @@ public class LeftCurlyCheck
      * Skip lines that only contain {@code TokenTypes.ANNOTATION}s.
      * If the received {@code DetailAST}
      * has annotations within its modifiers then first token on the line
-     * of the first token afer all annotations is return. This might be
+     * of the first token after all annotations is return. This might be
      * an annotation.
      * Otherwise, the received {@code DetailAST} is returned.
      * @param ast {@code DetailAST}.
      * @return {@code DetailAST}.
      */
     private static DetailAST skipAnnotationOnlyLines(DetailAST ast) {
+        DetailAST resultNode = ast;
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers == null) {
-            return ast;
-        }
-        DetailAST lastAnnot = findLastAnnotation(modifiers);
-        if (lastAnnot == null) {
-            // There are no annotations.
-            return ast;
-        }
-        final DetailAST tokenAfterLast;
 
-        if (lastAnnot.getNextSibling() == null) {
-            tokenAfterLast = modifiers.getNextSibling();
-        }
-        else {
-            tokenAfterLast = lastAnnot.getNextSibling();
-        }
+        if (modifiers != null) {
+            DetailAST lastAnnot = findLastAnnotation(modifiers);
 
-        if (tokenAfterLast.getLineNo() > lastAnnot.getLineNo()) {
-            return tokenAfterLast;
+            if (lastAnnot != null) {
+                final DetailAST tokenAfterLast;
+
+                if (lastAnnot.getNextSibling() == null) {
+                    tokenAfterLast = modifiers.getNextSibling();
+                }
+                else {
+                    tokenAfterLast = lastAnnot.getNextSibling();
+                }
+
+                if (tokenAfterLast.getLineNo() > lastAnnot.getLineNo()) {
+                    resultNode = tokenAfterLast;
+                }
+                else {
+                    final int lastAnnotLineNumber = lastAnnot.getLineNo();
+                    while (lastAnnot.getPreviousSibling() != null
+                           && lastAnnot.getPreviousSibling().getLineNo() == lastAnnotLineNumber) {
+                        lastAnnot = lastAnnot.getPreviousSibling();
+                    }
+                    resultNode = lastAnnot;
+                }
+            }
         }
-        final int lastAnnotLineNumber = lastAnnot.getLineNo();
-        while (lastAnnot.getPreviousSibling() != null
-               && lastAnnot.getPreviousSibling().getLineNo() == lastAnnotLineNumber) {
-            lastAnnot = lastAnnot.getPreviousSibling();
-        }
-        return lastAnnot;
+        return resultNode;
     }
 
     /**
