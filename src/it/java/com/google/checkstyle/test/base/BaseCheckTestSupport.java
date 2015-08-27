@@ -43,11 +43,11 @@ public abstract class BaseCheckTestSupport
         public void auditStarted(AuditEvent evt) {}
     }
 
-    protected final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    protected final PrintStream stream = new PrintStream(baos);
+    private final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    final PrintStream stream = new PrintStream(baos);
     protected final Properties props = new Properties();
 
-    public static DefaultConfiguration createCheckConfig(Class<?> aClazz)
+    protected static DefaultConfiguration createCheckConfig(Class<?> aClazz)
     {
         return new DefaultConfiguration(aClazz.getName());
     }
@@ -104,10 +104,10 @@ public abstract class BaseCheckTestSupport
         verify(aC, aFileName, aFileName, aExpected, aWarnsExpected);
     }
 
-    protected void verify(Checker aC,
-                          String aProcessedFilename,
-                          String aMessageFileName,
-                          String[] aExpected, Integer... aWarnsExpected)
+    private void verify(Checker aC,
+            String aProcessedFilename,
+            String aMessageFileName,
+            String[] aExpected, Integer... aWarnsExpected)
         throws Exception
     {
         verify(aC,
@@ -115,11 +115,11 @@ public abstract class BaseCheckTestSupport
             aMessageFileName, aExpected, aWarnsExpected);
     }
 
-    protected void verify(Checker aC,
-                          File[] aProcessedFiles,
-                          String aMessageFileName,
-                          String[] aExpected,
-                          Integer... aWarnsExpected)
+    void verify(Checker aC,
+            File[] aProcessedFiles,
+            String aMessageFileName,
+            String[] aExpected,
+            Integer... aWarnsExpected)
         throws Exception
     {
         stream.flush();
@@ -157,7 +157,7 @@ public abstract class BaseCheckTestSupport
      * @param messageKey
      *            the key of message in 'messages.properties' file.
      */
-    public String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
+    protected String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
             String messageKey)
     {
         Properties pr = new Properties();
@@ -175,8 +175,8 @@ public abstract class BaseCheckTestSupport
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments the arguments of message in 'messages.properties' file.
      */
-    public String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
-            String messageKey, Object ... arguments) {
+    protected String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
+            String messageKey, Object... arguments) {
         return format(getCheckMessage(aClass, messageKey), arguments);
     }
 
@@ -185,7 +185,7 @@ public abstract class BaseCheckTestSupport
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments the arguments of message in 'messages.properties' file.
      */
-   public String getCheckMessage(Map<String, String> messages, String messageKey, Object ... arguments)
+    protected String getCheckMessage(Map<String, String> messages, String messageKey, Object... arguments)
    {
        for (Map.Entry<String, String> entry : messages.entrySet()) {
            if (messageKey.equals(entry.getKey())) {

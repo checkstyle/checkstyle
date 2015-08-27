@@ -14,7 +14,7 @@ import com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck
 
 public class EmptyLineSeparatorTest extends BaseCheckTestSupport{
 
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
 
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {

@@ -14,7 +14,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDis
 
 public class VariableDeclarationUsageDistanceTest extends BaseCheckTestSupport{
 
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
 
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {

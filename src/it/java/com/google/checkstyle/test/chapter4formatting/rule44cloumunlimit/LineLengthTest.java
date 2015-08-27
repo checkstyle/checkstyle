@@ -14,7 +14,7 @@ import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 
 public class LineLengthTest extends BaseCheckTestSupport{
     
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
     
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {

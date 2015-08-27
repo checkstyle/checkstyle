@@ -18,8 +18,8 @@ public class CustomImportOrderTest extends BaseCheckTestSupport{
     private static final String MSG_SEPARATOR = "custom.import.order.line.separator";
     private static final String MSG_LEX = "custom.import.order.lex";
     private static final String MSG_ORDER = "custom.import.order";
-    static ConfigurationBuilder builder;
-    final Class<CustomImportOrderCheck> clazz = CustomImportOrderCheck.class;
+    private static ConfigurationBuilder builder;
+    private final Class<CustomImportOrderCheck> clazz = CustomImportOrderCheck.class;
     String msgNongroup = "custom.import.order.nongroup.import";
 
     /** Shortcuts to make code more compact */

@@ -15,7 +15,7 @@ import com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
 
 public class OneTopLevelClassTest extends BaseCheckTestSupport{
     
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
     
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {

@@ -15,7 +15,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck;
 
 public class SingleLineJavadocTest extends BaseCheckTestSupport{
 
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
 
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {

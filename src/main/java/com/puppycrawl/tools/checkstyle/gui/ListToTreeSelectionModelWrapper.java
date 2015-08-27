@@ -97,7 +97,7 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
      * reset the selected paths from the selected rows in the list
      * selection model.
      */
-    protected void updateSelectedPathsFromSelectedRows() {
+    private void updateSelectedPathsFromSelectedRows() {
         if (!updatingListSelectionModel) {
             updatingListSelectionModel = true;
             try {
@@ -137,7 +137,7 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
      * Class responsible for calling updateSelectedPathsFromSelectedRows
      * when the selection of the list changes.
      */
-    class ListSelectionHandler implements ListSelectionListener {
+    private class ListSelectionHandler implements ListSelectionListener {
         @Override
         public void valueChanged(ListSelectionEvent e) {
             updateSelectedPathsFromSelectedRows();

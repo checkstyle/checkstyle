@@ -15,7 +15,7 @@ import com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck;
 
 public class EmptyCatchBlockTest extends BaseCheckTestSupport
 {
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
 
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {

@@ -83,7 +83,7 @@ public class TreeTableModelAdapter extends AbstractTableModel {
         return tree.getRowCount();
     }
 
-    protected Object nodeForRow(int row) {
+    private Object nodeForRow(int row) {
         final TreePath treePath = tree.getPathForRow(row);
         return treePath.getLastPathComponent();
     }
@@ -102,7 +102,7 @@ public class TreeTableModelAdapter extends AbstractTableModel {
      * Invokes fireTableDataChanged after all the pending events have been
      * processed. SwingUtilities.invokeLater is used to handle this.
      */
-    protected void delayedFireTableDataChanged() {
+    private void delayedFireTableDataChanged() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
