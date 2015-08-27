@@ -233,33 +233,38 @@ public class LeftCurlyCheck
      * @return {@code DetailAST}.
      */
     private static DetailAST skipAnnotationOnlyLines(DetailAST ast) {
+        DetailAST resultNode = ast;
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers == null) {
-            return ast;
-        }
-        DetailAST lastAnnotation = findLastAnnotation(modifiers);
-        if (lastAnnotation == null) {
-            // There are no annotations.
-            return ast;
-        }
-        final DetailAST tokenAfterLast;
 
-        if (lastAnnotation.getNextSibling() == null) {
-            tokenAfterLast = modifiers.getNextSibling();
-        }
-        else {
-            tokenAfterLast = lastAnnotation.getNextSibling();
-        }
+        if (modifiers != null) {
+            DetailAST lastAnnotation = findLastAnnotation(modifiers);
 
-        if (tokenAfterLast.getLineNo() > lastAnnotation.getLineNo()) {
-            return tokenAfterLast;
+            if (lastAnnotation != null) {
+                final DetailAST tokenAfterLast;
+
+                if (lastAnnotation.getNextSibling() == null) {
+                    tokenAfterLast = modifiers.getNextSibling();
+                }
+                else {
+                    tokenAfterLast = lastAnnotation.getNextSibling();
+                }
+
+                if (tokenAfterLast.getLineNo() > lastAnnotation.getLineNo()) {
+                    resultNode = tokenAfterLast;
+                }
+                else {
+                    final int lastAnnotationLineNumber = lastAnnotation.getLineNo();
+                    while (lastAnnotation.getPreviousSibling() != null
+                           && lastAnnotation.getPreviousSibling().getLineNo()
+                               == lastAnnotationLineNumber) {
+
+                        lastAnnotation = lastAnnotation.getPreviousSibling();
+                    }
+                    resultNode = lastAnnotation;
+                }
+            }
         }
-        final int lastAnnotationLineNumber = lastAnnotation.getLineNo();
-        while (lastAnnotation.getPreviousSibling() != null
-               && lastAnnotation.getPreviousSibling().getLineNo() == lastAnnotationLineNumber) {
-            lastAnnotation = lastAnnotation.getPreviousSibling();
-        }
-        return lastAnnotation;
+        return resultNode;
     }
 
     /**
