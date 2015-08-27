@@ -420,4 +420,21 @@ public final class CheckUtils {
         return expr.getType() == TokenTypes.LITERAL_RETURN;
 
     }
+
+    /**
+     * Checks whether a method is a void one.
+     *
+     * @param methodDefAst the method node.
+     * @return true if method is a void one.
+     */
+    public static boolean isVoidMethod(DetailAST methodDefAst) {
+        boolean retVal = false;
+        if (methodDefAst.getType() == TokenTypes.METHOD_DEF) {
+            final DetailAST typeAST = methodDefAst.findFirstToken(TokenTypes.TYPE);
+            if (typeAST.findFirstToken(TokenTypes.LITERAL_VOID) == null) {
+                retVal = true;
+            }
+        }
+        return retVal;
+    }
 }
