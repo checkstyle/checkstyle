@@ -34,7 +34,7 @@ public class AvoidStaticImportTest
     extends BaseCheckTestSupport {
 
     @Test
-    public void testGetRequiredTokesn() {
+    public void testGetRequiredTokens() {
         AvoidStaticImportCheck checkObj = new AvoidStaticImportCheck();
         int[] expected = {TokenTypes.STATIC_IMPORT};
         assertArrayEquals(expected, checkObj.getRequiredTokens());

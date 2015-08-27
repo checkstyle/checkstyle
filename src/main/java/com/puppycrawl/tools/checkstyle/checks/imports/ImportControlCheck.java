@@ -130,7 +130,7 @@ public class ImportControlCheck extends Check {
     }
 
     /**
-     * Set the pnameter for the file containing the import control
+     * Set the name for the file containing the import control
      * configuration. It will cause the file to be loaded.
      * @param name the name of the file to load.
      * @throws ConversionException on error loading the file.

@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 
-public class DefaulMethodsTest extends BaseCheckTestSupport {
+public class DefaultMethodsTest extends BaseCheckTestSupport {
 
     @Test
     public void testCanParse()

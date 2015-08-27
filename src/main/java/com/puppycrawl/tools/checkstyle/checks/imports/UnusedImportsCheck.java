@@ -74,7 +74,7 @@ public class UnusedImportsCheck extends Check {
 
     /** Flag to indicate when time to start collecting references. */
     private boolean collect;
-    /** Flag whether to process Javdoc comments. */
+    /** Flag whether to process Javadoc comments. */
     private boolean processJavadoc;
 
     /** Set of the imports. */
@@ -172,7 +172,7 @@ public class UnusedImportsCheck extends Check {
         else {
             collect = true;
             if (processJavadoc) {
-                collectReferecesFromJavadoc(ast);
+                collectReferencesFromJavadoc(ast);
             }
         }
     }
@@ -220,12 +220,12 @@ public class UnusedImportsCheck extends Check {
      * Collects references made in Javadoc comments.
      * @param ast node to inspect for Javadoc
      */
-    private void collectReferecesFromJavadoc(DetailAST ast) {
+    private void collectReferencesFromJavadoc(DetailAST ast) {
         final FileContents contents = getFileContents();
         final int lineNo = ast.getLineNo();
         final TextBlock cmt = contents.getJavadocBefore(lineNo);
         if (cmt != null) {
-            referenced.addAll(collectReferecesFromJavadoc(cmt));
+            referenced.addAll(collectReferencesFromJavadoc(cmt));
         }
     }
 
@@ -235,10 +235,10 @@ public class UnusedImportsCheck extends Check {
      * @param cmt The javadoc block to parse
      * @return a set of classes referenced in the javadoc block
      */
-    private static Set<String> collectReferecesFromJavadoc(TextBlock cmt) {
+    private static Set<String> collectReferencesFromJavadoc(TextBlock cmt) {
         final Set<String> references = new HashSet<>();
         // process all the @link type tags
-        // INLINEs inside BLOCKs get hidden when using ALL
+        // INLINE tags inside BLOCKs get hidden when using ALL
         for (final JavadocTag tag
                 : getValidTags(cmt, JavadocUtils.JavadocTagType.INLINE)) {
             if (tag.canReferenceImports()) {
