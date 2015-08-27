@@ -17,7 +17,7 @@ public class IndentationTest extends BaseCheckTestSupport{
     private static ConfigurationBuilder builder;
 
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
+    public static void setConfigurationBuilder() {
         builder = new IndentationConfigurationBuilder(new File("src/it/"));
     }
 
