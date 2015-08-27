@@ -1583,19 +1583,63 @@
                 <totalBranchRate>89</totalBranchRate>
                 <totalLineRate>95</totalLineRate>
                 <regexes>
-                  <regex><pattern>.*.checks.AbstractOptionCheck</pattern><branchRate>100</branchRate><lineRate>80</lineRate></regex>
-                  <regex><pattern>.*.checks.AbstractTypeAwareCheck</pattern><branchRate>87</branchRate><lineRate>84</lineRate></regex>
-                  <regex><pattern>.*.checks.AbstractTypeAwareCheck\$.*</pattern><branchRate>50</branchRate><lineRate>80</lineRate></regex>
-                  <regex><pattern>.*.checks.ClassResolver</pattern><branchRate>85</branchRate><lineRate>93</lineRate></regex>
-                  <regex><pattern>.*.checks.AbstractDeclarationCollector</pattern><branchRate>94</branchRate><lineRate>100</lineRate></regex>
-                  <regex><pattern>.*.checks.NewlineAtEndOfFileCheck</pattern><branchRate>83</branchRate><lineRate>88</lineRate></regex>
-                  <regex><pattern>.*.checks.SuppressWarningsHolder</pattern><branchRate>75</branchRate><lineRate>93</lineRate></regex>
-                  <regex><pattern>.*.checks.TranslationCheck</pattern><branchRate>81</branchRate><lineRate>83</lineRate></regex>
-                  <regex><pattern>.*.checks.UniquePropertiesCheck\$.*</pattern><branchRate>75</branchRate><lineRate>90</lineRate></regex>
+                  <regex>
+                    <pattern>.*.checks.AbstractOptionCheck</pattern>
+                    <branchRate>100</branchRate>
+                    <lineRate>80</lineRate>
+                  </regex>
+                  <regex>
+                    <pattern>.*.checks.AbstractTypeAwareCheck</pattern>
+                    <branchRate>87</branchRate>
+                    <lineRate>84</lineRate>
+                  </regex>
+                  <regex>
+                    <pattern>.*.checks.AbstractTypeAwareCheck\$.*</pattern>
+                    <branchRate>50</branchRate>
+                    <lineRate>80</lineRate>
+                  </regex>
+                  <regex>
+                    <pattern>.*.checks.ClassResolver</pattern>
+                    <branchRate>85</branchRate>
+                    <lineRate>93</lineRate>
+                  </regex>
+                  <regex>
+                    <pattern>.*.checks.AbstractDeclarationCollector</pattern>
+                    <branchRate>94</branchRate>
+                    <lineRate>100</lineRate>
+                  </regex>
+                  <regex>
+                    <pattern>.*.checks.NewlineAtEndOfFileCheck</pattern>
+                    <branchRate>83</branchRate>
+                    <lineRate>88</lineRate>
+                  </regex>
+                  <regex>
+                    <pattern>.*.checks.SuppressWarningsHolder</pattern>
+                    <branchRate>75</branchRate>
+                    <lineRate>93</lineRate>
+                  </regex>
+                  <regex>
+                    <pattern>.*.checks.TranslationCheck</pattern>
+                    <branchRate>81</branchRate>
+                    <lineRate>83</lineRate>
+                  </regex>
+                  <regex>
+                    <pattern>.*.checks.UniquePropertiesCheck\$.*</pattern>
+                    <branchRate>75</branchRate>
+                    <lineRate>90</lineRate>
+                  </regex>
 
-                  <regex><pattern>.*.checks.coding.DeclarationOrderCheck</pattern><branchRate>82</branchRate><lineRate>93</lineRate></regex>
+                  <regex>
+                    <pattern>.*.checks.coding.DeclarationOrderCheck</pattern>
+                    <branchRate>82</branchRate>
+                    <lineRate>93</lineRate>
+                  </regex>
 
-                  <regex><pattern>.*.checks.header.AbstractHeaderCheck</pattern><branchRate>90</branchRate><lineRate>87</lineRate></regex>
+                  <regex>
+                    <pattern>.*.checks.header.AbstractHeaderCheck</pattern>
+                    <branchRate>90</branchRate>
+                    <lineRate>87</lineRate>
+                  </regex>
                 </regexes>
               </check>
               <instrumentation>
