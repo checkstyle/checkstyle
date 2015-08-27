@@ -226,7 +226,7 @@ public class DeclarationOrderCheck extends Check {
 
     /**
      * Process Method Token
-     * @param ast ,ethod token AST
+     * @param ast method token AST
      */
     private void processMethod(DetailAST ast) {
 

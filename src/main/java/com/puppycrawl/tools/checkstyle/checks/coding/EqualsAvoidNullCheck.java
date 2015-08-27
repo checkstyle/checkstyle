@@ -161,7 +161,7 @@ public class EqualsAvoidNullCheck extends Check {
      * Checks for calling equals on String literal and
      * anon object which cannot be null
      * Also, checks if calling using strange inner class
-     * syntax outter.inner.equals(otherObj) by looking
+     * syntax outer.inner.equals(otherObj) by looking
      * for the dot operator which cannot be improved
      * @param objCalledOn object AST
      * @return if it is string literal

@@ -84,7 +84,7 @@ public class FallThroughCheck extends Check {
     /** Do we need to check last case group. */
     private boolean checkLastCaseGroup;
 
-    /** Relief pattern to allow fall throught to the next case branch. */
+    /** Relief pattern to allow fall through to the next case branch. */
     private String reliefPattern = "fallthru|falls? ?through";
 
     /** Relief regexp. */
@@ -256,7 +256,7 @@ public class FallThroughCheck extends Check {
      * @param ast loop to check
      * @param useBreak should we consider break as terminator.
      * @param useContinue should we consider continue as terminator.
-     * @return true if try/cath/finally block is terminated.
+     * @return true if try/catch/finally block is terminated.
      */
     private boolean checkTry(final DetailAST ast, boolean useBreak,
                              boolean useContinue) {
@@ -300,7 +300,7 @@ public class FallThroughCheck extends Check {
 
     /**
      * Determines if the fall through case between {@code currentCase} and
-     * {@code nextCase} is reliefed by a appropriate comment.
+     * {@code nextCase} is relieved by a appropriate comment.
      *
      * @param currentCase AST of the case that falls through to the next case.
      * @param nextCase AST of the next case.
@@ -329,8 +329,8 @@ public class FallThroughCheck extends Check {
          *    default:
          *    /+ FALLTHRU +/}
          */
-        final String linepart = lines[endLineNo - 1].substring(0, endColNo);
-        if (commentMatch(regExp, linepart, endLineNo)) {
+        final String linePart = lines[endLineNo - 1].substring(0, endColNo);
+        if (commentMatch(regExp, linePart, endLineNo)) {
             return true;
         }
 

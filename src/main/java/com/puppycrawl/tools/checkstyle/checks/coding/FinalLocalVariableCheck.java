@@ -265,9 +265,9 @@ public class FinalLocalVariableCheck extends Check {
     }
 
     /**
-     * Check if current param is lamda's param.
+     * Check if current param is lambda's param.
      * @param paramDef {@link TokenTypes#PARAMETER_DEF parameter def}.
-     * @return true if current param is lamda's param.
+     * @return true if current param is lambda's param.
      */
     private static boolean inLambda(DetailAST paramDef) {
         return paramDef.getParent().getParent().getType() == TokenTypes.LAMBDA;
