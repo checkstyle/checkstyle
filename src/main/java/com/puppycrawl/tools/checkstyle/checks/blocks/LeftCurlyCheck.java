@@ -226,7 +226,7 @@ public class LeftCurlyCheck
      * Skip lines that only contain {@code TokenTypes.ANNOTATION}s.
      * If the received {@code DetailAST}
      * has annotations within its modifiers then first token on the line
-     * of the first token afer all annotations is return. This might be
+     * of the first token after all annotations is return. This might be
      * an annotation.
      * Otherwise, the received {@code DetailAST} is returned.
      * @param ast {@code DetailAST}.
@@ -237,29 +237,29 @@ public class LeftCurlyCheck
         if (modifiers == null) {
             return ast;
         }
-        DetailAST lastAnnot = findLastAnnotation(modifiers);
-        if (lastAnnot == null) {
+        DetailAST lastAnnotation = findLastAnnotation(modifiers);
+        if (lastAnnotation == null) {
             // There are no annotations.
             return ast;
         }
         final DetailAST tokenAfterLast;
 
-        if (lastAnnot.getNextSibling() == null) {
+        if (lastAnnotation.getNextSibling() == null) {
             tokenAfterLast = modifiers.getNextSibling();
         }
         else {
-            tokenAfterLast = lastAnnot.getNextSibling();
+            tokenAfterLast = lastAnnotation.getNextSibling();
         }
 
-        if (tokenAfterLast.getLineNo() > lastAnnot.getLineNo()) {
+        if (tokenAfterLast.getLineNo() > lastAnnotation.getLineNo()) {
             return tokenAfterLast;
         }
-        final int lastAnnotLineNumber = lastAnnot.getLineNo();
-        while (lastAnnot.getPreviousSibling() != null
-               && lastAnnot.getPreviousSibling().getLineNo() == lastAnnotLineNumber) {
-            lastAnnot = lastAnnot.getPreviousSibling();
+        final int lastAnnotationLineNumber = lastAnnotation.getLineNo();
+        while (lastAnnotation.getPreviousSibling() != null
+               && lastAnnotation.getPreviousSibling().getLineNo() == lastAnnotationLineNumber) {
+            lastAnnotation = lastAnnotation.getPreviousSibling();
         }
-        return lastAnnot;
+        return lastAnnotation;
     }
 
     /**
@@ -301,7 +301,7 @@ public class LeftCurlyCheck
             }
             else if (startToken.getLineNo() != brace.getLineNo()) {
 
-                validateNewLinePosion(brace, startToken, braceLine);
+                validateNewLinePosition(brace, startToken, braceLine);
 
             }
         }
@@ -309,7 +309,7 @@ public class LeftCurlyCheck
 
     /**
      * Validate EOL case
-     * @param brace brase AST
+     * @param brace brace AST
      * @param braceLine line content
      */
     private void validateEol(DetailAST brace, String braceLine) {
@@ -327,8 +327,7 @@ public class LeftCurlyCheck
      * @param startToken start Token
      * @param braceLine content of line with Brace
      */
-    private void validateNewLinePosion(DetailAST brace, DetailAST startToken,
-                                       String braceLine) {
+    private void validateNewLinePosition(DetailAST brace, DetailAST startToken, String braceLine) {
         // not on the same line
         if (startToken.getLineNo() + 1 == brace.getLineNo()) {
             if (CommonUtils.whitespaceBefore(brace.getColumnNo(), braceLine)) {

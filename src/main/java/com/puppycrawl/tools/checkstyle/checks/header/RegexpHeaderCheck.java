@@ -138,7 +138,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     }
 
     @Override
-    protected void postprocessHeaderLines() {
+    protected void postProcessHeaderLines() {
         final List<String> headerLines = getHeaderLines();
         headerRegexps.clear();
         for (String line : headerLines) {

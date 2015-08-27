@@ -57,7 +57,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testSigleLineStatements() throws Exception {
+    public void testSingleLineStatements() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NeedBracesCheck.class);
         checkConfig.addAttribute("allowSingleLineStatement", "true");
@@ -75,7 +75,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testSigleLineLambda() throws Exception {
+    public void testSingleLineLambda() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NeedBracesCheck.class);
         checkConfig.addAttribute("tokens", "LAMBDA");
@@ -89,7 +89,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testSigleLineCaseDefault() throws Exception {
+    public void testSingleLineCaseDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NeedBracesCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_CASE, LITERAL_DEFAULT");

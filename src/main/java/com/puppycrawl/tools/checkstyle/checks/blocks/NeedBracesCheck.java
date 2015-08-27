@@ -337,8 +337,8 @@ public class NeedBracesCheck extends Check {
      * Checks if current case statement is single-line statement, e.g.:
      * <p>
      * {@code
-     * case 1: dosomeStuff(); break;
-     * case 2: dosomeStuff(); break;
+     * case 1: doSomeStuff(); break;
+     * case 2: doSomeStuff(); break;
      * }
      * </p>
      * @param literalCase {@link TokenTypes#LITERAL_CASE case statement}.

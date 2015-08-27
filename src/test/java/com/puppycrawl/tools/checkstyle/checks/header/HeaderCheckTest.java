@@ -63,7 +63,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
     public void testNonExistingHeaderFile() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(HeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("nonexisting.file"));
+        checkConfig.addAttribute("headerFile", getPath("nonExisting.file"));
         try {
             createChecker(checkConfig);
             fail();

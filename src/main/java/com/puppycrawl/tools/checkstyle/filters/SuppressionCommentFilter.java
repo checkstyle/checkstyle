@@ -337,11 +337,11 @@ public class SuppressionCommentFilter
             try {
                 if (on) {
                     format =
-                        expandFromCoont(text, filter.checkFormat, filter.onRegexp);
+                        expandFromComment(text, filter.checkFormat, filter.onRegexp);
                     tagCheckRegexp = Pattern.compile(format);
                     if (filter.messageFormat != null) {
                         format =
-                            expandFromCoont(text, filter.messageFormat, filter.onRegexp);
+                            expandFromComment(text, filter.messageFormat, filter.onRegexp);
                         tagMessageRegexp = Pattern.compile(format);
                     }
                     else {
@@ -350,14 +350,14 @@ public class SuppressionCommentFilter
                 }
                 else {
                     format =
-                        expandFromCoont(text, filter.checkFormat, filter.offRegexp);
+                        expandFromComment(text, filter.checkFormat, filter.offRegexp);
                     tagCheckRegexp = Pattern.compile(format);
                     if (filter.messageFormat != null) {
                         format =
-                            expandFromCoont(
-                                text,
-                                filter.messageFormat,
-                                filter.offRegexp);
+                            expandFromComment(
+                                    text,
+                                    filter.messageFormat,
+                                    filter.offRegexp);
                         tagMessageRegexp = Pattern.compile(format);
                     }
                     else {
@@ -461,10 +461,10 @@ public class SuppressionCommentFilter
          * @param regexp the parsed expander.
          * @return the expanded string
          */
-        private static String expandFromCoont(
-            String comment,
-            String stringToExpand,
-            Pattern regexp) {
+        private static String expandFromComment(
+                String comment,
+                String stringToExpand,
+                Pattern regexp) {
             final Matcher matcher = regexp.matcher(comment);
             // Match primarily for effect.
             if (!matcher.find()) {
