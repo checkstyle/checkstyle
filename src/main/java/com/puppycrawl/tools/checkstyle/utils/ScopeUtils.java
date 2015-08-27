@@ -196,7 +196,7 @@ public final class ScopeUtils {
 
     /**
      * Returns whether the scope of a node is restricted to a code block.
-     * A code block is a method or constructor body, or a initialiser block.
+     * A code block is a method or constructor body, or a initializer block.
      *
      * @param aAST the node to check
      * @return a {@code boolean} value

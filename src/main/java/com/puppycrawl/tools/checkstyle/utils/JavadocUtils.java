@@ -49,7 +49,7 @@ public final class JavadocUtils {
     private static final String[] TOKEN_VALUE_TO_NAME;
 
     /** Exception message for unknown JavaDoc token id. */
-    private static final String UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE = "Unknown javdoc"
+    private static final String UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE = "Unknown javadoc"
             + " token id. Given id: ";
 
     // Using reflection gets all token names and values from JavadocTokenTypes class
@@ -243,12 +243,12 @@ public final class JavadocUtils {
 
     /**
      * Get content of Javadoc comment.
-     * @param javdocCommentBegin
+     * @param javadocCommentBegin
      *        Javadoc comment AST
      * @return content of Javadoc comment.
      */
-    public static String getJavadocCommentContent(DetailAST javdocCommentBegin) {
-        final DetailAST commentContent = javdocCommentBegin.getFirstChild();
+    public static String getJavadocCommentContent(DetailAST javadocCommentBegin) {
+        final DetailAST commentContent = javadocCommentBegin.getFirstChild();
         return commentContent.getText().substring(1);
     }
 
@@ -398,7 +398,7 @@ public final class JavadocUtils {
     public static int getTokenId(String name) {
         final Integer id = TOKEN_NAME_TO_VALUE.get(name);
         if (id == null) {
-            throw new IllegalArgumentException("Unknown javdoc token name. Given name " + name);
+            throw new IllegalArgumentException("Unknown javadoc token name. Given name " + name);
         }
         return id;
     }

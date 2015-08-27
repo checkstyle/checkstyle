@@ -87,13 +87,13 @@ public class CommonUtilsTest {
     }
 
     @Test
-    public void testBaseClassnameForCanonicalName() {
-        assertEquals("List", CommonUtils.baseClassname("java.util.List"));
+    public void testBaseClassNameForCanonicalName() {
+        assertEquals("List", CommonUtils.baseClassName("java.util.List"));
     }
 
     @Test
-    public void testBaseClassnameForSimpleName() {
-        assertEquals("Set", CommonUtils.baseClassname("Set"));
+    public void testBaseClassNameForSimpleName() {
+        assertEquals("Set", CommonUtils.baseClassName("Set"));
     }
 
     @Test

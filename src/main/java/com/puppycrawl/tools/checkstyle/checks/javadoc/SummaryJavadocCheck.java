@@ -74,7 +74,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     public static final String SUMMARY_JAVADOC = "summary.javaDoc";
     /**
-     * This regexp is used to convert multiline javdoc to single line without stars.
+     * This regexp is used to convert multiline javadoc to single line without stars.
      */
     private static final Pattern JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN =
             Pattern.compile("\n[ ]+(\\*)|^[ ]+(\\*)");
