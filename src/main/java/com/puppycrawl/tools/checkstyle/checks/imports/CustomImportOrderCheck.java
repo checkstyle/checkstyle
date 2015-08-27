@@ -281,13 +281,13 @@ public class CustomImportOrderCheck extends Check {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_NONGROUP_IMPORT = "custom.import.order.nongroup.import";
+    public static final String MSG_NONGROUP_IMPORT = "custom.import.order.nonGroup.import";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_NONGROUP_EXPECTED = "custom.import.order.nongroup.expected";
+    public static final String MSG_NONGROUP_EXPECTED = "custom.import.order.nonGroup.expected";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

@@ -18,7 +18,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport{
     private static final String MSG_ORDER = "custom.import.order";
     private static ConfigurationBuilder builder;
     private final Class<CustomImportOrderCheck> clazz = CustomImportOrderCheck.class;
-    String msgNongroup = "custom.import.order.nongroup.import";
+    String msgNongroup = "custom.import.order.nonGroup.import";
 
     /** Shortcuts to make code more compact */
     private static final String STD = CustomImportOrderCheck.STANDARD_JAVA_PACKAGE_RULE_GROUP;
