@@ -121,7 +121,7 @@ public class ExplicitInitializationCheck extends Check {
         // do not check local variables and
         // fields declared in interface/annotations
         if (ScopeUtils.isLocalVariableDef(ast)
-            || ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
+            || ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
             return true;
         }
 

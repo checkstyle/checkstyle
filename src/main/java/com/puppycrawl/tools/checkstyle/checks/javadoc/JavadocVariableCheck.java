@@ -132,7 +132,7 @@ public class JavadocVariableCheck
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(final DetailAST ast) {
-        if (ScopeUtils.inCodeBlock(ast) || isIgnored(ast)) {
+        if (ScopeUtils.isInCodeBlock(ast) || isIgnored(ast)) {
             return false;
         }
 
@@ -144,7 +144,7 @@ public class JavadocVariableCheck
             final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
             final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
 
-            if (ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
+            if (ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
                 customScope = Scope.PUBLIC;
             }
             else {

@@ -540,7 +540,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
         final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
 
-        if (ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
+        if (ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
             return Scope.PUBLIC;
         }
         else {

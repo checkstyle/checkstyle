@@ -85,9 +85,9 @@ public class ConstantNameCheck
         final boolean isFinal = modifiersAST.branchContains(TokenTypes.FINAL);
 
         if (isStatic  && isFinal && shouldCheckInScope(modifiersAST)
-                || ScopeUtils.inAnnotationBlock(ast)
-                || ScopeUtils.inInterfaceOrAnnotationBlock(ast)
-                        && !ScopeUtils.inCodeBlock(ast)) {
+                || ScopeUtils.isInAnnotationBlock(ast)
+                || ScopeUtils.isInInterfaceOrAnnotationBlock(ast)
+                        && !ScopeUtils.isInCodeBlock(ast)) {
             // Handle the serialVersionUID and serialPersistentFields constants
             // which are used for Serialization. Cannot enforce rules on it. :-)
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);

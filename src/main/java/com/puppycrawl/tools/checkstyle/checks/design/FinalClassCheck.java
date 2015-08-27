@@ -77,7 +77,7 @@ public class FinalClassCheck
             classes.push(new ClassDesc(isFinal, isAbstract));
         }
         // ctors in enums don't matter
-        else if (!ScopeUtils.inEnumBlock(ast)) {
+        else if (!ScopeUtils.isInEnumBlock(ast)) {
             final ClassDesc desc = classes.peek();
             if (modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)) {
                 desc.reportPrivateCtor();

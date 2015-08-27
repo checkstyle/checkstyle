@@ -225,7 +225,7 @@ public class JavadocTypeCheck
         final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
         final Scope customScope;
 
-        if (ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
+        if (ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
             customScope = Scope.PUBLIC;
         }
         else {
