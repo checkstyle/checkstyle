@@ -489,7 +489,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
 
             checkParamTags(tags, ast, !hasInheritDocTag);
             checkThrowsTags(tags, getThrows(ast), !hasInheritDocTag);
-            if (isFunction(ast)) {
+            if (CheckUtils.isVoidMethod(ast)) {
                 checkReturnTag(tags, ast.getLineNo(), !hasInheritDocTag);
             }
         }
@@ -747,18 +747,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             tagIt.remove();
 
             boolean found = false;
-
-            // Loop looking for matching param
-            final Iterator<DetailAST> paramIt = params.iterator();
             final String arg1 = tag.getFirstArg();
-            while (paramIt.hasNext()) {
-                final DetailAST param = paramIt.next();
-                if (param.getText().equals(arg1)) {
-                    found = true;
-                    paramIt.remove();
-                    break;
-                }
-            }
+            found = removeMatchingParam(params, arg1);
 
             if (CommonUtils.startsWithChar(arg1, '<') && CommonUtils.endsWithChar(arg1, '>')) {
                 // Loop looking for matching type param
@@ -802,20 +792,23 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     }
 
     /**
-     * Checks whether a method is a function.
-     *
-     * @param ast the method node.
-     * @return whether the method is a function.
+     * Remove parameter from params collection by name.
+     * @param params collection of DetailAST parameters
+     * @param paramName name of parameter
+     * @return true if parameter found and removed
      */
-    private static boolean isFunction(DetailAST ast) {
-        boolean retVal = false;
-        if (ast.getType() == TokenTypes.METHOD_DEF) {
-            final DetailAST typeAST = ast.findFirstToken(TokenTypes.TYPE);
-            if (typeAST.findFirstToken(TokenTypes.LITERAL_VOID) == null) {
-                retVal = true;
+    private boolean removeMatchingParam(List<DetailAST> params, String paramName) {
+        boolean found = false;
+        final Iterator<DetailAST> paramIt = params.iterator();
+        while (paramIt.hasNext()) {
+            final DetailAST param = paramIt.next();
+            if (param.getText().equals(paramName)) {
+                found = true;
+                paramIt.remove();
+                break;
             }
         }
-        return retVal;
+        return found;
     }
 
     /**
