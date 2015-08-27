@@ -325,6 +325,8 @@
         <property name="max" value="30"/>
     </module>
 
+    <module name="NPathComplexity"/>
+
 <!--
     <module name="ClassDataAbstractionCoupling"/>
     <module name="ClassFanOutComplexity"/>
@@ -334,7 +336,6 @@
     <module name="JavadocTagContinuationIndentation"/>
     <module name="JavaNCSS"/>
     <module name="MissingCtor"/>
-    <module name="NPathComplexity"/>
     <module name="OneTopLevelClass"/>
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="PackageDeclaration"/>
