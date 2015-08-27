@@ -115,7 +115,7 @@ class FileDrop {
      * @param listener Listens for <tt>filesDropped</tt>.
      * @since 1.0
      */
-    FileDrop(
+    private FileDrop(
             final Component component,
             final Border dragBorder,
             final boolean recursive,
@@ -205,7 +205,7 @@ class FileDrop {
      * @param recursive Recursively unregister components within a container
      * @since 1.0
      */
-    static void remove(Component component, boolean recursive) {
+    private static void remove(Component component, boolean recursive) {
         component.setDropTarget(null);
         if (recursive && component instanceof Container) {
             final Component[] comps = ((Container) component).getComponents();

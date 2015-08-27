@@ -13,7 +13,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class IllegalTokenTextTest extends BaseCheckTestSupport{
     
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
     
     @BeforeClass
     public static void setConfigurationBuilder()

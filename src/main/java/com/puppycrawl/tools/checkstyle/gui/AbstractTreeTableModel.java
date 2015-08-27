@@ -50,7 +50,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
      *
      * @param root Root node.
      */
-    protected AbstractTreeTableModel(Object root) {
+    AbstractTreeTableModel(Object root) {
         this.root = root;
     }
 
@@ -177,7 +177,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
      * the fire method.
      * @see EventListenerList
      */
-    protected void fireTreeStructureChanged(Object source, Object[] path,
+    void fireTreeStructureChanged(Object source, Object[] path,
             int[] childIndices,
             Object... children) {
         // Guaranteed to return a non-null array

@@ -45,8 +45,8 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder
     private static final Pattern NON_STRICT_LEVEL_COMMENT_REGEX =
                     Pattern.compile("//indent:\\d+ exp:>=(\\d+)( warn)?");
 
-    protected static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
-                    final int tabWidth)
+    private static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
+            final int tabWidth)
                     throws IOException
     {
         List<Integer> result = new ArrayList<>();

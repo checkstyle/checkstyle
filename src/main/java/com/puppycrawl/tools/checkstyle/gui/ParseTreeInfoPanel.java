@@ -177,7 +177,7 @@ public class ParseTreeInfoPanel extends JPanel {
      * @return the root node of the parse tree
      * @throws ANTLRException if the file is not a Java source
      */
-    public static DetailAST parseFile(FileText text)
+    private static DetailAST parseFile(FileText text)
         throws ANTLRException {
         final FileContents contents = new FileContents(text);
         return TreeWalker.parse(contents);
@@ -198,11 +198,11 @@ public class ParseTreeInfoPanel extends JPanel {
         SwingUtilities.invokeLater(showError);
     }
 
-    void addLineToPosition(int value) {
+    private void addLineToPosition(int value) {
         linesToPosition.add(value);
     }
 
-    void clearLinesToPosition() {
+    private void clearLinesToPosition() {
         linesToPosition.clear();
     }
 
