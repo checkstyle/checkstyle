@@ -133,48 +133,59 @@ public final class JavadocUtils {
             }
             // No block tag, so look for inline validTags
             else if (tagType == JavadocTagType.ALL || tagType == JavadocTagType.INLINE) {
-                // Match Javadoc text after comment characters
-                final Pattern commentPattern = Pattern.compile("^\\s*(?:/\\*{2,}|\\*+)\\s*(.*)");
-                final Matcher commentMatcher = commentPattern.matcher(s);
-                final String commentContents;
-
-                // offset including comment characters
-                final int commentOffset;
-
-                if (commentMatcher.find()) {
-                    commentContents = commentMatcher.group(1);
-                    commentOffset = commentMatcher.start(1) - 1;
-                }
-                else {
-                    // No leading asterisks, still valid
-                    commentContents = s;
-                    commentOffset = 0;
-                }
-                final Pattern tagPattern = Pattern.compile(".*?\\{@(\\p{Alpha}+)\\s+(.*?)\\}");
-                final Matcher tagMatcher = tagPattern.matcher(commentContents);
-                while (tagMatcher.find()) {
-                    final String tagName = tagMatcher.group(1);
-                    final String tagValue = tagMatcher.group(2).trim();
-                    final int line = cmt.getStartLineNo() + i;
-                    int col = commentOffset + tagMatcher.start(1) - 1;
-                    if (i == 0) {
-                        col += cmt.getStartColNo();
-                    }
-                    if (JavadocTagInfo.isValidName(tagName)) {
-                        tags.add(new JavadocTag(line, col, tagName,
-                                tagValue));
-                    }
-                    else {
-                        invalidTags.add(new InvalidJavadocTag(line, col,
-                                tagName));
-                    }
-                    // else Error: Unexpected match count for inline Javadoc
-                    // tag!
-                }
+                lookForInlineTags(cmt, i, tags, invalidTags);
             }
             blockTagPattern = Pattern.compile("^\\s*\\**\\s*@(\\p{Alpha}+)\\s");
         }
         return new JavadocTags(tags, invalidTags);
+    }
+
+    /**
+     * Looks for inline tags in comment and adds them to the proper tags collection.
+     * @param comment comment text block
+     * @param lineNumber line number in the comment
+     * @param validTags collection of valid tags
+     * @param invalidTags collection of invalid tags
+     */
+    private static void lookForInlineTags(TextBlock comment, int lineNumber,
+            final List<JavadocTag> validTags, final List<InvalidJavadocTag> invalidTags) {
+        final String s = comment.getText()[lineNumber];
+        // Match Javadoc text after comment characters
+        final Pattern commentPattern = Pattern.compile("^\\s*(?:/\\*{2,}|\\*+)\\s*(.*)");
+        final Matcher commentMatcher = commentPattern.matcher(s);
+        final String commentContents;
+
+        // offset including comment characters
+        final int commentOffset;
+
+        if (commentMatcher.find()) {
+            commentContents = commentMatcher.group(1);
+            commentOffset = commentMatcher.start(1) - 1;
+        }
+        else {
+            // No leading asterisks, still valid
+            commentContents = s;
+            commentOffset = 0;
+        }
+        final Pattern tagPattern = Pattern.compile(".*?\\{@(\\p{Alpha}+)\\s+(.*?)\\}");
+        final Matcher tagMatcher = tagPattern.matcher(commentContents);
+        while (tagMatcher.find()) {
+            final String tagName = tagMatcher.group(1);
+            final String tagValue = tagMatcher.group(2).trim();
+            final int line = comment.getStartLineNo() + lineNumber;
+            int col = commentOffset + tagMatcher.start(1) - 1;
+            if (lineNumber == 0) {
+                col += comment.getStartColNo();
+            }
+            if (JavadocTagInfo.isValidName(tagName)) {
+                validTags.add(new JavadocTag(line, col, tagName,
+                        tagValue));
+            }
+            else {
+                invalidTags.add(new InvalidJavadocTag(line, col,
+                        tagName));
+            }
+        }
     }
 
     /**
