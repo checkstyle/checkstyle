@@ -276,7 +276,7 @@ public class IllegalInstantiationCheck
                 }
             }
             else {
-                if (CommonUtils.baseClassname(importArg).equals(className)
+                if (CommonUtils.baseClassName(importArg).equals(className)
                     && illegalClasses.contains(importArg)) {
                     illegalType = importArg;
                     break;

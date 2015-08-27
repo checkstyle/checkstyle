@@ -152,9 +152,9 @@ public final class TokenUtils {
             throw new IllegalArgumentException(TOKEN_NAME_EXCEPTION_PREFIX + name);
         }
 
-        final String tokentypes =
+        final String tokenTypes =
             "com.puppycrawl.tools.checkstyle.api.tokentypes";
-        final ResourceBundle bundle = ResourceBundle.getBundle(tokentypes);
+        final ResourceBundle bundle = ResourceBundle.getBundle(tokenTypes);
         return bundle.getString(name);
     }
 

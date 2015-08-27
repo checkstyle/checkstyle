@@ -137,15 +137,15 @@ public final class CheckUtils {
      * @return {@code FullIdent} for given type.
      */
     public static FullIdent createFullType(DetailAST typeAST) {
-        final DetailAST arrayDeclAST =
+        final DetailAST arrayDeclaratorAST =
             typeAST.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
         final FullIdent fullType;
 
-        if (arrayDeclAST == null) {
+        if (arrayDeclaratorAST == null) {
             fullType = createFullTypeNoArrays(typeAST);
         }
         else {
-            fullType = createFullTypeNoArrays(arrayDeclAST);
+            fullType = createFullTypeNoArrays(arrayDeclaratorAST);
         }
         return fullType;
     }
@@ -270,36 +270,36 @@ public final class CheckUtils {
 
     /**
      * Retrieves the names of the type parameters to the node.
-     * @param node the parameterised AST node
+     * @param node the parameterized AST node
      * @return a list of type parameter names
      */
     public static List<String> getTypeParameterNames(final DetailAST node) {
         final DetailAST typeParameters =
             node.findFirstToken(TokenTypes.TYPE_PARAMETERS);
 
-        final List<String> typeParanames = Lists.newArrayList();
+        final List<String> typeParameterNames = Lists.newArrayList();
         if (typeParameters != null) {
             final DetailAST typeParam =
                 typeParameters.findFirstToken(TokenTypes.TYPE_PARAMETER);
-            typeParanames.add(
-                typeParam.findFirstToken(TokenTypes.IDENT).getText());
+            typeParameterNames.add(
+                    typeParam.findFirstToken(TokenTypes.IDENT).getText());
 
             DetailAST sibling = typeParam.getNextSibling();
             while (sibling != null) {
                 if (sibling.getType() == TokenTypes.TYPE_PARAMETER) {
-                    typeParanames.add(
-                        sibling.findFirstToken(TokenTypes.IDENT).getText());
+                    typeParameterNames.add(
+                            sibling.findFirstToken(TokenTypes.IDENT).getText());
                 }
                 sibling = sibling.getNextSibling();
             }
         }
 
-        return typeParanames;
+        return typeParameterNames;
     }
 
     /**
      * Retrieves the type parameters to the node.
-     * @param node the parameterised AST node
+     * @param node the parameterized AST node
      * @return a list of type parameter names
      */
     public static List<DetailAST> getTypeParameters(final DetailAST node) {

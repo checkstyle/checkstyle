@@ -188,7 +188,7 @@ public final class CommonUtils {
      *            the fully qualified name. Cannot be null
      * @return the base class name from a fully qualified name
      */
-    public static String baseClassname(String type) {
+    public static String baseClassName(String type) {
         final int i = type.lastIndexOf('.');
 
         if (i == -1) {
