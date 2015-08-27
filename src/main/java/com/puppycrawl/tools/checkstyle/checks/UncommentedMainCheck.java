@@ -218,22 +218,20 @@ public class UncommentedMainCheck
      * @return true if check passed, false otherwise
      */
     private static boolean checkParams(DetailAST method) {
+        boolean checkPassed = false;
         final DetailAST params = method.findFirstToken(TokenTypes.PARAMETERS);
-        if (params.getChildCount() != 1) {
-            return false;
-        }
-        final DetailAST paratype = params.getFirstChild()
-            .findFirstToken(TokenTypes.TYPE);
-        final DetailAST arrayDecl =
-            paratype.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
-        if (arrayDecl == null) {
-            return false;
-        }
 
-        final DetailAST arrayType = arrayDecl.getFirstChild();
+        if (params.getChildCount() == 1) {
+            final DetailAST paratype = params.getFirstChild().findFirstToken(TokenTypes.TYPE);
+            final DetailAST arrayDecl = paratype.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
 
-        final FullIdent type = FullIdent.createFullIdent(arrayType);
-        return "String".equals(type.getText())
-                || "java.lang.String".equals(type.getText());
+            if (arrayDecl != null) {
+                final DetailAST arrayType = arrayDecl.getFirstChild();
+                final FullIdent type = FullIdent.createFullIdent(arrayType);
+                checkPassed = "String".equals(type.getText())
+                        || "java.lang.String".equals(type.getText());
+            }
+        }
+        return checkPassed;
     }
 }
