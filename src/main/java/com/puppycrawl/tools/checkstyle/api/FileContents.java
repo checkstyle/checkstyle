@@ -290,28 +290,8 @@ public final class FileContents implements CommentListener {
      **/
     public boolean hasIntersectionWithComment(int startLineNo,
             int startColNo, int endLineNo, int endColNo) {
-        // Check C comments (all comments should be checked)
-        final Collection<List<TextBlock>> values = clangComments.values();
-        for (final List<TextBlock> row : values) {
-            for (final TextBlock comment : row) {
-                if (comment.intersects(startLineNo, startColNo, endLineNo,
-                        endColNo)) {
-                    return true;
-                }
-            }
-        }
-
-        // Check CPP comments (line searching is possible)
-        for (int lineNumber = startLineNo; lineNumber <= endLineNo;
-             lineNumber++) {
-            final TextBlock comment = cppComments.get(lineNumber);
-            if (comment != null
-                    && comment.intersects(startLineNo, startColNo,
-                            endLineNo, endColNo)) {
-                return true;
-            }
-        }
-        return false;
+        return hasIntersectionWithCComment(startLineNo, startColNo, endLineNo, endColNo)
+                || hasIntersectionWithCppComment(startLineNo, startColNo, endLineNo, endColNo);
     }
 
     /**
@@ -320,5 +300,49 @@ public final class FileContents implements CommentListener {
      */
     public boolean inPackageInfo() {
         return fileName.endsWith("package-info.java");
+    }
+
+    /**
+     * Checks if the specified position intersects with a C comment.
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
+     * @param endLineNo the ending line number
+     * @param endColNo the ending column number
+     * @return true if the positions intersects with a C comment.
+     */
+    private boolean hasIntersectionWithCComment(int startLineNo, int startColNo,
+            int endLineNo, int endColNo) {
+        // Check C comments (all comments should be checked)
+        final Collection<List<TextBlock>> values = clangComments.values();
+        for (final List<TextBlock> row : values) {
+            for (final TextBlock comment : row) {
+                if (comment.intersects(startLineNo, startColNo, endLineNo, endColNo)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the specified position intersects with a CPP comment.
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
+     * @param endLineNo the ending line number
+     * @param endColNo the ending column number
+     * @return true if the positions intersects with a CPP comment.
+     */
+    private boolean hasIntersectionWithCppComment(int startLineNo, int startColNo,
+            int endLineNo, int endColNo) {
+        // Check CPP comments (line searching is possible)
+        for (int lineNumber = startLineNo; lineNumber <= endLineNo;
+             lineNumber++) {
+            final TextBlock comment = cppComments.get(lineNumber);
+            if (comment != null && comment.intersects(startLineNo, startColNo,
+                    endLineNo, endColNo)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
