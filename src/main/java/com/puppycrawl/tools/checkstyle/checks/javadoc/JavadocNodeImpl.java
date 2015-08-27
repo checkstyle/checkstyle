@@ -33,6 +33,11 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  */
 public class JavadocNodeImpl implements DetailNode {
     /**
+     * Empty array of {@link DetailNode} type.
+     */
+    private static final DetailNode[] EMPTY_DETAIL_NODE_ARRAY = new DetailNode[0];
+
+    /**
      * Node index among parent's children
      */
     private int index;
@@ -90,7 +95,7 @@ public class JavadocNodeImpl implements DetailNode {
     @Override
     public DetailNode[] getChildren() {
         if (children == null) {
-            return new DetailNode[0];
+            return EMPTY_DETAIL_NODE_ARRAY.clone();
         }
         else {
             return Arrays.copyOf(children, children.length);
