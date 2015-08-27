@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -53,19 +51,17 @@ public class SimplifyBooleanExpressionCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        // Return empty list to prevent user changing tokens in the
-        // configuration.
-        return ArrayUtils.EMPTY_INT_ARRAY;
+        return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
+        return getAcceptableTokens();
     }
 
     @Override
