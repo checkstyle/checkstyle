@@ -22,10 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 import antlr.collections.AST;
-
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -92,18 +89,17 @@ public class IllegalInstantiationCheck
 
     @Override
     public int[] getDefaultTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.IMPORT,
             TokenTypes.LITERAL_NEW,
             TokenTypes.PACKAGE_DEF,
             TokenTypes.CLASS_DEF,
         };
-    }
-
-    @Override
-    public int[] getAcceptableTokens() {
-        // Return an empty array to not allow user to change configuration.
-        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
