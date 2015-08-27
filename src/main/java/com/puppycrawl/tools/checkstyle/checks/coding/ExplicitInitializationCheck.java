@@ -113,26 +113,25 @@ public class ExplicitInitializationCheck extends Check {
     }
 
     /**
-     * Chekck for cases that should be skipped: no assignment, local variable, final variables
+     * Checks for cases that should be skipped: no assignment, local variable, final variables
      * @param ast Variable def AST
      * @return true is that is a case that need to be skipped.
      */
     private static boolean isSkipCase(DetailAST ast) {
+        boolean skipCase = true;
+
         // do not check local variables and
         // fields declared in interface/annotations
-        if (ScopeUtils.isLocalVariableDef(ast)
-            || ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
-            return true;
-        }
+        if (!ScopeUtils.isLocalVariableDef(ast)
+                && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
+            final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
 
-        final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
-        if (assign == null) {
-            // no assign - no check
-            return true;
+            if (assign != null) {
+                final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+                skipCase = modifiers.branchContains(TokenTypes.FINAL);
+            }
         }
-
-        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        return modifiers.branchContains(TokenTypes.FINAL);
+        return skipCase;
     }
 
     /**
