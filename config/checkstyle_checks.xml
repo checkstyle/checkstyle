@@ -321,10 +321,13 @@
     <module name="TrailingComment"/>
     <module name="MultipleStringLiterals"/>
 
+    <module name="ExecutableStatementCount">
+        <property name="max" value="30"/>
+    </module>
+
 <!--
     <module name="ClassDataAbstractionCoupling"/>
     <module name="ClassFanOutComplexity"/>
-    <module name="ExecutableStatementCount"/>
     <module name="FinalParameters"/>
     <module name="IllegalToken"/>
     <module name="JavadocParagraph"/>

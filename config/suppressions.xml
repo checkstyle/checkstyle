@@ -57,6 +57,7 @@
 
     <!-- Methods that build fake AST are very long-->
     <suppress checks="MethodLength" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]comments[\\/]CommentsTest\.java"/>
+    <suppress checks="ExecutableStatementCount" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]comments[\\/]CommentsTest\.java"/>
 
     <suppress checks="." files=".*JavadocTokenTypes\.java"/>
     <suppress checks="." files=".*ParseTreeBuilder\.java"/>
@@ -73,4 +74,7 @@
 
     <!-- There are a lot of setters/getters in the Check. A small number of methods is left for Check's logics -->
     <suppress checks="MethodCount" files="[\\/]JavadocMethodCheck.java$"/>
+
+    <!-- getDetails() method - huge Switch, it has to be monolithic -->
+    <suppress checks="ExecutableStatementCount" files="RightCurlyCheck\.java" lines="280"/>
 </suppressions>
