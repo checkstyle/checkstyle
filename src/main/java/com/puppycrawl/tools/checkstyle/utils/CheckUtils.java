@@ -214,7 +214,7 @@ public final class CheckUtils {
      * @return the integer represented by the string argument in the specified
      * radix.
      */
-    public static int parseInt(String text, int radix) {
+    private static int parseInt(String text, int radix) {
         int result = 0;
         final int max = text.length();
         for (int i = 0; i < max; i++) {
@@ -236,7 +236,7 @@ public final class CheckUtils {
      * @return the long represented by the string argument in the specified
      * radix.
      */
-    public static long parseLong(String text, int radix) {
+    private static long parseLong(String text, int radix) {
         long result = 0;
         final int max = text.length();
         for (int i = 0; i < max; i++) {
