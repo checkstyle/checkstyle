@@ -54,6 +54,11 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
 
         int[] actual = javadocMethodCheck.getAcceptableTokens();
         int[] expected = {
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
