@@ -162,13 +162,7 @@ public class HiddenFieldCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.PARAMETER_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -176,6 +170,9 @@ public class HiddenFieldCheck
         return new int[] {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
         };
     }
 
