@@ -213,7 +213,7 @@ public class MagicNumberCheck extends Check {
             return;
         }
 
-        if (inIgnoreList(ast)
+        if (isInIgnoreList(ast)
             || ignoreHashCodeMethod && isInHashCodeMethod(ast)) {
             return;
         }
@@ -273,7 +273,7 @@ public class MagicNumberCheck extends Check {
         }
 
         // implicit constant?
-        if (ScopeUtils.inInterfaceOrAnnotationBlock(varDefAST)
+        if (ScopeUtils.isInInterfaceOrAnnotationBlock(varDefAST)
             || varDefAST.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
             return varDefAST;
         }
@@ -323,7 +323,7 @@ public class MagicNumberCheck extends Check {
      */
     private static boolean isInHashCodeMethod(DetailAST ast) {
         // if not in a code block, can't be in hashCode()
-        if (!ScopeUtils.inCodeBlock(ast)) {
+        if (!ScopeUtils.isInCodeBlock(ast)) {
             return false;
         }
 
@@ -360,7 +360,7 @@ public class MagicNumberCheck extends Check {
      * @return true if the number of ast is in the ignore list of this
      * check.
      */
-    private boolean inIgnoreList(DetailAST ast) {
+    private boolean isInIgnoreList(DetailAST ast) {
         double value = CheckUtils.parseDouble(ast.getText(), ast.getType());
         final DetailAST parent = ast.getParent();
         if (parent.getType() == TokenTypes.UNARY_MINUS) {

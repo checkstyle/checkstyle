@@ -82,7 +82,7 @@ public class DesignForExtensionCheck extends Check {
     @Override
     public void visitToken(DetailAST ast) {
         // nothing to do for Interfaces
-        if (ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
+        if (ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
             return;
         }
         if (isPrivateOrFinalOrAbstract(ast)) {

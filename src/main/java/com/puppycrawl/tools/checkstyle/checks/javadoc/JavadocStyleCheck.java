@@ -159,7 +159,7 @@ public class JavadocStyleCheck
             return getFileContents().inPackageInfo();
         }
 
-        if (ScopeUtils.inCodeBlock(ast)) {
+        if (ScopeUtils.isInCodeBlock(ast)) {
             return false;
         }
 
@@ -174,7 +174,7 @@ public class JavadocStyleCheck
 
         final Scope customScope;
 
-        if (ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
+        if (ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
             customScope = Scope.PUBLIC;
         }
         else {

@@ -112,13 +112,13 @@ public class RedundantImportCheck
         }
         else if (ast.getType() == TokenTypes.IMPORT) {
             final FullIdent imp = FullIdent.createFullIdentBelow(ast);
-            if (fromPackage(imp.getText(), "java.lang")) {
+            if (isFromPackage(imp.getText(), "java.lang")) {
                 log(ast.getLineNo(), ast.getColumnNo(), MSG_LANG,
                     imp.getText());
             }
             // imports from unnamed package are not allowed,
             // so we are checking SAME rule only for named packages
-            else if (pkgName != null && fromPackage(imp.getText(), pkgName)) {
+            else if (pkgName != null && isFromPackage(imp.getText(), pkgName)) {
                 log(ast.getLineNo(), ast.getColumnNo(), MSG_SAME,
                     imp.getText());
             }
@@ -155,7 +155,7 @@ public class RedundantImportCheck
      * @param pkg the package name
      * @return whether from the package
      */
-    private static boolean fromPackage(String importName, String pkg) {
+    private static boolean isFromPackage(String importName, String pkg) {
         // imports from unnamed package are not allowed:
         // http://docs.oracle.com/javase/specs/jls/se7/html/jls-7.html#jls-7.5
         // So '.' must be present in member name and we are not checking for it

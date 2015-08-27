@@ -149,7 +149,7 @@ public abstract class AbstractDeclarationCollector extends Check {
         if (frame instanceof ClassFrame) {
             final DetailAST mods =
                     ast.findFirstToken(TokenTypes.MODIFIERS);
-            if (ScopeUtils.inInterfaceBlock(ast)
+            if (ScopeUtils.isInInterfaceBlock(ast)
                     || mods.branchContains(TokenTypes.LITERAL_STATIC)) {
                 ((ClassFrame) frame).addStaticMember(name);
             }

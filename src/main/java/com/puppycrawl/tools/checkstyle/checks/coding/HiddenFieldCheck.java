@@ -276,7 +276,7 @@ public class HiddenFieldCheck
      * @param ast the variable token.
      */
     private void processVariable(DetailAST ast) {
-        if (!ScopeUtils.inInterfaceOrAnnotationBlock(ast)
+        if (!ScopeUtils.isInInterfaceOrAnnotationBlock(ast)
             && (ScopeUtils.isLocalVariableDef(ast)
                 || ast.getType() == TokenTypes.PARAMETER_DEF)) {
             // local variable or parameter. Does it shadow a field?
@@ -301,7 +301,7 @@ public class HiddenFieldCheck
      */
     private boolean isStaticOrOnstanceField(DetailAST ast, String name) {
         return frame.containsStaticField(name)
-                || !inStatic(ast) && frame.containsInstanceField(name);
+                || !isInStatic(ast) && frame.containsInstanceField(name);
     }
 
     /**
@@ -319,7 +319,7 @@ public class HiddenFieldCheck
      * @param ast the node to check.
      * @return true if ast is in a static method or a static block;
      */
-    private static boolean inStatic(DetailAST ast) {
+    private static boolean isInStatic(DetailAST ast) {
         DetailAST parent = ast.getParent();
         boolean inStatic = false;
 
@@ -389,7 +389,7 @@ public class HiddenFieldCheck
             final DetailAST typeAST = aMethodAST.findFirstToken(TokenTypes.TYPE);
             final String returnType = typeAST.getFirstChild().getText();
             if (typeAST.branchContains(TokenTypes.LITERAL_VOID)
-                    || setterCanReturnItsClass && frame.embeddedIn(returnType)) {
+                    || setterCanReturnItsClass && frame.isEmbeddedIn(returnType)) {
                 // this method has signature
                 //
                 //     void set${Name}(${anyType} ${name})
@@ -608,7 +608,7 @@ public class HiddenFieldCheck
          * @return true if current frame is embedded in class or enum
          * with name classOrNameName
          */
-        private boolean embeddedIn(String classOrEnumName) {
+        private boolean isEmbeddedIn(String classOrEnumName) {
             FieldFrame currentFrame = this;
             while (currentFrame != null) {
                 if (Objects.equals(currentFrame.frameName, classOrEnumName)) {

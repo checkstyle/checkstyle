@@ -83,9 +83,9 @@ public class PropertyCacheFileTest {
         final String filePath = temporaryFolder.newFile().getPath();
         PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
         cache.put("myFile", 1);
-        assertTrue(cache.inCache("myFile", 1));
-        assertFalse(cache.inCache("myFile", 2));
-        assertFalse(cache.inCache("myFile1", 1));
+        assertTrue(cache.isInCache("myFile", 1));
+        assertFalse(cache.isInCache("myFile", 2));
+        assertFalse(cache.isInCache("myFile1", 1));
     }
 
     @Test

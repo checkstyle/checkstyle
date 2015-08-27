@@ -180,10 +180,10 @@ public class FinalLocalVariableCheck extends Check {
                 break;
 
             case TokenTypes.PARAMETER_DEF:
-                if (!inLambda(ast)
+                if (!isInLambda(ast)
                         && !ast.branchContains(TokenTypes.FINAL)
-                        && !inAbstractOrNativeMethod(ast)
-                        && !ScopeUtils.inInterfaceBlock(ast)) {
+                        && !isInAbstractOrNativeMethod(ast)
+                        && !ScopeUtils.isInInterfaceBlock(ast)) {
                     insertVariable(ast);
                 }
                 break;
@@ -249,7 +249,7 @@ public class FinalLocalVariableCheck extends Check {
      * @param ast the AST to check.
      * @return true if ast is a descendant of an abstract or native method.
      */
-    private static boolean inAbstractOrNativeMethod(DetailAST ast) {
+    private static boolean isInAbstractOrNativeMethod(DetailAST ast) {
         boolean abstractOrNative = false;
         DetailAST parent = ast.getParent();
         while (parent != null && !abstractOrNative) {
@@ -269,7 +269,7 @@ public class FinalLocalVariableCheck extends Check {
      * @param paramDef {@link TokenTypes#PARAMETER_DEF parameter def}.
      * @return true if current param is lamda's param.
      */
-    private static boolean inLambda(DetailAST paramDef) {
+    private static boolean isInLambda(DetailAST paramDef) {
         return paramDef.getParent().getParent().getType() == TokenTypes.LAMBDA;
     }
 

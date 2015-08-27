@@ -124,7 +124,7 @@ public class ParameterNumberCheck
     public void visitToken(DetailAST ast) {
         final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
         final int count = params.getChildCount(TokenTypes.PARAMETER_DEF);
-        if (count > max && !ignoreNumberOfParameters(ast)) {
+        if (count > max && !shouldIgnoreNumberOfParameters(ast)) {
             final DetailAST name = ast.findFirstToken(TokenTypes.IDENT);
             log(name.getLineNo(), name.getColumnNo(), MSG_KEY, max, count);
         }
@@ -136,7 +136,7 @@ public class ParameterNumberCheck
      * @return true if this is overridden method and number of parameters should be ignored
      *         false otherwise
      */
-    private boolean ignoreNumberOfParameters(DetailAST ast) {
+    private boolean shouldIgnoreNumberOfParameters(DetailAST ast) {
         //if you override a method, you have no power over the number of parameters
         return ignoreOverriddenMethods
                 && (AnnotationUtility.containsAnnotation(ast, OVERRIDE)

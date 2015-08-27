@@ -174,7 +174,7 @@ public abstract class AbstractSuperCheck
      */
     private boolean isOverridingMethod(DetailAST ast) {
         if (ast.getType() != TokenTypes.METHOD_DEF
-            || ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
+            || ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
             return false;
         }
         final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);

@@ -37,7 +37,7 @@ public class ScopeUtilsTest {
     @Test
     public void testInEnumOnRoot() throws ReflectiveOperationException {
         DetailAST ast = new DetailAST();
-        Assert.assertFalse(ScopeUtils.inEnumBlock(ast));
+        Assert.assertFalse(ScopeUtils.isInEnumBlock(ast));
     }
 
     @Test
@@ -48,7 +48,7 @@ public class ScopeUtilsTest {
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
 
-        Assert.assertFalse(ScopeUtils.inEnumBlock(ast2));
+        Assert.assertFalse(ScopeUtils.isInEnumBlock(ast2));
     }
 
     @Test
@@ -62,7 +62,7 @@ public class ScopeUtilsTest {
         ast2.setType(TokenTypes.MODIFIERS);
         ast1.addChild(ast2);
 
-        Assert.assertTrue(ScopeUtils.inEnumBlock(ast2));
+        Assert.assertTrue(ScopeUtils.isInEnumBlock(ast2));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class ScopeUtilsTest {
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
 
-        Assert.assertFalse(ScopeUtils.inEnumBlock(ast2));
+        Assert.assertFalse(ScopeUtils.isInEnumBlock(ast2));
     }
 
     @Test
@@ -84,7 +84,7 @@ public class ScopeUtilsTest {
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
 
-        Assert.assertFalse(ScopeUtils.inEnumBlock(ast2));
+        Assert.assertFalse(ScopeUtils.isInEnumBlock(ast2));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ScopeUtilsTest {
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
 
-        Assert.assertFalse(ScopeUtils.inEnumBlock(ast2));
+        Assert.assertFalse(ScopeUtils.isInEnumBlock(ast2));
     }
 
     @Test

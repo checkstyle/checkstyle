@@ -67,7 +67,7 @@ public class InnerTypeLastCheck extends Check {
         else {
             DetailAST nextSibling = ast.getNextSibling();
             while (nextSibling != null) {
-                if (!ScopeUtils.inCodeBlock(ast)
+                if (!ScopeUtils.isInCodeBlock(ast)
                     && (nextSibling.getType() == TokenTypes.VARIABLE_DEF
                         || nextSibling.getType() == TokenTypes.METHOD_DEF)) {
                     log(nextSibling.getLineNo(), nextSibling.getColumnNo(),

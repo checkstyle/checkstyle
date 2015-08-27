@@ -211,7 +211,7 @@ public class UnnecessaryParenthesesCheck extends Check {
         }
 
         // A literal (numeric or string) surrounded by parentheses.
-        if (surrounded && inTokenList(type, LITERALS)) {
+        if (surrounded && isInTokenList(type, LITERALS)) {
             parentToSkip = ast.getParent();
             if (type == TokenTypes.STRING_LITERAL) {
                 log(ast, MSG_STRING,
@@ -224,7 +224,7 @@ public class UnnecessaryParenthesesCheck extends Check {
         }
 
         // The rhs of an assignment surrounded by parentheses.
-        if (inTokenList(type, ASSIGNMENTS)) {
+        if (isInTokenList(type, ASSIGNMENTS)) {
             assignDepth++;
             final DetailAST last = ast.getLastChild();
             if (last.getType() == TokenTypes.RPAREN) {
@@ -265,7 +265,7 @@ public class UnnecessaryParenthesesCheck extends Check {
 
             parentToSkip = null;
         }
-        else if (inTokenList(type, ASSIGNMENTS)) {
+        else if (isInTokenList(type, ASSIGNMENTS)) {
             assignDepth--;
         }
 
@@ -307,7 +307,7 @@ public class UnnecessaryParenthesesCheck extends Check {
      * @return {@code true} if {@code type} was found in {@code
      *         tokens}.
      */
-    private static boolean inTokenList(int type, int... tokens) {
+    private static boolean isInTokenList(int type, int... tokens) {
         // NOTE: Given the small size of the two arrays searched, I'm not sure
         //       it's worth bothering with doing a binary search or using a
         //       HashMap to do the searches.

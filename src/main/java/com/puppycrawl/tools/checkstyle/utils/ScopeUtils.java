@@ -99,7 +99,7 @@ public final class ScopeUtils {
      * block
      * @return a {@code boolean} value
      */
-    public static boolean inInterfaceBlock(DetailAST aAST) {
+    public static boolean isInInterfaceBlock(DetailAST aAST) {
         boolean retVal = false;
 
         // Loop up looking for a containing interface block
@@ -130,7 +130,7 @@ public final class ScopeUtils {
      * block
      * @return a {@code boolean} value
      */
-    public static boolean inAnnotationBlock(DetailAST aAST) {
+    public static boolean isInAnnotationBlock(DetailAST aAST) {
         boolean retVal = false;
 
         // Loop up looking for a containing interface block
@@ -161,8 +161,8 @@ public final class ScopeUtils {
      * or annotation block
      * @return a {@code boolean} value
      */
-    public static boolean inInterfaceOrAnnotationBlock(DetailAST aAST) {
-        return inInterfaceBlock(aAST) || inAnnotationBlock(aAST);
+    public static boolean isInInterfaceOrAnnotationBlock(DetailAST aAST) {
+        return isInInterfaceBlock(aAST) || isInAnnotationBlock(aAST);
     }
 
     /**
@@ -172,7 +172,7 @@ public final class ScopeUtils {
      * block
      * @return a {@code boolean} value
      */
-    public static boolean inEnumBlock(DetailAST aAST) {
+    public static boolean isInEnumBlock(DetailAST aAST) {
         boolean retVal = false;
 
         // Loop up looking for a containing interface block
@@ -201,7 +201,7 @@ public final class ScopeUtils {
      * @param aAST the node to check
      * @return a {@code boolean} value
      */
-    public static boolean inCodeBlock(DetailAST aAST) {
+    public static boolean isInCodeBlock(DetailAST aAST) {
         boolean retVal = false;
 
         // Loop up looking for a containing code block
