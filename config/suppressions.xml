@@ -78,4 +78,12 @@
     <suppress checks="JavaNCSS" files="RightCurlyCheck\.java" lines="280"/>
     <suppress checks="CyclomaticComplexity" files="RightCurlyCheck\.java" lines="280"/>
 
+    <!-- we need that set of converters -->
+    <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
+    <!-- they are agregators of logic, usage a several of classes are ok -->
+    <suppress checks="ClassDataAbstractionCoupling" files="(Checker|TreeWalker|Main|CheckstyleAntTask|AbstractJavadocCheck)\.java"/>
+    <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|TreeWalkerTest)\.java"/>
+    <!-- a lot of GUI elements is OK -->
+    <suppress checks="ClassDataAbstractionCoupling" files="ParseTreeInfoPanel\.java"/>
+
 </suppressions>
