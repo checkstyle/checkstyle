@@ -56,7 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
 public class SuppressionsLoaderTest extends BaseCheckTestSupport {
 
     @Rule
-    public final ExpectedException thrown = ExpectedException.none();
+    private final ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void testNoSuppressions()

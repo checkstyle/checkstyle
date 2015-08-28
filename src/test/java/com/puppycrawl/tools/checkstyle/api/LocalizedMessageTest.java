@@ -103,7 +103,7 @@ public class LocalizedMessageTest {
                 classloader, true);
     }
 
-    public static URL getMockUrl(final URLConnection connection) throws IOException {
+    private static URL getMockUrl(final URLConnection connection) throws IOException {
         final URLStreamHandler handler = new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(final URL arg0) {
