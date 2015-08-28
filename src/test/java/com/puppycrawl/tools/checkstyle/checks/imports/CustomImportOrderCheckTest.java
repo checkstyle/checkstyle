@@ -343,7 +343,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
             method.setAccessible(true);
             actual = method.invoke(t, (DetailAST) null);
         }
-        catch (Exception e) {
+        catch (Exception ignored) {
             actual = null;
         }
 
@@ -498,14 +498,8 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
             createCheckConfig(CustomImportOrderCheck.class);
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        try {
-            createChecker(checkConfig);
-            verify(checkConfig, getPath("imports" + File.separator
-                + "InputCustomImportOrder.java"), expected);
-        }
-        catch (Exception ex) {
-            // Exception is not expected
-            fail();
-        }
+        createChecker(checkConfig);
+        verify(checkConfig, getPath("imports" + File.separator
+            + "InputCustomImportOrder.java"), expected);
     }
 }
