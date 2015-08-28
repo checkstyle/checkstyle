@@ -181,16 +181,16 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
     <section name="EqualsAvoidNull">
       <subsection name="Description">
         <p>
-          Checks that any combination of String literals with optional
-          assignment is on the left side of an <code>equals()</code> comparison.
-          The check also processes <code>String.equalsIgnoreCase()</code>
-          invocations (which can be suppressed).
+          Checks that any combination of String literals
+          is on the left side of an equals() comparison.
+          Also checks for String literals assigned to some field
+          (such as <code>someString.equals(anotherString = "text")</code>).
         </p>
 
         <p>
           Rationale: Calling the <code>equals()</code>
           method on String literals will avoid a potential
-          NullPointerException.  Also, it is pretty common to see null
+          NullPointerException. Also, it is pretty common to see null
           checks right before equals comparisons, which is not necessary
           in the example below.
         </p>
@@ -209,40 +209,6 @@ nullString.equals(&quot;My_Sweet_String&quot;);
 String nullString = null;
 &quot;My_Sweet_String&quot;.equals(nullString);
         </source>
-
-        <p>
-          Limitations: If the equals method is overridden or a covariant
-          equals method is defined and the implementation is incorrect
-          (where <code>s.equals(t)</code> does not return
-          the same result as <code>t.equals(s)</code>) then
-          rearranging the called on object and parameter may have
-          unexpected results.
-        </p>
-
-        <p>
-          Java's autoboxing feature affects how this check is
-          implemented. Before Java 5, concatenations of two objects by name would not cause a NullPointerException
-          even if either object is null.  Those situations could have been included in this
-          check.  They would simply act as if they were surrounded by <code>String.valueOf()</code>
-          which would concatenate
-          the String null.
-        </p>
-        <p>
-          The following example will cause a NullPointerException as a
-          result of what autoboxing does.
-        </p>
-
-        <source>
-Integer i = null, j = null;
-String number = "5"
-number.equals(i + j);
-        </source>
-
-        <p>
-          Since it is difficult to determine what kind of Object is
-          being concatenated, all concatenations of two objects by name are considered
-          unsafe.
-        </p>
       </subsection>
 
       <subsection name="Properties">

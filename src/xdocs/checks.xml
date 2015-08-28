@@ -196,8 +196,8 @@
       <tr>
         <td><a href="config_coding.html#EqualsAvoidNull">EqualsAvoidNull</a></td>
         <td>
-          Checks that any combination of String literals with optional
-        assignment is on the left side of an equals() comparison.</td>
+          Checks that any combination of String literals
+          is on the left side of an equals() comparison.</td>
       </tr>
       <tr>
         <td><a href="config_coding.html#EqualsHashCode">EqualsHashCode</a></td>
