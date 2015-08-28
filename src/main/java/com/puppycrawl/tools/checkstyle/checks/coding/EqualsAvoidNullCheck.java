@@ -543,7 +543,7 @@ public class EqualsAvoidNullCheck extends Check {
          * @param value value to set.
          */
         public void setClassOrEnumOrEnumConstDef(boolean value) {
-            this.classOrEnumOrEnumConstDef = value;
+            classOrEnumOrEnumConstDef = value;
         }
 
         /**
