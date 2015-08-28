@@ -29,7 +29,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.TreeSet;
+import java.util.SortedSet;
 
 import org.junit.Test;
 
@@ -56,7 +56,7 @@ public class CheckerTest {
         checker.fireFileStarted("Some File Name");
         checker.fireFileFinished("Some File Name");
 
-        final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        final SortedSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", msgs);
@@ -88,7 +88,7 @@ public class CheckerTest {
         assertTrue("Checker.fireFileFinished() doesn't call listener", auditAdapter.wasCalled());
 
         auditAdapter.resetListener();
-        final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        final SortedSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", msgs);
@@ -125,7 +125,7 @@ public class CheckerTest {
         assertFalse("Checker.fireFileFinished() does call removed listener", auditAdapter.wasCalled());
 
         aa2.resetListener();
-        final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        final SortedSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", msgs);
@@ -142,7 +142,7 @@ public class CheckerTest {
         checker.addFilter(filter);
 
         filter.resetFilter();
-        final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        final SortedSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", msgs);
@@ -159,7 +159,7 @@ public class CheckerTest {
         checker.removeFilter(filter);
 
         f2.resetFilter();
-        final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        final SortedSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", msgs);
