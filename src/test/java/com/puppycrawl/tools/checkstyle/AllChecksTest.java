@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.io.IOException;
 import java.lang.reflect.Modifier;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,8 +33,9 @@ import com.google.common.reflect.ClassPath;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
+import junit.framework.Assert;
 
-public class AllChecksWithDefaultConfigTest extends BaseCheckTestSupport {
+public class AllChecksTest extends BaseCheckTestSupport {
 
     @Test
     public void testAllChecksWithDefaultConfiguration() throws Exception {
@@ -71,6 +73,66 @@ public class AllChecksWithDefaultConfigTest extends BaseCheckTestSupport {
         }
     }
 
+    @Test
+    public void testDefaultTokensAreSubsetOfAcceptableTokens() throws Exception {
+        Set<Class<?>> checkstyleChecks = getCheckstyleChecks();
+        Set<Class<?>> checksWithIncorrectTokenSets = new HashSet<>();
+
+        for (Class<?> check : checkstyleChecks) {
+            if (Check.class.isAssignableFrom(check)) {
+                final Check testedCheck = (Check) check.newInstance();
+                final int[] defaultTokens = testedCheck.getDefaultTokens();
+                final int[] acceptableTokens = testedCheck.getAcceptableTokens();
+
+                if (!isSubset(defaultTokens, acceptableTokens)) {
+                    String errorMessage = String.format("%s's default tokens must be a subset"
+                        + " of acceptable tokens.", check.getName());
+                    Assert.fail(errorMessage);
+                }
+            }
+        }
+    }
+
+    @Test
+    public void testRequiredTokensAreSubsetOfAcceptableTokens() throws Exception {
+        Set<Class<?>> checkstyleChecks = getCheckstyleChecks();
+        Set<Class<?>> checksWithIncorrectTokenSets = new HashSet<>();
+
+        for (Class<?> check : checkstyleChecks) {
+            if (Check.class.isAssignableFrom(check)) {
+                final Check testedCheck = (Check) check.newInstance();
+                final int[] requiredTokens = testedCheck.getRequiredTokens();
+                final int[] acceptableTokens = testedCheck.getAcceptableTokens();
+
+                if (!isSubset(requiredTokens, acceptableTokens)) {
+                    String errorMessage = String.format("%s's required tokens must be a subset"
+                        + " of acceptable tokens.", check.getName());
+                    Assert.fail(errorMessage);
+                }
+            }
+        }
+    }
+
+    @Test
+    public void testRequiredTokensAreSubsetOfDefaultTokens() throws Exception {
+        Set<Class<?>> checkstyleChecks = getCheckstyleChecks();
+        Set<Class<?>> checksWithIncorrectTokenSets = new HashSet<>();
+
+        for (Class<?> check : checkstyleChecks) {
+            if (Check.class.isAssignableFrom(check)) {
+                final Check testedCheck = (Check) check.newInstance();
+                final int[] defaultTokens = testedCheck.getDefaultTokens();
+                final int[] requiredTokens = testedCheck.getRequiredTokens();
+
+                if (!isSubset(requiredTokens, defaultTokens)) {
+                    String errorMessage = String.format("%s's required tokens must be a subset"
+                        + " of default tokens.", check.getName());
+                    Assert.fail(errorMessage);
+                }
+            }
+        }
+    }
+
     /**
      * Gets the checkstyle's non abstract checks.
      * @return the set of checkstyle's non abstract check classes.
@@ -96,5 +158,20 @@ public class AllChecksWithDefaultConfigTest extends BaseCheckTestSupport {
             }
         }
         return checkstyleChecks;
+    }
+
+    /**
+     * Checks that an array is a subset of other array.
+     * @param array to check whether it is a subset.
+     * @param arrayToCheckIn array to check in.
+     */
+    private static boolean isSubset(int[] array, int[] arrayToCheckIn) {
+        Arrays.sort(arrayToCheckIn);
+        for (final int element : array) {
+            if (Arrays.binarySearch(arrayToCheckIn, element) < 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
