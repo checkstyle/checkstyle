@@ -227,7 +227,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
         }
         else if (shouldStartLine) {
             final boolean startsLine =
-                    CommonUtils.whitespaceBefore(rcurly.getColumnNo(), targetSourceLine);
+                    CommonUtils.hasWhitespaceBefore(rcurly.getColumnNo(), targetSourceLine);
 
             if (!startsLine && lcurly.getLineNo() != rcurly.getLineNo()) {
                 violation = MSG_KEY_LINE_NEW;

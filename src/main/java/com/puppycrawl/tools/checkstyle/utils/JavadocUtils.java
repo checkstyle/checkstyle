@@ -299,7 +299,7 @@ public final class JavadocUtils {
      * @param type token type
      * @return true if node contains any node of type type among children on any deep level.
      */
-    public static boolean branchContains(DetailNode node, int type) {
+    public static boolean containsInBranch(DetailNode node, int type) {
         DetailNode curNode = node;
         while (true) {
 

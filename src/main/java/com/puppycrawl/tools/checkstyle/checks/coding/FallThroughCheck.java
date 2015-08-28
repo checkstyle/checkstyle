@@ -340,7 +340,7 @@ public class FallThroughCheck extends Check {
          *    /+ FALLTHRU +/}
          */
         final String linePart = lines[endLineNo - 1].substring(0, endColNo);
-        if (commentMatch(regExp, linePart, endLineNo)) {
+        if (matchesComment(regExp, linePart, endLineNo)) {
             allThroughComment = true;
         }
         else {
@@ -360,7 +360,7 @@ public class FallThroughCheck extends Check {
             final int startLineNo = currentCase.getLineNo();
             for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
                 if (!lines[i].trim().isEmpty()) {
-                    allThroughComment = commentMatch(regExp, lines[i], i + 1);
+                    allThroughComment = matchesComment(regExp, lines[i], i + 1);
                     break;
                 }
             }
@@ -376,7 +376,7 @@ public class FallThroughCheck extends Check {
      * @param lineNo The line number in the file.
      * @return True if a match was found inside a comment.
      */
-    private boolean commentMatch(Pattern pattern, String line, int lineNo
+    private boolean matchesComment(Pattern pattern, String line, int lineNo
     ) {
         final Matcher matcher = pattern.matcher(line);
 

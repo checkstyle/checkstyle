@@ -248,7 +248,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
 
         // Process each file
         for (final File file : files) {
-            if (!CommonUtils.fileExtensionMatches(file, fileExtensions)) {
+            if (!CommonUtils.matchesFileExtension(file, fileExtensions)) {
                 continue;
             }
             final String fileName = file.getAbsolutePath();

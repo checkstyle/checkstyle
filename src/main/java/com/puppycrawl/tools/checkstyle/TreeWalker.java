@@ -187,7 +187,7 @@ public final class TreeWalker
         final long timestamp = file.lastModified();
         if (cache != null
                 && (cache.isInCache(fileName, timestamp)
-                    || !CommonUtils.fileExtensionMatches(file, getFileExtensions()))) {
+                    || !CommonUtils.matchesFileExtension(file, getFileExtensions()))) {
             return;
         }
 

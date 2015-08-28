@@ -132,7 +132,7 @@ public class MethodParamPadCheck
         }
 
         final String line = getLines()[parenAST.getLineNo() - 1];
-        if (CommonUtils.whitespaceBefore(parenAST.getColumnNo(), line)) {
+        if (CommonUtils.hasWhitespaceBefore(parenAST.getColumnNo(), line)) {
             if (!allowLineBreaks) {
                 log(parenAST, LINE_PREVIOUS, parenAST.getText());
             }
