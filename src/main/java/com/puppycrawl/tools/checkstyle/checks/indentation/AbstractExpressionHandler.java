@@ -569,25 +569,18 @@ public abstract class AbstractExpressionHandler {
      * @param lparen left parenthesis associated with aRparen
      */
     protected final void checkRParen(DetailAST lparen, DetailAST rparen) {
-        // no paren - no check :)
-        if (rparen == null) {
-            return;
-        }
+        if (rparen != null) {
+            // the rcurly can either be at the correct indentation,
+            // or not first on the line
+            final int rparenLevel = expandedTabsColumnNo(rparen);
+            // or has <lparen level> + 1 indentation
+            final int lparenLevel = expandedTabsColumnNo(lparen);
 
-        // the rcurly can either be at the correct indentation,
-        // or not first on the line ...
-        final int rparenLevel = expandedTabsColumnNo(rparen);
-        if (getLevel().isAcceptable(rparenLevel) || !startsLine(rparen)) {
-            return;
+            if (!getLevel().isAcceptable(rparenLevel) && startsLine(rparen)
+                    && rparenLevel != lparenLevel + 1) {
+                logError(rparen, "rparen", rparenLevel);
+            }
         }
-
-        // or has <lparen level> + 1 indentation
-        final int lparenLevel = expandedTabsColumnNo(lparen);
-        if (rparenLevel == lparenLevel + 1) {
-            return;
-        }
-
-        logError(rparen, "rparen", rparenLevel);
     }
 
     /**
