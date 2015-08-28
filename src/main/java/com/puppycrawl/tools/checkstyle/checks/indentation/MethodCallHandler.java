@@ -68,11 +68,11 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             findSubtreeLines(lines, getMainAst().getFirstChild(), true);
             final int firstCol = lines.firstLineCol();
             final int lineStart = getLineStart(getFirstAst(getMainAst()));
-            if (lineStart != firstCol) {
-                indentLevel = new IndentLevel(lineStart);
+            if (lineStart == firstCol) {
+                indentLevel = super.getLevelImpl();
             }
             else {
-                indentLevel = super.getLevelImpl();
+                indentLevel = new IndentLevel(lineStart);
             }
         }
         return indentLevel;
