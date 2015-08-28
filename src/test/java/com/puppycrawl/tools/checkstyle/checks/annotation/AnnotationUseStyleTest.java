@@ -77,7 +77,7 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport {
      * Test that annotation parens are always present.
      */
     @Test
-    public void testParansAlways() throws Exception {
+    public void testParensAlways() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationUseStyleCheck.class);
         checkConfig.addAttribute("closingParens", "ALWAYS");
         checkConfig.addAttribute("elementStyle", "ignore");
@@ -95,7 +95,7 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport {
      * Test that annotation parens are never present.
      */
     @Test
-    public void testParansNever() throws Exception {
+    public void testParensNever() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationUseStyleCheck.class);
         checkConfig.addAttribute("closingParens", "NEVER");
         checkConfig.addAttribute("elementStyle", "ignore");

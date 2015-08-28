@@ -51,7 +51,7 @@ public class PackageAnnotationTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testAnnotationnotInPackageInfo() throws Exception {
+    public void testAnnotationNotInPackageInfo() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;

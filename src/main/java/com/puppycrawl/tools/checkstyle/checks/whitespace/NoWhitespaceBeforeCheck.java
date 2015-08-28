@@ -29,8 +29,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Checks that there is no whitespace before a token.
  * More specifically, it checks that it is not preceded with whitespace,
- * or (if linebreaks are allowed) all characters on the line before are
- * whitespace. To allow linebreaks before a token, set property
+ * or (if line breaks are allowed) all characters on the line before are
+ * whitespace. To allow line breaks before a token, set property
  * allowLineBreaks to true.
  * </p>
  * <p> By default the check will check the following operators:
@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="NoWhitespaceBefore"/&gt;
  * </pre>
- * <p> An example of how to configure the check to allow linebreaks before
+ * <p> An example of how to configure the check to allow line breaks before
  * a {@link TokenTypes#DOT DOT} token is:
  * </p>
  * <pre>
@@ -128,7 +128,7 @@ public class NoWhitespaceBeforeCheck
     /**
      * Control whether whitespace is flagged at linebreaks.
      * @param allowLineBreaks whether whitespace should be
-     * flagged at linebreaks.
+     * flagged at line breaks.
      */
     public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;
