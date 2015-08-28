@@ -66,7 +66,7 @@ public class ArrayTypeStyleCheckTest
     }
 
     @Test
-    public void testGetAcceptableTockens() {
+    public void testGetAcceptableTokens() {
         int[] expected = {TokenTypes.ARRAY_DECLARATOR };
         ArrayTypeStyleCheck check = new ArrayTypeStyleCheck();
         int[] actual = check.getAcceptableTokens();

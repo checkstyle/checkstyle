@@ -64,7 +64,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  *     &lt;property name="maximumNumber" value="0"/&gt;
  * &lt;/module&gt;
  *
- * &lt;!-- Initialiser in for performs no setup - use while instead? --&gt;
+ * &lt;!-- Initializer in for performs no setup - use while instead? --&gt;
  * &lt;module name="DescendantToken"&gt;
  *     &lt;property name="tokens" value="FOR_INIT"/&gt;
  *     &lt;property name="limitedTokens" value="EXPR"/&gt;
@@ -281,7 +281,7 @@ public class DescendantTokenCheck extends Check {
 
     /**
      * Log validation as one violation
-     * @param ast curent token
+     * @param ast current token
      */
     private void logAsTotal(DetailAST ast) {
         // name of this token
@@ -348,7 +348,7 @@ public class DescendantTokenCheck extends Check {
     }
 
     /**
-     * Sets the tokens which occurance as descendant is limited.
+     * Sets the tokens which occurrence as descendant is limited.
      * @param limitedTokensParam - list of tokens to ignore.
      */
     public void setLimitedTokens(String... limitedTokensParam) {

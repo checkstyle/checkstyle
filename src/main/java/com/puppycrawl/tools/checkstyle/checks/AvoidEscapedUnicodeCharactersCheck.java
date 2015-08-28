@@ -152,7 +152,7 @@ public class AvoidEscapedUnicodeCharactersCheck
     /** Allow use escapes if trail comment is present*/
     private boolean allowByTailComment;
 
-    /** Allow if all characters in literal are excaped*/
+    /** Allow if all characters in literal are escaped*/
     private boolean allowIfAllCharactersEscaped;
 
     /** Allow escapes for space literals*/
@@ -231,16 +231,16 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Check if String literal contains Unicode control chars.
-     * @param literal String llteral.
+     * @param literal String literal.
      * @param pattern RegExp for valid characters.
      * @return true, if String literal contains Unicode control chars.
      */
     private static boolean isOnlyUnicodeValidChars(String literal, Pattern pattern) {
         final int unicodeMatchesCounter =
                 countMatches(UNICODE_REGEXP, literal);
-        final int unicodeValidMatchesCouter =
+        final int unicodeValidMatchesCounter =
                 countMatches(pattern, literal);
-        return unicodeMatchesCounter - unicodeValidMatchesCouter == 0;
+        return unicodeMatchesCounter - unicodeValidMatchesCounter == 0;
     }
 
     /**
@@ -278,10 +278,10 @@ public class AvoidEscapedUnicodeCharactersCheck
     }
 
     /**
-     * Count regexp matchers into String literal.
+     * Count regexp matches into String literal.
      * @param pattern pattern.
      * @param target String literal.
-     * @return count of regexp matchers.
+     * @return count of regexp matches.
      */
     private static int countMatches(Pattern pattern, String target) {
         int matcherCounter = 0;
