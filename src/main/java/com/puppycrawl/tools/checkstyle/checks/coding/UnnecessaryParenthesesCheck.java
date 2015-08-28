@@ -196,39 +196,33 @@ public class UnnecessaryParenthesesCheck extends Check {
         final int type = ast.getType();
         final DetailAST parent = ast.getParent();
 
-        if (type == TokenTypes.ASSIGN
-            && parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
-            // shouldn't process assign in annotation pairs
-            return;
-        }
+        if (type != TokenTypes.ASSIGN
+            || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
 
-        // An identifier surrounded by parentheses.
-        final boolean surrounded = isSurrounded(ast);
-        if (surrounded && type == TokenTypes.IDENT) {
-            parentToSkip = ast.getParent();
-            log(ast, MSG_IDENT, ast.getText());
-            return;
-        }
-
-        // A literal (numeric or string) surrounded by parentheses.
-        if (surrounded && isInTokenList(type, LITERALS)) {
-            parentToSkip = ast.getParent();
-            if (type == TokenTypes.STRING_LITERAL) {
-                log(ast, MSG_STRING,
-                    chopString(ast.getText()));
+            final boolean surrounded = isSurrounded(ast);
+            // An identifier surrounded by parentheses.
+            if (surrounded && type == TokenTypes.IDENT) {
+                parentToSkip = ast.getParent();
+                log(ast, MSG_IDENT, ast.getText());
             }
-            else {
-                log(ast, MSG_LITERAL, ast.getText());
+            // A literal (numeric or string) surrounded by parentheses.
+            else if (surrounded && isInTokenList(type, LITERALS)) {
+                parentToSkip = ast.getParent();
+                if (type == TokenTypes.STRING_LITERAL) {
+                    log(ast, MSG_STRING,
+                        chopString(ast.getText()));
+                }
+                else {
+                    log(ast, MSG_LITERAL, ast.getText());
+                }
             }
-            return;
-        }
-
-        // The rhs of an assignment surrounded by parentheses.
-        if (isInTokenList(type, ASSIGNMENTS)) {
-            assignDepth++;
-            final DetailAST last = ast.getLastChild();
-            if (last.getType() == TokenTypes.RPAREN) {
-                log(ast, MSG_ASSIGN);
+            // The rhs of an assignment surrounded by parentheses.
+            else if (isInTokenList(type, ASSIGNMENTS)) {
+                assignDepth++;
+                final DetailAST last = ast.getLastChild();
+                if (last.getType() == TokenTypes.RPAREN) {
+                    log(ast, MSG_ASSIGN);
+                }
             }
         }
     }
