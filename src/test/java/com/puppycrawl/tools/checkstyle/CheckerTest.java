@@ -174,8 +174,8 @@ public class CheckerTest {
         final List<File> files = new ArrayList<>();
         File file = new File("file.pdf");
         files.add(file);
-        file = new File("file.java");
-        files.add(file);
+        File otherFile = new File("file.java");
+        files.add(otherFile);
         final String[] fileExtensions = {"java", "xml", "properties"};
         checker.setFileExtensions(fileExtensions);
         final int counter = checker.process(files);
