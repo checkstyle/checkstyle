@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
-import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
@@ -38,8 +37,7 @@ public abstract class BaseCheckTestSupport {
 
     }
 
-    protected final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    protected final PrintStream stream = new PrintStream(baos);
+    protected final ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
     protected static DefaultConfiguration createCheckConfig(Class<?> clazz) {
         return new DefaultConfiguration(clazz.getName());
@@ -113,7 +111,7 @@ public abstract class BaseCheckTestSupport {
 
         // process each of the lines
         final ByteArrayInputStream bais =
-                new ByteArrayInputStream(baos.toByteArray());
+                new ByteArrayInputStream(stream.toByteArray());
         final LineNumberReader lnr =
                 new LineNumberReader(new InputStreamReader(bais, StandardCharsets.UTF_8));
 
