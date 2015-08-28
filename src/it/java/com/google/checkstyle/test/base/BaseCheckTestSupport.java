@@ -162,7 +162,7 @@ public abstract class BaseCheckTestSupport
         try {
             pr.load(aClass.getResourceAsStream("messages.properties"));
         }
-        catch (IOException e) {
+        catch (IOException ignored) {
             return null;
         }
         return pr.getProperty(messageKey);
