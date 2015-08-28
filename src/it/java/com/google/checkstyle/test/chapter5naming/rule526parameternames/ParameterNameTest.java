@@ -1,7 +1,6 @@
 package com.google.checkstyle.test.chapter5naming.rule526parameternames;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;

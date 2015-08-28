@@ -1,7 +1,6 @@
 package com.google.checkstyle.test.chapter5naming.rule521packagenames;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
