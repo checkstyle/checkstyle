@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck.MSG_KEY;
-import static org.junit.Assert.fail;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -77,14 +76,8 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
             createCheckConfig(NPathComplexityCheck.class);
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        try {
-            createChecker(checkConfig);
-            verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
-        }
-        catch (Exception ex) {
-            // Exception is not expected
-            fail();
-        }
+        createChecker(checkConfig);
+        verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
     }
 
     @Test

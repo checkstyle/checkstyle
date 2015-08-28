@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck.MSG_KEY;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 
@@ -66,16 +65,10 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
             createCheckConfig(ClassFanOutComplexityCheck.class);
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        try {
-            createChecker(checkConfig);
-            verify(checkConfig,
-                getPath("metrics" + File.separator + "ClassCouplingCheckTestInput.java"),
-                expected);
-        }
-        catch (Exception ex) {
-            //Exception is not expected
-            fail();
-        }
+        createChecker(checkConfig);
+        verify(checkConfig,
+            getPath("metrics" + File.separator + "ClassCouplingCheckTestInput.java"),
+            expected);
     }
 
     @Test
