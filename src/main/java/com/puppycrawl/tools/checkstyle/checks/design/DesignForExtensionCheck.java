@@ -82,41 +82,29 @@ public class DesignForExtensionCheck extends Check {
     @Override
     public void visitToken(DetailAST ast) {
         // nothing to do for Interfaces
-        if (ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
-            return;
-        }
-        if (isPrivateOrFinalOrAbstract(ast)) {
-            return;
-        }
+        if (!ScopeUtils.isInInterfaceOrAnnotationBlock(ast)
+                && !isPrivateOrFinalOrAbstract(ast)
+                && ScopeUtils.getSurroundingScope(ast).isIn(Scope.PROTECTED)) {
 
-        // method is ok if containing class is not visible in API and
-        // cannot be extended by 3rd parties (bug #884035)
-        if (!ScopeUtils.getSurroundingScope(ast).isIn(Scope.PROTECTED)) {
-            return;
-        }
+            // method is ok if it is implementation can verified to be empty
+            // Note: native methods don't have impl in java code, so
+            // implementation can be null even if method not abstract
+            final DetailAST implementation = ast.findFirstToken(TokenTypes.SLIST);
+            final boolean nonEmptyImplementation = implementation == null
+                    || implementation.getFirstChild().getType() != TokenTypes.RCURLY;
 
-        // method is ok if it is implementation can verified to be empty
-        // Note: native methods don't have impl in java code, so
-        // implementation can be null even if method not abstract
-        final DetailAST implementation = ast.findFirstToken(TokenTypes.SLIST);
-        if (implementation != null
-            && implementation.getFirstChild().getType() == TokenTypes.RCURLY) {
-            return;
-        }
+            final DetailAST classDef = findContainingClass(ast);
+            final DetailAST classMods = classDef.findFirstToken(TokenTypes.MODIFIERS);
+            // check if the containing class can be subclassed
+            final boolean classCanBeSubclassed = classDef.getType() != TokenTypes.ENUM_DEF
+                    && !classMods.branchContains(TokenTypes.FINAL);
 
-        // check if the containing class can be subclassed
-        final DetailAST classDef = findContainingClass(ast);
-        final DetailAST classMods =
-            classDef.findFirstToken(TokenTypes.MODIFIERS);
-        if (classDef.getType() == TokenTypes.ENUM_DEF
-            || classMods.branchContains(TokenTypes.FINAL)) {
-            return;
-        }
+            if (nonEmptyImplementation && classCanBeSubclassed
+                    && hasDefaultOrExplNonPrivateCtor(classDef)) {
 
-        if (hasDefaultOrExplNonPrivateCtor(classDef)) {
-            final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
-            log(ast.getLineNo(), ast.getColumnNo(),
-                MSG_KEY, name);
+                final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
+                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY, name);
+            }
         }
     }
 
