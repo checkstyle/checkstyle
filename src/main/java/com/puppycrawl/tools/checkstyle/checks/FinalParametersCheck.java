@@ -153,7 +153,7 @@ public class FinalParametersCheck extends Check {
             method.findFirstToken(TokenTypes.PARAMETERS);
         DetailAST child = parameters.getFirstChild();
         while (child != null) {
-            // childs are PARAMETER_DEF and COMMA
+            // children are PARAMETER_DEF and COMMA
             if (child.getType() == TokenTypes.PARAMETER_DEF) {
                 checkParam(child);
             }

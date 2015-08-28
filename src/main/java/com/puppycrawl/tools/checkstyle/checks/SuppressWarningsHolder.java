@@ -119,7 +119,7 @@ public class SuppressWarningsHolder
      * of {@code source=alias} items, such as {@code
      * com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=
      * paramnum}.
-     * @param aliasList the list of comma-separated alias assigments
+     * @param aliasList the list of comma-separated alias assignments
      */
     public void setAliasList(String aliasList) {
         for (String sourceAlias : aliasList.split(",")) {

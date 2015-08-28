@@ -67,7 +67,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
      * because of a typo in javadoc. However, with modern IDEs that
      * support automated refactoring and generate javadoc this will
      * occur rarely, so by default we assume a configuration problem
-     * in the checkstyle classpath and throw an execption.
+     * in the checkstyle classpath and throw an exception.
      *
      * This configuration option was triggered by bug 1422462.
      */
@@ -244,7 +244,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
 
     /**
      * Logs error if unable to load class information.
-     * Abstract, should be overrided in subclasses.
+     * Abstract, should be overridden in subclasses.
      * @param ident class name for which we can no load class.
      */
     protected abstract void logLoadError(Token ident);
@@ -355,7 +355,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
      * Creates class info for given name.
      * @param name name of type.
      * @param surroundingClass name of surrounding class.
-     * @return class infor for given name.
+     * @return class info for given name.
      */
     protected final AbstractClassInfo createClassInfo(final Token name,
                                               final String surroundingClass) {
@@ -392,7 +392,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
         private final Token name;
 
         /**
-         * Creates new instance of class inforamtion object.
+         * Creates new instance of class information object.
          * @param className token which represents class name.
          */
         protected AbstractClassInfo(final Token className) {
@@ -412,7 +412,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
         public abstract Class<?> getClazz();
     }
 
-    /** Represents regular classes/enumes. */
+    /** Represents regular classes/enums. */
     private static final class RegularClass extends AbstractClassInfo {
         /** Name of surrounding class. */
         private final String surroundingClass;
@@ -469,7 +469,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
         private final AbstractClassInfo classInfo;
 
         /**
-         * Creates nnew instance of the class.
+         * Creates new instance of the class.
          * @param name token which represents name of class alias.
          * @param classInfo class information associated with the alias.
          */

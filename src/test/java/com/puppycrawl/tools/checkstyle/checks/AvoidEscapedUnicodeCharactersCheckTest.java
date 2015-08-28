@@ -78,7 +78,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testAllowEscapesForControlCharacterst() throws Exception {
+    public void testAllowEscapesForControlCharacterSet() throws Exception {
         DefaultConfiguration checkConfig =
                 createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowEscapesForControlCharacters", "true");

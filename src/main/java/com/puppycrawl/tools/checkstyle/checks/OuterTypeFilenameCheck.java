@@ -111,9 +111,9 @@ public class OuterTypeFilenameCheck extends Check {
      * @return source file name.
      */
     private String getFileName() {
-        String fname = getFileContents().getFileName();
-        fname = fname.substring(fname.lastIndexOf(File.separatorChar) + 1);
-        fname = FILE_EXTENSION_PATTERN.matcher(fname).replaceAll("");
-        return fname;
+        String name = getFileContents().getFileName();
+        name = name.substring(name.lastIndexOf(File.separatorChar) + 1);
+        name = FILE_EXTENSION_PATTERN.matcher(name).replaceAll("");
+        return name;
     }
 }

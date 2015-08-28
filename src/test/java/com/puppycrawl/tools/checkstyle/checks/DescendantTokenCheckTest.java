@@ -334,7 +334,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testWithSumLessThenMinCustMsg() throws Exception {
+    public void testWithSumLessThenMinCustomMsg() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
         checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
         checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
