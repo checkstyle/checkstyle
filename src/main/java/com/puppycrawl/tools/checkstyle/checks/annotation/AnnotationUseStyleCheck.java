@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Using the COMPACT style is less verbose. This style can only
  * be used when there is an element called 'value' which is either
- * the sole element or all other elements have default valuess.
+ * the sole element or all other elements have default values.
  *
  *
  * <p>
@@ -83,7 +83,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * <p>
  * By default the ElementStyle is set to EXPANDED, the TrailingArrayComma
- * is set to NEVER, and the ClosingParans is set to ALWAYS.
+ * is set to NEVER, and the ClosingParens is set to ALWAYS.
  *
  *
  * <p>
@@ -208,14 +208,14 @@ public final class AnnotationUseStyleCheck extends Check {
     /**
      * Retrieves an {@link Enum Enum} type from a @{link String String}.
      * @param <T> the enum type
-     * @param enuclass the enum class
+     * @param enumClass the enum class
      * @param value the string representing the enum
      * @return the enum type
      */
-    private static <T extends Enum<T>> T getOption(final Class<T> enuclass,
+    private static <T extends Enum<T>> T getOption(final Class<T> enumClass,
         final String value) {
         try {
-            return Enum.valueOf(enuclass, value.trim().toUpperCase(Locale.ENGLISH));
+            return Enum.valueOf(enumClass, value.trim().toUpperCase(Locale.ENGLISH));
         }
         catch (final IllegalArgumentException iae) {
             throw new ConversionException("unable to parse " + value, iae);

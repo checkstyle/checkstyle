@@ -125,7 +125,7 @@ public class RedundantModifierCheck
                 checkEnumConstructorModifiers(ast);
             }
             else {
-                checkClassContructorModifiers(ast);
+                checkClassConstructorModifiers(ast);
             }
         }
         else if (isInterfaceOrAnnotationMember(ast)) {
@@ -235,7 +235,7 @@ public class RedundantModifierCheck
      * Check if class constructor has proper modifiers
      * @param classCtorAst class constructor ast
      */
-    private void checkClassContructorModifiers(DetailAST classCtorAst) {
+    private void checkClassConstructorModifiers(DetailAST classCtorAst) {
         final DetailAST classDef = classCtorAst.getParent().getParent();
         if (!isClassPublic(classDef) && !isClassProtected(classDef)) {
             checkForRedundantPublicModifier(classCtorAst);

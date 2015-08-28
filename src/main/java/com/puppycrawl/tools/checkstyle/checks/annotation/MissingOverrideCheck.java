@@ -96,7 +96,7 @@ public final class MissingOverrideCheck extends Check {
     private static final String FQ_OVERRIDE = "java.lang." + OVERRIDE;
 
     /** Compiled regexp to match Javadoc tags with no argument and {} * */
-    private static final Pattern MATCH_INHERITDOC =
+    private static final Pattern MATCH_INHERIT_DOC =
             CommonUtils.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
 
     /** @see #setJavaFiveCompatibility(boolean) */
@@ -143,8 +143,8 @@ public final class MissingOverrideCheck extends Check {
         final TextBlock javadoc =
             getFileContents().getJavadocBefore(ast.getLineNo());
 
-        final boolean containastag = containsJavadocTag(javadoc);
-        if (containastag && !JavadocTagInfo.INHERIT_DOC.isValidOn(ast)) {
+        final boolean containsTag = containsJavadocTag(javadoc);
+        if (containsTag && !JavadocTagInfo.INHERIT_DOC.isValidOn(ast)) {
             log(ast.getLineNo(), MSG_KEY_TAG_NOT_VALID_ON,
                 JavadocTagInfo.INHERIT_DOC.getText());
             return;
@@ -160,7 +160,7 @@ public final class MissingOverrideCheck extends Check {
             }
         }
 
-        if (containastag
+        if (containsTag
             && !AnnotationUtility.containsAnnotation(ast, OVERRIDE)
             && !AnnotationUtility.containsAnnotation(ast, FQ_OVERRIDE)) {
             log(ast.getLineNo(), MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
@@ -181,7 +181,7 @@ public final class MissingOverrideCheck extends Check {
 
             for (final String line : lines) {
                 final Matcher matchInheritDoc =
-                    MATCH_INHERITDOC.matcher(line);
+                    MATCH_INHERIT_DOC.matcher(line);
 
                 if (matchInheritDoc.find()) {
                     javadocTag = true;

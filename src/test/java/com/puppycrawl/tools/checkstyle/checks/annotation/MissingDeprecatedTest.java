@@ -53,7 +53,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
     }
 
     /**
-     * Tests that memebers that are only deprecated via javadoc are flagged.
+     * Tests that members that are only deprecated via javadoc are flagged.
      */
     @Test
     public void testBadDeprecatedAnnotation() throws Exception {
@@ -75,7 +75,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
     }
 
     /**
-     * Tests that memebers that are only deprecated via the annotation are flagged.
+     * Tests that members that are only deprecated via the annotation are flagged.
      */
     @Test
     public void testBadDeprecatedJavadoc() throws Exception {

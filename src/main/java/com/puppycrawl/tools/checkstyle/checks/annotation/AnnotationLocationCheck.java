@@ -264,11 +264,11 @@ public class AnnotationLocationCheck extends Check {
      * @return Some javadoc.
      */
     private static String getAnnotationName(DetailAST annotation) {
-        DetailAST idenNode = annotation.findFirstToken(TokenTypes.IDENT);
-        if (idenNode == null) {
-            idenNode = annotation.findFirstToken(TokenTypes.DOT).findFirstToken(TokenTypes.IDENT);
+        DetailAST identNode = annotation.findFirstToken(TokenTypes.IDENT);
+        if (identNode == null) {
+            identNode = annotation.findFirstToken(TokenTypes.DOT).findFirstToken(TokenTypes.IDENT);
         }
-        return idenNode.getText();
+        return identNode.getText();
     }
 
     /**
