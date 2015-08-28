@@ -127,9 +127,9 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         final int indentInComment = getIndentFromComment(comment);
         final boolean isWarnComment = isWarnComment(comment);
 
-        Matcher match = MULTILEVEL_COMMENT_REGEX.matcher(comment);
-        if (match.matches()) {
-            final String[] levels = match.group(1).split(",");
+        Matcher multilevelMatch = MULTILEVEL_COMMENT_REGEX.matcher(comment);
+        if (multilevelMatch.matches()) {
+            final String[] levels = multilevelMatch.group(1).split(",");
             final String indentInCommentStr = String.valueOf(indentInComment);
             final boolean containsActualLevel =
                             Arrays.asList(levels).contains(indentInCommentStr);
@@ -138,17 +138,17 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
                     || !containsActualLevel && isWarnComment;
         }
 
-        match = SINGLELEVEL_COMMENT_REGEX.matcher(comment);
-        if (match.matches()) {
-            final int expectedLevel = Integer.parseInt(match.group(1));
+        Matcher singleLevelMatch = SINGLELEVEL_COMMENT_REGEX.matcher(comment);
+        if (singleLevelMatch.matches()) {
+            final int expectedLevel = Integer.parseInt(singleLevelMatch.group(1));
 
             return expectedLevel == indentInComment && !isWarnComment
                     || expectedLevel != indentInComment && isWarnComment;
         }
 
-        match = NONSTRICT_LEVEL_COMMENT_REGEX.matcher(comment);
-        if (match.matches()) {
-            final int expectedMinimalIndent = Integer.parseInt(match.group(1));
+        Matcher nonStrictLevelMatch = NONSTRICT_LEVEL_COMMENT_REGEX.matcher(comment);
+        if (nonStrictLevelMatch.matches()) {
+            final int expectedMinimalIndent = Integer.parseInt(nonStrictLevelMatch.group(1));
 
             return indentInComment >= expectedMinimalIndent && !isWarnComment
                     || indentInComment < expectedMinimalIndent && isWarnComment;

@@ -207,17 +207,17 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         //checker.destroy();
         //checker.configure(checkerConfig);
 
-        checker = new Checker();
-        checker.setLocaleCountry(locale.getCountry());
-        checker.setLocaleLanguage(locale.getLanguage());
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(checkerConfig);
-        checker.addListener(new BriefLogger(stream));
+        Checker otherChecker = new Checker();
+        otherChecker.setLocaleCountry(locale.getCountry());
+        otherChecker.setLocaleLanguage(locale.getLanguage());
+        otherChecker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        otherChecker.configure(checkerConfig);
+        otherChecker.addListener(new BriefLogger(stream));
         // here is diff with previous checker
         checkerConfig.addAttribute("fileExtensions", "java,javax");
 
         // one more time on updated config
-        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+        verify(otherChecker, pathToEmptyFile, pathToEmptyFile, expected);
     }
 
     @Test

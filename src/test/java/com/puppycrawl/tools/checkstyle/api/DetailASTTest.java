@@ -147,14 +147,14 @@ public class DetailASTTest {
         Object[] params = {
             node, parent, prev, filename, root,
         };
-        String msg = MessageFormat.format(
+        String badParentMsg = MessageFormat.format(
             "Bad parent node={0} parent={1} filename={3} root={4}",
             params);
-        assertEquals(msg, parent, node.getParent());
-        msg = MessageFormat.format(
+        assertEquals(badParentMsg, parent, node.getParent());
+        String badPrevMsg = MessageFormat.format(
             "Bad prev node={0} prev={2} parent={1} filename={3} root={4}",
             params);
-        assertEquals(msg, prev, node.getPreviousSibling());
+        assertEquals(badPrevMsg, prev, node.getPreviousSibling());
 
         if (node.getFirstChild() != null) {
             checkTree(node.getFirstChild(), node, null,
