@@ -119,7 +119,7 @@ public class SimplifyBooleanReturnCheck
     }
 
     /**
-     * Returns if an AST is a return statment with a boolean literal.
+     * Returns if an AST is a return statement with a boolean literal.
      *
      * Returns {@code true} iff ast represents
      * <br/>
@@ -127,22 +127,21 @@ public class SimplifyBooleanReturnCheck
      * return true/false;
      * </pre>
      *
-     * @param ast the sytax tree to check
-     * @return if ast is a return statment with a boolean literal.
+     * @param ast the syntax tree to check
+     * @return if ast is a return statement with a boolean literal.
      */
     private static boolean isBooleanLiteralReturnStatement(AST ast) {
-        if (ast == null || ast.getType() != TokenTypes.LITERAL_RETURN) {
-            return false;
+        boolean booleanReturnStatement = false;
+
+        if (ast != null && ast.getType() == TokenTypes.LITERAL_RETURN) {
+            final AST expr = ast.getFirstChild();
+
+            if (expr.getType() != TokenTypes.SEMI) {
+                final AST value = expr.getFirstChild();
+                booleanReturnStatement = isBooleanLiteralType(value.getType());
+            }
         }
-
-        final AST expr = ast.getFirstChild();
-
-        if (expr.getType() == TokenTypes.SEMI) {
-            return false;
-        }
-
-        final AST value = expr.getFirstChild();
-        return isBooleanLiteralType(value.getType());
+        return booleanReturnStatement;
     }
 
     /**
