@@ -130,12 +130,12 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
         constructor.setAccessible(true);
         Object uniqueProperties = constructor.newInstance();
         Method method = uniqueProperties.getClass().getDeclaredMethod("put", Object.class, Object.class);
-        Object result = method.invoke(uniqueProperties, new Integer(1), "value");
+        Object result = method.invoke(uniqueProperties, 1, "value");
         Map<Object, Object> table = new Hashtable<>();
-        Object expected = table.put(new Integer(1), "value");
+        Object expected = table.put(1, "value");
         assertEquals(expected, result);
-        Object result2 = method.invoke(uniqueProperties, new Integer(1), "value");
-        Object expected2 = table.put(new Integer(1), "value");
+        Object result2 = method.invoke(uniqueProperties, 1, "value");
+        Object expected2 = table.put(1, "value");
         assertEquals(expected2, result2);
     }
 
