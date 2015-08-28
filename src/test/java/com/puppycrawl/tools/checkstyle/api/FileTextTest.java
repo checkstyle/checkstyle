@@ -46,16 +46,9 @@ public class FileTextTest {
 
     @Test
     public void testSupportedCharset() throws IOException {
-        // just to make UT coverage 100%
-        try {
-            String charsetName = "ISO-8859-1";
-            FileText o = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
-                     + "checkstyle/imports/import-control_complete.xml"), charsetName);
-            assertEquals(o.getCharset().name(), charsetName);
-        }
-        catch (UnsupportedEncodingException e) {
-            fail();
-        }
-
+        String charsetName = "ISO-8859-1";
+        FileText o = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
+                 + "checkstyle/imports/import-control_complete.xml"), charsetName);
+        assertEquals(o.getCharset().name(), charsetName);
     }
 }

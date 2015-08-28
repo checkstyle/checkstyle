@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck.MSG_KEY_EXT;
-import static org.junit.Assert.fail;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -228,13 +227,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "542: " + getCheckMessage(MSG_KEY_EXT, "parentId", 4, 3),
         };
 
-        try {
-            createChecker(checkConfig);
-            verify(checkConfig, getPath("coding/InputVariableDeclarationUsageDistanceCheck.java"), expected);
-        }
-        catch (Exception ex) {
-            //Exception is not expected
-            fail();
-        }
+        createChecker(checkConfig);
+        verify(checkConfig, getPath("coding/InputVariableDeclarationUsageDistanceCheck.java"), expected);
     }
 }

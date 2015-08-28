@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck.MSG_KEY;
-import static org.junit.Assert.fail;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
@@ -148,13 +147,7 @@ public class ExecutableStatementCountCheckTest
             createCheckConfig(ExecutableStatementCountCheck.class);
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        try {
-            createChecker(checkConfig);
-            verify(checkConfig, getPath("ExecutableStatementCountInput.java"), expected);
-        }
-        catch (Exception ex) {
-            //Exception is not expected
-            fail();
-        }
+        createChecker(checkConfig);
+        verify(checkConfig, getPath("ExecutableStatementCountInput.java"), expected);
     }
 }

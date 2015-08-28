@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.SUMMARY_FIRST_SENTENCE;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.SUMMARY_JAVADOC;
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.fail;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
@@ -100,13 +99,7 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
             "103: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
         };
 
-        try {
-            createChecker(checkConfig);
-            verify(checkConfig, getPath("javadoc/InputIncorrectSummaryJavaDocCheck.java"), expected);
-        }
-        catch (Exception ex) {
-            //Exception is not expected
-            fail();
-        }
+        createChecker(checkConfig);
+        verify(checkConfig, getPath("javadoc/InputIncorrectSummaryJavaDocCheck.java"), expected);
     }
 }

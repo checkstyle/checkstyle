@@ -95,15 +95,9 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Test
     public void testDefaultConfiguration() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
-        try {
-            createChecker(checkConfig);
-            final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-            verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
-        }
-        catch (CheckstyleException ex) {
-            // Exception is not expected
-            fail();
-        }
+        createChecker(checkConfig);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
     }
 
     @Test
