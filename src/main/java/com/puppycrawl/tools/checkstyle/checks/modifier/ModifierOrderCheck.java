@@ -148,36 +148,38 @@ public class ModifierOrderCheck
         }
         while (it.hasNext() && modifier.getType() == TokenTypes.ANNOTATION);
 
+        DetailAST offendingModifier = null;
+
         //All modifiers are annotations, no problem
-        if (modifier.getType() == TokenTypes.ANNOTATION) {
-            return null;
+        if (modifier.getType() != TokenTypes.ANNOTATION) {
+            int i = 0;
+
+            while (modifier != null) {
+                if (modifier.getType() == TokenTypes.ANNOTATION) {
+                    //Annotation not at start of modifiers, bad
+                    offendingModifier = modifier;
+                    break;
+                }
+
+                while (i < JLS_ORDER.length
+                       && !JLS_ORDER[i].equals(modifier.getText())) {
+                    i++;
+                }
+
+                if (i == JLS_ORDER.length) {
+                    //Current modifier is out of JLS order
+                    offendingModifier = modifier;
+                    break;
+                }
+                else if (it.hasNext()) {
+                    modifier = it.next();
+                }
+                else {
+                    //Reached end of modifiers without problem
+                    modifier = null;
+                }
+            }
         }
-
-        int i = 0;
-        while (modifier != null) {
-            if (modifier.getType() == TokenTypes.ANNOTATION) {
-                //Annotation not at start of modifiers, bad
-                return modifier;
-            }
-
-            while (i < JLS_ORDER.length
-                   && !JLS_ORDER[i].equals(modifier.getText())) {
-                i++;
-            }
-
-            if (i == JLS_ORDER.length) {
-                //Current modifier is out of JLS order
-                return modifier;
-            }
-            else if (it.hasNext()) {
-                modifier = it.next();
-            }
-            else {
-                //Reached end of modifiers without problem
-                modifier = null;
-            }
-        }
-
-        return null;
+        return offendingModifier;
     }
 }
