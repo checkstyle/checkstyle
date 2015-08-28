@@ -73,7 +73,7 @@ public abstract class AbstractFileSetCheck
                                                    List<String> lines) {
         messageCollector.reset();
         // Process only what interested in
-        if (CommonUtils.fileExtensionMatches(file, fileExtensions)) {
+        if (CommonUtils.matchesFileExtension(file, fileExtensions)) {
             processFiltered(file, lines);
         }
         return messageCollector.getMessages();

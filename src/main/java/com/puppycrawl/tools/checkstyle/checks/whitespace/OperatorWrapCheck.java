@@ -213,7 +213,7 @@ public class OperatorWrapCheck
             log(lineNo, colNo, LINE_NEW, text);
         }
         else if (wOp == WrapOption.EOL
-                && CommonUtils.whitespaceBefore(colNo - 1, currentLine)) {
+                && CommonUtils.hasWhitespaceBefore(colNo - 1, currentLine)) {
             log(lineNo, colNo, LINE_PREVIOUS, text);
         }
     }

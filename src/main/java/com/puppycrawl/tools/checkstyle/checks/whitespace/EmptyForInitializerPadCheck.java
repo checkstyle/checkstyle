@@ -92,7 +92,7 @@ public class EmptyForInitializerPadCheck
             final String line = getLines()[semiLineIdx];
             final int before = semi.getColumnNo() - 1;
             //don't check if semi at beginning of line
-            if (!CommonUtils.whitespaceBefore(before, line)) {
+            if (!CommonUtils.hasWhitespaceBefore(before, line)) {
                 final PadOption option = getAbstractOption();
                 if (option == PadOption.NOSPACE
                     && Character.isWhitespace(line.charAt(before))) {

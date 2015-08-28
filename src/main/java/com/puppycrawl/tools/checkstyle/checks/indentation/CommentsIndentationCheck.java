@@ -260,7 +260,7 @@ public class CommentsIndentationCheck extends Check {
     private boolean isTrailingSingleLineComment(DetailAST singleLineComment) {
         final String targetSourceLine = getLine(singleLineComment.getLineNo() - 1);
         final int commentColumnNo = singleLineComment.getColumnNo();
-        return !CommonUtils.whitespaceBefore(commentColumnNo, targetSourceLine);
+        return !CommonUtils.hasWhitespaceBefore(commentColumnNo, targetSourceLine);
     }
 
     /**
@@ -303,7 +303,7 @@ public class CommentsIndentationCheck extends Check {
     private boolean isTrailingBlockComment(DetailAST blockComment) {
         final String commentLine = getLine(blockComment.getLineNo() - 1);
         final int commentColumnNo = blockComment.getColumnNo();
-        return !CommonUtils.whitespaceBefore(commentColumnNo, commentLine)
+        return !CommonUtils.hasWhitespaceBefore(commentColumnNo, commentLine)
             || blockComment.getNextSibling().getLineNo() == blockComment.getLineNo();
     }
 }

@@ -278,7 +278,7 @@ public class EqualsAvoidNullCheck extends Check {
         if (isObjectValid(objCalledOn)
                 && containsOneArgument(methodCall)
                 && containsAllSafeTokens(expr)
-                && calledOnStringField(objCalledOn)) {
+                && isCalledOnStringField(objCalledOn)) {
             final String methodName = methodCall.getFirstChild().getLastChild().getText();
             if (EQUALS.equals(methodName)) {
                 log(methodCall.getLineNo(), methodCall.getColumnNo(),
@@ -377,7 +377,7 @@ public class EqualsAvoidNullCheck extends Check {
      * @param objCalledOn object ast.
      * @return true if the object is of String type.
      */
-    private boolean calledOnStringField(DetailAST objCalledOn) {
+    private boolean isCalledOnStringField(DetailAST objCalledOn) {
         boolean result = false;
         final DetailAST previousSiblingAst = objCalledOn.getPreviousSibling();
         final String name = objCalledOn.getText();

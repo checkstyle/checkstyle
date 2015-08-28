@@ -100,7 +100,7 @@ abstract class AbstractParenPadCheck
         if (before >= 0) {
             if (getAbstractOption() == PadOption.NOSPACE
                 && Character.isWhitespace(line.charAt(before))
-                && !CommonUtils.whitespaceBefore(before, line)) {
+                && !CommonUtils.hasWhitespaceBefore(before, line)) {
                 log(ast.getLineNo(), before, WS_PRECEDED, CLOSE_PARENTHESIS);
             }
             else if (getAbstractOption() == PadOption.SPACE

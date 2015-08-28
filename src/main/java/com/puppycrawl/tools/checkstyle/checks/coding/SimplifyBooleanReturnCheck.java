@@ -83,8 +83,8 @@ public class SimplifyBooleanReturnCheck
         final AST condition = ast.getFirstChild().getNextSibling();
         final AST thenStatement = condition.getNextSibling().getNextSibling();
 
-        if (returnsOnlyBooleanLiteral(thenStatement)
-            && returnsOnlyBooleanLiteral(elseStatement)) {
+        if (canReturnOnlyBooleanLiteral(thenStatement)
+            && canReturnOnlyBooleanLiteral(elseStatement)) {
             log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
         }
     }
@@ -109,7 +109,7 @@ public class SimplifyBooleanReturnCheck
      * @param ast the sytax tree to check
      * @return if ast is a return statment with a boolean literal.
      */
-    private static boolean returnsOnlyBooleanLiteral(AST ast) {
+    private static boolean canReturnOnlyBooleanLiteral(AST ast) {
         if (isBooleanLiteralReturnStatement(ast)) {
             return true;
         }

@@ -200,14 +200,14 @@ public class JavadocUtilsTest {
         secondChild.setType(JavadocTokenTypes.CODE_LITERAL);
 
         node.setChildren(firstChild, secondChild);
-        assertFalse(JavadocUtils.branchContains(node, JavadocTokenTypes.AUTHOR_LITERAL));
+        assertFalse(JavadocUtils.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL));
 
         firstChild.setParent(node);
         secondChild.setParent(node);
-        assertFalse(JavadocUtils.branchContains(node, JavadocTokenTypes.AUTHOR_LITERAL));
+        assertFalse(JavadocUtils.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL));
 
         secondChild.setType(JavadocTokenTypes.AUTHOR_LITERAL);
-        assertTrue(JavadocUtils.branchContains(node, JavadocTokenTypes.AUTHOR_LITERAL));
+        assertTrue(JavadocUtils.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL));
     }
 
     @Test

@@ -150,7 +150,7 @@ public class GenericWhitespaceCheck extends Check {
         final int after = ast.getColumnNo() + 1;
 
         if (before >= 0 && Character.isWhitespace(line.charAt(before))
-                && !CommonUtils.whitespaceBefore(before, line)) {
+                && !CommonUtils.hasWhitespaceBefore(before, line)) {
             log(ast.getLineNo(), before, WS_PRECEDED, CLOSE_ANGLE_BRACKET);
         }
 
@@ -274,7 +274,7 @@ public class GenericWhitespaceCheck extends Check {
             }
             // Whitespace not required
             else if (Character.isWhitespace(line.charAt(before))
-                && !CommonUtils.whitespaceBefore(before, line)) {
+                && !CommonUtils.hasWhitespaceBefore(before, line)) {
                 log(ast.getLineNo(), before, WS_PRECEDED, OPEN_ANGLE_BRACKET);
             }
         }

@@ -52,7 +52,7 @@ public final class CommonUtils {
      *            files extensions, empty property in config makes it matches to all.
      * @return whether there is a match.
      */
-    public static boolean fileExtensionMatches(File file, String... fileExtensions) {
+    public static boolean matchesFileExtension(File file, String... fileExtensions) {
         boolean result = false;
         if (fileExtensions == null || fileExtensions.length == 0) {
             result = true;
@@ -90,7 +90,7 @@ public final class CommonUtils {
      *            the line to check
      * @return whether there is only whitespace
      */
-    public static boolean whitespaceBefore(int index, String line) {
+    public static boolean hasWhitespaceBefore(int index, String line) {
         for (int i = 0; i < index; i++) {
             if (!Character.isWhitespace(line.charAt(i))) {
                 return false;

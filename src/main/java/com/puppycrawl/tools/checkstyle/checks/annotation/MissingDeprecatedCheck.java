@@ -190,7 +190,7 @@ public final class MissingDeprecatedCheck extends Check {
                 found = true;
             }
             else if (noargMultilineStart.find()) {
-                found = validateTagAtTheRestOfComment(lines, found, currentLine, i);
+                found = checkTagAtTheRestOfComment(lines, found, currentLine, i);
 
             }
         }
@@ -208,8 +208,8 @@ public final class MissingDeprecatedCheck extends Check {
      * @param i som index
      * @return true if Tag is found
      */
-    private boolean validateTagAtTheRestOfComment(String[] lines, boolean foundBefore,
-                                                  int currentLine, int i) {
+    private boolean checkTagAtTheRestOfComment(String[] lines, boolean foundBefore,
+            int currentLine, int i) {
 
         boolean found = false;
         for (int reindex = i + 1;
