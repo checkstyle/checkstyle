@@ -376,24 +376,25 @@ public abstract class AbstractJavadocCheck extends Check {
      * @return next sibling of ParseTree node.
      */
     private static ParseTree getNextSibling(ParseTree node) {
-        if (node.getParent() == null) {
-            return null;
-        }
+        ParseTree nextSibling = null;
 
-        final ParseTree parent = node.getParent();
-        final int childCount = parent.getChildCount();
+        if (node.getParent() != null) {
+            final ParseTree parent = node.getParent();
+            final int childCount = parent.getChildCount();
 
-        int i = 0;
-        while (true) {
-            final ParseTree currentNode = parent.getChild(i);
-            if (currentNode.equals(node)) {
-                if (i == childCount - 1) {
-                    return null;
+            int i = 0;
+            while (true) {
+                final ParseTree currentNode = parent.getChild(i);
+                if (currentNode.equals(node)) {
+                    if (i != childCount - 1) {
+                        nextSibling = parent.getChild(i + 1);
+                    }
+                    break;
                 }
-                return parent.getChild(i + 1);
+                i++;
             }
-            i++;
         }
+        return nextSibling;
     }
 
     /**
