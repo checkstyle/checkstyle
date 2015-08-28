@@ -326,6 +326,7 @@
     </module>
 
     <module name="NPathComplexity"/>
+    <module name="JavaNCSS"/>
 
 <!--
     <module name="ClassDataAbstractionCoupling"/>
@@ -334,7 +335,6 @@
     <module name="IllegalToken"/>
     <module name="JavadocParagraph"/>
     <module name="JavadocTagContinuationIndentation"/>
-    <module name="JavaNCSS"/>
     <module name="MissingCtor"/>
     <module name="OneTopLevelClass"/>
     <module name="OverloadMethodsDeclarationOrder"/>

@@ -465,24 +465,14 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
         DetailAST currentScopeAst = ast;
         DetailAST variableUsageAst = null;
         while (currentScopeAst != null) {
-            final List<DetailAST> variableUsageExpressions = new ArrayList<>();
-            DetailAST currentStatementAst = currentScopeAst;
+            final Entry<List<DetailAST>, Integer> searchResult =
+                    searchVariableUsageExpressions(variable, currentScopeAst);
+
             currentScopeAst = null;
-            while (currentStatementAst != null
-                    && currentStatementAst.getType() != TokenTypes.RCURLY) {
-                if (currentStatementAst.getFirstChild() != null) {
-                    if (isChild(currentStatementAst, variable)) {
-                        variableUsageExpressions.add(currentStatementAst);
-                    }
-                    // If expression doesn't contain variable and this variable
-                    // hasn't been met yet, than distance + 1.
-                    else if (variableUsageExpressions.isEmpty()
-                            && currentStatementAst.getType() != TokenTypes.VARIABLE_DEF) {
-                        dist++;
-                    }
-                }
-                currentStatementAst = currentStatementAst.getNextSibling();
-            }
+
+            final List<DetailAST> variableUsageExpressions = searchResult.getKey();
+            dist += searchResult.getValue();
+
             // If variable usage exists in a single scope, then look into
             // this scope and count distance until variable usage.
             if (variableUsageExpressions.size() == 1) {
@@ -536,6 +526,36 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
             }
         }
         return new SimpleEntry<>(variableUsageAst, dist);
+    }
+
+    /**
+     * Searches variable usages starting from specified statement.
+     * @param variableAst Variable that is used.
+     * @param statementAst DetailAST to start searching from.
+     * @return entry which contains list with found expressions that use the variable
+     * and distance from specified statement to first found expression.
+     */
+    private static Entry<List<DetailAST>, Integer>
+        searchVariableUsageExpressions(final DetailAST variableAst, final DetailAST statementAst) {
+        final List<DetailAST> variableUsageExpressions = new ArrayList<>();
+        int distance = 0;
+        DetailAST currentStatementAst = statementAst;
+        while (currentStatementAst != null
+                && currentStatementAst.getType() != TokenTypes.RCURLY) {
+            if (currentStatementAst.getFirstChild() != null) {
+                if (isChild(currentStatementAst, variableAst)) {
+                    variableUsageExpressions.add(currentStatementAst);
+                }
+                // If expression doesn't contain variable and this variable
+                // hasn't been met yet, than distance + 1.
+                else if (variableUsageExpressions.isEmpty()
+                        && currentStatementAst.getType() != TokenTypes.VARIABLE_DEF) {
+                    distance++;
+                }
+            }
+            currentStatementAst = currentStatementAst.getNextSibling();
+        }
+        return new SimpleEntry<>(variableUsageExpressions, distance);
     }
 
     /**
