@@ -184,7 +184,7 @@ public class GenericWhitespaceCheck extends Check {
         //
         final int indexOfAmp = line.indexOf('&', after);
         if (indexOfAmp >= 0
-            && whitespaceBetween(after, indexOfAmp, line)) {
+            && containsWhitespaceBetween(after, indexOfAmp, line)) {
             if (indexOfAmp - after == 0) {
                 log(ast.getLineNo(), after, WS_NOT_PRECEDED, "&");
             }
@@ -294,8 +294,8 @@ public class GenericWhitespaceCheck extends Check {
      * @param line the line to check
      * @return whether there are only whitespaces (or nothing)
      */
-    private static boolean whitespaceBetween(
-        int fromIndex, int toIndex, String line) {
+    private static boolean containsWhitespaceBetween(
+            int fromIndex, int toIndex, String line) {
         for (int i = fromIndex; i < toIndex; i++) {
             if (!Character.isWhitespace(line.charAt(i))) {
                 return false;

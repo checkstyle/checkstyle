@@ -110,8 +110,7 @@ public final class TokenTypesDoclet {
      * @param reporter the reporter to report errors.
      * @return true if only valid options was specified
      */
-    public static boolean validOptions(String[][] options,
-                                       DocErrorReporter reporter) {
+    public static boolean checkOptions(String[][] options, DocErrorReporter reporter) {
         boolean foundDestFileOption = false;
         for (final String[] opt : options) {
             if (DEST_FILE_OPT.equals(opt[0])) {
