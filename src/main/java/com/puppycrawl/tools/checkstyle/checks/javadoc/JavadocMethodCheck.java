@@ -748,9 +748,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
 
             tagIt.remove();
 
-            boolean found;
             final String arg1 = tag.getFirstArg();
-            found = removeMatchingParam(params, arg1);
+            boolean found = removeMatchingParam(params, arg1);
 
             if (CommonUtils.startsWithChar(arg1, '<') && CommonUtils.endsWithChar(arg1, '>')) {
                 // Loop looking for matching type param
