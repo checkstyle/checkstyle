@@ -388,42 +388,29 @@ public class WhitespaceAroundCheck extends Check {
     }
 
     /**
-     * Is ast is not a target of Check
+     * Is ast not a target of Check.
      * @param ast ast
      * @param currentType type of ast
      * @return true is ok to skip validation
      */
     private boolean isNotRelevantSituation(DetailAST ast, int currentType) {
         final int parentType = ast.getParent().getType();
+        final boolean starImport = currentType == TokenTypes.STAR
+                && parentType == TokenTypes.DOT;
+        final boolean slistInsideCaseGroup = currentType == TokenTypes.SLIST
+                && parentType == TokenTypes.CASE_GROUP;
 
-        // Check for CURLY in array initializer
-        if (isArrayInitialization(currentType, parentType)) {
-            return true;
-        }
+        final boolean starImportOrSlistInsideCaseGroup = starImport || slistInsideCaseGroup;
+        final boolean colonOfCaseOrDefaultOrForEach =
+                isColonOfCaseOrDefault(currentType, parentType)
+                || isColonOfForEach(currentType, parentType);
+        final boolean emptyBlockOrType = isEmptyBlock(ast, parentType)
+                || allowEmptyTypes && isEmptyType(ast, parentType);
 
-        // Check for import pkg.name.*;
-        if (currentType == TokenTypes.STAR
-            && parentType == TokenTypes.DOT) {
-            return true;
-        }
-
-        // Check for an SLIST that has a parent CASE_GROUP. It is not a '{'.
-        if (currentType == TokenTypes.SLIST
-            && parentType == TokenTypes.CASE_GROUP) {
-            return true;
-        }
-
-        if (isColonOfCaseOrDefault(currentType, parentType)) {
-            return true;
-        }
-
-        // Checks if empty methods, constructors or loops are allowed.
-        if (isEmptyBlock(ast, parentType)) {
-            return true;
-        }
-
-        // Checks if empty classes, interfaces or enums are allowed
-        return allowEmptyTypes && isEmptyType(ast, parentType);
+        return starImportOrSlistInsideCaseGroup
+                || colonOfCaseOrDefaultOrForEach
+                || emptyBlockOrType
+                || isArrayInitialization(currentType, parentType);
     }
 
     /**
@@ -439,24 +426,27 @@ public class WhitespaceAroundCheck extends Check {
     }
 
     /**
-     * We do not want to check colon for cases and defaults
+     * Whether colon belongs to cases or defaults.
      * @param currentType current
      * @param parentType parent
-     * @return true is cur token in colon of case or default tokens
+     * @return true if current token in colon of case or default tokens
      */
     private boolean isColonOfCaseOrDefault(int currentType, int parentType) {
-        if (currentType == TokenTypes.COLON) {
-            //we do not want to check colon for cases and defaults
-            if (parentType == TokenTypes.LITERAL_DEFAULT
-                || parentType == TokenTypes.LITERAL_CASE) {
-                return true;
-            }
-            else if (parentType == TokenTypes.FOR_EACH_CLAUSE
-                && ignoreEnhancedForColon) {
-                return true;
-            }
-        }
-        return false;
+        return currentType == TokenTypes.COLON
+                && (parentType == TokenTypes.LITERAL_DEFAULT
+                    || parentType == TokenTypes.LITERAL_CASE);
+    }
+
+    /**
+     * Whether colon belongs to for-each.
+     * @param currentType current
+     * @param parentType parent
+     * @return true if current token in colon of for-each token
+     */
+    private boolean isColonOfForEach(int currentType, int parentType) {
+        return currentType == TokenTypes.COLON
+            && parentType == TokenTypes.FOR_EACH_CLAUSE
+            && ignoreEnhancedForColon;
     }
 
     /**
