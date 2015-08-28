@@ -486,7 +486,7 @@ public class EqualsAvoidNullCheck extends Check {
          * Creates new frame.
          * @param parent parent frame.
          */
-        public FieldFrame(FieldFrame parent) {
+        FieldFrame(FieldFrame parent) {
             this.parent = parent;
         }
 
