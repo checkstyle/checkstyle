@@ -155,39 +155,31 @@ public class JavadocStyleCheck
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(final DetailAST ast) {
+        boolean check = false;
+
         if (ast.getType() == TokenTypes.PACKAGE_DEF) {
-            return getFileContents().inPackageInfo();
+            check = getFileContents().inPackageInfo();
         }
+        else if (!ScopeUtils.isInCodeBlock(ast)) {
+            final Scope customScope;
 
-        if (ScopeUtils.isInCodeBlock(ast)) {
-            return false;
-        }
+            if (ScopeUtils.isInInterfaceOrAnnotationBlock(ast)
+                    || ast.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+                customScope = Scope.PUBLIC;
+            }
+            else {
+                customScope = ScopeUtils.getScopeFromMods(ast.findFirstToken(TokenTypes.MODIFIERS));
+            }
+            final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
 
-        final Scope declaredScope;
-        if (ast.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
-            declaredScope = Scope.PUBLIC;
+            check = customScope.isIn(scope)
+                    && (surroundingScope == null || surroundingScope.isIn(scope))
+                    && (excludeScope == null
+                        || !customScope.isIn(excludeScope)
+                        || surroundingScope != null
+                        && !surroundingScope.isIn(excludeScope));
         }
-        else {
-            declaredScope = ScopeUtils.getScopeFromMods(
-                ast.findFirstToken(TokenTypes.MODIFIERS));
-        }
-
-        final Scope customScope;
-
-        if (ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
-            customScope = Scope.PUBLIC;
-        }
-        else {
-            customScope = declaredScope;
-        }
-        final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
-
-        return customScope.isIn(scope)
-            && (surroundingScope == null || surroundingScope.isIn(scope))
-            && (excludeScope == null
-                || !customScope.isIn(excludeScope)
-                || surroundingScope != null
-                && !surroundingScope.isIn(excludeScope));
+        return check;
     }
 
     /**
