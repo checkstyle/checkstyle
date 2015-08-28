@@ -74,12 +74,12 @@ public class SuppressWarningsFilterTest
         verifySuppressed(filterConfig, suppressed);
     }
 
-    public static DefaultConfiguration createFilterConfig(Class<?> classObj) {
+    private static DefaultConfiguration createFilterConfig(Class<?> classObj) {
         return new DefaultConfiguration(classObj.getName());
     }
 
-    protected void verifySuppressed(Configuration aFilterConfig,
-        String... aSuppressed) throws Exception {
+    private void verifySuppressed(Configuration aFilterConfig,
+            String... aSuppressed) throws Exception {
         verify(createChecker(aFilterConfig),
             getPath("filters/InputSuppressWarningsFilter.java"),
             removeSuppressed(ALL_MESSAGES, aSuppressed));

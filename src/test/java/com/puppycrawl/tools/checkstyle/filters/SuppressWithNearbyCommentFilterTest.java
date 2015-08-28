@@ -191,12 +191,12 @@ public class SuppressWithNearbyCommentFilterTest
         EqualsVerifier.forClass(SuppressWithNearbyCommentFilter.Tag.class).usingGetClass().verify();
     }
 
-    public static DefaultConfiguration createFilterConfig(Class<?> classObj) {
+    private static DefaultConfiguration createFilterConfig(Class<?> classObj) {
         return new DefaultConfiguration(classObj.getName());
     }
 
-    protected void verifySuppressed(Configuration filterConfig,
-                                    String... suppressed)
+    private void verifySuppressed(Configuration filterConfig,
+            String... suppressed)
         throws Exception {
         verify(createChecker(filterConfig),
                getPath("filters/InputSuppressWithNearbyCommentFilter.java"),

@@ -191,12 +191,12 @@ public class SuppressionCommentFilterTest
         verifySuppressed(filterConfig, suppressed);
     }
 
-    public static DefaultConfiguration createFilterConfig(Class<?> aClass) {
+    private static DefaultConfiguration createFilterConfig(Class<?> aClass) {
         return new DefaultConfiguration(aClass.getName());
     }
 
-    protected void verifySuppressed(Configuration aFilterConfig,
-                                    String... aSuppressed)
+    private void verifySuppressed(Configuration aFilterConfig,
+            String... aSuppressed)
         throws Exception {
         verify(createChecker(aFilterConfig),
                getPath("filters/InputSuppressionCommentFilter.java"),

@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser.TrTagClose
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser.TrTagOpenContext;
 
 //@formatter:off
-public final class ParseTreeBuilder {
+final class ParseTreeBuilder {
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
     private ParseTreeBuilder() {

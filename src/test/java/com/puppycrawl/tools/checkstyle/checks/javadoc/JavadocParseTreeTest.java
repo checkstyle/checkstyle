@@ -45,7 +45,7 @@ public class JavadocParseTreeTest {
     private JavadocParser parser;
     private final BaseErrorListener errorListener = new FailOnErrorListener();
 
-    public ParseTree parseJavadoc(String aBlockComment)
+    private ParseTree parseJavadoc(String aBlockComment)
         throws IOException {
         final Charset utf8Charset = Charset.forName("UTF-8");
         final InputStream in = new ByteArrayInputStream(aBlockComment.getBytes(utf8Charset));
@@ -64,7 +64,7 @@ public class JavadocParseTreeTest {
         return parser.javadoc();
     }
 
-    public static String getFileContent(File filename)
+    private static String getFileContent(File filename)
         throws IOException {
         return Files.toString(filename, Charsets.UTF_8);
     }

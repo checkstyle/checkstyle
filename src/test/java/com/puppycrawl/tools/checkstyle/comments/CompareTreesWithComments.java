@@ -6,7 +6,7 @@ import org.junit.Assert;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
-public class CompareTreesWithComments extends Check {
+class CompareTreesWithComments extends Check {
     static DetailAST expectedTree;
 
     @Override

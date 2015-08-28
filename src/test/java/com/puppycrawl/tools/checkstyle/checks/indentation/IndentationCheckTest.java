@@ -66,8 +66,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     private static final Pattern NONSTRICT_LEVEL_COMMENT_REGEX =
                     Pattern.compile("//indent:\\d+ exp:>=(\\d+)( warn)?");
 
-    protected static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
-                    final int tabWidth)
+    private static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
+            final int tabWidth)
                     throws IOException {
         List<Integer> result = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(aFileName))) {

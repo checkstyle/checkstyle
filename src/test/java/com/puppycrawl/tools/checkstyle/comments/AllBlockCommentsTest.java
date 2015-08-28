@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AllBlockCommentsTest extends BaseCheckTestSupport {
-    protected static final Set<String> ALL_COMMENTS = Sets.newLinkedHashSet();
+    private static final Set<String> ALL_COMMENTS = Sets.newLinkedHashSet();
 
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
