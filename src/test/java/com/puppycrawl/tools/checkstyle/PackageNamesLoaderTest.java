@@ -36,7 +36,6 @@ import java.net.URLConnection;
 import java.net.URLStreamHandler;
 import java.util.Arrays;
 import java.util.Enumeration;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.junit.Test;
@@ -106,7 +105,7 @@ public class PackageNamesLoaderTest {
 
         Field field = PackageNamesLoader.class.getDeclaredField("packageNames");
         field.setAccessible(true);
-        LinkedHashSet<String> list = (LinkedHashSet<String>) field.get(loader);
+        Set<String> list = (Set<String>) field.get(loader);
         assertEquals("coding.", list.iterator().next());
     }
 
