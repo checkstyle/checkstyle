@@ -158,31 +158,22 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
      * @param parentType type of the parrent
      */
     private void processField(DetailAST ast, int parentType) {
-        if (ScopeUtils.getSurroundingScope(ast) == null) {
-            // it is not a class or interface it's
-            // either import or package
-            // we shouldn't checks this
-            return;
-        }
+        final boolean importOrPackage = ScopeUtils.getSurroundingScope(ast) == null;
+        final boolean methodNameInMethodCall = parentType == TokenTypes.DOT
+                && ast.getPreviousSibling() != null;
+        final boolean typeName = parentType == TokenTypes.TYPE
+                || parentType == TokenTypes.LITERAL_NEW;
 
-        if (parentType == TokenTypes.DOT
-                && ast.getPreviousSibling() != null) {
-            // it's the method name in a method call; no problem
-            return;
-        }
-        if (parentType == TokenTypes.TYPE
-                || parentType == TokenTypes.LITERAL_NEW) {
-            // it's a type name; no problem
-            return;
-        }
-        if (isDeclarationToken(parentType)) {
-            // it's being declared; no problem
-            return;
-        }
+        if (!importOrPackage
+                && !methodNameInMethodCall
+                && !typeName
+                && !isDeclarationToken(parentType)) {
 
-        final String name = ast.getText();
-        if (isClassField(name)) {
-            log(ast, MSG_VARIABLE, name);
+            final String name = ast.getText();
+
+            if (isClassField(name)) {
+                log(ast, MSG_VARIABLE, name);
+            }
         }
     }
 
