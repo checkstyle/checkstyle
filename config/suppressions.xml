@@ -58,6 +58,7 @@
     <!-- Methods that build fake AST are very long-->
     <suppress checks="MethodLength" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]comments[\\/]CommentsTest\.java"/>
     <suppress checks="ExecutableStatementCount" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]comments[\\/]CommentsTest\.java"/>
+    <suppress checks="JavaNCSS" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]comments[\\/]CommentsTest\.java"/>
 
     <suppress checks="." files=".*JavadocTokenTypes\.java"/>
     <suppress checks="." files=".*ParseTreeBuilder\.java"/>
@@ -77,4 +78,7 @@
 
     <!-- getDetails() method - huge Switch, it has to be monolithic -->
     <suppress checks="ExecutableStatementCount" files="RightCurlyCheck\.java" lines="280"/>
+    <suppress checks="JavaNCSS" files="RightCurlyCheck\.java" lines="280"/>
+    <suppress checks="CyclomaticComplexity" files="RightCurlyCheck\.java" lines="280"/>
+
 </suppressions>
