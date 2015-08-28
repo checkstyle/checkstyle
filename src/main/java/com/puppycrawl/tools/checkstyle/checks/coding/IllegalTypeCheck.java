@@ -73,6 +73,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * will be ok.
  * </p>
  * <p>
+ * <b>validateAbstractClassNames</b> - controls whether to validate abstract class names.
+ * Default value is <b>false</b>
+ * </p>
+ * <p>
  * <b>ignoredMethodNames</b> - Methods that should not be checked.
  * </p>
  * <p>
@@ -139,12 +143,25 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
     /** Check methods and fields with only corresponding modifiers. */
     private List<Integer> memberModifiers;
 
+    /**
+     * Controls whether to validate abstract class names.
+     */
+    private boolean validateAbstractClassNames;
+
     /** Creates new instance of the check. */
     public IllegalTypeCheck() {
         super(DEFAULT_FORMAT);
         setIllegalClassNames(DEFAULT_ILLEGAL_TYPES);
         setLegalAbstractClassNames(DEFAULT_LEGAL_ABSTRACT_NAMES);
         setIgnoredMethodNames(DEFAULT_IGNORED_METHOD_NAMES);
+    }
+
+    /**
+     * Sets whether to validate abstract class names.
+     * @param validateAbstractClassNames whether abstract class names must be ignored.
+     */
+    public void setValidateAbstractClassNames(boolean validateAbstractClassNames) {
+        this.validateAbstractClassNames = validateAbstractClassNames;
     }
 
     @Override
@@ -305,7 +322,8 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
         final String shortName = className.substring(className.lastIndexOf('.') + 1);
         return illegalClassNames.contains(className)
                 || illegalClassNames.contains(shortName)
-                || !legalAbstractClassNames.contains(className)
+                || validateAbstractClassNames
+                    && !legalAbstractClassNames.contains(className)
                     && getRegexp().matcher(className).find();
     }
 
