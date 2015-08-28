@@ -27,8 +27,10 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -70,7 +72,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
                     final int tabWidth)
                     throws IOException {
         List<Integer> result = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(aFileName))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(
+                new FileInputStream(aFileName), StandardCharsets.UTF_8))) {
             int lineNumber = 1;
             for (String line = br.readLine(); line != null; line = br.readLine()) {
                 Matcher match = LINE_WITH_COMMENT_REGEX.matcher(line);

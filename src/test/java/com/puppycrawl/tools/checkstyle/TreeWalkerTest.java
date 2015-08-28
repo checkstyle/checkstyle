@@ -24,9 +24,11 @@ import static org.junit.Assert.fail;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Locale;
@@ -53,7 +55,8 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
                 createCheckConfig(ConstantNameCheck.class);
         final String content = "public class Main { public static final int k = 5 + 4; }";
         final File file = temporaryFolder.newFile("file.java");
-        final Writer writer = new BufferedWriter(new FileWriter(file));
+        final Writer writer = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8));
         writer.write(content);
         writer.close();
         final String[] expected1 = {
@@ -68,7 +71,8 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
                 createCheckConfig(ConstantNameCheck.class);
         final File file = temporaryFolder.newFile("file.pdf");
         final String content = "public class Main { public static final int k = 5 + 4; }";
-        final BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        final BufferedWriter writer = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8));
         writer.write(content);
         writer.close();
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
