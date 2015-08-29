@@ -107,30 +107,58 @@ public class JavadocNodeImpl implements DetailNode {
         return index;
     }
 
+    /**
+     * Sets node's type.
+     * @param type Node's type.
+     */
     public void setType(int type) {
         this.type = type;
     }
 
+    /**
+     * Sets node's text content.
+     * @param text Node's text content.
+     */
     public void setText(String text) {
         this.text = text;
     }
 
+    /**
+     * Sets line number.
+     * @param lineNumber Line number.
+     */
     public void setLineNumber(int lineNumber) {
         this.lineNumber = lineNumber;
     }
 
+    /**
+     * Sets column number.
+     * @param columnNumber Column number.
+     */
     public void setColumnNumber(int columnNumber) {
         this.columnNumber = columnNumber;
     }
 
+    /**
+     * Sets array of child nodes.
+     * @param children Array of child nodes.
+     */
     public void setChildren(DetailNode... children) {
         this.children = Arrays.copyOf(children, children.length);
     }
 
+    /**
+     * Sets parent node.
+     * @param parent Parent node.
+     */
     public void setParent(DetailNode parent) {
         this.parent = parent;
     }
 
+    /**
+     * Sets node's index among parent's children.
+     * @param index Node's index among parent's children.
+     */
     public void setIndex(int index) {
         this.index = index;
     }
@@ -140,5 +168,4 @@ public class JavadocNodeImpl implements DetailNode {
         return JavadocUtils.getTokenName(type)
                 + "[" + lineNumber + "x" + columnNumber + "]";
     }
-
 }

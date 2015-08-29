@@ -51,11 +51,15 @@ public abstract class Check extends AbstractViolationReporter {
     private int tabWidth = DEFAULT_TAB_WIDTH;
 
     /**
-     * The class loader to load external classes. Not initialised as this must
+     * The class loader to load external classes. Not initialized as this must
      * be set by my creator.
      */
     private ClassLoader classLoader;
 
+    /**
+     * Whether comment nodes are required or not.
+     * @return false as a default value.
+     */
     public boolean isCommentNodesRequired() {
         return false;
     }
@@ -117,7 +121,7 @@ public abstract class Check extends AbstractViolationReporter {
     }
 
     /**
-     * Initialise the check. This is the time to verify that the check has
+     * Initialize the check. This is the time to verify that the check has
      * everything required to perform it job.
      */
     public void init() {
@@ -132,7 +136,7 @@ public abstract class Check extends AbstractViolationReporter {
     }
 
     /**
-     * Called before the starting to process a tree. Ideal place to initialise
+     * Called before the starting to process a tree. Ideal place to initialize
      * information that is to be collected whilst processing a tree.
      * @param rootAST the root of the tree
      */
