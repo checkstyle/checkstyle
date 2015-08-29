@@ -34,21 +34,33 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @author Lars Kühne
  */
 public class ParseTreeModel extends AbstractTreeTableModel {
+    /** Column names. */
     private static final String[] COLUMN_NAMES = {
         "Tree", "Type", "Line", "Column", "Text",
     };
 
+    /**
+     * @param parseTree DetailAST parse tree.
+     */
     public ParseTreeModel(DetailAST parseTree) {
         super(createArtificialTreeRoot());
         setParseTree(parseTree);
     }
 
+    /**
+     * Creates artificial tree root.
+     * @return Artificial tree root.
+     */
     private static DetailAST createArtificialTreeRoot() {
         final ASTFactory factory = new ASTFactory();
         factory.setASTNodeClass(DetailAST.class.getName());
         return (DetailAST) factory.create(TokenTypes.EOF, "ROOT");
     }
 
+    /**
+     * Sets parse tree.
+     * @param parseTree DetailAST parse tree.
+     */
     final void setParseTree(DetailAST parseTree) {
         final DetailAST root = (DetailAST) getRoot();
         root.setFirstChild(parseTree);

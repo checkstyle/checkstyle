@@ -45,9 +45,15 @@ public class TreeTableModelAdapter extends AbstractTableModel {
     /** For Serialisation that will never happen. */
     private static final long serialVersionUID = 8269213416115369275L;
 
+    /** JTree component. */
     private final JTree tree;
+    /** Tree table model. */
     private final transient TreeTableModel treeTableModel;
 
+    /**
+     * @param treeTableModel Tree table model.
+     * @param tree JTree component.
+     */
     public TreeTableModelAdapter(TreeTableModel treeTableModel, JTree tree) {
         this.tree = tree;
         this.treeTableModel = treeTableModel;
@@ -83,11 +89,6 @@ public class TreeTableModelAdapter extends AbstractTableModel {
         return tree.getRowCount();
     }
 
-    private Object nodeForRow(int row) {
-        final TreePath treePath = tree.getPathForRow(row);
-        return treePath.getLastPathComponent();
-    }
-
     @Override
     public Object getValueAt(int row, int column) {
         return treeTableModel.getValueAt(nodeForRow(row), column);
@@ -96,6 +97,16 @@ public class TreeTableModelAdapter extends AbstractTableModel {
     @Override
     public boolean isCellEditable(int row, int column) {
         return treeTableModel.isCellEditable(column);
+    }
+
+    /**
+     * Finds node for a given row.
+     * @param row Row for which to find a related node.
+     * @return Node for a given row.
+     */
+    private Object nodeForRow(int row) {
+        final TreePath treePath = tree.getPathForRow(row);
+        return treePath.getLastPathComponent();
     }
 
     /**
