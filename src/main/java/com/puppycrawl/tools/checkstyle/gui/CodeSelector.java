@@ -65,6 +65,11 @@ public class CodeSelector {
         editor.transferFocusBackward();
     }
 
+    /**
+     * Finds the last position of node without children.
+     * @param astNode DetailAST node.
+     * @return Last position of node without children.
+     */
     private int findLastPosition(final DetailAST astNode) {
         if (astNode.getChildCount() == 0) {
             return lines2position.get(astNode.getLineNo()) + astNode.getColumnNo()
