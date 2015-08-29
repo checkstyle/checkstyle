@@ -171,13 +171,11 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
                 final List<TextBlock> commentList = cComments.get(lineNo);
                 comment = commentList.get(commentList.size() - 1);
                 lineBefore = line.substring(0, comment.getStartColNo());
-                if (comment.getText().length == 1) {
-                    final String lineAfter =
-                        line.substring(comment.getEndColNo() + 1).trim();
-                    if (!lineAfter.isEmpty()) {
-                        // do not check comment which doesn't end line
-                        continue;
-                    }
+
+                // do not check comment which doesn't end line
+                if (comment.getText().length == 1
+                        && !line.substring(comment.getEndColNo() + 1).trim().isEmpty()) {
+                    continue;
                 }
             }
             if (!blankLinePattern.matcher(lineBefore).find()

@@ -201,14 +201,31 @@ public class EmptyBlockCheck
             }
             else {
                 // check if all lines are also only whitespace
-                for (int i = slistLineNo; i < rcurlyLineNo - 1; i++) {
-                    if (!lines[i].trim().isEmpty()) {
-                        retVal = true;
-                        break;
-                    }
-                }
+                retVal = !checkIsAllLinesAreWhitespace(lines, slistLineNo, rcurlyLineNo);
             }
         }
         return retVal;
+    }
+
+    /**
+     * Checks is all lines in array contain whitespaces only.
+     *
+     * @param lines
+     *            array of lines
+     * @param lineFrom
+     *            check from this line number
+     * @param lineTo
+     *            check to this line numbers
+     * @return true if lines contain only whitespaces
+     */
+    private static boolean checkIsAllLinesAreWhitespace(String[] lines, int lineFrom, int lineTo) {
+        boolean result = true;
+        for (int i = lineFrom; i < lineTo - 1; i++) {
+            if (!lines[i].trim().isEmpty()) {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 }

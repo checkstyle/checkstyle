@@ -229,14 +229,27 @@ public class SuppressWarningsHolder
                 for (String value : values) {
                     String checkName = value;
                     // strip off the checkstyle-only prefix if present
-                    if (value.startsWith(CHECKSTYLE_PREFIX)) {
-                        checkName = checkName.substring(CHECKSTYLE_PREFIX.length());
-                    }
+                    checkName = removeChecktylePrefixIfExests(checkName);
                     entries.add(new Entry(checkName, firstLine, firstColumn,
                         lastLine, lastColumn));
                 }
             }
         }
+    }
+
+    /**
+     * Method removes checkstyle prefix (checkstyle:) from check name if exists.
+     *
+     * @param checkName
+     *            - name of the check
+     * @return check name without prefix
+     */
+    private static String removeChecktylePrefixIfExests(String checkName) {
+        String result = checkName;
+        if (checkName.startsWith(CHECKSTYLE_PREFIX)) {
+            result = checkName.substring(CHECKSTYLE_PREFIX.length());
+        }
+        return result;
     }
 
     /**
