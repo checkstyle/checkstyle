@@ -192,6 +192,10 @@ public abstract class AbstractJavadocCheck extends Check {
 
     }
 
+    /**
+     * Getter for block comment in Java language syntax tree.
+     * @return A block comment in the syntax tree.
+     */
     protected DetailAST getBlockCommentAst() {
         return blockCommentAst;
     }
@@ -562,6 +566,10 @@ public abstract class AbstractJavadocCheck extends Check {
          */
         private ParseErrorMessage errorMessage;
 
+        /**
+         * Getter for error message during parsing.
+         * @return Error message during parsing.
+         */
         private ParseErrorMessage getErrorMessage() {
             return errorMessage;
         }
@@ -634,18 +642,34 @@ public abstract class AbstractJavadocCheck extends Check {
          */
         private ParseErrorMessage parseErrorMessage;
 
+        /**
+         * Getter for DetailNode tree.
+         * @return DetailNode tree if parsing was successful, null otherwise.
+         */
         public DetailNode getTree() {
             return tree;
         }
 
+        /**
+         * Sets DetailNode tree.
+         * @param tree DetailNode tree.
+         */
         public void setTree(DetailNode tree) {
             this.tree = tree;
         }
 
+        /**
+         * Getter for error message during parsing.
+         * @return Error message if parsing was unsuccessful, null otherwise.
+         */
         public ParseErrorMessage getParseErrorMessage() {
             return parseErrorMessage;
         }
 
+        /**
+         * Sets parse error message.
+         * @param parseErrorMessage Parse error message.
+         */
         public void setParseErrorMessage(ParseErrorMessage parseErrorMessage) {
             this.parseErrorMessage = parseErrorMessage;
         }
@@ -684,18 +708,28 @@ public abstract class AbstractJavadocCheck extends Check {
             this.messageArguments = messageArguments.clone();
         }
 
+        /**
+         * Getter for line number where parse error occurred.
+         * @return Line number where parse error occurred.
+         */
         public int getLineNumber() {
             return lineNumber;
         }
 
+        /**
+         * Getter for key for error message.
+         * @return Key for error message.
+         */
         public String getMessageKey() {
             return messageKey;
         }
 
+        /**
+         * Getter for error message arguments.
+         * @return Array of error message arguments.
+         */
         public Object[] getMessageArguments() {
             return messageArguments.clone();
         }
-
     }
-
 }
