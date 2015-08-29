@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.google.common.collect.ImmutableSet;
@@ -33,7 +34,6 @@ import com.google.common.reflect.ClassPath;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
-import junit.framework.Assert;
 
 public class AllChecksTest extends BaseCheckTestSupport {
 
