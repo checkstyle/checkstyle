@@ -181,24 +181,23 @@ public class SuppressionCommentFilter
 
     @Override
     public boolean accept(AuditEvent event) {
-        if (event.getLocalizedMessage() == null) {
-            // A special event
-            return true;
-        }
+        boolean accepted = true;
 
-        // Lazy update. If the first event for the current file, update file
-        // contents and tag suppressions
-        final FileContents currentContents = FileContentsHolder.getContents();
-        if (currentContents == null) {
-            // we have no contents, so we can not filter.
-            return true;
+        if (event.getLocalizedMessage() != null) {
+            // Lazy update. If the first event for the current file, update file
+            // contents and tag suppressions
+            final FileContents currentContents = FileContentsHolder.getContents();
+
+            if (currentContents != null) {
+                if (getFileContents() != currentContents) {
+                    setFileContents(currentContents);
+                    tagSuppressions();
+                }
+                final Tag matchTag = findNearestMatch(event);
+                accepted = matchTag == null || matchTag.isOn();
+            }
         }
-        if (getFileContents() != currentContents) {
-            setFileContents(currentContents);
-            tagSuppressions();
-        }
-        final Tag matchTag = findNearestMatch(event);
-        return matchTag == null || matchTag.isOn();
+        return accepted;
     }
 
     /**
