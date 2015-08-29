@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractDeclarationCollector;
@@ -67,6 +68,20 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
      * file.
      */
     public static final String MSG_VARIABLE = "require.this.variable";
+
+    /**
+     * Set of all declaration tokens
+     */
+    private static final ImmutableSet<Integer> DECLARATION_TOKENS = ImmutableSet.of(
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.PARAMETER_DEF,
+            TokenTypes.TYPE_ARGUMENT
+    );
 
     /** Whether we should check fields usage. */
     private boolean checkFields = true;
@@ -179,13 +194,6 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
      * @return true if token is related to Definition Tokens
      */
     private static boolean isDeclarationToken(int parentType) {
-        return parentType == TokenTypes.VARIABLE_DEF
-            || parentType == TokenTypes.CTOR_DEF
-            || parentType == TokenTypes.METHOD_DEF
-            || parentType == TokenTypes.CLASS_DEF
-            || parentType == TokenTypes.ENUM_DEF
-            || parentType == TokenTypes.INTERFACE_DEF
-            || parentType == TokenTypes.PARAMETER_DEF
-            || parentType == TokenTypes.TYPE_ARGUMENT;
+        return DECLARATION_TOKENS.contains(parentType);
     }
 }
