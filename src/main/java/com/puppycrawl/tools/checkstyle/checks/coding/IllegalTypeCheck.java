@@ -220,12 +220,25 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
             result = false;
             final DetailAST modifiersAst = methodOrVariableDef
                     .findFirstToken(TokenTypes.MODIFIERS);
-            if (modifiersAst.getFirstChild() != null) {
-                for (DetailAST modifier = modifiersAst.getFirstChild(); modifier != null;
-                         modifier = modifier.getNextSibling()) {
-                    if (memberModifiers.contains(modifier.getType())) {
-                        result = true;
-                    }
+            result = isContainVerifiableType(modifiersAst);
+        }
+        return result;
+    }
+
+    /**
+     * Checks is modifiers contain verifiable type
+     *
+     * @param modifiers
+     *            parent node for all modifiers
+     * @return true if mathod or variable can be verified
+     */
+    private boolean isContainVerifiableType(DetailAST modifiers) {
+        boolean result = false;
+        if (modifiers.getFirstChild() != null) {
+            for (DetailAST modifier = modifiers.getFirstChild(); modifier != null;
+                     modifier = modifier.getNextSibling()) {
+                if (memberModifiers.contains(modifier.getType())) {
+                    result = true;
                 }
             }
         }
