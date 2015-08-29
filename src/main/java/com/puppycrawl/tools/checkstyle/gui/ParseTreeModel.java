@@ -70,39 +70,52 @@ public class ParseTreeModel extends AbstractTreeTableModel {
 
     @Override
     public Class<?> getColumnClass(int column) {
+        Class<?> columnClass;
+
         switch (column) {
             case 0:
-                return TreeTableModel.class;
+                columnClass = TreeTableModel.class;
+                break;
             case 1:
-                return String.class;
+                columnClass = String.class;
+                break;
             case 2:
-                return Integer.class;
+                columnClass = Integer.class;
+                break;
             case 3:
-                return Integer.class;
+                columnClass = Integer.class;
+                break;
             case 4:
-                return String.class;
+                columnClass = String.class;
+                break;
             default:
-                return Object.class;
+                columnClass = Object.class;
         }
+        return columnClass;
     }
 
     @Override
     public Object getValueAt(Object node, int column) {
         final DetailAST ast = (DetailAST) node;
+        Object value;
+
         switch (column) {
-            case 0:
-                return null;
             case 1:
-                return TokenUtils.getTokenName(ast.getType());
+                value = TokenUtils.getTokenName(ast.getType());
+                break;
             case 2:
-                return ast.getLineNo();
+                value = ast.getLineNo();
+                break;
             case 3:
-                return ast.getColumnNo();
+                value = ast.getColumnNo();
+                break;
             case 4:
-                return ast.getText();
+                value = ast.getText();
+                break;
             default:
-                return null;
+                value = null;
         }
+        return value;
     }
 
     @Override
