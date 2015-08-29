@@ -74,28 +74,25 @@ public final class CheckUtils {
      * @return true if ast defines an equals covariant.
      */
     public static boolean isEqualsMethod(DetailAST ast) {
-        if (ast.getType() != TokenTypes.METHOD_DEF) {
-            // A node must be method def
-            return false;
-        }
+        boolean equalsMethod = false;
 
-        // non-static, non-abstract?
-        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers.branchContains(TokenTypes.LITERAL_STATIC)
-            || modifiers.branchContains(TokenTypes.ABSTRACT)) {
-            return false;
-        }
+        if (ast.getType() == TokenTypes.METHOD_DEF) {
+            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+            final boolean staticOrAbstract = modifiers.branchContains(TokenTypes.LITERAL_STATIC)
+                    || modifiers.branchContains(TokenTypes.ABSTRACT);
 
-        // named "equals"?
-        final DetailAST nameNode = ast.findFirstToken(TokenTypes.IDENT);
-        final String name = nameNode.getText();
-        if (!"equals".equals(name)) {
-            return false;
-        }
+            if (!staticOrAbstract) {
+                final DetailAST nameNode = ast.findFirstToken(TokenTypes.IDENT);
+                final String name = nameNode.getText();
 
-        // one parameter?
-        final DetailAST paramsNode = ast.findFirstToken(TokenTypes.PARAMETERS);
-        return paramsNode.getChildCount() == 1;
+                if ("equals".equals(name)) {
+                    // one parameter?
+                    final DetailAST paramsNode = ast.findFirstToken(TokenTypes.PARAMETERS);
+                    equalsMethod = paramsNode.getChildCount() == 1;
+                }
+            }
+        }
+        return equalsMethod;
     }
 
     /**
@@ -330,47 +327,36 @@ public final class CheckUtils {
      * @return whether the AST represents a setter method
      */
     public static boolean isSetterMethod(final DetailAST ast) {
+        boolean setterMethod = false;
+
         // Check have a method with exactly 7 children which are all that
         // is allowed in a proper setter method which does not throw any
         // exceptions.
-        if (ast.getType() != TokenTypes.METHOD_DEF
-                || ast.getChildCount() != SETTER_GETTER_MAX_CHILDREN) {
-            return false;
+        if (ast.getType() == TokenTypes.METHOD_DEF
+                && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
+
+            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+            final String name = type.getNextSibling().getText();
+            final boolean matchesSetterFormat = SETTER_PATTERN.matcher(name).matches();
+            final boolean voidReturnType = type.getChildCount(TokenTypes.LITERAL_VOID) > 0;
+
+            final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
+            final boolean singleParam = params.getChildCount(TokenTypes.PARAMETER_DEF) == 1;
+
+            if (matchesSetterFormat && voidReturnType && singleParam) {
+                // Now verify that the body consists of:
+                // SLIST -> EXPR -> ASSIGN
+                // SEMI
+                // RCURLY
+                final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
+
+                if (slist != null && slist.getChildCount() == SETTER_BODY_SIZE) {
+                    final DetailAST expr = slist.getFirstChild();
+                    setterMethod = expr.getFirstChild().getType() == TokenTypes.ASSIGN;
+                }
+            }
         }
-
-        // Should I handle only being in a class????
-
-        // Check the name matches format setX...
-        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-        final String name = type.getNextSibling().getText();
-
-        // Depends on JDK 1.4
-        if (!SETTER_PATTERN.matcher(name).matches()) {
-            return false;
-        }
-
-        // Check the return type is void
-        if (type.getChildCount(TokenTypes.LITERAL_VOID) == 0) {
-            return false;
-        }
-
-        // Check that is had only one parameter
-        final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-        if (params.getChildCount(TokenTypes.PARAMETER_DEF) != 1) {
-            return false;
-        }
-
-        // Now verify that the body consists of:
-        // SLIST -> EXPR -> ASSIGN
-        // SEMI
-        // RCURLY
-        final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
-        if (slist == null || slist.getChildCount() != SETTER_BODY_SIZE) {
-            return false;
-        }
-
-        final DetailAST expr = slist.getFirstChild();
-        return expr.getFirstChild().getType() == TokenTypes.ASSIGN;
+        return setterMethod;
     }
 
     /**
@@ -379,46 +365,35 @@ public final class CheckUtils {
      * @return whether the AST represents a getter method
      */
     public static boolean isGetterMethod(final DetailAST ast) {
+        boolean getterMethod = false;
+
         // Check have a method with exactly 7 children which are all that
         // is allowed in a proper getter method which does not throw any
         // exceptions.
-        if (ast.getType() != TokenTypes.METHOD_DEF
-                || ast.getChildCount() != SETTER_GETTER_MAX_CHILDREN) {
-            return false;
+        if (ast.getType() == TokenTypes.METHOD_DEF
+                && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
+
+            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+            final String name = type.getNextSibling().getText();
+            final boolean matchesGetterFormat = GETTER_PATTERN.matcher(name).matches();
+            final boolean noVoidReturnType = type.getChildCount(TokenTypes.LITERAL_VOID) == 0;
+
+            final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
+            final boolean noParams = params.getChildCount(TokenTypes.PARAMETER_DEF) == 0;
+
+            if (matchesGetterFormat && noVoidReturnType && noParams) {
+                // Now verify that the body consists of:
+                // SLIST -> RETURN
+                // RCURLY
+                final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
+
+                if (slist != null && slist.getChildCount() == GETTER_BODY_SIZE) {
+                    final DetailAST expr = slist.getFirstChild();
+                    getterMethod = expr.getType() == TokenTypes.LITERAL_RETURN;
+                }
+            }
         }
-
-        // Check the name matches format of getX or isX. Technically I should
-        // check that the format isX is only used with a boolean type.
-        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-        final String name = type.getNextSibling().getText();
-
-        // Depends on JDK 1.4
-        if (!GETTER_PATTERN.matcher(name).matches()) {
-            return false;
-        }
-
-        // Check the return type is void
-        if (type.getChildCount(TokenTypes.LITERAL_VOID) > 0) {
-            return false;
-        }
-
-        // Check that is had only one parameter
-        final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-        if (params.getChildCount(TokenTypes.PARAMETER_DEF) > 0) {
-            return false;
-        }
-
-        // Now verify that the body consists of:
-        // SLIST -> RETURN
-        // RCURLY
-        final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
-        if (slist == null || slist.getChildCount() != GETTER_BODY_SIZE) {
-            return false;
-        }
-
-        final DetailAST expr = slist.getFirstChild();
-        return expr.getType() == TokenTypes.LITERAL_RETURN;
-
+        return getterMethod;
     }
 
     /**
