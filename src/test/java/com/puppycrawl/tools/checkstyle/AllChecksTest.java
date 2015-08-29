@@ -165,7 +165,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
      * @param array to check whether it is a subset.
      * @param arrayToCheckIn array to check in.
      */
-    private static boolean isSubset(int[] array, int[] arrayToCheckIn) {
+    private static boolean isSubset(int[] array, int... arrayToCheckIn) {
         Arrays.sort(arrayToCheckIn);
         for (final int element : array) {
             if (Arrays.binarySearch(arrayToCheckIn, element) < 0) {
