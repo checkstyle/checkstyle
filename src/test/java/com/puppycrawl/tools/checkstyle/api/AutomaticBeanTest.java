@@ -114,7 +114,7 @@ public class AutomaticBeanTest {
         }
 
         public void setExceptionalMethod(String value) {
-            throw new IllegalStateException(privateField);
+            throw new IllegalStateException(privateField + value);
         }
 
     }
