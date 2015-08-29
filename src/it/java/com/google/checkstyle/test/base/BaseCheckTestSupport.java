@@ -34,7 +34,7 @@ public abstract class BaseCheckTestSupport
     static class BriefLogger
         extends DefaultLogger
     {
-        public BriefLogger(OutputStream out) throws UnsupportedEncodingException
+        BriefLogger(OutputStream out) throws UnsupportedEncodingException
         {
             super(out, true);
         }
