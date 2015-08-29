@@ -204,18 +204,18 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
         // process each of the lines
         final ByteArrayInputStream bais =
             new ByteArrayInputStream(stream.toByteArray());
-        final LineNumberReader lnr =
-            new LineNumberReader(new InputStreamReader(bais, StandardCharsets.UTF_8));
+        try (final LineNumberReader lnr = new LineNumberReader(
+                new InputStreamReader(bais, StandardCharsets.UTF_8))) {
 
-        for (int i = 0; i < expected.length; i++) {
-            final String expectedResult = messageFileName + ":" + expected[i];
-            final String actual = lnr.readLine();
-            assertEquals("error message " + i, expectedResult, actual);
+            for (int i = 0; i < expected.length; i++) {
+                final String expectedResult = messageFileName + ":" + expected[i];
+                final String actual = lnr.readLine();
+                assertEquals("error message " + i, expectedResult, actual);
+            }
+
+            assertTrue("unexpected output: " + lnr.readLine(),
+                    expected.length >= errs);
         }
-
-        assertTrue("unexpected output: " + lnr.readLine(),
-                   expected.length >= errs);
-
         checker.destroy();
     }
 }
