@@ -431,7 +431,7 @@ public class WhitespaceAroundCheck extends Check {
      * @param parentType parent
      * @return true if current token in colon of case or default tokens
      */
-    private boolean isColonOfCaseOrDefault(int currentType, int parentType) {
+    private static boolean isColonOfCaseOrDefault(int currentType, int parentType) {
         return currentType == TokenTypes.COLON
                 && (parentType == TokenTypes.LITERAL_DEFAULT
                     || parentType == TokenTypes.LITERAL_CASE);
