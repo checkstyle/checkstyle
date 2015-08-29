@@ -100,17 +100,8 @@ public class NoWhitespaceBeforeCheck
         final String line = getLine(ast.getLineNo() - 1);
         final int before = ast.getColumnNo() - 1;
 
-        if (before < 0 || Character.isWhitespace(line.charAt(before))) {
-
-            // empty FOR initializer?
-            if (ast.getType() == TokenTypes.SEMI) {
-                final DetailAST sibling = ast.getPreviousSibling();
-                if (sibling != null
-                        && sibling.getType() == TokenTypes.FOR_INIT
-                        && sibling.getChildCount() == 0) {
-                    return;
-                }
-            }
+        if ((before < 0 || Character.isWhitespace(line.charAt(before)))
+                && !isInEmptyForInitializer(ast)) {
 
             boolean flag = !allowLineBreaks;
             // verify all characters before '.' are whitespace
@@ -123,6 +114,24 @@ public class NoWhitespaceBeforeCheck
                 log(ast.getLineNo(), before, MSG_KEY, ast.getText());
             }
         }
+    }
+
+    /**
+     * Checks that semicolon is in empty for initializer.
+     * @param semicolonAst DetailAST of semicolon.
+     * @return true if semicolon is in empty for initializer.
+     */
+    private boolean isInEmptyForInitializer(DetailAST semicolonAst) {
+        boolean result = false;
+        if (semicolonAst.getType() == TokenTypes.SEMI) {
+            final DetailAST sibling = semicolonAst.getPreviousSibling();
+            if (sibling != null
+                    && sibling.getType() == TokenTypes.FOR_INIT
+                    && sibling.getChildCount() == 0) {
+                result = true;
+            }
+        }
+        return result;
     }
 
     /**
