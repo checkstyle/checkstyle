@@ -31,7 +31,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
@@ -131,7 +131,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
         Object uniqueProperties = constructor.newInstance();
         Method method = uniqueProperties.getClass().getDeclaredMethod("put", Object.class, Object.class);
         Object result = method.invoke(uniqueProperties, 1, "value");
-        Map<Object, Object> table = new Hashtable<>();
+        Map<Object, Object> table = new HashMap<>();
         Object expected = table.put(1, "value");
         assertEquals(expected, result);
         Object result2 = method.invoke(uniqueProperties, 1, "value");
