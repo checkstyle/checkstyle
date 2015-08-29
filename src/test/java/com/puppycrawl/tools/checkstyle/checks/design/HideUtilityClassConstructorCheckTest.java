@@ -70,7 +70,7 @@ public class HideUtilityClassConstructorCheckTest
         verify(checkConfig, getPath("design" + File.separator + "UtilityClassConstructorPrivate.java"), expected);
     }
 
-    /** Nonstatic methods - always OK */
+    /** Non-static methods - always OK */
     @Test
     public void testNonUtilClass() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -88,7 +88,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    public void testOnlyNonstaticFieldNonUtilClass() throws Exception {
+    public void testOnlyNonStaticFieldNonUtilClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;

@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  * Check has an option <b>ignorePrimitiveTypes</b> which allows ignoring lack of
  * final modifier at
  * <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
- *  primitive datatype</a> parameter. Default value <b>false</b>.
+ *  primitive data type</a> parameter. Default value <b>false</b>.
  * </p>
  * E.g.:
  * <p>
