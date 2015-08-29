@@ -86,4 +86,6 @@
     <!-- a lot of GUI elements is OK -->
     <suppress checks="ClassDataAbstractionCoupling" files="ParseTreeInfoPanel\.java"/>
 
+    <!-- Should be fixed after moving https://github.com/sevntu-checkstyle/sevntu.checkstyle/blob/master/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ReturnCountExtendedCheck.java into the main repo -->
+    <suppress checks="ReturnCount" files="(ClassResolver|ConfigurationLoader|IndentationCheckTest)\.java"/>
 </suppressions>
