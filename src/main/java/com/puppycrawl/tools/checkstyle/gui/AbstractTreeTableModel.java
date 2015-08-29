@@ -95,6 +95,10 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
      * is lazily created using the parameters passed into
      * the fire method.
      * @see EventListenerList
+     * @param source The Object responsible for generating the event.
+     * @param path An array of Object identifying the path to the parent of the modified items.
+     * @param childIndices An array of int that specifies the index values of the removed items.
+     * @param children An array of Object containing the inserted, removed, or changed objects.
      */
     protected void fireTreeNodesChanged(Object source, Object[] path,
             int[] childIndices,
@@ -122,6 +126,10 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
      * is lazily created using the parameters passed into
      * the fire method.
      * @see EventListenerList
+     * @param source The Object responsible for generating the event.
+     * @param path An array of Object identifying the path to the parent of the modified items.
+     * @param childIndices An array of int that specifies the index values of the removed items.
+     * @param children An array of Object containing the inserted, removed, or changed objects.
      */
     protected void fireTreeNodesInserted(Object source, Object[] path,
             int[] childIndices,
@@ -149,6 +157,10 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
      * is lazily created using the parameters passed into
      * the fire method.
      * @see EventListenerList
+     * @param source The Object responsible for generating the event.
+     * @param path An array of Object identifying the path to the parent of the modified items.
+     * @param childIndices An array of int that specifies the index values of the removed items.
+     * @param children An array of Object containing the inserted, removed, or changed objects.
      */
     protected void fireTreeNodesRemoved(Object source, Object[] path,
             int[] childIndices,
@@ -176,6 +188,10 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
      * is lazily created using the parameters passed into
      * the fire method.
      * @see EventListenerList
+     * @param source The Object responsible for generating the event.
+     * @param path An array of Object identifying the path to the parent of the modified items.
+     * @param childIndices An array of int that specifies the index values of the removed items.
+     * @param children An array of Object containing the inserted, removed, or changed objects.
      */
     void fireTreeStructureChanged(Object source, Object[] path,
             int[] childIndices,
