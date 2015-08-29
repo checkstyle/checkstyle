@@ -76,7 +76,6 @@ public class AllChecksTest extends BaseCheckTestSupport {
     @Test
     public void testDefaultTokensAreSubsetOfAcceptableTokens() throws Exception {
         Set<Class<?>> checkstyleChecks = getCheckstyleChecks();
-        Set<Class<?>> checksWithIncorrectTokenSets = new HashSet<>();
 
         for (Class<?> check : checkstyleChecks) {
             if (Check.class.isAssignableFrom(check)) {
@@ -96,7 +95,6 @@ public class AllChecksTest extends BaseCheckTestSupport {
     @Test
     public void testRequiredTokensAreSubsetOfAcceptableTokens() throws Exception {
         Set<Class<?>> checkstyleChecks = getCheckstyleChecks();
-        Set<Class<?>> checksWithIncorrectTokenSets = new HashSet<>();
 
         for (Class<?> check : checkstyleChecks) {
             if (Check.class.isAssignableFrom(check)) {
@@ -116,7 +114,6 @@ public class AllChecksTest extends BaseCheckTestSupport {
     @Test
     public void testRequiredTokensAreSubsetOfDefaultTokens() throws Exception {
         Set<Class<?>> checkstyleChecks = getCheckstyleChecks();
-        Set<Class<?>> checksWithIncorrectTokenSets = new HashSet<>();
 
         for (Class<?> check : checkstyleChecks) {
             if (Check.class.isAssignableFrom(check)) {
