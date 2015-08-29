@@ -467,7 +467,18 @@ public class CustomImportOrderCheck extends Check {
             final String importGroup = importObject.getImportGroup();
             final String fullImportIdent = importObject.getImportFullPath();
 
-            if (!importGroup.equals(currentGroup)) {
+            if (importGroup.equals(currentGroup)) {
+                if (sortImportsInGroupAlphabetically
+                        && previousImportFromCurrentGroup != null
+                        && compareImports(fullImportIdent, previousImportFromCurrentGroup) < 0) {
+                    log(importObject.getLineNumber(), MSG_LEX,
+                            fullImportIdent, previousImportFromCurrentGroup);
+                }
+                else {
+                    previousImportFromCurrentGroup = fullImportIdent;
+                }
+            }
+            else {
                 //not the last group, last one is always NON_GROUP
                 if (customImportOrderRules.size() > currentGroupNumber + 1) {
                     final String nextGroup = getNextImportGroup(currentGroupNumber + 1);
@@ -488,17 +499,6 @@ public class CustomImportOrderCheck extends Check {
                 else {
                     logWrongImportGroupOrder(importObject.getLineNumber(),
                             importGroup, currentGroup, fullImportIdent);
-                }
-            }
-            else {
-                if (sortImportsInGroupAlphabetically
-                    && previousImportFromCurrentGroup != null
-                    && compareImports(fullImportIdent, previousImportFromCurrentGroup) < 0) {
-                    log(importObject.getLineNumber(), MSG_LEX,
-                            fullImportIdent, previousImportFromCurrentGroup);
-                }
-                else {
-                    previousImportFromCurrentGroup = fullImportIdent;
                 }
             }
         }
