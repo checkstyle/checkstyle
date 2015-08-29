@@ -63,9 +63,14 @@ public class JTreeTable extends JTable {
     private static final long serialVersionUID = -8493693409423365387L;
     /** A subclass of JTree. */
     private final TreeTableCellRenderer tree;
+    /** JTextArea editor. */
     private JTextArea editor;
+    /** Line position map. */
     private List<Integer> linePositionMap;
 
+    /**
+     * @param treeTableModel Tree table model
+     */
     public JTreeTable(TreeTableModel treeTableModel) {
 
         // Create the tree. It will be used as a renderer and editor.
@@ -174,10 +179,18 @@ public class JTreeTable extends JTable {
         return tree;
     }
 
-    public void setEditor(JTextArea mJTextArea) {
-        editor = mJTextArea;
+    /**
+     * Sets text area editor.
+     * @param textArea JTextArea component.
+     */
+    public void setEditor(JTextArea textArea) {
+        editor = textArea;
     }
 
+    /**
+     * Sets line position map.
+     * @param linePositionMap Line position map.
+     */
     public void setLinePositionMap(List<Integer> linePositionMap) {
         this.linePositionMap = ImmutableList.copyOf(linePositionMap);
     }
@@ -194,7 +207,10 @@ public class JTreeTable extends JTable {
         /** Last table/tree row asked to renderer. */
         private int visibleRow;
 
-        /** Creates a new instance */
+        /**
+         * Creates a new instance.
+         * @param model Tree model.
+         */
         TreeTableCellRenderer(TreeModel model) {
             super(model);
         }
