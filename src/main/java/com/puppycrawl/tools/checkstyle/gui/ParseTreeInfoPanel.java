@@ -59,12 +59,18 @@ public class ParseTreeInfoPanel extends JPanel {
     /** For Serialisation that will never happen. */
     private static final long serialVersionUID = -4243405131202059043L;
 
+    /** Parse tree model. */
     private final transient ParseTreeModel parseTreeModel;
+    /** JTextArea component. */
     private final JTextArea textArea;
+    /** Last directory. */
     private File lastDirectory;
+    /** Current file. */
     private File currentFile;
+    /** Reload action. */
     private final ReloadAction reloadAction;
-    private final List<Integer>   linesToPosition  = new ArrayList<>();
+    /** Lines to position map. */
+    private final List<Integer> linesToPosition = new ArrayList<>();
 
     /**
      * Create a new ParseTreeInfoPanel instance.
@@ -106,6 +112,10 @@ public class ParseTreeInfoPanel extends JPanel {
 
     }
 
+    /**
+     * Opens the input parse tree ast.
+     * @param parseTree DetailAST tree.
+     */
     public void openAst(DetailAST parseTree) {
         parseTreeModel.setParseTree(parseTree);
         reloadAction.setEnabled(true);
@@ -125,6 +135,11 @@ public class ParseTreeInfoPanel extends JPanel {
         textArea.moveCaretPosition(0);
     }
 
+    /**
+     * Opens file and loads it into text area.
+     * @param file File to open.
+     * @param parent Component for displaying errors if file can't be open.
+     */
     public void openFile(File file, final Component parent) {
         if (file != null) {
             try {
@@ -189,15 +204,25 @@ public class ParseTreeInfoPanel extends JPanel {
         return System.getProperty("file.encoding", "UTF-8");
     }
 
+    /**
+     * Opens dialog with error.
+     * @param parent Component for displaying errors.
+     * @param msg Error message to display.
+     */
     private static void showErrorDialog(final Component parent, final String msg) {
         final Runnable showError = new FrameShower(parent, msg);
         SwingUtilities.invokeLater(showError);
     }
 
+    /**
+     * Adds a new value into lines to position map.
+     * @param value Value to be added into position map.
+     */
     private void addLineToPosition(int value) {
         linesToPosition.add(value);
     }
 
+    /** Clears lines to position map. */
     private void clearLinesToPosition() {
         linesToPosition.clear();
     }
@@ -217,7 +242,8 @@ public class ParseTreeInfoPanel extends JPanel {
         private final String msg;
 
         /**
-         * Contstructor
+         * @param parent Frame's component.
+         * @param msg Message to show.
          */
         FrameShower(Component parent, final String msg) {
             this.parent = parent;
@@ -254,6 +280,7 @@ public class ParseTreeInfoPanel extends JPanel {
          */
         private static final long serialVersionUID = -1926935338069418119L;
 
+        /** Defalut constructor to setup current action. */
         FileSelectionAction() {
             super("Select Java File");
             putValue(Action.MNEMONIC_KEY, KeyEvent.VK_S);
@@ -279,6 +306,7 @@ public class ParseTreeInfoPanel extends JPanel {
          */
         private static final long serialVersionUID = -1021880396046355863L;
 
+        /** Defalut constructor to setup current action. */
         ReloadAction() {
             super("Reload Java File");
             putValue(Action.MNEMONIC_KEY, KeyEvent.VK_R);
@@ -293,8 +321,12 @@ public class ParseTreeInfoPanel extends JPanel {
     }
 
     private class FileDropListener implements FileDrop.Listener {
+        /** Scroll pane. */
         private final JScrollPane scrollPane;
 
+        /**
+         * @param scrollPane Scroll pane.
+         */
         FileDropListener(JScrollPane scrollPane) {
             this.scrollPane = scrollPane;
         }
