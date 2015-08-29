@@ -481,7 +481,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             return;
         }
 
-        Iterator<JavadocTag> it = tags.iterator();
+        final Iterator<JavadocTag> it = tags.iterator();
         if (ast.getType() != TokenTypes.ANNOTATION_FIELD_DEF) {
             // Check for inheritDoc
             boolean hasInheritDocTag = false;
@@ -497,9 +497,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         }
 
         // Dump out all unused tags
-        it = tags.iterator();
-        while (it.hasNext()) {
-            final JavadocTag jt = it.next();
+        final Iterator<JavadocTag> unusedTagIt = tags.iterator();
+        while (unusedTagIt.hasNext()) {
+            final JavadocTag jt = unusedTagIt.next();
             if (!jt.isSeeOrInheritDocTag()) {
                 log(jt.getLineNo(), MSG_UNUSED_TAG_GENERAL);
             }
@@ -921,7 +921,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         ExceptionInfo foundException = null;
 
         // First look for matches on the exception name
-        ListIterator<ExceptionInfo> throwIt = throwsList.listIterator();
+        final ListIterator<ExceptionInfo> throwIt = throwsList.listIterator();
         while (!found && throwIt.hasNext()) {
             final ExceptionInfo ei = throwIt.next();
 
@@ -933,9 +933,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         }
 
         // Now match on the exception type
-        throwIt = throwsList.listIterator();
-        while (!found && throwIt.hasNext()) {
-            final ExceptionInfo ei = throwIt.next();
+        final ListIterator<ExceptionInfo> exceptionInfoIt = throwsList.listIterator();
+        while (!found && exceptionInfoIt.hasNext()) {
+            final ExceptionInfo ei = exceptionInfoIt.next();
 
             if (documentedCI.getClazz() == ei.getClazz()) {
                 found = true;
