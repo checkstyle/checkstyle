@@ -235,13 +235,13 @@ public final class ParameterAssignmentCheck extends Check {
         DetailAST parameterDefAST =
             ast.findFirstToken(TokenTypes.PARAMETER_DEF);
 
-        for (; parameterDefAST != null;
-             parameterDefAST = parameterDefAST.getNextSibling()) {
+        while (parameterDefAST != null) {
             if (parameterDefAST.getType() == TokenTypes.PARAMETER_DEF) {
                 final DetailAST param =
                     parameterDefAST.findFirstToken(TokenTypes.IDENT);
                 parameterNames.add(param.getText());
             }
+            parameterDefAST = parameterDefAST.getNextSibling();
         }
     }
 }
