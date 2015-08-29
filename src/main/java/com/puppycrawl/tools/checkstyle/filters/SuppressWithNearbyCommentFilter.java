@@ -194,28 +194,38 @@ public class SuppressWithNearbyCommentFilter
 
     @Override
     public boolean accept(AuditEvent event) {
-        if (event.getLocalizedMessage() == null) {
-            // A special event
-            return true;
-        }
+        boolean accepted = true;
 
-        // Lazy update. If the first event for the current file, update file
-        // contents and tag suppressions
-        final FileContents currentContents = FileContentsHolder.getContents();
-        if (currentContents == null) {
-            // we have no contents, so we can not filter.
-            return true;
-        }
-        if (getFileContents() != currentContents) {
-            setFileContents(currentContents);
-            tagSuppressions();
-        }
-        for (final Tag tag : tags) {
-            if (tag.isMatch(event)) {
-                return false;
+        if (event.getLocalizedMessage() != null) {
+            // Lazy update. If the first event for the current file, update file
+            // contents and tag suppressions
+            final FileContents currentContents = FileContentsHolder.getContents();
+
+            if (currentContents != null) {
+                if (getFileContents() != currentContents) {
+                    setFileContents(currentContents);
+                    tagSuppressions();
+                }
+                if (matchTag(event)) {
+                    accepted = false;
+                }
             }
         }
-        return true;
+        return accepted;
+    }
+
+    /**
+     * Whether current event matches any tag from {@link #tags}.
+     * @param event AuditEvent to test match on {@link #tags}.
+     * @return true if event matches any tag from {@link #tags}, false otherwise.
+     */
+    private boolean matchTag(AuditEvent event) {
+        for (final Tag tag : tags) {
+            if (tag.isMatch(event)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -397,23 +407,20 @@ public class SuppressWithNearbyCommentFilter
          */
         public boolean isMatch(AuditEvent event) {
             final int line = event.getLine();
-            if (line < firstLine) {
-                return false;
+            boolean match = false;
+
+            if (line >= firstLine && line <= lastLine) {
+                final Matcher tagMatcher = tagCheckRegexp.matcher(event.getSourceName());
+
+                if (tagMatcher.find()) {
+                    match = true;
+                }
+                else if (tagMessageRegexp != null) {
+                    final Matcher messageMatcher = tagMessageRegexp.matcher(event.getMessage());
+                    match = messageMatcher.find();
+                }
             }
-            if (line > lastLine) {
-                return false;
-            }
-            final Matcher tagMatcher =
-                tagCheckRegexp.matcher(event.getSourceName());
-            if (tagMatcher.find()) {
-                return true;
-            }
-            if (tagMessageRegexp != null) {
-                final Matcher messageMatcher =
-                    tagMessageRegexp.matcher(event.getMessage());
-                return messageMatcher.find();
-            }
-            return false;
+            return match;
         }
 
         /**
