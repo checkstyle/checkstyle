@@ -334,6 +334,8 @@
             DetailsAST, CheckstyleException, UnsupportedEncodingException, BuildException, ConversionException, FileNotFoundException, TestException"/>
     </module>
 
+    <module name="ReturnCount"/>
+
 <!--
     <module name="ClassFanOutComplexity"/>
     <module name="FinalParameters"/>
@@ -345,7 +347,6 @@
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="PackageDeclaration"/>
     <module name="RequireThis"/>
-    <module name="ReturnCount"/>
     <module name="SingleLineJavadoc"/>
     <module name="SummaryJavadoc"/>
     <module name="VariableDeclarationUsageDistance"/>
