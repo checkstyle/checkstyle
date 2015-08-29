@@ -720,8 +720,7 @@ public class VisibilityModifierCheck
                 currentNode = currentNode.getParent();
             }
         }
-        currentNode = toVisitAst;
-        return currentNode;
+        return toVisitAst;
     }
 
     /**

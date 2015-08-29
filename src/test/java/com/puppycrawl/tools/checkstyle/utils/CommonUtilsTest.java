@@ -77,13 +77,13 @@ public class CommonUtilsTest {
     @Test
     public void testFileExtensions() {
         final String[] fileExtensions = {"java"};
-        File file = new File("file.pdf");
-        assertFalse(CommonUtils.matchesFileExtension(file, fileExtensions));
-        assertTrue(CommonUtils.matchesFileExtension(file, (String[]) null));
-        file = new File("file.java");
-        assertTrue(CommonUtils.matchesFileExtension(file, fileExtensions));
-        file = new File("file.");
-        assertTrue(CommonUtils.matchesFileExtension(file, ""));
+        File pdfFile = new File("file.pdf");
+        assertFalse(CommonUtils.matchesFileExtension(pdfFile, fileExtensions));
+        assertTrue(CommonUtils.matchesFileExtension(pdfFile, (String[]) null));
+        File javaFile = new File("file.java");
+        assertTrue(CommonUtils.matchesFileExtension(javaFile, fileExtensions));
+        File emptyExtensionFile = new File("file.");
+        assertTrue(CommonUtils.matchesFileExtension(emptyExtensionFile, ""));
     }
 
     @Test
