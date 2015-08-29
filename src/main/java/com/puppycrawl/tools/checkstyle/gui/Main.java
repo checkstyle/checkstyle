@@ -92,7 +92,7 @@ public final class Main {
         private final JFrame frame;
 
         /**
-         * Contstructor
+         * @param frame JFrame component.
          */
         FrameShower(JFrame frame) {
             this.frame = frame;
