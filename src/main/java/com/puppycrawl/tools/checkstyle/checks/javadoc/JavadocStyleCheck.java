@@ -70,7 +70,7 @@ public class JavadocStyleCheck
 
     /** HTML tags that are allowed in java docs.
      * From http://www.w3schools.com/tags/default.asp
-     * The froms and structure tags are not allowed
+     * The forms and structure tags are not allowed
      */
     private static final Set<String> ALLOWED_TAGS = ImmutableSortedSet.of(
             "a", "abbr", "acronym", "address", "area", "b", "bdo", "big",
@@ -183,7 +183,7 @@ public class JavadocStyleCheck
     }
 
     /**
-     * Performs the various checks agains the Javadoc comment.
+     * Performs the various checks against the Javadoc comment.
      *
      * @param ast the AST of the element being documented
      * @param comment the source lines that make up the Javadoc comment.

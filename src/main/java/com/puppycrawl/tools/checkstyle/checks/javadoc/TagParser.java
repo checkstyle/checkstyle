@@ -145,7 +145,7 @@ class TagParser {
         final int column = pos.getColumnNo() + 1;
         final String text = javadocText[pos.getLineNo()];
 
-        //Character.isJavidentifier... may not be a valid HTML
+        //Character.isJavaIdentifier... may not be a valid HTML
         //identifier but is valid for generics
         return column < text.length()
                 && (Character.isJavaIdentifierStart(text.charAt(column))
@@ -173,7 +173,7 @@ class TagParser {
         text = text.substring(column).trim();
         column = 0;
 
-        //Character.isJavidentifier... may not be a valid HTML
+        //Character.isJavaIdentifier... may not be a valid HTML
         //identifier but is valid for generics
         while (column < text.length()
             && (Character.isJavaIdentifierStart(text.charAt(column))
