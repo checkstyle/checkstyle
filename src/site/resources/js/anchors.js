@@ -1,7 +1,5 @@
 'use strict';
 
-window.addEventListener('load', main);
-
 function main() {
     var url = window.location.href;
     var anchors = document.getElementsByTagName('h2');
@@ -21,3 +19,5 @@ function main() {
     }
 
 }
+
+window.addEventListener('load', main);
