@@ -213,16 +213,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
                 && rcurly.getLineNo() != nextToken.getLineNo()) {
             violation = MSG_KEY_LINE_SAME;
         }
-        else if (bracePolicy == RightCurlyOption.ALONE
-                && !isAloneOnLine(details)
-                && !isEmptyBody(lcurly)) {
-            violation = MSG_KEY_LINE_ALONE;
-        }
-        else if (bracePolicy == RightCurlyOption.ALONE_OR_SINGLELINE
-                && !isAloneOnLine(details)
-                && !isSingleLineBlock(details)
-                && !isAnonInnerClassInit(lcurly)
-                && !isEmptyBody(lcurly)) {
+        else if (shouldBeAloneOnLine(details, bracePolicy)) {
             violation = MSG_KEY_LINE_ALONE;
         }
         else if (shouldStartLine) {
@@ -234,6 +225,25 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
             }
         }
         return violation;
+    }
+
+    /**
+     * Checks that a right curly should be alone on a line.
+     * @param details Details for validation
+     * @param bracePolicy option for placing the right curly brace
+     * @return true if a right curly should be alone on a line.
+     */
+    private static boolean shouldBeAloneOnLine(Details details, RightCurlyOption bracePolicy) {
+        final boolean alone = bracePolicy == RightCurlyOption.ALONE
+                && !isAloneOnLine(details)
+                && !isEmptyBody(details.lcurly);
+        final boolean aloneOrSingleline = alone
+                || bracePolicy == RightCurlyOption.ALONE_OR_SINGLELINE
+                && !isAloneOnLine(details)
+                && !isSingleLineBlock(details)
+                && !isAnonInnerClassInit(details.lcurly)
+                && !isEmptyBody(details.lcurly);
+        return aloneOrSingleline;
     }
 
     /**
