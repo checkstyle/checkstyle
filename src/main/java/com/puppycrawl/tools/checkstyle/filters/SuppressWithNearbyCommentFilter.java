@@ -206,7 +206,7 @@ public class SuppressWithNearbyCommentFilter
                     setFileContents(currentContents);
                     tagSuppressions();
                 }
-                if (matchTag(event)) {
+                if (matchesTag(event)) {
                     accepted = false;
                 }
             }
@@ -219,7 +219,7 @@ public class SuppressWithNearbyCommentFilter
      * @param event AuditEvent to test match on {@link #tags}.
      * @return true if event matches any tag from {@link #tags}, false otherwise.
      */
-    private boolean matchTag(AuditEvent event) {
+    private boolean matchesTag(AuditEvent event) {
         for (final Tag tag : tags) {
             if (tag.isMatch(event)) {
                 return true;
