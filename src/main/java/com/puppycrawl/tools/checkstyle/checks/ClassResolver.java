@@ -94,21 +94,21 @@ public class ClassResolver {
 
         // See if in the package
         if (pkg != null && !pkg.isEmpty()) {
-            clazz = resolveQualifiedName(pkg + PERIOD + name);
-            if (clazz != null) {
-                return clazz;
+            final Class<?> classFromQualifiedName = resolveQualifiedName(pkg + PERIOD + name);
+            if (classFromQualifiedName != null) {
+                return classFromQualifiedName;
             }
         }
 
         // see if inner class of this class
-        clazz = resolveInnerClass(name, currentClass);
-        if (clazz != null) {
-            return clazz;
+        final Class<?> innerClass = resolveInnerClass(name, currentClass);
+        if (innerClass != null) {
+            return innerClass;
         }
 
-        clazz = resolveByStarImports(name);
-        if (clazz != null) {
-            return clazz;
+        final Class<?> classFromStarImport = resolveByStarImports(name);
+        if (classFromStarImport != null) {
+            return classFromStarImport;
         }
 
         // Giving up, the type is unknown, so load the class to generate an

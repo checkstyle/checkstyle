@@ -158,13 +158,13 @@ public class ParenPadCheck extends AbstractParenPadCheck {
      * @param ast the token to check.
      */
     private void visitLiteralFor(DetailAST ast) {
-        DetailAST parenAst = ast.findFirstToken(TokenTypes.LPAREN);
-        if (!isPrecedingEmptyForInit(parenAst)) {
-            processLeft(parenAst);
+        final DetailAST lparen = ast.findFirstToken(TokenTypes.LPAREN);
+        if (!isPrecedingEmptyForInit(lparen)) {
+            processLeft(lparen);
         }
-        parenAst = ast.findFirstToken(TokenTypes.RPAREN);
-        if (!isFollowsEmptyForIterator(parenAst)) {
-            processRight(parenAst);
+        final DetailAST rparen = ast.findFirstToken(TokenTypes.RPAREN);
+        if (!isFollowsEmptyForIterator(rparen)) {
+            processRight(rparen);
         }
     }
 

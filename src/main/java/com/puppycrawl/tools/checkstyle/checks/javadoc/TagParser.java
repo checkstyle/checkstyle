@@ -171,17 +171,17 @@ class TagParser {
         }
 
         text = text.substring(column).trim();
-        column = 0;
+        int position = 0;
 
         //Character.isJavidentifier... may not be a valid HTML
         //identifier but is valid for generics
-        while (column < text.length()
-            && (Character.isJavaIdentifierStart(text.charAt(column))
-                || Character.isJavaIdentifierPart(text.charAt(column)))) {
-            column++;
+        while (position < text.length()
+            && (Character.isJavaIdentifierStart(text.charAt(position))
+                || Character.isJavaIdentifierPart(text.charAt(position)))) {
+            position++;
         }
 
-        return text.substring(0, column);
+        return text.substring(0, position);
     }
 
     /**
