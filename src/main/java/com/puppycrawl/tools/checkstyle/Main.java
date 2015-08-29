@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  **/
 public final class Main {
-    /** Exit code returned when excecution finishes with {@link CheckstyleException}*/
+    /** Exit code returned when execution finishes with {@link CheckstyleException}*/
     private static final int EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE = -2;
 
     /** Name for the option 'v'. */

@@ -39,7 +39,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testFianlClass() throws Exception {
+    public void testFinalClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalClassCheck.class);
         final String[] expected = {
