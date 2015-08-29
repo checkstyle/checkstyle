@@ -275,22 +275,27 @@ public class EmptyLineSeparatorCheck extends Check {
      * @param nextToken next Token
      */
     private void processVariableDef(DetailAST ast, DetailAST nextToken) {
-        if (isTypeField(ast) && !hasEmptyLineAfter(ast)) {
-            if (allowNoEmptyLineBetweenFields
-                && nextToken.getType() != TokenTypes.VARIABLE_DEF
-                && nextToken.getType() != TokenTypes.RCURLY) {
-                log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
-                     nextToken.getText());
-            }
-            else if (!allowNoEmptyLineBetweenFields
-                     && nextToken.getType() != TokenTypes.RCURLY) {
-                log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
-                     nextToken.getText());
-            }
+        if (isTypeField(ast) && !hasEmptyLineAfter(ast)
+                && isViolatingEmptyLineBetweenFieldsPolicy(nextToken)) {
+            log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
+                    nextToken.getText());
         }
         if (isTypeField(ast) && hasNotAllowedTwoEmptyLinesBefore(ast)) {
             log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
         }
+    }
+
+    /**
+     * Checks whether token placement violates policy of empty line between fields.
+     * @param detailAST token to be analyzed
+     * @return true if policy is violated and warning should be raised; false otherwise
+     */
+    private boolean isViolatingEmptyLineBetweenFieldsPolicy(DetailAST detailAST) {
+        return allowNoEmptyLineBetweenFields
+                    && detailAST.getType() != TokenTypes.VARIABLE_DEF
+                    && detailAST.getType() != TokenTypes.RCURLY
+                || !allowNoEmptyLineBetweenFields
+                    && detailAST.getType() != TokenTypes.RCURLY;
     }
 
     /**
