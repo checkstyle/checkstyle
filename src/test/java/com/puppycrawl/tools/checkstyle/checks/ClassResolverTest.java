@@ -59,14 +59,14 @@ public class ClassResolverTest {
         }
 
         imps.add("java.text.ChoiceFormat");
-        cr = new ClassResolver(Thread.currentThread().getContextClassLoader(), null, imps);
-        cr.resolve("ChoiceFormat", "");
+        ClassResolver newClassResolver = new ClassResolver(Thread.currentThread().getContextClassLoader(), null, imps);
+        newClassResolver.resolve("ChoiceFormat", "");
 
-        cr = new ClassResolver(Thread.currentThread().getContextClassLoader(),
-                               "java.util", imps);
-        cr.resolve("List", "");
+        ClassResolver javaUtilClassResolver = new ClassResolver(
+                Thread.currentThread().getContextClassLoader(), "java.util", imps);
+        javaUtilClassResolver.resolve("List", "");
         try {
-            cr.resolve("two.nil.england", "");
+            javaUtilClassResolver.resolve("two.nil.england", "");
             fail();
         }
         catch (ClassNotFoundException e) {

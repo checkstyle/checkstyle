@@ -385,8 +385,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
                 currentNode = currentNode.getParent();
             }
         }
-        currentNode = toVisitAst;
-        return currentNode;
+        return toVisitAst;
     }
 
     /**
