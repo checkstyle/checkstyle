@@ -76,10 +76,12 @@ import javax.swing.border.Border;
  */
 class FileDrop {
 
-    /* Default border color */
+    /** Default border color. */
     private static final Color DEFAULT_BORDER_COLOR = new Color(0.0f, 0.0f, 1.0f, 0.25f);
 
+    /** Component border. */
     private Border normalBorder;
+    /** Drop listener. */
     private final DropTargetListener dropListener;
 
     /**
@@ -90,12 +92,10 @@ class FileDrop {
      *
      * @param component Component on which files will be dropped.
      * @param listener Listens for <tt>filesDropped</tt>.
-     * @since 1.0
+     * @throws TooManyListenersException When more than one listener registered
+     *     on the particular event.
      */
-    FileDrop(
-            final Component component,
-            final Listener listener)
-            throws TooManyListenersException {
+    FileDrop(final Component component, final Listener listener) throws TooManyListenersException {
         this(component,
              BorderFactory.createMatteBorder(2, 2, 2, 2, DEFAULT_BORDER_COLOR),
              true,
@@ -113,7 +113,8 @@ class FileDrop {
      * @param dragBorder Border to use on <tt>JComponent</tt> when dragging occurs.
      * @param recursive Recursively set children as drop targets.
      * @param listener Listens for <tt>filesDropped</tt>.
-     * @since 1.0
+     * @throws TooManyListenersException When more than one listener registered
+     *     on the particular event.
      */
     private FileDrop(
             final Component component,
@@ -125,6 +126,13 @@ class FileDrop {
         makeDropTarget(component, recursive);
     }
 
+    /**
+     * Makes drop to the specified component.
+     * @param component Target component to drop to.
+     * @param recursive Whether to recursively find the specified component.
+     * @throws TooManyListenersException When more than one listener registered
+     *     on the particular event.
+     */
     private void makeDropTarget(final Component component, boolean recursive)
             throws TooManyListenersException {
         // Make drop target
@@ -161,7 +169,7 @@ class FileDrop {
 
     /**
      * Determine if the dragged data is a file list.
-     *
+     * @param evt Drop target drap event.
      * @return True if the drag was ok
      */
     private static boolean isDragOk(final DropTargetDragEvent evt) {
@@ -241,10 +249,18 @@ class FileDrop {
     }
 
     private class FileDropTargetListener extends DropTargetAdapter {
+        /** Target component to drop to. */
         private final Component component;
+        /** Border component. */
         private final Border dragBorder;
+        /** Drop listener. */
         private final Listener listener;
 
+        /**
+         * @param component Target component for dropping.
+         * @param dragBorder Border component.
+         * @param listener Drop listener.
+         */
         FileDropTargetListener(Component component, Border dragBorder, Listener listener) {
             this.component = component;
             this.dragBorder = dragBorder;
