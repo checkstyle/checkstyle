@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.Collections;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
@@ -519,7 +520,7 @@ public class EqualsAvoidNullCheck extends Check {
          * @return children of this frame.
          */
         public Set<FieldFrame> getChildren() {
-            return children;
+            return Collections.unmodifiableSet(children);
         }
 
         /**
@@ -581,7 +582,7 @@ public class EqualsAvoidNullCheck extends Check {
          * @return method calls of this frame.
          */
         public Set<DetailAST> getMethodCalls() {
-            return methodCalls;
+            return Collections.unmodifiableSet(methodCalls);
         }
 
         /**
