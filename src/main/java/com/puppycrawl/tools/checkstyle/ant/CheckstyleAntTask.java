@@ -311,9 +311,9 @@ public class CheckstyleAntTask extends Task {
      */
     private void processFiles(Checker checker, final SeverityLevelCounter warningCounter,
             final String checkstyleVersion) {
-        long startTime = System.currentTimeMillis();
+        final long startTime = System.currentTimeMillis();
         final List<File> files = scanFileSets();
-        long endTime = System.currentTimeMillis();
+        final long endTime = System.currentTimeMillis();
         log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
             Project.MSG_VERBOSE);
 
@@ -321,10 +321,10 @@ public class CheckstyleAntTask extends Task {
                 + " files", Project.MSG_INFO);
         log("Using configuration " + configLocation, Project.MSG_VERBOSE);
 
-        startTime = System.currentTimeMillis();
+        final long processingStartTime = System.currentTimeMillis();
         final int numErrs = checker.process(files);
-        endTime = System.currentTimeMillis();
-        log("To process the files took " + (endTime - startTime) + TIME_SUFFIX,
+        final long processingEndTime = System.currentTimeMillis();
+        log("To process the files took " + (processingEndTime - processingStartTime) + TIME_SUFFIX,
             Project.MSG_VERBOSE);
         final int numWarnings = warningCounter.getCount();
         final boolean ok = numErrs <= maxErrors
