@@ -49,14 +49,12 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         if (getParent() instanceof MethodCallHandler) {
             final MethodCallHandler container =
                     (MethodCallHandler) getParent();
-            if (areOnSameLine(container.getMainAst(), getMainAst())) {
+            if (areOnSameLine(container.getMainAst(), getMainAst())
+                    || isChainedMethodCallWrapped()) {
                 indentLevel = container.getLevel();
             }
             // we should increase indentation only if this is the first
             // chained method call which was moved to the next line
-            else if (isChainedMethodCallWrapped()) {
-                indentLevel = container.getLevel();
-            }
             else {
                 indentLevel = new IndentLevel(container.getLevel(), getBasicOffset());
             }
