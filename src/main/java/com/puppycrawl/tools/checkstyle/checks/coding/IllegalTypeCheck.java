@@ -217,7 +217,6 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
     private boolean isVerifiable(DetailAST methodOrVariableDef) {
         boolean result = true;
         if (memberModifiers != null) {
-            result = false;
             final DetailAST modifiersAst = methodOrVariableDef
                     .findFirstToken(TokenTypes.MODIFIERS);
             result = isContainVerifiableType(modifiersAst);
