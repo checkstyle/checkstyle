@@ -272,7 +272,13 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         ArrayList<String> lines = new ArrayList<>();
         lines.add(" classD a {} ");
 
-        treeWalker.processFiltered(file, lines);
+        try {
+            treeWalker.processFiltered(file, lines);
+        }
+        catch (CheckstyleException exception) {
+            assertTrue(exception.getMessage().contains(
+                    "occurred during the analysis of file"));
+        }
     }
 
     @Test
@@ -288,7 +294,13 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         ArrayList<String> lines = new ArrayList<>();
         lines.add(" class a%$# {} ");
 
-        treeWalker.processFiltered(file, lines);
+        try {
+            treeWalker.processFiltered(file, lines);
+        }
+        catch (CheckstyleException exception) {
+            assertTrue(exception.getMessage().contains(
+                    "TokenStreamRecognitionException occurred during the analysis of file"));
+        }
     }
 
     @Test

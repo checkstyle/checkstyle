@@ -50,8 +50,10 @@ public abstract class AbstractFileSetCheck
      * Called to process a file that matches the specified file extensions.
      * @param file the file to be processed
      * @param lines an immutable list of the contents of the file.
+     * @throws CheckstyleException if error condition within Checkstyle occurs.
      */
-    protected abstract void processFiltered(File file, List<String> lines);
+    protected abstract void processFiltered(File file, List<String> lines)
+            throws CheckstyleException;
 
     @Override
     public void init() {
@@ -69,8 +71,8 @@ public abstract class AbstractFileSetCheck
     }
 
     @Override
-    public final SortedSet<LocalizedMessage> process(File file,
-                                                   List<String> lines) {
+    public final SortedSet<LocalizedMessage> process(File file, List<String> lines)
+            throws CheckstyleException {
         messageCollector.reset();
         // Process only what interested in
         if (CommonUtils.matchesFileExtension(file, fileExtensions)) {

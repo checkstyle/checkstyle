@@ -237,9 +237,10 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
      * the destroy method to close and remove the listeners.
      * @param files the list of files to be audited.
      * @return the total number of errors found
+     * @throws CheckstyleException if error condition within Checkstyle occurs
      * @see #destroy()
      */
-    public int process(List<File> files) {
+    public int process(List<File> files) throws CheckstyleException {
         // Prepare to start
         fireAuditStarted();
         for (final FileSetCheck fsc : fileSetChecks) {
