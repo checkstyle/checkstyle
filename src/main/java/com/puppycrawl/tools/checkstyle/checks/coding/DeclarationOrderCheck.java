@@ -53,7 +53,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * <ul>
  * <li>ignoreModifiers</li>
  * <li>ignoreConstructors</li>
- * <li>ignoreMethods</li>
  * </ul>
  *
  * <p>
@@ -113,12 +112,6 @@ public class DeclarationOrderCheck extends Check {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_METHOD = "declaration.order.method";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
     public static final String MSG_STATIC = "declaration.order.static";
 
     /**
@@ -153,8 +146,6 @@ public class DeclarationOrderCheck extends Check {
 
     /** If true, ignores the check to constructors. */
     private boolean ignoreConstructors;
-    /** If true, ignore the check to methods. */
-    private boolean ignoreMethods;
     /** If true, ignore the check to modifiers (fields, ...). */
     private boolean ignoreModifiers;
 
@@ -193,7 +184,9 @@ public class DeclarationOrderCheck extends Check {
                 break;
             case TokenTypes.METHOD_DEF:
                 if (parentType == TokenTypes.OBJBLOCK) {
-                    processMethod(ast);
+                    final ScopeState state = scopeStates.peek();
+                    // nothing can be bigger than method's state
+                    state.currentScopeState = STATE_METHOD_DEF;
                 }
                 break;
             case TokenTypes.MODIFIERS:
@@ -221,23 +214,6 @@ public class DeclarationOrderCheck extends Check {
         }
         else {
             state.currentScopeState = STATE_CTOR_DEF;
-        }
-    }
-
-    /**
-     * Process Method Token
-     * @param ast method token AST
-     */
-    private void processMethod(DetailAST ast) {
-
-        final ScopeState state = scopeStates.peek();
-        if (state.currentScopeState > STATE_METHOD_DEF) {
-            if (!ignoreMethods) {
-                log(ast, MSG_METHOD);
-            }
-        }
-        else {
-            state.currentScopeState = STATE_METHOD_DEF;
         }
     }
 
@@ -293,14 +269,6 @@ public class DeclarationOrderCheck extends Check {
      */
     public void setIgnoreConstructors(boolean ignoreConstructors) {
         this.ignoreConstructors = ignoreConstructors;
-    }
-
-    /**
-     * Sets whether to ignore methods.
-     * @param ignoreMethods whether to ignore methods.
-     */
-    public void setIgnoreMethods(boolean ignoreMethods) {
-        this.ignoreMethods = ignoreMethods;
     }
 
     /**

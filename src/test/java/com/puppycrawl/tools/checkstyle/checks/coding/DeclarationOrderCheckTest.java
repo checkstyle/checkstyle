@@ -73,7 +73,6 @@ public class DeclarationOrderCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(DeclarationOrderCheck.class);
         checkConfig.addAttribute("ignoreConstructors", "false");
-        checkConfig.addAttribute("ignoreMethods", "true");
         checkConfig.addAttribute("ignoreModifiers", "true");
 
         final String[] expected = {
@@ -93,7 +92,6 @@ public class DeclarationOrderCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(DeclarationOrderCheck.class);
         checkConfig.addAttribute("ignoreConstructors", "true");
-        checkConfig.addAttribute("ignoreMethods", "true");
         checkConfig.addAttribute("ignoreModifiers", "false");
 
         final String[] expected = {
