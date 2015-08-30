@@ -205,9 +205,7 @@ public class ClassResolver {
                 if (dot != -1) {
                     final String innerName =
                         name.substring(0, dot) + DOLLAR_SIGN + name.substring(dot + 1);
-                    if (isLoadable(innerName)) {
-                        classObj = safeLoad(innerName);
-                    }
+                    classObj = resolveQualifiedName(innerName);
                 }
             }
         }
