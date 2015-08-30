@@ -71,10 +71,10 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
                 createCheckConfig(ConstantNameCheck.class);
         final File file = temporaryFolder.newFile("file.pdf");
         final String content = "public class Main { public static final int k = 5 + 4; }";
-        final BufferedWriter writer = new BufferedWriter(
-                new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8));
-        writer.write(content);
-        writer.close();
+        try (final BufferedWriter writer = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))) {
+            writer.write(content);
+        }
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, file.getPath(), expected);
     }

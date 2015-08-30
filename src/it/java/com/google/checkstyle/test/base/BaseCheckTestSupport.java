@@ -128,23 +128,24 @@ public abstract class BaseCheckTestSupport
         // process each of the lines
         final ByteArrayInputStream localStream =
             new ByteArrayInputStream(stream.toByteArray());
-        final LineNumberReader lnr =
-            new LineNumberReader(new InputStreamReader(localStream, StandardCharsets.UTF_8));
+        try (final LineNumberReader lnr = new LineNumberReader(
+                new InputStreamReader(localStream, StandardCharsets.UTF_8))) {
 
-        for (int i = 0; i < aExpected.length; i++) {
-            final String expected = aMessageFileName + ":" + aExpected[i];
-            String actual = lnr.readLine();
-            assertEquals("error message " + i, expected, actual);
-            String parseInt = removeDeviceFromPathOnWindows(actual);
-            parseInt = parseInt.substring(parseInt.indexOf(':') + 1);
-            parseInt = parseInt.substring(0, parseInt.indexOf(':'));
-            int lineNumber = Integer.parseInt(parseInt);
-			Integer integer = Arrays.asList(aWarnsExpected).contains(lineNumber) ? lineNumber : 0;
-            assertEquals("error message " + i, (long) integer, lineNumber);
+            for (int i = 0; i < aExpected.length; i++) {
+                final String expected = aMessageFileName + ":" + aExpected[i];
+                String actual = lnr.readLine();
+                assertEquals("error message " + i, expected, actual);
+                String parseInt = removeDeviceFromPathOnWindows(actual);
+                parseInt = parseInt.substring(parseInt.indexOf(':') + 1);
+                parseInt = parseInt.substring(0, parseInt.indexOf(':'));
+                int lineNumber = Integer.parseInt(parseInt);
+                Integer integer = Arrays.asList(aWarnsExpected).contains(lineNumber) ? lineNumber : 0;
+                assertEquals("error message " + i, (long) integer, lineNumber);
+            }
+
+            assertEquals("unexpected output: " + lnr.readLine(),
+                    aExpected.length, errs);
         }
-
-        assertEquals("unexpected output: " + lnr.readLine(),
-                     aExpected.length, errs);
         aC.destroy();
     }
 
