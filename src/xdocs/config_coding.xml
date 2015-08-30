@@ -2083,12 +2083,6 @@ if (&quot;something&quot;.equals(x))
             <td><code>false</code></td>
           </tr>
           <tr>
-            <td>ignoreMethods</td>
-            <td>whether to ignore methods</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
             <td>ignoreModifiers</td>
             <td>whether to ignore modifiers</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
