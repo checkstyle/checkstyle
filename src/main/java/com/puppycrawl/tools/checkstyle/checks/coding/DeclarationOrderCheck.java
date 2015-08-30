@@ -177,6 +177,12 @@ public class DeclarationOrderCheck extends Check {
             case TokenTypes.OBJBLOCK:
                 scopeStates.push(new ScopeState());
                 break;
+            case TokenTypes.MODIFIERS:
+                if (parentType == TokenTypes.VARIABLE_DEF
+                    && ast.getParent().getParent().getType() == TokenTypes.OBJBLOCK) {
+                    processModifiers(ast);
+                }
+                break;
             case TokenTypes.CTOR_DEF:
                 if (parentType == TokenTypes.OBJBLOCK) {
                     processConstructor(ast);
@@ -187,12 +193,6 @@ public class DeclarationOrderCheck extends Check {
                     final ScopeState state = scopeStates.peek();
                     // nothing can be bigger than method's state
                     state.currentScopeState = STATE_METHOD_DEF;
-                }
-                break;
-            case TokenTypes.MODIFIERS:
-                if (parentType == TokenTypes.VARIABLE_DEF
-                        && ast.getParent().getParent().getType() == TokenTypes.OBJBLOCK) {
-                    processModifiers(ast);
                 }
                 break;
             default:
