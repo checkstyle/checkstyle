@@ -88,4 +88,21 @@
 
     <!-- Should be fixed after moving https://github.com/sevntu-checkstyle/sevntu.checkstyle/blob/master/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ReturnCountExtendedCheck.java into the main repo -->
     <suppress checks="ReturnCount" files="(ClassResolver|ConfigurationLoader|IndentationCheckTest)\.java"/>
+    
+    <!-- Just big SWITCHes. Cannot be splitted to several methods. Till https://github.com/checkstyle/checkstyle/issues/2029 -->
+    <suppress checks="CyclomaticComplexity" files="(AbstractDeclarationCollector|SuppressWarningsHolder|LeftCurlyCheck|FallThroughCheck|FinalLocalVariableCheck|ModifiedControlVariableCheck)\.java"/>
+    <suppress checks="CyclomaticComplexity" files="(ParameterAssignmentCheck|VariableDeclarationUsageDistanceCheck|BooleanExpressionComplexityCheck|NPathComplexityCheck|CheckUtils)\.java"/>
+
+    <!-- Suppressions from PMD configuration-->
+    <!-- validateCli is not reasonable to split as encapsulation of logic will be damaged -->
+    <suppress checks="CyclomaticComplexity" files="Main\.java"  lines="171"/>
+    <!-- JavadocMethodCheck, JavadocStyleCheck, JavadocUtils.getJavadocTags() - deprecated -->
+    <suppress checks="CyclomaticComplexity" files="JavadocMethodCheck\.java"/>
+    <suppress checks="CyclomaticComplexity" files="JavadocStyleCheck\.java"/>
+    <suppress checks="CyclomaticComplexity" files="CustomImportOrderCheck\.java"/>
+    
+    <!-- equals() - a lot of fields to check -->
+    <suppress checks="CyclomaticComplexity" files="LocalizedMessage\.java" lines="211"/>
+    <!-- SWITCH was transformed into IF-ELSE -->
+    <suppress checks="CyclomaticComplexity" files="ImportOrderCheck\.java" lines="332"/>
 </suppressions>
