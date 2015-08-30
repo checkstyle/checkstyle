@@ -266,7 +266,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
      * @param ast DetailAST node.
      * @return Column number if non-comment node exists, -1 otherwise.
      */
-    private int findColumnNo(DetailAST ast) {
+    private static int findColumnNo(DetailAST ast) {
         int resultNo = -1;
         DetailAST node = ast;
         while (node != null) {
@@ -288,7 +288,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
      * @param ast DetailAST node.
      * @return Line number if non-comment node exists, -1 otherwise.
      */
-    private int findLineNo(DetailAST ast) {
+    private static int findLineNo(DetailAST ast) {
         int resultNo = -1;
         DetailAST node = ast;
         while (node != null) {
