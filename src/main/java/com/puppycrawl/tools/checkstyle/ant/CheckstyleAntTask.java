@@ -326,14 +326,20 @@ public class CheckstyleAntTask extends Task {
                 + " files", Project.MSG_INFO);
         log("Using configuration " + configLocation, Project.MSG_VERBOSE);
 
-        final long processingStartTime = System.currentTimeMillis();
-        final int numErrs = checker.process(files);
-        final long processingEndTime = System.currentTimeMillis();
-        log("To process the files took " + (processingEndTime - processingStartTime) + TIME_SUFFIX,
-            Project.MSG_VERBOSE);
+        int numErrs = 0;
+
+        try {
+            final long processingStartTime = System.currentTimeMillis();
+            numErrs = checker.process(files);
+            final long processingEndTime = System.currentTimeMillis();
+            log("To process the files took " + (processingEndTime - processingStartTime)
+                + TIME_SUFFIX, Project.MSG_VERBOSE);
+        }
+        catch (CheckstyleException e) {
+            throw new BuildException("Unable to process files: " + files, e);
+        }
         final int numWarnings = warningCounter.getCount();
-        final boolean ok = numErrs <= maxErrors
-                && numWarnings <= maxWarnings;
+        final boolean ok = numErrs <= maxErrors && numWarnings <= maxWarnings;
 
         // Handle the return status
         if (!ok) {

@@ -51,7 +51,6 @@ import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
@@ -181,7 +180,7 @@ public final class TreeWalker
     }
 
     @Override
-    protected void processFiltered(File file, List<String> lines) {
+    protected void processFiltered(File file, List<String> lines) throws CheckstyleException {
         // check if already checked and passed the file
         final String fileName = file.getPath();
         final long timestamp = file.lastModified();
@@ -209,37 +208,16 @@ public final class TreeWalker
         catch (final TokenStreamRecognitionException tre) {
             final String exceptionMsg = String.format(msg, "TokenStreamRecognitionException",
                      fileName);
-            LOG.error(exceptionMsg);
-            final RecognitionException re = tre.recog;
-            final String message = re.getMessage();
-            getMessageCollector().add(createLocalizedMessage(message));
+            throw new CheckstyleException(exceptionMsg, tre);
         }
-        // RecognitionException and any other (need to check if needed)
-        catch (Throwable ex) {
+        catch (RecognitionException | TokenStreamException ex) {
             final String exceptionMsg = String.format(msg, ex.getClass().getSimpleName(), fileName);
-            LOG.error(exceptionMsg, ex);
-            getMessageCollector().add(createLocalizedMessage(ex.getMessage()));
+            throw new CheckstyleException(exceptionMsg, ex);
         }
 
         if (cache != null && getMessageCollector().size() == 0) {
             cache.put(fileName, timestamp);
         }
-    }
-
-    /**
-     * Creates {@link LocalizedMessage} object using default attributes.
-     * @param message
-     *        message that will be used for created object
-     * @return instance of created object
-     */
-    private LocalizedMessage createLocalizedMessage(String message) {
-        return new LocalizedMessage(
-                0,
-                Definitions.CHECKSTYLE_BUNDLE,
-                "general.exception",
-                new String[] {message },
-                getId(),
-                getClass(), null);
     }
 
     /**
