@@ -50,6 +50,7 @@ import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
@@ -251,7 +252,26 @@ public class CheckstyleAntTask extends Task {
         final long startTime = System.currentTimeMillis();
 
         try {
-            realExecute();
+            // output version info in debug mode
+            final ResourceBundle compilationProperties = ResourceBundle
+                    .getBundle("checkstylecompilation");
+            final String version = compilationProperties
+                    .getString("checkstyle.compile.version");
+            final String compileTimestamp = compilationProperties
+                    .getString("checkstyle.compile.timestamp");
+            log("checkstyle version " + version, Project.MSG_VERBOSE);
+            log("compiled on " + compileTimestamp, Project.MSG_VERBOSE);
+
+            // Check for no arguments
+            if (fileName == null && fileSets.isEmpty()) {
+                throw new BuildException(
+                        "Must specify at least one of 'file' or nested 'fileset'.",
+                        getLocation());
+            }
+            if (configLocation == null) {
+                throw new BuildException("Must specify 'config'.", getLocation());
+            }
+            realExecute(version);
         }
         finally {
             final long endTime = System.currentTimeMillis();
@@ -262,39 +282,24 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Helper implementation to perform execution.
+     * @param checkstyleVersion Checkstyle compile version.
      */
-    private void realExecute() {
-        // output version info in debug mode
-        final ResourceBundle compilationProperties = ResourceBundle
-                .getBundle("checkstylecompilation");
-        final String version = compilationProperties
-                .getString("checkstyle.compile.version");
-        final String compileTimestamp = compilationProperties
-                .getString("checkstyle.compile.timestamp");
-        log("checkstyle version " + version, Project.MSG_VERBOSE);
-        log("compiled on " + compileTimestamp, Project.MSG_VERBOSE);
-
-        // Check for no arguments
-        if (fileName == null && fileSets.isEmpty()) {
-            throw new BuildException(
-                    "Must specify at least one of 'file' or nested 'fileset'.",
-                    getLocation());
-        }
-
-        if (configLocation == null) {
-            throw new BuildException("Must specify 'config'.", getLocation());
-        }
-
+    private void realExecute(String checkstyleVersion) {
         // Create the checker
         Checker checker = null;
         try {
             checker = createChecker();
 
+            // setup the listeners
+            final AuditListener[] listeners = getListeners();
+            for (AuditListener element : listeners) {
+                checker.addListener(element);
+            }
             final SeverityLevelCounter warningCounter =
                 new SeverityLevelCounter(SeverityLevel.WARNING);
             checker.addListener(warningCounter);
 
-            processFiles(checker, warningCounter, version);
+            processFiles(checker, warningCounter, checkstyleVersion);
         }
         finally {
             if (checker != null) {
@@ -369,21 +374,13 @@ public class CheckstyleAntTask extends Task {
             context.add("moduleClassLoader", moduleClassLoader);
 
             checker = new Checker();
-
             checker.contextualize(context);
             checker.configure(config);
-
-            // setup the listeners
-            final AuditListener[] listeners = getListeners();
-            for (AuditListener element : listeners) {
-                checker.addListener(element);
-            }
         }
-        catch (final Exception e) {
-            throw new BuildException("Unable to create a Checker: "
-                    + e.getMessage(), e);
+        catch (final CheckstyleException e) {
+            throw new BuildException(String.format("Unable to create a Checker: "
+                    + "configLocation {%s}, classpath {%s}.", configLocation, classpath), e);
         }
-
         return checker;
     }
 
@@ -430,25 +427,29 @@ public class CheckstyleAntTask extends Task {
     /**
      * Return the list of listeners set in this task.
      * @return the list of listeners.
-     * @throws IOException if an error occurs
      */
-    private AuditListener[] getListeners() throws IOException {
+    private AuditListener[] getListeners() {
         final int formatterCount = Math.max(1, formatters.size());
 
         final AuditListener[] listeners = new AuditListener[formatterCount];
 
         // formatters
-        if (formatters.isEmpty()) {
-            final OutputStream debug = new LogOutputStream(this,
-                    Project.MSG_DEBUG);
-            final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
-            listeners[0] = new DefaultLogger(debug, true, err, true);
-        }
-        else {
-            for (int i = 0; i < formatterCount; i++) {
-                final Formatter formatter = formatters.get(i);
-                listeners[i] = formatter.createListener(this);
+        try {
+            if (formatters.isEmpty()) {
+                final OutputStream debug = new LogOutputStream(this, Project.MSG_DEBUG);
+                final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
+                listeners[0] = new DefaultLogger(debug, true, err, true);
             }
+            else {
+                for (int i = 0; i < formatterCount; i++) {
+                    final Formatter formatter = formatters.get(i);
+                    listeners[i] = formatter.createListener(this);
+                }
+            }
+        }
+        catch (IOException e) {
+            throw new BuildException(String.format("Unable to create listeners: "
+                    + "formatters {%s}.", formatters), e);
         }
         return listeners;
     }
