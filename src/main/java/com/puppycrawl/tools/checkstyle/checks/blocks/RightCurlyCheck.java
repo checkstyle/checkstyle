@@ -209,41 +209,55 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
                 violation = MSG_KEY_LINE_ALONE;
             }
         }
-        else if (bracePolicy == RightCurlyOption.SAME
-                && rcurly.getLineNo() != nextToken.getLineNo()) {
+        else if (shouldBeOnSameLine(bracePolicy, details)) {
             violation = MSG_KEY_LINE_SAME;
         }
-        else if (shouldBeAloneOnLine(details, bracePolicy)) {
+        else if (shouldBeAloneOnLine(bracePolicy, details)) {
             violation = MSG_KEY_LINE_ALONE;
         }
-        else if (shouldStartLine) {
-            final boolean startsLine =
-                    CommonUtils.hasWhitespaceBefore(rcurly.getColumnNo(), targetSourceLine);
-
-            if (!startsLine && lcurly.getLineNo() != rcurly.getLineNo()) {
-                violation = MSG_KEY_LINE_NEW;
-            }
+        else if (shouldStartLine && !startsLine(details, targetSourceLine)) {
+            violation = MSG_KEY_LINE_NEW;
         }
         return violation;
     }
 
     /**
-     * Checks that a right curly should be alone on a line.
-     * @param details Details for validation
+     * Checks that a right curly should be on the same line as the next statement.
      * @param bracePolicy option for placing the right curly brace
+     * @param details Details for validation
      * @return true if a right curly should be alone on a line.
      */
-    private static boolean shouldBeAloneOnLine(Details details, RightCurlyOption bracePolicy) {
-        final boolean alone = bracePolicy == RightCurlyOption.ALONE
+    private static boolean shouldBeOnSameLine(RightCurlyOption bracePolicy, Details details) {
+        return bracePolicy == RightCurlyOption.SAME
+                && details.rcurly.getLineNo() != details.nextToken.getLineNo();
+    }
+
+    /**
+     * Checks that a right curly should be alone on a line.
+     * @param bracePolicy option for placing the right curly brace
+     * @param details Details for validation
+     * @return true if a right curly should be alone on a line.
+     */
+    private static boolean shouldBeAloneOnLine(RightCurlyOption bracePolicy, Details details) {
+        return bracePolicy == RightCurlyOption.ALONE
                 && !isAloneOnLine(details)
-                && !isEmptyBody(details.lcurly);
-        final boolean aloneOrSingleline = alone
+                && !isEmptyBody(details.lcurly)
                 || bracePolicy == RightCurlyOption.ALONE_OR_SINGLELINE
                 && !isAloneOnLine(details)
                 && !isSingleLineBlock(details)
                 && !isAnonInnerClassInit(details.lcurly)
                 && !isEmptyBody(details.lcurly);
-        return aloneOrSingleline;
+    }
+
+    /**
+     * Whether right curly brace starts target source line.
+     * @param details Details of right curly brace for validation
+     * @param targetSourceLine source line to check
+     * @return true if right curly brace starts target source line.
+     */
+    private static boolean startsLine(Details details, String targetSourceLine) {
+        return CommonUtils.hasWhitespaceBefore(details.rcurly.getColumnNo(), targetSourceLine)
+                || details.lcurly.getLineNo() == details.rcurly.getLineNo();
     }
 
     /**
