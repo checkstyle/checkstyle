@@ -29,6 +29,8 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class DeclarationOrderCheckTest
     extends BaseCheckTestSupport {
@@ -64,6 +66,7 @@ public class DeclarationOrderCheckTest
             "143:9: " + getCheckMessage(MSG_ACCESS),
             "152:5: " + getCheckMessage(MSG_CONSTRUCTOR),
             "178:5: " + getCheckMessage(MSG_INSTANCE),
+            "182:9: " + getCheckMessage(MSG_ACCESS),
         };
         verify(checkConfig, getPath("coding/InputDeclarationOrder.java"), expected);
     }
@@ -119,6 +122,7 @@ public class DeclarationOrderCheckTest
             "143:9: " + getCheckMessage(MSG_STATIC),
             "143:9: " + getCheckMessage(MSG_ACCESS),
             "178:5: " + getCheckMessage(MSG_INSTANCE),
+            "182:9: " + getCheckMessage(MSG_ACCESS),
         };
         verify(checkConfig, getPath("coding/InputDeclarationOrder.java"), expected);
     }
@@ -130,4 +134,33 @@ public class DeclarationOrderCheckTest
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
     }
+
+    @Test
+    public void testParents() {
+        DeclarationOrderCheck check = new DeclarationOrderCheck();
+        DetailAST parent = new DetailAST();
+        parent.setType(TokenTypes.STATIC_INIT);
+        DetailAST method = new DetailAST();
+        method.setType(TokenTypes.METHOD_DEF);
+        parent.setFirstChild(method);
+        DetailAST ctor = new DetailAST();
+        ctor.setType(TokenTypes.CTOR_DEF);
+        method.setNextSibling(ctor);
+
+        check.visitToken(method);
+        check.visitToken(ctor);
+    }
+
+    @Test
+    public void testImproperToken() {
+        DeclarationOrderCheck check = new DeclarationOrderCheck();
+        DetailAST parent = new DetailAST();
+        parent.setType(TokenTypes.STATIC_INIT);
+        DetailAST array = new DetailAST();
+        array.setType(TokenTypes.ARRAY_INIT);
+        parent.setFirstChild(array);
+
+        check.visitToken(array);
+    }
+
 }
