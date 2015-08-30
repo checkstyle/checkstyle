@@ -332,28 +332,58 @@
     </module>
 
     <module name="ReturnCount"/>
-
-<!--
-    <module name="ClassFanOutComplexity"/>
-    <module name="FinalParameters"/>
-    <module name="IllegalToken"/>
-    <module name="JavadocParagraph"/>
-    <module name="JavadocTagContinuationIndentation"/>
-    <module name="MissingCtor"/>
     <module name="OneTopLevelClass"/>
-    <module name="OverloadMethodsDeclarationOrder"/>
-    <module name="PackageDeclaration"/>
-    <module name="RequireThis"/>
-    <module name="SingleLineJavadoc"/>
-    <module name="SummaryJavadoc"/>
-    <module name="VariableDeclarationUsageDistance"/>
-    <module name="WriteTag"/>
--->
-<!--
-    We should postpone DesignForExtension Check enforcement till next major release 
-    as it will seriously brake backward compatibility with existing usage of our library
+    <module name="IllegalToken"/>
 
-    <module name="DesignForExtension"/>
--->  
+    <!--
+        All Checks bellow are our futute plan to enforce over our code.
+        All of them are activated for integration testing over our code.
+        All of them have ignore severity to avoid build failure for now.
+        As all violations are resolved Check need to got default severity as all other.
+    -->
+    <module name="ClassFanOutComplexity">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="FinalParameters">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="JavadocParagraph">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="JavadocTagContinuationIndentation">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="MissingCtor">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="OverloadMethodsDeclarationOrder">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="PackageDeclaration">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="RequireThis">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="SingleLineJavadoc">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="SummaryJavadoc">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="VariableDeclarationUsageDistance">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="WriteTag">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="DesignForExtension">
+      <!--
+        We should postpone DesignForExtension Check enforcement till next major release
+        as it will seriously brake backward compatibility with existing usage of our library
+      -->
+      <property name="severity" value="ignore"/>
+    </module>
+
   </module>
 </module>
