@@ -152,34 +152,37 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     protected void setupChild(Configuration childConf)
         throws CheckstyleException {
         final String name = childConf.getName();
+        final Object child;
+
         try {
-            final Object child = moduleFactory.createModule(name);
+            child = moduleFactory.createModule(name);
+
             if (child instanceof AutomaticBean) {
                 final AutomaticBean bean = (AutomaticBean) child;
                 bean.contextualize(childContext);
                 bean.configure(childConf);
             }
-            if (child instanceof FileSetCheck) {
-                final FileSetCheck fsc = (FileSetCheck) child;
-                fsc.init();
-                addFileSetCheck(fsc);
-            }
-            else if (child instanceof Filter) {
-                final Filter filter = (Filter) child;
-                addFilter(filter);
-            }
-            else if (child instanceof AuditListener) {
-                final AuditListener listener = (AuditListener) child;
-                addListener(listener);
-            }
-            else {
-                throw new CheckstyleException(name
-                        + " is not allowed as a child in Checker");
-            }
         }
-        catch (final Exception ex) {
+        catch (final CheckstyleException ex) {
             throw new CheckstyleException("cannot initialize module " + name
                     + " - " + ex.getMessage(), ex);
+        }
+        if (child instanceof FileSetCheck) {
+            final FileSetCheck fsc = (FileSetCheck) child;
+            fsc.init();
+            addFileSetCheck(fsc);
+        }
+        else if (child instanceof Filter) {
+            final Filter filter = (Filter) child;
+            addFilter(filter);
+        }
+        else if (child instanceof AuditListener) {
+            final AuditListener listener = (AuditListener) child;
+            addListener(listener);
+        }
+        else {
+            throw new CheckstyleException(name
+                    + " is not allowed as a child in Checker");
         }
     }
 

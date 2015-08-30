@@ -256,8 +256,7 @@ public class CheckerTest {
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("cannot initialize module java.lang.String "
-                    + "- java.lang.String is not allowed as a child in Checker", ex.getMessage());
+            assertEquals("java.lang.String is not allowed as a child in Checker", ex.getMessage());
         }
     }
 
