@@ -144,9 +144,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         Matcher singleLevelMatch = SINGLELEVEL_COMMENT_REGEX.matcher(comment);
         if (singleLevelMatch.matches()) {
             final int expectedLevel = Integer.parseInt(singleLevelMatch.group(1));
-
-            return expectedLevel == indentInComment && !isWarnComment
-                    || expectedLevel != indentInComment && isWarnComment;
+            return isSingleLevelCommentConsistent(indentInComment, isWarnComment, expectedLevel);
         }
 
         Matcher nonStrictLevelMatch = NONSTRICT_LEVEL_COMMENT_REGEX.matcher(comment);
@@ -158,6 +156,12 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         }
 
         throw new IllegalStateException("Comments are not consistent");
+    }
+
+    private static boolean isSingleLevelCommentConsistent(int indentInComment, boolean isWarnComment,
+            int expectedLevel) {
+        return expectedLevel == indentInComment && !isWarnComment
+                || expectedLevel != indentInComment && isWarnComment;
     }
 
     private static int getLineStart(String line, final int tabWidth) {
