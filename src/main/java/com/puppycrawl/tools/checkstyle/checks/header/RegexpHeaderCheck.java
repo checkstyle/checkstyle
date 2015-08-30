@@ -109,12 +109,21 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
             if (i == fileSize) {
                 // if file finished, but we have at least one non-multi-line
                 // header isn't completed
-                for (; headerLineNo < headerSize; headerLineNo++) {
-                    if (!isMultiLine(headerLineNo)) {
-                        log(1, MSG_HEADER_MISSING);
-                        break;
-                    }
-                }
+                logFirstSinglelineLine(headerLineNo, headerSize);
+            }
+        }
+    }
+
+    /**
+     * Logs warning if any non-multiline lines left in header regexp
+     * @param startHeaderLine header line number to start from
+     * @param headerSize whole header size
+     */
+    private void logFirstSinglelineLine(int startHeaderLine, int headerSize) {
+        for (int lineNum = startHeaderLine; lineNum < headerSize; lineNum++) {
+            if (!isMultiLine(lineNum)) {
+                log(1, MSG_HEADER_MISSING);
+                break;
             }
         }
     }
