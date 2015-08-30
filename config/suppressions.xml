@@ -74,9 +74,9 @@
     <suppress checks="MethodCount" files="[\\/]JavadocMethodCheck.java$"/>
 
     <!-- getDetails() method - huge Switch, it has to be monolithic -->
-    <suppress checks="ExecutableStatementCount" files="RightCurlyCheck\.java" lines="290"/>
-    <suppress checks="JavaNCSS" files="RightCurlyCheck\.java" lines="290"/>
-    <suppress checks="CyclomaticComplexity" files="RightCurlyCheck\.java" lines="290"/>
+    <suppress checks="ExecutableStatementCount" files="RightCurlyCheck\.java" lines="304"/>
+    <suppress checks="JavaNCSS" files="RightCurlyCheck\.java" lines="304"/>
+    <suppress checks="CyclomaticComplexity" files="RightCurlyCheck\.java" lines="304"/>
 
     <!-- we need that set of converters -->
     <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
