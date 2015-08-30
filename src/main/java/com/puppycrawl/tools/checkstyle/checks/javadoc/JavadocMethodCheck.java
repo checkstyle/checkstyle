@@ -497,11 +497,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         }
 
         // Dump out all unused tags
-        final Iterator<JavadocTag> unusedTagIt = tags.iterator();
-        while (unusedTagIt.hasNext()) {
-            final JavadocTag jt = unusedTagIt.next();
-            if (!jt.isSeeOrInheritDocTag()) {
-                log(jt.getLineNo(), MSG_UNUSED_TAG_GENERAL);
+        for (JavadocTag javadocTag : tags) {
+            if (!javadocTag.isSeeOrInheritDocTag()) {
+                log(javadocTag.getLineNo(), MSG_UNUSED_TAG_GENERAL);
             }
         }
     }
