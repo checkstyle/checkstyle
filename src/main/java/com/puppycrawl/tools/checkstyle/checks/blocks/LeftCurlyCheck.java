@@ -237,7 +237,7 @@ public class LeftCurlyCheck
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
 
         if (modifiers != null) {
-            DetailAST lastAnnotation = findLastAnnotation(modifiers);
+            final DetailAST lastAnnotation = findLastAnnotation(modifiers);
 
             if (lastAnnotation != null) {
                 final DetailAST tokenAfterLast;
@@ -253,18 +253,29 @@ public class LeftCurlyCheck
                     resultNode = tokenAfterLast;
                 }
                 else {
-                    final int lastAnnotationLineNumber = lastAnnotation.getLineNo();
-                    while (lastAnnotation.getPreviousSibling() != null
-                           && lastAnnotation.getPreviousSibling().getLineNo()
-                               == lastAnnotationLineNumber) {
-
-                        lastAnnotation = lastAnnotation.getPreviousSibling();
-                    }
-                    resultNode = lastAnnotation;
+                    resultNode = getFirstAnnotationOnSameLine(lastAnnotation);
                 }
             }
         }
         return resultNode;
+    }
+
+    /**
+     * Returns first annotation on same line.
+     * @param annotation
+     *            last annotation on the line
+     * @return first annotation on same line.
+     */
+    private static DetailAST getFirstAnnotationOnSameLine(DetailAST annotation) {
+        DetailAST previousAnnotation = annotation;
+        final int lastAnnotationLineNumber = previousAnnotation.getLineNo();
+        while (previousAnnotation.getPreviousSibling() != null
+                && previousAnnotation.getPreviousSibling().getLineNo()
+                    == lastAnnotationLineNumber) {
+
+            previousAnnotation = previousAnnotation.getPreviousSibling();
+        }
+        return previousAnnotation;
     }
 
     /**
