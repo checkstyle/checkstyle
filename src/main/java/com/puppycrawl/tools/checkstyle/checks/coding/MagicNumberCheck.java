@@ -234,7 +234,7 @@ public class MagicNumberCheck extends Check {
     }
 
     /**
-     * Is magic number some where at ast tree
+     * Is magic number some where at ast tree.
      * @param ast ast token
      * @param constantDefAST constant ast
      * @return true if magic number is present
@@ -362,7 +362,7 @@ public class MagicNumberCheck extends Check {
     }
 
     /**
-     * Determines whether or not the given AST is field declaration
+     * Determines whether or not the given AST is field declaration.
      *
      * @param ast AST from which to search for an enclosing field declaration
      *

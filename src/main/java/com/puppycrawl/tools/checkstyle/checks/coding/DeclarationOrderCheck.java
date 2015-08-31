@@ -201,7 +201,7 @@ public class DeclarationOrderCheck extends Check {
     }
 
     /**
-     * Process constructor
+     * Process constructor.
      * @param ast constructor AST
      */
     private void processConstructor(DetailAST ast) {
@@ -218,7 +218,7 @@ public class DeclarationOrderCheck extends Check {
     }
 
     /**
-     * Process modifiers
+     * Process modifiers.
      * @param ast ast of Modifiers
      */
     private void processModifiers(DetailAST ast) {
@@ -280,7 +280,7 @@ public class DeclarationOrderCheck extends Check {
     }
 
     /**
-     * Private class to encapsulate the state
+     * Private class to encapsulate the state.
      */
     private static class ScopeState {
         /** The state the check is in. */

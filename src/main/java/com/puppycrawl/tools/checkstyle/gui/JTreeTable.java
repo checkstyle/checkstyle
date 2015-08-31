@@ -201,7 +201,7 @@ public class JTreeTable extends JTable {
     class TreeTableCellRenderer extends JTree implements
             TableCellRenderer {
         /**
-         *
+         * Serial ID.
          */
         private static final long serialVersionUID = 4324031590789321581L;
         /** Last table/tree row asked to renderer. */

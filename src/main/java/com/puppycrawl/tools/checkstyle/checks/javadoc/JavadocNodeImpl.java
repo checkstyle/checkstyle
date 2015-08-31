@@ -33,37 +33,37 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  */
 public class JavadocNodeImpl implements DetailNode {
     /**
-     * Node index among parent's children
+     * Node index among parent's children.
      */
     private int index;
 
     /**
-     * Node type
+     * Node type.
      */
     private int type;
 
     /**
-     * Node's text content
+     * Node's text content.
      */
     private String text;
 
     /**
-     * Line number
+     * Line number.
      */
     private int lineNumber;
 
     /**
-     * Column number
+     * Column number.
      */
     private int columnNumber;
 
     /**
-     * Array of child nodes
+     * Array of child nodes.
      */
     private DetailNode[] children;
 
     /**
-     * Parent node
+     * Parent node.
      */
     private DetailNode parent;
 

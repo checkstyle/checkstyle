@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class SynchronizedHandler extends BlockParentHandler {
 
     /**
-     * Determine that "synchronized" token used as modifier of method
+     * Determine that "synchronized" token used as modifier of method.
      */
     private final boolean methodModifier;
 
@@ -61,7 +61,7 @@ public class SynchronizedHandler extends BlockParentHandler {
     }
 
     /**
-     * Check indentation of expression we synchronized on
+     * Check indentation of expression we synchronized on.
      */
     private void checkSynchronizedExpr() {
         final DetailAST syncAst = getMainAst().findFirstToken(TokenTypes.LPAREN)

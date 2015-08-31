@@ -87,7 +87,7 @@ public final class Main {
      */
     private static class FrameShower implements Runnable {
         /**
-         * Frame
+         * Frame.
          */
         private final JFrame frame;
 
@@ -99,7 +99,7 @@ public final class Main {
         }
 
         /**
-         * Display a frame
+         * Display a frame.
          */
         @Override
         public void run() {

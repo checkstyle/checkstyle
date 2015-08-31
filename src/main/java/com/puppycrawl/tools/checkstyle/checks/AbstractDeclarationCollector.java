@@ -40,12 +40,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  */
 public abstract class AbstractDeclarationCollector extends Check {
     /**
-     * Tree of all the parsed frames
+     * Tree of all the parsed frames.
      */
     private Map<DetailAST, LexicalFrame> frames;
 
     /**
-     * Frame for the currently processed AST
+     * Frame for the currently processed AST.
      */
     private LexicalFrame current;
 
@@ -89,7 +89,7 @@ public abstract class AbstractDeclarationCollector extends Check {
     }
 
     /**
-     * Parse the next AST for declarations
+     * Parse the next AST for declarations.
      *
      * @param frameStack Stack containing the FrameTree being built
      * @param ast AST to parse
@@ -139,7 +139,7 @@ public abstract class AbstractDeclarationCollector extends Check {
     }
 
     /**
-     * Collect Variable Declarations
+     * Collect Variable Declarations.
      * @param ast variable token
      * @param frame current frame
      */
@@ -208,7 +208,7 @@ public abstract class AbstractDeclarationCollector extends Check {
     }
 
     /**
-     * Find frame containing declaration
+     * Find frame containing declaration.
      * @param name name of the declaration to find
      * @return LexicalFrame containing declaration or null
      */
@@ -234,7 +234,7 @@ public abstract class AbstractDeclarationCollector extends Check {
         private final LexicalFrame parent;
 
         /**
-         * Constructor -- invokable only via super() from subclasses
+         * Constructor -- invokable only via super() from subclasses.
          *
          * @param parent parent frame
          */
@@ -282,7 +282,7 @@ public abstract class AbstractDeclarationCollector extends Check {
     private static class GlobalFrame extends LexicalFrame {
 
         /**
-         * Constructor for the root of the FrameTree
+         * Constructor for the root of the FrameTree.
          */
         protected GlobalFrame() {
             super(null);
@@ -319,7 +319,7 @@ public abstract class AbstractDeclarationCollector extends Check {
         private final Set<String> staticMethods;
 
         /**
-         * Creates new instance of ClassFrame
+         * Creates new instance of ClassFrame.
          * @param parent parent frame
          */
         ClassFrame(LexicalFrame parent) {

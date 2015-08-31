@@ -123,7 +123,7 @@ public class TreeTableModelAdapter extends AbstractTableModel {
     }
 
     /**
-     * TreeExpansionListener that can update the table when tree changes
+     * TreeExpansionListener that can update the table when tree changes.
      */
     private class UpdatingTreeExpansionListener implements TreeExpansionListener {
         // Don't use fireTableRowsInserted() here; the selection model
@@ -140,7 +140,7 @@ public class TreeTableModelAdapter extends AbstractTableModel {
     }
 
     /**
-     * TreeModelListener that can update the table when tree changes
+     * TreeModelListener that can update the table when tree changes.
      */
     private class UpdatingTreeModelListener implements TreeModelListener {
         @Override

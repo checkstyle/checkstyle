@@ -137,7 +137,7 @@ public class RedundantModifierCheck
     }
 
     /**
-     * Checks if interface has proper modifiers
+     * Checks if interface has proper modifiers.
      * @param ast interface to check
      */
     private void checkInterfaceModifiers(DetailAST ast) {
@@ -155,7 +155,7 @@ public class RedundantModifierCheck
     }
 
     /**
-     * Check if enum constructor has proper modifiers
+     * Check if enum constructor has proper modifiers.
      * @param ast constructor of enum
      */
     private void checkEnumConstructorModifiers(DetailAST ast) {
@@ -168,7 +168,7 @@ public class RedundantModifierCheck
     }
 
     /**
-     * Do validation of interface of annotation
+     * Do validation of interface of annotation.
      * @param ast token AST
      */
     private void processInterfaceOrAnnotation(DetailAST ast) {
@@ -196,7 +196,7 @@ public class RedundantModifierCheck
     }
 
     /**
-     * Process validation ofMethods
+     * Process validation ofMethods.
      * @param ast method AST
      */
     private void processMethods(DetailAST ast) {
@@ -232,7 +232,7 @@ public class RedundantModifierCheck
     }
 
     /**
-     * Check if class constructor has proper modifiers
+     * Check if class constructor has proper modifiers.
      * @param classCtorAst class constructor ast
      */
     private void checkClassConstructorModifiers(DetailAST classCtorAst) {
@@ -243,7 +243,7 @@ public class RedundantModifierCheck
     }
 
     /**
-     * Checks if given ast has redundant public modifier
+     * Checks if given ast has redundant public modifier.
      * @param ast ast
      */
     private void checkForRedundantPublicModifier(DetailAST ast) {
@@ -260,7 +260,7 @@ public class RedundantModifierCheck
     }
 
     /**
-     * Checks if given class ast has protected modifier
+     * Checks if given class ast has protected modifier.
      * @param classDef class ast
      * @return true if class is protected, false otherwise
      */
@@ -271,7 +271,7 @@ public class RedundantModifierCheck
     }
 
     /**
-     * Checks if given class ast has public modifier
+     * Checks if given class ast has public modifier.
      * @param classDef class ast
      * @return true if class is public, false otherwise
      */
@@ -282,7 +282,7 @@ public class RedundantModifierCheck
     }
 
     /**
-     * Checks if current AST node is member of Enum
+     * Checks if current AST node is member of Enum.
      * @param ast AST node
      * @return true if it is an enum member
      */
@@ -327,7 +327,7 @@ public class RedundantModifierCheck
     }
 
     /**
-     * Gets the list of annotations on method definition
+     * Gets the list of annotations on method definition.
      * @param methodDef method definition node
      * @return List of annotations
      */

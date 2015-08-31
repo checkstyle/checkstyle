@@ -33,7 +33,7 @@ import javax.swing.tree.TreePath;
  */
 class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
     /**
-     *
+     * Serial ID.
      */
     private static final long serialVersionUID = 2267930983939339510L;
     /** Set to true when we are updating the ListSelectionModel. */

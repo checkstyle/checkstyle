@@ -102,7 +102,7 @@ public class ExplicitInitializationCheck extends Check {
     }
 
     /**
-     * Examine char literal for initializing to default value
+     * Examine char literal for initializing to default value.
      * @param exprStart expression
      * @return true is literal is initialized by zero symbol
      */

@@ -75,8 +75,8 @@ public abstract class AbstractJavadocCheck extends Check {
         "javadoc.wrong.singleton.html.tag";
 
     /**
-     * Key is "line:column"
-     * value is DetailNode tree
+     * Key is "line:column".
+     * value is DetailNode tree.
      */
     private static final Map<String, ParseStatus> TREE_CACHE = new HashMap<>();
 
@@ -633,12 +633,12 @@ public abstract class AbstractJavadocCheck extends Check {
      */
     private static class ParseStatus {
         /**
-         * DetailNode tree (is null if parsing fails)
+         * DetailNode tree (is null if parsing fails).
          */
         private DetailNode tree;
 
         /**
-         * Parse error message (is null if parsing is successful)
+         * Parse error message (is null if parsing is successful).
          */
         private ParseErrorMessage parseErrorMessage;
 

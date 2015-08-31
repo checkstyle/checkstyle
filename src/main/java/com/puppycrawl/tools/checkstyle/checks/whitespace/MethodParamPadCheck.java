@@ -85,8 +85,10 @@ public class MethodParamPadCheck
      */
     public static final String WS_NOT_PRECEDED = "ws.notPreceded";
 
-    /** Whether whitespace is allowed if the method identifier is at a
-     * linebreak */
+    /**
+     * Whether whitespace is allowed if the method identifier is at a
+     * linebreak.
+     */
     private boolean allowLineBreaks;
 
     /**

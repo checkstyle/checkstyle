@@ -206,7 +206,7 @@ public class HiddenFieldCheck
 
     /**
      * Called to process tokens other than {@link TokenTypes#VARIABLE_DEF}
-     * and {@link TokenTypes#PARAMETER_DEF}
+     * and {@link TokenTypes#PARAMETER_DEF}.
      *
      * @param ast token to process
      * @param type type of the token
@@ -302,7 +302,7 @@ public class HiddenFieldCheck
     }
 
     /**
-     * Check name by regExp
+     * Check name by regExp.
      * @param name string value to check
      * @return true is regexp is matching
      */

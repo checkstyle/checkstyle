@@ -191,11 +191,11 @@ public class MultipleStringLiteralsCheck extends Check {
      */
     private static final class StringInfo {
         /**
-         * Line of finding
+         * Line of finding.
          */
         private final int line;
         /**
-         * Column of finding
+         * Column of finding.
          */
         private final int col;
         /**

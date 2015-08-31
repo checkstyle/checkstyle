@@ -78,7 +78,7 @@ public class HandlerFactory {
     }
 
     /**
-     * Registers a handler
+     * Registers a handler.
      *
      * @param type
      *                type from TokenTypes

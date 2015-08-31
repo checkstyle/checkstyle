@@ -277,7 +277,7 @@ public final class TreeWalker
     }
 
     /**
-     * Register a check for a specified token name
+     * Register a check for a specified token name.
      * @param token the name of the token
      * @param check the check to register
      */

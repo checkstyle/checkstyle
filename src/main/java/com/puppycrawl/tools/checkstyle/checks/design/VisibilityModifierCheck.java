@@ -700,7 +700,7 @@ public class VisibilityModifierCheck
 
     /**
      * Gets the next node of a syntactical tree (child of a current node or
-     * sibling of a current node, or sibling of a parent of a current node)
+     * sibling of a current node, or sibling of a parent of a current node).
      * @param currentNodeAst Current node in considering
      * @param subTreeRootAst SubTree root
      * @return Current node after bypassing, if current node reached the root of a subtree

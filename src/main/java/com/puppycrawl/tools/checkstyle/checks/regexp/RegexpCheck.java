@@ -221,7 +221,7 @@ public class RegexpCheck extends AbstractFormatCheck {
     }
 
     /**
-     * Check if we can stop validation
+     * Check if we can stop validation.
      * @param ignore flag
      * @return true is we can continue
      */
@@ -231,7 +231,7 @@ public class RegexpCheck extends AbstractFormatCheck {
     }
 
     /**
-     * Detect ignore situation
+     * Detect ignore situation.
      * @param startLine position of line
      * @param text file text
      * @param start line column

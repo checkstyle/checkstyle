@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class AnnotationUtility {
 
     /**
-     * Common message
+     * Common message.
      */
     private static final String THE_AST_IS_NULL = "the ast is null";
 

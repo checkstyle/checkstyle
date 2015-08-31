@@ -89,7 +89,7 @@ public class LineWrappingHandler {
     }
 
     /**
-     *  Getter for lastNode field
+     *  Getter for lastNode field.
      *  @return lastNode field
      */
     protected final DetailAST getLastNode() {

@@ -63,7 +63,7 @@ public final class SuppressionsLoader
 
     /**
      * The filter chain to return in getAFilterChain(),
-     * configured during parsing
+     * configured during parsing.
      */
     private final FilterSet filterChain = new FilterSet();
 

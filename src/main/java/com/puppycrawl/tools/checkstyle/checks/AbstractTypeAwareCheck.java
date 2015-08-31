@@ -174,7 +174,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
 
     /**
      * Is exception is unchecked (subclass of {@code RuntimeException}
-     * or {@code Error}
+     * or {@code Error}.
      *
      * @param exception {@code Class} of exception to check
      * @return true  if exception is unchecked
@@ -186,7 +186,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
     }
 
     /**
-     * Checks if one class is subclass of another
+     * Checks if one class is subclass of another.
      *
      * @param child {@code Class} of class
      *               which should be child

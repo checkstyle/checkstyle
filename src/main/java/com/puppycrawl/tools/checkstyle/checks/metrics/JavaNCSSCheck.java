@@ -282,7 +282,7 @@ public class JavaNCSSCheck extends Check {
     }
 
     /**
-     * Checks if a token is countable for the ncss metric
+     * Checks if a token is countable for the ncss metric.
      *
      * @param ast
      *            the AST
@@ -367,6 +367,7 @@ public class JavaNCSSCheck extends Check {
 
     /**
      * Class representing a counter.
+     *
      * @author Lars Ködderitzsch
      */
     private static class Counter {
@@ -381,7 +382,7 @@ public class JavaNCSSCheck extends Check {
         }
 
         /**
-         * Gets the counters value
+         * Gets the counters value.
          *
          * @return the counter
          */

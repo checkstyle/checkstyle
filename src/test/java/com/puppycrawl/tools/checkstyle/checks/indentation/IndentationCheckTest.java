@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
- *
+ * Unit test for IndentationCheck.
  * @author  jrichard
  */
 public class IndentationCheckTest extends BaseCheckTestSupport {

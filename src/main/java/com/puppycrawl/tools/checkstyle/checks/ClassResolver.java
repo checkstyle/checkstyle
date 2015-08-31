@@ -117,7 +117,7 @@ public class ClassResolver {
     }
 
     /**
-     * See if inner class of this class
+     * See if inner class of this class.
      * @param name name of the search Class to search
      * @param currentClass class where search in
      * @return class if found , or null if not resolved
@@ -141,7 +141,7 @@ public class ClassResolver {
     }
 
     /**
-     * Try star imports
+     * Try star imports.
      * @param name name of the Class to search
      * @return  class if found , or null if not resolved
      */

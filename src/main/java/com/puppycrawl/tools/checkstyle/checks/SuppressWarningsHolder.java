@@ -67,7 +67,7 @@ public class SuppressWarningsHolder
 
     /**
      * A thread-local holder for the list of suppression entries for the last
-     * file parsed
+     * file parsed.
      */
     private static final ThreadLocal<List<Entry>> ENTRIES = new ThreadLocal<>();
 
@@ -253,7 +253,7 @@ public class SuppressWarningsHolder
     }
 
     /**
-     * Get all annotation values
+     * Get all annotation values.
      * @param ast annotation token
      * @return list values
      */
@@ -298,7 +298,7 @@ public class SuppressWarningsHolder
     }
 
     /**
-     * Get target of annotation
+     * Get target of annotation.
      * @param ast the AST node to get the child of
      * @return get target of annotation
      */

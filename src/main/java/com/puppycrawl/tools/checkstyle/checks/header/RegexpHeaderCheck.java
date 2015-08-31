@@ -115,7 +115,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     }
 
     /**
-     * Logs warning if any non-multiline lines left in header regexp
+     * Logs warning if any non-multiline lines left in header regexp.
      * @param startHeaderLine header line number to start from
      * @param headerSize whole header size
      */

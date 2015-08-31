@@ -257,7 +257,7 @@ public class UnusedImportsCheck extends Check {
     }
 
     /**
-     * Returns the list of valid tags found in a javadoc {@link TextBlock}
+     * Returns the list of valid tags found in a javadoc {@link TextBlock}.
      * @param cmt The javadoc block to parse
      * @param tagType The type of tags we're interested in
      * @return the list of tags
@@ -268,7 +268,7 @@ public class UnusedImportsCheck extends Check {
     }
 
     /**
-     * Returns a list of references found in a javadoc {@link JavadocTag}
+     * Returns a list of references found in a javadoc {@link JavadocTag}.
      * @param tag The javadoc tag to parse
      * @return A list of references found in this tag
      */

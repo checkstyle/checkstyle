@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
+ * Unit test for AnonInnerLengthCheck.
  * @author Rob Worth
  * @author Lars Kühne
  */

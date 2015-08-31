@@ -164,7 +164,7 @@ public final class Main {
     }
 
     /**
-     * Do validation of Command line options
+     * Do validation of Command line options.
      * @param cmdLine command line object
      * @return list of violations
      */
@@ -208,7 +208,7 @@ public final class Main {
     }
 
     /**
-     * Util method to convert ComandLine type to POJO object
+     * Util method to convert ComandLine type to POJO object.
      * @param cmdLine command line object
      * @return command line option as POJO object
      */

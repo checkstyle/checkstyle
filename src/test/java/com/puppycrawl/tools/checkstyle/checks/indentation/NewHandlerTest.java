@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 /**
+ * Unit test for IndentationCheck.
  * @author Ilja Dubinin
  */
 public class NewHandlerTest extends BaseCheckTestSupport {

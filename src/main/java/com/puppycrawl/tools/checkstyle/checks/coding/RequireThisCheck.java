@@ -70,7 +70,7 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
     public static final String MSG_VARIABLE = "require.this.variable";
 
     /**
-     * Set of all declaration tokens
+     * Set of all declaration tokens.
      */
     private static final ImmutableSet<Integer> DECLARATION_TOKENS = ImmutableSet.of(
             TokenTypes.VARIABLE_DEF,
@@ -164,7 +164,7 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
     }
 
     /**
-     * Process validation of Field
+     * Process validation of Field.
      * @param ast field definition ast token
      * @param parentType type of the parrent
      */
@@ -189,7 +189,7 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
     }
 
     /**
-     * Check that token is related to Definition tokens
+     * Check that token is related to Definition tokens.
      * @param parentType token Type
      * @return true if token is related to Definition Tokens
      */

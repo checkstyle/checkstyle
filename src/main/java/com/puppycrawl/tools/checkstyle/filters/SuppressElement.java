@@ -139,7 +139,7 @@ public class SuppressElement
     }
 
     /**
-     * Is matching by file name and Check name
+     * Is matching by file name and Check name.
      * @param event event
      * @return true is matching
      */

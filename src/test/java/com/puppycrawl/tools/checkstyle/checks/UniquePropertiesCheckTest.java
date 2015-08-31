@@ -84,7 +84,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
 
     /**
      * Tests the {@link UniquePropertiesCheck#getLineNumber(List, String)}
-     * method return value
+     * method return value.
      */
     @Test
     public void testNotFoundKey() throws Exception {

@@ -45,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 /**
+ * Unit test for ConfigurationLoader.
  * @author Rick Giles
  * @author lkuehne
  */

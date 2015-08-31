@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
- *
+ * Unit test for RegexpHeaderCheck.
  * @author richter
  */
 public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {

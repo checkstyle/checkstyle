@@ -210,7 +210,7 @@ public class FinalLocalVariableCheck extends Check {
     }
 
     /**
-     * Is Arithmetic operator
+     * Is Arithmetic operator.
      * @param parentType token AST
      * @return true is token type is in arithmetic operator
      */
@@ -309,7 +309,7 @@ public class FinalLocalVariableCheck extends Check {
     }
 
     /**
-     * Inserts a variable at the topmost scope stack
+     * Inserts a variable at the topmost scope stack.
      * @param ast the variable to insert
      */
     private void insertVariable(DetailAST ast) {
@@ -319,7 +319,7 @@ public class FinalLocalVariableCheck extends Check {
     }
 
     /**
-     * Removes the variable from the Stacks
+     * Removes the variable from the Stacks.
      * @param ast Variable to remove
      */
     private void removeVariable(DetailAST ast) {

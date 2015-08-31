@@ -161,7 +161,7 @@ public class EmptyLineSeparatorCheck extends Check {
      */
     public static final String MSG_MULTIPLE_LINES = "empty.line.separator.multiple.lines";
 
-    /**. */
+    /** Allows no empty line between fields. */
     private boolean allowNoEmptyLineBetweenFields;
 
     /** Allows multiple empty lines between class members. */
@@ -238,7 +238,7 @@ public class EmptyLineSeparatorCheck extends Check {
     }
 
     /**
-     * Process Package
+     * Process Package.
      * @param ast token
      * @param nextToken next token
      */
@@ -255,7 +255,7 @@ public class EmptyLineSeparatorCheck extends Check {
     }
 
     /**
-     * Process Import
+     * Process Import.
      * @param ast token
      * @param nextToken next token
      * @param astType token Type
@@ -270,7 +270,7 @@ public class EmptyLineSeparatorCheck extends Check {
     }
 
     /**
-     * Process Variable
+     * Process Variable.
      * @param ast token
      * @param nextToken next Token
      */
@@ -299,7 +299,7 @@ public class EmptyLineSeparatorCheck extends Check {
     }
 
     /**
-     * Checks if a token has empty two previous lines and multiple empty lines is not allowed
+     * Checks if a token has empty two previous lines and multiple empty lines is not allowed.
      * @param token DetailAST token
      * @return true, if token has empty two lines before and allowMultipleEmptyLines is false
      */

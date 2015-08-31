@@ -51,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * @author o_sukhosolsky
  */
 public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
-    /** Pattern to detect occurrences of '\n' in text */
+    /** Pattern to detect occurrences of '\n' in text. */
     private static final Pattern ESCAPED_LINE_FEED_PATTERN = Pattern.compile("\\\\n");
     /** The file that contains the header to check against. */
     private String filename;

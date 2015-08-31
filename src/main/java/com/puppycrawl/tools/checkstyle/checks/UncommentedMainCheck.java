@@ -171,7 +171,7 @@ public class UncommentedMainCheck
     }
 
     /**
-     * Checks that current class is not excluded
+     * Checks that current class is not excluded.
      * @return true if check passed, false otherwise
      */
     private boolean checkClassName() {
@@ -213,7 +213,7 @@ public class UncommentedMainCheck
     }
 
     /**
-     * Checks that method has only {@code String[]} param
+     * Checks that method has only {@code String[]} param.
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */

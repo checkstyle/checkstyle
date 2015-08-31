@@ -77,7 +77,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
     }
 
     /**
-     * If this is the first chained method call which was moved to the next line
+     * If this is the first chained method call which was moved to the next line.
      * @return true if chained class are wrapped
      */
     private boolean isChainedMethodCallWrapped() {

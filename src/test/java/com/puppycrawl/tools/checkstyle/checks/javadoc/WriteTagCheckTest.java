@@ -43,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 /**
+ * Unit test for WriteTagCheck.
  * @author Daniel Grenner
  */
 public class WriteTagCheckTest extends BaseCheckTestSupport {

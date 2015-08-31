@@ -121,7 +121,7 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck {
     }
 
     /**
-     * Check if the method is specified in the ignore method list
+     * Check if the method is specified in the ignore method list.
      * @param name the name to check
      * @return whether the method with the passed name should be ignored
      */

@@ -324,7 +324,7 @@ public class LeftCurlyCheck
     }
 
     /**
-     * Validate EOL case
+     * Validate EOL case.
      * @param brace brace AST
      * @param braceLine line content
      */
@@ -338,7 +338,7 @@ public class LeftCurlyCheck
     }
 
     /**
-     * Validate token on new Line position
+     * Validate token on new Line position.
      * @param brace brace AST
      * @param startToken start Token
      * @param braceLine content of line with Brace

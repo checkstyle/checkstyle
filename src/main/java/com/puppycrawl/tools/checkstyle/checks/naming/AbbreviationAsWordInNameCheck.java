@@ -326,7 +326,7 @@ public class AbbreviationAsWordInNameCheck extends Check {
     }
 
     /**
-     * Get Abbreviation if it is illegal
+     * Get Abbreviation if it is illegal.
      * @param str name
      * @param beginIndex begin index
      * @param endIndex end index

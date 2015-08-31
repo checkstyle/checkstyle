@@ -160,7 +160,7 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * Perform processing for an import token
+     * Perform processing for an import token.
      * @param ast the import token
      */
     private void processImport(DetailAST ast) {
@@ -171,7 +171,7 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * Perform processing for an package token
+     * Perform processing for an package token.
      * @param ast the package token
      */
     private void processPackageDef(DetailAST ast) {
@@ -255,7 +255,7 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * Check import statements
+     * Check import statements.
      * @param className name of the class
      * @return value of illegal instantiated type
      */
@@ -287,7 +287,7 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * Check that type is of the same package
+     * Check that type is of the same package.
      * @param className class name
      * @param pkgNameLen package name
      * @param illegal illegal value
@@ -309,7 +309,7 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * Is class of the same package
+     * Is class of the same package.
      * @param className class name
      * @return true if same package class
      */
@@ -332,7 +332,7 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * Is Standard Class
+     * Is Standard Class.
      * @param className class name
      * @param illegal illegal value
      * @return true if type is standard

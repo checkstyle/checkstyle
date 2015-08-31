@@ -104,7 +104,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
 
     /**
      * Fully-qualified {@link SuppressWarnings SuppressWarnings}
-     * annotation name
+     * annotation name.
      */
     private static final String FQ_SUPPRESS_WARNINGS =
         "java.lang." + SUPPRESS_WARNINGS;

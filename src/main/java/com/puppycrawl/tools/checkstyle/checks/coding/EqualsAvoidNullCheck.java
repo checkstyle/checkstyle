@@ -313,7 +313,7 @@ public class EqualsAvoidNullCheck extends Check {
 
     /**
      * Checks for calling equals on String literal and
-     * anon object which cannot be null
+     * anon object which cannot be null.
      * @param objCalledOn object AST
      * @return if it is string literal
      */

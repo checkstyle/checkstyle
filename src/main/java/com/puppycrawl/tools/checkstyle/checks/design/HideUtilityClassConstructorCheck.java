@@ -108,7 +108,7 @@ public class HideUtilityClassConstructorCheck extends Check {
     }
 
     /**
-     * Details of class that are required for validation
+     * Details of class that are required for validation.
      */
     private static class Details {
         /** Class ast. */
@@ -124,7 +124,8 @@ public class HideUtilityClassConstructorCheck extends Check {
         /** Result of details gathering. */
         private boolean hasPublicCtor;
 
-        /** C-tor
+        /**
+         * C-tor.
          * @param ast class ast
          * */
         Details(DetailAST ast) {
@@ -132,7 +133,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         * Getter
+         * Getter.
          * @return boolean
          */
         public boolean isHasMethodOrField() {
@@ -140,7 +141,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         * Getter
+         * Getter.
          * @return boolean
          */
         public boolean isHasNonStaticMethodOrField() {
@@ -148,7 +149,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         * Getter
+         * Getter.
          * @return boolean
          */
         public boolean isHasNonPrivateStaticMethodOrField() {
@@ -156,7 +157,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         * Getter
+         * Getter.
          * @return boolean
          */
         public boolean isHasDefaultCtor() {
@@ -164,7 +165,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         * Getter
+         * Getter.
          * @return boolean
          */
         public boolean isHasPublicCtor() {
@@ -172,7 +173,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         *  Main method to gather statistics
+         * Main method to gather statistics.
          */
         public void invoke() {
             final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);

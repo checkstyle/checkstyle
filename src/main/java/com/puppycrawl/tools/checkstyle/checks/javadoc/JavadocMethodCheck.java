@@ -99,40 +99,40 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      */
     public static final String MSG_DUPLICATE_TAG = "javadoc.duplicateTag";
 
-    /** Compiled regexp to match Javadoc tags that take an argument * */
+    /** Compiled regexp to match Javadoc tags that take an argument. */
     private static final Pattern MATCH_JAVADOC_ARG =
             CommonUtils.createPattern("@(throws|exception|param)\\s+(\\S+)\\s+\\S*");
 
-    /** Compiled regexp to match first part of multilineJavadoc tags * */
+    /** Compiled regexp to match first part of multilineJavadoc tags. */
     private static final Pattern MATCH_JAVADOC_ARG_MULTILINE_START =
             CommonUtils.createPattern("@(throws|exception|param)\\s+(\\S+)\\s*$");
 
-    /** Compiled regexp to look for a continuation of the comment * */
+    /** Compiled regexp to look for a continuation of the comment. */
     private static final Pattern MATCH_JAVADOC_MULTILINE_CONT =
             CommonUtils.createPattern("(\\*/|@|[^\\s\\*])");
 
-    /** Multiline finished at end of comment * */
+    /** Multiline finished at end of comment. */
     private static final String END_JAVADOC = "*/";
-    /** Multiline finished at next Javadoc * */
+    /** Multiline finished at next Javadoc. */
     private static final String NEXT_TAG = "@";
 
-    /** Compiled regexp to match Javadoc tags with no argument * */
+    /** Compiled regexp to match Javadoc tags with no argument. */
     private static final Pattern MATCH_JAVADOC_NOARG =
             CommonUtils.createPattern("@(return|see)\\s+\\S");
-    /** Compiled regexp to match first part of multilineJavadoc tags * */
+    /** Compiled regexp to match first part of multilineJavadoc tags. */
     private static final Pattern MATCH_JAVADOC_NOARG_MULTILINE_START =
             CommonUtils.createPattern("@(return|see)\\s*$");
-    /** Compiled regexp to match Javadoc tags with no argument and {} * */
+    /** Compiled regexp to match Javadoc tags with no argument and {}. */
     private static final Pattern MATCH_JAVADOC_NOARG_CURLY =
             CommonUtils.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
 
     /** Default value of minimal amount of lines in method to demand documentation presence.*/
     private static final int DEFAULT_MIN_LINE_COUNT = -1;
 
-    /** The visibility scope where Javadoc comments are checked * */
+    /** The visibility scope where Javadoc comments are checked. */
     private Scope scope = Scope.PRIVATE;
 
-    /** The visibility scope where Javadoc comments shouldn't be checked * */
+    /** The visibility scope where Javadoc comments shouldn't be checked. */
     private Scope excludeScope;
 
     /** Minimal amount of lines in method to demand documentation presence.*/

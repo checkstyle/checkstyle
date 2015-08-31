@@ -145,7 +145,7 @@ public abstract class AbstractSuperCheck
     }
 
     /**
-     * Is same name of method
+     * Is same name of method.
      * @param ast method AST
      * @return true if method name is the same
      */

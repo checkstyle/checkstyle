@@ -105,7 +105,7 @@ public final class ModifiedControlVariableCheck extends Check {
     public static final String MSG_KEY = "modified.control.variable";
 
     /**
-     * Message thrown with IllegalStateException
+     * Message thrown with IllegalStateException.
      */
     private static final String ILLEGAL_TYPE_OF_TOKEN = "Illegal type of token: ";
 
@@ -262,7 +262,7 @@ public final class ModifiedControlVariableCheck extends Check {
     }
 
     /**
-     * Get current variable stack
+     * Get current variable stack.
      * @return current variable stack
      */
     private Deque<String> getCurrentVariables() {
@@ -335,7 +335,7 @@ public final class ModifiedControlVariableCheck extends Check {
     }
 
     /**
-     * Pops given number of variables from currentVariables
+     * Pops given number of variables from currentVariables.
      * @param count Count of variables to be popped from currentVariables
      */
     private void popCurrentVariables(int count) {

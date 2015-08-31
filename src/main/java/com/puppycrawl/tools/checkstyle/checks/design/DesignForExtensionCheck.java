@@ -109,7 +109,7 @@ public class DesignForExtensionCheck extends Check {
     }
 
     /**
-     * Check for modifiers
+     * Check for modifiers.
      * @param ast modifier ast
      * @return tru in modifier is in checked ones
      */
@@ -123,7 +123,7 @@ public class DesignForExtensionCheck extends Check {
     }
 
     /**
-     * Has Default Or Expl Non Private Ctor
+     * Has Default Or Expl Non Private Ctor.
      * @param classDef class ast
      * @return true if Check should make a violation
      */

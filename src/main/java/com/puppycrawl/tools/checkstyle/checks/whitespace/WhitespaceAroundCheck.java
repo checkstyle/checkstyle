@@ -414,7 +414,7 @@ public class WhitespaceAroundCheck extends Check {
     }
 
     /**
-     * Is empty block
+     * Is empty block.
      * @param ast ast
      * @param parentType parent
      * @return true is block is empty
@@ -478,7 +478,7 @@ public class WhitespaceAroundCheck extends Check {
     }
 
     /**
-     * Is array initialization
+     * Is array initialization.
      * @param currentType current token
      * @param parentType parent token
      * @return true is current token inside array initialization

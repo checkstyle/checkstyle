@@ -96,7 +96,7 @@ final class PropertyCacheFile {
     }
 
     /**
-     * Load cached values from file
+     * Load cached values from file.
      * @throws IOException when there is a problems with file read
      */
     void load() throws IOException {

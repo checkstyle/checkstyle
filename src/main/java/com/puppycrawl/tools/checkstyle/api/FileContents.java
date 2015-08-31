@@ -62,7 +62,7 @@ public final class FileContents implements CommentListener {
 
     /**
      * Map of the C comments indexed on the first line of the comment to a list
-     * of comments on that line
+     * of comments on that line.
      */
     private final Map<Integer, List<TextBlock>> clangComments = Maps.newHashMap();
 

@@ -135,7 +135,7 @@ public abstract class AbstractComplexityCheck
     }
 
     /**
-     * Set the current value
+     * Set the current value.
      * @param value the new value
      */
     protected final void setCurrentValue(BigInteger value) {

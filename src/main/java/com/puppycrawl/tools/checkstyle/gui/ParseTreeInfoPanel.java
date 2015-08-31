@@ -232,12 +232,12 @@ public class ParseTreeInfoPanel extends JPanel {
      */
     private static class FrameShower implements Runnable {
         /**
-         * Frame
+         * Frame.
          */
         private final Component parent;
 
         /**
-         * Frame
+         * Frame.
          */
         private final String msg;
 
@@ -251,7 +251,7 @@ public class ParseTreeInfoPanel extends JPanel {
         }
 
         /**
-         * Display a frame
+         * Display a frame.
          */
         @Override
         public void run() {
@@ -276,7 +276,7 @@ public class ParseTreeInfoPanel extends JPanel {
 
     private class FileSelectionAction extends AbstractAction {
         /**
-         *
+         * Serial ID.
          */
         private static final long serialVersionUID = -1926935338069418119L;
 
@@ -302,7 +302,7 @@ public class ParseTreeInfoPanel extends JPanel {
 
     private class ReloadAction extends AbstractAction {
         /**
-         *
+         * Serial UID.
          */
         private static final long serialVersionUID = -1021880396046355863L;
 

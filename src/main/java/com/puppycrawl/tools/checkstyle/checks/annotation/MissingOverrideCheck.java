@@ -95,7 +95,7 @@ public final class MissingOverrideCheck extends Check {
     /** Fully-qualified {@link Override Override} annotation name. */
     private static final String FQ_OVERRIDE = "java.lang." + OVERRIDE;
 
-    /** Compiled regexp to match Javadoc tags with no argument and {} * */
+    /** Compiled regexp to match Javadoc tags with no argument and {}. */
     private static final Pattern MATCH_INHERIT_DOC =
             CommonUtils.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
 
