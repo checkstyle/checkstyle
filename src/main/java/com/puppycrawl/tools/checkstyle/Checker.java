@@ -57,44 +57,44 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author lkuehne
  */
 public class Checker extends AutomaticBean implements MessageDispatcher {
-    /** Logger for Checker */
+    /** Logger for Checker. */
     private static final Log LOG = LogFactory.getLog(Checker.class);
 
-    /** Maintains error count */
+    /** Maintains error count. */
     private final SeverityLevelCounter counter = new SeverityLevelCounter(
             SeverityLevel.ERROR);
 
-    /** Vector of listeners */
+    /** Vector of listeners. */
     private final List<AuditListener> listeners = Lists.newArrayList();
 
-    /** Vector of fileset checks */
+    /** Vector of fileset checks. */
     private final List<FileSetCheck> fileSetChecks = Lists.newArrayList();
 
     /** Class loader to resolve classes with. **/
     private ClassLoader classLoader = Thread.currentThread()
             .getContextClassLoader();
 
-    /** The basedir to strip off in filenames */
+    /** The basedir to strip off in filenames. */
     private String basedir;
 
-    /** Locale country to report messages  **/
+    /** Locale country to report messages . **/
     private String localeCountry = Locale.getDefault().getCountry();
-    /** Locale language to report messages  **/
+    /** Locale language to report messages . **/
     private String localeLanguage = Locale.getDefault().getLanguage();
 
-    /** The factory for instantiating submodules */
+    /** The factory for instantiating submodules. */
     private ModuleFactory moduleFactory;
 
     /** The classloader used for loading Checkstyle module classes. */
     private ClassLoader moduleClassLoader;
 
-    /** The context of all child components */
+    /** The context of all child components. */
     private Context childContext;
 
-    /** The audit event filters */
+    /** The audit event filters. */
     private final FilterSet filters = new FilterSet();
 
-    /** The file extensions that are accepted */
+    /** The file extensions that are accepted. */
     private String[] fileExtensions = ArrayUtils.EMPTY_STRING_ARRAY;
 
     /**
@@ -109,7 +109,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
      */
     private SeverityLevel severityLevel = SeverityLevel.ERROR;
 
-    /** Name of a charset */
+    /** Name of a charset. */
     private String charset = System.getProperty("file.encoding", "UTF-8");
 
     /**
@@ -299,7 +299,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
         this.basedir = basedir;
     }
 
-    /** Notify all listeners about the audit start */
+    /** Notify all listeners about the audit start. */
     void fireAuditStarted() {
         final AuditEvent evt = new AuditEvent(this);
         for (final AuditListener listener : listeners) {
@@ -307,7 +307,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
         }
     }
 
-    /** Notify all listeners about the audit end */
+    /** Notify all listeners about the audit end. */
     void fireAuditFinished() {
         final AuditEvent evt = new AuditEvent(this);
         for (final AuditListener listener : listeners) {

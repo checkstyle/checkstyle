@@ -102,7 +102,7 @@ public class FinalLocalVariableCheck extends Check {
         TokenTypes.DEC,
     };
 
-    /** Scope Stack */
+    /** Scope Stack. */
     private final Deque<Map<String, DetailAST>> scopeStack = new ArrayDeque<>();
 
     /** Controls whether to check enhanced for-loop variable. */

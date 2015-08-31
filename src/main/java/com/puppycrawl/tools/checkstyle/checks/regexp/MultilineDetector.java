@@ -58,9 +58,9 @@ class MultilineDetector {
     private final DetectorOptions options;
     /** Tracks the number of matches. */
     private int currentMatches;
-    /** The matcher */
+    /** The matcher. */
     private Matcher matcher;
-    /** The file text content */
+    /** The file text content. */
     private FileText text;
 
     /**

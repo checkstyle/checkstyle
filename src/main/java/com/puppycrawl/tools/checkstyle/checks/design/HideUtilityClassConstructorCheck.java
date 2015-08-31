@@ -111,17 +111,17 @@ public class HideUtilityClassConstructorCheck extends Check {
      * Details of class that are required for validation
      */
     private static class Details {
-        /** Class ast */
+        /** Class ast. */
         private final DetailAST ast;
-        /** Result of details gathering */
+        /** Result of details gathering. */
         private boolean hasMethodOrField;
-        /** Result of details gathering */
+        /** Result of details gathering. */
         private boolean hasNonStaticMethodOrField;
-        /** Result of details gathering */
+        /** Result of details gathering. */
         private boolean hasNonPrivateStaticMethodOrField;
-        /** Result of details gathering */
+        /** Result of details gathering. */
         private boolean hasDefaultCtor;
-        /** Result of details gathering */
+        /** Result of details gathering. */
         private boolean hasPublicCtor;
 
         /** C-tor

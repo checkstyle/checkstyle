@@ -28,10 +28,10 @@ import java.util.Objects;
  */
 public class LineColumn implements Comparable<LineColumn> {
 
-    /** The one-based line number */
+    /** The one-based line number. */
     private final int line;
 
-    /** The zero-based column number */
+    /** The zero-based column number. */
     private final int column;
 
     /**

@@ -37,13 +37,13 @@ public final class DefaultConfiguration implements Configuration {
     /** Required for serialization. */
     private static final long serialVersionUID = 1157875385356127169L;
 
-    /** The name of this configuration */
+    /** The name of this configuration. */
     private final String name;
 
-    /** The list of child Configurations */
+    /** The list of child Configurations. */
     private final List<Configuration> children = Lists.newArrayList();
 
-    /** The map from attribute names to attribute values */
+    /** The map from attribute names to attribute values. */
     private final Map<String, String> attributeMap = Maps.newHashMap();
 
     /** The map containing custom messages. */

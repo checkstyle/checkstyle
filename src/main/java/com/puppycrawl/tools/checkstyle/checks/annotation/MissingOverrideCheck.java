@@ -89,10 +89,10 @@ public final class MissingOverrideCheck extends Check {
     public static final String MSG_KEY_ANNOTATION_MISSING_OVERRIDE =
         "annotation.missing.override";
 
-    /** {@link Override Override} annotation name */
+    /** {@link Override Override} annotation name. */
     private static final String OVERRIDE = "Override";
 
-    /** Fully-qualified {@link Override Override} annotation name */
+    /** Fully-qualified {@link Override Override} annotation name. */
     private static final String FQ_OVERRIDE = "java.lang." + OVERRIDE;
 
     /** Compiled regexp to match Javadoc tags with no argument and {} * */

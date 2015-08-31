@@ -74,13 +74,13 @@ public class RegexpCheck extends AbstractFormatCheck {
      */
     public static final String MSG_DUPLICATE_REGEXP = "duplicate.regexp";
 
-    /** Default duplicate limit */
+    /** Default duplicate limit. */
     private static final int DEFAULT_DUPLICATE_LIMIT = -1;
 
-    /** Default error report limit */
+    /** Default error report limit. */
     private static final int DEFAULT_ERROR_LIMIT = 100;
 
-    /** Error count exceeded message */
+    /** Error count exceeded message. */
     private static final String ERROR_LIMIT_EXCEEDED_MESSAGE =
         "The error limit has been exceeded, "
         + "the check is aborting, there may be more unreported errors.";
@@ -88,28 +88,28 @@ public class RegexpCheck extends AbstractFormatCheck {
     /** Custom message for report. */
     private String message = "";
 
-    /** Ignore matches within comments? **/
+    /** Ignore matches within comments?. **/
     private boolean ignoreComments;
 
-    /** Pattern illegal? */
+    /** Pattern illegal?. */
     private boolean illegalPattern;
 
-    /** Error report limit */
+    /** Error report limit. */
     private int errorLimit = DEFAULT_ERROR_LIMIT;
 
-    /** Disallow more than x duplicates? */
+    /** Disallow more than x duplicates?. */
     private int duplicateLimit;
 
     /** Boolean to say if we should check for duplicates. */
     private boolean checkForDuplicates;
 
-    /** Tracks number of matches made */
+    /** Tracks number of matches made. */
     private int matchCount;
 
-    /** Tracks number of errors */
+    /** Tracks number of errors. */
     private int errorCount;
 
-    /** The matcher */
+    /** The matcher. */
     private Matcher matcher;
 
     /**

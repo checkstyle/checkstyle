@@ -161,7 +161,7 @@ public class EmptyLineSeparatorCheck extends Check {
      */
     public static final String MSG_MULTIPLE_LINES = "empty.line.separator.multiple.lines";
 
-    /** */
+    /**. */
     private boolean allowNoEmptyLineBetweenFields;
 
     /** Allows multiple empty lines between class members. */

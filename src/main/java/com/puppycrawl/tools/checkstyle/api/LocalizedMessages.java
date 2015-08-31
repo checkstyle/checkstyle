@@ -29,7 +29,7 @@ import com.google.common.collect.Sets;
  * @author Oliver Burn
  */
 public final class LocalizedMessages {
-    /** Contains the messages logged **/
+    /** Contains the messages logged. **/
     private final Set<LocalizedMessage> messages = Sets.newTreeSet();
 
     /**

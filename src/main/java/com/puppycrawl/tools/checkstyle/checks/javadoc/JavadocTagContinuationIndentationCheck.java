@@ -51,7 +51,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      */
     public static final String MSG_KEY = "tag.continuation.indent";
 
-    /** Default tag continuation indentation */
+    /** Default tag continuation indentation. */
     private static final int DEFAULT_INDENTATION = 4;
 
     /**

@@ -344,9 +344,9 @@ public enum JavadocTagInfo {
         TokenTypes.ANNOTATION_DEF,
     };
 
-    /** Holds tag text to tag enum mappings **/
+    /** Holds tag text to tag enum mappings. **/
     private static final Map<String, JavadocTagInfo> TEXT_TO_TAG;
-    /** Holds tag name to tag enum mappings **/
+    /** Holds tag name to tag enum mappings. **/
     private static final Map<String, JavadocTagInfo> NAME_TO_TAG;
 
     static {
@@ -369,11 +369,11 @@ public enum JavadocTagInfo {
         Arrays.sort(DEF_TOKEN_TYPES_DEPRECATED);
     }
 
-    /** The tag text **/
+    /** The tag text. **/
     private final String text;
-    /** The tag name **/
+    /** The tag name. **/
     private final String name;
-    /** The tag type **/
+    /** The tag type. **/
     private final Type type;
 
     /**

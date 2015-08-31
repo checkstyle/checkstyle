@@ -57,7 +57,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
      */
     private static final String MSG_HEADER_MISMATCH = "header.mismatch";
 
-    /** The compiled regular expressions */
+    /** The compiled regular expressions. */
     private final List<Pattern> headerRegexps = Lists.newArrayList();
 
     /** The header lines to repeat (0 or more) in the check, sorted. */

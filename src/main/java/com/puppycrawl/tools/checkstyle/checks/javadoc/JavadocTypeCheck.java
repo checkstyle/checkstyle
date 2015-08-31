@@ -88,17 +88,17 @@ public class JavadocTypeCheck
     /** Close angle bracket literal. */
     private static final String CLOSE_ANGLE_BRACKET = ">";
 
-    /** The scope to check for */
+    /** The scope to check for. */
     private Scope scope = Scope.PRIVATE;
-    /** The visibility scope where Javadoc comments shouldn't be checked **/
+    /** The visibility scope where Javadoc comments shouldn't be checked. **/
     private Scope excludeScope;
-    /** Compiled regexp to match author tag content **/
+    /** Compiled regexp to match author tag content. **/
     private Pattern authorFormatPattern;
-    /** Compiled regexp to match version tag content **/
+    /** Compiled regexp to match version tag content. **/
     private Pattern versionFormatPattern;
-    /** Regexp to match author tag content */
+    /** Regexp to match author tag content. */
     private String authorFormat;
-    /** Regexp to match version tag content */
+    /** Regexp to match version tag content. */
     private String versionFormat;
     /**
      * Controls whether to ignore errors when a method has type parameters but

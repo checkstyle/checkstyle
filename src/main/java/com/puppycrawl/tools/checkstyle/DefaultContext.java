@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.Context;
  * @author lkuehne
  */
 public final class DefaultContext implements Context {
-    /** Stores the context entries */
+    /** Stores the context entries. */
     private final Map<String, Object> entries = Maps.newHashMap();
 
     @Override

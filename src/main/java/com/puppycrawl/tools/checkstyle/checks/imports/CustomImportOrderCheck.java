@@ -313,34 +313,34 @@ public class CustomImportOrderCheck extends Check {
     /** NON_GROUP group name. */
     private static final String NON_GROUP_RULE_GROUP = "NOT_ASSIGNED_TO_ANY_GROUP";
 
-    /** Pattern used to separate groups of imports */
+    /** Pattern used to separate groups of imports. */
     private static final Pattern GROUP_SEPARATOR_PATTERN = Pattern.compile("\\s*###\\s*");
 
-    /** RegExp for SAME_PACKAGE group imports */
+    /** RegExp for SAME_PACKAGE group imports. */
     private String samePackageDomainsRegExp = "";
 
-    /** RegExp for STANDARD_JAVA_PACKAGE group imports */
+    /** RegExp for STANDARD_JAVA_PACKAGE group imports. */
     private Pattern standardPackageRegExp = Pattern.compile("^(java|javax)\\.");
 
-    /** RegExp for THIRDPARTY_PACKAGE group imports */
+    /** RegExp for THIRDPARTY_PACKAGE group imports. */
     private Pattern thirdPartyPackageRegExp = Pattern.compile(".*");
 
-    /** RegExp for SPECIAL_IMPORTS group imports */
+    /** RegExp for SPECIAL_IMPORTS group imports. */
     private Pattern specialImportsRegExp = Pattern.compile("^$");
 
-    /** Force empty line separator between import groups */
+    /** Force empty line separator between import groups. */
     private boolean separateLineBetweenGroups = true;
 
-    /** Force grouping alphabetically, in ASCII order */
+    /** Force grouping alphabetically, in ASCII order. */
     private boolean sortImportsInGroupAlphabetically;
 
-    /** List of order declaration customizing by user */
+    /** List of order declaration customizing by user. */
     private final List<String> customImportOrderRules = new ArrayList<>();
 
     /** Number of first domains for SAME_PACKAGE group. */
     private int samePackageMatchingDepth = 2;
 
-    /** Contains objects with import attributes */
+    /** Contains objects with import attributes. */
     private final List<ImportDetails> importToGroupList = new ArrayList<>();
 
     /**
@@ -804,16 +804,16 @@ public class CustomImportOrderCheck extends Check {
      * @author max
      */
     private static class ImportDetails {
-        /** Import full path */
+        /** Import full path. */
         private final String importFullPath;
 
-        /** Import line number */
+        /** Import line number. */
         private final int lineNumber;
 
-        /** Import group */
+        /** Import group. */
         private final String importGroup;
 
-        /** Is static import */
+        /** Is static import. */
         private final boolean staticImport;
 
         /**

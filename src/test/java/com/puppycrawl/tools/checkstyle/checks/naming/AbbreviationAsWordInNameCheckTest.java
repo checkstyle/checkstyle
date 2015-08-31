@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
 
-    /** Warning message*/
+    /** Warning message. */
     private String warningMessage;
 
     @Test

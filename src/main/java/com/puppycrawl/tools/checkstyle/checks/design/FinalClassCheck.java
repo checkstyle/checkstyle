@@ -105,18 +105,18 @@ public class FinalClassCheck
         }
     }
 
-    /** Maintains information about class' ctors */
+    /** Maintains information about class' ctors. */
     private static final class ClassDesc {
-        /** Is class declared as final */
+        /** Is class declared as final. */
         private final boolean declaredAsFinal;
 
-        /** Is class declared as abstract */
+        /** Is class declared as abstract. */
         private final boolean declaredAsAbstract;
 
-        /** Does class have non-provate ctors */
+        /** Does class have non-provate ctors. */
         private boolean withNonPrivateCtor;
 
-        /** Does class have private ctors */
+        /** Does class have private ctors. */
         private boolean withPrivateCtor;
 
         /**

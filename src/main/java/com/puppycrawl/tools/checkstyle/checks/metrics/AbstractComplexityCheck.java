@@ -35,16 +35,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public abstract class AbstractComplexityCheck
     extends Check {
-    /** The initial current value */
+    /** The initial current value. */
     private static final BigInteger INITIAL_VALUE = BigInteger.ONE;
 
-    /** Stack of values - all but the current value */
+    /** Stack of values - all but the current value. */
     private final Deque<BigInteger> valueStack = new ArrayDeque<>();
 
-    /** The current value */
+    /** The current value. */
     private BigInteger currentValue = BigInteger.ZERO;
 
-    /** Threshold to report error for */
+    /** Threshold to report error for. */
     private int max;
 
     /**
@@ -151,7 +151,7 @@ public abstract class AbstractComplexityCheck
         currentValue = currentValue.add(by);
     }
 
-    /** Push the current value on the stack */
+    /** Push the current value on the stack. */
     protected final void pushValue() {
         valueStack.push(currentValue);
         currentValue = INITIAL_VALUE;
@@ -165,7 +165,7 @@ public abstract class AbstractComplexityCheck
         return currentValue;
     }
 
-    /** Process the start of the method definition */
+    /** Process the start of the method definition. */
     private void visitMethodDef() {
         pushValue();
     }

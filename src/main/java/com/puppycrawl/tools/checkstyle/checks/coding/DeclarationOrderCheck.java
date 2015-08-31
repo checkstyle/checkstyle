@@ -126,16 +126,16 @@ public class DeclarationOrderCheck extends Check {
      */
     public static final String MSG_ACCESS = "declaration.order.access";
 
-    /** State for the VARIABLE_DEF */
+    /** State for the VARIABLE_DEF. */
     private static final int STATE_STATIC_VARIABLE_DEF = 1;
 
-    /** State for the VARIABLE_DEF */
+    /** State for the VARIABLE_DEF. */
     private static final int STATE_INSTANCE_VARIABLE_DEF = 2;
 
-    /** State for the CTOR_DEF */
+    /** State for the CTOR_DEF. */
     private static final int STATE_CTOR_DEF = 3;
 
-    /** State for the METHOD_DEF */
+    /** State for the METHOD_DEF. */
     private static final int STATE_METHOD_DEF = 4;
 
     /**
@@ -283,10 +283,10 @@ public class DeclarationOrderCheck extends Check {
      * Private class to encapsulate the state
      */
     private static class ScopeState {
-        /** The state the check is in */
+        /** The state the check is in. */
         private int currentScopeState = STATE_STATIC_VARIABLE_DEF;
 
-        /** The sub-state the check is in */
+        /** The sub-state the check is in. */
         private Scope declarationAccess = Scope.PUBLIC;
     }
 }

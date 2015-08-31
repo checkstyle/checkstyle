@@ -38,7 +38,7 @@ import org.apache.commons.beanutils.ConversionException;
  */
 public final class CommonUtils {
 
-    /** Stop instances being created **/
+    /** Stop instances being created. **/
     private CommonUtils() {
 
     }

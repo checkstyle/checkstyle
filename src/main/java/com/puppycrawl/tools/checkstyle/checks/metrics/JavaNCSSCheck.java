@@ -58,25 +58,25 @@ public class JavaNCSSCheck extends Check {
      */
     public static final String MSG_FILE = "ncss.file";
 
-    /** Default constant for max file ncss */
+    /** Default constant for max file ncss. */
     private static final int FILE_MAX_NCSS = 2000;
 
-    /** Default constant for max file ncss */
+    /** Default constant for max file ncss. */
     private static final int CLASS_MAX_NCSS = 1500;
 
-    /** Default constant for max method ncss */
+    /** Default constant for max method ncss. */
     private static final int METHOD_MAX_NCSS = 50;
 
-    /** Maximum ncss for a complete source file */
+    /** Maximum ncss for a complete source file. */
     private int fileMaximum = FILE_MAX_NCSS;
 
-    /** Maximum ncss for a class */
+    /** Maximum ncss for a class. */
     private int classMaximum = CLASS_MAX_NCSS;
 
-    /** Maximum ncss for a method */
+    /** Maximum ncss for a method. */
     private int methodMaximum = METHOD_MAX_NCSS;
 
-    /** List containing the stacked counters */
+    /** List containing the stacked counters. */
     private Deque<Counter> counters;
 
     @Override
@@ -371,7 +371,7 @@ public class JavaNCSSCheck extends Check {
      * Class representing a counter,
      */
     private static class Counter {
-        /** The counters internal integer */
+        /** The counters internal integer. */
         private int count;
 
         /**

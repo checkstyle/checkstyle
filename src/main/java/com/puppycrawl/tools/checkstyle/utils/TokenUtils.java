@@ -35,12 +35,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class TokenUtils {
 
-    /** Maps from a token name to value */
+    /** Maps from a token name to value. */
     private static final ImmutableMap<String, Integer> TOKEN_NAME_TO_VALUE;
-    /** Maps from a token value to name */
+    /** Maps from a token value to name. */
     private static final String[] TOKEN_VALUE_TO_NAME;
 
-    /** Array of all token IDs */
+    /** Array of all token IDs. */
     private static final int[] TOKEN_IDS;
 
     /** Prefix for exception when getting token by given id. */
@@ -80,7 +80,7 @@ public final class TokenUtils {
         TOKEN_IDS = ArrayUtils.toPrimitive(ids);
     }
 
-    /** Stop instances being created **/
+    /** Stop instances being created. **/
     private TokenUtils() {
     }
 

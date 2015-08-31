@@ -296,10 +296,10 @@ public class VisibilityModifierCheck
         PROTECTED_ACCESS_MODIFIER,
     };
 
-    /** Whether protected members are allowed */
+    /** Whether protected members are allowed. */
     private boolean protectedAllowed;
 
-    /** Whether package visible members are allowed */
+    /** Whether package visible members are allowed. */
     private boolean packageAllowed;
 
     /**
@@ -311,7 +311,7 @@ public class VisibilityModifierCheck
      */
     private String publicMemberFormat = "^serialVersionUID$";
 
-    /** Regexp for public members that should be ignored */
+    /** Regexp for public members that should be ignored. */
     private Pattern publicMemberPattern = Pattern.compile(publicMemberFormat);
 
     /** List of ignore annotations canonical names. */

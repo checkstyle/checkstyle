@@ -99,7 +99,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
     public static final String MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED =
         "suppressed.warning.not.allowed";
 
-    /** {@link SuppressWarnings SuppressWarnings} annotation name */
+    /** {@link SuppressWarnings SuppressWarnings} annotation name. */
     private static final String SUPPRESS_WARNINGS = "SuppressWarnings";
 
     /**

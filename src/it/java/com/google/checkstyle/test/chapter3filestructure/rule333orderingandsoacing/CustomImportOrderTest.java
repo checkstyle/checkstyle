@@ -20,7 +20,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport{
     private final Class<CustomImportOrderCheck> clazz = CustomImportOrderCheck.class;
     String msgNongroup = "custom.import.order.nonGroup.import";
 
-    /** Shortcuts to make code more compact */
+    /** Shortcuts to make code more compact. */
     private static final String STD = CustomImportOrderCheck.STANDARD_JAVA_PACKAGE_RULE_GROUP;
     private static final String SPECIAL = CustomImportOrderCheck.SPECIAL_IMPORTS_RULE_GROUP;
 

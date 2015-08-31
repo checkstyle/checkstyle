@@ -70,7 +70,7 @@ public class HideUtilityClassConstructorCheckTest
         verify(checkConfig, getPath("design" + File.separator + "UtilityClassConstructorPrivate.java"), expected);
     }
 
-    /** Non-static methods - always OK */
+    /** Non-static methods - always OK. */
     @Test
     public void testNonUtilClass() throws Exception {
         final DefaultConfiguration checkConfig =

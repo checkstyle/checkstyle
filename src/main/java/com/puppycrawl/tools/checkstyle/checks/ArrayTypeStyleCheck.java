@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author lkuehne
  */
 public class ArrayTypeStyleCheck extends Check {
-    /** Controls whether to use Java or C style */
+    /** Controls whether to use Java or C style. */
     private boolean javaStyle = true;
 
     @Override

@@ -64,13 +64,13 @@ public class MethodLengthCheck extends Check {
      */
     public static final String MSG_KEY = "maxLen.method";
 
-    /** Default maximum number of lines */
+    /** Default maximum number of lines. */
     private static final int DEFAULT_MAX_LINES = 150;
 
-    /** Whether to ignore empty lines and single line comments */
+    /** Whether to ignore empty lines and single line comments. */
     private boolean countEmpty = true;
 
-    /** The maximum number of lines */
+    /** The maximum number of lines. */
     private int max = DEFAULT_MAX_LINES;
 
     @Override

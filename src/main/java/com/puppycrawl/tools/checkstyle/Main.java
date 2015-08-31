@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  **/
 public final class Main {
-    /** Exit code returned when execution finishes with {@link CheckstyleException}*/
+    /** Exit code returned when execution finishes with {@link CheckstyleException}. */
     private static final int EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE = -2;
 
     /** Name for the option 'v'. */
@@ -422,15 +422,15 @@ public final class Main {
 
     /** Helper structure to clear show what is required for Checker to run. **/
     private static class CliOptions {
-        /** Properties file location */
+        /** Properties file location. */
         private String propertiesLocation;
-        /** Config file location */
+        /** Config file location. */
         private String configLocation;
-        /** Output format */
+        /** Output format. */
         private String format;
-        /** Output file location */
+        /** Output file location. */
         private String outputLocation;
-        /** List of file to validate */
+        /** List of file to validate. */
         private List<File> files;
     }
 }

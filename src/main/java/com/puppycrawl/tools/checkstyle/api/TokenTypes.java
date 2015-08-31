@@ -3378,7 +3378,7 @@ public final class TokenTypes {
     public static final int COMMENT_CONTENT =
             GeneratedJavaTokenTypes.COMMENT_CONTENT;
 
-    /** Prevent instantiation */
+    /** Prevent instantiation. */
     private TokenTypes() {
     }
 

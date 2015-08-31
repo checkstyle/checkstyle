@@ -47,7 +47,7 @@ public enum LineSeparatorOption {
     /** System default line separators. **/
     SYSTEM(System.getProperty("line.separator"));
 
-    /** The line separator representation */
+    /** The line separator representation. */
     private final byte[] lineSeparator;
 
     /**

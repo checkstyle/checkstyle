@@ -72,7 +72,7 @@ public class SuppressionCommentFilter
     /** Turns checkstyle reporting on. */
     private static final String DEFAULT_ON_FORMAT = "CHECKSTYLE\\:ON";
 
-    /** Control all checks */
+    /** Control all checks. */
     private static final String DEFAULT_CHECK_FORMAT = ".*";
 
     /** Whether to look in comments of the C type. */
@@ -93,7 +93,7 @@ public class SuppressionCommentFilter
     /** The message format to suppress. */
     private String messageFormat;
 
-    /** Tagged comments */
+    /** Tagged comments. */
     private final List<Tag> tags = Lists.newArrayList();
 
     /**

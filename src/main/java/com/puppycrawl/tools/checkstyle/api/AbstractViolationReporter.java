@@ -30,10 +30,10 @@ import java.util.Map;
  */
 public abstract class AbstractViolationReporter
     extends AutomaticBean {
-    /** The severity level of any violations found */
+    /** The severity level of any violations found. */
     private SeverityLevel severityLevel = SeverityLevel.ERROR;
 
-    /** The identifier of the reporter */
+    /** The identifier of the reporter. */
     private String id;
 
     /**

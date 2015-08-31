@@ -46,19 +46,19 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
  */
 public final class SuppressionsLoader
     extends AbstractLoader {
-    /** The public ID for the configuration dtd */
+    /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Suppressions 1.0//EN";
-    /** The resource for the configuration dtd */
+    /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_0 =
         "com/puppycrawl/tools/checkstyle/suppressions_1_0.dtd";
-    /** The public ID for the configuration dtd */
+    /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_1 =
         "-//Puppy Crawl//DTD Suppressions 1.1//EN";
-    /** The resource for the configuration dtd */
+    /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_1 =
         "com/puppycrawl/tools/checkstyle/suppressions_1_1.dtd";
-    /** File search error message **/
+    /** File search error message. **/
     private static final String UNABLE_TO_FIND_ERROR_MESSAGE = "Unable to find: ";
 
     /**

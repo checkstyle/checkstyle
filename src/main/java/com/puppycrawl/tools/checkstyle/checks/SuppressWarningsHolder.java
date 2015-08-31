@@ -59,10 +59,10 @@ public class SuppressWarningsHolder
     /** Java.lang namespace prefix, which is stripped from SuppressWarnings */
     private static final String JAVA_LANG_PREFIX = "java.lang.";
 
-    /** Suffix to be removed from subclasses of Check */
+    /** Suffix to be removed from subclasses of Check. */
     private static final String CHECK_SUFFIX = "Check";
 
-    /** A map from check source names to suppression aliases */
+    /** A map from check source names to suppression aliases. */
     private static final Map<String, String> CHECK_ALIAS_MAP = new HashMap<>();
 
     /**
@@ -441,17 +441,17 @@ public class SuppressWarningsHolder
             "Expression or annotation array initializer AST expected: " + ast);
     }
 
-    /** Records a particular suppression for a region of a file */
+    /** Records a particular suppression for a region of a file. */
     private static class Entry {
-        /** The source name of the suppressed check */
+        /** The source name of the suppressed check. */
         private final String checkName;
-        /** The suppression region for the check - first line */
+        /** The suppression region for the check - first line. */
         private final int firstLine;
-        /** The suppression region for the check - first column */
+        /** The suppression region for the check - first column. */
         private final int firstColumn;
-        /** The suppression region for the check - last line */
+        /** The suppression region for the check - last line. */
         private final int lastLine;
-        /** The suppression region for the check - last column */
+        /** The suppression region for the check - last column. */
         private final int lastColumn;
 
         /**

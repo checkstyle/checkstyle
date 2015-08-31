@@ -42,23 +42,23 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * @author Oliver Burn
  */
 final class ImportControlLoader extends AbstractLoader {
-    /** The public ID for the configuration dtd */
+    /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Import Control 1.0//EN";
 
-    /** The public ID for the configuration dtd */
+    /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_1 =
         "-//Puppy Crawl//DTD Import Control 1.1//EN";
 
-    /** The resource for the configuration dtd */
+    /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_0 =
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_0.dtd";
 
-    /** The resource for the configuration dtd */
+    /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_1 =
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_1.dtd";
 
-    /** The map to lookup the resource name by the id */
+    /** The map to lookup the resource name by the id. */
     private static final Map<String, String> DTD_RESOURCE_BY_ID = new HashMap<>();
 
     /** Name for attribute 'pkg'. */

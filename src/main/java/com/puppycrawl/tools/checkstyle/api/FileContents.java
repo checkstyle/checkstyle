@@ -42,14 +42,14 @@ public final class FileContents implements CommentListener {
      * itself -- no code.
      */
     private static final String MATCH_SINGLELINE_COMMENT_PAT = "^\\s*//.*$";
-    /** Compiled regexp to match a single-line comment line */
+    /** Compiled regexp to match a single-line comment line. */
     private static final Pattern MATCH_SINGLELINE_COMMENT = Pattern
             .compile(MATCH_SINGLELINE_COMMENT_PAT);
 
-    /** The file name */
+    /** The file name. */
     private final String fileName;
 
-    /** The text */
+    /** The text. */
     private final FileText text;
 
     /** Map of the Javadoc comments indexed on the last line of the comment.

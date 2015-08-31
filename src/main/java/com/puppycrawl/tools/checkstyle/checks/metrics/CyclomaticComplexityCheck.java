@@ -44,7 +44,7 @@ public class CyclomaticComplexityCheck
      */
     public static final String MSG_KEY = "cyclomaticComplexity";
 
-    /** Default allowed complexity */
+    /** Default allowed complexity. */
     private static final int DEFAULT_VALUE = 10;
 
     /** Create an instance. */

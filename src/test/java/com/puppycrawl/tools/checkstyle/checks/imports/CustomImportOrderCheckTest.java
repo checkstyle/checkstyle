@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
-    /** Shortcuts to make code more compact */
+    /** Shortcuts to make code more compact. */
     private static final String STATIC = CustomImportOrderCheck.STATIC_RULE_GROUP;
     private static final String SAME = CustomImportOrderCheck.SAME_PACKAGE_RULE_GROUP;
     private static final String THIRD = CustomImportOrderCheck.THIRD_PARTY_PACKAGE_RULE_GROUP;

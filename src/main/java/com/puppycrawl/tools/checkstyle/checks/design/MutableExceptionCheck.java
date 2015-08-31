@@ -49,7 +49,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
 
     /** Default value for format and extendedClassNameFormat properties. */
     private static final String DEFAULT_FORMAT = "^.*Exception$|^.*Error$|^.*Throwable$";
-    /** Pattern for class name that is being extended */
+    /** Pattern for class name that is being extended. */
     private String extendedClassNameFormat;
     /** Stack of checking information for classes. */
     private final Deque<Boolean> checkingStack = new ArrayDeque<>();

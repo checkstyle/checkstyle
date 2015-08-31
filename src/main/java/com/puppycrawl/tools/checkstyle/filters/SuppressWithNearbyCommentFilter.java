@@ -107,7 +107,7 @@ public class SuppressWithNearbyCommentFilter
     /** The influence of the suppression comment. */
     private String influenceFormat;
 
-    /** Tagged comments */
+    /** Tagged comments. */
     private final List<Tag> tags = Lists.newArrayList();
 
     /**

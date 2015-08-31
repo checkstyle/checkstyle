@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public abstract class BaseCheckTestSupport
 {
-    /** A brief logger that only display info about errors */
+    /** A brief logger that only display info about errors. */
     static class BriefLogger
         extends DefaultLogger
     {

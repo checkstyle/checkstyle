@@ -81,13 +81,13 @@ public class TranslationCheck
      */
     public static final String MSG_KEY = "translation.missingKey";
 
-    /** Logger for TranslationCheck */
+    /** Logger for TranslationCheck. */
     private static final Log LOG = LogFactory.getLog(TranslationCheck.class);
 
     /** The property files to process. */
     private final List<File> propertyFiles = Lists.newArrayList();
 
-    /** The separator string used to separate translation files */
+    /** The separator string used to separate translation files. */
     private String basenameSeparator;
 
     /**

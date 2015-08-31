@@ -47,11 +47,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 public final class PackageNamesLoader
     extends AbstractLoader {
-    /** The public ID for the configuration dtd */
+    /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID =
         "-//Puppy Crawl//DTD Package Names 1.0//EN";
 
-    /** The resource for the configuration dtd */
+    /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME =
         "com/puppycrawl/tools/checkstyle/packages_1_0.dtd";
 
@@ -64,7 +64,7 @@ public final class PackageNamesLoader
     /** Qualified name for element 'package'. */
     private static final String PACKAGE_ELEMENT_NAME = "package";
 
-    /** The temporary stack of package name parts */
+    /** The temporary stack of package name parts. */
     private final Deque<String> packageStack = new ArrayDeque<>();
 
     /** The fully qualified package names. */

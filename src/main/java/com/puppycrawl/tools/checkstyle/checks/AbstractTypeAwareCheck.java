@@ -44,10 +44,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 @Deprecated
 public abstract class AbstractTypeAwareCheck extends Check {
-    /** Imports details **/
+    /** Imports details. **/
     private final Set<String> imports = Sets.newHashSet();
 
-    /** Full identifier for package of the method **/
+    /** Full identifier for package of the method. **/
     private FullIdent packageFullIdent;
 
     /** Name of current class. */

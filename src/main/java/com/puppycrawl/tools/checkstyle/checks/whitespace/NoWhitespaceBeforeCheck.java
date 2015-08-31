@@ -68,7 +68,7 @@ public class NoWhitespaceBeforeCheck
      */
     public static final String MSG_KEY = "ws.preceded";
 
-    /** Whether whitespace is allowed if the AST is at a linebreak */
+    /** Whether whitespace is allowed if the AST is at a linebreak. */
     private boolean allowLineBreaks;
 
     @Override

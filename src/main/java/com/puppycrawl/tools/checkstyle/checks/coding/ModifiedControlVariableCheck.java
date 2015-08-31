@@ -109,7 +109,7 @@ public final class ModifiedControlVariableCheck extends Check {
      */
     private static final String ILLEGAL_TYPE_OF_TOKEN = "Illegal type of token: ";
 
-    /** Operations which can change control variable in update part of the loop*/
+    /** Operations which can change control variable in update part of the loop. */
     private static final Set<Integer> MUTATION_OPERATIONS =
             Sets.newHashSet(TokenTypes.POST_INC, TokenTypes.POST_DEC, TokenTypes.DEC,
                     TokenTypes.INC, TokenTypes.ASSIGN);

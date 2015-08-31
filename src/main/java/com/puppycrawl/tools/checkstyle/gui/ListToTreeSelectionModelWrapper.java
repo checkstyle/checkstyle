@@ -38,7 +38,7 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
     private static final long serialVersionUID = 2267930983939339510L;
     /** Set to true when we are updating the ListSelectionModel. */
     private boolean updatingListSelectionModel;
-    /** JTreeTable to perform updates on */
+    /** JTreeTable to perform updates on. */
     private final JTreeTable treeTable;
 
     /**

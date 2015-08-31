@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *
  * <p>
  * The basic idea behind this is that while
- * pretty printers are sometimes convenient for bulk reformats of
+ * pretty printers are sometimes convenient for.  reformats of
  * legacy code, they often either aren't configurable enough or
  * just can't anticipate how format should be done.  Sometimes this is
  * personal preference, other times it is practical experience.  In any
@@ -80,25 +80,25 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author maxvetrenko
  */
 public class IndentationCheck extends Check {
-    /** Default indentation amount - based on Sun */
+    /** Default indentation amount - based on Sun. */
     private static final int DEFAULT_INDENTATION = 4;
 
-    /** How many tabs or spaces to use */
+    /** How many tabs or spaces to use. */
     private int basicOffset = DEFAULT_INDENTATION;
 
-    /** How much to indent a case label */
+    /** How much to indent a case label. */
     private int caseIndent = DEFAULT_INDENTATION;
 
-    /** How far brace should be indented when on next line */
+    /** How far brace should be indented when on next line. */
     private int braceAdjustment;
 
-    /** How far throws should be indented when on next line */
+    /** How far throws should be indented when on next line. */
     private int throwsIndent = DEFAULT_INDENTATION;
 
-    /** How much to indent an array initialization when on next line */
+    /** How much to indent an array initialization when on next line. */
     private int arrayInitIndent = DEFAULT_INDENTATION;
 
-    /** How far continuation line should be indented when line-wrapping is present */
+    /** How far continuation line should be indented when line-wrapping is present. */
     private int lineWrappingIndentation = DEFAULT_INDENTATION;
 
     /**
@@ -108,10 +108,10 @@ public class IndentationCheck extends Check {
      */
     private boolean forceStrictCondition;
 
-    /** Handlers currently in use */
+    /** Handlers currently in use. */
     private final Deque<AbstractExpressionHandler> handlers = new ArrayDeque<>();
 
-    /** Factory from which handlers are distributed */
+    /** Factory from which handlers are distributed. */
     private final HandlerFactory handlerFactory = new HandlerFactory();
 
     /**

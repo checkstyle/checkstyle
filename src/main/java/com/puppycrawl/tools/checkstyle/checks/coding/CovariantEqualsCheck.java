@@ -50,7 +50,7 @@ public class CovariantEqualsCheck extends Check {
      */
     public static final String MSG_KEY = "covariant.equals";
 
-    /** Set of equals method definitions */
+    /** Set of equals method definitions. */
     private final Set<DetailAST> equalsMethods = Sets.newHashSet();
 
     @Override

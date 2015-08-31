@@ -106,25 +106,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class AvoidEscapedUnicodeCharactersCheck
     extends Check {
-    /** Regular expression for Unicode chars */
+    /** Regular expression for Unicode chars. */
     private static final Pattern UNICODE_REGEXP = Pattern.compile("\\\\u[a-fA-F0-9]{4}");
 
-    /** Regular expression Unicode control characters */
+    /** Regular expression Unicode control characters. */
     private static final Pattern UNICODE_CONTROL = Pattern.compile("\\\\(u|U)"
             + "(00[0-1][0-1A-Fa-f]|00[8-9][0-9A-Fa-f]|034(f|F)|070(f|F)"
             + "|180(e|E)|200[b-fB-F]|202[b-eB-E]|206[0-4a-fA-F]"
             + "|[fF]{3}[9a-bA-B]|[fF][eE][fF]{2})");
 
-    /** Regular expression for trail comment */
+    /** Regular expression for trail comment. */
     private static final Pattern COMMENT_REGEXP = Pattern.compile(";[ ]*//+"
             + "[a-zA-Z0-9 ]*|;[ ]*/[*]+[a-zA-Z0-9 ]*");
 
-    /** Regular expression for all escaped chars */
+    /** Regular expression for all escaped chars. */
     private static final Pattern ALL_ESCAPED_CHARS =
             Pattern.compile("^((\\\\u)[a-fA-F0-9]{4}"
                     + "||\\\\b|\\\\t|\\\\n|\\\\f|\\\\r|\\\\|\"|\')+$");
 
-    /** Regular expression for non-printable unicode chars */
+    /** Regular expression for non-printable unicode chars. */
     private static final Pattern NON_PRINTABLE_CHARS = Pattern.compile("\\\\u1680|\\\\u2028"
             + "|\\\\u2029|\\\\u205(f|F)|\\\\u3000|\\\\u2007|\\\\u2000|\\\\u200(a|A)"
             + "|\\\\u007(F|f)|\\\\u009(f|F)|\\\\u(f|F){4}|\\\\u007(F|f)|\\\\u00(a|A)(d|D)"
@@ -149,13 +149,13 @@ public class AvoidEscapedUnicodeCharactersCheck
     /** Allow use escapes for non-printable(control) characters.  */
     private boolean allowEscapesForControlCharacters;
 
-    /** Allow use escapes if trail comment is present*/
+    /** Allow use escapes if trail comment is present. */
     private boolean allowByTailComment;
 
-    /** Allow if all characters in literal are escaped*/
+    /** Allow if all characters in literal are escaped. */
     private boolean allowIfAllCharactersEscaped;
 
-    /** Allow escapes for space literals*/
+    /** Allow escapes for space literals. */
     private boolean allowNonPrintableEscapes;
 
     /**

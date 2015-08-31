@@ -43,20 +43,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 public class XMLLogger
     extends AutomaticBean
     implements AuditListener {
-    /** Decimal radix */
+    /** Decimal radix. */
     private static final int BASE_10 = 10;
 
-    /** Hex radix */
+    /** Hex radix. */
     private static final int BASE_16 = 16;
 
-    /** Some known entities to detect */
+    /** Some known entities to detect. */
     private static final String[] ENTITIES = {"gt", "amp", "lt", "apos",
                                               "quot", };
 
-    /** Close output stream in auditFinished */
+    /** Close output stream in auditFinished. */
     private final boolean closeStream;
 
-    /** Helper writer that allows easy encoding and printing */
+    /** Helper writer that allows easy encoding and printing. */
     private PrintWriter writer;
 
     /**

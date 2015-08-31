@@ -72,7 +72,7 @@ public class NoWhitespaceAfterCheck extends Check {
      */
     public static final String MSG_KEY = "ws.followed";
 
-    /** Whether whitespace is allowed if the AST is at a linebreak */
+    /** Whether whitespace is allowed if the AST is at a linebreak. */
     private boolean allowLineBreaks = true;
 
     @Override

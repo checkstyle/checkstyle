@@ -33,7 +33,7 @@ import com.google.common.collect.Sets;
  */
 public class FilterSet
     implements Filter {
-    /** Filter set */
+    /** Filter set. */
     private final Set<Filter> filters = Sets.newHashSet();
 
     /**

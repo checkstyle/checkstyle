@@ -40,10 +40,10 @@ public final class ExecutableStatementCountCheck
      */
     public static final String MSG_KEY = "executableStatementCount";
 
-    /** Default threshold */
+    /** Default threshold. */
     private static final int DEFAULT_MAX = 30;
 
-    /** Threshold to report error for */
+    /** Threshold to report error for. */
     private int max;
 
     /** Stack of method contexts. */

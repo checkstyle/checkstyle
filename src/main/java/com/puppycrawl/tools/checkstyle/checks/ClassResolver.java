@@ -36,11 +36,11 @@ public class ClassResolver {
     /** Dollar sign literal. */
     private static final String DOLLAR_SIGN = "$";
 
-    /** Name of the package to check if the class belongs to **/
+    /** Name of the package to check if the class belongs to. **/
     private final String pkg;
-    /** Set of imports to check against **/
+    /** Set of imports to check against. **/
     private final Set<String> imports;
-    /** Use to load classes **/
+    /** Use to load classes. **/
     private final ClassLoader loader;
 
     /**

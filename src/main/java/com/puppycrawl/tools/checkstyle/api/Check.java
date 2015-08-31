@@ -35,19 +35,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * your own checks</a>
  */
 public abstract class Check extends AbstractViolationReporter {
-    /** Default tab width for column reporting */
+    /** Default tab width for column reporting. */
     private static final int DEFAULT_TAB_WIDTH = 8;
 
-    /** The current file contents */
+    /** The current file contents. */
     private FileContents fileContents;
 
-    /** The tokens the check is interested in */
+    /** The tokens the check is interested in. */
     private final Set<String> tokens = Sets.newHashSet();
 
     /** The object for collecting messages. */
     private LocalizedMessages messages;
 
-    /** The tab width for column reporting */
+    /** The tab width for column reporting. */
     private int tabWidth = DEFAULT_TAB_WIDTH;
 
     /**

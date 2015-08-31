@@ -31,11 +31,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * Helper class to select a code.
  */
 public class CodeSelector {
-    /** DetailAST node*/
+    /** DetailAST node. */
     private final DetailAST ast;
-    /** Editor */
+    /** Editor. */
     private final JTextArea editor;
-    /** Mapping */
+    /** Mapping. */
     private final List<Integer> lines2position;
 
     /**

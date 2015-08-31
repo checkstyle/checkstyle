@@ -9,7 +9,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 
 class DebugAuditAdapter implements AuditListener {
-    /** Keeps track of the number of errors */
+    /** Keeps track of the number of errors. */
     private boolean called;
 
     public boolean wasCalled() {

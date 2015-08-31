@@ -66,7 +66,7 @@ public class IllegalImportCheck
      */
     public static final String MSG_KEY = "import.illegal";
 
-    /** List of illegal packages */
+    /** List of illegal packages. */
     private String[] illegalPkgs;
 
     /**

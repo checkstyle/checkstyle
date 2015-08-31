@@ -40,7 +40,7 @@ public class HandlerFactory {
     private final Map<Integer, Constructor<?>> typeHandlers =
         Maps.newHashMap();
 
-    /** Cache for created method call handlers */
+    /** Cache for created method call handlers. */
     private final Map<DetailAST, AbstractExpressionHandler> createdHandlers =
         Maps.newHashMap();
 

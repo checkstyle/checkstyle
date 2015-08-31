@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
  * @author Oliver Burn
  */
 public abstract class AbstractIllegalCheck extends Check {
-    /** Illegal class names */
+    /** Illegal class names. */
     private final Set<String> illegalClassNames = Sets.newHashSet();
 
     /**

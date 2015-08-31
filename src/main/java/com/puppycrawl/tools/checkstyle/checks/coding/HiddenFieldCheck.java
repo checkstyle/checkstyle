@@ -143,7 +143,7 @@ public class HiddenFieldCheck
     /** Pattern for names of variables and parameters to ignore. */
     private Pattern regexp;
 
-    /** Controls whether to check the parameter of a property setter method */
+    /** Controls whether to check the parameter of a property setter method. */
     private boolean ignoreSetter;
 
     /**
@@ -154,7 +154,7 @@ public class HiddenFieldCheck
      */
     private boolean setterCanReturnItsClass;
 
-    /** Controls whether to check the parameter of a constructor */
+    /** Controls whether to check the parameter of a constructor. */
     private boolean ignoreConstructorParameter;
 
     /** Controls whether to check the parameter of abstract methods. */
@@ -520,19 +520,19 @@ public class HiddenFieldCheck
      * @author Rick Giles
      */
     private static class FieldFrame {
-        /** Name of the frame, such name of the class or enum declaration */
+        /** Name of the frame, such name of the class or enum declaration. */
         private final String frameName;
 
-        /** Is this a static inner type */
+        /** Is this a static inner type. */
         private final boolean staticType;
 
         /** Parent frame. */
         private final FieldFrame parent;
 
-        /** Set of instance field names */
+        /** Set of instance field names. */
         private final Set<String> instanceFields = Sets.newHashSet();
 
-        /** Set of static field names */
+        /** Set of static field names. */
         private final Set<String> staticFields = Sets.newHashSet();
 
         /**

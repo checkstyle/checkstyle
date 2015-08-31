@@ -61,39 +61,39 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
  * @author Oliver Burn
  */
 public class CheckstyleAntTask extends Task {
-    /** Poor man's enum for an xml formatter */
+    /** Poor man's enum for an xml formatter. */
     private static final String E_XML = "xml";
-    /** Poor man's enum for an plain formatter */
+    /** Poor man's enum for an plain formatter. */
     private static final String E_PLAIN = "plain";
 
     /** Suffix for time string. */
     private static final String TIME_SUFFIX = " ms.";
 
-    /** Class path to locate class files */
+    /** Class path to locate class files. */
     private Path classpath;
 
-    /** Name of file to check */
+    /** Name of file to check. */
     private String fileName;
 
-    /** Config file containing configuration */
+    /** Config file containing configuration. */
     private String configLocation;
 
-    /** Whether to fail build on violations */
+    /** Whether to fail build on violations. */
     private boolean failOnViolation = true;
 
-    /** Property to set on violations */
+    /** Property to set on violations. */
     private String failureProperty;
 
-    /** Contains the filesets to process */
+    /** Contains the filesets to process. */
     private final List<FileSet> fileSets = Lists.newArrayList();
 
-    /** Contains the formatters to log to */
+    /** Contains the formatters to log to. */
     private final List<Formatter> formatters = Lists.newArrayList();
 
-    /** Contains the Properties to override */
+    /** Contains the Properties to override. */
     private final List<Property> overrideProps = Lists.newArrayList();
 
-    /** The name of the properties file */
+    /** The name of the properties file. */
     private File properties;
 
     /** The maximum number of errors that are tolerated. */
@@ -508,7 +508,7 @@ public class CheckstyleAntTask extends Task {
      * @author Oliver Burn
      */
     public static class FormatterType extends EnumeratedAttribute {
-        /** My possible values */
+        /** My possible values. */
         private static final String[] VALUES = {E_XML, E_PLAIN};
 
         @Override
@@ -522,9 +522,9 @@ public class CheckstyleAntTask extends Task {
      * @author Oliver Burn
      */
     public static class Formatter {
-        /** The formatter type */
+        /** The formatter type. */
         private FormatterType formatterType;
-        /** The file to output to */
+        /** The file to output to. */
         private File toFile;
         /** Whether or not the write to the named file. */
         private boolean useFile = true;
@@ -605,9 +605,9 @@ public class CheckstyleAntTask extends Task {
      * Represents a property that consists of a key and value.
      */
     public static class Property {
-        /** The property key */
+        /** The property key. */
         private String key;
-        /** The property value */
+        /** The property value. */
         private String value;
 
         /**
@@ -648,7 +648,7 @@ public class CheckstyleAntTask extends Task {
 
     /** Represents a custom listener. */
     public static class Listener {
-        /** Class name of the listener class */
+        /** Class name of the listener class. */
         private String className;
 
         /**

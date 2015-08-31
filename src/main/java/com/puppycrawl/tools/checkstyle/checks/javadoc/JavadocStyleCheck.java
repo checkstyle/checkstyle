@@ -84,7 +84,7 @@ public class JavadocStyleCheck
     /** The scope to check. */
     private Scope scope = Scope.PRIVATE;
 
-    /** The visibility scope where Javadoc comments shouldn't be checked **/
+    /** The visibility scope where Javadoc comments shouldn't be checked. **/
     private Scope excludeScope;
 
     /** Format for matching the end of a sentence. */

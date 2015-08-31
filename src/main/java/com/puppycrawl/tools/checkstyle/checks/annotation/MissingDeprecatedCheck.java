@@ -93,10 +93,10 @@ public final class MissingDeprecatedCheck extends Check {
      */
     public static final String MSG_KEY_JAVADOC_MISSING = "javadoc.missing";
 
-    /** {@link Deprecated Deprecated} annotation name */
+    /** {@link Deprecated Deprecated} annotation name. */
     private static final String DEPRECATED = "Deprecated";
 
-    /** Fully-qualified {@link Deprecated Deprecated} annotation name */
+    /** Fully-qualified {@link Deprecated Deprecated} annotation name. */
     private static final String FQ_DEPRECATED = "java.lang." + DEPRECATED;
 
     /** Compiled regexp to match Javadoc tag with no argument * */

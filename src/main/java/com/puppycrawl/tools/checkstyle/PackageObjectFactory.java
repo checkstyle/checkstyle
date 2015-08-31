@@ -43,7 +43,7 @@ class PackageObjectFactory implements ModuleFactory {
     /** Exception message when it is unable to create a class instance. */
     private static final String UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE = "Unable to instantiate ";
 
-    /** A list of package names to prepend to class names */
+    /** A list of package names to prepend to class names. */
     private final Set<String> packages;
 
     /** The class loader used to load Checkstyle core and custom modules. */

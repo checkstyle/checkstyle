@@ -49,14 +49,14 @@ public class DefaultLogger
     /** Encoding name. */
     private static final String UTF8_CHARSET_NAME = "UTF-8";
 
-    /** Where to write info messages **/
+    /** Where to write info messages. **/
     private final PrintWriter infoWriter;
-    /** Close info stream after use */
+    /** Close info stream after use. */
     private final boolean closeInfo;
 
-    /** Where to write error messages **/
+    /** Where to write error messages. **/
     private final PrintWriter errorWriter;
-    /** Close error stream after use */
+    /** Close error stream after use. */
     private final boolean closeError;
 
     /**

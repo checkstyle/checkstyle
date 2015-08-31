@@ -81,36 +81,36 @@ public final class TreeWalker
         WITH_COMMENTS
     }
 
-    /** Default distance between tab stops */
+    /** Default distance between tab stops. */
     private static final int DEFAULT_TAB_WIDTH = 8;
 
-    /** Logger for debug purpose */
+    /** Logger for debug purpose. */
     private static final Log LOG = LogFactory.getLog(TreeWalker.class);
 
-    /** Maps from token name to ordinary checks */
+    /** Maps from token name to ordinary checks. */
     private final Multimap<String, Check> tokenToOrdinaryChecks =
         HashMultimap.create();
 
-    /** Maps from token name to comment checks */
+    /** Maps from token name to comment checks. */
     private final Multimap<String, Check> tokenToCommentChecks =
             HashMultimap.create();
 
-    /** Registered ordinary checks, that don't use comment nodes */
+    /** Registered ordinary checks, that don't use comment nodes. */
     private final Set<Check> ordinaryChecks = Sets.newHashSet();
 
-    /** Registered comment checks */
+    /** Registered comment checks. */
     private final Set<Check> commentChecks = Sets.newHashSet();
 
-    /** The distance between tab stops */
+    /** The distance between tab stops. */
     private int tabWidth = DEFAULT_TAB_WIDTH;
 
-    /** Cache file **/
+    /** Cache file. **/
     private PropertyCacheFile cache;
 
     /** Class loader to resolve classes with. **/
     private ClassLoader classLoader;
 
-    /** Context of child components */
+    /** Context of child components. */
     private Context childContext;
 
     /** A factory for creating submodules (i.e. the Checks) */

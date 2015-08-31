@@ -193,21 +193,21 @@ public class DescendantTokenCheck extends Check {
      */
     public static final String MSG_KEY_SUM_MAX = "descendant.token.sum.max";
 
-    /** Minimum depth */
+    /** Minimum depth. */
     private int minimumDepth;
-    /** Maximum depth */
+    /** Maximum depth. */
     private int maximumDepth = Integer.MAX_VALUE;
-    /** Minimum number */
+    /** Minimum number. */
     private int minimumNumber;
-    /** Maximum number */
+    /** Maximum number. */
     private int maximumNumber = Integer.MAX_VALUE;
     /** Whether to sum the number of tokens found. */
     private boolean sumTokenCounts;
-    /** Limited tokens */
+    /** Limited tokens. */
     private int[] limitedTokens = ArrayUtils.EMPTY_INT_ARRAY;
-    /** Error message when minimum count not reached */
+    /** Error message when minimum count not reached. */
     private String minimumMessage;
-    /** Error message when maximum count exceeded */
+    /** Error message when maximum count exceeded. */
     private String maximumMessage;
 
     /**

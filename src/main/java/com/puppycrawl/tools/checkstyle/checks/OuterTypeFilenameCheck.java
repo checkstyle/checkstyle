@@ -32,22 +32,22 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author maxvetrenko
  */
 public class OuterTypeFilenameCheck extends Check {
-    /** Pattern matching any file extension with dot included */
+    /** Pattern matching any file extension with dot included. */
     private static final Pattern FILE_EXTENSION_PATTERN = Pattern.compile("\\.[^\\.]*$");
 
     /** Indicates whether the first token has been seen in the file. */
     private boolean seenFirstToken;
 
-    /** Current file name*/
+    /** Current file name. */
     private String fileName;
 
-    /** If file has public type*/
+    /** If file has public type. */
     private boolean hasPublic;
 
-    /** If first type has has same name as file*/
+    /** If first type has has same name as file. */
     private boolean validFirst;
 
-    /** Outer type with mismatched file name*/
+    /** Outer type with mismatched file name. */
     private DetailAST wrongType;
 
     @Override

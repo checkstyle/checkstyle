@@ -37,7 +37,7 @@ import org.junit.Test;
 
 public class CommonUtilsTest {
 
-    /** After appending to path produces equivalent, but denormalized path */
+    /** After appending to path produces equivalent, but denormalized path. */
     private static final String PATH_DENORMALIZER = "/levelDown/.././";
 
     @Test

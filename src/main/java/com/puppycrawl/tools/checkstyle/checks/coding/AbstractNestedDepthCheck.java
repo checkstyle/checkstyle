@@ -28,9 +28,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
 public abstract class AbstractNestedDepthCheck extends Check {
-    /** Maximum allowed nesting depth */
+    /** Maximum allowed nesting depth. */
     private int max;
-    /** Current nesting depth */
+    /** Current nesting depth. */
     private int depth;
 
     /**
@@ -71,7 +71,7 @@ public abstract class AbstractNestedDepthCheck extends Check {
         ++depth;
     }
 
-    /** Decreasing current nesting depth */
+    /** Decreasing current nesting depth. */
     protected final void nestOut() {
         --depth;
     }

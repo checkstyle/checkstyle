@@ -86,16 +86,16 @@ public class WriteTagCheck
      */
     public static final String TAG_FORMAT = "type.tagFormat";
 
-    /** Compiled regexp to match tag **/
+    /** Compiled regexp to match tag. **/
     private Pattern tagRE;
-    /** Compiled regexp to match tag content **/
+    /** Compiled regexp to match tag content. **/
     private Pattern tagFormatRE;
 
-    /** Regexp to match tag */
+    /** Regexp to match tag. */
     private String tag;
-    /** Regexp to match tag content */
+    /** Regexp to match tag content. */
     private String tagFormat;
-    /** The severity level of found tag reports */
+    /** The severity level of found tag reports. */
     private SeverityLevel tagSeverityLevel = SeverityLevel.INFO;
 
     /**

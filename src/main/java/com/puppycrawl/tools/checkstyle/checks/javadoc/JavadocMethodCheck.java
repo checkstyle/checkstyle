@@ -968,7 +968,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             this.classInfo = classInfo;
         }
 
-        /** Mark that the exception has associated throws tag */
+        /** Mark that the exception has associated throws tag. */
         final void setFound() {
             found = true;
         }

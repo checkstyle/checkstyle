@@ -41,31 +41,31 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 public class SuppressElement
     implements Filter {
-    /** The regexp to match file names against */
+    /** The regexp to match file names against. */
     private final Pattern fileRegexp;
 
-    /** The pattern for file names*/
+    /** The pattern for file names. */
     private final String filePattern;
 
-    /** The regexp to match check names against */
+    /** The regexp to match check names against. */
     private Pattern checkRegexp;
 
-    /** The pattern for check class names*/
+    /** The pattern for check class names. */
     private String checkPattern;
 
     /** Module id filter. */
     private String moduleId;
 
-    /** Line number filter */
+    /** Line number filter. */
     private CSVFilter lineFilter;
 
-    /** CSV for line number filter */
+    /** CSV for line number filter. */
     private String linesCSV;
 
-    /** Column number filter */
+    /** Column number filter. */
     private CSVFilter columnFilter;
 
-    /** CSV for column number filter */
+    /** CSV for column number filter. */
     private String columnsCSV;
 
     /**

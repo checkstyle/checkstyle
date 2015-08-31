@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
-/** Tests SeverityMatchFilter */
+/** Tests SeverityMatchFilter. */
 public class SeverityMatchFilterTest {
     private final SeverityMatchFilter filter = new SeverityMatchFilter();
 

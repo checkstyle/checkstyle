@@ -57,35 +57,35 @@ public final class ConfigurationLoader {
     /** Logger for ConfigurationLoader. */
     private static final Log LOG = LogFactory.getLog(ConfigurationLoader.class);
 
-    /** The public ID for version 1_0 of the configuration dtd */
+    /** The public ID for version 1_0 of the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Check Configuration 1.0//EN";
 
-    /** The resource for version 1_0 of the configuration dtd */
+    /** The resource for version 1_0 of the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_0 =
         "com/puppycrawl/tools/checkstyle/configuration_1_0.dtd";
 
-    /** The public ID for version 1_1 of the configuration dtd */
+    /** The public ID for version 1_1 of the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_1 =
         "-//Puppy Crawl//DTD Check Configuration 1.1//EN";
 
-    /** The resource for version 1_1 of the configuration dtd */
+    /** The resource for version 1_1 of the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_1 =
         "com/puppycrawl/tools/checkstyle/configuration_1_1.dtd";
 
-    /** The public ID for version 1_2 of the configuration dtd */
+    /** The public ID for version 1_2 of the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_2 =
         "-//Puppy Crawl//DTD Check Configuration 1.2//EN";
 
-    /** The resource for version 1_2 of the configuration dtd */
+    /** The resource for version 1_2 of the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_2 =
         "com/puppycrawl/tools/checkstyle/configuration_1_2.dtd";
 
-    /** The public ID for version 1_3 of the configuration dtd */
+    /** The public ID for version 1_3 of the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_3 =
         "-//Puppy Crawl//DTD Check Configuration 1.3//EN";
 
-    /** The resource for version 1_3 of the configuration dtd */
+    /** The resource for version 1_3 of the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_3 =
         "com/puppycrawl/tools/checkstyle/configuration_1_3.dtd";
 
@@ -99,14 +99,14 @@ public final class ConfigurationLoader {
     /** Dollar sign literal. */
     private static final char DOLLAR_SIGN = '$';
 
-    /** The SAX document handler */
+    /** The SAX document handler. */
     private final InternalLoader saxHandler;
 
-    /** Property resolver **/
+    /** Property resolver. **/
     private final PropertyResolver overridePropsResolver;
-    /** The loaded configurations **/
+    /** The loaded configurations. **/
     private final Deque<DefaultConfiguration> configStack = new ArrayDeque<>();
-    /** The Configuration that is being built */
+    /** The Configuration that is being built. */
     private Configuration configuration;
 
     /** Flags if modules with the severity 'ignore' should be omitted. */
@@ -410,23 +410,23 @@ public final class ConfigurationLoader {
      */
     private final class InternalLoader
         extends AbstractLoader {
-        /** Module elements */
+        /** Module elements. */
         private static final String MODULE = "module";
-        /** Name attribute */
+        /** Name attribute. */
         private static final String NAME = "name";
-        /** Property element */
+        /** Property element. */
         private static final String PROPERTY = "property";
-        /** Value attribute */
+        /** Value attribute. */
         private static final String VALUE = "value";
-        /** Default attribute */
+        /** Default attribute. */
         private static final String DEFAULT = "default";
-        /** Name of the severity property */
+        /** Name of the severity property. */
         private static final String SEVERITY = "severity";
-        /** Name of the message element */
+        /** Name of the message element. */
         private static final String MESSAGE = "message";
-        /** Name of the message element */
+        /** Name of the message element. */
         private static final String METADATA = "metadata";
-        /** Name of the key attribute */
+        /** Name of the key attribute. */
         private static final String KEY = "key";
 
         /**

@@ -36,34 +36,34 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class CheckUtils {
     // constants for parseDouble()
-    /** Octal radix */
+    /** Octal radix. */
     private static final int BASE_8 = 8;
 
-    /** Decimal radix */
+    /** Decimal radix. */
     private static final int BASE_10 = 10;
 
-    /** Hex radix */
+    /** Hex radix. */
     private static final int BASE_16 = 16;
 
-    /** Maximum children allowed in setter/getter */
+    /** Maximum children allowed in setter/getter. */
     private static final int SETTER_GETTER_MAX_CHILDREN = 7;
 
-    /** Maximum nodes allowed in a body of setter */
+    /** Maximum nodes allowed in a body of setter. */
     private static final int SETTER_BODY_SIZE = 3;
 
-    /** Maximum nodes allowed in a body of getter */
+    /** Maximum nodes allowed in a body of getter. */
     private static final int GETTER_BODY_SIZE = 2;
 
-    /** Pattern matching underscore characters ('_') */
+    /** Pattern matching underscore characters ('_'). */
     private static final Pattern UNDERSCORE_PATTERN = Pattern.compile("_");
 
-    /** Pattern matching names of setter methods */
+    /** Pattern matching names of setter methods. */
     private static final Pattern SETTER_PATTERN = Pattern.compile("^set[A-Z].*");
 
-    /** Pattern matching names of getter methods */
+    /** Pattern matching names of getter methods. */
     private static final Pattern GETTER_PATTERN = Pattern.compile("^(is|get)[A-Z].*");
 
-    /** Prevent instances */
+    /** Prevent instances. */
     private CheckUtils() {
     }
 

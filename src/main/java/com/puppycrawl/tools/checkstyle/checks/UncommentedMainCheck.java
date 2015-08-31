@@ -48,16 +48,16 @@ public class UncommentedMainCheck
      */
     public static final String MSG_KEY = "uncommented.main";
 
-    /** The pattern to exclude classes from the check */
+    /** The pattern to exclude classes from the check. */
     private String excludedClasses = "^$";
-    /** Compiled regexp to exclude classes from check */
+    /** Compiled regexp to exclude classes from check. */
     private Pattern excludedClassesPattern =
             CommonUtils.createPattern(excludedClasses);
-    /** Current class name */
+    /** Current class name. */
     private String currentClass;
-    /** Current package */
+    /** Current package. */
     private FullIdent packageName;
-    /** Class definition depth */
+    /** Class definition depth. */
     private int classDepth;
 
     /**

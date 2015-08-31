@@ -175,11 +175,11 @@ public class WhitespaceAroundCheck extends Check {
     private boolean allowEmptyConstructors;
     /** Whether or not empty method bodies are allowed. */
     private boolean allowEmptyMethods;
-    /** Whether or not empty classes, enums and interfaces are allowed*/
+    /** Whether or not empty classes, enums and interfaces are allowed. */
     private boolean allowEmptyTypes;
-    /** Whether or not empty loops are allowed*/
+    /** Whether or not empty loops are allowed. */
     private boolean allowEmptyLoops;
-    /** Whether or not to ignore a colon in a enhanced for loop */
+    /** Whether or not to ignore a colon in a enhanced for loop. */
     private boolean ignoreEnhancedForColon = true;
 
     @Override

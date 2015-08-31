@@ -43,7 +43,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
 
     /** Since I cannot get this by going <tt>T.class</tt>. */
     private final Class<T> optionClass;
-    /** The policy to enforce */
+    /** The policy to enforce. */
     private T abstractOption;
 
     /**

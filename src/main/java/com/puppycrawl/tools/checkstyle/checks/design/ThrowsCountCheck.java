@@ -60,13 +60,13 @@ public final class ThrowsCountCheck extends Check {
      */
     public static final String MSG_KEY = "throws.count";
 
-    /** Default value of max property */
+    /** Default value of max property. */
     private static final int DEFAULT_MAX = 4;
 
-    /** Whether private methods must be ignored **/
+    /** Whether private methods must be ignored. **/
     private boolean ignorePrivateMethods = true;
 
-    /** Maximum allowed throws statements */
+    /** Maximum allowed throws statements. */
     private int max;
 
     /** Creates new instance of the check. */

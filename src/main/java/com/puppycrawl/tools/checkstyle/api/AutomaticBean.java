@@ -50,7 +50,7 @@ import com.google.common.collect.Lists;
  */
 public class AutomaticBean
     implements Configurable, Contextualizable {
-    /** The configuration of this bean */
+    /** The configuration of this bean. */
     private Configuration configuration;
 
     /**
