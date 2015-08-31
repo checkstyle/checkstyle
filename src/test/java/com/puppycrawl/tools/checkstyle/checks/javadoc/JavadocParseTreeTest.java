@@ -274,10 +274,10 @@ public class JavadocParseTreeTest {
     private static class FailOnErrorListener extends BaseErrorListener {
         @Override
         public void syntaxError(
-                Recognizer<?, ?> aRecognizer, Object aOffendingSymbol,
-                int aLine, int aCharPositionInLine,
-                String aMsg, RecognitionException aEx) {
-            Assert.fail("[" + aLine + ", " + aCharPositionInLine + "] " + aMsg);
+                Recognizer<?, ?> recognizer, Object offendingSymbol,
+                int line, int charPositionInLine,
+                String msg, RecognitionException e) {
+            Assert.fail("[" + line + ", " + charPositionInLine + "] " + msg);
         }
     }
 

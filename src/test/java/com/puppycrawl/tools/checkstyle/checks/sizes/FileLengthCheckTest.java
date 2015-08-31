@@ -35,9 +35,9 @@ public class FileLengthCheckTest
     extends BaseCheckTestSupport {
     @Override
     protected DefaultConfiguration createCheckerConfig(
-        Configuration aCheckConfig) {
+        Configuration config) {
         DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(aCheckConfig);
+        dc.addChild(config);
         return dc;
     }
 

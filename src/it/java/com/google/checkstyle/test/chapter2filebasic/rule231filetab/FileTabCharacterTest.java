@@ -22,10 +22,10 @@ public class FileTabCharacterTest extends BaseCheckTestSupport{
     
     @Override
     protected DefaultConfiguration createCheckerConfig(
-        Configuration aCheckConfig)
+        Configuration aConfig)
     {
         final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(aCheckConfig);
+        dc.addChild(aConfig);
         return dc;
     }
 

@@ -30,8 +30,8 @@ class CompareTreesWithComments extends Check {
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST) {
-        Assert.assertTrue(isAstEquals(expectedTree, aRootAST));
+    public void beginTree(DetailAST rootAST) {
+        Assert.assertTrue(isAstEquals(expectedTree, rootAST));
     }
 
     private static boolean isAstEquals(DetailAST expected, DetailAST actual) {
