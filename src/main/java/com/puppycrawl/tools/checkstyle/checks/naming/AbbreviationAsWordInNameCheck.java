@@ -303,18 +303,16 @@ public class AbbreviationAsWordInNameCheck extends Check {
                     beginIndex = index;
                 }
             }
-            else {
-                if (abbrStarted) {
-                    abbrStarted = false;
+            else if (abbrStarted) {
+                abbrStarted = false;
 
-                    final int endIndex = index - 1;
-                    // -1 as a first capital is usually beginning of next word
-                    result = getAbbreviationIfIllegal(str, beginIndex, endIndex);
-                    if (result != null) {
-                        break;
-                    }
-                    beginIndex = -1;
+                final int endIndex = index - 1;
+                // -1 as a first capital is usually beginning of next word
+                result = getAbbreviationIfIllegal(str, beginIndex, endIndex);
+                if (result != null) {
+                    break;
                 }
+                beginIndex = -1;
             }
         }
         // if abbreviation at the end of name and it is not single character (example: scaleX)

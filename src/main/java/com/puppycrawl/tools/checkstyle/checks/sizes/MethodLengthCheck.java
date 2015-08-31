@@ -94,23 +94,33 @@ public class MethodLengthCheck extends Check {
         if (openingBrace != null) {
             final DetailAST closingBrace =
                 openingBrace.findFirstToken(TokenTypes.RCURLY);
-            int length =
-                closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
-
-            if (!countEmpty) {
-                final FileContents contents = getFileContents();
-                final int lastLine = closingBrace.getLineNo();
-                for (int i = openingBrace.getLineNo() - 1; i < lastLine; i++) {
-                    if (contents.lineIsBlank(i) || contents.lineIsComment(i)) {
-                        length--;
-                    }
-                }
-            }
+            final int length = getLengthOfBlock(openingBrace, closingBrace);
             if (length > max) {
                 log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY,
                         length, max);
             }
         }
+    }
+
+    /**
+     * Returns length of code only without comments and blank lines.
+     * @param openingBrace block opening brace
+     * @param closingBrace block closing brace
+     * @return number of lines with code for current block
+     */
+    private int getLengthOfBlock(DetailAST openingBrace, DetailAST closingBrace) {
+        int length = closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
+
+        if (!countEmpty) {
+            final FileContents contents = getFileContents();
+            final int lastLine = closingBrace.getLineNo();
+            for (int i = openingBrace.getLineNo() - 1; i < lastLine; i++) {
+                if (contents.lineIsBlank(i) || contents.lineIsComment(i)) {
+                    length--;
+                }
+            }
+        }
+        return length;
     }
 
     /**
