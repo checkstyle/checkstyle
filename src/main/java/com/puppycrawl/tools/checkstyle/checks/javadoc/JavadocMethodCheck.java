@@ -750,19 +750,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             boolean found = removeMatchingParam(params, arg1);
 
             if (CommonUtils.startsWithChar(arg1, '<') && CommonUtils.endsWithChar(arg1, '>')) {
-                // Loop looking for matching type param
-                final Iterator<DetailAST> typeParamsIt = typeParams.iterator();
-                while (typeParamsIt.hasNext()) {
-                    final DetailAST typeParam = typeParamsIt.next();
-                    if (typeParam.findFirstToken(TokenTypes.IDENT).getText()
-                            .equals(
-                                    arg1.substring(1,
-                                        arg1.length() - 1))) {
-                        found = true;
-                        typeParamsIt.remove();
-                        break;
-                    }
-                }
+                found = searchMatchingTypeParameter(typeParams,
+                        arg1.substring(1, arg1.length() - 1));
 
             }
 
@@ -788,6 +777,31 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
                     + ">");
             }
         }
+    }
+
+    /**
+     * Returns true if required type found in type parameters.
+     * @param typeParams
+     *            list of type parameters
+     * @param requiredTypeName
+     *            name of required type
+     * @return true if required type found in type parameters.
+     */
+    private static boolean searchMatchingTypeParameter(List<DetailAST> typeParams,
+            String requiredTypeName) {
+        // Loop looking for matching type param
+        final Iterator<DetailAST> typeParamsIt = typeParams.iterator();
+        boolean found = false;
+        while (typeParamsIt.hasNext()) {
+            final DetailAST typeParam = typeParamsIt.next();
+            if (typeParam.findFirstToken(TokenTypes.IDENT).getText()
+                    .equals(requiredTypeName)) {
+                found = true;
+                typeParamsIt.remove();
+                break;
+            }
+        }
+        return found;
     }
 
     /**
