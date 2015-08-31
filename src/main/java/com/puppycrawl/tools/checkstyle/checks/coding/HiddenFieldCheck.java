@@ -320,10 +320,9 @@ public class HiddenFieldCheck
         DetailAST parent = ast.getParent();
         boolean inStatic = false;
 
-        while (parent != null) {
+        while (parent != null && !inStatic) {
             if (parent.getType() == TokenTypes.STATIC_INIT) {
                 inStatic = true;
-                break;
             }
             else if (parent.getType() == TokenTypes.METHOD_DEF) {
                 final DetailAST mods =
