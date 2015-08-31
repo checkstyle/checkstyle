@@ -31,6 +31,7 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -254,7 +255,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
         treeWalker.setupChild(createCheckConfig(TypeNameCheck.class));
         final File file = temporaryFolder.newFile("file.java");
-        ArrayList<String> lines = new ArrayList<>();
+        List<String> lines = new ArrayList<>();
         lines.add(" class a {} ");
         treeWalker.processFiltered(file, lines);
     }
@@ -269,7 +270,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
         treeWalker.setupChild(createCheckConfig(TypeNameCheck.class));
         final File file = temporaryFolder.newFile("file.java");
-        ArrayList<String> lines = new ArrayList<>();
+        List<String> lines = new ArrayList<>();
         lines.add(" classD a {} ");
 
         try {
@@ -291,7 +292,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
         treeWalker.setupChild(createCheckConfig(TypeNameCheck.class));
         final File file = temporaryFolder.newFile("file.java");
-        ArrayList<String> lines = new ArrayList<>();
+        List<String> lines = new ArrayList<>();
         lines.add(" class a%$# {} ");
 
         try {
