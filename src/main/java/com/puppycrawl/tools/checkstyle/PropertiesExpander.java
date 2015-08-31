@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -38,7 +39,7 @@ public final class PropertiesExpander
      *     property resolution.
      * @throws IllegalArgumentException indicates null was passed
      */
-    public PropertiesExpander(Properties properties) {
+    public PropertiesExpander(Map<Object, Object> properties) {
         if (properties == null) {
             throw new IllegalArgumentException("cannot pass null");
         }
