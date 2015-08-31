@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,8 +29,6 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 	private final Configuration configuration;
 
     private final Pattern warnPattern = CommonUtils.createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]warn[*]/");
-
-	private URL url;
 
 	public ConfigurationBuilder(File aROOT) {
 		root = aROOT;

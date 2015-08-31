@@ -97,6 +97,14 @@ public class AutomaticBeanTest {
         }
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void testTestBean() {
+        final TestBean testBean = new TestBean();
+        testBean.setVal(0);
+        testBean.setWrong("wrongVal");
+        testBean.setExceptionalMethod("someValue");
+    }
+
     private static class TestBean extends AutomaticBean {
 
         private String privateField;
@@ -114,7 +122,7 @@ public class AutomaticBeanTest {
         }
 
         public void setExceptionalMethod(String value) {
-            throw new IllegalStateException(privateField + value);
+            throw new IllegalStateException(privateField + "," + wrong + "," + val + "," + value);
         }
 
     }
