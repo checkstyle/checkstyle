@@ -334,6 +334,7 @@
     <module name="ReturnCount"/>
     <module name="OneTopLevelClass"/>
     <module name="IllegalToken"/>
+    <module name="PackageDeclaration"/>
 
     <!--
         All Checks bellow are our futute plan to enforce over our code.
@@ -341,7 +342,20 @@
         All of them have ignore severity to avoid build failure for now.
         As all violations are resolved Check need to got default severity as all other.
     -->
+    <module name="OverloadMethodsDeclarationOrder">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="VariableDeclarationUsageDistance">
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="ClassFanOutComplexity">
+      <property name="severity" value="ignore"/>
+    </module>
+
+    <module name="SingleLineJavadoc">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="SummaryJavadoc">
       <property name="severity" value="ignore"/>
     </module>
     <module name="JavadocParagraph">
@@ -350,24 +364,10 @@
     <module name="JavadocTagContinuationIndentation">
       <property name="severity" value="ignore"/>
     </module>
-    <module name="OverloadMethodsDeclarationOrder">
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="PackageDeclaration">
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="SingleLineJavadoc">
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="SummaryJavadoc">
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="VariableDeclarationUsageDistance">
-      <property name="severity" value="ignore"/>
-    </module>
     <module name="WriteTag">
       <property name="severity" value="ignore"/>
     </module>
+
     <module name="MissingCtor">
       <!--
         we will not uset that fanatic validation, extra code is not good
