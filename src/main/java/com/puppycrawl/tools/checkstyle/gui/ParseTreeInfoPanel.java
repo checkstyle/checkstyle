@@ -332,7 +332,7 @@ public class ParseTreeInfoPanel extends JPanel {
     /**
      * Listener and handler for file dropped events.
      */
-    private class FileDropListener implements FileDrop.Listener {
+    private class FileDropListener implements Listener {
         /** Scroll pane. */
         private final JScrollPane scrollPane;
 

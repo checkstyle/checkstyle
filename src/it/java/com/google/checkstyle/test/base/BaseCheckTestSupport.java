@@ -9,8 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
@@ -22,26 +20,12 @@ import java.util.Properties;
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public abstract class BaseCheckTestSupport
 {
-    /** A brief logger that only display info about errors. */
-    static class BriefLogger
-        extends DefaultLogger
-    {
-        BriefLogger(OutputStream out) throws UnsupportedEncodingException
-        {
-            super(out, true);
-        }
-        @Override
-        public void auditStarted(AuditEvent evt) {}
-    }
-
     final ByteArrayOutputStream stream = new ByteArrayOutputStream();
     protected final Properties props = new Properties();
 
