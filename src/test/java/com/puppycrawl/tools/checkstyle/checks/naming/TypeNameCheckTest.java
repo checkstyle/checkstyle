@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -36,11 +37,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 public class TypeNameCheckTest
     extends BaseCheckTestSupport {
 
-    private final String inputFilename;
+    private String inputFilename;
 
-    public TypeNameCheckTest() throws IOException {
-        inputFilename = getPath("naming" + File.separator
-                + "InputTypeName.java");
+    @Before
+    public void setUp() throws IOException {
+        inputFilename = getPath("naming" + File.separator + "InputTypeName.java");
     }
 
     @Test
