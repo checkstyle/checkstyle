@@ -179,7 +179,7 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
             }
             if (!blankLinePattern.matcher(lineBefore).find()
                 && !isLegalComment(comment)) {
-                log(lineNo.intValue(), MSG_KEY);
+                log(lineNo, MSG_KEY);
             }
         }
     }
