@@ -79,7 +79,7 @@ public final class AuditEvent
 
     /**
      * @return the file name currently being audited or null if there is
-     * no relation to a file.
+     *     no relation to a file.
      */
     public String getFileName() {
         return fileName;

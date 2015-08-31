@@ -160,7 +160,7 @@ public class RegexpCheck extends AbstractFormatCheck {
     /**
      * Sets the maximum number of instances of required pattern allowed.
      * @param duplicateLimit negative values mean no duplicate checking,
-     * any positive value is used as the limit.
+     *     any positive value is used as the limit.
      */
     public void setDuplicateLimit(int duplicateLimit) {
         this.duplicateLimit = duplicateLimit;

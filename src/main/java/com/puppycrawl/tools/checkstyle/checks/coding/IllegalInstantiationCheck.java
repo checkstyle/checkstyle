@@ -219,7 +219,7 @@ public class IllegalInstantiationCheck
      * Checks illegal instantiations.
      * @param className instantiated class, may or may not be qualified
      * @return the fully qualified class name of className
-     * or null if instantiation of className is OK
+     *     or null if instantiation of className is OK
      */
     private String getIllegalInstantiation(String className) {
         String fullClassName = null;

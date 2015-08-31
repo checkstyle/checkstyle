@@ -61,7 +61,7 @@ public enum LineSeparatorOption {
     /**
      * @param bytes a bytes array to check
      * @return if bytes is equal to the byte representation
-     * of this line separator
+     *     of this line separator
      */
     public boolean matches(byte... bytes) {
         if (this == LF_CR_CRLF) {
@@ -78,7 +78,7 @@ public enum LineSeparatorOption {
 
     /**
      * @return the length of the file separator in bytes,
-     * e.g. 1 for CR, 2 for CRLF, ...
+     *     e.g. 1 for CR, 2 for CRLF, ...
      */
     public int length() {
         return lineSeparator.length;

@@ -45,7 +45,7 @@ class CSVFilter implements IntFilter {
      * Note: integers must be non-negative.
      * @param pattern the CSV string.
      * @throws NumberFormatException if a component substring does not
-     * contain a parsable integer.
+     *     contain a parsable integer.
      */
     CSVFilter(String pattern) {
         final StringTokenizer tokenizer = new StringTokenizer(pattern, ",");

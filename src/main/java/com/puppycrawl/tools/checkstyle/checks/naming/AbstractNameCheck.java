@@ -62,7 +62,7 @@ public abstract class AbstractNameCheck
      * the format regexp.
      * @param ast the AST to check.
      * @return true if the IDENT subnode of ast should be checked against
-     * the format regexp.
+     *     the format regexp.
      */
     protected abstract boolean mustCheckName(DetailAST ast);
 }

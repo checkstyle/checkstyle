@@ -95,8 +95,7 @@ public final class ScopeUtils {
     /**
      * Returns whether a node is directly contained within an interface block.
      *
-     * @param aAST the node to check if directly contained within an interface
-     * block
+     * @param aAST the node to check if directly contained within an interface block.
      * @return a {@code boolean} value
      */
     public static boolean isInInterfaceBlock(DetailAST aAST) {
@@ -126,8 +125,7 @@ public final class ScopeUtils {
     /**
      * Returns whether a node is directly contained within an annotation block.
      *
-     * @param aAST the node to check if directly contained within an annotation
-     * block
+     * @param aAST the node to check if directly contained within an annotation block.
      * @return a {@code boolean} value
      */
     public static boolean isInAnnotationBlock(DetailAST aAST) {
@@ -158,7 +156,7 @@ public final class ScopeUtils {
      * annotation block.
      *
      * @param aAST the node to check if directly contained within an interface
-     * or annotation block
+     *     or annotation block.
      * @return a {@code boolean} value
      */
     public static boolean isInInterfaceOrAnnotationBlock(DetailAST aAST) {
@@ -168,8 +166,7 @@ public final class ScopeUtils {
     /**
      * Returns whether a node is directly contained within an enum block.
      *
-     * @param aAST the node to check if directly contained within an enum
-     * block
+     * @param aAST the node to check if directly contained within an enum block.
      * @return a {@code boolean} value
      */
     public static boolean isInEnumBlock(DetailAST aAST) {

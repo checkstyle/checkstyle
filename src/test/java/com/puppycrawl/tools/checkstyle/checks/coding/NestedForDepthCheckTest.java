@@ -40,7 +40,7 @@ public class NestedForDepthCheckTest extends BaseCheckTestSupport {
      * the top-level for statement, this must cause 2 error-messages.
      *
      * @throws Exception necessary to fulfill JUnit's
-     * interface-requirements for test-methods
+     *     interface-requirements for test-methods.
      */
     @Test
     public void testNestedTooDeep() throws Exception {
@@ -65,7 +65,7 @@ public class NestedForDepthCheckTest extends BaseCheckTestSupport {
      * error-message.
      *
      * @throws Exception necessary to fulfill JUnit's
-     * interface-requirements for test-methods
+     *     interface-requirements for test-methods.
      */
     @Test
     public void testNestedOk() throws Exception {

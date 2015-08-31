@@ -366,9 +366,8 @@ public class JavaNCSSCheck extends Check {
     }
 
     /**
+     * Class representing a counter.
      * @author Lars Ködderitzsch
-     *
-     * Class representing a counter,
      */
     private static class Counter {
         /** The counters internal integer. */

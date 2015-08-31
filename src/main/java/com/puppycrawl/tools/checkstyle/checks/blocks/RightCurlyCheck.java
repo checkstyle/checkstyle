@@ -189,7 +189,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
      * @param shouldStartLine do we need to check if right curly starts line.
      * @param targetSourceLine line that we need to check if shouldStartLine is true.
      * @return violation message or empty string
-     * if there was not violation during validation.
+     *     if there was not violation during validation.
      */
     private static String validate(Details details, RightCurlyOption bracePolicy,
                                    boolean shouldStartLine, String targetSourceLine) {

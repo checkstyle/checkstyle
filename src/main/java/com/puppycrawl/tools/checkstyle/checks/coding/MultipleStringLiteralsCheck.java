@@ -153,7 +153,7 @@ public class MultipleStringLiteralsCheck extends Check {
      *
      * @param ast the node from where to start searching towards the root node
      * @return whether the path from the root node to ast contains one of the
-     * token type in {@link #ignoreOccurrenceContext}.
+     *     token type in {@link #ignoreOccurrenceContext}.
      */
     private boolean isInIgnoreOccurrenceContext(DetailAST ast) {
         for (DetailAST token = ast;

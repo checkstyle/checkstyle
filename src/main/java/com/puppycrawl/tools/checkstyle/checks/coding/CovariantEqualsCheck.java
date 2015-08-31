@@ -105,7 +105,7 @@ public class CovariantEqualsCheck extends Check {
     /**
      * Tests whether a method's first parameter is an Object.
      * @param methodDefAst the method definition AST to test.
-     * Precondition: ast is a TokenTypes.METHOD_DEF node.
+     *     Precondition: ast is a TokenTypes.METHOD_DEF node.
      * @return true if ast has first parameter of type Object.
      */
     private static boolean isFirstParameterObject(DetailAST methodDefAst) {

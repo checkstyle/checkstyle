@@ -136,7 +136,7 @@ public class ModifierOrderCheck
      *
      * @param modifiers list of modifier AST tokens
      * @return null if the order is correct, otherwise returns the offending
-     * *       modifier AST.
+     *     modifier AST.
      */
     static DetailAST checkOrderSuggestedByJLS(List<DetailAST> modifiers) {
         final Iterator<DetailAST> it = modifiers.iterator();

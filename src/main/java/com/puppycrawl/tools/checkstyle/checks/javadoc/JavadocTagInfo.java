@@ -458,7 +458,7 @@ public enum JavadocTagInfo {
      * @return Returns a JavadocTag type from a String representing the tag
      * @throws NullPointerException if the text is null
      * @throws IllegalArgumentException if the text is not a valid tag. The name
-     *    can be checked using {@link JavadocTagInfo#isValidName(String)}
+     *     can be checked using {@link JavadocTagInfo#isValidName(String)}
      */
     public static JavadocTagInfo fromName(final String name) {
         if (name == null) {

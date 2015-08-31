@@ -217,8 +217,7 @@ public class InnerAssignmentCheck
      * @param ast the AST from which to start walking towards root
      * @param contextSet the contexts to test against.
      *
-     * @return whether the parents nodes of ast match
-     * one of the allowed type paths
+     * @return whether the parents nodes of ast match one of the allowed type paths.
      */
     private static boolean isInContext(DetailAST ast, int[]... contextSet) {
         boolean found = false;

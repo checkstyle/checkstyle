@@ -368,7 +368,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
      * Sets the file extensions that identify the files that pass the
      * filter of this FileSetCheck.
      * @param extensions the set of file extensions. A missing
-     * initial '.' character of an extension is automatically added.
+     *     initial '.' character of an extension is automatically added.
      */
     public final void setFileExtensions(String... extensions) {
         if (extensions == null) {

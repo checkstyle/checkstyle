@@ -70,7 +70,7 @@ public final class CheckUtils {
     /**
      * Tests whether a method definition AST defines an equals covariant.
      * @param ast the method definition AST to test.
-     * Precondition: ast is a TokenTypes.METHOD_DEF node.
+     *     Precondition: ast is a TokenTypes.METHOD_DEF node.
      * @return true if ast defines an equals covariant.
      */
     public static boolean isEqualsMethod(DetailAST ast) {
@@ -206,10 +206,9 @@ public final class CheckUtils {
      * the specified radix. Handles negative values, which method
      * java.lang.Integer.parseInt(String, int) does not.
      * @param text the String containing the integer representation to be
-     * parsed. Precondition: text contains a parsable int.
+     *     parsed. Precondition: text contains a parsable int.
      * @param radix the radix to be used while parsing text.
-     * @return the integer represented by the string argument in the specified
-     * radix.
+     * @return the integer represented by the string argument in the specified radix.
      */
     private static int parseInt(String text, int radix) {
         int result = 0;
@@ -228,10 +227,9 @@ public final class CheckUtils {
      * the specified radix. Handles negative values, which method
      * java.lang.Integer.parseInt(String, int) does not.
      * @param text the String containing the integer representation to be
-     * parsed. Precondition: text contains a parsable int.
+     *     parsed. Precondition: text contains a parsable int.
      * @param radix the radix to be used while parsing text.
-     * @return the long represented by the string argument in the specified
-     * radix.
+     * @return the long represented by the string argument in the specified radix.
      */
     private static long parseLong(String text, int radix) {
         long result = 0;

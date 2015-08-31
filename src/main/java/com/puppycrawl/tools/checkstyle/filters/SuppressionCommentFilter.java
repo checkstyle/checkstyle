@@ -324,7 +324,6 @@ public class SuppressionCommentFilter
          * @param on {@code true} if the tag turns checkstyle reporting.
          * @param filter the {@code SuppressionCommentFilter} with the context
          * @throws ConversionException if unable to parse expanded text.
-         * on.
          */
         public Tag(int line, int column, String text, boolean on, SuppressionCommentFilter filter) {
             this.line = line;
@@ -404,8 +403,8 @@ public class SuppressionCommentFilter
          * with the position of another tag.
          * @param object the tag to compare with this one.
          * @return a negative number if this tag is before the other tag,
-         * 0 if they are at the same position, and a positive number if this
-         * tag is after the other tag.
+         *     0 if they are at the same position, and a positive number if this
+         *     tag is after the other tag.
          */
         @Override
         public int compareTo(Tag object) {

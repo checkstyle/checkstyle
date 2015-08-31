@@ -171,7 +171,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
      * @param firstNode
      *          method call ast(TokenTypes.METHOD_CALL)
      * @return ast node containing right paren for specified method call. If
-     * method calls are chained returns right paren for last call.
+     *     method calls are chained returns right paren for last call.
      */
     private static DetailAST getMethodCallLastNode(DetailAST firstNode) {
         return firstNode.getLastChild();

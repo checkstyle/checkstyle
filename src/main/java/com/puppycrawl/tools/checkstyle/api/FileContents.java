@@ -72,7 +72,7 @@ public final class FileContents implements CommentListener {
      * @param filename name of the file
      * @param lines the contents of the file
      * @deprecated Use {@link #FileContents(FileText)} instead
-     *   in order to preserve the original line breaks where possible.
+     *     in order to preserve the original line breaks where possible.
      */
     @Deprecated
     public FileContents(String filename, String... lines) {

@@ -224,7 +224,6 @@ public abstract class AbstractDeclarationCollector extends Check {
     /**
      * A declaration frame.
      * @author Stephen Bloch
-     * June 19, 2003
      */
     private static class LexicalFrame {
         /** Set of name of variables declared in this frame. */

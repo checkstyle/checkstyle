@@ -94,7 +94,7 @@ public class AvoidStaticImportCheck
     /**
      * Sets the list of classes or static members to be exempt from the check.
      * @param excludes a list of fully-qualified class names/specific
-     * static members where static imports are ok
+     *     static members where static imports are ok
      */
     public void setExcludes(String... excludes) {
         this.excludes = excludes.clone();

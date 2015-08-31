@@ -53,7 +53,7 @@ public class SeverityMatchFilter
     /**
      * Sets whether to accept or reject on matching severity level.
      * @param acceptOnMatch if true, accept on matches; if
-     * false, reject on matches.
+     *     false, reject on matches.
      */
     public final void setAcceptOnMatch(boolean acceptOnMatch) {
         this.acceptOnMatch = acceptOnMatch;

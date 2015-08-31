@@ -399,13 +399,13 @@ public class DescendantTokenCheck extends Check {
     /**
      * Sets the error message for minimum count not reached.
      * @param message the error message for minimum count not reached.
-     * Used as a {@code MessageFormat} pattern with arguments
-     * <ul>
-     * <li>{0} - token count</li>
-     * <li>{1} - minimum number</li>
-     * <li>{2} - name of token</li>
-     * <li>{3} - name of limited token</li>
-     * </ul>
+     *     Used as a {@code MessageFormat} pattern with arguments
+     *     <ul>
+     *     <li>{0} - token count</li>
+     *     <li>{1} - minimum number</li>
+     *     <li>{2} - name of token</li>
+     *     <li>{3} - name of limited token</li>
+     *     </ul>
      */
     public void setMinimumMessage(String message) {
         minimumMessage = message;
@@ -414,7 +414,7 @@ public class DescendantTokenCheck extends Check {
     /**
      * Sets the error message for maximum count exceeded.
      * @param message the error message for maximum count exceeded.
-     * Used as a {@code MessageFormat} pattern with arguments
+     *     Used as a {@code MessageFormat} pattern with arguments
      * <ul>
      * <li>{0} - token count</li>
      * <li>{1} - maximum number</li>

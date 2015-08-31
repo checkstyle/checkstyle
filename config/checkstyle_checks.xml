@@ -344,6 +344,7 @@
     </module>
 
     <module name="SingleLineJavadoc"/>
+    <module name="JavadocTagContinuationIndentation"/>
 
     <!--
         All Checks bellow are our futute plan to enforce over our code.
@@ -355,9 +356,6 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="JavadocParagraph">
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="JavadocTagContinuationIndentation">
       <property name="severity" value="ignore"/>
     </module>
     <module name="WriteTag">

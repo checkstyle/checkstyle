@@ -228,10 +228,10 @@ public final class ConfigurationLoader {
      * @throws CheckstyleException if an error occurs
      *
      * @deprecated As this method does not provide a valid system ID,
-     *   preventing resolution of external entities, a
-     *   {@link #loadConfiguration(InputSource,PropertyResolver,boolean)
+     *     preventing resolution of external entities, a
+     *     {@link #loadConfiguration(InputSource,PropertyResolver,boolean)
      *          version using an InputSource}
-     *   should be used instead
+     *     should be used instead
      */
     @Deprecated
     public static Configuration loadConfiguration(InputStream configStream,
@@ -279,6 +279,9 @@ public final class ConfigurationLoader {
      *
      * The method is package visible to facilitate testing.
      *
+     * <p>Code copied from ant -
+     * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
+     *
      * @param value The string to be scanned for property references.
      *              May be {@code null}, in which case this
      *              method returns immediately with no effect.
@@ -292,9 +295,6 @@ public final class ConfigurationLoader {
      * @throws CheckstyleException if the string contains an opening
      *                           {@code ${} without a closing
      *                           {@code }}
-     *
-     * Code copied from ant -
-     * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
      */
     // Package visible for testing purposes
     static String replaceProperties(
@@ -337,6 +337,9 @@ public final class ConfigurationLoader {
      * {@code null} entries in the first list indicate a property
      * reference from the second list.
      *
+     * <p>Code copied from ant -
+     * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
+     *
      * @param value     Text to parse. Must not be {@code null}.
      * @param fragments List to add text fragments to.
      *                  Must not be {@code null}.
@@ -346,8 +349,6 @@ public final class ConfigurationLoader {
      * @throws CheckstyleException if the string contains an opening
      *                           {@code ${} without a closing
      *                           {@code }}
-     * Code copied from ant -
-     * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
      */
     private static void parsePropertyString(String value,
                                            List<String> fragments,

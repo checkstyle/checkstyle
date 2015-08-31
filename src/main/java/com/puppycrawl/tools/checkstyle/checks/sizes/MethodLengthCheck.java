@@ -122,7 +122,7 @@ public class MethodLengthCheck extends Check {
 
     /**
      * @param countEmpty whether to count empty and single line comments
-     * of the form //.
+     *     of the form //.
      */
     public void setCountEmpty(boolean countEmpty) {
         this.countEmpty = countEmpty;

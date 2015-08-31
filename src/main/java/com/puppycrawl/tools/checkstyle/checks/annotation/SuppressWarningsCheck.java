@@ -312,7 +312,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
      * @param cond cond a conditional type
      * {@link TokenTypes#QUESTION QUESTION}
      * @return either the value
-     * or another conditional
+     *     or another conditional
      */
     private static DetailAST getCondLeft(final DetailAST cond) {
         final DetailAST colon = cond.findFirstToken(TokenTypes.COLON);
@@ -325,7 +325,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
      * @param cond a conditional type
      * {@link TokenTypes#QUESTION QUESTION}
      * @return either the value
-     * or another conditional
+     *     or another conditional
      */
     private static DetailAST getCondRight(final DetailAST cond) {
         final DetailAST colon = cond.findFirstToken(TokenTypes.COLON);

@@ -58,7 +58,7 @@ public interface TreeTableModel extends TreeModel {
      * @param node the node
      * @param column the column number
      * @return the value to be displayed for node {@code node},
-     * at column number {@code column}.
+     *     at column number {@code column}.
      */
     Object getValueAt(Object node, int column);
 

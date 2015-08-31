@@ -69,7 +69,7 @@ public abstract class AbstractTypeParameterNameCheck
      * location of the type parameter to check.
      *
      * @return {@code TokenTypes.CLASS_DEF }
-     * or {@code TokenTypes.METHOD_DEF }
+     *     or {@code TokenTypes.METHOD_DEF }
      */
     protected abstract int getLocation();
 }

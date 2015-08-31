@@ -92,8 +92,7 @@ public abstract class AbstractSuperCheck
      * Determines whether a 'super' literal is a call to the super method
      * for this check.
      * @param literalSuperAst the AST node of a 'super' literal.
-     * @return true if ast is a call to the super method
-     * for this check.
+     * @return true if ast is a call to the super method for this check.
      */
     private boolean isSuperCall(DetailAST literalSuperAst) {
         boolean superCall = false;
@@ -235,8 +234,7 @@ public abstract class AbstractSuperCheck
         /**
          * Determines whether the overriding method has a call to the super
          * method.
-         * @return true if the overriding method has a call to the super
-         * method.
+         * @return true if the overriding method has a call to the super method.
          */
         public boolean isCallingSuper() {
             return callingSuper;

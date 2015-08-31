@@ -533,7 +533,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
      * @param variableAst Variable that is used.
      * @param statementAst DetailAST to start searching from.
      * @return entry which contains list with found expressions that use the variable
-     * and distance from specified statement to first found expression.
+     *     and distance from specified statement to first found expression.
      */
     private static Entry<List<DetailAST>, Integer>
         searchVariableUsageExpressions(final DetailAST variableAst, final DetailAST statementAst) {

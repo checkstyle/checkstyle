@@ -247,7 +247,7 @@ public class AbbreviationAsWordInNameCheck extends Check {
      * Check that variable definition in interface definition.
      * @param variableDefAst variable definition.
      * @return true if variable definition(variableDefAst) is in interface
-     * definition.
+     *     definition.
      */
     private static boolean isInterfaceDeclaration(DetailAST variableDefAst) {
         boolean result = false;

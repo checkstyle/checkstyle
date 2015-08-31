@@ -207,7 +207,7 @@ public final class CommonUtils {
      * @param path
      *            the path to relativize against base directory
      * @return the relative normalized path between base directory and
-     *  path or path if base directory is null
+     *     path or path if base directory is null.
      */
     public static String relativizeAndNormalizePath(final String baseDirectory, final String path) {
         if (baseDirectory == null) {

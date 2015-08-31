@@ -37,12 +37,11 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * @author Oliver.Burn
- *
  * To change this generated comment edit the template variable "typecomment":
  * Window>Preferences>Java>Templates.
  * To enable and disable the creation of type comments go to
  * Window>Preferences>Java>Code Generation.
+ * @author Oliver.Burn
  */
 public class JavadocTypeCheckTest extends BaseCheckTestSupport {
 

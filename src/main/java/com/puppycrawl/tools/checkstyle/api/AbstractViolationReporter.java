@@ -96,7 +96,7 @@ public abstract class AbstractViolationReporter
      * </p>
      *
      * @return name of a resource bundle that contains the messages
-     * used by this module.
+     *     used by this module.
      */
     protected String getMessageBundle() {
         final String className = getClass().getName();
@@ -107,7 +107,7 @@ public abstract class AbstractViolationReporter
      * For unit tests, especially with a class with no package name.
      * @param className class name of the module.
      * @return name of a resource bundle that contains the messages
-     * used by the module.
+     *     used by the module.
      */
     static String getMessageBundle(final String className) {
         final int endIndex = className.lastIndexOf('.');

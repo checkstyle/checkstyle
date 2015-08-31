@@ -260,7 +260,7 @@ public class NoWhitespaceAfterCheck extends Check {
     /**
      * Control whether whitespace is flagged at line breaks.
      * @param allowLineBreaks whether whitespace should be
-     * flagged at line breaks.
+     *     flagged at line breaks.
      */
     public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;

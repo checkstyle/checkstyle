@@ -440,7 +440,7 @@ public class ImportOrderCheck
      *
      * @param isStatic whether the token is static or not.
      * @param previous previous non-static but current is static (above), or
-     *    previous static but current is non-static (under).
+     *     previous static but current is non-static (under).
      * @param name the name of the current import.
      * @param line the line of the current import.
      */

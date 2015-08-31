@@ -256,8 +256,7 @@ public class MagicNumberCheck extends Check {
     /**
      * Finds the constant definition that contains aAST.
      * @param ast the AST
-     * @return the constant def or null if ast is not
-     * contained in a constant definition
+     * @return the constant def or null if ast is not contained in a constant definition.
      */
     private static DetailAST findContainingConstantDef(DetailAST ast) {
         DetailAST varDefAST = ast;
@@ -315,10 +314,9 @@ public class MagicNumberCheck extends Check {
      * {@code public int hashCode()}.
      *
      * @param ast the AST from which to search for an enclosing hash code
-     * method definition
+     *     method definition
      *
-     * @return {@code true} if {@code ast} is in the scope of a valid hash
-     * code method
+     * @return {@code true} if {@code ast} is in the scope of a valid hash code method.
      */
     private static boolean isInHashCodeMethod(DetailAST ast) {
         boolean inHashCodeMethod = false;
@@ -352,8 +350,7 @@ public class MagicNumberCheck extends Check {
      * Decides whether the number of an AST is in the ignore list of this
      * check.
      * @param ast the AST to check
-     * @return true if the number of ast is in the ignore list of this
-     * check.
+     * @return true if the number of ast is in the ignore list of this check.
      */
     private boolean isInIgnoreList(DetailAST ast) {
         double value = CheckUtils.parseDouble(ast.getText(), ast.getType());
@@ -415,7 +412,7 @@ public class MagicNumberCheck extends Check {
     /**
      * Set whether to ignore hashCode methods.
      * @param ignoreHashCodeMethod decide whether to ignore
-     * hash code methods
+     *     hash code methods
      */
     public void setIgnoreHashCodeMethod(boolean ignoreHashCodeMethod) {
         this.ignoreHashCodeMethod = ignoreHashCodeMethod;
@@ -432,7 +429,7 @@ public class MagicNumberCheck extends Check {
     /**
      * Set whether to ignore magic numbers in field declaration.
      * @param ignoreFieldDeclaration decide whether to ignore magic numbers
-     * in field declaration
+     *     in field declaration
      */
     public void setIgnoreFieldDeclaration(boolean ignoreFieldDeclaration) {
         this.ignoreFieldDeclaration = ignoreFieldDeclaration;

@@ -57,7 +57,7 @@ public abstract class AbstractFormatCheck
      * Creates a new {@code AbstractFormatCheck} instance.
      * @param defaultFormat default format
      * @param compileFlags the Pattern flags to compile the regexp with.
-     * See {@link Pattern#compile(String, int)}
+     *     See {@link Pattern#compile(String, int)}
      * @throws ConversionException unable to parse defaultFormat
      */
     protected AbstractFormatCheck(String defaultFormat, int compileFlags) {

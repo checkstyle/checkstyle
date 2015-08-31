@@ -350,7 +350,7 @@ public class HiddenFieldCheck
      * @param ast the AST to check.
      * @param name the name of ast.
      * @return true if ast should be ignored because check property
-     * ignoreSetter is true and ast is the parameter of a setter method.
+     *     ignoreSetter is true and ast is the parameter of a setter method.
      */
     private boolean isIgnoredSetterParam(DetailAST ast, String name) {
         if (ast.getType() == TokenTypes.PARAMETER_DEF && ignoreSetter) {
@@ -427,7 +427,7 @@ public class HiddenFieldCheck
      * constructor.
      * @param ast the AST to check.
      * @return true if ast should be ignored because check property
-     * ignoreConstructorParameter is true and ast is a constructor parameter.
+     *     ignoreConstructorParameter is true and ast is a constructor parameter.
      */
     private boolean isIgnoredConstructorParam(DetailAST ast) {
         boolean result = false;
@@ -445,8 +445,7 @@ public class HiddenFieldCheck
      * abstract method.
      * @param ast the AST to check.
      * @return true if ast should be ignored because check property
-     * ignoreAbstractMethods is true and ast is a parameter of abstract
-     * methods.
+     *     ignoreAbstractMethods is true and ast is a parameter of abstract methods.
      */
     private boolean isIgnoredParamOfAbstractMethod(DetailAST ast) {
         boolean result = false;
@@ -472,7 +471,7 @@ public class HiddenFieldCheck
     /**
      * Set whether to ignore the parameter of a property setter method.
      * @param ignoreSetter decide whether to ignore the parameter of
-     * a property setter method.
+     *     a property setter method.
      */
     public void setIgnoreSetter(boolean ignoreSetter) {
         this.ignoreSetter = ignoreSetter;
@@ -496,7 +495,7 @@ public class HiddenFieldCheck
     /**
      * Set whether to ignore constructor parameters.
      * @param ignoreConstructorParameter decide whether to ignore
-     * constructor parameters.
+     *     constructor parameters.
      */
     public void setIgnoreConstructorParameter(
         boolean ignoreConstructorParameter) {
@@ -506,7 +505,7 @@ public class HiddenFieldCheck
     /**
      * Set whether to ignore parameters of abstract methods.
      * @param ignoreAbstractMethods decide whether to ignore
-     * parameters of abstract methods.
+     *     parameters of abstract methods.
      */
     public void setIgnoreAbstractMethods(
         boolean ignoreAbstractMethods) {
@@ -515,8 +514,6 @@ public class HiddenFieldCheck
 
     /**
      * Holds the names of static and instance fields of a type.
-     * @author Rick Giles
-     * Describe class FieldFrame
      * @author Rick Giles
      */
     private static class FieldFrame {
@@ -600,10 +597,10 @@ public class HiddenFieldCheck
          * specific name.
          *
          * @param classOrEnumName name of class or enum that we are looking
-         * for in the chain of field frames.
+         *     for in the chain of field frames.
          *
          * @return true if current frame is embedded in class or enum
-         * with name classOrNameName
+         *     with name classOrNameName
          */
         private boolean isEmbeddedIn(String classOrEnumName) {
             FieldFrame currentFrame = this;

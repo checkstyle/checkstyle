@@ -314,7 +314,6 @@ public class SuppressWithNearbyCommentFilter
          * @param line the line number.
          * @param filter the {@code SuppressWithNearbyCommentFilter} with the context
          * @throws ConversionException if unable to parse expanded text.
-         * on.
          */
         public Tag(String text, int line, SuppressWithNearbyCommentFilter filter) {
             this.text = text;
@@ -368,8 +367,8 @@ public class SuppressWithNearbyCommentFilter
          * with the position of another tag.
          * @param other the tag to compare with this one.
          * @return a negative number if this tag is before the other tag,
-         * 0 if they are at the same position, and a positive number if this
-         * tag is after the other tag.
+         *     0 if they are at the same position, and a positive number if this
+         *     tag is after the other tag.
          */
         @Override
         public int compareTo(Tag other) {
