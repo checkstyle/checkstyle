@@ -344,7 +344,7 @@ public class CheckstyleAntTask extends Task {
                 + " files", Project.MSG_INFO);
         log("Using configuration " + configLocation, Project.MSG_VERBOSE);
 
-        int numErrs = 0;
+        int numErrs;
 
         try {
             final long processingStartTime = System.currentTimeMillis();
