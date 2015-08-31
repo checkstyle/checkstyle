@@ -373,7 +373,7 @@ public class CheckstyleAntTask extends Task {
      * @return new instance of {@code Checker}
      */
     private Checker createChecker() {
-        Checker checker;
+        final Checker checker;
         try {
             final Properties props = createOverridingProperties();
             final Configuration config =

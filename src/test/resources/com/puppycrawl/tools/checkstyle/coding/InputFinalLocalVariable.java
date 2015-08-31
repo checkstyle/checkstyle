@@ -171,3 +171,35 @@ class A {
     }
 }
 
+class class2 {
+    public void method1(){
+        int x;
+        x = 3;
+    }
+    public void method2() {
+        for(int i=0;i<5;i++) {
+            int x;
+            x = 3;
+        }
+        int y;
+        for(int i=0;i<5;i++) {
+            y = 3;
+        }
+        for(int i=0;i<5;i++) {
+            int z;
+            for(int j=0;j<5;j++) {
+                z = 3;
+            }
+        }
+    }
+    public void method3() {
+        int m;
+        do {
+	        m = 0;
+        } while (false);
+        do {
+            int n;
+	        n = 0;
+        } while (true);        
+	}
+}

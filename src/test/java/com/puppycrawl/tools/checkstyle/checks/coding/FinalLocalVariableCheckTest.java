@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class FinalLocalVariableCheckTest
     extends BaseCheckTestSupport {
+
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -58,6 +59,9 @@ public class FinalLocalVariableCheckTest
             "96:17: " + getCheckMessage(MSG_KEY, "weird"),
             "97:17: " + getCheckMessage(MSG_KEY, "j"),
             "98:17: " + getCheckMessage(MSG_KEY, "k"),
+            "176:13: " + getCheckMessage(MSG_KEY, "x"),
+            "181:17: " + getCheckMessage(MSG_KEY, "x"),
+            "201:17: " + getCheckMessage(MSG_KEY, "n"),
         };
         verify(checkConfig, getPath("coding/InputFinalLocalVariable.java"), expected);
     }

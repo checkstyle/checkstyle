@@ -105,6 +105,9 @@ public class FinalLocalVariableCheck extends Check {
     /** Scope Stack */
     private final Deque<Map<String, DetailAST>> scopeStack = new ArrayDeque<>();
 
+    /** Uninitalized variables */
+    private Deque<DetailAST> unInitializedVariable = new ArrayDeque<>();
+
     /** Controls whether to check enhanced for-loop variable. */
     private boolean validateEnhancedForLoopVariable;
 
@@ -274,6 +277,28 @@ public class FinalLocalVariableCheck extends Check {
     }
 
     /**
+     * if definition and initialization are in different for-loop, it can not be declared
+     * final. In that case, it will return false.
+     * @param ast1 VARIABLE_DEF
+     * @param ast2 init variable
+     * @return true if it is initiaized only once
+     */
+    private boolean defAndInitInDifferentLoop(DetailAST ast1, DetailAST ast2) {
+        DetailAST loop1 = ast1;
+        while (loop1 != null && !(loop1.getType() == TokenTypes.LITERAL_FOR
+                || loop1.getType() == TokenTypes.LITERAL_DO)) {
+            loop1 = loop1.getParent();
+        }
+        DetailAST loop2 = ast2;
+        while (loop2 != null && !(loop2.getType() == TokenTypes.LITERAL_FOR
+                || loop2.getType() == TokenTypes.LITERAL_DO)) {
+            loop2 = loop2.getParent();
+        }
+        return loop1 == null && loop2 == null
+                || loop1 != null && loop1.getLineNo() == loop2.getLineNo();
+    }
+
+    /**
      * Find the Class or Constructor or Method in which it is defined.
      * @param ast Variable for which we want to find the scope in which it is defined
      * @return ast The Class or Constructor or Method in which it is defined.
@@ -309,6 +334,15 @@ public class FinalLocalVariableCheck extends Check {
     }
 
     /**
+     * Check if VARIABLE_DEF is initialized or not
+     * @param ast VARIABLE_DEF to be checked
+     * @return true if initiliazed
+     */
+    private boolean isInitialized(DetailAST ast) {
+        return ast.getParent().getLastChild().getType() == TokenTypes.ASSIGN;
+    }
+
+    /**
      * Inserts a variable at the topmost scope stack
      * @param ast the variable to insert
      */
@@ -316,6 +350,9 @@ public class FinalLocalVariableCheck extends Check {
         final Map<String, DetailAST> state = scopeStack.peek();
         final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
         state.put(astNode.getText(), astNode);
+        if (ast.getType() != TokenTypes.PARAMETER_DEF && !isInitialized(astNode)) {
+            unInitializedVariable.add(astNode);
+        }
     }
 
     /**
@@ -328,7 +365,20 @@ public class FinalLocalVariableCheck extends Check {
             final Map<String, DetailAST> state = iterator.next();
             final DetailAST storedVariable = state.get(ast.getText());
             if (storedVariable != null && isSameVariables(storedVariable, ast)) {
-                state.remove(ast.getText());
+                boolean wasInitiliazed = true;
+                for (DetailAST variable : unInitializedVariable) {
+                    if (variable.getText().equals(ast.getText())
+                            && isSameVariables(variable, ast)) {
+                        if (defAndInitInDifferentLoop(variable, ast)) {
+                            wasInitiliazed = false;
+                        }
+                        unInitializedVariable.remove(variable);
+                        break;
+                    }
+                }
+                if (wasInitiliazed) {
+                    state.remove(ast.getText());
+                }
                 break;
             }
         }
@@ -351,6 +401,7 @@ public class FinalLocalVariableCheck extends Check {
                     log(node.getLineNo(), node.getColumnNo(), MSG_KEY, node
                         .getText());
                 }
+                unInitializedVariable.clear();
                 break;
 
             default:
