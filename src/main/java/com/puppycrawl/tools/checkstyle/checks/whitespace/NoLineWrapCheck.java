@@ -31,10 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * but it's possible to check any statement.
  * </p>
  *
- * Examples
- * <p class="body">
- *
- * Examples of line-wrapped statements (bad case):
+ * <p>Examples of line-wrapped statements (bad case):
  * <pre>{@code package com.puppycrawl.
  *    tools.checkstyle.checks;
  *
@@ -60,7 +57,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  *
- * Examples of not line-wrapped statements (good case):
+ * <p>Examples of not line-wrapped statements (good case):
  * <pre>{@code import com.puppycrawl.tools.checkstyle.api.Check;
  * }</pre>
  *

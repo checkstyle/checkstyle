@@ -20,8 +20,8 @@
 /**
  * User interface classes for CheckStyle. Currently this is mainly a gui to aid
  * Check developers.
- * <p>
- * This is definitely work in progress. Here are some ideas where
+ *
+ * <p>This is definitely work in progress. Here are some ideas where
  * <strong>you</strong> could help:
  * <ul>
  *   <li>

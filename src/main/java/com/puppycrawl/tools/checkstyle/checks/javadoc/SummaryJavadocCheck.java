@@ -37,8 +37,9 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * <pre>
  * &lt;module name=&quot;SummaryJavadocCheck&quot;/&gt;
  * </pre>
- * <p>
- * To ensure that summary do not contain phrase like "This method returns" , use following config:
+ *
+ * <p>To ensure that summary do not contain phrase like "This method returns",
+ *  use following config:
  *
  * <pre>
  * &lt;module name=&quot;SummaryJavadocCheck&quot;&gt;

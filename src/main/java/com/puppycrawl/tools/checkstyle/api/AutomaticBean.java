@@ -107,7 +107,7 @@ public class AutomaticBean
     /**
      * Implements the Configurable interface using bean introspection.
      *
-     * Subclasses are allowed to add behaviour. After the bean
+     * <p>Subclasses are allowed to add behaviour. After the bean
      * based setup has completed first the method
      * {@link #finishLocalSetup finishLocalSetup}
      * is called to allow completion of the bean's local setup,

@@ -32,8 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
  * </p>
  *
- * <p>
- * Also, checks if a method name has the same name as the residing class.
+ * <p>Also, checks if a method name has the same name as the residing class.
  * The default is false (it is not allowed).  It is legal in Java to have
  * method with the same name as a class.  As long as a return type is specified
  * it is a method and not a constructor which it could be easily confused as.

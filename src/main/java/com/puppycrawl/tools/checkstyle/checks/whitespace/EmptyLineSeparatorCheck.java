@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- *
  * Checks for empty line separators after header, package, all import declarations,
  * fields, constructors, methods, nested classes,
  * static initializers and instance initializers.

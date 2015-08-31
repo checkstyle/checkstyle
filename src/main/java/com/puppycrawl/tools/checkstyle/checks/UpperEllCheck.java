@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * like the number <span class="code">1</span>.
  * </p>
  *
- * Examples
+ * <p>Examples
  * <p class="body">
  * To configure the check:
  *

@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * By default, -1, 0, 1, and 2 are not considered to be magic numbers.
  * </p>
  *
- * Constant definition is any variable/field that has 'final' modifier.
+ * <p>Constant definition is any variable/field that has 'final' modifier.
  * It is fine to have one constant defining multiple numeric literals within one expression:
  * <pre>
  * {@code static final int SECONDS_PER_DAY = 24 * 60 * 60;
@@ -49,8 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);}
  * </pre>
  *
- * <p>
- * Check have following options:
+ * <p>Check have following options:
  * ignoreHashCodeMethod - ignore magic numbers in hashCode methods;
  * ignoreAnnotation - ignore magic numbers in annotation declarations;
  * ignoreFieldDeclaration - ignore magic numbers in field declarations.

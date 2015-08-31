@@ -43,8 +43,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * <p>
  * A filter that uses nearby comments to suppress audit events.
  * </p>
- * <p>
- * This check is philosophically similar to {@link SuppressionCommentFilter}.
+ *
+ * <p>This check is philosophically similar to {@link SuppressionCommentFilter}.
  * Unlike {@link SuppressionCommentFilter}, this filter does not require
  * pairs of comments.  This check may be used to suppress warnings in the
  * current line:
@@ -69,9 +69,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *   }
  * </pre>
  *
- * <p>
- * See {@link SuppressionCommentFilter} for usage notes.
- *
+ * <p>See {@link SuppressionCommentFilter} for usage notes.
  *
  * @author Mick Killianey
  */

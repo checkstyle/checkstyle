@@ -63,10 +63,10 @@ public final class JavadocTokenTypes {
 
     /**
      * Javadoc tag.
-     * <p>
-     * Type of Javadoc tag is resolved by literal node that is first child of this node.
-     * <p>
-     * As literal could be:
+     *
+     * <p>Type of Javadoc tag is resolved by literal node that is first child of this node.
+     *
+     * <p>As literal could be:
      * <ul>
      * <li>{@link #RETURN_LITERAL}</li>
      * <li>{@link #DEPRECATED_LITERAL}</li>
@@ -101,12 +101,12 @@ public final class JavadocTokenTypes {
 
     /**
      * Javadoc inline tag.
-     * <p>
-     * Type of Javadoc inline tag is resolved by literal node that is second child of this node.
+     *
+     * <p>Type of Javadoc inline tag is resolved by literal node that is second child of this node.
      * First child is always {@link #JAVADOC_INLINE_TAG_START} and last node is always
      * {@link #JAVADOC_INLINE_TAG_END}.
-     * <p>
-     * As literal could be:
+     *
+     * <p>As literal could be:
      * <ul>
      * <li>{@link #CODE_LITERAL}</li>
      * <li>{@link #DOC_ROOT_LITERAL}</li>
@@ -138,8 +138,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@return' literal in @return Javadoc tag.
-     * <p>
-     * Such Javadoc tag can have one argument - {@link #DESCRIPTION}
+     *
+     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}
      *
      * <p>
      * <b>Example:</b>
@@ -162,8 +162,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@deprecated' literal in @deprecated Javadoc tag.
-     * <p>
-     * Such Javadoc tag can have one argument - {@link #DESCRIPTION}
+     *
+     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}
      *
      * <p>
      * <b>Example:</b>
@@ -186,8 +186,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@since' literal in @since Javadoc tag.
-     * <p>
-     * Such Javadoc tag can have one argument - {@link #DESCRIPTION}
+     *
+     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}
      *
      * <p>
      * <b>Example:</b>
@@ -210,8 +210,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@serialData' literal in @serialData Javadoc tag.
-     * <p>
-     * Such Javadoc tag can have one argument - {@link #DESCRIPTION}
+     *
+     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}
      *
      * <p>
      * <b>Example:</b>
@@ -235,8 +235,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@serialField' literal in @serialField Javadoc tag.
-     * <p>
-     * Such Javadoc tag can have three arguments:
+     *
+     * <p>Such Javadoc tag can have three arguments:
      * <ol>
      * <li>{@link #FIELD_NAME}</li>
      * <li>{@link #FIELD_TYPE}</li>
@@ -268,8 +268,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@param' literal in @param Javadoc tag.
-     * <p>
-     * Such Javadoc tag can have two arguments:
+     *
+     * <p>Such Javadoc tag can have two arguments:
      * <ol>
      * <li>{@link #PARAMETER_NAME}</li>
      * <li>{@link #DESCRIPTION}</li>
@@ -298,8 +298,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@see' literal in @see Javadoc tag.
-     * <p>
-     * Such Javadoc tag can have one argument - {@link #REFERENCE}
+     *
+     * <p>Such Javadoc tag can have one argument - {@link #REFERENCE}
      *
      * <p>
      * <b>Example:</b>
@@ -332,8 +332,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@see' literal in @see Javadoc tag.
-     * <p>
-     * Such Javadoc tag can have one argument - {@link #REFERENCE} or {@link #LITERAL_EXCLUDE}
+     *
+     * <p>Such Javadoc tag can have one argument - {@link #REFERENCE} or {@link #LITERAL_EXCLUDE}
      * or {@link #LITERAL_INCLUDE}
      *
      * <p>
@@ -368,8 +368,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@version' literal in @version Javadoc tag.
-     * <p>
-     * Such Javadoc tag can have one argument - {@link #DESCRIPTION}
+     *
+     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}
      *
      * <p>
      * <b>Example:</b>
@@ -392,8 +392,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@exception' literal in @exception Javadoc tag.
-     * <p>
-     * Such Javadoc tag can have two argument - {@link #CLASS_NAME} and {@link #DESCRIPTION}
+     *
+     * <p>Such Javadoc tag can have two argument - {@link #CLASS_NAME} and {@link #DESCRIPTION}
      *
      * <p>
      * <b>Example:</b>
@@ -418,8 +418,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@throws' literal in @throws Javadoc tag.
-     * <p>
-     * Such Javadoc tag can have two argument - {@link #CLASS_NAME} and {@link #DESCRIPTION}
+     *
+     * <p>Such Javadoc tag can have two argument - {@link #CLASS_NAME} and {@link #DESCRIPTION}
      *
      * <p>
      * <b>Example:</b>
@@ -444,8 +444,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@author' literal in @author Javadoc tag.
-     * <p>
-     * Such Javadoc tag can have one argument - {@link #DESCRIPTION}
+     *
+     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}
      *
      * <p>
      * <b>Example:</b>
@@ -468,8 +468,8 @@ public final class JavadocTokenTypes {
 
     /**
      * Name of custom Javadoc tag (or Javadoc inline tag).
-     * <p>
-     * Such Javadoc tag can have one argument - {@link #DESCRIPTION}
+     *
+     * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}
      *
      * <p>
      * <b>Example:</b>
@@ -524,8 +524,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@code' literal in {&#64;code} Javadoc inline tag.
-     * <p>
-     * Such Javadoc inline tag can have such child nodes:
+     *
+     * <p>Such Javadoc inline tag can have such child nodes:
      * <ul>
      * <li>{@link #NEWLINE}</li>
      * <li>{@link #WS}</li>
@@ -555,8 +555,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@docRoot' literal in {&#64;docRoot} Javadoc inline tag.
-     * <p>
-     * Such Javadoc inline tag does not have any arguments and can have such child nodes:
+     *
+     * <p>Such Javadoc inline tag does not have any arguments and can have such child nodes:
      * <ul>
      * <li>{@link #NEWLINE}</li>
      * <li>{@link #WS}</li>
@@ -635,8 +635,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@inheritDoc' literal in {&#64;inheritDoc} Javadoc inline tag.
-     * <p>
-     * Such Javadoc inline tag does not have any arguments and can have such child nodes:
+     *
+     * <p>Such Javadoc inline tag does not have any arguments and can have such child nodes:
      * <ul>
      * <li>{@link #NEWLINE}</li>
      * <li>{@link #WS}</li>
@@ -663,8 +663,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@linkplain' literal in {&#64;linkplain} Javadoc inline tag.
-     * <p>
-     * Such Javadoc inline tag can have one argument - {@link #REFERENCE}
+     *
+     * <p>Such Javadoc inline tag can have one argument - {@link #REFERENCE}
      *
      * <p>
      * <b>Example:</b>
@@ -703,8 +703,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@literal' literal in {&#64;literal} Javadoc inline tag.
-     * <p>
-     * Such Javadoc inline tag can have such child nodes:
+     *
+     * <p>Such Javadoc inline tag can have such child nodes:
      * <ul>
      * <li>{@link #NEWLINE}</li>
      * <li>{@link #WS}</li>
@@ -734,8 +734,8 @@ public final class JavadocTokenTypes {
 
     /**
      * '@value' literal in {&#64;value} Javadoc inline tag.
-     * <p>
-     * Such Javadoc inline tag has one argument {@link #REFERENCE}
+     *
+     * <p>Such Javadoc inline tag has one argument {@link #REFERENCE}
      * and can have such child nodes:
      * <ul>
      * <li>{@link #NEWLINE}</li>
@@ -1091,7 +1091,7 @@ public final class JavadocTokenTypes {
      * <li>{@link #HTML_ELEMENT}</li>
      * </ul>
      *
-     * It is argument for many Javadoc tags and inline tags.
+     * <p>It is argument for many Javadoc tags and inline tags.
      *
      * <p>
      * <b>Example:</b>

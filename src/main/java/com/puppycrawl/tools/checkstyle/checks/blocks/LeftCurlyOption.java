@@ -41,14 +41,14 @@ public enum LeftCurlyOption {
      * Otherwise apply the {@code NL} rule.
      * {@code NLOW} is a mnemonic for "new line on wrap".
      *
-     * <p> For the example above Checkstyle will enforce:
+     * <p>For the example above Checkstyle will enforce:
      *
      * <pre>
      * if (condition) {
      *     ...
      * </pre>
      *
-     * But for a statement spanning multiple lines, Checkstyle will enforce:
+     * <p>But for a statement spanning multiple lines, Checkstyle will enforce:
      *
      * <pre>
      * if (condition1 &amp;&amp; condition2 &amp;&amp;

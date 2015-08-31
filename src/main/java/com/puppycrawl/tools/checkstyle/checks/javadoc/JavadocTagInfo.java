@@ -493,7 +493,7 @@ public enum JavadocTagInfo {
     /**
      * The Javadoc Type.
      *
-     * For example a {@code @param} tag is a block tag while a
+     * <p>For example a {@code @param} tag is a block tag while a
      * {@code {@link}} tag is a inline tag.
      *
      * @author Travis Schneeberger

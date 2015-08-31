@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Some like Java-style: {@code public static void main(String[] args)}
  * and some like C-style: public static void main(String args[])
  *
- * By default the Check enforces Java style.
+ * <p>By default the Check enforces Java style.
  * @author lkuehne
  */
 public class ArrayTypeStyleCheck extends Check {

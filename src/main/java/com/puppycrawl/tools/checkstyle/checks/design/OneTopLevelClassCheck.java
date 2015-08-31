@@ -30,7 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- *
  * Checks that each top-level class, interface
  * or enum resides in a source file of its own.
  * <p>

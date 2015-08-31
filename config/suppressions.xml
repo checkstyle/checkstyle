@@ -104,5 +104,5 @@
     <!-- equals() - a lot of fields to check -->
     <suppress checks="CyclomaticComplexity" files="LocalizedMessage\.java" lines="211"/>
     <!-- SWITCH was transformed into IF-ELSE -->
-    <suppress checks="CyclomaticComplexity" files="ImportOrderCheck\.java" lines="332"/>
+    <suppress checks="CyclomaticComplexity" files="ImportOrderCheck\.java" lines="331"/>
 </suppressions>

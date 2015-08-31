@@ -39,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     System.out.println("value = " + whichIsWhich);
  * }
  * </pre>
- *
  * and debugging / refactoring leftovers such as
  *
  * <pre>

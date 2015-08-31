@@ -32,7 +32,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
  * Check for ensuring that for loop control variables are not modified
  * inside the for block. An example is:
  *
@@ -43,7 +42,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * }
  * </pre>
- * <p>
  * Rationale: If the control variable is modified inside the loop
  * body, the program flow becomes more difficult to follow.<br>
  * See <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14">
@@ -55,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  *
- * Such loop would be supressed:
+ * <p>Such loop would be supressed:
  *
  * <pre>
  * {@code

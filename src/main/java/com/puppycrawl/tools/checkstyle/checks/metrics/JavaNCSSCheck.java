@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * href="http://www.kclee.com/clemens/java/javancss">JavaNCSS specification
  * </a> and gives the same results as the JavaNCSS tool.
  *
- * The NCSS-metric tries to determine complexity of methods, classes and files
+ * <p>The NCSS-metric tries to determine complexity of methods, classes and files
  * by counting the non commenting lines. Roughly said this is (nearly)
  * equivalent to counting the semicolons and opening curly braces.
  *

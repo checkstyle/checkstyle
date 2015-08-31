@@ -46,7 +46,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="RedundantImport"/&gt;
  * </pre>
- *
  * Compatible with Java 1.5 source.
  *
  * @author Oliver Burn

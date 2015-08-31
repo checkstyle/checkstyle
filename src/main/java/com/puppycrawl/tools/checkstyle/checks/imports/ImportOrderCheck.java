@@ -141,8 +141,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * {@code *} character.
  * </p>
  *
- * <p>
- * Check also has on option making it more flexible:
+ * <p>Check also has on option making it more flexible:
  * <b>sortStaticImportsAlphabetically</b> - sets whether static imports grouped by
  * <b>top</b> or <b>bottom</b> option should be sorted alphabetically or
  * not, default value is <b>false</b>. It is applied to static imports grouped

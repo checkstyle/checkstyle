@@ -26,10 +26,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
  * Checks that a token is surrounded by whitespace.
  *
- * <p> By default the check will check the following operators:
+ * <p>By default the check will check the following operators:
  *  {@link TokenTypes#LITERAL_ASSERT ASSERT},
  *  {@link TokenTypes#ASSIGN ASSIGN},
  *  {@link TokenTypes#BAND BAND},
@@ -82,14 +81,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  {@link TokenTypes#LITERAL_ASSERT LITERAL_ASSERT},
  *  {@link TokenTypes#TYPE_EXTENSION_AND TYPE_EXTENSION_AND}.
  *
- * <p>
- * An example of how to configure the check is:
+ * <p>An example of how to configure the check is:
  *
  * <pre>
  * &lt;module name="WhitespaceAround"/&gt;
  * </pre>
  *
- * <p> An example of how to configure the check for whitespace only around
+ * <p>An example of how to configure the check for whitespace only around
  * assignment operators is:
  *
  * <pre>
@@ -99,11 +97,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  *
- * <p>
- * In addition, this check can be configured to allow empty methods, types,
+ * <p>In addition, this check can be configured to allow empty methods, types,
  * for, while, do-while loops and constructor bodies.
  * For example:
- *
  *
  * <pre>{@code
  * public MyClass() {}      // empty constructor
@@ -118,41 +114,28 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * public @interface Beta {} // empty annotation type
  * }</pre>
  *
- * <p>
- * To configure the check to allow empty method blocks use
- *
+ * <p>To configure the check to allow empty method blocks use
  *
  * <pre>   &lt;property name="allowEmptyMethods" value="true" /&gt;</pre>
  *
- * <p>
- * To configure the check to allow empty constructor blocks use
- *
+ * <p>To configure the check to allow empty constructor blocks use
  *
  * <pre>   &lt;property name="allowEmptyConstructors" value="true" /&gt;</pre>
  *
- * <p>
- * To configure the check to allow empty type blocks use
- *
+ * <p>To configure the check to allow empty type blocks use
  *
  * <pre>   &lt;property name="allowEmptyTypes" value="true" /&gt;</pre>
  *
- * <p>
- * To configure the check to allow empty loop blocks use
- *
+ * <p>To configure the check to allow empty loop blocks use
  *
  * <pre>   &lt;property name="allowEmptyLoops" value="true" /&gt;</pre>
  *
- *
- * <p>
- * Also, this check can be configured to ignore the colon in an enhanced for
+ * <p>Also, this check can be configured to ignore the colon in an enhanced for
  * loop. The colon in an enhanced for loop is ignored by default
  *
- * <p>
- * To configure the check to ignore the colon
- *
+ * <p>To configure the check to ignore the colon
  *
  * <pre>   &lt;property name="ignoreEnhancedForColon" value="true" /&gt;</pre>
- *
  *
  * @author Oliver Burn
  * @author maxvetrenko

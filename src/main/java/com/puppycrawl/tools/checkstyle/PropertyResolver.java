@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 /**
  * Resolves properties in module configurations.
  *
- * The {@link ConfigurationLoader} uses a PropertyResolver to
+ * <p>The {@link ConfigurationLoader} uses a PropertyResolver to
  * resolve the values of external properties like {@code ${basename}}
  * that occur in the configuration file.
  *

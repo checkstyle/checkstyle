@@ -30,13 +30,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * <p>
  * Checks for empty catch blocks. There are two options to make validation more precise:
  * </p>
- * <p>
- * <b>exceptionVariableName</b> - the name of variable associated with exception,
+ *
+ * <p><b>exceptionVariableName</b> - the name of variable associated with exception,
  * if Check meets variable name matching specified value - empty block is suppressed.<br>
  *  default value: &quot;^$&quot;
  * </p>
- * <p>
- * <b>commentFormat</b> - the format of the first comment inside empty catch
+ *
+ * <p><b>commentFormat</b> - the format of the first comment inside empty catch
  * block, if Check meets comment inside empty catch block matching specified format
  *  - empty block is suppressed. If it is multi-line comment - only its first line is analyzed.<br>
  * default value: &quot;.*&quot;<br>
@@ -55,8 +55,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *    &lt;property name=&quot;exceptionVariableName&quot; value=&quot;ignore|expected;/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>
- * Such empty blocks would be both suppressed:<br>
+ *
+ * <p>Such empty blocks would be both suppressed:<br>
  * </p>
  * <pre>
  * {@code
@@ -81,8 +81,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *    &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>
- * Such empty block would be suppressed:<br>
+ *
+ * <p>Such empty block would be suppressed:<br>
  * </p>
  * <pre>
  * {@code
@@ -103,8 +103,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *    &lt;property name=&quot;exceptionVariableName&quot; value=&quot;myException&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>
- * Such empty blocks would be both suppressed:<br>
+ *
+ * <p>Such empty blocks would be both suppressed:<br>
  * </p>
  * <pre>
  * {@code

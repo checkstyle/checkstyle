@@ -33,26 +33,22 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
- * <p>
  * Checks that particular class are never used as types in variable
  * declarations, return values or parameters. Includes
  * a pattern check that by default disallows abstract classes.
- * </p>
- * <p>
- * Rationale:
+ *
+ * <p>Rationale:
  * Helps reduce coupling on concrete classes. In addition abstract
  * classes should be thought of a convenience base class
  * implementations of interfaces and as such are not types themselves.
- * </p>
- * Check has following properties:
- * <p>
- * <b>format</b> - Pattern for illegal class names.
- * </p>
- * <p>
- * <b>legalAbstractClassNames</b> - Abstract classes that may be used as types.
- * </p>
- * <p>
- * <b>illegalClassNames</b> - Classes that should not be used as types in variable
+ *
+ * <p>Check has following properties:
+ *
+ * <p><b>format</b> - Pattern for illegal class names.
+ *
+ * <p><b>legalAbstractClassNames</b> - Abstract classes that may be used as types.
+ *
+ * <p><b>illegalClassNames</b> - Classes that should not be used as types in variable
    declarations, return values or parameters.
  * It is possible to set illegal class names via short or
  * <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.7">
@@ -60,31 +56,26 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  *  Specifying illegal type invokes analyzing imports and Check puts violations at
  *   corresponding declarations
  *  (of variables, methods or parameters). This helps to avoid ambiguous cases, e.g.:
- * <p>
- * {@code java.awt.List} was set as illegal class name, then, code like:
- * <p>
- * {@code
+ *
+ * <p>{@code java.awt.List} was set as illegal class name, then, code like:
+ *
+ * <p>{@code
  * import java.util.List;<br>
  * ...<br>
  * List list; //No violation here
  * }
- * </p>
- * <p>
- * will be ok.
- * </p>
- * <p>
- * <b>validateAbstractClassNames</b> - controls whether to validate abstract class names.
+ *
+ * <p>will be ok.
+ *
+ * <p><b>validateAbstractClassNames</b> - controls whether to validate abstract class names.
  * Default value is <b>false</b>
  * </p>
- * <p>
- * <b>ignoredMethodNames</b> - Methods that should not be checked.
- * </p>
- * <p>
- * <b>memberModifiers</b> - To check only methods and fields with only specified modifiers.
- * </p>
- * <p>
- * In most cases it's justified to put following classes to <b>illegalClassNames</b>:
- * </p>
+ *
+ * <p><b>ignoredMethodNames</b> - Methods that should not be checked.
+ *
+ * <p><b>memberModifiers</b> - To check only methods and fields with only specified modifiers.
+ *
+ * <p>In most cases it's justified to put following classes to <b>illegalClassNames</b>:
  * <ul>
  * <li>GregorianCalendar</li>
  * <li>Hashtable</li>
@@ -92,8 +83,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * <li>LinkedList</li>
  * <li>Vector</li>
  * </ul>
- * <p>
- * as methods that are differ from interface methods are rear used, so in most cases user will
+ *
+ * <p>as methods that are differ from interface methods are rear used, so in most cases user will
  *  benefit from checking for them.
  * </p>
  *

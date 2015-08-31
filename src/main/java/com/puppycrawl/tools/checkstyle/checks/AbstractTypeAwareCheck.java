@@ -63,13 +63,13 @@ public abstract class AbstractTypeAwareCheck extends Check {
      * Whether to log class loading errors to the checkstyle report
      * instead of throwing a RTE.
      *
-     * Logging errors will avoid stopping checkstyle completely
+     * <p>Logging errors will avoid stopping checkstyle completely
      * because of a typo in javadoc. However, with modern IDEs that
      * support automated refactoring and generate javadoc this will
      * occur rarely, so by default we assume a configuration problem
      * in the checkstyle classpath and throw an exception.
      *
-     * This configuration option was triggered by bug 1422462.
+     * <p>This configuration option was triggered by bug 1422462.
      */
     private boolean logLoadErrors = true;
 

@@ -592,8 +592,8 @@ public abstract class AbstractJavadocCheck extends Check {
          * error like {@code "no viable alternative at input 'b \n *\n'"} and it
          * is not clear that error is about missed close HTML tag. Other error
          * messages are not special and logged simply as "Parse Error...".
-         * <p>
-         * {@inheritDoc}
+         *
+         * <p>{@inheritDoc}
          */
         @Override
         public void syntaxError(

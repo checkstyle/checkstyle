@@ -273,7 +273,7 @@ public class TranslationCheck
      * Tests whether the given property files (arranged by their prefixes
      * in a Map) contain the proper keys.
      *
-     * Each group of files must have the same keys. If this is not the case
+     * <p>Each group of files must have the same keys. If this is not the case
      * an error message is posted giving information which key misses in
      * which file.
      *

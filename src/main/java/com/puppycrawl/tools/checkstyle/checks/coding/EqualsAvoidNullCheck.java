@@ -28,19 +28,17 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
  * Checks that any combination of String literals
  * is on the left side of an equals() comparison.
  * Also checks for String literals assigned to some field
  * (such as <code>someString.equals(anotherString = "text")</code>).
  *
- * <p>
- * Rationale: Calling the equals() method on String literals
+ * <p>Rationale: Calling the equals() method on String literals
  * will avoid a potential NullPointerException.  Also, it is
  * pretty common to see null check right before equals comparisons
  * which is not necessary in the below example.
  *
- * For example:
+ * <p>For example:
  *
  * <pre>
  *  {@code
@@ -334,7 +332,6 @@ public class EqualsAvoidNullCheck extends Check {
     }
 
     /**
-     * <p>
      * Looks for all "safe" Token combinations in the argument
      * expression branch.
      * @param expr the argument expression

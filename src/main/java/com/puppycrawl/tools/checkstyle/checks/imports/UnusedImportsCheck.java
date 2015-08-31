@@ -46,7 +46,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * <pre>
  * &lt;module name="UnusedImports"/&gt;
  * </pre>
- *
  * Compatible with Java 1.5 source.
  *
  * @author Oliver Burn

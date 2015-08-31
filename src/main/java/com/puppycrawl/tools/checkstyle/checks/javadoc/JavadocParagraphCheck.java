@@ -34,20 +34,17 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * before the first word, with no space after.</li>
  * </ul>
  *
- * <p>
- * The check can be specified by option allowNewlineParagraph,
+ * <p>The check can be specified by option allowNewlineParagraph,
  * which says whether the &lt;p&gt; tag should be placed immediately before
  * the first word.
  *
- * <p>
- * Default configuration:
+ * <p>Default configuration:
  * </p>
  * <pre>
  * &lt;module name=&quot;JavadocParagraph&quot;/&gt;
  * </pre>
  *
- * <p>
- * To allow newlines and spaces immediately after the &lt;p&gt; tag:
+ * <p>To allow newlines and spaces immediately after the &lt;p&gt; tag:
  * <pre>
  * &lt;module name=&quot;JavadocParagraph&quot;&gt;
  *      &lt;property name=&quot;allowNewlineParagraph&quot;
@@ -55,8 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * &lt;/module&quot;&gt;
  * </pre>
  *
- * <p>
- * In case of allowNewlineParagraph set to false
+ * <p>In case of allowNewlineParagraph set to false
  * the following example will not have any violations:
  * <pre>
  *   /**

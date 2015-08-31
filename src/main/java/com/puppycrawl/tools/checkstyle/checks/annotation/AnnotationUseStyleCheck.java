@@ -30,8 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * This check controls the style with the usage of annotations.
  *
- * <p>
- * Annotations have three element styles starting with the least verbose.
+ * <p>Annotations have three element styles starting with the least verbose.
  * <ul>
  * <li>{@link ElementStyle#COMPACT_NO_ARRAY COMPACT_NO_ARRAY}</li>
  * <li>{@link ElementStyle#COMPACT COMPACT}</li>
@@ -41,38 +40,28 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * a {@link ElementStyle#IGNORE IGNORE} type is provided.  The desired style
  * can be set through the {@code elementStyle} property.
  *
- *
- * <p>
- * Using the EXPANDED style is more verbose. The expanded version
+ * <p>Using the EXPANDED style is more verbose. The expanded version
  * is sometimes referred to as "named parameters" in other languages.
  *
- *
- * <p>
- * Using the COMPACT style is less verbose. This style can only
+ * <p>Using the COMPACT style is less verbose. This style can only
  * be used when there is an element called 'value' which is either
  * the sole element or all other elements have default values.
  *
- *
- * <p>
- * Using the COMPACT_NO_ARRAY style is less verbose. It is similar
+ * <p>Using the COMPACT_NO_ARRAY style is less verbose. It is similar
  * to the COMPACT style but single value arrays are flagged. With
  * annotations a single value array does not need to be placed in an
  * array initializer. This style can only be used when there is an
  * element called 'value' which is either the sole element or all other
  * elements have default values.
  *
- *
- * <p>
- * The ending parenthesis are optional when using annotations with no elements.
+ * <p>The ending parenthesis are optional when using annotations with no elements.
  * To always require ending parenthesis use the
  * {@link ClosingParens#ALWAYS ALWAYS} type.  To never have ending parenthesis
  * use the {@link ClosingParens#NEVER NEVER} type. To not enforce a
  * closing parenthesis preference a {@link ClosingParens#IGNORE IGNORE} type is
  * provided. Set this through the {@code closingParens} property.
  *
- *
- * <p>
- * Annotations also allow you to specify arrays of elements in a standard
+ * <p>Annotations also allow you to specify arrays of elements in a standard
  * format.  As with normal arrays, a trailing comma is optional. To always
  * require a trailing comma use the {@link TrailingArrayComma#ALWAYS ALWAYS}
  * type. To never have a trailing comma use the
@@ -80,14 +69,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * array comma preference a {@link TrailingArrayComma#IGNORE IGNORE} type
  * is provided.  Set this through the {@code trailingArrayComma} property.
  *
- *
- * <p>
- * By default the ElementStyle is set to EXPANDED, the TrailingArrayComma
+ * <p>By default the ElementStyle is set to EXPANDED, the TrailingArrayComma
  * is set to NEVER, and the ClosingParens is set to ALWAYS.
  *
- *
- * <p>
- * According to the JLS, it is legal to include a trailing comma
+ * <p>According to the JLS, it is legal to include a trailing comma
  * in arrays used in annotations but Sun's Java 5 &amp; 6 compilers will not
  * compile with this syntax. This may in be a bug in Sun's compilers
  * since eclipse 3.4's built-in compiler does allow this syntax as
@@ -95,16 +80,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * JDK versions 1.5.0.17 and 1.6.0.11 and the compiler included with eclipse
  * 3.4.1.
  *
- * See <a
+ * <p>See <a
  * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-9.html#jls-9.7">
  * Java Language specification, &sect;9.7</a>.
  *
- *
- * <p>
- * An example shown below is set to enforce an EXPANDED style, with a
+ * <p>An example shown below is set to enforce an EXPANDED style, with a
  * trailing array comma set to NEVER and always including the closing
  * parenthesis.
- *
  *
  * <pre>
  * &lt;module name=&quot;AnnotationUseStyle&quot;&gt;

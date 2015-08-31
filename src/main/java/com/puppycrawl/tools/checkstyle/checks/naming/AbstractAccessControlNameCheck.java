@@ -33,8 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * {@code "package"}, and {@code private}.
  * </p>
  *
- * <p>
- * Level is configured using the following properties:
+ * <p>Level is configured using the following properties:
  * <ol>
  * <li>applyToPublic, default true;</li>
  * <li>applyToProtected, default true;</li>

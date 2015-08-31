@@ -101,7 +101,7 @@ public final class FileText extends AbstractList<String> {
     /**
      * Creates a new file text representation.
      *
-     * The file will be read using the specified encoding, replacing
+     * <p>The file will be read using the specified encoding, replacing
      * malformed input and unmappable characters with the default
      * replacement character.
      *
@@ -150,7 +150,7 @@ public final class FileText extends AbstractList<String> {
     /**
      * Compatibility constructor.
      *
-     * This constructor reconstructs the text of the file by joining
+     * <p>This constructor reconstructs the text of the file by joining
      * lines with linefeed characters. This process does not restore
      * the original line terminators and should therefore be avoided.
      *
@@ -214,7 +214,7 @@ public final class FileText extends AbstractList<String> {
     /**
      * Compatibility conversion.
      *
-     * This method can be used to convert the arguments passed to
+     * <p>This method can be used to convert the arguments passed to
      * {@link FileSetCheck#process(File,List)} to a FileText
      * object. If the list of lines already is a FileText, it is
      * returned as is. Otherwise, a new FileText is constructed by

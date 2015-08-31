@@ -34,14 +34,13 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * should be formatted in a few lines.<br>
  * All inline at-clauses are ignored by default.
  *
- * <p>
- * The Check has the following properties:
+ * <p>The Check has the following properties:
  * <br><b>ignoredTags</b> - allows to specify a list of at-clauses
  * (including custom at-clauses) to be ignored by the check.
  * <br><b>ignoreInlineTags</b> - whether inline at-clauses must be ignored.
  * </p>
  *
- * Default configuration:
+ * <p>Default configuration:
  * <pre>
  * &lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
  * </pre>

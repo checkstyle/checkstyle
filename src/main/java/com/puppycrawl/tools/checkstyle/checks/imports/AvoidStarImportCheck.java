@@ -47,16 +47,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name="allowStaticMemberImports" value="false"/&gt;
  * &lt;/module&gt;
  * </pre>
- *
  * The optional "excludes" property allows for certain packages like
  * java.io or java.net to be exempted from the rule. It also is used to
  * allow certain classes like java.lang.Math or java.io.File to be
  * excluded in order to support static member imports.
  *
- * The optional "allowClassImports" when set to true, will allow starred
+ * <p>The optional "allowClassImports" when set to true, will allow starred
  * class imports but will not affect static member imports.
  *
- * The optional "allowStaticMemberImports" when set to true will allow
+ * <p>The optional "allowStaticMemberImports" when set to true will allow
  * starred static member imports but will not affect class imports.
  *
  * @author Oliver Burn

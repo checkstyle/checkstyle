@@ -55,8 +55,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  * the format property these defaults no longer apply.
  * </p>
  *
- * <p>
- * Limitations:  This check does not consider conditionals
+ * <p>Limitations:  This check does not consider conditionals
  * inside the SuppressWarnings annotation. <br>
  * For example:
  * {@code @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")}.
@@ -70,8 +69,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  * {@code @SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})}.
  * </p>
  *
- * <p>
- * This check can be configured so that the "unchecked"
+ * <p>This check can be configured so that the "unchecked"
  * and "unused" warnings cannot be suppressed on
  * anything but variable and parameter declarations.
  * See below of an example.
@@ -273,7 +271,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
     /**
      * Strips a single double quote from the front and back of a string.
      *
-     * For example:
+     * <p>For example:
      * <br/>
      * Input String = "unchecked"
      * <br/>

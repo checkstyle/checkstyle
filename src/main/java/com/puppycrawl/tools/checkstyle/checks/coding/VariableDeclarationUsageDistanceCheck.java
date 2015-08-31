@@ -60,8 +60,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * Check can detect a block of initialization methods. If a variable is used in
  * such a block and there is no other statements after this variable then distance=1.
  * </p>
- * <p>
- * <b>Case #1:</b>
+ *
+ * <p><b>Case #1:</b>
  * <pre>
  * int <b>minutes</b> = 5;
  * Calendar cal = Calendar.getInstance();
@@ -75,8 +75,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * though this variable is used in the fifth method's call.
  * </pre>
  *
- * <p>
- * <b>Case #2:</b>
+ * <p><b>Case #2:</b>
  * <pre>
  * int <b>minutes</b> = 5;
  * Calendar cal = Calendar.getInstance();
@@ -91,8 +90,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * (except the initialization block) between the declaration of this variable and its usage.
  * </pre>
  *
- *
- * There are several additional options to configure the check:
+ * <p>There are several additional options to configure the check:
  * <pre>
  * 1. allowedDistance - allows to set a distance
  * between declaration of variable and its first usage.

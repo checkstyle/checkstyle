@@ -41,8 +41,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * {@code Thread.sleep( 10 &lt;some comment here&gt; );}
  * Format property is intended to deal with the "} // while" example.
  * </p>
- * <p>
- * Rationale: Steve McConnel in &quot;Code Complete&quot; suggests that endline
+ *
+ * <p>Rationale: Steve McConnel in &quot;Code Complete&quot; suggests that endline
  * comments are a bad practice. An end line comment would
  * be one that is on the same line as actual code. For example:
  * <pre>
@@ -89,8 +89,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * the line changes are even more important in the age of
  * automated refactorings.
  *
- * <p>
- * To configure the check so it enforces only comment on a line:
+ * <p>To configure the check so it enforces only comment on a line:
  * <pre>
  * &lt;module name=&quot;TrailingComment&quot;&gt;
  *    &lt;property name=&quot;format&quot; value=&quot;^\\s*$&quot;/&gt;

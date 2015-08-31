@@ -29,7 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
- * <p>
  * Checks that the parts of a class or interface declaration
  * appear in the order suggested by the
  * <a
@@ -48,19 +47,16 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * <li> Methods </li>
  * </ol>
  *
- * <p>
- * Available options:
+ * <p>Available options:
  * <ul>
  * <li>ignoreModifiers</li>
  * <li>ignoreConstructors</li>
  * </ul>
  *
- * <p>
- * Purpose of <b>ignore*</b> option is to ignore related violations,
+ * <p>Purpose of <b>ignore*</b> option is to ignore related violations,
  * however it still impacts on other class members.
  *
- * <p>
- * For example:
+ * <p>For example:
  * <pre>{@code
  *     class K {
  *         int a;
@@ -70,8 +66,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  *     }
  * }</pre>
  *
- * <p>
- * With <b>ignoreConstructors</b> option:
+ * <p>With <b>ignoreConstructors</b> option:
  * <pre>{@code
  *     class K {
  *         int a;
@@ -81,8 +76,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  *     }
  * }</pre>
  *
- * <p>
- * With <b>ignoreConstructors</b> option and without a method definition in a source class:
+ * <p>With <b>ignoreConstructors</b> option and without a method definition in a source class:
  * <pre>{@code
  *     class K {
  *         int a;
@@ -91,8 +85,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  *     }
  * }</pre>
  *
- * <p>
- * An example of how to configure the check is:
+ * <p>An example of how to configure the check is:
  *
  * <pre>
  * &lt;module name="DeclarationOrder"/&gt;

@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * object are explicitly of the form &quot;this.varName&quot; or
  * &quot;this.methodName(args)&quot;.
  *</p>
+ *
  * <p>Examples of use:
  * <pre>
  * &lt;module name=&quot;RequireThis&quot;/&gt;

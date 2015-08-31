@@ -45,7 +45,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *       value="java.lang.System.out,java.lang.Math.*"/&gt;
  * &lt;/module&gt;
  * </pre>
- *
  * The optional "excludes" property allows for certain classes via a star
  * notation to be excluded such as java.lang.Math.* or specific
  * static members to be excluded like java.lang.System.out for a variable

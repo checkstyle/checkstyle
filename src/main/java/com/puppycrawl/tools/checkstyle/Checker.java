@@ -102,7 +102,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
      * The value of this property is passed to submodules via
      * contextualize().
      *
-     * Note: Since the Checker is merely a container for modules
+     * <p>Note: Since the Checker is merely a container for modules
      * it does not make sense to implement logging functionality
      * here. Consequently Checker does not extend AbstractViolationReporter,
      * leading to a bit of duplicated code for severity level setting.

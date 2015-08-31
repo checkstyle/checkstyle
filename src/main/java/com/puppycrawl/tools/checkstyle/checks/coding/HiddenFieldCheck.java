@@ -32,31 +32,31 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
- * <p>Checks that a local variable or a parameter does not shadow
+ * Checks that a local variable or a parameter does not shadow
  * a field that is defined in the same class.
- * <p>
- * An example of how to configure the check is:
+ *
+ * <p>An example of how to configure the check is:
  * <pre>
  * &lt;module name="HiddenField"/&gt;
  * </pre>
- * <p>
- * An example of how to configure the check so that it checks variables but not
+ *
+ * <p>An example of how to configure the check so that it checks variables but not
  * parameters is:
  * <pre>
  * &lt;module name="HiddenField"&gt;
  *    &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>
- * An example of how to configure the check so that it ignores the parameter of
+ *
+ * <p>An example of how to configure the check so that it ignores the parameter of
  * a setter method is:
  * <pre>
  * &lt;module name="HiddenField"&gt;
  *    &lt;property name="ignoreSetter" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>
- * A method is recognized as a setter if it is in the following form
+ *
+ * <p>A method is recognized as a setter if it is in the following form
  * <pre>
  * ${returnType} set${Name}(${anyType} ${name}) { ... }
  * </pre>
@@ -79,8 +79,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * Such methods are known as chain-setters and a common when Builder-pattern
  * is used. Property <em>setterCanReturnItsClass</em> has effect only if
  * <em>ignoreSetter</em> is set to true.
- * <p>
- * An example of how to configure the check so that it ignores the parameter
+ *
+ * <p>An example of how to configure the check so that it ignores the parameter
  * of either a setter that returns void or a chain-setter.
  * <pre>
  * &lt;module name="HiddenField"&gt;
@@ -88,16 +88,16 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  *    &lt;property name="setterCanReturnItsClass" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>
- * An example of how to configure the check so that it ignores constructor
+ *
+ * <p>An example of how to configure the check so that it ignores constructor
  * parameters is:
  * <pre>
  * &lt;module name="HiddenField"&gt;
  *    &lt;property name="ignoreConstructorParameter" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>
- * An example of how to configure the check so that it ignores variables and parameters
+ *
+ * <p>An example of how to configure the check so that it ignores variables and parameters
  * named 'test':
  * <pre>
  * &lt;module name="HiddenField"&gt;

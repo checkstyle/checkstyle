@@ -68,7 +68,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  *    &lt;property name="allowOneCharVarInForLoop" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>
  *
  * @author Rick Giles
  * @author maxvetrenko

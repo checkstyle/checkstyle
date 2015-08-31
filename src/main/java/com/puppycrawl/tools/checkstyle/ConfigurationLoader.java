@@ -277,7 +277,7 @@ public final class ConfigurationLoader {
      * Replaces {@code ${xxx}} style constructions in the given value
      * with the string value of the corresponding data types.
      *
-     * The method is package visible to facilitate testing.
+     * <p>The method is package visible to facilitate testing.
      *
      * <p>Code copied from ant -
      * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java

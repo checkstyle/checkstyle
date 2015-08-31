@@ -695,6 +695,7 @@ public final class TokenTypes {
      * <pre>
      * Math.random()
      * </pre>
+     *
      * <p>parses as:
      * <pre>
      * +--METHOD_CALL (()
