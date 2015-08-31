@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.io.File;
 
@@ -46,6 +47,14 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputSuppressWarningsHolder.java"), expected);
+    }
+
+    @Test
+    public void testIsSuppressedWithSyntacticallyInvalidInputFile() throws Exception {
+        SuppressWarningsHolder s = new SuppressWarningsHolder();
+        String filePath = "src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
+            + "SyntacticallyInvalidInputForSuppressWarningsHolder.java";
+        assertFalse(s.isSuppressed(new File(filePath).getCanonicalPath(), 7, 20));
     }
 
     @Test
