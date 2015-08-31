@@ -248,6 +248,9 @@ class FileDrop {
         void filesDropped(File... files);
     }
 
+    /**
+     * Listener and handler for file drop target events.
+     */
     private class FileDropTargetListener extends DropTargetAdapter {
         /** Target component to drop to. */
         private final Component component;

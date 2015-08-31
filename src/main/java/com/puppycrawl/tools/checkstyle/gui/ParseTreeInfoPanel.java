@@ -259,6 +259,9 @@ public class ParseTreeInfoPanel extends JPanel {
         }
     }
 
+    /**
+     * Filter for Java files.
+     */
     private static class JavaFileFilter extends FileFilter {
         @Override
         public boolean accept(File file) {
@@ -274,6 +277,9 @@ public class ParseTreeInfoPanel extends JPanel {
         }
     }
 
+    /**
+     * Handler for file selection action events.
+     */
     private class FileSelectionAction extends AbstractAction {
         /**
          * Serial ID.
@@ -300,6 +306,9 @@ public class ParseTreeInfoPanel extends JPanel {
         }
     }
 
+    /**
+     * Handler for reload action events.
+     */
     private class ReloadAction extends AbstractAction {
         /**
          * Serial UID.
@@ -320,6 +329,9 @@ public class ParseTreeInfoPanel extends JPanel {
         }
     }
 
+    /**
+     * Listener and handler for file dropped events.
+     */
     private class FileDropListener implements FileDrop.Listener {
         /** Scroll pane. */
         private final JScrollPane scrollPane;

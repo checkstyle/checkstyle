@@ -346,6 +346,7 @@
     <module name="SingleLineJavadoc"/>
     <module name="JavadocTagContinuationIndentation"/>
     <module name="JavadocParagraph"/>
+    <module name="WriteTag"/>
 
     <!--
         All Checks bellow are our futute plan to enforce over our code.
@@ -354,9 +355,6 @@
         As all violations are resolved Check need to got default severity as all other.
     -->
     <module name="SummaryJavadoc">
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="WriteTag">
       <property name="severity" value="ignore"/>
     </module>
 

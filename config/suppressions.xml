@@ -38,6 +38,7 @@
     <suppress checks="MethodCount" files="[\\/]IndentationCheckTest.java$"/>
     <suppress checks="MethodCount" files="[\\/]MainTest.java$"/>
     <suppress checks="EqualsAvoidNull" files="[\\/]Int.*FilterTest.java$"/>
+    <suppress checks="WriteTag" files=".*[\\/]src[\\/]test[\\/]"/>
 
     <!-- suppressions to remove over time -->
     <suppress checks="FinalLocalVariable" files=".*[\\/]src[\\/]test[\\/]"/>
