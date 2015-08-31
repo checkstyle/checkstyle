@@ -406,6 +406,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
         }
 
         /**
+         * Gets class name.
          * @return class name
          */
         public final Token getName() {
@@ -529,6 +530,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
         }
 
         /**
+         * Gets line number of the token.
          * @return line number of the token
          */
         public int getLineNo() {
@@ -536,6 +538,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
         }
 
         /**
+         * Gets column number of the token.
          * @return column number of the token
          */
         public int getColumnNo() {
@@ -543,6 +546,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
         }
 
         /**
+         * Gets text of the token.
          * @return text of the token
          */
         public String getText() {

@@ -153,6 +153,7 @@ final class PropertyCacheFile {
     }
 
     /**
+     * Checks that file is in cache.
      * @param uncheckedFileName the file to check
      * @param timestamp the timestamp of the file to check
      * @return whether the specified file has already been checked ok

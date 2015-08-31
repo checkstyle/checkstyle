@@ -33,6 +33,7 @@ public final class LocalizedMessages {
     private final Set<LocalizedMessage> messages = Sets.newTreeSet();
 
     /**
+     * Gets the logged messages.
      * @return the logged messages
      */
     public SortedSet<LocalizedMessage> getMessages() {
@@ -53,6 +54,7 @@ public final class LocalizedMessages {
     }
 
     /**
+     * Gets the number of messages.
      * @return the number of messages
      */
     public int size() {

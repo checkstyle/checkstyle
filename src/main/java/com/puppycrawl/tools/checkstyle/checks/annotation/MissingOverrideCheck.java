@@ -100,6 +100,7 @@ public final class MissingOverrideCheck extends Check {
             CommonUtils.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
 
     /**
+     * Java 5 compatibility option.
      * @see #setJavaFiveCompatibility(boolean)
      */
     private boolean javaFiveCompatibility;

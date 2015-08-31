@@ -242,6 +242,7 @@ public final class LocalizedMessage
     }
 
     /**
+     * Gets the translated message.
      * @return the translated message
      */
     public String getMessage() {
@@ -302,6 +303,7 @@ public final class LocalizedMessage
     }
 
     /**
+     * Gets the line number.
      * @return the line number
      */
     public int getLineNo() {
@@ -309,6 +311,7 @@ public final class LocalizedMessage
     }
 
     /**
+     * Gets the column number.
      * @return the column number
      */
     public int getColumnNo() {
@@ -316,6 +319,7 @@ public final class LocalizedMessage
     }
 
     /**
+     * Gets the severity level.
      * @return the severity level
      */
     public SeverityLevel getSeverityLevel() {
@@ -340,6 +344,7 @@ public final class LocalizedMessage
     }
 
     /**
+     * Gets the name of the source for this LocalizedMessage.
      * @return the name of the source for this LocalizedMessage
      */
     public String getSourceName() {
@@ -347,6 +352,7 @@ public final class LocalizedMessage
     }
 
     /**
+     * Sets a locale to use for localization.
      * @param locale the locale to use for localization
      */
     public static void setLocale(Locale locale) {

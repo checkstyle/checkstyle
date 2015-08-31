@@ -148,17 +148,20 @@ public final class AnnotationUseStyleCheck extends Check {
     //has more than one option type.
 
     /**
+     * ElementStyle option.
      * @see #setElementStyle(String)
      */
     private ElementStyle elementStyle = ElementStyle.COMPACT_NO_ARRAY;
 
     //defaulting to NEVER because of the strange compiler behavior
     /**
+     * Trailing array comma option.
      * @see #setTrailingArrayComma(String)
      */
     private TrailingArrayComma trailingArrayComma = TrailingArrayComma.NEVER;
 
     /**
+     * Closing parens option.
      * @see #setClosingParens(String)
      */
     private ClosingParens closingParens = ClosingParens.NEVER;

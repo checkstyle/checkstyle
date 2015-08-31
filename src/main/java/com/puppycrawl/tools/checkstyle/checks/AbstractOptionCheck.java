@@ -73,6 +73,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
     }
 
     /**
+     * Gets AbstractOption set.
      * @return the {@code AbstractOption} set
      */
     public T getAbstractOption() {

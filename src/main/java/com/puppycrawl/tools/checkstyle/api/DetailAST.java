@@ -211,6 +211,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
     }
 
     /**
+     * Gets line number.
      * @return the line number
      */
     public int getLineNo() {
@@ -241,6 +242,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
     }
 
     /**
+     * Gets column number.
      * @return the column number
      */
     public int getColumnNo() {
@@ -271,6 +273,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
     }
 
     /**
+     * Gets the last child node.
      * @return the last child node
      */
     public DetailAST getLastChild() {

@@ -290,6 +290,7 @@ public class SuppressWarningsHolder
     }
 
     /**
+     * Checks that annotation is empty.
      * @param values list of values in the annotation
      * @return whether annotation is empty or contains some values
      */
@@ -472,6 +473,7 @@ public class SuppressWarningsHolder
         }
 
         /**
+         * Gets he source name of the suppressed check.
          * @return the source name of the suppressed check
          */
         public String getCheckName() {
@@ -479,6 +481,7 @@ public class SuppressWarningsHolder
         }
 
         /**
+         * Gets the first line of the suppression region.
          * @return the first line of the suppression region
          */
         public int getFirstLine() {
@@ -486,6 +489,7 @@ public class SuppressWarningsHolder
         }
 
         /**
+         * Gets the first column of the suppression region.
          * @return the first column of the suppression region
          */
         public int getFirstColumn() {
@@ -493,6 +497,7 @@ public class SuppressWarningsHolder
         }
 
         /**
+         * Gets the last line of the suppression region.
          * @return the last line of the suppression region
          */
         public int getLastLine() {
@@ -500,6 +505,7 @@ public class SuppressWarningsHolder
         }
 
         /**
+         * Gets the last column of the suppression region.
          * @return the last column of the suppression region
          */
         public int getLastColumn() {

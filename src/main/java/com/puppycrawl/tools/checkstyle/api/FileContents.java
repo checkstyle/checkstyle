@@ -232,6 +232,7 @@ public final class FileContents implements CommentListener {
     }
 
     /**
+     * Gets the lines in the file.
      * @return the lines in the file
      */
     public String[] getLines() {
@@ -248,6 +249,7 @@ public final class FileContents implements CommentListener {
     }
 
     /**
+     * Gets the name of the file.
      * @return the name of the file
      */
     public String getFileName() {

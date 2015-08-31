@@ -124,6 +124,7 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
+     * Sets flag - whether to fail if a violation is found.
      * @param fail whether to fail if a violation is found
      */
     public void setFailOnViolation(boolean fail) {
@@ -193,6 +194,7 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
+     * Creates classpath.
      * @return a created path for locating classes
      */
     public Path createClasspath() {
@@ -203,6 +205,7 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
+     * Sets file to be checked.
      * @param file the file to be checked
      */
     public void setFile(File file) {
@@ -210,6 +213,7 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
+     * Sets configuration file.
      * @param file the configuration file to use
      */
     public void setConfig(File file) {
@@ -217,6 +221,7 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
+     * Sets URL to the configuration.
      * @param url the URL of the configuration to use
      */
     public void setConfigURL(URL url) {
@@ -236,6 +241,7 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
+     * Sets flag - whether to omit ignored modules.
      * @param omit whether to omit ignored modules
      */
     public void setOmitIgnoredModules(boolean omit) {
@@ -573,6 +579,7 @@ public class CheckstyleAntTask extends Task {
         }
 
         /**
+         * Creates default logger.
          * @param task the task to possibly log to
          * @return a DefaultLogger instance
          * @throws IOException if an error occurs
@@ -588,6 +595,7 @@ public class CheckstyleAntTask extends Task {
         }
 
         /**
+         * Creates XML logger.
          * @param task the task to possibly log to
          * @return an XMLLogger instance
          * @throws IOException if an error occurs
@@ -611,6 +619,7 @@ public class CheckstyleAntTask extends Task {
         private String value;
 
         /**
+         * Gets key.
          * @return the property key
          */
         public String getKey() {
@@ -618,6 +627,7 @@ public class CheckstyleAntTask extends Task {
         }
 
         /**
+         * Sets key.
          * @param key sets the property key
          */
         public void setKey(String key) {
@@ -625,6 +635,7 @@ public class CheckstyleAntTask extends Task {
         }
 
         /**
+         * Gets value.
          * @return the property value
          */
         public String getValue() {
@@ -632,6 +643,7 @@ public class CheckstyleAntTask extends Task {
         }
 
         /**
+         * Sets value.
          * @param value set the property value
          */
         public void setValue(String value) {
@@ -639,6 +651,7 @@ public class CheckstyleAntTask extends Task {
         }
 
         /**
+         * Sets the property value from a File.
          * @param file set the property value from a File
          */
         public void setFile(File file) {
@@ -652,6 +665,7 @@ public class CheckstyleAntTask extends Task {
         private String className;
 
         /**
+         * Gets class name.
          * @return the class name
          */
         public String getClassname() {
@@ -659,6 +673,7 @@ public class CheckstyleAntTask extends Task {
         }
 
         /**
+         * Sets class name.
          * @param name set the class name
          */
         public void setClassname(String name) {

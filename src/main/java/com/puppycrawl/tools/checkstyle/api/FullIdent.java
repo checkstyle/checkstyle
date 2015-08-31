@@ -52,6 +52,7 @@ public final class FullIdent {
     }
 
     /**
+     * Gets the text.
      * @return the text
      */
     public String getText() {
@@ -59,6 +60,7 @@ public final class FullIdent {
     }
 
     /**
+     * Gets the line number.
      * @return the line number
      */
     public int getLineNo() {
@@ -66,6 +68,7 @@ public final class FullIdent {
     }
 
     /**
+     * Gets the column number.
      * @return the column number
      */
     public int getColumnNo() {

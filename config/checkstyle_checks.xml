@@ -347,16 +347,7 @@
     <module name="JavadocTagContinuationIndentation"/>
     <module name="JavadocParagraph"/>
     <module name="WriteTag"/>
-
-    <!--
-        All Checks bellow are our futute plan to enforce over our code.
-        All of them are activated for integration testing over our code.
-        All of them have ignore severity to avoid build failure for now.
-        As all violations are resolved Check need to got default severity as all other.
-    -->
-    <module name="SummaryJavadoc">
-      <property name="severity" value="ignore"/>
-    </module>
+    <module name="SummaryJavadoc"/>
 
     <module name="MissingCtor">
       <!--

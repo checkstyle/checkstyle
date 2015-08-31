@@ -293,6 +293,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     }
 
     /**
+     * Sets base directory.
      * @param basedir the base directory to strip off in filenames
      */
     public void setBasedir(String basedir) {
@@ -398,6 +399,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     }
 
     /**
+     * Sets locale country.
      * @param localeCountry the country to report messages
      */
     public void setLocaleCountry(String localeCountry) {
@@ -405,6 +407,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     }
 
     /**
+     * Sets locale language.
      * @param localeLanguage the language to report messages
      */
     public void setLocaleLanguage(String localeLanguage) {

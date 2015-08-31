@@ -137,6 +137,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
     }
 
     /**
+     * Checks that a class name conforms to specified format.
      * @param ast class definition node
      * @return true if a class name conforms to specified format
      */
@@ -146,6 +147,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
     }
 
     /**
+     * Checks that if extended class name conforms to specified format.
      * @param ast class definition node
      * @return true if extended class name conforms to specified format
      */

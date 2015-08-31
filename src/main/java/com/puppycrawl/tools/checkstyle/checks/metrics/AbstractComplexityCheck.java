@@ -56,6 +56,7 @@ public abstract class AbstractComplexityCheck
     }
 
     /**
+     * Gets the message ID to log violations with.
      * @return the message ID to log violations with
      */
     protected abstract String getMessageID();
@@ -128,6 +129,7 @@ public abstract class AbstractComplexityCheck
     }
 
     /**
+     * Gets the current value.
      * @return the current value
      */
     protected final BigInteger getCurrentValue() {
@@ -158,6 +160,7 @@ public abstract class AbstractComplexityCheck
     }
 
     /**
+     * Pops a value off the stack and makes it the current value.
      * @return pop a value off the stack and make it the current value
      */
     protected final BigInteger popValue() {

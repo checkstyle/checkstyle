@@ -69,6 +69,7 @@ public class JTreeTable extends JTable {
     private List<Integer> linePositionMap;
 
     /**
+     * Creates JTreeTable base on TreeTableModel.
      * @param treeTableModel Tree table model
      */
     public JTreeTable(TreeTableModel treeTableModel) {

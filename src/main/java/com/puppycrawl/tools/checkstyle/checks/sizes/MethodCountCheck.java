@@ -245,6 +245,7 @@ public final class MethodCountCheck extends Check {
         }
 
         /**
+         * Gets the value of a scope counter.
          * @param scope the scope counter to get the value of
          * @return the value of a scope counter
          */

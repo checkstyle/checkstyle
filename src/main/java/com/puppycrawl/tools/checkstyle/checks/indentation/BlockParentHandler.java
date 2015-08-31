@@ -286,6 +286,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     }
 
     /**
+     * Gets indentation level expected for children.
      * @return indentation level expected for children
      */
     protected IndentLevel getChildrenExpectedLevel() {

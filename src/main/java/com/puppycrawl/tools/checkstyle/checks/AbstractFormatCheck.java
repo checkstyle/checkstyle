@@ -82,6 +82,7 @@ public abstract class AbstractFormatCheck
     }
 
     /**
+     * Gets the regexp.
      * @return the regexp to match against
      */
     public final Pattern getRegexp() {
@@ -89,6 +90,7 @@ public abstract class AbstractFormatCheck
     }
 
     /**
+     * Gets the regexp format.
      * @return the regexp format
      */
     public final String getFormat() {

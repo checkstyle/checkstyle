@@ -103,6 +103,7 @@ public final class AuditEvent
     }
 
     /**
+     * Gets the column associated with the message.
      * @return the column associated with the message
      */
     public int getColumn() {
@@ -110,6 +111,7 @@ public final class AuditEvent
     }
 
     /**
+     * Gets the audit event severity level.
      * @return the audit event severity level
      */
     public SeverityLevel getSeverityLevel() {
@@ -130,6 +132,7 @@ public final class AuditEvent
     }
 
     /**
+     * Gets the name of the source for the message.
      * @return the name of the source for the message
      */
     public String getSourceName() {
@@ -137,6 +140,7 @@ public final class AuditEvent
     }
 
     /**
+     * Gets the localized message.
      * @return the localized message
      */
     public LocalizedMessage getLocalizedMessage() {

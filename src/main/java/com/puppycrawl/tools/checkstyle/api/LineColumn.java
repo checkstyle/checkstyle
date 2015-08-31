@@ -45,6 +45,7 @@ public class LineColumn implements Comparable<LineColumn> {
     }
 
     /**
+     * Gets the one-based line number.
      * @return the one-based line number
      */
     public int getLine() {
@@ -52,6 +53,7 @@ public class LineColumn implements Comparable<LineColumn> {
     }
 
     /**
+     * Gets the zero-based column number.
      * @return the zero-based column number
      */
     public int getColumn() {

@@ -259,6 +259,7 @@ public final class CommonUtils {
     }
 
     /**
+     * Gets constructor of targetClass.
      * @param targetClass
      *            from which constructor is returned
      * @param parameterTypes

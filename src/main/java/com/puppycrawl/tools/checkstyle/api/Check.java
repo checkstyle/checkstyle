@@ -219,6 +219,7 @@ public abstract class Check extends AbstractViolationReporter {
     }
 
     /**
+     * Get tab width to report errors with.
      * @return the tab width to report errors with
      */
     protected final int getTabWidth() {

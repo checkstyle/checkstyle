@@ -131,6 +131,7 @@ public class LineLengthCheck extends Check {
     }
 
     /**
+     * Sets the maximum length of a line.
      * @param length the maximum length of a line
      */
     public void setMax(int length) {

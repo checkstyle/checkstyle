@@ -256,8 +256,9 @@ public abstract class AbstractExpressionHandler {
     }
 
     /**
+     * Checks that indentation should be increased after first line in checkLinesIndent().
      * @return true if indentation should be increased after
-     *              fisrt line in checkLinesIndent()
+     *              first line in checkLinesIndent()
      *         false otherwise
      */
     protected boolean shouldIncreaseIndent() {

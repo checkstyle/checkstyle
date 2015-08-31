@@ -988,6 +988,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         }
 
         /**
+         * Checks that the exception has throws tag associated with it.
          * @return whether the exception has throws tag associated with
          */
         final boolean isFound() {
@@ -995,6 +996,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         }
 
         /**
+         * Gets exception name.
          * @return exception's name
          */
         final Token getName() {
@@ -1002,6 +1004,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         }
 
         /**
+         * Gets exception class.
          * @return class for this exception
          */
         final Class<?> getClazz() {

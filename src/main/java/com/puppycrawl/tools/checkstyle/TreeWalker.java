@@ -124,14 +124,17 @@ public final class TreeWalker
     }
 
     /**
+     * Sets tab width.
      * @param tabWidth the distance between tab stops
      */
     public void setTabWidth(int tabWidth) {
         this.tabWidth = tabWidth;
     }
 
-    /** @param fileName the cache file
-     *  @throws IOException if there are some problems with file loading
+    /**
+     * Sets cache file.
+     * @param fileName the cache file
+     * @throws IOException if there are some problems with file loading
      */
     public void setCacheFile(String fileName) throws IOException {
         final Configuration configuration = getConfiguration();

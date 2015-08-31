@@ -252,6 +252,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     }
 
     /**
+     * Checks that a token follows an empty for iterator.
      * @param ast the token to check
      * @return whether a token follows an empty for iterator
      */
@@ -268,6 +269,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     }
 
     /**
+     * Checks that a token precedes an empty for initializer.
      * @param ast the token to check
      * @return whether a token precedes an empty for initializer
      */

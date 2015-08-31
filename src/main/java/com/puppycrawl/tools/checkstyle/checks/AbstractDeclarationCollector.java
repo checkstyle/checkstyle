@@ -295,6 +295,7 @@ public abstract class AbstractDeclarationCollector extends Check {
      */
     private static class MethodFrame extends LexicalFrame {
         /**
+         * Creates method frame.
          * @param parent parent frame
          */
         protected MethodFrame(LexicalFrame parent) {
@@ -401,6 +402,7 @@ public abstract class AbstractDeclarationCollector extends Check {
     private static class BlockFrame extends LexicalFrame {
 
         /**
+         * Creates block frame.
          * @param parent parent frame
          */
         protected BlockFrame(LexicalFrame parent) {
