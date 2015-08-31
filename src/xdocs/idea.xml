@@ -68,5 +68,15 @@
       </p>
     </section>
 
+    <section name="Inspections">
+      <p>
+        Checkstyle has its own very strict set of inspections. To import and enable them go to
+        Settings -> Editor -> Inspections -> Manage -> Import... and locate file
+        <code>config/intellij-idea-inspections.xml</code>.<br/><br/>
+        <img alt="Inspections in IntelliJ IDEA" src="images/gui_screenshot_inspections_idea.png"/>
+        <br/>
+      </p>
+    </section>
+
   </body>
 </document>
