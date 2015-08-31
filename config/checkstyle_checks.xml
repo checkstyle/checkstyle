@@ -335,6 +335,7 @@
     <module name="OneTopLevelClass"/>
     <module name="IllegalToken"/>
     <module name="PackageDeclaration"/>
+    <module name="VariableDeclarationUsageDistance"/>
 
     <!--
         All Checks bellow are our futute plan to enforce over our code.
@@ -343,9 +344,6 @@
         As all violations are resolved Check need to got default severity as all other.
     -->
     <module name="OverloadMethodsDeclarationOrder">
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="VariableDeclarationUsageDistance">
       <property name="severity" value="ignore"/>
     </module>
     <module name="ClassFanOutComplexity">

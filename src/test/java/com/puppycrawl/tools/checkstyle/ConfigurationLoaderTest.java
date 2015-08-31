@@ -363,8 +363,6 @@ public class ConfigurationLoaderTest {
                 constr.setAccessible(true);
                 ctorParent = constr;
             }
-            Object objParent = ctorParent.newInstance(null, true);
-
             Class<?> aClass = Class.forName("com.puppycrawl.tools.checkstyle."
                     + "ConfigurationLoader$InternalLoader");
             Constructor<?> constructor = null;
@@ -374,14 +372,14 @@ public class ConfigurationLoaderTest {
                 constructor = constr;
             }
 
-            Object obj = constructor.newInstance(objParent);
-
             Class<?>[] param = new Class<?>[4];
             param[0] = String.class;
             param[1] = String.class;
             param[2] = String.class;
             param[3] = Attributes.class;
             Method method = aClass.getDeclaredMethod("startElement", param);
+            Object objParent = ctorParent.newInstance(null, true);
+            Object obj = constructor.newInstance(objParent);
 
             method.invoke(obj, "", "", "hello", null);
 

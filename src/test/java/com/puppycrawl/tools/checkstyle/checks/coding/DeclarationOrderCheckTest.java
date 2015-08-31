@@ -137,7 +137,6 @@ public class DeclarationOrderCheckTest
 
     @Test
     public void testParents() {
-        DeclarationOrderCheck check = new DeclarationOrderCheck();
         DetailAST parent = new DetailAST();
         parent.setType(TokenTypes.STATIC_INIT);
         DetailAST method = new DetailAST();
@@ -147,19 +146,20 @@ public class DeclarationOrderCheckTest
         ctor.setType(TokenTypes.CTOR_DEF);
         method.setNextSibling(ctor);
 
+        DeclarationOrderCheck check = new DeclarationOrderCheck();
         check.visitToken(method);
         check.visitToken(ctor);
     }
 
     @Test
     public void testImproperToken() {
-        DeclarationOrderCheck check = new DeclarationOrderCheck();
         DetailAST parent = new DetailAST();
         parent.setType(TokenTypes.STATIC_INIT);
         DetailAST array = new DetailAST();
         array.setType(TokenTypes.ARRAY_INIT);
         parent.setFirstChild(array);
 
+        DeclarationOrderCheck check = new DeclarationOrderCheck();
         check.visitToken(array);
     }
 
