@@ -241,7 +241,9 @@ public final class LocalizedMessage
         }
     }
 
-    /** @return the translated message **/
+    /**
+     * @return the translated message
+     */
     public String getMessage() {
         String message = getCustomMessage();
 
@@ -299,22 +301,30 @@ public final class LocalizedMessage
         }
     }
 
-    /** @return the line number **/
+    /**
+     * @return the line number
+     */
     public int getLineNo() {
         return lineNo;
     }
 
-    /** @return the column number **/
+    /**
+     * @return the column number
+     */
     public int getColumnNo() {
         return columnNo;
     }
 
-    /** @return the severity level **/
+    /**
+     * @return the severity level
+     */
     public SeverityLevel getSeverityLevel() {
         return severityLevel;
     }
 
-    /** @return the module identifier. */
+    /**
+     * @return the module identifier.
+     */
     public String getModuleId() {
         return moduleId;
     }
@@ -329,12 +339,16 @@ public final class LocalizedMessage
         return key;
     }
 
-    /** @return the name of the source for this LocalizedMessage */
+    /**
+     * @return the name of the source for this LocalizedMessage
+     */
     public String getSourceName() {
         return sourceClass.getName();
     }
 
-    /** @param locale the locale to use for localization **/
+    /**
+     * @param locale the locale to use for localization
+     */
     public static void setLocale(Locale locale) {
         if (Locale.ENGLISH.getLanguage().equals(locale.getLanguage())) {
             sLocale = Locale.ROOT;

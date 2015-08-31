@@ -57,22 +57,30 @@ public class JavadocTag {
         this(line, column, tag, null);
     }
 
-    /** @return the tag string **/
+    /**
+     * @return the tag string
+     */
     public String getTagName() {
         return tagInfo.getName();
     }
 
-    /** @return the first argument. null if not set. **/
+    /**
+     * @return the first argument. null if not set.
+     */
     public String getFirstArg() {
         return firstArg;
     }
 
-    /** @return the line number **/
+    /**
+     * @return the line number
+     */
     public int getLineNo() {
         return lineNo;
     }
 
-    /** @return the column number */
+    /**
+     * @return the column number
+     */
     public int getColumnNo() {
         return columnNo;
     }
@@ -83,33 +91,45 @@ public class JavadocTag {
                 + ", firstArg='" + firstArg + "'}";
     }
 
-    /** @return whether the tag is an 'return' tag **/
+    /**
+     * @return whether the tag is an 'return' tag
+     */
     public boolean isReturnTag() {
         return tagInfo == JavadocTagInfo.RETURN;
     }
 
-    /** @return whether the tag is an 'param' tag **/
+    /**
+     * @return whether the tag is an 'param' tag
+     */
     public boolean isParamTag() {
         return tagInfo == JavadocTagInfo.PARAM;
     }
 
-    /** @return whether the tag is an 'throws' or 'exception' tag **/
+    /**
+     * @return whether the tag is an 'throws' or 'exception' tag
+     */
     public boolean isThrowsTag() {
         return tagInfo == JavadocTagInfo.THROWS
             || tagInfo == JavadocTagInfo.EXCEPTION;
     }
 
-    /** @return whether the tag is a 'see' or 'inheritDoc' tag **/
+    /**
+     * @return whether the tag is a 'see' or 'inheritDoc' tag
+     */
     public boolean isSeeOrInheritDocTag() {
         return tagInfo == JavadocTagInfo.SEE || isInheritDocTag();
     }
 
-    /** @return whether the tag is a 'inheritDoc' tag **/
+    /**
+     * @return whether the tag is a 'inheritDoc' tag
+     */
     public boolean isInheritDocTag() {
         return tagInfo == JavadocTagInfo.INHERIT_DOC;
     }
 
-    /** @return whether the tag can contain references to imported classes **/
+    /**
+     * @return whether the tag can contain references to imported classes
+     */
     public boolean canReferenceImports() {
         return tagInfo == JavadocTagInfo.SEE
                 || tagInfo == JavadocTagInfo.LINK

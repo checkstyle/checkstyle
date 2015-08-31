@@ -139,7 +139,9 @@ public class SuppressWithNearbyCommentFilter
         commentRegexp = CommonUtils.createPattern(format);
     }
 
-    /** @return the FileContents for this filter. */
+    /**
+     * @return the FileContents for this filter.
+     */
     public FileContents getFileContents() {
         return fileContentsReference.get();
     }

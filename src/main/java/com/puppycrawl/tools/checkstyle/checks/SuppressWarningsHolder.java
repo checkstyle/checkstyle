@@ -471,27 +471,37 @@ public class SuppressWarningsHolder
             this.lastColumn = lastColumn;
         }
 
-        /** @return the source name of the suppressed check */
+        /**
+         * @return the source name of the suppressed check
+         */
         public String getCheckName() {
             return checkName;
         }
 
-        /** @return the first line of the suppression region */
+        /**
+         * @return the first line of the suppression region
+         */
         public int getFirstLine() {
             return firstLine;
         }
 
-        /** @return the first column of the suppression region */
+        /**
+         * @return the first column of the suppression region
+         */
         public int getFirstColumn() {
             return firstColumn;
         }
 
-        /** @return the last line of the suppression region */
+        /**
+         * @return the last line of the suppression region
+         */
         public int getLastLine() {
             return lastLine;
         }
 
-        /** @return the last column of the suppression region */
+        /**
+         * @return the last column of the suppression region
+         */
         public int getLastColumn() {
             return lastColumn;
         }

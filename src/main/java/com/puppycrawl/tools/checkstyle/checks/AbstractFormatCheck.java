@@ -81,12 +81,16 @@ public abstract class AbstractFormatCheck
         updateRegexp(format, compileFlags);
     }
 
-    /** @return the regexp to match against */
+    /**
+     * @return the regexp to match against
+     */
     public final Pattern getRegexp() {
         return regexp;
     }
 
-    /** @return the regexp format */
+    /**
+     * @return the regexp format
+     */
     public final String getFormat() {
         return format;
     }

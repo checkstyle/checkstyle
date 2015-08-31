@@ -37,7 +37,9 @@ public class FileContentsHolder
     /** The current file contents. */
     private static final ThreadLocal<FileContents> FILE_CONTENTS = new ThreadLocal<>();
 
-    /** @return the current file contents. */
+    /**
+     * @return the current file contents.
+     */
     public static FileContents getContents() {
         return FILE_CONTENTS.get();
     }

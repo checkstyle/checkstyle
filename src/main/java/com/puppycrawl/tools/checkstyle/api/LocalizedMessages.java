@@ -32,7 +32,9 @@ public final class LocalizedMessages {
     /** Contains the messages logged **/
     private final Set<LocalizedMessage> messages = Sets.newTreeSet();
 
-    /** @return the logged messages **/
+    /**
+     * @return the logged messages
+     */
     public SortedSet<LocalizedMessage> getMessages() {
         return Sets.newTreeSet(messages);
     }
@@ -50,7 +52,9 @@ public final class LocalizedMessages {
         messages.add(aMsg);
     }
 
-    /** @return the number of messages */
+    /**
+     * @return the number of messages
+     */
     public int size() {
         return messages.size();
     }

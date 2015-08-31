@@ -134,7 +134,9 @@ public class SuppressionCommentFilter
         onRegexp = CommonUtils.createPattern(format);
     }
 
-    /** @return the FileContents for this filter. */
+    /**
+     * @return the FileContents for this filter.
+     */
     public FileContents getFileContents() {
         return fileContentsReference.get();
     }
@@ -371,7 +373,9 @@ public class SuppressionCommentFilter
             }
         }
 
-        /** @return the line number of the tag in the source file. */
+        /**
+         * @return the line number of the tag in the source file.
+         */
         public int getLine() {
             return line;
         }

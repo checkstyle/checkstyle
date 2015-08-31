@@ -123,7 +123,9 @@ public final class TreeWalker
         setFileExtensions("java");
     }
 
-    /** @param tabWidth the distance between tab stops */
+    /**
+     * @param tabWidth the distance between tab stops
+     */
     public void setTabWidth(int tabWidth) {
         this.tabWidth = tabWidth;
     }
@@ -138,7 +140,9 @@ public final class TreeWalker
         cache.load();
     }
 
-    /** @param classLoader class loader to resolve classes with. */
+    /**
+     * @param classLoader class loader to resolve classes with.
+     */
     public void setClassLoader(ClassLoader classLoader) {
         this.classLoader = classLoader;
     }

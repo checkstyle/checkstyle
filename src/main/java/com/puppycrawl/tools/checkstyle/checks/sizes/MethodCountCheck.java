@@ -259,7 +259,9 @@ public final class MethodCountCheck extends Check {
             }
         }
 
-        /** @return the total number of methods. */
+        /**
+         * @return the total number of methods.
+         */
         int getTotal() {
             return total;
         }

@@ -123,7 +123,9 @@ public class CheckstyleAntTask extends Task {
         failureProperty = propertyName;
     }
 
-    /** @param fail whether to fail if a violation is found */
+    /**
+     * @param fail whether to fail if a violation is found
+     */
     public void setFailOnViolation(boolean fail) {
         failOnViolation = fail;
     }
@@ -190,7 +192,9 @@ public class CheckstyleAntTask extends Task {
         createClasspath().setRefid(classpathRef);
     }
 
-    /** @return a created path for locating classes */
+    /**
+     * @return a created path for locating classes
+     */
     public Path createClasspath() {
         if (classpath == null) {
             classpath = new Path(getProject());
@@ -198,17 +202,23 @@ public class CheckstyleAntTask extends Task {
         return classpath.createPath();
     }
 
-    /** @param file the file to be checked */
+    /**
+     * @param file the file to be checked
+     */
     public void setFile(File file) {
         fileName = file.getAbsolutePath();
     }
 
-    /** @param file the configuration file to use */
+    /**
+     * @param file the configuration file to use
+     */
     public void setConfig(File file) {
         setConfigLocation(file.getAbsolutePath());
     }
 
-    /** @param url the URL of the configuration to use */
+    /**
+     * @param url the URL of the configuration to use
+     */
     public void setConfigURL(URL url) {
         setConfigLocation(url.toExternalForm());
     }
@@ -225,7 +235,9 @@ public class CheckstyleAntTask extends Task {
         configLocation = location;
     }
 
-    /** @param omit whether to omit ignored modules */
+    /**
+     * @param omit whether to omit ignored modules
+     */
     public void setOmitIgnoredModules(boolean omit) {
         omitIgnoredModules = omit;
     }
@@ -598,27 +610,37 @@ public class CheckstyleAntTask extends Task {
         /** The property value */
         private String value;
 
-        /** @return the property key */
+        /**
+         * @return the property key
+         */
         public String getKey() {
             return key;
         }
 
-        /** @param key sets the property key */
+        /**
+         * @param key sets the property key
+         */
         public void setKey(String key) {
             this.key = key;
         }
 
-        /** @return the property value */
+        /**
+         * @return the property value
+         */
         public String getValue() {
             return value;
         }
 
-        /** @param value set the property value */
+        /**
+         * @param value set the property value
+         */
         public void setValue(String value) {
             this.value = value;
         }
 
-        /** @param file set the property value from a File */
+        /**
+         * @param file set the property value from a File
+         */
         public void setFile(File file) {
             value = file.getAbsolutePath();
         }
@@ -629,12 +651,16 @@ public class CheckstyleAntTask extends Task {
         /** Class name of the listener class */
         private String className;
 
-        /** @return the class name */
+        /**
+         * @return the class name
+         */
         public String getClassname() {
             return className;
         }
 
-        /** @param name set the class name */
+        /**
+         * @param name set the class name
+         */
         public void setClassname(String name) {
             className = name;
         }

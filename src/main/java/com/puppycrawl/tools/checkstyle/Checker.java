@@ -292,7 +292,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
         return errorCount;
     }
 
-    /** @param basedir the base directory to strip off in filenames */
+    /**
+     * @param basedir the base directory to strip off in filenames
+     */
     public void setBasedir(String basedir) {
         this.basedir = basedir;
     }
@@ -395,12 +397,16 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
         this.moduleFactory = moduleFactory;
     }
 
-    /** @param localeCountry the country to report messages  **/
+    /**
+     * @param localeCountry the country to report messages
+     */
     public void setLocaleCountry(String localeCountry) {
         this.localeCountry = localeCountry;
     }
 
-    /** @param localeLanguage the language to report messages  **/
+    /**
+     * @param localeLanguage the language to report messages
+     */
     public void setLocaleLanguage(String localeLanguage) {
         this.localeLanguage = localeLanguage;
     }

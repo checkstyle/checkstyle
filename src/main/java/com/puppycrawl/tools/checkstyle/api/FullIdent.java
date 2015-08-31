@@ -51,17 +51,23 @@ public final class FullIdent {
     private FullIdent() {
     }
 
-    /** @return the text **/
+    /**
+     * @return the text
+     */
     public String getText() {
         return StringUtils.join(elements, "");
     }
 
-    /** @return the line number **/
+    /**
+     * @return the line number
+     */
     public int getLineNo() {
         return lineNo;
     }
 
-    /** @return the column number **/
+    /**
+     * @return the column number
+     */
     public int getColumnNo() {
         return columnNo;
     }

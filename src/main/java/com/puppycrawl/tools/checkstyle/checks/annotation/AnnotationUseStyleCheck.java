@@ -165,14 +165,20 @@ public final class AnnotationUseStyleCheck extends Check {
     //not extending AbstractOptionCheck because check
     //has more than one option type.
 
-    /** @see #setElementStyle(String) */
+    /**
+     * @see #setElementStyle(String)
+     */
     private ElementStyle elementStyle = ElementStyle.COMPACT_NO_ARRAY;
 
     //defaulting to NEVER because of the strange compiler behavior
-    /** @see #setTrailingArrayComma(String) */
+    /**
+     * @see #setTrailingArrayComma(String)
+     */
     private TrailingArrayComma trailingArrayComma = TrailingArrayComma.NEVER;
 
-    /** @see #setClosingParens(String) */
+    /**
+     * @see #setClosingParens(String)
+     */
     private ClosingParens closingParens = ClosingParens.NEVER;
 
     /**

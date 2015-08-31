@@ -200,7 +200,9 @@ public abstract class AbstractTypeAwareCheck extends Check {
             &&  parent.isAssignableFrom(child);
     }
 
-    /** @return {@code ClassResolver} for current tree. */
+    /**
+     * @return {@code ClassResolver} for current tree.
+     */
     private ClassResolver getClassResolver() {
         if (classResolver == null) {
             classResolver =
@@ -403,12 +405,16 @@ public abstract class AbstractTypeAwareCheck extends Check {
             name = className;
         }
 
-        /** @return class name */
+        /**
+         * @return class name
+         */
         public final Token getName() {
             return name;
         }
 
-        /** @return {@code Class} associated with an object. */
+        /**
+         * @return {@code Class} associated with an object.
+         */
         public abstract Class<?> getClazz();
     }
 
@@ -522,17 +528,23 @@ public abstract class AbstractTypeAwareCheck extends Check {
             columnNo = fullIdent.getColumnNo();
         }
 
-        /** @return line number of the token */
+        /**
+         * @return line number of the token
+         */
         public int getLineNo() {
             return lineNo;
         }
 
-        /** @return column number of the token */
+        /**
+         * @return column number of the token
+         */
         public int getColumnNo() {
             return columnNo;
         }
 
-        /** @return text of the token */
+        /**
+         * @return text of the token
+         */
         public String getText() {
             return text;
         }

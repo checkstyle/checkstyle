@@ -231,7 +231,9 @@ public final class FileContents implements CommentListener {
         return new FileText(text);
     }
 
-    /** @return the lines in the file */
+    /**
+     * @return the lines in the file
+     */
     public String[] getLines() {
         return text.toLinesArray();
     }
@@ -245,7 +247,9 @@ public final class FileContents implements CommentListener {
         return text.get(index);
     }
 
-    /** @return the name of the file */
+    /**
+     * @return the name of the file
+     */
     public String getFileName() {
         return fileName;
     }

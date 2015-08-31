@@ -210,7 +210,9 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
         return parent;
     }
 
-    /** @return the line number **/
+    /**
+     * @return the line number
+     */
     public int getLineNo() {
         int resultNo = -1;
 
@@ -238,7 +240,9 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
         this.lineNo = lineNo;
     }
 
-    /** @return the column number **/
+    /**
+     * @return the column number
+     */
     public int getColumnNo() {
         int resultNo = -1;
 
@@ -266,7 +270,9 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
         this.columnNo = columnNo;
     }
 
-    /** @return the last child node */
+    /**
+     * @return the last child node
+     */
     public DetailAST getLastChild() {
         DetailAST ast = getFirstChild();
         while (ast != null && ast.getNextSibling() != null) {

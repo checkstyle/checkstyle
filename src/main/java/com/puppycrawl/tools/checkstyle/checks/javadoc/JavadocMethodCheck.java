@@ -973,17 +973,23 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             found = true;
         }
 
-        /** @return whether the exception has throws tag associated with */
+        /**
+         * @return whether the exception has throws tag associated with
+         */
         final boolean isFound() {
             return found;
         }
 
-        /** @return exception's name */
+        /**
+         * @return exception's name
+         */
         final Token getName() {
             return classInfo.getName();
         }
 
-        /** @return class for this exception */
+        /**
+         * @return class for this exception
+         */
         final Class<?> getClazz() {
             return classInfo.getClazz();
         }

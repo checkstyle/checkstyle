@@ -86,7 +86,9 @@ public abstract class AbstractClassCouplingCheck extends Check {
         return getRequiredTokens();
     }
 
-    /** @return allowed complexity. */
+    /**
+     * @return allowed complexity.
+     */
     public final int getMax() {
         return max;
     }
@@ -112,7 +114,9 @@ public abstract class AbstractClassCouplingCheck extends Check {
         packageName = "";
     }
 
-    /** @return message key we use for log violations. */
+    /**
+     * @return message key we use for log violations.
+     */
     protected abstract String getLogMessageId();
 
     @Override

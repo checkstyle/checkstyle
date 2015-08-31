@@ -102,12 +102,16 @@ public final class AuditEvent
         return localizedMessage.getMessage();
     }
 
-    /** @return the column associated with the message **/
+    /**
+     * @return the column associated with the message
+     */
     public int getColumn() {
         return localizedMessage.getColumnNo();
     }
 
-    /** @return the audit event severity level **/
+    /**
+     * @return the audit event severity level
+     */
     public SeverityLevel getSeverityLevel() {
         if (localizedMessage == null) {
             return SeverityLevel.INFO;
@@ -125,12 +129,16 @@ public final class AuditEvent
         return localizedMessage.getModuleId();
     }
 
-    /** @return the name of the source for the message **/
+    /**
+     * @return the name of the source for the message
+     */
     public String getSourceName() {
         return localizedMessage.getSourceName();
     }
 
-    /** @return the localized message **/
+    /**
+     * @return the localized message
+     */
     public LocalizedMessage getLocalizedMessage() {
         return localizedMessage;
     }

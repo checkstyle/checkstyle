@@ -44,12 +44,16 @@ public class LineColumn implements Comparable<LineColumn> {
         this.column = column;
     }
 
-    /** @return the one-based line number */
+    /**
+     * @return the one-based line number
+     */
     public int getLine() {
         return line;
     }
 
-    /** @return the zero-based column number */
+    /**
+     * @return the zero-based column number
+     */
     public int getColumn() {
         return column;
     }
