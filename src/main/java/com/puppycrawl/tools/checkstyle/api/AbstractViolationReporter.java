@@ -83,18 +83,6 @@ public abstract class AbstractViolationReporter
     }
 
     /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param ast a node to get line id column numbers associated
-     *             with the message
-     * @param key key to locale message format
-     * @param args arguments to format
-     */
-    protected final void log(DetailAST ast, String key, Object... args) {
-        log(ast.getLineNo(), ast.getColumnNo(), key, args);
-    }
-
-    /**
      * Returns the message bundle name resourcebundle that contains the messages
      * used by this module.
      * <p>
@@ -116,15 +104,6 @@ public abstract class AbstractViolationReporter
     }
 
     /**
-     * Returns an unmodifiable map instance containing the custom messages
-     * for this configuration.
-     * @return unmodifiable map containing custom messages
-     */
-    protected Map<String, String> getCustomMessages() {
-        return getConfiguration().getMessages();
-    }
-
-    /**
      * For unit tests, especially with a class with no package name.
      * @param className class name of the module.
      * @return name of a resource bundle that contains the messages
@@ -138,6 +117,27 @@ public abstract class AbstractViolationReporter
         }
         final String packageName = className.substring(0, endIndex);
         return packageName + "." + messages;
+    }
+
+    /**
+     * Returns an unmodifiable map instance containing the custom messages
+     * for this configuration.
+     * @return unmodifiable map containing custom messages
+     */
+    protected Map<String, String> getCustomMessages() {
+        return getConfiguration().getMessages();
+    }
+
+    /**
+     * Helper method to log a LocalizedMessage.
+     *
+     * @param ast a node to get line id column numbers associated
+     *             with the message
+     * @param key key to locale message format
+     * @param args arguments to format
+     */
+    protected final void log(DetailAST ast, String key, Object... args) {
+        log(ast.getLineNo(), ast.getColumnNo(), key, args);
     }
 
     /**

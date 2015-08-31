@@ -240,6 +240,31 @@ public abstract class AbstractExpressionHandler {
     }
 
     /**
+     * Get the start of the specified line.
+     *
+     * @param line   the specified line number
+     *
+     * @return the start of the specified line
+     */
+    protected final int getLineStart(String line) {
+        int index = 0;
+        while (Character.isWhitespace(line.charAt(index))) {
+            index++;
+        }
+        return CommonUtils.lengthExpandedTabs(
+            line, index, indentCheck.getIndentationTabWidth());
+    }
+
+    /**
+     * @return true if indentation should be increased after
+     *              fisrt line in checkLinesIndent()
+     *         false otherwise
+     */
+    protected boolean shouldIncreaseIndent() {
+        return true;
+    }
+
+    /**
      * Check the indentation of consecutive lines for the expression we are
      * handling.
      *
@@ -258,15 +283,6 @@ public abstract class AbstractExpressionHandler {
         for (int i = startLine + 1; i <= endLine; i++) {
             checkSingleLine(i, offsetLevel);
         }
-    }
-
-    /**
-     * @return true if indentation should be increased after
-     *              fisrt line in checkLinesIndent()
-     *         false otherwise
-     */
-    protected boolean shouldIncreaseIndent() {
-        return true;
     }
 
     /**
@@ -358,22 +374,6 @@ public abstract class AbstractExpressionHandler {
                 || !mustMatch && colNum == start && indentLevel.isGreaterThan(start)) {
             logChildError(lineNum, start, indentLevel);
         }
-    }
-
-    /**
-     * Get the start of the specified line.
-     *
-     * @param line   the specified line number
-     *
-     * @return the start of the specified line
-     */
-    protected final int getLineStart(String line) {
-        int index = 0;
-        while (Character.isWhitespace(line.charAt(index))) {
-            index++;
-        }
-        return CommonUtils.lengthExpandedTabs(
-            line, index, indentCheck.getIndentationTabWidth());
     }
 
     /**
