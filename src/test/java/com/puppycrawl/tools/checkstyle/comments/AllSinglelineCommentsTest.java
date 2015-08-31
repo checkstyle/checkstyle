@@ -78,8 +78,8 @@ public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
         }
 
         @Override
-        public void visitToken(DetailAST aAST) {
-            String commentContent = aAST.getFirstChild().getText();
+        public void visitToken(DetailAST ast) {
+            String commentContent = ast.getFirstChild().getText();
             if (!ALL_COMMENTS.remove(commentContent)) {
                 Assert.fail("Unexpected comment: " + commentContent);
             }

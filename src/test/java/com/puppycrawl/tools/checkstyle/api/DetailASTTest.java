@@ -113,10 +113,10 @@ public class DetailASTTest {
     private static void checkDir(File dir) throws Exception {
         File[] files = dir.listFiles(new FileFilter() {
                 @Override
-                public boolean accept(File file) {
-                    return (file.getName().endsWith(".java")
-                            || file.isDirectory())
-                        && !file.getName().endsWith("InputGrammar.java");
+                public boolean accept(File pathname) {
+                    return (pathname.getName().endsWith(".java")
+                            || pathname.isDirectory())
+                        && !pathname.getName().endsWith("InputGrammar.java");
                 }
             });
         for (File file : files) {

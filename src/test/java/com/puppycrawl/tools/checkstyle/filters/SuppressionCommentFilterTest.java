@@ -204,7 +204,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Override
-    protected Checker createChecker(Configuration aFilterConfig)
+    protected Checker createChecker(Configuration checkConfig)
             throws CheckstyleException, UnsupportedEncodingException {
         final DefaultConfiguration checkerConfig =
             new DefaultConfiguration("configuration");
@@ -214,8 +214,8 @@ public class SuppressionCommentFilterTest
         checksConfig.addChild(createCheckConfig(ConstantNameCheck.class));
         checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
         checkerConfig.addChild(checksConfig);
-        if (aFilterConfig != null) {
-            checkerConfig.addChild(aFilterConfig);
+        if (checkConfig != null) {
+            checkerConfig.addChild(checkConfig);
         }
         final Checker checker = new Checker();
         final Locale locale = Locale.ROOT;

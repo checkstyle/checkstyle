@@ -35,9 +35,9 @@ public class JavadocPackageCheckTest
     extends BaseCheckTestSupport {
     @Override
     protected DefaultConfiguration createCheckerConfig(
-        Configuration aCheckConfig) {
+        Configuration config) {
         final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(aCheckConfig);
+        dc.addChild(config);
         return dc;
     }
 

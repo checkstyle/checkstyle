@@ -86,7 +86,7 @@ public class SuppressWarningsFilterTest
     }
 
     @Override
-    protected Checker createChecker(Configuration filterConfig)
+    protected Checker createChecker(Configuration checkConfig)
         throws Exception {
         final DefaultConfiguration checkerConfig =
             new DefaultConfiguration("configuration");
@@ -103,8 +103,8 @@ public class SuppressWarningsFilterTest
         checksConfig.addChild(createCheckConfig(ParameterNumberCheck.class));
         checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
         checkerConfig.addChild(checksConfig);
-        if (filterConfig != null) {
-            checkerConfig.addChild(filterConfig);
+        if (checkConfig != null) {
+            checkerConfig.addChild(checkConfig);
         }
         final Checker checker = new Checker();
         final Locale locale = Locale.ROOT;
