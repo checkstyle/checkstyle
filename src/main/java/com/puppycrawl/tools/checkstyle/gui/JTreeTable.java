@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.gui;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.util.EventObject;
@@ -34,12 +33,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTree;
 import javax.swing.KeyStroke;
 import javax.swing.LookAndFeel;
-import javax.swing.UIManager;
 import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.TreeCellRenderer;
-import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
 import com.google.common.collect.ImmutableList;
@@ -75,7 +69,7 @@ public class JTreeTable extends JTable {
     public JTreeTable(TreeTableModel treeTableModel) {
 
         // Create the tree. It will be used as a renderer and editor.
-        tree = new TreeTableCellRenderer(treeTableModel);
+        tree = new TreeTableCellRenderer(this, treeTableModel);
 
         // Install a tableModel representing the visible rows in the tree.
         setModel(new TreeTableModelAdapter(treeTableModel, tree));
@@ -194,102 +188,6 @@ public class JTreeTable extends JTable {
      */
     public void setLinePositionMap(List<Integer> linePositionMap) {
         this.linePositionMap = ImmutableList.copyOf(linePositionMap);
-    }
-
-    /**
-     * A TreeCellRenderer that displays a JTree.
-     */
-    class TreeTableCellRenderer extends JTree implements
-            TableCellRenderer {
-        /**
-         * Serial ID.
-         */
-        private static final long serialVersionUID = 4324031590789321581L;
-        /** Last table/tree row asked to renderer. */
-        private int visibleRow;
-
-        /**
-         * Creates a new instance.
-         * @param model Tree model.
-         */
-        TreeTableCellRenderer(TreeModel model) {
-            super(model);
-        }
-
-        /**
-         * UpdateUI is overridden to set the colors of the Tree's renderer
-         * to match that of the table.
-         */
-        @Override
-        public void updateUI() {
-            super.updateUI();
-            // Make the tree's cell renderer use the table's cell selection
-            // colors.
-            final TreeCellRenderer tcr = getCellRenderer();
-            if (tcr instanceof DefaultTreeCellRenderer) {
-                final DefaultTreeCellRenderer dtcr = (DefaultTreeCellRenderer) tcr;
-                // For 1.1 uncomment this, 1.2 has a bug that will cause an
-                // exception to be thrown if the border selection color is
-                // null.
-                // dtcr.setBorderSelectionColor(null);
-                dtcr.setTextSelectionColor(UIManager.getColor("Table.selectionForeground"));
-                dtcr.setBackgroundSelectionColor(UIManager.getColor("Table.selectionBackground"));
-            }
-        }
-
-        /**
-         * Sets the row height of the tree, and forwards the row height to
-         * the table.
-         */
-        @Override
-        public void setRowHeight(int newRowHeight) {
-            if (newRowHeight > 0) {
-                super.setRowHeight(newRowHeight);
-                if (JTreeTable.this != null
-                        && JTreeTable.this.getRowHeight() != newRowHeight) {
-                    JTreeTable.this.setRowHeight(getRowHeight());
-                }
-            }
-        }
-
-        /**
-         * This is overridden to set the height to match that of the JTable.
-         */
-        @Override
-        public void setBounds(int x, int y, int w, int h) {
-            super.setBounds(x, 0, w, JTreeTable.this.getHeight());
-        }
-
-        /**
-         * Sublcassed to translate the graphics such that the last visible
-         * row will be drawn at 0,0.
-         */
-        @Override
-        public void paint(Graphics g) {
-            g.translate(0, -visibleRow * getRowHeight());
-            super.paint(g);
-        }
-
-        /**
-         * TreeCellRenderer method. Overridden to update the visible row.
-         * @see TableCellRenderer
-         */
-        @Override
-        public Component getTableCellRendererComponent(JTable table,
-                Object value,
-                boolean isSelected,
-                boolean hasFocus,
-                int row, int column) {
-            if (isSelected) {
-                setBackground(table.getSelectionBackground());
-            }
-            else {
-                setBackground(table.getBackground());
-            }
-
-            visibleRow = row;
-            return this;
-        }
     }
 
     /**
