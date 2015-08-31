@@ -233,7 +233,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>1.7.4</version>
+      <version>1.7.5</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -450,7 +450,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>1.4</version>
+        <version>1.4.1</version>
         <executions>
           <execution>
             <id>enforce-versions</id>
