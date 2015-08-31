@@ -337,6 +337,11 @@
     <module name="PackageDeclaration"/>
     <module name="VariableDeclarationUsageDistance"/>
     <module name="OverloadMethodsDeclarationOrder"/>
+    <module name="ClassFanOutComplexity">
+        <property name="max" value="25"/>
+        <!-- Default classes are also listed-->
+        <property name="excludedClasses" value="boolean, byte, char, double, float, int, long, short,  void, Boolean, Byte, Character, Double, Float, Integer, Long, Short, Void, Object, Class, String, StringBuffer, StringBuilder, ArrayIndexOutOfBoundsException, Exception, RuntimeException, IllegalArgumentException, IllegalStateException, IndexOutOfBoundsException, NullPointerException, Throwable, SecurityException, UnsupportedOperationException, List, ArrayList, Deque, Queue, LinkedList, Set, HashSet, SortedSet, TreeSet, Map, HashMap, SortedMap, TreeMap, DetailsAST, CheckstyleException, UnsupportedEncodingException, BuildException, ConversionException, FileNotFoundException, TestException, Log, Sets, Multimap, TokenStreamRecognitionException, RecognitionException, TokenStreamException, IOException"/>
+    </module>
 
     <!--
         All Checks bellow are our futute plan to enforce over our code.
@@ -344,10 +349,6 @@
         All of them have ignore severity to avoid build failure for now.
         As all violations are resolved Check need to got default severity as all other.
     -->
-    <module name="ClassFanOutComplexity">
-      <property name="severity" value="ignore"/>
-    </module>
-
     <module name="SingleLineJavadoc">
       <property name="severity" value="ignore"/>
     </module>
