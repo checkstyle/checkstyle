@@ -175,6 +175,21 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
     }
 
     /**
+     * Returns the number of direct child tokens that have the specified type.
+     * @param type the token type to match
+     * @return the number of matching token
+     */
+    public int getChildCount(int type) {
+        int count = 0;
+        for (AST ast = getFirstChild(); ast != null; ast = ast.getNextSibling()) {
+            if (ast.getType() == type) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
      * Set the parent token.
      * @param parent the parent token
      */
@@ -335,21 +350,6 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
      */
     public boolean branchContains(int type) {
         return getBranchTokenTypes().get(type);
-    }
-
-    /**
-     * Returns the number of direct child tokens that have the specified type.
-     * @param type the token type to match
-     * @return the number of matching token
-     */
-    public int getChildCount(int type) {
-        int count = 0;
-        for (AST ast = getFirstChild(); ast != null; ast = ast.getNextSibling()) {
-            if (ast.getType() == type) {
-                count++;
-            }
-        }
-        return count;
     }
 
     /**

@@ -426,6 +426,34 @@ public class WhitespaceAroundCheck extends Check {
     }
 
     /**
+     * Tests if a given {@code DetailAST} is part of an empty block.
+     * An example empty block might look like the following
+     * <p>
+     * <pre>   public void myMethod(int val) {}</pre>
+     * </p>
+     * In the above, the method body is an empty block ("{}").
+     *
+     * @param ast the {@code DetailAST} to test.
+     * @param parentType the token type of {@code ast}'s parent.
+     * @param match the parent token type we're looking to match.
+     * @return {@code true} if {@code ast} makes up part of an
+     *         empty block contained under a {@code match} token type
+     *         node.
+     */
+    private static boolean isEmptyBlock(DetailAST ast, int parentType, int match) {
+        final int type = ast.getType();
+        if (type == TokenTypes.RCURLY) {
+            final DetailAST grandParent = ast.getParent().getParent();
+            return parentType == TokenTypes.SLIST
+                && grandParent.getType() == match;
+        }
+
+        return type == TokenTypes.SLIST
+            && parentType == match
+            && ast.getFirstChild().getType() == TokenTypes.RCURLY;
+    }
+
+    /**
      * Whether colon belongs to cases or defaults.
      * @param currentType current
      * @param parentType parent
@@ -521,33 +549,5 @@ public class WhitespaceAroundCheck extends Check {
         final int type = ast.getType();
         return (type == TokenTypes.RCURLY || type == TokenTypes.LCURLY)
                 && parentType == TokenTypes.OBJBLOCK;
-    }
-
-    /**
-     * Tests if a given {@code DetailAST} is part of an empty block.
-     * An example empty block might look like the following
-     * <p>
-     * <pre>   public void myMethod(int val) {}</pre>
-     * </p>
-     * In the above, the method body is an empty block ("{}").
-     *
-     * @param ast the {@code DetailAST} to test.
-     * @param parentType the token type of {@code ast}'s parent.
-     * @param match the parent token type we're looking to match.
-     * @return {@code true} if {@code ast} makes up part of an
-     *         empty block contained under a {@code match} token type
-     *         node.
-     */
-    private static boolean isEmptyBlock(DetailAST ast, int parentType, int match) {
-        final int type = ast.getType();
-        if (type == TokenTypes.RCURLY) {
-            final DetailAST grandParent = ast.getParent().getParent();
-            return parentType == TokenTypes.SLIST
-                && grandParent.getType() == match;
-        }
-
-        return type == TokenTypes.SLIST
-            && parentType == match
-            && ast.getFirstChild().getType() == TokenTypes.RCURLY;
     }
 }

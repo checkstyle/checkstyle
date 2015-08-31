@@ -264,26 +264,6 @@ public final class TreeWalker
     }
 
     /**
-     * Validates that check's required tokens are subset of default tokens.
-     * @param check to validate
-     * @throws CheckstyleException when validation of default tokens fails
-     */
-    private static void validateDefaultTokens(Check check) throws CheckstyleException {
-        final int[] defaultTokens = check.getDefaultTokens();
-        if (check.getRequiredTokens().length != 0) {
-            Arrays.sort(defaultTokens);
-            for (final int token : check.getRequiredTokens()) {
-                if (Arrays.binarySearch(defaultTokens, token) < 0) {
-                    final String message = String.format("Token \"%s\" from required tokens was"
-                            + " not found in default tokens list in check %s",
-                            token, check.getClass().getName());
-                    throw new CheckstyleException(message);
-                }
-            }
-        }
-    }
-
-    /**
      * Register a check for a specified token id.
      * @param tokenID the id of the token
      * @param check the check to register
@@ -309,6 +289,26 @@ public final class TreeWalker
         }
         else {
             tokenToOrdinaryChecks.put(token, check);
+        }
+    }
+
+    /**
+     * Validates that check's required tokens are subset of default tokens.
+     * @param check to validate
+     * @throws CheckstyleException when validation of default tokens fails
+     */
+    private static void validateDefaultTokens(Check check) throws CheckstyleException {
+        final int[] defaultTokens = check.getDefaultTokens();
+        if (check.getRequiredTokens().length != 0) {
+            Arrays.sort(defaultTokens);
+            for (final int token : check.getRequiredTokens()) {
+                if (Arrays.binarySearch(defaultTokens, token) < 0) {
+                    final String message = String.format("Token \"%s\" from required tokens was"
+                            + " not found in default tokens list in check %s",
+                            token, check.getClass().getName());
+                    throw new CheckstyleException(message);
+                }
+            }
         }
     }
 
