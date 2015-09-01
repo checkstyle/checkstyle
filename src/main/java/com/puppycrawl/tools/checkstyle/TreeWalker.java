@@ -305,8 +305,8 @@ public final class TreeWalker
      * @throws CheckstyleException when validation of default tokens fails
      */
     private static void validateDefaultTokens(Check check) throws CheckstyleException {
-        final int[] defaultTokens = check.getDefaultTokens();
         if (check.getRequiredTokens().length != 0) {
+            final int[] defaultTokens = check.getDefaultTokens();
             Arrays.sort(defaultTokens);
             for (final int token : check.getRequiredTokens()) {
                 if (Arrays.binarySearch(defaultTokens, token) < 0) {
