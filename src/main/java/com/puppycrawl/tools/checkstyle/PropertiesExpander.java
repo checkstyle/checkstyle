@@ -38,6 +38,7 @@ public final class PropertiesExpander
      *     property resolution.
      * @throws IllegalArgumentException indicates null was passed
      */
+    @SuppressWarnings("idea: CollectionDeclaredAsConcreteClass")
     public PropertiesExpander(Properties properties) {
         if (properties == null) {
             throw new IllegalArgumentException("cannot pass null");
