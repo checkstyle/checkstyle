@@ -19,6 +19,144 @@
   </head>
 
   <body>
+    <section name="Release 6.10">
+      <p>Breaking backward compatibility:</p>
+      <ul>
+        <li>
+          'ignoreMethods' option has been removed from DeclarationOrderCheck. Author:  Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/2031">#2031</a>
+        </li>
+        <li>
+          fix typos in properties names. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/commit/b14f255427c0b12054de2873fe300b4f4e691bd4">in scope of #1555</a>
+        </li>
+      </ul>
+
+      <p>New:</p>
+      <ul>
+        <li>
+          Added new Check: CommentsIndentationCheck. Author:  Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/333">#333</a>
+        </li>
+      </ul>
+
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          fixed problem with lexical order in CustomImportOrder. Author:  Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1469">#1469</a>
+        </li>
+        <li>
+          Extended messages for CustomImportOrder. Author:  Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/pull/1648">#1648</a>
+        </li>
+        <li>
+          Changed SAME_PACKAGE rule for CustomImportOrderCheck. Author:  Aleksandr Ivanov  <a href="https://github.com/checkstyle/checkstyle/issues/1262">#1262</a>
+        </li>
+        <li>
+          reimplement EqualsAvoidNullCheck. Author:  Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1377">#1377</a>
+        </li>
+        <li>
+          enforce all checks to override getRequiredTokens, getAcceptableTokens methods. Author:  Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/655">#655</a>
+        </li>
+        <li>
+          IllegalType: add 'validateAbstractClassNames' option. Author:  Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/1805">#1805</a>
+        </li>
+        <li>
+          Marked 'maxLineLength' as '@Deprecated' at LeftCurlyCheck. Author:  Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/965">#965</a>
+        </li>
+        <li>
+          Detect public constructors in non-public classes in RedundantModifier. Author:  liscju <a href="https://github.com/checkstyle/checkstyle/issues/1537">#1537</a>
+        </li>
+        <li>
+          Fixes logic bug in gui ParseTreeInfoPanel making linesToPositions assign lines to inappropriate positions . Author:  liscju
+        </li>
+        <li>
+          Fix RightCurlyCheck with same option not to rise expression in single-line blocks . Author:  liscju <a href="https://github.com/checkstyle/checkstyle/issues/1416">#1416</a>
+        </li>
+        <li>
+          Fix UnsupportedOperationException in GUI. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1718">#1718</a>
+        </li>
+      </ul>
+
+      <p>Notes:</p>
+      <ul>
+        <li>
+          Fix issues reported by IntelliJ IDEA inspections in Checkstyle code. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1555">#1555</a>
+        </li>
+        <li>
+          Fix violations reported by Checkstyle checks. Author:  Baratali Izmailov , Ruslan Diachenko <a href="https://github.com/checkstyle/checkstyle/issues/1566">#1566</a>
+        </li>
+        <li>
+          Sonarqube found problems in Checkstyle. Author:  Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/46">#46</a>
+        </li>
+        <li>
+          Enable Checkstyle checks for 'gui' package. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/pull/1678">#1678</a>
+        </li>
+        <li>
+          Corrected links on website. Author:  Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/751">#751</a>
+        </li>
+        <li>
+          Eclipse warnings about unused fields have been fixed. Author:  Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/1243">#1243</a>
+        </li>
+        <li>
+          Simplify overqualified CSS element. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2054">#2054</a>
+        </li>
+        <li>
+          Remove empty CSS rule. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2054">#2054</a>
+        </li>
+        <li>
+          config: maven-enforcer-plugin and equalsverifier are updated to newest version . Author:  Roman Ivanov
+        </li>
+        <li>
+          Make coverage 100% for some classes at package com.puppycrawl.tools.checkstyle.checks. Author:  Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/1290">#1290</a>
+        </li>
+        <li>
+          Utils classes have been moved to utils package, new classes CommonUtils and TokenUtils. Author:  Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/1898">#1898</a>
+        </li>
+        <li>
+          Use EqualsVerifier to test equals and hashCode in IntMatchFilter. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1088">#1088</a>
+        </li>
+        <li>
+          Removed suppression for SwitchDensity rule from PMD. Author:  Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/973">#973</a>
+        </li>
+        <li>
+          Remove obsolete entry from PMD configuration. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/877">#877</a>
+        </li>
+        <li>
+          Remove unused Coveralls plugin from pom.xml . Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/pull/1881">#1881</a>
+        </li>
+        <li>
+          Update ANTLR to 4.5.1-1 . Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/pull/1880">#1880</a>
+        </li>
+        <li>
+          Update EqualsVerifier to 1.7.4. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/pull/1879">#1879</a>
+        </li>
+        <li>
+          replace deprecated method in HiddenCheckField . Author:  Vladislav Lisetskiy
+        </li>
+        <li>
+          Created JaCoCo profile of pom.xml. Author:  Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/1173">#1173</a>
+        </li>
+        <li>
+          Update Maven FindBugs Plugin to 3.0.2. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/1714">#1714</a>
+        </li>
+        <li>
+          Fixed typo in JavadocMethod's examples xdocs. Author:  Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/1668">#1668</a>
+        </li>
+        <li>
+          Make coverage 100% for all classes at package com.puppycrawl.tools.checkstyle.checks.regexp. Author:  Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/1010">#1010</a>
+        </li>
+        <li>
+          Fix headers for classes in 'gui' package. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/945">#945</a>
+        </li>
+        <li>
+          Make coverage 100% for all classes at package com.puppycrawl.tools.checkstyle.checks.coding. . Author:  Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/1293">#1293</a>
+        </li>
+        <li>
+          Resolved javadoc problems that reported by java 8. Author:  Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/291">#291.</a>
+        </li>
+        <li>
+          Minor typo fixes. Author:  Dave Moloney
+        </li>
+      </ul>
+    </section>
+
     <section name="Release 6.9">
       <p>Breaking backward compatibility:</p>
       <ul>
