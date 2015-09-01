@@ -167,14 +167,7 @@ public class XMLLogger
                     sb.append("&quot;");
                     break;
                 case '&':
-                    final int nextSemi = value.indexOf(';', i);
-                    if (nextSemi < 0
-                        || !isReference(value.substring(i, nextSemi + 1))) {
-                        sb.append("&amp;");
-                    }
-                    else {
-                        sb.append('&');
-                    }
+                    sb.append(encodeAmpersend(value, i));
                     break;
                 default:
                     sb.append(chr);
@@ -222,5 +215,24 @@ public class XMLLogger
             }
         }
         return reference;
+    }
+
+    /**
+     * Encodes ampersand in value at required position.
+     * @param value string value, which contains ampersand
+     * @param ampPosition position of ampersand in value
+     * @return encoded ampersand which should be used in xml
+     */
+    private static String encodeAmpersend(String value, int ampPosition) {
+        final int nextSemi = value.indexOf(';', ampPosition);
+        String result;
+        if (nextSemi < 0
+            || !isReference(value.substring(ampPosition, nextSemi + 1))) {
+            result = "&amp;";
+        }
+        else {
+            result = "&";
+        }
+        return result;
     }
 }
