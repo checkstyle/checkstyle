@@ -1924,14 +1924,11 @@ if (&quot;something&quot;.equals(x))
       <subsection name="Description">
         <p>
           Checks that particular classes are never used as types in variable
-          declarations, return values or parameters. Includes a pattern check
-          that by default disallows abstract classes.
+          declarations, return values or parameters.
         </p>
 
         <p>
-          Rationale: Helps reduce coupling on concrete classes. In addition
-          abstract classes should be thought of as convenient base class
-          implementations of interfaces, and as such, are not types themselves.
+          Rationale: Helps reduce coupling on concrete classes.
         </p>
       </subsection>
 
