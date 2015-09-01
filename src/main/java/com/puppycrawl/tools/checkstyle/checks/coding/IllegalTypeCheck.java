@@ -34,13 +34,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * Checks that particular class are never used as types in variable
- * declarations, return values or parameters. Includes
- * a pattern check that by default disallows abstract classes.
+ * declarations, return values or parameters.
  *
  * <p>Rationale:
- * Helps reduce coupling on concrete classes. In addition abstract
- * classes should be thought of a convenience base class
- * implementations of interfaces and as such are not types themselves.
+ * Helps reduce coupling on concrete classes.
  *
  * <p>Check has following properties:
  *
@@ -90,6 +87,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
+ * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
  */
 public final class IllegalTypeCheck extends AbstractFormatCheck {
 
