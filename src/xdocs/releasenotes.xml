@@ -19,6 +19,15 @@
   </head>
 
   <body>
+    <section name="Release 6.10.1">
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          broken compatibility with maven-checkstyle-plugin:2.15 at checkstyle:6.10. Author:  Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2065">#2065</a>
+        </li>
+      </ul>
+    </section>
+
     <section name="Release 6.10">
       <p>Breaking backward compatibility:</p>
       <ul>
@@ -27,6 +36,12 @@
         </li>
         <li>
           fix typos in properties names. Author:  Michal Kordas <a href="https://github.com/checkstyle/checkstyle/commit/b14f255427c0b12054de2873fe300b4f4e691bd4">in scope of #1555</a>
+        </li>
+        <li>
+          Rethrow all exceptions further to caller of Checker. Author:  Ruslan Diachenko <a href="https://github.com/checkstyle/checkstyle/issues/1304">#1304</a>
+        </li>
+        <li>
+          Improve exception handling in CheckstyleAntTask class. Author:  Ruslan Diachenko <a href="https://github.com/checkstyle/checkstyle/issues/1245">#1245</a>
         </li>
       </ul>
 
