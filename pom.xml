@@ -1625,11 +1625,6 @@
                     <lineRate>100</lineRate>
                   </regex>
                   <regex>
-                    <pattern>.*.checks.NewlineAtEndOfFileCheck</pattern>
-                    <branchRate>83</branchRate>
-                    <lineRate>88</lineRate>
-                  </regex>
-                  <regex>
                     <pattern>.*.checks.SuppressWarningsHolder</pattern>
                     <branchRate>75</branchRate>
                     <lineRate>93</lineRate>

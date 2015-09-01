@@ -20,14 +20,28 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.when;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Iterator;
+import java.util.Set;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 public class NewlineAtEndOfFileCheckTest
     extends BaseCheckTestSupport {
@@ -144,5 +158,42 @@ public class NewlineAtEndOfFileCheckTest
             createChecker(checkConfig),
             getPath("InputEmptyFile.txt"),
             expected);
+    }
+
+    @Test
+    public void testWrongFile() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(NewlineAtEndOfFileCheck.class);
+        File impossibleFile = new File("");
+        NewlineAtEndOfFileCheck check = new NewlineAtEndOfFileCheck();
+        check.configure(checkConfig);
+        Set<LocalizedMessage> messages = check.process(impossibleFile, Lists.newArrayList("txt"));
+        assertTrue(messages.size() == 1);
+        Iterator<LocalizedMessage> iter = messages.iterator();
+        assertEquals(iter.next().getMessage(), "Unable to open ''.");
+    }
+
+    @Test
+    public void testWrongSeparatorLength() throws Exception {
+        NewlineAtEndOfFileCheck check = new NewlineAtEndOfFileCheck();
+        final DefaultConfiguration checkConfig = createCheckConfig(NewlineAtEndOfFileCheck.class);
+        check.configure(checkConfig);
+
+        Method method = NewlineAtEndOfFileCheck.class
+                .getDeclaredMethod("endsWithNewline", RandomAccessFile.class);
+        method.setAccessible(true);
+        RandomAccessFile file = mock(RandomAccessFile.class);
+        when(file.length()).thenReturn(2000000L);
+        try {
+            method.invoke(new NewlineAtEndOfFileCheck(), file);
+        }
+        catch (InvocationTargetException ex) {
+            assertTrue(ex.getCause() instanceof IOException);
+            if (System.getProperty("os.name").toLowerCase().startsWith("windows")) {
+                assertEquals(ex.getCause().getMessage(), "Unable to read 2 bytes, got 0");
+            }
+            else {
+                assertEquals(ex.getCause().getMessage(), "Unable to read 1 bytes, got 0");
+            }
+        }
     }
 }
