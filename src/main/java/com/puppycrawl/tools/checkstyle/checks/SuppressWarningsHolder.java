@@ -307,40 +307,55 @@ public class SuppressWarningsHolder
      */
     private static DetailAST getAnnotationTarget(DetailAST ast) {
         DetailAST targetAST = null;
-        DetailAST parentAST = ast.getParent();
+        final DetailAST parentAST = ast.getParent();
         switch (parentAST.getType()) {
             case TokenTypes.MODIFIERS:
             case TokenTypes.ANNOTATIONS:
-                parentAST = parentAST.getParent();
-                switch (parentAST.getType()) {
-                    case TokenTypes.ANNOTATION_DEF:
-                    case TokenTypes.PACKAGE_DEF:
-                    case TokenTypes.CLASS_DEF:
-                    case TokenTypes.INTERFACE_DEF:
-                    case TokenTypes.ENUM_DEF:
-                    case TokenTypes.ENUM_CONSTANT_DEF:
-                    case TokenTypes.CTOR_DEF:
-                    case TokenTypes.METHOD_DEF:
-                    case TokenTypes.PARAMETER_DEF:
-                    case TokenTypes.VARIABLE_DEF:
-                    case TokenTypes.ANNOTATION_FIELD_DEF:
-                    case TokenTypes.TYPE:
-                    case TokenTypes.LITERAL_NEW:
-                    case TokenTypes.LITERAL_THROWS:
-                    case TokenTypes.TYPE_ARGUMENT:
-                    case TokenTypes.IMPLEMENTS_CLAUSE:
-                    case TokenTypes.DOT:
-                        targetAST = parentAST;
-                        break;
-                    default:
-                        // it's possible case, but shouldn't be processed here
-                }
+                targetAST = getAcceptableParent(parentAST);
                 break;
             default:
                 // unexpected container type
                 throw new IllegalArgumentException("Unexpected container AST: " + parentAST);
         }
         return targetAST;
+    }
+
+    /**
+     * Returns parent of given ast if parent has one of the following types:
+     * ANNOTATION_DEF, PACKAGE_DEF, CLASS_DEF, ENUM_DEF, ENUM_CONSTANT_DEF, CTOR_DEF,
+     * METHOD_DEF, PARAMETER_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, TYPE, LITERAL_NEW,
+     * LITERAL_THROWS, TYPE_ARGUMENT, IMPLEMENTS_CLAUSE, DOT.
+     * @param child an ast
+     * @return returns ast - parent of given
+     */
+    private static DetailAST getAcceptableParent(DetailAST child) {
+        DetailAST result;
+        final DetailAST parent = child.getParent();
+        switch (parent.getType()) {
+            case TokenTypes.ANNOTATION_DEF:
+            case TokenTypes.PACKAGE_DEF:
+            case TokenTypes.CLASS_DEF:
+            case TokenTypes.INTERFACE_DEF:
+            case TokenTypes.ENUM_DEF:
+            case TokenTypes.ENUM_CONSTANT_DEF:
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+            case TokenTypes.PARAMETER_DEF:
+            case TokenTypes.VARIABLE_DEF:
+            case TokenTypes.ANNOTATION_FIELD_DEF:
+            case TokenTypes.TYPE:
+            case TokenTypes.LITERAL_NEW:
+            case TokenTypes.LITERAL_THROWS:
+            case TokenTypes.TYPE_ARGUMENT:
+            case TokenTypes.IMPLEMENTS_CLAUSE:
+            case TokenTypes.DOT:
+                result = parent;
+                break;
+            default:
+                // it's possible case, but shouldn't be processed here
+                result = null;
+        }
+        return result;
     }
 
     /**
@@ -418,20 +433,29 @@ public class SuppressWarningsHolder
                 return ImmutableList.of(getStringExpr(ast));
 
             case TokenTypes.ANNOTATION_ARRAY_INIT:
-                final List<String> valueList = Lists.newLinkedList();
-                DetailAST childAST = ast.getFirstChild();
-                while (childAST != null) {
-                    if (childAST.getType() == TokenTypes.EXPR) {
-                        valueList.add(getStringExpr(childAST));
-                    }
-                    childAST = childAST.getNextSibling();
-                }
-                return valueList;
+                return findAllExpressionsInChildren(ast);
 
             default:
                 throw new IllegalArgumentException(
                         "Expression or annotation array initializer AST expected: " + ast);
         }
+    }
+
+    /**
+     * Method looks at children and returns list of expressions in strings.
+     * @param parent ast, that contains children
+     * @return list of expressions in strings
+     */
+    private static List<String> findAllExpressionsInChildren(DetailAST parent) {
+        final List<String> valueList = Lists.newLinkedList();
+        DetailAST childAST = parent.getFirstChild();
+        while (childAST != null) {
+            if (childAST.getType() == TokenTypes.EXPR) {
+                valueList.add(getStringExpr(childAST));
+            }
+            childAST = childAST.getNextSibling();
+        }
+        return valueList;
     }
 
     /** Records a particular suppression for a region of a file. */
