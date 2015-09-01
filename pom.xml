@@ -937,7 +937,7 @@
         <version>1.2</version>
         <configuration>
           <httpMethod>GET</httpMethod>
-          <timeout>3000</timeout>
+          <timeout>5000</timeout>
           <httpFollowRedirect>false</httpFollowRedirect>
           <forceSite>true</forceSite>
           <excludedPages>
@@ -999,6 +999,8 @@
             <excludedLink>http://nemo.sonarqube.org/project/index/com.puppycrawl.tools:checkstyle</excludedLink>
             <!-- skip validating SNAPSHOTs on sourceforge when ${projectVersion} is SNAPSHOT-->
             <excludedLink>http://iweb.dl.sourceforge.net/project/checkstyle/checkstyle/*-SNAPSHOT/checkstyle-*-SNAPSHOT-all.jar</excludedLink>
+            <!-- skip validating released "-all" jar on sourceforge as it is uploaded after site generation-->
+            <excludedLink>http://iweb.dl.sourceforge.net/project/checkstyle/checkstyle/*/checkstyle-*-all.jar</excludedLink>
             <!-- Excluded due to linkcheck's issue #22: https://issues.apache.org/jira/browse/MLINKCHECK-22-->
             <excludedLink>https://twitter.com/checkstyle_java/</excludedLink>
             <!-- Excluded due to linkcheck's issue #23: https://issues.apache.org/jira/browse/MLINKCHECK-23-->
