@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * Helper class to select a code.
+ * @author unknown
  */
 public class CodeSelector {
     /** DetailAST node. */

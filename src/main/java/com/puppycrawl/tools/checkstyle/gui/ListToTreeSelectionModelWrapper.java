@@ -30,6 +30,8 @@ import javax.swing.tree.TreePath;
  * to listen for changes in the ListSelectionModel it maintains. Once
  * a change in the ListSelectionModel happens, the paths are updated
  * in the DefaultTreeSelectionModel.
+ *
+ * @author unknown
  */
 class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
     /**

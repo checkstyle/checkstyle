@@ -29,6 +29,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * Entry point for starting the checkstyle GUI.
+ *
+ * @author unknown
  */
 public final class Main {
 
