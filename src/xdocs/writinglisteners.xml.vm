@@ -239,7 +239,7 @@ Audit finished. Total errors: 1
         Commons Logging</a> facade and the second, <code>MailLogger</code>, sends a report of an audit via
         e-mail. The discussion of these examples and how to use them is
         derived from material in <a
-        href="http://manning.com/hatcher/">&quot;Java Development
+        href="https://www.manning.com/books/java-development-with-ant">&quot;Java Development
         with Ant&quot;</a> by Eric Hatcher and Steve Loughran, an
         excellent ANT book.
       </p>
