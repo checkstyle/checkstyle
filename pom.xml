@@ -937,7 +937,7 @@
         <version>1.2</version>
         <configuration>
           <httpMethod>GET</httpMethod>
-          <timeout>5000</timeout>
+          <timeout>6000</timeout>
           <httpFollowRedirect>false</httpFollowRedirect>
           <forceSite>true</forceSite>
           <excludedPages>
