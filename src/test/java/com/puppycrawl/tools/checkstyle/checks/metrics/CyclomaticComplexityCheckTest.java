@@ -31,6 +31,34 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class CyclomaticComplexityCheckTest
     extends BaseCheckTestSupport {
     @Test
+    public void testSwitchBlockAsSingleDecisionPointSetToTrue() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(CyclomaticComplexityCheck.class);
+        checkConfig.addAttribute("max", "0");
+        checkConfig.addAttribute("switchBlockAsSingleDecisionPoint", "true");
+
+        final String[] expected = {
+            "4:5: " + getCheckMessage(MSG_KEY, 2, 0),
+        };
+
+        verify(checkConfig, getPath("metrics/ComplexityCheckSwitchBlocksTestInput.java"), expected);
+    }
+
+    @Test
+    public void testSwitchBlockAsSingleDecisionPointSetToFalse() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(CyclomaticComplexityCheck.class);
+        checkConfig.addAttribute("max", "0");
+        checkConfig.addAttribute("switchBlockAsSingleDecisionPoint", "false");
+
+        final String[] expected = {
+            "4:5: " + getCheckMessage(MSG_KEY, 5, 0),
+        };
+
+        verify(checkConfig, getPath("metrics/ComplexityCheckSwitchBlocksTestInput.java"), expected);
+    }
+
+    @Test
     public void test() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(CyclomaticComplexityCheck.class);
@@ -66,6 +94,7 @@ public class CyclomaticComplexityCheckTest
             TokenTypes.LITERAL_DO,
             TokenTypes.LITERAL_FOR,
             TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_SWITCH,
             TokenTypes.LITERAL_CASE,
             TokenTypes.LITERAL_CATCH,
             TokenTypes.QUESTION,

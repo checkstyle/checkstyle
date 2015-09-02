@@ -333,6 +333,12 @@
             <td><a href="property_types.html#integer">integer</a></td>
             <td><code>10</code></td>
           </tr>
+          <tr>
+            <td>switchBlockAsSingleDecisionPoint</td>
+            <td>whether to treat the whole switch block as a single decision point</td>
+            <td><a href="property_types.html#integer">boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
         </table>
       </subsection>
 
@@ -353,11 +359,11 @@
 &lt;/module&gt;
         </source>
         <p>
-          Explanation on how complexity is calculated:
+          Explanation on how complexity is calculated (switchBlockAsSingleDecisionPoint is set to false):
         </p>
         <source>
 class CC {
-   // Cyclomatic Complexity = 13
+   // Cyclomatic Complexity = 12
    public void doSmth()  {               // 1
        if (a == b)  {                    // 2
             if (a1 == b1                 // 3
@@ -391,12 +397,33 @@ class CC {
               case 2:                    // 12
                     fiddle();
                     break;
-              default:                   // 13
+              default:
                     fiddle();
                     break;
             }
         }
     }
+}        </source>
+        <p>
+          Explanation on how complexity is calculated (switchBlockAsSingleDecisionPoint is set to true):
+        </p>
+        <source>
+class SwitchExample {
+   // Cyclomatic Complexity = 2
+   public void doSmth()  {            // 1
+       int z = 1;
+       switch (z) {                   // 2
+           case 1:
+               foo1();
+               break;
+           case 2:
+               foo2();
+               break;
+           default:
+               fooDefault();
+               break;
+       }
+   }
 }        </source>
       </subsection>
 

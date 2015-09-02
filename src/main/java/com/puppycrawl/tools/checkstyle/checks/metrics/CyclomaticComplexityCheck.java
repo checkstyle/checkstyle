@@ -32,8 +32,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * the source and therefore the number of required tests. Generally 1-4 is
  * considered good, 5-7 ok, 8-10 consider re-factoring, and 11+ re-factor now!
  *
+ * <p>Check has following properties:
+ *
+ * <p><b>switchBlockAsSingleDecisionPoint</b> - controls whether to treat the whole switch
+ * block as a single decision point. Default value is <b>false</b>
+ *
+ *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author Oliver Burn
+ * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
  */
 public class CyclomaticComplexityCheck
     extends AbstractComplexityCheck {
@@ -47,9 +54,21 @@ public class CyclomaticComplexityCheck
     /** Default allowed complexity. */
     private static final int DEFAULT_VALUE = 10;
 
+    /** Whether to treat the whole switch block as a single decision point.*/
+    private boolean switchBlockAsSingleDecisionPoint;
+
     /** Create an instance. */
     public CyclomaticComplexityCheck() {
         super(DEFAULT_VALUE);
+    }
+
+    /**
+     * Sets whether to treat the whole switch block as a single decision point.
+     * @param switchBlockAsSingleDecisionPoint whether to treat the whole switch
+     *                                          block as a single decision point.
+     */
+    public void setSwitchBlockAsSingleDecisionPoint(boolean switchBlockAsSingleDecisionPoint) {
+        this.switchBlockAsSingleDecisionPoint = switchBlockAsSingleDecisionPoint;
     }
 
     @Override
@@ -63,6 +82,7 @@ public class CyclomaticComplexityCheck
             TokenTypes.LITERAL_DO,
             TokenTypes.LITERAL_FOR,
             TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_SWITCH,
             TokenTypes.LITERAL_CASE,
             TokenTypes.LITERAL_CATCH,
             TokenTypes.QUESTION,
@@ -82,6 +102,7 @@ public class CyclomaticComplexityCheck
             TokenTypes.LITERAL_DO,
             TokenTypes.LITERAL_FOR,
             TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_SWITCH,
             TokenTypes.LITERAL_CASE,
             TokenTypes.LITERAL_CATCH,
             TokenTypes.QUESTION,
@@ -92,7 +113,14 @@ public class CyclomaticComplexityCheck
 
     @Override
     protected final void visitTokenHook(DetailAST ast) {
-        incrementCurrentValue(BigInteger.ONE);
+        if (switchBlockAsSingleDecisionPoint) {
+            if (ast.getType() != TokenTypes.LITERAL_CASE) {
+                incrementCurrentValue(BigInteger.ONE);
+            }
+        }
+        else if (ast.getType() != TokenTypes.LITERAL_SWITCH) {
+            incrementCurrentValue(BigInteger.ONE);
+        }
     }
 
     @Override
