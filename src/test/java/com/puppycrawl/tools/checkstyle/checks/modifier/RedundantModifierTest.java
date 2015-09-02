@@ -137,4 +137,17 @@ public class RedundantModifierTest
         int[] expected = ArrayUtils.EMPTY_INT_ARRAY;
         Assert.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void testNestedStaticEnum() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RedundantModifierCheck.class);
+        final String[] expected = {
+            "4:5: " + getCheckMessage(MSG_KEY, "static"),
+            "8:9: " + getCheckMessage(MSG_KEY, "static"),
+            "12:9: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verify(checkConfig, getPath("InputRedundantStatic"
+            + "ModifierInNestedEnum.java"), expected);
+    }
 }
