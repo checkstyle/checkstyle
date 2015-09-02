@@ -437,9 +437,10 @@ switch (num) {
       <subsection name="Description">
         <p>
           Checks the placement of right curly braces (<code>'}'</code>)
-          for <code> else</code>, <code>try</code>, and
-          <code>catch</code> tokens. The policy to verify is specified
-          using the property <code> option</code>.
+          for if-else, try-catch-finally blocks, while-loops, for-loops,
+          method definitions, class definitions, constructor definitions,
+          instance and static initialization blocks.
+          The policy to verify is specified using the property <code> option</code>.
         </p>
       </subsection>
 

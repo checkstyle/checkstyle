@@ -286,15 +286,61 @@
         <tr>
           <td><code>same</code></td>
           <td>
-            The brace must be on the same line as the next part of
-            a multi-block statement (one that directly contains
-            multiple blocks: if/else-if/else or try/catch/finally. For
-            example:
-            <pre>
+            The brace should be on the same line as the next part of a multi-block statement
+            (one that directly contains multiple blocks: if/else-if/else or try/catch/finally).
+
+            <p>Examples:</p>
+
+              <pre>
+    // try-catch-finally blocks
     try {
         ...
-    } finally {
-            </pre>
+    <b>}</b> catch (Exception ex) { // this is OK
+        ...
+    <b>}</b> finally { // this is OK
+        ...
+    }
+
+    try {
+        ...
+    <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
+    catch (Exception ex) {
+          ...
+    <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
+    finally {
+          ...
+    }
+
+    // if-else blocks
+    if (a &#62; 0) {
+       ...
+    <b>}</b> else { // this is OK
+       ...
+    }
+
+    if (a &#62; 0) {
+       ...
+    <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
+    else {
+       ...
+    }
+
+    if (a > 0) {
+       ...
+    <b>}</b> int i = 5; // this is NOT OK, next part of a multi-block statement is absent
+
+    // Single line blocks will rise violations, because right curly
+    // brace is not on the same line as the next part of a multi-block
+    // statement, it just ends the line.
+    public long getId() {return id;<b>}</b> // this is NOT OK
+
+    Thread t = new Thread(new Runnable() {
+       @Override
+       public void run() {
+                  ...
+       <b>}</b> // this is NOT OK, brace is not on the same line as the next part of a multi-block statement
+    <b>}</b>); // this is OK, allowed for better code readability
+              </pre>
           </td>
         </tr>
 
@@ -305,10 +351,10 @@
             <pre>
     try {
         ...
-    }
+    <b>}</b>
     finally {
         ...
-    }
+    <b>}</b>
             </pre>
           </td>
         </tr>
@@ -323,13 +369,13 @@
     // Brace is alone on the line
     try {
         ...
-    }
+    <b>}</b>
     finally {
         ...
-    }
+    <b>}</b>
 
     // Single-line format of block
-    private int foo() { return 1; }
+    public long getId() { return id; <b>}</b>
                   </pre>
               </td>
           </tr>
