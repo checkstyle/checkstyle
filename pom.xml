@@ -61,17 +61,31 @@
       </roles>
     </developer>
     <developer>
+      <id>rdiachenko</id>
+      <name>Ruslan Diachenko</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>baratali</id>
+      <name>Baratali Izmailov</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
       <id>daniilyar</id>
       <name>Daniil Yaroslavtsev</name>
       <roles>
-        <role>developer</role>
+        <role>former developer</role>
       </roles>
     </developer>
     <developer>
       <id>moradan</id>
       <name>Ivan Sopov</name>
       <roles>
-        <role>developer</role>
+        <role>former developer</role>
       </roles>
     </developer>
     <developer>
