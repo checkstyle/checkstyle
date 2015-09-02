@@ -31,7 +31,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Checks for redundant modifiers in interface and annotation definitions.
  * Checks for non public class constructor and enum constructor redundant modifier.
- * Also checks for redundant final modifiers on methods of final classes
+ * Checks for redundant final modifiers on methods of final classes.
+ * Checks for redundant static modifiers on nested enums.
  *
  * <p>Examples:</p>
  *
@@ -74,6 +75,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author lkuehne
  * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
+ * @author Vladislav Lisetskiy
  */
 public class RedundantModifierCheck
     extends Check {
@@ -128,6 +130,9 @@ public class RedundantModifierCheck
                 checkClassConstructorModifiers(ast);
             }
         }
+        else if (ast.getType() == TokenTypes.ENUM_DEF) {
+            checkEnumDef(ast);
+        }
         else if (isInterfaceOrAnnotationMember(ast)) {
             processInterfaceOrAnnotation(ast);
         }
@@ -164,6 +169,24 @@ public class RedundantModifierCheck
         if (modifier != null) {
             log(modifier.getLineNo(), modifier.getColumnNo(),
                     MSG_KEY, modifier.getText());
+        }
+    }
+
+    /**
+     * Checks whether enum has proper modifiers.
+     * @param ast enum definition.
+     */
+    private void checkEnumDef(DetailAST ast) {
+        if (isInterfaceOrAnnotationMember(ast)) {
+            processInterfaceOrAnnotation(ast);
+        }
+        else if (ast.getParent() != null) {
+            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+            final DetailAST staticModifier = modifiers.findFirstToken(TokenTypes.LITERAL_STATIC);
+            if (staticModifier != null) {
+                log(staticModifier.getLineNo(), staticModifier.getColumnNo(),
+                        MSG_KEY, staticModifier.getText());
+            }
         }
     }
 
