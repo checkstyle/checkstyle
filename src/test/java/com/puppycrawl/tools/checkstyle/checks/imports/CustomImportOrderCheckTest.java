@@ -28,6 +28,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -362,7 +363,8 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
             method.setAccessible(true);
             actual = method.invoke(t, (DetailAST) null);
         }
-        catch (Exception ignored) {
+        catch (ClassNotFoundException | NoSuchMethodException | InstantiationException
+                  | IllegalAccessException | InvocationTargetException ignored) {
             actual = null;
         }
 

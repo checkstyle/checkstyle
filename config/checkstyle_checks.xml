@@ -85,7 +85,7 @@
     <module name="EqualsHashCode"/>
     <module name="OneStatementPerLine"/>
 
-    <!-- module name="IllegalCatch"/ -->
+    <module name="IllegalCatch"/>
     <module name="ImportControl">
       <property name="file" value="${checkstyle.importcontrol.file}"/>
     </module>
