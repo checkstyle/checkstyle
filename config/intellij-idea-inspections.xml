@@ -1972,7 +1972,6 @@
                 <option value="deprecation" />
                 <option value="unchecked" />
                 <option value="rawtypes" />
-                <option value="idea: CollectionDeclaredAsConcreteClass" />
             </list>
         </option>
     </inspection_tool>
