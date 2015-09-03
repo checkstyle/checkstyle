@@ -144,6 +144,15 @@ line 5: ////////////////////////////////////////////////////////////////////
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L39-L43">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p> com.puppycrawl.tools.checkstyle.checks.header </p>
       </subsection>
@@ -319,6 +328,15 @@ line 6: ^\W*$
           removed from this check to simplify it.  To make some line optional
           use &quot;^.*$&quot; regexp for this line.
         </p>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L69-L72">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">

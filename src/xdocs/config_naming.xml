@@ -353,6 +353,196 @@ class MyClass {
       </subsection>
     </section>
 
+    <section name="Example of Usage">
+      <ol>
+        <li>
+          AbstractClassName
+          <ul>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L297">
+              Checkstyle Style</a>
+            </li>
+          </ul>
+         </li>
+         <li>
+          ClassTypeParameterName
+          <ul>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L122-L126">
+              Google Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L247">
+              Checkstyle Style</a>
+            </li>
+          </ul>
+         </li>
+         <li>
+          ConstantName
+          <ul>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L91">
+              Sun Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L80">
+              Checkstyle Style</a>
+            </li>
+          </ul>
+         </li>
+         <li>
+          LocalFinalVariableName
+          <ul>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L92">
+              Sun Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L134">
+              Checkstyle Style</a>
+            </li>
+          </ul>
+         </li>
+         <li>
+          LocalVariableName
+          <ul>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L115-L121">
+              Google Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L93">
+              Sun Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L135">
+              Checkstyle Style</a>
+            </li>
+          </ul>
+         </li>
+         <li>
+          MemberName
+          <ul>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L105-L109">
+              Google Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L94">
+              Sun Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L136-L138">
+              Checkstyle Style</a>
+            </li>
+          </ul>
+         </li>
+         <li>
+          MethodName
+          <ul>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L193-L197">
+              Google Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L95">
+              Sun Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L140">
+              Checkstyle Style</a>
+            </li>
+          </ul>
+         </li>
+         <li>
+          MethodTypeParameterName
+          <ul>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L127-L131">
+              Google Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L262">
+              Checkstyle Style</a>
+            </li>
+          </ul>
+         </li>
+         <li>
+          InterfaceTypeParameterName
+          <ul>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L261">
+              Checkstyle Style</a>
+            </li>
+          </ul>
+         </li>
+         <li>
+          PackageName
+          <ul>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L96-L100">
+              Google Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L96">
+              Sun Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L178">
+              Checkstyle Style</a>
+            </li>
+          </ul>
+         </li>
+         <li>
+          ParameterName
+          <ul>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L110-L114">
+              Google Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L97">
+              Sun Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L179-L181">
+              Checkstyle Style</a>
+            </li>
+          </ul>
+         </li>
+         <li>
+          StaticVariableName
+          <ul>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L98">
+              Sun Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L195-L197">
+              Checkstyle Style</a>
+            </li>
+          </ul>
+         </li>
+         <li>
+          TypeName
+          <ul>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L101-L104">
+              Google Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L99">
+              Sun Style</a>
+            </li>
+            <li>
+              <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L198">
+              Checkstyle Style</a>
+            </li>
+          </ul>
+         </li>
+      </ol>
+    </section>
+
     <section name="Notes">
       <p>
         The default value of <code>format</code> for module <code>PackageName</code> has been chosen to match the
@@ -447,6 +637,19 @@ class MyClass {
     &lt;property name="allowedAbbreviation" value="XML,URL"/&gt;
 &lt;/module&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L151-L154">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L295">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
