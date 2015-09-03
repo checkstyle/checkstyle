@@ -56,10 +56,10 @@ public class CheckerTest {
         checker.fireFileStarted("Some File Name");
         checker.fireFileFinished("Some File Name");
 
-        final SortedSet<LocalizedMessage> msgs = Sets.newTreeSet();
-        msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
+        final SortedSet<LocalizedMessage> messages = Sets.newTreeSet();
+        messages.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        checker.fireErrors("Some File Name", msgs);
+        checker.fireErrors("Some File Name", messages);
 
         assertFalse("Checker.destroy() doesn't remove listeners.", auditAdapter.wasCalled());
         assertFalse("Checker.destroy() doesn't remove filters.", filter.wasCalled());
@@ -202,11 +202,11 @@ public class CheckerTest {
         checker.setFileExtensions(".java", "xml");
 
         try {
-            checker.setCharset("UNKNOW-CHARSET");
+            checker.setCharset("UNKNOWN-CHARSET");
             fail("Exception is expected");
         }
         catch (UnsupportedEncodingException ex) {
-            assertEquals("unsupported charset: 'UNKNOW-CHARSET'", ex.getMessage());
+            assertEquals("unsupported charset: 'UNKNOWN-CHARSET'", ex.getMessage());
         }
     }
 

@@ -77,8 +77,8 @@ class PackageObjectFactory implements ModuleFactory {
 
     /**
      * Creates a new instance of a class from a given name. If the name is
-     * a classname, creates an instance of the named class. Otherwise, creates
-     * an instance of a classname obtained by concatenating the given
+     * a class name, creates an instance of the named class. Otherwise, creates
+     * an instance of a class name obtained by concatenating the given
      * to a package name from a given list of package names.
      * @param name the name of a class.
      * @return the {@code Object}
@@ -131,8 +131,8 @@ class PackageObjectFactory implements ModuleFactory {
     /**
      * Creates a new instance of a class from a given name, or that name
      * concatenated with &quot;Check&quot;. If the name is
-     * a classname, creates an instance of the named class. Otherwise, creates
-     * an instance of a classname obtained by concatenating the given name
+     * a class name, creates an instance of the named class. Otherwise, creates
+     * an instance of a class name obtained by concatenating the given name
      * to a package name from a given list of package names.
      * @param name the name of a class.
      * @return the {@code Object} created by loader.

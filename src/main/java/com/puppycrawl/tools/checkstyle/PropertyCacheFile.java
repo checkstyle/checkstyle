@@ -51,7 +51,7 @@ final class PropertyCacheFile {
 
     /**
      * The property key to use for storing the hashcode of the
-     * configuration. To avoid nameclashes with the files that are
+     * configuration. To avoid name clashes with the files that are
      * checked the key is chosen in such a way that it cannot be a
      * valid file name.
      */
@@ -183,10 +183,10 @@ final class PropertyCacheFile {
         try {
             // im-memory serialization of Configuration
 
-            final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             ObjectOutputStream oos = null;
             try {
-                oos = new ObjectOutputStream(baos);
+                oos = new ObjectOutputStream(outputStream);
                 oos.writeObject(object);
             }
             finally {
@@ -198,7 +198,7 @@ final class PropertyCacheFile {
             // hashcode reasonable
 
             final MessageDigest md = MessageDigest.getInstance("SHA-1");
-            md.update(baos.toByteArray());
+            md.update(outputStream.toByteArray());
 
             return hexEncode(md.digest());
         }

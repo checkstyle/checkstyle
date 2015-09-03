@@ -144,7 +144,7 @@ public final class ConfigurationLoader {
     /**
      * Parses the specified input source loading the configuration information.
      * The stream wrapped inside the source, if any, is NOT
-     * explicitely closed after parsing, it is the responsibility of
+     * explicitly closed after parsing, it is the responsibility of
      * the caller to close the stream.
      *
      * @param source the source that contains the configuration data

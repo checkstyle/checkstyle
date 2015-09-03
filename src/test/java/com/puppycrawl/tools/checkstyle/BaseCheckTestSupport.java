@@ -110,10 +110,10 @@ public abstract class BaseCheckTestSupport {
         final int errs = checker.process(theFiles);
 
         // process each of the lines
-        final ByteArrayInputStream bais =
+        final ByteArrayInputStream inputStream =
                 new ByteArrayInputStream(stream.toByteArray());
         try (final LineNumberReader lnr = new LineNumberReader(
-                new InputStreamReader(bais, StandardCharsets.UTF_8))) {
+                new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = messageFileName + ":" + expected[i];
