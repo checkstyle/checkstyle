@@ -1605,16 +1605,6 @@
                     <lineRate>80</lineRate>
                   </regex>
                   <regex>
-                    <pattern>.*.checks.AbstractTypeAwareCheck</pattern>
-                    <branchRate>87</branchRate>
-                    <lineRate>84</lineRate>
-                  </regex>
-                  <regex>
-                    <pattern>.*.checks.AbstractTypeAwareCheck\$.*</pattern>
-                    <branchRate>50</branchRate>
-                    <lineRate>80</lineRate>
-                  </regex>
-                  <regex>
                     <pattern>.*.checks.ClassResolver</pattern>
                     <branchRate>85</branchRate>
                     <lineRate>93</lineRate>
