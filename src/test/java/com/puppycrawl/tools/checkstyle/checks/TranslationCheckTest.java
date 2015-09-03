@@ -123,7 +123,7 @@ public class TranslationCheckTest
                 IOException.class,
                 File.class);
         logIOException.setAccessible(true);
-        logIOException.invoke(check, new IOException(), new File(""));
+        logIOException.invoke(check, new IOException("test exception"), new File(""));
     }
 
 }
