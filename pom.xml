@@ -1600,11 +1600,6 @@
                 <totalLineRate>95</totalLineRate>
                 <regexes>
                   <regex>
-                    <pattern>.*.checks.AbstractOptionCheck</pattern>
-                    <branchRate>100</branchRate>
-                    <lineRate>80</lineRate>
-                  </regex>
-                  <regex>
                     <pattern>.*.checks.ClassResolver</pattern>
                     <branchRate>85</branchRate>
                     <lineRate>93</lineRate>
