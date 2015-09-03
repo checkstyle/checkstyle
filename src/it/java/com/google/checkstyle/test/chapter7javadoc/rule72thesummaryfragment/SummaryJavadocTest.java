@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule72thesummaryfragment;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -22,8 +23,7 @@ public class SummaryJavadocTest extends BaseCheckTestSupport{
     @Test
     public void testCorrect() throws Exception {
         
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("SummaryJavadocCheck");
         String filePath = builder.getFilePath("InputCorrectSummaryJavaDocCheck");

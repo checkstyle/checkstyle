@@ -29,6 +29,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -165,8 +166,8 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
     public void testWithSuppressLoadErrors() throws Exception {
         checkConfig.addAttribute("suppressLoadErrors", "true");
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
         verify(checkConfig, getPath("javadoc/InputLoadErrors.java"), expected);
     }
 }

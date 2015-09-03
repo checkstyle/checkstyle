@@ -25,6 +25,7 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
@@ -40,8 +41,7 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport {
     public void testClassExtendsGenericClass() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
 
-        String[] expected = {
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("design" + File.separator
             + "InputMutableExceptionClassExtendsGenericClass.java"), expected);
