@@ -35,17 +35,17 @@ public class SummaryJavadocTest extends BaseCheckTestSupport{
     @Test
     public void testIncorrect() throws Exception {
         
-        String msg_first_sentence = getCheckMessage(SummaryJavadocCheck.class, "summary.first.sentence");
-        String msg_forbidden_fragment = getCheckMessage(SummaryJavadocCheck.class, "summary.javaDoc");
+        String msgFirstSentence = getCheckMessage(SummaryJavadocCheck.class, "summary.first.sentence");
+        String msgForbiddenFragment = getCheckMessage(SummaryJavadocCheck.class, "summary.javaDoc");
 
         final String[] expected = {
-            "14: " + msg_first_sentence,
-            "37: " + msg_first_sentence,
-            "47: " + msg_forbidden_fragment,
-            "58: " + msg_forbidden_fragment,
-            "69: " + msg_first_sentence,
-            "83: " + msg_forbidden_fragment,
-            "103: " + msg_first_sentence,
+            "14: " + msgFirstSentence,
+            "37: " + msgFirstSentence,
+            "47: " + msgForbiddenFragment,
+            "58: " + msgForbiddenFragment,
+            "69: " + msgFirstSentence,
+            "83: " + msgForbiddenFragment,
+            "103: " + msgFirstSentence,
         };
 
         Configuration checkConfig = builder.getCheckConfig("SummaryJavadocCheck");
