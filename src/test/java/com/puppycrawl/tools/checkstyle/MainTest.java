@@ -429,9 +429,6 @@ public class MainTest {
             assertTrue(e.getCause().getMessage().startsWith("Unable to load properties from file '"));
             assertTrue(e.getCause().getMessage().endsWith(":invalid'."));
         }
-        catch (Exception e) {
-            fail();
-        }
     }
 
     @Test
@@ -445,9 +442,6 @@ public class MainTest {
         catch (InvocationTargetException e) {
             assertTrue(e.getCause() instanceof IllegalStateException);
             assertTrue(e.getCause().getMessage().startsWith("Invalid output format. Found"));
-        }
-        catch (Exception e) {
-            fail();
         }
     }
 
