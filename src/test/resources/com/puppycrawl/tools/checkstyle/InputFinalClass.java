@@ -111,3 +111,15 @@ enum testenum2
         private someinnerClass() {}
     }
 }
+
+interface TestInterface {
+    class SomeClass {
+        private SomeClass() {}
+    }
+}
+
+@interface SomeAnnotation {
+    class SomeClass {
+        private SomeClass() {}
+    }
+}
