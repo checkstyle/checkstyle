@@ -367,7 +367,7 @@
     <inspection_tool class="ComparisonOfShortAndChar" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ComparisonToNaN" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ConditionSignal" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="ConditionalExpression" enabled="false" level="ERROR" enabled_by_default="false">
+    <inspection_tool class="ConditionalExpression" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreSimpleAssignmentsAndReturns" value="false" />
     </inspection_tool>
     <inspection_tool class="ConditionalExpressionJS" enabled="true" level="ERROR" enabled_by_default="true" />

@@ -123,7 +123,10 @@ public abstract class BaseCheckTestSupport
                 parseInt = parseInt.substring(parseInt.indexOf(':') + 1);
                 parseInt = parseInt.substring(0, parseInt.indexOf(':'));
                 int lineNumber = Integer.parseInt(parseInt);
-                Integer integer = Arrays.asList(aWarnsExpected).contains(lineNumber) ? lineNumber : 0;
+                Integer integer = 0;
+                if (Arrays.asList(aWarnsExpected).contains(lineNumber)) {
+                    integer = lineNumber;
+                }
                 assertEquals("error message " + i, (long) integer, lineNumber);
             }
 
