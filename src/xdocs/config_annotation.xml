@@ -100,6 +100,15 @@
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#230">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
@@ -119,6 +128,15 @@
         <p> To configure the check:</p>
         <source> &lt;module name=&quot;MissingDeprecated&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#231">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -180,6 +198,15 @@
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L232-L234">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
@@ -213,6 +240,15 @@
         <p> To configure the check:</p>
         <source> &lt;module name=&quot;PackageAnnotation&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L235">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -345,6 +381,15 @@
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L236">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
@@ -420,6 +465,15 @@
           </source>
       </p>
 
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L286">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -527,6 +581,27 @@ public String getNameIfPresent() { ... }
     &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L167-L169">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L239">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
   </body>
