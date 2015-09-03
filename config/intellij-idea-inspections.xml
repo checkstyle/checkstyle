@@ -4,8 +4,9 @@
     <inspection_tool class="AbsoluteAlignmentInUserInterface" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AbstractBeanReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="AbstractClassExtendsConcreteClass" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="AbstractClassNamingConvention" enabled="false" level="WARNING" enabled_by_default="false">
+    <inspection_tool class="AbstractClassNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_regex" value="[A-Z][A-Za-z\d]*|Check" />
+        <option name="m_minLength" value="5" />
     </inspection_tool>
     <inspection_tool class="AbstractClassNeverImplemented" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AbstractClassWithOnlyOneDirectInheritor" enabled="false" level="ERROR" enabled_by_default="false" />
