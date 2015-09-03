@@ -81,7 +81,7 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
         }
         catch (InvocationTargetException ex) {
             assertTrue(ex.getCause() instanceof IllegalArgumentException);
-            assertEquals(ex.getCause().getMessage(), "ClassInfo's name should be non-null");
+            assertEquals("ClassInfo's name should be non-null", ex.getCause().getMessage());
         }
 
         Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class, int.class,
