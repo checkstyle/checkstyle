@@ -148,7 +148,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
         for (String check : checksNames) {
             if (!checksReferencedInConfig.contains(check)) {
-                String errorMessage = String.format("%s is not refferenced in checkstyle_checks.xml", check);
+                String errorMessage = String.format("%s is not referenced in checkstyle_checks.xml", check);
                 Assert.fail(errorMessage);
             }
         }

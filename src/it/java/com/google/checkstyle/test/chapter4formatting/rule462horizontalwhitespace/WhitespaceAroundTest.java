@@ -92,7 +92,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport{
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("WhitespaceAround");
-        String filePath = builder.getFilePath("WhitespaceAroundnput_EmptyTypesAndCycles");
+        String filePath = builder.getFilePath("WhitespaceAroundInput_EmptyTypesAndCycles");
 
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
